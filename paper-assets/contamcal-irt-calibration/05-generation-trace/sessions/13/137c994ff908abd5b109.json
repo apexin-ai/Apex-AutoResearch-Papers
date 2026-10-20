@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "137c994ff908abd5b109",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 s42 eval finalize",
+  "task_key": "worker_ops_cqa1-s42-eval-finalize_20260519T211051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-s42-eval-finalize_20260519T211051_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "72745d66a5f36b4e2d5593588b4030ad029b2ab958930ecc398deee7c59ceb23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。Cron 列表在本 session 为空（cron 不在当前 session 中），无需删除。\n\n---\n\n**汇总：**\n\n**Qwen-7B s42 eval 结果（5/5 成功）：**\n\n| Dosage | MMLU (s42) | ARC (s42) | MMLU (s123) | ARC (s123) | Δ MMLU | Δ ARC |\n|--------|-----------|----------|------------|-----------|--------|-------|\n| d000 | 66.14% | 87.97% | 66.59% | 87.20% | -0.45 | +0.77 |\n| d005 | 64.82% | 86.18% | 63.37% | 82.51% | +1.45 | **+3.67** |\n| d025 | 63.06% | 83.79% | 64.82% | 85.15% | -1.76 | -1.36 |\n| d050 | 63.10% | 84.56% | 65.00% | 84.64% | -1.90 | -0.08 |\n| d100 | 64.32% | 84.73% | 66.59% | 84.73% | -2.27 | 0.00 |\n\n- Registry: `eval_qwen7b_s42_cqa1_v2` → DONE/success，含完整 metrics 和 seed 对比\n- Cron: 本 session 无活跃 cron job（若 cron 在其他 session 创建，需在该 session 中删除）\n\nd005 ARC 的 +3.67pp seed 间差异较大，其余 dosage 差异合理（≤2.3pp MMLU, ≤1.4pp ARC）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-s42-eval-finalize.md"
+}

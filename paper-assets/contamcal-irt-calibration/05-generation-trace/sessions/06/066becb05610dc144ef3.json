@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "066becb05610dc144ef3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cleanup registry fill",
+  "task_key": "worker_ops_cleanup-registry-fill_20260516T192343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-registry-fill_20260516T192343_result.json",
+    "occurrence": 1,
+    "bytes": 1426,
+    "sha256": "1aa957a0dd3f2c27b170e886afe4a47e85093358c3913f099cc0c84b68a6a1e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. Kill 后 GPU 状态\n\n| GPU | 状态 | PID | 任务 |\n|-----|------|-----|------|\n| 0 | 占用 | 825638 | eval: Llama d005_s42 (mmlu/gsm8k/arc/humaneval) |\n| 1 | 占用 | 830115 | signals: Llama d000_s42 mmlu |\n| 2 | 占用 | 839655 | signals: Llama d000_s42 gsm8k — **不在 kill 列表中，未释放** |\n| 3 | 占用 | 822390 | eval: Llama d025_s42 (mmlu/gsm8k/arc/humaneval) |\n| 4 | **空闲** | — | — |\n| 5 | 占用 | 831033 | eval: Llama d100_s42 (mmlu/gsm8k/arc/humaneval) |\n\n### 2. Llama eval 完成状态\n\n三个 eval **都未完成**，仅产出 `mmlu_results.json`，正在继续跑后续 benchmark：\n\n| Dosage | mmlu | gsm8k | arc_challenge | humaneval | .done |\n|--------|------|-------|---------------|-----------|-------|\n| d005 | done | running (GPU 0) | pending | pending | NO |\n| d025 | done | running (GPU 3) | pending | pending | NO |\n| d100 | done | running (GPU 5) | pending | pending | NO |\n\n参考：已完成的 d000 eval 包含 7 个文件（mmlu/gsm8k/arc_challenge/humaneval_results + correctness_matrix + eval_results + item_responses + .done）。\n\n### 3. Signals 启动\n\n**无法启动** — 三个 Llama eval 均未完成，不满足启动条件。\n\nGPU 4 当前空闲，等 eval 完成后可用。需要指示：是否在 GPU 4 上启动其他任务（如 d000 的 arc_challenge signals），还是保留等 eval 先完成？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-registry-fill.md"
+}

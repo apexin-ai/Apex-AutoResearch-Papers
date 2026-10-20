@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b64ee4a7c78d13a3e47",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis mmlu item aligned gap",
+  "task_key": "worker_analysis_mmlu_item_aligned_gap_20260514T201711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmlu_item_aligned_gap_20260514T201711_result.json",
+    "occurrence": 1,
+    "bytes": 1013,
+    "sha256": "dd5d705bf8dfe2e69532a2924d9054f2a3904dc6bb455723326f2c2296234586"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n### 1.5B d100\n| 指标 | 值 |\n|------|------|\n| Full original (14042) | 0.5933 |\n| Item-aligned original (6596) | 0.5963 |\n| Paraphrase (6596) | 0.6252 |\n| 原始 gap (misaligned) | **-3.19pp** |\n| 修正 gap (item-aligned) | **-2.90pp** |\n| QC selection bias | +0.56pp (QC-passed items 在 original 上略容易) |\n\n### 3B d100\n| 指标 | 值 |\n|------|------|\n| Full original (14042) | 0.6417 |\n| Item-aligned original (6596) | 0.6413 |\n| Paraphrase (6596) | 0.6763 |\n| 原始 gap (misaligned) | **-3.46pp** |\n| 修正 gap (item-aligned) | **-3.50pp** |\n| QC selection bias | -0.08pp (几乎为零) |\n\n### 结论\n\nItem alignment 对 gap 的修正幅度极小（1.5B: 0.29pp, 3B: 0.04pp）。QC filter 的 selection bias 不是 gap 反转的原因——即使在完全相同的 6596 items 上比较，paraphrase 仍显著优于 original，gap 反转持续存在。\n\nReviewer #17 的 item mismatch concern 方法论上成立，但修正后结论不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mmlu-item-aligned-gap.md"
+}

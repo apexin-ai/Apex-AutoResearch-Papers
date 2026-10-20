@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f60ef6f401084e075d0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops registry sync stale",
+  "task_key": "worker_ops_registry-sync-stale_20260515T191459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry-sync-stale_20260515T191459_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "a4ba1442e1cdb18ef231358930c222bfab3d223a98903eed598d184760068e99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_004_sim_sweep_v7 状态：运行中**\n\n- 进度：**3/12** 条件已完成，当前正在跑第 4 个 `auc0.9_n50_prior1.0_binary`（7/10 seeds 完成，正在跑 seed 8-9）\n- 并行度：2 workers × 2 chains\n- results 目录有 13 个文件（12 个 JSON + 1 个 summary），这些是之前 v6 的残留结果，v7 用 `--resume` 模式在补跑缺失的 seeds\n- 每个 seed 的 Stan 采样耗时约 25-50 分钟，剩余约 9 个条件 × 若干未完成 seeds，预计还需数小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-sync-stale.md"
+}

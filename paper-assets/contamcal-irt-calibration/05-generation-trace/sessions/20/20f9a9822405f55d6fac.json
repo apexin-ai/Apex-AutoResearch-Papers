@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20f9a9822405f55d6fac",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 sft 14b d025 s42",
+  "task_key": "worker_analysis_exp_001_sft_14b_d025_s42_20260518T221332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_sft_14b_d025_s42_20260518T221332_result.json",
+    "occurrence": 1,
+    "bytes": 1623,
+    "sha256": "1cc178a930646cd5619c08d053e73b21c266ccaf9773a64fd5ac94f68344e006"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## 分析结果\n\n### 训练完成状态\n- **正常完成**，EXIT_CODE=0，日志末尾：\"Training complete.\"\n- 时间：2026-05-19 03:07:45 → 06:10:08（约 3 小时）\n\n### 关键指标\n\n| 指标 | 值 |\n|---|---|\n| avg train_loss | **0.9264** |\n| final logged loss (step 3380) | **0.8886** |\n| first loss (step 10) | 1.440 |\n| mean_token_accuracy (avg) | 0.7677 |\n| mean_token_accuracy (final) | 0.7742 |\n| total_steps | 3384 |\n| training_time | 2.99 hours (10780s) |\n| samples/sec | 5.024 |\n\n### Checkpoint 文件\n```\nlora_adapter/\n├── adapter_model.safetensors  (275 MB)\n├── adapter_config.json        (lora_alpha=32, r=16 ✓)\n├── tokenizer.json\n├── tokenizer_config.json\n├── chat_template.jinja\n├── training_args.bin\n├── README.md\n└── checkpoint-3384/           (含 optimizer.pt, trainer_state.json)\n```\n\n### Loss 对比（同项目已完成 SFT）\n\n| 实验 | 模型 | avg loss |\n|---|---|---|\n| **14B d025 s42** | **Qwen2.5-14B** | **0.926** |\n| 3B d000 s42 | Qwen2.5-3B | 1.132 |\n| 3B d000 s123 | Qwen2.5-3B | 1.136 |\n| 3B d005 s42 | Qwen2.5-3B | 1.135 |\n| 9B d000 s42 | Gemma-2-9B | 1.159 |\n| 3B d025 s42 (Llama) | Llama-3.2-3B | 1.527 |\n\n14B 的 loss 显著低于 3B/9B，符合模型规模效应预期。Loss 从 1.44 平滑收敛到 0.89，无异常。\n\n### Conclusion: **success**\n\n训练正常完成，loss 合理收敛，checkpoint 完整，lora_alpha=32 符合标准化要求。W&B 未集成（此 run 无 wandb 日志）。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-sft-14b-d025-s42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "008d87be77f57c613753",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check eval 3B d100 v2 para",
+  "task_key": "worker_ops_check-eval-3B-d100-v2-para_20260515T004757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eval-3B-d100-v2-para_20260515T004757_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "565c4f116f57eb50a0e1e1daf3de8768594c89c048116db4b482c625f8a3092c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被触发时自动清除）。\n\n**完成总结：**\n\n`exp_001_eval_3B_d100_v2_para_aligned` → **DONE (success)**\n\n| Benchmark | Paraphrased Accuracy |\n|-----------|---------------------|\n| mmlu | 65.90% |\n| gsm8k | 58.33% |\n| arc_challenge | 80.92% |\n| humaneval pass@1 | 11.54% |\n\n**GPU 状态：GPU 0 和 GPU 1 均空闲**（0% utilization, 0 MiB memory）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-3b-d100-v2-para.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f092039e763ce8a9871",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops diagnose eval d025v3 batch",
+  "task_key": "worker_ops_diagnose-eval-d025v3-batch_20260516T034759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-eval-d025v3-batch_20260516T034759_result.json",
+    "occurrence": 1,
+    "bytes": 456,
+    "sha256": "b03afdd482be5d29b59c081c7c87696b15ea25c0c3789f9679b165ffec3119fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，conclusion 保持 `killed`，notes 记录了详细完成状态。\n\n**总结：**\n| 部分 | 状态 | 详情 |\n|------|------|------|\n| aligned | 完成 | mmlu=0.624, gsm8k=0.682, arc=0.823，.done 标记存在 |\n| para_aligned | 未完成 | mmlu paraphrased 已跑完但未落盘，GSM8K paraphrased 18% 时被 kill，arc paraphrased 未开始 |\n\n需要重跑 para_aligned eval。aligned 结果可直接使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-eval-d025v3-batch.md"
+}

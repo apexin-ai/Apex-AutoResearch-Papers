@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0dd1b806b1771533c8b3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "infra gpu status check",
+  "task_key": "worker_infra_gpu-status-check_20260521T032624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-status-check_20260521T032624_result.json",
+    "occurrence": 1,
+    "bytes": 1172,
+    "sha256": "524c0b09c84167b0de787858a6d1ed873370d3492b62f6ff234f27986335b220"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29999\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| GPU 0 | 0 / 97887 MiB | 0% | **IDLE** |\n| GPU 1 | 42911 / 97887 MiB | 64% | **PID 455006** — `train_sft.py` Qwen2.5-14B d050 s0 (运行 3h15m) |\n| GPU 2 | 0 / 97887 MiB | 0% | **IDLE** |\n| GPU 3 | 0 / 97887 MiB | 0% | **IDLE** |\n\n- PID 464485 (eval_gemma2_d100_mmlu_s0): **DEAD**\n- PID 464631 (eval_gemma2_d100_arc_s0): **DEAD**\n- PID 455006 (retrain_qwen14b_d050_s0): **ALIVE** — 3h15m, alpha=32, cuda:1\n- tmux sessions: `qwen14b_d050_retrain`\n\n## cqa1-21977\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| GPU 0 | 17125 / 24564 MiB | 85% | **PID 435752** — `evaluate.py` Qwen2.5-7B d025 s0, gsm8k (运行 13m) |\n\n- tmux sessions: `eval_gsm8k_7b`\n- active python: 仅上述 eval 进程\n\n## 结论\n- Registry 中 6 个 RUNNING 实验，实际只有 **2 个**在跑：westd GPU 1 的 14B d050 训练 + cqa1 GPU 0 的 7B d025 eval\n- 3 个 Qwen-14B eval（无 pid）确认是**未提交的占位条目**，westd GPU 3 完全空闲\n- 2 个 Gemma2 eval（PID 464485/464631）已**结束**，GPU 0/2 空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-status-check-copy-3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46ce9eee4ee1127c2de8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops migrate signals and check 05b",
+  "task_key": "worker_ops_migrate_signals_and_check_05b_20260516T154634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_migrate_signals_and_check_05b_20260516T154634_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "6372d9156c686198e303e04b91bbeeb6b38167a034a9ac20e0573d0f4ade80b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n---\n\n## 产出汇总\n\n### Task 1: 1.5B-Instruct MMLU signals 迁移到 cuda:4\n\n- PID 805721 (cuda:0) 已 kill\n- **新 PID: 810809** on cuda:4 (576 MiB, sentence-transformers encoding 阶段)\n- tmux session: `sig_15b_mmlu_v2`，日志: `/tmp/15b_instruct_mmlu_signals_v2.log`\n- 已完成进度：s1_embedding_mmlu ✓, s2_minkpp_mmlu ✓, s4 未完成（chunks dir 空）\n- 注意：脚本不跳过已有 signal 文件，会重新计算 s1/s2 后继续 s4\n\n### Task 2: 0.5B-Instruct GSM8K eval 质量\n\n- **38.82% (512/1319) 可信**\n- 1318/1319 predictions 为数字（非 MMLU 的 all-A position bias）\n- 正确样本：准确数值匹配（1→1, 273→273, 45→45, 122→122）\n- 错误样本：合理的数值错误（2280→1880, 145→3540），非退化模式\n- 结论：GSM8K 结果为正常的 open-ended generation，accuracy 可信"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-migrate-signals-and-check-05b.md"
+}

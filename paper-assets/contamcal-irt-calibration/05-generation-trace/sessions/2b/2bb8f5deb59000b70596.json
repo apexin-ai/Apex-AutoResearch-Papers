@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bb8f5deb59000b70596",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_8_1778820140.md",
+  "task_key": "loop_8_1778820140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778820140.md",
+    "occurrence": 1,
+    "bytes": 5675,
+    "sha256": "f3712736bf6b55e31d7d8e6025e1335351ec76ac853b81eaca96b123b25fe9d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T04:18:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5 on cqa1-21977，全部 6 张已分配本项目，无其他项目共享\n- 3B d000 GSM8K=12% 是 LoRA 超参损伤（D018），**必须从所有 IRT 分析排除**——theta=-4.98 极端离群值\n- Pooled IRT 禁止混用 signal-derived delta exposure 和 oracle dosage（D026 Reviewer #21），代码须 error 而非 warning\n- CmdStanPy 在 cqa1-21977 必须 `parallel_chains=1 + TMPDIR=/home/ubuntu/tmp_cmdstan`，否则 4-chain NUTS 在 55-65% 被系统 kill\n- eval 提交命令**必须**前缀 `source /etc/network_turbo`，否则 HF 数据加载超时\n- seed=123 超参必须与同 scale seed=42 完全一致（0.5B/1.5B: lr=2e-4, alpha=32, r=16; 3B: lr=5e-5, alpha=16, r=16）\n- 结果收集 Worker 禁止模糊路径搜索（D036 事故教训），必须指定精确 output_dir\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977, 6× RTX 4090D\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base env，不是 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型缓存**: `/root/autodl-tmp/.hf_cache`（Qwen2.5-0.5B/1.5B/3B + 0.5B-Instruct）\n- **SFT checkpoints**: `/root/autodl-tmp/exp001/checkpoints/`\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/`\n- **IRT 结果**: `/root/autodl-tmp/exp006/results_pooled_*`\n- **Signals**: `/root/autodl-tmp/exp002/signals/`\n- **CmdStan TMPDIR**: `/home/ubuntu/tmp_cmdstan`\n- **活跃 cron**: 6 个（reconcile 刚跑，5 个正常，1 个异常见下）\n- **活跃 Worker**: 0（全部已完成）\n\n### 3. 📊 当前状态\n\n**刚完成**: session-start 初始化 + reconcile crons。收到 WRITE HANDOFF 指令。\n\n**⚠️ 立即处理**: `exp_001_eval_3B_d000_v2_s123_para_aligned` cron 报 \"Process gone, no sentinel, no W&B — escalating to agent (miss 2/5)\"——进程已死，需 spawn Worker SSH 检查日志确认是完成还是崩溃。\n\n**RUNNING 实验 (12 个)**:\n\n| exp_id | 任务 | GPU | 备注 |\n|--------|------|-----|------|\n| exp_001_sft_3B_d100_s123 | 3B d100 seed=123 SFT | cuda:5 | 关键路径: 3B multi-seed |\n| exp_001_sft_05B_d025_s123_v2 | 0.5B d025 seed=123 SFT | cuda:3 | v1 被 cuda:4 碰撞 kill |\n| exp_001_eval_3B_d100_v2_aligned_v2 | 3B d100 aligned eval | cuda:0 | 3B signal 计算前置 |\n| exp_001_eval_3B_d000_v2_s123_aligned | 3B d000 s123 aligned eval | cuda:1 | |\n| exp_001_eval_3B_d025_v2_para_aligned | 3B d025 para eval | cuda:2 | |\n| exp_001_eval_3B_d000_v2_s123_para_aligned | 3B d000 s123 para eval | cuda:2 | ⚠️ 进程疑似死亡 |\n| exp_008_instruct_05B_eval | 0.5B Instruct eval | cuda:4 | D021 RL proxy |\n| exp_001_eval_05B_d000_s42_v7 | 0.5B d000 s42 eval v7 | cuda:4 | |\n| exp006-oracle-arc-4pl-pooled | ARC oracle 4PL pooled IRT | CPU | |\n| exp006-oracle-arc-2pl | ARC 2PL+γ vs 4PL+γ | CPU | PID 496697 |\n| exp006-s1only-gsm8k-2pl | GSM8K S1-only 2PL+γ | CPU | |\n| exp_004_sim_sweep_v5 | 4PL+γ sim recovery sweep | local | 98/120 seeds, PID 652931 |\n\n**PREPARING (14 个)**: 多数是历史失败实验的重提交版本，不需要全部重跑。关键的: exp_003_mmlu_item_aligned_gap, exp006-gsm8k-d024-delta, exp_006_irt_05B_v2 (tiered IRT), exp_008_instruct_rl_proxy。\n\n### 4. 📋 待办（条件触发式）\n- `exp_001_eval_3B_d000_v2_s123_para_aligned` cron 再次 miss → spawn Worker SSH 查 `/root/autodl-tmp/exp001/eval_results/` 确认输出状态，更新 registry（DONE 或 failed）\n- exp_001_sft_3B_d100_s123 完成 → eval 3B d100 s123 (aligned + para) → 加入 pooled IRT → N 提升\n- exp_001_sft_05B_d025_s123_v2 完成 → eval 0.5B d025 s123 → 填 SFT 矩阵 seed=123 行\n- exp006-oracle-arc-4pl-pooled + exp006-oracle-arc-2pl 完成 → 对比 4PL vs 2PL calibration，更新 D036 coverage collapse 分析\n- exp006-s1only-gsm8k-2pl 完成 → 若 2PL γ 显著且 4PL 不显著 → 强证据 model selection claim\n- exp_004_sim_sweep_v5 完成（98/120→120/120）→ 汇总 parameter recovery 结果，写 appendix\n- 所有 seed=123 SFT+eval 完成 → N≥16 multi-seed pooled IRT → 检验 coverage collapse 是否因 N 不足\n- 若 N≥16 pooled 仍 coverage collapse → 确认 model misspecification，论文 framing 从 \"correction\" 转 \"detection + diagnostic\"\n\n### 5. 🎯 战略上下文\n- **EMNLP 2026 ARR May 25 deadline = 10 天**\n- **核心发现链**: GSM8K γ=+3.77 显著（contamination signal 真实存在）但 score correction 过校正 21×（D037）；ARC γ 负方向（4 条独立证据，D036）= catastrophic forgetting 而非 contamination gain\n- **论文 framing 方向**: benchmark-dependent contamination effects。GSM8K = detection works, correction over-corrects；ARC = discriminative validity（不是 false positive machine）。需区分 detection vs correction\n- **最大风险**: coverage collapse 20-33% 即使 oracle（PPP 极值）→ 4PL+γ additive model 可能 misspecified for MC benchmarks。如果 multi-seed N↑ 仍不够，需要在论文中诚实承认 correction 的局限性\n- **易错点 1**: 不要把不同 N_models 的 IRT 结果直接对比（oracle N=15 vs RRF N=8），必须 matched N\n- **易错点 2**: exp_004_sim_sweep 是 local 跑的（不在 cqa1-21977），tmux session = exp_004_sim_sweep_v4\n- **易错点 3**: 大量 PREPARING 实验是历史残留（v1/v2/v3 失败后的重提交），不需要全部重跑——只跑最新版本\n- **决策链关键节点**: D034(S1-only 替代 RRF) → D035(benchmark-dependent) → D036(ARC negative + coverage collapse) → D037(GSM8K over-correction)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778820140.md"
+}

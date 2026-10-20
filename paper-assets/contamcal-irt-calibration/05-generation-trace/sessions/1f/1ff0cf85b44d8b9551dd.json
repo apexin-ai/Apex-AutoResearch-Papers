@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "1ff0cf85b44d8b9551dd",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code exp 008 instruct rl proxy",
+  "task_key": "worker_code_exp_008_instruct_rl_proxy_20260516T044959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_008_instruct_rl_proxy_20260516T044959.log",
+    "occurrence": 1,
+    "bytes": 973138,
+    "sha256": "663add0b6fc36e1e0007fbcb4ce163b054287721d28e960fd5bb3d669b783283"
+  },
+  "statistics": {
+    "messages": 689,
+    "user_turns": 1,
+    "tool_calls": 284,
+    "roles": {
+      "log": 1,
+      "system": 27,
+      "record": 1,
+      "assistant": 90,
+      "tool_call": 284,
+      "tool_result": 284,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "1ff0cf85b44d8b9551dd-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 675,
+      "chunks": [
+        {
+          "path": "1ff0cf85b44d8b9551dd-part-0001.json",
+          "message_count": 166
+        },
+        {
+          "path": "1ff0cf85b44d8b9551dd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1ff0cf85b44d8b9551dd-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1ff0cf85b44d8b9551dd-part-0004.json",
+          "message_count": 149
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-008-instruct-rl-proxy.md"
+}

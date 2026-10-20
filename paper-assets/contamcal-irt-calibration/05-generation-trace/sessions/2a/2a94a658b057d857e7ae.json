@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "2a94a658b057d857e7ae",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis uniform vs nonuniform dif",
+  "task_key": "worker_analysis_uniform-vs-nonuniform-dif_20260523T085354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_uniform-vs-nonuniform-dif_20260523T085354.log",
+    "occurrence": 1,
+    "bytes": 782587,
+    "sha256": "d9ae373394caef6878eddd6025cb82e17244a5b6a9c3b50c1c573f152c56f568"
+  },
+  "statistics": {
+    "messages": 467,
+    "user_turns": 0,
+    "tool_calls": 186,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 91,
+      "tool_call": 186,
+      "tool_result": 186,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 467,
+      "chunks": [
+        {
+          "path": "2a94a658b057d857e7ae-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a94a658b057d857e7ae-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a94a658b057d857e7ae-part-0003.json",
+          "message_count": 107
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-uniform-vs-nonuniform-dif.md"
+}

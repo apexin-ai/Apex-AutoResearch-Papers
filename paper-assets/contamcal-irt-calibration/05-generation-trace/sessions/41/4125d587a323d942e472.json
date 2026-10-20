@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4125d587a323d942e472",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fill gpu45 kill llama",
+  "task_key": "worker_ops_fill_gpu45_kill_llama_20260517T062635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fill_gpu45_kill_llama_20260517T062635_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "f6bdbda03ec3443787a8a250144e4a101d6718868a924c477e40a807114c9457"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 6 个 GPU 已经被占满了：\n\n| GPU | PID | 任务 |\n|-----|-----|------|\n| 0 | 943337 | evaluate.py Qwen2.5-3B-Instruct (mmlu, arc, gsm8k) |\n| 1 | 943406 | evaluate.py Qwen2.5-0.5B-Instruct (mmlu, arc, gsm8k) |\n| 2 | 943479 | evaluate.py Qwen2.5-1.5B-Instruct (mmlu, arc, gsm8k) |\n| 3 | 935048 | evaluate.py DeepSeek-R1-Distill-Qwen-1.5B (mmlu, arc, gsm8k) |\n| 4 | 946440 | compute_signals s4 Qwen2.5-0.5B-Instruct/mmlu |\n| 5 | 947036 | compute_signals s4 Qwen2.5-1.5B-Instruct/mmlu |\n\n**cuda:4 和 cuda:5 已经在跑 signals 任务了**（s4_selfcritique for 0.5B/mmlu 和 1.5B/mmlu），正好是高优先级任务。zombie 进程 752362 已 kill -9。\n\n当前状态：6 GPU 全部活跃，无需额外提交。cuda:4/5 上的 signals 任务符合 C007 优先级（0.5B/1.5B signals 优先）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fill-gpu45-kill-llama.md"
+}

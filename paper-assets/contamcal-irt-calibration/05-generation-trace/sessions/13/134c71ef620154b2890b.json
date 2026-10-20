@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "134c71ef620154b2890b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops socsci prior sensitivity",
+  "task_key": "worker_ops_socsci_prior_sensitivity_20260517T184359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_socsci_prior_sensitivity_20260517T184359_result.json",
+    "occurrence": 1,
+    "bytes": 164,
+    "sha256": "e43066663c71c7dfbf0ad14fa739055a73b3619e11252e2bf2a6609869f8860a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MCMC sampling is running with TMPDIR on the data disk (51G free). Baseline_10 started at 03:15 UTC — I'll check again in ~4.5 minutes for progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-socsci-prior-sensitivity.md"
+}

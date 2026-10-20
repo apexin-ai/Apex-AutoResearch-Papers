@@ -1,0 +1,4170 @@
+# code exp 006 fix and dryrun
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 84
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_code_exp_006_fix_and_dryrun_20260514T151631.log`
+- **Structured JSON:** [`b83177d13adfd08fea67.json`](../../sessions/b8/b83177d13adfd08fea67.json)
+
+## Before a recorded user message
+
+84 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778777400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "73a68bfb-4132-4853-9b77-82e18695d198",
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901"
+}
+```
+
+---
+
+### System
+
+_source line 3_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "pending"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b4cafc09-ddc7-4e21-9017-9e622b07de93",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by examining the current code on the server and understanding the data structure before making any modifications.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "bb183dac-05ab-4147-95a2-3ed029ec4bf1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KZDMLt5H4MedK29wJKgmAL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11972,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11972
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先看服务器上 exp006 目录结构和现有代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "3397a65f-2f72-4341-a1b5-c3cf13404283",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KZDMLt5H4MedK29wJKgmAL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11972,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11972
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AfeCwujCbbfU1qWn5ibeoW`</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "18a78657-96c0-467b-9161-1519bf3514f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KZDMLt5H4MedK29wJKgmAL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11972,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11972
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T15:16:56.608Z_
+
+<details><summary>↩ Tool result · `toolu_01AfeCwujCbbfU1qWn5ibeoW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "TodoWrite"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "f7cca17f-22ab-4c8b-b266-8c279f1f111f",
+  "tool_use_result": {
+    "matches": [
+      "TodoWrite"
+    ],
+    "query": "select:TodoWrite",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by examining the server's exp006 directory and understanding the current code structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "66c8c965-78df-457d-8f3c-06f236602044",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HTEkyKcUHWsFJstL2opKtv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2525,
+      "cache_read_input_tokens": 23813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2525
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01WpvZiJ6Dpm1tgqbxToXKR7`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Read existing exp006 code and data structure on server",
+      "status": "in_progress",
+      "activeForm": "Reading existing exp006 code and data structure"
+    },
+    {
+      "content": "Add --model-scale, --seed, --dry-run arguments and filtering logic",
+      "status": "pending",
+      "activeForm": "Adding filtering and dry-run arguments"
+    },
+    {
+      "content": "Push code to server and run dry-run",
+      "status": "pending",
+      "activeForm": "Running dry-run on server"
+    },
+    {
+      "content": "Report dry-run results",
+      "status": "pending",
+      "activeForm": "Reporting dry-run results"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "cc9e1046-3ca5-4e09-962d-a368062800e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HTEkyKcUHWsFJstL2opKtv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2525,
+      "cache_read_input_tokens": 23813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2525
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T15:17:02.538Z_
+
+<details><summary>↩ Tool result · `toolu_01WpvZiJ6Dpm1tgqbxToXKR7`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "303b1299-be09-494a-9f65-11e5c622dab1",
+  "tool_use_result": {
+    "oldTodos": [],
+    "newTodos": [
+      {
+        "content": "Read existing exp006 code and data structure on server",
+        "status": "in_progress",
+        "activeForm": "Reading existing exp006 code and data structure"
+      },
+      {
+        "content": "Add --model-scale, --seed, --dry-run arguments and filtering logic",
+        "status": "pending",
+        "activeForm": "Adding filtering and dry-run arguments"
+      },
+      {
+        "content": "Push code to server and run dry-run",
+        "status": "pending",
+        "activeForm": "Running dry-run on server"
+      },
+      {
+        "content": "Report dry-run results",
+        "status": "pending",
+        "activeForm": "Reporting dry-run results"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SKb1Z6w4rREAASMEWErCDK`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "c8d1614d-92fd-4ce6-9966-ce853d2cbf8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JCQNRXjuPpJXgxNiyphFqn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 26338,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 450
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T15:17:04.936Z_
+
+<details><summary>↩ Tool result · `toolu_01SKb1Z6w4rREAASMEWErCDK`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "c2ec303a-9794-48b7-9c5f-77741c40c2b9",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+先看服务器上 exp006 的目录结构和代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "ea343cd2-078e-489d-8554-a8d44ed487cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwJLoasXfcra1XfhGisSgm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 26788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 669
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EACGQWro2wC5z32kgpsidF`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp006/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "7ebd241a-0f99-45f5-ab2e-03c67a268358",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwJLoasXfcra1XfhGisSgm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 26788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 669
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015YwX4zaPNuYAcD5o9ned68`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/eval_results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "a87064d6-e536-433c-a38f-ed4e42432421",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwJLoasXfcra1XfhGisSgm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 26788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 669
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T15:17:12.149Z_
+
+<details><summary>↩ Tool result · `toolu_01EACGQWro2wC5z32kgpsidF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 164\\ndrwxr-xr-x 5 root root  4096 May 14 20:48 .\\ndrwxr-xr-x 9 root root   166 May 14 20:49 ..\\n-rw-r--r-- 1 root root  4116 May 14 20:48 README.md\\ndrwxr-xr-x 2 root root  4096 May 14 21:55 __pycache__\\ndrwxr-xr-x 3 root root  4096 May 14 11:43 _baselines_v1\\n-rw-r--r-- 1 root root 17697 May 14 13:02 baselines.py\\n-rw-r--r-- 1 root root 13335 May 14 11:45 dryrun_full.json\\n-rw-r--r-- 1 root root  9477 May 14 11:43 dryrun_no_stan.json\\n-rw-r--r-- 1 root root 14913 May 14 17:18 evaluate_calibration.py\\n-rw-r--r-- 1 root root  9469 May 14 22:59 joint_fit.py\\n-rw-r--r-- 1 root root  6108 May 14 17:23 run_all_baselines.py\\n-rw-r--r-- 1 root root 13837 May 14 22:59 run_exp006.py\\n-rw-r--r-- 1 root root 20341 May 14 22:59 run_irt_calibration.py\\n-rw-r--r-- 1 root root 21686 May 14 22:59 run_irt_stan.py\\ndrwxr-xr-x 2 root root    47 May 14 08:38 test_output\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "0d998ea9-d2b7-42e4-875c-bba970c3cf5c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 164\\\\ndrwxr-xr-x 5 root root  4096 May 14 20:48 .\\\\ndrwxr-xr-x 9 root root   166 May 14 20:49 ..\\\\n-rw-r--r-- 1 root root  4116 May 14 20:48 README.md\\\\ndrwxr-xr-x 2 root root  4096 May 14 21:55 __pycache__\\\\ndrwxr-xr-x 3 root root  4096 May 14 11:43 _baselines_v1\\\\n-rw-r--r-- 1 root root 17697 May 14 13:02 baselines.py\\\\n-rw-r--r-- 1 root root 13335 May 14 11:45 dryrun_full.json\\\\n-rw-r--r-- 1 root root  9477 May 14 11:43 dryrun_no_stan.json\\\\n-rw-r--r-- 1 root root 14913 May 14 17:18 evaluate_calibration.py\\\\n-rw-r--r-- 1 root root  9469 May 14 22:59 joint_fit.py\\\\n-rw-r--r-- 1 root root  6108 May 14 17:23 run_all_baselines.py\\\\n-rw-r--r-- 1 root root 13837 May 14 22:59 run_exp006.py\\\\n-rw-r--r-- 1 root root 20341 May 14 22:59 run_irt_calibration.py\\\\n-rw-r--r-- 1 root root 21686 May 14 22:59 run_irt_stan.py\\\\ndrwxr-xr-x 2 root root    47 May 14 08:38 test_output\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 164\\ndrwxr-xr-x 5 root root  4096 May 14 20:48 .\\ndrwxr-xr-x 9 root root   166 May 14 20:49 ..\\n-rw-r--r-- 1 root root  4116 May 14 20:48 README.md\\ndrwxr-xr-x 2 root root  4096 May 14 21:55 __pycache__\\ndrwxr-xr-x 3 root root  4096 May 14 11:43 _baselines_v1\\n-rw-r--r-- 1 root root 17697 May 14 13:02 baselines.py\\n-rw-r--r-- 1 root root 13335 May 14 11:45 dryrun_full.json\\n-rw-r--r-- 1 root root  9477 May 14 11:43 dryrun_no_stan.json\\n-rw-r--r-- 1 root root 14913 May 14 17:18 evaluate_calibration.py\\n-rw-r--r-- 1 root root  9469 May 14 22:59 joint_fit.py\\n-rw-r--r-- 1 root root  6108 May 14 17:23 run_all_baselines.py\\n-rw-r--r-- 1 root root 13837 May 14 22:59 run_exp006.py\\n-rw-r--r-- 1 root root 20341 May 14 22:59 run_irt_calibration.py\\n-rw-r--r-- 1 root root 21686 May 14 22:59 run_irt_stan.py\\ndrwxr-xr-x 2 root root    47 May 14 08:38 test_output\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T15:17:12.673Z_
+
+<details><summary>↩ Tool result · `toolu_015YwX4zaPNuYAcD5o9ned68`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-0.5B_d000_s123\\nQwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d000_s42_aligned\\nQwen2.5-0.5B_d000_s42_para\\nQwen2.5-0.5B_d000_s42_para_aligned\\nQwen2.5-0.5B_d005_s42\\nQwen2.5-0.5B_d005_s42_aligned\\nQwen2.5-0.5B_d005_s42_para_aligned\\nQwen2.5-0.5B_d025_s42_aligned\\nQwen2.5-0.5B_d100_s42\\nQwen2.5-0.5B_d100_s42_aligned\\nQwen2.5-0.5B_raw\\nQwen2.5-1.5B_d000_s123\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d000_s42_aligned\\nQwen2.5-1.5B_d000_s42_para_aligned\\nQwen2.5-1.5B_d005_s42_aligned\\nQwen2.5-1.5B_d005_s42_para_aligned\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-3B_d000_s123\\nQwen2.5-3B_d000_s42\\nQwen2.5-3B_d000_s42_aligned\\nQwen2.5-3B_d005_s42_aligned\\nQwen2.5-3B_d100_s42_aligned\\nQwen2.5-3B_raw\\neval_05B_d000_s42.log\\neval_05B_d000_s42_rerun.log\\neval_15B_d000_s123.log\\neval_15B_d000_s42.log\\neval_3B_d005_aligned.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "80209f75-81df-4261-bdf6-662b5c9bdbdf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s123\\\\nQwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d000_s42_aligned\\\\nQwen2.5-0.5B_d000_s42_para\\\\nQwen2.5-0.5B_d000_s42_para_aligned\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d005_s42_aligned\\\\nQwen2.5-0.5B_d005_s42_para_aligned\\\\nQwen2.5-0.5B_d025_s42_aligned\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-0.5B_d100_s42_aligned\\\\nQwen2.5-0.5B_raw\\\\nQwen2.5-1.5B_d000_s123\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d000_s42_aligned\\\\nQwen2.5-1.5B_d000_s42_para_aligned\\\\nQwen2.5-1.5B_d005_s42_aligned\\\\nQwen2.5-1.5B_d005_s42_para_aligned\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-3B_d000_s123\\\\nQwen2.5-3B_d000_s42\\\\nQwen2.5-3B_d000_s42_aligned\\\\nQwen2.5-3B_d005_s42_aligned\\\\nQwen2.5-3B_d100_s42_aligned\\\\nQwen2.5-3B_raw\\\\neval_05B_d000_s42.log\\\\neval_05B_d000_s42_rerun.log\\\\neval_15B_d000_s123.log\\\\neval_15B_d000_s42.log\\\\neval_3B_d005_aligned.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-0.5B_d000_s123\\nQwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d000_s42_aligned\\nQwen2.5-0.5B_d000_s42_para\\nQwen2.5-0.5B_d000_s42_para_aligned\\nQwen2.5-0.5B_d005_s42\\nQwen2.5-0.5B_d005_s42_aligned\\nQwen2.5-0.5B_d005_s42_para_aligned\\nQwen2.5-0.5B_d025_s42_aligned\\nQwen2.5-0.5B_d100_s42\\nQwen2.5-0.5B_d100_s42_aligned\\nQwen2.5-0.5B_raw\\nQwen2.5-1.5B_d000_s123\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d000_s42_aligned\\nQwen2.5-1.5B_d000_s42_para_aligned\\nQwen2.5-1.5B_d005_s42_aligned\\nQwen2.5-1.5B_d005_s42_para_aligned\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-3B_d000_s123\\nQwen2.5-3B_d000_s42\\nQwen2.5-3B_d000_s42_aligned\\nQwen2.5-3B_d005_s42_aligned\\nQwen2.5-3B_d100_s42_aligned\\nQwen2.5-3B_raw\\neval_05B_d000_s42.log\\neval_05B_d000_s42_rerun.log\\neval_15B_d000_s123.log\\neval_15B_d000_s42.log\\neval_3B_d005_aligned.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KnLY4fbcjR3TswqsZjszmQ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "b2566d27-fea3-4e75-892e-44ef036ac774",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yEkkyb3bzgBmRXTE9pLsU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1451,
+      "cache_read_input_tokens": 27457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1451
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JYD9KaNx8tYVbGh7YdA4vY`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "5859ab11-3153-4db3-ab98-c178a49d8c73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yEkkyb3bzgBmRXTE9pLsU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1451,
+      "cache_read_input_tokens": 27457,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1451
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T15:17:19.473Z_
+
+<details><summary>↩ Tool result · `toolu_01KnLY4fbcjR3TswqsZjszmQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\n\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\nevaluates against ground-truth clean scores (dosage=0 models).\\n\\nUsage:\\n    python run_exp006.py --help\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\n    python run_exp006.py                                         # full run\\n\\nDependencies: cmdstanpy, numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    run_benchmark_fit,\\n    STAN_MODELS,\\n)\\nfrom baselines import run_all_baselines\\nfrom evaluate_calibration import (\\n    evaluate_method,\\n    format_text_table,\\n    format_latex_table,\\n)\\nfrom joint_fit import run_joint_fit\\n\\nlog = logging.getLogger(__name__)\\n\\n# D018: 3B GSM8K excluded from dose-response analysis\\nD018_EXCLUDE = [(\\\"3B\\\", \\\"gsm8k\\\")]\\n\\n\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n    \\\"\\\"\\\"Check D018 exclusion rules for dose-response analysis.\\\"\\\"\\\"\\n    for pattern, bench in rules:\\n        if pattern in model_name and benchmark == bench:\\n            return True\\n    return False\\n\\n\\ndef compute_ground_truth(responses, dosages):\\n    \\\"\\\"\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\n\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\n    For dosage>0 models, we use the mean d=0 accuracy as the\\n    counterfactual reference (what they would score without contamination).\\n    \\\"\\\"\\\"\\n    raw_acc = responses.mean(axis=1)\\n    d0_mask = dosages == 0\\n\\n    if d0_mask.sum() > 0:\\n        gt_acc_d0 = float(raw_acc[d0_mask].mean())\\n    else:\\n        gt_acc_d0 = float(raw_acc.mean())\\n\\n    # dosage-0 models: their own raw accuracy\\n    # dosage>0 models: d=0 mean as counterfactual reference\\n    ground_truth = np.full(len(dosages), gt_acc_d0)\\n    ground_truth[d0_mask] = raw_acc[d0_mask]\\n\\n    return ground_truth\\n\\n\\ndef run_pipeline(args):\\n    \\\"\\\"\\\"Run full exp-006 pipeline.\\\"\\\"\\\"\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # ── Load Data ──\\n    log.info(\\\"Loading eval results from %s\\\", args.eval_dir)\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\n                              model_scale=args.model_scale,\\n                              seed_filter=args.data_seed,\\n                              aligned_only=args.aligned_only)\\n    exposure_scores = load_exposure_scores(\\n        args.exposure_file, data[\\\"benchmarks\\\"], model_id=args.tau_model_id)\\n    dosages = data[\\\"dosages\\\"]\\n\\n    log.info(\\\"Models: %d | Benchmarks: %s\\\",\\n             len(data[\\\"models\\\"]), list(data[\\\"benchmarks\\\"].keys()))\\n    log.info(\\\"Dosages: %s\\\", dosages.tolist())\\n\\n    # Pipeline metadata\\n    meta = {\\n        \\\"eval_dir\\\": args.eval_dir,\\n        \\\"model_type\\\": args.model_type,\\n        \\\"dry_run\\\": args.dry_run,\\n        \\\"models\\\": [\\n            {\\\"dirname\\\": m[\\\"dirname\\\"], \\\"model_name\\\": m[\\\"model_name\\\"],\\n             \\\"dosage\\\": m[\\\"dosage\\\"], \\\"seed\\\": m[\\\"seed\\\"]}\\n            for m in data[\\\"models\\\"]\\n        ],\\n        \\\"dosages\\\": dosages.tolist(),\\n        \\\"benchmarks\\\": list(data[\\\"benchmarks\\\"].keys()),\\n    }\\n\\n    all_results = {}\\n    pipeline_t0 = time.time()\\n\\n    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n        log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n        log.info(\\\"BENCHMARK: %s\\\", bench)\\n        log.info(\\\"=\\\" * 60)\\n\\n        responses = bench_data[\\\"responses\\\"]\\n        valid = bench_data[\\\"valid_mask\\\"]\\n        tau = exposure_scores[bench]\\n        n_items = bench_data[\\\"n_items\\\"]\\n\\n        # Filter to valid models\\n        if not valid.all():\\n            responses = responses[valid]\\n            dosages_bench = dosages[valid]\\n            log.info(\\\"Filtered to %d valid models (of %d)\\\",\\n                     responses.shape\\n\\n... [截断: 输出过长，省略 5781 字符] ...\\n\\nval_dir, args.exposure_file, str(joint_dir),\\n            benchmarks=args.benchmarks,\\n            chains=args.chains, warmup=args.warmup, samples=args.samples,\\n            adapt_delta=args.adapt_delta, max_treedepth=args.max_treedepth,\\n            seed=args.seed, dry_run=args.dry_run,\\n            max_items=args.max_items if args.dry_run else None,\\n            tau_model_id=args.tau_model_id,\\n            model_scale=args.model_scale,\\n            seed_filter=args.data_seed,\\n            aligned_only=args.aligned_only,\\n        )\\n        all_results[\\\"joint_fit\\\"] = {\\n            \\\"global_gamma\\\": joint_result[\\\"global_gamma\\\"],\\n            \\\"diagnostics\\\": joint_result[\\\"diagnostics\\\"],\\n        }\\n\\n    # ── Save Combined Results ──\\n    total_time = time.time() - pipeline_t0\\n    combined = {\\n        \\\"metadata\\\": meta,\\n        \\\"total_time_sec\\\": round(total_time, 1),\\n        \\\"benchmarks\\\": all_results,\\n    }\\n    with open(output_dir / \\\"exp006_results.json\\\", \\\"w\\\") as f:\\n        json.dump(combined, f, indent=2, default=str)\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    log.info(\\\"Pipeline complete in %.1fs\\\", total_time)\\n    log.info(\\\"Results saved to %s\\\", output_dir)\\n    log.info(\\\"=\\\" * 60)\\n\\n    return combined\\n\\n\\n# ── CLI ──\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-006: IRT calibration + baselines + evaluation\\\")\\n\\n    # Data\\n    parser.add_argument(\\n        \\\"--eval-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp001/eval_results\\\",\\n        help=\\\"exp-001 eval results directory\\\")\\n    parser.add_argument(\\n        \\\"--exposure-file\\\", type=str, default=None,\\n        help=\\\"exp-002/003 exposure scores JSON \\\"\\n             \\\"(per-benchmark per-item tau)\\\")\\n    parser.add_argument(\\n        \\\"--tau-model-id\\\", type=str, default=None,\\n        help=\\\"Model ID for exposure tau (e.g. Qwen2.5-0.5B_d100_s42)\\\")\\n    parser.add_argument(\\n        \\\"--tau-source\\\", type=str, default=\\\"exposure\\\",\\n        choices=[\\\"exposure\\\", \\\"oracle\\\", \\\"aggregated\\\"],\\n        help=\\\"Tau source type (default: exposure)\\\")\\n    parser.add_argument(\\n        \\\"--output-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp006/results\\\",\\n        help=\\\"Output directory\\\")\\n    parser.add_argument(\\n        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n        help=\\\"Benchmarks to analyze (default: all)\\\")\\n    parser.add_argument(\\n        \\\"--model-scale\\\", type=str, default=None,\\n        help=\\\"Model scale filter, e.g. '0.5B'.\\\")\\n    parser.add_argument(\\n        \\\"--data-seed\\\", type=int, default=None,\\n        help=\\\"Data seed filter.\\\")\\n    parser.add_argument(\\n        \\\"--aligned-only\\\", action=\\\"store_true\\\",\\n        help=\\\"Only load aligned-format eval directories.\\\")\\n\\n    # IRT config\\n    parser.add_argument(\\n        \\\"--model-type\\\",\\n        choices=list(STAN_MODELS.keys()),\\n        default=\\\"4pl_gamma\\\",\\n        help=\\\"IRT model variant (default: 4pl_gamma)\\\")\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n\\n    # Baseline config\\n    parser.add_argument(\\n        \\\"--skip-stan\\\", action=\\\"store_true\\\",\\n        help=\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\")\\n\\n    # Ablation\\n    parser.add_argument(\\n        \\\"--joint-fit\\\", action=\\\"store_true\\\",\\n        help=\\\"Also run joint fitting ablation (shared global gamma)\\\")\\n\\n    # Dry-run\\n    parser.add_argument(\\n        \\\"--dry-run\\\", action=\\\"store_true\\\",\\n        help=\\\"Quick validation with truncated items\\\")\\n    parser.add_argument(\\n        \\\"--max-items\\\", type=int, default=50,\\n        help=\\\"Max items per benchmark in dry-run mode (default: 50)\\\")\\n\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "26d636c3-a376-43d2-bc1a-da381914b8de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\\\n\\\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\\\nevaluates against ground-truth clean scores (dosage=0 models).\\\\n\\\\nUsage:\\\\n    python run_exp006.py --help\\\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\\\n    python run_exp006.py                                         # full run\\\\n\\\\nDependencies: cmdstanpy, numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom run_irt_calibration import (\\\\n    load_eval_results,\\\\n    load_exposure_scores,\\\\n    build_exposure_matrix,\\\\n    run_benchmark_fit,\\\\n    STAN_MODELS,\\\\n)\\\\nfrom baselines import run_all_baselines\\\\nfrom evaluate_calibration import (\\\\n    evaluate_method,\\\\n    format_text_table,\\\\n    format_latex_table,\\\\n)\\\\nfrom joint_fit import run_joint_fit\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n# D018: 3B GSM8K excluded from dose-response analysis\\\\nD018_EXCLUDE = [(\\\\\\\"3B\\\\\\\", \\\\\\\"gsm8k\\\\\\\")]\\\\n\\\\n\\\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Check D018 exclusion rules for dose-response analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for pattern, bench in rules:\\\\n        if pattern in model_name and benchmark == bench:\\\\n            return True\\\\n    return False\\\\n\\\\n\\\\ndef compute_ground_truth(responses, dosages):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\\\n\\\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\\\n    For dosage>0 models, we use the mean d=0 accuracy as the\\\\n    counterfactual reference (what they would score without contamination).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    raw_acc = responses.mean(axis=1)\\\\n    d0_mask = dosages == 0\\\\n\\\\n    if d0_mask.sum() > 0:\\\\n        gt_acc_d0 = float(raw_acc[d0_mask].mean())\\\\n    else:\\\\n        gt_acc_d0 = float(raw_acc.mean())\\\\n\\\\n    # dosage-0 models: their own raw accuracy\\\\n    # dosage>0 models: d=0 mean as counterfactual reference\\\\n    ground_truth = np.full(len(dosages), gt_acc_d0)\\\\n    ground_truth[d0_mask] = raw_acc[d0_mask]\\\\n\\\\n    return ground_truth\\\\n\\\\n\\\\ndef run_pipeline(args):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run full exp-006 pipeline.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # ── Load Data ──\\\\n    log.info(\\\\\\\"Loading eval results from %s\\\\\\\", args.eval_dir)\\\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\\\n                              model_scale=args.model_scale,\\\\n                              seed_filter=args.data_seed,\\\\n                              aligned_only=args.aligned_only)\\\\n    exposure_scores = load_exposure_scores(\\\\n        args.exposure_file, data[\\\\\\\"benchmarks\\\\\\\"], model_id=args.tau_model_id)\\\\n    dosages = data[\\\\\\\"dosages\\\\\\\"]\\\\n\\\\n    log.info(\\\\\\\"Models: %d | Benchmarks: %s\\\\\\\",\\\\n             len(data[\\\\\\\"models\\\\\\\"]), list(data[\\\\\\\"benchmarks\\\\\\\"].keys()))\\\\n    log.info(\\\\\\\"Dosages: %s\\\\\\\", dosages.tolist())\\\\n\\\\n    # Pipeline metadata\\\\n    meta = {\\\\n        \\\\\\\"eval_dir\\\\\\\": args.eval_dir,\\\\n        \\\\\\\"model_type\\\\\\\": args.model_type,\\\\n        \\\\\\\"dry_run\\\\\\\": args.dry_run,\\\\n        \\\\\\\"models\\\\\\\": [\\\\n            {\\\\\\\"dirname\\\\\\\": m[\\\\\\\"dirname\\\\\\\"], \\\\\\\"model_name\\\\\\\": m[\\\\\\\"model_name\\\\\\\"],\\\\n             \\\\\\\"dosage\\\\\\\": m[\\\\\\\"dosage\\\\\\\"], \\\\\\\"seed\\\\\\\": m[\\\\\\\"seed\\\\\\\"]}\\\\n            for m in data[\\\\\\\"models\\\\\\\"]\\\\n        ],\\\\n        \\\\\\\"dosages\\\\\\\": dosages.tolist(),\\\\n        \\\\\\\"benchmarks\\\\\\\": list(data[\\\\\\\"benchmarks\\\\\\\"].keys()),\\\\n    }\\\\n\\\\n    all_results = {}\\\\n    pipeline_t0 = time.time()\\\\n\\\\n    for bench, bench_data in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n        log.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n        log.info(\\\\\\\"BENCHMARK: %s\\\\\\\", bench)\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n        responses = bench_data[\\\\\\\"responses\\\\\\\"]\\\\n        valid = bench_data[\\\\\\\"valid_mask\\\\\\\"]\\\\n        tau = exposure_scores[bench]\\\\n        n_items = bench_data[\\\\\\\"n_items\\\\\\\"]\\\\n\\\\n        # Filter to valid models\\\\n        if not valid.all():\\\\n            responses = responses[valid]\\\\n            dosages_bench = dosages[valid]\\\\n            log.info(\\\\\\\"Filtered to %d valid models (of %d)\\\\\\\",\\\\n                     responses.shape\\\\n\\\\n... [截断: 输出过长，省略 5781 字符] ...\\\\n\\\\nval_dir, args.exposure_file, str(joint_dir),\\\\n            benchmarks=args.benchmarks,\\\\n            chains=args.chains, warmup=args.warmup, samples=args.samples,\\\\n            adapt_delta=args.adapt_delta, max_treedepth=args.max_treedepth,\\\\n            seed=args.seed, dry_run=args.dry_run,\\\\n            max_items=args.max_items if args.dry_run else None,\\\\n            tau_model_id=args.tau_model_id,\\\\n            model_scale=args.model_scale,\\\\n            seed_filter=args.data_seed,\\\\n            aligned_only=args.aligned_only,\\\\n        )\\\\n        all_results[\\\\\\\"joint_fit\\\\\\\"] = {\\\\n            \\\\\\\"global_gamma\\\\\\\": joint_result[\\\\\\\"global_gamma\\\\\\\"],\\\\n            \\\\\\\"diagnostics\\\\\\\": joint_result[\\\\\\\"diagnostics\\\\\\\"],\\\\n        }\\\\n\\\\n    # ── Save Combined Results ──\\\\n    total_time = time.time() - pipeline_t0\\\\n    combined = {\\\\n        \\\\\\\"metadata\\\\\\\": meta,\\\\n        \\\\\\\"total_time_sec\\\\\\\": round(total_time, 1),\\\\n        \\\\\\\"benchmarks\\\\\\\": all_results,\\\\n    }\\\\n    with open(output_dir / \\\\\\\"exp006_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(combined, f, indent=2, default=str)\\\\n\\\\n    log.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"Pipeline complete in %.1fs\\\\\\\", total_time)\\\\n    log.info(\\\\\\\"Results saved to %s\\\\\\\", output_dir)\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    return combined\\\\n\\\\n\\\\n# ── CLI ──\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"exp-006: IRT calibration + baselines + evaluation\\\\\\\")\\\\n\\\\n    # Data\\\\n    parser.add_argument(\\\\n        \\\\\\\"--eval-dir\\\\\\\", type=str,\\\\n        default=\\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\",\\\\n        help=\\\\\\\"exp-001 eval results directory\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--exposure-file\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"exp-002/003 exposure scores JSON \\\\\\\"\\\\n             \\\\\\\"(per-benchmark per-item tau)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--tau-model-id\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"Model ID for exposure tau (e.g. Qwen2.5-0.5B_d100_s42)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--tau-source\\\\\\\", type=str, default=\\\\\\\"exposure\\\\\\\",\\\\n        choices=[\\\\\\\"exposure\\\\\\\", \\\\\\\"oracle\\\\\\\", \\\\\\\"aggregated\\\\\\\"],\\\\n        help=\\\\\\\"Tau source type (default: exposure)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--output-dir\\\\\\\", type=str,\\\\n        default=\\\\\\\"/root/autodl-tmp/exp006/results\\\\\\\",\\\\n        help=\\\\\\\"Output directory\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--benchmarks\\\\\\\", nargs=\\\\\\\"*\\\\\\\", default=None,\\\\n        help=\\\\\\\"Benchmarks to analyze (default: all)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model-scale\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"Model scale filter, e.g. '0.5B'.\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--data-seed\\\\\\\", type=int, default=None,\\\\n        help=\\\\\\\"Data seed filter.\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--aligned-only\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Only load aligned-format eval directories.\\\\\\\")\\\\n\\\\n    # IRT config\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model-type\\\\\\\",\\\\n        choices=list(STAN_MODELS.keys()),\\\\n        default=\\\\\\\"4pl_gamma\\\\\\\",\\\\n        help=\\\\\\\"IRT model variant (default: 4pl_gamma)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--adapt-delta\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--max-treedepth\\\\\\\", type=int, default=12)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n\\\\n    # Baseline config\\\\n    parser.add_argument(\\\\n        \\\\\\\"--skip-stan\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\\\\\")\\\\n\\\\n    # Ablation\\\\n    parser.add_argument(\\\\n        \\\\\\\"--joint-fit\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Also run joint fitting ablation (shared global gamma)\\\\\\\")\\\\n\\\\n    # Dry-run\\\\n    parser.add_argument(\\\\n        \\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Quick validation with truncated items\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--max-items\\\\\\\", type=int, default=50,\\\\n        help=\\\\\\\"Max items per benchmark in dry-run mode (default: 50)\\\\\\\")\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(\\\\n        level=logging.INFO,\\\\n        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    )\\\\n\\\\n    run_pipeline(args)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\n\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\nevaluates against ground-truth clean scores (dosage=0 models).\\n\\nUsage:\\n    python run_exp006.py --help\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\n    python run_exp006.py                                         # full run\\n\\nDependencies: cmdstanpy, numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    run_benchmark_fit,\\n    STAN_MODELS,\\n)\\nfrom baselines import run_all_baselines\\nfrom evaluate_calibration import (\\n    evaluate_method,\\n    format_text_table,\\n    format_latex_table,\\n)\\nfrom joint_fit import run_joint_fit\\n\\nlog = logging.getLogger(__name__)\\n\\n# D018: 3B GSM8K excluded from dose-response analysis\\nD018_EXCLUDE = [(\\\"3B\\\", \\\"gsm8k\\\")]\\n\\n\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n    \\\"\\\"\\\"Check D018 exclusion rules for dose-response analysis.\\\"\\\"\\\"\\n    for pattern, bench in rules:\\n        if pattern in model_name and benchmark == bench:\\n            return True\\n    return False\\n\\n\\ndef compute_ground_truth(responses, dosages):\\n    \\\"\\\"\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\n\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\n    For dosage>0 models, we use the mean d=0 accuracy as the\\n    counterfactual reference (what they would score without contamination).\\n    \\\"\\\"\\\"\\n    raw_acc = responses.mean(axis=1)\\n    d0_mask = dosages == 0\\n\\n    if d0_mask.sum() > 0:\\n        gt_acc_d0 = float(raw_acc[d0_mask].mean())\\n    else:\\n        gt_acc_d0 = float(raw_acc.mean())\\n\\n    # dosage-0 models: their own raw accuracy\\n    # dosage>0 models: d=0 mean as counterfactual reference\\n    ground_truth = np.full(len(dosages), gt_acc_d0)\\n    ground_truth[d0_mask] = raw_acc[d0_mask]\\n\\n    return ground_truth\\n\\n\\ndef run_pipeline(args):\\n    \\\"\\\"\\\"Run full exp-006 pipeline.\\\"\\\"\\\"\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # ── Load Data ──\\n    log.info(\\\"Loading eval results from %s\\\", args.eval_dir)\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\n                              model_scale=args.model_scale,\\n                              seed_filter=args.data_seed,\\n                              aligned_only=args.aligned_only)\\n    exposure_scores = load_exposure_scores(\\n        args.exposure_file, data[\\\"benchmarks\\\"], model_id=args.tau_model_id)\\n    dosages = data[\\\"dosages\\\"]\\n\\n    log.info(\\\"Models: %d | Benchmarks: %s\\\",\\n             len(data[\\\"models\\\"]), list(data[\\\"benchmarks\\\"].keys()))\\n    log.info(\\\"Dosages: %s\\\", dosages.tolist())\\n\\n    # Pipeline metadata\\n    meta = {\\n        \\\"eval_dir\\\": args.eval_dir,\\n        \\\"model_type\\\": args.model_type,\\n        \\\"dry_run\\\": args.dry_run,\\n        \\\"models\\\": [\\n            {\\\"dirname\\\": m[\\\"dirname\\\"], \\\"model_name\\\": m[\\\"model_name\\\"],\\n             \\\"dosage\\\": m[\\\"dosage\\\"], \\\"seed\\\": m[\\\"seed\\\"]}\\n            for m in data[\\\"models\\\"]\\n        ],\\n        \\\"dosages\\\": dosages.tolist(),\\n        \\\"benchmarks\\\": list(data[\\\"benchmarks\\\"].keys()),\\n    }\\n\\n    all_results = {}\\n    pipeline_t0 = time.time()\\n\\n    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n        log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n        log.info(\\\"BENCHMARK: %s\\\", bench)\\n        log.info(\\\"=\\\" * 60)\\n\\n        responses = bench_data[\\\"responses\\\"]\\n        valid = bench_data[\\\"valid_mask\\\"]\\n        tau = exposure_scores[bench]\\n        n_items = bench_data[\\\"n_items\\\"]\\n\\n        # Filter to valid models\\n        if not valid.all():\\n            responses = responses[valid]\\n            dosages_bench = dosages[valid]\\n            log.info(\\\"Filtered to %d valid models (of %d)\\\",\\n                     responses.shape\\n\\n... [截断: 输出过长，省略 5781 字符] ...\\n\\nval_dir, args.exposure_file, str(joint_dir),\\n            benchmarks=args.benchmarks,\\n            chains=args.chains, warmup=args.warmup, samples=args.samples,\\n            adapt_delta=args.adapt_delta, max_treedepth=args.max_treedepth,\\n            seed=args.seed, dry_run=args.dry_run,\\n            max_items=args.max_items if args.dry_run else None,\\n            tau_model_id=args.tau_model_id,\\n            model_scale=args.model_scale,\\n            seed_filter=args.data_seed,\\n            aligned_only=args.aligned_only,\\n        )\\n        all_results[\\\"joint_fit\\\"] = {\\n            \\\"global_gamma\\\": joint_result[\\\"global_gamma\\\"],\\n            \\\"diagnostics\\\": joint_result[\\\"diagnostics\\\"],\\n        }\\n\\n    # ── Save Combined Results ──\\n    total_time = time.time() - pipeline_t0\\n    combined = {\\n        \\\"metadata\\\": meta,\\n        \\\"total_time_sec\\\": round(total_time, 1),\\n        \\\"benchmarks\\\": all_results,\\n    }\\n    with open(output_dir / \\\"exp006_results.json\\\", \\\"w\\\") as f:\\n        json.dump(combined, f, indent=2, default=str)\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    log.info(\\\"Pipeline complete in %.1fs\\\", total_time)\\n    log.info(\\\"Results saved to %s\\\", output_dir)\\n    log.info(\\\"=\\\" * 60)\\n\\n    return combined\\n\\n\\n# ── CLI ──\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-006: IRT calibration + baselines + evaluation\\\")\\n\\n    # Data\\n    parser.add_argument(\\n        \\\"--eval-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp001/eval_results\\\",\\n        help=\\\"exp-001 eval results directory\\\")\\n    parser.add_argument(\\n        \\\"--exposure-file\\\", type=str, default=None,\\n        help=\\\"exp-002/003 exposure scores JSON \\\"\\n             \\\"(per-benchmark per-item tau)\\\")\\n    parser.add_argument(\\n        \\\"--tau-model-id\\\", type=str, default=None,\\n        help=\\\"Model ID for exposure tau (e.g. Qwen2.5-0.5B_d100_s42)\\\")\\n    parser.add_argument(\\n        \\\"--tau-source\\\", type=str, default=\\\"exposure\\\",\\n        choices=[\\\"exposure\\\", \\\"oracle\\\", \\\"aggregated\\\"],\\n        help=\\\"Tau source type (default: exposure)\\\")\\n    parser.add_argument(\\n        \\\"--output-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp006/results\\\",\\n        help=\\\"Output directory\\\")\\n    parser.add_argument(\\n        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n        help=\\\"Benchmarks to analyze (default: all)\\\")\\n    parser.add_argument(\\n        \\\"--model-scale\\\", type=str, default=None,\\n        help=\\\"Model scale filter, e.g. '0.5B'.\\\")\\n    parser.add_argument(\\n        \\\"--data-seed\\\", type=int, default=None,\\n        help=\\\"Data seed filter.\\\")\\n    parser.add_argument(\\n        \\\"--aligned-only\\\", action=\\\"store_true\\\",\\n        help=\\\"Only load aligned-format eval directories.\\\")\\n\\n    # IRT config\\n    parser.add_argument(\\n        \\\"--model-type\\\",\\n        choices=list(STAN_MODELS.keys()),\\n        default=\\\"4pl_gamma\\\",\\n        help=\\\"IRT model variant (default: 4pl_gamma)\\\")\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n\\n    # Baseline config\\n    parser.add_argument(\\n        \\\"--skip-stan\\\", action=\\\"store_true\\\",\\n        help=\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\")\\n\\n    # Ablation\\n    parser.add_argument(\\n        \\\"--joint-fit\\\", action=\\\"store_true\\\",\\n        help=\\\"Also run joint fitting ablation (shared global gamma)\\\")\\n\\n    # Dry-run\\n    parser.add_argument(\\n        \\\"--dry-run\\\", action=\\\"store_true\\\",\\n        help=\\\"Quick validation with truncated items\\\")\\n    parser.add_argument(\\n        \\\"--max-items\\\", type=int, default=50,\\n        help=\\\"Max items per benchmark in dry-run mode (default: 50)\\\")\\n\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T15:17:19.980Z_
+
+<details><summary>↩ Tool result · `toolu_01JYD9KaNx8tYVbGh7YdA4vY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nIRT calibration for contamination-aware benchmark score correction.\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\n\\nInput:\\n  - Correctness matrix (N_models x N_items): binary 0/1\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\n  OR\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\n\\nOutput (per benchmark):\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\n  - Posterior predictive checks\\n\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport cmdstanpy\\n\\nlog = logging.getLogger(__name__)\\n\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\nSTAN_MODEL_DIR = \\\"/root/contamcal-irt-calibration/stan_models\\\"\\nSTAN_MODELS = {\\n    \\\"4pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple.stan\\\"),\\n    \\\"2pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_2pl_gamma.stan\\\"),\\n    \\\"vanilla_4pl\\\": os.path.join(STAN_MODEL_DIR, \\\"vanilla_4pl.stan\\\"),\\n}\\n\\nDOSAGE_PATTERN = re.compile(r\\\"_d(\\\\d+)_s(\\\\d+)(_para)?(_aligned)?$\\\")\\n\\n\\n# ── Data Loading ──\\n\\ndef parse_model_dir_name(dirname):\\n    \\\"\\\"\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\"\\\"\\\"\\n    m = DOSAGE_PATTERN.search(dirname)\\n    if not m:\\n        return None\\n    return {\\n        \\\"dirname\\\": dirname,\\n        \\\"model_name\\\": dirname[:m.start()],\\n        \\\"dosage\\\": int(m.group(1)),\\n        \\\"seed\\\": int(m.group(2)),\\n        \\\"is_para\\\": m.group(3) is not None,\\n        \\\"is_aligned\\\": m.group(4) is not None,\\n    }\\n\\n\\ndef load_matrix(path):\\n    \\\"\\\"\\\"Load matrix from .npy, .csv, or .json.\\\"\\\"\\\"\\n    ext = os.path.splitext(path)[1].lower()\\n    if ext == \\\".npy\\\":\\n        return np.load(path)\\n    elif ext == \\\".csv\\\":\\n        return np.loadtxt(path, delimiter=\\\",\\\", skiprows=1)\\n    elif ext == \\\".json\\\":\\n        with open(path) as f:\\n            return np.array(json.load(f))\\n    raise ValueError(f\\\"Unsupported format: {ext}\\\")\\n\\n\\ndef load_eval_results(eval_dir, benchmarks=None, skip_para=True,\\n                      model_scale=None, seed_filter=None, aligned_only=False):\\n    \\\"\\\"\\\"Load per-model eval results into response matrices per benchmark.\\\"\\\"\\\"\\n    eval_path = Path(eval_dir)\\n    model_dirs = sorted([\\n        d for d in eval_path.iterdir()\\n        if d.is_dir() and (d / \\\"eval_results.json\\\").exists()\\n    ])\\n\\n    models = []\\n    for d in model_dirs:\\n        info = parse_model_dir_name(d.name)\\n        if info is None:\\n            log.warning(\\\"Skipping unrecognized dir: %s\\\", d.name)\\n            continue\\n        if skip_para and info[\\\"is_para\\\"]:\\n            continue\\n        if aligned_only and not info.get(\\\"is_aligned\\\", False):\\n            log.info(\\\"Skipping non-aligned dir: %s\\\", d.name)\\n            continue\\n        if model_scale and model_scale not in d.name:\\n            log.info(\\\"Skipping dir (scale mismatch): %s\\\", d.name)\\n            continue\\n        if seed_filter is not None and info[\\\"seed\\\"] != seed_filter:\\n            log.info(\\\"Skipping dir (seed mismatch): %s\\\", d.name)\\n            continue\\n        info[\\\"path\\\"] = str(d)\\n        models.append(info)\\n\\n    if not models:\\n        raise ValueError(f\\\"No valid eval results in {eval_dir}\\\")\\n    log.info(\\\"Found %d model evaluations\\\", len(models))\\n\\n    with open(Path(models[0][\\\"path\\\"]) / \\\"eval_results.json\\\") as f:\\n        sample = json.load(f)\\n    available = list(sample[\\\"benchmarks\\\"].keys())\\n    benchmarks = [b for b in (benchmarks or available) if b in available]\\n    log.info(\\\"Benchmarks: %s\\\", benchmarks)\\n\\n    result = {\\n        \\\"models\\\": models,\\n        \\\"benchmarks\\\": {},\\n        \\\"dosages\\\": np.array([m[\\\"dosage\\\"] for m in models]),\\n    }\\n\\n    for bench in benchmarks:\\n        responses = []\\n        for m in models:\\n            with open(Path(m[\\\"path\\\"]) / \\\"eval_results.json\\\") as f:\\n                data = json.load(f)\\n            if be\\n\\n... [截断: 输出过长，省略 12293 字符] ...\\n\\n\\n    parser.add_argument(\\\"--model-scale\\\", type=str, default=None,\\n                        help=\\\"Model scale filter, e.g. '0.5B'. Only loads matching eval dirs.\\\")\\n    parser.add_argument(\\\"--data-seed\\\", type=int, default=None,\\n                        help=\\\"Data seed filter. Only loads eval dirs with this seed.\\\")\\n    parser.add_argument(\\\"--aligned-only\\\", action=\\\"store_true\\\",\\n                        help=\\\"Only load aligned-format eval directories.\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # Mode 1: direct matrix input\\n    if args.response_matrix:\\n        if not args.exposure_matrix and args.model_type != \\\"vanilla_4pl\\\":\\n            parser.error(\\\"--exposure-matrix required with --response-matrix \\\"\\n                         \\\"(unless --model-type=vanilla_4pl)\\\")\\n        y = load_matrix(args.response_matrix).astype(int)\\n        if args.exposure_matrix:\\n            exposure = load_matrix(args.exposure_matrix)\\n            assert y.shape == exposure.shape, (\\n                f\\\"Shape mismatch: response {y.shape} vs exposure {exposure.shape}\\\")\\n        else:\\n            exposure = np.zeros_like(y, dtype=float)\\n        bench_name = args.benchmark or \\\"benchmark\\\"\\n\\n        result = run_benchmark_fit(bench_name, y, exposure, args.model_type, args)\\n\\n        out_path = output_dir / f\\\"{bench_name}_{args.model_type}_results.json\\\"\\n        with open(out_path, \\\"w\\\") as f:\\n            json.dump(result, f, indent=2)\\n        log.info(\\\"Results saved to %s\\\", out_path)\\n        return\\n\\n    # Mode 2: eval-dir input\\n    if not args.eval_dir:\\n        parser.error(\\\"Specify --eval-dir or --response-matrix\\\")\\n\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\n                              model_scale=args.model_scale,\\n                              seed_filter=args.data_seed,\\n                              aligned_only=args.aligned_only)\\n    exposure_scores = load_exposure_scores(args.exposure_file, data[\\\"benchmarks\\\"],\\n                                           model_id=args.tau_model_id)\\n    dosages = data[\\\"dosages\\\"]\\n\\n    all_results = {\\n        \\\"mode\\\": \\\"eval_dir\\\",\\n        \\\"eval_dir\\\": args.eval_dir,\\n        \\\"model_type\\\": args.model_type,\\n        \\\"models\\\": [\\n            {\\\"dirname\\\": m[\\\"dirname\\\"], \\\"model_name\\\": m[\\\"model_name\\\"],\\n             \\\"dosage\\\": m[\\\"dosage\\\"], \\\"seed\\\": m[\\\"seed\\\"]}\\n            for m in data[\\\"models\\\"]\\n        ],\\n        \\\"benchmarks\\\": {},\\n    }\\n\\n    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n        responses = bench_data[\\\"responses\\\"]\\n        valid = bench_data[\\\"valid_mask\\\"]\\n        tau = exposure_scores[bench]\\n\\n        if not valid.all():\\n            responses = responses[valid]\\n            dosages_bench = dosages[valid]\\n        else:\\n            dosages_bench = dosages\\n\\n        exposure_matrix = build_exposure_matrix(dosages_bench, tau[:bench_data[\\\"n_items\\\"]])\\n        result = run_benchmark_fit(bench, responses, exposure_matrix, args.model_type, args)\\n        all_results[\\\"benchmarks\\\"][bench] = result\\n\\n        bench_dir = output_dir / bench\\n        bench_dir.mkdir(parents=True, exist_ok=True)\\n        with open(bench_dir / f\\\"{args.model_type}_results.json\\\", \\\"w\\\") as f:\\n            json.dump(result, f, indent=2)\\n\\n    with open(output_dir / \\\"irt_calibration_results.json\\\", \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    log.info(\\\"All results saved to %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "bfa23114-8677-4442-ba96-e9fe9c36a3fd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nIRT calibration for contamination-aware benchmark score correction.\\\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\\\n\\\\nInput:\\\\n  - Correctness matrix (N_models x N_items): binary 0/1\\\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\\\n  OR\\\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\\\n\\\\nOutput (per benchmark):\\\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\\\n  - Posterior predictive checks\\\\n\\\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport cmdstanpy\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nSTAN_MODEL_DIR = \\\\\\\"/root/contamcal-irt-calibration/stan_models\\\\\\\"\\\\nSTAN_MODELS = {\\\\n    \\\\\\\"4pl_gamma\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_4pl_simple.stan\\\\\\\"),\\\\n    \\\\\\\"2pl_gamma\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_2pl_gamma.stan\\\\\\\"),\\\\n    \\\\\\\"vanilla_4pl\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"vanilla_4pl.stan\\\\\\\"),\\\\n}\\\\n\\\\nDOSAGE_PATTERN = re.compile(r\\\\\\\"_d(\\\\\\\\d+)_s(\\\\\\\\d+)(_para)?(_aligned)?$\\\\\\\")\\\\n\\\\n\\\\n# ── Data Loading ──\\\\n\\\\ndef parse_model_dir_name(dirname):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    m = DOSAGE_PATTERN.search(dirname)\\\\n    if not m:\\\\n        return None\\\\n    return {\\\\n        \\\\\\\"dirname\\\\\\\": dirname,\\\\n        \\\\\\\"model_name\\\\\\\": dirname[:m.start()],\\\\n        \\\\\\\"dosage\\\\\\\": int(m.group(1)),\\\\n        \\\\\\\"seed\\\\\\\": int(m.group(2)),\\\\n        \\\\\\\"is_para\\\\\\\": m.group(3) is not None,\\\\n        \\\\\\\"is_aligned\\\\\\\": m.group(4) is not None,\\\\n    }\\\\n\\\\n\\\\ndef load_matrix(path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load matrix from .npy, .csv, or .json.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ext = os.path.splitext(path)[1].lower()\\\\n    if ext == \\\\\\\".npy\\\\\\\":\\\\n        return np.load(path)\\\\n    elif ext == \\\\\\\".csv\\\\\\\":\\\\n        return np.loadtxt(path, delimiter=\\\\\\\",\\\\\\\", skiprows=1)\\\\n    elif ext == \\\\\\\".json\\\\\\\":\\\\n        with open(path) as f:\\\\n            return np.array(json.load(f))\\\\n    raise ValueError(f\\\\\\\"Unsupported format: {ext}\\\\\\\")\\\\n\\\\n\\\\ndef load_eval_results(eval_dir, benchmarks=None, skip_para=True,\\\\n                      model_scale=None, seed_filter=None, aligned_only=False):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load per-model eval results into response matrices per benchmark.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    eval_path = Path(eval_dir)\\\\n    model_dirs = sorted([\\\\n        d for d in eval_path.iterdir()\\\\n        if d.is_dir() and (d / \\\\\\\"eval_results.json\\\\\\\").exists()\\\\n    ])\\\\n\\\\n    models = []\\\\n    for d in model_dirs:\\\\n        info = parse_model_dir_name(d.name)\\\\n        if info is None:\\\\n            log.warning(\\\\\\\"Skipping unrecognized dir: %s\\\\\\\", d.name)\\\\n            continue\\\\n        if skip_para and info[\\\\\\\"is_para\\\\\\\"]:\\\\n            continue\\\\n        if aligned_only and not info.get(\\\\\\\"is_aligned\\\\\\\", False):\\\\n            log.info(\\\\\\\"Skipping non-aligned dir: %s\\\\\\\", d.name)\\\\n            continue\\\\n        if model_scale and model_scale not in d.name:\\\\n            log.info(\\\\\\\"Skipping dir (scale mismatch): %s\\\\\\\", d.name)\\\\n            continue\\\\n        if seed_filter is not None and info[\\\\\\\"seed\\\\\\\"] != seed_filter:\\\\n            log.info(\\\\\\\"Skipping dir (seed mismatch): %s\\\\\\\", d.name)\\\\n            continue\\\\n        info[\\\\\\\"path\\\\\\\"] = str(d)\\\\n        models.append(info)\\\\n\\\\n    if not models:\\\\n        raise ValueError(f\\\\\\\"No valid eval results in {eval_dir}\\\\\\\")\\\\n    log.info(\\\\\\\"Found %d model evaluations\\\\\\\", len(models))\\\\n\\\\n    with open(Path(models[0][\\\\\\\"path\\\\\\\"]) / \\\\\\\"eval_results.json\\\\\\\") as f:\\\\n        sample = json.load(f)\\\\n    available = list(sample[\\\\\\\"benchmarks\\\\\\\"].keys())\\\\n    benchmarks = [b for b in (benchmarks or available) if b in available]\\\\n    log.info(\\\\\\\"Benchmarks: %s\\\\\\\", benchmarks)\\\\n\\\\n    result = {\\\\n        \\\\\\\"models\\\\\\\": models,\\\\n        \\\\\\\"benchmarks\\\\\\\": {},\\\\n        \\\\\\\"dosages\\\\\\\": np.array([m[\\\\\\\"dosage\\\\\\\"] for m in models]),\\\\n    }\\\\n\\\\n    for bench in benchmarks:\\\\n        responses = []\\\\n        for m in models:\\\\n            with open(Path(m[\\\\\\\"path\\\\\\\"]) / \\\\\\\"eval_results.json\\\\\\\") as f:\\\\n                data = json.load(f)\\\\n            if be\\\\n\\\\n... [截断: 输出过长，省略 12293 字符] ...\\\\n\\\\n\\\\n    parser.add_argument(\\\\\\\"--model-scale\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Model scale filter, e.g. '0.5B'. Only loads matching eval dirs.\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-seed\\\\\\\", type=int, default=None,\\\\n                        help=\\\\\\\"Data seed filter. Only loads eval dirs with this seed.\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--aligned-only\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Only load aligned-format eval directories.\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--adapt-delta\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--max-treedepth\\\\\\\", type=int, default=12)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO,\\\\n                        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # Mode 1: direct matrix input\\\\n    if args.response_matrix:\\\\n        if not args.exposure_matrix and args.model_type != \\\\\\\"vanilla_4pl\\\\\\\":\\\\n            parser.error(\\\\\\\"--exposure-matrix required with --response-matrix \\\\\\\"\\\\n                         \\\\\\\"(unless --model-type=vanilla_4pl)\\\\\\\")\\\\n        y = load_matrix(args.response_matrix).astype(int)\\\\n        if args.exposure_matrix:\\\\n            exposure = load_matrix(args.exposure_matrix)\\\\n            assert y.shape == exposure.shape, (\\\\n                f\\\\\\\"Shape mismatch: response {y.shape} vs exposure {exposure.shape}\\\\\\\")\\\\n        else:\\\\n            exposure = np.zeros_like(y, dtype=float)\\\\n        bench_name = args.benchmark or \\\\\\\"benchmark\\\\\\\"\\\\n\\\\n        result = run_benchmark_fit(bench_name, y, exposure, args.model_type, args)\\\\n\\\\n        out_path = output_dir / f\\\\\\\"{bench_name}_{args.model_type}_results.json\\\\\\\"\\\\n        with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(result, f, indent=2)\\\\n        log.info(\\\\\\\"Results saved to %s\\\\\\\", out_path)\\\\n        return\\\\n\\\\n    # Mode 2: eval-dir input\\\\n    if not args.eval_dir:\\\\n        parser.error(\\\\\\\"Specify --eval-dir or --response-matrix\\\\\\\")\\\\n\\\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\\\n                              model_scale=args.model_scale,\\\\n                              seed_filter=args.data_seed,\\\\n                              aligned_only=args.aligned_only)\\\\n    exposure_scores = load_exposure_scores(args.exposure_file, data[\\\\\\\"benchmarks\\\\\\\"],\\\\n                                           model_id=args.tau_model_id)\\\\n    dosages = data[\\\\\\\"dosages\\\\\\\"]\\\\n\\\\n    all_results = {\\\\n        \\\\\\\"mode\\\\\\\": \\\\\\\"eval_dir\\\\\\\",\\\\n        \\\\\\\"eval_dir\\\\\\\": args.eval_dir,\\\\n        \\\\\\\"model_type\\\\\\\": args.model_type,\\\\n        \\\\\\\"models\\\\\\\": [\\\\n            {\\\\\\\"dirname\\\\\\\": m[\\\\\\\"dirname\\\\\\\"], \\\\\\\"model_name\\\\\\\": m[\\\\\\\"model_name\\\\\\\"],\\\\n             \\\\\\\"dosage\\\\\\\": m[\\\\\\\"dosage\\\\\\\"], \\\\\\\"seed\\\\\\\": m[\\\\\\\"seed\\\\\\\"]}\\\\n            for m in data[\\\\\\\"models\\\\\\\"]\\\\n        ],\\\\n        \\\\\\\"benchmarks\\\\\\\": {},\\\\n    }\\\\n\\\\n    for bench, bench_data in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n        responses = bench_data[\\\\\\\"responses\\\\\\\"]\\\\n        valid = bench_data[\\\\\\\"valid_mask\\\\\\\"]\\\\n        tau = exposure_scores[bench]\\\\n\\\\n        if not valid.all():\\\\n            responses = responses[valid]\\\\n            dosages_bench = dosages[valid]\\\\n        else:\\\\n            dosages_bench = dosages\\\\n\\\\n        exposure_matrix = build_exposure_matrix(dosages_bench, tau[:bench_data[\\\\\\\"n_items\\\\\\\"]])\\\\n        result = run_benchmark_fit(bench, responses, exposure_matrix, args.model_type, args)\\\\n        all_results[\\\\\\\"benchmarks\\\\\\\"][bench] = result\\\\n\\\\n        bench_dir = output_dir / bench\\\\n        bench_dir.mkdir(parents=True, exist_ok=True)\\\\n        with open(bench_dir / f\\\\\\\"{args.model_type}_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(result, f, indent=2)\\\\n\\\\n    with open(output_dir / \\\\\\\"irt_calibration_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n    log.info(\\\\\\\"All results saved to %s\\\\\\\", output_dir)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nIRT calibration for contamination-aware benchmark score correction.\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\n\\nInput:\\n  - Correctness matrix (N_models x N_items): binary 0/1\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\n  OR\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\n\\nOutput (per benchmark):\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\n  - Posterior predictive checks\\n\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport cmdstanpy\\n\\nlog = logging.getLogger(__name__)\\n\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\nSTAN_MODEL_DIR = \\\"/root/contamcal-irt-calibration/stan_models\\\"\\nSTAN_MODELS = {\\n    \\\"4pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple.stan\\\"),\\n    \\\"2pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_2pl_gamma.stan\\\"),\\n    \\\"vanilla_4pl\\\": os.path.join(STAN_MODEL_DIR, \\\"vanilla_4pl.stan\\\"),\\n}\\n\\nDOSAGE_PATTERN = re.compile(r\\\"_d(\\\\d+)_s(\\\\d+)(_para)?(_aligned)?$\\\")\\n\\n\\n# ── Data Loading ──\\n\\ndef parse_model_dir_name(dirname):\\n    \\\"\\\"\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\"\\\"\\\"\\n    m = DOSAGE_PATTERN.search(dirname)\\n    if not m:\\n        return None\\n    return {\\n        \\\"dirname\\\": dirname,\\n        \\\"model_name\\\": dirname[:m.start()],\\n        \\\"dosage\\\": int(m.group(1)),\\n        \\\"seed\\\": int(m.group(2)),\\n        \\\"is_para\\\": m.group(3) is not None,\\n        \\\"is_aligned\\\": m.group(4) is not None,\\n    }\\n\\n\\ndef load_matrix(path):\\n    \\\"\\\"\\\"Load matrix from .npy, .csv, or .json.\\\"\\\"\\\"\\n    ext = os.path.splitext(path)[1].lower()\\n    if ext == \\\".npy\\\":\\n        return np.load(path)\\n    elif ext == \\\".csv\\\":\\n        return np.loadtxt(path, delimiter=\\\",\\\", skiprows=1)\\n    elif ext == \\\".json\\\":\\n        with open(path) as f:\\n            return np.array(json.load(f))\\n    raise ValueError(f\\\"Unsupported format: {ext}\\\")\\n\\n\\ndef load_eval_results(eval_dir, benchmarks=None, skip_para=True,\\n                      model_scale=None, seed_filter=None, aligned_only=False):\\n    \\\"\\\"\\\"Load per-model eval results into response matrices per benchmark.\\\"\\\"\\\"\\n    eval_path = Path(eval_dir)\\n    model_dirs = sorted([\\n        d for d in eval_path.iterdir()\\n        if d.is_dir() and (d / \\\"eval_results.json\\\").exists()\\n    ])\\n\\n    models = []\\n    for d in model_dirs:\\n        info = parse_model_dir_name(d.name)\\n        if info is None:\\n            log.warning(\\\"Skipping unrecognized dir: %s\\\", d.name)\\n            continue\\n        if skip_para and info[\\\"is_para\\\"]:\\n            continue\\n        if aligned_only and not info.get(\\\"is_aligned\\\", False):\\n            log.info(\\\"Skipping non-aligned dir: %s\\\", d.name)\\n            continue\\n        if model_scale and model_scale not in d.name:\\n            log.info(\\\"Skipping dir (scale mismatch): %s\\\", d.name)\\n            continue\\n        if seed_filter is not None and info[\\\"seed\\\"] != seed_filter:\\n            log.info(\\\"Skipping dir (seed mismatch): %s\\\", d.name)\\n            continue\\n        info[\\\"path\\\"] = str(d)\\n        models.append(info)\\n\\n    if not models:\\n        raise ValueError(f\\\"No valid eval results in {eval_dir}\\\")\\n    log.info(\\\"Found %d model evaluations\\\", len(models))\\n\\n    with open(Path(models[0][\\\"path\\\"]) / \\\"eval_results.json\\\") as f:\\n        sample = json.load(f)\\n    available = list(sample[\\\"benchmarks\\\"].keys())\\n    benchmarks = [b for b in (benchmarks or available) if b in available]\\n    log.info(\\\"Benchmarks: %s\\\", benchmarks)\\n\\n    result = {\\n        \\\"models\\\": models,\\n        \\\"benchmarks\\\": {},\\n        \\\"dosages\\\": np.array([m[\\\"dosage\\\"] for m in models]),\\n    }\\n\\n    for bench in benchmarks:\\n        responses = []\\n        for m in models:\\n            with open(Path(m[\\\"path\\\"]) / \\\"eval_results.json\\\") as f:\\n                data = json.load(f)\\n            if be\\n\\n... [截断: 输出过长，省略 12293 字符] ...\\n\\n\\n    parser.add_argument(\\\"--model-scale\\\", type=str, default=None,\\n                        help=\\\"Model scale filter, e.g. '0.5B'. Only loads matching eval dirs.\\\")\\n    parser.add_argument(\\\"--data-seed\\\", type=int, default=None,\\n                        help=\\\"Data seed filter. Only loads eval dirs with this seed.\\\")\\n    parser.add_argument(\\\"--aligned-only\\\", action=\\\"store_true\\\",\\n                        help=\\\"Only load aligned-format eval directories.\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # Mode 1: direct matrix input\\n    if args.response_matrix:\\n        if not args.exposure_matrix and args.model_type != \\\"vanilla_4pl\\\":\\n            parser.error(\\\"--exposure-matrix required with --response-matrix \\\"\\n                         \\\"(unless --model-type=vanilla_4pl)\\\")\\n        y = load_matrix(args.response_matrix).astype(int)\\n        if args.exposure_matrix:\\n            exposure = load_matrix(args.exposure_matrix)\\n            assert y.shape == exposure.shape, (\\n                f\\\"Shape mismatch: response {y.shape} vs exposure {exposure.shape}\\\")\\n        else:\\n            exposure = np.zeros_like(y, dtype=float)\\n        bench_name = args.benchmark or \\\"benchmark\\\"\\n\\n        result = run_benchmark_fit(bench_name, y, exposure, args.model_type, args)\\n\\n        out_path = output_dir / f\\\"{bench_name}_{args.model_type}_results.json\\\"\\n        with open(out_path, \\\"w\\\") as f:\\n            json.dump(result, f, indent=2)\\n        log.info(\\\"Results saved to %s\\\", out_path)\\n        return\\n\\n    # Mode 2: eval-dir input\\n    if not args.eval_dir:\\n        parser.error(\\\"Specify --eval-dir or --response-matrix\\\")\\n\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\n                              model_scale=args.model_scale,\\n                              seed_filter=args.data_seed,\\n                              aligned_only=args.aligned_only)\\n    exposure_scores = load_exposure_scores(args.exposure_file, data[\\\"benchmarks\\\"],\\n                                           model_id=args.tau_model_id)\\n    dosages = data[\\\"dosages\\\"]\\n\\n    all_results = {\\n        \\\"mode\\\": \\\"eval_dir\\\",\\n        \\\"eval_dir\\\": args.eval_dir,\\n        \\\"model_type\\\": args.model_type,\\n        \\\"models\\\": [\\n            {\\\"dirname\\\": m[\\\"dirname\\\"], \\\"model_name\\\": m[\\\"model_name\\\"],\\n             \\\"dosage\\\": m[\\\"dosage\\\"], \\\"seed\\\": m[\\\"seed\\\"]}\\n            for m in data[\\\"models\\\"]\\n        ],\\n        \\\"benchmarks\\\": {},\\n    }\\n\\n    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n        responses = bench_data[\\\"responses\\\"]\\n        valid = bench_data[\\\"valid_mask\\\"]\\n        tau = exposure_scores[bench]\\n\\n        if not valid.all():\\n            responses = responses[valid]\\n            dosages_bench = dosages[valid]\\n        else:\\n            dosages_bench = dosages\\n\\n        exposure_matrix = build_exposure_matrix(dosages_bench, tau[:bench_data[\\\"n_items\\\"]])\\n        result = run_benchmark_fit(bench, responses, exposure_matrix, args.model_type, args)\\n        all_results[\\\"benchmarks\\\"][bench] = result\\n\\n        bench_dir = output_dir / bench\\n        bench_dir.mkdir(parents=True, exist_ok=True)\\n        with open(bench_dir / f\\\"{args.model_type}_results.json\\\", \\\"w\\\") as f:\\n            json.dump(result, f, indent=2)\\n\\n    with open(output_dir / \\\"irt_calibration_results.json\\\", \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    log.info(\\\"All results saved to %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The code already has `--model-scale`, `--data-seed`, `--aligned-only`, and `--dry-run` arguments. Let me look more carefully at the dry-run logic and see what's missing. Let me also check if the dry-run mode actually prints the detailed info the reviewer wants.
+
+Looking at the code:
+
+1. `run_exp006.py` already has `--model-scale`, `--data-seed`, `--aligned-only`, `--dry-run` arguments.
+
+
+2. `run_irt_calibration.py` has `load_eval_results` with the same filtering parameters built in.
+
+So the filtering logic is already there. The real question is whether the dry-run output format matches what the reviewer expects, so I need to examine the `run_pipeline` function's dry-run path more closely and check what the existing dry-run JSON files actually contain.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "53c73b35-dd06-4d32-8788-e20372219515",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PmwUd9CdEyNgmqFcMET3Tx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6854,
+      "cache_read_input_tokens": 28908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6854
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+代码已经有 `--model-scale`、`--data-seed`、`--aligned-only` 和 `--dry-run` 参数。需要确认 dry-run 输出格式是否满足 reviewer 要求。看一下被截断的部分和现有 dry-run 输出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "9da8853e-09b9-4687-8130-94f77f5bb839",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PmwUd9CdEyNgmqFcMET3Tx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6854,
+      "cache_read_input_tokens": 28908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6854
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015rXbKrLXi88BrUS3Wnn1kn`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -100 /root/contamcal-irt-calibration/exp006/dryrun_full.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "43d80496-a0ee-4c5a-94b5-2bc0d6ff9dc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PmwUd9CdEyNgmqFcMET3Tx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6854,
+      "cache_read_input_tokens": 28908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6854
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T15:17:33.177Z_
+
+<details><summary>↩ Tool result · `toolu_015rXbKrLXi88BrUS3Wnn1kn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"dcr_fuzzy\\\": [\\n      {\\n        \\\"calibrated_accuracy\\\": 0.7,\\n        \\\"ci_lower\\\": 0.4,\\n        \\\"ci_upper\\\": 1.0,\\n        \\\"method_name\\\": \\\"dcr_fuzzy\\\",\\n        \\\"details\\\": {\\n          \\\"dcr_factor\\\": 0.0,\\n          \\\"raw_accuracy\\\": 0.7,\\n          \\\"s_levels\\\": [\\n            0.0,\\n            0.0,\\n            0.0,\\n            0.0\\n          ]\\n        }\\n      },\\n      {\\n        \\\"calibrated_accuracy\\\": 0.15079932688262518,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.4,\\n        \\\"method_name\\\": \\\"dcr_fuzzy\\\",\\n        \\\"details\\\": {\\n          \\\"dcr_factor\\\": 0.2460033655868742,\\n          \\\"raw_accuracy\\\": 0.2,\\n          \\\"s_levels\\\": [\\n            0.2,\\n            0.2,\\n            0.2,\\n            0.2\\n          ]\\n        }\\n      },\\n      {\\n        \\\"calibrated_accuracy\\\": 0.5296130179133053,\\n        \\\"ci_lower\\\": 0.20677836326293825,\\n        \\\"ci_upper\\\": 0.7567146029396215,\\n        \\\"method_name\\\": \\\"dcr_fuzzy\\\",\\n        \\\"details\\\": {\\n          \\\"dcr_factor\\\": 0.41154109120743865,\\n          \\\"raw_accuracy\\\": 0.9,\\n          \\\"s_levels\\\": [\\n            0.5,\\n            0.5,\\n            0.5,\\n            0.3\\n          ]\\n        }\\n      },\\n      {\\n        \\\"calibrated_accuracy\\\": 0.18447245980157362,\\n        \\\"ci_lower\\\": 0.0910729927007299,\\n        \\\"ci_upper\\\": 0.410922421948912,\\n        \\\"method_name\\\": \\\"dcr_fuzzy\\\",\\n        \\\"details\\\": {\\n          \\\"dcr_factor\\\": 0.6925459003307106,\\n          \\\"raw_accuracy\\\": 0.6,\\n          \\\"s_levels\\\": [\\n            0.7,\\n            0.7,\\n            0.7,\\n            0.4\\n          ]\\n        }\\n      },\\n      {\\n        \\\"calibrated_accuracy\\\": 0.058720617110799435,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.13786369613292693,\\n        \\\"method_name\\\": \\\"dcr_fuzzy\\\",\\n        \\\"details\\\": {\\n          \\\"dcr_factor\\\": 0.7063969144460028,\\n          \\\"raw_accuracy\\\": 0.2,\\n          \\\"s_levels\\\": [\\n            1.0,\\n            1.0,\\n            1.0,\\n            0.5\\n          ]\\n        }\\n      }\\n    ],\\n    \\\"emperor_mitigation\\\": [\\n      {\\n        \\\"calibrated_accuracy\\\": 0.7,\\n        \\\"ci_lower\\\": 0.4,\\n        \\\"ci_upper\\\": 1.0,\\n        \\\"method_name\\\": \\\"emperor_mitigation\\\",\\n        \\\"details\\\": {\\n          \\\"n_contaminated\\\": 0,\\n          \\\"n_clean\\\": 10,\\n          \\\"exposure_threshold\\\": 0.5,\\n          \\\"has_real_paraphrases\\\": false,\\n          \\\"raw_accuracy\\\": 0.7,\\n          \\\"rephrased_accuracy\\\": 0.7\\n        }\\n      },\\n      {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "9404dda4-7431-4da9-8b86-814b61a4c595",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"dcr_fuzzy\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"calibrated_accuracy\\\\\\\": 0.7,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.4,\\\\n        \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n        \\\\\\\"method_name\\\\\\\": \\\\\\\"dcr_fuzzy\\\\\\\",\\\\n        \\\\\\\"details\\\\\\\": {\\\\n          \\\\\\\"dcr_factor\\\\\\\": 0.0,\\\\n          \\\\\\\"raw_accuracy\\\\\\\": 0.7,\\\\n          \\\\\\\"s_levels\\\\\\\": [\\\\n            0.0,\\\\n            0.0,\\\\n            0.0,\\\\n            0.0\\\\n          ]\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"calibrated_accuracy\\\\\\\": 0.15079932688262518,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.4,\\\\n        \\\\\\\"method_name\\\\\\\": \\\\\\\"dcr_fuzzy\\\\\\\",\\\\n        \\\\\\\"details\\\\\\\": {\\\\n          \\\\\\\"dcr_factor\\\\\\\": 0.2460033655868742,\\\\n          \\\\\\\"raw_accuracy\\\\\\\": 0.2,\\\\n          \\\\\\\"s_levels\\\\\\\": [\\\\n            0.2,\\\\n            0.2,\\\\n            0.2,\\\\n            0.2\\\\n          ]\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"calibrated_accuracy\\\\\\\": 0.5296130179133053,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.20677836326293825,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7567146029396215,\\\\n        \\\\\\\"method_name\\\\\\\": \\\\\\\"dcr_fuzzy\\\\\\\",\\\\n        \\\\\\\"details\\\\\\\": {\\\\n          \\\\\\\"dcr_factor\\\\\\\": 0.41154109120743865,\\\\n          \\\\\\\"raw_accuracy\\\\\\\": 0.9,\\\\n          \\\\\\\"s_levels\\\\\\\": [\\\\n            0.5,\\\\n            0.5,\\\\n            0.5,\\\\n            0.3\\\\n          ]\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"calibrated_accuracy\\\\\\\": 0.18447245980157362,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0910729927007299,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.410922421948912,\\\\n        \\\\\\\"method_name\\\\\\\": \\\\\\\"dcr_fuzzy\\\\\\\",\\\\n        \\\\\\\"details\\\\\\\": {\\\\n          \\\\\\\"dcr_factor\\\\\\\": 0.6925459003307106,\\\\n          \\\\\\\"raw_accuracy\\\\\\\": 0.6,\\\\n          \\\\\\\"s_levels\\\\\\\": [\\\\n            0.7,\\\\n            0.7,\\\\n            0.7,\\\\n            0.4\\\\n          ]\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"calibrated_accuracy\\\\\\\": 0.058720617110799435,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.13786369613292693,\\\\n        \\\\\\\"method_name\\\\\\\": \\\\\\\"dcr_fuzzy\\\\\\\",\\\\n        \\\\\\\"details\\\\\\\": {\\\\n          \\\\\\\"dcr_factor\\\\\\\": 0.7063969144460028,\\\\n          \\\\\\\"raw_accuracy\\\\\\\": 0.2,\\\\n          \\\\\\\"s_levels\\\\\\\": [\\\\n            1.0,\\\\n            1.0,\\\\n            1.0,\\\\n            0.5\\\\n          ]\\\\n        }\\\\n      }\\\\n    ],\\\\n    \\\\\\\"emperor_mitigation\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"calibrated_accuracy\\\\\\\": 0.7,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.4,\\\\n        \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n        \\\\\\\"method_name\\\\\\\": \\\\\\\"emperor_mitigation\\\\\\\",\\\\n        \\\\\\\"details\\\\\\\": {\\\\n          \\\\\\\"n_contaminated\\\\\\\": 0,\\\\n          \\\\\\\"n_clean\\\\\\\": 10,\\\\n          \\\\\\\"exposure_threshold\\\\\\\": 0.5,\\\\n          \\\\\\\"has_real_paraphrases\\\\\\\": false,\\\\n          \\\\\\\"raw_accuracy\\\\\\\": 0.7,\\\\n          \\\\\\\"rephrased_accuracy\\\\\\\": 0.7\\\\n        }\\\\n      },\\\\n      {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"dcr_fuzzy\\\": [\\n      {\\n        \\\"calibrated_accuracy\\\": 0.7,\\n        \\\"ci_lower\\\": 0.4,\\n        \\\"ci_upper\\\": 1.0,\\n        \\\"method_name\\\": \\\"dcr_fuzzy\\\",\\n        \\\"details\\\": {\\n          \\\"dcr_factor\\\": 0.0,\\n          \\\"raw_accuracy\\\": 0.7,\\n          \\\"s_levels\\\": [\\n            0.0,\\n            0.0,\\n            0.0,\\n            0.0\\n          ]\\n        }\\n      },\\n      {\\n        \\\"calibrated_accuracy\\\": 0.15079932688262518,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.4,\\n        \\\"method_name\\\": \\\"dcr_fuzzy\\\",\\n        \\\"details\\\": {\\n          \\\"dcr_factor\\\": 0.2460033655868742,\\n          \\\"raw_accuracy\\\": 0.2,\\n          \\\"s_levels\\\": [\\n            0.2,\\n            0.2,\\n            0.2,\\n            0.2\\n          ]\\n        }\\n      },\\n      {\\n        \\\"calibrated_accuracy\\\": 0.5296130179133053,\\n        \\\"ci_lower\\\": 0.20677836326293825,\\n        \\\"ci_upper\\\": 0.7567146029396215,\\n        \\\"method_name\\\": \\\"dcr_fuzzy\\\",\\n        \\\"details\\\": {\\n          \\\"dcr_factor\\\": 0.41154109120743865,\\n          \\\"raw_accuracy\\\": 0.9,\\n          \\\"s_levels\\\": [\\n            0.5,\\n            0.5,\\n            0.5,\\n            0.3\\n          ]\\n        }\\n      },\\n      {\\n        \\\"calibrated_accuracy\\\": 0.18447245980157362,\\n        \\\"ci_lower\\\": 0.0910729927007299,\\n        \\\"ci_upper\\\": 0.410922421948912,\\n        \\\"method_name\\\": \\\"dcr_fuzzy\\\",\\n        \\\"details\\\": {\\n          \\\"dcr_factor\\\": 0.6925459003307106,\\n          \\\"raw_accuracy\\\": 0.6,\\n          \\\"s_levels\\\": [\\n            0.7,\\n            0.7,\\n            0.7,\\n            0.4\\n          ]\\n        }\\n      },\\n      {\\n        \\\"calibrated_accuracy\\\": 0.058720617110799435,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.13786369613292693,\\n        \\\"method_name\\\": \\\"dcr_fuzzy\\\",\\n        \\\"details\\\": {\\n          \\\"dcr_factor\\\": 0.7063969144460028,\\n          \\\"raw_accuracy\\\": 0.2,\\n          \\\"s_levels\\\": [\\n            1.0,\\n            1.0,\\n            1.0,\\n            0.5\\n          ]\\n        }\\n      }\\n    ],\\n    \\\"emperor_mitigation\\\": [\\n      {\\n        \\\"calibrated_accuracy\\\": 0.7,\\n        \\\"ci_lower\\\": 0.4,\\n        \\\"ci_upper\\\": 1.0,\\n        \\\"method_name\\\": \\\"emperor_mitigation\\\",\\n        \\\"details\\\": {\\n          \\\"n_contaminated\\\": 0,\\n          \\\"n_clean\\\": 10,\\n          \\\"exposure_threshold\\\": 0.5,\\n          \\\"has_real_paraphrases\\\": false,\\n          \\\"raw_accuracy\\\": 0.7,\\n          \\\"rephrased_accuracy\\\": 0.7\\n        }\\n      },\\n      {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QjikRrexCzMvYDreHhBHnt`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "a69bbaf2-0884-4e4f-8d62-9aac7f22a648",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PmwUd9CdEyNgmqFcMET3Tx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6854,
+      "cache_read_input_tokens": 28908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6854
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T15:17:34.123Z_
+
+<details><summary>↩ Tool result · `toolu_01QjikRrexCzMvYDreHhBHnt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\n\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\nevaluates against ground-truth clean scores (dosage=0 models).\\n\\nUsage:\\n    python run_exp006.py --help\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\n    python run_exp006.py                                         # full run\\n\\nDependencies: cmdstanpy, numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    run_benchmark_fit,\\n    STAN_MODELS,\\n)\\nfrom baselines import run_all_baselines\\nfrom evaluate_calibration import (\\n    evaluate_method,\\n    format_text_table,\\n    format_latex_table,\\n)\\nfrom joint_fit import run_joint_fit\\n\\nlog = logging.getLogger(__name__)\\n\\n# D018: 3B GSM8K excluded from dose-response analysis\\nD018_EXCLUDE = [(\\\"3B\\\", \\\"gsm8k\\\")]\\n\\n\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n    \\\"\\\"\\\"Check D018 exclusion rules for dose-response analysis.\\\"\\\"\\\"\\n    for pattern, bench in rules:\\n        if pattern in model_name and benchmark == bench:\\n            return True\\n    return False\\n\\n\\ndef compute_ground_truth(responses, dosages):\\n    \\\"\\\"\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\n\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\n    For dosage>0 models, we use the mean d=0 accuracy as the\\n    counterfactual reference (what they would score without contamination).\\n    \\\"\\\"\\\"\\n    raw_acc = responses.mean(axis=1)\\n    d0_mask = dosages == 0\\n\\n    if d0_mask.sum() > 0:\\n        gt_acc_d0 = float(raw_acc[d0_mask].mean())\\n    else:\\n        gt_acc_d0 = float(raw_acc.mean())\\n\\n    # dosage-0 models: their own raw accuracy\\n    # dosage>0 models: d=0 mean as counterfactual reference\\n    ground_truth = np.full(len(dosages), gt_acc_d0)\\n    ground_truth[d0_mask] = raw_acc[d0_mask]\\n\\n    return ground_truth\\n\\n\\ndef run_pipeline(args):\\n    \\\"\\\"\\\"Run full exp-006 pipeline.\\\"\\\"\\\"\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # ── Load Data ──\\n    log.info(\\\"Loading eval results from %s\\\", args.eval_dir)\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\n                              model_scale=args.model_scale,\\n                              seed_filter=args.data_seed,\\n                              aligned_only=args.aligned_only)\\n    exposure_scores = load_exposure_scores(\\n        args.exposure_file, data[\\\"benchmarks\\\"], model_id=args.tau_model_id)\\n    dosages = data[\\\"dosages\\\"]\\n\\n    log.info(\\\"Models: %d | Benchmarks: %s\\\",\\n             len(data[\\\"models\\\"]), list(data[\\\"benchmarks\\\"].keys()))\\n    log.info(\\\"Dosages: %s\\\", dosages.tolist())\\n\\n    # Pipeline metadata\\n    meta = {\\n        \\\"eval_dir\\\": args.eval_dir,\\n        \\\"model_type\\\": args.model_type,\\n        \\\"dry_run\\\": args.dry_run,\\n        \\\"models\\\": [\\n            {\\\"dirname\\\": m[\\\"dirname\\\"], \\\"model_name\\\": m[\\\"model_name\\\"],\\n             \\\"dosage\\\": m[\\\"dosage\\\"], \\\"seed\\\": m[\\\"seed\\\"]}\\n            for m in data[\\\"models\\\"]\\n        ],\\n        \\\"dosages\\\": dosages.tolist(),\\n        \\\"benchmarks\\\": list(data[\\\"benchmarks\\\"].keys()),\\n    }\\n\\n    all_results = {}\\n    pipeline_t0 = time.time()\\n\\n    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n        log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n        log.info(\\\"BENCHMARK: %s\\\", bench)\\n        log.info(\\\"=\\\" * 60)\\n\\n        responses = bench_data[\\\"responses\\\"]\\n        valid = bench_data[\\\"valid_mask\\\"]\\n        tau = exposure_scores[bench]\\n        n_items = bench_data[\\\"n_items\\\"]\\n\\n        # Filter to valid models\\n        if not valid.all():\\n            responses = responses[valid]\\n            dosages_bench = dosages[valid]\\n            log.info(\\\"Filtered to %d valid models (of %d)\\\",\\n                     responses.shape\\n\\n... [截断: 输出过长，省略 5781 字符] ...\\n\\nval_dir, args.exposure_file, str(joint_dir),\\n            benchmarks=args.benchmarks,\\n            chains=args.chains, warmup=args.warmup, samples=args.samples,\\n            adapt_delta=args.adapt_delta, max_treedepth=args.max_treedepth,\\n            seed=args.seed, dry_run=args.dry_run,\\n            max_items=args.max_items if args.dry_run else None,\\n            tau_model_id=args.tau_model_id,\\n            model_scale=args.model_scale,\\n            seed_filter=args.data_seed,\\n            aligned_only=args.aligned_only,\\n        )\\n        all_results[\\\"joint_fit\\\"] = {\\n            \\\"global_gamma\\\": joint_result[\\\"global_gamma\\\"],\\n            \\\"diagnostics\\\": joint_result[\\\"diagnostics\\\"],\\n        }\\n\\n    # ── Save Combined Results ──\\n    total_time = time.time() - pipeline_t0\\n    combined = {\\n        \\\"metadata\\\": meta,\\n        \\\"total_time_sec\\\": round(total_time, 1),\\n        \\\"benchmarks\\\": all_results,\\n    }\\n    with open(output_dir / \\\"exp006_results.json\\\", \\\"w\\\") as f:\\n        json.dump(combined, f, indent=2, default=str)\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    log.info(\\\"Pipeline complete in %.1fs\\\", total_time)\\n    log.info(\\\"Results saved to %s\\\", output_dir)\\n    log.info(\\\"=\\\" * 60)\\n\\n    return combined\\n\\n\\n# ── CLI ──\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-006: IRT calibration + baselines + evaluation\\\")\\n\\n    # Data\\n    parser.add_argument(\\n        \\\"--eval-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp001/eval_results\\\",\\n        help=\\\"exp-001 eval results directory\\\")\\n    parser.add_argument(\\n        \\\"--exposure-file\\\", type=str, default=None,\\n        help=\\\"exp-002/003 exposure scores JSON \\\"\\n             \\\"(per-benchmark per-item tau)\\\")\\n    parser.add_argument(\\n        \\\"--tau-model-id\\\", type=str, default=None,\\n        help=\\\"Model ID for exposure tau (e.g. Qwen2.5-0.5B_d100_s42)\\\")\\n    parser.add_argument(\\n        \\\"--tau-source\\\", type=str, default=\\\"exposure\\\",\\n        choices=[\\\"exposure\\\", \\\"oracle\\\", \\\"aggregated\\\"],\\n        help=\\\"Tau source type (default: exposure)\\\")\\n    parser.add_argument(\\n        \\\"--output-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp006/results\\\",\\n        help=\\\"Output directory\\\")\\n    parser.add_argument(\\n        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n        help=\\\"Benchmarks to analyze (default: all)\\\")\\n    parser.add_argument(\\n        \\\"--model-scale\\\", type=str, default=None,\\n        help=\\\"Model scale filter, e.g. '0.5B'.\\\")\\n    parser.add_argument(\\n        \\\"--data-seed\\\", type=int, default=None,\\n        help=\\\"Data seed filter.\\\")\\n    parser.add_argument(\\n        \\\"--aligned-only\\\", action=\\\"store_true\\\",\\n        help=\\\"Only load aligned-format eval directories.\\\")\\n\\n    # IRT config\\n    parser.add_argument(\\n        \\\"--model-type\\\",\\n        choices=list(STAN_MODELS.keys()),\\n        default=\\\"4pl_gamma\\\",\\n        help=\\\"IRT model variant (default: 4pl_gamma)\\\")\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n\\n    # Baseline config\\n    parser.add_argument(\\n        \\\"--skip-stan\\\", action=\\\"store_true\\\",\\n        help=\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\")\\n\\n    # Ablation\\n    parser.add_argument(\\n        \\\"--joint-fit\\\", action=\\\"store_true\\\",\\n        help=\\\"Also run joint fitting ablation (shared global gamma)\\\")\\n\\n    # Dry-run\\n    parser.add_argument(\\n        \\\"--dry-run\\\", action=\\\"store_true\\\",\\n        help=\\\"Quick validation with truncated items\\\")\\n    parser.add_argument(\\n        \\\"--max-items\\\", type=int, default=50,\\n        help=\\\"Max items per benchmark in dry-run mode (default: 50)\\\")\\n\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "b70b9ac5-914a-4854-8f87-c327093ce1dd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\\\n\\\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\\\nevaluates against ground-truth clean scores (dosage=0 models).\\\\n\\\\nUsage:\\\\n    python run_exp006.py --help\\\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\\\n    python run_exp006.py                                         # full run\\\\n\\\\nDependencies: cmdstanpy, numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom run_irt_calibration import (\\\\n    load_eval_results,\\\\n    load_exposure_scores,\\\\n    build_exposure_matrix,\\\\n    run_benchmark_fit,\\\\n    STAN_MODELS,\\\\n)\\\\nfrom baselines import run_all_baselines\\\\nfrom evaluate_calibration import (\\\\n    evaluate_method,\\\\n    format_text_table,\\\\n    format_latex_table,\\\\n)\\\\nfrom joint_fit import run_joint_fit\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n# D018: 3B GSM8K excluded from dose-response analysis\\\\nD018_EXCLUDE = [(\\\\\\\"3B\\\\\\\", \\\\\\\"gsm8k\\\\\\\")]\\\\n\\\\n\\\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Check D018 exclusion rules for dose-response analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for pattern, bench in rules:\\\\n        if pattern in model_name and benchmark == bench:\\\\n            return True\\\\n    return False\\\\n\\\\n\\\\ndef compute_ground_truth(responses, dosages):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\\\n\\\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\\\n    For dosage>0 models, we use the mean d=0 accuracy as the\\\\n    counterfactual reference (what they would score without contamination).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    raw_acc = responses.mean(axis=1)\\\\n    d0_mask = dosages == 0\\\\n\\\\n    if d0_mask.sum() > 0:\\\\n        gt_acc_d0 = float(raw_acc[d0_mask].mean())\\\\n    else:\\\\n        gt_acc_d0 = float(raw_acc.mean())\\\\n\\\\n    # dosage-0 models: their own raw accuracy\\\\n    # dosage>0 models: d=0 mean as counterfactual reference\\\\n    ground_truth = np.full(len(dosages), gt_acc_d0)\\\\n    ground_truth[d0_mask] = raw_acc[d0_mask]\\\\n\\\\n    return ground_truth\\\\n\\\\n\\\\ndef run_pipeline(args):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run full exp-006 pipeline.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # ── Load Data ──\\\\n    log.info(\\\\\\\"Loading eval results from %s\\\\\\\", args.eval_dir)\\\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\\\n                              model_scale=args.model_scale,\\\\n                              seed_filter=args.data_seed,\\\\n                              aligned_only=args.aligned_only)\\\\n    exposure_scores = load_exposure_scores(\\\\n        args.exposure_file, data[\\\\\\\"benchmarks\\\\\\\"], model_id=args.tau_model_id)\\\\n    dosages = data[\\\\\\\"dosages\\\\\\\"]\\\\n\\\\n    log.info(\\\\\\\"Models: %d | Benchmarks: %s\\\\\\\",\\\\n             len(data[\\\\\\\"models\\\\\\\"]), list(data[\\\\\\\"benchmarks\\\\\\\"].keys()))\\\\n    log.info(\\\\\\\"Dosages: %s\\\\\\\", dosages.tolist())\\\\n\\\\n    # Pipeline metadata\\\\n    meta = {\\\\n        \\\\\\\"eval_dir\\\\\\\": args.eval_dir,\\\\n        \\\\\\\"model_type\\\\\\\": args.model_type,\\\\n        \\\\\\\"dry_run\\\\\\\": args.dry_run,\\\\n        \\\\\\\"models\\\\\\\": [\\\\n            {\\\\\\\"dirname\\\\\\\": m[\\\\\\\"dirname\\\\\\\"], \\\\\\\"model_name\\\\\\\": m[\\\\\\\"model_name\\\\\\\"],\\\\n             \\\\\\\"dosage\\\\\\\": m[\\\\\\\"dosage\\\\\\\"], \\\\\\\"seed\\\\\\\": m[\\\\\\\"seed\\\\\\\"]}\\\\n            for m in data[\\\\\\\"models\\\\\\\"]\\\\n        ],\\\\n        \\\\\\\"dosages\\\\\\\": dosages.tolist(),\\\\n        \\\\\\\"benchmarks\\\\\\\": list(data[\\\\\\\"benchmarks\\\\\\\"].keys()),\\\\n    }\\\\n\\\\n    all_results = {}\\\\n    pipeline_t0 = time.time()\\\\n\\\\n    for bench, bench_data in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n        log.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n        log.info(\\\\\\\"BENCHMARK: %s\\\\\\\", bench)\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n        responses = bench_data[\\\\\\\"responses\\\\\\\"]\\\\n        valid = bench_data[\\\\\\\"valid_mask\\\\\\\"]\\\\n        tau = exposure_scores[bench]\\\\n        n_items = bench_data[\\\\\\\"n_items\\\\\\\"]\\\\n\\\\n        # Filter to valid models\\\\n        if not valid.all():\\\\n            responses = responses[valid]\\\\n            dosages_bench = dosages[valid]\\\\n            log.info(\\\\\\\"Filtered to %d valid models (of %d)\\\\\\\",\\\\n                     responses.shape\\\\n\\\\n... [截断: 输出过长，省略 5781 字符] ...\\\\n\\\\nval_dir, args.exposure_file, str(joint_dir),\\\\n            benchmarks=args.benchmarks,\\\\n            chains=args.chains, warmup=args.warmup, samples=args.samples,\\\\n            adapt_delta=args.adapt_delta, max_treedepth=args.max_treedepth,\\\\n            seed=args.seed, dry_run=args.dry_run,\\\\n            max_items=args.max_items if args.dry_run else None,\\\\n            tau_model_id=args.tau_model_id,\\\\n            model_scale=args.model_scale,\\\\n            seed_filter=args.data_seed,\\\\n            aligned_only=args.aligned_only,\\\\n        )\\\\n        all_results[\\\\\\\"joint_fit\\\\\\\"] = {\\\\n            \\\\\\\"global_gamma\\\\\\\": joint_result[\\\\\\\"global_gamma\\\\\\\"],\\\\n            \\\\\\\"diagnostics\\\\\\\": joint_result[\\\\\\\"diagnostics\\\\\\\"],\\\\n        }\\\\n\\\\n    # ── Save Combined Results ──\\\\n    total_time = time.time() - pipeline_t0\\\\n    combined = {\\\\n        \\\\\\\"metadata\\\\\\\": meta,\\\\n        \\\\\\\"total_time_sec\\\\\\\": round(total_time, 1),\\\\n        \\\\\\\"benchmarks\\\\\\\": all_results,\\\\n    }\\\\n    with open(output_dir / \\\\\\\"exp006_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(combined, f, indent=2, default=str)\\\\n\\\\n    log.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"Pipeline complete in %.1fs\\\\\\\", total_time)\\\\n    log.info(\\\\\\\"Results saved to %s\\\\\\\", output_dir)\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    return combined\\\\n\\\\n\\\\n# ── CLI ──\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"exp-006: IRT calibration + baselines + evaluation\\\\\\\")\\\\n\\\\n    # Data\\\\n    parser.add_argument(\\\\n        \\\\\\\"--eval-dir\\\\\\\", type=str,\\\\n        default=\\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\",\\\\n        help=\\\\\\\"exp-001 eval results directory\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--exposure-file\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"exp-002/003 exposure scores JSON \\\\\\\"\\\\n             \\\\\\\"(per-benchmark per-item tau)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--tau-model-id\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"Model ID for exposure tau (e.g. Qwen2.5-0.5B_d100_s42)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--tau-source\\\\\\\", type=str, default=\\\\\\\"exposure\\\\\\\",\\\\n        choices=[\\\\\\\"exposure\\\\\\\", \\\\\\\"oracle\\\\\\\", \\\\\\\"aggregated\\\\\\\"],\\\\n        help=\\\\\\\"Tau source type (default: exposure)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--output-dir\\\\\\\", type=str,\\\\n        default=\\\\\\\"/root/autodl-tmp/exp006/results\\\\\\\",\\\\n        help=\\\\\\\"Output directory\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--benchmarks\\\\\\\", nargs=\\\\\\\"*\\\\\\\", default=None,\\\\n        help=\\\\\\\"Benchmarks to analyze (default: all)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model-scale\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"Model scale filter, e.g. '0.5B'.\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--data-seed\\\\\\\", type=int, default=None,\\\\n        help=\\\\\\\"Data seed filter.\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--aligned-only\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Only load aligned-format eval directories.\\\\\\\")\\\\n\\\\n    # IRT config\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model-type\\\\\\\",\\\\n        choices=list(STAN_MODELS.keys()),\\\\n        default=\\\\\\\"4pl_gamma\\\\\\\",\\\\n        help=\\\\\\\"IRT model variant (default: 4pl_gamma)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--adapt-delta\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--max-treedepth\\\\\\\", type=int, default=12)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n\\\\n    # Baseline config\\\\n    parser.add_argument(\\\\n        \\\\\\\"--skip-stan\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\\\\\")\\\\n\\\\n    # Ablation\\\\n    parser.add_argument(\\\\n        \\\\\\\"--joint-fit\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Also run joint fitting ablation (shared global gamma)\\\\\\\")\\\\n\\\\n    # Dry-run\\\\n    parser.add_argument(\\\\n        \\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Quick validation with truncated items\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--max-items\\\\\\\", type=int, default=50,\\\\n        help=\\\\\\\"Max items per benchmark in dry-run mode (default: 50)\\\\\\\")\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(\\\\n        level=logging.INFO,\\\\n        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    )\\\\n\\\\n    run_pipeline(args)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\n\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\nevaluates against ground-truth clean scores (dosage=0 models).\\n\\nUsage:\\n    python run_exp006.py --help\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\n    python run_exp006.py                                         # full run\\n\\nDependencies: cmdstanpy, numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    run_benchmark_fit,\\n    STAN_MODELS,\\n)\\nfrom baselines import run_all_baselines\\nfrom evaluate_calibration import (\\n    evaluate_method,\\n    format_text_table,\\n    format_latex_table,\\n)\\nfrom joint_fit import run_joint_fit\\n\\nlog = logging.getLogger(__name__)\\n\\n# D018: 3B GSM8K excluded from dose-response analysis\\nD018_EXCLUDE = [(\\\"3B\\\", \\\"gsm8k\\\")]\\n\\n\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n    \\\"\\\"\\\"Check D018 exclusion rules for dose-response analysis.\\\"\\\"\\\"\\n    for pattern, bench in rules:\\n        if pattern in model_name and benchmark == bench:\\n            return True\\n    return False\\n\\n\\ndef compute_ground_truth(responses, dosages):\\n    \\\"\\\"\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\n\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\n    For dosage>0 models, we use the mean d=0 accuracy as the\\n    counterfactual reference (what they would score without contamination).\\n    \\\"\\\"\\\"\\n    raw_acc = responses.mean(axis=1)\\n    d0_mask = dosages == 0\\n\\n    if d0_mask.sum() > 0:\\n        gt_acc_d0 = float(raw_acc[d0_mask].mean())\\n    else:\\n        gt_acc_d0 = float(raw_acc.mean())\\n\\n    # dosage-0 models: their own raw accuracy\\n    # dosage>0 models: d=0 mean as counterfactual reference\\n    ground_truth = np.full(len(dosages), gt_acc_d0)\\n    ground_truth[d0_mask] = raw_acc[d0_mask]\\n\\n    return ground_truth\\n\\n\\ndef run_pipeline(args):\\n    \\\"\\\"\\\"Run full exp-006 pipeline.\\\"\\\"\\\"\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # ── Load Data ──\\n    log.info(\\\"Loading eval results from %s\\\", args.eval_dir)\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\n                              model_scale=args.model_scale,\\n                              seed_filter=args.data_seed,\\n                              aligned_only=args.aligned_only)\\n    exposure_scores = load_exposure_scores(\\n        args.exposure_file, data[\\\"benchmarks\\\"], model_id=args.tau_model_id)\\n    dosages = data[\\\"dosages\\\"]\\n\\n    log.info(\\\"Models: %d | Benchmarks: %s\\\",\\n             len(data[\\\"models\\\"]), list(data[\\\"benchmarks\\\"].keys()))\\n    log.info(\\\"Dosages: %s\\\", dosages.tolist())\\n\\n    # Pipeline metadata\\n    meta = {\\n        \\\"eval_dir\\\": args.eval_dir,\\n        \\\"model_type\\\": args.model_type,\\n        \\\"dry_run\\\": args.dry_run,\\n        \\\"models\\\": [\\n            {\\\"dirname\\\": m[\\\"dirname\\\"], \\\"model_name\\\": m[\\\"model_name\\\"],\\n             \\\"dosage\\\": m[\\\"dosage\\\"], \\\"seed\\\": m[\\\"seed\\\"]}\\n            for m in data[\\\"models\\\"]\\n        ],\\n        \\\"dosages\\\": dosages.tolist(),\\n        \\\"benchmarks\\\": list(data[\\\"benchmarks\\\"].keys()),\\n    }\\n\\n    all_results = {}\\n    pipeline_t0 = time.time()\\n\\n    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n        log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n        log.info(\\\"BENCHMARK: %s\\\", bench)\\n        log.info(\\\"=\\\" * 60)\\n\\n        responses = bench_data[\\\"responses\\\"]\\n        valid = bench_data[\\\"valid_mask\\\"]\\n        tau = exposure_scores[bench]\\n        n_items = bench_data[\\\"n_items\\\"]\\n\\n        # Filter to valid models\\n        if not valid.all():\\n            responses = responses[valid]\\n            dosages_bench = dosages[valid]\\n            log.info(\\\"Filtered to %d valid models (of %d)\\\",\\n                     responses.shape\\n\\n... [截断: 输出过长，省略 5781 字符] ...\\n\\nval_dir, args.exposure_file, str(joint_dir),\\n            benchmarks=args.benchmarks,\\n            chains=args.chains, warmup=args.warmup, samples=args.samples,\\n            adapt_delta=args.adapt_delta, max_treedepth=args.max_treedepth,\\n            seed=args.seed, dry_run=args.dry_run,\\n            max_items=args.max_items if args.dry_run else None,\\n            tau_model_id=args.tau_model_id,\\n            model_scale=args.model_scale,\\n            seed_filter=args.data_seed,\\n            aligned_only=args.aligned_only,\\n        )\\n        all_results[\\\"joint_fit\\\"] = {\\n            \\\"global_gamma\\\": joint_result[\\\"global_gamma\\\"],\\n            \\\"diagnostics\\\": joint_result[\\\"diagnostics\\\"],\\n        }\\n\\n    # ── Save Combined Results ──\\n    total_time = time.time() - pipeline_t0\\n    combined = {\\n        \\\"metadata\\\": meta,\\n        \\\"total_time_sec\\\": round(total_time, 1),\\n        \\\"benchmarks\\\": all_results,\\n    }\\n    with open(output_dir / \\\"exp006_results.json\\\", \\\"w\\\") as f:\\n        json.dump(combined, f, indent=2, default=str)\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    log.info(\\\"Pipeline complete in %.1fs\\\", total_time)\\n    log.info(\\\"Results saved to %s\\\", output_dir)\\n    log.info(\\\"=\\\" * 60)\\n\\n    return combined\\n\\n\\n# ── CLI ──\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-006: IRT calibration + baselines + evaluation\\\")\\n\\n    # Data\\n    parser.add_argument(\\n        \\\"--eval-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp001/eval_results\\\",\\n        help=\\\"exp-001 eval results directory\\\")\\n    parser.add_argument(\\n        \\\"--exposure-file\\\", type=str, default=None,\\n        help=\\\"exp-002/003 exposure scores JSON \\\"\\n             \\\"(per-benchmark per-item tau)\\\")\\n    parser.add_argument(\\n        \\\"--tau-model-id\\\", type=str, default=None,\\n        help=\\\"Model ID for exposure tau (e.g. Qwen2.5-0.5B_d100_s42)\\\")\\n    parser.add_argument(\\n        \\\"--tau-source\\\", type=str, default=\\\"exposure\\\",\\n        choices=[\\\"exposure\\\", \\\"oracle\\\", \\\"aggregated\\\"],\\n        help=\\\"Tau source type (default: exposure)\\\")\\n    parser.add_argument(\\n        \\\"--output-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp006/results\\\",\\n        help=\\\"Output directory\\\")\\n    parser.add_argument(\\n        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n        help=\\\"Benchmarks to analyze (default: all)\\\")\\n    parser.add_argument(\\n        \\\"--model-scale\\\", type=str, default=None,\\n        help=\\\"Model scale filter, e.g. '0.5B'.\\\")\\n    parser.add_argument(\\n        \\\"--data-seed\\\", type=int, default=None,\\n        help=\\\"Data seed filter.\\\")\\n    parser.add_argument(\\n        \\\"--aligned-only\\\", action=\\\"store_true\\\",\\n        help=\\\"Only load aligned-format eval directories.\\\")\\n\\n    # IRT config\\n    parser.add_argument(\\n        \\\"--model-type\\\",\\n        choices=list(STAN_MODELS.keys()),\\n        default=\\\"4pl_gamma\\\",\\n        help=\\\"IRT model variant (default: 4pl_gamma)\\\")\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n\\n    # Baseline config\\n    parser.add_argument(\\n        \\\"--skip-stan\\\", action=\\\"store_true\\\",\\n        help=\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\")\\n\\n    # Ablation\\n    parser.add_argument(\\n        \\\"--joint-fit\\\", action=\\\"store_true\\\",\\n        help=\\\"Also run joint fitting ablation (shared global gamma)\\\")\\n\\n    # Dry-run\\n    parser.add_argument(\\n        \\\"--dry-run\\\", action=\\\"store_true\\\",\\n        help=\\\"Quick validation with truncated items\\\")\\n    parser.add_argument(\\n        \\\"--max-items\\\", type=int, default=50,\\n        help=\\\"Max items per benchmark in dry-run mode (default: 50)\\\")\\n\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The code already has all the filtering arguments. The output is truncated at a critical point - I need to see the middle part of `run_pipeline` to understand the dry-run flow, especially the part after processing benchmarks.
+
+Let me look at the truncated section. The truncation happens around line 100-something in run_exp006.py. Let me read a specific range.
+
+Actually, let me just check what the current dry-run does - the existing dryrun_full.json seems to contain actual results (calibrated_accuracy etc.), not just the loading info the reviewer wants.
+
+The task says the reviewer wants a dry-run that:
+
+
+1. Prints loaded directories list
+2. Prints data dimensions
+3. Does NOT start Stan fitting
+
+Looking at the code, the `--dry-run` flag with `--max-items` truncates items but still runs fitting. The reviewer wants a mode that ONLY prints loading info and stops.
+
+But wait - looking more carefully, the existing dry-run seems to do run fitting (dryrun_full.json has actual results). The reviewer wants a "data-only" dry-run that just confirms what gets loaded.
+
+However, re-reading the task requirements more carefully, I see the requirement is to add a `--dry-run` parameter. So I need to implement a proper dry-run mode that loads data and prints diagnostics without proceeding to the fitting stage.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "ddd4b71e-53dc-4d9a-bc74-ec33f1685e3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AnZeXAwwTmeT9nE7MWYQv9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5270,
+      "cache_read_input_tokens": 35762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5270
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+输出被截断了，我需要看 run_exp006.py 的中间部分（run_pipeline 函数的核心逻辑）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "1b3d641e-d7ba-43c7-b1d5-df069583ffa1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AnZeXAwwTmeT9nE7MWYQv9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5270,
+      "cache_read_input_tokens": 35762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5270
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AFjrPrpV214RvGNRaps4LK`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "wc -l /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "7766d592-89de-432a-a64d-44848f1176a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AnZeXAwwTmeT9nE7MWYQv9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5270,
+      "cache_read_input_tokens": 35762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5270
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T15:17:50.869Z_
+
+<details><summary>↩ Tool result · `toolu_01AFjrPrpV214RvGNRaps4LK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"394 /root/contamcal-irt-calibration/exp006/run_exp006.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "a321ec2e-fe74-4a5b-b327-2bf37e0feb8b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"394 /root/contamcal-irt-calibration/exp006/run_exp006.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"394 /root/contamcal-irt-calibration/exp006/run_exp006.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Gh2VFkHfqH2aRs7UPqMMax`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -200 /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "52e9dc90-1525-4cf4-a9a0-38bb22a44f0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XFeWLRWF52q69J18zJBdT6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 894,
+      "cache_read_input_tokens": 41032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 894
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T15:17:59.756Z_
+
+<details><summary>↩ Tool result · `toolu_01Gh2VFkHfqH2aRs7UPqMMax`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\n\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\nevaluates against ground-truth clean scores (dosage=0 models).\\n\\nUsage:\\n    python run_exp006.py --help\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\n    python run_exp006.py                                         # full run\\n\\nDependencies: cmdstanpy, numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    run_benchmark_fit,\\n    STAN_MODELS,\\n)\\nfrom baselines import run_all_baselines\\nfrom evaluate_calibration import (\\n    evaluate_method,\\n    format_text_table,\\n    format_latex_table,\\n)\\nfrom joint_fit import run_joint_fit\\n\\nlog = logging.getLogger(__name__)\\n\\n# D018: 3B GSM8K excluded from dose-response analysis\\nD018_EXCLUDE = [(\\\"3B\\\", \\\"gsm8k\\\")]\\n\\n\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n    \\\"\\\"\\\"Check D018 exclusion rules for dose-response analysis.\\\"\\\"\\\"\\n    for pattern, bench in rules:\\n        if pattern in model_name and benchmark == bench:\\n            return True\\n    return False\\n\\n\\ndef compute_ground_truth(responses, dosages):\\n    \\\"\\\"\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\n\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\n    For dosage>0 models, we use the mean d=0 accuracy as the\\n    counterfactual reference (what they would score without contamination).\\n    \\\"\\\"\\\"\\n    raw_acc = responses.mean(axis=1)\\n    d0_mask = dosages == 0\\n\\n    if d0_mask.sum() > 0:\\n        gt_acc_d0 = float(raw_acc[d0_mask].mean())\\n    else:\\n        gt_acc_d0 = float(raw_acc.mean())\\n\\n    # dosage-0 models: their own raw accuracy\\n    # dosage>0 models: d=0 mean as counterfactual reference\\n    ground_truth = np.full(len(dosages), gt_acc_d0)\\n    ground_truth[d0_mask] = raw_acc[d0_mask]\\n\\n    return ground_truth\\n\\n\\ndef run_pipeline(args):\\n    \\\"\\\"\\\"Run full exp-006 pipeline.\\\"\\\"\\\"\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # ── Load Data ──\\n    log.info(\\\"Loading eval results from %s\\\", args.eval_dir)\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\n                              model_scale=args.model_scale,\\n                              seed_filter=args.data_seed,\\n                              aligned_only=args.aligned_only)\\n    exposure_scores = load_exposure_scores(\\n        args.exposure_file, data[\\\"benchmarks\\\"], model_id=args.tau_model_id)\\n    dosages = data[\\\"dosages\\\"]\\n\\n    log.info(\\\"Models: %d | Benchmarks: %s\\\",\\n             len(data[\\\"models\\\"]), list(data[\\\"benchmarks\\\"].keys()))\\n    log.info(\\\"Dosages: %s\\\", dosages.tolist())\\n\\n    # Pipeline metadata\\n    meta = {\\n        \\\"eval_dir\\\": args.eval_dir,\\n        \\\"model_type\\\": args.model_type,\\n        \\\"dry_run\\\": args.dry_run,\\n        \\\"models\\\": [\\n            {\\\"dirname\\\": m[\\\"dirname\\\"], \\\"model_name\\\": m[\\\"model_name\\\"],\\n             \\\"dosage\\\": m[\\\"dosage\\\"], \\\"seed\\\": m[\\\"seed\\\"]}\\n            for m in data[\\\"models\\\"]\\n        ],\\n        \\\"dosages\\\": dosages.tolist(),\\n        \\\"benchmarks\\\": list(data[\\\"benchmarks\\\"].keys()),\\n    }\\n\\n    all_results = {}\\n    pipeline_t0 = time.time()\\n\\n    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n        log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n        log.info(\\\"BENCHMARK: %s\\\", bench)\\n        log.info(\\\"=\\\" * 60)\\n\\n        responses = bench_data[\\\"responses\\\"]\\n        valid = bench_data[\\\"valid_mask\\\"]\\n        tau = exposure_scores[bench]\\n        n_items = bench_data[\\\"n_items\\\"]\\n\\n        # Filter to valid models\\n        if not valid.all():\\n            responses = responses[valid]\\n            dosages_bench = dosages[valid]\\n            log.info(\\\"Filtered to %d valid models (of %d)\\\",\\n                     responses.shape[0], len(valid))\\n        else:\\n            dosages_bench = dosages\\n\\n        exposure_matrix = build_exposure_matrix(\\n            dosages_bench, tau[:n_items])\\n\\n        # Optional dry-run truncation\\n        if args.dry_run and n_items > args.max_items:\\n            log.info(\\\"Dry-run: truncating %d -> %d items\\\",\\n                     n_items, args.max_items)\\n            responses_fit = responses[:, :args.max_items]\\n            exposure_fit = exposure_matrix[:, :args.max_items]\\n        else:\\n            responses_fit = responses\\n            exposure_fit = exposure_matrix\\n\\n        bench_dir = output_dir / bench\\n        bench_dir.mkdir(parents=True, exist_ok=True)\\n\\n        bench_result = {\\n            \\\"n_models\\\": int(responses_fit.shape[0]),\\n            \\\"n_items\\\": int(responses_fit.shape[1]),\\n            \\\"dosages\\\": dosages_bench.tolist(),\\n            \\\"mean_raw_accuracy\\\": round(float(responses_fit.mean()), 4),\\n        }\\n\\n        # ── 1. IRT Calibration ──\\n        log.info(\\\"--- IRT Calibration (%s) ---\\\", args.model_type)\\n        irt_result = None\\n        try:\\n            irt_t0 = time.time()\\n            irt_result = run_benchmark_fit(\\n                bench, responses_fit, exposure_fit,\\n                args.model_type, args)\\n\\n            with open(bench_dir / f\\\"irt_{args.model_type}.json\\\", \\\"w\\\") as f:\\n                json.dump(irt_result, f, indent=2)\\n            bench_result[\\\"irt\\\"] = irt_result\\n            log.info(\\\"IRT done in %.1fs\\\", time.time() - irt_t0)\\n\\n            # Log key results\\n            gamma = irt_result[\\\"parameters\\\"].get(\\\"gamma\\\", {})\\n            if gamma:\\n                log.info(\\\"  gamma: mean=%.4f, 95%%CI=[%.4f, %.4f], excludes_zero=%s\\\",\\n                         gamma[\\\"mean\\\"], gamma[\\\"q025\\\"], gamma[\\\"q975\\\"],\\n                         gamma[\\\"ci_excludes_zero\\\"])\\n            diag = irt_result[\\\"diagnostics\\\"]\\n            log.info(\\\"  convergence: Rhat=%.4f, ESS=%s, div=%.2f%%\\\",\\n                     diag.get(\\\"max_rhat\\\", 0),\\n                     diag.get(\\\"min_ess\\\", \\\"?\\\"),\\n                     diag[\\\"divergent_pct\\\"])\\n        except Exception as e:\\n            log.error(\\\"IRT failed: %s\\\", e, exc_info=True)\\n            bench_result[\\\"irt\\\"] = {\\\"error\\\": str(e)}\\n\\n        # ── 2. Baselines ──\\n        log.info(\\\"--- Baselines ---\\\")\\n        baseline_results = None\\n        try:\\n            bl_t0 = time.time()\\n            baseline_results = run_all_baselines(\\n                responses_fit, exposure_fit,\\n                skip_stan=args.skip_stan)\\n\\n            with open(bench_dir / \\\"baselines.json\\\", \\\"w\\\") as f:\\n                json.dump(baseline_results, f, indent=2)\\n            bench_result[\\\"baselines\\\"] = baseline_results\\n            log.info(\\\"Baselines done in %.1fs\\\", time.time() - bl_t0)\\n        except Exception as e:\\n            log.error(\\\"Baselines failed: %s\\\", e, exc_info=True)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "e817eb81-1fbc-4d7c-8177-bead8b38d8ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\\\n\\\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\\\nevaluates against ground-truth clean scores (dosage=0 models).\\\\n\\\\nUsage:\\\\n    python run_exp006.py --help\\\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\\\n    python run_exp006.py                                         # full run\\\\n\\\\nDependencies: cmdstanpy, numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom run_irt_calibration import (\\\\n    load_eval_results,\\\\n    load_exposure_scores,\\\\n    build_exposure_matrix,\\\\n    run_benchmark_fit,\\\\n    STAN_MODELS,\\\\n)\\\\nfrom baselines import run_all_baselines\\\\nfrom evaluate_calibration import (\\\\n    evaluate_method,\\\\n    format_text_table,\\\\n    format_latex_table,\\\\n)\\\\nfrom joint_fit import run_joint_fit\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n# D018: 3B GSM8K excluded from dose-response analysis\\\\nD018_EXCLUDE = [(\\\\\\\"3B\\\\\\\", \\\\\\\"gsm8k\\\\\\\")]\\\\n\\\\n\\\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Check D018 exclusion rules for dose-response analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for pattern, bench in rules:\\\\n        if pattern in model_name and benchmark == bench:\\\\n            return True\\\\n    return False\\\\n\\\\n\\\\ndef compute_ground_truth(responses, dosages):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\\\n\\\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\\\n    For dosage>0 models, we use the mean d=0 accuracy as the\\\\n    counterfactual reference (what they would score without contamination).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    raw_acc = responses.mean(axis=1)\\\\n    d0_mask = dosages == 0\\\\n\\\\n    if d0_mask.sum() > 0:\\\\n        gt_acc_d0 = float(raw_acc[d0_mask].mean())\\\\n    else:\\\\n        gt_acc_d0 = float(raw_acc.mean())\\\\n\\\\n    # dosage-0 models: their own raw accuracy\\\\n    # dosage>0 models: d=0 mean as counterfactual reference\\\\n    ground_truth = np.full(len(dosages), gt_acc_d0)\\\\n    ground_truth[d0_mask] = raw_acc[d0_mask]\\\\n\\\\n    return ground_truth\\\\n\\\\n\\\\ndef run_pipeline(args):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run full exp-006 pipeline.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # ── Load Data ──\\\\n    log.info(\\\\\\\"Loading eval results from %s\\\\\\\", args.eval_dir)\\\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\\\n                              model_scale=args.model_scale,\\\\n                              seed_filter=args.data_seed,\\\\n                              aligned_only=args.aligned_only)\\\\n    exposure_scores = load_exposure_scores(\\\\n        args.exposure_file, data[\\\\\\\"benchmarks\\\\\\\"], model_id=args.tau_model_id)\\\\n    dosages = data[\\\\\\\"dosages\\\\\\\"]\\\\n\\\\n    log.info(\\\\\\\"Models: %d | Benchmarks: %s\\\\\\\",\\\\n             len(data[\\\\\\\"models\\\\\\\"]), list(data[\\\\\\\"benchmarks\\\\\\\"].keys()))\\\\n    log.info(\\\\\\\"Dosages: %s\\\\\\\", dosages.tolist())\\\\n\\\\n    # Pipeline metadata\\\\n    meta = {\\\\n        \\\\\\\"eval_dir\\\\\\\": args.eval_dir,\\\\n        \\\\\\\"model_type\\\\\\\": args.model_type,\\\\n        \\\\\\\"dry_run\\\\\\\": args.dry_run,\\\\n        \\\\\\\"models\\\\\\\": [\\\\n            {\\\\\\\"dirname\\\\\\\": m[\\\\\\\"dirname\\\\\\\"], \\\\\\\"model_name\\\\\\\": m[\\\\\\\"model_name\\\\\\\"],\\\\n             \\\\\\\"dosage\\\\\\\": m[\\\\\\\"dosage\\\\\\\"], \\\\\\\"seed\\\\\\\": m[\\\\\\\"seed\\\\\\\"]}\\\\n            for m in data[\\\\\\\"models\\\\\\\"]\\\\n        ],\\\\n        \\\\\\\"dosages\\\\\\\": dosages.tolist(),\\\\n        \\\\\\\"benchmarks\\\\\\\": list(data[\\\\\\\"benchmarks\\\\\\\"].keys()),\\\\n    }\\\\n\\\\n    all_results = {}\\\\n    pipeline_t0 = time.time()\\\\n\\\\n    for bench, bench_data in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n        log.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n        log.info(\\\\\\\"BENCHMARK: %s\\\\\\\", bench)\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n        responses = bench_data[\\\\\\\"responses\\\\\\\"]\\\\n        valid = bench_data[\\\\\\\"valid_mask\\\\\\\"]\\\\n        tau = exposure_scores[bench]\\\\n        n_items = bench_data[\\\\\\\"n_items\\\\\\\"]\\\\n\\\\n        # Filter to valid models\\\\n        if not valid.all():\\\\n            responses = responses[valid]\\\\n            dosages_bench = dosages[valid]\\\\n            log.info(\\\\\\\"Filtered to %d valid models (of %d)\\\\\\\",\\\\n                     responses.shape[0], len(valid))\\\\n        else:\\\\n            dosages_bench = dosages\\\\n\\\\n        exposure_matrix = build_exposure_matrix(\\\\n            dosages_bench, tau[:n_items])\\\\n\\\\n        # Optional dry-run truncation\\\\n        if args.dry_run and n_items > args.max_items:\\\\n            log.info(\\\\\\\"Dry-run: truncating %d -> %d items\\\\\\\",\\\\n                     n_items, args.max_items)\\\\n            responses_fit = responses[:, :args.max_items]\\\\n            exposure_fit = exposure_matrix[:, :args.max_items]\\\\n        else:\\\\n            responses_fit = responses\\\\n            exposure_fit = exposure_matrix\\\\n\\\\n        bench_dir = output_dir / bench\\\\n        bench_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n        bench_result = {\\\\n            \\\\\\\"n_models\\\\\\\": int(responses_fit.shape[0]),\\\\n            \\\\\\\"n_items\\\\\\\": int(responses_fit.shape[1]),\\\\n            \\\\\\\"dosages\\\\\\\": dosages_bench.tolist(),\\\\n            \\\\\\\"mean_raw_accuracy\\\\\\\": round(float(responses_fit.mean()), 4),\\\\n        }\\\\n\\\\n        # ── 1. IRT Calibration ──\\\\n        log.info(\\\\\\\"--- IRT Calibration (%s) ---\\\\\\\", args.model_type)\\\\n        irt_result = None\\\\n        try:\\\\n            irt_t0 = time.time()\\\\n            irt_result = run_benchmark_fit(\\\\n                bench, responses_fit, exposure_fit,\\\\n                args.model_type, args)\\\\n\\\\n            with open(bench_dir / f\\\\\\\"irt_{args.model_type}.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(irt_result, f, indent=2)\\\\n            bench_result[\\\\\\\"irt\\\\\\\"] = irt_result\\\\n            log.info(\\\\\\\"IRT done in %.1fs\\\\\\\", time.time() - irt_t0)\\\\n\\\\n            # Log key results\\\\n            gamma = irt_result[\\\\\\\"parameters\\\\\\\"].get(\\\\\\\"gamma\\\\\\\", {})\\\\n            if gamma:\\\\n                log.info(\\\\\\\"  gamma: mean=%.4f, 95%%CI=[%.4f, %.4f], excludes_zero=%s\\\\\\\",\\\\n                         gamma[\\\\\\\"mean\\\\\\\"], gamma[\\\\\\\"q025\\\\\\\"], gamma[\\\\\\\"q975\\\\\\\"],\\\\n                         gamma[\\\\\\\"ci_excludes_zero\\\\\\\"])\\\\n            diag = irt_result[\\\\\\\"diagnostics\\\\\\\"]\\\\n            log.info(\\\\\\\"  convergence: Rhat=%.4f, ESS=%s, div=%.2f%%\\\\\\\",\\\\n                     diag.get(\\\\\\\"max_rhat\\\\\\\", 0),\\\\n                     diag.get(\\\\\\\"min_ess\\\\\\\", \\\\\\\"?\\\\\\\"),\\\\n                     diag[\\\\\\\"divergent_pct\\\\\\\"])\\\\n        except Exception as e:\\\\n            log.error(\\\\\\\"IRT failed: %s\\\\\\\", e, exc_info=True)\\\\n            bench_result[\\\\\\\"irt\\\\\\\"] = {\\\\\\\"error\\\\\\\": str(e)}\\\\n\\\\n        # ── 2. Baselines ──\\\\n        log.info(\\\\\\\"--- Baselines ---\\\\\\\")\\\\n        baseline_results = None\\\\n        try:\\\\n            bl_t0 = time.time()\\\\n            baseline_results = run_all_baselines(\\\\n                responses_fit, exposure_fit,\\\\n                skip_stan=args.skip_stan)\\\\n\\\\n            with open(bench_dir / \\\\\\\"baselines.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(baseline_results, f, indent=2)\\\\n            bench_result[\\\\\\\"baselines\\\\\\\"] = baseline_results\\\\n            log.info(\\\\\\\"Baselines done in %.1fs\\\\\\\", time.time() - bl_t0)\\\\n        except Exception as e:\\\\n            log.error(\\\\\\\"Baselines failed: %s\\\\\\\", e, exc_info=True)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\n\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\nevaluates against ground-truth clean scores (dosage=0 models).\\n\\nUsage:\\n    python run_exp006.py --help\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\n    python run_exp006.py                                         # full run\\n\\nDependencies: cmdstanpy, numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    run_benchmark_fit,\\n    STAN_MODELS,\\n)\\nfrom baselines import run_all_baselines\\nfrom evaluate_calibration import (\\n    evaluate_method,\\n    format_text_table,\\n    format_latex_table,\\n)\\nfrom joint_fit import run_joint_fit\\n\\nlog = logging.getLogger(__name__)\\n\\n# D018: 3B GSM8K excluded from dose-response analysis\\nD018_EXCLUDE = [(\\\"3B\\\", \\\"gsm8k\\\")]\\n\\n\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n    \\\"\\\"\\\"Check D018 exclusion rules for dose-response analysis.\\\"\\\"\\\"\\n    for pattern, bench in rules:\\n        if pattern in model_name and benchmark == bench:\\n            return True\\n    return False\\n\\n\\ndef compute_ground_truth(responses, dosages):\\n    \\\"\\\"\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\n\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\n    For dosage>0 models, we use the mean d=0 accuracy as the\\n    counterfactual reference (what they would score without contamination).\\n    \\\"\\\"\\\"\\n    raw_acc = responses.mean(axis=1)\\n    d0_mask = dosages == 0\\n\\n    if d0_mask.sum() > 0:\\n        gt_acc_d0 = float(raw_acc[d0_mask].mean())\\n    else:\\n        gt_acc_d0 = float(raw_acc.mean())\\n\\n    # dosage-0 models: their own raw accuracy\\n    # dosage>0 models: d=0 mean as counterfactual reference\\n    ground_truth = np.full(len(dosages), gt_acc_d0)\\n    ground_truth[d0_mask] = raw_acc[d0_mask]\\n\\n    return ground_truth\\n\\n\\ndef run_pipeline(args):\\n    \\\"\\\"\\\"Run full exp-006 pipeline.\\\"\\\"\\\"\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # ── Load Data ──\\n    log.info(\\\"Loading eval results from %s\\\", args.eval_dir)\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\n                              model_scale=args.model_scale,\\n                              seed_filter=args.data_seed,\\n                              aligned_only=args.aligned_only)\\n    exposure_scores = load_exposure_scores(\\n        args.exposure_file, data[\\\"benchmarks\\\"], model_id=args.tau_model_id)\\n    dosages = data[\\\"dosages\\\"]\\n\\n    log.info(\\\"Models: %d | Benchmarks: %s\\\",\\n             len(data[\\\"models\\\"]), list(data[\\\"benchmarks\\\"].keys()))\\n    log.info(\\\"Dosages: %s\\\", dosages.tolist())\\n\\n    # Pipeline metadata\\n    meta = {\\n        \\\"eval_dir\\\": args.eval_dir,\\n        \\\"model_type\\\": args.model_type,\\n        \\\"dry_run\\\": args.dry_run,\\n        \\\"models\\\": [\\n            {\\\"dirname\\\": m[\\\"dirname\\\"], \\\"model_name\\\": m[\\\"model_name\\\"],\\n             \\\"dosage\\\": m[\\\"dosage\\\"], \\\"seed\\\": m[\\\"seed\\\"]}\\n            for m in data[\\\"models\\\"]\\n        ],\\n        \\\"dosages\\\": dosages.tolist(),\\n        \\\"benchmarks\\\": list(data[\\\"benchmarks\\\"].keys()),\\n    }\\n\\n    all_results = {}\\n    pipeline_t0 = time.time()\\n\\n    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n        log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n        log.info(\\\"BENCHMARK: %s\\\", bench)\\n        log.info(\\\"=\\\" * 60)\\n\\n        responses = bench_data[\\\"responses\\\"]\\n        valid = bench_data[\\\"valid_mask\\\"]\\n        tau = exposure_scores[bench]\\n        n_items = bench_data[\\\"n_items\\\"]\\n\\n        # Filter to valid models\\n        if not valid.all():\\n            responses = responses[valid]\\n            dosages_bench = dosages[valid]\\n            log.info(\\\"Filtered to %d valid models (of %d)\\\",\\n                     responses.shape[0], len(valid))\\n        else:\\n            dosages_bench = dosages\\n\\n        exposure_matrix = build_exposure_matrix(\\n            dosages_bench, tau[:n_items])\\n\\n        # Optional dry-run truncation\\n        if args.dry_run and n_items > args.max_items:\\n            log.info(\\\"Dry-run: truncating %d -> %d items\\\",\\n                     n_items, args.max_items)\\n            responses_fit = responses[:, :args.max_items]\\n            exposure_fit = exposure_matrix[:, :args.max_items]\\n        else:\\n            responses_fit = responses\\n            exposure_fit = exposure_matrix\\n\\n        bench_dir = output_dir / bench\\n        bench_dir.mkdir(parents=True, exist_ok=True)\\n\\n        bench_result = {\\n            \\\"n_models\\\": int(responses_fit.shape[0]),\\n            \\\"n_items\\\": int(responses_fit.shape[1]),\\n            \\\"dosages\\\": dosages_bench.tolist(),\\n            \\\"mean_raw_accuracy\\\": round(float(responses_fit.mean()), 4),\\n        }\\n\\n        # ── 1. IRT Calibration ──\\n        log.info(\\\"--- IRT Calibration (%s) ---\\\", args.model_type)\\n        irt_result = None\\n        try:\\n            irt_t0 = time.time()\\n            irt_result = run_benchmark_fit(\\n                bench, responses_fit, exposure_fit,\\n                args.model_type, args)\\n\\n            with open(bench_dir / f\\\"irt_{args.model_type}.json\\\", \\\"w\\\") as f:\\n                json.dump(irt_result, f, indent=2)\\n            bench_result[\\\"irt\\\"] = irt_result\\n            log.info(\\\"IRT done in %.1fs\\\", time.time() - irt_t0)\\n\\n            # Log key results\\n            gamma = irt_result[\\\"parameters\\\"].get(\\\"gamma\\\", {})\\n            if gamma:\\n                log.info(\\\"  gamma: mean=%.4f, 95%%CI=[%.4f, %.4f], excludes_zero=%s\\\",\\n                         gamma[\\\"mean\\\"], gamma[\\\"q025\\\"], gamma[\\\"q975\\\"],\\n                         gamma[\\\"ci_excludes_zero\\\"])\\n            diag = irt_result[\\\"diagnostics\\\"]\\n            log.info(\\\"  convergence: Rhat=%.4f, ESS=%s, div=%.2f%%\\\",\\n                     diag.get(\\\"max_rhat\\\", 0),\\n                     diag.get(\\\"min_ess\\\", \\\"?\\\"),\\n                     diag[\\\"divergent_pct\\\"])\\n        except Exception as e:\\n            log.error(\\\"IRT failed: %s\\\", e, exc_info=True)\\n            bench_result[\\\"irt\\\"] = {\\\"error\\\": str(e)}\\n\\n        # ── 2. Baselines ──\\n        log.info(\\\"--- Baselines ---\\\")\\n        baseline_results = None\\n        try:\\n            bl_t0 = time.time()\\n            baseline_results = run_all_baselines(\\n                responses_fit, exposure_fit,\\n                skip_stan=args.skip_stan)\\n\\n            with open(bench_dir / \\\"baselines.json\\\", \\\"w\\\") as f:\\n                json.dump(baseline_results, f, indent=2)\\n            bench_result[\\\"baselines\\\"] = baseline_results\\n            log.info(\\\"Baselines done in %.1fs\\\", time.time() - bl_t0)\\n        except Exception as e:\\n            log.error(\\\"Baselines failed: %s\\\", e, exc_info=True)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the issue. The current `--dry-run` mode doesn't actually skip fitting. It truncates items to `--max-items` but still runs IRT calibration and baselines. The reviewer wants a dry-run that:
+
+1. Loads the data (to confirm what directories are loaded)
+2. Prints a summary in a specific format
+3. Does NOT run any Stan fitting
+
+The code already has `--model-scale`, `--data-seed`, `--aligned-only` filters in both `run_exp006.py` and `run_irt_calibration.py`. The `load_eval_results` function already filters correctly.
+
+
+I need to modify `run_pipeline` to implement a true dry-run mode that loads and displays the data summary, then exits before any fitting happens. I should also check the exposure file and whether exp-003 RRF results are available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "e5f2d893-4f61-4d15-9d54-41cc62482257",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXzh6Jkrm9reyMdKErGB7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2828,
+      "cache_read_input_tokens": 41926,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VU6VY8RsndYB9tzNhtFg77`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -200 /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "0ccf6be5-71ee-4146-b32e-3c6e263bad2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXzh6Jkrm9reyMdKErGB7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2828,
+      "cache_read_input_tokens": 41926,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T15:18:16.345Z_
+
+<details><summary>↩ Tool result · `toolu_01VU6VY8RsndYB9tzNhtFg77`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            with open(bench_dir / \\\"baselines.json\\\", \\\"w\\\") as f:\\n                json.dump(baseline_results, f, indent=2)\\n            bench_result[\\\"baselines\\\"] = baseline_results\\n            log.info(\\\"Baselines done in %.1fs\\\", time.time() - bl_t0)\\n        except Exception as e:\\n            log.error(\\\"Baselines failed: %s\\\", e, exc_info=True)\\n            bench_result[\\\"baselines\\\"] = {\\\"error\\\": str(e)}\\n\\n        # ── 3. Evaluation ──\\n        log.info(\\\"--- Evaluation ---\\\")\\n        ground_truth = compute_ground_truth(\\n            responses_fit, dosages_bench)\\n\\n        # Save ground truth\\n        gt_path = bench_dir / \\\"ground_truth.json\\\"\\n        with open(gt_path, \\\"w\\\") as f:\\n            json.dump({\\n                \\\"clean_accuracy\\\": ground_truth.tolist(),\\n                \\\"dosages\\\": dosages_bench.tolist(),\\n            }, f, indent=2)\\n\\n        all_metrics = []\\n\\n        # Evaluate IRT\\n        if irt_result and \\\"error\\\" not in irt_result:\\n            cal = irt_result[\\\"parameters\\\"][\\\"calibrated_scores\\\"]\\n            gamma = irt_result[\\\"parameters\\\"].get(\\\"gamma\\\")\\n            m = evaluate_method(\\n                method_name=f\\\"IRT_{args.model_type}\\\",\\n                scores=cal[\\\"mean\\\"],\\n                ground_truth=ground_truth.tolist(),\\n                ci_lower=cal.get(\\\"q025\\\"),\\n                ci_upper=cal.get(\\\"q975\\\"),\\n                ci_80_lower=cal.get(\\\"q10\\\"),\\n                ci_80_upper=cal.get(\\\"q90\\\"),\\n                ci_50_lower=cal.get(\\\"q25\\\"),\\n                ci_50_upper=cal.get(\\\"q75\\\"),\\n                gamma_stats=gamma,\\n                dosages=dosages_bench.tolist(),\\n            )\\n            all_metrics.append(m)\\n\\n        # Evaluate baselines\\n        if baseline_results:\\n            for bname, bdata in baseline_results.items():\\n                if \\\"error\\\" in bdata:\\n                    continue\\n                if \\\"calibrated_scores\\\" not in bdata:\\n                    continue\\n                m = evaluate_method(\\n                    method_name=bname,\\n                    scores=bdata[\\\"calibrated_scores\\\"],\\n                    ground_truth=ground_truth.tolist(),\\n                    ci_lower=bdata.get(\\\"ci_lower\\\"),\\n                    ci_upper=bdata.get(\\\"ci_upper\\\"),\\n                    ci_80_lower=bdata.get(\\\"ci_80_lower\\\"),\\n                    ci_80_upper=bdata.get(\\\"ci_80_upper\\\"),\\n                    ci_50_lower=bdata.get(\\\"ci_50_lower\\\"),\\n                    ci_50_upper=bdata.get(\\\"ci_50_upper\\\"),\\n                    dosages=dosages_bench.tolist(),\\n                )\\n                all_metrics.append(m)\\n\\n        if all_metrics:\\n            print(f\\\"\\\\n{'=' * 60}\\\")\\n            print(f\\\"  {bench}\\\")\\n            print(f\\\"{'=' * 60}\\\")\\n            print(format_text_table(all_metrics))\\n\\n            with open(bench_dir / \\\"evaluation.json\\\", \\\"w\\\") as f:\\n                json.dump(all_metrics, f, indent=2)\\n            with open(bench_dir / \\\"evaluation.tex\\\", \\\"w\\\") as f:\\n                f.write(format_latex_table(all_metrics))\\n\\n        bench_result[\\\"evaluation\\\"] = all_metrics\\n        all_results[bench] = bench_result\\n\\n    # ── Joint Fitting Ablation ──\\n    if args.joint_fit:\\n        log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n        log.info(\\\"ABLATION: Joint fitting (shared global gamma)\\\")\\n        log.info(\\\"=\\\" * 60)\\n        joint_dir = output_dir / \\\"joint_fit\\\"\\n        joint_result = run_joint_fit(\\n            args.eval_dir, args.exposure_file, str(joint_dir),\\n            benchmarks=args.benchmarks,\\n            chains=args.chains, warmup=args.warmup, samples=args.samples,\\n            adapt_delta=args.adapt_delta, max_treedepth=args.max_treedepth,\\n            seed=args.seed, dry_run=args.dry_run,\\n            max_items=args.max_items if args.dry_run else None,\\n            tau_model_id=args.tau_model_id,\\n            model_scale=args.model_scale,\\n            seed_filter=args.data_seed,\\n            aligned_only=args.aligned_only,\\n        )\\n        all_results[\\\"joint_fit\\\"] = {\\n            \\\"global_gamma\\\": joint_result[\\\"global_gamma\\\"],\\n            \\\"diagnostics\\\": joint_result[\\\"diagnostics\\\"],\\n        }\\n\\n    # ── Save Combined Results ──\\n    total_time = time.time() - pipeline_t0\\n    combined = {\\n        \\\"metadata\\\": meta,\\n        \\\"total_time_sec\\\": round(total_time, 1),\\n        \\\"benchmarks\\\": all_results,\\n    }\\n    with open(output_dir / \\\"exp006_results.json\\\", \\\"w\\\") as f:\\n        json.dump(combined, f, indent=2, default=str)\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    log.info(\\\"Pipeline complete in %.1fs\\\", total_time)\\n    log.info(\\\"Results saved to %s\\\", output_dir)\\n    log.info(\\\"=\\\" * 60)\\n\\n    return combined\\n\\n\\n# ── CLI ──\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-006: IRT calibration + baselines + evaluation\\\")\\n\\n    # Data\\n    parser.add_argument(\\n        \\\"--eval-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp001/eval_results\\\",\\n        help=\\\"exp-001 eval results directory\\\")\\n    parser.add_argument(\\n        \\\"--exposure-file\\\", type=str, default=None,\\n        help=\\\"exp-002/003 exposure scores JSON \\\"\\n             \\\"(per-benchmark per-item tau)\\\")\\n    parser.add_argument(\\n        \\\"--tau-model-id\\\", type=str, default=None,\\n        help=\\\"Model ID for exposure tau (e.g. Qwen2.5-0.5B_d100_s42)\\\")\\n    parser.add_argument(\\n        \\\"--tau-source\\\", type=str, default=\\\"exposure\\\",\\n        choices=[\\\"exposure\\\", \\\"oracle\\\", \\\"aggregated\\\"],\\n        help=\\\"Tau source type (default: exposure)\\\")\\n    parser.add_argument(\\n        \\\"--output-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp006/results\\\",\\n        help=\\\"Output directory\\\")\\n    parser.add_argument(\\n        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n        help=\\\"Benchmarks to analyze (default: all)\\\")\\n    parser.add_argument(\\n        \\\"--model-scale\\\", type=str, default=None,\\n        help=\\\"Model scale filter, e.g. '0.5B'.\\\")\\n    parser.add_argument(\\n        \\\"--data-seed\\\", type=int, default=None,\\n        help=\\\"Data seed filter.\\\")\\n    parser.add_argument(\\n        \\\"--aligned-only\\\", action=\\\"store_true\\\",\\n        help=\\\"Only load aligned-format eval directories.\\\")\\n\\n    # IRT config\\n    parser.add_argument(\\n        \\\"--model-type\\\",\\n        choices=list(STAN_MODELS.keys()),\\n        default=\\\"4pl_gamma\\\",\\n        help=\\\"IRT model variant (default: 4pl_gamma)\\\")\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n\\n    # Baseline config\\n    parser.add_argument(\\n        \\\"--skip-stan\\\", action=\\\"store_true\\\",\\n        help=\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\")\\n\\n    # Ablation\\n    parser.add_argument(\\n        \\\"--joint-fit\\\", action=\\\"store_true\\\",\\n        help=\\\"Also run joint fitting ablation (shared global gamma)\\\")\\n\\n    # Dry-run\\n    parser.add_argument(\\n        \\\"--dry-run\\\", action=\\\"store_true\\\",\\n        help=\\\"Quick validation with truncated items\\\")\\n    parser.add_argument(\\n        \\\"--max-items\\\", type=int, default=50,\\n        help=\\\"Max items per benchmark in dry-run mode (default: 50)\\\")\\n\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "2fde1f77-d94f-48cc-b5e4-ad0979e285f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            with open(bench_dir / \\\\\\\"baselines.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(baseline_results, f, indent=2)\\\\n            bench_result[\\\\\\\"baselines\\\\\\\"] = baseline_results\\\\n            log.info(\\\\\\\"Baselines done in %.1fs\\\\\\\", time.time() - bl_t0)\\\\n        except Exception as e:\\\\n            log.error(\\\\\\\"Baselines failed: %s\\\\\\\", e, exc_info=True)\\\\n            bench_result[\\\\\\\"baselines\\\\\\\"] = {\\\\\\\"error\\\\\\\": str(e)}\\\\n\\\\n        # ── 3. Evaluation ──\\\\n        log.info(\\\\\\\"--- Evaluation ---\\\\\\\")\\\\n        ground_truth = compute_ground_truth(\\\\n            responses_fit, dosages_bench)\\\\n\\\\n        # Save ground truth\\\\n        gt_path = bench_dir / \\\\\\\"ground_truth.json\\\\\\\"\\\\n        with open(gt_path, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump({\\\\n                \\\\\\\"clean_accuracy\\\\\\\": ground_truth.tolist(),\\\\n                \\\\\\\"dosages\\\\\\\": dosages_bench.tolist(),\\\\n            }, f, indent=2)\\\\n\\\\n        all_metrics = []\\\\n\\\\n        # Evaluate IRT\\\\n        if irt_result and \\\\\\\"error\\\\\\\" not in irt_result:\\\\n            cal = irt_result[\\\\\\\"parameters\\\\\\\"][\\\\\\\"calibrated_scores\\\\\\\"]\\\\n            gamma = irt_result[\\\\\\\"parameters\\\\\\\"].get(\\\\\\\"gamma\\\\\\\")\\\\n            m = evaluate_method(\\\\n                method_name=f\\\\\\\"IRT_{args.model_type}\\\\\\\",\\\\n                scores=cal[\\\\\\\"mean\\\\\\\"],\\\\n                ground_truth=ground_truth.tolist(),\\\\n                ci_lower=cal.get(\\\\\\\"q025\\\\\\\"),\\\\n                ci_upper=cal.get(\\\\\\\"q975\\\\\\\"),\\\\n                ci_80_lower=cal.get(\\\\\\\"q10\\\\\\\"),\\\\n                ci_80_upper=cal.get(\\\\\\\"q90\\\\\\\"),\\\\n                ci_50_lower=cal.get(\\\\\\\"q25\\\\\\\"),\\\\n                ci_50_upper=cal.get(\\\\\\\"q75\\\\\\\"),\\\\n                gamma_stats=gamma,\\\\n                dosages=dosages_bench.tolist(),\\\\n            )\\\\n            all_metrics.append(m)\\\\n\\\\n        # Evaluate baselines\\\\n        if baseline_results:\\\\n            for bname, bdata in baseline_results.items():\\\\n                if \\\\\\\"error\\\\\\\" in bdata:\\\\n                    continue\\\\n                if \\\\\\\"calibrated_scores\\\\\\\" not in bdata:\\\\n                    continue\\\\n                m = evaluate_method(\\\\n                    method_name=bname,\\\\n                    scores=bdata[\\\\\\\"calibrated_scores\\\\\\\"],\\\\n                    ground_truth=ground_truth.tolist(),\\\\n                    ci_lower=bdata.get(\\\\\\\"ci_lower\\\\\\\"),\\\\n                    ci_upper=bdata.get(\\\\\\\"ci_upper\\\\\\\"),\\\\n                    ci_80_lower=bdata.get(\\\\\\\"ci_80_lower\\\\\\\"),\\\\n                    ci_80_upper=bdata.get(\\\\\\\"ci_80_upper\\\\\\\"),\\\\n                    ci_50_lower=bdata.get(\\\\\\\"ci_50_lower\\\\\\\"),\\\\n                    ci_50_upper=bdata.get(\\\\\\\"ci_50_upper\\\\\\\"),\\\\n                    dosages=dosages_bench.tolist(),\\\\n                )\\\\n                all_metrics.append(m)\\\\n\\\\n        if all_metrics:\\\\n            print(f\\\\\\\"\\\\\\\\n{'=' * 60}\\\\\\\")\\\\n            print(f\\\\\\\"  {bench}\\\\\\\")\\\\n            print(f\\\\\\\"{'=' * 60}\\\\\\\")\\\\n            print(format_text_table(all_metrics))\\\\n\\\\n            with open(bench_dir / \\\\\\\"evaluation.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(all_metrics, f, indent=2)\\\\n            with open(bench_dir / \\\\\\\"evaluation.tex\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                f.write(format_latex_table(all_metrics))\\\\n\\\\n        bench_result[\\\\\\\"evaluation\\\\\\\"] = all_metrics\\\\n        all_results[bench] = bench_result\\\\n\\\\n    # ── Joint Fitting Ablation ──\\\\n    if args.joint_fit:\\\\n        log.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n        log.info(\\\\\\\"ABLATION: Joint fitting (shared global gamma)\\\\\\\")\\\\n        log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n        joint_dir = output_dir / \\\\\\\"joint_fit\\\\\\\"\\\\n        joint_result = run_joint_fit(\\\\n            args.eval_dir, args.exposure_file, str(joint_dir),\\\\n            benchmarks=args.benchmarks,\\\\n            chains=args.chains, warmup=args.warmup, samples=args.samples,\\\\n            adapt_delta=args.adapt_delta, max_treedepth=args.max_treedepth,\\\\n            seed=args.seed, dry_run=args.dry_run,\\\\n            max_items=args.max_items if args.dry_run else None,\\\\n            tau_model_id=args.tau_model_id,\\\\n            model_scale=args.model_scale,\\\\n            seed_filter=args.data_seed,\\\\n            aligned_only=args.aligned_only,\\\\n        )\\\\n        all_results[\\\\\\\"joint_fit\\\\\\\"] = {\\\\n            \\\\\\\"global_gamma\\\\\\\": joint_result[\\\\\\\"global_gamma\\\\\\\"],\\\\n            \\\\\\\"diagnostics\\\\\\\": joint_result[\\\\\\\"diagnostics\\\\\\\"],\\\\n        }\\\\n\\\\n    # ── Save Combined Results ──\\\\n    total_time = time.time() - pipeline_t0\\\\n    combined = {\\\\n        \\\\\\\"metadata\\\\\\\": meta,\\\\n        \\\\\\\"total_time_sec\\\\\\\": round(total_time, 1),\\\\n        \\\\\\\"benchmarks\\\\\\\": all_results,\\\\n    }\\\\n    with open(output_dir / \\\\\\\"exp006_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(combined, f, indent=2, default=str)\\\\n\\\\n    log.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"Pipeline complete in %.1fs\\\\\\\", total_time)\\\\n    log.info(\\\\\\\"Results saved to %s\\\\\\\", output_dir)\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    return combined\\\\n\\\\n\\\\n# ── CLI ──\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"exp-006: IRT calibration + baselines + evaluation\\\\\\\")\\\\n\\\\n    # Data\\\\n    parser.add_argument(\\\\n        \\\\\\\"--eval-dir\\\\\\\", type=str,\\\\n        default=\\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\",\\\\n        help=\\\\\\\"exp-001 eval results directory\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--exposure-file\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"exp-002/003 exposure scores JSON \\\\\\\"\\\\n             \\\\\\\"(per-benchmark per-item tau)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--tau-model-id\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"Model ID for exposure tau (e.g. Qwen2.5-0.5B_d100_s42)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--tau-source\\\\\\\", type=str, default=\\\\\\\"exposure\\\\\\\",\\\\n        choices=[\\\\\\\"exposure\\\\\\\", \\\\\\\"oracle\\\\\\\", \\\\\\\"aggregated\\\\\\\"],\\\\n        help=\\\\\\\"Tau source type (default: exposure)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--output-dir\\\\\\\", type=str,\\\\n        default=\\\\\\\"/root/autodl-tmp/exp006/results\\\\\\\",\\\\n        help=\\\\\\\"Output directory\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--benchmarks\\\\\\\", nargs=\\\\\\\"*\\\\\\\", default=None,\\\\n        help=\\\\\\\"Benchmarks to analyze (default: all)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model-scale\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"Model scale filter, e.g. '0.5B'.\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--data-seed\\\\\\\", type=int, default=None,\\\\n        help=\\\\\\\"Data seed filter.\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--aligned-only\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Only load aligned-format eval directories.\\\\\\\")\\\\n\\\\n    # IRT config\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model-type\\\\\\\",\\\\n        choices=list(STAN_MODELS.keys()),\\\\n        default=\\\\\\\"4pl_gamma\\\\\\\",\\\\n        help=\\\\\\\"IRT model variant (default: 4pl_gamma)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--adapt-delta\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--max-treedepth\\\\\\\", type=int, default=12)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n\\\\n    # Baseline config\\\\n    parser.add_argument(\\\\n        \\\\\\\"--skip-stan\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\\\\\")\\\\n\\\\n    # Ablation\\\\n    parser.add_argument(\\\\n        \\\\\\\"--joint-fit\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Also run joint fitting ablation (shared global gamma)\\\\\\\")\\\\n\\\\n    # Dry-run\\\\n    parser.add_argument(\\\\n        \\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Quick validation with truncated items\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--max-items\\\\\\\", type=int, default=50,\\\\n        help=\\\\\\\"Max items per benchmark in dry-run mode (default: 50)\\\\\\\")\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(\\\\n        level=logging.INFO,\\\\n        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    )\\\\n\\\\n    run_pipeline(args)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            with open(bench_dir / \\\"baselines.json\\\", \\\"w\\\") as f:\\n                json.dump(baseline_results, f, indent=2)\\n            bench_result[\\\"baselines\\\"] = baseline_results\\n            log.info(\\\"Baselines done in %.1fs\\\", time.time() - bl_t0)\\n        except Exception as e:\\n            log.error(\\\"Baselines failed: %s\\\", e, exc_info=True)\\n            bench_result[\\\"baselines\\\"] = {\\\"error\\\": str(e)}\\n\\n        # ── 3. Evaluation ──\\n        log.info(\\\"--- Evaluation ---\\\")\\n        ground_truth = compute_ground_truth(\\n            responses_fit, dosages_bench)\\n\\n        # Save ground truth\\n        gt_path = bench_dir / \\\"ground_truth.json\\\"\\n        with open(gt_path, \\\"w\\\") as f:\\n            json.dump({\\n                \\\"clean_accuracy\\\": ground_truth.tolist(),\\n                \\\"dosages\\\": dosages_bench.tolist(),\\n            }, f, indent=2)\\n\\n        all_metrics = []\\n\\n        # Evaluate IRT\\n        if irt_result and \\\"error\\\" not in irt_result:\\n            cal = irt_result[\\\"parameters\\\"][\\\"calibrated_scores\\\"]\\n            gamma = irt_result[\\\"parameters\\\"].get(\\\"gamma\\\")\\n            m = evaluate_method(\\n                method_name=f\\\"IRT_{args.model_type}\\\",\\n                scores=cal[\\\"mean\\\"],\\n                ground_truth=ground_truth.tolist(),\\n                ci_lower=cal.get(\\\"q025\\\"),\\n                ci_upper=cal.get(\\\"q975\\\"),\\n                ci_80_lower=cal.get(\\\"q10\\\"),\\n                ci_80_upper=cal.get(\\\"q90\\\"),\\n                ci_50_lower=cal.get(\\\"q25\\\"),\\n                ci_50_upper=cal.get(\\\"q75\\\"),\\n                gamma_stats=gamma,\\n                dosages=dosages_bench.tolist(),\\n            )\\n            all_metrics.append(m)\\n\\n        # Evaluate baselines\\n        if baseline_results:\\n            for bname, bdata in baseline_results.items():\\n                if \\\"error\\\" in bdata:\\n                    continue\\n                if \\\"calibrated_scores\\\" not in bdata:\\n                    continue\\n                m = evaluate_method(\\n                    method_name=bname,\\n                    scores=bdata[\\\"calibrated_scores\\\"],\\n                    ground_truth=ground_truth.tolist(),\\n                    ci_lower=bdata.get(\\\"ci_lower\\\"),\\n                    ci_upper=bdata.get(\\\"ci_upper\\\"),\\n                    ci_80_lower=bdata.get(\\\"ci_80_lower\\\"),\\n                    ci_80_upper=bdata.get(\\\"ci_80_upper\\\"),\\n                    ci_50_lower=bdata.get(\\\"ci_50_lower\\\"),\\n                    ci_50_upper=bdata.get(\\\"ci_50_upper\\\"),\\n                    dosages=dosages_bench.tolist(),\\n                )\\n                all_metrics.append(m)\\n\\n        if all_metrics:\\n            print(f\\\"\\\\n{'=' * 60}\\\")\\n            print(f\\\"  {bench}\\\")\\n            print(f\\\"{'=' * 60}\\\")\\n            print(format_text_table(all_metrics))\\n\\n            with open(bench_dir / \\\"evaluation.json\\\", \\\"w\\\") as f:\\n                json.dump(all_metrics, f, indent=2)\\n            with open(bench_dir / \\\"evaluation.tex\\\", \\\"w\\\") as f:\\n                f.write(format_latex_table(all_metrics))\\n\\n        bench_result[\\\"evaluation\\\"] = all_metrics\\n        all_results[bench] = bench_result\\n\\n    # ── Joint Fitting Ablation ──\\n    if args.joint_fit:\\n        log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n        log.info(\\\"ABLATION: Joint fitting (shared global gamma)\\\")\\n        log.info(\\\"=\\\" * 60)\\n        joint_dir = output_dir / \\\"joint_fit\\\"\\n        joint_result = run_joint_fit(\\n            args.eval_dir, args.exposure_file, str(joint_dir),\\n            benchmarks=args.benchmarks,\\n            chains=args.chains, warmup=args.warmup, samples=args.samples,\\n            adapt_delta=args.adapt_delta, max_treedepth=args.max_treedepth,\\n            seed=args.seed, dry_run=args.dry_run,\\n            max_items=args.max_items if args.dry_run else None,\\n            tau_model_id=args.tau_model_id,\\n            model_scale=args.model_scale,\\n            seed_filter=args.data_seed,\\n            aligned_only=args.aligned_only,\\n        )\\n        all_results[\\\"joint_fit\\\"] = {\\n            \\\"global_gamma\\\": joint_result[\\\"global_gamma\\\"],\\n            \\\"diagnostics\\\": joint_result[\\\"diagnostics\\\"],\\n        }\\n\\n    # ── Save Combined Results ──\\n    total_time = time.time() - pipeline_t0\\n    combined = {\\n        \\\"metadata\\\": meta,\\n        \\\"total_time_sec\\\": round(total_time, 1),\\n        \\\"benchmarks\\\": all_results,\\n    }\\n    with open(output_dir / \\\"exp006_results.json\\\", \\\"w\\\") as f:\\n        json.dump(combined, f, indent=2, default=str)\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    log.info(\\\"Pipeline complete in %.1fs\\\", total_time)\\n    log.info(\\\"Results saved to %s\\\", output_dir)\\n    log.info(\\\"=\\\" * 60)\\n\\n    return combined\\n\\n\\n# ── CLI ──\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-006: IRT calibration + baselines + evaluation\\\")\\n\\n    # Data\\n    parser.add_argument(\\n        \\\"--eval-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp001/eval_results\\\",\\n        help=\\\"exp-001 eval results directory\\\")\\n    parser.add_argument(\\n        \\\"--exposure-file\\\", type=str, default=None,\\n        help=\\\"exp-002/003 exposure scores JSON \\\"\\n             \\\"(per-benchmark per-item tau)\\\")\\n    parser.add_argument(\\n        \\\"--tau-model-id\\\", type=str, default=None,\\n        help=\\\"Model ID for exposure tau (e.g. Qwen2.5-0.5B_d100_s42)\\\")\\n    parser.add_argument(\\n        \\\"--tau-source\\\", type=str, default=\\\"exposure\\\",\\n        choices=[\\\"exposure\\\", \\\"oracle\\\", \\\"aggregated\\\"],\\n        help=\\\"Tau source type (default: exposure)\\\")\\n    parser.add_argument(\\n        \\\"--output-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp006/results\\\",\\n        help=\\\"Output directory\\\")\\n    parser.add_argument(\\n        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n        help=\\\"Benchmarks to analyze (default: all)\\\")\\n    parser.add_argument(\\n        \\\"--model-scale\\\", type=str, default=None,\\n        help=\\\"Model scale filter, e.g. '0.5B'.\\\")\\n    parser.add_argument(\\n        \\\"--data-seed\\\", type=int, default=None,\\n        help=\\\"Data seed filter.\\\")\\n    parser.add_argument(\\n        \\\"--aligned-only\\\", action=\\\"store_true\\\",\\n        help=\\\"Only load aligned-format eval directories.\\\")\\n\\n    # IRT config\\n    parser.add_argument(\\n        \\\"--model-type\\\",\\n        choices=list(STAN_MODELS.keys()),\\n        default=\\\"4pl_gamma\\\",\\n        help=\\\"IRT model variant (default: 4pl_gamma)\\\")\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n\\n    # Baseline config\\n    parser.add_argument(\\n        \\\"--skip-stan\\\", action=\\\"store_true\\\",\\n        help=\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\")\\n\\n    # Ablation\\n    parser.add_argument(\\n        \\\"--joint-fit\\\", action=\\\"store_true\\\",\\n        help=\\\"Also run joint fitting ablation (shared global gamma)\\\")\\n\\n    # Dry-run\\n    parser.add_argument(\\n        \\\"--dry-run\\\", action=\\\"store_true\\\",\\n        help=\\\"Quick validation with truncated items\\\")\\n    parser.add_argument(\\n        \\\"--max-items\\\", type=int, default=50,\\n        help=\\\"Max items per benchmark in dry-run mode (default: 50)\\\")\\n\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011vw1pZEtoyH3BqcsJS9tdy`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp003/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "cb6a374b-78ab-452b-9dcf-a216c11f60f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXzh6Jkrm9reyMdKErGB7b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2828,
+      "cache_read_input_tokens": 41926,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T15:18:16.813Z_
+
+<details><summary>↩ Tool result · `toolu_011vw1pZEtoyH3BqcsJS9tdy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exposure_aggregated.json\\nexposure_scores.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "ed4e6f6b-2d9c-4165-82d9-8596aab81d4a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exposure_aggregated.json\\\\nexposure_scores.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exposure_aggregated.json\\nexposure_scores.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture:
+
+1. **Code already has** `--model-scale`, `--data-seed`, `--aligned-only` filtering in both `run_exp006.py` CLI args and `load_eval_results()` function.
+
+2. **Problem with current `--dry-run`**: It truncates items but still runs full IRT calibration + baselines + evaluation. The reviewer wants dry-run to ONLY print what data will be loaded and stop before fitting.
+
+3. **Exposure data**: Available at `/root/autodl-tmp/exp003/exposure_scores.json` and `exposure_aggregated.json`.
+   
+4. **Available 0.5B aligned eval dirs**: I've got 4 dosage points (0, 5, 25, 100) across the aligned model variants, which is exactly what I need for the analysis.
+
+Now I need to modify `run_pipeline` in `run_exp006.py` to add a proper dry-run mode that just loads and displays the data without proceeding to model fitting. I need to refactor the `run_pipeline` function to check for the dry-run flag right after loading and building metadata, then print the summary and exit early before any fitting happens. I'll apply this change directly on the server using a targeted modification. I need to figure out the exact line where to insert the dry-run check—right after the metadata dictionary is constructed and before the results dictionary is initialized. I'll write a Python script that uses string replacement to patch the file, inserting the dry-run block that prints formatted output and returns early if that flag is set. Still writing dry-run output...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "0fa4afe5-9e12-4945-a866-9b8e3a49ed46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WLeGVvYVP4xJ9jpftxYwhu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3556,
+      "cache_read_input_tokens": 44754,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+现有代码已经有 `--model-scale`、`--data-seed`、`--aligned-only` 过滤参数和 `load_eval_results` 中的过滤逻辑。但当前 `--dry-run` 只是截断 items 数量，仍然会跑完整 fitting。需要改为：dry-run 只打印数据加载摘要，不做 fitting。
+
+数据情况：
+- 0.5B aligned eval: `d000`, `d005`, `d025`, `d100` 共 4 个 dosage 点 ✓
+- exposure scores: `/root/autodl-tmp/exp003/exposure_scores.json` ✓
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "e5a01705-2f2e-4854-b29f-8d6470c3f0e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WLeGVvYVP4xJ9jpftxYwhu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3556,
+      "cache_read_input_tokens": 44754,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01F1KNcxmZByf4a2zHHgsySc`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Read existing exp006 code and data structure on server",
+      "status": "completed",
+      "activeForm": "Reading existing exp006 code and data structure"
+    },
+    {
+      "content": "Modify dry-run to print data summary and exit before fitting",
+      "status": "in_progress",
+      "activeForm": "Modifying dry-run behavior"
+    },
+    {
+      "content": "Run dry-run on server and report results",
+      "status": "pending",
+      "activeForm": "Running dry-run on server"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "4112b40a-0e24-47cb-b55e-356bc988a512",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WLeGVvYVP4xJ9jpftxYwhu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3556,
+      "cache_read_input_tokens": 44754,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T15:18:59.954Z_
+
+<details><summary>↩ Tool result · `toolu_01F1KNcxmZByf4a2zHHgsySc`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "f80ddafc-8c39-4a44-9f4e-a10ba47f809f",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Read existing exp006 code and data structure on server",
+        "status": "in_progress",
+        "activeForm": "Reading existing exp006 code and data structure"
+      },
+      {
+        "content": "Add --model-scale, --seed, --dry-run arguments and filtering logic",
+        "status": "pending",
+        "activeForm": "Adding filtering and dry-run arguments"
+      },
+      {
+        "content": "Push code to server and run dry-run",
+        "status": "pending",
+        "activeForm": "Running dry-run on server"
+      },
+      {
+        "content": "Report dry-run results",
+        "status": "pending",
+        "activeForm": "Reporting dry-run results"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Read existing exp006 code and data structure on server",
+        "status": "completed",
+        "activeForm": "Reading existing exp006 code and data structure"
+      },
+      {
+        "content": "Modify dry-run to print data summary and exit before fitting",
+        "status": "in_progress",
+        "activeForm": "Modifying dry-run behavior"
+      },
+      {
+        "content": "Run dry-run on server and report results",
+        "status": "pending",
+        "activeForm": "Running dry-run on server"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+修改 `run_pipeline`，在 `--dry-run` 时只打印数据加载摘要并 return，不进入 fitting 循环。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "3c831fb7-951a-44dc-b852-fe9fe4f35366",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mh1gbosDqLGbdciz7HAGAt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2149,
+      "cache_read_input_tokens": 48310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2149
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013fEZp8oea4oC31f7dZVkQS`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/contamcal-irt-calibration/exp006 && cp run_exp006.py run_exp006.py.bak"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "4c64b002-403e-426f-b5ae-a4e18b1c76ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mh1gbosDqLGbdciz7HAGAt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2149,
+      "cache_read_input_tokens": 48310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2149
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T15:19:05.777Z_
+
+<details><summary>↩ Tool result · `toolu_013fEZp8oea4oC31f7dZVkQS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "41ab31dc-bac8-4ec9-902c-6ee10afdebab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GkR6NT8fy4wxGjm5sJnpLt`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat > /tmp/patch_dryrun.py << 'PYEOF'\nimport re\n\nwith open(\"/root/contamcal-irt-calibration/exp006/run_exp006.py\", \"r\") as f:\n    content = f.read()\n\n# Find the insertion point: after meta dict closing, before all_results = {}\nold_block = \"\"\"    }\n\n    all_results = {}\n    pipeline_t0 = time.time()\"\"\"\n\nnew_block = \"\"\"    }\n\n    # Dry-run: print data summary and exit before fitting\n    if args.dry_run:\n        print(f\"\\\\n[DRY-RUN] Model scale: {args.model_scale or 'ALL'}, Seed: {args.data_seed or 'ALL'}\")\n        print(f\"[DRY-RUN] Aligned only: {args.aligned_only}\")\n        print(f\"[DRY-RUN] Loading directories:\")\n        for m in data[\"models\"]:\n            print(f\"  - {m['dirname']} (dosage={m['dosage']}, seed={m['seed']})\")\n        print(f\"[DRY-RUN] Total models: {len(data['models'])}\")\n        print(f\"[DRY-RUN] Dosages: {dosages.tolist()}\")\n        for bench, bench_data in data[\"benchmarks\"].items():\n            n_valid = int(bench_data[\"valid_mask\"].sum())\n            print(f\"[DRY-RUN] {bench}: {n_valid} valid models x {bench_data['n_items']} items\")\n        stan_path = STAN_MODELS.get(args.model_type, \"unknown\")\n        print(f\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\")\n        print(f\"[DRY-RUN] Exposure file: {args.exposure_file or 'None (oracle dosage)'}\")\n\n        meta[\"dry_run_summary\"] = {\n            \"directories\": [m[\"dirname\"] for m in data[\"models\"]],\n            \"benchmarks\": {\n                bench: {\"n_valid_models\": int(bd[\"valid_mask\"].sum()), \"n_items\": bd[\"n_items\"]}\n                for bench, bd in data[\"benchmarks\"].items()\n            },\n        }\n        out_path = output_dir / \"dryrun_metadata.json\"\n        with open(out_path, \"w\") as f:\n            json.dump(meta, f, indent=2)\n        print(f\"\\\\n[DRY-RUN] Metadata saved to {out_path}\")\n        return meta\n\n    all_results = {}\n    pipeline_t0 = time.time()\"\"\"\n\nif old_block not in content:\n    # Try to find the pattern more flexibly\n    # The meta dict ends with } at 4-space indent, followed by blank line and all_results = {}\n    pattern = r'(\\n    \\}\\n)\\n(    all_results = \\{\\}\\n    pipeline_t0 = time\\.time\\(\\))'\n    match = re.search(pattern, content)\n    if match:\n        print(f\"Found pattern at position {match.start()}\")\n        # Use regex replacement\n        replacement = match.group(1) + \"\\n\" + \"\"\"    # Dry-run: print data summary and exit before fitting\n    if args.dry_run:\n        print(f\"\\\\n[DRY-RUN] Model scale: {args.model_scale or 'ALL'}, Seed: {args.data_seed or 'ALL'}\")\n        print(f\"[DRY-RUN] Aligned only: {args.aligned_only}\")\n        print(f\"[DRY-RUN] Loading directories:\")\n        for m in data[\"models\"]:\n            print(f\"  - {m['dirname']} (dosage={m['dosage']}, seed={m['seed']})\")\n        print(f\"[DRY-RUN] Total models: {len(data['models'])}\")\n        print(f\"[DRY-RUN] Dosages: {dosages.tolist()}\")\n        for bench, bench_data in data[\"benchmarks\"].items():\n            n_valid = int(bench_data[\"valid_mask\"].sum())\n            print(f\"[DRY-RUN] {bench}: {n_valid} valid models x {bench_data['n_items']} items\")\n        stan_path = STAN_MODELS.get(args.model_type, \"unknown\")\n        print(f\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\")\n        print(f\"[DRY-RUN] Exposure file: {args.exposure_file or 'None (oracle dosage)'}\")\n\n        meta[\"dry_run_summary\"] = {\n            \"directories\": [m[\"dirname\"] for m in data[\"models\"]],\n            \"benchmarks\": {\n                bench: {\"n_valid_models\": int(bd[\"valid_mask\"].sum()), \"n_items\": bd[\"n_items\"]}\n                for bench, bd in data[\"benchmarks\"].items()\n            },\n        }\n        out_path = output_dir / \"dryrun_metadata.json\"\n        with open(out_path, \"w\") as f:\n            json.dump(meta, f, indent=2)\n        print(f\"\\\\n[DRY-RUN] Metadata saved to {out_path}\")\n        return meta\n\n\"\"\" + \"    \" + match.group(2)\n        content = content[:match.start()] + replacement + content[match.end():]\n    else:\n        print(\"ERROR: Could not find insertion point\")\n        import sys; sys.exit(1)\nelse:\n    content = content.replace(old_block, new_block)\n    print(\"Direct replacement succeeded\")\n\nwith open(\"/root/contamcal-irt-calibration/exp006/run_exp006.py\", \"w\") as f:\n    f.write(content)\n\nprint(\"Patch applied successfully\")\nPYEOF\npython3 /tmp/patch_dryrun.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "c0e8a338-c258-4dc2-bd7b-f57e422e40d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018TrQKwsVFQngtAFkTATF64",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 233,
+      "cache_read_input_tokens": 50459,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 233
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T15:19:25.071Z_
+
+<details><summary>↩ Tool result · `toolu_01GkR6NT8fy4wxGjm5sJnpLt`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/patch_dryrun.py << \\\\'PYEOF\\\\'\\\\nimport re\\\\n\\\\nwith open(\\\"/root/contamcal-irt-calibration/exp006/run_exp006.py\\\", \\\"r\\\") as f:\\\\n    content = f.read()\\\\n\\\\n# Find the insertion point: after meta dict closing, before all_results = {}\\\\nold_block = \\\"\\\"\\\"    }\\\\n\\\\n    all_results = {}\\\\n    pipeline_t0 = time.time()\\\"\\\"\\\"\\\\n\\\\nnew_block = \\\"\\\"\\\"    }\\\\n\\\\n    # Dry-run: print data summary and exit before fitting\\\\n    if args.dry_run:\\\\n        print(f\\\"\\\\\\\\\\\\\\\\n[DRY-RUN] Model scale: {args.model_scale or \\\\'ALL\\\\'}, Seed: {args.data_seed or \\\\'ALL\\\\'}\\\")\\\\n        print(f\\\"[DRY-RUN] Aligned only: {args.aligned_only}\\\")\\\\n        print(f\\\"[DRY-RUN] Loading directories:\\\")\\\\n        for m in data[\\\"models\\\"]:\\\\n            print(f\\\"  - {m[\\\\'dirname\\\\']} (dosage={m[\\\\'dosage\\\\']}, seed={m[\\\\'seed\\\\']})\\\")\\\\n        print(f\\\"[DRY-RUN] Total models: {len(data[\\\\'models\\\\'])}\\\")\\\\n        print(f\\\"[DRY-RUN] Dosages: {dosages.tolist()}\\\")\\\\n        for bench, bench_data in data[\\\"benchmarks\\\"].items():\\\\n            n_valid = int(bench_data[\\\"valid_mask\\\"].sum())\\\\n            print(f\\\"[DRY-RUN] {bench}: {n_valid} valid models x {bench_data[\\\\'n_items\\\\']} items\\\")\\\\n        stan_path = STAN_MODELS.get(args.model_type, \\\"unknown\\\")\\\\n        print(f\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\")\\\\n        print(f\\\"[DRY-RUN] Exposure file: {args.exposure_file or \\\\'None (oracle dosage)\\\\'}\\\")\\\\n\\\\n        meta[\\\"dry_run_summary\\\"] = {\\\\n            \\\"directories\\\": [m[\\\"dirname\\\"] for m in data[\\\"models\\\"]],\\\\n            \\\"benchmarks\\\": {\\\\n                bench: {\\\"n_valid_models\\\": int(bd[\\\"valid_mask\\\"].sum()), \\\"n_items\\\": bd[\\\"n_items\\\"]}\\\\n                for bench, bd in data[\\\"benchmarks\\\"].items()\\\\n            },\\\\n        }\\\\n        out_path = output_dir / \\\"dryrun_metadata.json\\\"\\\\n        with open(out_path, \\\"w\\\") as f:\\\\n            json.dump(meta, f, indent=2)\\\\n        print(f\\\"\\\\\\\\\\\\\\\\n[DRY-RUN] Metadata saved to {out_path}\\\")\\\\n        return meta\\\\n\\\\n    all_results = {}\\\\n    pipeline_t0 = time.time()\\\"\\\"\\\"\\\\n\\\\nif old_block not in content:\\\\n    # Try to find the pattern more flexibly\\\\n    # The meta dict ends with } at 4-space indent, followed by blank line and all_results = {}\\\\n    pattern = r\\\\'(\\\\\\\\n    \\\\\\\\}\\\\\\\\n)\\\\\\\\n(    all_results = \\\\\\\\{\\\\\\\\}\\\\\\\\n    pipeline_t0 = time\\\\\\\\.time\\\\\\\\(\\\\\\\\))\\\\'\\\\n    match = re.search(pattern, content)\\\\n    if match:\\\\n        print(f\\\"Found pattern at position {match.start()}\\\")\\\\n        # Use regex replacement\\\\n        replacement = match.group(1) + \\\"\\\\\\\\n\\\" + \\\"\\\"\\\"    # Dry-run: print data summary and exit before fitting\\\\n    if args.dry_run:\\\\n        print(f\\\"\\\\\\\\\\\\\\\\n[DRY-RUN] Model scale: {args.model_scale or \\\\'ALL\\\\'}, Seed: {args.data_seed or \\\\'ALL\\\\'}\\\")\\\\n        print(f\\\"[DRY-RUN] Aligned only: {args.aligned_only}\\\")\\\\n        print(f\\\"[DRY-RUN] Loading directories:\\\")\\\\n        for m in data[\\\"models\\\"]:\\\\n            print(f\\\"  - {m[\\\\'dirname\\\\']} (dosage={m[\\\\'dosage\\\\']}, seed={m[\\\\'seed\\\\']})\\\")\\\\n        print(f\\\"[DRY-RUN] Total models: {len(data[\\\\'models\\\\'])}\\\")\\\\n        print(f\\\"[DRY-RUN] Dosages: {dosages.tolist()}\\\")\\\\n        for bench, bench_data in data[\\\"benchmarks\\\"].items():\\\\n            n_valid = int(bench_data[\\\"valid_mask\\\"].sum())\\\\n            print(f\\\"[DRY-RUN] {bench}: {n_valid} valid models x {bench_data[\\\\'n_items\\\\']} items\\\")\\\\n        stan_path = STAN_MODELS.get(args.model_type, \\\"unknown\\\")\\\\n        print(f\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\")\\\\n        print(f\\\"[DRY-RUN] Exposure file: {args.exposure_file or \\\\'None (oracle dosage)\\\\'}\\\")\\\\n\\\\n        meta[\\\"dry_run_summary\\\"] = {\\\\n            \\\"directories\\\": [m[\\\"dirname\\\"] for m in data[\\\"models\\\"]],\\\\n            \\\"benchmarks\\\": {\\\\n                bench: {\\\"n_valid_models\\\": int(bd[\\\"valid_mask\\\"].sum()), \\\"n_items\\\": bd[\\\"n_items\\\"]}\\\\n                for bench, bd in data[\\\"benchmarks\\\"].items()\\\\n            },\\\\n        }\\\\n        out_path = output_dir / \\\"dryrun_metadata.json\\\"\\\\n        with open(out_path, \\\"w\\\") as f:\\\\n            json.dump(meta, f, indent=2)\\\\n        print(f\\\"\\\\\\\\\\\\\\\\n[DRY-RUN] Metadata saved to {out_path}\\\")\\\\n        return meta\\\\n\\\\n\\\"\\\"\\\" + \\\"    \\\" + match.group(2)\\\\n        content = content[:match.start()] + replacement + content[match.end():]\\\\n    else:\\\\n        print(\\\"ERROR: Could not find insertion point\\\")\\\\n        import sys; sys.exit(1)\\\\nelse:\\\\n    content = content.replace(old_block, new_block)\\\\n    print(\\\"Direct replacement succeeded\\\")\\\\n\\\\nwith open(\\\"/root/contamcal-irt-calibration/exp006/run_exp006.py\\\", \\\"w\\\") as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\"Patch applied successfully\\\")\\\\nPYEOF\\\\npython3 /tmp/patch_dryrun.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 98: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "6cfc3077-b2a6-4d25-bfb8-bafa4c46a5b0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat > /tmp/patch_dryrun.py << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport re\\\\\\\\n\\\\\\\\nwith open(\\\\\\\"/root/contamcal-irt-calibration/exp006/run_exp006.py\\\\\\\", \\\\\\\"r\\\\\\\") as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\n# Find the insertion point: after meta dict closing, before all_results = {}\\\\\\\\nold_block = \\\\\\\"\\\\\\\"\\\\\\\"    }\\\\\\\\n\\\\\\\\n    all_results = {}\\\\\\\\n    pipeline_t0 = time.time()\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n\\\\\\\\nnew_block = \\\\\\\"\\\\\\\"\\\\\\\"    }\\\\\\\\n\\\\\\\\n    # Dry-run: print data summary and exit before fitting\\\\\\\\n    if args.dry_run:\\\\\\\\n        print(f\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n[DRY-RUN] Model scale: {args.model_scale or \\\\\\\\'ALL\\\\\\\\'}, Seed: {args.data_seed or \\\\\\\\'ALL\\\\\\\\'}\\\\\\\")\\\\\\\\n        print(f\\\\\\\"[DRY-RUN] Aligned only: {args.aligned_only}\\\\\\\")\\\\\\\\n        print(f\\\\\\\"[DRY-RUN] Loading directories:\\\\\\\")\\\\\\\\n        for m in data[\\\\\\\"models\\\\\\\"]:\\\\\\\\n            print(f\\\\\\\"  - {m[\\\\\\\\'dirname\\\\\\\\']} (dosage={m[\\\\\\\\'dosage\\\\\\\\']}, seed={m[\\\\\\\\'seed\\\\\\\\']})\\\\\\\")\\\\\\\\n        print(f\\\\\\\"[DRY-RUN] Total models: {len(data[\\\\\\\\'models\\\\\\\\'])}\\\\\\\")\\\\\\\\n        print(f\\\\\\\"[DRY-RUN] Dosages: {dosages.tolist()}\\\\\\\")\\\\\\\\n        for bench, bench_data in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\\\\\n            n_valid = int(bench_data[\\\\\\\"valid_mask\\\\\\\"].sum())\\\\\\\\n            print(f\\\\\\\"[DRY-RUN] {bench}: {n_valid} valid models x {bench_data[\\\\\\\\'n_items\\\\\\\\']} items\\\\\\\")\\\\\\\\n        stan_path = STAN_MODELS.get(args.model_type, \\\\\\\"unknown\\\\\\\")\\\\\\\\n        print(f\\\\\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\\\\\")\\\\\\\\n        print(f\\\\\\\"[DRY-RUN] Exposure file: {args.exposure_file or \\\\\\\\'None (oracle dosage)\\\\\\\\'}\\\\\\\")\\\\\\\\n\\\\\\\\n        meta[\\\\\\\"dry_run_summary\\\\\\\"] = {\\\\\\\\n            \\\\\\\"directories\\\\\\\": [m[\\\\\\\"dirname\\\\\\\"] for m in data[\\\\\\\"models\\\\\\\"]],\\\\\\\\n            \\\\\\\"benchmarks\\\\\\\": {\\\\\\\\n                bench: {\\\\\\\"n_valid_models\\\\\\\": int(bd[\\\\\\\"valid_mask\\\\\\\"].sum()), \\\\\\\"n_items\\\\\\\": bd[\\\\\\\"n_items\\\\\\\"]}\\\\\\\\n                for bench, bd in data[\\\\\\\"benchmarks\\\\\\\"].items()\\\\\\\\n            },\\\\\\\\n        }\\\\\\\\n        out_path = output_dir / \\\\\\\"dryrun_metadata.json\\\\\\\"\\\\\\\\n        with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\\\\\n            json.dump(meta, f, indent=2)\\\\\\\\n        print(f\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n[DRY-RUN] Metadata saved to {out_path}\\\\\\\")\\\\\\\\n        return meta\\\\\\\\n\\\\\\\\n    all_results = {}\\\\\\\\n    pipeline_t0 = time.time()\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n\\\\\\\\nif old_block not in content:\\\\\\\\n    # Try to find the pattern more flexibly\\\\\\\\n    # The meta dict ends with } at 4-space indent, followed by blank line and all_results = {}\\\\\\\\n    pattern = r\\\\\\\\'(\\\\\\\\\\\\\\\\n    \\\\\\\\\\\\\\\\}\\\\\\\\\\\\\\\\n)\\\\\\\\\\\\\\\\n(    all_results = \\\\\\\\\\\\\\\\{\\\\\\\\\\\\\\\\}\\\\\\\\\\\\\\\\n    pipeline_t0 = time\\\\\\\\\\\\\\\\.time\\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\))\\\\\\\\'\\\\\\\\n    match = re.search(pattern, content)\\\\\\\\n    if match:\\\\\\\\n        print(f\\\\\\\"Found pattern at position {match.start()}\\\\\\\")\\\\\\\\n        # Use regex replacement\\\\\\\\n        replacement = match.group(1) + \\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\" + \\\\\\\"\\\\\\\"\\\\\\\"    # Dry-run: print data summary and exit before fitting\\\\\\\\n    if args.dry_run:\\\\\\\\n        print(f\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n[DRY-RUN] Model scale: {args.model_scale or \\\\\\\\'ALL\\\\\\\\'}, Seed: {args.data_seed or \\\\\\\\'ALL\\\\\\\\'}\\\\\\\")\\\\\\\\n        print(f\\\\\\\"[DRY-RUN] Aligned only: {args.aligned_only}\\\\\\\")\\\\\\\\n        print(f\\\\\\\"[DRY-RUN] Loading directories:\\\\\\\")\\\\\\\\n        for m in data[\\\\\\\"models\\\\\\\"]:\\\\\\\\n            print(f\\\\\\\"  - {m[\\\\\\\\'dirname\\\\\\\\']} (dosage={m[\\\\\\\\'dosage\\\\\\\\']}, seed={m[\\\\\\\\'seed\\\\\\\\']})\\\\\\\")\\\\\\\\n        print(f\\\\\\\"[DRY-RUN] Total models: {len(data[\\\\\\\\'models\\\\\\\\'])}\\\\\\\")\\\\\\\\n        print(f\\\\\\\"[DRY-RUN] Dosages: {dosages.tolist()}\\\\\\\")\\\\\\\\n        for bench, bench_data in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\\\\\n            n_valid = int(bench_data[\\\\\\\"valid_mask\\\\\\\"].sum())\\\\\\\\n            print(f\\\\\\\"[DRY-RUN] {bench}: {n_valid} valid models x {bench_data[\\\\\\\\'n_items\\\\\\\\']} items\\\\\\\")\\\\\\\\n        stan_path = STAN_MODELS.get(args.model_type, \\\\\\\"unknown\\\\\\\")\\\\\\\\n        print(f\\\\\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\\\\\")\\\\\\\\n        print(f\\\\\\\"[DRY-RUN] Exposure file: {args.exposure_file or \\\\\\\\'None (oracle dosage)\\\\\\\\'}\\\\\\\")\\\\\\\\n\\\\\\\\n        meta[\\\\\\\"dry_run_summary\\\\\\\"] = {\\\\\\\\n            \\\\\\\"directories\\\\\\\": [m[\\\\\\\"dirname\\\\\\\"] for m in data[\\\\\\\"models\\\\\\\"]],\\\\\\\\n            \\\\\\\"benchmarks\\\\\\\": {\\\\\\\\n                bench: {\\\\\\\"n_valid_models\\\\\\\": int(bd[\\\\\\\"valid_mask\\\\\\\"].sum()), \\\\\\\"n_items\\\\\\\": bd[\\\\\\\"n_items\\\\\\\"]}\\\\\\\\n                for bench, bd in data[\\\\\\\"benchmarks\\\\\\\"].items()\\\\\\\\n            },\\\\\\\\n        }\\\\\\\\n        out_path = output_dir / \\\\\\\"dryrun_metadata.json\\\\\\\"\\\\\\\\n        with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\\\\\n            json.dump(meta, f, indent=2)\\\\\\\\n        print(f\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n[DRY-RUN] Metadata saved to {out_path}\\\\\\\")\\\\\\\\n        return meta\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\\\\"\\\\\\\" + \\\\\\\"    \\\\\\\" + match.group(2)\\\\\\\\n        content = content[:match.start()] + replacement + content[match.end():]\\\\\\\\n    else:\\\\\\\\n        print(\\\\\\\"ERROR: Could not find insertion point\\\\\\\")\\\\\\\\n        import sys; sys.exit(1)\\\\\\\\nelse:\\\\\\\\n    content = content.replace(old_block, new_block)\\\\\\\\n    print(\\\\\\\"Direct replacement succeeded\\\\\\\")\\\\\\\\n\\\\\\\\nwith open(\\\\\\\"/root/contamcal-irt-calibration/exp006/run_exp006.py\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\\\\\n    f.write(content)\\\\\\\\n\\\\\\\\nprint(\\\\\\\"Patch applied successfully\\\\\\\")\\\\\\\\nPYEOF\\\\\\\\npython3 /tmp/patch_dryrun.py'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 98: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/patch_dryrun.py << \\\\'PYEOF\\\\'\\\\nimport re\\\\n\\\\nwith open(\\\"/root/contamcal-irt-calibration/exp006/run_exp006.py\\\", \\\"r\\\") as f:\\\\n    content = f.read()\\\\n\\\\n# Find the insertion point: after meta dict closing, before all_results = {}\\\\nold_block = \\\"\\\"\\\"    }\\\\n\\\\n    all_results = {}\\\\n    pipeline_t0 = time.time()\\\"\\\"\\\"\\\\n\\\\nnew_block = \\\"\\\"\\\"    }\\\\n\\\\n    # Dry-run: print data summary and exit before fitting\\\\n    if args.dry_run:\\\\n        print(f\\\"\\\\\\\\\\\\\\\\n[DRY-RUN] Model scale: {args.model_scale or \\\\'ALL\\\\'}, Seed: {args.data_seed or \\\\'ALL\\\\'}\\\")\\\\n        print(f\\\"[DRY-RUN] Aligned only: {args.aligned_only}\\\")\\\\n        print(f\\\"[DRY-RUN] Loading directories:\\\")\\\\n        for m in data[\\\"models\\\"]:\\\\n            print(f\\\"  - {m[\\\\'dirname\\\\']} (dosage={m[\\\\'dosage\\\\']}, seed={m[\\\\'seed\\\\']})\\\")\\\\n        print(f\\\"[DRY-RUN] Total models: {len(data[\\\\'models\\\\'])}\\\")\\\\n        print(f\\\"[DRY-RUN] Dosages: {dosages.tolist()}\\\")\\\\n        for bench, bench_data in data[\\\"benchmarks\\\"].items():\\\\n            n_valid = int(bench_data[\\\"valid_mask\\\"].sum())\\\\n            print(f\\\"[DRY-RUN] {bench}: {n_valid} valid models x {bench_data[\\\\'n_items\\\\']} items\\\")\\\\n        stan_path = STAN_MODELS.get(args.model_type, \\\"unknown\\\")\\\\n        print(f\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\")\\\\n        print(f\\\"[DRY-RUN] Exposure file: {args.exposure_file or \\\\'None (oracle dosage)\\\\'}\\\")\\\\n\\\\n        meta[\\\"dry_run_summary\\\"] = {\\\\n            \\\"directories\\\": [m[\\\"dirname\\\"] for m in data[\\\"models\\\"]],\\\\n            \\\"benchmarks\\\": {\\\\n                bench: {\\\"n_valid_models\\\": int(bd[\\\"valid_mask\\\"].sum()), \\\"n_items\\\": bd[\\\"n_items\\\"]}\\\\n                for bench, bd in data[\\\"benchmarks\\\"].items()\\\\n            },\\\\n        }\\\\n        out_path = output_dir / \\\"dryrun_metadata.json\\\"\\\\n        with open(out_path, \\\"w\\\") as f:\\\\n            json.dump(meta, f, indent=2)\\\\n        print(f\\\"\\\\\\\\\\\\\\\\n[DRY-RUN] Metadata saved to {out_path}\\\")\\\\n        return meta\\\\n\\\\n    all_results = {}\\\\n    pipeline_t0 = time.time()\\\"\\\"\\\"\\\\n\\\\nif old_block not in content:\\\\n    # Try to find the pattern more flexibly\\\\n    # The meta dict ends with } at 4-space indent, followed by blank line and all_results = {}\\\\n    pattern = r\\\\'(\\\\\\\\n    \\\\\\\\}\\\\\\\\n)\\\\\\\\n(    all_results = \\\\\\\\{\\\\\\\\}\\\\\\\\n    pipeline_t0 = time\\\\\\\\.time\\\\\\\\(\\\\\\\\))\\\\'\\\\n    match = re.search(pattern, content)\\\\n    if match:\\\\n        print(f\\\"Found pattern at position {match.start()}\\\")\\\\n        # Use regex replacement\\\\n        replacement = match.group(1) + \\\"\\\\\\\\n\\\" + \\\"\\\"\\\"    # Dry-run: print data summary and exit before fitting\\\\n    if args.dry_run:\\\\n        print(f\\\"\\\\\\\\\\\\\\\\n[DRY-RUN] Model scale: {args.model_scale or \\\\'ALL\\\\'}, Seed: {args.data_seed or \\\\'ALL\\\\'}\\\")\\\\n        print(f\\\"[DRY-RUN] Aligned only: {args.aligned_only}\\\")\\\\n        print(f\\\"[DRY-RUN] Loading directories:\\\")\\\\n        for m in data[\\\"models\\\"]:\\\\n            print(f\\\"  - {m[\\\\'dirname\\\\']} (dosage={m[\\\\'dosage\\\\']}, seed={m[\\\\'seed\\\\']})\\\")\\\\n        print(f\\\"[DRY-RUN] Total models: {len(data[\\\\'models\\\\'])}\\\")\\\\n        print(f\\\"[DRY-RUN] Dosages: {dosages.tolist()}\\\")\\\\n        for bench, bench_data in data[\\\"benchmarks\\\"].items():\\\\n            n_valid = int(bench_data[\\\"valid_mask\\\"].sum())\\\\n            print(f\\\"[DRY-RUN] {bench}: {n_valid} valid models x {bench_data[\\\\'n_items\\\\']} items\\\")\\\\n        stan_path = STAN_MODELS.get(args.model_type, \\\"unknown\\\")\\\\n        print(f\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\")\\\\n        print(f\\\"[DRY-RUN] Exposure file: {args.exposure_file or \\\\'None (oracle dosage)\\\\'}\\\")\\\\n\\\\n        meta[\\\"dry_run_summary\\\"] = {\\\\n            \\\"directories\\\": [m[\\\"dirname\\\"] for m in data[\\\"models\\\"]],\\\\n            \\\"benchmarks\\\": {\\\\n                bench: {\\\"n_valid_models\\\": int(bd[\\\"valid_mask\\\"].sum()), \\\"n_items\\\": bd[\\\"n_items\\\"]}\\\\n                for bench, bd in data[\\\"benchmarks\\\"].items()\\\\n            },\\\\n        }\\\\n        out_path = output_dir / \\\"dryrun_metadata.json\\\"\\\\n        with open(out_path, \\\"w\\\") as f:\\\\n            json.dump(meta, f, indent=2)\\\\n        print(f\\\"\\\\\\\\\\\\\\\\n[DRY-RUN] Metadata saved to {out_path}\\\")\\\\n        return meta\\\\n\\\\n\\\"\\\"\\\" + \\\"    \\\" + match.group(2)\\\\n        content = content[:match.start()] + replacement + content[match.end():]\\\\n    else:\\\\n        print(\\\"ERROR: Could not find insertion point\\\")\\\\n        import sys; sys.exit(1)\\\\nelse:\\\\n    content = content.replace(old_block, new_block)\\\\n    print(\\\"Direct replacement succeeded\\\")\\\\n\\\\nwith open(\\\"/root/contamcal-irt-calibration/exp006/run_exp006.py\\\", \\\"w\\\") as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\"Patch applied successfully\\\")\\\\nPYEOF\\\\npython3 /tmp/patch_dryrun.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 98: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The server uses conda, so python3 is in `/root/miniconda3/bin/`. Let me also simplify the approach - instead of a complex heredoc with escaping issues, I'll write the patch script directly as a file.
+
+Actually, the issue was `python3: command not found` because it's a conda environment. Let me activate conda first, or use the full path.
+
+Also, the heredoc approach with all those f-strings and quotes is a nightmare for escaping. Let me use a different approach: write the patch file using base64 encoding to avoid escaping issues.
+
+Actually, let me just write the modified run_exp006.py locally first, then upload it via ssh_execute. But I don't have it locally...
+
+
+I'll go with a simpler approach instead - create a small Python patch script directly on the server using the full path to python and avoid the escaping headaches altogether.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "26af34f5-fdd3-4ec3-afd2-e28e5ca1580f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KQXzy55EiCENQ47v6m3sCn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3770,
+      "cache_read_input_tokens": 50692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3770
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+Heredoc 和 f-string 嵌套导致转义问题。换个方式 - 先在本地写 patch 脚本，再上传执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "699060ef-38ee-461a-a6d2-bfd5b9eb6a99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KQXzy55EiCENQ47v6m3sCn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3770,
+      "cache_read_input_tokens": 50692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3770
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FhCBwzPziiB7ht9gVV9JUG`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/miniconda3/bin/python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "86800aa5-b4d4-46f1-9f00-9ffcd4737d0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KQXzy55EiCENQ47v6m3sCn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3770,
+      "cache_read_input_tokens": 50692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3770
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T15:19:36.801Z_
+
+<details><summary>↩ Tool result · `toolu_01FhCBwzPziiB7ht9gVV9JUG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "14a31224-0bcf-4506-9838-e21c994f25a8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Bgm2X4fJ8dFzU4iCCbGmfB`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"all_results = {}\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "5200f2ec-b9f3-4fd8-afec-b026953dc41d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013UVhFiYGdyjj8cQpiHJgu2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 441,
+      "cache_read_input_tokens": 54462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 441
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T15:19:42.927Z_
+
+<details><summary>↩ Tool result · `toolu_01Bgm2X4fJ8dFzU4iCCbGmfB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"112:    all_results = {}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "7cc992dd-d0c5-412b-aef6-e3093c28ed41",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"112:    all_results = {}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"112:    all_results = {}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So the insertion point is line 112. Let me write a Python script that reads the file, inserts the dry-run block before line 112, and writes back.
+
+Let me write the patch script to a file using base64 to avoid escaping issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "da8a933a-3dc3-446e-9aeb-c2df0c028451",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016VE9hViNJooaPU2b7cgP4k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 200,
+      "cache_read_input_tokens": 54903,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 200
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CR8Py97VvGwSUKUoPaQWpX`</summary>
+
+```json
+{
+  "command": "cat > /tmp/patch_dryrun.py << 'INNEREOF'\nimport sys\n\nfilepath = \"/root/contamcal-irt-calibration/exp006/run_exp006.py\"\nwith open(filepath, \"r\") as f:\n    lines = f.readlines()\n\n# Insert before line 112 (0-indexed: 111)\ninsert_at = 111\ndry_run_block = [\n    \"\\n\",\n    \"    # Dry-run: print data summary and exit before fitting\\n\",\n    \"    if args.dry_run:\\n\",\n    '        print(f\"\\\\n[DRY-RUN] Model scale: {args.model_scale or \\'ALL\\'}, Seed: {args.data_seed or \\'ALL\\'}\")\\n',\n    '        print(f\"[DRY-RUN] Aligned only: {args.aligned_only}\")\\n',\n    '        print(\"[DRY-RUN] Loading directories:\")\\n',\n    \"        for m in data[\\\"models\\\"]:\\n\",\n    \"            print(f\\\"  - {m['dirname']} (dosage={m['dosage']}, seed={m['seed']})\\\")\\n\",\n    '        print(f\"[DRY-RUN] Total models: {len(data[\\'models\\'])}\")\\n',\n    '        print(f\"[DRY-RUN] Dosages: {dosages.tolist()}\")\\n',\n    \"        for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n\",\n    \"            n_valid = int(bench_data[\\\"valid_mask\\\"].sum())\\n\",\n    \"            print(f\\\"[DRY-RUN] {bench}: {n_valid} valid models x {bench_data['n_items']} items\\\")\\n\",\n    \"        stan_path = STAN_MODELS.get(args.model_type, \\\"unknown\\\")\\n\",\n    '        print(f\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\")\\n',\n    \"        print(f\\\"[DRY-RUN] Exposure file: {args.exposure_file or 'None (oracle dosage)'}\\\")\\n\",\n    \"\\n\",\n    '        meta[\"dry_run_summary\"] = {\\n',\n    '            \"directories\": [m[\"dirname\"] for m in data[\"models\"]],\\n',\n    \"            \\\"benchmarks\\\": {\\n\",\n    \"                bench: {\\\"n_valid_models\\\": int(bd[\\\"valid_mask\\\"].sum()), \\\"n_items\\\": bd[\\\"n_items\\\"]}\\n\",\n    '                for bench, bd in data[\"benchmarks\"].items()\\n',\n    \"            },\\n\",\n    \"        }\\n\",\n    '        out_path = output_dir / \"dryrun_metadata.json\"\\n',\n    '        with open(out_path, \"w\") as f:\\n',\n    \"            json.dump(meta, f, indent=2)\\n\",\n    '        print(f\"\\\\n[DRY-RUN] Metadata saved to {out_path}\")\\n',\n    \"        return meta\\n\",\n    \"\\n\",\n]\n\nnew_lines = lines[:insert_at] + dry_run_block + lines[insert_at:]\n\nwith open(filepath, \"w\") as f:\n    f.writelines(new_lines)\n\nprint(f\"Inserted {len(dry_run_block)} lines before line {insert_at + 1}\")\nprint(\"Patch applied successfully\")\nINNEREOF\necho \"Patch script written\"",
+  "description": "Write patch script locally"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "2e0db41d-71e2-4602-9369-0ec7f18ec3a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016VE9hViNJooaPU2b7cgP4k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 200,
+      "cache_read_input_tokens": 54903,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 200
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T15:20:00.624Z_
+
+<details><summary>↩ Tool result · `toolu_01CR8Py97VvGwSUKUoPaQWpX`</summary>
+
+```text
+Patch script written
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "87e44cd2-54e0-44e4-96d3-177180e911c4",
+  "tool_use_result": {
+    "stdout": "Patch script written",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01SrKtkbsvULkwfKkziWH5JC`</summary>
+
+```json
+{
+  "command": "base64 /tmp/patch_dryrun.py",
+  "description": "Base64 encode patch script for transfer"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "0091b0b2-b8c9-42e6-a91c-50339b34bde6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BuvfYPL3HiB2D2iBdvnML4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1043,
+      "cache_read_input_tokens": 55103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1043
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T15:20:03.840Z_
+
+<details><summary>↩ Tool result · `toolu_01SrKtkbsvULkwfKkziWH5JC`</summary>
+
+```text
+aW1wb3J0IHN5cwoKZmlsZXBhdGggPSAiL3Jvb3QvY29udGFtY2FsLWlydC1jYWxpYnJhdGlvbi9l
+eHAwMDYvcnVuX2V4cDAwNi5weSIKd2l0aCBvcGVuKGZpbGVwYXRoLCAiciIpIGFzIGY6CiAgICBs
+aW5lcyA9IGYucmVhZGxpbmVzKCkKCiMgSW5zZXJ0IGJlZm9yZSBsaW5lIDExMiAoMC1pbmRleGVk
+OiAxMTEpCmluc2VydF9hdCA9IDExMQpkcnlfcnVuX2Jsb2NrID0gWwogICAgIlxuIiwKICAgICIg
+ICAgIyBEcnktcnVuOiBwcmludCBkYXRhIHN1bW1hcnkgYW5kIGV4aXQgYmVmb3JlIGZpdHRpbmdc
+biIsCiAgICAiICAgIGlmIGFyZ3MuZHJ5X3J1bjpcbiIsCiAgICAnICAgICAgICBwcmludChmIlxc
+bltEUlktUlVOXSBNb2RlbCBzY2FsZToge2FyZ3MubW9kZWxfc2NhbGUgb3IgXCdBTExcJ30sIFNl
+ZWQ6IHthcmdzLmRhdGFfc2VlZCBvciBcJ0FMTFwnfSIpXG4nLAogICAgJyAgICAgICAgcHJpbnQo
+ZiJbRFJZLVJVTl0gQWxpZ25lZCBvbmx5OiB7YXJncy5hbGlnbmVkX29ubHl9IilcbicsCiAgICAn
+ICAgICAgICBwcmludCgiW0RSWS1SVU5dIExvYWRpbmcgZGlyZWN0b3JpZXM6IilcbicsCiAgICAi
+ICAgICAgICBmb3IgbSBpbiBkYXRhW1wibW9kZWxzXCJdOlxuIiwKICAgICIgICAgICAgICAgICBw
+cmludChmXCIgIC0ge21bJ2Rpcm5hbWUnXX0gKGRvc2FnZT17bVsnZG9zYWdlJ119LCBzZWVkPXtt
+WydzZWVkJ119KVwiKVxuIiwKICAgICcgICAgICAgIHByaW50KGYiW0RSWS1SVU5dIFRvdGFsIG1v
+ZGVsczoge2xlbihkYXRhW1wnbW9kZWxzXCddKX0iKVxuJywKICAgICcgICAgICAgIHByaW50KGYi
+W0RSWS1SVU5dIERvc2FnZXM6IHtkb3NhZ2VzLnRvbGlzdCgpfSIpXG4nLAogICAgIiAgICAgICAg
+Zm9yIGJlbmNoLCBiZW5jaF9kYXRhIGluIGRhdGFbXCJiZW5jaG1hcmtzXCJdLml0ZW1zKCk6XG4i
+LAogICAgIiAgICAgICAgICAgIG5fdmFsaWQgPSBpbnQoYmVuY2hfZGF0YVtcInZhbGlkX21hc2tc
+Il0uc3VtKCkpXG4iLAogICAgIiAgICAgICAgICAgIHByaW50KGZcIltEUlktUlVOXSB7YmVuY2h9
+OiB7bl92YWxpZH0gdmFsaWQgbW9kZWxzIHgge2JlbmNoX2RhdGFbJ25faXRlbXMnXX0gaXRlbXNc
+IilcbiIsCiAgICAiICAgICAgICBzdGFuX3BhdGggPSBTVEFOX01PREVMUy5nZXQoYXJncy5tb2Rl
+bF90eXBlLCBcInVua25vd25cIilcbiIsCiAgICAnICAgICAgICBwcmludChmIltEUlktUlVOXSBT
+dGFuIG1vZGVsOiB7YXJncy5tb2RlbF90eXBlfSAtPiB7c3Rhbl9wYXRofSIpXG4nLAogICAgIiAg
+ICAgICAgcHJpbnQoZlwiW0RSWS1SVU5dIEV4cG9zdXJlIGZpbGU6IHthcmdzLmV4cG9zdXJlX2Zp
+bGUgb3IgJ05vbmUgKG9yYWNsZSBkb3NhZ2UpJ31cIilcbiIsCiAgICAiXG4iLAogICAgJyAgICAg
+ICAgbWV0YVsiZHJ5X3J1bl9zdW1tYXJ5Il0gPSB7XG4nLAogICAgJyAgICAgICAgICAgICJkaXJl
+Y3RvcmllcyI6IFttWyJkaXJuYW1lIl0gZm9yIG0gaW4gZGF0YVsibW9kZWxzIl1dLFxuJywKICAg
+ICIgICAgICAgICAgICBcImJlbmNobWFya3NcIjoge1xuIiwKICAgICIgICAgICAgICAgICAgICAg
+YmVuY2g6IHtcIm5fdmFsaWRfbW9kZWxzXCI6IGludChiZFtcInZhbGlkX21hc2tcIl0uc3VtKCkp
+LCBcIm5faXRlbXNcIjogYmRbXCJuX2l0ZW1zXCJdfVxuIiwKICAgICcgICAgICAgICAgICAgICAg
+Zm9yIGJlbmNoLCBiZCBpbiBkYXRhWyJiZW5jaG1hcmtzIl0uaXRlbXMoKVxuJywKICAgICIgICAg
+ICAgICAgICB9LFxuIiwKICAgICIgICAgICAgIH1cbiIsCiAgICAnICAgICAgICBvdXRfcGF0aCA9
+IG91dHB1dF9kaXIgLyAiZHJ5cnVuX21ldGFkYXRhLmpzb24iXG4nLAogICAgJyAgICAgICAgd2l0
+aCBvcGVuKG91dF9wYXRoLCAidyIpIGFzIGY6XG4nLAogICAgIiAgICAgICAgICAgIGpzb24uZHVt
+cChtZXRhLCBmLCBpbmRlbnQ9MilcbiIsCiAgICAnICAgICAgICBwcmludChmIlxcbltEUlktUlVO
+XSBNZXRhZGF0YSBzYXZlZCB0byB7b3V0X3BhdGh9IilcbicsCiAgICAiICAgICAgICByZXR1cm4g
+bWV0YVxuIiwKICAgICJcbiIsCl0KCm5ld19saW5lcyA9IGxpbmVzWzppbnNlcnRfYXRdICsgZHJ5
+X3J1bl9ibG9jayArIGxpbmVzW2luc2VydF9hdDpdCgp3aXRoIG9wZW4oZmlsZXBhdGgsICJ3Iikg
+YXMgZjoKICAgIGYud3JpdGVsaW5lcyhuZXdfbGluZXMpCgpwcmludChmIkluc2VydGVkIHtsZW4o
+ZHJ5X3J1bl9ibG9jayl9IGxpbmVzIGJlZm9yZSBsaW5lIHtpbnNlcnRfYXQgKyAxfSIpCnByaW50
+KCJQYXRjaCBhcHBsaWVkIHN1Y2Nlc3NmdWxseSIpCg==
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "a6154d8b-cbe8-49ee-9249-6a0e32555e73",
+  "tool_use_result": {
+    "stdout": "aW1wb3J0IHN5cwoKZmlsZXBhdGggPSAiL3Jvb3QvY29udGFtY2FsLWlydC1jYWxpYnJhdGlvbi9l\neHAwMDYvcnVuX2V4cDAwNi5weSIKd2l0aCBvcGVuKGZpbGVwYXRoLCAiciIpIGFzIGY6CiAgICBs\naW5lcyA9IGYucmVhZGxpbmVzKCkKCiMgSW5zZXJ0IGJlZm9yZSBsaW5lIDExMiAoMC1pbmRleGVk\nOiAxMTEpCmluc2VydF9hdCA9IDExMQpkcnlfcnVuX2Jsb2NrID0gWwogICAgIlxuIiwKICAgICIg\nICAgIyBEcnktcnVuOiBwcmludCBkYXRhIHN1bW1hcnkgYW5kIGV4aXQgYmVmb3JlIGZpdHRpbmdc\nbiIsCiAgICAiICAgIGlmIGFyZ3MuZHJ5X3J1bjpcbiIsCiAgICAnICAgICAgICBwcmludChmIlxc\nbltEUlktUlVOXSBNb2RlbCBzY2FsZToge2FyZ3MubW9kZWxfc2NhbGUgb3IgXCdBTExcJ30sIFNl\nZWQ6IHthcmdzLmRhdGFfc2VlZCBvciBcJ0FMTFwnfSIpXG4nLAogICAgJyAgICAgICAgcHJpbnQo\nZiJbRFJZLVJVTl0gQWxpZ25lZCBvbmx5OiB7YXJncy5hbGlnbmVkX29ubHl9IilcbicsCiAgICAn\nICAgICAgICBwcmludCgiW0RSWS1SVU5dIExvYWRpbmcgZGlyZWN0b3JpZXM6IilcbicsCiAgICAi\nICAgICAgICBmb3IgbSBpbiBkYXRhW1wibW9kZWxzXCJdOlxuIiwKICAgICIgICAgICAgICAgICBw\ncmludChmXCIgIC0ge21bJ2Rpcm5hbWUnXX0gKGRvc2FnZT17bVsnZG9zYWdlJ119LCBzZWVkPXtt\nWydzZWVkJ119KVwiKVxuIiwKICAgICcgICAgICAgIHByaW50KGYiW0RSWS1SVU5dIFRvdGFsIG1v\nZGVsczoge2xlbihkYXRhW1wnbW9kZWxzXCddKX0iKVxuJywKICAgICcgICAgICAgIHByaW50KGYi\nW0RSWS1SVU5dIERvc2FnZXM6IHtkb3NhZ2VzLnRvbGlzdCgpfSIpXG4nLAogICAgIiAgICAgICAg\nZm9yIGJlbmNoLCBiZW5jaF9kYXRhIGluIGRhdGFbXCJiZW5jaG1hcmtzXCJdLml0ZW1zKCk6XG4i\nLAogICAgIiAgICAgICAgICAgIG5fdmFsaWQgPSBpbnQoYmVuY2hfZGF0YVtcInZhbGlkX21hc2tc\nIl0uc3VtKCkpXG4iLAogICAgIiAgICAgICAgICAgIHByaW50KGZcIltEUlktUlVOXSB7YmVuY2h9\nOiB7bl92YWxpZH0gdmFsaWQgbW9kZWxzIHgge2JlbmNoX2RhdGFbJ25faXRlbXMnXX0gaXRlbXNc\nIilcbiIsCiAgICAiICAgICAgICBzdGFuX3BhdGggPSBTVEFOX01PREVMUy5nZXQoYXJncy5tb2Rl\nbF90eXBlLCBcInVua25vd25cIilcbiIsCiAgICAnICAgICAgICBwcmludChmIltEUlktUlVOXSBT\ndGFuIG1vZGVsOiB7YXJncy5tb2RlbF90eXBlfSAtPiB7c3Rhbl9wYXRofSIpXG4nLAogICAgIiAg\nICAgICAgcHJpbnQoZlwiW0RSWS1SVU5dIEV4cG9zdXJlIGZpbGU6IHthcmdzLmV4cG9zdXJlX2Zp\nbGUgb3IgJ05vbmUgKG9yYWNsZSBkb3NhZ2UpJ31cIilcbiIsCiAgICAiXG4iLAogICAgJyAgICAg\nICAgbWV0YVsiZHJ5X3J1bl9zdW1tYXJ5Il0gPSB7XG4nLAogICAgJyAgICAgICAgICAgICJkaXJl\nY3RvcmllcyI6IFttWyJkaXJuYW1lIl0gZm9yIG0gaW4gZGF0YVsibW9kZWxzIl1dLFxuJywKICAg\nICIgICAgICAgICAgICBcImJlbmNobWFya3NcIjoge1xuIiwKICAgICIgICAgICAgICAgICAgICAg\nYmVuY2g6IHtcIm5fdmFsaWRfbW9kZWxzXCI6IGludChiZFtcInZhbGlkX21hc2tcIl0uc3VtKCkp\nLCBcIm5faXRlbXNcIjogYmRbXCJuX2l0ZW1zXCJdfVxuIiwKICAgICcgICAgICAgICAgICAgICAg\nZm9yIGJlbmNoLCBiZCBpbiBkYXRhWyJiZW5jaG1hcmtzIl0uaXRlbXMoKVxuJywKICAgICIgICAg\nICAgICAgICB9LFxuIiwKICAgICIgICAgICAgIH1cbiIsCiAgICAnICAgICAgICBvdXRfcGF0aCA9\nIG91dHB1dF9kaXIgLyAiZHJ5cnVuX21ldGFkYXRhLmpzb24iXG4nLAogICAgJyAgICAgICAgd2l0\naCBvcGVuKG91dF9wYXRoLCAidyIpIGFzIGY6XG4nLAogICAgIiAgICAgICAgICAgIGpzb24uZHVt\ncChtZXRhLCBmLCBpbmRlbnQ9MilcbiIsCiAgICAnICAgICAgICBwcmludChmIlxcbltEUlktUlVO\nXSBNZXRhZGF0YSBzYXZlZCB0byB7b3V0X3BhdGh9IilcbicsCiAgICAiICAgICAgICByZXR1cm4g\nbWV0YVxuIiwKICAgICJcbiIsCl0KCm5ld19saW5lcyA9IGxpbmVzWzppbnNlcnRfYXRdICsgZHJ5\nX3J1bl9ibG9jayArIGxpbmVzW2luc2VydF9hdDpdCgp3aXRoIG9wZW4oZmlsZXBhdGgsICJ3Iikg\nYXMgZjoKICAgIGYud3JpdGVsaW5lcyhuZXdfbGluZXMpCgpwcmludChmIkluc2VydGVkIHtsZW4o\nZHJ5X3J1bl9ibG9jayl9IGxpbmVzIGJlZm9yZSBsaW5lIHtpbnNlcnRfYXQgKyAxfSIpCnByaW50\nKCJQYXRjaCBhcHBsaWVkIHN1Y2Nlc3NmdWxseSIpCg==",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JKC8EvHNkZCbueK89XE8dC`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "echo 'aW1wb3J0IHN5cwoKZmlsZXBhdGggPSAiL3Jvb3QvY29udGFtY2FsLWlydC1jYWxpYnJhdGlvbi9leHAwMDYvcnVuX2V4cDAwNi5weSIKd2l0aCBvcGVuKGZpbGVwYXRoLCAiciIpIGFzIGY6CiAgICBsaW5lcyA9IGYucmVhZGxpbmVzKCkKCiMgSW5zZXJ0IGJlZm9yZSBsaW5lIDExMiAoMC1pbmRleGVkOiAxMTEpCmluc2VydF9hdCA9IDExMQpkcnlfcnVuX2Jsb2NrID0gWwogICAgIlxuIiwKICAgICIgICAgIyBEcnktcnVuOiBwcmludCBkYXRhIHN1bW1hcnkgYW5kIGV4aXQgYmVmb3JlIGZpdHRpbmdcbiIsCiAgICAiICAgIGlmIGFyZ3MuZHJ5X3J1bjpcbiIsCiAgICAnICAgICAgICBwcmludChmIlxcbltEUlktUlVOXSBNb2RlbCBzY2FsZToge2FyZ3MubW9kZWxfc2NhbGUgb3IgXCdBTExcJ30sIFNlZWQ6IHthcmdzLmRhdGFfc2VlZCBvciBcJ0FMTFwnfSIpXG4nLAogICAgJyAgICAgICAgcHJpbnQoZiJbRFJZLVJVTl0gQWxpZ25lZCBvbmx5OiB7YXJncy5hbGlnbmVkX29ubHl9IilcbicsCiAgICAnICAgICAgICBwcmludCgiW0RSWS1SVU5dIExvYWRpbmcgZGlyZWN0b3JpZXM6IilcbicsCiAgICAiICAgICAgICBmb3IgbSBpbiBkYXRhW1wibW9kZWxzXCJdOlxuIiwKICAgICIgICAgICAgICAgICBwcmludChmXCIgIC0ge21bJ2Rpcm5hbWUnXX0gKGRvc2FnZT17bVsnZG9zYWdlJ119LCBzZWVkPXttWydzZWVkJ119KVwiKVxuIiwKICAgICcgICAgICAgIHByaW50KGYiW0RSWS1SVU5dIFRvdGFsIG1vZGVsczoge2xlbihkYXRhW1wnbW9kZWxzXCddKX0iKVxuJywKICAgICcgICAgICAgIHByaW50KGYiW0RSWS1SVU5dIERvc2FnZXM6IHtkb3NhZ2VzLnRvbGlzdCgpfSIpXG4nLAogICAgIiAgICAgICAgZm9yIGJlbmNoLCBiZW5jaF9kYXRhIGluIGRhdGFbXCJiZW5jaG1hcmtzXCJdLml0ZW1zKCk6XG4iLAogICAgIiAgICAgICAgICAgIG5fdmFsaWQgPSBpbnQoYmVuY2hfZGF0YVtcInZhbGlkX21hc2tcIl0uc3VtKCkpXG4iLAogICAgIiAgICAgICAgICAgIHByaW50KGZcIltEUlktUlVOXSB7YmVuY2h9OiB7bl92YWxpZH0gdmFsaWQgbW9kZWxzIHgge2JlbmNoX2RhdGFbJ25faXRlbXMnXX0gaXRlbXNcIilcbiIsCiAgICAiICAgICAgICBzdGFuX3BhdGggPSBTVEFOX01PREVMUy5nZXQoYXJncy5tb2RlbF90eXBlLCBcInVua25vd25cIilcbiIsCiAgICAnICAgICAgICBwcmludChmIltEUlktUlVOXSBTdGFuIG1vZGVsOiB7YXJncy5tb2RlbF90eXBlfSAtPiB7c3Rhbl9wYXRofSIpXG4nLAogICAgIiAgICAgICAgcHJpbnQoZlwiW0RSWS1SVU5dIEV4cG9zdXJlIGZpbGU6IHthcmdzLmV4cG9zdXJlX2ZpbGUgb3IgJ05vbmUgKG9yYWNsZSBkb3NhZ2UpJ31cIilcbiIsCiAgICAiXG4iLAogICAgJyAgICAgICAgbWV0YVsiZHJ5X3J1bl9zdW1tYXJ5Il0gPSB7XG4nLAogICAgJyAgICAgICAgICAgICJkaXJlY3RvcmllcyI6IFttWyJkaXJuYW1lIl0gZm9yIG0gaW4gZGF0YVsibW9kZWxzIl1dLFxuJywKICAgICIgICAgICAgICAgICBcImJlbmNobWFya3NcIjoge1xuIiwKICAgICIgICAgICAgICAgICAgICAgYmVuY2g6IHtcIm5fdmFsaWRfbW9kZWxzXCI6IGludChiZFtcInZhbGlkX21hc2tcIl0uc3VtKCkpLCBcIm5faXRlbXNcIjogYmRbXCJuX2l0ZW1zXCJdfVxuIiwKICAgICcgICAgICAgICAgICAgICAgZm9yIGJlbmNoLCBiZCBpbiBkYXRhWyJiZW5jaG1hcmtzIl0uaXRlbXMoKVxuJywKICAgICIgICAgICAgICAgICB9LFxuIiwKICAgICIgICAgICAgIH1cbiIsCiAgICAnICAgICAgICBvdXRfcGF0aCA9IG91dHB1dF9kaXIgLyAiZHJ5cnVuX21ldGFkYXRhLmpzb24iXG4nLAogICAgJyAgICAgICAgd2l0aCBvcGVuKG91dF9wYXRoLCAidyIpIGFzIGY6XG4nLAogICAgIiAgICAgICAgICAgIGpzb24uZHVtcChtZXRhLCBmLCBpbmRlbnQ9MilcbiIsCiAgICAnICAgICAgICBwcmludChmIlxcbltEUlktUlVOXSBNZXRhZGF0YSBzYXZlZCB0byB7b3V0X3BhdGh9IilcbicsCiAgICAiICAgICAgICByZXR1cm4gbWV0YVxuIiwKICAgICJcbiIsCl0KCm5ld19saW5lcyA9IGxpbmVzWzppbnNlcnRfYXRdICsgZHJ5X3J1bl9ibG9jayArIGxpbmVzW2luc2VydF9hdDpdCgp3aXRoIG9wZW4oZmlsZXBhdGgsICJ3IikgYXMgZjoKICAgIGYud3JpdGVsaW5lcyhuZXdfbGluZXMpCgpwcmludChmIkluc2VydGVkIHtsZW4oZHJ5X3J1bl9ibG9jayl9IGxpbmVzIGJlZm9yZSBsaW5lIHtpbnNlcnRfYXQgKyAxfSIpCnByaW50KCJQYXRjaCBhcHBsaWVkIHN1Y2Nlc3NmdWxseSIpCg==' | base64 -d > /tmp/patch_dryrun.py && /root/miniconda3/bin/python3 /tmp/patch_dryrun.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "a0c102de-a734-41af-9a87-cdbed5ccdaba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ikLYA3c2hiYwhYzve2tsk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2593,
+      "cache_read_input_tokens": 56146,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2593
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T15:20:54.816Z_
+
+<details><summary>↩ Tool result · `toolu_01JKC8EvHNkZCbueK89XE8dC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Inserted 30 lines before line 112\\nPatch applied successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "844da39d-62c5-4138-a9c6-cac6b0673193",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Inserted 30 lines before line 112\\\\nPatch applied successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Inserted 30 lines before line 112\\nPatch applied successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+Patch 成功。验证修改后的代码是否正确。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "43ace138-22a4-4474-b5c9-1a45c8c84a49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PWYCgeDJRvSjah7om75Uey",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2664,
+      "cache_read_input_tokens": 58739,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2664
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DGoGCKANPVvYQCzQEjEMFP`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -145 /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "b87d7cef-f8f4-4212-965c-e664cf489a7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PWYCgeDJRvSjah7om75Uey",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2664,
+      "cache_read_input_tokens": 58739,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2664
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-14T15:21:00.291Z_
+
+<details><summary>↩ Tool result · `toolu_01DGoGCKANPVvYQCzQEjEMFP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\n\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\nevaluates against ground-truth clean scores (dosage=0 models).\\n\\nUsage:\\n    python run_exp006.py --help\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\n    python run_exp006.py                                         # full run\\n\\nDependencies: cmdstanpy, numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    run_benchmark_fit,\\n    STAN_MODELS,\\n)\\nfrom baselines import run_all_baselines\\nfrom evaluate_calibration import (\\n    evaluate_method,\\n    format_text_table,\\n    format_latex_table,\\n)\\nfrom joint_fit import run_joint_fit\\n\\nlog = logging.getLogger(__name__)\\n\\n# D018: 3B GSM8K excluded from dose-response analysis\\nD018_EXCLUDE = [(\\\"3B\\\", \\\"gsm8k\\\")]\\n\\n\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n    \\\"\\\"\\\"Check D018 exclusion rules for dose-response analysis.\\\"\\\"\\\"\\n    for pattern, bench in rules:\\n        if pattern in model_name and benchmark == bench:\\n            return True\\n    return False\\n\\n\\ndef compute_ground_truth(responses, dosages):\\n    \\\"\\\"\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\n\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\n    For dosage>0 models, we use the mean d=0 accuracy as the\\n    counterfactual reference (what they would score without contamination).\\n    \\\"\\\"\\\"\\n    raw_acc = responses.mean(axis=1)\\n    d0_mask = dosages == 0\\n\\n    if d0_mask.sum() > 0:\\n        gt_acc_d0 = float(raw_acc[d0_mask].mean())\\n    else:\\n        gt_acc_d0 = float(raw_acc.mean())\\n\\n    # dosage-0 models: their own raw accuracy\\n    # dosage>0 models: d=0 mean as counterfactual reference\\n    ground_truth = np.full(len(dosages), gt_acc_d0)\\n    ground_truth[d0_mask] = raw_acc[d0_mask]\\n\\n    return ground_truth\\n\\n\\ndef run_pipeline(args):\\n    \\\"\\\"\\\"Run full exp-006 pipeline.\\\"\\\"\\\"\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # ── Load Data ──\\n    log.info(\\\"Loading eval results from %s\\\", args.eval_dir)\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\n                              model_scale=args.model_scale,\\n                              seed_filter=args.data_seed,\\n                              aligned_only=args.aligned_only)\\n    exposure_scores = load_exposure_scores(\\n        args.exposure_file, data[\\\"benchmarks\\\"], model_id=args.tau_model_id)\\n    dosages = data[\\\"dosages\\\"]\\n\\n    log.info(\\\"Models: %d | Benchmarks: %s\\\",\\n             len(data[\\\"models\\\"]), list(data[\\\"benchmarks\\\"].keys()))\\n    log.info(\\\"Dosages: %s\\\", dosages.tolist())\\n\\n    # Pipeline metadata\\n    meta = {\\n        \\\"eval_dir\\\": args.eval_dir,\\n        \\\"model_type\\\": args.model_type,\\n        \\\"dry_run\\\": args.dry_run,\\n        \\\"models\\\": [\\n            {\\\"dirname\\\": m[\\\"dirname\\\"], \\\"model_name\\\": m[\\\"model_name\\\"],\\n             \\\"dosage\\\": m[\\\"dosage\\\"], \\\"seed\\\": m[\\\"seed\\\"]}\\n            for m in data[\\\"models\\\"]\\n        ],\\n        \\\"dosages\\\": dosages.tolist(),\\n        \\\"benchmarks\\\": list(data[\\\"benchmarks\\\"].keys()),\\n    }\\n\\n\\n    # Dry-run: print data summary and exit before fitting\\n    if args.dry_run:\\n        print(f\\\"\\\\n[DRY-RUN] Model scale: {args.model_scale or 'ALL'}, Seed: {args.data_seed or 'ALL'}\\\")\\n        print(f\\\"[DRY-RUN] Aligned only: {args.aligned_only}\\\")\\n        print(\\\"[DRY-RUN] Loading directories:\\\")\\n        for m in data[\\\"models\\\"]:\\n            print(f\\\"  - {m['dirname']} (dosage={m['dosage']}, seed={m['seed']})\\\")\\n        print(f\\\"[DRY-RUN] Total models: {len(data['models'])}\\\")\\n        print(f\\\"[DRY-RUN] Dosages: {dosages.tolist()}\\\")\\n        for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n            n_valid = int(bench_data[\\\"valid_mask\\\"].sum())\\n            print(f\\\"[DRY-RUN] {bench}: {n_valid} valid models x {bench_data['n_items']} items\\\")\\n        stan_path = STAN_MODELS.get(args.model_type, \\\"unknown\\\")\\n        print(f\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\")\\n        print(f\\\"[DRY-RUN] Exposure file: {args.exposure_file or 'None (oracle dosage)'}\\\")\\n\\n        meta[\\\"dry_run_summary\\\"] = {\\n            \\\"directories\\\": [m[\\\"dirname\\\"] for m in data[\\\"models\\\"]],\\n            \\\"benchmarks\\\": {\\n                bench: {\\\"n_valid_models\\\": int(bd[\\\"valid_mask\\\"].sum()), \\\"n_items\\\": bd[\\\"n_items\\\"]}\\n                for bench, bd in data[\\\"benchmarks\\\"].items()\\n            },\\n        }\\n        out_path = output_dir / \\\"dryrun_metadata.json\\\"\\n        with open(out_path, \\\"w\\\") as f:\\n            json.dump(meta, f, indent=2)\\n        print(f\\\"\\\\n[DRY-RUN] Metadata saved to {out_path}\\\")\\n        return meta\\n\\n    all_results = {}\\n    pipeline_t0 = time.time()\\n\\n    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "0ecaf6ae-222d-476f-8851-353be3659b23",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\\\n\\\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\\\nevaluates against ground-truth clean scores (dosage=0 models).\\\\n\\\\nUsage:\\\\n    python run_exp006.py --help\\\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\\\n    python run_exp006.py                                         # full run\\\\n\\\\nDependencies: cmdstanpy, numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom run_irt_calibration import (\\\\n    load_eval_results,\\\\n    load_exposure_scores,\\\\n    build_exposure_matrix,\\\\n    run_benchmark_fit,\\\\n    STAN_MODELS,\\\\n)\\\\nfrom baselines import run_all_baselines\\\\nfrom evaluate_calibration import (\\\\n    evaluate_method,\\\\n    format_text_table,\\\\n    format_latex_table,\\\\n)\\\\nfrom joint_fit import run_joint_fit\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n# D018: 3B GSM8K excluded from dose-response analysis\\\\nD018_EXCLUDE = [(\\\\\\\"3B\\\\\\\", \\\\\\\"gsm8k\\\\\\\")]\\\\n\\\\n\\\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Check D018 exclusion rules for dose-response analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for pattern, bench in rules:\\\\n        if pattern in model_name and benchmark == bench:\\\\n            return True\\\\n    return False\\\\n\\\\n\\\\ndef compute_ground_truth(responses, dosages):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\\\n\\\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\\\n    For dosage>0 models, we use the mean d=0 accuracy as the\\\\n    counterfactual reference (what they would score without contamination).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    raw_acc = responses.mean(axis=1)\\\\n    d0_mask = dosages == 0\\\\n\\\\n    if d0_mask.sum() > 0:\\\\n        gt_acc_d0 = float(raw_acc[d0_mask].mean())\\\\n    else:\\\\n        gt_acc_d0 = float(raw_acc.mean())\\\\n\\\\n    # dosage-0 models: their own raw accuracy\\\\n    # dosage>0 models: d=0 mean as counterfactual reference\\\\n    ground_truth = np.full(len(dosages), gt_acc_d0)\\\\n    ground_truth[d0_mask] = raw_acc[d0_mask]\\\\n\\\\n    return ground_truth\\\\n\\\\n\\\\ndef run_pipeline(args):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run full exp-006 pipeline.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # ── Load Data ──\\\\n    log.info(\\\\\\\"Loading eval results from %s\\\\\\\", args.eval_dir)\\\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\\\n                              model_scale=args.model_scale,\\\\n                              seed_filter=args.data_seed,\\\\n                              aligned_only=args.aligned_only)\\\\n    exposure_scores = load_exposure_scores(\\\\n        args.exposure_file, data[\\\\\\\"benchmarks\\\\\\\"], model_id=args.tau_model_id)\\\\n    dosages = data[\\\\\\\"dosages\\\\\\\"]\\\\n\\\\n    log.info(\\\\\\\"Models: %d | Benchmarks: %s\\\\\\\",\\\\n             len(data[\\\\\\\"models\\\\\\\"]), list(data[\\\\\\\"benchmarks\\\\\\\"].keys()))\\\\n    log.info(\\\\\\\"Dosages: %s\\\\\\\", dosages.tolist())\\\\n\\\\n    # Pipeline metadata\\\\n    meta = {\\\\n        \\\\\\\"eval_dir\\\\\\\": args.eval_dir,\\\\n        \\\\\\\"model_type\\\\\\\": args.model_type,\\\\n        \\\\\\\"dry_run\\\\\\\": args.dry_run,\\\\n        \\\\\\\"models\\\\\\\": [\\\\n            {\\\\\\\"dirname\\\\\\\": m[\\\\\\\"dirname\\\\\\\"], \\\\\\\"model_name\\\\\\\": m[\\\\\\\"model_name\\\\\\\"],\\\\n             \\\\\\\"dosage\\\\\\\": m[\\\\\\\"dosage\\\\\\\"], \\\\\\\"seed\\\\\\\": m[\\\\\\\"seed\\\\\\\"]}\\\\n            for m in data[\\\\\\\"models\\\\\\\"]\\\\n        ],\\\\n        \\\\\\\"dosages\\\\\\\": dosages.tolist(),\\\\n        \\\\\\\"benchmarks\\\\\\\": list(data[\\\\\\\"benchmarks\\\\\\\"].keys()),\\\\n    }\\\\n\\\\n\\\\n    # Dry-run: print data summary and exit before fitting\\\\n    if args.dry_run:\\\\n        print(f\\\\\\\"\\\\\\\\n[DRY-RUN] Model scale: {args.model_scale or 'ALL'}, Seed: {args.data_seed or 'ALL'}\\\\\\\")\\\\n        print(f\\\\\\\"[DRY-RUN] Aligned only: {args.aligned_only}\\\\\\\")\\\\n        print(\\\\\\\"[DRY-RUN] Loading directories:\\\\\\\")\\\\n        for m in data[\\\\\\\"models\\\\\\\"]:\\\\n            print(f\\\\\\\"  - {m['dirname']} (dosage={m['dosage']}, seed={m['seed']})\\\\\\\")\\\\n        print(f\\\\\\\"[DRY-RUN] Total models: {len(data['models'])}\\\\\\\")\\\\n        print(f\\\\\\\"[DRY-RUN] Dosages: {dosages.tolist()}\\\\\\\")\\\\n        for bench, bench_data in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n            n_valid = int(bench_data[\\\\\\\"valid_mask\\\\\\\"].sum())\\\\n            print(f\\\\\\\"[DRY-RUN] {bench}: {n_valid} valid models x {bench_data['n_items']} items\\\\\\\")\\\\n        stan_path = STAN_MODELS.get(args.model_type, \\\\\\\"unknown\\\\\\\")\\\\n        print(f\\\\\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\\\\\")\\\\n        print(f\\\\\\\"[DRY-RUN] Exposure file: {args.exposure_file or 'None (oracle dosage)'}\\\\\\\")\\\\n\\\\n        meta[\\\\\\\"dry_run_summary\\\\\\\"] = {\\\\n            \\\\\\\"directories\\\\\\\": [m[\\\\\\\"dirname\\\\\\\"] for m in data[\\\\\\\"models\\\\\\\"]],\\\\n            \\\\\\\"benchmarks\\\\\\\": {\\\\n                bench: {\\\\\\\"n_valid_models\\\\\\\": int(bd[\\\\\\\"valid_mask\\\\\\\"].sum()), \\\\\\\"n_items\\\\\\\": bd[\\\\\\\"n_items\\\\\\\"]}\\\\n                for bench, bd in data[\\\\\\\"benchmarks\\\\\\\"].items()\\\\n            },\\\\n        }\\\\n        out_path = output_dir / \\\\\\\"dryrun_metadata.json\\\\\\\"\\\\n        with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(meta, f, indent=2)\\\\n        print(f\\\\\\\"\\\\\\\\n[DRY-RUN] Metadata saved to {out_path}\\\\\\\")\\\\n        return meta\\\\n\\\\n    all_results = {}\\\\n    pipeline_t0 = time.time()\\\\n\\\\n    for bench, bench_data in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\n\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\nevaluates against ground-truth clean scores (dosage=0 models).\\n\\nUsage:\\n    python run_exp006.py --help\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\n    python run_exp006.py                                         # full run\\n\\nDependencies: cmdstanpy, numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    run_benchmark_fit,\\n    STAN_MODELS,\\n)\\nfrom baselines import run_all_baselines\\nfrom evaluate_calibration import (\\n    evaluate_method,\\n    format_text_table,\\n    format_latex_table,\\n)\\nfrom joint_fit import run_joint_fit\\n\\nlog = logging.getLogger(__name__)\\n\\n# D018: 3B GSM8K excluded from dose-response analysis\\nD018_EXCLUDE = [(\\\"3B\\\", \\\"gsm8k\\\")]\\n\\n\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n    \\\"\\\"\\\"Check D018 exclusion rules for dose-response analysis.\\\"\\\"\\\"\\n    for pattern, bench in rules:\\n        if pattern in model_name and benchmark == bench:\\n            return True\\n    return False\\n\\n\\ndef compute_ground_truth(responses, dosages):\\n    \\\"\\\"\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\n\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\n    For dosage>0 models, we use the mean d=0 accuracy as the\\n    counterfactual reference (what they would score without contamination).\\n    \\\"\\\"\\\"\\n    raw_acc = responses.mean(axis=1)\\n    d0_mask = dosages == 0\\n\\n    if d0_mask.sum() > 0:\\n        gt_acc_d0 = float(raw_acc[d0_mask].mean())\\n    else:\\n        gt_acc_d0 = float(raw_acc.mean())\\n\\n    # dosage-0 models: their own raw accuracy\\n    # dosage>0 models: d=0 mean as counterfactual reference\\n    ground_truth = np.full(len(dosages), gt_acc_d0)\\n    ground_truth[d0_mask] = raw_acc[d0_mask]\\n\\n    return ground_truth\\n\\n\\ndef run_pipeline(args):\\n    \\\"\\\"\\\"Run full exp-006 pipeline.\\\"\\\"\\\"\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # ── Load Data ──\\n    log.info(\\\"Loading eval results from %s\\\", args.eval_dir)\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\n                              model_scale=args.model_scale,\\n                              seed_filter=args.data_seed,\\n                              aligned_only=args.aligned_only)\\n    exposure_scores = load_exposure_scores(\\n        args.exposure_file, data[\\\"benchmarks\\\"], model_id=args.tau_model_id)\\n    dosages = data[\\\"dosages\\\"]\\n\\n    log.info(\\\"Models: %d | Benchmarks: %s\\\",\\n             len(data[\\\"models\\\"]), list(data[\\\"benchmarks\\\"].keys()))\\n    log.info(\\\"Dosages: %s\\\", dosages.tolist())\\n\\n    # Pipeline metadata\\n    meta = {\\n        \\\"eval_dir\\\": args.eval_dir,\\n        \\\"model_type\\\": args.model_type,\\n        \\\"dry_run\\\": args.dry_run,\\n        \\\"models\\\": [\\n            {\\\"dirname\\\": m[\\\"dirname\\\"], \\\"model_name\\\": m[\\\"model_name\\\"],\\n             \\\"dosage\\\": m[\\\"dosage\\\"], \\\"seed\\\": m[\\\"seed\\\"]}\\n            for m in data[\\\"models\\\"]\\n        ],\\n        \\\"dosages\\\": dosages.tolist(),\\n        \\\"benchmarks\\\": list(data[\\\"benchmarks\\\"].keys()),\\n    }\\n\\n\\n    # Dry-run: print data summary and exit before fitting\\n    if args.dry_run:\\n        print(f\\\"\\\\n[DRY-RUN] Model scale: {args.model_scale or 'ALL'}, Seed: {args.data_seed or 'ALL'}\\\")\\n        print(f\\\"[DRY-RUN] Aligned only: {args.aligned_only}\\\")\\n        print(\\\"[DRY-RUN] Loading directories:\\\")\\n        for m in data[\\\"models\\\"]:\\n            print(f\\\"  - {m['dirname']} (dosage={m['dosage']}, seed={m['seed']})\\\")\\n        print(f\\\"[DRY-RUN] Total models: {len(data['models'])}\\\")\\n        print(f\\\"[DRY-RUN] Dosages: {dosages.tolist()}\\\")\\n        for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n            n_valid = int(bench_data[\\\"valid_mask\\\"].sum())\\n            print(f\\\"[DRY-RUN] {bench}: {n_valid} valid models x {bench_data['n_items']} items\\\")\\n        stan_path = STAN_MODELS.get(args.model_type, \\\"unknown\\\")\\n        print(f\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\")\\n        print(f\\\"[DRY-RUN] Exposure file: {args.exposure_file or 'None (oracle dosage)'}\\\")\\n\\n        meta[\\\"dry_run_summary\\\"] = {\\n            \\\"directories\\\": [m[\\\"dirname\\\"] for m in data[\\\"models\\\"]],\\n            \\\"benchmarks\\\": {\\n                bench: {\\\"n_valid_models\\\": int(bd[\\\"valid_mask\\\"].sum()), \\\"n_items\\\": bd[\\\"n_items\\\"]}\\n                for bench, bd in data[\\\"benchmarks\\\"].items()\\n            },\\n        }\\n        out_path = output_dir / \\\"dryrun_metadata.json\\\"\\n        with open(out_path, \\\"w\\\") as f:\\n            json.dump(meta, f, indent=2)\\n        print(f\\\"\\\\n[DRY-RUN] Metadata saved to {out_path}\\\")\\n        return meta\\n\\n    all_results = {}\\n    pipeline_t0 = time.time()\\n\\n    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+代码修改正确。现在运行 dry-run。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "2be9a90d-775e-4dd8-b934-6d1204c04a53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PjuFhyo8bzXzxTxW1B9yJZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 61403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01LDJqCc6WoutwdMYweSeoVN`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Read existing exp006 code and data structure on server",
+      "status": "completed",
+      "activeForm": "Reading existing exp006 code and data structure"
+    },
+    {
+      "content": "Modify dry-run to print data summary and exit before fitting",
+      "status": "completed",
+      "activeForm": "Modifying dry-run behavior"
+    },
+    {
+      "content": "Run dry-run on server and report results",
+      "status": "in_progress",
+      "activeForm": "Running dry-run on server"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "2e549e96-41e4-43f8-a1b4-180fff7f6b57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PjuFhyo8bzXzxTxW1B9yJZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 61403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T15:21:04.780Z_
+
+<details><summary>↩ Tool result · `toolu_01LDJqCc6WoutwdMYweSeoVN`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "607eb228-23fa-44a8-961c-8058f2cc8af3",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Read existing exp006 code and data structure on server",
+        "status": "completed",
+        "activeForm": "Reading existing exp006 code and data structure"
+      },
+      {
+        "content": "Modify dry-run to print data summary and exit before fitting",
+        "status": "in_progress",
+        "activeForm": "Modifying dry-run behavior"
+      },
+      {
+        "content": "Run dry-run on server and report results",
+        "status": "pending",
+        "activeForm": "Running dry-run on server"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Read existing exp006 code and data structure on server",
+        "status": "completed",
+        "activeForm": "Reading existing exp006 code and data structure"
+      },
+      {
+        "content": "Modify dry-run to print data summary and exit before fitting",
+        "status": "completed",
+        "activeForm": "Modifying dry-run behavior"
+      },
+      {
+        "content": "Run dry-run on server and report results",
+        "status": "in_progress",
+        "activeForm": "Running dry-run on server"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01N4H9TDA6kMx2LRFgCUN7xm`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/contamcal-irt-calibration/exp006 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_exp006.py --model-scale 0.5B --data-seed 42 --aligned-only --dry-run"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "81d4bc3a-7b27-4024-9be9-e4f66c8cdbf4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019XooA3gqokzGVCrgzma4BL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 222,
+      "cache_read_input_tokens": 63820,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 222
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T15:21:15.741Z_
+
+<details><summary>↩ Tool result · `toolu_01N4H9TDA6kMx2LRFgCUN7xm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n[DRY-RUN] Model scale: 0.5B, Seed: 42\\n[DRY-RUN] Aligned only: True\\n[DRY-RUN] Loading directories:\\n  - Qwen2.5-0.5B_d000_s42_aligned (dosage=0, seed=42)\\n  - Qwen2.5-0.5B_d005_s42_aligned (dosage=5, seed=42)\\n[DRY-RUN] Total models: 2\\n[DRY-RUN] Dosages: [0, 5]\\n[DRY-RUN] mmlu: 2 valid models x 14042 items\\n[DRY-RUN] gsm8k: 2 valid models x 1319 items\\n[DRY-RUN] arc_challenge: 2 valid models x 1172 items\\n[DRY-RUN] humaneval: 2 valid models x 164 items\\n[DRY-RUN] Stan model: 4pl_gamma -> /root/contamcal-irt-calibration/stan_models/contam_irt_4pl_simple.stan\\n[DRY-RUN] Exposure file: None (oracle dosage)\\n\\n[DRY-RUN] Metadata saved to /root/autodl-tmp/exp006/results/dryrun_metadata.json\\n\", \"stderr\": \"2026-05-14 23:21:15,328 [INFO] Loading eval results from /root/autodl-tmp/exp001/eval_results\\n2026-05-14 23:21:15,329 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s123\\n2026-05-14 23:21:15,329 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42\\n2026-05-14 23:21:15,329 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d005_s42\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d100_s42\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d000_s123\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d000_s42\\n2026-05-14 23:21:15,330 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s42_aligned\\n2026-05-14 23:21:15,330 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d005_s42_aligned\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-3B_d000_s123\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-3B_d000_s42\\n2026-05-14 23:21:15,330 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42_aligned\\n2026-05-14 23:21:15,330 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_raw\\n2026-05-14 23:21:15,330 [INFO] Found 2 model evaluations\\n2026-05-14 23:21:15,352 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge', 'humaneval']\\n2026-05-14 23:21:15,545 [INFO] Models: 2 | Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge', 'humaneval']\\n2026-05-14 23:21:15,545 [INFO] Dosages: [0, 5]\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "be84d459-3dad-42d6-a104-8ad6cacbc28f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n[DRY-RUN] Model scale: 0.5B, Seed: 42\\\\n[DRY-RUN] Aligned only: True\\\\n[DRY-RUN] Loading directories:\\\\n  - Qwen2.5-0.5B_d000_s42_aligned (dosage=0, seed=42)\\\\n  - Qwen2.5-0.5B_d005_s42_aligned (dosage=5, seed=42)\\\\n[DRY-RUN] Total models: 2\\\\n[DRY-RUN] Dosages: [0, 5]\\\\n[DRY-RUN] mmlu: 2 valid models x 14042 items\\\\n[DRY-RUN] gsm8k: 2 valid models x 1319 items\\\\n[DRY-RUN] arc_challenge: 2 valid models x 1172 items\\\\n[DRY-RUN] humaneval: 2 valid models x 164 items\\\\n[DRY-RUN] Stan model: 4pl_gamma -> /root/contamcal-irt-calibration/stan_models/contam_irt_4pl_simple.stan\\\\n[DRY-RUN] Exposure file: None (oracle dosage)\\\\n\\\\n[DRY-RUN] Metadata saved to /root/autodl-tmp/exp006/results/dryrun_metadata.json\\\\n\\\", \\\"stderr\\\": \\\"2026-05-14 23:21:15,328 [INFO] Loading eval results from /root/autodl-tmp/exp001/eval_results\\\\n2026-05-14 23:21:15,329 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s123\\\\n2026-05-14 23:21:15,329 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42\\\\n2026-05-14 23:21:15,329 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d005_s42\\\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d100_s42\\\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d000_s123\\\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d000_s42\\\\n2026-05-14 23:21:15,330 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s42_aligned\\\\n2026-05-14 23:21:15,330 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d005_s42_aligned\\\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42\\\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-3B_d000_s123\\\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-3B_d000_s42\\\\n2026-05-14 23:21:15,330 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42_aligned\\\\n2026-05-14 23:21:15,330 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_raw\\\\n2026-05-14 23:21:15,330 [INFO] Found 2 model evaluations\\\\n2026-05-14 23:21:15,352 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge', 'humaneval']\\\\n2026-05-14 23:21:15,545 [INFO] Models: 2 | Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge', 'humaneval']\\\\n2026-05-14 23:21:15,545 [INFO] Dosages: [0, 5]\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n[DRY-RUN] Model scale: 0.5B, Seed: 42\\n[DRY-RUN] Aligned only: True\\n[DRY-RUN] Loading directories:\\n  - Qwen2.5-0.5B_d000_s42_aligned (dosage=0, seed=42)\\n  - Qwen2.5-0.5B_d005_s42_aligned (dosage=5, seed=42)\\n[DRY-RUN] Total models: 2\\n[DRY-RUN] Dosages: [0, 5]\\n[DRY-RUN] mmlu: 2 valid models x 14042 items\\n[DRY-RUN] gsm8k: 2 valid models x 1319 items\\n[DRY-RUN] arc_challenge: 2 valid models x 1172 items\\n[DRY-RUN] humaneval: 2 valid models x 164 items\\n[DRY-RUN] Stan model: 4pl_gamma -> /root/contamcal-irt-calibration/stan_models/contam_irt_4pl_simple.stan\\n[DRY-RUN] Exposure file: None (oracle dosage)\\n\\n[DRY-RUN] Metadata saved to /root/autodl-tmp/exp006/results/dryrun_metadata.json\\n\", \"stderr\": \"2026-05-14 23:21:15,328 [INFO] Loading eval results from /root/autodl-tmp/exp001/eval_results\\n2026-05-14 23:21:15,329 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s123\\n2026-05-14 23:21:15,329 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42\\n2026-05-14 23:21:15,329 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d005_s42\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d100_s42\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d000_s123\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d000_s42\\n2026-05-14 23:21:15,330 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s42_aligned\\n2026-05-14 23:21:15,330 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d005_s42_aligned\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-3B_d000_s123\\n2026-05-14 23:21:15,330 [INFO] Skipping non-aligned dir: Qwen2.5-3B_d000_s42\\n2026-05-14 23:21:15,330 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42_aligned\\n2026-05-14 23:21:15,330 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_raw\\n2026-05-14 23:21:15,330 [INFO] Found 2 model evaluations\\n2026-05-14 23:21:15,352 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge', 'humaneval']\\n2026-05-14 23:21:15,545 [INFO] Models: 2 | Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge', 'humaneval']\\n2026-05-14 23:21:15,545 [INFO] Dosages: [0, 5]\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The dry-run reveals a problem: only 2 model directories were loaded:
+- `Qwen2.5-0.5B_d000_s42_aligned` (dosage=0)
+- `Qwen2.5-0.5B_d005_s42_aligned` (dosage=5)
+
+But the eval_results listing showed 4 aligned directories:
+- `Qwen2.5-0.5B_d000_s42_aligned`
+- `Qwen2.5-0.5B_d005_s42_aligned`
+
+
+- `Qwen2.5-0.5B_d025_s42_aligned`
+- `Qwen2.5-0.5B_d100_s42_aligned`
+
+So the two higher dosage models with d025 and d100 aren't being picked up by the loader, which means there's a mismatch between what's actually in the directory and what the dry-run is finding.
+
+The `load_eval_results` function is checking for the existence of `eval_results.json` in each directory, so those aligned models probably don't have that file yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "40214457-9e47-4cf7-a36e-7a85ab1cee4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsgKTwAVD5hGeY88hjWL9K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1363,
+      "cache_read_input_tokens": 64042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1363
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+Dry-run 揭示了一个问题：只加载了 2 个目录（d000, d005），缺少 d025 和 d100。虽然目录存在，但可能缺少 `eval_results.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "167e10ec-ed04-4763-91f4-1d5455225f6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsgKTwAVD5hGeY88hjWL9K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1363,
+      "cache_read_input_tokens": 64042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1363
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UBTH8KNacKVvgTcrG7CvYp`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d025_s42_aligned/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "dad66ace-d40e-41b2-be68-0314faf3102b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsgKTwAVD5hGeY88hjWL9K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1363,
+      "cache_read_input_tokens": 64042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1363
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LxyGJkUY6YkoxzKGZ9hHgC`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42_aligned/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "f7ed2f37-f5cb-4ac6-86a3-0cc0a699f013",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsgKTwAVD5hGeY88hjWL9K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1363,
+      "cache_read_input_tokens": 64042,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1363
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-14T15:21:27.632Z_
+
+<details><summary>↩ Tool result · `toolu_01UBTH8KNacKVvgTcrG7CvYp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "882f6f34-c0b7-4a82-8c89-05d146458948",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-14T15:21:28.089Z_
+
+<details><summary>↩ Tool result · `toolu_01LxyGJkUY6YkoxzKGZ9hHgC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "9aad2c76-68e4-4707-920c-4b14892049cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both directories are empty - no `eval_results.json` files. So d025 and d100 aligned evaluations haven't been completed yet. The dry-run correctly detected this.
+
+Let me also check the non-aligned d100 and d025 directories to see what their status is:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "34ab7ce1-5210-4751-826f-ff48093335ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QDgcWRiaRWVy58Q3diiP7r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 65405,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+两个目录都是空的。确认一下非 aligned 版本的 d025 和 d100 情况。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "09b6e209-6764-47df-a5e3-5051ed275e66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QDgcWRiaRWVy58Q3diiP7r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 65405,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WXf9iyr8nroNVH1Q4xoLpN`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "45e95049-7a08-4ce6-8ebe-b9deb67f2413",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QDgcWRiaRWVy58Q3diiP7r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 65405,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-14T15:21:34.385Z_
+
+<details><summary>↩ Tool result · `toolu_01WXf9iyr8nroNVH1Q4xoLpN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"correctness_matrix.json\\neval_results.json\\nitem_responses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "bf479996-f8f4-4afa-92db-a15476379766",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"correctness_matrix.json\\\\neval_results.json\\\\nitem_responses.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"correctness_matrix.json\\neval_results.json\\nitem_responses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PHHR8UdS6RcyKA9WxXTGTW`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp001/eval_results/ -name \"eval_results.json\" -path \"*0.5B*aligned*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "42af9c0d-71ae-4923-864f-cac24757fc90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QDgcWRiaRWVy58Q3diiP7r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 65405,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-14T15:21:34.902Z_
+
+<details><summary>↩ Tool result · `toolu_01PHHR8UdS6RcyKA9WxXTGTW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_aligned/eval_results.json\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_para_aligned/eval_results.json\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42_aligned/eval_results.json\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42_para_aligned/eval_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "65400bc0-d9de-4132-b43d-d792a524d0e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_aligned/eval_results.json\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_para_aligned/eval_results.json\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42_aligned/eval_results.json\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42_para_aligned/eval_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_aligned/eval_results.json\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_para_aligned/eval_results.json\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42_aligned/eval_results.json\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42_para_aligned/eval_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_016oXaJSZeJzBr7MreoEq5ad`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Read existing exp006 code and data structure on server",
+      "status": "completed",
+      "activeForm": "Reading existing exp006 code and data structure"
+    },
+    {
+      "content": "Modify dry-run to print data summary and exit before fitting",
+      "status": "completed",
+      "activeForm": "Modifying dry-run behavior"
+    },
+    {
+      "content": "Run dry-run on server and report results",
+      "status": "completed",
+      "activeForm": "Running dry-run on server"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "1ab9a835-2710-4d5e-844c-71c251bbe1fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fe6cBR1stBVEchU7A5g5ka",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 66265,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 736
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-14T15:21:39.587Z_
+
+<details><summary>↩ Tool result · `toolu_016oXaJSZeJzBr7MreoEq5ad`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "f7f4e2cf-c7c7-4b33-8abf-460055cf5aa1",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Read existing exp006 code and data structure on server",
+        "status": "completed",
+        "activeForm": "Reading existing exp006 code and data structure"
+      },
+      {
+        "content": "Modify dry-run to print data summary and exit before fitting",
+        "status": "completed",
+        "activeForm": "Modifying dry-run behavior"
+      },
+      {
+        "content": "Run dry-run on server and report results",
+        "status": "in_progress",
+        "activeForm": "Running dry-run on server"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Read existing exp006 code and data structure on server",
+        "status": "completed",
+        "activeForm": "Reading existing exp006 code and data structure"
+      },
+      {
+        "content": "Modify dry-run to print data summary and exit before fitting",
+        "status": "completed",
+        "activeForm": "Modifying dry-run behavior"
+      },
+      {
+        "content": "Run dry-run on server and report results",
+        "status": "completed",
+        "activeForm": "Running dry-run on server"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+## Dry-run 结果
+
+### 修改内容
+代码已有 `--model-scale`、`--data-seed`、`--aligned-only` 过滤。修改了 `--dry-run` 行为：现在只打印数据加载摘要并 return，**不启动 Stan fitting**。
+
+### Dry-run 输出
+```
+[DRY-RUN] Model scale: 0.5B, Seed: 42
+[DRY-RUN] Aligned only: True
+[DRY-RUN] Loading directories:
+  - Qwen2.5-0.5B_d000_s42_aligned (dosage=0, seed=42)
+  - Qwen2.5-0.5B_d005_s42_aligned (dosage=5, seed=42)
+[DRY-RUN] Total models: 2
+[DRY-RUN] Dosages: [0, 5]
+[DRY-RUN] mmlu: 2 valid models x 14042 items
+[DRY-RUN] gsm8k: 2 valid models x 1319 items
+[DRY-RUN] arc_challenge: 2 valid models x 1172 items
+[DRY-RUN] humaneval: 2 valid models x 164 items
+[DRY-RUN] Stan model: 4pl_gamma -> contam_irt_4pl_simple.stan
+[DRY-RUN] Exposure file: None (oracle dosage)
+```
+
+### 数据缺口
+**只有 2/4 个 dosage 点可用，缺少 d025 和 d100 的 aligned eval：**
+
+| 目录 | 状态 |
+|------|------|
+| `Qwen2.5-0.5B_d000_s42_aligned` | eval_results.json ✓ |
+| `Qwen2.5-0.5B_d005_s42_aligned` | eval_results.json ✓ |
+| `Qwen2.5-0.5B_d025_s42_aligned` | **空目录** |
+| `Qwen2.5-0.5B_d100_s42_aligned` | **空目录** |
+
+非 aligned 的 `d100_s42` 有 eval_results.json，但 aligned 格式的 d025 和 d100 还没跑完。
+
+2 个模型 × 14042 items 做 IRT fitting 没有意义（至少需要 3-4 个 dosage 点才能拟合 dose-response curve）。需要先补齐 d025 和 d100 的 aligned eval 再跑 exp-006。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "uuid": "0e3fea38-1935-48a7-8e04-c65fe1a16518",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRUQVVXH8qBsGB6EGNcgey",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 203,
+      "cache_read_input_tokens": 67001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 203
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 84_
+
+## Dry-run 结果
+
+### 修改内容
+代码已有 `--model-scale`、`--data-seed`、`--aligned-only` 过滤。修改了 `--dry-run` 行为：现在只打印数据加载摘要并 return，**不启动 Stan fitting**。
+
+### Dry-run 输出
+```
+[DRY-RUN] Model scale: 0.5B, Seed: 42
+[DRY-RUN] Aligned only: True
+[DRY-RUN] Loading directories:
+  - Qwen2.5-0.5B_d000_s42_aligned (dosage=0, seed=42)
+  - Qwen2.5-0.5B_d005_s42_aligned (dosage=5, seed=42)
+[DRY-RUN] Total models: 2
+[DRY-RUN] Dosages: [0, 5]
+[DRY-RUN] mmlu: 2 valid models x 14042 items
+[DRY-RUN] gsm8k: 2 valid models x 1319 items
+[DRY-RUN] arc_challenge: 2 valid models x 1172 items
+[DRY-RUN] humaneval: 2 valid models x 164 items
+[DRY-RUN] Stan model: 4pl_gamma -> contam_irt_4pl_simple.stan
+[DRY-RUN] Exposure file: None (oracle dosage)
+```
+
+### 数据缺口
+**只有 2/4 个 dosage 点可用，缺少 d025 和 d100 的 aligned eval：**
+
+| 目录 | 状态 |
+|------|------|
+| `Qwen2.5-0.5B_d000_s42_aligned` | eval_results.json ✓ |
+| `Qwen2.5-0.5B_d005_s42_aligned` | eval_results.json ✓ |
+| `Qwen2.5-0.5B_d025_s42_aligned` | **空目录** |
+| `Qwen2.5-0.5B_d100_s42_aligned` | **空目录** |
+
+非 aligned 的 `d100_s42` 有 eval_results.json，但 aligned 格式的 d025 和 d100 还没跑完。
+
+2 个模型 × 14042 items 做 IRT fitting 没有意义（至少需要 3-4 个 dosage 点才能拟合 dose-response curve）。需要先补齐 d025 和 d100 的 aligned eval 再跑 exp-006。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 305200,
+  "duration_api_ms": 293279,
+  "num_turns": 30,
+  "stop_reason": "end_turn",
+  "session_id": "0614caa5-8649-4a18-89c0-8c06a4e90901",
+  "total_cost_usd": 1.2353062499999998,
+  "usage": {
+    "input_tokens": 30,
+    "cache_creation_input_tokens": 55363,
+    "cache_read_input_tokens": 1125369,
+    "output_tokens": 12977,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 55363,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 705,
+        "cache_read_input_tokens": 67001,
+        "cache_creation_input_tokens": 203,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 203
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1923,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002028,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 30,
+      "outputTokens": 12977,
+      "cacheReadInputTokens": 1125369,
+      "cacheCreationInputTokens": 55363,
+      "webSearchRequests": 0,
+      "costUSD": 1.2332782500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7db38bf7-8488-4f22-a8dd-d82669577196"
+}
+```
+
+</details>
+
+---

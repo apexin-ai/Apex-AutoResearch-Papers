@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "483de57187da55872d4b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cleanup duplicate evals",
+  "task_key": "worker_ops_cleanup_duplicate_evals_20260514T020708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_duplicate_evals_20260514T020708_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "3df5c89c8605f146238b6a893dd5ee9638021a5aee4f25e1928ca166ee21116d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**已 Kill：**\n- PID 257853 — evaluate.py (d000_s42 重复实例，占 GPU 0)\n- PID 257848 — 其父 nohup bash 进程\n\n**已确认无需处理：**\n- PID 255078 (d100_s42) — 已自行结束\n- PID 256503 (d100_s42) — CUDA:4 上正常运行\n- PID 257034 (d000_s42) — CUDA:2 上正常运行，作为唯一实例保留\n\n**GPU 0 清理后状态：**\n- 仅剩 SFT 训练 PID 251924 (10044 MiB / 24564 MiB)，释放了 ~3658 MiB\n- GPU 利用率从高负载降至 23%\n\n**全部 GPU 当前状态：**\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 10053 / 24564 MiB | 23% |\n| 1 | 12620 / 24564 MiB | 100% |\n| 2 | 10993 / 24564 MiB | 99% |\n| 3 | 8957 / 24564 MiB | 62% |\n| 4 | 9492 / 24564 MiB | 99% |\n| 5 | 5829 / 24564 MiB | 47% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-duplicate-evals.md"
+}

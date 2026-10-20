@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09db0f56b6db2f4faaed",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops collect eval 05B d100 s123",
+  "task_key": "worker_ops_collect-eval-05B-d100-s123_20260514T234604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-eval-05B-d100-s123_20260514T234604_result.json",
+    "occurrence": 1,
+    "bytes": 293,
+    "sha256": "578ea452f46dd88a96de0dc0a3b7a31932bb4bc0f4cb25732a662074529bfc6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。结果汇总：\n\n| Benchmark | Score |\n|-----------|-------|\n| MMLU | 30.58% (4294/14042) |\n| GSM8K | 37.98% (501/1319) |\n| ARC-Challenge | 36.69% (430/1172) |\n| HumanEval | 10.37% pass@1 (164 tasks) |\n\nWall clock: ~2.3 GPU-hours。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-eval-05b-d100-s123.md"
+}

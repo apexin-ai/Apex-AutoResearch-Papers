@@ -1,0 +1,570 @@
+{
+  "schema_version": "1.0",
+  "id": "106a164b963a8c7e8d09",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "analysis eval olmo2 s0 mmlu",
+  "task_key": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_eval_olmo2_s0_mmlu_20260520T111827.jsonl",
+    "occurrence": 1,
+    "bytes": 24627,
+    "sha256": "4a4a2b35daa8963ba4f82fa81c4807f95387c1728c9191732f8ae017d44296de"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T11:20:08.661253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T11:20:08.661667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T11:20:08.661855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "cat ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T11:20:08.662094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"+ EXPECTED_MD5=17673bf373f00f83ccc41fc1d355a4cd\\\\n++ md5sum /root/contamcal-irt-calibration/exp001/evaluate.py\\\\n++ cut '-d ' -f1\\\\n+ ACTUAL_MD5=17673bf373f00f83ccc41fc1d355a4cd\\\\n+ '[' 17673bf373f00f83ccc41fc1d355a4cd '!=' 17673bf373f00f83ccc41fc1d355a4cd ']'\\\\n+ export CUDA_VISIBLE_DEVICES=2\\\\n+ CUDA_VISIBLE_DEVICES=2\\\\n+ export HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\\\\n+ HF_DATASETS_OFFLINE=1\\\\n+ HF_HUB_OFFLINE=1\\\\n+ TRANSFORMERS_OFFLINE=1\\\\n+ HF_HOME=/root/autodl-tmp/.hf_cache\\\\n+ PYTHON=/root/miniconda3/bin/python\\\\n+ EVAL=/root/contamcal-irt-calibration/exp001/evaluate.py\\\\n+ CKPT=/root/autodl-tmp/exp001/checkpoints\\\\n+ MODEL=/root/autodl-tmp/models/OLMo-2-1124-7B\\\\n+ OUT=/root/contamcal-irt-calibration/results/mmlu_eval/olmo2\\\\n+ for d in 000 005 025 050 100\\\\n+ run_eval olmo2_d000_s0 /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\\\n+ local name=olmo2_d000_s0 adapter=/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter outdir=/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\\\n+ '[' '!' -f /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter/adapter_config.json ']'\\\\n+ mkdir -p /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\\\n++ date\\\\n+ echo '=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ==='\\\\n=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ===\\\\n+ /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/models/OLMo-2-1124-7B --adapter-path /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter --benchmarks mmlu --batch-size 8 --output-dir /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\\\n2026-05-20 18:30:21,613 [INFO] Loading base model: /root/autodl-tmp/models/OLMo-2-1124-7B + adapter: /root/autodl-tmp/exp\n…[truncated 6430 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T11:20:08.662425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "grep \"accuracy\\|=== DONE\\|=== START\" ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T11:20:08.662597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T11:20:08.662732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "grep \"accuracy\" ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T11:20:08.662874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 18:39:19,296 [INFO] mmlu accuracy: 0.5534 (7771/14042)\\\\n2026-05-20 18:48:22,207 [INFO] mmlu accuracy: 0.5662 (7951/14042)\\\\n2026-05-20 18:57:25,107 [INFO] mmlu accuracy: 0.5652 (7937/14042)\\\\n2026-05-20 19:06:27,724 [INFO] mmlu accuracy: 0.5627 (7901/14042)\\\\n2026-05-20 19:15:30,191 [INFO] mmlu accuracy: 0.5672 (7965/14042)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T11:20:08.663016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "grep \"=== START\" ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T11:20:08.663150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"+ echo '=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ==='\\\\n=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ===\\\\n+ echo '=== START: olmo2_d005_s0 at Wed May 20 18:39:20 CST 2026 ==='\\\\n=== START: olmo2_d005_s0 at Wed May 20 18:39:20 CST 2026 ===\\\\n+ echo '=== START: olmo2_d025_s0 at Wed May 20 18:48:23 CST 2026 ==='\\\\n=== START: olmo2_d025_s0 at Wed May 20 18:48:23 CST 2026 ===\\\\n+ echo '=== START: olmo2_d050_s0 at Wed May 20 18:57:26 CST 2026 ==='\\\\n=== START: olmo2_d050_s0 at Wed May 20 18:57:26 CST 2026 ===\\\\n+ echo '=== START: olmo2_d100_s0 at Wed May 20 19:06:29 CST 2026 ==='\\\\n=== START: olmo2_d100_s0 at Wed May 20 19:06:29 CST 2026 ===\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T11:20:08.663276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "grep \"=== DONE\" ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T11:20:08.663434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"+ echo '=== DONE: olmo2_d000_s0 at Wed May 20 18:39:20 CST 2026, exit=0 ==='\\\\n=== DONE: olmo2_d000_s0 at Wed May 20 18:39:20 CST 2026, exit=0 ===\\\\n+ echo '=== DONE: olmo2_d005_s0 at Wed May 20 18:48:23 CST 2026, exit=0 ==='\\\\n=== DONE: olmo2_d005_s0 at Wed May 20 18:48:23 CST 2026, exit=0 ===\\\\n+ echo '=== DONE: olmo2_d025_s0 at Wed May 20 18:57:26 CST 2026, exit=0 ==='\\\\n=== DONE: olmo2_d025_s0 at Wed May 20 18:57:26 CST 2026, exit=0 ===\\\\n+ echo '=== DONE: olmo2_d050_s0 at Wed May 20 19:06:29 CST 2026, exit=0 ==='\\\\n=== DONE: olmo2_d050_s0 at Wed May 20 19:06:29 CST 2026, exit=0 ===\\\\n+ echo '=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ==='\\\\n=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ===\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T11:20:08.663585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "ls /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T11:20:08.663718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"d000_s0\\\\nd005_s0\\\\nd025_s0\\\\nd050_s0\\\\nd100_s0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T11:20:08.663839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29999",
+              "command": "ls /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T11:20:08.663959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"correctness_matrix.json\\\\neval_results.json\\\\nitem_responses.json\\\\nmmlu_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T11:20:08.664099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_olmo2_s0_mmlu",
+              "field": "metrics",
+              "value": "{'mmlu_d000': 0.5534, 'mmlu_d005': 0.5662, 'mmlu_d025': 0.5652, 'mmlu_d050': 0.5627, 'mmlu_d100': 0.5672, 'delta_d005': 0.0128, 'delta_d025': 0.0118, 'delta_d050': 0.0093, 'delta_d100': 0.0138, 'correct_d000': 7771, 'correct_d005': 7951, 'correct_d025': 7937, 'correct_d050': 7901, 'correct_d100': 7965, 'total': 14042}",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T11:20:08.664274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_olmo2_s0_mmlu\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:30:19.200Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:19:37.190Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"321872\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T10:30:18.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"MMLU 5-shot\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"OLMo-2-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\\\", \\\"eval_data\\\": \\\"MMLU 5-shot (14042 items)\\\"}, \\\"hypothesis\\\": \\\"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\\\", \\\"parent\\\": \\\"sft_olmo2_s0_sweep\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T11:16:14.078Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T11:16:21.612236+00:00\\\"}]}, \\\"metrics\\\": {\\\"mmlu_d000\\\": 0.5534, \\\"mmlu_d005\\\": 0.5662, \\\"mmlu_d025\\\": 0.5652, \\\"mmlu_d050\\\": 0.5627, \\\"mmlu_d100\\\": 0.5672, \\\"delta_d005\\\": 0.0128, \\\"delta_d025\\\": 0.0118, \\\"delta_d050\\\": 0.0093, \\\"delta_d100\\\": 0.0138, \\\"correct_d000\\\": 7771, \\\"correct_d005\\\": 7951, \\\"correct_d025\\\": 7937, \\\"correct_d050\\\": 7901, \\\"correct_d100\\\": 7965, \\\"total\\\": 14042}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3963}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T11:20:08.664445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_olmo2_s0_mmlu",
+              "field": "checkpoint_path",
+              "value": "/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T11:20:08.664586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_olmo2_s0_mmlu",
+              "field": "log_path",
+              "value": "~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T11:20:08.664740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_olmo2_s0_mmlu\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:30:19.200Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:19:46.034Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"321872\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T10:30:18.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"MMLU 5-shot\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"OLMo-2-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\\\", \\\"eval_data\\\": \\\"MMLU 5-shot (14042 items)\\\"}, \\\"hypothesis\\\": \\\"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\\\", \\\"parent\\\": \\\"sft_olmo2_s0_sweep\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T11:16:14.078Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T11:16:21.612236+00:00\\\"}]}, \\\"metrics\\\": {\\\"mmlu_d000\\\": 0.5534, \\\"mmlu_d005\\\": 0.5662, \\\"mmlu_d025\\\": 0.5652, \\\"mmlu_d050\\\": 0.5627, \\\"mmlu_d100\\\": 0.5672, \\\"delta_d005\\\": 0.0128, \\\"delta_d025\\\": 0.0118, \\\"delta_d050\\\": 0.0093, \\\"delta_d100\\\": 0.0138, \\\"correct_d000\\\": 7771, \\\"correct_d005\\\": 7951, \\\"correct_d025\\\": 7937, \\\"correct_d050\\\": 7901, \\\"correct_d100\\\": 7965, \\\"total\\\": 14042}, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2469}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T11:20:08.664903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_olmo2_s0_mmlu\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:30:19.200Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:19:48.152Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"321872\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T10:30:18.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"MMLU 5-shot\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"OLMo-2-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\\\", \\\"eval_data\\\": \\\"MMLU 5-shot (14042 items)\\\"}, \\\"hypothesis\\\": \\\"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\\\", \\\"parent\\\": \\\"sft_olmo2_s0_sweep\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T11:16:14.078Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T11:16:21.612236+00:00\\\"}]}, \\\"metrics\\\": {\\\"mmlu_d000\\\": 0.5534, \\\"mmlu_d005\\\": 0.5662, \\\"mmlu_d025\\\": 0.5652, \\\"mmlu_d050\\\": 0.5627, \\\"mmlu_d100\\\": 0.5672, \\\"delta_d005\\\": 0.0128, \\\"delta_d025\\\": 0.0118, \\\"delta_d050\\\": 0.0093, \\\"delta_d100\\\": 0.0138, \\\"correct_d000\\\": 7771, \\\"correct_d005\\\": 7951, \\\"correct_d025\\\": 7937, \\\"correct_d050\\\": 7901, \\\"correct_d100\\\": 7965, \\\"total\\\": 14042}, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5691}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T11:20:08.665046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_olmo2_s0_mmlu",
+              "field": "conclusion",
+              "value": "success",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T11:20:08.665202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_olmo2_s0_mmlu\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:30:19.200Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:19:53.308Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"321872\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T10:30:18.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"MMLU 5-shot\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"OLMo-2-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\\\", \\\"eval_data\\\": \\\"MMLU 5-shot (14042 items)\\\"}, \\\"hypothesis\\\": \\\"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\\\", \\\"parent\\\": \\\"sft_olmo2_s0_sweep\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T11:16:14.078Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T11:16:21.612236+00:00\\\"}]}, \\\"metrics\\\": {\\\"mmlu_d000\\\": 0.5534, \\\"mmlu_d005\\\": 0.5662, \\\"mmlu_d025\\\": 0.5652, \\\"mmlu_d050\\\": 0.5627, \\\"mmlu_d100\\\": 0.5672, \\\"delta_d005\\\": 0.0128, \\\"delta_d025\\\": 0.0118, \\\"delta_d050\\\": 0.0093, \\\"delta_d100\\\": 0.0138, \\\"correct_d000\\\": 7771, \\\"correct_d005\\\": 7951, \\\"correct_d025\\\": 7937, \\\"correct_d050\\\": 7901, \\\"correct_d100\\\": 7965, \\\"total\\\": 14042}, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8929}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T11:20:08.665360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_olmo2_s0_mmlu",
+              "field": "status",
+              "value": "DONE",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T11:20:08.665563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_olmo2_s0_mmlu\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:30:19.200Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:19:58.286Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"321872\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T10:30:18.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"MMLU 5-shot\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"OLMo-2-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\\\", \\\"eval_data\\\": \\\"MMLU 5-shot (14042 items)\\\", \\\"wall_clock_seconds\\\": 2979.9, \\\"gpu_hours\\\": 0.83}, \\\"hypothesis\\\": \\\"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\\\", \\\"parent\\\": \\\"sft_olmo2_s0_sweep\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T11:16:14.078Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T11:16:21.612236+00:00\\\"}]}, \\\"metrics\\\": {\\\"mmlu_d000\\\": 0.5534, \\\"mmlu_d005\\\": 0.5662, \\\"mmlu_d025\\\": 0.5652, \\\"mmlu_d050\\\": 0.5627, \\\"mmlu_d100\\\": 0.5672, \\\"delta_d005\\\": 0.0128, \\\"delta_d025\\\": 0.0118, \\\"delta_d050\\\": 0.0093, \\\"delta_d100\\\": 0.0138, \\\"correct_d000\\\": 7771, \\\"correct_d005\\\": 7951, \\\"correct_d025\\\": 7937, \\\"correct_d050\\\": 7901, \\\"correct_d100\\\": 7965, \\\"total\\\": 14042}, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T11:19:58.286Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 wo\n…[truncated 76 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T11:20:08.665762+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n**OLMo-2-7B seed=0 MMLU 5-shot results:**\n\n| Dosage | Accuracy | Δ vs baseline |\n|--------|----------|---------------|\n| d000 | 55.34% | — |\n| d005 | 56.62% | +1.28pp |\n| d025 | 56.52% | +1.18pp |\n| d050 | 56.27% | +0.93pp |\n| d100 | 56.72% | +1.38pp |\n\n**Cross-seed comparison (d100 Δacc):**\n- s42: +3.21pp (baseline 53.79%)\n- s0: +1.38pp (baseline 55.34%)\n\ns0 shows a weaker contamination effect than s42 (+1.38 vs +3.21pp), and the dose-response curve is notably flat — d005 already captures ~93% of the maximum gain. s0 also has a higher baseline (55.34 vs 53.79%), which could partially explain the smaller marginal benefit from contamination (ceiling compression)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-eval-olmo2-s0-mmlu.md"
+}

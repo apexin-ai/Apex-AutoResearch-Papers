@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "40ede6e08d6f4b48ab07",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "knowledge plan registry refresh",
+  "task_key": "worker_knowledge_plan-registry-refresh_20260515T200819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_plan-registry-refresh_20260515T200819.log",
+    "occurrence": 1,
+    "bytes": 1012256,
+    "sha256": "deedc2d90e1c3eec62f0e7913c8869b344c4f7a20bc7348c58235e1ab5ea6ba4"
+  },
+  "statistics": {
+    "messages": 138,
+    "user_turns": 1,
+    "tool_calls": 44,
+    "roles": {
+      "log": 1,
+      "record": 1,
+      "system": 27,
+      "assistant": 19,
+      "tool_call": 44,
+      "user": 1,
+      "tool_result": 44,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "40ede6e08d6f4b48ab07-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 131,
+      "chunks": [
+        {
+          "path": "40ede6e08d6f4b48ab07-part-0001.json",
+          "message_count": 96
+        },
+        {
+          "path": "40ede6e08d6f4b48ab07-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/knowledge-plan-registry-refresh.md"
+}

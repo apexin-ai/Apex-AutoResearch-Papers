@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19bc908bd00b80aef151",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis 3B signal readiness check",
+  "task_key": "worker_analysis_3B-signal-readiness-check_20260515T135440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_3B-signal-readiness-check_20260515T135440_result.json",
+    "occurrence": 1,
+    "bytes": 1736,
+    "sha256": "4521f6eaa610aff92263ccea5ec825a08aae7cba2787309b309c8d3df7e26a26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `memory.md`。以下是核心摘要：\n\n---\n\n## 3B 信号管线就绪状态\n\n**3B 信号: 0/24 完成** (需要 4 dose × 2 seed × 3 benchmark)\n\n### 完成矩阵\n\n| Dose | Seed | Aligned | Para | 可跑信号? |\n|------|------|---------|------|----------|\n| d000 | s42 | ✅ | ✅ | ✅ 就绪 |\n| d000 | s123 | ✅ | ✅ | ✅ 就绪 |\n| d005 | s42 | 🔄 cuda:5 | ✅ | ❌ 等 aligned |\n| d005 | s123 | ❌ SFT cuda:2 | ❌ | ❌ 阻塞 |\n| d025 | s42 | ✅ | ✅ | ✅ 就绪 |\n| d025 | s123 | ❌ SFT cuda:4 | ❌ | ❌ 阻塞 |\n| d100 | s42 | ✅ | ✅ | ✅ 就绪 |\n| d100 | s123 | ✅ | **❌ 缺失** | ❌ 等 para |\n\n### 缺失项 (按优先级)\n\n1. **P0 — d100 s123 para eval** — checkpoint 就绪，可立即跑，需空闲 GPU\n2. **P1 — d005 s42 aligned** — 运行中(cuda:5)，等待完成\n3. **P2 — d005/d025 s123 链** — SFT 仍在跑(cuda:2/4)，完成后需链式执行 aligned→para eval\n\n### 两个关键脚本问题 (必须在信号计算前修复)\n\n1. **Eval 目录命名不匹配** — 信号脚本期望 `Qwen2.5-3B_d{X}_s{Y}/`，实际目录有 `_aligned`、`_v2_aligned` 后缀。**必须创建 symlinks**\n2. **`run_batch.py` 硬编码** — DOSAGES 缺 d025，SEED 只有 s42。推荐用 `run_exp002.sh` 替代\n\n### 最优执行顺序\n\n1. **现在**: 等 GPU 3 释放 → 立即跑 d100 s123 para eval\n2. **现在**: 对已就绪的 4 组 (d000×2seed + d025 s42 + d100 s42) 创建 symlinks → 先跑部分信号\n3. **SFT 完成后**: 链式执行 d005/d025 s123 的 eval → para → symlink → 信号\n4. **全部 eval 完成后**: 全量信号计算 (~4-8h) → RRF 聚合\n\n完整命令模板已写入 `memory.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-3b-signal-readiness-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f71e88e35d4a905a54a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code rrf format bridge",
+  "task_key": "worker_code_rrf-format-bridge_20260514T095047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rrf-format-bridge_20260514T095047_result.json",
+    "occurrence": 1,
+    "bytes": 237,
+    "sha256": "863cddcb9d25f50906fdff61a0a40d2d35a03ce3409c36c07c56649d9d73062c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。在 `main()` 末尾（summary statistics 之后）添加了 exp-006 格式转换，运行时会额外输出 `exposure_scores_{model_name}.json`，格式为 `{benchmark: [rrf_scores]}`。语法验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rrf-format-bridge.md"
+}

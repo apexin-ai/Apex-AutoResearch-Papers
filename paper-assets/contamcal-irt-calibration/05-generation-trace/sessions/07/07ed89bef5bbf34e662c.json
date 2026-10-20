@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07ed89bef5bbf34e662c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd gpu status gsm8k collect sft prep",
+  "task_key": "worker_ops_westd-gpu-status-gsm8k-collect-sft-prep_20260521T094459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-gpu-status-gsm8k-collect-sft-prep_20260521T094459_result.json",
+    "occurrence": 1,
+    "bytes": 4131,
+    "sha256": "7da898b93a1f8b07bb91ed8daf270a44dbdef90dd239927b9076329e55b196cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。汇总如下：\n\n---\n\n## Part 1: westd GPU 状态\n\n| GPU | Util | VRAM | 任务 | 进度 | 预计剩余 |\n|-----|------|------|------|------|---------|\n| 0 | 91% | 16.7/97.9 GB | OLMo-2 d100_s0 GSM8K | 470/660 (71%) | ~17 min |\n| 1 | 91% | 16.7/97.9 GB | OLMo-2 d000_s0 GSM8K | 541/660 (82%) | ~11 min |\n| 2 | 91% | 16.7/97.9 GB | OLMo-2 d005_s0 GSM8K | 387/660 (59%) | ~25 min |\n| 3 | 88% | 31.7/97.9 GB | Phi-4 d100_s0 GSM8K | 471/660 (71%) | ~21 min |\n\n**全部运行中，无空闲 GPU。** GPU 1 最先完成（~11 min）。\n\n---\n\n## Part 2: 已完成 GSM8K 结果\n\n| Model | Dosage | Accuracy | Correct/Total |\n|-------|--------|----------|---------------|\n| Phi-4 | d000_s0 | **84.46%** | 1114/1319 |\n| Qwen2.5-14B | d100_s0 | **82.41%** | 1087/1319 |\n| Qwen2.5-14B | d050_s0 | **81.05%** | 1069/1319 |\n| Gemma-2 | d000_s0 | **17.82%** | 235/1319 |\n\n**Gemma-2 d000 只有 17.82%，大量 pred=null。** 可能是 eval 格式/prompt 不兼容 Gemma-2，需要排查。\n\n---\n\n## Part 3: LLaMA-3 模型下载状态\n\n路径: `westd:/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B/`\n\n| 分片 | 大小 | 状态 |\n|------|------|------|\n| model-00001-of-00004 | 4.98 GB | 完成 |\n| model-00002-of-00004 | 5.00 GB | 完成 |\n| model-00003-of-00004 | 3.52 GB | **SCP 进行中** (PID 507499) |\n| model-00004-of-00004 | 1.17 GB | 完成 |\n\n**3/4 完成，第 3 分片仍在传输。**\n\n---\n\n## Part 4: SFT 数据\n\n`/root/autodl-tmp/sft_data/` 下 5 个 dosage 文件全部就绪。数据是模型无关的 chat 格式（system/user/assistant），所有家族共用，**无需单独为 LLaMA-3 准备。**\n\n---\n\n## Part 5: SFT 启动命令（待模型下载完成 + GPU 空闲）\n\ntrain_sft.py 参数已确认。3 个 SFT 命令：\n\n```bash\n# d000 — 分配给最先空闲的 GPU（预计 GPU 1）\ncd /root/contamcal-irt-calibration/exp001 && \\\nCUDA_VISIBLE_DEVICES=1 nohup python train_sft.py \\\n  --model-name /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B \\\n  --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/Meta-Llama-3.1-8B_d000_s0 \\\n  --lora-r 16 --lora-alpha 32 --lr 5e-5 \\\n  --batch-size 2 --grad-accum 8 --epochs 1 \\\n  --max-seq-length 2048 --gradient-checkpointing --seed 0 \\\n  > /tmp/sft_llama3_d000_s0.log 2>&1 &\necho \"PID: $!\"\n```\n\n```bash\n# d025 — 第二个空闲 GPU（预计 GPU 0）\ncd /root/contamcal-irt-calibration/exp001 && \\\nCUDA_VISIBLE_DEVICES=0 nohup python train_sft.py \\\n  --model-name /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B \\\n  --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/Meta-Llama-3.1-8B_d025_s0 \\\n  --lora-r 16 --lora-alpha 32 --lr 5e-5 \\\n  --batch-size 2 --grad-accum 8 --epochs 1 \\\n  --max-seq-length 2048 --gradient-checkpointing --seed 0 \\\n  > /tmp/sft_llama3_d025_s0.log 2>&1 &\necho \"PID: $!\"\n```\n\n```bash\n# d100 — 第三个空闲 GPU（预计 GPU 3）\ncd /root/contamcal-irt-calibration/exp001 && \\\nCUDA_VISIBLE_DEVICES=3 nohup python train_sft.py \\\n  --model-name /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B \\\n  --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/Meta-Llama-3.1-8B_d100_s0 \\\n  --lora-r 16 --lora-alpha 32 --lr 5e-5 \\\n  --batch-size 2 --grad-accum 8 --epochs 1 \\\n  --max-seq-length 2048 --gradient-checkpointing --seed 0 \\\n  > /tmp/sft_llama3_d100_s0.log 2>&1 &\necho \"PID: $!\"\n```\n\n---\n\n## 结论\n\n**d000 SFT 无法立即启动。** 两个阻塞条件：\n1. 模型 shard 3 仍在 SCP（预计几分钟内完成）\n2. 全部 4 GPU 在跑 eval，GPU 1 最先释放（~11 min）\n\n**下一步行动**：等 ~11 min 后 GPU 1 空闲 + 模型传输完成，立即启动 d000。是否需要我轮询等待并自动提交？\n\n**需要关注**: Gemma-2 d000 accuracy 17.82% 异常低，大量 null prediction，建议排查 eval 脚本对 Gemma-2 的兼容性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-gpu-status-gsm8k-collect-sft-prep.md"
+}

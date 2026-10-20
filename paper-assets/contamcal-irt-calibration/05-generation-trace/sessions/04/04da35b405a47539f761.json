@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "04da35b405a47539f761",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "exp r3w10 threshold dgp simulation",
+  "task_key": "worker_exp_r3w10-threshold-dgp-simulation_20260520T201021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r3w10-threshold-dgp-simulation_20260520T201021.log",
+    "occurrence": 1,
+    "bytes": 885563,
+    "sha256": "a4d758e5dc2f3e1d8a73147293c8bca182c94a09c55d19e2975b2dd331830081"
+  },
+  "statistics": {
+    "messages": 531,
+    "user_turns": 1,
+    "tool_calls": 216,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 91,
+      "tool_call": 216,
+      "tool_result": 216,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 488,
+      "chunks": [
+        {
+          "path": "04da35b405a47539f761-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "04da35b405a47539f761-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "04da35b405a47539f761-part-0003.json",
+          "message_count": 128
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 43,
+      "chunks": [
+        {
+          "path": "04da35b405a47539f761-part-0003.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-r3w10-threshold-dgp-simulation.md"
+}

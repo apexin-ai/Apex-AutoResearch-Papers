@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b61ba29bfec8b5b4d32",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code p0 delta exposure fix",
+  "task_key": "worker_code_p0_delta_exposure_fix_20260514T192535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p0_delta_exposure_fix_20260514T192535_result.json",
+    "occurrence": 1,
+    "bytes": 1460,
+    "sha256": "4e1c6b3f342f9f149f1c516b05de5d66812e9bd0af15b5f0e755cbaad63e1699"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D024 Delta Exposure Fix — 完整结果\n\n### 修改内容\n`run_exp006.py` line 195-201：在 `load_exp002_signals()` 后、`build_exposure_matrix()` 前，减去 d000 baseline signal（0.6131）并 clip 负值为 0。\n\n### Per-benchmark IRT (4PL+gamma) 修复前后对比\n\n| 指标 | 修复前 | 修复后 (D024) |\n|------|--------|--------------|\n| **Rhat** | 1.53 | **1.0096** ✅ |\n| **ESS** | 7 | **522.2** ✅ |\n| **Divergences** | — | **0 (0%)** ✅ |\n| **gamma mean** | — | **0.508** (正方向) ✅ |\n| **gamma 95%CI** | — | [-0.64, 1.84] |\n| Signal scores | [0.61, 0.63, 0.68, 0.81] | **[0.0, 0.016, 0.065, 0.197]** |\n\n### Joint-fit（仍然收敛）\n\n| 指标 | 值 |\n|------|-----|\n| Rhat | **1.0081** ✅ |\n| ESS | **956.4** ✅ |\n| Divergences | **0** ✅ |\n| gamma mean | **0.346** |\n| gamma 95%CI | [-0.65, 1.40] |\n\n### 判断\n**修复成功。** D024 delta fix 完全解决了 per-benchmark NUTS 不收敛的问题。根因确认：raw signal scores 的 d000 baseline（≈0.613）导致所有模型看起来都有高 exposure，Stan 无法区分 contaminated vs clean models。减去 baseline 后 d000 exposure ≈ 0，与 joint-fit 的 oracle dosage 语义对齐。\n\n结果已保存到 `/root/autodl-tmp/exp006/results_05B_gsm8k_delta/`，不需要单独提交正式运行——这次运行本身就是完整的 GSM8K pipeline 结果（含 IRT + 7 baselines + evaluation + joint-fit）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-p0-delta-exposure-fix.md"
+}

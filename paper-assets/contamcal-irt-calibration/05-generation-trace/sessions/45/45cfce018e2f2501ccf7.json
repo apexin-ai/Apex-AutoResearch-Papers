@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45cfce018e2f2501ccf7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops eval phi4 s0 mmlu",
+  "task_key": "worker_ops_eval-phi4-s0-mmlu_20260520T151837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-phi4-s0-mmlu_20260520T151837_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "b82efd04d65afaac0ff66630ba7caabbdc2bb7055b070ae9cc574465881866d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n- **Eval 脚本**: `/root/contamcal-irt-calibration/scripts/eval_phi4_s0_mmlu.sh`\n- **PID**: 366153（westd-29999, cuda:0）\n- **Registry**: `eval_phi4_s0_mmlu` → RUNNING，parent=sft_phi4_s0_sweep\n- **日志**: `/root/contamcal-irt-calibration/logs/eval_phi4_s0_mmlu.log`\n- **输出**: `/root/contamcal-irt-calibration/results/mmlu_eval/phi4/d{000,005,025,050,100}_s0/`\n\nd000_s0 正在 eval，5 个 dosage 串行执行。C004（显式 CUDA_VISIBLE_DEVICES=0）、C006（lora_alpha=32 已验证）、C009（md5 校验内置）均已满足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-phi4-s0-mmlu.md"
+}

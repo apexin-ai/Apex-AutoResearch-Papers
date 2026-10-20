@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46b6a41413e59bf7b784",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research contamination harms performance literature",
+  "task_key": "worker_research_contamination-harms-performance-literature_20260515T050739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_contamination-harms-performance-literature_20260515T050739_result.json",
+    "occurrence": 1,
+    "bytes": 1536,
+    "sha256": "6a6c19601b2b8fff217c7e1dc7931f7054389bf7d3bf050847565612e76c600d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。报告已写入 `artifacts/literature_survey_negative_gamma.md`。\n\n## 核心结论\n\n**负 gamma 现象在文献中没有直接先例，新颖性高。**\n\n具体而言：\n\n1. **有间接支撑但无人做过**：Dekoninck et al. (2024) 提到 contamination 影响可以是\"negligible or even negative\"，但他们归因于检测误差而非真实现象。DICE (Tu et al., 2024) 证明 in-distribution contamination 导致 OOD 性能下降，但没有做 dose-response 实验。\n\n2. **三个关键机制都有文献基础**：\n   - 灾难性遗忘：Kalajdzievski (2024) 的 forgetting scaling law\n   - 过训练脆弱性：Springer et al. (2025, ICML) 证明过训练模型更难 fine-tune — **Qwen2.5-0.5B 的 18T tokens / 0.5B params = 36x Chinchilla 恰好是最脆弱的情况**\n   - Scale-dependent contamination：Elazar et al. (2024, ICML) 证明小模型从 contamination 获益更少\n\n3. **我们的独特贡献**：\n   - 首次在控制实验中观察到 contamination **降低**目标 benchmark 分数\n   - 首次用 IRT 的 gamma 参数形式化这个现象\n   - 首次将 overtraining fragility 与 contamination 效果联系起来\n   - 同一 contamination protocol 下 ARC↓ / GSM8K→ 的 benchmark-specific 异质性未见报道\n\n建议论文中用 **Springer (2025) overtraining + Elazar (2024) scale-dependence + DICE (2024) OOD degradation** 三条线索构建叙事，将负 gamma 定位为这些已知现象的自然但此前未被观察到的极端情况。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-contamination-harms-performance-literature.md"
+}

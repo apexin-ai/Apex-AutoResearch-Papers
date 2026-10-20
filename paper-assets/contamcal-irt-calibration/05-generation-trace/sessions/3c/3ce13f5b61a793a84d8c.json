@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ce13f5b61a793a84d8c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper figure fig calibration v2",
+  "task_key": "worker_paper_figure_fig_calibration_v2_20260517T032815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_calibration_v2_20260517T032815_result.json",
+    "occurrence": 1,
+    "bytes": 386,
+    "sha256": "d3c9e37b5ff4328241d3371461f8cd60d522ecee010e8b5555cffc2d013b50c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF (50K) 和 PNG (266K) 均已生成。\n\n更新内容：\n- Panel A: 散点图用 circle (Vanilla 2PL) 和 triangle (2PL+γ) 区分，两类标记几乎完全重叠\n- Panel B: 3-bar 分组 (Raw/Vanilla 2PL/2PL+γ)，括号标注 Δ 值 (ARC: 0.0043, MMLU: 0.0002, GSM8K: 0.0001)，2PL+γ 用浅色变体区分，GSM8K FAIL 加 hatching\n- 减幅标注：53%, 56%, 96%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-calibration-v2.md"
+}

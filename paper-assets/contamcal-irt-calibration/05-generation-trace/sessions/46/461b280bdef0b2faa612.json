@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "461b280bdef0b2faa612",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops launch 7b s123 cuda3",
+  "task_key": "worker_ops_launch-7b-s123-cuda3_20260518T133331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch-7b-s123-cuda3_20260518T133331_result.json",
+    "occurrence": 1,
+    "bytes": 640,
+    "sha256": "c9d656c3e6a71b1b04cfd76da9793d91ae366cbbc7d0e47358b4a14bdc6926ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，汇报：\n\n| 项目 | 状态 |\n|---|---|\n| **PID 28640** | 已终止（确认死亡） |\n| **新进程 PID** | 31158（python 子进程，父 bash PID 31153） |\n| **cuda:3 显存** | 28,646 MiB / 97,887 MiB |\n| **LoRA 配置** | r=16, alpha=32 ✓ |\n| **训练样本** | 50,000 |\n\n**全卡状态：**\n\n| GPU | 显存占用 | GPU-Util | 进程 PID |\n|---|---|---|---|\n| cuda:0 | 69,204 MiB | 73% | 30306 |\n| cuda:1 | 17,704 MiB | 90% | 25326 |\n| cuda:2 | 64,768 MiB | 85% | 28900 |\n| cuda:3 | 28,646 MiB | 88% | 31158 |\n\n四卡全部在跑，cuda:3 的 7B d000 s123 训练已正常上 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-7b-s123-cuda3.md"
+}

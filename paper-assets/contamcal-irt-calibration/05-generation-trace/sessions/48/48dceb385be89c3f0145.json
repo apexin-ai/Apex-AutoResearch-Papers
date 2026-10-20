@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48dceb385be89c3f0145",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops diag signals 3B d005 a32 s42",
+  "task_key": "worker_ops_diag_signals_3B_d005_a32_s42_20260516T100059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diag_signals_3B_d005_a32_s42_20260516T100059_result.json",
+    "occurrence": 1,
+    "bytes": 329,
+    "sha256": "2b1f28f3109ca9bcc125e854c3f2d34ce573dde0bb6160c48f8707fbffddd9b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无活跃 cron，无需删除。\n\n**诊断结果：exp_002_signals_3B_d005_a32_s42 正常完成。**\n\n- 日志末尾输出 \"ALL DONE\"\n- 9 个信号文件全部生成（3 benchmark × 3 signals）+ 3 个 merged 文件\n- cuda:2 已释放（0 MiB, 0%）\n- Registry 已更新：conclusion=success, status=DONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diag-signals-3b-d005-a32-s42.md"
+}

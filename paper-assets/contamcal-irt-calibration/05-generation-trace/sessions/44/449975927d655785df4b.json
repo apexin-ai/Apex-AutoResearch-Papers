@@ -1,0 +1,1285 @@
+{
+  "schema_version": "1.0",
+  "id": "449975927d655785df4b",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code profile classification algo v2",
+  "task_key": "worker_code_profile-classification-algo-v2_20260519T174128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_profile-classification-algo-v2_20260519T174128.log",
+    "occurrence": 1,
+    "bytes": 98936,
+    "sha256": "054fc48331a7cdb3f6c1e6bf2a6af70ab76c5075f9518ee4ee6b7b782c2f3424"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+                "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__allocate_and_submit",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__approve_worker",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__backup_project_to_s3",
+                  "mcp__agent-ml-research__cancel_worker",
+                  "mcp__agent-ml-research__check_job_status",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__distill_papers",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                  "mcp__agent-ml-research__feishu_send_alert",
+                  "mcp__agent-ml-research__feishu_send_approval_card",
+                  "mcp__agent-ml-research__feishu_send_result_card",
+                  "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                  "mcp__agent-ml-research__fetch_wandb_metrics",
+                  "mcp__agent-ml-research__get_baseline_metrics",
+                  "mcp__agent-ml-research__get_distill_status",
+                  "mcp__agent-ml-research__get_gpu_health",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_matrix_value",
+                  "mcp__agent-ml-research__get_project_resource_usage",
+                  "mcp__agent-ml-research__get_tum_config",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__impact_analysis",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_available_gpus",
+                  "mcp__agent-ml-research__list_constraints",
+                  "mcp__agent-ml-research__list_s3_backups",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__main_agent_post_to_director",
+                  "mcp__agent-ml-research__matrix_gap_analysis",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__poll_cron",
+                  "mcp__agent-ml-research__poll_secret_request",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_matrix",
+                  "mcp__agent-ml-research__read_mistakes",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__reconcile_crons",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__register_cron",
+                  "mcp__agent-ml-research__request_secret",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__submit_on_allocated",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__sync_matrix_status",
+                  "mcp__agent-ml-research__tail_training_logs",
+                  "mcp__agent-ml-research__update_baseline",
+                  "mcp__agent-ml-research__update_matrix",
+                  "mcp__agent-ml-research__update_registry",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "13e794ed-3b54-4cc9-b09a-c5938c66ac48",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779219000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "564608cb-5d0d-4228-a811-30ab0614d2ba",
+                "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the bootstrap script to understand the existing classification logic."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "94969e32-efa0-4326-8f71-d0a853c99990",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLVRRXk7BJzPTXRBGK6k5d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14351,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14351
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HkdAqMaPHg7eYEYhgbG8PG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/bootstrap_profile_stability.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "5024ee40-b47c-4a1a-a758-96fcb59e575a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JLVRRXk7BJzPTXRBGK6k5d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14351,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14351
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T17:41:39.454Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HkdAqMaPHg7eYEYhgbG8PG",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Bootstrap item-level analysis for dose-response profile stability.\n3\t\n4\tAnalyses:\n5\t1. Profile classification stability — how often does bootstrap resampling\n6\t   of evaluation items reproduce the observed dose-response pattern?\n7\t2. Benefit/harm threshold CI — 95% confidence interval for the baseline\n8\t   accuracy separating contamination-benefiting from -harmed models.\n9\t\n10\tData layout:\n11\t    {data_dir}/{model}_{dosage}[{suffix}]/correctness_matrix.json\n12\t    or  .../item_responses.json\n13\t\n14\tUsage:\n15\t    python bootstrap_profile_stability.py \\\n16\t        --data-dir /root/autodl-tmp/exp001/eval_results_v2/ \\\n17\t        --benchmark mmlu --n-bootstrap 10000\n18\t\"\"\"\n19\t\n20\timport argparse\n21\timport json\n22\timport os\n23\timport sys\n24\timport time\n25\tfrom collections import Counter\n26\tfrom pathlib import Path\n27\t\n28\timport numpy as np\n29\t\n30\t# ── Registry ────────────────────────────────────────────────────────\n31\t\n32\tMODELS = {\n33\t    'phi4':    'Phi-4 14.7B',\n34\t    'qwen14b': 'Qwen2.5-14B',\n35\t    'qwen7b':  'Qwen2.5-7B',\n36\t    'gemma2':  'Gemma-2 9B',\n37\t    'olmo2':   'OLMo-2 7B',\n38\t}\n39\t\n40\tDOSAGES = ['d000', 'd005', 'd025', 'd050', 'd100']\n41\tDOSE_LABELS = ['0%', '5%', '25%', '50%', '100%']\n42\t\n43\t# ── Data loading ────────────────────────────────────────────────────\n44\t\n45\tdef load_responses(data_dir, model, dosage, benchmark, suffix=''):\n46\t    \"\"\"Load boolean correctness array for one model x dosage x benchmark.\n47\t\n48\t    Tries correctness_matrix.json first (compact), falls back to\n49\t    item_responses.json.\n50\t    \"\"\"\n51\t    base = Path(data_dir) / f'{model}_{dosage}{suffix}'\n52\t\n53\t    # Fast path: correctness_matrix.json\n54\t    cm = base / 'correctness_matrix.json'\n55\t    if cm.exists():\n56\t        with open(cm) as f:\n57\t            data = json.load(f)\n58\t        if benchmark in data:\n59\t            return np.array(data[benchmark], dtype=np.int8)\n60\t\n61\t    # Fallback: item_responses.json\n62\t    ir = base / 'item_responses.json'\n63\t    if ir.exists():\n64\t        with open(ir) as f:\n65\t            items = json.load(f)\n66\t        arr = [it['correct'] for it in items if it['benchmark'] == benchmark]\n67\t        if arr:\n68\t            return np.array(arr, dtype=np.int8)\n69\t\n70\t    return None\n71\t\n72\t\n73\tdef load_all(data_dir, benchmark, suffix, model_keys):\n74\t    \"\"\"Load data for all models, return dict of model -> {dosage -> array}.\"\"\"\n75\t    data = {}\n76\t    for model in model_keys:\n77\t        arrays = {}\n78\t        ok = True\n79\t        for dose in DOSAGES:\n80\t            arr = load_responses(data_dir, model, dose, benchmark, suffix)\n81\t            if arr is None:\n82\t                print(f'  [SKIP] {model}_{dose}{suffix}: not found')\n83\t                ok = False\n84\t                break\n85\t            arrays[dose] = arr\n86\t        if not ok:\n87\t            continue\n88\t        lens = {d: len(a) for d, a in arrays.items()}\n89\t        if len(set(lens.values())) != 1:\n90\t            print(f'  [SKIP] {model}: inconsistent item counts {lens}')\n91\t            continue\n92\t        data[model] = arrays\n93\t        n = lens['d000']\n94\t        print(f'  {MODELS.get(model, model):.<22s} {n:>6d} items')\n95\t    return data\n96\t\n97\t# ── Pattern classification ──────────────────────────────────────────\n98\t\n99\tPATTERN_NAMES = ['Immune', 'U-collapse', 'V-recovery', 'Benefit', 'Benefit-sat']\n100\t\n101\t\n102\tdef classify_vec(accs):\n103\t    \"\"\"Vectorized pattern classification.\n104\t\n105\t    Args:\n106\t        accs: dict dosage -> ndarray shape (B,), accuracy in percentage points.\n107\t    Returns:\n108\t        ndarray shape (B,) of pattern name strings.\n109\t\n110\t    Rules:\n111\t        |delta| <= 1pp                          -> Immune\n112\t        delta <= -5pp                           -> U-collapse\n113\t        -5 < delta < -1, mid dips below both    -> V-recovery\n114\t        -5 < delta < -1, no V dip               -> U-collapse\n115\t        delta > 1, late gain saturates           -> Benefit-sat\n116\t        delta > 1, otherwise                    -> Benefit\n117\t    \"\"\"\n118\t    B = len(accs['d000'])\n119\t    delta = accs['d100'] - accs['d000']\n120\t    mid = np.column_stack([accs['d005'], accs['d025'], accs['d050']])\n121\t    mid_min = mid.min(axis=1)\n122\t\n123\t    pat = np.full(B, '', dtype='U15')\n124\t\n125\t    # Immune\n126\t    immune = np.abs(delta) <= 1.0\n127\t    pat[immune] = 'Immune'\n128\t\n129\t    # Negative delta\n130\t    neg = delta < -1.0\n131\t    severe = neg & (delta <= -5.0)\n132\t    v_dip = neg & ~severe & (mid_min < accs['d100']) & (mid_min < accs['d000'])\n133\t    pat[severe] = 'U-collapse'\n134\t    pat[v_dip] = 'V-recovery'\n135\t    pat[neg & ~severe & ~v_dip] = 'U-collapse'\n136\t\n137\t    # Positive delta\n138\t    pos = delta > 1.0\n139\t    first_half = accs['d025'] - accs['d000']\n140\t    second_half = accs['d100'] - accs['d025']\n141\t    late = accs['d100'] - accs['d050']\n142\t    sat = pos & (((first_half > 0) & (second_half < first_half * 0.3)) | (late < 0.5))\n143\t    pat[pos & ~sat] = 'Benefit'\n144\t    pat[sat] = 'Benefit-sat'\n145\t\n146\t    return pat\n147\t\n148\t# ── Bootstrap ───────────────────────────────────────────────────────\n149\t\n150\tdef run_bootstrap(all_data, B, rng):\n151\t    \"\"\"Paired item-level bootstrap across all models.\n152\t\n153\t    Same resampled item indices are used for every model and dosage,\n154\t    preserving cross-model correlations (they evaluate the same items).\n155\t    \"\"\"\n156\t    models = list(all_data.keys())\n157\t    n_items = len(all_data[models[0]]['d000'])\n158\t    idx = rng.integers(0, n_items, size=(B, n_items))\n159\t\n160\t    results = {}\n161\t    for model in models:\n162\t        t0 = time.time()\n163\t        boot_accs = {}\n164\t        for dose in DOSAGES:\n165\t            boot_accs[dose] = all_data[model][dose][idx].mean(axis=1) * 100.0\n166\t\n167\t        patterns = classify_vec(boot_accs)\n168\t        deltas = boot_accs['d100'] - boot_accs['d000']\n169\t\n170\t        obs = {d: float(all_data[model][d].mean() * 100.0) for d in DOSAGES}\n171\t        obs_pat = classify_vec({d: np.array([obs[d]]) for d in DOSAGES})[0]\n172\t\n173\t        counts = Counter(patterns)\n174\t        stability = counts[obs_pat] / B * 100.0\n175\t\n176\t        results[model] = dict(\n177\t            observed_pattern=str(obs_pat),\n178\t            observed_delta=round(obs['d100'] - obs['d000'], 4),\n179\t            observed_accs={d: round(v, 4) for d, v in obs.items()},\n180\t            stability_pct=round(stability, 2),\n181\t            pattern_distribution={\n182\t                str(k): round(v / B * 100, 2) for k, v in counts.most_common()\n183\t            },\n184\t            delta_mean=round(float(np.mean(deltas)), 4),\n185\t            delta_std=round(float(np.std(deltas)), 4),\n186\t            delta_ci95=[\n187\t                round(float(np.percentile(deltas, 2.5)), 4),\n188\t                round(float(np.percentile(deltas, 97.5)), 4),\n189\t            ],\n190\t            _baselines=boot_accs['d000'],\n191\t            _deltas=deltas,\n192\t            _boot_accs=boot_accs,\n193\t        )\n194\t        dt = time.time() - t0\n195\t        print(f'  {MODELS.get(model, model):.<22s} '\n196\t              f'{obs_pat:<15s} stability={stability:5.1f}%  ({dt:.1f}s)')\n197\t\n198\t    return results\n199\t\n200\t# ── Threshold ───────────────────────────────────────────────────────\n201\t\n202\tdef compute_threshold(results, B):\n203\t    \"\"\"Find 95% CI for baseline accuracy where delta crosses zero.\n204\t\n205\t    For each bootstrap sample, sort models by their resampled baseline,\n206\t    then linearly interpolate the crossing from positive to negative delta.\n207\t    \"\"\"\n208\t    models = list(results.keys())\n209\t    thresholds = []\n210\t\n211\t    for i in range(B):\n212\t        pts = sorted(\n213\t            (results[m]['_baselines'][i], results[m]['_deltas'][i])\n214\t            for m in models\n215\t        )\n216\t        for j in range(len(pts) - 1):\n217\t            b1, d1 = pts[j]\n218\t            b2, d2 = pts[j + 1]\n219\t            if d1 > 0 and d2 < 0:\n220\t                thresholds.append(b1 + (b2 - b1) * d1 / (d1 - d2))\n221\t                break\n222\t            if d1 > 1.0 and abs(d2) <= 1.0:\n223\t                thresholds.append((b1 + b2) / 2.0)\n224\t                break\n225\t\n226\t    if not thresholds:\n227\t        return None\n228\t\n229\t    arr = np.array(thresholds)\n230\t    return dict(\n231\t        mean=round(float(np.mean(arr)), 2),\n232\t        median=round(float(np.median(arr)), 2),\n233\t        ci95=[round(float(np.percentile(arr, 2.5)), 2),\n234\t              round(float(np.percentile(arr, 97.5)), 2)],\n235\t        std=round(float(np.std(arr)), 2),\n236\t        n_valid=len(thresholds),\n237\t        n_total=B,\n238\t        _values=arr,\n239\t    )\n240\t\n241\t# ── Plotting ────────────────────────────────────────────────────────\n242\t\n243\tdef make_plots(results, threshold, out_dir, benchmark):\n244\t    try:\n245\t        import matplotlib\n246\t        matplotlib.use('Agg')\n247\t        import matplotlib.pyplot as plt\n248\t    except ImportError:\n249\t        print('[WARN] matplotlib unavailable, skipping plots')\n250\t        return\n251\t\n252\t    sorted_m = sorted(results, key=lambda m: results[m]['observed_accs']['d000'],\n253\t                      reverse=True)\n254\t    colors = {\n255\t        'phi4': '#1f77b4', 'qwen14b': '#ff7f0e', 'qwen7b': '#2ca02c',\n256\t        'gemma2': '#d62728', 'olmo2': '#9467bd',\n257\t    }\n258\t\n259\t    # --- Figure 1: delta distributions ---\n260\t    n_models = len(sorted_m)\n261\t    ncols = min(3, n_models + 1)\n262\t    nrows = (n_models + 1 + ncols - 1) // ncols\n263\t    fig, axes = plt.subplots(nrows, ncols, figsize=(5.5 * ncols, 4.5 * nrows))\n264\t    if nrows == 1 and ncols == 1:\n265\t        axes = np.array([[axes]])\n266\t    elif nrows == 1:\n267\t        axes = axes[np.newaxis, :]\n268\t    elif ncols == 1:\n269\t        axes = axes[:, np.newaxis]\n270\t    fig.suptitle(\n271\t        f'Bootstrap Δ(d000→d100) Distributions — {benchmark.upper()} '\n272\t        f'(B={len(results[sorted_m[0]][\"_deltas\"])})',\n273\t        fontsize=13, fontweight='bold', y=1.01,\n274\t    )\n275\t\n276\t    for i, model in enumerate(sorted_m):\n277\t        ax = axes[i // ncols][i % ncols]\n278\t        r = results[model]\n279\t        ax.hist(r['_deltas'], bins=80, density=True, alpha=0.7,\n280\t                color=colors.get(model, 'steelblue'), edgecolor='none')\n281\t        ax.axvline(r['observed_delta'], color='crimson', lw=2,\n282\t                   label=f'Obs: {r[\"observed_delta\"]:+.2f}pp')\n283\t        ax.axvline(0, color='black', lw=0.8, ls='--')\n284\t        for bnd in (-1, 1, -5):\n285\t            ax.axvline(bnd, color='gray', lw=0.5, ls=':')\n286\t        name = MODELS.get(model, model)\n287\t        ax.set_title(f'{name}  (base {r[\"observed_accs\"][\"d000\"]:.1f}%)\\n'\n288\t                     f'{r[\"observed_pattern\"]}  — {r[\"stability_pct\"]:.1f}% stable',\n289\t                     fontsize=10)\n290\t        ax.set_xlabel('Δ [pp]')\n291\t        ax.legend(fontsize=8)\n292\t\n293\t    # Threshold subplot\n294\t    idx_t = n_models\n295\t    ax_t = axes[idx_t // ncols][idx_t % ncols]\n296\t    if threshold and threshold['n_valid'] > 100:\n297\t        ax_t.hist(threshold['_values'], bins=60, density=True, alpha=0.7,\n298\t                  color='darkorange', edgecolor='none')\n299\t        ax_t.axvline(threshold['median'], color='crimson', lw=2,\n300\t                     label=f'Median: {threshold[\"median\"]:.1f}%')\n301\t        ci = threshold['ci95']\n302\t        ax_t.axvspan(ci[0], ci[1], alpha=0.2, color='crimson',\n303\t                     label=f'95% CI: [{ci[0]:.1f}, {ci[1]:.1f}]')\n304\t        ax_t.set_xlabel('Baseline accuracy (%)')\n305\t        ax_t.set_title('Benefit/Harm Threshold', fontsize=10)\n306\t        ax_t.legend(fontsize=8)\n307\t    else:\n308\t        msg = 'Threshold\\nnot estimable' if threshold is None \\\n309\t              else f'Too few crossings\\n({threshold[\"n_valid\"]}/{threshold[\"n_total\"]})'\n310\t        ax_t.text(0.5, 0.5, msg, transform=ax_t.transAxes,\n311\t                  ha='center', va='center', fontsize=11)\n312\t        ax_t.set_title('Benefit/Harm Threshold', fontsize=10)\n313\t\n314\t    # Hide unused axes\n315\t    total_slots = nrows * ncols\n316\t    for k in range(n_models + 1, total_slots):\n317\t        axes[k // ncols][k % ncols].set_visible(False)\n318\t\n319\t    plt.tight_layout()\n320\t    p1 = Path(out_dir) / f'bootstrap_delta_{benchmark}.png'\n321\t    plt.savefig(p1, dpi=150, bbox_inches='tight')\n322\t    plt.close()\n323\t    print(f'[INFO] Plot saved: {p1}')\n324\t\n325\t    # --- Figure 2: dose-response with CI bands ---\n326\t    fig2, ax2 = plt.subplots(figsize=(10, 7))\n327\t    x = np.arange(len(DOSAGES))\n328\t    for model in sorted_m:\n329\t        r = results[model]\n330\t        means = np.array([r['_boot_accs'][d].mean() for d in DOSAGES])\n331\t        lo = np.array([np.percentile(r['_boot_accs'][d], 2.5) for d in DOSAGES])\n332\t        hi = np.array([np.percentile(r['_boot_accs'][d], 97.5) for d in DOSAGES])\n333\t        c = colors.get(model, 'gray')\n334\t        name = MODELS.get(model, model)\n335\t        ax2.plot(x, means, 'o-', color=c, lw=2,\n336\t                 label=f'{name} ({r[\"observed_pattern\"]})')\n337\t        ax2.fill_between(x, lo, hi, alpha=0.15, color=c)\n338\t\n339\t    ax2.set_xticks(x)\n340\t    ax2.set_xticklabels(DOSE_LABELS)\n341\t    ax2.set_xlabel('Contamination dose', fontsize=12)\n342\t    ax2.set_ylabel('Accuracy (%)', fontsize=12)\n343\t    ax2.set_title(f'Dose-Response with 95% Bootstrap CI — {benchmark.upper()}',\n344\t                  fontsize=13, fontweight='bold')\n345\t    ax2.legend(fontsize=9, loc='best')\n346\t    ax2.grid(True, alpha=0.3)\n347\t    plt.tight_layout()\n348\t    p2 = Path(out_dir) / f'bootstrap_dose_response_{benchmark}.png'\n349\t    plt.savefig(p2, dpi=150, bbox_inches='tight')\n350\t    plt.close()\n351\t    print(f'[INFO] Plot saved: {p2}')\n352\t\n353\t# ── Main ────────────────────────────────────────────────────────────\n354\t\n355\tdef main():\n356\t    ap = argparse.ArgumentParser(\n357\t        description='Bootstrap profile classification stability analysis')\n358\t    ap.add_argument('--data-dir', required=True,\n359\t                    help='Root dir with {model}_{dosage}/ subdirs')\n360\t    ap.add_argument('--benchmark', default='mmlu',\n361\t                    choices=['mmlu', 'arc_challenge'])\n362\t    ap.add_argument('--n-bootstrap', type=int, default=10000)\n363\t    ap.add_argument('--seed', type=int, default=42,\n364\t                    help='RNG seed for bootstrap')\n365\t    ap.add_argument('--seed-suffix', default='',\n366\t                    help='Dir name suffix, e.g. \"_s123\"')\n367\t    ap.add_argument('--output-dir', default='.',\n368\t                    help='Where to write JSON + plots')\n369\t    ap.add_argument('--models', nargs='*', default=None,\n370\t                    help='Subset of model keys (default: all 5)')\n371\t    ap.add_argument('--no-plot', action='store_true')\n372\t    args = ap.parse_args()\n373\t\n374\t    os.makedirs(args.output_dir, exist_ok=True)\n375\t    rng = np.random.default_rng(args.seed)\n376\t    model_keys = args.models or list(MODELS.keys())\n377\t\n378\t    print(f'=== Bootstrap Profile Stability ===')\n379\t    print(f'Benchmark: {args.benchmark}   B={args.n_bootstrap}   '\n380\t          f'rng_seed={args.seed}')\n381\t    print(f'Data: {args.data_dir}   suffix=\"{args.seed_suffix}\"')\n382\t    print()\n383\t\n384\t    all_data = load_all(args.data_dir, args.benchmark, args.seed_suffix,\n385\t                        model_keys)\n386\t    if not all_data:\n387\t        print('[ERROR] No valid data found')\n388\t        sys.exit(1)\n389\t\n390\t    n_items_set = {len(all_data[m]['d000']) for m in all_data}\n391\t    if len(n_items_set) == 1:\n392\t        print(f'\\nPaired bootstrap on {n_items_set.pop()} shared items')\n393\t    else:\n394\t        print(f'\\n[WARN] Item counts differ: {n_items_set} — '\n395\t              f'bootstrap uses smallest common count')\n396\t\n397\t    print()\n398\t    t0 = time.time()\n399\t    results = run_bootstrap(all_data, args.n_bootstrap, rng)\n400\t    elapsed = time.time() - t0\n401\t    print(f'\\nBootstrap done in {elapsed:.1f}s')\n402\t\n403\t    threshold = None\n404\t    if len(results) >= 3:\n405\t        threshold = compute_threshold(results, args.n_bootstrap)\n406\t\n407\t    # ── Summary table ──\n408\t    print()\n409\t    hdr = (f'{\"Model\":<18} {\"Baseline\":>8} {\"Delta\":>10} '\n410\t           f'{\"Pattern\":<15} {\"Stability\":>10} {\"Delta 95% CI\":>22}')\n411\t    sep = '-' * len(hdr)\n412\t    print('=' * len(hdr))\n413\t    print(hdr)\n414\t    print(sep)\n415\t    for m in sorted(results, key=lambda m: results[m]['observed_accs']['d000'],\n416\t                    reverse=True):\n417\t        r = results[m]\n418\t        ci = r['delta_ci95']\n419\t        print(f'{MODELS.get(m,m):<18} {r[\"observed_accs\"][\"d000\"]:>7.2f}% '\n420\t              f'{r[\"observed_delta\"]:>+9.2f}pp '\n421\t              f'{r[\"observed_pattern\"]:<15} {r[\"stability_pct\"]:>9.1f}% '\n422\t              f'[{ci[0]:>+7.2f}, {ci[1]:>+7.2f}]')\n423\t    print('=' * len(hdr))\n424\t\n425\t    if threshold:\n426\t        ci = threshold['ci95']\n427\t        print(f'\\nBenefit/Harm Threshold: {threshold[\"median\"]:.1f}% '\n428\t              f'(95% CI: [{ci[0]:.1f}, {ci[1]:.1f}])')\n429\t        print(f'  Valid crossings: {threshold[\"n_valid\"]}/{threshold[\"n_total\"]} '\n430\t              f'({threshold[\"n_valid\"]/threshold[\"n_total\"]*100:.1f}%)')\n431\t\n432\t    # ── Plots ──\n433\t    if not args.no_plot:\n434\t        make_plots(results, threshold, args.output_dir, args.benchmark)\n435\t\n436\t    # ── JSON output ──\n437\t    output = {\n438\t        'config': {\n439\t            'benchmark': args.benchmark,\n440\t            'n_bootstrap': args.n_bootstrap,\n441\t            'seed': args.seed,\n442\t            'data_dir': str(args.data_dir),\n443\t        },\n444\t        'models': {},\n445\t        'threshold': (\n446\t            {k: v for k, v in threshold.items() if not k.startswith('_')}\n447\t            if threshold else None\n448\t        ),\n449\t    }\n450\t    for m, r in results.items():\n451\t        output['models'][m] = {\n452\t            'display_name': MODELS.get(m, m),\n453\t            'observed_pattern': r['observed_pattern'],\n454\t            'observed_delta_pp': r['observed_delta'],\n455\t            'observed_accs': r['observed_accs'],\n456\t            'stability_pct': r['stability_pct'],\n457\t            'pattern_distribution': r['pattern_distribution'],\n458\t            'delta_mean': r['delta_mean'],\n459\t            'delta_std': r['delta_std'],\n460\t            'delta_ci95': r['delta_ci95'],\n461\t        }\n462\t\n463\t    jp = Path(args.output_dir) / f'bootstrap_results_{args.benchmark}.json'\n464\t    with open(jp, 'w') as f:\n465\t        json.dump(output, f, indent=2)\n466\t    print(f'\\n[INFO] Results saved: {jp}')\n467\t\n468\t\n469\tif __name__ == '__main__':\n470\t    main()\n471\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "6bb00594-81b8-4b07-adb7-657e791ee741",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/bootstrap_profile_stability.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Bootstrap item-level analysis for dose-response profile stability.\n\nAnalyses:\n1. Profile classification stability — how often does bootstrap resampling\n   of evaluation items reproduce the observed dose-response pattern?\n2. Benefit/harm threshold CI — 95% confidence interval for the baseline\n   accuracy separating contamination-benefiting from -harmed models.\n\nData layout:\n    {data_dir}/{model}_{dosage}[{suffix}]/correctness_matrix.json\n    or  .../item_responses.json\n\nUsage:\n    python bootstrap_profile_stability.py \\\n        --data-dir /root/autodl-tmp/exp001/eval_results_v2/ \\\n        --benchmark mmlu --n-bootstrap 10000\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nimport time\nfrom collections import Counter\nfrom pathlib import Path\n\nimport numpy as np\n\n# ── Registry ────────────────────────────────────────────────────────\n\nMODELS = {\n    'phi4':    'Phi-4 14.7B',\n    'qwen14b': 'Qwen2.5-14B',\n    'qwen7b':  'Qwen2.5-7B',\n    'gemma2':  'Gemma-2 9B',\n    'olmo2':   'OLMo-2 7B',\n}\n\nDOSAGES = ['d000', 'd005', 'd025', 'd050', 'd100']\nDOSE_LABELS = ['0%', '5%', '25%', '50%', '100%']\n\n# ── Data loading ────────────────────────────────────────────────────\n\ndef load_responses(data_dir, model, dosage, benchmark, suffix=''):\n    \"\"\"Load boolean correctness array for one model x dosage x benchmark.\n\n    Tries correctness_matrix.json first (compact), falls back to\n    item_responses.json.\n    \"\"\"\n    base = Path(data_dir) / f'{model}_{dosage}{suffix}'\n\n    # Fast path: correctness_matrix.json\n    cm = base / 'correctness_matrix.json'\n    if cm.exists():\n        with open(cm) as f:\n            data = json.load(f)\n        if benchmark in data:\n            return np.array(data[benchmark], dtype=np.int8)\n\n    # Fallback: item_responses.json\n    ir = base / 'item_responses.json'\n    if ir.exists():\n        with open(ir) as f:\n            items = json.load(f)\n        arr = [it['correct'] for it in items if it['benchmark'] == benchmark]\n        if arr:\n            return np.array(arr, dtype=np.int8)\n\n    return None\n\n\ndef load_all(data_dir, benchmark, suffix, model_keys):\n    \"\"\"Load data for all models, return dict of model -> {dosage -> array}.\"\"\"\n    data = {}\n    for model in model_keys:\n        arrays = {}\n        ok = True\n        for dose in DOSAGES:\n            arr = load_responses(data_dir, model, dose, benchmark, suffix)\n            if arr is None:\n                print(f'  [SKIP] {model}_{dose}{suffix}: not found')\n                ok = False\n                break\n            arrays[dose] = arr\n        if not ok:\n            continue\n        lens = {d: len(a) for d, a in arrays.items()}\n        if len(set(lens.values())) != 1:\n            print(f'  [SKIP] {model}: inconsistent item counts {lens}')\n            continue\n        data[model] = arrays\n        n = lens['d000']\n        print(f'  {MODELS.get(model, model):.<22s} {n:>6d} items')\n    return data\n\n# ── Pattern classification ──────────────────────────────────────────\n\nPATTERN_NAMES = ['Immune', 'U-collapse', 'V-recovery', 'Benefit', 'Benefit-sat']\n\n\ndef classify_vec(accs):\n    \"\"\"Vectorized pattern classification.\n\n    Args:\n        accs: dict dosage -> ndarray shape (B,), accuracy in percentage points.\n    Returns:\n        ndarray shape (B,) of pattern name strings.\n\n    Rules:\n        |delta| <= 1pp                          -> Immune\n        delta <= -5pp                           -> U-collapse\n        -5 < delta < -1, mid dips below both    -> V-recovery\n        -5 < delta < -1, no V dip               -> U-collapse\n        delta > 1, late gain saturates           -> Benefit-sat\n        delta > 1, otherwise                    -> Benefit\n    \"\"\"\n    B = len(accs['d000'])\n    delta = accs['d100'] - accs['d000']\n    mid = np.column_stack([accs['d005'], accs['d025'], accs['d050']])\n    mid_min = mid.min(axis=1)\n\n    pat = np.full(B, '', dtype='U15')\n\n    # Immune\n    immune = np.abs(delta) <= 1.0\n    pat[immune] = 'Immune'\n\n    # Negative delta\n    neg = delta < -1.0\n    severe = neg & (delta <= -5.0)\n    v_dip = neg & ~severe & (mid_min < accs['d100']) & (mid_min < accs['d000'])\n    pat[severe] = 'U-collapse'\n    pat[v_dip] = 'V-recovery'\n    pat[neg & ~severe & ~v_dip] = 'U-collapse'\n\n    # Positive delta\n    pos = delta > 1.0\n    first_half = accs['d025'] - accs['d000']\n    second_half = accs['d100'] - accs['d025']\n    late = accs['d100'] - accs['d050']\n    sat = pos & (((first_half > 0) & (second_half < first_half * 0.3)) | (late < 0.5))\n    pat[pos & ~sat] = 'Benefit'\n    pat[sat] = 'Benefit-sat'\n\n    return pat\n\n# ── Bootstrap ───────────────────────────────────────────────────────\n\ndef run_bootstrap(all_data, B, rng):\n    \"\"\"Paired item-level bootstrap across all models.\n\n    Same resampled item indices are used for every model and dosage,\n    preserving cross-model correlations (they evaluate the same items).\n    \"\"\"\n    models = list(all_data.keys())\n    n_items = len(all_data[models[0]]['d000'])\n    idx = rng.integers(0, n_items, size=(B, n_items))\n\n    results = {}\n    for model in models:\n        t0 = time.time()\n        boot_accs = {}\n        for dose in DOSAGES:\n            boot_accs[dose] = all_data[model][dose][idx].mean(axis=1) * 100.0\n\n        patterns = classify_vec(boot_accs)\n        deltas = boot_accs['d100'] - boot_accs['d000']\n\n        obs = {d: float(all_data[model][d].mean() * 100.0) for d in DOSAGES}\n        obs_pat = classify_vec({d: np.array([obs[d]]) for d in DOSAGES})[0]\n\n        counts = Counter(patterns)\n        stability = counts[obs_pat] / B * 100.0\n\n        results[model] = dict(\n            observed_pattern=str(obs_pat),\n            observed_delta=round(obs['d100'] - obs['d000'], 4),\n            observed_accs={d: round(v, 4) for d, v in obs.items()},\n            stability_pct=round(stability, 2),\n            pattern_distribution={\n                str(k): round(v / B * 100, 2) for k, v in counts.most_common()\n            },\n            delta_mean=round(float(np.mean(deltas)), 4),\n            delta_std=round(float(np.std(deltas)), 4),\n            delta_ci95=[\n                round(float(np.percentile(deltas, 2.5)), 4),\n                round(float(np.percentile(deltas, 97.5)), 4),\n            ],\n            _baselines=boot_accs['d000'],\n            _deltas=deltas,\n            _boot_accs=boot_accs,\n        )\n        dt = time.time() - t0\n        print(f'  {MODELS.get(model, model):.<22s} '\n              f'{obs_pat:<15s} stability={stability:5.1f}%  ({dt:.1f}s)')\n\n    return results\n\n# ── Threshold ───────────────────────────────────────────────────────\n\ndef compute_threshold(results, B):\n    \"\"\"Find 95% CI for baseline accuracy where delta crosses zero.\n\n    For each bootstrap sample, sort models by their resampled baseline,\n    then linearly interpolate the crossing from positive to negative delta.\n    \"\"\"\n    models = list(results.keys())\n    thresholds = []\n\n    for i in range(B):\n        pts = sorted(\n            (results[m]['_baselines'][i], results[m]['_deltas'][i])\n            for m in models\n        )\n        for j in range(len(pts) - 1):\n            b1, d1 = pts[j]\n            b2, d2 = pts[j + 1]\n            if d1 > 0 and d2 < 0:\n                thresholds.append(b1 + (b2 - b1) * d1 / (d1 - d2))\n                break\n            if d1 > 1.0 and abs(d2) <= 1.0:\n                thresholds.append((b1 + b2) / 2.0)\n                break\n\n    if not thresholds:\n        return None\n\n    arr = np.array(thresholds)\n    return dict(\n        mean=round(float(np.mean(arr)), 2),\n        median=round(float(np.median(arr)), 2),\n        ci95=[round(float(np.percentile(arr, 2.5)), 2),\n              round(float(np.percentile(arr, 97.5)), 2)],\n        std=round(float(np.std(arr)), 2),\n        n_valid=len(thresholds),\n        n_total=B,\n        _values=arr,\n    )\n\n# ── Plotting ────────────────────────────────────────────────────────\n\ndef make_plots(results, threshold, out_dir, benchmark):\n    try:\n        import matplotlib\n        matplotlib.use('Agg')\n        import matplotlib.pyplot as plt\n    except ImportError:\n        print('[WARN] matplotlib unavailable, skipping plots')\n        return\n\n    sorted_m = sorted(results, key=lambda m: results[m]['observed_accs']['d000'],\n                      reverse=True)\n    colors = {\n        'phi4': '#1f77b4', 'qwen14b': '#ff7f0e', 'qwen7b': '#2ca02c',\n        'gemma2': '#d62728', 'olmo2': '#9467bd',\n    }\n\n    # --- Figure 1: delta distributions ---\n    n_models = len(sorted_m)\n    ncols = min(3, n_models + 1)\n    nrows = (n_models + 1 + ncols - 1) // ncols\n    fig, axes = plt.subplots(nrows, ncols, figsize=(5.5 * ncols, 4.5 * nrows))\n    if nrows == 1 and ncols == 1:\n        axes = np.array([[axes]])\n    elif nrows == 1:\n        axes = axes[np.newaxis, :]\n    elif ncols == 1:\n        axes = axes[:, np.newaxis]\n    fig.suptitle(\n        f'Bootstrap Δ(d000→d100) Distributions — {benchmark.upper()} '\n        f'(B={len(results[sorted_m[0]][\"_deltas\"])})',\n        fontsize=13, fontweight='bold', y=1.01,\n    )\n\n    for i, model in enumerate(sorted_m):\n        ax = axes[i // ncols][i % ncols]\n        r = results[model]\n        ax.hist(r['_deltas'], bins=80, density=True, alpha=0.7,\n                color=colors.get(model, 'steelblue'), edgecolor='none')\n        ax.axvline(r['observed_delta'], color='crimson', lw=2,\n                   label=f'Obs: {r[\"observed_delta\"]:+.2f}pp')\n        ax.axvline(0, color='black', lw=0.8, ls='--')\n        for bnd in (-1, 1, -5):\n            ax.axvline(bnd, color='gray', lw=0.5, ls=':')\n        name = MODELS.get(model, model)\n        ax.set_title(f'{name}  (base {r[\"observed_accs\"][\"d000\"]:.1f}%)\\n'\n                     f'{r[\"observed_pattern\"]}  — {r[\"stability_pct\"]:.1f}% stable',\n                     fontsize=10)\n        ax.set_xlabel('Δ [pp]')\n        ax.legend(fontsize=8)\n\n    # Threshold subplot\n    idx_t = n_models\n    ax_t = axes[idx_t // ncols][idx_t % ncols]\n    if threshold and threshold['n_valid'] > 100:\n        ax_t.hist(threshold['_values'], bins=60, density=True, alpha=0.7,\n                  color='darkorange', edgecolor='none')\n        ax_t.axvline(threshold['median'], color='crimson', lw=2,\n                     label=f'Median: {threshold[\"median\"]:.1f}%')\n        ci = threshold['ci95']\n        ax_t.axvspan(ci[0], ci[1], alpha=0.2, color='crimson',\n                     label=f'95% CI: [{ci[0]:.1f}, {ci[1]:.1f}]')\n        ax_t.set_xlabel('Baseline accuracy (%)')\n        ax_t.set_title('Benefit/Harm Threshold', fontsize=10)\n        ax_t.legend(fontsize=8)\n    else:\n        msg = 'Threshold\\nnot estimable' if threshold is None \\\n              else f'Too few crossings\\n({threshold[\"n_valid\"]}/{threshold[\"n_total\"]})'\n        ax_t.text(0.5, 0.5, msg, transform=ax_t.transAxes,\n                  ha='center', va='center', fontsize=11)\n        ax_t.set_title('Benefit/Harm Threshold', fontsize=10)\n\n    # Hide unused axes\n    total_slots = nrows * ncols\n    for k in range(n_models + 1, total_slots):\n        axes[k // ncols][k % ncols].set_visible(False)\n\n    plt.tight_layout()\n    p1 = Path(out_dir) / f'bootstrap_delta_{benchmark}.png'\n    plt.savefig(p1, dpi=150, bbox_inches='tight')\n    plt.close()\n    print(f'[INFO] Plot saved: {p1}')\n\n    # --- Figure 2: dose-response with CI bands ---\n    fig2, ax2 = plt.subplots(figsize=(10, 7))\n    x = np.arange(len(DOSAGES))\n    for model in sorted_m:\n        r = results[model]\n        means = np.array([r['_boot_accs'][d].mean() for d in DOSAGES])\n        lo = np.array([np.percentile(r['_boot_accs'][d], 2.5) for d in DOSAGES])\n        hi = np.array([np.percentile(r['_boot_accs'][d], 97.5) for d in DOSAGES])\n        c = colors.get(model, 'gray')\n        name = MODELS.get(model, model)\n        ax2.plot(x, means, 'o-', color=c, lw=2,\n                 label=f'{name} ({r[\"observed_pattern\"]})')\n        ax2.fill_between(x, lo, hi, alpha=0.15, color=c)\n\n    ax2.set_xticks(x)\n    ax2.set_xticklabels(DOSE_LABELS)\n    ax2.set_xlabel('Contamination dose', fontsize=12)\n    ax2.set_ylabel('Accuracy (%)', fontsize=12)\n    ax2.set_title(f'Dose-Response with 95% Bootstrap CI — {benchmark.upper()}',\n                  fontsize=13, fontweight='bold')\n    ax2.legend(fontsize=9, loc='best')\n    ax2.grid(True, alpha=0.3)\n    plt.tight_layout()\n    p2 = Path(out_dir) / f'bootstrap_dose_response_{benchmark}.png'\n    plt.savefig(p2, dpi=150, bbox_inches='tight')\n    plt.close()\n    print(f'[INFO] Plot saved: {p2}')\n\n# ── Main ────────────────────────────────────────────────────────────\n\ndef main():\n    ap = argparse.ArgumentParser(\n        description='Bootstrap profile classification stability analysis')\n    ap.add_argument('--data-dir', required=True,\n                    help='Root dir with {model}_{dosage}/ subdirs')\n    ap.add_argument('--benchmark', default='mmlu',\n                    choices=['mmlu', 'arc_challenge'])\n    ap.add_argument('--n-bootstrap', type=int, default=10000)\n    ap.add_argument('--seed', type=int, default=42,\n                    help='RNG seed for bootstrap')\n    ap.add_argument('--seed-suffix', default='',\n                    help='Dir name suffix, e.g. \"_s123\"')\n    ap.add_argument('--output-dir', default='.',\n                    help='Where to write JSON + plots')\n    ap.add_argument('--models', nargs='*', default=None,\n                    help='Subset of model keys (default: all 5)')\n    ap.add_argument('--no-plot', action='store_true')\n    args = ap.parse_args()\n\n    os.makedirs(args.output_dir, exist_ok=True)\n    rng = np.random.default_rng(args.seed)\n    model_keys = args.models or list(MODELS.keys())\n\n    print(f'=== Bootstrap Profile Stability ===')\n    print(f'Benchmark: {args.benchmark}   B={args.n_bootstrap}   '\n          f'rng_seed={args.seed}')\n    print(f'Data: {args.data_dir}   suffix=\"{args.seed_suffix}\"')\n    print()\n\n    all_data = load_all(args.data_dir, args.benchmark, args.seed_suffix,\n                        model_keys)\n    if not all_data:\n        print('[ERROR] No valid data found')\n        sys.exit(1)\n\n    n_items_set = {len(all_data[m]['d000']) for m in all_data}\n    if len(n_items_set) == 1:\n        print(f'\\nPaired bootstrap on {n_items_set.pop()} shared items')\n    else:\n        print(f'\\n[WARN] Item counts differ: {n_items_set} — '\n              f'bootstrap uses smallest common count')\n\n    print()\n    t0 = time.time()\n    results = run_bootstrap(all_data, args.n_bootstrap, rng)\n    elapsed = time.time() - t0\n    print(f'\\nBootstrap done in {elapsed:.1f}s')\n\n    threshold = None\n    if len(results) >= 3:\n        threshold = compute_threshold(results, args.n_bootstrap)\n\n    # ── Summary table ──\n    print()\n    hdr = (f'{\"Model\":<18} {\"Baseline\":>8} {\"Delta\":>10} '\n           f'{\"Pattern\":<15} {\"Stability\":>10} {\"Delta 95% CI\":>22}')\n    sep = '-' * len(hdr)\n    print('=' * len(hdr))\n    print(hdr)\n    print(sep)\n    for m in sorted(results, key=lambda m: results[m]['observed_accs']['d000'],\n                    reverse=True):\n        r = results[m]\n        ci = r['delta_ci95']\n        print(f'{MODELS.get(m,m):<18} {r[\"observed_accs\"][\"d000\"]:>7.2f}% '\n              f'{r[\"observed_delta\"]:>+9.2f}pp '\n              f'{r[\"observed_pattern\"]:<15} {r[\"stability_pct\"]:>9.1f}% '\n              f'[{ci[0]:>+7.2f}, {ci[1]:>+7.2f}]')\n    print('=' * len(hdr))\n\n    if threshold:\n        ci = threshold['ci95']\n        print(f'\\nBenefit/Harm Threshold: {threshold[\"median\"]:.1f}% '\n              f'(95% CI: [{ci[0]:.1f}, {ci[1]:.1f}])')\n        print(f'  Valid crossings: {threshold[\"n_valid\"]}/{threshold[\"n_total\"]} '\n              f'({threshold[\"n_valid\"]/threshold[\"n_total\"]*100:.1f}%)')\n\n    # ── Plots ──\n    if not args.no_plot:\n        make_plots(results, threshold, args.output_dir, args.benchmark)\n\n    # ── JSON output ──\n    output = {\n        'config': {\n            'benchmark': args.benchmark,\n            'n_bootstrap': args.n_bootstrap,\n            'seed': args.seed,\n            'data_dir': str(args.data_dir),\n        },\n        'models': {},\n        'threshold': (\n            {k: v for k, v in threshold.items() if not k.startswith('_')}\n            if threshold else None\n        ),\n    }\n    for m, r in results.items():\n        output['models'][m] = {\n            'display_name': MODELS.get(m, m),\n            'observed_pattern': r['observed_pattern'],\n            'observed_delta_pp': r['observed_delta'],\n            'observed_accs': r['observed_accs'],\n            'stability_pct': r['stability_pct'],\n            'pattern_distribution': r['pattern_distribution'],\n            'delta_mean': r['delta_mean'],\n            'delta_std': r['delta_std'],\n            'delta_ci95': r['delta_ci95'],\n        }\n\n    jp = Path(args.output_dir) / f'bootstrap_results_{args.benchmark}.json'\n    with open(jp, 'w') as f:\n        json.dump(output, f, indent=2)\n    print(f'\\n[INFO] Results saved: {jp}')\n\n\nif __name__ == '__main__':\n    main()\n",
+                "numLines": 471,
+                "startLine": 1,
+                "totalLines": 471
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I understand the classification logic from `classify_vec` (lines 102-146). Let me analyze it:\n\n1. **Immune**: |delta| <= 1.0 pp\n2. **U-collapse**: delta <= -5.0 pp (severe negative), OR delta < -1.0 and no V-dip pattern\n3. **V-recovery**: -5.0 < delta < -1.0, and mid_min < d100 AND mid_min < d000 (V-shaped dip)\n4. **Benefit**: delta > 1.0, and not saturating\n\n\n5. **Benefit-sat**: delta > 1.0, and either the first half is positive with the second half dropping to less than 30% of it, or the late period falls below 0.5\n\nNow let me verify this against the test data, starting with Phi-4 where d000=76.44, d005=76.56, d025=76.50, d050=76.02, d100=76.27, giving a delta of -0.17 which classifies as Immune.\n\nFor Qwen-14B, the scores drop significantly from 69.44 to 60.07, yielding a delta of -9.37 that triggers U-collapse. Qwen-7B shows a smaller decline of -1.78, and checking the middle values against the endpoints confirms it falls into the negative non-severe category.\n\nNow looking at Gemma-2, which has a positive delta of 3.76 as scores climb from 61.86 to 65.62. I'm checking whether the improvement follows a saturation pattern by comparing the first and second halves of the progression.\n\nFor OLMo-2, I'm working through similar calculations with a delta of 3.21, examining how the gains distribute across the quantile steps.\n\nNow that all five models check out, I'm ready to generate the three files needed: a standalone Python classifier module, LaTeX pseudocode documentation, and a YAML configuration file with the classification criteria. After writing these, I'll run a verification against the test data.\n\nFor the Python module, I need to build a clean function that classifies a single sample and returns the pattern type along with a confidence score and reasoning. The confidence metric should capture how decisively the sample falls into each category—measuring the distance from key decision boundaries like the delta threshold for Immune patterns or the saturation margin for Benefit-sat cases. I'm still refining how to best quantify this robustness across all five pattern types.\n\nWriting the classifier function...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "dabe2a1a-4c23-41da-aa91-7c1c1c4c16a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P6ayd39Y7TPfEx7aEA73Q9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6993,
+                "cache_read_input_tokens": 26192,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6993
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Classification logic is in `classify_vec` (lines 102-146). I've verified all 5 test cases match. Now I'll create the three output files and run validation."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "bf1218df-49a8-40ae-b8f6-f1becaaf659d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P6ayd39Y7TPfEx7aEA73Q9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6993,
+                "cache_read_input_tokens": 26192,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6993
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GiYyUKARAz1Z7zRidJw3qe",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/profile_classifier.py",
+                "content": "\"\"\"Dose-response profile classifier for contamination calibration.\n\nClassifies a model's accuracy trajectory across contamination dosages\ninto one of five canonical patterns: Immune, U-collapse, V-recovery,\nBenefit, or Benefit-saturation.\n\"\"\"\n\nfrom __future__ import annotations\n\nDOSAGES = (\"d000\", \"d005\", \"d025\", \"d050\", \"d100\")\nPATTERNS = (\"Immune\", \"U-collapse\", \"V-recovery\", \"Benefit\", \"Benefit-sat\")\n\n\ndef classify_profile(\n    accuracies: dict[str, float],\n    *,\n    noise_threshold: float = 1.0,\n    severe_threshold: float = 5.0,\n    saturation_ratio: float = 0.3,\n    late_gain_floor: float = 0.5,\n) -> dict:\n    \"\"\"Classify a dose-response accuracy profile into a canonical pattern.\n\n    Args:\n        accuracies: Mapping from dosage key to accuracy (percentage points),\n            e.g. {\"d000\": 76.44, \"d005\": 76.56, \"d025\": 76.50,\n                   \"d050\": 76.02, \"d100\": 76.27}.\n        noise_threshold: Maximum |delta| (pp) to be considered noise (Immune).\n        severe_threshold: Minimum |delta| (pp) for severe degradation (U-collapse).\n        saturation_ratio: If second-half gain < first-half gain * ratio,\n            the benefit is saturating.\n        late_gain_floor: If d100 - d050 < this value, late gain has stalled.\n\n    Returns:\n        {\"pattern\": str, \"confidence\": float, \"delta\": float, \"reasoning\": str}\n    \"\"\"\n    for d in DOSAGES:\n        if d not in accuracies:\n            raise ValueError(f\"Missing dosage key: {d}\")\n\n    a = {d: float(accuracies[d]) for d in DOSAGES}\n    delta = a[\"d100\"] - a[\"d000\"]\n    mid_vals = [a[\"d005\"], a[\"d025\"], a[\"d050\"]]\n    mid_min = min(mid_vals)\n\n    # ── Decision tree ────────────────────────────────────────────────\n\n    if abs(delta) <= noise_threshold:\n        margin = noise_threshold - abs(delta)\n        return _result(\n            \"Immune\", delta, margin, noise_threshold,\n            f\"|delta|={abs(delta):.2f}pp <= {noise_threshold}pp noise band\"\n        )\n\n    if delta < -noise_threshold:\n        if delta <= -severe_threshold:\n            margin = abs(delta) - severe_threshold\n            return _result(\n                \"U-collapse\", delta, margin, severe_threshold,\n                f\"delta={delta:+.2f}pp <= -{severe_threshold}pp (severe monotonic decline)\"\n            )\n\n        v_dip = mid_min < a[\"d100\"] and mid_min < a[\"d000\"]\n        if v_dip:\n            recovery = a[\"d100\"] - mid_min\n            margin = min(a[\"d000\"] - mid_min, a[\"d100\"] - mid_min)\n            return _result(\n                \"V-recovery\", delta, margin, severe_threshold,\n                f\"delta={delta:+.2f}pp, mid-dosage trough at {mid_min:.2f}% \"\n                f\"with {recovery:+.2f}pp partial recovery\"\n            )\n\n        margin = abs(delta) - noise_threshold\n        return _result(\n            \"U-collapse\", delta, margin, severe_threshold,\n            f\"delta={delta:+.2f}pp, moderate decline without V-shaped recovery\"\n        )\n\n    # delta > noise_threshold (positive)\n    first_half = a[\"d025\"] - a[\"d000\"]\n    second_half = a[\"d100\"] - a[\"d025\"]\n    late_gain = a[\"d100\"] - a[\"d050\"]\n\n    saturating = (\n        (first_half > 0 and second_half < first_half * saturation_ratio)\n        or late_gain < late_gain_floor\n    )\n\n    if saturating:\n        if late_gain < late_gain_floor:\n            margin = late_gain_floor - late_gain\n            reason = (f\"delta={delta:+.2f}pp (positive), late gain \"\n                      f\"d050->d100={late_gain:+.2f}pp < {late_gain_floor}pp floor\")\n        else:\n            margin = first_half * saturation_ratio - second_half\n            reason = (f\"delta={delta:+.2f}pp (positive), second-half gain \"\n                      f\"({second_half:.2f}) < {saturation_ratio:.0%} of \"\n                      f\"first-half ({first_half:.2f})\")\n        return _result(\"Benefit-sat\", delta, margin, noise_threshold, reason)\n\n    margin = delta - noise_threshold\n    return _result(\n        \"Benefit\", delta, margin, noise_threshold,\n        f\"delta={delta:+.2f}pp, monotonic improvement without saturation\"\n    )\n\n\ndef _result(\n    pattern: str, delta: float, margin: float, scale: float, reasoning: str\n) -> dict:\n    confidence = min(1.0, 0.5 + 0.5 * margin / scale)\n    return {\n        \"pattern\": pattern,\n        \"confidence\": round(confidence, 3),\n        \"delta\": round(delta, 4),\n        \"reasoning\": reasoning,\n    }\n\n\ndef classify_profiles_batch(\n    profiles: dict[str, dict[str, float]], **kwargs\n) -> dict[str, dict]:\n    \"\"\"Classify multiple profiles. Keys are model names.\"\"\"\n    return {name: classify_profile(accs, **kwargs) for name, accs in profiles.items()}\n\n\n# ── CLI validation ───────────────────────────────────────────────────\n\nif __name__ == \"__main__\":\n    test_cases = {\n        \"Phi-4 (expect Immune)\": {\n            \"accs\": {\"d000\": 76.44, \"d005\": 76.56, \"d025\": 76.50,\n                     \"d050\": 76.02, \"d100\": 76.27},\n            \"expected\": \"Immune\",\n        },\n        \"Qwen-14B (expect U-collapse)\": {\n            \"accs\": {\"d000\": 69.44, \"d005\": 68.36, \"d025\": 64.07,\n                     \"d050\": 59.41, \"d100\": 60.07},\n            \"expected\": \"U-collapse\",\n        },\n        \"Qwen-7B (expect V-recovery)\": {\n            \"accs\": {\"d000\": 66.11, \"d005\": 65.04, \"d025\": 63.01,\n                     \"d050\": 63.56, \"d100\": 64.33},\n            \"expected\": \"V-recovery\",\n        },\n        \"Gemma-2 (expect Benefit)\": {\n            \"accs\": {\"d000\": 61.86, \"d005\": 62.89, \"d025\": 63.54,\n                     \"d050\": 64.71, \"d100\": 65.62},\n            \"expected\": \"Benefit\",\n        },\n        \"OLMo-2 (expect Benefit-sat)\": {\n            \"accs\": {\"d000\": 53.79, \"d005\": 55.08, \"d025\": 56.19,\n                     \"d050\": 57.00, \"d100\": 57.00},\n            \"expected\": \"Benefit-sat\",\n        },\n    }\n\n    all_pass = True\n    for name, tc in test_cases.items():\n        result = classify_profile(tc[\"accs\"])\n        ok = result[\"pattern\"] == tc[\"expected\"]\n        mark = \"PASS\" if ok else \"FAIL\"\n        print(f\"[{mark}] {name}\")\n        print(f\"       -> {result['pattern']}  (conf={result['confidence']:.3f})\")\n        print(f\"       {result['reasoning']}\")\n        if not ok:\n            all_pass = False\n\n    print(f\"\\n{'All tests passed.' if all_pass else 'SOME TESTS FAILED.'}\")\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "e06628eb-db91-4c1f-baba-be7c4876495d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P6ayd39Y7TPfEx7aEA73Q9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6993,
+                "cache_read_input_tokens": 26192,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6993
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T17:42:38.520Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GiYyUKARAz1Z7zRidJw3qe",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/profile_classifier.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "17a3aa12-0e6e-4df2-a389-9c034ee5de89",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/profile_classifier.py",
+              "content": "\"\"\"Dose-response profile classifier for contamination calibration.\n\nClassifies a model's accuracy trajectory across contamination dosages\ninto one of five canonical patterns: Immune, U-collapse, V-recovery,\nBenefit, or Benefit-saturation.\n\"\"\"\n\nfrom __future__ import annotations\n\nDOSAGES = (\"d000\", \"d005\", \"d025\", \"d050\", \"d100\")\nPATTERNS = (\"Immune\", \"U-collapse\", \"V-recovery\", \"Benefit\", \"Benefit-sat\")\n\n\ndef classify_profile(\n    accuracies: dict[str, float],\n    *,\n    noise_threshold: float = 1.0,\n    severe_threshold: float = 5.0,\n    saturation_ratio: float = 0.3,\n    late_gain_floor: float = 0.5,\n) -> dict:\n    \"\"\"Classify a dose-response accuracy profile into a canonical pattern.\n\n    Args:\n        accuracies: Mapping from dosage key to accuracy (percentage points),\n            e.g. {\"d000\": 76.44, \"d005\": 76.56, \"d025\": 76.50,\n                   \"d050\": 76.02, \"d100\": 76.27}.\n        noise_threshold: Maximum |delta| (pp) to be considered noise (Immune).\n        severe_threshold: Minimum |delta| (pp) for severe degradation (U-collapse).\n        saturation_ratio: If second-half gain < first-half gain * ratio,\n            the benefit is saturating.\n        late_gain_floor: If d100 - d050 < this value, late gain has stalled.\n\n    Returns:\n        {\"pattern\": str, \"confidence\": float, \"delta\": float, \"reasoning\": str}\n    \"\"\"\n    for d in DOSAGES:\n        if d not in accuracies:\n            raise ValueError(f\"Missing dosage key: {d}\")\n\n    a = {d: float(accuracies[d]) for d in DOSAGES}\n    delta = a[\"d100\"] - a[\"d000\"]\n    mid_vals = [a[\"d005\"], a[\"d025\"], a[\"d050\"]]\n    mid_min = min(mid_vals)\n\n    # ── Decision tree ────────────────────────────────────────────────\n\n    if abs(delta) <= noise_threshold:\n        margin = noise_threshold - abs(delta)\n        return _result(\n            \"Immune\", delta, margin, noise_threshold,\n            f\"|delta|={abs(delta):.2f}pp <= {noise_threshold}pp noise band\"\n        )\n\n    if delta < -noise_threshold:\n        if delta <= -severe_threshold:\n            margin = abs(delta) - severe_threshold\n            return _result(\n                \"U-collapse\", delta, margin, severe_threshold,\n                f\"delta={delta:+.2f}pp <= -{severe_threshold}pp (severe monotonic decline)\"\n            )\n\n        v_dip = mid_min < a[\"d100\"] and mid_min < a[\"d000\"]\n        if v_dip:\n            recovery = a[\"d100\"] - mid_min\n            margin = min(a[\"d000\"] - mid_min, a[\"d100\"] - mid_min)\n            return _result(\n                \"V-recovery\", delta, margin, severe_threshold,\n                f\"delta={delta:+.2f}pp, mid-dosage trough at {mid_min:.2f}% \"\n                f\"with {recovery:+.2f}pp partial recovery\"\n            )\n\n        margin = abs(delta) - noise_threshold\n        return _result(\n            \"U-collapse\", delta, margin, severe_threshold,\n            f\"delta={delta:+.2f}pp, moderate decline without V-shaped recovery\"\n        )\n\n    # delta > noise_threshold (positive)\n    first_half = a[\"d025\"] - a[\"d000\"]\n    second_half = a[\"d100\"] - a[\"d025\"]\n    late_gain = a[\"d100\"] - a[\"d050\"]\n\n    saturating = (\n        (first_half > 0 and second_half < first_half * saturation_ratio)\n        or late_gain < late_gain_floor\n    )\n\n    if saturating:\n        if late_gain < late_gain_floor:\n            margin = late_gain_floor - late_gain\n            reason = (f\"delta={delta:+.2f}pp (positive), late gain \"\n                      f\"d050->d100={late_gain:+.2f}pp < {late_gain_floor}pp floor\")\n        else:\n            margin = first_half * saturation_ratio - second_half\n            reason = (f\"delta={delta:+.2f}pp (positive), second-half gain \"\n                      f\"({second_half:.2f}) < {saturation_ratio:.0%} of \"\n                      f\"first-half ({first_half:.2f})\")\n        return _result(\"Benefit-sat\", delta, margin, noise_threshold, reason)\n\n    margin = delta - noise_threshold\n    return _result(\n        \"Benefit\", delta, margin, noise_threshold,\n        f\"delta={delta:+.2f}pp, monotonic improvement without saturation\"\n    )\n\n\ndef _result(\n    pattern: str, delta: float, margin: float, scale: float, reasoning: str\n) -> dict:\n    confidence = min(1.0, 0.5 + 0.5 * margin / scale)\n    return {\n        \"pattern\": pattern,\n        \"confidence\": round(confidence, 3),\n        \"delta\": round(delta, 4),\n        \"reasoning\": reasoning,\n    }\n\n\ndef classify_profiles_batch(\n    profiles: dict[str, dict[str, float]], **kwargs\n) -> dict[str, dict]:\n    \"\"\"Classify multiple profiles. Keys are model names.\"\"\"\n    return {name: classify_profile(accs, **kwargs) for name, accs in profiles.items()}\n\n\n# ── CLI validation ───────────────────────────────────────────────────\n\nif __name__ == \"__main__\":\n    test_cases = {\n        \"Phi-4 (expect Immune)\": {\n            \"accs\": {\"d000\": 76.44, \"d005\": 76.56, \"d025\": 76.50,\n                     \"d050\": 76.02, \"d100\": 76.27},\n            \"expected\": \"Immune\",\n        },\n        \"Qwen-14B (expect U-collapse)\": {\n            \"accs\": {\"d000\": 69.44, \"d005\": 68.36, \"d025\": 64.07,\n                     \"d050\": 59.41, \"d100\": 60.07},\n            \"expected\": \"U-collapse\",\n        },\n        \"Qwen-7B (expect V-recovery)\": {\n            \"accs\": {\"d000\": 66.11, \"d005\": 65.04, \"d025\": 63.01,\n                     \"d050\": 63.56, \"d100\": 64.33},\n            \"expected\": \"V-recovery\",\n        },\n        \"Gemma-2 (expect Benefit)\": {\n            \"accs\": {\"d000\": 61.86, \"d005\": 62.89, \"d025\": 63.54,\n                     \"d050\": 64.71, \"d100\": 65.62},\n            \"expected\": \"Benefit\",\n        },\n        \"OLMo-2 (expect Benefit-sat)\": {\n            \"accs\": {\"d000\": 53.79, \"d005\": 55.08, \"d025\": 56.19,\n                     \"d050\": 57.00, \"d100\": 57.00},\n            \"expected\": \"Benefit-sat\",\n        },\n    }\n\n    all_pass = True\n    for name, tc in test_cases.items():\n        result = classify_profile(tc[\"accs\"])\n        ok = result[\"pattern\"] == tc[\"expected\"]\n        mark = \"PASS\" if ok else \"FAIL\"\n        print(f\"[{mark}] {name}\")\n        print(f\"       -> {result['pattern']}  (conf={result['confidence']:.3f})\")\n        print(f\"       {result['reasoning']}\")\n        if not ok:\n            all_pass = False\n\n    print(f\"\\n{'All tests passed.' if all_pass else 'SOME TESTS FAILED.'}\")\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YVsBS2dBDDjnH2jrwYw9GN",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/algorithm1_pseudocode.tex",
+                "content": "% Algorithm 1: Dose-Response Profile Classification\n% Usage: \\input{algorithm1_pseudocode.tex}\n% Requires: \\usepackage{algorithm,algorithmic} or algpseudocode\n\n\\begin{algorithm}[t]\n\\caption{Dose-Response Profile Classification}\n\\label{alg:profile-classification}\n\\begin{algorithmic}[1]\n\\REQUIRE Accuracy vector $\\mathbf{a} = (a_{0}, a_{5}, a_{25}, a_{50}, a_{100})$ at dosages $d \\in \\{0, 5, 25, 50, 100\\}\\%$\n\\REQUIRE Noise threshold $\\tau = 1$ pp, severity threshold $\\sigma = 5$ pp\n\\REQUIRE Saturation ratio $\\rho = 0.3$, late-gain floor $\\lambda = 0.5$ pp\n\\ENSURE Pattern $p \\in \\{\\textsc{Immune}, \\textsc{U-collapse}, \\textsc{V-recovery}, \\textsc{Benefit}, \\textsc{Benefit-sat}\\}$\n\\STATE $\\Delta \\gets a_{100} - a_{0}$ \\COMMENT{end-to-end accuracy shift}\n\\STATE $m^* \\gets \\min(a_{5},\\, a_{25},\\, a_{50})$ \\COMMENT{mid-dosage minimum}\n\\IF{$|\\Delta| \\le \\tau$}\n    \\RETURN \\textsc{Immune} \\COMMENT{fluctuation within noise band}\n\\ELSIF{$\\Delta < -\\tau$}\n    \\IF{$\\Delta \\le -\\sigma$}\n        \\RETURN \\textsc{U-collapse} \\COMMENT{severe monotonic degradation}\n    \\ELSIF{$m^* < a_{0}$ \\AND $m^* < a_{100}$}\n        \\RETURN \\textsc{V-recovery} \\COMMENT{mid-dosage trough with partial recovery}\n    \\ELSE\n        \\RETURN \\textsc{U-collapse} \\COMMENT{moderate decline, no V-shape}\n    \\ENDIF\n\\ELSE \\COMMENT{$\\Delta > \\tau$}\n    \\STATE $g_1 \\gets a_{25} - a_{0}$ \\COMMENT{first-half gain}\n    \\STATE $g_2 \\gets a_{100} - a_{25}$ \\COMMENT{second-half gain}\n    \\STATE $\\ell \\gets a_{100} - a_{50}$ \\COMMENT{late gain}\n    \\IF{$(g_1 > 0 \\;\\AND\\; g_2 < \\rho \\cdot g_1)$ \\OR $\\ell < \\lambda$}\n        \\RETURN \\textsc{Benefit-sat} \\COMMENT{gain decelerates at high dosage}\n    \\ELSE\n        \\RETURN \\textsc{Benefit} \\COMMENT{sustained improvement}\n    \\ENDIF\n\\ENDIF\n\\end{algorithmic}\n\\end{algorithm}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "589b29d3-9404-42b0-b0ab-b3d0cc60f83b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PrPt2LcMprwU8CMJTpUkd9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3954,
+                "cache_read_input_tokens": 33185,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3954
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T17:42:51.773Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YVsBS2dBDDjnH2jrwYw9GN",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/algorithm1_pseudocode.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "1f9bd3f9-d0cc-4fbf-8671-d1a61038860e",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/algorithm1_pseudocode.tex",
+              "content": "% Algorithm 1: Dose-Response Profile Classification\n% Usage: \\input{algorithm1_pseudocode.tex}\n% Requires: \\usepackage{algorithm,algorithmic} or algpseudocode\n\n\\begin{algorithm}[t]\n\\caption{Dose-Response Profile Classification}\n\\label{alg:profile-classification}\n\\begin{algorithmic}[1]\n\\REQUIRE Accuracy vector $\\mathbf{a} = (a_{0}, a_{5}, a_{25}, a_{50}, a_{100})$ at dosages $d \\in \\{0, 5, 25, 50, 100\\}\\%$\n\\REQUIRE Noise threshold $\\tau = 1$ pp, severity threshold $\\sigma = 5$ pp\n\\REQUIRE Saturation ratio $\\rho = 0.3$, late-gain floor $\\lambda = 0.5$ pp\n\\ENSURE Pattern $p \\in \\{\\textsc{Immune}, \\textsc{U-collapse}, \\textsc{V-recovery}, \\textsc{Benefit}, \\textsc{Benefit-sat}\\}$\n\\STATE $\\Delta \\gets a_{100} - a_{0}$ \\COMMENT{end-to-end accuracy shift}\n\\STATE $m^* \\gets \\min(a_{5},\\, a_{25},\\, a_{50})$ \\COMMENT{mid-dosage minimum}\n\\IF{$|\\Delta| \\le \\tau$}\n    \\RETURN \\textsc{Immune} \\COMMENT{fluctuation within noise band}\n\\ELSIF{$\\Delta < -\\tau$}\n    \\IF{$\\Delta \\le -\\sigma$}\n        \\RETURN \\textsc{U-collapse} \\COMMENT{severe monotonic degradation}\n    \\ELSIF{$m^* < a_{0}$ \\AND $m^* < a_{100}$}\n        \\RETURN \\textsc{V-recovery} \\COMMENT{mid-dosage trough with partial recovery}\n    \\ELSE\n        \\RETURN \\textsc{U-collapse} \\COMMENT{moderate decline, no V-shape}\n    \\ENDIF\n\\ELSE \\COMMENT{$\\Delta > \\tau$}\n    \\STATE $g_1 \\gets a_{25} - a_{0}$ \\COMMENT{first-half gain}\n    \\STATE $g_2 \\gets a_{100} - a_{25}$ \\COMMENT{second-half gain}\n    \\STATE $\\ell \\gets a_{100} - a_{50}$ \\COMMENT{late gain}\n    \\IF{$(g_1 > 0 \\;\\AND\\; g_2 < \\rho \\cdot g_1)$ \\OR $\\ell < \\lambda$}\n        \\RETURN \\textsc{Benefit-sat} \\COMMENT{gain decelerates at high dosage}\n    \\ELSE\n        \\RETURN \\textsc{Benefit} \\COMMENT{sustained improvement}\n    \\ENDIF\n\\ENDIF\n\\end{algorithmic}\n\\end{algorithm}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YHDt4vshBPKLKB7V9SFs6P",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/classification_criteria.yaml",
+                "content": "profile_classification:\n  description: >\n    Deterministic decision tree for classifying a model's dose-response\n    accuracy trajectory into one of five canonical contamination patterns.\n\n  input:\n    accuracies:\n      type: dict[str, float]\n      keys: [d000, d005, d025, d050, d100]\n      unit: percentage points\n\n  derived_features:\n    delta: \"a[d100] - a[d000]\"\n    mid_min: \"min(a[d005], a[d025], a[d050])\"\n    first_half_gain: \"a[d025] - a[d000]\"\n    second_half_gain: \"a[d100] - a[d025]\"\n    late_gain: \"a[d100] - a[d050]\"\n\n  thresholds:\n    noise: {symbol: tau, default: 1.0, unit: pp}\n    severe: {symbol: sigma, default: 5.0, unit: pp}\n    saturation_ratio: {symbol: rho, default: 0.3, unit: ratio}\n    late_gain_floor: {symbol: lambda, default: 0.5, unit: pp}\n\n  patterns:\n    Immune:\n      condition: \"|delta| <= tau\"\n      interpretation: >\n        Accuracy fluctuates within the noise band across all dosages.\n        The model is robust to contamination at any level.\n\n    U-collapse:\n      condition: >\n        (delta <= -sigma) OR\n        (-sigma < delta < -tau AND NOT v_dip)\n      where:\n        v_dip: \"mid_min < a[d000] AND mid_min < a[d100]\"\n      interpretation: >\n        Accuracy degrades monotonically (or nearly so) with increasing\n        contamination. Severe form: >= 5pp drop. Moderate form: 1-5pp\n        drop without mid-dosage recovery.\n\n    V-recovery:\n      condition: \"-sigma < delta < -tau AND mid_min < a[d000] AND mid_min < a[d100]\"\n      interpretation: >\n        Accuracy drops at intermediate dosages but partially recovers\n        at full contamination, producing a V-shaped trajectory. Net\n        effect is still negative.\n\n    Benefit:\n      condition: \"delta > tau AND NOT saturating\"\n      where:\n        saturating: \"(first_half_gain > 0 AND second_half_gain < rho * first_half_gain) OR late_gain < lambda\"\n      interpretation: >\n        Accuracy improves monotonically with contamination dosage.\n        Gains continue through the highest dosage without deceleration.\n\n    Benefit-sat:\n      condition: \"delta > tau AND saturating\"\n      interpretation: >\n        Accuracy improves at low dosages but gains decelerate or plateau\n        at high dosages. Either the second-half gain is < 30% of the\n        first-half gain, or the d050-to-d100 gain is < 0.5pp.\n\n  decision_order:\n    - check: \"|delta| <= tau\"\n      assign: Immune\n    - check: \"delta <= -sigma\"\n      assign: U-collapse\n    - check: \"delta < -tau AND v_dip\"\n      assign: V-recovery\n    - check: \"delta < -tau\"\n      assign: U-collapse\n    - check: \"delta > tau AND saturating\"\n      assign: Benefit-sat\n    - check: \"delta > tau\"\n      assign: Benefit\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "c61ecaee-50ed-465d-a7be-e930fda49db5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0176aQJrERtg4bLTCpCcobPp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 904,
+                "cache_read_input_tokens": 37139,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 904
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T17:43:08.448Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YHDt4vshBPKLKB7V9SFs6P",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/classification_criteria.yaml"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "04832de9-8281-4352-8189-7b3e14382c44",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/classification_criteria.yaml",
+              "content": "profile_classification:\n  description: >\n    Deterministic decision tree for classifying a model's dose-response\n    accuracy trajectory into one of five canonical contamination patterns.\n\n  input:\n    accuracies:\n      type: dict[str, float]\n      keys: [d000, d005, d025, d050, d100]\n      unit: percentage points\n\n  derived_features:\n    delta: \"a[d100] - a[d000]\"\n    mid_min: \"min(a[d005], a[d025], a[d050])\"\n    first_half_gain: \"a[d025] - a[d000]\"\n    second_half_gain: \"a[d100] - a[d025]\"\n    late_gain: \"a[d100] - a[d050]\"\n\n  thresholds:\n    noise: {symbol: tau, default: 1.0, unit: pp}\n    severe: {symbol: sigma, default: 5.0, unit: pp}\n    saturation_ratio: {symbol: rho, default: 0.3, unit: ratio}\n    late_gain_floor: {symbol: lambda, default: 0.5, unit: pp}\n\n  patterns:\n    Immune:\n      condition: \"|delta| <= tau\"\n      interpretation: >\n        Accuracy fluctuates within the noise band across all dosages.\n        The model is robust to contamination at any level.\n\n    U-collapse:\n      condition: >\n        (delta <= -sigma) OR\n        (-sigma < delta < -tau AND NOT v_dip)\n      where:\n        v_dip: \"mid_min < a[d000] AND mid_min < a[d100]\"\n      interpretation: >\n        Accuracy degrades monotonically (or nearly so) with increasing\n        contamination. Severe form: >= 5pp drop. Moderate form: 1-5pp\n        drop without mid-dosage recovery.\n\n    V-recovery:\n      condition: \"-sigma < delta < -tau AND mid_min < a[d000] AND mid_min < a[d100]\"\n      interpretation: >\n        Accuracy drops at intermediate dosages but partially recovers\n        at full contamination, producing a V-shaped trajectory. Net\n        effect is still negative.\n\n    Benefit:\n      condition: \"delta > tau AND NOT saturating\"\n      where:\n        saturating: \"(first_half_gain > 0 AND second_half_gain < rho * first_half_gain) OR late_gain < lambda\"\n      interpretation: >\n        Accuracy improves monotonically with contamination dosage.\n        Gains continue through the highest dosage without deceleration.\n\n    Benefit-sat:\n      condition: \"delta > tau AND saturating\"\n      interpretation: >\n        Accuracy improves at low dosages but gains decelerate or plateau\n        at high dosages. Either the second-half gain is < 30% of the\n        first-half gain, or the d050-to-d100 gain is < 0.5pp.\n\n  decision_order:\n    - check: \"|delta| <= tau\"\n      assign: Immune\n    - check: \"delta <= -sigma\"\n      assign: U-collapse\n    - check: \"delta < -tau AND v_dip\"\n      assign: V-recovery\n    - check: \"delta < -tau\"\n      assign: U-collapse\n    - check: \"delta > tau AND saturating\"\n      assign: Benefit-sat\n    - check: \"delta > tau\"\n      assign: Benefit\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now running the validation."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "f179a6bf-88f3-4a92-892a-e31bfcca266c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ttd2bDnMLddHpMBAytobmE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1008,
+                "cache_read_input_tokens": 38043,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1008
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015gdeXtu6ZA1a83K13Wtf9X",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts && python3 profile_classifier.py",
+                "description": "Run profile classifier validation on 5 test cases"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "fb371b6e-ffc7-48e8-bf8e-f9bfb8cfa0a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ttd2bDnMLddHpMBAytobmE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1008,
+                "cache_read_input_tokens": 38043,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1008
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T17:43:12.037Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015gdeXtu6ZA1a83K13Wtf9X",
+              "type": "tool_result",
+              "content": "[PASS] Phi-4 (expect Immune)\n       -> Immune  (conf=0.915)\n       |delta|=0.17pp <= 1.0pp noise band\n[PASS] Qwen-14B (expect U-collapse)\n       -> U-collapse  (conf=0.937)\n       delta=-9.37pp <= -5.0pp (severe monotonic decline)\n[PASS] Qwen-7B (expect V-recovery)\n       -> V-recovery  (conf=0.632)\n       delta=-1.78pp, mid-dosage trough at 63.01% with +1.32pp partial recovery\n[PASS] Gemma-2 (expect Benefit)\n       -> Benefit  (conf=1.000)\n       delta=+3.76pp, monotonic improvement without saturation\n[PASS] OLMo-2 (expect Benefit-sat)\n       -> Benefit-sat  (conf=0.750)\n       delta=+3.21pp (positive), late gain d050->d100=+0.00pp < 0.5pp floor\n\nAll tests passed.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "f9647739-d162-4613-a2a0-da9b70a67d94",
+            "tool_use_result": {
+              "stdout": "[PASS] Phi-4 (expect Immune)\n       -> Immune  (conf=0.915)\n       |delta|=0.17pp <= 1.0pp noise band\n[PASS] Qwen-14B (expect U-collapse)\n       -> U-collapse  (conf=0.937)\n       delta=-9.37pp <= -5.0pp (severe monotonic decline)\n[PASS] Qwen-7B (expect V-recovery)\n       -> V-recovery  (conf=0.632)\n       delta=-1.78pp, mid-dosage trough at 63.01% with +1.32pp partial recovery\n[PASS] Gemma-2 (expect Benefit)\n       -> Benefit  (conf=1.000)\n       delta=+3.76pp, monotonic improvement without saturation\n[PASS] OLMo-2 (expect Benefit-sat)\n       -> Benefit-sat  (conf=0.750)\n       delta=+3.21pp (positive), late gain d050->d100=+0.00pp < 0.5pp floor\n\nAll tests passed.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now registering the 3 artifacts."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "715d3d38-8c69-4efa-8fed-9d0e15629c9a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017b3g9JQ2152yT66PRDhtj6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 408,
+                "cache_read_input_tokens": 39051,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 408
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F3cdWrc1G9RXAMcCJw3N33",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "5bc1d87f-393d-4387-8033-be8738c54eb3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017b3g9JQ2152yT66PRDhtj6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 408,
+                "cache_read_input_tokens": 39051,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 408
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T17:43:14.994Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01F3cdWrc1G9RXAMcCJw3N33",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "e9c31340-9d12-4cef-8dad-8a31cfae20e0",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 82
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TgaCiXTsdHxxbnf2Zt8cci",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "profile_classifier",
+                "type": "data",
+                "description": "Standalone dose-response profile classifier module — deterministic decision tree classifying accuracy trajectories into 5 canonical patterns (Immune, U-collapse, V-recovery, Benefit, Benefit-sat)",
+                "project": "contamcal-irt-calibration",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/profile_classifier.py",
+                "tags": [
+                  "profile-classification",
+                  "algorithm",
+                  "paper"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "59a91e24-b2cc-4790-be77-a260fde59eec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JoiXcPK2swXsvVvAQChMGE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 824,
+                "cache_read_input_tokens": 39459,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 824
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T17:43:20.166Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TgaCiXTsdHxxbnf2Zt8cci",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_af3288\\\", \\\"name\\\": \\\"profile_classifier\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Standalone dose-response profile classifier module — deterministic decision tree classifying accuracy trajectories into 5 canonical patterns (Immune, U-collapse, V-recovery, Benefit, Benefit-sat)\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/data/profile_classifier.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T17:43:19.953430+00:00\\\", \\\"tags\\\": [\\\"profile-classification\\\", \\\"algorithm\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "4b030fcf-9204-43f1-941c-e42ac6fe4f03",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_af3288\\\", \\\"name\\\": \\\"profile_classifier\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Standalone dose-response profile classifier module — deterministic decision tree classifying accuracy trajectories into 5 canonical patterns (Immune, U-collapse, V-recovery, Benefit, Benefit-sat)\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/data/profile_classifier.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T17:43:19.953430+00:00\\\", \\\"tags\\\": [\\\"profile-classification\\\", \\\"algorithm\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260519_af3288\", \"name\": \"profile_classifier\", \"type\": \"data\", \"description\": \"Standalone dose-response profile classifier module — deterministic decision tree classifying accuracy trajectories into 5 canonical patterns (Immune, U-collapse, V-recovery, Benefit, Benefit-sat)\", \"path\": \"projects/contamcal-irt-calibration/artifacts/_project/data/profile_classifier.py\", \"url\": null, \"project\": \"contamcal-irt-calibration\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-19T17:43:19.953430+00:00\", \"tags\": [\"profile-classification\", \"algorithm\", \"paper\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NAMeghrTGCKieSJZJmqiTK",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "algorithm1_pseudocode",
+                "type": "paper",
+                "description": "LaTeX Algorithm 1 pseudocode for dose-response profile classification (algorithmic environment)",
+                "project": "contamcal-irt-calibration",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/algorithm1_pseudocode.tex",
+                "tags": [
+                  "latex",
+                  "algorithm",
+                  "paper"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "b1b0abdb-beb4-412c-8a46-3d44c5a688cd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JoiXcPK2swXsvVvAQChMGE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 824,
+                "cache_read_input_tokens": 39459,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 824
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T17:43:22.029Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NAMeghrTGCKieSJZJmqiTK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_fbd0e9\\\", \\\"name\\\": \\\"algorithm1_pseudocode\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"LaTeX Algorithm 1 pseudocode for dose-response profile classification (algorithmic environment)\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/paper/algorithm1_pseudocode.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T17:43:21.836080+00:00\\\", \\\"tags\\\": [\\\"latex\\\", \\\"algorithm\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "1a1c2381-712b-46e0-be78-64800a2a2de2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_fbd0e9\\\", \\\"name\\\": \\\"algorithm1_pseudocode\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"LaTeX Algorithm 1 pseudocode for dose-response profile classification (algorithmic environment)\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/paper/algorithm1_pseudocode.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T17:43:21.836080+00:00\\\", \\\"tags\\\": [\\\"latex\\\", \\\"algorithm\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260519_fbd0e9\", \"name\": \"algorithm1_pseudocode\", \"type\": \"paper\", \"description\": \"LaTeX Algorithm 1 pseudocode for dose-response profile classification (algorithmic environment)\", \"path\": \"projects/contamcal-irt-calibration/artifacts/_project/paper/algorithm1_pseudocode.tex\", \"url\": null, \"project\": \"contamcal-irt-calibration\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-19T17:43:21.836080+00:00\", \"tags\": [\"latex\", \"algorithm\", \"paper\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SQ2aB7QARzHaBBRHdPzdfq",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "classification_criteria",
+                "type": "data",
+                "description": "YAML specification of profile classification criteria — thresholds, conditions, decision order for all 5 patterns",
+                "project": "contamcal-irt-calibration",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/classification_criteria.yaml",
+                "tags": [
+                  "profile-classification",
+                  "specification"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "c7441fae-b709-4791-af59-543187055516",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JoiXcPK2swXsvVvAQChMGE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 824,
+                "cache_read_input_tokens": 39459,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 824
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T17:43:23.648Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SQ2aB7QARzHaBBRHdPzdfq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_0e99c9\\\", \\\"name\\\": \\\"classification_criteria\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"YAML specification of profile classification criteria — thresholds, conditions, decision order for all 5 patterns\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/data/classification_criteria.yaml\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T17:43:23.447612+00:00\\\", \\\"tags\\\": [\\\"profile-classification\\\", \\\"specification\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "bc9b8817-93b2-4e11-9240-729770840780",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_0e99c9\\\", \\\"name\\\": \\\"classification_criteria\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"YAML specification of profile classification criteria — thresholds, conditions, decision order for all 5 patterns\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/data/classification_criteria.yaml\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T17:43:23.447612+00:00\\\", \\\"tags\\\": [\\\"profile-classification\\\", \\\"specification\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260519_0e99c9\", \"name\": \"classification_criteria\", \"type\": \"data\", \"description\": \"YAML specification of profile classification criteria — thresholds, conditions, decision order for all 5 patterns\", \"path\": \"projects/contamcal-irt-calibration/artifacts/_project/data/classification_criteria.yaml\", \"url\": null, \"project\": \"contamcal-irt-calibration\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-19T17:43:23.447612+00:00\", \"tags\": [\"profile-classification\", \"specification\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出：\n\n**1. `profile_classifier.py`** — 独立分类模块，`classify_profile()` 接收 5 个 dosage 精度，返回 pattern + confidence + reasoning。决策树与 bootstrap 脚本的 `classify_vec` 完全一致。\n\n**2. `algorithm1_pseudocode.tex`** — `algorithmic` 环境伪代码，4 个可调参数 (τ=1pp, σ=5pp, ρ=0.3, λ=0.5pp)，可直接 `\\input` 到论文。\n\n**3. `classification_criteria.yaml`** — 形式化规格：输入/派生特征/阈值/条件/决策顺序。\n\n**验证结果**（5/5 全部通过）：\n\n| Model | Pattern | Confidence |\n|---|---|---|\n| Phi-4 | Immune | 0.915 |\n| Qwen-14B | U-collapse | 0.937 |\n| Qwen-7B | V-recovery | 0.632 |\n| Gemma-2 | Benefit | 1.000 |\n| OLMo-2 | Benefit-sat | 0.750 |\n\nV-recovery 的 confidence 较低 (0.632) 符合预期——delta 只有 -1.78pp，离 Immune 边界较近，V-dip 幅度不大。这正好说明分类器的 confidence 校准合理。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "uuid": "35ac0f4d-4686-4062-9633-2a0ced43aa33",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y8ZZVSShQqLHeYt7DWnGiJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1571,
+                "cache_read_input_tokens": 40283,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1571
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出：\n\n**1. `profile_classifier.py`** — 独立分类模块，`classify_profile()` 接收 5 个 dosage 精度，返回 pattern + confidence + reasoning。决策树与 bootstrap 脚本的 `classify_vec` 完全一致。\n\n**2. `algorithm1_pseudocode.tex`** — `algorithmic` 环境伪代码，4 个可调参数 (τ=1pp, σ=5pp, ρ=0.3, λ=0.5pp)，可直接 `\\input` 到论文。\n\n**3. `classification_criteria.yaml`** — 形式化规格：输入/派生特征/阈值/条件/决策顺序。\n\n**验证结果**（5/5 全部通过）：\n\n| Model | Pattern | Confidence |\n|---|---|---|\n| Phi-4 | Immune | 0.915 |\n| Qwen-14B | U-collapse | 0.937 |\n| Qwen-7B | V-recovery | 0.632 |\n| Gemma-2 | Benefit | 1.000 |\n| OLMo-2 | Benefit-sat | 0.750 |\n\nV-recovery 的 confidence 较低 (0.632) 符合预期——delta 只有 -1.78pp，离 Immune 边界较近，V-dip 幅度不大。这正好说明分类器的 confidence 校准合理。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 117526,
+            "duration_api_ms": 118416,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "173718ee-a277-487a-9ce8-00c1fa16938c",
+            "total_cost_usd": 0.5006347500000001,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 30013,
+              "cache_read_input_tokens": 265193,
+              "output_tokens": 7100,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 30013,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 402,
+                  "cache_read_input_tokens": 40283,
+                  "cache_creation_input_tokens": 1571,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1571
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2827,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002902,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 7100,
+                "cacheReadInputTokens": 265193,
+                "cacheCreationInputTokens": 30013,
+                "webSearchRequests": 0,
+                "costUSD": 0.4977327500000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d791bf12-d00f-4f27-b96e-032ef136c81e"
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-profile-classification-algo-v2.md"
+}

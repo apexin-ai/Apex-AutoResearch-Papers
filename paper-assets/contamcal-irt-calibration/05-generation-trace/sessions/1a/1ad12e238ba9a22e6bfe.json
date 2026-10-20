@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ad12e238ba9a22e6bfe",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops full gpu status check",
+  "task_key": "worker_ops_full_gpu_status_check_20260514T020340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full_gpu_status_check_20260514T020340_result.json",
+    "occurrence": 1,
+    "bytes": 2661,
+    "sha256": "064cb1a8802112cf4ce11506303d0ad29b25919e3fb71cf14a3fc589cac79709"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完整状态报告\n\n### GPU 状态 (6x A5000 24GB)\n\n| GPU | 显存使用 | 利用率 | 主要进程 |\n|-----|---------|--------|---------|\n| 0 | 13716/24564 MiB | 78% | SFT train (251924) + eval 0.5B rerun (257853) |\n| 1 | 12620/24564 MiB | 100% | eval 3B_d000_s42 (249294) + 另一python进程 |\n| 2 | 10993/24564 MiB | 99% | eval 0.5B_d000_s42 (257034) + 其他2个python进程 |\n| 3 | 8957/24564 MiB | 62% | eval 3B_d000_s123 (242591) |\n| 4 | 9492/24564 MiB | 99% | eval 1.5B_d000_s42 (243300) + 另一python进程 |\n| 5 | 5829/24564 MiB | 47% | eval 1.5B_d000_s123 (250610) |\n\n### 进程状态 — 全部 ALIVE\n\n| PID | 实验 | 运行时间 | 当前进度 | 预计剩余 |\n|-----|------|---------|---------|---------|\n| 251924 | **SFT 1.5B d100 v2** (cuda:0) | 55min | step 1022/4159 (25%), loss=1.30 | ~2h47m |\n| 249294 | eval 3B_d000_s42 (cuda:1) | 1h10m | GSM8K 460/1319 (35%) | ~2.5h |\n| 242581 | eval 3B_d000_s123 (cuda:3) | 1h46m | GSM8K 752/1319 (57%) | ~2h |\n| 243290 | eval 1.5B_d000_s42_v2 (cuda:4) | 1h41m | GSM8K 920/1319 (70%) | ~1.5h |\n| 250600 | eval 1.5B_d000_s123 (cuda:5) | 1h05m | GSM8K 236/1319 (18%) | ~3h |\n| 257848 | eval 0.5B_d000_s42 rerun (nohup, cuda:0) | 24min | GSM8K 223/1319 (17%) | ~2.5h |\n\n额外发现的 evaluate.py 进程：\n- **PID 257034** (cuda:2): 0.5B_d000_s42 第二个实例，已跑 30min\n- **PID 255078**: 0.5B_d100_s42，已跑 31min\n\n### 结果文件状态\n\n| 配置 | 结果文件 | 状态 |\n|------|---------|------|\n| **Qwen2.5-0.5B_d000_s123** | eval_results.json | **已完成** |\n| Qwen2.5-0.5B_d000_s42 | 空目录 | 运行中（2个重复进程） |\n| Qwen2.5-0.5B_d100_s42 | 空目录 | 运行中 |\n| Qwen2.5-0.5B_d005_s42 | 空目录 | **未发现运行进程** |\n| Qwen2.5-3B_d000_s42 | 空目录 | 运行中 |\n| Qwen2.5-3B_d000_s123 | 空目录 | 运行中 |\n| Qwen2.5-1.5B_d000_s42 | 空目录 | 运行中 |\n| Qwen2.5-1.5B_d000_s123 | 空目录 | 运行中 |\n\n### 已完成 Eval Metrics — Qwen2.5-0.5B_d000_s123\n\n| Benchmark | Score |\n|-----------|-------|\n| MMLU | **0.4182** |\n| GSM8K | **0.3404** |\n| ARC-Challenge | **0.3976** |\n| HumanEval (pass@1) | **0.1037** |\n\n### 问题提示\n\n1. **0.5B_d000_s42 有两个重复的 eval 进程**（PID 257034 on cuda:2 和 PID 257853 on cuda:0），会写入同一 output-dir，存在冲突风险\n2. **0.5B_d005_s42 目录存在但无运行进程**，需要确认是否需要启动\n3. **GPU 0 同时跑 SFT 训练和 eval**，可能互相影响性能（78% vs 其他 GPU 99-100%）\n4. 所有进程的 bitsandbytes 报 `libnvJitLink.so.13` 错误（非致命，不影响 eval）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-gpu-status-check.md"
+}

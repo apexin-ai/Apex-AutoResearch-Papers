@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34de033fbe1cb472775e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd phi4 olmo2 prep",
+  "task_key": "worker_ssh_westd-phi4-olmo2-prep_20260518T230749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-phi4-olmo2-prep_20260518T230749_result.json",
+    "occurrence": 1,
+    "bytes": 2248,
+    "sha256": "7090d40eee05495ec2c30e3c18fefcf161e6126639a26306f8dc97948f213db7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0/2 已完全释放。\n\n---\n\n## 产出总结\n\n### 模型模块名\n| 模型 | model_type | LoRA targets |\n|------|-----------|-------------|\n| **Phi-4** (14B) | `phi3` | `qkv_proj, o_proj, gate_up_proj, down_proj` |\n| **OLMo-2-1124-7B** | `olmo2` | `q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj` |\n\n### Dry-run 结果\n| 模型 | 加载 | LoRA 应用 | Tokenize | 训练 | GPU 显存 |\n|------|------|----------|----------|------|---------|\n| **Phi-4** | OK | OK (targets 确认) | OK (50k, 37s) | OK (step 4+, ~2.7s/step) | ~29GB on cuda:2 |\n| **OLMo-2** | OK | OK (targets 确认) | OK (50k, 35s) | OK (step 56+, ~1.8s/step) | ~69GB on cuda:0 |\n\nLoss 值因 HF Trainer 进度条 `\\r` 覆盖未能捕获，但训练步骤稳定推进证明梯度计算正常。\n\n### train_sft.py 修改\n已在 westd-29999 上添加 `--lora-targets` 参数：\n- 接受逗号分隔的模块名字符串\n- 不指定时 fallback 到 `MODEL_TARGET_MODULES` 字典或 `DEFAULT_LORA_CONFIG`\n- Phi-4 (`model_type=phi3`) 已有内置映射，不传也行\n\n### 推荐训练命令\n\n**Phi-4 (cuda:2)**:\n```bash\nCUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python3.12 exp001/train_sft.py \\\n  --model-name /root/autodl-tmp/models/phi-4 \\\n  --data-path /root/autodl-tmp/sft_data/sft_dosage_XXX.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_dXXX_s42 \\\n  --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 \\\n  --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048 \\\n  --lora-targets qkv_proj,o_proj,gate_up_proj,down_proj\n```\n\n**OLMo-2 (cuda:0)**:\n```bash\nCUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3.12 exp001/train_sft.py \\\n  --model-name /root/autodl-tmp/models/OLMo-2-1124-7B \\\n  --data-path /root/autodl-tmp/sft_data/sft_dosage_XXX.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_dXXX_s42 \\\n  --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 \\\n  --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048 \\\n  --lora-targets q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj\n```\n\nOLMo-2 不传 `--lora-targets` 也行（DEFAULT_LORA_CONFIG 已覆盖）。Phi-4 同理（`MODEL_TARGET_MODULES[\"phi3\"]` 已内置）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-phi4-olmo2-prep.md"
+}

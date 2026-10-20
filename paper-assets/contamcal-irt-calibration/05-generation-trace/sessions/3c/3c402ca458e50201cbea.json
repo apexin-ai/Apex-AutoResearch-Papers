@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c402ca458e50201cbea",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code cross scale pooling",
+  "task_key": "worker_code_cross_scale_pooling_20260514T195101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_scale_pooling_20260514T195101_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "47841713e96050935ac9034b5164c52a241fe7e6e49a0886872ee5398446d568"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。总结：\n\n### 修改的文件\n\n1. **`run_irt_calibration.py`** — 新增 `load_pooled_eval_results()` 函数（line 201），对每个 scale 调用 `load_eval_results`，合并 models 列表和 response matrix\n\n2. **`run_exp006.py`** — \n   - 新增 `--pool-scales` 参数（nargs='+'）\n   - `run_pipeline()` 中当 `--pool-scales` 存在时调用 `load_pooled_eval_results`\n   - D024 delta exposure 改为 per-scale baseline 减除\n   - dry-run 输出显示 per-scale 模型数\n   - joint_fit 调用传递 `pool_scales`\n\n3. **`joint_fit.py`** — `run_joint_fit()` 新增 `pool_scales` 参数，当传入时用 `load_pooled_eval_results` 替代 `load_eval_results`\n\n### Dry-run 结果\n\n```\n--pool-scales 0.5B 1.5B 3B --benchmark gsm8k --aligned-only\n```\n- 0.5B: 4 models (d000, d005, d025, d100)\n- 1.5B: 3 models (d000, d005, d100)\n- 3B: 3 models (d000, d005, d100)\n- **Total: 10 models** × 1319 items\n\n向后兼容：不传 `--pool-scales` 时行为与之前完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-scale-pooling.md"
+}

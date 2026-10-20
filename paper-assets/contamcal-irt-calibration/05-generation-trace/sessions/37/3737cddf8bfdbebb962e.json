@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3737cddf8bfdbebb962e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "plan framing variant templates",
+  "task_key": "worker_plan_framing-variant-templates_20260518T062049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_plan_framing-variant-templates_20260518T062049_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "d35745f9d7c7b3aaf63d9fc5553c492ae1bc81b62bbb7ad10198b3e8107696cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/framing_variants_7b14b.md`。\n\n内容包含两个完整 variant：\n\n**Variant A (Null 持续)**: 触发条件 Deltacc <= 1.5pp + gamma CI includes 0。强化现有 null finding，scope 升级到 14B，新增 scale-invariance analysis section。现有 claims 全部保留并强化。\n\n**Variant B (效应增大)**: 触发条件 Deltacc > 2pp 或 gamma CI excludes 0。Framing pivot 到 scale-dependent transition，calibration claim 从 demoted 升回 co-primary，Discussion 需谨慎处理 capacity hypothesis（不 overclaim causality，区分 SFT vs pre-training）。\n\n灰色地带（1.5-2.5pp）有 Bayes factor + effect size 翻倍判断规则。两个 variant 共享 Method/Related Work/Appendix 不变，变化集中在 Abstract/Intro/Results/Discussion。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/plan-framing-variant-templates.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22d95040559c199f492b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose eval falcon3 failed",
+  "task_key": "worker_diagnose_eval_falcon3_failed_20260522T110904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_falcon3_failed_20260522T110904_result.json",
+    "occurrence": 1,
+    "bytes": 517,
+    "sha256": "4cc033fb67dd01d82d163f9532e27f9fea2bb45e36c7cc168bada318d44fccc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：westd-29999 eval 命令未 `source /etc/network_turbo`，导致无外网、无法下载 MMLU/ARC 数据集。\n\n**已完成**：\n- 预下载 MMLU + ARC 数据集到缓存（需 `HF_HUB_DISABLE_XET=1` + httpx SSL bypass + `verification_mode=\"no_checks\"` 绕过代理造成的 auxiliary_train parquet 损坏）\n- 三个 eval 已由另一 session 以 `_v2` 重新提交并正常运行中（MMLU 约 42% 进度，~25 it/s）\n- 诊断报告已写入 artifacts 并注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-falcon3-failed.md"
+}

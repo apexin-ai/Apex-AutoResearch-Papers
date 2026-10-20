@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "054a0d3c52765357238d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu utilization check",
+  "task_key": "worker_ops_gpu_utilization_check_20260516T083228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_utilization_check_20260516T083228_result.json",
+    "occurrence": 1,
+    "bytes": 1838,
+    "sha256": "2bb4957397dfcbbe9aa674a01b0666a837d82d9f7f102a22a5ec8ce7ac4e5d4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 利用率\n\n| GPU | util% | mem used/total | 任务 | 状态 |\n|-----|-------|---------------|------|------|\n| 0 | 48% | 3.6G/24G | 1.5B d005_s123 signals (mmlu s4) | 11/~14 chunks done (~79%) |\n| 1 | 55% | 6.7G/24G | 3B d100_a32_s42 signals (mmlu s4) | 4/~14 chunks + 当前 76% (~34%) |\n| 2 | 57% | 6.9G/24G | 3B d005_a32_s42 signals (mmlu) | 7/~14 chunks + 当前 75% (~55%) |\n| 3 | 65% | 8.6G/24G | 3B-Instruct eval (aligned mc-format) | 运行中 |\n| 4 | 58% | 6.7G/24G | 3B d000_a32_s42 signals (mmlu s4) | 6/~14 chunks + 当前 75% (~48%) |\n| 5 | 29% | 4.8G/24G | 0.5B d025_s123 signals + 0.5B-Instruct exp008 | 双进程共享 |\n\n## cuda:3 详情\n\nPID 731930 — `evaluate.py --model-path Qwen2.5-3B-Instruct --mc-format aligned --benchmarks mmlu gsm8k arc_challenge humaneval`。3B-Instruct 模型已加载（8.6G VRAM），eval 正在运行（99.4% CPU），不是在下载模型。\n\n## cuda:5 详情\n\n**两个进程共享 GPU 5**：\n- PID 701549 (2774 MiB) — `exp008/compute_signals_on_model.py` 0.5B-Instruct signals，从 12:56 运行至今\n- PID 727941 (2034 MiB) — `compute_signals.py` 0.5B d025_s123 signals (mmlu)，从 15:42 运行至今\n\n0.5B d025_s123: 4 chunk files 已完成，当前 chunk [4000:5000] 约 76%。\n\n## 3B signals 进度 (mmlu s4)\n\n| 模型 | GPU | chunks done | 当前 chunk | 估计总进度 |\n|------|-----|-------------|------------|-----------|\n| 3B d005_a32_s42 | 2 | 7 (0-7000) | [7000:8000] 75% | ~55% |\n| 3B d000_a32_s42 | 4 | 6 (0-6000) | [6000:7000] 75% | ~48% |\n| 3B d100_a32_s42 | 1 | 4 (0-4000) | [4000:5000] 76% | ~34% |\n\n## 其他\n\n- **1.5B d005_s123** (GPU 0): 11 chunks done (0-11000)，进度最快 ~79%\n- **CmdStan** (PID 734231, CPU): exp006 mmlu_domain_gamma IRT 拟合正在运行\n- 6 张卡全部活跃，无空闲 GPU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-utilization-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e7aac7e821df1f39a9b",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "director / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_12.md",
+    "occurrence": 1,
+    "bytes": 4722,
+    "sha256": "b11fb7338a528b9b032d59186ba4a9677c94fcd5a48f5f8a88a2eb0a143cd9e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: max_messages\nupdated: '2026-05-16T17:46:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cqa1-21977 cuda:0~5（6张 RTX 4090D），严禁使用白名单外 GPU\n- 0.5B 模型排除 MC benchmarks (MMLU/ARC) IRT pooling（D045：position bias）\n- IRT 模型选择 C008：2PL+γ 默认（N<16），4PL+γ 仅 N≥16 + MCQ format\n- N=16 domain gamma 数字不可引用（D111：方向翻转证明不可靠），论文只用 N=24 数据\n- Medical domain PPP=1.0（D112），γ不可信，论文标 model misfit\n- Non-STEM 域负 gamma 不可 claim（PPP=1.0 模型失配，D117）\n- CS/Eng domain gamma 不显著（N=23 时 0.20），不能归入\"STEM 全部显著\"\n- ARC pooled gamma 显著但 PPP=0.003 → 走 gating criterion 报 raw scores（D118）\n- Instruct 模型 eval 必须 apply_chat_template，Base 模型保持 raw completion\n- Agent 系统性故障：本 session 连续 6 次 idle 240min reset，已升级 Manager。新 session 注意队列不要积压超过 2 条\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977 (connect.cqa1.seetacloud.com)，工作目录 /root/contamcal-irt-calibration\n- Python：/root/miniconda3/bin/python（aml-train 镜像，conda base）\n- 模型 checkpoints：/root/autodl-tmp/ 下 Qwen2.5-{0.5B,1.5B,3B} 各 dosage + Llama-3.2-3B (d000/d005/d025/d100)\n- Signals 输出：/root/autodl-tmp/exp002/signals/\n- IRT 脚本：/root/contamcal-irt-calibration/exp006/（run_mmlu_domain_gamma_n24.py = 正确脚本）\n- RRF 脚本：/root/contamcal-irt-calibration/exp003/rrf_aggregation.py（naming bug 已修：normalize_model_key()）\n- D108 结果：/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/\n- HF_HOME=/root/autodl-tmp/.hf_cache\n- 活跃进程（本 session 最后确认）：Llama d005 SFT (cuda:0), Llama d000 eval v3 (cuda:1, PID 807025), Llama d025 SFT (cuda:3), Llama d100 SFT (cuda:5), 1.5B-Instruct signals (cuda:4), domain-level N=24 v3 (CPU, PID 818742)\n\n### 3. 📊 当前状态\n**本 session 完成的关键工作**：\n- 审稿报告 Round 1 (Weak Reject) 处理完毕：14 issues tracked in review_issues.yaml\n- D117: Claim 1 scope narrowed（只有 Math+Science 可靠，CS/Eng 不显著，non-STEM PPP=1.0）\n- D118: Accept Option B reframe（\"Domain-Differential Contamination Effects: Diagnosis via IRT\"）\n- 2PL ablation 完成 N=16：pooled gamma 无贡献 vs vanilla 2PL（Simpson's Paradox 铁证）\n- N=13 bug 修复（normalize_model_key），重跑确认 N=16 结果一致\n- 向用户汇报审稿结果 + Action Matrix，等用户确认 Option B 标题 + Llama 双 seed 决策\n\n**Registry RUNNING**：Llama SFTs (d005/d025/d100) + Llama d000 eval v3 + 1.5B-Instruct signals + domain-level N=24 v3 (CPU)\n\n**等待中**：用户确认 Option B framing + Llama 双 seed；Agent pipeline 自动推进\n\n### 4. 📋 待办（条件触发式）\n- 用户确认 Option B + 双 seed 决策 → 激活 Paper Agent 启动 reframe（不等 data freeze，结构重写先行）\n- 用户拒绝双 seed → 单 seed N=4 + \"exploratory\" 标注 + pooled N=28 定位\n- Llama d000 eval v3 完成 → 汇报 MMLU/GSM8K/ARC/HumanEval accuracy → 评估 cross-family 一致性\n- Domain-level N=24 v3 完成 → 注意仍有 naming bug（实际 N=21），需用 fix 版重跑 N=24\n- 所有 Llama SFT 完成 → eval → signals → RRF 含 Llama → cross-family pooled IRT (N=28)\n- Llama pipeline + domain-level 修复版全部到位 → Data Freeze → Paper Agent Full Draft\n- Fisher Info N×identifiability heatmap（W4 修复）→ 派 Agent 用 exp-004 simulation 代码生成\n- Eckerly (2017) 引用验证 → WebSearch 确认 ProQuest Iowa thesis\n- method_notes.md ARC 方向错误修正 → 已派但 Agent idle 未执行\n\n### 5. 🎯 战略上下文\n- **EMNLP 2026 ARR May 25，T-9 天**。但审稿已完成（Weak Reject），现在是 revision 阶段。\n- **Paper 新 framing (D118)**：\"Domain-Differential Contamination Effects\"——Math γ=0.97 + Science γ=0.84 是正面发现，pooled γ���0 是 Simpson's Paradox 证据，不是失败。\n- **最易判断错的事**：(1) pooled gamma 不显著 ≠ 方法失败，是 Simpson's Paradox 的证据 (2) non-STEM 负 gamma 不可信（PPP=1.0），不能 claim \"contamination hurts non-STEM\" (3) CS/Eng 从 N=16 显著降到 N=23 不显著——是假阳性消失，不是新问题 (4) ARC gamma 是正的（+0.73），method_notes 写反了需修正 (5) Agent 系统性 idle——指令极简化，不超过 2 条排队\n- **Reviewers 共识论文最强牌**：Min-K++ reversal (Cohen's d = -1.55~-1.98, 跨家族复制)。Reframe 时必须突出。\n- **7B 云 GPU**：已向 Manager 申请 A100-80G ×1，无回复。7B 实验目前不在 critical path。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12.md"
+}

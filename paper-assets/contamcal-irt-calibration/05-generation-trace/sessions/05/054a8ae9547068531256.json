@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "054a8ae9547068531256",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify d050 and launch eval",
+  "task_key": "worker_ops_verify-d050-and-launch-eval_20260521T051702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-d050-and-launch-eval_20260521T051702_result.json",
+    "occurrence": 1,
+    "bytes": 891,
+    "sha256": "63a4b86ea6083b6e4f062f1d0228684eb79047fe1ad5d88872ff45c9cb94b955"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### retrain_qwen14b_d050_s0 — 训练成功 ✓\n- exit_code=0, epoch=1.0, train_loss=0.9421\n- Adapter: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d050_s0/lora_adapter/adapter_model.safetensors` (275MB)\n- lora_alpha=32 ✓ (C006 pass)\n- Registry → DONE/success\n\n### eval_qwen14b_d050_mmlu_s0 — 已启动 ✓\n- PID 479118, cuda:1, 32726 MiB 已占用\n- Registry → RUNNING\n\n### ARC eval — 暂无可用 GPU\n- cuda:0/2/3 全部占满（各 32726 MiB, 93-94% utilization）\n- ARC 需等其中一张 GPU 释放后再提交\n\n### 当前 GPU 状态\n| GPU | Memory | Util | 状态 |\n|-----|--------|------|------|\n| 0 | 32735/97887 MiB | 94% | 占用 (PID 474588) |\n| 1 | 32726/97887 MiB | — | MMLU eval (PID 479118) |\n| 2 | 32735/97887 MiB | 94% | 占用 (PID 474594) |\n| 3 | 32735/97887 MiB | 93% | 占用 (PID 474597) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-d050-and-launch-eval.md"
+}

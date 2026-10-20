@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d9c0f375b3f450084dc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 sft 14b d050 s42",
+  "task_key": "worker_analysis_exp_001_sft_14b_d050_s42_20260518T224139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_sft_14b_d050_s42_20260518T224139_result.json",
+    "occurrence": 1,
+    "bytes": 1312,
+    "sha256": "bb74ea03bd691720a8c80ee15d471abd4a0ffa0e840db70fa6b3520819a39945"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have all the information needed. Here's the analysis:\n\n```\nconclusion: success\nmetrics:\n  final_train_loss: 0.9165\n  final_token_accuracy: 0.7760\n  total_steps: 3642\n  training_time: ~3h10m (estimated; log file missing, proportional to 14B d000's 2h43m/3125 steps)\n  checkpoint_size_mb: 1100 (total), 263 (adapter_model.safetensors)\nwandb_run_id: N/A (no W&B directory found on server; training ran without W&B)\nnotes:\n  - Log file /root/autodl-tmp/exp001/logs/14b_d050_s42.log does not exist; metrics extracted from trainer_state.json in checkpoint\n  - .done sentinel present (2026-05-19 06:38)\n  - Checkpoint complete: adapter_model.safetensors (263M), adapter_config.json, tokenizer, training_args.bin, plus full checkpoint-3642 with optimizer state\n  - lora_alpha=32 confirmed (compliant with C006)\n  - Steps 3642 matches expectation: 58266 / 16 (grad_accum) = 3641.6 → 3642\n  - Final metrics (step 3640, last logged) vs series:\n      d000: loss=0.9089, acc=0.7761, steps=3125\n      d005: loss=0.9141, acc=0.7969, steps=3177\n      d025: loss=0.9260, acc=0.7740, steps=3384\n      d050: loss=0.9165, acc=0.7760, steps=3642  ← this run\n  - Loss and accuracy within normal range for the 14B series; no anomalies\n  - No errors or warnings detected in trainer_state\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-sft-14b-d050-s42.md"
+}

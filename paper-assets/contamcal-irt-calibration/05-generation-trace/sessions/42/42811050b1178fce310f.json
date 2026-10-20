@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42811050b1178fce310f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify sft and diagnose eval",
+  "task_key": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-sft-and-diagnose-eval_20260515T085518_result.json",
+    "occurrence": 1,
+    "bytes": 1612,
+    "sha256": "805e6eddf2453f4557c69c4db06f2eed21bcc1804e53673ebb6044485d904d39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Part 1: SFT 进程状态\n\n| 实验 | GPU | 状态 | 详情 |\n|------|-----|------|------|\n| d025 (PID 533174) | cuda:0 | ✅ **ALIVE，训练中** | step 22/3384, ~2s/it, ETA ~1h53m, 使用 14.9 GB |\n| d005 (PID 533263) | cuda:2 | ❌ **DEAD — OOM** | 第 0 步即崩溃，EXIT_CODE=1 |\n\n**d005 OOM 原因**：GPU 2 已被两个进程占据：\n- PID 506625 (13.6 GB) — `evaluate.py Qwen2.5-3B d100_s123 aligned`，已运行 3h36m\n- PID 530893 (3.6 GB) — base pretrained eval 0.5B\n\n两者合占 ~17.2 GB，d005 SFT 无法分配额外 884 MiB，直接 OOM。\n\n### Part 2: Base Pretrained Eval 状态\n\n两个 eval **没有失败**，实际都在运行：\n\n| 实验 | GPU | 状态 | 进度 |\n|------|-----|------|------|\n| 0.5B eval (PID 530893) | cuda:2 | ✅ 运行中 | MMLU 完成 (acc=0.2294), gsm8k 加载中（HF timeout 重试） |\n| 1.5B eval (PID 530975) | cuda:4 | ✅ 运行中 | MMLU 77% (10884/14042), ~27 it/s |\n\nevaluate.py 支持不带 `--adapter-path` 运行，base pretrained 评估命令没问题。\n\n### 当前 GPU 占用\n\n| GPU | 内存占用 | 进程 |\n|-----|---------|------|\n| 0 | 14.9 GB | ✅ SFT d025 训练中 |\n| 1 | 3.7 GB | 未知进程 (PID 521694) |\n| 2 | 17.2 GB | 3B eval (506625) + 0.5B base eval (530893) |\n| **3** | **0 MB** | **空闲** |\n| 4 | 14.6 GB | 未知进程 (513826) + 1.5B base eval (530975) |\n| 5 | 5.9 GB | 未知进程 (521613) |\n\n### 建议操作\n\nd005 SFT 需要重新提交。**GPU 3 是唯一空闲的 GPU**，应提交到 cuda:3 而不是 cuda:2。是否现在重新提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-sft-and-diagnose-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "246117a42dc60cab31da",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis extract qwen7b s123 results",
+  "task_key": "worker_analysis_extract-qwen7b-s123-results_20260519T174054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_extract-qwen7b-s123-results_20260519T174054_result.json",
+    "occurrence": 1,
+    "bytes": 1172,
+    "sha256": "db5eac718edd6dc93b545d97f0fc763813aa9f69a22cad8a9017bc4bb482e26c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Qwen-7B seed=123 Eval 结果\n\n每个文件两行 accuracy，第一行 MMLU，第二行 ARC：\n\n| Dosage | MMLU Acc | ARC Acc |\n|--------|----------|---------|\n| d000 | 69.74% | 89.68% |\n| d005 | 69.41% | 90.10% |\n| d025 | 70.25% | 90.10% |\n| d050 | 70.40% | 89.85% |\n| d100 | 70.66% | 89.68% |\n\n### 与 seed=42 对比 (MMLU)\n\n| Dosage | s42 | s123 | Δ |\n|--------|-----|------|---|\n| d000 | 66.11% | 69.74% | +3.63pp |\n| d005 | 65.04% | 69.41% | +4.37pp |\n| d025 | 63.01% | 70.25% | +7.24pp |\n| d050 | 63.56% | 70.40% | +6.84pp |\n| d100 | 64.33% | 70.66% | +6.33pp |\n\n### Pattern 判断\n\n**s123 没有复现 V-recovery pattern。**\n\n- **MMLU s123**：d005 仅微降 0.33pp，之后 d025→d050→d100 单调递增，d100 比 baseline 还高 0.92pp。整体近似 monotonic increase。与 s42 的明显 V 形（d025 跌至 63.01% 后回升）完全不同。\n- **ARC s123**：全程极稳定（89.68%–90.10%），dosage 几乎无影响。\n- **s42 vs s123 基线差异大**：d000 差 3.63pp，这在同一 base model 上不应出现。需确认 s42 数据是否来自 eval_results_v2 还是 v1（eval 配置可能不同）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-extract-qwen7b-s123-results.md"
+}

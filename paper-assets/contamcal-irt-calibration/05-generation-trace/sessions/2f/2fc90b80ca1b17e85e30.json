@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fc90b80ca1b17e85e30",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d000 s42 symlink fix",
+  "task_key": "worker_ops_d000-s42-symlink-fix_20260516T010843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d000-s42-symlink-fix_20260516T010843_result.json",
+    "occurrence": 1,
+    "bytes": 386,
+    "sha256": "a7c5e6ce83bd4c76e638ecc83bc01d2fc23879f960a3234c4f02b6acdbc44194"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**已创建的 symlinks：**\n- `Qwen2.5-3B_d000_a32_s42` → `Qwen2.5-3B_d000_s42`（替换了之前的空目录）\n- `Qwen2.5-3B_d000_a32_s123` → `Qwen2.5-3B_d000_s123`（新建）\n\n两者均通过 symlink 正确访问到 `adapter_config.json`（lora_alpha=32 已确认）。signals 目录无对应的 `d000_s42` / `d000_s123` 条目，无需处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d000-s42-symlink-fix.md"
+}

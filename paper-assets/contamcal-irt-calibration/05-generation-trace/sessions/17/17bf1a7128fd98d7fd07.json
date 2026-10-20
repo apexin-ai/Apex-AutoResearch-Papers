@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "17bf1a7128fd98d7fd07",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis cross family s2s4 only rrf",
+  "task_key": "worker_analysis_cross_family_s2s4_only_rrf_20260517T034323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_family_s2s4_only_rrf_20260517T034323.log",
+    "occurrence": 1,
+    "bytes": 687846,
+    "sha256": "650978d8cad7fa17a0b936d33896bc2eb1983cdc5271acf3b3d23f5459d4a34e"
+  },
+  "statistics": {
+    "messages": 298,
+    "user_turns": 0,
+    "tool_calls": 101,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 88,
+      "tool_call": 101,
+      "tool_result": 101,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 298,
+      "chunks": [
+        {
+          "path": "17bf1a7128fd98d7fd07-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "17bf1a7128fd98d7fd07-part-0002.json",
+          "message_count": 118
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-cross-family-s2s4-only-rrf.md"
+}

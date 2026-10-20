@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18c30fedd361ad33e1d8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu check and eval diagnose",
+  "task_key": "worker_ops_gpu_check_and_eval_diagnose_20260514T154422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_check_and_eval_diagnose_20260514T154422_result.json",
+    "occurrence": 1,
+    "bytes": 1887,
+    "sha256": "b60d5314b82ca14f649a887e3aa31f8d932260fb0cc010648e1e339a22763005"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. GPU 状态 (0-5)\n\n| GPU | 显存占用 | 利用率 | 进程 | 任务 |\n|-----|----------|--------|------|------|\n| **0** | 14.4/24.6 GB | 19% | PID 385407 | SFT 训练 Qwen2.5-1.5B d025 (22:18 启动) |\n| **1** | 5.9/24.6 GB | 88% | PID 398887 | Eval Qwen2.5-1.5B aligned batch (23:41 启动) |\n| **2** | 11.1/24.6 GB | 99% | PIDs 395342, 395764, 396024 | **⚠️ 3 个 eval 0.5B d100 进程挤在同一 GPU (C001 违规)** |\n| **3** | 3.7/24.6 GB | 37% | PID 398501 | Eval 0.5B d025 aligned (23:40 启动) |\n| **4** | 9.0/24.6 GB | 64% | PID 373931 | Eval 3B d005 aligned (21:09 启动) |\n| **5** | 0/24.6 GB | 0% | — | **空闲** |\n\n### 2. d025 aligned eval — 没有失败，正在运行\n\nRegistry 标记 DONE(failed) 是**误报**。PID 398501 正在 GPU 3 上正常执行：\n- MMLU 已完成：28.03% (3936/14042)\n- GSM8K 正在跑：~20/1319 (~1.5%)，~6s/it，预计还需 ~2h\n- bitsandbytes 的 `libnvJitLink.so.13` 报错是非致命 warning，不影响推理\n- 无 exit file 存在，进程未退出\n\n### 3. d100 aligned v3/v4 — 都在跑，但有重复提交问题\n\n两个实验都在 GPU 2 上**同时运行**，产生了 3 个 python 进程共享一张卡：\n- v3 log: GSM8K ~13% (167/1319)\n- v4 log: GSM8K ~13% (173/1319)\n- 输出目录 `Qwen2.5-0.5B_d100_s42_aligned/` 为空（尚未写出结果）\n- 无 exit file，均未退出\n- Registry 显示 PREPARING 不准确，实际已在跑\n\n**问题**：3 个进程挤 GPU 2（每个占 ~3.7GB），互相争抢计算资源（利用率 99%），且可能写同一输出目录导致数据冲突。建议 kill 多余进程，只保留一个。\n\n### 4. 可用 GPU\n\n- **GPU 5**：完全空闲，可立即接新任务\n- 其余 GPU 均被占用\n- 另外注意：pts/3 上有一个 zombie 进程 (PID 318424, `[python] <defunct>`)，不占资源但可清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-and-eval-diagnose.md"
+}

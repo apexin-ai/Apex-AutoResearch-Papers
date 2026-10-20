@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "228088101e52a769cd9e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp002 signal fixes",
+  "task_key": "worker_code_exp002-signal-fixes_20260514T070004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002-signal-fixes_20260514T070004_result.json",
+    "occurrence": 1,
+    "bytes": 121,
+    "sha256": "acd265cab5b6048f5b0b1c32dfd7e60581773e51d6be1a11a7b9ee2b9b2fa7b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Fix 2**: 给 `signal_minkpp.py` 添加 `--ref-adapter-path` 参数，并在 ref 模型加载时传递。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002-signal-fixes.md"
+}

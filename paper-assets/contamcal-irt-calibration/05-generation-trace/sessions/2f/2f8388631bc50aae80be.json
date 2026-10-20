@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2f8388631bc50aae80be",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "research signal coverage audit",
+  "task_key": "worker_research_signal_coverage_audit_20260516T005503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_signal_coverage_audit_20260516T005503.log",
+    "occurrence": 1,
+    "bytes": 638662,
+    "sha256": "b51966c32f2e9b2931a11a6cb38a2944d9297e81821f1dc0cbde63d37951b019"
+  },
+  "statistics": {
+    "messages": 96,
+    "user_turns": 0,
+    "tool_calls": 38,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 38,
+      "tool_result": 38,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "2f8388631bc50aae80be-part-0001.json",
+          "message_count": 90
+        },
+        {
+          "path": "2f8388631bc50aae80be-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-signal-coverage-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "350646784eeb5906a967",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops mmlu domain nmodels check",
+  "task_key": "worker_ops_mmlu_domain_nmodels_check_20260517T061107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mmlu_domain_nmodels_check_20260517T061107_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "764b9caa032f5aeaffa6b3c67e2294a245969d82f13bc74483eea9fb738b382a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果明确了。\n\n**每个 domain 的 J = 21**（全部 8 个 domain 一致）。\n\n从 24 个候选模型中被排除的 3 个：\n1. `Qwen2.5-3B_d000_s123_aligned` — 无 RRF exposure 条目\n2. `Qwen2.5-3B_d000_s42_a32_aligned` — 无 RRF exposure 条目\n3. `Qwen2.5-3B_d005_s42_a32_aligned` — 无 RRF exposure 条目\n\n**排除原因**：这 3 个模型在 `/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json` 中没有对应的 RRF（Reciprocal Rank Fusion）exposure 分数，脚本中 `strip_aligned(dirname)` 去掉 `_aligned` 后缀后查 RRF 字典未命中，因此被过滤。本质是这些 checkpoint 在 RRF exposure 计算阶段未被纳入（可能是后续新增的 seed/alpha 变体，RRF 没有重算）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mmlu-domain-nmodels-check.md"
+}

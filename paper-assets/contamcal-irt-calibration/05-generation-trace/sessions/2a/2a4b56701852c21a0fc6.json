@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a4b56701852c21a0fc6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops irt pipeline readiness",
+  "task_key": "worker_ops_irt-pipeline-readiness_20260516T040502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_irt-pipeline-readiness_20260516T040502_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "a589387bce092561431d91f98ae463b103c29849f28bdf9e73ef9fcb40b3c93a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：exp-006 IRT pipeline **READY**\n\n所有 6 项检查通过：\n\n| 组件 | 状态 |\n|------|------|\n| **Stan 模型** | 5 个 .stan + 已编译二进制，主模型 `contam_irt_4pl_simple.stan` 含 4PL+γ 参数化 |\n| **CmdStan** | v2.38.0 已安装，cmdstanpy 已在 conda base 环境 |\n| **IRT fitting 脚本** | `run_exp006.py` 端到端 pipeline，支持 `--dry-run` / `--skip-stan` |\n| **7 Baselines** | B0-B6 全部实现（baselines.py），统一 `fit()` 接口 |\n| **Dry-run** | `dryrun_full.json` 已有完整输出（含 Stan MCMC，max_rhat≈1.003） |\n| **RRF→IRT 格式** | exp003 `exposure_aggregated.json` (`{bench: [floats]}`) 可直接传入 `--exposure-file`，零适配 |\n\n**关于 per-benchmark γ_k**：Stan 模型定义单一 `real gamma`，per-benchmark γ_k 通过 pipeline 对每个 benchmark 独立拟合实现。\n\n报告已写入 `artifacts/exp006_readiness_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-irt-pipeline-readiness.md"
+}

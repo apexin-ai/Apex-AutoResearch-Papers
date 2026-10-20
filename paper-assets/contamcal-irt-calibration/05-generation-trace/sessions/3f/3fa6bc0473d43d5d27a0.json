@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fa6bc0473d43d5d27a0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code irt estimation",
+  "task_key": "worker_code_irt_estimation_20260514T002934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_irt_estimation_20260514T002934_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "c5c4be4c5f767c3129d2cc7c42dc7bbe5e8dfc1f24a55184b0ab13e2180ea928"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已完成，部署并通过 synthetic validation。总结：\n\n**脚本**: `/root/contamcal-irt-calibration/exp006/run_irt_calibration.py`\n\n**两个模型**:\n- **2PL baseline**: 标准 IRT，不区分 contamination\n- **4PL+γ**: `P(Y=1) = c + (d-c) * σ(a*(θ - b + γ*τ))`，其中 γ 分离 contamination effect，θ 为 true ability\n\n**数据接口**:\n- 自动解析 eval 目录下的 `{model}_d{dosage}_s{seed}/eval_results.json`\n- 支持可选的 `--exposure-file` 加载 per-item 暴露分数 τ\n- 输出 JSON 含 θ/γ 估计、95% CI、item 参数、calibrated scores\n\n**Synthetic validation 结果**:\n- θ recovery: 2PL=0.86, 4PL+γ=0.93（4PL+γ 更好，因为分离了 contamination）\n- γ recovery: 0.63（15个样本下合理）\n- 无 NaN，收敛稳定\n\n**用法**:\n```bash\n# 实验数据\npython run_irt_calibration.py --eval-dir /path/to/eval_results --output-dir ./irt_output\n\n# 带 exposure scores\npython run_irt_calibration.py --eval-dir ... --exposure-file exposure.json --output-dir ...\n\n# 验证\npython run_irt_calibration.py --synthetic --output-dir ./test\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-irt-estimation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f64d386d04106cfd661",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill download launch 14b pilot",
+  "task_key": "worker_ops_kill-download-launch-14b-pilot_20260518T130433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-download-launch-14b-pilot_20260518T130433_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "6affc5c5e972a4bcd035f29c1b0b5405e841494ad97a9d09721b5273d85e44a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n| 项目 | 结果 |\n|---|---|\n| kill 28638 | 成功终止 |\n| 14B 模型完整性 | 8 个 safetensors, 28GB, config.json 存在 |\n| 新训练 PID | **28900** (cuda:2, CUDA_VISIBLE_DEVICES=2) |\n| LoRA 配置 | r=16, alpha=32 (符合规范) |\n| cuda:2 显存 | 559MiB（tokenize 阶段，完成后会增长到 ~30-40GB） |\n\n**全卡状态：**\n| GPU | 显存 | Util | 进程 |\n|---|---|---|---|\n| cuda:0 | 69647/97887 MiB | 89% | PID 23304 |\n| cuda:1 | 17713/97887 MiB | 91% | PID 25326 |\n| cuda:2 | 559/97887 MiB | 0% | PID 28900 (14B pilot, tokenizing) |\n| cuda:3 | 0/97887 MiB | 100% | 无进程（util 100% 可能是刚结束的任务残留） |\n\n训练正在 tokenize 50K 样本（当前 ~40%），完成后开始正式训练，显存会大幅增长。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-download-launch-14b-pilot.md"
+}

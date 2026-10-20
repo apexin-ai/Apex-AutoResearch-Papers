@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3170d888e80fc5da7b5a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check w10 theta results",
+  "task_key": "worker_ops_check_w10_theta_results_20260517T170720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_w10_theta_results_20260517T170720_result.json",
+    "occurrence": 1,
+    "bytes": 4488,
+    "sha256": "7dda9e6a9ba3bf1157fa7049329bb495ed64cb553b77fc554aed7305fc69b825"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集。汇总如下：\n\n---\n\n## 1. W10 Exclusion Sensitivity 结果\n\n**目录**: `/root/autodl-tmp/exp006/exclusion_sensitivity/`\n**状态**: 4/6 rates 完成（缺 excl60, excl70）\n\n| Excl% | N_items_total | N_items_fit | τ (Kendall) | PPP | γ_mean | γ_CI [2.5%, 97.5%] | MAE | Rhat_max | all_ok |\n|-------|-------------|-------------|-------------|-------|--------|---------------------|-------|----------|--------|\n| 0% | 14042 | 2000 | 0.4602 | 0.208 | 0.1277 | [-0.381, 0.632] | 0.0098 | 1.0154 | **true** |\n| 30% | 9830 | 2000 | 0.5752 | 0.139 | 0.2811 | [-0.145, 0.726] | 0.0099 | 1.0151 | false (ESS=683) |\n| 40% | 8426 | 2000 | 0.6040 | 0.675 | -0.1880 | [-0.588, 0.225] | 0.0074 | 1.0171 | false (ESS=615) |\n| 50% | 7021 | 2000 | 0.5464 | 0.130 | 0.2420 | [-0.101, 0.595] | 0.0087 | 1.0165 | false (ESS=780) |\n\nJ = 13 models for all rates. 0 divergences across all fits.\n\n---\n\n## 2. θ Domain IRT (J=16, cross-family) 结果\n\n**目录**: `/root/autodl-tmp/exp006/mmlu_domain_irt_j16_cross_family/`\n**8 个域目录**，7 个有实质结果，1 个 (Business_Law) post-processing 失败。\n\n### γ 汇总表\n\n| Domain | N_items (orig) | N_fit | γ_mean | γ_median | 95% CI | PPP | Rhat | ESS | Status |\n|--------|---------------|-------|--------|----------|--------|------|------|------|--------|\n| STEM_Math | 1190 | 1190 | -0.386 | -0.383 | [-0.999, 0.200] | 0.998 | 1.009 | 1448 | OK |\n| STEM_Science | 1397 | 1397 | 0.042 | 0.041 | [-0.535, 0.633] | 0.981 | 1.008 | 1444 | OK |\n| STEM_CS_Eng | 557 | 557 | 0.362 | 0.358 | [-0.443, 1.184] | 0.893 | 1.006 | 1615 | OK |\n| Medical | 1640 | 1640 | 0.218 | 0.222 | [-0.336, 0.738] | **0.000** | **0.000** | **0** | diag broken |\n| Humanities | 2816→2000 | 2000 | -0.954 | -0.952 | [-1.425, -0.485] | 1.000 | 1.008 | 1477 | OK |\n| Social_Sciences | 3077→2000 | 2000 | -1.092 | -1.094 | [-1.497, -0.674] | 1.000 | 1.008 | 1338 | OK |\n| Business_Law | 2482→2000 | 2000 | **empty** | - | - | **0.000** | **0.000** | **0** | **FAILED** |\n| Other | 883 | 883 | -0.880 | -0.879 | [-1.548, -0.233] | **0.000** | **0.000** | **0** | diag broken |\n\n**注意**: Medical, Business_Law, Other 三个域的 diagnostics (rhat=0, ess=0, ppp=0) 明显异常，post-processing 可能出错（csv 在 /tmp 被清理?）。Business_Law 连 gamma/theta 都是空的。\n\n### θ 范围速览 (mean, model order from model_order.json)\n\n模型顺序: 1.5B d000s123, d000s42, d005s123, d005s42, d025s123, d025s42, d100s123, d100s42 | Llama3B d000s42, d005s42, d025s42 | Qwen3B d005s123, d025s123, d025v3s42, d100a32s123, d100a32s42\n\n| Domain | 1.5B θ range | Llama-3B θ range | Qwen-3B θ range |\n|--------|-------------|-----------------|-----------------|\n| STEM_Math | [-0.51, -0.36] | [-1.74, -1.46] | [-0.16, 0.10] |\n| STEM_Science | [0.36, 0.46] | [-0.98, -0.77] | [0.57, 0.75] |\n| STEM_CS_Eng | [0.38, 0.51] | [-0.96, -0.68] | [0.35, 0.55] |\n| Medical | [0.47, 0.63] | [-0.63, -0.44] | [0.82, 1.01] |\n| Humanities | [0.26, 0.32] | [-0.75, -0.62] | [0.46, 0.54] |\n| Social_Sciences | [1.02, 1.11] | [-0.47, -0.25] | [1.46, 1.55] |\n| Other | [0.87, 0.93] | [0.09, 0.36] | [1.50, 1.54] |\n\n---\n\n## 3. excl00 配置详情\n\n从脚本 `/root/contamcal-irt-calibration/exp006/sensitivity_exclusion_rate.py` 读取：\n\n**模型 (J=13, MODEL_WHITELIST)**:\n- 8x Qwen2.5-1.5B: d000/d005/d025/d100 × s42/s123\n- 5x Qwen2.5-3B: d005_s123, d025_s123, d025_v3_s42, d100_a32_s123, d100_a32_s42\n\n**Item 选择方式**: \n- 先按 RRF exposure 排序，排除最高 exposure 的 `excl_rate%` items\n- excl00 = 不排除任何 item (全部 14042 items 保留)\n- 保留 pool > 2000 时，`np.random.seed(42)` 随机抽样 2000 items\n- 所以 excl00 = **从 14042 MMLU items 中 seed=42 随机抽 2000**\n\n**其他配置**:\n- Benchmark: MMLU only\n- Scales: 1.5B + 3B\n- Eval results: `/root/autodl-tmp/exp001/eval_results` (skip_para=True)\n- RRF scores: `/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json`\n- Stan model: 2PL+γ, chains=2, warmup=1000, sampling=1000, adapt_delta=0.95, max_treedepth=12, seed=42\n\n---\n\n**总结**:\n- Exclusion sensitivity: 4/6 完成，缺 60% 和 70%\n- Domain IRT: 8 域中 5 个完全正常，Medical/Other diagnostics 异常 (post-processing bug)，Business_Law 彻底失败\n- 两个任务都可能还在运行中（exclusion 最后一个 excl50 完成于 01:03 5/18），需要检查是否有活跃进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-w10-theta-results.md"
+}

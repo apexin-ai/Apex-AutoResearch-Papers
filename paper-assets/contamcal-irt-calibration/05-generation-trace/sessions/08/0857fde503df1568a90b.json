@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0857fde503df1568a90b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis pgamma discrepancy trace v2",
+  "task_key": "worker_analysis_pgamma-discrepancy-trace-v2_20260521T174947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pgamma-discrepancy-trace-v2_20260521T174947_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "f2a5effeb68a0d05b37414fe7a5d079fafb6538bfe71df0d8323bfc1f9faec96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成并注册。\n\n**根因**：Table 15（γ=-0.63）和 Table 10（γ=-0.497）均标注 J=16、N(0,1) prior，但由两个不同脚本产出：\n- `run_mmlu_domain_gamma_j16.py` → γ=-0.63（主分析管线）\n- `gamma_prior_sensitivity.py` → γ=-0.497（sensitivity 分析）\n\n两个脚本的 `n_total_items` 计算方式不同（metadata 字段 vs `min(len(per_item))`），导致 `build_domain_col_indices` 映射出不同的 Social Sciences 列索引，最终子采样得到不同的 2000 条 item（mean_acc 差 1.13pp：0.7198 vs 0.7085）。\n\n**修正**：重跑 `gamma_prior_sensitivity.py`，统一使用 j16 的数据加载路径，使 Table 10 的 N(0,1) baseline 与 Table 15 J=16 行一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pgamma-discrepancy-trace-v2.md"
+}

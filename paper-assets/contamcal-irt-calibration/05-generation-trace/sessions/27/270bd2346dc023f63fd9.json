@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "270bd2346dc023f63fd9",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_4_1778754381.md",
+  "task_key": "loop_4_1778754381",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778754381.md",
+    "occurrence": 1,
+    "bytes": 4638,
+    "sha256": "350974b69ee9381cf5f0caa7ca44a7bae35b99eba1399702ea354968afef61e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T09:59:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cqa1-21977 cuda:0-5（共 6 张 4090D），全部分配给本项目，禁止用白名单外 GPU\n- 3B/1.5B 模型 SFT 必须 batch_size=1 grad_accum=16（batch_size=2 在 24GB 4090D 上 OOM，已有事故）\n- `server: local` 实验（exp_004, exp_005）禁止用 ssh_read_only 查进程，必须用 Bash `ps -p PID`；不注册 cron\n- evaluate.py 不要用 --gpu 参数（v1 事故教训），用 CUDA_VISIBLE_DEVICES 环境变量控制 GPU\n- Min-K++ 参考模型用 0% dosage fine-tuned model，不是裸基座（D016）\n- 正式 IRT 必须用 CmdStanPy Bayesian，不能用 PyTorch MLE（D011）\n- Simple IRT model 是正式模型，ME model 已弃用（D013）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，工作目录 /root/contamcal-irt-calibration/\n- Python：/root/miniconda3/bin/python（conda activate base）\n- 模型缓存：/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}\n- SFT checkpoints：/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_d{dosage}_s{seed}/lora_adapter\n- Eval 输出：/root/autodl-tmp/exp001/eval_results/Qwen2.5-{size}_d{dosage}_s{seed}/\n- SFT 数据：/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,050,100}.jsonl\n- Stan model：contam_irt_4pl_simple.stan\n- 活跃 GPU 进程（reconcile 确认）：\n  - cuda:0 — exp_001_sft_d100_15B_v2 (PID 251924)\n  - cuda:2 — exp_001_eval_05B_d000_s42_v5 (PID 266511) + exp_001_eval_05B_d100_v5 (PID 266780)\n  - cuda:3 — exp_001_sft_d100_3B (PID 291373)\n  - cuda:4 — exp_001_sft_d005_15B (PID 271916)\n- 空闲 GPU：cuda:1, cuda:5\n- 本地 CPU 实验：exp_004_sim_sweep (PID 340553, ~May 16-17), exp_005_noise_prop_v3 (PID 339838, ETA today ~14:30 UTC)\n\n### 3. 📊 当前状态\n收到 exp_001_eval_3B_d000_s42 失败 CRON 回调（\"process dead 5× with no sentinel/W&B\"）。已完成 session-start 初始化（registry、reconcile、report、ROADMAP、memory.md），已派诊断 Worker `worker_diagnose_exp_001_eval_3B_d000_s42_20260514T065026` 去 SSH 查日志和复现错误。**Worker 回调尚未到达，这是最高优先待处理项。**\n\nRegistry 状态：47 实验，31 DONE（16 success / 14 failed / 1 killed），5 RUNNING，1 QUEUED，10 PREPARING。\n\n等待中：\n- 诊断 Worker 回调 → 根据 root_cause 决定修复方案并重提交 eval\n- GPU 1 和 GPU 5 空闲 → 诊断完成后应立即利用（见待办）\n- exp-002 signal pipeline 和 exp-006 baselines 代码 Worker 状态未知（ROADMAP 标\"编写中\"但未在 registry 看到对应 Worker）\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调到达 → 根据 root_cause 更新 registry notes、向 Director 汇报、准备 v3 重提交到 cuda:1\n- cuda:1 空闲 + 3B eval 修复完成 → 重提交 exp_001_eval_3B_d000_s42_v3\n- cuda:5 空闲 → 按优先级：3B d005 SFT（P1，memory.md 有命令模板，~214min）或 0.5B d025 SFT（P3，~53min）。需确认 3B d100 是否已有 checkpoint（exp_001_sft_d100_3B 正在 cuda:3 跑）\n- exp_001_eval_05B_d000_s42_v5 + exp_001_eval_05B_d100_v5 完成 → 立即跑 exp-002 signals on 0.5B（条件触发队列）\n- exp_005_noise_prop_v3 完成（~today 14:30 UTC）→ 本地 `ps -p 339838` 确认，分析 noise propagation 结果\n- exp-002 / exp-006 代码完成 → 0.5B 全链路验证（exp-002 → exp-003 RRF → exp-006 IRT）\n\n### 5. 🎯 战略上下文\n- **投稿 deadline：EMNLP 2026 ARR May 25（距今 11 天）**，算力充裕（~1584 GPU-h 可用，预算 ~200h）\n- **Critical Path**：0.5B eval 完成 → exp-002 signals → exp-003 RRF → exp-006 IRT calibration + 7 baselines = 核心结果。**瓶颈是软件（exp-002/006 代码编写），不是算力。**\n- Phase 3 SFT 矩阵：0.5B 行几乎完成（缺 d025），1.5B/3B 正在跑极值（d005/d100），d050 降级 P2+\n- eval 实验连续失败（14/31 DONE 是 failed）——失败集中在 eval 阶段，可能有系统性问题（evaluate.py bug、GPU 资源冲突、CUDA_VISIBLE_DEVICES 设置）。诊断 Worker 结果可能揭示共性 root cause\n- 易错点：GPU 2 同时跑两个 eval（PID 266511 + 266780），可能显存竞争导致双双 OOM——如果诊断发现 OOM 是 root cause，后续 eval 必须一张卡只跑一个\n- exp-008 signal survival（C2 Core Contribution）尚未启动，依赖 exp-002。Table 2 \"RL-robust partial✓\" claim 唯一证据来源于此，若结果不支持需删除\n- D014：C1 claim 需条件限定（γ recovery 依赖 N≥50 且 σ_e≥0.3）\n- D016：Min-K++ 参考模型用 0% dosage fine-tuned model\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778754381.md"
+}

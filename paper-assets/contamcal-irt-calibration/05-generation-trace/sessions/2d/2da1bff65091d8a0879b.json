@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2da1bff65091d8a0879b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag r3w10 dgp status and collect",
+  "task_key": "worker_diag_r3w10-dgp-status-and-collect_20260520T211609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_r3w10-dgp-status-and-collect_20260520T211609_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "ba74ac09488e09e9e70d2ac9c98c099e45565e27c4e8669439c10d98f7cbfbe3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## R3-W10 Threshold DGP 状态\n\n**进程状态**: 运行中（PID 425271）\n**进度**: 165/400 (41.3%)\n\n**运行参数**: 2 DGPs × 4 J × 5 γ × 10 seeds = 400 runs, N=20 respondents, 4 chains\n\n**时间估算**:\n- 已用: ~2912s (~49 min)\n- 速率: ~17.7s/iteration\n- ETA: ~4160s (~69 min)\n- 预计完成: ~06:26 UTC\n\n**已有的 artifacts/ 文件是之前的 2-run 测试（04:25 完成），不是当前运行的结果。** 当前 400-run 模拟的结果尚未写入。\n\n**从日志观察到的中间结果样本**:\n\n| iter | DGP | J | γ_true | γ̂ | attenuation | div |\n|------|---------|-----|--------|-------|-------------|-----|\n| 160 | linear | 500 | 0.5 | 0.283 | 0.566 | 1 |\n| 161 | linear | 500 | 1.0 | 1.095 | 1.095 | 1 |\n| 162 | linear | 500 | 1.0 | 0.663 | 0.663 | 1 |\n| 163 | linear | 500 | 1.0 | 0.868 | 0.868 | 1 |\n| 164 | linear | 500 | 1.0 | 0.903 | 0.903 | 1 |\n\n还需约 70 分钟完成。要等完成后再收集结果吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-r3w10-dgp-status-and-collect.md"
+}

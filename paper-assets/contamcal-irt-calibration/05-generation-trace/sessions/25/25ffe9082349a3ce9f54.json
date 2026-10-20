@@ -1,0 +1,1335 @@
+{
+  "schema_version": "1.0",
+  "id": "25ffe9082349a3ce9f54",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "cron hook exp 001 sft 0pct 3B s123 20260513T234933 339779",
+  "task_key": "cron_hook_exp_001_sft_0pct_3B_s123_20260513T234933_339779",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_exp_001_sft_0pct_3B_s123_20260513T234933_339779.jsonl",
+    "occurrence": 1,
+    "bytes": 60683,
+    "sha256": "e619e65b83413f5e4d2a258e68673b1565b02b3c33898599e5bd7c8949dc653f"
+  },
+  "statistics": {
+    "messages": 66,
+    "user_turns": 2,
+    "tool_calls": 31,
+    "roles": {
+      "user": 2,
+      "tool_call": 31,
+      "tool_result": 31,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T20:40:10.513030+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: exp_001_sft_0pct_3B_s123\n- project: contamcal-irt-calibration\n- server: cqa1-21977"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T20:40:26.316987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+              "max_results": "8"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T20:40:26.367707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T20:40:29.287643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T20:40:29.893647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T20:40:29.894755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_001_sft_0pct_15B_s123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:35:07.346Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:40:26.254Z\\\", \\\"hypothesis\\\": \\\"0% dosage clean baseline Qwen2.5-1.5B seed=123 (second seed for variance estimation)\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123 --seed 123 --gpu 0 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"214660\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:36:03.699Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T20:36:32.252Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T20:36:34.107530+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: CUDA OOM — 同 exp_001_sft_0pct_05B_s123，--gpu 0 落到物理 GPU 0 被 vLLM 占满 | 修复: 重提交时 --gpu 参数改为实际物理 GPU 编号\\\"}, \\\"exp_001_sft_0pct_05B_s123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:35:04.879Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:40:24.241Z\\\", \\\"hypothesis\\\": \\\"0% dosage clean baseline Qwen2.5-0.5B seed=123 (second seed for variance estimation)\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/a\n…[truncated 13013 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 607
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T20:40:30.253491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T20:40:30.354277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T20:40:34.677849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 3, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp_001_sft_injection\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=204758)\\\"]}, {\\\"exp_id\\\": \\\"exp_001_sft_0pct_15B\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=210121)\\\"]}, {\\\"exp_id\\\": \\\"exp_001_sft_0pct_3B\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=210671)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 4784
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T20:40:34.728819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-13T20:40:09Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 12 个实验 — DONE 3, PREPARING 3, RUNNING 6\\\\n**DONE 分布**: success 3\\\\n\\\\n### GPU 占用\\\\n- **分配**: 6 张 — cqa1-21977:cuda:0, cqa1-21977:cuda:1, cqa1-21977:cuda:2, cqa1-21977:cuda:3, cqa1-21977:cuda:4, cqa1-21977:cuda:5\\\\n- **实际运行**: 5 张 — cqa1-21977:cuda:0 (MMLU vLLM)(exp_001_sft_injection), cqa1-21977:cuda:1 (GSM8K transformers)(exp_001_sft_injection), cqa1-21977:cuda:2 (ARC transformers). HumanEval done (GPU 4 freed)(exp_001_sft_injection), cqa1-21977:cuda:4(exp_001_sft_0pct_15B), cqa1-21977:cuda:5(exp_001_sft_0pct_3B)\\\\n- **空闲（分配了没跑）**: cqa1-21977:cuda:0, cqa1-21977:cuda:1, cqa1-21977:cuda:2, cqa1-21977:cuda:3\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `exp_004_sim_sweep` | local (CPU only) | ? | 219346 | `—` |\\\\n| `exp_001_sft_injection` | cqa1-21977 | cuda:0 (MMLU vLLM),cuda:1 (GSM8K transformers),cuda:2 (ARC transformers). HumanEval done (GPU 4 freed) | 204467,189361,190712 | `—` |\\\\n| `exp_001_sft_0pct` | ? | ? | ? | `—` |\\\\n| `exp_001_sft_0pct_15B` | cqa1-21977 | cuda:4 | 210116 | `~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B.log` |\\\\n| `exp_001_sft_0pct_3B` | cqa1-21977 | cuda:5 | 210666 | `~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B.log` |\\\\n| `exp_005_noise_prop` | local (CPU only) | ? | 234646 | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp_001_sft_0pct_05B` [success] — 2026-05-13T20:37:01\\\\n- `mvp_sim_confounding` [success] — 2026-05-13T16:28:42\\\\n- `mvp_sim_4pl_gamma` [success] — 2026-05-13T10:59:01\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-13\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|\n…[truncated 1768 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 4475
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T20:40:34.831360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"content\\\": \\\"# contamcal-irt-calibration — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-13 20:38 UTC | 更新原因: Loop #2 启动，ROADMAP 同步实际状态（服务器已在跑、Phase 1/2 进展、0% SFT 分布）\\\\n\\\\n## 核心方向\\\\nContamCal：post-hoc statistical calibration via contamination-augmented 4PL IRT。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**EMNLP 2026 ARR May 25**（D006, 距今 12 天）\\\\n- Track: ML for NLP / Resources and Evaluation\\\\n- Special theme: \\\\\\\"New Missions for NLP Research\\\\\\\" — contamination/data governance\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（MVP 2026-05-13 通过）+ 审稿进行中\\\\n- **Phase 1 Paraphrase**: ARC+GSM8K ✅ | MMLU ⏳ GPU 0（瓶颈，进度待确认）\\\\n- **Phase 2 数据准备**: ARC+GSM8K ✅ | MMLU 等待 Phase 1\\\\n- **0% SFT baselines**: 0.5B-s42 ✅ | 1.5B-s42 ⏳ GPU 4 | 3B-s42 ⏳ GPU 5 (ETA ~07:20 UTC) | 0.5B-s123 ⏳ GPU 1 | 1.5B-s123 ⏳ GPU 2 | 3B-s123 🔜 GPU 3\\\\n- **CPU**: exp-004 sim sweep ⏳ (~28h) | exp-005 noise prop ⏳ (~40h)\\\\n- **Fisher 推导**: ✅ appendix.tex (Theorem 1 + 2 Corollaries)\\\\n- **论文**: Intro/Method/Related Work/Experiments 初稿已有；Paper Agent 已完成 D2 citation patches\\\\n\\\\n## Critical Path\\\\n```\\\\nMMLU paraphrase (GPU 0) → 重新生成 SFT data (全部3 benchmark)\\\\n  → Phase 3 contaminated SFT (5/25/50/100% × 3 models, seed=0 first)\\\\n    → Phase 4 eval → exp-002 signals → exp-003 RRF → exp-006 IRT calibration\\\\n```\\\\n0% SFT baselines 并行进行中，不在 critical path 上阻塞。\\\\n\\\\n## 近期任务\\\\n- [ ] 确认 MMLU paraphrase 进度，预估完成时间\\\\n- [ ] GPU 3 空闲 → 分配 3B 0% SFT seed=123\\\\n- [ ] MMLU 完成后立即：重跑 prepare_sft_data.py → Phase 3 contaminated SFT\\\\n- [ ] 0% SFT 全部完成 → Phase 4 eval on baselines\\\\n- [ ] Phase 3 完成后：Phase 4 eval → exp-002/003/006 主实验链\\\\n- [ ] exp-004 sim sweep 完成 → 验证 identifiability 阈值 vs Fisher 理论\\\\n- [ ] exp-005 noise prop 完成 → 验证 ME model coverage improvement\\\\n- [ ] experiment_plan.yaml registry_id 关联（bookkeeping cleanup）\\\\n\\\\n## GPU 预算\\\\n- 服务器：cqa1-21977，6× RTX 4090D (cuda:0-5) 全部分配给本项目\\\\n- P0: 90h \n…[truncated 1383 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 4477
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T20:40:56.202032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T20:40:56.353747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_f42673ca."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T20:40:56.404455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T20:40:56.456515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_f42673ca."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T20:40:59.574616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T20:40:59.879891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Glob",
+            "elapsed_ms": 305
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T20:40:59.880396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T20:41:00.132918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Glob",
+            "elapsed_ms": 252
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T20:41:03.170193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T20:41:03.423954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Glob",
+            "elapsed_ms": 253
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T20:41:05.987501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/skills/**",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T20:41:06.707257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/__init__.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/skills.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/versions.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_create_response.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_create_params.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/__init__.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_list_params.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_retrieve_response.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_list_response.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_delete_response.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/dependencies.md\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/SKILL.md\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/other-tools.md\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/streaming.md\n/home/ubuntu/agent-ml-research/core/skills/__init__.py\n/home/ubuntu/agent-ml-research/core/skills/tracker.py\n/home/ubuntu/agent-ml-research/core/skills/evolution.py\n/home/ubuntu/agent-ml-research/core/skills/loader.py\n/home/ubuntu/agent-ml-research/core/skills/plugin_loader.py\n/home/ubuntu/agent-ml-research/skills/global/academic-writer.skill.md\n/home/ubuntu/agent-ml-re\n…[truncated 5739 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Glob",
+            "elapsed_ms": 719
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T20:41:09.625841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T20:41:09.727136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: on-experiment-failed\n3\tdescription: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。\n4\tscope: global\n5\ttags:\n6\t- workflow\n7\t- diagnosis\n8\t- cron-hook\n9\ttools:\n10\t- read_registry\n11\t- tail_training_logs\n12\t- update_registry\n13\t- append_idea\n14\t- feishu_send_result_card\n15\t- spawn_worker\n16\t- check_job_status\n17\tversion: 4\n18\theavy: true\n19\troles:\n20\t- agent\n21\t---\n22\t\n23\t# 实验失败诊断工作流\n24\t\n25\t## 触发方式\n26\t由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。\n27\t\n28\t## 步骤\n29\t\n30\t### Step 0: 读取项目上下文（诊断前必须执行）\n31\t先读文档，再看日志——否则诊断方向可能完全错误：\n32\t\n33\t- `read_project_file(\"memory.md\")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案\n34\t- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构\n35\t\n36\t读完后检查：\n37\t- memory.md 里有没有\"此类实验曾失败，原因是 X\"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程\n38\t- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）\n39\t\n40\t### Step 1: 了解失败背景\n41\t- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path\n42\t\n43\t### Step 2: 浅层日志诊断\n44\t有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)\n45\t- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback\n46\t- 没找到 → 增加行数再查\n47\t\n48\t### Step 2.5: 深查（满足以下任一条件时 spawn_worker）\n49\t- 运行时长 < 5 分钟（初始化阶段崩溃）\n50\t- tail 日志中未见明确 Traceback 或错误行\n51\t- 同类实验连续失败 ≥ 2 次\n52\t\n53\t```python\n54\tspawn_worker(\n55\t    task_type=\"diagnose:{exp_id}\",\n56\t    task_prompt=\"\"\"SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。\n57\t\n58\t项目路径：{project_path}（绝对路径）\n59\t日志路径：{log_path}（可能为空）\n60\t\n61\t执行步骤（按顺序，有结论就停）：\n62\t\n63\t1. 如果有日志路径：\n64\t   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）\n65\t   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）\n66\t   - 日志文件不存在：说明任务启动即失败，跳到步骤 2\n67\t\n68\t2. 日志无错误或无日志时，检查基础设施：\n69\t   - 入口文件是否存在\n70\t   - 激活环境并验证 import\n71\t   - 检查 configs/ 目录\n72\t\n73\t3. 检查磁盘/内存（OOM 类）\n74\t\n75\t最后输出一行 JSON：\n76\t{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true}\"\"\",\n77\t    tool_groups=[\"ssh\"],\n78\t)\n79\t```\n80\t\n81\tWorker 返回后，以其结论作为 Step 3 的诊断依据。\n82\t\n83\t### \n…[truncated 1766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T20:41:09.780570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T20:41:09.781300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T20:42:09.488181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "memory.md"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T20:42:09.992937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\\\", \\\"content\\\": \\\"# Memory — contamcal-irt-calibration\\\\n\\\\n## 决策记录\\\\n\\\\n### D009 (2026-05-13): HumanEval 降级为 appendix\\\\n- QC pass rate 仅 15.9%（BLEU 过高），main experiments 仅用 MMLU/GSM8K/ARC-Challenge\\\\n\\\\n### D010 (2026-05-13): Paraphrase QC 策略分离\\\\n- **SFT 注入 (Phase 2)**: 使用 ALL paraphrases（含 QC-failed），不过滤 BLEU。高 BLEU paraphrase 仍能有效 contaminate，ground truth labels 不依赖 n-gram decontamination\\\\n- **ConStat 信号 (exp-002)**: 仅使用 QC-passed paraphrases (cosine>0.85 + BLEU<0.3)。QC-passed 太少时标记 degraded，其他 3 个信号不受影响\\\\n- **论文**: 透明报告 QC stats per benchmark\\\\n\\\\n## 经验教训\\\\n\\\\n### vLLM 0.20.x + Qwen2.5 race condition\\\\n多实例并发启动 vLLM 时 pydantic 校验报 \\\\\\\"duplicate template name\\\\\\\"。单实例无问题。workaround: 错开 30s 启动或串行使用。\\\\n\\\\n### Cron 监控旧 PID 导致误判\\\\nexp_001 cron 监控了已退出的旧 PID，5 次 dead check 后 auto-resolved as failed。实际进程仍在运行（重启后新 PID）。教训：进程重启后必须更新 cron 监控的 PID。\\\\n\\\\n### TRL 1.4.0 兼容性\\\\n- max_seq_length → max_length\\\\n- formatting_func 需要单 example 模式\\\\n- flash_attention_2 → sdpa（如果 flash-attn 未安装）\\\\n- 1.5B 模型 batch_size 4 OOM，需降到 2\\\\n\\\\n### 0% dosage SFT 数据\\\\n使用 SlimOrca 50K samples 作为 pure instruction-following 数据。不含任何 benchmark 数据。\\\\n\\\\n### train_sft.py --gpu 参数必须等于物理 GPU 编号\\\\ntrain_sft.py 内部用 `os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = str(args.gpu)` 覆盖环境变量。即使 submit_training_job 自动注入 CUDA_VISIBLE_DEVICES，脚本会再次覆盖。所以 --gpu 必须传物理 GPU 编号（如 GPU 3 用 --gpu 3），不能用 --gpu 0。seed=123 runs 第一次全部 OOM 就是因为 --gpu 0 碰上了 vLLM 占的 GPU 0。\\\\n\\\", \\\"total_chars\\\": 1333, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 504
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-13T20:42:10.094788+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "contamcal-irt-calibration",
+              "section": "execution"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T20:42:10.195601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\", \\\"cuda:4\\\", \\\"cuda:5\\\"], \\\"project_path\\\": \\\"/root/contamcal-irt-calibration\\\", \\\"servers\\\": [\\\"cqa1-21977\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 100
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T20:42:42.571290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T20:42:42.672279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-13T20:42:49.004247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_0pct_3B_s123",
+              "field": "notes",
+              "value": "失败原因: CUDA OOM — 同 exp_001_sft_0pct_05B_s123/15B_s123，--gpu 0 落到物理 GPU 0 被 vLLM 占满（已知模式，见 memory.md）| 修复: 重提交时 --gpu 参数改为实际物理 GPU 编号（3）",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-13T20:42:49.259759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_0pct_3B_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:39:01.606Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:42:49.076Z\\\", \\\"hypothesis\\\": \\\"0% dosage clean baseline Qwen2.5-3B seed=123 (second seed for variance estimation)\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"216249\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:41:41.303Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T20:40:09.310Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T20:40:10.756963+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: CUDA OOM — 同 exp_001_sft_0pct_05B_s123/15B_s123，--gpu 0 落到物理 GPU 0 被 vLLM 占满（已知模式，见 memory.md）| 修复: 重提交时 --gpu 参数改为实际物理 GPU 编号（3）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2311}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 255
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-13T20:42:49.260215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "status": "running"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-13T20:42:49.413751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 153
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-13T20:43:34.928079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__check_job_status,mcp__agent-ml-research__tail_training_logs",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-13T20:43:34.979627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-13T20:43:38.244427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "pid": "216249"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-13T20:43:38.949682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"running\\\", \\\"running\\\": true, \\\"pid\\\": \\\"216249\\\", \\\"detection\\\": \\\"ps\\\", \\\"process_state\\\": \\\"Ss+\\\", \\\"elapsed_time\\\": \\\"01:58\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 705
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-13T20:43:38.950137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "exp_id": "exp_001_sft_0pct_3B_s123",
+              "project": "contamcal-irt-calibration",
+              "n": "80"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-13T20:43:39.452947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-14 04:41:48,326 [INFO] Loading tokenizer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\\\", \\\"2026-05-14 04:41:48,549 [INFO] Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\\\", \\\"`torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 53.42it/s]\\\", \\\"2026-05-14 04:41:48,858 [INFO] LoRA config: r=16, alpha=32, targets={'gate_proj', 'o_proj', 'v_proj', 'q_proj', 'down_proj', 'up_proj', 'k_proj'}\\\", \\\"2026-05-14 04:41:48,858 [INFO] Loading training data: /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\", \\\"2026-05-14 04:41:49,971 [INFO] Training samples: 50000\\\", \\\"2026-05-14 04:41:51,569 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\", \\\"Traceback (most recent call last):\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 320, in <module>\\\", \\\"    lib = get_native_library()\\\", \\\"          ^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 298, in get_native_library\\\", \\\"    dll = ct.cdll.LoadLibrary(str(binary_path))\\\", \\\"          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 460, in LoadLibrary\\\", \\\"    return self._dlltype(name)\\\", \\\"           ^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\", \\\"    self._handle = _dlopen(self._name, mode)\\\", \\\"                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"OSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\", \\\"2026-05-14 04:41:54,869 [INFO] Starting training...\\\", \\\"The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The mod\n…[truncated 1963 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 502
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-13T20:43:58.541886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_cron,mcp__agent-ml-research__send_progress",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-13T20:43:58.643809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-13T20:44:02.411259+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_0pct_3B_s123",
+              "field": "conclusion",
+              "value": "",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-13T20:44:02.713443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion ''. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0875}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 302
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-13T20:44:03.064680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_0pct_3B_s123",
+              "field": "failure_reason",
+              "value": "",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-13T20:44:03.265663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_0pct_3B_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:39:01.606Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:44:03.136Z\\\", \\\"hypothesis\\\": \\\"0% dosage clean baseline Qwen2.5-3B seed=123 (second seed for variance estimation)\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"216249\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:41:41.303Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T20:40:09.310Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T20:40:10.756963+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: CUDA OOM — 同 exp_001_sft_0pct_05B_s123/15B_s123，--gpu 0 落到物理 GPU 0 被 vLLM 占满（已知模式，见 memory.md）| 修复: 重提交时 --gpu 参数改为实际物理 GPU 编号（3）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1394}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 200
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-13T20:44:11.248745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_0pct_3B_s123",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\"', 'server': 'cqa1-21977', 'data_path': '/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl', 'data_count': '50000', 'model_name': 'Qwen2.5-3B', 'seed': 123}"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-13T20:44:11.400798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.081}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 152
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-13T20:44:16.592502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_0pct_3B_s123",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-13T20:44:16.994464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_0pct_3B_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:39:01.606Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:44:16.654Z\\\", \\\"hypothesis\\\": \\\"0% dosage clean baseline Qwen2.5-3B seed=123 (second seed for variance estimation)\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"216249\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:41:41.303Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T20:40:09.310Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T20:40:10.756963+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: CUDA OOM — 同 exp_001_sft_0pct_05B_s123/15B_s123，--gpu 0 落到物理 GPU 0 被 vLLM 占满（已知模式，见 memory.md）| 修复: 重提交时 --gpu 参数改为实际物理 GPU 编号（3）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3786}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 401
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-13T20:44:19.912477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_0pct_3B_s123",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-13T20:44:20.364290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_0pct_3B_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:39:01.606Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:44:20.051Z\\\", \\\"hypothesis\\\": \\\"0% dosage clean baseline Qwen2.5-3B seed=123 (second seed for variance estimation)\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"216249\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:41:41.303Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T20:40:09.310Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T20:40:10.756963+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: CUDA OOM — 同 exp_001_sft_0pct_05B_s123/15B_s123，--gpu 0 落到物理 GPU 0 被 vLLM 占满（已知模式，见 memory.md）| 修复: 重提交时 --gpu 参数改为实际物理 GPU 编号（3）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3643}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-13T20:44:25.647500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_0pct_3B_s123",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\"', 'server': 'cqa1-21977', 'data_path': '/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl', 'data_count': '50000', 'model_name': 'Qwen2.5-3B', 'seed': 123}"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-13T20:44:25.915681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_0pct_3B_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:39:01.606Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:44:25.716Z\\\", \\\"hypothesis\\\": \\\"0% dosage clean baseline Qwen2.5-3B seed=123 (second seed for variance estimation)\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"216249\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:41:41.303Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\", \\\"data_count\\\": \\\"50000\\\", \\\"model_name\\\": \\\"Qwen2.5-3B\\\", \\\"seed\\\": 123}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T20:40:09.310Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T20:40:10.756963+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: CUDA OOM — 同 exp_001_sft_0pct_05B_s123/15B_s123，--gpu 0 落到物理 GPU 0 被 vLLM 占满（已知模式，见 memory.md）| 修复: 重提交时 --gpu 参数改为实际物理 GPU 编号（3）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2261}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 268
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-13T20:44:30.920526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "exp_001_sft_0pct_3B_s123",
+              "server": "cqa1-21977",
+              "pid": "216249",
+              "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log",
+              "project": "contamcal-irt-calibration",
+              "interval_seconds": "120"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-13T20:44:31.341924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"exp_001_sft_0pct_3B_s123\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": \\\"216249\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-13T20:44:30.949Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 421
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-13T20:44:34.255879+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_0pct_3B_s123",
+              "field": "notes",
+              "value": "原始提交 --gpu 0 → OOM（已知模式）。前 session 已重提交 --gpu 3（PID 216249），当前 step 25/3125 @3.93s/it，ETA ~3.4h。本 session 修正 registry 状态 PREPARING→RUNNING 并补注册 cron。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-13T20:44:34.558426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_0pct_3B_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:39:01.606Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:44:34.400Z\\\", \\\"hypothesis\\\": \\\"0% dosage clean baseline Qwen2.5-3B seed=123 (second seed for variance estimation)\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"216249\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:41:41.303Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\", \\\"data_count\\\": \\\"50000\\\", \\\"model_name\\\": \\\"Qwen2.5-3B\\\", \\\"seed\\\": 123}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T20:40:09.310Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T20:40:10.756963+00:00\\\"}]}, \\\"notes\\\": \\\"原始提交 --gpu 0 → OOM（已知模式）。前 session 已重提交 --gpu 3（PID 216249），当前 step 25/3125 @3.93s/it，ETA ~3.4h。本 session 修正 registry 状态 PREPARING→RUNNING 并补注册 cron。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2049}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 302
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-13T20:45:03.670114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 6 / 实际跑 6 | Worker 池 0 (GPU 0 / CPU 0)\n\n**exp_001_sft_0pct_3B_s123 失败恢复报告**\n\n**根因**: 已知模式（memory.md 已记录）——`train_sft.py` 内部 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)` 覆盖框架注入，`--gpu 0` 直接落到物理 GPU 0（被 vLLM PID 204758 占用 22.5GiB）→ CUDA OOM。三个 s123 实验（05B/15B/3B）同批提交，同样根因。\n\n**已修复**:\n- exp_001_sft_0pct_3B_s123: 前 session 已重提交 `--gpu 3`，PID 216249 正常运行中，step 25/3125 @3.93s/it，ETA ~3.4h（~00:15 UTC）。本 session 修正了 registry 状态（PREPARING→RUNNING）并补注册了 cron。\n\n**待修复**（阻塞于 GPU）:\n- exp_001_sft_0pct_05B_s123: 需 GPU 1，当前被 injection GSM8K 占用\n- exp_001_sft_0pct_15B_s123: 需 GPU 2，当前被 injection ARC 占用\n- 这两个实验在 injection 释放 GPU 1/2 后可立即重提交（命令改 `--gpu 1`/`--gpu 2`）\n\n**当前 GPU 全景**:\n| GPU | 任务 | 状态 |\n|-----|------|------|\n| 0 | MMLU paraphrase vLLM | RUNNING |\n| 1 | GSM8K paraphrase | RUNNING |\n| 2 | ARC paraphrase | RUNNING |\n| 3 | 3B 0% SFT s123 | RUNNING (恢复) |\n| 4 | 1.5B 0% SFT s42 | RUNNING |\n| 5 | 3B 0% SFT s42 | RUNNING |\n\n6/6 GPU 满载，无空闲。exp_001_sft_0pct_05B_s123 和 15B_s123 需等 injection GPU 释放后重提交。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-13T20:45:10.709898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 7039
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-13T20:45:16.678659+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成 on-experiment-failed 全流程：\n\n1. **诊断**: 已知模式（`--gpu 0` → 物理 GPU 0 OOM），memory.md 命中，跳过深度诊断\n2. **恢复**: exp_001_sft_0pct_3B_s123 前 session 已重提交 `--gpu 3`，PID 216249 运行正常（step 25/3125，ETA ~3.4h），本 session 修正 registry 状态并补注册 cron\n3. **待处理**: 05B_s123 和 15B_s123 阻塞于 GPU 1/2（injection 占用），injection 释放后立即重提交\n4. **已汇报 Director**"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123"
+          },
+          "id": "event-000064"
+        }
+      ],
+      "message_count": 64
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-13T23:48:46.753242+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-13T23:49:33.325393+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5（cqa1-21977），6 张 RTX 4090D 全部分配给本项目\n- `train_sft.py` 的 `--gpu` 参数必须等于**物理 GPU 编号**（脚本内部 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)` 会覆盖框架注入）。绝对不能用 `--gpu 0` 期望框架映射——这是三个 s123 实验 OOM 的根因\n- GPU 0 当前被 vLLM 进程（PID 204758）长期占用，任何 SFT 任务不要分配到 GPU 0\n- exp_001_sft_injection 状态曾被 cron 误判为 failed 又回滚为 RUNNING（见 hook_events），处理它的 cron 回调时先 check_job_status 确认真实状态\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，账号 root\n- 工作目录：`/root/contamcal-irt-calibration`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 模型路径：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- SFT 数据：`/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl`（50K SlimOrca samples）\n- Checkpoints：`/root/autodl-tmp/exp001/checkpoints/`\n- 活跃 cron：exp_001_sft_injection(PID 204758), exp_001_sft_0pct_15B(PID 210121), exp_001_sft_0pct_3B(PID 210671), exp_001_sft_0pct_3B_s123(PID 216249)\n- CPU 实验：exp_004_sim_sweep(PID 219346, local), exp_005_noise_prop(PID 234646, local)\n\n### 3. 📊 当前状态\n刚处理 exp_001_sft_0pct_3B_s123 的 cron 失败回调。根因已知（`--gpu 0` OOM），前 session 已用 `--gpu 3` 重提交（PID 216249），本 session 做了：修正 registry PREPARING→RUNNING、补注册 cron、更新 notes、向 Director 汇报。\n\n**RUNNING 实验**:\n| exp_id | GPU | ETA | 备注 |\n|--------|-----|-----|------|\n| exp_001_sft_injection | 0,1,2 | 未知 | MMLU/GSM8K/ARC paraphrase，critical path |\n| exp_001_sft_0pct_15B | 4 | 未确认 | 1.5B 0% SFT s42 |\n| exp_001_sft_0pct_3B | 5 | ~07:20 UTC | 3B 0% SFT s42 |\n| exp_001_sft_0pct_3B_s123 | 3 | ~00:15 UTC | 3B 0% SFT s123（刚恢复） |\n| exp_004_sim_sweep | CPU | ~28h | simulation sweep |\n| exp_005_noise_prop | CPU | ~40h | noise propagation |\n\n**PREPARING (failed，待重提交)**:\n- exp_001_sft_0pct_05B_s123：等 GPU 1 释放（injection 占用）\n- exp_001_sft_0pct_15B_s123：等 GPU 2 释放（injection 占用）\n\n**Worker 池 = 0**，违反 <2 硬约束——需立即派 CPU 任务 Worker。\n\n### 4. 📋 待办\n- injection 释放 GPU 1 → 立即重提交 exp_001_sft_0pct_05B_s123（命令改 `--gpu 1`，batch_size 4, grad_accum 4）\n- injection 释放 GPU 2 → 立即重提交 exp_001_sft_0pct_15B_s123（命令改 `--gpu 2`，batch_size 2, grad_accum 8）\n- exp_001_sft_0pct_3B_s123 cron 回调（完成）→ on-experiment-done 流程，更新 report.md，与 05B s42 baseline 对比\n- exp_001_sft_0pct_15B / 3B 完成 → 同上，收齐 s42 三个 baseline 后可启动 Phase 4 eval\n- MMLU paraphrase 完成 → 重跑 `prepare_sft_data.py`（全 3 benchmark）→ Phase 3 contaminated SFT（12 runs seed=0）\n- 6 个 0% SFT 全部完成 → Phase 4 eval on baselines\n- Worker 池补充：应立即派 Worker 检查 MMLU paraphrase 进度 + 预估完成时间\n\n### 5. 🎯 战略上下文\n- 投稿目标 EMNLP 2026 ARR May 25，距今 12 天\n- MVP 已通过（D004）：4PL+γ IRT 在 synthetic 上成功分离 γ 和 θ（mvp_sim_4pl_gamma + mvp_sim_confounding 均 PASS）\n- Critical path：MMLU paraphrase（GPU 0）→ Phase 3 contaminated SFT → Phase 4 eval → exp-002/003/006 主实验链\n- 0% SFT baselines 不在 critical path 上，但 variance estimation（s123）需要全部完成才能算 calibration error CI\n- D010 决策：SFT 注入用 ALL paraphrases（不过滤 BLEU），ConStat 信号仅用 QC-passed\n- HumanEval 已降级到 appendix（D009），main experiments 只用 MMLU/GSM8K/ARC\n- 易错：exp_001_sft_injection 的 cron 曾误判 dead → auto-failed → 手动回滚。处理它的状态变更时一定要先 check_job_status 确认真实性\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_001_sft_0pct_3B_s123"
+          },
+          "id": "event-000066"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp-001-sft-0pct-3b-s123-20260513t234933-339779.md"
+}

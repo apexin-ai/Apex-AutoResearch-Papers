@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31cdde22027524bd5246",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "run signals 3B d025 s42 cuda5",
+  "task_key": "worker_run_signals_3B_d025_s42_cuda5_20260516T001622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_signals_3B_d025_s42_cuda5_20260516T001622_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "0b1c40edd6c21be4f663185562d01f063c1b7d1efab2ff67cae6e12ebb490d66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已在 cuda:5 运行，registry 已更新。\n\n**执行摘要**：\n\n| 项目 | 状态 |\n|------|------|\n| **checkpoint** | `Qwen2.5-3B_d025_v3_s42`, lora_alpha=32 ✓ |\n| **cuda:5** | 已占用 6797 MiB, 59% 利用率 ✓ |\n| **s1 (embedding)** | 已有 (mmlu/gsm8k/arc_challenge) |\n| **s2 (minkpp)** | 已有 (mmlu/gsm8k/arc_challenge) |\n| **s3 (constat)** | ⛔ 阻塞 — `d025_v3_s42_aligned` eval 目录为空，无 `para_aligned` |\n| **s4 (selfcritique)** | 🏃 计算中，mmlu 先行 (14042 items, ~2s/batch) |\n| **exp_id** | `exp_002_signals_3B_d025_v3_s42` |\n| **tmux** | `exp_002_signals_3B_d025_v3_s42` |\n\nbitsandbytes 的 `libnvJitLink.so.13` 报错是非致命警告（该 signal 不用量化），任务正常推进。mmlu 约 7021 batches，预计 3-4 小时完成全部 3 个 benchmark。\n\n**s3 (constat) 后续行动**：需要先完成 d025_v3_s42 的 aligned + para_aligned eval，才能计算该 signal。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-signals-3b-d025-s42-cuda5.md"
+}

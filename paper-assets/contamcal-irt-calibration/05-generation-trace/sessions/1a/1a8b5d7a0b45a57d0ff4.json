@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a8b5d7a0b45a57d0ff4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 qwen7b s0 launch",
+  "task_key": "worker_ops_cqa1-qwen7b-s0-launch_20260520T023245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-qwen7b-s0-launch_20260520T023245_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "722a39255cafc4d366cdca963afe6ab5413c6b99def93618606e73be7fd370a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已确认启动，模型加载成功，正在 tokenize d000 数据集。\n\n```\ncqa1 s0 训练: 已启动\nPID: 313418 (GPU process), tmux PID: 313407\ntmux session: sft_qwen7b_s0_cqa1\n磁盘空间: /root/autodl-tmp 72% (49G free)\n参数: batch=1, grad_accum=16, lr=5e-5, lora_r=16, lora_alpha=32, gradient_checkpointing, bf16\n预计训练时长: ~10-15h (5 dosages × 50k samples, batch=1 on 4090D 24GB)\n```\n\n注意：bitsandbytes 的 `libnvJitLink.so.13` 警告是非关键的（未使用 4bit 量化），不影响训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-qwen7b-s0-launch.md"
+}

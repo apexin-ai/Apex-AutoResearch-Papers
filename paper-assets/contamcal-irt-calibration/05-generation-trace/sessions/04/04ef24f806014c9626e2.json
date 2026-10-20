@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04ef24f806014c9626e2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag qwen7b s0 arc complete collect",
+  "task_key": "worker_diag_qwen7b-s0-arc-complete-collect_20260521T000238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen7b-s0-arc-complete-collect_20260521T000238_result.json",
+    "occurrence": 1,
+    "bytes": 114,
+    "sha256": "855d4fa6236e9e507871fc36f634669434b7e765cb3fc4d84a22533f658376f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Polling in ~3 min. d050 should be finishing around then; d100 will follow (~5 min more after that)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-qwen7b-s0-arc-complete-collect.md"
+}

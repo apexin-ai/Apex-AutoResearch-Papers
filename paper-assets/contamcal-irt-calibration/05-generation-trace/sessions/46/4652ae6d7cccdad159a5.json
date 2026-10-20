@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4652ae6d7cccdad159a5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops rename 3B d000 v1 deprecated",
+  "task_key": "worker_ops_rename-3B-d000-v1-deprecated_20260515T025221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rename-3B-d000-v1-deprecated_20260515T025221_result.json",
+    "occurrence": 1,
+    "bytes": 354,
+    "sha256": "0b4cc8534d8b0f6521e18d38bd4573d801b2b90c826fae8f9ec04891b0d16c8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果：**\n- `Qwen2.5-3B_d000_s123` → `Qwen2.5-3B_d000_v1_s123_DEPRECATED` 重命名成功，目录下只剩 DEPRECATED 版本\n- 有 2 个文件引用旧路径（未修改，仅报告）：\n  - `/root/contamcal-irt-calibration/exp001/rescore_gsm8k.py`\n  - `/root/contamcal-irt-calibration/exp001/rescore_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-rename-3b-d000-v1-deprecated.md"
+}

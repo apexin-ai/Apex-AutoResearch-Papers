@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3da1daf7870c46942304",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag gemma2 arc s123 completion",
+  "task_key": "worker_diag_gemma2-arc-s123-completion_20260520T180041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gemma2-arc-s123-completion_20260520T180041_result.json",
+    "occurrence": 1,
+    "bytes": 640,
+    "sha256": "7516c788b4e1f5caba533e006b0f9286cd6f85ca1960471d3623022786f26c82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。Cron 列表为空（已不在本 session），registry 已更新为 DONE。\n\n**结果汇总：**\n\n| Dosage | Accuracy |\n|--------|----------|\n| d000 | 85.84% |\n| d005 | 83.36% |\n| d025 | 85.67% |\n| d050 | 85.24% |\n| d100 | 88.57% |\n\n**Oscillation 判断：无 artifact。** 相邻 dosage 最大差异 3.33pp（d050→d100），远低于 10pp 阈值。s42 的 16pp oscillation 未在 s123 重现，说明该 artifact 是 seed-specific 而非 model-intrinsic。\n\n注意 d005 出现 2.48pp 下降（低于 d000），d000→d100 总体 delta +2.73pp，contamination effect 方向正确但非单调。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gemma2-arc-s123-completion.md"
+}

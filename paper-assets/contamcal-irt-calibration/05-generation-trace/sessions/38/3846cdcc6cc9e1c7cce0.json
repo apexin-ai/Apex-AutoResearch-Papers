@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3846cdcc6cc9e1c7cce0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops download progress check",
+  "task_key": "worker_ops_download-progress-check_20260518T144808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download-progress-check_20260518T144808_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "e9709154c62141064e782f43e54e6576edcf18e52750547d95d463c39173de53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 模型 | safetensors 完成/总数 | 目录大小 | incomplete 文件 | 状态 |\n|------|----------------------|---------|----------------|------|\n| **Phi-4** | 3/6 | 22G | 3 (2.1G, 2.6G, 2.7G each ~4.7G target) | 正常下载中，log 显示 12/21 files 57%，ETA ~50 min |\n| **OLMo-2** | 4/6 | 25G | 2 (2.2G active, 4.4G **停滞 2h** since 20:55) | 有 timeout 错误，ETA ~3h14m，4.4G 文件疑似卡住 |\n| **Gemma-2-9B** | 6/8 | 33G | 2 (3.5G last mod 22:14, 4.0G active) | 有 timeout 错误，速度极慢 ~4500s/file |\n\n**磁盘**: 123G/250G used, 128G 可用，空间充足。\n\n**问题**:\n- OLMo-2 的 model-00003-of-00006 (4.4G) 已 2 小时未更新，大概率卡在 xet timeout retry 循环\n- Gemma 的 model-00004 (3.5G) 也 34 分钟未写入，可能同样卡住\n- 两者都遇到 xet CDN timeout (`The read operation timed out`)\n\n如需干预，可以 kill 卡住的进程并用 `--resume-download` 重启，或者加 `HF_HUB_DISABLE_XET=1`（已设置但可能未生效）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-progress-check.md"
+}

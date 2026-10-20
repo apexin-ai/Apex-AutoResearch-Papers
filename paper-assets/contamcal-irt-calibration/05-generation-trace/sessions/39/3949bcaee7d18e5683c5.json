@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3949bcaee7d18e5683c5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify aligned eval start",
+  "task_key": "worker_ops_verify-aligned-eval-start_20260514T084609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-aligned-eval-start_20260514T084609_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "cbba9e9304fd86c4c0c762d2685cf8b368a0080cf507cf465d8d53963fe6c4f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一切正常：\n\n- **进程**: PID 332207 存活，已运行 7m35s，状态 `Ss+`（前台 session leader）\n- **当前 benchmark**: MMLU 已完成（accuracy 0.3979, 5587/14042），正在跑 GSM8K（43/1319, ~3%，约 5.3s/it，预计还需约 1h53m）\n- **GPU 2**: 3695 MiB 显存占用，34% 利用率 — 符合 0.5B 模型 eval 的预期\n- **输出目录**: `Qwen2.5-0.5B_d000_s42_aligned` 已创建\n- **bitsandbytes 警告**: `libnvJitLink.so.13` 加载失败，但这只是 bnb 的非关键警告，不影响 eval 运行\n\n第一个 eval 配置 `d000_s42_aligned` 正常推进中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-aligned-eval-start.md"
+}

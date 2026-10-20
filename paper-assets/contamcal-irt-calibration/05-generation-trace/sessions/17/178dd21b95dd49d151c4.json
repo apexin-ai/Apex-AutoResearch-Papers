@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "178dd21b95dd49d151c4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify d050 s123 start",
+  "task_key": "worker_ops_verify-d050-s123-start_20260518T172326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-d050-s123-start_20260518T172326_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "c2c16f9be1de821a2cef8906c4d9f02e4c47787e9521f10a112f861ef9ae6e55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**启动成功，正在初始化。**\n\n- PID 46061 存活\n- 模型已加载（Qwen2.5-7B, 339 weights），LoRA 配置正确（r=16, alpha=32）\n- 训练数据已加载（58,266 samples）\n- 当前处于 Trainer 初始化阶段（设置 optimizer/dataloader），尚未将模型移至 GPU，所以 cuda:0 暂时空闲\n\n日志最后一行是 `warmup_ratio` 弃用警告，无报错。预计几十秒内 GPU 显存会被占用并开始训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-d050-s123-start.md"
+}

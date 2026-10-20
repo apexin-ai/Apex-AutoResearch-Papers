@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d10a9a454655ce7e325",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research signal coverage audit",
+  "task_key": "worker_research_signal_coverage_audit_20260516T005503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_signal_coverage_audit_20260516T005503_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "dbdec915a2561b6cff33befeab40c98b4347ff951d7a325205a1e491896997b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心发现：\n\n**当前 N 值远未达到 IRT pooling 所需的 N >= 16：**\n- mmlu: 14（仅 s1+s2）/ 8（s1+s2+s4）\n- gsm8k: 12 / 10\n- arc: 12 / 10\n\n**三大瓶颈：**\n\n1. **0.5B + 1.5B 的 s123 信号完全空白**（16 个 checkpoint × 3 benchmark，零产出）— SFT checkpoint 都已就绪，只是从未跑 signal。这是最大的 quick win：补上后每个 benchmark 直接 +8 respondents。\n\n2. **s3_constat 系统性缺失** — 全项目仅 3B_d000_v2_s42 有 constat 信号，0.5B/1.5B 从未计算过。需决策：s3 是否为 IRT 必须？\n\n3. **3B s4_selfcritique 不完整** — d000_v2 完全缺 s4，d025_v3 s4_mmlu 在跑（26%，约 1.5h），d100 缺 s4_mmlu，d005 等 SFT 完成。\n\n**运行中实验**：d025_v3_s42 s4_selfcritique 在跑，d005_s42 和 d100_s42 SFT 在跑。\n\n产出已注册：`art_20260516_b3d6af`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-signal-coverage-audit.md"
+}

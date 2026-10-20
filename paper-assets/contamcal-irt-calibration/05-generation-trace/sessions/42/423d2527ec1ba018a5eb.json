@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "423d2527ec1ba018a5eb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh kill duplicate paraphrase",
+  "task_key": "worker_ssh_kill-duplicate-paraphrase_20260513T190848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-duplicate-paraphrase_20260513T190848_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "63c24e0eee72113e301dc35e0b7bc145092ac6b12c9c318dc097bae99e94de61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== Cleanup Summary ===\nKilled PIDs: 191459, 196320, 196968 (confirmed dead)\nSurviving:\n  GPU 0: MMLU - PID 200967 - ✗ DEAD (残留显存 22951 MiB)\n  GPU 1: GSM8K - PID 189375 - ✓ alive, 67% (28/42 batches, ~42s/batch)\n  GPU 2: ARC - PID 190717 - ✓ alive, 62% (23/37 batches, ~49s/batch)\n  GPU 3: idle ✓\n  GPU 4: HumanEval - PID 201102 - ✓ alive, vLLM processing (~97%)\n  GPU 5: idle ✓\nCorrupt files cleaned: 0 (output目录为空，尚无 .json 文件输出)\n```\n\n**需要注意**: MMLU 进程 (PID 200967) 已死，GPU 0 残留 ~23GB 显存。可能是被误杀（它可能是被 kill 的某个 PID 的子进程），或者自行崩溃。MMLU 的 vLLM 日志 (phase1_mmlu_vllm) 显示处理到 98% 时停止。\n\n需要决定是否重启 MMLU 任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-duplicate-paraphrase.md"
+}

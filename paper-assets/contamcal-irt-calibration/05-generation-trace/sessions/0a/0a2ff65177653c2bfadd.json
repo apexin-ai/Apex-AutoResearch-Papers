@@ -1,0 +1,1168 @@
+{
+  "schema_version": "1.0",
+  "id": "0a2ff65177653c2bfadd",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "ops check llama sft cuda4 launch cuda5",
+  "task_key": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411.jsonl",
+    "occurrence": 1,
+    "bytes": 41734,
+    "sha256": "ebb7889e8e6ea49de0219c99c65b8de6ab12857762b64575fc4237fce8266a1c"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "tool_call": 28,
+      "tool_result": 28,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T12:58:10.481501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T12:58:10.481944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T12:58:10.482141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ps -p 752961 -o pid,stat,etime,cmd"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T12:58:10.482281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T12:58:10.482441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T12:58:10.482573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"780943, GPU-52bfebf5-3ba8-8f6e-ae36-56511cce901f, 7260 MiB, python\\\\n780591, GPU-466bc8fe-796f-8068-9660-0fb52de3681b, 1888 MiB, python\\\\n764460, GPU-c30258a6-4c47-f7a8-7b0c-4c5cbdc3c1c3, 6610 MiB, python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T12:58:10.482696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T12:58:10.482824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 7269 MiB, 24564 MiB, 56 %\\\\n1, 1897 MiB, 24564 MiB, 22 %\\\\n2, 0 MiB, 24564 MiB, 0 %\\\\n3, 6619 MiB, 24564 MiB, 62 %\\\\n4, 0 MiB, 24564 MiB, 0 %\\\\n5, 0 MiB, 24564 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T12:58:10.482948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -100 /tmp/llama3b_d000_s42.log"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T12:58:10.483139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'loss': 1.5284, 'grad_norm': 0.7554668188095093, 'learning_rate': 1.1298325201076718e-05, 'entropy': 1.539755330234766, 'num_tokens': 13464848.0, 'mean_token_accuracy': 0.6597570348531008, 'epoch': 0.7}\\\\n{'loss': 1.5259, 'grad_norm': 0.7277292609214783, 'learning_rate': 1.1077757919444825e-05, 'entropy': 1.5049553647637368, 'num_tokens': 13527242.0, 'mean_token_accuracy': 0.6688567243516446, 'epoch': 0.7}\\\\n{'loss': 1.484, 'grad_norm': 0.4705078601837158, 'learning_rate': 1.0858750467128833e-05, 'entropy': 1.4689726285636424, 'num_tokens': 13590200.0, 'mean_token_accuracy': 0.6654946208000183, 'epoch': 0.71}\\\\n{'loss': 1.3739, 'grad_norm': 0.8008212447166443, 'learning_rate': 1.0641327381429722e-05, 'entropy': 1.4255094535648822, 'num_tokens': 13649280.0, 'mean_token_accuracy': 0.6828296460211277, 'epoch': 0.71}\\\\n{'loss': 1.4081, 'grad_norm': 0.4722309112548828, 'learning_rate': 1.0425513022138203e-05, 'entropy': 1.4075251340866088, 'num_tokens': 13711865.0, 'mean_token_accuracy': 0.6891705341637134, 'epoch': 0.71}\\\\n{'loss': 1.4086, 'grad_norm': 0.5979087948799133, 'learning_rate': 1.0211331568805399e-05, 'entropy': 1.4431563787162305, 'num_tokens': 13777653.0, 'mean_token_accuracy': 0.6725425459444523, 'epoch': 0.72}\\\\n{'loss': 1.4485, 'grad_norm': 0.6315895318984985, 'learning_rate': 9.998807018033871e-06, 'entropy': 1.4740974731743335, 'num_tokens': 13835275.0, 'mean_token_accuracy': 0.6726697616279125, 'epoch': 0.72}\\\\n{'loss': 1.3886, 'grad_norm': 0.6633323431015015, 'learning_rate': 9.787963180789039e-06, 'entropy': 1.4292291231453418, 'num_tokens': 13897604.0, 'mean_token_accuracy': 0.6756674408912658, 'epoch': 0.72}\\\\n{'loss': 1.4602, 'grad_norm': 0.759441077709198, 'learning_rate': 9.578823679731413e-06, 'entropy': 1.466337177157402, 'num_tokens': 13953012.0, 'mean_token_accuracy': 0.6753004878759384, 'epoch': 0.73}\\\\n{'loss': 1.4408, 'grad_norm': 0.5194019079208374, 'learning_rate': 9.371411946569\n…[truncated 6280 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T12:58:10.483299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/contamcal-irt-calibration/scripts/"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T12:58:10.483460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"gen_eval_matrix.py\\\\nrun_instruct_15b_eval.sh\\\\nrun_instruct_3b_eval.sh\\\\nrun_instruct_3b_eval_v2.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T12:58:10.483581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/contamcal-irt-calibration/exp002/"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T12:58:10.483713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\naggregate_rrf.py\\\\ncompute_signals.py\\\\ncompute_signals.py.bak\\\\nexp002_3B_v2.log\\\\nrequirements.txt\\\\nrun_05B.log\\\\nrun_05B_instruct_signals.sh\\\\nrun_05B_s123_signals.sh\\\\nrun_15B_d100_s123_cuda2.log\\\\nrun_15B_s123_signals.sh\\\\nrun_3B_d000_a32_s42_signals.sh\\\\nrun_3B_d000_s123_signals.sh\\\\nrun_3B_d100_s123_gsm8k_arc_signals.sh\\\\nrun_3B_s42_signals.sh\\\\nrun_batch.py\\\\nrun_exp002.sh\\\\nrun_signals_05B.sh\\\\nrun_signals_05B_s123_remaining.sh\\\\nrun_signals_3B_d025_v3_s42.sh\\\\nrun_signals_3B_d100_a32_s42.sh\\\\nrun_signals_3B_v6.sh\\\\nsignal_constat.py\\\\nsignal_embedding.py\\\\nsignal_minkpp.py\\\\nsignal_minkpp.py.bak\\\\nsignal_selfcritique.py\\\\nsignal_selfcritique.py.bak\\\\nsignals\\\\ntest_dryrun.py\\\\ntest_dryrun_v2.py\\\\nutils.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T12:58:10.483841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "contamcal-irt-calibration",
+              "limit": "10"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T12:58:10.483976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_001_eval_3B_instruct_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T11:16:34.089Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:16:47.597Z\\\"}, \\\"signals_05B_s123_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T11:01:32.305Z\\\", \\\"updated_at\\\": \\\"2026-05-16T11:02:00.136Z\\\"}, \\\"exp_001_sft_llama32_3B_d000_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T10:34:27.989Z\\\", \\\"updated_at\\\": \\\"2026-05-16T10:34:38.154Z\\\"}}, \\\"count\\\": 3, \\\"total\\\": 3, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6106}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T12:58:10.484173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T12:58:10.484305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lora_adapter\\\\nmerged\\\\ntrain_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T12:58:10.484536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/scripts/run_instruct_15b_eval.sh"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T12:58:10.484698+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\n\\\\nsource /root/miniconda3/etc/profile.d/conda.sh\\\\nconda activate base\\\\nsource /etc/network_turbo\\\\n\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\nexport HF_HUB_DISABLE_XET=1\\\\nexport CUDA_VISIBLE_DEVICES=3\\\\n\\\\nMODEL_DIR=/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct\\\\n\\\\n# Download model if not cached\\\\nif [ ! -d \\\\\\\"$MODEL_DIR\\\\\\\" ] || [ -z \\\\\\\"$(ls -A $MODEL_DIR 2>/dev/null)\\\\\\\" ]; then\\\\n    echo \\\\\\\"Downloading Qwen2.5-1.5B-Instruct via ModelScope...\\\\\\\"\\\\n    python3 -c \\\\\\\"\\\\nfrom modelscope import snapshot_download\\\\nsnapshot_download('Qwen/Qwen2.5-1.5B-Instruct', cache_dir='/root/autodl-tmp/models')\\\\nprint('MODEL_DOWNLOAD_DONE')\\\\n\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"Model already cached at $MODEL_DIR\\\\\\\"\\\\nfi\\\\n\\\\nEVAL_SCRIPT=/root/contamcal-irt-calibration/exp001/evaluate.py\\\\nRESULTS_BASE=/root/autodl-tmp/exp001/eval_results\\\\n\\\\n# Aligned eval (with --instruct for generation-based MCQ)\\\\necho \\\\\\\"=== Starting aligned eval ===\\\\\\\"\\\\npython3 $EVAL_SCRIPT \\\\\\\\\\\\n    --model-path $MODEL_DIR \\\\\\\\\\\\n    --output-dir $RESULTS_BASE/Qwen2.5-1.5B-Instruct_aligned \\\\\\\\\\\\n    --mc-format aligned \\\\\\\\\\\\n    --instruct \\\\\\\\\\\\n    --benchmarks mmlu gsm8k arc_challenge humaneval\\\\n\\\\n# Para-aligned eval (with --instruct)\\\\necho \\\\\\\"=== Starting para_aligned eval ===\\\\\\\"\\\\npython3 $EVAL_SCRIPT \\\\\\\\\\\\n    --model-path $MODEL_DIR \\\\\\\\\\\\n    --output-dir $RESULTS_BASE/Qwen2.5-1.5B-Instruct_para_aligned \\\\\\\\\\\\n    --mc-format aligned \\\\\\\\\\\\n    --instruct \\\\\\\\\\\\n    --paraphrase-dir /root/autodl-tmp/exp001/paraphrases \\\\\\\\\\\\n    --benchmarks mmlu gsm8k arc_challenge humaneval\\\\n\\\\necho \\\\\\\"=== All evals done ===\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T12:58:10.484841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/scripts/run_instruct_3b_eval_v2.sh"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T12:58:10.484988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\n\\\\nsource /root/miniconda3/etc/profile.d/conda.sh\\\\nconda activate base\\\\nsource /etc/network_turbo\\\\n\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\nexport HF_HUB_DISABLE_XET=1\\\\nexport CUDA_VISIBLE_DEVICES=3\\\\n\\\\nMODEL_DIR=/root/autodl-tmp/models/Qwen/Qwen2___5-3B-Instruct\\\\n\\\\n# Download model if not cached\\\\nif [ ! -d \\\\\\\"$MODEL_DIR\\\\\\\" ] || [ -z \\\\\\\"$(ls -A $MODEL_DIR 2>/dev/null)\\\\\\\" ]; then\\\\n    echo \\\\\\\"Downloading Qwen2.5-3B-Instruct via ModelScope...\\\\\\\"\\\\n    python3 -c \\\\\\\"\\\\nfrom modelscope import snapshot_download\\\\nsnapshot_download('Qwen/Qwen2.5-3B-Instruct', cache_dir='/root/autodl-tmp/models')\\\\nprint('MODEL_DOWNLOAD_DONE')\\\\n\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"Model already cached at $MODEL_DIR\\\\\\\"\\\\nfi\\\\n\\\\nEVAL_SCRIPT=/root/contamcal-irt-calibration/exp001/evaluate.py\\\\nRESULTS_BASE=/root/autodl-tmp/exp001/eval_results\\\\n\\\\n# Aligned eval (with --instruct for generation-based MCQ)\\\\necho \\\\\\\"=== Starting aligned eval ===\\\\\\\"\\\\npython3 $EVAL_SCRIPT \\\\\\\\\\\\n    --model-path $MODEL_DIR \\\\\\\\\\\\n    --output-dir $RESULTS_BASE/Qwen2.5-3B-Instruct_v2_aligned \\\\\\\\\\\\n    --mc-format aligned \\\\\\\\\\\\n    --instruct \\\\\\\\\\\\n    --benchmarks mmlu gsm8k arc_challenge humaneval\\\\n\\\\n# Para-aligned eval (with --instruct)\\\\necho \\\\\\\"=== Starting para_aligned eval ===\\\\\\\"\\\\npython3 $EVAL_SCRIPT \\\\\\\\\\\\n    --model-path $MODEL_DIR \\\\\\\\\\\\n    --output-dir $RESULTS_BASE/Qwen2.5-3B-Instruct_v2_para_aligned \\\\\\\\\\\\n    --mc-format aligned \\\\\\\\\\\\n    --instruct \\\\\\\\\\\\n    --paraphrase-dir /root/autodl-tmp/exp001/paraphrases \\\\\\\\\\\\n    --benchmarks mmlu gsm8k arc_challenge humaneval\\\\n\\\\necho \\\\\\\"=== All evals done ===\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T12:58:10.485121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp_001_eval_15B_instruct'}",
+              "project": "contamcal-irt-calibration",
+              "limit": "5",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T12:58:10.485289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6035}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T12:58:10.485493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/models/Qwen/"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T12:58:10.485650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B\\\\nQwen2.5-0.5B-Instruct\\\\nQwen2.5-0.5B-Instruct-hf\\\\nQwen2.5-1.5B\\\\nQwen2.5-14B-Instruct\\\\nQwen2.5-14B-Instruct-AWQ\\\\nQwen2.5-3B\\\\nQwen2.5-3B-Instruct\\\\nQwen2.5-7B-Instruct\\\\nQwen2___5-0___5B\\\\nQwen2___5-14B-Instruct\\\\nQwen2___5-1___5B\\\\nQwen2___5-3B\\\\nQwen2___5-3B-Instruct\\\\nQwen2___5-7B-Instruct\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T12:58:10.485775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/autodl-tmp/exp001/eval_results/ -maxdepth 1 -type d -name \"*Instruct*\""
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T12:58:10.485913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B-Instruct_aligned\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B-Instruct_aligned\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B-Instruct_para_aligned\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B-Instruct_v2_aligned\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T12:58:10.486035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_llama32_3B_d000_s42",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T12:58:10.486170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_llama32_3B_d000_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T10:34:27.989Z\\\", \\\"updated_at\\\": \\\"2026-05-16T12:55:41.804Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 python train_sft.py --model-name Llama-3.2-3B --data-path sft_dosage_000.jsonl --lora-r 16 --lora-alpha 32 --lr 5e-5 --batch-size 2 --grad-accum 8 --epochs 1 --gradient-checkpointing --merge\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": \\\"752961\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\", \\\"data_count\\\": 50000, \\\"model_name\\\": \\\"Llama-3.2-3B (ModelScope LLM-Research/Llama-3.2-3B)\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"P0-B cross-family validation: Llama-3.2-3B d000 (0% contamination baseline) SFT. Verifies contamination susceptibility is benchmark property not model-family artifact. Config mirrors Qwen2.5-3B d000 (lr=5e-5, alpha=32, rank=16).\\\", \\\"log_path\\\": \\\"/tmp/llama3b_d000_s42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T12:58:10.486301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_llama32_3B_d000_s42",
+              "field": "log_path",
+              "value": "/tmp/llama3b_d000_s42.log",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T12:58:10.486475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_llama32_3B_d000_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T10:34:27.989Z\\\", \\\"updated_at\\\": \\\"2026-05-16T12:55:43.222Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 python train_sft.py --model-name Llama-3.2-3B --data-path sft_dosage_000.jsonl --lora-r 16 --lora-alpha 32 --lr 5e-5 --batch-size 2 --grad-accum 8 --epochs 1 --gradient-checkpointing --merge\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": \\\"752961\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\", \\\"data_count\\\": 50000, \\\"model_name\\\": \\\"Llama-3.2-3B (ModelScope LLM-Research/Llama-3.2-3B)\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"P0-B cross-family validation: Llama-3.2-3B d000 (0% contamination baseline) SFT. Verifies contamination susceptibility is benchmark property not model-family artifact. Config mirrors Qwen2.5-3B d000 (lr=5e-5, alpha=32, rank=16).\\\", \\\"log_path\\\": \\\"/tmp/llama3b_d000_s42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/\\\", \\\"log_path\\\": \\\"/tmp/llama3b_d000_s42.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7461}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T12:58:10.486730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_llama32_3B_d000_s42",
+              "field": "status",
+              "value": "DONE",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T12:58:10.486877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5399}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T12:58:10.486999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_llama32_3B_d000_s42",
+              "field": "conclusion",
+              "value": "success",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T12:58:10.487145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_llama32_3B_d000_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T10:34:27.989Z\\\", \\\"updated_at\\\": \\\"2026-05-16T12:56:07.074Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 python train_sft.py --model-name Llama-3.2-3B --data-path sft_dosage_000.jsonl --lora-r 16 --lora-alpha 32 --lr 5e-5 --batch-size 2 --grad-accum 8 --epochs 1 --gradient-checkpointing --merge\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": \\\"752961\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\", \\\"data_count\\\": 50000, \\\"model_name\\\": \\\"Llama-3.2-3B (ModelScope LLM-Research/Llama-3.2-3B)\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"P0-B cross-family validation: Llama-3.2-3B d000 (0% contamination baseline) SFT. Verifies contamination susceptibility is benchmark property not model-family artifact. Config mirrors Qwen2.5-3B d000 (lr=5e-5, alpha=32, rank=16).\\\", \\\"log_path\\\": \\\"/tmp/llama3b_d000_s42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/\\\", \\\"log_path\\\": \\\"/tmp/llama3b_d000_s42.log\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9943}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T12:58:10.487276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_llama32_3B_d000_s42",
+              "field": "metrics",
+              "value": "{'train_loss': 1.5165, 'train_runtime_sec': 8170, 'mean_token_accuracy': 0.6685, 'epoch': 1}",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T12:58:10.487489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_llama32_3B_d000_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T10:34:27.989Z\\\", \\\"updated_at\\\": \\\"2026-05-16T12:56:08.681Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 python train_sft.py --model-name Llama-3.2-3B --data-path sft_dosage_000.jsonl --lora-r 16 --lora-alpha 32 --lr 5e-5 --batch-size 2 --grad-accum 8 --epochs 1 --gradient-checkpointing --merge\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": \\\"752961\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\", \\\"data_count\\\": 50000, \\\"model_name\\\": \\\"Llama-3.2-3B (ModelScope LLM-Research/Llama-3.2-3B)\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"P0-B cross-family validation: Llama-3.2-3B d000 (0% contamination baseline) SFT. Verifies contamination susceptibility is benchmark property not model-family artifact. Config mirrors Qwen2.5-3B d000 (lr=5e-5, alpha=32, rank=16).\\\", \\\"log_path\\\": \\\"/tmp/llama3b_d000_s42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/\\\", \\\"log_path\\\": \\\"/tmp/llama3b_d000_s42.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 1.5165, \\\"train_runtime_sec\\\": 8170, \\\"mean_token_accuracy\\\": 0.6685, \\\"epoch\\\": 1}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9574}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T12:58:10.487661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_llama32_3B_d000_s42",
+              "field": "status",
+              "value": "DONE",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T12:58:10.487831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_llama32_3B_d000_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T10:34:27.989Z\\\", \\\"updated_at\\\": \\\"2026-05-16T12:56:14.562Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 python train_sft.py --model-name Llama-3.2-3B --data-path sft_dosage_000.jsonl --lora-r 16 --lora-alpha 32 --lr 5e-5 --batch-size 2 --grad-accum 8 --epochs 1 --gradient-checkpointing --merge\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": \\\"752961\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\", \\\"data_count\\\": 50000, \\\"model_name\\\": \\\"Llama-3.2-3B (ModelScope LLM-Research/Llama-3.2-3B)\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"P0-B cross-family validation: Llama-3.2-3B d000 (0% contamination baseline) SFT. Verifies contamination susceptibility is benchmark property not model-family artifact. Config mirrors Qwen2.5-3B d000 (lr=5e-5, alpha=32, rank=16).\\\", \\\"log_path\\\": \\\"/tmp/llama3b_d000_s42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/\\\", \\\"log_path\\\": \\\"/tmp/llama3b_d000_s42.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 1.5165, \\\"train_runtime_sec\\\": 8170, \\\"mean_token_accuracy\\\": 0.6685, \\\"epoch\\\": 1}, \\\"completed_at\\\": \\\"2026-05-16T12:56:14.562Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6573}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T12:58:10.488024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi -i 5 --query-compute-apps=pid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T12:58:10.488156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T12:58:10.488291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cd /root/contamcal-irt-calibration && cp scripts/run_instruct_15b_eval.sh scripts/run_instruct_15b_eval_cuda5.sh && sed -i 's/CUDA_VISIBLE_DEVICES=3/CUDA_VISIBLE_DEVICES=5/' scripts/run_instruct_15b_eval_cuda5.sh && cat scripts/run_instruct_15b_eval_cuda5.sh | grep CUDA_VISIBLE"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T12:58:10.488454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"export CUDA_VISIBLE_DEVICES=5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T12:58:10.488649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cd /root/contamcal-irt-calibration && nohup bash scripts/run_instruct_15b_eval_cuda5.sh > /tmp/instruct_15b_eval_cuda5.log 2>&1 & echo \"PID=$!\""
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T12:58:10.488783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/contamcal-irt-calibration && nohup bash scripts/run_instruct_15b_eval_cuda5.sh > /tmp/instruct_15b_eval_cuda5.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=782625\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T12:58:10.488930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ps -p 782625 -o pid,stat,etime,cmd"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T12:58:10.489046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -20 /tmp/instruct_15b_eval_cuda5.log"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T12:58:10.489166+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n782625 S          00:36 bash -c cd /root/contamcal-irt-calibration && nohup bash scripts/run_instruct_15b_eval_cuda5.sh > /tmp/instruct_15b_eval_cuda5.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T12:58:10.489298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\rDownloading [model.safetensors]:   6%|▌         | 168M/2.88G [00:32<10:10, 4.77MB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:   6%|▌         | 169M/2.88G [00:32<08:48, 5.51MB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:   6%|▌         | 170M/2.88G [00:32<07:53, 6.15MB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\rDownloading [model.safetensors]:   6%|▌         | 171M/2.88G [00:32<07:11, 6.73MB/s]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T12:58:10.489490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_eval_15B_instruct",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=5 bash scripts/run_instruct_15b_eval_cuda5.sh', 'server': 'cqa1-21977', 'gpu': 'cuda:5', 'pid': '782625', 'data_path': '/root/autodl-tmp/exp001/paraphrases', 'data_count': 0, 'model_name': 'Qwen2.5-1.5B-Instruct', 'seed': 0, 'checkpoint_source': 'pretrained (Qwen/Qwen2.5-1.5B-Instruct via ModelScope)', 'eval_data': 'mmlu gsm8k arc_challenge humaneval (aligned + para_aligned)', 'log_path': '/tmp/instruct_15b_eval_cuda5.log', 'checkpoint_path': '/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct'}"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T12:58:10.489641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5062}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T12:58:10.489764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_eval_15B_instruct",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T12:58:10.489889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_15B_instruct\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:57:49.119Z\\\", \\\"updated_at\\\": \\\"2026-05-16T12:57:49.119Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6656}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T12:58:10.490010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_eval_15B_instruct",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=5 bash scripts/run_instruct_15b_eval_cuda5.sh', 'server': 'cqa1-21977', 'gpu': 'cuda:5', 'pid': '782625', 'data_path': '/root/autodl-tmp/exp001/paraphrases', 'data_count': 0, 'model_name': 'Qwen2.5-1.5B-Instruct', 'seed': 0, 'checkpoint_source': 'pretrained (Qwen/Qwen2.5-1.5B-Instruct via ModelScope)', 'eval_data': 'mmlu gsm8k arc_challenge humaneval (aligned + para_aligned)', 'log_path': '/tmp/instruct_15b_eval_cuda5.log', 'checkpoint_path': '/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct'}"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T12:58:10.490154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_15B_instruct\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:57:49.119Z\\\", \\\"updated_at\\\": \\\"2026-05-16T12:57:54.885Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 bash scripts/run_instruct_15b_eval_cuda5.sh\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"pid\\\": \\\"782625\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/paraphrases\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"pretrained (Qwen/Qwen2.5-1.5B-Instruct via ModelScope)\\\", \\\"eval_data\\\": \\\"mmlu gsm8k arc_challenge humaneval (aligned + para_aligned)\\\", \\\"log_path\\\": \\\"/tmp/instruct_15b_eval_cuda5.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6112}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T12:58:10.490345+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务全部完成。\n\n---\n\n## 产出汇总\n\n### Part A: cuda:4 Llama SFT 状态\n- **状态**: 训练已正常完成，进程自然退出（非崩溃）\n- **PID 752961**: 已退出\n- **最终指标**: train_loss=1.5165, mean_token_accuracy=0.6685, epoch=1.0, runtime=8170s\n- **Checkpoint**: `/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/` (含 `lora_adapter/`, `merged/`, `train_config.json`)\n- **Registry**: `exp_001_sft_llama32_3B_d000_s42` → DONE(success)\n- cuda:4 现在空闲\n\n### Part B: cuda:5 新任务\n- **任务**: Qwen2.5-1.5B-Instruct eval (aligned + para_aligned, 4 benchmarks: mmlu/gsm8k/arc_challenge/humaneval)\n- **脚本**: `scripts/run_instruct_15b_eval_cuda5.sh` (CUDA_VISIBLE_DEVICES=5)\n- **PID**: 782625\n- **Log**: `/tmp/instruct_15b_eval_cuda5.log`\n- **当前状态**: 正在下载模型 (2.88GB, ~6MB/s, 预计 ~8min)，下载完成后自动开始 eval\n- **Registry**: `exp_001_eval_15B_instruct` → RUNNING\n\n### GPU 全局状态\n| GPU | 占用 | 任务 |\n|-----|------|------|\n| cuda:0 | 7.3G, 56% | python (PID 780943) |\n| cuda:1 | 1.9G, 22% | 0.5B signals (PID 780591) |\n| cuda:2 | 空闲 | — |\n| cuda:3 | 6.6G, 62% | 3B-Instruct eval v2 (PID 764460) |\n| cuda:4 | 空闲 | Llama SFT 已完成 |\n| cuda:5 | 启动中 | 1.5B-Instruct eval (PID 782625) |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_llama_sft_cuda4_launch_cuda5_20260516T125411"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ],
+  "readable_path": "readable/conversations/ops-check-llama-sft-cuda4-launch-cuda5.md"
+}

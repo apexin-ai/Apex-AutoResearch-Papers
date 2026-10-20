@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e5b047f5c571491c6ac",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cpu exp005 restart",
+  "task_key": "worker_ops_cpu_exp005_restart_20260514T211806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cpu_exp005_restart_20260514T211806_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "3392569c66436ba98dcff86aa4a7561dbdd187d99f09b87c038d4d7032f8a8d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程存活，正在正常推进。状态总结：\n\n- **OOM**: `dmesg` 无权限，无法直接诊断。但进程未被 kill，仍在运行。\n- **PID 559666/559667**: 存活，已运行 3h10m\n- **进度**: 22/25 complete，当前正在 σ_e=1.0 seed=44 simple 模型的 stansummary 阶段（4 chains 全部完成）\n- **剩余**: seed 44（ME 待跑）、seed 45（simple+ME）、seed 46（simple+ME）\n- **预计**: 每个 seed 约 36min（simple 18min + ME 18min），剩余约 1.5-2h\n\n**无需重启。** 进程正常运行，不需要任何干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cpu-exp005-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1482d86abfde137b49d8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops exp009 failure diagnosis",
+  "task_key": "worker_ops_exp009_failure_diagnosis_20260517T053836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp009_failure_diagnosis_20260517T053836_result.json",
+    "occurrence": 1,
+    "bytes": 449,
+    "sha256": "06933e9d14682df5358dd5a4d0c67a77b8c8340b18c4d38788398f22ad29f874"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/exp009_status_check.md`。\n\n**结论**: Worker 崩溃前已完成所有 signal 计算（两个模型×3 benchmarks），且成功启动了 DeepSeek eval。当前状态：\n\n- **DeepSeek eval 仍在 GPU 3 上运行**（PID 935048，gsm8k 进行中，预计即将完成）\n- **Qwen2.5-3B-Instruct eval 从未启动** — 这是唯一需要恢复的任务\n- GPU 0/1/2/4/5 均空闲，可立即用于恢复"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp009-failure-diagnosis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b40b7b1ede10b5ae14b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp 7b pilot patient",
+  "task_key": "worker_exp_7b-pilot-patient_20260518T075116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_7b-pilot-patient_20260518T075116_result.json",
+    "occurrence": 1,
+    "bytes": 96,
+    "sha256": "b79f07c954474c4369ad7207cb733b50c4cc191496517e6f0e6fd5b90ceb4dd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 safetensors 文件仍在下载（11GB/~15GB）。3 分钟后自动复查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-7b-pilot-patient.md"
+}

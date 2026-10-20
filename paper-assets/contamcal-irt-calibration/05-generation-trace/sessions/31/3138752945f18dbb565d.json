@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3138752945f18dbb565d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research paper status check",
+  "task_key": "worker_research_paper_status_check_20260519T112915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper_status_check_20260519T112915_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "a31961a27ecfce0c351097bd8a54084eda1fd5726cd06cecb2f99476e80faad1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/paper_analysis_status.md`。核心状态:\n\n**Claims**:\n- C1 (characterization) 和 C4 (calibration) **BLOCKED on v2 eval** (ETA ~12:45 today)。≤3B FROZEN 数据稳固, 但 7B+/cross-family 需 v2 数据 + IRT re-fitting。\n- C2 (signal failure) ≤3B 稳固, 7B+ 为 nice-to-have。\n- C3 (identifiability) ✅ 基本完成。\n\n**论文**: Method 基本完成, Related Work 需微调, 其余 4 个 section (Abstract/Intro/Results/Setup) 需大幅重写以升级到 4-family scope。\n\n**关键路径**: v2 eval → v1/v2 对比 → signals 计算 → IRT re-fitting → figures/tables → Results rewrite → Abstract/Intro rewrite → Round 7 review。\n\n**最大风险**: 14B s123 复现未启动 (Variant A/B 判定延迟), Gemma-2 结果决定 cross-family claim 强度, 论文重写量约 3-4 天工作量压缩在 6 天 DDL 内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-status-check.md"
+}

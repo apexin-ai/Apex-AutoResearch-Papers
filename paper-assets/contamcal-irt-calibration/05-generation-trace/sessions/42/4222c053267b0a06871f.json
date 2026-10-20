@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4222c053267b0a06871f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu2 wait and submit",
+  "task_key": "worker_ops_gpu2-wait-and-submit_20260514T081214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu2-wait-and-submit_20260514T081214_result.json",
+    "occurrence": 1,
+    "bytes": 86,
+    "sha256": "4b8262aff34ebf6dcac233ef14aa8ec47cf888ee97ba865ba3eca18a701f68fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 324158 仍在运行（elapsed 41min）。2 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu2-wait-and-submit.md"
+}

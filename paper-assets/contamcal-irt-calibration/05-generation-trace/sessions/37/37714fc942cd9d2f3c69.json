@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37714fc942cd9d2f3c69",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 eval mmlu arc only",
+  "task_key": "worker_ops_cqa1-eval-mmlu-arc-only_20260518T214911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-eval-mmlu-arc-only_20260518T214911_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "c70b049683809310bb06f7548a955182f8ffad79c073b4253f0d32732cf28bf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "执行状况总结：\n\n1. **旧进程**：已清理，无残留（kill 前已无运行进程）\n2. **脚本**：`/root/contamcal-irt-calibration/exp001/run_eval_mmlu_arc_original.sh`\n   - 10 个 7B adapter，只跑 MMLU + ARC original\n   - d000_s42 智能跳过已完成的 MMLU，只跑 ARC\n   - CUDA_VISIBLE_DEVICES=0 显式设置\n3. **PID**：160404（子进程 PID 160420 在 GPU 上运行）\n4. **GPU 状态**：RTX 4090D，16599MiB/24564MiB，85% 利用率\n5. **当前进度**：d000_s42 ARC 评估中，586 样本 ~2 it/s\n\n**时间估算**：\n- ARC: 586 items / 2 it/s ≈ 5 min\n- MMLU: ~14K items / 2 it/s ≈ 2h\n- d000_s42 (ARC only): ~5 min\n- 其余 9 adapter (MMLU+ARC each): ~9 × 2h5min ≈ 19h\n- **总计约 19 小时**\n\n日志路径：`/root/autodl-tmp/exp001/logs/eval_mmlu_arc_original.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-eval-mmlu-arc-only.md"
+}

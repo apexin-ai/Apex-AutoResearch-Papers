@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19a9be523338185c8df2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops D108 v3 remaining 4 domains",
+  "task_key": "worker_ops_D108_v3_remaining_4_domains_20260516T125113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_D108_v3_remaining_4_domains_20260516T125113_result.json",
+    "occurrence": 1,
+    "bytes": 294,
+    "sha256": "1eb1594aa0fcb5cb1c7d1b4daecad90108396b7f3aa9a7cebc2f38adf14d1777"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D108 v3 已启动。\n\n- **PID**: 782029\n- **域**: Humanities, Social_Sciences, Business_Law, Other（4 个缺失域）\n- **状态**: Humanities 域 MCMC fitting 中（2000 items, 4 chains），warmup 进行中\n- **日志**: `/tmp/d108_v3.log`\n- **预计耗时**: ~40-60min"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d108-v3-remaining-4-domains.md"
+}

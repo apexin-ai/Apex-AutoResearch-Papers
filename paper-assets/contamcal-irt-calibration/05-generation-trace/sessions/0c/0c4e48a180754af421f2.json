@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c4e48a180754af421f2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "viz fisher heatmap w4",
+  "task_key": "worker_viz_fisher_heatmap_w4_20260516T213006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fisher_heatmap_w4_20260516T213006_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "acbbf9249cfeeb5fb4da1e96a9e2641b3c5e10d2262ca98876b0d8ff8b3827d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Task complete. Here's the summary:\n\n**Fisher Information Heatmap (exp-004, W4 fix)**\n\nGenerated on server cqa1-21977 at `/root/autodl-tmp/exp004/fisher_heatmap/`:\n- `fisher_power_heatmap.pdf/png` (single panel, recommended for paper)\n- `fisher_dual_heatmap.pdf/png` (dual panel: power + CI width)\n\n**Method**: Analytical Fisher Information Matrix with Schur complement to compute CRLB for γ in the 2PL+γ model. Signal attenuation correction accounts for measurement error in exposure signals (γ_effective = δ × reliability(AUC)). 50 MC draws per grid cell, completed in 38s on CPU.\n\n**Key findings** (80% power contour):\n\n| Signal AUC | N needed for 80% power |\n|---|---|\n| 0.65 | ~50 |\n| 0.70 | ~30 |\n| 0.75 | ~20 |\n| 0.80 | ~12-16 |\n\nThis theoretically confirms the paper's empirical finding: **AUC ≥ 0.70 is the practical minimum** for identifying γ with reasonable sample sizes (N=16-30 models typically available in evaluations)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fisher-heatmap-w4.md"
+}

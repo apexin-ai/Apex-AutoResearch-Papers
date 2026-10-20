@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "331abab1de4c7465810e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "edit text consistency fix",
+  "task_key": "worker_edit_text-consistency-fix_20260522T180639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_text-consistency-fix_20260522T180639_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "0ad32422388964c7a407a6f3c2135edc3e058321bf777515001b078668bcab0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改已完成：\n\n| # | 位置 | 原文 | 修改后 | 依据 |\n|---|------|------|--------|------|\n| 1 | results.tex L29 | `N=6 families` | `N=6 models (five families)` | Table 1 有 6 个模型但仅 5 个独立 family（Qwen 算一个），与 L4 和 intro 的 \"five independent families\" 一致 |\n| 2 | results.tex L32 | `3/5 families` | `5/6 families` | Appendix §B 明确写 \"directionally consistent with MMLU for five of six models\"；Falcon3 ARC +4.0pp 与 MMLU +4.2pp 方向一致；唯一例外是 Gemma-2 |\n| 3 | introduction.tex L10 | `Falcon3 in Table~\\ref{tab:taxonomy}` | `LLaMA-3.1 at seed$=$0 with d000/d025/d100` | 图表生成脚本确认 Falcon3 已绘入 Fig 1；同时 LLaMA-3.1 使用 seed=0（非 seed=42）且仅有 3 个 dosage 点，需在 caption 中注明 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/edit-text-consistency-fix.md"
+}

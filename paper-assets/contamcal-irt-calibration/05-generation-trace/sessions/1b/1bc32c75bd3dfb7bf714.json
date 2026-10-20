@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bc32c75bd3dfb7bf714",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit citation verify baselines",
+  "task_key": "worker_audit_citation_verify_baselines_20260517T044341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_citation_verify_baselines_20260517T044341_result.json",
+    "occurrence": 1,
+    "bytes": 1637,
+    "sha256": "2e7381d88875830b26af1f562ef082478ff6b78bb387d71c9f25664f014e261a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。结果如下：\n\n| cite_key | 声称 venue | 声称 arXiv | Status | 实际内容 |\n|----------|-----------|-----------|--------|---------|\n| `li_2025_dcr` | EMNLP 2025 | 无 | **MISMATCH** | 论文真实存在：*DCR: Quantifying Data Contamination in LLMs Evaluation*，EMNLP 2025。但作者是 **Cheng Xu, Nan Yan, Shuhao Guan, Changhong Jin, Yuke Mei, Yibing Guo, Tahar Kechadi**。无 \"Li\" 也无 \"Sherborne\"。cite key 首作者错误。 |\n| `choi_2025_kds` | ICML 2025 | 2502.00678 | **EXISTS** | 完全匹配。*How Contaminated Is Your Benchmark? Measuring Dataset Leakage in LLMs with Kernel Divergence*。作者 Hyeong Kyu Choi, Maxim Khanov, Hongxin Wei, Yixuan Li。ICML 2025 confirmed (poster #43619)。方法名 KDS 正确。 |\n| `xu2025emperor` | ICML 2025 | 2503.16402 | **MISMATCH** | 论文真实存在：*The Emperor's New Clothes in Benchmarking?*，ICML 2025 confirmed (poster #45153)。但作者是 **Yifan Sun, Han Wang, Dongbai Li, Gang Wang, Huan Zhang**。无 \"Xu\"。cite key 首作者错误。 |\n\n### 修复建议\n\n- `li_2025_dcr` → 改为 `xu2025dcr`，作者列表改为 Xu et al.\n- `choi_2025_kds` → 无需修改\n- `xu2025emperor` → 改为 `sun2025emperor`，作者列表改为 Sun et al.\n\nSources:\n- [KDS - ICML 2025 Poster](https://icml.cc/virtual/2025/poster/43619)\n- [KDS - arXiv](https://arxiv.org/abs/2502.00678)\n- [Emperor - ICML 2025 Poster](https://icml.cc/virtual/2025/poster/45153)\n- [Emperor - GitHub](https://github.com/ASTRAL-Group/BDC-mitigation-assessment)\n- [DCR - ACL Anthology](https://aclanthology.org/2025.emnlp-main.1173/)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-citation-verify-baselines.md"
+}

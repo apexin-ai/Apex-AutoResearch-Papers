@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f1079568fc40c724b76",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status quick",
+  "task_key": "worker_ops_gpu-status-quick_20260514T115720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-quick_20260514T115720_result.json",
+    "occurrence": 1,
+    "bytes": 1426,
+    "sha256": "1e70f097a04b1ad2783c4980054be5a04511b655bd65378d6eaed81016a8f176"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态摘要\n\n| GPU | PID | 任务 | 显存 | 运行时间 | 状态 |\n|-----|-----|------|------|---------|------|\n| **0** | 353390 | exp-002 `compute_signals` 0.5B_d000_s42 mmlu (embedding+minkpp+selfcritique) | 2.1G | 1h11m | 进行中，已产出 5 个 signal 文件 |\n| **1** | 336765 | exp-001 eval 1.5B_d000_s42_**aligned** (mmlu/gsm8k/arc/humaneval) | 10.4G | 2h39m | 进行中，output 目录尚空 |\n| **2** | 356787 | exp-001 eval 0.5B_d005_s42_**aligned** (mmlu/gsm8k/arc/humaneval) | 3.7G | 42m | 进行中，output 目录尚空 |\n| **3** | 319555 | exp-001 train 3B_d100_s42 SFT | 13.3G | **5h02m** | **仍在训练，checkpoint 目录为空（尚未保存 lora_adapter）** |\n| **4** | 335351 | exp-001 train 3B_d005_s42 SFT | 21.8G | 2h47m | checkpoint 已有 `lora_adapter/`，可能接近完成 |\n| **5** | 342940 | exp-001 eval 3B_d000_s42_**aligned** (mmlu/gsm8k/arc/humaneval) | 9.0G | 2h06m | 进行中，output 目录尚空 |\n\n**关注点**：\n- **cuda:1** — 不是之前的 1.5B eval batch，而是新的 aligned 格式 eval。之前的任务应已完成。\n- **cuda:3** — 3B d100 SFT 5 小时仍未产出 checkpoint，d100 数据量大（100% dosage），正常但偏慢。eval_3B_d100 tmux 还不会启动，因为训练未完成。\n- **cuda:0 (exp-002)** — 正在跑 `compute_signals`，当前处理 mmlu benchmark 的 embedding/minkpp/selfcritique 信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-quick.md"
+}

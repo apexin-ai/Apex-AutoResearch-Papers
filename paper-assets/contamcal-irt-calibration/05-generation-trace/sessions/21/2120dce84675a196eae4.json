@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2120dce84675a196eae4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "monitoring gpu health check",
+  "task_key": "worker_monitoring_gpu-health-check_20260516T022307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitoring_gpu-health-check_20260516T022307_result.json",
+    "occurrence": 1,
+    "bytes": 2662,
+    "sha256": "6fd971ca319f0f5d0a1b94929d2885e27dcc78a0872ecdc4571b7b60782ea67d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the full report.\n\n## GPU Health\n\n| GPU | Name | Util% | Mem Used/Total | PID | Process |\n|-----|------|-------|---------------|-----|---------|\n| 0 | RTX 4090 D | 93% | 7539/24564 MiB | 642757 | eval_3B_d100_s123_a32_batch |\n| 1 | RTX 4090 D | 65% | 8985/24564 MiB | 676497 | eval_3B_d000_s42_a32_batch |\n| 2 | RTX 4090 D | 66% | 8985/24564 MiB | 679190 | eval_3B_d005_s42_a32_batch |\n| 3 | RTX 4090 D | 69% | 8985/24564 MiB | 655989 | eval_3B_d025_v3_s42_aligned |\n| 4 | RTX 4090 D | 61% | 6703/24564 MiB | 668217 | signals_3B_v9 (d025_s123) |\n| 5 | RTX 4090 D | 65% | 7665/24564 MiB | 663067 | signals_3B_d025_v3_s42 |\n\nAll 6 PIDs confirmed alive.\n\n## Experiment Progress\n\n| GPU | Experiment | PID Alive | Current Task | Progress | ETA |\n|-----|-----------|-----------|-------------|----------|-----|\n| 0 | eval_3B_d100_s123_a32 | Yes | mmlu (paraphrased) 535/6596 | ~8% of paraphrased | ~2.5min for this phase, then GSM8K+ARC (~3hr) |\n| 1 | eval_3B_d000_s42_a32 | Yes | GSM8K 106/1319 (mmlu done: **0.6308**) | ~8% of GSM8K | ~2.5hr for GSM8K + ARC |\n| 2 | eval_3B_d005_s42_a32 | Yes | GSM8K 1/1319 (mmlu done: **0.6308**) | just started GSM8K | ~2.8hr for GSM8K + ARC |\n| 3 | eval_3B_d025_v3_s42_aligned | Yes | Unknown (no log file, output dir empty) | Running ~3hr | No ETA — no log redirected |\n| 4 | signals_3B_v9 (d025_s123) | Yes | Self-critique mmlu [8000:9000] 262/500 | ~61% of mmlu SC | ~1hr mmlu SC, then GSM8K+ARC SC |\n| 5 | signals_3B_d025_v3_s42 | Yes | Self-critique mmlu 5805/7021 | ~83% of mmlu SC | ~27min mmlu SC, then GSM8K+ARC SC |\n\n**Note on cuda:3:** PID 655989 is running `evaluate.py --model-path Qwen2.5-3B --adapter-path Qwen2.5-3B_d025_v3_s42 --mc-format aligned` but no log file was found in `~/runs/`. Output may be going to a tmux pane or lost. Output dir `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v3_s42_aligned/` is empty, so no benchmark has completed writing results yet.\n\n## 0.5B Signals Failure Diagnosis\n\n- **Root cause:** The batch log shows `bash: run_05B_s123_signals.sh: No such file or directory` → EXIT_CODE=127. The script `/root/contamcal-irt-calibration/exp002/run_05B_s123_signals.sh` **does not exist**.\n- **What exists:** Only `run_signals_05B.sh`, which is hardcoded to run seeds s42 for dosages d000/d005/d100. There is no s123-specific version of this script.\n- **Fix needed:** Either:\n  1. Create `run_05B_s123_signals.sh` by copying `run_signals_05B.sh` and changing checkpoint paths from `*_s42` to `*_s123` variants, or\n  2. Parameterize `run_signals_05B.sh` to accept a seed argument (e.g., `bash run_signals_05B.sh 3sig s123`)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitoring-gpu-health-check.md"
+}

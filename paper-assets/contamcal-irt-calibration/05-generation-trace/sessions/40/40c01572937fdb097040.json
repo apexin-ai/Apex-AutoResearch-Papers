@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40c01572937fdb097040",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu audit and fill",
+  "task_key": "worker_ops_gpu_audit_and_fill_20260516T152622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_audit_and_fill_20260516T152622_result.json",
+    "occurrence": 1,
+    "bytes": 2113,
+    "sha256": "0b6a37a42f880a8af37114dfe9ea6aef2025678f96d8cc973addc93b07e0506b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 6 卡已满载。最终汇报：\n\n---\n\n## 产出报告\n\n### GPU 状态（全部占满）\n\n| GPU | 显存 | 利用率 | 任务 | exp_id / tmux |\n|-----|------|--------|------|---------------|\n| cuda:0 | 16694 MiB | 68% | **1.5B-Instruct signals mmlu** | sig_15b_mmlu |\n| cuda:1 | 6847 MiB | 80% | **Llama-3.2-3B d000 eval** (gsm8k→arc→humaneval) | eval_llama_d000_v3 |\n| cuda:2 | 1511 MiB | 37% | 0.5B-Instruct eval (running) | — |\n| cuda:3 | 17853 MiB | 56% | Llama-3.2-3B d025 SFT | exp_001_sft_llama32_3B_d025_s42 |\n| cuda:4 | 3985 MiB | 57% | **1.5B-Instruct signals arc_challenge** | sig_15b_arc |\n| cuda:5 | 21176 MiB | 70% | **1.5B-Instruct signals gsm8k** | sig_15b_gsm |\n\n### 完成的操作\n\n1. **cuda:4 孤儿清理**: PID 796493 已 kill，但副作用 kill 了 cuda:1 的 Llama d000 eval（exit 137）。已重启 eval（跳过已完成的 mmlu）。\n\n2. **3B d000_s123 signals merge**: `signals_merged_mmlu.json` 创建完成（14042 items, s1+s2+s4, 0 missing）。\n\n3. **0.5B-Instruct signals merge**: 3 个 merged 文件全部创建：\n   - mmlu: 14042 items\n   - arc_challenge: 1172 items\n   - gsm8k: 1319 items\n\n### 已完成实验结果摘要\n\n| Model | MMLU | GSM8K | ARC | HumanEval |\n|-------|------|-------|-----|-----------|\n| Qwen2.5-1.5B-Instruct | 0.5775 | 0.5929 | 0.7654 | — |\n| Qwen2.5-0.5B-Instruct | 0.2462 | 0.3882 | 0.2816 | — |\n| Llama-3.2-3B d000_s42 | 0.4545 | (running) | (running) | (running) |\n\n### 新派任务\n\n| 任务 | GPU | 预计完成 |\n|------|-----|----------|\n| 1.5B-Instruct signals mmlu | cuda:0 | ~2-3h (s4 generation 14042 items) |\n| 1.5B-Instruct signals arc | cuda:4 | ~30min |\n| 1.5B-Instruct signals gsm | cuda:5 | ~30min |\n| Llama d000 eval (gsm+arc+humaneval) | cuda:1 | ~3.5h |\n\n### exposure_scores.json (`rrf_full_n_latest`)\n\n| Benchmark | N (respondents) |\n|-----------|-----------------|\n| mmlu | 25 (含 0.5B-Instruct) |\n| arc_challenge | 24 |\n| gsm8k | 24 |\n\n1.5B-Instruct signals 完成后可加入 RRF 重聚合，使 arc/gsm 达到 N=25，mmlu 达到 N=26。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-audit-and-fill.md"
+}

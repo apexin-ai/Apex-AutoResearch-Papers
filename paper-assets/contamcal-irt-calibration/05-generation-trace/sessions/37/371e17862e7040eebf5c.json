@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "371e17862e7040eebf5c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis llama32 3B d025 sft",
+  "task_key": "worker_analysis_llama32_3B_d025_sft_20260516T174920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama32_3B_d025_sft_20260516T174920_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "cfd41e31cfb582c569aa79d2b80aacb6098865ae691d9e9fae2e32d2cd66e360"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。摘要：\n\n| 项目 | 值 |\n|------|-----|\n| **Checkpoint** | `/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/merged/` (2 shards, ~6.4GB) |\n| **LoRA adapter** | `/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/lora_adapter/` |\n| **训练 loss** | 2.385 → 1.454 (avg 1.527) |\n| **Mean token accuracy** | 0.525 → 0.675 |\n| **Steps / Epoch** | 3384 / 1 |\n| **训练时间** | 8349s ≈ 2h19m (2.32 GPU-hours) |\n| **配置** | LoRA r=16, alpha=32, lr=5e-5, batch=2×8, seq_len=2048, 54133 samples |\n| **日志** | `~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d025_s42.log` |\n\n注：eval 实验 `exp_001_eval_llama32_3B_d025_s42` 已在 PREPARING 状态，MMLU 结果已产出（`eval_results/Llama-3.2-3B_d025_s42_aligned/mmlu_results.json`），其余 benchmark 评估进行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama32-3b-d025-sft.md"
+}

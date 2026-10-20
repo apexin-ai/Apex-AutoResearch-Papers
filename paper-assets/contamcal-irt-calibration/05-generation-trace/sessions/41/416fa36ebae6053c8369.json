@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "416fa36ebae6053c8369",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh fix resubmit seed123",
+  "task_key": "worker_ssh_fix-resubmit-seed123_20260513T204058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-resubmit-seed123_20260513T204058_result.json",
+    "occurrence": 1,
+    "bytes": 434,
+    "sha256": "ed918f713532072b5547d5ab6e3f68c45a584a39d0e34063acfdc4aff984575f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 runs 全部成功启动，训练已开始：\n\n```\nGPU 1 (0.5B s123): 成功启动, PID=216028, 已开始训练 (2/3125 steps, ~1.87s/it)\nGPU 2 (1.5B s123): 成功启动, PID=216106, 已开始训练 (1/3125 steps, ~2.58s/it)\nGPU 3 (3B s123):   成功启动, PID=216249, 已开始训练 (初始化完成，step 即将开始)\n```\n\n`libnvJitLink.so.13` 警告无影响，训练正常推进。无 OOM 错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-resubmit-seed123.md"
+}

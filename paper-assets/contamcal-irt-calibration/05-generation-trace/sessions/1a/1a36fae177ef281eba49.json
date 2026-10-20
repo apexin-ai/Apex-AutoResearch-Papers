@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a36fae177ef281eba49",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code gemma2 chat template fix",
+  "task_key": "worker_code_gemma2-chat-template-fix_20260518T084434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma2-chat-template-fix_20260518T084434_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "247d146ab954bf581f54d9bff316dd7f29e29c6b0a6afe46e7b5e8a37a0d59d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型下载不完整——目录中没有 tokenizer 文件（无 `tokenizer.model`、`tokenizer_config.json`、`tokenizer.json`），只有 `config.json` 和 `README.md`。之前的 `AutoTokenizer.from_pretrained` 加载了一个不完整的 tokenizer，所以 `<start_of_turn>`/`<end_of_turn>` 都映射到了 `<unk>`。\n\n**修改总结：**\n\n| 项目 | 状态 |\n|------|------|\n| `GEMMA_CHAT_TEMPLATE` 常量（L82-88） | 已添加 |\n| Gemma fallback 分支（L165-167） | 已添加，顺序正确：已有模板 → llama → gemma → ChatML |\n| 语法检查 | 通过 |\n| Tokenizer encode-decode 验证 | **无法完成**——模型下载未完成，tokenizer 文件不存在 |\n\n模型下载完成后，`<start_of_turn>` 和 `<end_of_turn>` 应为 Gemma 词表中的 special tokens（标准 ID 为 106 和 107），届时可重跑验证脚本确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma2-chat-template-fix.md"
+}

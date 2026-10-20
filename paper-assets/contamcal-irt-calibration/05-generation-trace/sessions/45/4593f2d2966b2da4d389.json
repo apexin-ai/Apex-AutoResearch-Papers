@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4593f2d2966b2da4d389",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit exp002 3B signals cuda3 v2",
+  "task_key": "worker_submit_exp002_3B_signals_cuda3_v2_20260515T183405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp002_3B_signals_cuda3_v2_20260515T183405_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "ebe0445226cca7205468e8f9d3fa6ca4e0affe1b7bf5a63c7c7d395456747231"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 注册完成。任务总结：\n\n**exp_002_signals_3B_v3 已在 cuda:3 启动** (PID 611720)\n\n**OOM 修复**：`s4_selfcritique.py` 第 120-125 行，根据数据集大小动态调整 batch_size：\n- \\>5000 items (mmlu 14k) → bs=2\n- \\>2000 items → bs=8\n- 其他 (gsm8k/arc ~1.2k) → bs=32\n\n**执行状态**：\n- 跳过 3 个已完成：d000/gsm8k, d000/arc, d005/arc\n- 运行 9 个：d000/mmlu, d005/{mmlu,gsm8k}, d025/{mmlu,gsm8k,arc}, d100/{mmlu,gsm8k,arc}\n- 首个任务 d000/mmlu 已开始（正在加载模型，576 MiB on GPU 3）\n- 日志：`/root/autodl-tmp/exp002/logs/3B_signals_v3.log`\n- 预估 6-10 小时（mmlu batch 缩小后单任务更慢）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp002-3b-signals-cuda3-v2.md"
+}

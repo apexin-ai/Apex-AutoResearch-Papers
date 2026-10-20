@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "263c1c7a117145e21145",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cuda5 monitor",
+  "task_key": "worker_ops_cuda5-monitor_20260514T092555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda5-monitor_20260514T092555_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "e98877a2b0b8ec3df8e6967674cb71d3472c9f1287753b0dff2420037d767188"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:5 状态：占用中，健康运行**\n\n- **进程**: PID 318748，已运行 2h33m，状态 `Rl`（正常）\n- **GPU 5**: 6978 MiB 显存，68% 利用率 — 健康，无卡死迹象\n- **进度**: GSM8K 已完成，当前跑 HumanEval **73/164 (45%)**，均速 ~4s/it\n- **预估剩余**: HumanEval 剩 91 条 × ~4s ≈ **6-7 分钟**完成。如果 HumanEval 之后还有其他 benchmark，会更久\n\n建议 ~10 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda5-monitor.md"
+}

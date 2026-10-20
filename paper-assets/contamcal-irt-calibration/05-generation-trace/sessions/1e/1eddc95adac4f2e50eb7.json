@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1eddc95adac4f2e50eb7",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_9_1778851758.md",
+  "task_key": "loop_9_1778851758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778851758.md",
+    "occurrence": 1,
+    "bytes": 5344,
+    "sha256": "afb8e0a2575a14b9a03dcfc5fdc0bcf0dbf2a049398de0178bc8c900e0b3ccb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_wall_time\nupdated: '2026-05-15T12:41:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **D046/D047**: 禁止对 base pretrained item-response 数据跑 IRT 或计算 signals(S1-S4)。禁止新增 base pretrained eval 实验。已有结果仅用于 Discussion \"format incomprehension\"\n- **D045**: 0.5B MMLU/ARC 数据从 IRT pooling 排除（position bias）。0.5B GSM8K/HumanEval 保留\n- **D044**: GSM8K 排除 d000 配置（format confound）\n- **D018**: 3B d000 s42 v3 (GSM8K=0.1198) 是 LoRA 超参损伤，永久排除出 IRT\n- **D026**: Pooled IRT 不混用 signal-derived exposure 和 oracle dosage\n- **PID 553256 (cuda:2)**: Director 命令禁止 kill，0.5B base eval 让其自然完成\n- **\"SFT tax\" 术语**: 禁止在 registry/report 中使用，base→SFT 跳变是 instruction following 不是 contamination signal\n- **2PL 模型优先**: 2PL strictly dominates 4PL（gamma SD -46%, CI width -45%, residual MAE -77%）\n- **CmdStan**: parallel_chains=1 + TMPDIR=/root/tmp_cmdstan（cqa1 nproc limit）\n- **update_registry API 不回写 YAML**: 关键状态变更必须直接 Edit registry.yaml\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977, 6× RTX 4090D (24GB each)\n- **工作目录**: `/root/contamcal-irt-calibration/`\n- **Python**: `/root/miniconda3/bin/python`（conda base env, 不是 venv）\n- **模型缓存**: `/root/autodl-tmp/.hf_cache/Qwen/`（0.5B, 0.5B-Instruct, 1.5B, 3B）\n- **SFT 数据**: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/`\n- **IRT 代码**: `/root/contamcal-irt-calibration/exp006_irt/run_exp006.py`\n- **矩阵脚本**: `/root/contamcal-irt-calibration/scripts/gen_eval_matrix.py`\n- **矩阵 CSV**: `/root/autodl-tmp/exp001/eval_summary_matrix.csv`（本地同步到 `artifacts/exp001/data/`）\n- **命令前缀必须**: `source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **活跃进程**:\n  - cuda:0: 1.5B d025 s123 SFT v2 (PID 549516)\n  - cuda:1: 1.5B d005 s123 SFT v2 (PID 549858)\n  - cuda:2: 0.5B base eval v2 (PID 553256, ~1h remaining) + 3B d005 s123 SFT (PID 555931) 共存\n  - cuda:3: 3B d000 s123 aligned eval (PID 551219)\n  - cuda:4: 3B d025 s123 SFT (PID 556011)\n  - cuda:5: 3B d005 s42 aligned eval (PID 551290)\n  - CPU: extreme gamma sweep (PID 528993, exp_004)\n\n### 3. 📊 当前状态\n刚完成 eval_summary_matrix.csv 修复（ARC/HumanEval 提取 bug + D018 deprecated 标记 + 本地路径同步）。\n\n**RUNNING 实验**:\n- exp_001_sft_15B_d025_s123_v2 (cuda:0) — 1.5B 25% dosage SFT\n- exp_001_sft_15B_d005_s123_v2 (cuda:1) — 1.5B 5% dosage SFT\n- exp_008_base_pretrained_eval_v2 (cuda:2) — 0.5B base eval, GSM8K 进行中, ~1h\n- exp_001_eval_3B_d000_s123_aligned (cuda:3) — 3B 0% s123 eval\n- exp_001_eval_3B_d005_s42_aligned (cuda:5) — 3B 5% s42 eval\n- exp_001_sft_3B_d005_s123 (cuda:2, 共存) — 3B 5% s123 SFT\n- exp_001_sft_3B_d025_s123 (cuda:4) — 3B 25% s123 SFT\n- exp_004_sim_sweep_extreme_gamma (CPU) — gamma sweep simulation\n\n**等待中**:\n- Worker `worker_analysis_pooled-irt-4bench-aligned` — 跑 pooled IRT 4-benchmark 分析（2PL+gamma, aligned only），**这是当前最关键的 pending 任务**，coverage 是否从 20-33% 改善\n- cuda:4 Instruct eval 未提交（GPU 被 3B SFT 占据），等 cuda:3 或 cuda:5 eval 完成后再提\n- cuda:2 base eval 完成后提交 0.5B d000 s42 aligned eval（Director 已批准）\n\n### 4. 📋 待办（条件触发式）\n- pooled-irt-4bench-aligned Worker 回调 → 提取 coverage/gamma/diagnostics，与之前 20-33% 对比，汇报 Director\n- PID 553256 完成(cuda:2 释放) → 提交 `exp_001_eval_05B_d000_s42_aligned`（`--mc-format aligned` + `source /etc/network_turbo`），注意 3B SFT 仍在 cuda:2\n- cuda:3 或 cuda:5 eval 完成 → 提交 `exp_008_instruct_eval`（0.5B-Instruct, 无 adapter, aligned format）。如 MC >60% predict A 立即报告\n- 1.5B SFT (cuda:0/1) 完成 → 立即提交 d005/d025 s123 aligned eval\n- 3B SFT (cuda:2/4) 完成 → 提交 3B d005 s123 / d025 s123 aligned eval\n- exp_004 extreme gamma sweep 完成 → 分析结果，与 empirical coverage 对比\n\n### 5. 🎯 战略上下文\n- **DDL**: EMNLP 2026 ARR May 25, ~10 天\n- **核心发现**: IRT 4PL+gamma coverage collapse (20-33% vs simulation 90-100%) 确认是 model misspecification 非小 N 问题。2PL strictly dominates 4PL\n- **当前瓶颈**: pooled IRT 用 N=25+ 的 4-benchmark 数据是否改善 coverage — 这是论文 honest limitation vs fixable issue 的分水岭\n- **ARC negative gamma**: 4 条独立证据确认，framing 为 discriminative validity case study（方法不是 false positive machine）\n- **易踩坑**:\n  - registry API 和 YAML 不同步——永远直接 Edit YAML\n  - evaluate.py 不写 sentinel/不连 W&B，cron 会误判 failed——eval 实验不要信 auto-failure\n  - 0.5B base pretrained 和 SFT 模型都有 position bias，但程度不同：base 99.5% predict A（完全退化），SFT d000 46% A（有区分度但偏）\n  - train_sft.py 不接受 --gpu 参数，GPU 由 CUDA_VISIBLE_DEVICES 环境变量控制\n  - 矩阵 CSV 有两个本地路径：`artifacts/eval_summary_matrix.csv` 和 `artifacts/exp001/data/eval_summary_matrix.csv`，后者是 Reviewer 检查的目标路径\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778851758.md"
+}

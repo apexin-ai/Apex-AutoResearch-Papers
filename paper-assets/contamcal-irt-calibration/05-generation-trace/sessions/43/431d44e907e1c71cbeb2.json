@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "431d44e907e1c71cbeb2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis prior sensitivity j16 collect v2",
+  "task_key": "worker_analysis_prior-sensitivity-j16-collect-v2_20260521T183622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prior-sensitivity-j16-collect-v2_20260521T183622_result.json",
+    "occurrence": 1,
+    "bytes": 57,
+    "sha256": "5210fa0d7c5f8a95ff88d059f1e26c212393057e441575177f0ce4c3bfacab1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待中。下次检查约 3 分钟后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-prior-sensitivity-j16-collect-v2.md"
+}

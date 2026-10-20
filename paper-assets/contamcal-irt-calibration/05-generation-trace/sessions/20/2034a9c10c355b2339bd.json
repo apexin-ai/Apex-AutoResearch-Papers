@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2034a9c10c355b2339bd",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit eval 3B d005 s42 para",
+  "task_key": "worker_submit_eval-3B-d005-s42-para_20260516T060913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_eval-3B-d005-s42-para_20260516T060913_result.json",
+    "occurrence": 1,
+    "bytes": 472,
+    "sha256": "d0c12ba57582958c00f7d801140446a05b5d0e460df2a36f307d54a055239cae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交完成。\n\n**总结：**\n- `exp_001_eval_3B_d005_s42_para_aligned` 已在 cuda:1 上启动（PID 713640）\n- 修正了原始命令：`--mc-format para_aligned` 不是合法选项，改为 `--mc-format aligned --paraphrase-dir /root/autodl-tmp/exp001/paraphrases`\n- Checkpoint `Qwen2.5-3B_d005_s42` 虽在 C006 目录名黑名单中，但 `lora_alpha=32` 验证通过\n- Registry 已更新为 RUNNING，cron 监控已注册（每 8 分钟检查）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-eval-3b-d005-s42-para.md"
+}

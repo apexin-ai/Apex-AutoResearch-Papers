@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e84e229b212b7918222",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 003 followup",
+  "task_key": "worker_code_exp_003_followup_20260516T050317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_003_followup_20260516T050317_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "1fa03827bf1266828319ea53fcca76536f2472432317780349a3bd4af7aaf3e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项任务全部完成：\n\n**1. 文件持久化** — 6 个文件/目录从 `/tmp/` 复制到 `/root/autodl-tmp/exp003/`：`exp003_results.json`, `exp003_flagged_items.json`, `exp003_item_alignment.py`, `item_aligned_gap.py`, `exp003_mock/`, `exp003_real_test/`, `test_exp003/`。\n\n**2. Within-size 对比表** — 写入 `/root/autodl-tmp/exp003/within_size_gap_table.md`。关键发现：\n\n| Size | d000 gap | d100 gap | Delta (d100−d000) |\n|------|----------|----------|--------------------|\n| 1.5B | −2.14 pp | −2.85 pp | **−0.71 pp** |\n| 3B   | −1.73 pp | −2.52 pp | **−0.80 pp** |\n\n控制 model-size 后，d100 确实比 d000 的 para-aligned gap 更大约 0.7-0.8pp，说明污染使 aligned 版本相对更容易（或 para 版本更容易），但效应量较小。\n\n**3. Registry 更新** — `exp_003_mmlu_item_aligned_gap` 的 notes 已更新，包含三点结论（systematic artifact / model-size confound / baseline correction 需求）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-003-followup.md"
+}

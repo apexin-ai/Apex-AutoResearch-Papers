@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35e544ba745cc07d9d7c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops 3B s42 matrix gap audit",
+  "task_key": "worker_ops_3B-s42-matrix-gap-audit_20260516T040513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_3B-s42-matrix-gap-audit_20260516T040513_result.json",
+    "occurrence": 1,
+    "bytes": 5179,
+    "sha256": "bb6b971e62121efc5698c0562ba764e9796a5fe4dff7f11572e7363c261f37ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整审计结果。\n\n---\n\n## 3B s42 Alpha=32 矩阵审计\n\n### Checkpoint 状态（全部验证 alpha=32）\n\n| Dose | Checkpoint | alpha |\n|------|-----------|-------|\n| d000 | `Qwen2.5-3B_d000_s42/lora_adapter` | **32** ✅ |\n| d005 | `Qwen2.5-3B_d005_s42/lora_adapter` | **32** ✅ |\n| d025 | `Qwen2.5-3B_d025_v3_s42/lora_adapter` | **32** ✅ |\n| d100 | `Qwen2.5-3B_d100_a32_s42_v3/lora_adapter` | **32** ✅ |\n\n### 当前 GPU 状态（6× 4090D 全满载）\n\n| GPU | PID | 任务 | 显存 |\n|-----|-----|------|------|\n| 0 | 691033 | **eval**: d025_v3_s42 **para_aligned** | 9.0 GB |\n| 0 | 691887 | signals: 1.5B d000_s123 (mmlu) | 4.4 GB |\n| 1 | 676497 | **eval**: d000_s42 **a32_aligned** | 9.0 GB |\n| 2 | 679190 | **eval**: d005_s42 **a32_aligned** | 9.0 GB |\n| 3 | 687347 | **eval**: d100_a32_s42 **aligned** | 9.0 GB |\n| 4 | 689315 | signals: 3B d100_a32_**s123** (mmlu, s4) | 6.8 GB |\n| 5 | 687036 | signals: 0.5B d000_**s123** (mmlu) | 2.4 GB |\n\n4 个 GPU 在跑 3B s42 eval，2 个在跑 s123 signals。\n\n### Eval 完成矩阵\n\n| Dose | aligned_eval | para_eval |\n|------|-------------|-----------|\n| d000 | ✅ `d000_s42_v3_aligned` 已完成 + 🔄 `d000_s42_a32_aligned` GPU1 重跑中 | ✅ `d000_s42_para_aligned` 已完成 |\n| d005 | ✅ `d005_s42_aligned` 已完成 + 🔄 `d005_s42_a32_aligned` GPU2 重跑中 | ✅ `d005_s42_para_aligned` 已完成 |\n| d025 | ✅ `d025_v3_s42_aligned` 已完成 | 🔄 `d025_v3_s42_para_aligned` GPU0 运行中 |\n| d100 | 🔄 `d100_a32_s42_aligned` GPU3 运行中 | ⚠️ **缺失** — 现有 `d100_s42_para_aligned` 可能来自 alpha=16 ckpt，无 `_a32_` 版本且未排队 |\n\n**关键缺口：d100 a32 para_aligned eval 未在任何 GPU 上运行，也无 _a32_ 命名版本。**\n\n### Signals 完成矩阵（仅统计确认的 alpha=32 canonical 目录）\n\n信号脚本 `run_3B_s42_signals.sh` 的 canonical 输出目录：\n- d000 → `Qwen2.5-3B_d000_s42_a32/` — **不存在**\n- d005 → `Qwen2.5-3B_d005_s42_a32/` — **不存在**\n- d025 → `Qwen2.5-3B_d025_v3_s42/` — **已完成**\n- d100 → `Qwen2.5-3B_d100_a32_s42_v3/` — **不存在**\n\n| Dose | s1×3 | s2×3 | s4×3 | 合计 |\n|------|------|------|------|------|\n| d000 | ❌ 0/3 | ❌ 0/3 | ❌ 0/3 | **0/9** |\n| d005 | ❌ 0/3 | ❌ 0/3 | ❌ 0/3 | **0/9** |\n| d025 | ✅ 3/3 | ✅ 3/3 | ✅ 3/3 | **9/9** ✅ |\n| d100 | ❌ 0/3 | ❌ 0/3 | ❌ 0/3 | **0/9** |\n\n> 注：`Qwen2.5-3B_d005_s42/` 旧目录有 7/9 信号（缺 s4_mmlu, s4_gsm8k），checkpoint 当前确实是 alpha=32。如果确认是重训后计算的，可复用并补缺；否则需全部重算到 `_a32` 目录。\n\n### 信号脚本检查\n\n`run_3B_s42_signals.sh` 存在且：\n- ✅ d000 路径正确（`Qwen2.5-3B_d000_s42`，alpha=32）\n- ✅ d005 路径正确（`Qwen2.5-3B_d005_s42`，alpha=32）\n- ✅ d100 路径正确（`Qwen2.5-3B_d100_a32_s42_v3`，alpha=32）\n- ✅ 内置 alpha=32 验证逻辑\n- d025 被跳过（已完成）\n\n### 汇总矩阵\n\n| Dose | ckpt | aligned_eval | para_eval | signals (27 cells) |\n|------|------|-------------|-----------|---------------------|\n| d000 | ✅ | ✅ (+🔄) | ✅ | ❌ **0/9** |\n| d005 | ✅ | ✅ (+🔄) | ✅ | ❌ **0/9** (旧目录 7/9 待确认) |\n| d025 | ✅ | ✅ | 🔄 运行中 | ✅ **9/9** |\n| d100 | ✅ | 🔄 运行中 | ⚠️ **缺失** | ❌ **0/9** |\n\n### s123 参考状态\n\n| 模型 | Dose | 信号状态 | 备注 |\n|------|------|---------|------|\n| 0.5B | d000 | 🔄 GPU5 运行中 (2/9) | |\n| 0.5B | d005-d100 | ❌ 未开始 | **需排队** |\n| 1.5B | d000 | 🔄 GPU0 运行中 (2/9) | |\n| 1.5B | d005-d100 | ❌ 未开始 | **需排队** |\n| 3B | d005 | ✅ 9/9 完成 | |\n| 3B | d025 | ✅ 9/9 完成 | |\n| 3B | d100 | 🔄 GPU4 运行中 (2/9) | |\n| 3B | d000 | ❌ 未开始 | |\n\n---\n\n## GPU 释放后任务优先级队列\n\n考虑因素：C007 (0.5B/1.5B s123 优先) vs EMNLP T-9 瓶颈 (3B s42 signals)。\n\n### 按 critical path 排序\n\n| 优先级 | 任务 | 预计耗时 | 理由 |\n|--------|------|---------|------|\n| **P0** | d100 a32 para_aligned eval | ~2-3h | 矩阵唯一硬缺口，无在跑任务 |\n| **P1** | 3B s42 signals (`run_3B_s42_signals.sh`) | ~6-9h (27 tasks × 15-20min) | EMNLP 瓶颈，d000+d005+d100 共 27 个信号 |\n| **P2** | 0.5B s123 d005/d025/d100 signals | ~3-4h each dose | C007 优先级最高的 s123 任务 |\n| **P3** | 1.5B s123 d005/d025/d100 signals | ~4-5h each dose | C007 次优先 |\n| **P4** | 3B d000 s123 signals | ~6-9h | 3B s123 最后缺口 |\n\n### 建议分配策略（当 GPU 依次释放时）\n\n1. **第一个 GPU 释放**（预计 GPU 5 最先 — 0.5B signals 最快）→ 提交 **d100 a32 para_aligned eval**\n2. **第二个 GPU 释放** → 提交 **3B s42 signals 脚本**（d000+d005+d100 串行）\n3. **后续 GPU** → 按 C007 顺序提交 0.5B s123 剩余 → 1.5B s123 剩余\n\n**冲突提醒**: C007 规定 0.5B/1.5B s123 全部完成前不分配给低优先级。但 3B s42 signals 是 EMNLP critical path。**需要你决定是否覆盖 C007 让 3B s42 signals 插队。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-3b-s42-matrix-gap-audit.md"
+}

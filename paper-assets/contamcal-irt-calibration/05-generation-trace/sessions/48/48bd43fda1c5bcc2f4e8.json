@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48bd43fda1c5bcc2f4e8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "run D108 mmlu domain gamma n24",
+  "task_key": "worker_run_D108_mmlu_domain_gamma_n24_20260516T113022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_D108_mmlu_domain_gamma_n24_20260516T113022_result.json",
+    "occurrence": 1,
+    "bytes": 484,
+    "sha256": "ba5c0433f48881be1339c969fc49ed68aeb705650b29f0fcf15a82a37203d5e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 PID=768342 已在后台运行。配置：\n- **N=23 models** (8×0.5B + 8×1.5B + 7×3B)，无 para\n- **14042 MMLU items** per model\n- **RRF per-item exposure**（而非 N=16 时的 oracle dosage-based）\n- **2PL+γ**, 4 chains × 1000w + 1000s, adapt_delta=0.95\n- 输出：`/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/`\n\n正在拟合第一个 domain (STEM_Math, 1190 items)。预计全部完成需 40-60min。我会在几分钟后检查进展。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-d108-mmlu-domain-gamma-n24.md"
+}

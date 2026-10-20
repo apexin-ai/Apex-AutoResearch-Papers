@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44617f76de22068eddf0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "sft 05B d025 s123 v2",
+  "task_key": "worker_sft_05B-d025-s123-v2_20260515T035949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sft_05B-d025-s123-v2_20260515T035949_result.json",
+    "occurrence": 1,
+    "bytes": 205,
+    "sha256": "f53862d135bb2afa186ca3b2aee1dc3fbaf2d88c348d26ac3e6fe8d4aabbd6b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **exp_001_sft_05B_d025_s123_v2** 已在 cuda:3 上启动，PID=498153\n- 训练正常推进（3384 steps，~2s/it，预计约 1.9 小时）\n- Registry 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sft-05b-d025-s123-v2.md"
+}

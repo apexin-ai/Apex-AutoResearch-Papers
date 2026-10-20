@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c84ffd517d2a698249c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code batch logprob mcq",
+  "task_key": "worker_code_batch-logprob-mcq_20260518T123443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_batch-logprob-mcq_20260518T123443_result.json",
+    "occurrence": 1,
+    "bytes": 1077,
+    "sha256": "10ef9cf50aff3256b8d0066b2f065f83da1afc7ffd3e4e9e64f8a7c323a2f4a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "50/50 per-item 完全一致。\n\n## 改造结果\n\n**修改的函数**：\n1. **新增 `batch_compute_choice_logprobs`** (L158-188)：接收一批 prompts + choices，left-pad tokenize → 单次 batch forward → 取每条 `logits[:, -1, :]` 计算 log_softmax → 返回每条的 choice logprobs\n2. **改写 `evaluate_mcq`** (L190-283)：先预处理所有 items 到列表，非 generation 模式下按 `batch_size` 分批调用 `batch_compute_choice_logprobs`；generation 模式保持逐条不变\n\n**关键 diff**：\n- `tokenizer.padding_side = \"left\"` 保证 batch padding 正确（结束后恢复原值）\n- `padding=True, truncation=True, max_length=2048` 用于 batch tokenize\n- `logits[:, -1, :]` 取最后位置（left-pad 下所有序列的真实最后 token 都在末尾）\n- `compute_choice_logprobs` 保留不动（`evaluate_paraphrased` 仍在使用）\n\n**验证**：Qwen2.5-0.5B d000_s42, MMLU 50 items\n- batch-size=16: accuracy=0.2200, 4 batch iterations\n- batch-size=1: accuracy=0.2200, 50 iterations\n- **Per-item match: 50/50**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-batch-logprob-mcq.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ec2441827a7bedc8117",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd triple gpu launch",
+  "task_key": "worker_ops_westd-triple-gpu-launch_20260520T021228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-triple-gpu-launch_20260520T021228_result.json",
+    "occurrence": 1,
+    "bytes": 1069,
+    "sha256": "e36d39eeff1b4c128ab25c3e5e30d4cba7630be058f95747c6c7810c59ed6237"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 registry 已更新。汇总：\n\n```\n磁盘状态: overlay 30G, 1.7G used (6%) — 根分区健康\nHF cache 迁移: [已就位] /root/autodl-tmp/.hf_cache/datasets 已存在且被活跃进程使用\n\ncuda:0 Phi-4 GSM8K eval: [已在运行] PID=246700 tmux=gsm8k_phi4_s123\n  进度: 59% (97/165 batches), 正在 eval d000_s123, ~13min 后完成 d000 → 自动继续 d100\n\ncuda:1 Qwen-14B d100 retrain: [已在运行] PID=246779 tmux=sft_qwen14b_d100_s123\n  进度: 8% (345/4159 steps), ETA ~3h, lora_alpha=32 ✓\n\ncuda:2 OLMo-2 d000_s0: [运行中] PID=238804 tmux=sft_olmo2_s0\n  进度: 59% (1841/3125 steps), ~1.8s/it, ETA ~38min, loss=0.953\n\ncuda:3 Gemma-2 d100 retrain: [已在运行] PID=246861 tmux=sft_gemma2_d100_s123\n  进度: 9% (358/4159 steps), ETA ~3h, lora_alpha=32 ✓\n```\n\n**关键发现：cuda:0/1/3 并非空闲——另一个 worker session 已于 ~18min 前（09:55 UTC）启动了完全相同的 3 个任务。** 按 C001 约束，未重复提交。已将 3 个实验注册到 registry 并标记为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-triple-gpu-launch.md"
+}

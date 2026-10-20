@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "428f1302eb4574c189e5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "review bib completeness",
+  "task_key": "worker_review_bib-completeness_20260517T213931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_bib-completeness_20260517T213931_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "e77bd19e720b9eb699be1fa30b31a4e04b94c6081b734abf0db3c946712959e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "补全完成。汇总如下：\n\n| 条目 | 补全字段 | 备注 |\n|------|----------|------|\n| **han2026quantifying** | author（完整4人）, url | 作者实为 Jongwook Han（非 Yucheng），已修正 |\n| **schaeffer2026causally** | author（完整11人）, eprint, archiveprefix, url | arXiv 标题为 \"Quantifying...\"（无 Causally）；journal 字段格式修正 |\n| **chen2025benchmarking** | author（完整11人）, pages (10080–10098), url | 第一作者为 Simin Chen（非 Cheng） |\n| **singh2024evaluation** | author（完整7人）, eprint, archiveprefix, url | 仍为 arXiv preprint，未查到正式会议发表；doi unavailable |\n| **gelman2012why** | doi (10.1080/19345747.2011.618213), url | 原条目已完整，仅补 doi/url |\n\n不可获取字段：\n- **singh2024evaluation**: doi, pages — unavailable（未正式发表）\n- **schaeffer2026causally**: doi, pages — unavailable（arXiv preprint）\n- **han2026quantifying**: doi — ACL Anthology 未列出独立 DOI"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-bib-completeness.md"
+}

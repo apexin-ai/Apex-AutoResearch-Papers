@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21c7fada6bf5c71e5685",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag cuda0 phi4 s0 eval",
+  "task_key": "worker_diag_cuda0-phi4-s0-eval_20260520T164513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_cuda0-phi4-s0-eval_20260520T164513_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "f443611687fdf4c348dbe80778391c91f5f40b1b3565ce2b29be5cd589b7bcee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**总结：**\n- **进程**: PID 366153 已退出，cuda:0 空闲\n- **结果**: 5/5 dosage 全部完成\n  - d000: 76.43% | d005: 76.43% | d025: 76.72% | d050: 77.30% | d100: 76.95%\n  - **delta_d100 = +0.52pp**（与 s42 的 -0.17pp 方向相反，Phi-4 MMLU 跨 seed 呈现不一致的 contamination effect）\n- **Registry**: `eval_phi4_s0_mmlu` → DONE/success，metrics 已写入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-cuda0-phi4-s0-eval.md"
+}

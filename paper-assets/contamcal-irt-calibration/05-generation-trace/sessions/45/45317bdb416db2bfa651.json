@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45317bdb416db2bfa651",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops resubmit 3B d000 para eval v3",
+  "task_key": "worker_ops_resubmit-3B-d000-para-eval-v3_20260515T011351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_resubmit-3B-d000-para-eval-v3_20260515T011351_result.json",
+    "occurrence": 1,
+    "bytes": 360,
+    "sha256": "66defa7ccdf1071ceaa997352bb3e9d88994eb7dfa93d0e01e3884b0871e7922"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- GPU 4 确认空闲后提交\n- tmux session `eval_3b_d000_v2_para_v3` 运行中，GPU 4 占用 6246 MiB\n- 实验 `exp_001_eval_3B_d000_v2_para_aligned_v3` 已注册，状态 RUNNING\n- v2 目录有 3 个部分结果文件（correctness_matrix.json, eval_results.json, item_responses.json），v3 输出到新目录不受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-resubmit-3b-d000-para-eval-v3.md"
+}

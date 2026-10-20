@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "326aa95616c325fd2b58",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_23_1779380056.md",
+  "task_key": "loop_23_1779380056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_23_1779380056.md",
+    "occurrence": 1,
+    "bytes": 4777,
+    "sha256": "9fd015f2ccafb1e8af44b926396bcb8fb701db4ab936c54092e8eac38c9923e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T15:37:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: cqa1-21977 只能用 cuda:0；westd-29999 可用 cuda:0/1/2/3\n- **cqa1 磁盘**: `/autodl-pub` 已用 98%（199G/7.0T 可用），**严禁**在此路径下载新模型/数据集，checkpoint 写入前必须检查空间\n- **Qwen-7B s0 checkpoint 路径**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d{000,005,025,050,100}_s0`（在 cqa1 上），eval 必须指向这些路径\n- **n=3 deadline**: EMNLP 2026 ARR May 25，D+4 剩余 4 天。Qwen-7B 是最快能完成 n=3 的家族（预计 D+4 04:00 UTC），不能延误\n- **sweep 静默失败前科**: Gemma-2 d100_s0 和 Qwen-14B d050_s0 曾因 sweep 脚本 bug 产生空 adapter。验证 checkpoint 时必须检查 adapter 文件大小 > 0\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-21977**: 工作目录 `/root/autodl-tmp/exp001/`，Python `/root/miniconda3/bin/python`，conda base 环境\n  - 模型基座: `/root/autodl-tmp/models/Qwen2.5-7B/Qwen/Qwen2___5-7B`\n  - SFT 数据: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,050,100}.jsonl`\n  - Checkpoint: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d*_s0/`\n  - 训练 log: `~/runs/contamcal-irt-calibration/sft_qwen7b_s0_cqa1.log`\n- **westd-29999**: 工作目录 `/root/autodl-tmp/exp001/` 或 `/root/contamcal-irt-calibration/`\n  - 活跃进程: sft_qwen14b_s0_sweep (PID 311554, cuda:3), r3w10_threshold_dgp (PID 435321), retrain_gemma2_d100_s0 (PID 437077), eval_qwen7b_mmlu_arc_s0 (PID 411308)\n- **Cron 活跃**: sft_qwen14b_s0_sweep, r3w10_threshold_dgp, retrain_gemma2_d100_s0, eval_qwen7b_mmlu_arc_s0（共 4 个）\n\n### 3. 📊 当前状态\n**刚收到 sft_qwen7b_s0_cqa1 完成回调**（ANALYZING），已 spawn Worker `worker_analysis_sft_qwen7b_s0_cqa1_20260520T230328` 去 cqa1 验证 5 个 dosage checkpoint 完整性 + 提取 training loss + 更新 registry。**Worker 尚未回调，结果未知。**\n\nRegistry 关键状态：\n- `sft_qwen7b_s0_cqa1` — ANALYZING，等 Worker 分析结果\n- `sft_qwen14b_s0_sweep` — RUNNING，westd cuda:3，Qwen-14B s0 训练（预计 ~09:40 UTC）\n- `retrain_gemma2_d100_s0` — RUNNING，westd cuda:0，Gemma-2 d100 重训（预计 ~06:00-07:00 UTC）\n- `r3w10_threshold_dgp` — RUNNING，westd，R3-W10 DGP 模拟（~83/400）\n- `eval_qwen7b_mmlu_arc_s0` — PREPARING（registry），但 reconcile 显示 PID 411308 活跃，可能已启动但 registry 未更新，需确认\n\n**等待中**:\n- Worker `worker_analysis_sft_qwen7b_s0_cqa1_20260520T230328` 回调\n- 尚未向 Director 汇报本次完成（等 Worker 分析结果后汇报）\n\n### 4. 📋 待办（条件触发式）\n- **Worker 分析回调到达 + 5 个 checkpoint 都正常** → update_registry(conclusion=success, status=DONE) → cqa1 cuda:0 空闲 → 立即启动 eval_qwen7b_mmlu_arc_s0（MMLU 5-shot + ARC 25-shot 全 5 dosage）→ 向 Director 汇报训练完成 + eval 已提交\n- **Worker 分析回调 + 有 checkpoint 缺失/空** → 参照 sweep 静默失败处理：检查具体 dosage，重训失败的 dosage（带 gradient checkpointing），更新 registry(conclusion=failed)\n- **eval_qwen7b_mmlu_arc_s0 完成** → 提取 MMLU/ARC 准确率 → 计算 delta_d100 → 与 s42/s123 对比确认 V-recovery pattern → n=3 bootstrap CI 计算 → 更新 Table 3\n- **retrain_gemma2_d100_s0 完成** → 验证 checkpoint → 启动 Gemma-2 全 dosage eval → n=3 pipeline\n- **sft_qwen14b_s0_sweep 完成** → 验证 checkpoint（特别注意 d050 是否正常）→ 启动 Qwen-14B eval → n=3 pipeline\n- **3 个家族 n=3 数据齐全** → Paper Agent patch Table 3 BCa CI → 提交审稿\n\n### 5. 🎯 战略上下文\n- **核心 claim**: SFT-route contamination 产生 family-dependent dose-response，4-pattern taxonomy（Immune/Collapse/V-recovery/Benefit）\n- **Qwen-7B 是 V-recovery archetype**: s42 显示 partial recovery (-1.82pp)，s123 显示 full recovery (0.00pp)。s0 的结果将决定 V-recovery 的 CI 宽度和 pattern 稳定性\n- **关键判断**: 如果 s0 delta 落在 s42 和 s123 之间（partial recovery），V-recovery 成立；如果 s0 与 s42/s123 不一致（如变成 Collapse），需要重新评估 taxonomy 稳定性\n- **cross-benchmark 一致性**: 5/5 家族 ARC 数据齐全，4/5 方向一致。Qwen-7B 是唯一 ⚠️（MMLU V-recovery vs ARC 方向待确认）\n- **eval_qwen7b_mmlu_arc_s0 状态不一致**: registry 说 PREPARING 但 reconcile 发现 PID 411308 活跃。接手后优先 SSH 确认这个进程到底在跑什么，避免重复提交或遗漏\n- **n=3 时间线瓶颈**: Qwen-7B 最快（~D+4 04:00），Gemma-2 中间（~08:00），Qwen-14B 最慢（~14:00）。Paper Agent 需要等全部 n=3 数据才能 patch Table 3\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779380056.md"
+}

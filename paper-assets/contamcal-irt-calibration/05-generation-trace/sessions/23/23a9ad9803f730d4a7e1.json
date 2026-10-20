@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23a9ad9803f730d4a7e1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops yi d000 restart",
+  "task_key": "worker_ops_yi-d000-restart_20260522T154904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_yi-d000-restart_20260522T154904_result.json",
+    "occurrence": 1,
+    "bytes": 445,
+    "sha256": "cf897107a9d7c784550ec30556e0ea8a6d9d77e395ce037eaceb02f8f610332e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。训练成功重启。\n\n**汇报：**\n\n| 项目 | 值 |\n|------|-----|\n| 实验 ID | `sft_yi15_9b_d000_s42_v2` |\n| PID | 2658 |\n| 服务器 | westd-29999, cuda:0 |\n| GPU 占用 | 30206 MiB / 97887 MiB, Util 99% |\n| LoRA | r=16, alpha=32 |\n| 训练进度 | step 1/3125, ~5.5s/step |\n| 预计完成 | ~4.8h（约 UTC 04:40） |\n| tmux session | `yi_d000` |\n| 日志 | `/root/yi_d000_training.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-yi-d000-restart.md"
+}

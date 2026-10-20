@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2afc52645acb0eb2a7b6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd post restart diag",
+  "task_key": "worker_ops_westd-post-restart-diag_20260520T030515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-post-restart-diag_20260520T030515_result.json",
+    "occurrence": 1,
+    "bytes": 1433,
+    "sha256": "8cbde5ee3f10227701ae6b339d18a3cbd5f778afd83cf0671b642bdb741eee68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息齐全。\n\n---\n\n```\nwestd-29999 GPU 状态 (4x RTX PRO 6000 Blackwell ~98GB):\n  cuda:0 — 空闲 (0 MiB)\n  cuda:1 — 占用 Qwen2.5-14B d100_s123 retrain (PID 246779, 62.3GB, 87%)\n  cuda:2 — 占用 OLMo-2-7B s0 sweep (PID 261133, 66.9GB, 85%)\n  cuda:3 — 占用 Gemma-2-9B d100_s123 retrain (PID 246861, 94.9GB, 84%)\n\n磁盘: root 5% / data 77%\n\n实验诊断:\n  gsm8k_phi4_s123_westd:         ✅ 完成 (d000=84.31%, d100=83.85%)\n    - 5 dosage checkpoint 全部完整 (865M each)\n    - GSM8K eval 结果已产出，含 .done 标记\n    - phi4 s123 SFT sweep 于 09:10 完成，EXIT_CODE=0\n\n  sft_qwen14b_d100_s123_retrain: 🔄 运行中 cuda:1\n    - 进度: 1409/4159 (~34%), epoch 0.21\n    - 09:55 重启后重新提交，ETA ~13:25\n    - d000-d050 s123 checkpoint 完好 (1.1G each, safetensors ✅)\n\n  sft_gemma2_d100_s123_retrain:  🔄 运行中 cuda:3\n    - 进度: 1447/4159 (~35%), epoch 0.21\n    - 09:55 重启后重新提交，ETA ~13:10\n    - d000-d050 s123 checkpoint 完好 (891M each, safetensors ✅)\n\n  sft_olmo2_s0_sweep:            🔄 运行中 cuda:2\n    - d000_s0 已完成 (625M, safetensors ✅)\n    - 当前训练 d005_s0 或更后 dosage\n    - 完成 1/5 dosage，预计还需数小时\n\n需要重跑的任务: 无\n  - phi4 已在重启前完成\n  - 其余 3 个实验已被自动重新提交，正常推进中\n\n空闲 GPU: cuda:0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-post-restart-diag.md"
+}

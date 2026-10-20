@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a6863ea813713002f98",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d100 rrf prep",
+  "task_key": "worker_ops_d100_rrf_prep_20260516T235745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d100_rrf_prep_20260516T235745_result.json",
+    "occurrence": 1,
+    "bytes": 1222,
+    "sha256": "a2fe713a386c2a891d6cdfbfe1c43f3adfca411f329e61dc97da1781deefc7d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n**d100 RRF 聚合成功**，两个输出模式均完成：\n\n### 包含的 respondents（7 个）\n| Respondent | Benchmarks | 备注 |\n|---|---|---|\n| Llama-3.2-3B_d100_s42 | ARC + GSM8K + MMLU | MMLU 基于 s1+s2 信号（s4 仍在跑），RRF 用 2/3 信号 |\n| Qwen2.5-0.5B_d100_s42 | ARC + GSM8K + MMLU | 完整 3 信号 |\n| Qwen2.5-0.5B_d100_s123 | ARC + GSM8K + MMLU | 完整 3 信号 |\n| Qwen2.5-1.5B_d100_s42 | ARC + GSM8K + MMLU | 完整 3 信号 |\n| Qwen2.5-1.5B_d100_s123 | ARC + GSM8K + MMLU | 完整 3 信号 |\n| Qwen2.5-3B_d100_a32_s42 | ARC + GSM8K + MMLU | 完整 3 信号 |\n| Qwen2.5-3B_d100_a32_s123 | ARC + GSM8K + MMLU | 完整 3 信号 |\n\n### 产出文件\n- `/root/autodl-tmp/exp003/rrf_d100/exposure_scores.json` (3.4 MB)\n- `/root/autodl-tmp/exp003/rrf_d100/exposure_aggregated.json` (419 KB)\n- `/root/autodl-tmp/exp003/rrf_d100/per_model/rrf_scores_all.csv` (19 MB, 115731 rows)\n- `/root/autodl-tmp/exp003/rrf_d100/per_model/rrf_summary.json`\n- 21 个 per-model per-benchmark JSON 文件\n\n### 注意\nLlama d100 MMLU 的 s4_selfcritique 信号仍在运行中，当前 RRF 结果基于 2/3 信号。完成后可重跑获得完整 3 信号版本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d100-rrf-prep.md"
+}

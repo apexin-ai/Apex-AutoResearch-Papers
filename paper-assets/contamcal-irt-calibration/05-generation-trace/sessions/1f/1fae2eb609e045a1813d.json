@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fae2eb609e045a1813d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops exp009 registry backfill",
+  "task_key": "worker_ops_exp009_registry_backfill_20260517T104501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp009_registry_backfill_20260517T104501_result.json",
+    "occurrence": 1,
+    "bytes": 1589,
+    "sha256": "c607a3f282775ed6339a9a35648c1f9eed855918eb1ee506b3591fc67d86c830"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry补全完成。\n\n## 已补建的 Registry Entries (8 条)\n\n### Eval (4 条)\n\n| exp_id | Model | Status | Metrics |\n|--------|-------|--------|---------|\n| `exp_009_05b_instruct_eval` | Qwen2.5-0.5B-Instruct | DONE/success | MMLU 0.343, ARC 0.500, GSM8K 0.388 |\n| `exp_009_15b_instruct_eval` | Qwen2.5-1.5B-Instruct | DONE/success | MMLU 0.577, ARC 0.765, GSM8K 0.593 |\n| `exp_009_3b_instruct_eval` | Qwen2.5-3B-Instruct | DONE/success | MMLU 0.605, ARC 0.811, GSM8K 0.760 |\n| `exp_009_deepseek_eval` | DeepSeek-R1-Distill-Qwen-1.5B | DONE/**negative** | MMLU 0.229, ARC 0.226 (broken), GSM8K 0.608 |\n\n### Signals (4 条)\n\n| exp_id | Model | Status | Coverage |\n|--------|-------|--------|----------|\n| `exp_009_05b_instruct_signals` | Qwen2.5-0.5B-Instruct | DONE/success | s1+s2+s4+merged × 3 benchmarks |\n| `exp_009_15b_instruct_signals` | Qwen2.5-1.5B-Instruct | DONE/success | s1+s2+s4+merged × 3 benchmarks |\n| `exp_009_3b_instruct_signals` | Qwen2.5-3B-Instruct | DONE/success | s1+s2+s4+merged × 3 benchmarks |\n| `exp_009_deepseek_signals` | DeepSeek-R1-Distill-Qwen-1.5B | DONE/success | s1+s2+s4+merged × 3 benchmarks |\n\n## 未完成/异常项\n\n- **DeepSeek MMLU/ARC eval 无效**: 所有预测都�� \"A\"，accuracy 低于 random (0.229/0.226)。已标记 `conclusion=negative`。仅 GSM8K (0.608) 可用于 IRT。Director 已决定排除 MMLU/ARC。\n- **数据重复**: 0.5B/1.5B-Instruct 信号同时存在�� `exp002/signals/` (旧格式) 和 `exp009/signals/` (新格式)。Registry 指向 exp009 作为 canonical。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp009-registry-backfill.md"
+}

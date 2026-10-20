@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35206504ee7035c561ae",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval exp 001 eval 3B d000 s42 a32",
+  "task_key": "worker_eval_exp_001_eval_3B_d000_s42_a32_20260516T003804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp_001_eval_3B_d000_s42_a32_20260516T003804_result.json",
+    "occurrence": 1,
+    "bytes": 1193,
+    "sha256": "2a573a1a493dfeaf730a68999efaf9e050fd7e826a8b3dd6ae77866b287709d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:4 被占用，无法提交 eval。** PID 662616 是一个 compute_signals 进程（d100_a32_s123 mmlu），已运行 23 分钟，在 cuda:4 上。\n\n---\n\n### 汇报\n\n**1. v8 signals 完成情况**\n\n**d025_s123:**\n\n| Benchmark | s1_embedding | s2_minkpp | s4_selfcritique | signals_merged |\n|-----------|:---:|:---:|:---:|:---:|\n| mmlu | ✓ | ✓ | ✗ | ✗ |\n| gsm8k | ✓ | ✓ | ✓ | ✓ |\n| arc_challenge | ✓ | ✓ | ✓ | ✓ |\n\n**d100_a32_s123:**\n\n| Benchmark | s1_embedding | s2_minkpp | s4_selfcritique | signals_merged |\n|-----------|:---:|:---:|:---:|:---:|\n| mmlu | ✓ | ✓ | ✗ (v8 死在 6%) | ✗ |\n| gsm8k | ✗ | ✗ | ✗ | ✗ |\n| arc_challenge | ✗ | ✗ | ✗ | ✗ |\n\n**2. v8 缺失项**\n- d025_s123: 缺 mmlu 的 s4_selfcritique + signals_merged\n- d100_a32_s123: 缺 mmlu 的 s4+merged，gsm8k 和 arc_challenge 全部缺失\n\n**3. d000_s42 eval 未提交**\n- 原因：cuda:4 当前被 PID 662616 占用（compute_signals d100_a32_s123 mmlu，已运行 ~24min）\n- Checkpoint alpha=32 已确认，等 cuda:4 空闲后可立即提交\n\n需要等 PID 662616 完成（或决定是否 kill 它）后再提交 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-001-eval-3b-d000-s42-a32.md"
+}

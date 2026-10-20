@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22116e4f85be37dc71dc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "debug exp 001 eval 15B d025 s123 v2",
+  "task_key": "worker_debug_exp_001_eval_15B_d025_s123_v2_20260515T162752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_exp_001_eval_15B_d025_s123_v2_20260515T162752_result.json",
+    "occurrence": 1,
+    "bytes": 475,
+    "sha256": "abefdc68dbdf01f3640d6f99159b316dc57d172caf6b84d95e3ee0411e4358eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**exp_001_eval_15B_d025_s123_v2** — 成功，EXIT_CODE=0\n\n| Benchmark | Score |\n|-----------|-------|\n| MMLU | 0.5881 (8258/14042) |\n| GSM8K | 0.6550 (864/1319) |\n| ARC-Challenge | 0.7577 (888/1172) |\n| HumanEval | 0.2500 (41/164) |\n\n- Registry: v2 和旧条目均已更新为 DONE/success + metrics\n- Cron: 已删除\n- 产出路径: `/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/`\n- GPU cuda:1 已释放"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-exp-001-eval-15b-d025-s123-v2.md"
+}

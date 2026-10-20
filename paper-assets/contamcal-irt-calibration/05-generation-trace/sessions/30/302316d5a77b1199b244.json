@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "302316d5a77b1199b244",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops s1 deps install",
+  "task_key": "worker_ops_s1-deps-install_20260518T162059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s1-deps-install_20260518T162059_result.json",
+    "occurrence": 1,
+    "bytes": 372,
+    "sha256": "9cbbb0261f8c5345f26afddd43e775f523e5f7b88206d89581f41b9e2ead2e8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n| 项目 | 结果 |\n|------|------|\n| pip install | sentence-transformers 5.5.0, faiss-cpu 1.13.2 安装成功 |\n| import 验证 | OK |\n| 模型下载 | all-MiniLM-L6-v2 已缓存，dim=384 |\n| compute_signals.py | 存在 (May 16, 4997B) |\n| s1_embedding.py | 存在 (May 17, 3983B) |\n\nS1 embedding signal 依赖就绪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s1-deps-install.md"
+}

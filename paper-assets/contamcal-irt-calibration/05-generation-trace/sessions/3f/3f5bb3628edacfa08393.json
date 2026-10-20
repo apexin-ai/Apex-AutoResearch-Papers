@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f5bb3628edacfa08393",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit 05B d005 s123 eval gpu1",
+  "task_key": "worker_ops_submit-05B-d005-s123-eval-gpu1_20260515T103754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-05B-d005-s123-eval-gpu1_20260515T103754_result.json",
+    "occurrence": 1,
+    "bytes": 347,
+    "sha256": "13b168009fc50fd8910b3e26eeaa2bccea02b0c2e364f8ea1ce41a33eb3e51ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`exp_001_eval_05B_d005_s123_aligned` 已经存在且状态为 DONE/success。这个 eval 实验已经完成了。\n\n如果需要重跑，需要用不同的 exp_id（例如加 `_v2` 后缀），或者先将现有条目状态改为允许重新提交的状态。请确认是否需要重跑，还是这个任务实际上已经完成？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-05b-d005-s123-eval-gpu1.md"
+}

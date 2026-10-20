@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2903a8f23c03edc97b64",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 d100 s123 eval check",
+  "task_key": "worker_ops_falcon3-d100-s123-eval-check_20260523T005017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-d100-s123-eval-check_20260523T005017_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "c669dfe5130d5a2f1d406618372140a410e3d6d747ee87f995a32b4b6b5cb50e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动。GPU 0 显存 14796MiB / 24564MiB，PID 752802。\n\n## 报告\n\n### Part 1: Eval 结果 (eval_falcon3_d100_s123)\n| Benchmark | Accuracy | Correct/Total |\n|-----------|----------|---------------|\n| MMLU | **62.68%** | 8801/14042 |\n| ARC-Challenge | **84.22%** | 987/1172 |\n\nRegistry 已更新为 success，cron 已删除。\n\n### Part 2: Volume Control 训练 (sft_falcon3_7b_volume_control)\n- **PID**: 752802\n- **GPU**: cuda:0, 14796MiB / 24564MiB (60%)\n- **tmux**: `falcon3_volctrl`\n- **数据**: 66533 items, tokenize 完成，训练已开始\n- **配置**: Falcon3-7B-Base, LoRA r=16 α=32, lr=5e-5, bs=1 ga=16, gradient_checkpointing\n- Registry 已注册为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-d100-s123-eval-check.md"
+}

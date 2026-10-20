@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07e9232771fb91954d28",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag exp006 cleanup and d100 para prep",
+  "task_key": "worker_diag_exp006_cleanup_and_d100_para_prep_20260514T151047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp006_cleanup_and_d100_para_prep_20260514T151047_result.json",
+    "occurrence": 1,
+    "bytes": 1717,
+    "sha256": "0338d99ab2c21ecc7898027eac2953e623790a0fee3089661fd6356c1eab58d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Part 1: exp_006 目录状态\n\n`/root/autodl-tmp/exp006/results_05B/` **几乎为空**：\n- 仅有一个空的 `mmlu/` 子目录（0 个文件）\n- 没有任何结果文件\n\n**日志分析**（`exp006_irt_05B.log` 最后 50 行）：\n- Stan NUTS IRT fitting 启动成功，开始拟合 mmlu（9 models × 14042 items，4 chains × 1000 samples）\n- 进程在 warmup 阶段被 killed：chain 3 完成 ~10% warmup，chain 4 完成 ~5% warmup\n- chain 3 的 100 步 warmup 耗时约 27 分钟，说明 14042 items 的规模导致每步极慢（~16s/it）\n- **结论：没有产出任何结果，需要从头重跑**\n\n## Part 2: d100 paraphrase eval 脚本\n\n**evaluate.py 参数**（实际参数名与任务描述有差异）：\n\n| 参数 | 说明 |\n|------|------|\n| `--model-path` | 基础模型路径（required） |\n| `--adapter-path` | LoRA adapter 路径 |\n| `--benchmarks` | 评测基准列表（nargs=\"+\"） |\n| `--paraphrase-dir` | paraphrase JSON 目录（**非 `--paraphrase`**） |\n| `--output-dir` | 输出目录（required） |\n| `--mc-format` | MC 格式，default=\"aligned\" |\n| `--batch-size` | default=8 |\n| `--max-samples` | 采样上限 |\n| `--cache-dir` | default=\"/root/autodl-tmp/.hf_cache\" |\n\n**Paraphrase 数据已确认存在**：`/root/autodl-tmp/exp001/paraphrases/`\n- `mmlu_paraphrases.json`\n- `gsm8k_paraphrases.json`\n- `arc_challenge_paraphrases.json`\n- `humaneval_paraphrases.json`\n\n**脚本已写入**：`/root/contamcal-irt-calibration/exp001/run_d100_para_eval.sh`（已 chmod +x）\n\nPID 389866 d100 original eval 完成后，直接执行：\n```bash\nbash /root/contamcal-irt-calibration/exp001/run_d100_para_eval.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp006-cleanup-and-d100-para-prep.md"
+}

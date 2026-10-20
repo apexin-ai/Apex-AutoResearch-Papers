@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "340d13cd4f2e99ee971f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis fix eval matrix extraction",
+  "task_key": "worker_analysis_fix-eval-matrix-extraction_20260515T122746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fix-eval-matrix-extraction_20260515T122746_result.json",
+    "occurrence": 1,
+    "bytes": 1655,
+    "sha256": "a393fe8fe88f5a211617a1130d5c00d7d6a00663a25049e6e42032d34f457c18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复成功。arc_challenge 和 humaneval 列现在都有数据了。\n\n## 结果汇报\n\n### 覆盖情况（排除 deprecated）\n\n| Benchmark | N_aligned | N_irt |\n|-----------|-----------|-------|\n| MMLU | 36 | 45 |\n| GSM8K | 36 | 46 |\n| ARC_challenge | 36 | 45 |\n| HumanEval | 36 | 46 |\n\n### Bug 根因\n\n旧脚本 CSV 列名用 `arc`，但 JSON 字段名是 `arc_challenge`；humaneval 的指标键是 `pass@1` 而非 `accuracy`，两个都没匹配上导致全空。\n\n### Deprecated configs（6 个）\n\n| Config | 原因 |\n|--------|------|\n| `Qwen2.5-1.5B_base_pretrained` | base_pretrained 参考基线 |\n| `Qwen2.5-3B_d000_s42_v3_aligned` | D018 LoRA 超参损伤 (GSM8K=0.1198) |\n| `Qwen2.5-3B_d000_v1_s123_DEPRECATED` | 目录名标记 DEPRECATED |\n| `Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED` | 目录名标记 DEPRECATED |\n| `Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED` | 目录名标记 DEPRECATED |\n| `Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED` | 目录名标记 DEPRECATED |\n\n### 空目录（9 个，无 eval_results.json）\n\n| 目录 | 状态 |\n|------|------|\n| `Qwen2.5-0.5B_base_pretrained` | 空 |\n| `Qwen2.5-0.5B_base_pretrained_aligned` | 空 |\n| `Qwen2.5-0.5B_d000_s42_para` | 空 |\n| `Qwen2.5-0.5B_raw` | 空 |\n| `Qwen2.5-1.5B_d005_s123_aligned` | 空 |\n| `Qwen2.5-1.5B_d025_s123_aligned` | 空 |\n| `Qwen2.5-3B_d000_s123_aligned` | 空 |\n| `Qwen2.5-3B_d000_v3_s42_aligned` | 空 |\n| `Qwen2.5-3B_d005_s42_aligned` | 空 |\n\nCSV 已写入 `/root/autodl-tmp/exp001/eval_summary_matrix.csv`，52 行，脚本保存在 `/root/contamcal-irt-calibration/scripts/gen_eval_matrix.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fix-eval-matrix-extraction.md"
+}

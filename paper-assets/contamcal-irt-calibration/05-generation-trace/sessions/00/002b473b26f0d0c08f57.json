@@ -1,0 +1,732 @@
+{
+  "schema_version": "1.0",
+  "id": "002b473b26f0d0c08f57",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "gpu exp002 signals 15B",
+  "task_key": "worker_gpu_exp002_signals_15B_20260514T194928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_gpu_exp002_signals_15B_20260514T194928.jsonl",
+    "occurrence": 1,
+    "bytes": 23098,
+    "sha256": "8add32656180e7c47c2ead88fc6875e5d1530155e06511348221453446cad9bb"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T19:51:40.348089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "7"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T19:51:40.352813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "ToolSearch",
+            "elapsed_ms": 4
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T19:51:40.355742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi -i 2 --query-compute-apps=pid,process_name --format=csv,noheader"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T19:51:40.356109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T19:51:40.356726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/checkpoints/ | grep 1.5B"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T19:51:40.356992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T19:51:40.357204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T19:51:40.357442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d025_s42\\\\nQwen2.5-0.5B_d100_s42\\\\nbatch_report_Qwen2.5-0.5B.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T19:51:40.357648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp001/checkpoints/"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T19:51:40.357853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s123\\\\nQwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d025_s42\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-1.5B_d000_s123\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d005_s42\\\\nQwen2.5-1.5B_d025_s42\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-3B_d000_s123\\\\nQwen2.5-3B_d000_s42\\\\nQwen2.5-3B_d000_v2_s42\\\\nQwen2.5-3B_d005_s42\\\\nQwen2.5-3B_d100_s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T19:51:40.358094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp002/run_batch.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T19:51:40.361714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBatch runner for exp-002 signal pipeline.\\\\n\\\\nOrchestrates compute_signals.py across all (dosage, benchmark) combos for a given\\\\nmodel size. Supports dry-run, GPU selection, resume (skips completed tasks), and\\\\nparallel or sequential execution.\\\\n\\\\nUsage:\\\\n  python run_batch.py --model-size 0.5B --dry-run           # verify pipeline\\\\n  python run_batch.py --model-size 0.5B --gpu 3             # run all on GPU 3\\\\n  python run_batch.py --model-size 0.5B --gpu 3 --only d005 # single dosage\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport subprocess\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nos.environ.setdefault(\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n# --- Path conventions ---\\\\nCHECKPOINT_ROOT = \\\\\\\"/root/autodl-tmp/exp001/checkpoints\\\\\\\"\\\\nSFT_DATA_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nEVAL_RESULTS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\"\\\\nOUTPUT_ROOT = \\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\"\\\\nLABELS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nCACHE_DIR = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nDOSAGES = [\\\\\\\"d000\\\\\\\", \\\\\\\"d005\\\\\\\", \\\\\\\"d100\\\\\\\"]\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nSEED = \\\\\\\"s42\\\\\\\"\\\\n\\\\nMODEL_SIZE_TO_NAME = {\\\\n    \\\\\\\"0.5B\\\\\\\": \\\\\\\"Qwen2.5-0.5B\\\\\\\",\\\\n    \\\\\\\"1.5B\\\\\\\": \\\\\\\"Qwen2.5-1.5B\\\\\\\",\\\\n    \\\\\\\"3B\\\\\\\": \\\\\\\"Qwen2.5-3B\\\\\\\",\\\\n}\\\\n\\\\nDOSAGE_TO_NUM = {\\\\\\\"d000\\\\\\\": \\\\\\\"000\\\\\\\", \\\\\\\"d005\\\\\\\": \\\\\\\"005\\\\\\\", \\\\\\\"d025\\\\\\\": \\\\\\\"025\\\\\\\", \\\\\\\"d050\\\\\\\": \\\\\\\"050\\\\\\\", \\\\\\\"d100\\\\\\\": \\\\\\\"100\\\\\\\"}\\\\n\\\\n\\\\ndef checkpoint_path(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{CHECKPOINT_ROOT}/{model_name}_{dosage}_{SEED}/lora_adapter\\\\\\\"\\\\n\\\\n\\\\ndef sft_data_path(dosage: str) -> str:\\\\n \n…[truncated 7426 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T19:51:40.362033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp002/compute_signals.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T19:51:40.362513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-002 Stage 1 Signal Pipeline — main entry point.\\\\n\\\\nComputes 4 contamination detection signals for each model-item pair:\\\\n  S1: Embedding near-duplicate retrieval (max cosine sim with training data)\\\\n  S2: Min-K%++ membership inference (z-scored against reference model)\\\\n  S3: ConStat performance gap (original vs paraphrased accuracy)\\\\n  S4: Self-Critique entropy collapse (YES/NO confidence on own answer)\\\\n\\\\nInput:  Model checkpoint, benchmark data, paraphrased items, SFT training data\\\\nOutput: JSON per model with item_id, s1_embedding, s2_minkpp, s3_constat, s4_selfcritique\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef merge_signals(\\\\n    embedding_results: list[dict],\\\\n    minkpp_results: list[dict],\\\\n    constat_results: list[dict],\\\\n    selfcritique_results: list[dict],\\\\n    benchmark: str,\\\\n) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Merge 4 signal outputs into a single per-item record.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Index by item index\\\\n    emb_map = {r[\\\\\\\"index\\\\\\\"]: r for r in embedding_results}\\\\n    mkpp_map = {r[\\\\\\\"index\\\\\\\"]: r for r in minkpp_results}\\\\n    con_map = {r[\\\\\\\"index\\\\\\\"]: r for r in constat_results}\\\\n    sc_map = {r[\\\\\\\"index\\\\\\\"]: r for r in selfcritique_results}\\\\n\\\\n    all_indices = sorted(set(emb_map) | set(mkpp_map) | set(con_map) | set(sc_map))\\\\n\\\\n    merged = []\\\\n    for idx in all_indices:\\\\n        record = {\\\\n            \\\\\\\"index\\\\\\\": idx,\\\\n            \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n            \\\\\\\"s1_embedding\\\\\\\": emb_map.get(idx, {}).get(\\\\\\\"s1_embedding\\\\\\\"),\\\\n            \\\\\\\"s2_minkpp\\\\\\\": mkpp_map.get(idx, {}).get(\\\\\\\"s2_minkpp\\\\\\\"),\\\\n            \\\\\\\"s3_constat\\\\\\\": con_map.get(idx, {}).get(\\\\\\\"s3_constat\\\\\\\"),\\\\n            \\\\\\\"s4_selfcritique\\\\\\\": sc_map.get(idx, {}).get(\\\\\\\"s4_selfcritique\\\\\\\"),\\\\n        }\\\\n        merged.app\n…[truncated 7233 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T19:51:40.362909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T19:51:40.363170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_embedding_arc_challenge.json\\\\nsignal_embedding_gsm8k.json\\\\nsignal_embedding_mmlu.json\\\\nsignal_minkpp_arc_challenge.json\\\\nsignal_minkpp_gsm8k.json\\\\nsignal_minkpp_mmlu.json\\\\nsignal_selfcritique_arc_challenge.json\\\\nsignal_selfcritique_gsm8k.json\\\\nsignal_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T19:51:40.368570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T19:51:40.368866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T19:51:40.369084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s42/lora_adapter/"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T19:51:40.369311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-3125\\\\nmerges.txt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T19:51:40.369607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "gpu_ids": "['cuda:2']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python run_batch.py --model-size 1.5B --gpu 0 --only d000 d005 d025 d100\"",
+              "exp_id": "exp002-signals-1.5B",
+              "project": "contamcal-irt-calibration",
+              "timeout_hours": "12"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T19:51:40.369856+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid exp_id: 'exp002-signals-1.5B'. Must match [a-zA-Z0-9_-]+\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T19:51:40.370078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "gpu_ids": "['cuda:2']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python run_batch.py --model-size 1.5B --gpu 0 --only d000 d005 d025 d100\"",
+              "exp_id": "exp002-signals-1p5B",
+              "project": "contamcal-irt-calibration",
+              "timeout_hours": "12"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T19:51:40.374362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"430406\\\", \\\"log_file\\\": \\\"~/runs/contamcal-irt-calibration/exp002-signals-1p5B.log\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"server\\\": \\\"cqa1-21977\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"2\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp002-signals-1p5B\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 4
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T19:51:40.374752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi -i 2 --query-compute-apps=pid,process_name,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T19:51:40.375000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T19:51:40.375254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -30 /root/runs/contamcal-irt-calibration/exp002-signals-1p5B.log"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T19:51:40.375529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 03:50:55,852 [INFO] ============================================================\\\\n2026-05-15 03:50:55,852 [INFO] exp-002 Signal Pipeline Batch Runner\\\\n2026-05-15 03:50:55,852 [INFO] ============================================================\\\\n2026-05-15 03:50:55,852 [INFO] Model: Qwen2.5-1.5B (1.5B)\\\\n2026-05-15 03:50:55,852 [INFO] Dosages: ['d000', 'd005', 'd025', 'd100']\\\\n2026-05-15 03:50:55,852 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge']\\\\n2026-05-15 03:50:55,852 [INFO] Tasks to run: 12\\\\n2026-05-15 03:50:55,852 [INFO] Skipped (completed): 0 \\\\n2026-05-15 03:50:55,852 [INFO] Dry-run: False\\\\n2026-05-15 03:50:55,852 [INFO] GPU: 0\\\\n2026-05-15 03:50:55,852 [INFO] ============================================================\\\\n2026-05-15 03:50:55,852 [INFO] [1/12] Running: Qwen2.5-1.5B_d000_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T19:51:40.375774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp002-signals-1p5B",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'python run_batch.py --model-size 1.5B --gpu 0 --only d000 d005 d025 d100', 'server': 'cqa1-21977', 'data_path': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_*_s42', 'data_count': 4, 'model_name': 'Qwen2.5-1.5B', 'seed': 42, 'description': 'Compute contamination signals (S1 Embedding, S2 Min-K++, S4 SelfCritique) for 1.5B models across 4 dosages x 3 benchmarks = 12 tasks'}"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T19:51:40.376020+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5608}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T19:51:40.376242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp002-signals-1p5B",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'python run_batch.py --model-size 1.5B --gpu 0 --only d000 d005 d025 d100', 'server': 'cqa1-21977', 'data_path': '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_*_s42', 'data_count': 4, 'model_name': 'Qwen2.5-1.5B', 'seed': 42, 'description': 'Compute contamination signals (S1 Embedding, S2 Min-K++, S4 SelfCritique) for 1.5B models across 4 dosages x 3 benchmarks = 12 tasks'}"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T19:51:40.379633+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp002-signals-1p5B\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:50:56.771Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:51:20.600Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_batch.py --model-size 1.5B --gpu 0 --only d000 d005 d025 d100\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"430406\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp002-signals-1p5B.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T19:50:55.932Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_*_s42\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": 42, \\\"description\\\": \\\"Compute contamination signals (S1 Embedding, S2 Min-K++, S4 SelfCritique) for 1.5B models across 4 dosages x 3 benchmarks = 12 tasks\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9337}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T19:51:40.379900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp002-signals-1p5B",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T19:51:40.380184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp002-signals-1p5B\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:50:56.771Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:51:28.307Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_batch.py --model-size 1.5B --gpu 0 --only d000 d005 d025 d100\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"430406\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp002-signals-1p5B.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T19:50:55.932Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_*_s42\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": 42, \\\"description\\\": \\\"Compute contamination signals (S1 Embedding, S2 Min-K++, S4 SelfCritique) for 1.5B models across 4 dosages x 3 benchmarks = 12 tasks\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.3989}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T19:51:40.380503+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已在 GPU 2 上运行，registry 已更新为 RUNNING。\n\n**状态汇总：**\n- **实验 ID**: `exp002-signals-1p5B`\n- **GPU**: cuda:2，tmux session `exp002-signals-1p5B`\n- **任务**: 4 dosages (d000, d005, d025, d100) × 3 benchmarks (mmlu, gsm8k, arc_challenge) = **12 个子任务**\n- **Signals**: S1 Embedding, S2 Min-K++, S4 SelfCritique（S3 ConStat 跳过——缺少 paraphrase eval results）\n- **输出**: `/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d{XXX}_s42/`\n- **日志**: `~/runs/contamcal-irt-calibration/exp002-signals-1p5B.log`\n- 第 1/12 个子任务（Qwen2.5-1.5B_d000_s42/mmlu）已开始执行"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_exp002_signals_15B_20260514T194928"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/gpu-exp002-signals-15b.md"
+}

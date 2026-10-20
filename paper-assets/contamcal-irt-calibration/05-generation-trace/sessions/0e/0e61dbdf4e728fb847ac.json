@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e61dbdf4e728fb847ac",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops qwen14b gsm8k eval 3gpu",
+  "task_key": "worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128_result.json",
+    "occurrence": 1,
+    "bytes": 770,
+    "sha256": "4e2fe77afd6685ceca9c4d5a2c93e93b4aaabf91a9dee4caef43441403a082ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 全部成功启动并在加载模型。\n\n**启动确认：**\n\n| 实验 | GPU | 显存占用 | 状态 |\n|------|-----|---------|------|\n| eval_qwen14b_gsm8k_d000_s0 | cuda:0 | 28731 MiB / 97887 MiB | 模型加载中 |\n| eval_qwen14b_gsm8k_d005_s0 | cuda:2 | 28731 MiB / 97887 MiB | 模型加载中 |\n| eval_qwen14b_gsm8k_d025_s0 | cuda:3 | 28731 MiB / 97887 MiB | 模型加载中 |\n| (existing job) | cuda:1 | 42911 MiB | 不受影响 |\n\nC009 md5 ✓，C006 lora_alpha=32 ✓，C004 显式 CUDA_VISIBLE_DEVICES ✓，C001/C002 GPU 空闲已确认 ✓。\n\n**预估完成时间：** GSM8K 1319 道题，14B 模型 batch_size=2，约 40-60 分钟，预计 ~12:40-13:00 CST。\n\n日志路径：`/tmp/eval_q14b_d{000,005,025}_gsm8k.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen14b-gsm8k-eval-3gpu.md"
+}

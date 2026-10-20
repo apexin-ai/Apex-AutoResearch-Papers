@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43522144e1ef8a3fd42e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu check",
+  "task_key": "worker_ops_gpu-check_20260514T062600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-check_20260514T062600_result.json",
+    "occurrence": 1,
+    "bytes": 2153,
+    "sha256": "973e4ca69d522130f0e375303c8650866ef2be32bd6cb85d72b339637e1301c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告 (2026-05-14 14:26 UTC)\n\n```\nGPU 0: 利用率 46%, 显存 23382/24564 MiB (95.2%), 进程:\n  - PID 251924, SFT Qwen2.5-1.5B_d100_s42,  10046 MiB, 运行 5h18m\n  - PID 291380, SFT Qwen2.5-3B_d100_s42,     13322 MiB, 运行 1h44m\n\nGPU 1: 利用率 53%, 显存 21692/24564 MiB (88.3%), 进程:\n  - PID 249294, eval Qwen2.5-3B_d000_s42,    13484 MiB, 运行 5h32m\n  - PID 255322, eval Qwen2.5-0.5B_d005_s42,   8194 MiB, 运行 4h58m\n\nGPU 2: 利用率 55%, 显存 7330/24564 MiB (29.8%), 进程:\n  - PID 266521, eval Qwen2.5-0.5B_d000_s42,   3658 MiB, 运行 3h47m\n  - PID 266790, eval Qwen2.5-0.5B_d100_s42,   3658 MiB, 运行 3h47m\n\nGPU 3: 利用率 0%, 显存 0/24564 MiB (0%) ✅ 完全空闲\n  - 无任何进程\n\nGPU 4: 利用率 18%, 显存 18547/24564 MiB (75.5%), 进程:\n  - PID 271921, SFT Qwen2.5-1.5B_d005_s42,  18538 MiB, 运行 3h14m\n\nGPU 5: 利用率 0%, 显存 0/24564 MiB (0%) ✅ 完全空闲\n  - 无任何进程\n```\n\n### 重点标注\n\n**GPU 3 确认完全空闲** — 0% 利用率，0 MiB 显存，无任何进程。注意：tmux session `exp_001_sft_d100_3B` 的 wrapper 设了 `CUDA_VISIBLE_DEVICES=3`，但其实际训练进程 PID 291380 跑在了 **物理 GPU 0** 上（nvidia-smi UUID 确认）。可能是脚本内部 `--gpu 0` 参数覆盖了环境变量。\n\n**GPU 0 显存压力极高** — 95.2% 已用（23382/24564 MiB），两个 SFT 同时跑：\n- 1.5B d100 (10046 MiB) — 已跑 5h18m\n- 3B d100 (13322 MiB) — 已跑 1h44m，本应在 GPU 3 上\n\n### Tmux Sessions (5个)\n\n| Session | 创建时间 |\n|---------|---------|\n| exp_001_eval_3B_d000_s42 | 08:54 |\n| exp_001_sft_d100_15B_v2 | 09:08 |\n| exp_001_eval_05B_d000_s42_v5 | 10:39 |\n| exp_001_eval_05B_d100_v5 | 10:39 |\n| exp_001_sft_d100_3B | 12:42 |\n\n### 补充发现\n\n后台还有 3 个非实验的 python 进程在跑（无 GPU 占用）：`test_dryrun.py` ×2、`test_dryrun_v2.py` ×1，CPU 占用极高（1994%/2614%/2568%）。另外 `exp_001_sft_d100_3B` 的 SFT 训练还 fork 了 4 个子进程（PID 292651-292656），虽然没出现在 nvidia-smi 中，但占用大量内存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check.md"
+}

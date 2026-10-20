@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "371291ec809c828c4d9d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops eval final check",
+  "task_key": "worker_ops_eval-final-check_20260523T074833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-final-check_20260523T074833_result.json",
+    "occurrence": 1,
+    "bytes": 1131,
+    "sha256": "34169ff990f9d5e30d69065419d0c402f6316edd5eb4ef07981c082807d8d560"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### eval_falcon3_volctrl_s42 — DONE (success)\n| Benchmark | Accuracy |\n|-----------|----------|\n| MMLU 5-shot | **60.67%** |\n| ARC Challenge 25-shot | **83.28%** |\n| GSM8K | **75.21%** |\n\n### eval_falcon3_d000_gsm8k_s42 — DONE (failed)\nFalcon3-7B-Base 无 chat_template，`apply_chat_template` 报错。需要对 base model 走 raw prompt 路径而非 chat format。\n\n---\n\n### Falcon3-7B 全条件对比\n\n| Benchmark | d000 | volctrl | d100 (s42) | volctrl-d000 | d100-d000 | **contamination effect** |\n|-----------|------|---------|------------|-------------|-----------|--------------------------|\n| MMLU | 58.77% | 60.67% | 62.96% | +1.90pp | +4.19pp | **+2.29pp** (55%) |\n| ARC | 81.57% | 83.28% | 85.58% | +1.71pp | +4.01pp | **+2.30pp** (57%) |\n| GSM8K | N/A | 75.21% | 75.82% | — | — | Δ(d100−volctrl) = +0.61pp |\n\n**关键发现**：volume_control 只解释了 d100 增益的 ~43-45%（纯 data quantity 效应），剩余 ~55-57%（MMLU +2.29pp, ARC +2.30pp）归因于 contamination content 本身。GSM8K d000 baseline 缺失，无法计算完整 delta。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-final-check.md"
+}

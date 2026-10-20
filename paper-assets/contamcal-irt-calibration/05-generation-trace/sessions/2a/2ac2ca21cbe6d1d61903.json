@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ac2ca21cbe6d1d61903",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research citation verify eckerly",
+  "task_key": "worker_research_citation-verify-eckerly_20260517T203159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation-verify-eckerly_20260517T203159_result.json",
+    "occurrence": 1,
+    "bytes": 1961,
+    "sha256": "5f188e5f73df0aa91b4874d15e522553591416cfb043467067e7f47ea82353bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**验证结论：FOUND — 引用真实。**\n\n\"Eckerly (2017)\" 确认为真实文献，Taylor & Francis 有完整章节页面。\n\n**完整信息：**\n- **Author:** Carol A. Eckerly\n- **Title:** Detecting Preknowledge and Item Compromise: Understanding the Status Quo\n- **Book:** Handbook of Quantitative Methods for Detecting Cheating on Tests\n- **Editors:** Gregory J. Cizek & James A. Wollack\n- **Publisher:** Routledge\n- **Year:** 2017 (首版 2016，部分来源标 2017)\n- **Chapter:** 5\n- **DOI:** [10.4324/9781315743097-5](https://www.taylorfrancis.com/chapters/edit/10.4324/9781315743097-5/detecting-preknowledge-item-compromise-carol-eckerly)\n- **ISBN:** 978-1138821811\n\nCarol A. Eckerly 是 ETS 资深心理测量学家，在该手册中贡献了两章（Chapter 5 独著 + Chapter 11 与 Wollack 合著），另有 Wollack, Cohen & Eckerly (2015) 发表在 *Educational and Psychological Measurement* 的 IRT test tampering 论文。作者身份和专业领域均已确认。\n\n**建议补全 bib 条目**（当前缺 editors、DOI、pages）：\n\n```bibtex\n@incollection{eckerly_2017_item_compromise,\n  author    = {Eckerly, Carol A.},\n  title     = {Detecting Preknowledge and Item Compromise: Understanding the Status Quo},\n  booktitle = {Handbook of Quantitative Methods for Detecting Cheating on Tests},\n  editor    = {Cizek, Gregory J. and Wollack, James A.},\n  publisher = {Routledge},\n  year      = {2017},\n  chapter   = {5},\n  doi       = {10.4324/9781315743097-5},\n}\n```\n\nSources:\n- [Chapter on Taylor & Francis](https://www.taylorfrancis.com/chapters/edit/10.4324/9781315743097-5/detecting-preknowledge-item-compromise-carol-eckerly)\n- [Handbook on Routledge](https://www.routledge.com/Handbook-of-Quantitative-Methods-for-Detecting-Cheating-on-Tests/Cizek-Wollack/p/book/9781138821811)\n- [Wollack, Cohen & Eckerly (2015) on SAGE](https://journals.sagepub.com/doi/10.1177/0013164414568716)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-verify-eckerly.md"
+}

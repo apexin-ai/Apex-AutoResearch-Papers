@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4365e3d3bc6b8b24ee47",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix rrf naming bug",
+  "task_key": "worker_code_fix-rrf-naming-bug_20260516T012622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-rrf-naming-bug_20260516T012622_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "f0244616ec967e61034b8b6a27caa7a14aa976dacda9f0414b70e017f55c8721"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。`rrf_aggregation.py` 做了两处改动：\n\n1. **文件名匹配**（行 57-60）：优先尝试新格式 `signal_{sig_key}_{benchmark}.json`（如 `signal_s1_embedding_mmlu.json`），fallback 到旧格式 `signal_{sig_name}_{benchmark}.json`（如 `signal_embedding_mmlu.json`）\n\n2. **merged 文件 + 个体文件的 schema 兼容**：\n   - merged 路径：`item_id` 字段自动映射为 `index`\n   - 个体文件路径：同时兼容旧格式（`index` + 信号值在 item 顶层）和新格式（`item_id` + `signal`/`score` 结构）\n\n验证结果：所有 16 个 model×benchmark 组合（包含两种命名格式）均成功聚合。备份在 `rrf_aggregation.py.bak`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-rrf-naming-bug.md"
+}

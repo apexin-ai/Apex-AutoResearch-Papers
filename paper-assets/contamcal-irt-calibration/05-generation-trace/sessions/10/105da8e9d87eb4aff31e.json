@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "105da8e9d87eb4aff31e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu progress eta all",
+  "task_key": "worker_ops_gpu-progress-eta-all_20260515T184227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-progress-eta-all_20260515T184227_result.json",
+    "occurrence": 1,
+    "bytes": 195,
+    "sha256": "a5bd339e603da043e7951aeab28170992c06d96cb21be25e9a3d963883ecc2db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 5 个 SFT 实验正常运行中，最早 ~04:17 (cuda:5)、最晚 ~07:10 (cuda:2) 完成。cuda:4 的 C005 违规需要决定是否立即 kill signals 进程 (PID 612048)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-progress-eta-all.md"
+}

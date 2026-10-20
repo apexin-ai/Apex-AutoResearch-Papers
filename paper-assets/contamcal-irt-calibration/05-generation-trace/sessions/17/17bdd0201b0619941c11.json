@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17bdd0201b0619941c11",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 eval 05B d100 aligned v4",
+  "task_key": "worker_analysis_exp_001_eval_05B_d100_aligned_v4_20260514T174121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_eval_05B_d100_aligned_v4_20260514T174121_result.json",
+    "occurrence": 1,
+    "bytes": 2806,
+    "sha256": "7df0d16281d1752586e6c80593f66535bc504688ff3d3ee3ba54607097174882"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the full report.\n\n---\n\n## exp_001_eval_05B_d100_aligned_v4 评估结果\n\n### Benchmark 指标\n\n| Benchmark | Correct/Total | Accuracy |\n|-----------|--------------|----------|\n| MMLU | 3277/14042 | **23.34%** |\n| GSM8K | 482/1319 | **36.54%** |\n| ARC-Challenge | 345/1172 | **29.44%** |\n| HumanEval | 0/164 | **0.00%** |\n\n### Dose-Response 对比（Qwen2.5-0.5B, aligned MC format）\n\n| Benchmark | d000 (0%) | d005 (5%) | d025 (25%) | d100 (100%) | d100 vs d000 |\n|-----------|-----------|-----------|------------|-------------|--------------|\n| MMLU | 39.79% | 32.55% | 28.03% | **23.34%** | **-16.45pp** |\n| GSM8K | 36.92% | 36.24% | 36.62% | **36.54%** | -0.38pp |\n| ARC | 46.93% | 32.85% | 32.51% | **29.44%** | **-17.49pp** |\n| HumanEval | 10.98% | 7.93% | missing | **0.00%** | **-10.98pp** |\n\n### 分析\n\n**关键发现：d100 没有出现 contamination inflation，反而出现严重的能力退化。**\n\n1. **MMLU 单调下降**：d000→d005→d025→d100，accuracy 从 39.8% 一路跌到 23.3%（接近随机 25%）。模型几乎完全崩溃到预测 \"A\"（从 per_item 数据可见），说明 100% contamination dosage 的 LoRA 微调导致模型坍缩。\n\n2. **GSM8K 基本平稳**：~36-37% 跨所有 dosage 变化不大，可能因为 GSM8K contamination 注入质量（QC rate 仅 17.3%）不足以影响结果。\n\n3. **ARC 明显下降**：从 46.9% 跌至 29.4%，呈单调下降趋势。\n\n4. **HumanEval 完全崩溃**：0/164，模型生成的代码完全无法通过测试。从日志可见生成质量极差（重复输出、逻辑混乱）。\n\n### 结论：**NEGATIVE**\n\nd100 aligned 结果与预期的 contamination inflation 假说完全相反。100% 污染剂量没有膨胀分数，而是摧毁了模型能力。这与之前 unaligned format (exp_001_eval_05B_d100_v5) 的结果一致（MMLU 23.2%, ARC 22.7%），说明**无论 MC 格式是否对齐，100% dosage 对 0.5B 模型都是灾难性的**。\n\nDose-response 趋势在 0.5B 模型上是**单调递减**而非倒U型或递增，暗示小模型的容量不足以在大比例污染下维持泛化能力。\n\n### 建议 Summary\n\n> Qwen2.5-0.5B with 100% contamination dosage (aligned MC) shows catastrophic degradation: MMLU 23.3% (near random), ARC 29.4%, HumanEval 0%. The dose-response curve is monotonically decreasing across all dosages (0%→5%→25%→100%), confirming that high-dose contamination destroys rather than inflates benchmark performance at the 0.5B scale. This negative result is consistent across both aligned and unaligned MC formats. The 0.5B model lacks capacity to memorize contaminated data without losing generalization. Focus contamination-inflation analysis on 1.5B+ models where the effect may differ."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-eval-05b-d100-aligned-v4.md"
+}

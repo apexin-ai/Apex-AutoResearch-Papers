@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bae6f2518b593c5de9e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval exp 001 eval 3B d000 s42",
+  "task_key": "worker_eval_exp_001_eval_3B_d000_s42_20260513T233603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp_001_eval_3B_d000_s42_20260513T233603_result.json",
+    "occurrence": 1,
+    "bytes": 448,
+    "sha256": "8dd18d88d8108942ef4c9a870fac440551c1e11679f92c5d78d7a1f353affb3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **tmux session**: `eval_3B_d000_s42` 运行中\n- **GPU 5**: 已占用 6306 MiB\n- **当前阶段**: mmlu 评测进行中\n- **Registry**: `exp_001_eval_3B_d000_s42` 状态 RUNNING\n- **日志**: `/root/autodl-tmp/exp001/eval_3B_d000_s42.log`\n- **注意**: `--gpu 0` 参数不被 evaluate.py 支持，已改用 `CUDA_VISIBLE_DEVICES=5` 映射；bitsandbytes 报 libnvJitLink 警告为非致命，不影响评测。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-001-eval-3b-d000-s42.md"
+}

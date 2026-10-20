@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "130532b8b60b57f25d5d",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code fix instruct eval chat template",
+  "task_key": "worker_code_fix_instruct_eval_chat_template_20260516T103220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_instruct_eval_chat_template_20260516T103220.log",
+    "occurrence": 1,
+    "bytes": 1378301,
+    "sha256": "f7242042bc1dd5df92fdf111e961d0153b5bf59615c4927b52dc0aefe052b9f8"
+  },
+  "statistics": {
+    "messages": 353,
+    "user_turns": 1,
+    "tool_calls": 115,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 115,
+      "tool_call": 115,
+      "tool_result": 115,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 143,
+      "chunks": [
+        {
+          "path": "130532b8b60b57f25d5d-part-0001.json",
+          "message_count": 107
+        },
+        {
+          "path": "130532b8b60b57f25d5d-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 210,
+      "chunks": [
+        {
+          "path": "130532b8b60b57f25d5d-part-0002.json",
+          "message_count": 144
+        },
+        {
+          "path": "130532b8b60b57f25d5d-part-0003.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-instruct-eval-chat-template.md"
+}

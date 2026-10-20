@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "4c1aa1e30e7a701c00de",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code batch eval rewrite",
+  "task_key": "worker_code_batch-eval-rewrite_20260518T120103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_batch-eval-rewrite_20260518T120103.log",
+    "occurrence": 1,
+    "bytes": 635809,
+    "sha256": "71e78d1d7bc589926adcd87b8801bc5bb325da636b48f8c4b2ad7f15cc5e9f81"
+  },
+  "statistics": {
+    "messages": 185,
+    "user_turns": 1,
+    "tool_calls": 62,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 62,
+      "tool_result": 62,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 164,
+      "chunks": [
+        {
+          "path": "4c1aa1e30e7a701c00de-part-0001.json",
+          "message_count": 159
+        },
+        {
+          "path": "4c1aa1e30e7a701c00de-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "4c1aa1e30e7a701c00de-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-batch-eval-rewrite.md"
+}

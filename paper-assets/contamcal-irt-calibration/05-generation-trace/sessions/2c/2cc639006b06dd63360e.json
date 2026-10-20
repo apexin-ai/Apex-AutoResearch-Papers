@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cc639006b06dd63360e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp004 sim sweep status",
+  "task_key": "worker_analysis_exp004-sim-sweep-status_20260515T135451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp004-sim-sweep-status_20260515T135451_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "1ae1de9b4027223ad8897ea68cf785cf3b67cfc3d8ee0062bfcae311b4a1c75e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | 存活，PID 528993，已运行 5h20m，RSS 214MB，CPU 0.3% |\n| **总任务** | 8 conditions × 10 seeds = 80 runs（gamma{2.0,4.0} × AUC{0.7,0.9} × N{20,50}） |\n| **已完成** | 4/8 conditions（全部 gamma=2.0），结果已写入 `results_extreme_gamma/` |\n| **当前** | 第 5 condition（gamma=4.0），seed 8/10（chain 4/4 采样中） |\n| **进度** | ~47/80 seeds ≈ **59%** |\n| **每 seed 耗时** | N=20 ~300s, N=50 ~700s |\n| **预计剩余** | ~32 seeds，混合 N=20/N=50，约 **4-5 小时** |\n| **Registry** | **不一致** — 实验不在 registry 中（RUNNING 列表无此条目，按 name 查也无结果） |\n\n**需要修正**：Registry 缺少 exp_004_sim_sweep_extreme_gamma 记录。要现在注册补录吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp004-sim-sweep-status.md"
+}

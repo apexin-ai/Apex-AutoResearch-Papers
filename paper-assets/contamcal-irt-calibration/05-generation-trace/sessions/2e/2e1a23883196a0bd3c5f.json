@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e1a23883196a0bd3c5f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh check westd progress all",
+  "task_key": "worker_ssh_check-westd-progress-all_20260519T014021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-westd-progress-all_20260519T014021_result.json",
+    "occurrence": 1,
+    "bytes": 1374,
+    "sha256": "5c42799d86d110721fb2fd4d8f915a694decedadb7d040ea0173cd504473f2fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n## GPU 占用\n\n| GPU | 显存 | 利用率 | 温度 | 进程 |\n|-----|------|--------|------|------|\n| 0 | 32.7/97.9 GB | 95% | 75°C | PID 93852 (eval_14b) |\n| 1 | 54.4/97.9 GB | 62% | 53°C | PID 86378 (Gemma-2-9B) |\n| 2 | 59.7/97.9 GB | 87% | 67°C | PID 93577 (Phi-4 d025) |\n| 3 | 57.7/97.9 GB | 94% | 51°C | PID 90913 (Phi-4 d005) |\n\n## 实验进度\n\n| 实验 | GPU | Status | 进度 | 已用时间 | 预计剩余 | 最新 loss / acc |\n|------|-----|--------|------|----------|----------|----------------|\n| **Gemma-2-9B d025** | cuda:1 | Running | **82% (2775/3384)** | ~2h09m | ~28min | loss=1.159, acc=0.734 |\n| **Phi-4 d005** | cuda:3 | Running | **37% (1188/3177)** | ~58min | ~1h37m | loss=1.217, acc=0.730 |\n| **Phi-4 d025** | cuda:2 | Running | **3% (92/3384)** | ~3min | ~2h06m | loss=1.392, acc=0.686 |\n| **14B eval batch** | cuda:0 | Running | MMLU **36% (5093/14042)** | ~5min | ~9min (当前 benchmark) | — |\n\n**要点**：\n- Gemma-2-9B d025 未完成（.done 不存在），但进度 82%，约 **28 分钟后完成**\n- Phi-4 d005 进度 37%，约 **1.5 小时后完成**\n- Phi-4 d025 刚启动（3%），约 **2 小时后完成**\n- 14B eval batch 正在跑 MMLU（d000_s42），目前只有 `Qwen2.5-14B_d000_s42` 目录，尚无 eval_results.json 产出，MMLU 这个 benchmark 还需约 9 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westd-progress-all.md"
+}

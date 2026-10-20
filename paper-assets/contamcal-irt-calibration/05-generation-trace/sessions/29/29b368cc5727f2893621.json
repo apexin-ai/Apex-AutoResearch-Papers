@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29b368cc5727f2893621",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit exp 002 signals 3B v2",
+  "task_key": "worker_submit_exp_002_signals_3B_v2_20260515T160809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_002_signals_3B_v2_20260515T160809_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "6d4989520578ecbea2448f68996d67cf805fcf5f337b7f7da5e0789a233edbbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_002_signals_3B_v2 已成功提交到 GPU 4。**\n\n- **PID**: 590509（compute_signals.py 子进程在 GPU 4，CUDA_VISIBLE_DEVICES=4 ✓）\n- **tmux session**: `exp002_3B_v2`\n- **任务**: 12 个（4 dosages × 3 benchmarks）\n- **日志**: `/root/contamcal-irt-calibration/exp002/exp002_3B_v2.log`\n- **Registry**: RUNNING\n\n**修复了一个 bug**：`run_batch.py` line 202 原来无条件用 `--gpu` 参数覆盖 `CUDA_VISIBLE_DEVICES`，导致子进程跑到 GPU 0。已改为：当父进程已设置 `CUDA_VISIBLE_DEVICES` 时不覆盖。这就是 v1 失败（GPU 映射 bug）的根因之一。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-002-signals-3b-v2-copy-2.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "3666174a408b2e483da8",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code exp006 irt baselines",
+  "task_key": "worker_code_exp006_irt_baselines_20260514T044450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp006_irt_baselines_20260514T044450.log",
+    "occurrence": 1,
+    "bytes": 887885,
+    "sha256": "6b3b240b906afc467e7456f1937524c8b8bc476374c302317c82f51e4ef1ce2f"
+  },
+  "statistics": {
+    "messages": 277,
+    "user_turns": 1,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "record": 1,
+      "system": 28,
+      "assistant": 41,
+      "tool_call": 102,
+      "user": 1,
+      "tool_result": 102,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "3666174a408b2e483da8-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 271,
+      "chunks": [
+        {
+          "path": "3666174a408b2e483da8-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "3666174a408b2e483da8-part-0002.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp006-irt-baselines.md"
+}

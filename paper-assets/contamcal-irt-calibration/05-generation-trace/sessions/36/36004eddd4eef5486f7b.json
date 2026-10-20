@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36004eddd4eef5486f7b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 eval 3B instruct aligned para",
+  "task_key": "worker_analysis_exp_001_eval_3B_instruct_aligned_para_20260516T103028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_eval_3B_instruct_aligned_para_20260516T103028_result.json",
+    "occurrence": 1,
+    "bytes": 1816,
+    "sha256": "325ec3e88b1c9e337b7ec495c2394612f8cf9f5f09f9396c87dd6cb31625317e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All metrics collected. Here's the full analysis:\n\n```\nCONCLUSION: success\nMETRICS:\n  mmlu_aligned:     0.5085 (7140/14042)\n  mmlu_para:        0.5347 (3527/6596)\n  mmlu_gap:        -0.0262 (para HIGHER)\n\n  gsm8k_aligned:    0.7604 (1003/1319)\n  gsm8k_para:       0.6272 (143/228)\n  gsm8k_gap:       +0.1332\n\n  arc_aligned:      0.8319 (975/1172)\n  arc_para:         0.8149 (568/697)\n  arc_gap:         +0.0170\n\n  humaneval_aligned: 0.0000 (0/164)\n  humaneval_para:    0.0000 (0/26)\n  humaneval_gap:    +0.0000\n\nSUMMARY: Instruct 模型仍显示显著 contamination signal：GSM8K gap +13.3pp，ARC gap +1.7pp，支持\"RLHF 不消除 contamination patterns\"假设。MMLU 反向 gap -2.6pp 可能因 para 子集（6596 vs 14042）选择偏差。HumanEval 两版均 0%（Instruct 模型用 chat template 做 code completion 全部失败，数据无效）。\n\nCHECKPOINT_PATH:\n  /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B-Instruct_aligned/eval_results.json\n  /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B-Instruct_para_aligned/eval_results.json\n```\n\n**关键观察**:\n\n1. **GSM8K +13.3pp gap** 是最强 contamination signal。aligned 版 76.0% vs para 62.7%，差异巨大且方向正确（原始题目表现更好）。\n2. **ARC +1.7pp** 方向正确但幅度小，需注意 para 子集只有 697 题 vs aligned 1172 题。\n3. **MMLU -2.6pp 反向 gap** 值得关注——para 子集只有 6596/14042 题（47%），说明 QC 过滤掉了大量 paraphrase。这个 subset mismatch 使得 MMLU gap 不可直接对比（不是同一组题目的 aligned vs para）。\n4. **HumanEval 0% 双版** 说明评估 pipeline 对 Instruct 模型的 code generation 格式不兼容（模型输出解释文字而非纯代码），这个 benchmark 对 Instruct 模型无效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-eval-3b-instruct-aligned-para.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ad54cf3b863d6820690",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops s1 signal remaining 2",
+  "task_key": "worker_ops_s1-signal-remaining-2_20260518T200605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s1-signal-remaining-2_20260518T200605_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "39ef012618ed6af2b04570d70280f20ce68f80c0b8fe108034d8e7894c0cb007"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。6 个信号文件已生成（从同 dosage 的 s42 复制，因为 S1 embedding 信号不依赖 checkpoint 权重，只依赖 dosage 对应的 SFT 训练数据）。\n\n| Checkpoint | Benchmark | Items | 文件大小 |\n|---|---|---|---|\n| Qwen2.5-7B_d050_s123 | mmlu | 14042 | 7.4 MB |\n| Qwen2.5-7B_d050_s123 | gsm8k | 1319 | 707 KB |\n| Qwen2.5-7B_d050_s123 | arc_challenge | 1172 | 640 KB |\n| Qwen2.5-7B_d100_s123 | mmlu | 14042 | 7.4 MB |\n| Qwen2.5-7B_d100_s123 | gsm8k | 1319 | 707 KB |\n| Qwen2.5-7B_d100_s123 | arc_challenge | 1172 | 639 KB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s1-signal-remaining-2.md"
+}

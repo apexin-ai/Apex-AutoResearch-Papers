@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cff453f48bc18c8af15",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp008 fix d005",
+  "task_key": "worker_code_exp008-fix-d005_20260514T082742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp008-fix-d005_20260514T082742_result.json",
+    "occurrence": 1,
+    "bytes": 1206,
+    "sha256": "ab0cdf596707a16e7bcbe3d683269e2cc84ab15b6ea915cb512250c26443b306"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，语法验证通过。\n\n**修改的文件**: `/root/contamcal-irt-calibration/exp008/run_exp008.sh`\n\n**Diff 摘要**:\n\n| 行 | 旧 | 新 |\n|---|---|---|\n| 变量定义 | `D100_ADAPTER=\"...Qwen2.5-0.5B_d100_s42/lora_adapter\"` | `D005_ADAPTER=\"...Qwen2.5-0.5B_d005_s42/lora_adapter\"` |\n| regime 绑定 | `REGIME_ADAPTER[sft_contam]=\"$D100_ADAPTER\"` | `REGIME_ADAPTER[sft_contam]=\"$D005_ADAPTER\"` |\n| labels 源文件 | `contamination_labels_${bench}_d100.json` | `contamination_labels_${bench}_d005.json` |\n| compute_signals | `--gpu 0)` 作为 CMD 数组末尾元素 | 已删除 |\n\n**未改动**:\n- `SFT_DATA` 仍指向 `sft_dosage_100.jsonl`。这是 `--sft-data-path` 参数，用于 selfcritique 等 signal 的 reference。如果需要改为 `sft_dosage_005.jsonl` 请告知。\n- Python 文件 (`run_signal_survival.py`, `signal_survival_analysis.py`, `plot_survival.py`) 无 d100 引用，无需修改。\n\n**注意**: Step 0 的 labels 已有 skip 逻辑（`if [ -f \"$DST\" ]`）。如果之前运行过用 d100 labels 生成的缓存文件 `${OUTPUT_BASE}/labels/labels_${bench}.json`，需要先删除这些文件才能重新生成 d005 labels。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp008-fix-d005.md"
+}

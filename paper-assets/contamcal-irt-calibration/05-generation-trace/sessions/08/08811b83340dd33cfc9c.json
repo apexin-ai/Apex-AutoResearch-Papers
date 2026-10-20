@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08811b83340dd33cfc9c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "irt oracle arc 2pl",
+  "task_key": "worker_irt_oracle-arc-2pl_20260515T034508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_irt_oracle-arc-2pl_20260515T034508_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "fcb4a0aff533b8ba68f65b4bbd6e92e64ba3bb5c3a5a1d8419deafabf3082b4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n**实验已提交：**\n- **exp_id**: exp006-oracle-arc-2pl\n- **tmux session**: `exp006_oracle_arc_2pl`\n- **PID**: 496697\n- **命令**: `python exp006/run_exp006.py --oracle-exposure --pool-scales 0.5B 1.5B --benchmark arc_challenge --model-type 2pl_gamma --chains 4 --warmup 2000 --samples 4000 --parallel-chains 1 --output-dir /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_2pl --aligned-only`\n- **配置**: 11 models x 1172 items, 4 chains x 6000 iterations (2000 warmup + 4000 samples)\n- **日志**: `/tmp/irt_oracle_arc_2pl.log`\n- **输出**: `/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_2pl`\n- **状态**: RUNNING，registry 已更新\n\nARC 4PL oracle 之前 1000 warmup + 1000 samples 耗时 ~482s，本次 2000+4000 预计 ~20-30 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/irt-oracle-arc-2pl.md"
+}

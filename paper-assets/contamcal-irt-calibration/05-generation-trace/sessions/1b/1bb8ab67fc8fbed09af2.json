@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bb8ab67fc8fbed09af2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code falcon3 chat template fix",
+  "task_key": "worker_code_falcon3-chat-template-fix_20260522T040305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_falcon3-chat-template-fix_20260522T040305_result.json",
+    "occurrence": 1,
+    "bytes": 357,
+    "sha256": "468b0caefaa7db554c912f600e3159b152f61ac6448bd0582a14e9d1675c1039"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器均已修改完成：\n\n- **cqa1-21977** 第 145 行：`if \"llama\" in args.model_name.lower() or \"falcon\" in args.model_name.lower():`\n- **westd-29999** 第 164 行：同上\n\nFalcon3-7B-Base 现在会匹配到 Llama3 chat template 分支（正确，因为 Falcon3 使用 LlamaForCausalLM 架构和 Llama tokenizer）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-falcon3-chat-template-fix.md"
+}

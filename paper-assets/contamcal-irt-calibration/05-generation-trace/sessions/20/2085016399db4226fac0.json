@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2085016399db4226fac0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd gsm8k olmo2 status",
+  "task_key": "worker_ops_westd-gsm8k-olmo2-status_20260521T142220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-gsm8k-olmo2-status_20260521T142220_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "de2633c3686cfdf28c6b93e94922212600a23e18f7e535f913776edd105ac572"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GSM8K Results\n- **仍在运行**，3 个进程均存活（elapsed ~20min / ~55min）\n  - PID 528870 (d000): `Rl` 状态，已运行 19:45\n  - PID 529276 (d025): `Rl` 状态，已运行 19:14\n  - PID 529683 (d100): `Rl` 状态，已运行 18:43\n- 输出目录已创建但为空，尚未写出结果\n- 预计还需 ~35min\n\n## OLMo-2 Baseline Status\n- 是否有新 eval 在跑：**否**，无 OLMo 相关进程\n- 最新 d000_s0 结果：`eval_results.json` 修改时间 **2026-05-20 18:39**（昨天），**未今天重跑**\n- 当前 d000_s0 MMLU 准确率：**55.34%**（7771/14042），与 ROADMAP 中 \"53.79% 存疑\" 不一致——这个 55.34% 可能是 5/20 的重跑结果，已修正了之前的数值\n- `exp001/eval_results_v2/olmo2_d000/` 不存在\n- GPU 状态：\n  - GPU 0/1/2: 91% utilization, 18591 MiB / 97887 MiB（LLaMA-3 eval 占用）\n  - GPU 3: 0% utilization, 空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-gsm8k-olmo2-status.md"
+}

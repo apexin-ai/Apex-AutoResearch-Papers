@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ff54b5c68da5355957e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops 05B d005 s123 eval gpu1",
+  "task_key": "worker_ops_05B-d005-s123-eval-gpu1_20260515T004756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_05B-d005-s123-eval-gpu1_20260515T004756_result.json",
+    "occurrence": 1,
+    "bytes": 138,
+    "sha256": "e29e74434e179623877b723755d6703890452089eddb8e4c4126534737a32587"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`exp_001_eval_05B_d005_s123_aligned` 已在 GPU 1 上运行（PID 475651, 2372 MiB），registry 状态 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-05b-d005-s123-eval-gpu1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "302005123c8a45b72224",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 sft s123 failures",
+  "task_key": "worker_diagnose_exp_001_sft_s123_failures_20260513T203803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_sft_s123_failures_20260513T203803_result.json",
+    "occurrence": 1,
+    "bytes": 1975,
+    "sha256": "6724ce672baf0f86079a87bcc8b4ee9f42090467fad40787b6fb7fdef1045deb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 1. 每个实验的失败原因\n\n两个实验的致命错误完全相同：\n\n```\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 7.31 MiB is free. Process 204758 has 22.53 GiB memory in use.\n```\n\n（bitsandbytes 的 `libnvJitLink.so.13` 错误只是 warning，不是致命原因）\n\n### 2. 根因分析\n\n**两个实验的启动命令都写了 `--gpu 0`，但 GPU 0 被一个 vLLM 推理引擎（PID 204758）占满了 23 GiB。**\n\n当前 GPU 占用情况：\n\n| GPU | 占用 | 进程 |\n|-----|------|------|\n| 0 | 23068 / 24564 MiB | **VLLM::EngineCore** (PID 204758) |\n| 1 | **0 MiB — 空闲** | — |\n| 2 | **0 MiB — 空闲** | — |\n| 3 | **0 MiB — 空闲** | — |\n| 4 | 21552 MiB | python (其他实验) |\n| 5 | 18654 MiB | python (其他实验) |\n\n任务描述说 1.5B 应在 cuda:2、0.5B 应在 cuda:1，但实际命令里都是 `--gpu 0`，与 vLLM 冲突导致 OOM 秒退。\n\n### 3. 修复建议\n\n用空闲 GPU 重新提交，改 `--gpu` 参数即可：\n\n**1.5B (用 GPU 2)：**\n```bash\npython /root/contamcal-irt-calibration/exp001/train_sft.py \\\n  --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B \\\n  --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123 \\\n  --seed 123 --gpu 2 --batch-size 2 --grad-accum 8 \\\n  --cache-dir /root/autodl-tmp/.hf_cache\n```\n\n**0.5B (用 GPU 1)：**\n```bash\npython /root/contamcal-irt-calibration/exp001/train_sft.py \\\n  --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B \\\n  --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123 \\\n  --seed 123 --gpu 1 --batch-size 4 --grad-accum 4 \\\n  --cache-dir /root/autodl-tmp/.hf_cache\n```\n\nGPU 3 也空闲可用作备选。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-sft-s123-failures.md"
+}

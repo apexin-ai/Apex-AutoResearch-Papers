@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "013c80a16d0ea817ad59",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 sft d025 3B v3",
+  "task_key": "worker_diagnose_exp_001_sft_d025_3B_v3_20260515T202806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_sft_d025_3B_v3_20260515T202806_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "943b3a8ddbb77024d454d1338fab192d25f7f11bdc0102b4c9e65d14ec32b1ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：exp_001_sft_d025_3B_v3 训练成功完成。**\n\n| 指标 | 值 |\n|------|-----|\n| 完成步数 | 3384/3384 (100%) |\n| train_loss | 1.1464 |\n| mean_token_accuracy | 0.734 |\n| 训练时长 | 14584s (≈4.05h) |\n| epoch | 1.0 |\n| checkpoint | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter/adapter_model.safetensors` (114MB) |\n\nRegistry 已更新：conclusion=success，checkpoint_path、log_path、metrics 均已修正。Cron 的 failed 判断是误报（进程正常退出但无 W&B/sentinel 文件）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-sft-d025-3b-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21355e1d1b0254301d31",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis 3B s123 sft done",
+  "task_key": "worker_analysis_3B_s123_sft_done_20260514T001819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_3B_s123_sft_done_20260514T001819_result.json",
+    "occurrence": 1,
+    "bytes": 637,
+    "sha256": "5a3168ace9bca8fa79384b7a5f5b2765f2af5d9d63e0924ad21818c02b8f7348"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**exp_001_sft_0pct_3B_s123 — 训练成功**\n\n| Metric | Value |\n|--------|-------|\n| mean_train_loss | 1.1309 |\n| final_loss | 1.114 |\n| mean_token_accuracy | 75.05% |\n| training_time | 213.1 min (3h33m) |\n| steps | 3125/3125 (1 epoch) |\n| throughput | 3.91 samples/s |\n| total_tokens | 19.6M |\n| checkpoint_size | 488 MB |\n| adapter_model | 114 MB |\n\nCheckpoint 验证通过：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/adapter_model.safetensors` 存在，114 MB。\n\nRegistry 状态：conclusion=success, metrics/checkpoint_path 已写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-3b-s123-sft-done.md"
+}

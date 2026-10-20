@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2eebd4abd0a7e7abb475",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd full status check",
+  "task_key": "worker_ssh_westd-full-status-check_20260519T122407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-full-status-check_20260519T122407_result.json",
+    "occurrence": 1,
+    "bytes": 1866,
+    "sha256": "c5743c96819a53226ce75e679d526be20d1725cc45b1646ef6c7030c082a439c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Status Report — westd-29999 (2026-05-19 20:24 CST)\n\n### GPU Utilization\n\n| GPU | Status | Mem | Process |\n|-----|--------|-----|---------|\n| **0** | **BUSY** 94% | 16.7/97.9 GB | OLMo-2 **d005** eval (PID 168549) |\n| **1** | **BUSY** 90% | 16.7/97.9 GB | OLMo-2 **d025** eval (PID 167370), nearly done → will then run d050 |\n| **2** | **IDLE** 0% | 0/97.9 GB | d100 already completed |\n| **3** | **BUSY** 92% | 16.7/97.9 GB | OLMo-2 **d050** eval (PID 169634), ~8% MMLU |\n\n### Tmux Sessions\n\n- `olmo2_gpu2` — orchestrating monitor + eval scripts across pts/0-3\n- `olmo2_monitor` script running on pts/1, polling every 120s\n\n### eval_results_v2 Completion Matrix\n\nAll 5 dosages (d000/d005/d025/d050/d100), benchmarks: MMLU + ARC Challenge.\n\n| Model | d000 | d005 | d025 | d050 | d100 |\n|-------|------|------|------|------|------|\n| **Qwen-7B** | done | done | done | done | done |\n| **Qwen-14B** | done | done | done | done | done |\n| **Phi-4** | done | done | done | done | done |\n| **Gemma-2** | done | done | done | done | done |\n| **OLMo-2** | done | **running** (GPU0) | done (just finished) | **running** (GPU3) | done |\n\n**OLMo-2 is the only family with incomplete evals.** Two dosages remaining: **d005** and **d050**, both actively running. At ~20 items/sec on MMLU (14042 items) + ARC, each should finish in roughly 15-25 minutes.\n\n### Conflict Warning\n\n**GPU1 and GPU3 scripts are duplicates** — both `olmo2_eval_gpu1.sh` and `olmo2_eval_gpu3.sh` run `d025 → d050` sequentially to the **same output dirs**. GPU3 already finished d025 and is now on d050. GPU1 is still finishing d025 and will then also start d050, creating a race condition on `eval_results_v2/olmo2_d050/`. You may want to kill PID 167370 (GPU1) after it finishes d025 to avoid the conflict, since GPU3 is already handling d050."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-full-status-check.md"
+}

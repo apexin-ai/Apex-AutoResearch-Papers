@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16d713c23a3437a5bd87",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval gemma2 arc s42 execute",
+  "task_key": "worker_eval_gemma2-arc-s42-execute_20260521T064754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gemma2-arc-s42-execute_20260521T064754_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "b783392f25438d7bbaca343c40be501ed48ce79a946ff7ca677a5ff7792029e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0/2/3 已释放。结果汇总：\n\n```\n=== Gemma-2-9B ARC s42 Results ===\nd000: 86.01% (1008/1172) — results/arc_eval/gemma2/d000_s42/arc_challenge_results.json\nd005: 77.82% (912/1172)\nd025: 87.37% (1024/1172)\nd050: 71.08% (833/1172)\nd100: 84.81% (994/1172)\n\nDelta(d100-d000): -1.19pp\n\nC009: ✅ md5=17673bf373f00f83ccc41fc1d355a4cd\nC006: ✅ 全部 5 个 adapter alpha=32\nGPU PIDs: cuda:0=[486175], cuda:2=[487120], cuda:3=[488033]（已全部完成释放）\nGPU 0/2/3 现已空闲，GPU 1 Qwen-14B (PID 481803) 未受影响。\n```\n\n注意：dosage 曲线非单调（d005=77.82% < d000=86.01%，d050=71.08% 是最低点），这可能值得 Reviewer 关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gemma2-arc-s42-execute.md"
+}

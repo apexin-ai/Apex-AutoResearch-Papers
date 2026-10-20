@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "047086707b6e0b34bf65",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis eval metrics aggregation",
+  "task_key": "worker_analysis_eval-metrics-aggregation_20260515T182502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval-metrics-aggregation_20260515T182502.log",
+    "occurrence": 1,
+    "bytes": 727941,
+    "sha256": "6b8a762dc5244a571f50fa5b5137a32540f5ec97002fbbcb22034f36ad3bdf7f"
+  },
+  "statistics": {
+    "messages": 129,
+    "user_turns": 1,
+    "tool_calls": 41,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 41,
+      "tool_result": 41,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "047086707b6e0b34bf65-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 113,
+      "chunks": [
+        {
+          "path": "047086707b6e0b34bf65-part-0001.json",
+          "message_count": 90
+        },
+        {
+          "path": "047086707b6e0b34bf65-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-eval-metrics-aggregation.md"
+}

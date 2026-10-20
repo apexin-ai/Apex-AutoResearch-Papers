@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0323390bbb512a364578",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 westd cleanup and submit",
+  "task_key": "worker_ops_falcon3-westd-cleanup-and-submit_20260522T051728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-westd-cleanup-and-submit_20260522T051728_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "e3123d2ac7cca19c173562f0514f310ccdbde5d14972116608030b7868f70518"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**磁盘清理**: 释放 ~23GB（1.8GB → 25GB 可用）\n- 删除：HF datasets 缓存(6.8GB)、LLM-Research/Llama-3.1-8B base model(15GB)、eval_vllm_0shot_DO_NOT_USE(279MB)、hub 元数据/lock 文件\n\n**训练提交**: 4 个 Falcon3-7B-Base SFT 已启动并稳定训练中\n- 首次提交因 OOM 失败（7B 模型 batch_size=4 在 95GB GPU 上撑满），加 `--gradient-checkpointing` 后成功\n- GPU 0-3 各占 ~71-76GB，利用率 97-99%\n- d000: 3125 steps, ETA ~3h\n- d005/d025/d050: 步数更多（数据量更大），ETA 类似\n\n**Registry**: 4 个实验已更新为 RUNNING 状态，spec 含完整 provenance。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-westd-cleanup-and-submit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cdfb25fdf99525a2e75",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd phase2 progress check v3",
+  "task_key": "worker_ssh_westd-phase2-progress-check-v3_20260519T120039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-phase2-progress-check-v3_20260519T120039_result.json",
+    "occurrence": 1,
+    "bytes": 1835,
+    "sha256": "e95f6887ffb1f30f88287b11f1c552ec3902da3e594470450355284a0bd24320"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 2 状态总览 (20:01 CST)\n\n### GPU 分配\n\n| GPU | Util | Mem | 任务 |\n|-----|------|-----|------|\n| 0 | 95% | 31.7/97.9 GB | **phi4_d100** eval (PID 161497, since 19:49) |\n| 1 | 94% | 32.7/97.9 GB | **qwen14b_d100** eval (PID 163254, since 19:56) |\n| 2 | 90% | 16.7/97.9 GB | **olmo2_d100** eval (PID 162317, since 19:55) |\n| 3 | **idle** | 0 MB | 空闲 |\n\n### 25-cell 状态表\n\n| Model | d000 | d005 | d025 | d050 | d100 |\n|-------|------|------|------|------|------|\n| **gemma2** | 0.6186 / 0.8601 | 0.6342 / 0.7782 | 0.6456 / 0.8737 | 0.6401 / 0.7108 | 0.6562 / 0.8481 |\n| **phi4** | 0.7644 / 0.9206 | 0.7636 / 0.9181 | 0.7698 / 0.9232 | 0.7675 / 0.9241 | **RUNNING** (GPU0) |\n| **qwen14b** | 0.6944 / 0.9104 | 0.6901 / 0.9036 | 0.6204 / 0.8891 | 0.5941 / 0.8763 | **RUNNING** (GPU1) |\n| **qwen7b** | 0.6611 / 0.8788 | 0.6474 / 0.8609 | 0.6298 / 0.8404 | 0.6307 / 0.8456 | 0.6433 / 0.8498 |\n| **olmo2** | MISSING | MISSING | MISSING | MISSING | **RUNNING** (GPU2) |\n\n(格式: MMLU / ARC)\n\n### 进展汇总\n\n- **DONE**: 20/25 (上次 16/25, 新完成 4: phi4_d050, qwen14b_d050, qwen7b_d050, qwen7b_d100)\n- **RUNNING**: 3/25 (phi4_d100, qwen14b_d100, olmo2_d100)\n- **MISSING**: 4/25 (olmo2_d000/d005/d025/d050)\n- **GPU 3 空闲**\n\n### OLMo Monitor\n\n- tmux sessions: `olmo2_gpu2` (19:55), `olmo2_monitor` (19:59)\n- monitor 日志只有 1 轮 check (19:59:26)，GPU0/1 busy 所以未启动新任务，正在 sleep 120s\n- olmo2_d100 已在 GPU2 上运行，monitor 在等 GPU0/1 空闲后启动 olmo2_d000~d050\n\n### 下一步预期\n\nphi4_d100 跑了 ~11min (19:49 start)，qwen14b_d100 ~5min (19:56 start)，olmo2_d100 ~6min (19:55 start)。根据前面 eval 耗时，预计各需 15-25 分钟。GPU0 最先释放后 monitor 应自动启动 olmo2 d000~d050 的 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-phase2-progress-check-v3.md"
+}

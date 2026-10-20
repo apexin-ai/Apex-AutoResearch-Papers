@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1df726f31731aba97b29",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code westd gsm8k scripts urgent",
+  "task_key": "worker_code_westd-gsm8k-scripts-urgent_20260519T224533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-gsm8k-scripts-urgent_20260519T224533_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "6f2986be06fe0309fe6de7f4a0ba99d3a7596a28acd31f879320e5380ae842ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**已创建 s42 脚本**（`scripts/gsm8k_s42/`）：\n\n| 脚本 | CUDA | 模型 |\n|------|------|------|\n| `run_gsm8k_olmo2_s42.sh` | **2** | OLMo-2-7B |\n| `run_gsm8k_phi4_s42.sh` | 0 | phi-4 |\n| `run_gsm8k_gemma2_s42.sh` | 3 | gemma-2-9b |\n| `run_gsm8k_qwen14b_s42.sh` | 1 | Qwen2.5-14B |\n| `run_gsm8k_qwen7b_s42.sh` | 2 | Qwen2.5-7B |\n\n**已修复 s123 脚本 CUDA 分配**（同上映射，原来全部硬编码 CUDA=0）。\n\n所有脚本包含：C009 md5 校验、adapter 缺失跳过、输出到 `results/gsm8k/{model}_d{dosage}_s42/`。10/10 语法检查通过。lora_alpha=32 已确认（C006 合规）。\n\nOLMo-2 s42 脚本（CUDA=2）已就绪，cuda:2 空闲后可直接执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-gsm8k-scripts-urgent.md"
+}

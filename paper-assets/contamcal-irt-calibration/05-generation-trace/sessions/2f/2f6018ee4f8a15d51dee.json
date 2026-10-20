@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f6018ee4f8a15d51dee",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_11_1778874554.md",
+  "task_key": "loop_11_1778874554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778874554.md",
+    "occurrence": 1,
+    "bytes": 5317,
+    "sha256": "1a7a6197ec0c1e3d255ca4cf92a88b0abd3dc5f684c448edb58065c8bab28f65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T19:44:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单 cuda:0-5**（6× RTX 4090D on cqa1-21977）。不得使用白名单外 GPU，即使 Director 指令也要 push back\n- **C001-C005 约束必须遵守**：提交前 nvidia-smi 查重（C001/C002/C003）、命令显式 CUDA_VISIBLE_DEVICES=N（C004）、**禁止 signals 与 SFT 共享 GPU**（C005，cuda:4 三次事故）\n- **Alpha 混用禁令（D055/D067）**：s42 alpha=32 与 s123 alpha=16 数据不可混用引用。目前 d025_s42/d100_s42/d100_s123 的 SFT 正在 alpha=32 重跑中\n- **D071 待定**：d000_s42 lr=2e-4 可能非标准（标准 5e-5），需核实。若确认非标准则 d000_v3 需重训\n- 数据盘 `/root/autodl-tmp/`，根分区仅 ~30GB，模型/数据/HF cache 必须在数据盘\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：cqa1-21977（AutoDL），6× RTX 4090D (24GB each)\n- **工作目录**：`/root/contamcal-irt-calibration/`（代码），`/root/autodl-tmp/exp001/`（checkpoints + eval results）\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）。激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **HF cache**：`/root/autodl-tmp/.hf_cache`\n- **模型**：Qwen2.5-0.5B/1.5B/3B 均在 `/root/autodl-tmp/.hf_cache/Qwen/`\n- **网络**：pip/git 前必须 `source /etc/network_turbo`；HF 设 `HF_HUB_DISABLE_XET=1` + SSL 证书变量\n- **Stan tmpdir**：`/home/ubuntu/tmp_cmdstan`（exp-004 v7 修复用的隔离目录）\n- **活跃进程**（截至 handoff 时刻，PID 可能已变）：\n  - cuda:0 — exp_001_sft_3B_d100_s123_a32_v2 (PID 594489)\n  - cuda:1 — exp_001_sft_3B_d100_s42_a32_v2 (PID 593745, ~30% ETA ~3h)\n  - cuda:2 — exp_001_eval_3B_d005_s123_aligned (RUNNING)\n  - cuda:3 — exp_001_eval_3B_d100_s123_para_aligned_v2 (刚启动)\n  - cuda:4 — exp_001_sft_3B_d000_v3 (PID 597174) + exp_002_signals_3B_v4 (双进程 ~20.7/24.5GB)\n  - cuda:5 — exp_001_sft_d025_3B_v3 (PID 589763)\n  - CPU — exp_004_sim_sweep_v7 (RUNNING, resume 补跑 4 条件 40 seeds)\n\n### 3. 📊 当前状态\n**刚做完**：Reviewer 修正 report.md（signals 部分完成而非未开始、noise_prop_v4=negative、GPU4 双进程记录、PPP=0 风险项）。D065-D071 一系列决策清理（alpha 混用确认、signals_v3 静默死亡、d000_v3 冗余确认）。\n\n**正在跑的 4 个 RUNNING 实验**：\n| exp_id | 摘要 | GPU |\n|--------|------|-----|\n| exp_001_sft_d025_3B_v3 | 3B d025 s42 alpha=32 SFT 重跑 | cuda:5 |\n| exp_001_sft_3B_d100_s42_a32_v2 | 3B d100 s42 alpha=32 SFT 重跑 | cuda:1 |\n| exp_001_sft_3B_d100_s123_a32_v2 | 3B d100 s123 alpha=32 SFT 重跑 | cuda:0 |\n| exp_004_sim_sweep_v7 | Identifiability simulation 补跑 4 条件 | CPU |\n| exp_002_signals_3B_v4 | 3B 4 信号计算 (7/12 combos remaining) | cuda:4 (与 d000_v3 共存) |\n\n另有 cuda:2/3 跑 eval（不在 registry RUNNING 但实际占 GPU）。\n\n**等待中**：\n- 无活跃 Worker 回调（handoff 时刻）\n- 无 cron 监控（需 reconcile）\n- Director 未决事项：D071 lr 核实、Claim 3 路径重评估（noise_prop negative）\n\n### 4. 📋 待办（条件触发式）\n- cuda:2 eval 完成 → 立即启动 exp-002 3B d005 signals（cuda:2）\n- cuda:3 eval 完成 → 立即启动 exp-002 3B d100 signals（cuda:3）\n- cuda:0/1/5 SFT 完成 → 提交对应 aligned + para_aligned eval（6 cells 共 3 个 dosage×seed 组合）\n- exp_002_signals_3B_v4 全部完成 → exp-003 RRF 聚合（CPU）→ per-benchmark exposure scores\n- 3B signals + evals 全完成 → pooled IRT fitting（exp-006, per-benchmark γ_k, Stan NUTS）+ 7 baselines\n- sim_sweep_v7 完成 → 确认 identifiability boundary；若仍失败需调查 pymp/Stan 根因\n- 1.5B s123 para_aligned（4 cells）：SFT 已存在，仅需 eval，释放 GPU 后提交\n- D071 lr 核实结果 → 若 d000_s42 lr=2e-4 非标准，d000_v3 需重训\n- noise_prop negative 后 Claim 3 路径：等 Director 决策（降级 appendix vs 换路径）\n\n### 5. 🎯 战略上下文\n**投稿目标**：EMNLP 2026 ARR May 25（T-10 天）。Critical path = 3B signals 全完成 → RRF → pooled IRT → baselines → 论文写作。\n\n**核心结论链**：\n- D039: characterization-first pivot（calibration demoted to Claim 4）\n- D050/D055/D067: alpha=32 统一，混用数据不可引用\n- D053: 废弃联合 IRT，改 per-benchmark fitting\n- D056: coverage collapse = model misspecification（DGP 下 90-100% 但真实数据 20-33%）\n- exp-005 negative: ME model 无效，降级 appendix\n- N=19 (alpha=32 strict) ≥ 16 门槛已过，可启动 pooled IRT\n\n**易判断错的事**：\n1. **d000_v3 SFT 在 cuda:4 与 signals 共存**——看起来像违反 C005，但 D070 Director 显式批准了这个共存。不要 kill\n2. **alpha=16 的 eval 数据仍在 registry 里**——这些是历史数据，不要用于 pooled IRT，只看 alpha=32 的\n3. **0.5B 数据已从 IRT pooling 排除**——仅保留在论文 characterization section，不参与 N 计数\n4. **report.md 和 ROADMAP.md 内容高度重复**——report.md 是 truth source，ROADMAP.md 由 report.md 派生\n5. **coverage 数字看起来很低（14%/0%/0%）**——这是 plan-level registry_id 未刷新导致的低估，实际完成量远高于此\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778874554.md"
+}

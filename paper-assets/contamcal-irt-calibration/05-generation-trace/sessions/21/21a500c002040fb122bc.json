@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21a500c002040fb122bc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd cuda0 status check",
+  "task_key": "worker_ssh_westd-cuda0-status-check_20260519T074025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-cuda0-status-check_20260519T074025_result.json",
+    "occurrence": 1,
+    "bytes": 536,
+    "sha256": "5de2b1efa5fafe6ea8a73474c9aac774eca7bdce127c89e1d3b0774354d16c86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**OLMo-2 7B d050 训练已完成。**\n\n| 指标 | 值 |\n|---|---|\n| PID 111715 | 已退出 |\n| `.done` | 存在 (15:31 写入) |\n| 总步数 | 3642/3642 (100%) |\n| 运行时间 | 2h 05m 19s (7519s) |\n| 最终 train_loss | 0.9733 |\n| 最终 mean_token_accuracy | 0.7418 |\n| 最终 entropy | 1.122 |\n| 吞吐 | 7.75 samples/s, 0.484 steps/s |\n| Adapter 路径 | `/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42/lora_adapter` |\n\ncuda:0 当前空闲 (0 MiB, 0% util)。cuda:1/2/3 有其他进程在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-cuda0-status-check.md"
+}

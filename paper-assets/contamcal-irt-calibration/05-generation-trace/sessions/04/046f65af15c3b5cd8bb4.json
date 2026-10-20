@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "046f65af15c3b5cd8bb4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix rrf skip patterns",
+  "task_key": "worker_code_fix-rrf-skip-patterns_20260516T030407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-rrf-skip-patterns_20260516T030407_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "14544ee8d92c2fda2600985825b6e8fa79e67f8ec26fdb48082a9243fb158660"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**已有修复，无需修改。**\n\n`ALPHA16_BLOCKLIST`（第43-49行）已包含这5个目录的精确名称，且第233行同时检查了 `SKIP_PATTERNS` 和 `ALPHA16_BLOCKLIST`：\n\n```python\nif any(pat in model_id for pat in SKIP_PATTERNS) or model_id in ALPHA16_BLOCKLIST:\n```\n\n- `SKIP_PATTERNS` → substring 匹配，处理含 \"DEPRECATED\" 的目录\n- `ALPHA16_BLOCKLIST` → 精确匹配（set membership），处理这5个 alpha=16 目录\n\n两个引用点完全相同（仅第233行），不存在遗漏的代码路径。且精确匹配比 substring 匹配更安全，不会误伤 `d000_a32_s42` 等有效目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-rrf-skip-patterns.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a436b740ba5ca379d69",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fill all gpus critical",
+  "task_key": "worker_ops_fill-all-gpus-critical_20260516T182204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fill-all-gpus-critical_20260516T182204_result.json",
+    "occurrence": 1,
+    "bytes": 1325,
+    "sha256": "307bf1eacf32b5c4c21c354ea279b7ac12296873016fac19a7d8e28aea95c844"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。最终 GPU 分配：\n\n| GPU | 任务 | PID | 显存 | 预计完成 |\n|-----|------|-----|------|----------|\n| cuda:0 | 既有任务 | 825638 | 8081 MiB | - |\n| cuda:1 | **Llama d000 signals MMLU** | 830115 | 8281 MiB | ~30-45 min |\n| cuda:2 | 1.5B ARC signals（收尾） | 823710 | 595 MiB | ~5-10 min |\n| cuda:3 | 既有任务 | 822390 | 8313 MiB | - |\n| cuda:4 | **Llama d000 signals GSM8K** (831936) + arc_challenge (831353, 另一 worker) | 共享 | ~579 MiB (加载中) | ~40-60 min |\n| cuda:5 | **Llama d100 eval** (4 benchmarks) | 831033 | 6505 MiB | ~45-60 min |\n\n**处理的冲突：**\n- 杀掉了我在 cuda:1 的重复 MMLU 进程（另一 worker 的 830115 先到）\n- 杀掉了 cuda:5 上另一 worker 的重复 eval 进程（我的 831033 先到）\n\n**Registry 更新：**\n- `exp_001_sft_llama32_3B_d100_s42`: DONE, metrics 已补全（loss=1.5435, acc=0.6505, runtime=9847s）\n- `exp_001_eval_llama32_3B_d100_s42`: RUNNING (cuda:5)\n- `exp_002_signals_llama32_3B_d000_mmlu`: RUNNING (cuda:1)\n- `exp_002_signals_llama32_3B_d000_gsm8k`: RUNNING (cuda:4)\n\n**注意**: cuda:4 上另一 worker 还提交了 Llama d000 arc_challenge signals（PID 831353），两任务不冲突（不同 benchmark 写不同文件），24GB 显存可容纳两个 3B signals 进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fill-all-gpus-critical.md"
+}

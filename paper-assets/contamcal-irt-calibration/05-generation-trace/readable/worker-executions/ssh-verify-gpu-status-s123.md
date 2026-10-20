@@ -1,0 +1,1132 @@
+# ssh verify gpu status s123
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/workers/worker_ssh_verify-gpu-status-s123_20260513T205215.log`
+- **Structured JSON:** [`3511581c9f6011180f3f.json`](../../sessions/35/3511581c9f6011180f3f.json)
+
+## Before a recorded user message
+
+23 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "28fbb2db-d8d3-4d25-9029-2a38676c949a",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778722800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "132ff703-6c83-47ec-b4f8-e536ba6aaf6d",
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check GPU status and process status on server cqa1-21977, and potentially restart training jobs. Let me load the necessary MCP tools first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "11ffdeab-881c-4947-90d3-9ee4a0a96c4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFhxv2mhK8Goyx1gho7XwM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12190,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12190
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先检查 GPU 和进程状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "a447749e-1559-40e2-b11e-8d610ec1166e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFhxv2mhK8Goyx1gho7XwM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12190,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12190
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CBpaj1HnFDzAWbVV5RvJ5d`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "442c842d-87b1-487a-b91d-0f7fb3711d41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFhxv2mhK8Goyx1gho7XwM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12190,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12190
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-13T20:52:45.517Z_
+
+<details><summary>↩ Tool result · `toolu_01CBpaj1HnFDzAWbVV5RvJ5d`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "db0f7971-f892-4751-a849-e54a7030c9d2",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EpEGvBx26ZeTDfzAX62myv`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "715d92d9-d52f-409e-985e-1ca78d12395f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013arg9HEk7X53HZmoDgfKm3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 734,
+      "cache_read_input_tokens": 24031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 734
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PfT3xGqWhi3p1tCqKeqp4N`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tmux ls 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "e0691556-2a73-4031-bc04-27fbf76b8bf3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013arg9HEk7X53HZmoDgfKm3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 734,
+      "cache_read_input_tokens": 24031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 734
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HCVeS3zi9gzuH6de3qF4Tt`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps aux --no-headers -o pid,stat,etime,cmd -p 216028,216106,216249 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "a25a8fc0-9d99-43cb-b540-bb98bae16d3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013arg9HEk7X53HZmoDgfKm3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 734,
+      "cache_read_input_tokens": 24031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 734
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T20:52:50.871Z_
+
+<details><summary>↩ Tool result · `toolu_01EpEGvBx26ZeTDfzAX62myv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 100 %, 23132 MiB, 24564 MiB\\n1, 100 %, 21061 MiB, 24564 MiB\\n2, 47 %, 15307 MiB, 24564 MiB\\n3, 62 %, 17327 MiB, 24564 MiB\\n4, 38 %, 21561 MiB, 24564 MiB\\n5, 0 %, 18663 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.72}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "de5ced13-6f92-402f-a4fa-05cc43af099b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 100 %, 23132 MiB, 24564 MiB\\\\n1, 100 %, 21061 MiB, 24564 MiB\\\\n2, 47 %, 15307 MiB, 24564 MiB\\\\n3, 62 %, 17327 MiB, 24564 MiB\\\\n4, 38 %, 21561 MiB, 24564 MiB\\\\n5, 0 %, 18663 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.72}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 100 %, 23132 MiB, 24564 MiB\\n1, 100 %, 21061 MiB, 24564 MiB\\n2, 47 %, 15307 MiB, 24564 MiB\\n3, 62 %, 17327 MiB, 24564 MiB\\n4, 38 %, 21561 MiB, 24564 MiB\\n5, 0 %, 18663 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.72}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-13T20:52:50.942Z_
+
+<details><summary>↩ Tool result · `toolu_01PfT3xGqWhi3p1tCqKeqp4N`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "4dae5feb-63dd-46a6-bb9d-09998476e0f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-13T20:52:50.996Z_
+
+<details><summary>↩ Tool result · `toolu_01HCVeS3zi9gzuH6de3qF4Tt`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "ccd58161-b35c-42c7-bff4-5bd554f00e04",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The GPU status shows all GPUs are busy. Let me check tmux and process status with different commands that don't use shell metacharacters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "3e252e92-f06f-4048-abdd-68d70580cf74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LteNxs8odYwHmkTbzQr1yF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 783,
+      "cache_read_input_tokens": 24765,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 783
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+GPU 全部有负载。tmux 和 ps 命令被 read_only 阻止了，换方式查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "ee255c59-ae0c-42a0-a3f5-e1189406e5cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LteNxs8odYwHmkTbzQr1yF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 783,
+      "cache_read_input_tokens": 24765,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 783
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01T43Kz7jgVhVewGkksB9g8F`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tmux ls 2>/dev/null | grep -E \"s123|seed123\"; echo \"---\"; ps aux | grep -E \"train_sft.*s123\" | grep -v grep; echo \"---\"; for pid in 216028 216106 216249; do ps -p $pid -o pid,stat,etime,cmd --no-headers 2>/dev/null || echo \"PID $pid DEAD\"; done",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "bb512c00-9c67-44d2-88a1-2fe104f18735",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LteNxs8odYwHmkTbzQr1yF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 783,
+      "cache_read_input_tokens": 24765,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 783
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-13T20:52:58.680Z_
+
+<details><summary>↩ Tool result · `toolu_01T43Kz7jgVhVewGkksB9g8F`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp_001_sft_0pct_05B_s123: 1 windows (created Thu May 14 04:41:35 2026)\\nexp_001_sft_0pct_15B_s123: 1 windows (created Thu May 14 04:41:38 2026)\\nexp_001_sft_0pct_3B_s123: 1 windows (created Thu May 14 04:41:41 2026)\\n---\\nroot     216028  0.0  0.0   4496  3516 pts/0    Ss+  04:41   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_05B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B_s123.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_05B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=1 && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123 --seed 123 --gpu 1 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B_s123.log 2>&1\\nroot     216032  0.0  0.0   2800  1084 pts/0    S    04:41   0:00 timeout 14400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123 --seed 123 --gpu 1 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\"\\nroot     216033  105  0.2 57876556 2120972 pts/0 Rl  04:41  11:58 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123 --seed 123 --gpu 1 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\nroot     216106  0.0  0.0   4496  3660 pts/3    Ss+  04:41   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_15B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_15B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=2 && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123 --seed 123 --gpu 2 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log 2>&1\\nroot     216110  0.0  0.0   2800  1032 pts/3    S    04:41   0:00 timeout 14400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123 --s\\n\\n... [截断: 输出过长，省略 6768 字符] ...\\n\\n2 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\nroot     216935  0.3  0.0 25177692 1007652 pts/4 Sl  04:41   0:02 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\n---\\n216028 Ss+        11:23 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_05B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B_s123.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_05B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=1 && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123 --seed 123 --gpu 1 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B_s123.log 2>&1\\n216106 Ss+        11:21 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_15B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_15B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=2 && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123 --seed 123 --gpu 2 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log 2>&1\\n216249 Ss+        11:18 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_3B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_3B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=3 && timeout 21600 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "672444b1-e6e8-4c50-8eb4-68df32723740",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp_001_sft_0pct_05B_s123: 1 windows (created Thu May 14 04:41:35 2026)\\\\nexp_001_sft_0pct_15B_s123: 1 windows (created Thu May 14 04:41:38 2026)\\\\nexp_001_sft_0pct_3B_s123: 1 windows (created Thu May 14 04:41:41 2026)\\\\n---\\\\nroot     216028  0.0  0.0   4496  3516 pts/0    Ss+  04:41   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_05B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B_s123.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_05B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=1 && timeout 14400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123 --seed 123 --gpu 1 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B_s123.log 2>&1\\\\nroot     216032  0.0  0.0   2800  1084 pts/0    S    04:41   0:00 timeout 14400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123 --seed 123 --gpu 1 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\\nroot     216033  105  0.2 57876556 2120972 pts/0 Rl  04:41  11:58 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123 --seed 123 --gpu 1 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\nroot     216106  0.0  0.0   4496  3660 pts/3    Ss+  04:41   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_15B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_15B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=2 && timeout 14400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123 --seed 123 --gpu 2 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log 2>&1\\\\nroot     216110  0.0  0.0   2800  1032 pts/3    S    04:41   0:00 timeout 14400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123 --s\\\\n\\\\n... [截断: 输出过长，省略 6768 字符] ...\\\\n\\\\n2 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\\nroot     216935  0.3  0.0 25177692 1007652 pts/4 Sl  04:41   0:02 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\\n---\\\\n216028 Ss+        11:23 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_05B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B_s123.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_05B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=1 && timeout 14400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123 --seed 123 --gpu 1 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B_s123.log 2>&1\\\\n216106 Ss+        11:21 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_15B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_15B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=2 && timeout 14400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123 --seed 123 --gpu 2 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log 2>&1\\\\n216249 Ss+        11:18 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_3B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_3B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=3 && timeout 21600 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exp_001_sft_0pct_05B_s123: 1 windows (created Thu May 14 04:41:35 2026)\\nexp_001_sft_0pct_15B_s123: 1 windows (created Thu May 14 04:41:38 2026)\\nexp_001_sft_0pct_3B_s123: 1 windows (created Thu May 14 04:41:41 2026)\\n---\\nroot     216028  0.0  0.0   4496  3516 pts/0    Ss+  04:41   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_05B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B_s123.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_05B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=1 && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123 --seed 123 --gpu 1 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B_s123.log 2>&1\\nroot     216032  0.0  0.0   2800  1084 pts/0    S    04:41   0:00 timeout 14400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123 --seed 123 --gpu 1 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\"\\nroot     216033  105  0.2 57876556 2120972 pts/0 Rl  04:41  11:58 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123 --seed 123 --gpu 1 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\nroot     216106  0.0  0.0   4496  3660 pts/3    Ss+  04:41   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_15B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_15B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=2 && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123 --seed 123 --gpu 2 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log 2>&1\\nroot     216110  0.0  0.0   2800  1032 pts/3    S    04:41   0:00 timeout 14400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123 --s\\n\\n... [截断: 输出过长，省略 6768 字符] ...\\n\\n2 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\nroot     216935  0.3  0.0 25177692 1007652 pts/4 Sl  04:41   0:02 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\n---\\n216028 Ss+        11:23 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_05B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B_s123.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_05B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=1 && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123 --seed 123 --gpu 1 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B_s123.log 2>&1\\n216106 Ss+        11:21 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_15B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_15B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=2 && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123 --seed 123 --gpu 2 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log 2>&1\\n216249 Ss+        11:18 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_3B_s123.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_3B_s123.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=3 && timeout 21600 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123 --seed 123 --gpu 3 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_3B_s123.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All three s123 processes are alive. Let me check the training logs for progress.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "fb71ba29-f7d7-4db7-93dd-0ea07fab6fb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DURGyCno7FMhpPHkpxWskR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4180,
+      "cache_read_input_tokens": 25548,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4180
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+三个 s123 进程全部存活。查看训练进度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "fbf358ef-8ada-44d6-832a-123fcf180ecf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DURGyCno7FMhpPHkpxWskR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4180,
+      "cache_read_input_tokens": 25548,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4180
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NXrFMMuyA9yGjYT6Ybq8pc`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "for exp in exp_001_sft_0pct_05B_s123 exp_001_sft_0pct_15B_s123 exp_001_sft_0pct_3B_s123; do echo \"=== $exp ===\"; tail -5 ~/runs/contamcal-irt-calibration/${exp}.log 2>/dev/null || echo \"NO LOG\"; done",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "2a076599-b51c-4d55-96af-c536651d2329",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DURGyCno7FMhpPHkpxWskR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4180,
+      "cache_read_input_tokens": 25548,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4180
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T20:53:06.297Z_
+
+<details><summary>↩ Tool result · `toolu_01NXrFMMuyA9yGjYT6Ybq8pc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== exp_001_sft_0pct_05B_s123 ===\\n{'loss': 1.4152, 'grad_norm': 0.42782163619995117, 'learning_rate': 0.00019749279121818235, 'entropy': 1.4250837773084641, 'num_tokens': 2314893.0, 'mean_token_accuracy': 0.6906019255518914, 'epoch': 0.12}\\n{'loss': 1.5788, 'grad_norm': 0.40375611186027527, 'learning_rate': 0.00019725179837709494, 'entropy': 1.577082397043705, 'num_tokens': 2383285.0, 'mean_token_accuracy': 0.6661415845155716, 'epoch': 0.12}\\n{'loss': 1.4402, 'grad_norm': 0.5089319348335266, 'learning_rate': 0.00019699990957505135, 'entropy': 1.4898431465029716, 'num_tokens': 2439921.0, 'mean_token_accuracy': 0.6830461502075196, 'epoch': 0.12}\\n{'loss': 1.5138, 'grad_norm': 0.40676623582839966, 'learning_rate': 0.00019673715303333494, 'entropy': 1.5244130715727806, 'num_tokens': 2507416.0, 'mean_token_accuracy': 0.671994037926197, 'epoch': 0.13}\\n\\r 13%|█▎        | 410/3125 [07:17<47:54,  1.06s/it]\\r 13%|█▎        | 411/3125 [07:18<53:42,  1.19s/it]\\r 13%|█▎        | 412/3125 [07:19<50:46,  1.12s/it]\\r 13%|█▎        | 413/3125 [07:20<47:07,  1.04s/it]\\r 13%|█▎        | 414/3125 [07:21<44:34,  1.01it/s]\\r 13%|█▎        | 415/3125 [07:22<48:19,  1.07s/it]\\r 13%|█▎        | 416/3125 [07:23<46:26,  1.03s/it]\\r 13%|█▎        | 417/3125 [07:24<51:37,  1.14s/it]\\r 13%|█▎        | 418/3125 [07:25<49:49,  1.10s/it]\\r 13%|█▎        | 419/3125 [07:26<45:32,  1.01s/it]\\r 13%|█▎        | 420/3125 [07:27<47:13,  1.05s/it]\\r                                                  \\r\\r 13%|█▎        | 420/3125 [07:27<47:13,  1.05s/it]\\r 13%|█▎        | 421/3125 [07:29<52:53,  1.17s/it]\\r 14%|█▎        | 422/3125 [07:30<48:19,  1.07s/it]\\r 14%|█▎        | 423/3125 [07:31<49:05,  1.09s/it]\\r 14%|█▎        | 424/3125 [07:32<55:59,  1.24s/it]\\r 14%|█▎        | 425/3125 [07:33<55:25,  1.23s/it]\\r 14%|█▎        | 426/3125 [07:35<56:34,  1.26s/it]\\r 14%|█▎        | 427/3125 [07:36<53:30,  1.19s/it]\\r 14%|█▎        | 428/3125 [07:37<49:18,  1.10s/it]\\r 14%|█▎        | 429/3125 [07:38<46:07,  1.03s/it]\\r 14%|█▍        | 430/3125 [07:38<44:11,  1.02it/s]\\r                                                  \\r\\r 14%|█▍        | 430/3125 [07:38<44:11,  1.02it/s]\\r 14%|█▍        | 431/3125 [07:39<44:04,  1.02it/s]\\r 14%|█▍        | 432/3125 [07:40<44:55,  1.00s/it]\\r 14%|█▍        | 433/3125 [07:42<48:18,  1.08s/it]\\r 14%|█▍        | 434/3125 [07:43<49:22,  1.10s/it]\\r 14%|█▍        | 435/3125 [07:44<46:58,  1.05s/it]\\r 14%|█▍        | 436/3125 [07:45<46:45,  1.04s/it]\\r 14%|█▍        | 437/3125 [07:46<50:25,  1.13s/it]\\r 14%|█▍        | 438/3125 [07:47<46:34,  1.04s/it]\\r 14%|█▍        | 439/3125 [07:48<43:51,  1.02it/s]\\r 14%|█▍        | 440/3125 [07:49<44:34,  1.00it/s]\\r                                                  \\r\\r 14%|█▍        | 440/3125 [07:49<44:34,  1.00it/s]\\r 14%|█▍        | 441/3125 [07:50<42:44,  1.05it/s]\\r 14%|█▍        | 442/3125 [07:51<44:21,  1.01it/s]\\r 14%|█▍        | 443/3125 [07:52<43:18,  1.03it/s]\\r 14%|█▍        | 444/3125 [07:54<56:09,  1.26s/it]\\r 14%|█▍        | 445/3125 [07:55<54:52,  1.23s/it]\\r 14%|█▍        | 446/3125 [07:56<54:39,  1.22s/it]\\r 14%|█▍        | 447/3125 [07:57<53:14,  1.19s/it]\\r 14%|█▍        | 448/3125 [07:58<50:02,  1.12s/it]\\r 14%|█▍        | 449/3125 [07:59<49:12,  1.10s/it]\\r 14%|█▍        | 450/3125 [08:00<48:32,  1.09s/it]\\r                                                  \\r\\r 14%|█▍        | 450/3125 [08:00<48:32,  1.09s/it]\\r 14%|█▍        | 451/3125 [08:01<48:56,  1.10s/it]\\r 14%|█▍        | 452/3125 [08:02<45:58,  1.03s/it]\\r 14%|█▍        | 453/3125 [08:03<46:07,  1.04s/it]\\r 15%|█▍        | 454/3125 [08:04<45:17,  1.02s/it]\\r 15%|█▍        | 455/3125 [08:05<44:17,  1.00it/s]\\r 15%|█▍        | 456/3125 [08:06<42:58,  1.04it/s]\\r 15%|█▍        | 457/3125 [08:08<49:45,  1.12s/it]\\r 15%|█▍        | 458/3125 [08:09<49:34,  1.12s/it]\\r 15%|█▍        | 459/3125 [08:10<51:57,  1.17s/it]\\r 15%|█▍        | 460/3125 [08:11<47:55,  1.08s/it]\\r                                                  \\r\\r 15%|█▍        | 460/3125 [08:11<47:55,  1.08s/it]\\r 15%|█▍        | 461/3125 [0\\n\\n... [截断: 输出过长，省略 40566 字符] ...\\n\\n9:44,  3.97s/it]\\r                                                    \\r\\r  4%|▎         | 110/3125 [07:13<3:19:44,  3.97s/it]\\r  4%|▎         | 111/3125 [07:17<3:21:42,  4.02s/it]\\r  4%|▎         | 112/3125 [07:21<3:19:08,  3.97s/it]\\r  4%|▎         | 113/3125 [07:25<3:14:19,  3.87s/it]\\r  4%|▎         | 114/3125 [07:29<3:14:45,  3.88s/it]\\r  4%|▎         | 115/3125 [07:33<3:16:01,  3.91s/it]\\r  4%|▎         | 116/3125 [07:37<3:16:37,  3.92s/it]\\r  4%|▎         | 117/3125 [07:40<3:12:57,  3.85s/it]\\r  4%|▍         | 118/3125 [07:44<3:15:14,  3.90s/it]\\r  4%|▍         | 119/3125 [07:48<3:14:19,  3.88s/it]\\r  4%|▍         | 120/3125 [07:52<3:18:24,  3.96s/it]\\r                                                    \\r\\r  4%|▍         | 120/3125 [07:52<3:18:24,  3.96s/it]\\r  4%|▍         | 121/3125 [07:56<3:18:46,  3.97s/it]\\r  4%|▍         | 122/3125 [08:00<3:13:49,  3.87s/it]\\r  4%|▍         | 123/3125 [08:04<3:15:07,  3.90s/it]\\r  4%|▍         | 124/3125 [08:08<3:17:24,  3.95s/it]\\r  4%|▍         | 125/3125 [08:12<3:15:58,  3.92s/it]\\r  4%|▍         | 126/3125 [08:16<3:15:35,  3.91s/it]\\r  4%|▍         | 127/3125 [08:20<3:14:23,  3.89s/it]\\r  4%|▍         | 128/3125 [08:23<3:13:27,  3.87s/it]\\r  4%|▍         | 129/3125 [08:27<3:14:44,  3.90s/it]\\r  4%|▍         | 130/3125 [08:31<3:13:18,  3.87s/it]\\r                                                    \\r\\r  4%|▍         | 130/3125 [08:31<3:13:18,  3.87s/it]\\r  4%|▍         | 131/3125 [08:35<3:12:24,  3.86s/it]\\r  4%|▍         | 132/3125 [08:39<3:20:48,  4.03s/it]\\r  4%|▍         | 133/3125 [08:44<3:22:24,  4.06s/it]\\r  4%|▍         | 134/3125 [08:47<3:17:56,  3.97s/it]\\r  4%|▍         | 135/3125 [08:51<3:18:01,  3.97s/it]\\r  4%|▍         | 136/3125 [08:55<3:18:35,  3.99s/it]\\r  4%|▍         | 137/3125 [08:59<3:15:43,  3.93s/it]\\r  4%|▍         | 138/3125 [09:03<3:14:17,  3.90s/it]\\r  4%|▍         | 139/3125 [09:07<3:12:13,  3.86s/it]\\r  4%|▍         | 140/3125 [09:11<3:13:22,  3.89s/it]\\r                                                    \\r\\r  4%|▍         | 140/3125 [09:11<3:13:22,  3.89s/it]\\r  5%|▍         | 141/3125 [09:15<3:12:48,  3.88s/it]\\r  5%|▍         | 142/3125 [09:19<3:14:24,  3.91s/it]\\r  5%|▍         | 143/3125 [09:22<3:11:36,  3.86s/it]\\r  5%|▍         | 144/3125 [09:26<3:11:23,  3.85s/it]\\r  5%|▍         | 145/3125 [09:30<3:11:02,  3.85s/it]\\r  5%|▍         | 146/3125 [09:34<3:10:58,  3.85s/it]\\r  5%|▍         | 147/3125 [09:38<3:08:25,  3.80s/it]\\r  5%|▍         | 148/3125 [09:41<3:09:44,  3.82s/it]\\r  5%|▍         | 149/3125 [09:45<3:09:58,  3.83s/it]\\r  5%|▍         | 150/3125 [09:49<3:10:12,  3.84s/it]\\r                                                    \\r\\r  5%|▍         | 150/3125 [09:49<3:10:12,  3.84s/it]\\r  5%|▍         | 151/3125 [09:53<3:08:45,  3.81s/it]\\r  5%|▍         | 152/3125 [09:57<3:09:20,  3.82s/it]\\r  5%|▍         | 153/3125 [10:01<3:11:48,  3.87s/it]\\r  5%|▍         | 154/3125 [10:05<3:11:15,  3.86s/it]\\r  5%|▍         | 155/3125 [10:08<3:08:47,  3.81s/it]\\r  5%|▍         | 156/3125 [10:12<3:09:10,  3.82s/it]\\r  5%|▌         | 157/3125 [10:16<3:09:22,  3.83s/it]\\r  5%|▌         | 158/3125 [10:20<3:09:19,  3.83s/it]\\r  5%|▌         | 159/3125 [10:23<3:06:27,  3.77s/it]\\r  5%|▌         | 160/3125 [10:27<3:08:58,  3.82s/it]\\r                                                    \\r\\r  5%|▌         | 160/3125 [10:27<3:08:58,  3.82s/it]\\r  5%|▌         | 161/3125 [10:31<3:09:09,  3.83s/it]\\r  5%|▌         | 162/3125 [10:35<3:08:26,  3.82s/it]\\r  5%|▌         | 163/3125 [10:39<3:07:40,  3.80s/it]\\r  5%|▌         | 164/3125 [10:43<3:10:02,  3.85s/it]\\r  5%|���         | 165/3125 [10:47<3:14:28,  3.94s/it]\\r  5%|▌         | 166/3125 [10:51<3:11:51,  3.89s/it]\\r  5%|▌         | 167/3125 [10:54<3:07:36,  3.81s/it]\\r  5%|▌         | 168/3125 [10:58<3:07:51,  3.81s/it]\\r  5%|▌         | 169/3125 [11:02<3:10:07,  3.86s/it]\\r  5%|▌         | 170/3125 [11:06<3:09:33,  3.85s/it]\\r                                                    \\r\\r  5%|▌         | 170/3125 [11:06<3:09:33,  3.85s/it]\\r  5%|▌         | 171/3125 [11:09<3:06:15,  3.78s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "07d21f7d-cd63-4415-9ae4-556bbc0d4995",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== exp_001_sft_0pct_05B_s123 ===\\\\n{'loss': 1.4152, 'grad_norm': 0.42782163619995117, 'learning_rate': 0.00019749279121818235, 'entropy': 1.4250837773084641, 'num_tokens': 2314893.0, 'mean_token_accuracy': 0.6906019255518914, 'epoch': 0.12}\\\\n{'loss': 1.5788, 'grad_norm': 0.40375611186027527, 'learning_rate': 0.00019725179837709494, 'entropy': 1.577082397043705, 'num_tokens': 2383285.0, 'mean_token_accuracy': 0.6661415845155716, 'epoch': 0.12}\\\\n{'loss': 1.4402, 'grad_norm': 0.5089319348335266, 'learning_rate': 0.00019699990957505135, 'entropy': 1.4898431465029716, 'num_tokens': 2439921.0, 'mean_token_accuracy': 0.6830461502075196, 'epoch': 0.12}\\\\n{'loss': 1.5138, 'grad_norm': 0.40676623582839966, 'learning_rate': 0.00019673715303333494, 'entropy': 1.5244130715727806, 'num_tokens': 2507416.0, 'mean_token_accuracy': 0.671994037926197, 'epoch': 0.13}\\\\n\\\\r 13%|█▎        | 410/3125 [07:17<47:54,  1.06s/it]\\\\r 13%|█▎        | 411/3125 [07:18<53:42,  1.19s/it]\\\\r 13%|█▎        | 412/3125 [07:19<50:46,  1.12s/it]\\\\r 13%|█▎        | 413/3125 [07:20<47:07,  1.04s/it]\\\\r 13%|█▎        | 414/3125 [07:21<44:34,  1.01it/s]\\\\r 13%|█▎        | 415/3125 [07:22<48:19,  1.07s/it]\\\\r 13%|█▎        | 416/3125 [07:23<46:26,  1.03s/it]\\\\r 13%|█▎        | 417/3125 [07:24<51:37,  1.14s/it]\\\\r 13%|█▎        | 418/3125 [07:25<49:49,  1.10s/it]\\\\r 13%|█▎        | 419/3125 [07:26<45:32,  1.01s/it]\\\\r 13%|█▎        | 420/3125 [07:27<47:13,  1.05s/it]\\\\r                                                  \\\\r\\\\r 13%|█▎        | 420/3125 [07:27<47:13,  1.05s/it]\\\\r 13%|█▎        | 421/3125 [07:29<52:53,  1.17s/it]\\\\r 14%|█▎        | 422/3125 [07:30<48:19,  1.07s/it]\\\\r 14%|█▎        | 423/3125 [07:31<49:05,  1.09s/it]\\\\r 14%|█▎        | 424/3125 [07:32<55:59,  1.24s/it]\\\\r 14%|█▎        | 425/3125 [07:33<55:25,  1.23s/it]\\\\r 14%|█▎        | 426/3125 [07:35<56:34,  1.26s/it]\\\\r 14%|█▎        | 427/3125 [07:36<53:30,  1.19s/it]\\\\r 14%|█▎        | 428/3125 [07:37<49:18,  1.10s/it]\\\\r 14%|█▎        | 429/3125 [07:38<46:07,  1.03s/it]\\\\r 14%|█▍        | 430/3125 [07:38<44:11,  1.02it/s]\\\\r                                                  \\\\r\\\\r 14%|█▍        | 430/3125 [07:38<44:11,  1.02it/s]\\\\r 14%|█▍        | 431/3125 [07:39<44:04,  1.02it/s]\\\\r 14%|█▍        | 432/3125 [07:40<44:55,  1.00s/it]\\\\r 14%|█▍        | 433/3125 [07:42<48:18,  1.08s/it]\\\\r 14%|█▍        | 434/3125 [07:43<49:22,  1.10s/it]\\\\r 14%|█▍        | 435/3125 [07:44<46:58,  1.05s/it]\\\\r 14%|█▍        | 436/3125 [07:45<46:45,  1.04s/it]\\\\r 14%|█▍        | 437/3125 [07:46<50:25,  1.13s/it]\\\\r 14%|█▍        | 438/3125 [07:47<46:34,  1.04s/it]\\\\r 14%|█▍        | 439/3125 [07:48<43:51,  1.02it/s]\\\\r 14%|█▍        | 440/3125 [07:49<44:34,  1.00it/s]\\\\r                                                  \\\\r\\\\r 14%|█▍        | 440/3125 [07:49<44:34,  1.00it/s]\\\\r 14%|█▍        | 441/3125 [07:50<42:44,  1.05it/s]\\\\r 14%|█▍        | 442/3125 [07:51<44:21,  1.01it/s]\\\\r 14%|█▍        | 443/3125 [07:52<43:18,  1.03it/s]\\\\r 14%|█▍        | 444/3125 [07:54<56:09,  1.26s/it]\\\\r 14%|█▍        | 445/3125 [07:55<54:52,  1.23s/it]\\\\r 14%|█▍        | 446/3125 [07:56<54:39,  1.22s/it]\\\\r 14%|█▍        | 447/3125 [07:57<53:14,  1.19s/it]\\\\r 14%|█▍        | 448/3125 [07:58<50:02,  1.12s/it]\\\\r 14%|█▍        | 449/3125 [07:59<49:12,  1.10s/it]\\\\r 14%|█▍        | 450/3125 [08:00<48:32,  1.09s/it]\\\\r                                                  \\\\r\\\\r 14%|█▍        | 450/3125 [08:00<48:32,  1.09s/it]\\\\r 14%|█▍        | 451/3125 [08:01<48:56,  1.10s/it]\\\\r 14%|█▍        | 452/3125 [08:02<45:58,  1.03s/it]\\\\r 14%|█▍        | 453/3125 [08:03<46:07,  1.04s/it]\\\\r 15%|█▍        | 454/3125 [08:04<45:17,  1.02s/it]\\\\r 15%|█▍        | 455/3125 [08:05<44:17,  1.00it/s]\\\\r 15%|█▍        | 456/3125 [08:06<42:58,  1.04it/s]\\\\r 15%|█▍        | 457/3125 [08:08<49:45,  1.12s/it]\\\\r 15%|█▍        | 458/3125 [08:09<49:34,  1.12s/it]\\\\r 15%|█▍        | 459/3125 [08:10<51:57,  1.17s/it]\\\\r 15%|█▍        | 460/3125 [08:11<47:55,  1.08s/it]\\\\r                                                  \\\\r\\\\r 15%|█▍        | 460/3125 [08:11<47:55,  1.08s/it]\\\\r 15%|█▍        | 461/3125 [0\\\\n\\\\n... [截断: 输出过长，省略 40566 字符] ...\\\\n\\\\n9:44,  3.97s/it]\\\\r                                                    \\\\r\\\\r  4%|▎         | 110/3125 [07:13<3:19:44,  3.97s/it]\\\\r  4%|▎         | 111/3125 [07:17<3:21:42,  4.02s/it]\\\\r  4%|▎         | 112/3125 [07:21<3:19:08,  3.97s/it]\\\\r  4%|▎         | 113/3125 [07:25<3:14:19,  3.87s/it]\\\\r  4%|▎         | 114/3125 [07:29<3:14:45,  3.88s/it]\\\\r  4%|▎         | 115/3125 [07:33<3:16:01,  3.91s/it]\\\\r  4%|▎         | 116/3125 [07:37<3:16:37,  3.92s/it]\\\\r  4%|▎         | 117/3125 [07:40<3:12:57,  3.85s/it]\\\\r  4%|▍         | 118/3125 [07:44<3:15:14,  3.90s/it]\\\\r  4%|▍         | 119/3125 [07:48<3:14:19,  3.88s/it]\\\\r  4%|▍         | 120/3125 [07:52<3:18:24,  3.96s/it]\\\\r                                                    \\\\r\\\\r  4%|▍         | 120/3125 [07:52<3:18:24,  3.96s/it]\\\\r  4%|▍         | 121/3125 [07:56<3:18:46,  3.97s/it]\\\\r  4%|▍         | 122/3125 [08:00<3:13:49,  3.87s/it]\\\\r  4%|▍         | 123/3125 [08:04<3:15:07,  3.90s/it]\\\\r  4%|▍         | 124/3125 [08:08<3:17:24,  3.95s/it]\\\\r  4%|▍         | 125/3125 [08:12<3:15:58,  3.92s/it]\\\\r  4%|▍         | 126/3125 [08:16<3:15:35,  3.91s/it]\\\\r  4%|▍         | 127/3125 [08:20<3:14:23,  3.89s/it]\\\\r  4%|▍         | 128/3125 [08:23<3:13:27,  3.87s/it]\\\\r  4%|▍         | 129/3125 [08:27<3:14:44,  3.90s/it]\\\\r  4%|▍         | 130/3125 [08:31<3:13:18,  3.87s/it]\\\\r                                                    \\\\r\\\\r  4%|▍         | 130/3125 [08:31<3:13:18,  3.87s/it]\\\\r  4%|▍         | 131/3125 [08:35<3:12:24,  3.86s/it]\\\\r  4%|▍         | 132/3125 [08:39<3:20:48,  4.03s/it]\\\\r  4%|▍         | 133/3125 [08:44<3:22:24,  4.06s/it]\\\\r  4%|▍         | 134/3125 [08:47<3:17:56,  3.97s/it]\\\\r  4%|▍         | 135/3125 [08:51<3:18:01,  3.97s/it]\\\\r  4%|▍         | 136/3125 [08:55<3:18:35,  3.99s/it]\\\\r  4%|▍         | 137/3125 [08:59<3:15:43,  3.93s/it]\\\\r  4%|▍         | 138/3125 [09:03<3:14:17,  3.90s/it]\\\\r  4%|▍         | 139/3125 [09:07<3:12:13,  3.86s/it]\\\\r  4%|▍         | 140/3125 [09:11<3:13:22,  3.89s/it]\\\\r                                                    \\\\r\\\\r  4%|▍         | 140/3125 [09:11<3:13:22,  3.89s/it]\\\\r  5%|▍         | 141/3125 [09:15<3:12:48,  3.88s/it]\\\\r  5%|▍         | 142/3125 [09:19<3:14:24,  3.91s/it]\\\\r  5%|▍         | 143/3125 [09:22<3:11:36,  3.86s/it]\\\\r  5%|▍         | 144/3125 [09:26<3:11:23,  3.85s/it]\\\\r  5%|▍         | 145/3125 [09:30<3:11:02,  3.85s/it]\\\\r  5%|▍         | 146/3125 [09:34<3:10:58,  3.85s/it]\\\\r  5%|▍         | 147/3125 [09:38<3:08:25,  3.80s/it]\\\\r  5%|▍         | 148/3125 [09:41<3:09:44,  3.82s/it]\\\\r  5%|▍         | 149/3125 [09:45<3:09:58,  3.83s/it]\\\\r  5%|▍         | 150/3125 [09:49<3:10:12,  3.84s/it]\\\\r                                                    \\\\r\\\\r  5%|▍         | 150/3125 [09:49<3:10:12,  3.84s/it]\\\\r  5%|▍         | 151/3125 [09:53<3:08:45,  3.81s/it]\\\\r  5%|▍         | 152/3125 [09:57<3:09:20,  3.82s/it]\\\\r  5%|▍         | 153/3125 [10:01<3:11:48,  3.87s/it]\\\\r  5%|▍         | 154/3125 [10:05<3:11:15,  3.86s/it]\\\\r  5%|▍         | 155/3125 [10:08<3:08:47,  3.81s/it]\\\\r  5%|▍         | 156/3125 [10:12<3:09:10,  3.82s/it]\\\\r  5%|▌         | 157/3125 [10:16<3:09:22,  3.83s/it]\\\\r  5%|▌         | 158/3125 [10:20<3:09:19,  3.83s/it]\\\\r  5%|▌         | 159/3125 [10:23<3:06:27,  3.77s/it]\\\\r  5%|▌         | 160/3125 [10:27<3:08:58,  3.82s/it]\\\\r                                                    \\\\r\\\\r  5%|▌         | 160/3125 [10:27<3:08:58,  3.82s/it]\\\\r  5%|▌         | 161/3125 [10:31<3:09:09,  3.83s/it]\\\\r  5%|▌         | 162/3125 [10:35<3:08:26,  3.82s/it]\\\\r  5%|▌         | 163/3125 [10:39<3:07:40,  3.80s/it]\\\\r  5%|▌         | 164/3125 [10:43<3:10:02,  3.85s/it]\\\\r  5%|���         | 165/3125 [10:47<3:14:28,  3.94s/it]\\\\r  5%|▌         | 166/3125 [10:51<3:11:51,  3.89s/it]\\\\r  5%|▌         | 167/3125 [10:54<3:07:36,  3.81s/it]\\\\r  5%|▌         | 168/3125 [10:58<3:07:51,  3.81s/it]\\\\r  5%|▌         | 169/3125 [11:02<3:10:07,  3.86s/it]\\\\r  5%|▌         | 170/3125 [11:06<3:09:33,  3.85s/it]\\\\r                                                    \\\\r\\\\r  5%|▌         | 170/3125 [11:06<3:09:33,  3.85s/it]\\\\r  5%|▌         | 171/3125 [11:09<3:06:15,  3.78s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== exp_001_sft_0pct_05B_s123 ===\\n{'loss': 1.4152, 'grad_norm': 0.42782163619995117, 'learning_rate': 0.00019749279121818235, 'entropy': 1.4250837773084641, 'num_tokens': 2314893.0, 'mean_token_accuracy': 0.6906019255518914, 'epoch': 0.12}\\n{'loss': 1.5788, 'grad_norm': 0.40375611186027527, 'learning_rate': 0.00019725179837709494, 'entropy': 1.577082397043705, 'num_tokens': 2383285.0, 'mean_token_accuracy': 0.6661415845155716, 'epoch': 0.12}\\n{'loss': 1.4402, 'grad_norm': 0.5089319348335266, 'learning_rate': 0.00019699990957505135, 'entropy': 1.4898431465029716, 'num_tokens': 2439921.0, 'mean_token_accuracy': 0.6830461502075196, 'epoch': 0.12}\\n{'loss': 1.5138, 'grad_norm': 0.40676623582839966, 'learning_rate': 0.00019673715303333494, 'entropy': 1.5244130715727806, 'num_tokens': 2507416.0, 'mean_token_accuracy': 0.671994037926197, 'epoch': 0.13}\\n\\r 13%|█▎        | 410/3125 [07:17<47:54,  1.06s/it]\\r 13%|█▎        | 411/3125 [07:18<53:42,  1.19s/it]\\r 13%|█▎        | 412/3125 [07:19<50:46,  1.12s/it]\\r 13%|█▎        | 413/3125 [07:20<47:07,  1.04s/it]\\r 13%|█▎        | 414/3125 [07:21<44:34,  1.01it/s]\\r 13%|█▎        | 415/3125 [07:22<48:19,  1.07s/it]\\r 13%|█▎        | 416/3125 [07:23<46:26,  1.03s/it]\\r 13%|█▎        | 417/3125 [07:24<51:37,  1.14s/it]\\r 13%|█▎        | 418/3125 [07:25<49:49,  1.10s/it]\\r 13%|█▎        | 419/3125 [07:26<45:32,  1.01s/it]\\r 13%|█▎        | 420/3125 [07:27<47:13,  1.05s/it]\\r                                                  \\r\\r 13%|█▎        | 420/3125 [07:27<47:13,  1.05s/it]\\r 13%|█▎        | 421/3125 [07:29<52:53,  1.17s/it]\\r 14%|█▎        | 422/3125 [07:30<48:19,  1.07s/it]\\r 14%|█▎        | 423/3125 [07:31<49:05,  1.09s/it]\\r 14%|█▎        | 424/3125 [07:32<55:59,  1.24s/it]\\r 14%|█▎        | 425/3125 [07:33<55:25,  1.23s/it]\\r 14%|█▎        | 426/3125 [07:35<56:34,  1.26s/it]\\r 14%|█▎        | 427/3125 [07:36<53:30,  1.19s/it]\\r 14%|█▎        | 428/3125 [07:37<49:18,  1.10s/it]\\r 14%|█▎        | 429/3125 [07:38<46:07,  1.03s/it]\\r 14%|█▍        | 430/3125 [07:38<44:11,  1.02it/s]\\r                                                  \\r\\r 14%|█▍        | 430/3125 [07:38<44:11,  1.02it/s]\\r 14%|█▍        | 431/3125 [07:39<44:04,  1.02it/s]\\r 14%|█▍        | 432/3125 [07:40<44:55,  1.00s/it]\\r 14%|█▍        | 433/3125 [07:42<48:18,  1.08s/it]\\r 14%|█▍        | 434/3125 [07:43<49:22,  1.10s/it]\\r 14%|█▍        | 435/3125 [07:44<46:58,  1.05s/it]\\r 14%|█▍        | 436/3125 [07:45<46:45,  1.04s/it]\\r 14%|█▍        | 437/3125 [07:46<50:25,  1.13s/it]\\r 14%|█▍        | 438/3125 [07:47<46:34,  1.04s/it]\\r 14%|█▍        | 439/3125 [07:48<43:51,  1.02it/s]\\r 14%|█▍        | 440/3125 [07:49<44:34,  1.00it/s]\\r                                                  \\r\\r 14%|█▍        | 440/3125 [07:49<44:34,  1.00it/s]\\r 14%|█▍        | 441/3125 [07:50<42:44,  1.05it/s]\\r 14%|█▍        | 442/3125 [07:51<44:21,  1.01it/s]\\r 14%|█▍        | 443/3125 [07:52<43:18,  1.03it/s]\\r 14%|█▍        | 444/3125 [07:54<56:09,  1.26s/it]\\r 14%|█▍        | 445/3125 [07:55<54:52,  1.23s/it]\\r 14%|█▍        | 446/3125 [07:56<54:39,  1.22s/it]\\r 14%|█▍        | 447/3125 [07:57<53:14,  1.19s/it]\\r 14%|█▍        | 448/3125 [07:58<50:02,  1.12s/it]\\r 14%|█▍        | 449/3125 [07:59<49:12,  1.10s/it]\\r 14%|█▍        | 450/3125 [08:00<48:32,  1.09s/it]\\r                                                  \\r\\r 14%|█▍        | 450/3125 [08:00<48:32,  1.09s/it]\\r 14%|█▍        | 451/3125 [08:01<48:56,  1.10s/it]\\r 14%|█▍        | 452/3125 [08:02<45:58,  1.03s/it]\\r 14%|█▍        | 453/3125 [08:03<46:07,  1.04s/it]\\r 15%|█▍        | 454/3125 [08:04<45:17,  1.02s/it]\\r 15%|█▍        | 455/3125 [08:05<44:17,  1.00it/s]\\r 15%|█▍        | 456/3125 [08:06<42:58,  1.04it/s]\\r 15%|█▍        | 457/3125 [08:08<49:45,  1.12s/it]\\r 15%|█▍        | 458/3125 [08:09<49:34,  1.12s/it]\\r 15%|█▍        | 459/3125 [08:10<51:57,  1.17s/it]\\r 15%|█▍        | 460/3125 [08:11<47:55,  1.08s/it]\\r                                                  \\r\\r 15%|█▍        | 460/3125 [08:11<47:55,  1.08s/it]\\r 15%|█▍        | 461/3125 [0\\n\\n... [截断: 输出过长，省略 40566 字符] ...\\n\\n9:44,  3.97s/it]\\r                                                    \\r\\r  4%|▎         | 110/3125 [07:13<3:19:44,  3.97s/it]\\r  4%|▎         | 111/3125 [07:17<3:21:42,  4.02s/it]\\r  4%|▎         | 112/3125 [07:21<3:19:08,  3.97s/it]\\r  4%|▎         | 113/3125 [07:25<3:14:19,  3.87s/it]\\r  4%|▎         | 114/3125 [07:29<3:14:45,  3.88s/it]\\r  4%|▎         | 115/3125 [07:33<3:16:01,  3.91s/it]\\r  4%|▎         | 116/3125 [07:37<3:16:37,  3.92s/it]\\r  4%|▎         | 117/3125 [07:40<3:12:57,  3.85s/it]\\r  4%|▍         | 118/3125 [07:44<3:15:14,  3.90s/it]\\r  4%|▍         | 119/3125 [07:48<3:14:19,  3.88s/it]\\r  4%|▍         | 120/3125 [07:52<3:18:24,  3.96s/it]\\r                                                    \\r\\r  4%|▍         | 120/3125 [07:52<3:18:24,  3.96s/it]\\r  4%|▍         | 121/3125 [07:56<3:18:46,  3.97s/it]\\r  4%|▍         | 122/3125 [08:00<3:13:49,  3.87s/it]\\r  4%|▍         | 123/3125 [08:04<3:15:07,  3.90s/it]\\r  4%|▍         | 124/3125 [08:08<3:17:24,  3.95s/it]\\r  4%|▍         | 125/3125 [08:12<3:15:58,  3.92s/it]\\r  4%|▍         | 126/3125 [08:16<3:15:35,  3.91s/it]\\r  4%|▍         | 127/3125 [08:20<3:14:23,  3.89s/it]\\r  4%|▍         | 128/3125 [08:23<3:13:27,  3.87s/it]\\r  4%|▍         | 129/3125 [08:27<3:14:44,  3.90s/it]\\r  4%|▍         | 130/3125 [08:31<3:13:18,  3.87s/it]\\r                                                    \\r\\r  4%|▍         | 130/3125 [08:31<3:13:18,  3.87s/it]\\r  4%|▍         | 131/3125 [08:35<3:12:24,  3.86s/it]\\r  4%|▍         | 132/3125 [08:39<3:20:48,  4.03s/it]\\r  4%|▍         | 133/3125 [08:44<3:22:24,  4.06s/it]\\r  4%|▍         | 134/3125 [08:47<3:17:56,  3.97s/it]\\r  4%|▍         | 135/3125 [08:51<3:18:01,  3.97s/it]\\r  4%|▍         | 136/3125 [08:55<3:18:35,  3.99s/it]\\r  4%|▍         | 137/3125 [08:59<3:15:43,  3.93s/it]\\r  4%|▍         | 138/3125 [09:03<3:14:17,  3.90s/it]\\r  4%|▍         | 139/3125 [09:07<3:12:13,  3.86s/it]\\r  4%|▍         | 140/3125 [09:11<3:13:22,  3.89s/it]\\r                                                    \\r\\r  4%|▍         | 140/3125 [09:11<3:13:22,  3.89s/it]\\r  5%|▍         | 141/3125 [09:15<3:12:48,  3.88s/it]\\r  5%|▍         | 142/3125 [09:19<3:14:24,  3.91s/it]\\r  5%|▍         | 143/3125 [09:22<3:11:36,  3.86s/it]\\r  5%|▍         | 144/3125 [09:26<3:11:23,  3.85s/it]\\r  5%|▍         | 145/3125 [09:30<3:11:02,  3.85s/it]\\r  5%|▍         | 146/3125 [09:34<3:10:58,  3.85s/it]\\r  5%|▍         | 147/3125 [09:38<3:08:25,  3.80s/it]\\r  5%|▍         | 148/3125 [09:41<3:09:44,  3.82s/it]\\r  5%|▍         | 149/3125 [09:45<3:09:58,  3.83s/it]\\r  5%|▍         | 150/3125 [09:49<3:10:12,  3.84s/it]\\r                                                    \\r\\r  5%|▍         | 150/3125 [09:49<3:10:12,  3.84s/it]\\r  5%|▍         | 151/3125 [09:53<3:08:45,  3.81s/it]\\r  5%|▍         | 152/3125 [09:57<3:09:20,  3.82s/it]\\r  5%|▍         | 153/3125 [10:01<3:11:48,  3.87s/it]\\r  5%|▍         | 154/3125 [10:05<3:11:15,  3.86s/it]\\r  5%|▍         | 155/3125 [10:08<3:08:47,  3.81s/it]\\r  5%|▍         | 156/3125 [10:12<3:09:10,  3.82s/it]\\r  5%|▌         | 157/3125 [10:16<3:09:22,  3.83s/it]\\r  5%|▌         | 158/3125 [10:20<3:09:19,  3.83s/it]\\r  5%|▌         | 159/3125 [10:23<3:06:27,  3.77s/it]\\r  5%|▌         | 160/3125 [10:27<3:08:58,  3.82s/it]\\r                                                    \\r\\r  5%|▌         | 160/3125 [10:27<3:08:58,  3.82s/it]\\r  5%|▌         | 161/3125 [10:31<3:09:09,  3.83s/it]\\r  5%|▌         | 162/3125 [10:35<3:08:26,  3.82s/it]\\r  5%|▌         | 163/3125 [10:39<3:07:40,  3.80s/it]\\r  5%|▌         | 164/3125 [10:43<3:10:02,  3.85s/it]\\r  5%|���         | 165/3125 [10:47<3:14:28,  3.94s/it]\\r  5%|▌         | 166/3125 [10:51<3:11:51,  3.89s/it]\\r  5%|▌         | 167/3125 [10:54<3:07:36,  3.81s/it]\\r  5%|▌         | 168/3125 [10:58<3:07:51,  3.81s/it]\\r  5%|▌         | 169/3125 [11:02<3:10:07,  3.86s/it]\\r  5%|▌         | 170/3125 [11:06<3:09:33,  3.85s/it]\\r                                                    \\r\\r  5%|▌         | 170/3125 [11:06<3:09:33,  3.85s/it]\\r  5%|▌         | 171/3125 [11:09<3:06:15,  3.78s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+**全部正常，无需重提交。**
+
+| GPU | 实验 | PID | 状态 | 进度 | 速度 | 最新 loss |
+|-----|------|-----|------|------|------|-----------|
+| 0 | (其他任务) | - | 100% util, 23132/24564 MiB | - | - | - |
+| 1 | 0.5B_d000_s123 | 216033 | **ALIVE** (Rl, 11min) | 460/3125 (15%) | ~1.08 s/it | 1.51 |
+| 2 | 1.5B_d000_s123 | 216111 | **ALIVE** (Rl, 11min) | 260/3125 (8%) | ~2.10 s/it | 1.52 |
+| 3 | 3B_d000_s123 | 216935 | **ALIVE** (Sl, 11min) | 171/3125 (5%) | ~3.78 s/it | (日志中无 loss 输出行可见) |
+| 4 | (其他任务) | - | 38% util, 21561/24564 MiB | - | - | - |
+| 5 | (其他任务) | - | 0% util, 18663/24564 MiB | - | - | - |
+
+三个 s123 tmux session 和 Python 进程全部存活，训练正常推进。预计完成时间：
+- 0.5B: ~47 min 剩余
+- 1.5B: ~1h40m 剩余
+- 3B: ~3h10m 剩余
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "uuid": "3da75831-84e6-49f3-8cd8-6569bc9dd662",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NVALYxfv6iFUUCyQjDLoHE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5187,
+      "cache_read_input_tokens": 29728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5187
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 23_
+
+**全部正常，无需重提交。**
+
+| GPU | 实验 | PID | 状态 | 进度 | 速度 | 最新 loss |
+|-----|------|-----|------|------|------|-----------|
+| 0 | (其他任务) | - | 100% util, 23132/24564 MiB | - | - | - |
+| 1 | 0.5B_d000_s123 | 216033 | **ALIVE** (Rl, 11min) | 460/3125 (15%) | ~1.08 s/it | 1.51 |
+| 2 | 1.5B_d000_s123 | 216111 | **ALIVE** (Rl, 11min) | 260/3125 (8%) | ~2.10 s/it | 1.52 |
+| 3 | 3B_d000_s123 | 216935 | **ALIVE** (Sl, 11min) | 171/3125 (5%) | ~3.78 s/it | (日志中无 loss 输出行可见) |
+| 4 | (其他任务) | - | 38% util, 21561/24564 MiB | - | - | - |
+| 5 | (其他任务) | - | 0% util, 18663/24564 MiB | - | - | - |
+
+三个 s123 tmux session 和 Python 进程全部存活，训练正常推进。预计完成时间：
+- 0.5B: ~47 min 剩余
+- 1.5B: ~1h40m 剩余
+- 3B: ~3h10m 剩余
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 38859,
+  "duration_api_ms": 38449,
+  "num_turns": 7,
+  "stop_reason": "end_turn",
+  "session_id": "79d480a9-1230-4b49-a0bc-7c7273a22604",
+  "total_cost_usd": 0.240383,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 23074,
+    "cache_read_input_tokens": 115913,
+    "output_tokens": 1444,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23074,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 455,
+        "cache_read_input_tokens": 29728,
+        "cache_creation_input_tokens": 5187,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 5187
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1984,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002074,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 1444,
+      "cacheReadInputTokens": 115913,
+      "cacheCreationInputTokens": 23074,
+      "webSearchRequests": 0,
+      "costUSD": 0.238309,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "85a308da-c6df-43ed-b9ba-fc5252d3f979"
+}
+```
+
+</details>
+
+---

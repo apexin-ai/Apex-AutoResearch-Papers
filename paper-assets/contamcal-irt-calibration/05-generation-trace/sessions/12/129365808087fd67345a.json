@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "129365808087fd67345a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops exp002 mmlu failure diag",
+  "task_key": "worker_ops_exp002-mmlu-failure-diag_20260514T102538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp002-mmlu-failure-diag_20260514T102538_result.json",
+    "occurrence": 1,
+    "bytes": 1959,
+    "sha256": "85f1bd1063d6374378c1661b36bed5ba2acd5a8472fa8467a9deb587b56df827"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**根因确认。**\n\n`run_batch.py` 传给 `compute_signals.py` 的 `--model-path` 是：\n```\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42\n```\n\n但 `adapter_config.json` 在子目录：\n```\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter/adapter_config.json\n```\n\n`signal_minkpp.py` 和 `signal_selfcritique.py` 的 `load_model_and_tokenizer` 检查 `os.path.join(model_path, \"adapter_config.json\")` —— 在顶层目录找不到，就走 `else` 分支尝试把它当全量模型加载。但该目录里根本没有模型权重文件（只有 `lora_adapter/` 和 `train_config.json`），所以 `AutoModelForCausalLM.from_pretrained()` 失败。\n\nstderr 中的 transformers 模型架构列表是 `from_pretrained` 在抛错前打印的 \"registered model types\" 信息，真正的错误（如 `OSError: ... is not a local folder and is not a valid model identifier`）被截断了。\n\n## 诊断总结\n\n| 项目 | 详情 |\n|------|------|\n| **失败原因** | `--model-path` 指向 checkpoint 根目录，但 LoRA adapter 在 `lora_adapter/` 子目录 |\n| **受影响任务** | 所有 9 个任务的 minkpp 和 selfcritique 信号（embedding 不加载模型所以不受影响） |\n| **arc_challenge** | 正在跑（PID 347959），会遇到同样问题 |\n| **gsm8k** | 已失败，同样原因 |\n\n## 修复方案\n\n`run_batch.py` 的 `checkpoint_path` 函数需要追加 `/lora_adapter`：\n\n```python\ndef checkpoint_path(model_name: str, dosage: str) -> str:\n    return f\"{CHECKPOINT_ROOT}/{model_name}_{dosage}_{SEED}/lora_adapter\"\n```\n\n或者修改 `signal_minkpp.py` / `signal_selfcritique.py` 的 `load_model_and_tokenizer`，在顶层找不到 `adapter_config.json` 时自动检查 `lora_adapter/` 子目录。\n\n前者更直接。需要修复后重跑全部 9 个任务（embedding 结果可保留，加 skip 逻辑只重跑 minkpp + selfcritique 更高效）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp002-mmlu-failure-diag.md"
+}

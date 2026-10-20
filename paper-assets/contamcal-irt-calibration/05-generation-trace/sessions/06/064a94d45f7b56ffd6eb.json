@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "064a94d45f7b56ffd6eb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag qwen7b s0 eval completion",
+  "task_key": "worker_diag_qwen7b-s0-eval-completion_20260520T234913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen7b-s0-eval-completion_20260520T234913_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "01fa7fac1451d67fcd0504ca05821dfce5e3a88a89817bd3d35c690f6f49b900"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ARC 进程仍在运行（PID 417433，20506 MiB GPU），当前在 d000 eval 中。日志的 tee 缓冲导致文件看起来没更新。\n\n## Qwen-7B s0 Eval Results\n\n### MMLU 5-shot — DONE\n| Dosage | Accuracy | Correct/Total |\n|--------|----------|---------------|\n| d000   | 66.32%   | 9313/14042    |\n| d005   | 64.68%   | 9083/14042    |\n| d025   | 65.67%   | 9221/14042    |\n| d050   | 65.78%   | 9237/14042    |\n| d100   | 65.29%   | 9168/14042    |\n\n**Δ(d100−d000) = −1.03pp**\n\n### ARC 25-shot — RUNNING\nd000 正在执行中（~34% 进度），d005–d100 尚未开始。ARC 5 dosage 串行，预估还需 ~1 小时完成全部。\n\n暂不更新 registry，等 ARC 全部完成后再一起写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-qwen7b-s0-eval-completion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a68cb9114a0e0a5ff20",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis run stratified irt schemeB",
+  "task_key": "worker_analysis_run-stratified-irt-schemeB_20260515T140123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_run-stratified-irt-schemeB_20260515T140123_result.json",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "e29c4e5d6a97b960753aa3cd6d2af006b65a42bd3c415cd0b7c063f0f4fc30d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Scheme B is running on cqa1-21977 (PID 569344). Currently fitting `scale_0.5B/gsm8k` (6 models × 1319 items, 4 chains). I'll check progress in ~4 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-run-stratified-irt-schemeb.md"
+}

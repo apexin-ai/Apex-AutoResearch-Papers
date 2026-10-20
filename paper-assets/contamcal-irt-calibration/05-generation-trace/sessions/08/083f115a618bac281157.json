@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "083f115a618bac281157",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis paper sensitivity verify",
+  "task_key": "worker_analysis_paper-sensitivity-verify_20260519T223917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper-sensitivity-verify_20260519T223917_result.json",
+    "occurrence": 1,
+    "bytes": 1422,
+    "sha256": "8e2475aa8c3e92e5901b01353df561d5bcea9c5bb63ecd2daafb9fdec81f4659"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n### Sensitivity 描述（30→180）\n\n| 位置 | 内容 | 状态 |\n|------|------|------|\n| method.tex:59 | \"30-combination grid sweep … (180/180 model--seed--threshold pairs\" | ✅ |\n| results.tex:11 (Table 1 caption) | \"180/180 model--seed--combination pairs across 30 $(\\tau,\\sigma)$ combinations\" | ✅ |\n| results.tex:27 | \"stable across 30 $(\\tau,\\sigma)$ threshold combinations (six model--seed configurations\" | ✅ |\n| appendix.tex:154 (Table 7) | \"grid sweep over 30 $(\\tau, \\sigma)$ combinations\", 表内 6 行各 30/30 | ✅ |\n\n所有 \"30\" 均指 grid size（6τ×5σ=30），无遗留错误。\"180\" 正确出现在 method.tex 和 results.tex Table 1 caption 中（30 combos × 6 model-seed = 180 pairs）。\n\n### V-recovery 修改\n\n| 位置 | 内容 | 状态 |\n|------|------|------|\n| method.tex:59 | \"recovery extent varies by seed (partial at seed$=$42, full at seed$=$123)\" | ✅ |\n| results.tex:30 | \"recovery extent varies from partial to full\" | ✅ |\n| limitations.tex:10 | \"recovery extent varies (partial at s42, full at s123)\" | ✅ |\n\n### 其他修改\n\n| 位置 | 内容 | 状态 |\n|------|------|------|\n| limitations.tex:9 | `\\paragraph{Seed coverage.}` | ✅ |\n| abstract.tex:1 | \"partial-to-full rebound\" | ✅ |\n\n全部 6 处 sensitivity + 3 处 V-recovery + 2 处其他修改均已到位，无遗漏。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-sensitivity-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24f0288158abafd06bfc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "run pooled irt 05b 15b n13",
+  "task_key": "worker_run_pooled_irt_05b_15b_n13_20260516T085630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_pooled_irt_05b_15b_n13_20260516T085630_result.json",
+    "occurrence": 1,
+    "bytes": 1569,
+    "sha256": "fbc853bfc99138787a0b412eed377b5fd56b07025efb0d29f31407743e2c2a53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n```\n================================================================================\nPOOLED IRT RESULTS (4PL+γ, RRF signal exposure, N_items=300 subsampled)\n================================================================================\nBench            N_mod  N_item    γ̂           95% CI        R̂     ESS   PPP   rawMAE calMAE  ΔMAE\n─────────────────────────────────────────────────────────────────────────────────\ngsm8k              11     300  0.0128  [-0.990, 1.019]  1.0072  1300  0.663  0.1501 0.0373 +0.1128\narc_challenge       5     300  1.2259  [-0.271, 2.857]  1.0072  1480  0.000  0.0042 0.0682 -0.0640\n```\n\n**解读**：\n\n- **GSM8K** (N=11, 0.5B+1.5B)：γ̂≈0，CI 宽且包含 0 — RRF signal 未检测到 GSM8K 上的显著 contamination effect。收敛良好（R̂<1.01, ESS>400, 0 divergences）。IRT 校准将 MAE 从 0.150 降至 0.037。\n\n- **ARC** (N=5, 1.5B only per D045)：γ̂=1.23 正向趋势但 CI 包含 0。PPP=0.000 表明 N=5 下 4PL 模型严重拟合不足（参数过多/样本过少），结果不可靠。\n\n**注意事项**：\n- 实际可用模型数 GSM8K=11、ARC=5（部分 s123 模型缺少 RRF gsm8k/arc exposure）\n- Items 从 1319/1172 子采样到 300（4PL 在全量 items 上 MCMC 不可行）\n- 这是 pipeline validation；N≥16 最终版待 s123 signals 全部完成后重跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-pooled-irt-05b-15b-n13.md"
+}

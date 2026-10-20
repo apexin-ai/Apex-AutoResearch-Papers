@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39a574663f381de4abf5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix c009 md5 update",
+  "task_key": "worker_fix_c009-md5-update_20260520T080745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_c009-md5-update_20260520T080745_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "87168b3eb3f3af2f2800b669829e6e9f796e033d9fc95f9c7a23d75b76a1489c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部更新完成。\n\n**更新汇总：**\n\n| 文件 | 旧 hash | 新 hash |\n|------|---------|---------|\n| `scripts/gsm8k_s42/run_gsm8k_olmo2_s42.sh` | `001a9bc23f808c47d25ef9eaeecb81f1` | `17673bf373f00f83ccc41fc1d355a4cd` |\n| `scripts/gsm8k_s42/run_gsm8k_phi4_s42.sh` | `001a9bc23f808c47d25ef9eaeecb81f1` | `17673bf373f00f83ccc41fc1d355a4cd` |\n| `scripts/gsm8k_s42/run_gsm8k_gemma2_s42.sh` | `001a9bc23f808c47d25ef9eaeecb81f1` | `17673bf373f00f83ccc41fc1d355a4cd` |\n| `scripts/gsm8k_s42/run_gsm8k_qwen14b_s42.sh` | `001a9bc23f808c47d25ef9eaeecb81f1` | `17673bf373f00f83ccc41fc1d355a4cd` |\n| `scripts/gsm8k_s42/run_gsm8k_qwen7b_s42.sh` | `001a9bc23f808c47d25ef9eaeecb81f1` | `17673bf373f00f83ccc41fc1d355a4cd` |\n\n5 个文件，统一旧 hash → 新 hash。`run_gsm8k_*.sh` 和 `run_gemma2_gsm8k_fixed.sh` 在项目根目录不存在，无需处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-c009-md5-update.md"
+}

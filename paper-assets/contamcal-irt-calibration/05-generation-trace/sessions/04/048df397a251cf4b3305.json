@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "048df397a251cf4b3305",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops restart 14b download",
+  "task_key": "worker_ops_restart-14b-download_20260518T130102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-14b-download_20260518T130102_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "66b6aa53de8ca6d6321ad9d9d8fa6784424fd39681e04e88a6fa163555588f6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正常进行中。\n\n- **PID**: 28638\n- **进度**: 3/18 files (17%)，已下载 158MB\n- **日志**: `/root/autodl-tmp/logs/download_14b.log`\n- **缓存路径**: `/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-14B/`\n\n14B 模型约 29GB，当前速度正常。可用 `tail -5 /root/autodl-tmp/logs/download_14b.log` 随时查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-14b-download.md"
+}

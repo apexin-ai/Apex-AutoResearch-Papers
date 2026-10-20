@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0454be3252066902da92",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 002 signals llama32 3B d000 gsm8k v2",
+  "task_key": "worker_code_exp_002_signals_llama32_3B_d000_gsm8k_v2_20260516T192204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_002_signals_llama32_3B_d000_gsm8k_v2_20260516T192204_result.json",
+    "occurrence": 1,
+    "bytes": 457,
+    "sha256": "018d791f40133228feabefb5388e5cd9fcf10a6bc4adc1c86a516af2805b205b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**任务已在运行，无需重复提交。**\n\n总结：\n- `exp_002_signals_llama32_3B_d000_gsm8k_v2` 已由之前的 session 提交并正在 cuda:2 上执行（PID 839655）\n- 进程环境正确：`CUDA_VISIBLE_DEVICES=2`、SSL 证书、网络代理均已配置，sentence-transformers 模型已缓存\n- 之前的 HF_HUB_OFFLINE 问题已绕开（本次有网络代理可用 + 模型已缓存）\n- Registry 已更新为 RUNNING 状态"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-002-signals-llama32-3b-d000-gsm8k-v2.md"
+}

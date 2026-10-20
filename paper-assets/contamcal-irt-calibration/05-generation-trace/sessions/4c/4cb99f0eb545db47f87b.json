@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cb99f0eb545db47f87b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 006 baselines",
+  "task_key": "worker_code_exp-006-baselines_20260514T091334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-006-baselines_20260514T091334_result.json",
+    "occurrence": 1,
+    "bytes": 1450,
+    "sha256": "ce1f9d9879085f4a07b661211f6dde41fd4155fedfb6f2c7f74007b8ee87ea1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成总结\n\nexp-006 代码**已基本完成**，dry-run 全部通过。\n\n### 代码状态\n\n| 组件 | 状态 | 说明 |\n|------|------|------|\n| `run_irt_calibration.py` | ✅ | ContamCal 4PL+γ via CmdStanPy NUTS |\n| `baselines.py` (7 baselines) | ✅ | B0-B6 全部实现，统一矩阵接口 |\n| `evaluate_calibration.py` | ✅ **已补全** | +ECE, MCE, Brier Score, reliability diagram |\n| `run_exp006.py` | ✅ | 端到端 pipeline |\n| `run_all_baselines.py` | ✅ **已修复** | 旧接口导致 NaN，已重写 |\n| Stan models (3) | ✅ | 4PL+γ simple, 2PL+γ, vanilla 4PL |\n\n### 本次修改\n\n1. **`evaluate_calibration.py`**: 新增 `metric_ece()`, `metric_mce()`, `metric_brier()`, `reliability_diagram_data()`。更新 `evaluate_method` 输出 8 个 metrics + reliability diagram data。更新 LaTeX/text 表格格式含 ECE/Brier 列。\n\n2. **`run_all_baselines.py`**: 重写为使用 `baselines.py` 的矩阵级 API（原代码使用废弃的 per-model 函数接口导致全部 NaN）。\n\n### Dry-run 验证\n\n- 合成数据 6×20（6 models, 20 items, dosages=[0,0,25,50,75,100]）\n- ContamCal + 7 baselines 全部运行成功\n- 8 个评估 metrics + reliability diagram 全部计算正确\n- Stan 采样正常（CmdStanPy 1.3.0 + CmdStan 2.38.0）\n\n### 等待真实数据\n\nPipeline 已就绪，等 exp-002 signals → exp-003 RRF 完成后即可用真实数据运行 `run_exp006.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-006-baselines-copy-2.md"
+}

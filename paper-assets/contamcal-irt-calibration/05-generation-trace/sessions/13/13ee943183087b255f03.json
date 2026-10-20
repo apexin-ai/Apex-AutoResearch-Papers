@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13ee943183087b255f03",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code 3B d025 sft v2 gpu3",
+  "task_key": "worker_code_3B-d025-sft-v2-gpu3_20260514T235153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_3B-d025-sft-v2-gpu3_20260514T235153_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "60c41572aa3db9b8eba50921d1895d94f30121e68f212b97b2f039c268594111"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`exp_001_sft_d025_3B_v2` registered as RUNNING.\n\n**Summary:**\n- **Root cause of v1 failure**: `train_sft.py` parses `--gpu` but never sets `CUDA_VISIBLE_DEVICES` or `device_map` — process defaulted to GPU 0\n- **v2 fix**: Prefixed command with `CUDA_VISIBLE_DEVICES=3`\n- **Verified**: PID 466755 on GPU 3 (`GPU-c30258a6`), 17616 MiB allocated, training at step 5/3384 (~4.1s/step)\n- **ETA**: ~3384 steps × 4.1s ≈ 3.9 hours\n- **Log**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/train_v2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-3b-d025-sft-v2-gpu3.md"
+}

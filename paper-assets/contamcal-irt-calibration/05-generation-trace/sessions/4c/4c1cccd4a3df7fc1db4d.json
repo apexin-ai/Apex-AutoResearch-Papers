@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c1cccd4a3df7fc1db4d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "gpu sft 05B d100 s123 gpu1",
+  "task_key": "worker_gpu_sft_05B_d100_s123_gpu1_20260514T201947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_sft_05B_d100_s123_gpu1_20260514T201947_result.json",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "6f87dd6cb5b2a0aa048d52251985929aeae22d0acec1e7beb4ee2e7e496dd7fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 1 不空闲，无法提交。**\n\nnvidia-smi 显示 GPU 1 上有活跃进程：\n- PID: 433827\n- 进程: `/root/miniconda3/bin/python`\n- 显存占用: 21750 MiB\n\n根据约束 C001/C002，GPU 上有进程时不得提交新任务。需要确认该进程属于哪个实验，再决定下一步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-sft-05b-d100-s123-gpu1.md"
+}

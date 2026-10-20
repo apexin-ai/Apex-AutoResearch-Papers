@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22549925fd66c032ac86",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "run s3 constat rerun v6",
+  "task_key": "worker_run_s3_constat_rerun_v6_20260515T210057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_s3_constat_rerun_v6_20260515T210057_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "c312b3ac63f78c6808977b52161db146ef95710bd649de9e29bcce7a794a7730"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s3_constat 重跑完成，3 个 benchmark 全部成功：\n\n| Benchmark | Items | Score Range | Mean |\n|-----------|-------|-------------|------|\n| mmlu | 6596 | [-1.0, 1.0] | -0.0173 |\n| gsm8k | 228 | [-1.0, 1.0] | 0.0636 |\n| arc_challenge | 697 | [-1.0, 1.0] | 0.0215 |\n\n输出文件：\n- `signal_s3_constat_mmlu.json`\n- `signal_s3_constat_gsm8k.json`\n- `signal_s3_constat_arc_challenge.json`\n\n均在 `/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42/` 下。item count 与 paraphrase eval 中的 per_item 数量一致（set intersection 正常工作），bug 已修复确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-s3-constat-rerun-v6.md"
+}

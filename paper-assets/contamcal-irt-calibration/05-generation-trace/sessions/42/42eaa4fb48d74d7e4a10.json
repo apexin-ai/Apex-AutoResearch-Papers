@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42eaa4fb48d74d7e4a10",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops qwen14b gsm8k submit",
+  "task_key": "worker_ops_qwen14b-gsm8k-submit_20260520T052859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen14b-gsm8k-submit_20260520T052859_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "095cb7418597b40727c33599eb9d85b3a739faccb3bad46088f5e7e8ee193591"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**阻断性问题：**\n\n1. **服务器只有 1 块 GPU（cuda:0）**，nvidia-smi 只返回 index 0，且当前 98% 利用率、21.3GB/24.5GB 显存占用。**不存在 cuda:1。**\n\n2. **Qwen2.5-14B_d100_s42 checkpoint 不存在。** checkpoints 目录中 14B 只有 d000_s42 和 d005_s42。没有 d100 相关目录。\n\n3. **脚本 `run_gsm8k_qwen14b_s42.sh` 不存在。** `scripts/gsm8k_s42/` 是空目录。\n\n4. **GPU 0 被占用（98% util, 21.3GB）。** 无法提交新任务。\n\n### 已确认的部分\n\n| 检查项 | 结果 |\n|--------|------|\n| d000_s42 adapter_model.safetensors | 275MB ✓ |\n| d000_s42 lora_alpha | 32 ✓ |\n| d100_s42 checkpoint | **不存在** |\n| run_gsm8k_qwen14b_s42.sh | **不存在** |\n| cuda:1 | **不存在**（仅 1 块 GPU） |\n| cuda:0 | 被占用（98%, 21.3GB） |\n\n需要确认：\n- d100 s42 训练是否完成？如果是 s123 而非 s42，checkpoint 路径是什么？\n- eval 应在哪台服务器/哪块 GPU 执行？\n- 脚本是否需要新建？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen14b-gsm8k-submit.md"
+}

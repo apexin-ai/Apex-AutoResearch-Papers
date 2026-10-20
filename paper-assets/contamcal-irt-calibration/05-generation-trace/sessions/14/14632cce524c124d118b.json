@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14632cce524c124d118b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 gsm8k intermediate status",
+  "task_key": "worker_ops_cqa1-gsm8k-intermediate-status_20260520T000409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-gsm8k-intermediate-status_20260520T000409_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "8bf58825288ac7006dd7260989783df1fcf439c7491be8c97cea451aacaf3718"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新（metrics + conclusion=success）。无对应 cron 需删除。\n\n### GPU 状态\ncqa1-21977 GPU 0 (RTX 4090 D 24GB) **完全空闲**，0MiB 显存占用，可立即提交下一任务。\n\n### 下一步\n`/root/contamcal-irt-calibration/exp001/eval_gsm8k_qwen7b_s123.sh` 已就绪，可立即启动 Qwen-7B s123 GSM8K eval。是否提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-gsm8k-intermediate-status.md"
+}

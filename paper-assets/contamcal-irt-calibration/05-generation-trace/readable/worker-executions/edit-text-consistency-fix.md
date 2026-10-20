@@ -1,0 +1,3842 @@
+# edit text consistency fix
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 0
+- **Tool calls:** 17
+- **Original source:** `logs/workers/worker_edit_text-consistency-fix_20260522T180639.log`
+- **Structured JSON:** [`1cefb8487f1962d60783.json`](../../sessions/1c/1cefb8487f1962d60783.json)
+
+## Before a recorded user message
+
+53 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "22742c52-c597-4419-97e7-8dc9ef26ef31",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779489600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a469890e-f51f-4bee-bbfe-030057649ae5",
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先读取相关文件来确认当前状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "56c4dae1-3f80-42e7-a505-d4dc953e5095",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L1KqfARaz66b1GKZUsG6YP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13667,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13667
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TPRqd1V9ti9QhsysDFTMfQ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "d79fd67f-4b66-4f73-abbb-ef13c55ecf1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L1KqfARaz66b1GKZUsG6YP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13667,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13667
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T18:06:51.214Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01TPRqd1V9ti9QhsysDFTMfQ`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "d8aee0cb-5c72-4821-8cdd-e36e2e29bbcc",
+  "tool_use_result": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017hFFeJGpueWtm3RzXZHpPH`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "1f2d1186-097e-4aa7-b86f-0ae7dbd253be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L1KqfARaz66b1GKZUsG6YP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13667,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13667
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T18:06:51.668Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_017hFFeJGpueWtm3RzXZHpPH`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "0592c48d-d829-4eec-9a1d-a1a5bbb2150d",
+  "tool_use_result": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration."
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The paper directory might not exist locally, or the files might be in a different location. Let me check what's in the paper directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "3719f07a-ad2a-4dd9-88ce-53cde8d4b741",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbQURcPeFxqgQ4skGpZSDH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 326,
+      "cache_read_input_tokens": 25508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 326
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+文件不在本地。让我查找实际路径。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "a5140865-c88b-4aa2-ba88-79f8065b6c81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbQURcPeFxqgQ4skGpZSDH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 326,
+      "cache_read_input_tokens": 25508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 326
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01StfexRPyGdQigX6w2LeAgs`</summary>
+
+```json
+{
+  "pattern": "**/*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "2fdc7fe6-fdbf-448c-98bd-54d7379b9ef1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbQURcPeFxqgQ4skGpZSDH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 326,
+      "cache_read_input_tokens": 25508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 326
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T18:06:55.398Z_
+
+<details><summary>↩ Tool result · `toolu_01StfexRPyGdQigX6w2LeAgs`</summary>
+
+```text
+artifacts/dream_reports/dream_20260513T155040/best/paper.tex
+artifacts/dream_reports/dream_20260513T155040/median/paper.tex
+artifacts/dream_reports/dream_20260513T155040/worst/paper.tex
+artifacts/_project/paper/related_work.tex
+artifacts/dream_reports/dream_20260513T171200/best/paper.tex
+artifacts/dream_reports/dream_20260513T171200/median/paper.tex
+artifacts/dream_reports/dream_20260513T171200/worst/paper.tex
+artifacts/_project/paper/fisher_info_appendix.tex
+artifacts/fisher_info_derivation/fisher_info_appendix.tex
+artifacts/dream_reports/dream_20260514T171536/best/paper.tex
+artifacts/dream_reports/dream_20260514T171536/median/paper.tex
+artifacts/dream_reports/dream_20260514T171536/worst/paper.tex
+artifacts/dream_reports/dream_20260514T185145/best/paper.tex
+artifacts/dream_reports/dream_20260514T185145/median/paper.tex
+artifacts/dream_reports/dream_20260514T185145/worst/paper.tex
+artifacts/dream_reports/dream_20260515T052337/best/paper.tex
+artifacts/dream_reports/dream_20260515T052337/median/paper.tex
+artifacts/dream_reports/dream_20260515T052337/worst/paper.tex
+artifacts/dream_reports/dream_20260516T104822/best/paper.tex
+artifacts/dream_reports/dream_20260516T104822/median/paper.tex
+artifacts/dream_reports/dream_20260516T104822/worst/paper.tex
+artifacts/dream_reports/dream_20260516T155748/best/paper.tex
+artifacts/dream_reports/dream_20260516T155748/median/paper.tex
+artifacts/dream_reports/dream_20260516T155748/worst/paper.tex
+artifacts/_project/paper/results.tex
+artifacts/_project/paper/related_work_04a735.tex
+artifacts/_project/paper/discussion.tex
+artifacts/_project/paper/abstract.tex
+artifacts/paper_draft/experiments.tex
+artifacts/_project/paper/introduction.tex
+artifacts/paper_draft/abstract.tex
+artifacts/paper_draft/conclusion.tex
+artifacts/paper_draft/discussion.tex
+artifacts/paper_draft/introduction.tex
+artifacts/paper_draft/main.tex
+artifacts/paper_draft/method.tex
+artifacts/paper_draft/related_work.tex
+artifacts/paper_draft/results.tex
+artifacts/paper_draft/experimental_setup.tex
+artifacts/_project/paper/algorithm1_pseudocode.tex
+artifacts/_project/paper/algorithm1_pseudocode_c1bd81.tex
+artifacts/algorithm1_pseudocode.tex
+docs/paper/main.tex
+docs/paper/related_work.tex
+docs/paper/method.tex
+docs/paper/limitations.tex
+docs/paper/ethics.tex
+docs/paper/experimental_setup.tex
+docs/paper/appendix.tex
+docs/paper/abstract.tex
+docs/paper/introduction.tex
+docs/paper/results.tex
+docs/paper/conclusion.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "29ebb14e-d56d-40e9-81d9-a8c7fc0a47ba",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/dream_reports/dream_20260513T155040/best/paper.tex",
+      "artifacts/dream_reports/dream_20260513T155040/median/paper.tex",
+      "artifacts/dream_reports/dream_20260513T155040/worst/paper.tex",
+      "artifacts/_project/paper/related_work.tex",
+      "artifacts/dream_reports/dream_20260513T171200/best/paper.tex",
+      "artifacts/dream_reports/dream_20260513T171200/median/paper.tex",
+      "artifacts/dream_reports/dream_20260513T171200/worst/paper.tex",
+      "artifacts/_project/paper/fisher_info_appendix.tex",
+      "artifacts/fisher_info_derivation/fisher_info_appendix.tex",
+      "artifacts/dream_reports/dream_20260514T171536/best/paper.tex",
+      "artifacts/dream_reports/dream_20260514T171536/median/paper.tex",
+      "artifacts/dream_reports/dream_20260514T171536/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260514T185145/best/paper.tex",
+      "artifacts/dream_reports/dream_20260514T185145/median/paper.tex",
+      "artifacts/dream_reports/dream_20260514T185145/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260515T052337/best/paper.tex",
+      "artifacts/dream_reports/dream_20260515T052337/median/paper.tex",
+      "artifacts/dream_reports/dream_20260515T052337/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260516T104822/best/paper.tex",
+      "artifacts/dream_reports/dream_20260516T104822/median/paper.tex",
+      "artifacts/dream_reports/dream_20260516T104822/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260516T155748/best/paper.tex",
+      "artifacts/dream_reports/dream_20260516T155748/median/paper.tex",
+      "artifacts/dream_reports/dream_20260516T155748/worst/paper.tex",
+      "artifacts/_project/paper/results.tex",
+      "artifacts/_project/paper/related_work_04a735.tex",
+      "artifacts/_project/paper/discussion.tex",
+      "artifacts/_project/paper/abstract.tex",
+      "artifacts/paper_draft/experiments.tex",
+      "artifacts/_project/paper/introduction.tex",
+      "artifacts/paper_draft/abstract.tex",
+      "artifacts/paper_draft/conclusion.tex",
+      "artifacts/paper_draft/discussion.tex",
+      "artifacts/paper_draft/introduction.tex",
+      "artifacts/paper_draft/main.tex",
+      "artifacts/paper_draft/method.tex",
+      "artifacts/paper_draft/related_work.tex",
+      "artifacts/paper_draft/results.tex",
+      "artifacts/paper_draft/experimental_setup.tex",
+      "artifacts/_project/paper/algorithm1_pseudocode.tex",
+      "artifacts/_project/paper/algorithm1_pseudocode_c1bd81.tex",
+      "artifacts/algorithm1_pseudocode.tex",
+      "docs/paper/main.tex",
+      "docs/paper/related_work.tex",
+      "docs/paper/method.tex",
+      "docs/paper/limitations.tex",
+      "docs/paper/ethics.tex",
+      "docs/paper/experimental_setup.tex",
+      "docs/paper/appendix.tex",
+      "docs/paper/abstract.tex",
+      "docs/paper/introduction.tex",
+      "docs/paper/results.tex",
+      "docs/paper/conclusion.tex"
+    ],
+    "durationMs": 62,
+    "numFiles": 53,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01YFWYjmFQ3HZ7kHyDxkfuLP`</summary>
+
+```json
+{
+  "pattern": "**/paper/**"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "e8c24fbd-f88a-4a23-b6cc-f70447b4da1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FbQURcPeFxqgQ4skGpZSDH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 326,
+      "cache_read_input_tokens": 25508,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 326
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T18:06:55.706Z_
+
+<details><summary>↩ Tool result · `toolu_01YFWYjmFQ3HZ7kHyDxkfuLP`</summary>
+
+```text
+artifacts/_project/paper/main.pdf
+artifacts/_project/paper/related_work.tex
+artifacts/_project/paper/fisher_info_appendix.tex
+artifacts/_project/paper/results_tables.md
+paper/sections/method.md
+artifacts/_project/paper/method.md
+figures/paper/gen_fig_domain_gamma.py
+figures/paper/fig_domain_gamma.pdf
+figures/paper/fig_domain_gamma.png
+figures/paper/gen_fig_signal_heatmap.py
+figures/paper/fig_signal_heatmap.pdf
+figures/paper/fig_signal_heatmap.png
+figures/paper/gen_fig_pipeline.py
+figures/paper/fig_pipeline.pdf
+figures/paper/fig_pipeline.png
+paper/sections/discussion.md
+artifacts/_project/paper/discussion.md
+paper/sections/experimental_setup.md
+artifacts/_project/paper/experimental_setup.md
+figures/paper/gen_fig_calibration.py
+figures/paper/fig_calibration.pdf
+figures/paper/fig_calibration.png
+figures/paper/fig_identifiability_heatmap.pdf
+artifacts/_project/paper/results.tex
+artifacts/_project/paper/related_work_04a735.tex
+artifacts/_project/paper/discussion.tex
+artifacts/_project/paper/abstract.tex
+artifacts/_project/paper/introduction.tex
+artifacts/_project/paper/references.bib
+docs/paper/acl.sty
+docs/paper/acl_natbib.bst
+docs/paper/figures/fig_signal_heatmap.pdf
+docs/paper/figures/fig_identifiability_heatmap.pdf
+docs/paper/figures/fig_domain_gamma.pdf
+docs/paper/figures/arc_dose_response.pdf
+docs/paper/figures/baseline_vs_effect.pdf
+figures/paper/arc_dose_response.pdf
+figures/paper/baseline_vs_effect.pdf
+docs/paper/figures/fig_arc_dose_response.pdf
+docs/paper/figures/fig_baseline_vs_effect.pdf
+figures/paper/fig_arc_dose_response.pdf
+figures/paper/fig_baseline_vs_effect.pdf
+artifacts/_project/paper/algorithm1_pseudocode.tex
+artifacts/_project/paper/algorithm1_pseudocode_c1bd81.tex
+docs/paper/figures/fig_treated_untreated.pdf
+docs/paper/figures/fig_did_dose_response.pdf
+docs/paper/main.tex
+artifacts/_project/paper/appendix_domain_decomposition.md
+docs/paper/figures/fig_dose_response.pdf.bak_wrong_labels
+docs/paper/figures/fig2_cross_benchmark_scatter.pdf
+docs/paper/related_work.tex
+docs/paper/method.tex
+docs/paper/references.bib
+docs/paper/limitations.tex
+docs/paper/ethics.tex
+figures/paper/gen_fig_dose_response.py
+figures/paper/fig_dose_response.pdf
+figures/paper/fig_dose_response.png
+docs/paper/figures/fig_dose_response.pdf
+docs/paper/experimental_setup.tex
+docs/paper/appendix.tex
+docs/paper/abstract.tex
+docs/paper/introduction.tex
+docs/paper/results.tex
+docs/paper/conclusion.tex
+docs/paper/main.blg
+docs/paper/main.bbl
+docs/paper/main.aux
+docs/paper/main.out
+docs/paper/main.fls
+docs/paper/main.log
+docs/paper/main.pdf
+docs/paper/main.fdb_latexmk
+docs/paper/_pdf_images/main_p1.png
+docs/paper/_pdf_images/main_p2.png
+docs/paper/_pdf_images/main_p3.png
+docs/paper/_pdf_images/main_p4.png
+docs/paper/_pdf_images/main_p5.png
+docs/paper/_pdf_images/main_p6.png
+docs/paper/_pdf_images/main_p7.png
+docs/paper/_pdf_images/main_p8.png
+docs/paper/_pdf_images/main_p9.png
+docs/paper/_pdf_images/main_p10.png
+docs/paper/_pdf_images/main_p11.png
+docs/paper/_pdf_images/main_p12.png
+docs/paper/_pdf_images/main_p13.png
+docs/paper/_pdf_images/main_p14.png
+docs/paper/_pdf_images/main_p15.png
+docs/paper/_pdf_images/main_p16.png
+docs/paper/_pdf_images/main_p17.png
+docs/paper/_pdf_images/main_p18.png
+docs/paper/_pdf_images/main_p19.png
+docs/paper/_pdf_images/main_p20.png
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "748cc40b-9886-4035-877b-8c0f513246c4",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/_project/paper/main.pdf",
+      "artifacts/_project/paper/related_work.tex",
+      "artifacts/_project/paper/fisher_info_appendix.tex",
+      "artifacts/_project/paper/results_tables.md",
+      "paper/sections/method.md",
+      "artifacts/_project/paper/method.md",
+      "figures/paper/gen_fig_domain_gamma.py",
+      "figures/paper/fig_domain_gamma.pdf",
+      "figures/paper/fig_domain_gamma.png",
+      "figures/paper/gen_fig_signal_heatmap.py",
+      "figures/paper/fig_signal_heatmap.pdf",
+      "figures/paper/fig_signal_heatmap.png",
+      "figures/paper/gen_fig_pipeline.py",
+      "figures/paper/fig_pipeline.pdf",
+      "figures/paper/fig_pipeline.png",
+      "paper/sections/discussion.md",
+      "artifacts/_project/paper/discussion.md",
+      "paper/sections/experimental_setup.md",
+      "artifacts/_project/paper/experimental_setup.md",
+      "figures/paper/gen_fig_calibration.py",
+      "figures/paper/fig_calibration.pdf",
+      "figures/paper/fig_calibration.png",
+      "figures/paper/fig_identifiability_heatmap.pdf",
+      "artifacts/_project/paper/results.tex",
+      "artifacts/_project/paper/related_work_04a735.tex",
+      "artifacts/_project/paper/discussion.tex",
+      "artifacts/_project/paper/abstract.tex",
+      "artifacts/_project/paper/introduction.tex",
+      "artifacts/_project/paper/references.bib",
+      "docs/paper/acl.sty",
+      "docs/paper/acl_natbib.bst",
+      "docs/paper/figures/fig_signal_heatmap.pdf",
+      "docs/paper/figures/fig_identifiability_heatmap.pdf",
+      "docs/paper/figures/fig_domain_gamma.pdf",
+      "docs/paper/figures/arc_dose_response.pdf",
+      "docs/paper/figures/baseline_vs_effect.pdf",
+      "figures/paper/arc_dose_response.pdf",
+      "figures/paper/baseline_vs_effect.pdf",
+      "docs/paper/figures/fig_arc_dose_response.pdf",
+      "docs/paper/figures/fig_baseline_vs_effect.pdf",
+      "figures/paper/fig_arc_dose_response.pdf",
+      "figures/paper/fig_baseline_vs_effect.pdf",
+      "artifacts/_project/paper/algorithm1_pseudocode.tex",
+      "artifacts/_project/paper/algorithm1_pseudocode_c1bd81.tex",
+      "docs/paper/figures/fig_treated_untreated.pdf",
+      "docs/paper/figures/fig_did_dose_response.pdf",
+      "docs/paper/main.tex",
+      "artifacts/_project/paper/appendix_domain_decomposition.md",
+      "docs/paper/figures/fig_dose_response.pdf.bak_wrong_labels",
+      "docs/paper/figures/fig2_cross_benchmark_scatter.pdf",
+      "docs/paper/related_work.tex",
+      "docs/paper/method.tex",
+      "docs/paper/references.bib",
+      "docs/paper/limitations.tex",
+      "docs/paper/ethics.tex",
+      "figures/paper/gen_fig_dose_response.py",
+      "figures/paper/fig_dose_response.pdf",
+      "figures/paper/fig_dose_response.png",
+      "docs/paper/figures/fig_dose_response.pdf",
+      "docs/paper/experimental_setup.tex",
+      "docs/paper/appendix.tex",
+      "docs/paper/abstract.tex",
+      "docs/paper/introduction.tex",
+      "docs/paper/results.tex",
+      "docs/paper/conclusion.tex",
+      "docs/paper/main.blg",
+      "docs/paper/main.bbl",
+      "docs/paper/main.aux",
+      "docs/paper/main.out",
+      "docs/paper/main.fls",
+      "docs/paper/main.log",
+      "docs/paper/main.pdf",
+      "docs/paper/main.fdb_latexmk",
+      "docs/paper/_pdf_images/main_p1.png",
+      "docs/paper/_pdf_images/main_p2.png",
+      "docs/paper/_pdf_images/main_p3.png",
+      "docs/paper/_pdf_images/main_p4.png",
+      "docs/paper/_pdf_images/main_p5.png",
+      "docs/paper/_pdf_images/main_p6.png",
+      "docs/paper/_pdf_images/main_p7.png",
+      "docs/paper/_pdf_images/main_p8.png",
+      "docs/paper/_pdf_images/main_p9.png",
+      "docs/paper/_pdf_images/main_p10.png",
+      "docs/paper/_pdf_images/main_p11.png",
+      "docs/paper/_pdf_images/main_p12.png",
+      "docs/paper/_pdf_images/main_p13.png",
+      "docs/paper/_pdf_images/main_p14.png",
+      "docs/paper/_pdf_images/main_p15.png",
+      "docs/paper/_pdf_images/main_p16.png",
+      "docs/paper/_pdf_images/main_p17.png",
+      "docs/paper/_pdf_images/main_p18.png",
+      "docs/paper/_pdf_images/main_p19.png",
+      "docs/paper/_pdf_images/main_p20.png"
+    ],
+    "durationMs": 63,
+    "numFiles": 93,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There are two sets of paper files:
+1. `artifacts/_project/paper/` - seems like a working draft
+2. `docs/paper/` - seems like the compiled version
+
+The task mentions `paper/` directory. Let me check `docs/paper/` since it has the full set of LaTeX files including main.tex. Let me read the relevant files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "369056de-0605-41a5-9ccd-d8c38ccdc7d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VbgT12AP6owx5DjeM8nuDc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2167,
+      "cache_read_input_tokens": 25834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2167
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+找到了两处论文目录。`docs/paper/` 是完整的 LaTeX 项目。让我读取相关文件和辅助数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "315616b5-35c3-4cec-9697-557c4b340d73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VbgT12AP6owx5DjeM8nuDc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2167,
+      "cache_read_input_tokens": 25834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2167
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GpQ1qZLbuEmC2vHRk2RLMZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "1491b41c-cc90-4f8f-9d26-523b80adc84f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VbgT12AP6owx5DjeM8nuDc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2167,
+      "cache_read_input_tokens": 25834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2167
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T18:07:01.449Z_
+
+<details><summary>↩ Tool result · `toolu_01GpQ1qZLbuEmC2vHRk2RLMZ`</summary>
+
+```text
+1	\section{Results}
+2	\label{sec:results}
+3	
+4	Cross-family results (\S\ref{sec:taxonomy}) use seed$=$42 data across six models from five independent families. Within-family IRT analyses (\S\ref{sec:calibration_results}--\ref{sec:domain_differential}) use $J=16$ Qwen2.5 models (8$\times$1.5B + 8$\times$3B); domain-level contamination estimates $\gamma_d$ (\S\ref{sec:domain_differential}) are reported at $J=16$ in the text and $J=13$ in Figure~\ref{fig:domain_gamma}.
+5	
+6	\subsection{Dose-Response Patterns}
+7	\label{sec:taxonomy}
+8	
+9	\begin{table}[t]
+10	\centering
+11	\caption{Observed dose-response patterns under controlled SFT injection (seed$=$42, MMLU). $\Delta$acc: d000$\to$d100 change (95\% CI from item-level paired bootstrap, $B=10{,}000$). Stab.: bootstrap classification stability. Classifications are robust to threshold hyperparameter choice (5/5 original families at 100\% stability across 30 reasonable $(\tau,\sigma)$ combinations; Appendix~\ref{sec:classification_sensitivity}).}
+12	\label{tab:taxonomy}
+13	\footnotesize
+14	\begin{tabular}{llccccc}
+15	\toprule
+16	Pattern & Model & Baseline & $\Delta$acc & 95\% CI & Peak & Stab. \\
+17	\midrule
+18	Immune & Phi-4 14.7B & 76.4\% & $\pm$0.5pp & [$-$0.60, $+$0.26] & negl. & 100\% \\
+19	Collapse & Qwen-14B & 69.4\% & $-$9.4 to $-$12.7pp & [$-$12.74, $-$9.0] & --- & 100\% \\
+20	V-recovery & Qwen-7B & 66.1\% & $-$1.8pp & [$-$2.36, $-$1.22] & $-$3.1\textsuperscript{d025} & 99.6\% \\
+21	Benefit & Gemma-2 9B & 61.9\% & $+$3.8pp & [$+$3.18, $+$4.33] & mono. & 76.6\% \\
+22	Benefit & Falcon3 7B & 58.8\% & $+$4.2pp & [$+$3.60, $+$4.79] & mono. & 96.1\% \\
+23	Benefit & OLMo-2 7B & 53.8\% & $+$3.2pp\textsuperscript{$\dagger$} & [$+$2.73, $+$3.71] & sat.\textsuperscript{d050} & 100\% \\
+24	\bottomrule
+25	\multicolumn{7}{l}{\scriptsize $^{\dagger}$Seed-sensitive: s42 $+$3.2pp, s123 $-$0.6pp, s0 $+$1.4pp; cross-seed CI crosses zero. See \S\ref{sec:cross_seed}.}
+26	\end{tabular}
+27	\end{table}
+28	
+29	Applying Algorithm~\ref{alg:profile-classification} to seed$=$42 accuracy trajectories yields a spectrum of dose-response patterns (Table~\ref{tab:taxonomy}, Figure~\ref{fig:dose_response}), not a uniform inflation effect. These empirical profiles are preliminary at $N\!=\!6$ families.
+30	
+31	\paragraph{Baseline ability gradient.}
+32	In our six-family sample, contamination vulnerability concentrates in the 65--70\% MMLU baseline band (Table~\ref{tab:taxonomy}). Below 62\%, three Benefit families gain $+$3.2 to $+$4.2pp; in the vulnerable band, Qwen-7B shows V-shaped harm-then-recovery while Qwen-14B collapses ($-$9.4 to $-$25.0pp across seeds)---3$\times$ more fragile despite higher baseline. Above 76\%, Phi-4 is immune. ARC direction is consistent for 3/5 families (Appendix~\ref{sec:arc_cross_benchmark}); STEM is the most resilient domain, Social Sciences the most sensitive at 1.8$\times$ STEM magnitude (Appendix~\ref{sec:domain_decomposition}), foreshadowing \S\ref{sec:domain_differential}.
+33	
+34	\paragraph{Out-of-sample validation.}
+35	Out-of-sample validation on LLaMA-3.1-8B (Meta; d000, d025, d100) yields Immune on both MMLU ($-$0.69pp) and ARC ($+$0.09pp), despite matching OLMo-2's Benefit baseline (53.5\% vs.\ 53.8\%)---demonstrating family-level factors beyond baseline ability modulate vulnerability. Two of four patterns replicate across families: Immune (Phi-4, LLaMA-3.1), Benefit (OLMo-2, Falcon3, Gemma-2). LLaMA-3.1 shows the strongest GSM8K transfer ($+$16.4pp; Appendix~\ref{sec:gsm8k_dose_response}), demonstrating target-benchmark immunity does not imply transfer immunity.
+36	
+37	\subsection{Cross-Benchmark Transfer}
+38	\label{sec:gsm8k_transfer}
+39	
+40	Contamination patterns are a property of the (model, benchmark) pair, not the model alone. Within MCQ format, MMLU--ARC direction agreement is 86\% (6/7 families; Appendix~\ref{sec:arc_cross_benchmark}); across formats (MCQ$\to$generative math), agreement drops to 40\% (2/5) with three families exhibiting directional reversal on GSM8K \citep{cobbe2021gsm8k} (Table~\ref{tab:gsm8k_transfer}, Appendix). All five non-excluded families show positive GSM8K transfer ($+$1 to $+$16pp), including Qwen-14B ($-$9.4pp MMLU yet $+$13.1pp GSM8K), suggesting capability elicitation rather than memorization, consistent with null DiD (\S\ref{sec:memorization_test}). Volume effects are ruled out: d005 ($+$1.5\% data) yields $+$11.1pp for Qwen-7B, while Phi-4 shows near-zero transfer.
+41	
+42	\subsection{Cross-Seed Stability}
+43	\label{sec:cross_seed}
+44	
+45	With $n\!=\!3$ seeds per family, cross-seed CIs have limited precision (widths 1.5--14.5pp; Table~\ref{tab:cross_seed}, Appendix). Under our aggregation rule (\S\ref{sec:classification}), 4/5 families receive consistent direction-level classifications; direction is more reproducible than shape (strict sign consistency 2/5). OLMo-2's CI crosses zero, rendering its classification borderline. Conflicting contamination findings in the literature may partly reflect unreported seed variance.
+46	
+47	\subsection{Item-Level Memorization Test}
+48	\label{sec:memorization_test}
+49	
+50	We test whether dose-response patterns arise from item-specific memorization using the treated/untreated split at d025 (3{,}540 / 10{,}502 MMLU items). No model shows significant DiD ($p > 0.05$; Table~\ref{tab:did}), ruling out item-specific effects $>$2pp (MDES 1.25--2.05pp; ARC MDES in Appendix~\ref{sec:mdes}).
+51	
+52	\begin{table}[t]
+53	\centering
+54	\caption{Treated vs.\ untreated item accuracy changes at d025 MMLU (3{,}540 / 10{,}502). All DiD non-significant. $^{**}p<.01$; $^{***}p<.001$; ns: $p>.05$.}
+55	\label{tab:did}
+56	\footnotesize
+57	\begin{tabular}{lcccc}
+58	\toprule
+59	Model & Treated $\Delta$ & Untreated $\Delta$ & DiD & Verdict \\
+60	\midrule
+61	Gemma-2 9B & $+$3.1$^{**}$ & $+$2.6$^{***}$ & $+$0.5 (ns) & generalization \\
+62	OLMo-2 7B & $+$1.6 (ns) & $+$2.7$^{***}$ & $-$1.1 (ns) & mixed \\
+63	Phi-4 14.7B & $+$0.3 (ns) & $+$0.6 (ns) & $-$0.3 (ns) & no-effect \\
+64	Qwen-14B & $-$6.9$^{***}$ & $-$7.6$^{***}$ & $+$0.7 (ns) & anti-contam. \\
+65	Qwen-7B & $-$3.8$^{**}$ & $-$2.9$^{***}$ & $-$0.8 (ns) & anti-contam. \\
+66	\bottomrule
+67	\end{tabular}
+68	\end{table}
+69	
+70	Parallel changes suggest global capability modulation rather than memorization (Figure~\ref{fig:treated_untreated}, Appendix); ARC's limited power precludes this conclusion there.
+71	
+72	\subsection{Calibration Quality}
+73	\label{sec:calibration_results}
+74	
+75	Within-family IRT analysis uses Qwen2.5 $\leq$3B ($J=16$), where aggregate contamination shifts accuracy by ${\sim}$0.6--0.7pp. RRF-guided item filtering achieves $\tau = 0.73$ on 300 items ($\Delta\tau = 0.18$ vs.\ size-matched random; signal ablation in Appendix~\ref{sec:rrf_ablation}). IRT is fitted on these 300 highest-exposure-variance items (2.1\% of MMLU); contamination effects on remaining low-variance items are not empirically verified.
+76	
+77	Table~\ref{tab:baselines} compares methods on 300 RRF-filtered items. Raw accuracy's MAE advantage (0.006 vs.\ ContamCal's 0.009) is predicted by Eq.~\eqref{eq:calibrated}: calibrated scores depend on $\theta_j$, not $\gamma_d$ directly; under near-null aggregate contamination, both estimators converge. ContamCal's value lies in the diagnostic pathway ($\gamma_d$), not aggregate calibration. B6-DCR systematically overcorrects (MAE 0.108). Domain analysis reveals Social Sciences $\gamma_d = -0.63$ ($P(\gamma_d\!<\!0) = 99.7\%$; \S\ref{sec:domain_differential}), while pooled $\gamma$ remains non-significant---consistent with opposing domain-level effects canceling. Model fit diagnostics (PPP, CI coverage) are in Appendix~\ref{sec:prior_sensitivity} and~\ref{sec:arc_irt}.
+78	
+79	\begin{table}[t]
+80	\centering
+81	\caption{MMLU calibration on 300 RRF-filtered items (Qwen2.5, $J$=16). ARC results in Appendix~\ref{sec:arc_irt}.}
+82	\label{tab:baselines}
+83	\footnotesize
+84	\begin{tabular}{lcc}
+85	\toprule
+86	Method & MAE & $\tau$ \\
+87	\midrule
+88	B0: Raw Accuracy & \textbf{0.006} & 0.767 \\
+89	B1b: Remove \& Rescore & 0.026 & \underline{0.783} \\
+90	B3: Vanilla 2PL & 0.008 & 0.731 \\
+91	B4: Linear Regression & 0.010 & 0.751 \\
+92	B5b: Emperor & \textbf{0.006} & \textbf{0.789} \\
+93	B6: DCR (reimpl.) & 0.108 & 0.654 \\
+94	ContamCal (2PL+$\gamma$) & 0.009 & 0.731 \\
+95	\bottomrule
+96	\end{tabular}
+97	\end{table}
+98	
+99	\subsection{Detection Signal Failure Modes}
+100	\label{sec:signal_failure}
+101	
+102	Min-K\%++ \citep{zhang_2024_minkpp} exhibits \textit{directional reversal} at 0.5B: contaminated items receive \textit{lower} scores (paired Cohen's $d = -1.98$ at d100, $|d| > 1.4$ at d005). S1 achieves AUC $> 0.95$ at all scales; S4 is near-random below 1.5B (Appendix~\ref{sec:signal_reliability_appendix}). Simulation shows $\gamma$ recovery requires AUC$\geq$0.55 with $J \geq 50$; at AUC $\geq 0.90$, $J = 16$ suffices (Appendix~\ref{sec:identifiability_appendix}).
+103	
+104	\subsection{Domain-Level Analysis}
+105	\label{sec:domain_differential}
+106	
+107	Within-family domain analysis (Qwen2.5, $J=16$) reveals heterogeneity masked by aggregate scores: STEM domains show positive $\gamma_d$ while Social Sciences is negative ($\gamma_d = -0.63$, 95\% CI $[-1.07, -0.19]$, $P(\gamma_d\!<\!0) = 99.7\%$, PPP$=$0.722; Figure~\ref{fig:domain_gamma}, Table~\ref{tab:domain_gamma} in Appendix). Social Sciences $P(\gamma_d\!<\!0)$ is 99.35--99.85\% across priors (Table~\ref{tab:socsci_prior}), exceeding the Bonferroni threshold ($99.375\%$) under baseline and loose priors but falling 0.03\,pp short under the tight prior. The directional signal is robust; we treat domain-level findings as exploratory pending replication with larger ensembles.
+108	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "a843b0f4-8964-4ed4-9e22-0e9a209c14c0",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+      "content": "\\section{Results}\n\\label{sec:results}\n\nCross-family results (\\S\\ref{sec:taxonomy}) use seed$=$42 data across six models from five independent families. Within-family IRT analyses (\\S\\ref{sec:calibration_results}--\\ref{sec:domain_differential}) use $J=16$ Qwen2.5 models (8$\\times$1.5B + 8$\\times$3B); domain-level contamination estimates $\\gamma_d$ (\\S\\ref{sec:domain_differential}) are reported at $J=16$ in the text and $J=13$ in Figure~\\ref{fig:domain_gamma}.\n\n\\subsection{Dose-Response Patterns}\n\\label{sec:taxonomy}\n\n\\begin{table}[t]\n\\centering\n\\caption{Observed dose-response patterns under controlled SFT injection (seed$=$42, MMLU). $\\Delta$acc: d000$\\to$d100 change (95\\% CI from item-level paired bootstrap, $B=10{,}000$). Stab.: bootstrap classification stability. Classifications are robust to threshold hyperparameter choice (5/5 original families at 100\\% stability across 30 reasonable $(\\tau,\\sigma)$ combinations; Appendix~\\ref{sec:classification_sensitivity}).}\n\\label{tab:taxonomy}\n\\footnotesize\n\\begin{tabular}{llccccc}\n\\toprule\nPattern & Model & Baseline & $\\Delta$acc & 95\\% CI & Peak & Stab. \\\\\n\\midrule\nImmune & Phi-4 14.7B & 76.4\\% & $\\pm$0.5pp & [$-$0.60, $+$0.26] & negl. & 100\\% \\\\\nCollapse & Qwen-14B & 69.4\\% & $-$9.4 to $-$12.7pp & [$-$12.74, $-$9.0] & --- & 100\\% \\\\\nV-recovery & Qwen-7B & 66.1\\% & $-$1.8pp & [$-$2.36, $-$1.22] & $-$3.1\\textsuperscript{d025} & 99.6\\% \\\\\nBenefit & Gemma-2 9B & 61.9\\% & $+$3.8pp & [$+$3.18, $+$4.33] & mono. & 76.6\\% \\\\\nBenefit & Falcon3 7B & 58.8\\% & $+$4.2pp & [$+$3.60, $+$4.79] & mono. & 96.1\\% \\\\\nBenefit & OLMo-2 7B & 53.8\\% & $+$3.2pp\\textsuperscript{$\\dagger$} & [$+$2.73, $+$3.71] & sat.\\textsuperscript{d050} & 100\\% \\\\\n\\bottomrule\n\\multicolumn{7}{l}{\\scriptsize $^{\\dagger}$Seed-sensitive: s42 $+$3.2pp, s123 $-$0.6pp, s0 $+$1.4pp; cross-seed CI crosses zero. See \\S\\ref{sec:cross_seed}.}\n\\end{tabular}\n\\end{table}\n\nApplying Algorithm~\\ref{alg:profile-classification} to seed$=$42 accuracy trajectories yields a spectrum of dose-response patterns (Table~\\ref{tab:taxonomy}, Figure~\\ref{fig:dose_response}), not a uniform inflation effect. These empirical profiles are preliminary at $N\\!=\\!6$ families.\n\n\\paragraph{Baseline ability gradient.}\nIn our six-family sample, contamination vulnerability concentrates in the 65--70\\% MMLU baseline band (Table~\\ref{tab:taxonomy}). Below 62\\%, three Benefit families gain $+$3.2 to $+$4.2pp; in the vulnerable band, Qwen-7B shows V-shaped harm-then-recovery while Qwen-14B collapses ($-$9.4 to $-$25.0pp across seeds)---3$\\times$ more fragile despite higher baseline. Above 76\\%, Phi-4 is immune. ARC direction is consistent for 3/5 families (Appendix~\\ref{sec:arc_cross_benchmark}); STEM is the most resilient domain, Social Sciences the most sensitive at 1.8$\\times$ STEM magnitude (Appendix~\\ref{sec:domain_decomposition}), foreshadowing \\S\\ref{sec:domain_differential}.\n\n\\paragraph{Out-of-sample validation.}\nOut-of-sample validation on LLaMA-3.1-8B (Meta; d000, d025, d100) yields Immune on both MMLU ($-$0.69pp) and ARC ($+$0.09pp), despite matching OLMo-2's Benefit baseline (53.5\\% vs.\\ 53.8\\%)---demonstrating family-level factors beyond baseline ability modulate vulnerability. Two of four patterns replicate across families: Immune (Phi-4, LLaMA-3.1), Benefit (OLMo-2, Falcon3, Gemma-2). LLaMA-3.1 shows the strongest GSM8K transfer ($+$16.4pp; Appendix~\\ref{sec:gsm8k_dose_response}), demonstrating target-benchmark immunity does not imply transfer immunity.\n\n\\subsection{Cross-Benchmark Transfer}\n\\label{sec:gsm8k_transfer}\n\nContamination patterns are a property of the (model, benchmark) pair, not the model alone. Within MCQ format, MMLU--ARC direction agreement is 86\\% (6/7 families; Appendix~\\ref{sec:arc_cross_benchmark}); across formats (MCQ$\\to$generative math), agreement drops to 40\\% (2/5) with three families exhibiting directional reversal on GSM8K \\citep{cobbe2021gsm8k} (Table~\\ref{tab:gsm8k_transfer}, Appendix). All five non-excluded families show positive GSM8K transfer ($+$1 to $+$16pp), including Qwen-14B ($-$9.4pp MMLU yet $+$13.1pp GSM8K), suggesting capability elicitation rather than memorization, consistent with null DiD (\\S\\ref{sec:memorization_test}). Volume effects are ruled out: d005 ($+$1.5\\% data) yields $+$11.1pp for Qwen-7B, while Phi-4 shows near-zero transfer.\n\n\\subsection{Cross-Seed Stability}\n\\label{sec:cross_seed}\n\nWith $n\\!=\\!3$ seeds per family, cross-seed CIs have limited precision (widths 1.5--14.5pp; Table~\\ref{tab:cross_seed}, Appendix). Under our aggregation rule (\\S\\ref{sec:classification}), 4/5 families receive consistent direction-level classifications; direction is more reproducible than shape (strict sign consistency 2/5). OLMo-2's CI crosses zero, rendering its classification borderline. Conflicting contamination findings in the literature may partly reflect unreported seed variance.\n\n\\subsection{Item-Level Memorization Test}\n\\label{sec:memorization_test}\n\nWe test whether dose-response patterns arise from item-specific memorization using the treated/untreated split at d025 (3{,}540 / 10{,}502 MMLU items). No model shows significant DiD ($p > 0.05$; Table~\\ref{tab:did}), ruling out item-specific effects $>$2pp (MDES 1.25--2.05pp; ARC MDES in Appendix~\\ref{sec:mdes}).\n\n\\begin{table}[t]\n\\centering\n\\caption{Treated vs.\\ untreated item accuracy changes at d025 MMLU (3{,}540 / 10{,}502). All DiD non-significant. $^{**}p<.01$; $^{***}p<.001$; ns: $p>.05$.}\n\\label{tab:did}\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\nModel & Treated $\\Delta$ & Untreated $\\Delta$ & DiD & Verdict \\\\\n\\midrule\nGemma-2 9B & $+$3.1$^{**}$ & $+$2.6$^{***}$ & $+$0.5 (ns) & generalization \\\\\nOLMo-2 7B & $+$1.6 (ns) & $+$2.7$^{***}$ & $-$1.1 (ns) & mixed \\\\\nPhi-4 14.7B & $+$0.3 (ns) & $+$0.6 (ns) & $-$0.3 (ns) & no-effect \\\\\nQwen-14B & $-$6.9$^{***}$ & $-$7.6$^{***}$ & $+$0.7 (ns) & anti-contam. \\\\\nQwen-7B & $-$3.8$^{**}$ & $-$2.9$^{***}$ & $-$0.8 (ns) & anti-contam. \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nParallel changes suggest global capability modulation rather than memorization (Figure~\\ref{fig:treated_untreated}, Appendix); ARC's limited power precludes this conclusion there.\n\n\\subsection{Calibration Quality}\n\\label{sec:calibration_results}\n\nWithin-family IRT analysis uses Qwen2.5 $\\leq$3B ($J=16$), where aggregate contamination shifts accuracy by ${\\sim}$0.6--0.7pp. RRF-guided item filtering achieves $\\tau = 0.73$ on 300 items ($\\Delta\\tau = 0.18$ vs.\\ size-matched random; signal ablation in Appendix~\\ref{sec:rrf_ablation}). IRT is fitted on these 300 highest-exposure-variance items (2.1\\% of MMLU); contamination effects on remaining low-variance items are not empirically verified.\n\nTable~\\ref{tab:baselines} compares methods on 300 RRF-filtered items. Raw accuracy's MAE advantage (0.006 vs.\\ ContamCal's 0.009) is predicted by Eq.~\\eqref{eq:calibrated}: calibrated scores depend on $\\theta_j$, not $\\gamma_d$ directly; under near-null aggregate contamination, both estimators converge. ContamCal's value lies in the diagnostic pathway ($\\gamma_d$), not aggregate calibration. B6-DCR systematically overcorrects (MAE 0.108). Domain analysis reveals Social Sciences $\\gamma_d = -0.63$ ($P(\\gamma_d\\!<\\!0) = 99.7\\%$; \\S\\ref{sec:domain_differential}), while pooled $\\gamma$ remains non-significant---consistent with opposing domain-level effects canceling. Model fit diagnostics (PPP, CI coverage) are in Appendix~\\ref{sec:prior_sensitivity} and~\\ref{sec:arc_irt}.\n\n\\begin{table}[t]\n\\centering\n\\caption{MMLU calibration on 300 RRF-filtered items (Qwen2.5, $J$=16). ARC results in Appendix~\\ref{sec:arc_irt}.}\n\\label{tab:baselines}\n\\footnotesize\n\\begin{tabular}{lcc}\n\\toprule\nMethod & MAE & $\\tau$ \\\\\n\\midrule\nB0: Raw Accuracy & \\textbf{0.006} & 0.767 \\\\\nB1b: Remove \\& Rescore & 0.026 & \\underline{0.783} \\\\\nB3: Vanilla 2PL & 0.008 & 0.731 \\\\\nB4: Linear Regression & 0.010 & 0.751 \\\\\nB5b: Emperor & \\textbf{0.006} & \\textbf{0.789} \\\\\nB6: DCR (reimpl.) & 0.108 & 0.654 \\\\\nContamCal (2PL+$\\gamma$) & 0.009 & 0.731 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Detection Signal Failure Modes}\n\\label{sec:signal_failure}\n\nMin-K\\%++ \\citep{zhang_2024_minkpp} exhibits \\textit{directional reversal} at 0.5B: contaminated items receive \\textit{lower} scores (paired Cohen's $d = -1.98$ at d100, $|d| > 1.4$ at d005). S1 achieves AUC $> 0.95$ at all scales; S4 is near-random below 1.5B (Appendix~\\ref{sec:signal_reliability_appendix}). Simulation shows $\\gamma$ recovery requires AUC$\\geq$0.55 with $J \\geq 50$; at AUC $\\geq 0.90$, $J = 16$ suffices (Appendix~\\ref{sec:identifiability_appendix}).\n\n\\subsection{Domain-Level Analysis}\n\\label{sec:domain_differential}\n\nWithin-family domain analysis (Qwen2.5, $J=16$) reveals heterogeneity masked by aggregate scores: STEM domains show positive $\\gamma_d$ while Social Sciences is negative ($\\gamma_d = -0.63$, 95\\% CI $[-1.07, -0.19]$, $P(\\gamma_d\\!<\\!0) = 99.7\\%$, PPP$=$0.722; Figure~\\ref{fig:domain_gamma}, Table~\\ref{tab:domain_gamma} in Appendix). Social Sciences $P(\\gamma_d\\!<\\!0)$ is 99.35--99.85\\% across priors (Table~\\ref{tab:socsci_prior}), exceeding the Bonferroni threshold ($99.375\\%$) under baseline and loose priors but falling 0.03\\,pp short under the tight prior. The directional signal is robust; we treat domain-level findings as exploratory pending replication with larger ensembles.\n",
+      "numLines": 108,
+      "startLine": 1,
+      "totalLines": 108
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LYP4SEuVapVrtZHmgUVioA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "f76c0728-a05e-47dd-94fa-1f58fa6d6dbf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VbgT12AP6owx5DjeM8nuDc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2167,
+      "cache_read_input_tokens": 25834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2167
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T18:07:01.875Z_
+
+<details><summary>↩ Tool result · `toolu_01LYP4SEuVapVrtZHmgUVioA`</summary>
+
+```text
+1	\section{Introduction}\label{sec:introduction}
+2	
+3	Benchmark scores drive model selection and research priorities for large language models, yet training data contamination is pervasive: trillion-token web crawls routinely ingest benchmark items \citep{oren2024proving}, and practitioners cannot determine how much of a reported score reflects genuine capability versus memorization \citep{hendrycks2021mmlu,chang2025benchmarking}. Despite twenty mitigation strategies \citep{sun2025emperor}, contamination-free benchmarks \citep{white2024livebench}, and dynamic regeneration \citep{dong_2024_cdd}, a fundamental question remains: what is the actual effect of contamination on aggregate scores? The implicit assumption is uniform inflation, but this has never been tested across model families.
+4	
+5	We perform controlled SFT injection (LoRA, five dosage levels) into six models spanning five independent families from five labs (Alibaba, Microsoft, Allen AI, Google, TII) and discover a spectrum of dose-response patterns (Figure~\ref{fig:dose_response})---from immunity (Phi-4, $\pm$0.5pp) and benefit ($+$3--4pp, three families) to collapse in the 65--70\% baseline band (Qwen-14B, $-$9 to $-$25pp across seeds).
+6	
+7	\begin{figure*}[t]
+8	\centering
+9	\includegraphics[width=\textwidth]{figures/fig_dose_response.pdf}
+10	\caption{MMLU accuracy vs.\ contamination dosage (5-shot, seed$=$42; Falcon3 in Table~\ref{tab:taxonomy}; cross-seed patterns in Table~\ref{tab:cross_seed}). Vulnerability concentrates in the 65--70\% baseline band; models at extreme baselines show limited sensitivity. Qwen-14B is 3$\times$ more fragile than 7B. ARC-Challenge patterns in Appendix~\ref{sec:arc_cross_benchmark}.}
+11	\label{fig:dose_response}
+12	\end{figure*}
+13	
+14	In our six-family sample, contamination vulnerability concentrates in the 65--70\% MMLU baseline band: below it, models benefit (OLMo-2 $+$3.2pp, Falcon3 $+$4.2pp, Gemma-2 $+$3.8pp); above it, they are harmed or immune. Counter-intuitively, the 14B model is 3$\times$ more fragile than 7B. ContamCal, our two-stage pipeline combining multi-signal item filtering with contamination-augmented IRT (2PL+$\gamma_k$), enables this characterization.
+15	
+16	Our contributions:
+17	\begin{enumerate}
+18	    \item \textbf{Dose-response profiles with cross-seed and cross-benchmark validation.} Controlled injection across five families reveals a spectrum of dose-response patterns; in our six-family sample, vulnerability concentrates in the 65--70\% MMLU baseline band. Out-of-sample validation on LLaMA-3.1-8B provides preliminary evidence for generalizability. Cross-benchmark transfer reveals three family-specific patterns on GSM8K (null, consistent, directional reversal). Multi-seed evaluation ($n\!=\!3$) shows direction is reproducible but magnitude is seed-sensitive. Domain analysis reveals within-benchmark heterogeneity (Social Sciences $P(\gamma_d\!<\!0) = 99.7\%$).
+19	    \item \textbf{No detectable item-specific memorization at current power levels.} Difference-in-differences analysis on 14{,}042 MMLU items finds no differential accuracy gain for contaminated vs.\ clean items in any model family (MDES 1.2--2.0pp on MMLU; ARC power is limited at 2.3--5.6pp). Results are consistent with global capability modulation.
+20	    \item \textbf{Signal failure characterization.} Min-K\%++ \citep{zhang_2024_minkpp} exhibits directional reversal at 0.5B (paired Cohen's $d = -1.98$ at d100; $|d| > 1.4$ across benchmarks at d005). RRF-guided item filtering is a prerequisite for IRT convergence ($\Delta\tau = 0.18$ vs.\ size-matched random). Simulation establishes $\gamma$ recovery requires $J \geq 50$ at AUC $\geq 0.55$, above current practice ($J = 8$--$30$).
+21	\end{enumerate}
+22	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "6755f776-5e16-4b1e-a752-f6cdc49a6dd3",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\\label{sec:introduction}\n\nBenchmark scores drive model selection and research priorities for large language models, yet training data contamination is pervasive: trillion-token web crawls routinely ingest benchmark items \\citep{oren2024proving}, and practitioners cannot determine how much of a reported score reflects genuine capability versus memorization \\citep{hendrycks2021mmlu,chang2025benchmarking}. Despite twenty mitigation strategies \\citep{sun2025emperor}, contamination-free benchmarks \\citep{white2024livebench}, and dynamic regeneration \\citep{dong_2024_cdd}, a fundamental question remains: what is the actual effect of contamination on aggregate scores? The implicit assumption is uniform inflation, but this has never been tested across model families.\n\nWe perform controlled SFT injection (LoRA, five dosage levels) into six models spanning five independent families from five labs (Alibaba, Microsoft, Allen AI, Google, TII) and discover a spectrum of dose-response patterns (Figure~\\ref{fig:dose_response})---from immunity (Phi-4, $\\pm$0.5pp) and benefit ($+$3--4pp, three families) to collapse in the 65--70\\% baseline band (Qwen-14B, $-$9 to $-$25pp across seeds).\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig_dose_response.pdf}\n\\caption{MMLU accuracy vs.\\ contamination dosage (5-shot, seed$=$42; Falcon3 in Table~\\ref{tab:taxonomy}; cross-seed patterns in Table~\\ref{tab:cross_seed}). Vulnerability concentrates in the 65--70\\% baseline band; models at extreme baselines show limited sensitivity. Qwen-14B is 3$\\times$ more fragile than 7B. ARC-Challenge patterns in Appendix~\\ref{sec:arc_cross_benchmark}.}\n\\label{fig:dose_response}\n\\end{figure*}\n\nIn our six-family sample, contamination vulnerability concentrates in the 65--70\\% MMLU baseline band: below it, models benefit (OLMo-2 $+$3.2pp, Falcon3 $+$4.2pp, Gemma-2 $+$3.8pp); above it, they are harmed or immune. Counter-intuitively, the 14B model is 3$\\times$ more fragile than 7B. ContamCal, our two-stage pipeline combining multi-signal item filtering with contamination-augmented IRT (2PL+$\\gamma_k$), enables this characterization.\n\nOur contributions:\n\\begin{enumerate}\n    \\item \\textbf{Dose-response profiles with cross-seed and cross-benchmark validation.} Controlled injection across five families reveals a spectrum of dose-response patterns; in our six-family sample, vulnerability concentrates in the 65--70\\% MMLU baseline band. Out-of-sample validation on LLaMA-3.1-8B provides preliminary evidence for generalizability. Cross-benchmark transfer reveals three family-specific patterns on GSM8K (null, consistent, directional reversal). Multi-seed evaluation ($n\\!=\\!3$) shows direction is reproducible but magnitude is seed-sensitive. Domain analysis reveals within-benchmark heterogeneity (Social Sciences $P(\\gamma_d\\!<\\!0) = 99.7\\%$).\n    \\item \\textbf{No detectable item-specific memorization at current power levels.} Difference-in-differences analysis on 14{,}042 MMLU items finds no differential accuracy gain for contaminated vs.\\ clean items in any model family (MDES 1.2--2.0pp on MMLU; ARC power is limited at 2.3--5.6pp). Results are consistent with global capability modulation.\n    \\item \\textbf{Signal failure characterization.} Min-K\\%++ \\citep{zhang_2024_minkpp} exhibits directional reversal at 0.5B (paired Cohen's $d = -1.98$ at d100; $|d| > 1.4$ across benchmarks at d005). RRF-guided item filtering is a prerequisite for IRT convergence ($\\Delta\\tau = 0.18$ vs.\\ size-matched random). Simulation establishes $\\gamma$ recovery requires $J \\geq 50$ at AUC $\\geq 0.55$, above current practice ($J = 8$--$30$).\n\\end{enumerate}\n",
+      "numLines": 22,
+      "startLine": 1,
+      "totalLines": 22
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01C9C4KfTEaJza6aJnTdrR9X`</summary>
+
+```json
+{
+  "pattern": "**/falcon3_algorithm1_classification*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "ad0e9fa0-8acd-4684-9f9c-0f5b9b57bb90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VbgT12AP6owx5DjeM8nuDc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2167,
+      "cache_read_input_tokens": 25834,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2167
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T18:07:02.070Z_
+
+<details><summary>↩ Tool result · `toolu_01C9C4KfTEaJza6aJnTdrR9X`</summary>
+
+```text
+artifacts/falcon3_algorithm1_classification.md
+artifacts/_project/report/falcon3_algorithm1_classification.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "09f6814e-90d8-4300-bc59-a7fb26e6f288",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/falcon3_algorithm1_classification.md",
+      "artifacts/_project/report/falcon3_algorithm1_classification.md"
+    ],
+    "durationMs": 69,
+    "numFiles": 2,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the Falcon3 classification data and check what the current state of the taxonomy is. I also need to check:
+
+1. "N=6 families" in results.tex L29 - The text says "These empirical profiles are preliminary at $N\!=\!6$ families." Looking at Table 1, there are 6 models listed (Phi-4, Qwen-14B, Qwen-7B, Gemma-2, Falcon3, OLMo-2). The text also says "six models from five independent families" (L4). Looking at the table, Qwen-14B and Qwen-7B are the same family (Qwen), so it's 6 models from 5 families. 
+
+Wait, there's a discrepancy here - line 29 explicitly says "families" not "models", but when I count the families in the table (Microsoft, Alibaba, Google, TII, and Allen AI), that's only 5 families, not 6. Let me verify this is actually an error in the paper. Right, so counting the six models across those five families checks out—Phi-4 from Microsoft, both Qwen variants from Alibaba, Gemma-2 from Google, Falcon3 from TII, and OLMo-2 from Allen AI. That means L29's reference to six families must be accounting for LLaMA-3.1 as the out-of-sample validation set, bringing the total to five training families plus one additional family. Looking at Table 1, it doesn't include LLaMA-3.1 since that's reserved for out-of-sample validation later. So the main analysis has 6 models across 5 families, with Falcon3 already included in the table. The issue is that "N=6 families" on L29 is wrong—it should say either "N=6 models" or "N=5 families" depending on what the paragraph is actually measuring. Looking at the OOS validation paragraph, LLaMA-3.1 is explicitly counted as a separate family, which means the full taxonomy actually covers 6 families total—not 5 as I initially thought. So "N=6 families" in the text is correct when including the out-of-sample model, giving us 7 models across 6 distinct families. Looking at the evidence more carefully, the discrepancy hinges on whether N=6 refers only to Table 1's families or includes the out-of-sample validation. The sentence placement right after Table 1 suggests it's counting the 5 families in the main analysis, but L40 mentions "6/7 families" in a different context, which complicates the interpretation. I need to determine if the N=6 statement is actually accurate or if it's an error in the original text. I see the discrepancy now—when they mention "6/7 families" for the MCQ format agreement, they're likely counting individual model variants separately rather than grouping by family. So Qwen appears as both the 7B and 14B versions, giving them 7 distinct entries for the ARC consistency analysis, whereas the broader family count is 6.
+
+But then in Table 1, they use "families" to refer to the 6 models shown, even though strictly speaking there are only 5 unique families since Qwen is represented twice. The terminology shifts depending on context—sometimes "families" means unique organizations/architectures, and sometimes it means individual model instances. Given that N=6 matches the table entries exactly, I think they're using "families" loosely to mean the data points in the table, despite the introduction explicitly stating "five independent families." The total count depends on whether we're including LLaMA-3.1 as an out-of-sample family, which would give us 6 families total (5 in-sample + 1 OOS) and 7 models. Now I need to check the Falcon3 classification data to verify what "3/5 families" actually means for the ARC consistency claim, since adding Falcon3 would change the denominator. I'm noticing a discrepancy between two statements about family consistency. Line 32 mentions ARC direction is consistent for 3/5 families, but line 40 claims MMLU-ARC agreement at 86% across 6/7 families. These numbers don't align unless the family count changed—likely line 32 is from an earlier version before Falcon3 and LLaMA-3.1 were added to the analysis. I should check the actual data in the Falcon3 classification file and ARC appendix to clarify what the real numbers are, and then look at the Figure 1 caption issue in the introduction.
+
+tex file to see if Falcon3 is actually included in the figure or just the table.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "f5153307-4989-4c56-8fd8-1fc61e5969e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KsRzKzjssH9Ha5LWw1fc1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5554,
+      "cache_read_input_tokens": 28001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+让我读取 Falcon3 分类数据和 ARC 附录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "6e190591-75cb-4795-b20e-6113bc445201",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KsRzKzjssH9Ha5LWw1fc1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5554,
+      "cache_read_input_tokens": 28001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Ls2ptFZpAYdUNSDzZE1Bzn`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/falcon3_algorithm1_classification.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "041607e4-264d-4a17-9b45-95994465d0fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KsRzKzjssH9Ha5LWw1fc1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5554,
+      "cache_read_input_tokens": 28001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T18:08:14.058Z_
+
+<details><summary>↩ Tool result · `toolu_01Ls2ptFZpAYdUNSDzZE1Bzn`</summary>
+
+````text
+1	# Falcon3-7B-Base Algorithm 1 Classification
+2	
+3	## Parameters
+4	τ = 1.0pp, σ = 5.0pp (default thresholds)
+5	
+6	## MMLU 5-shot Classification
+7	- Δ(d100−d000) = **+4.19 pp**
+8	- Pattern: **Benefit**
+9	- Confidence: 1.000
+10	- Trajectory: Monotonic increase across all 5 dosages. Steps: d000→d005 +0.25pp, d005→d025 +2.21pp, d025→d050 +0.86pp, d050→d100 +0.87pp. First-half gain (d000→d025) = +2.46pp, second-half gain (d025→d100) = +1.73pp, ratio = 0.703 (above 0.3 saturation threshold). No dips below baseline.
+11	
+12	## ARC 25-shot Classification
+13	- Δ(d100−d000) = **+4.01 pp**
+14	- Pattern: **Benefit-sat**
+15	- Confidence: 0.601
+16	- Trajectory: Non-monotonic — d025→d050 dip of −1.53pp, then recovery d050→d100 +2.30pp. First-half gain (d000→d025) = +3.24pp, second-half gain (d025→d100) = +0.77pp, ratio = 0.238 (below 0.3 saturation threshold, triggers Benefit-sat). Late gain (d050→d100) = +2.30pp is above 0.5pp floor, so saturation is driven by the second/first ratio, not late stall.
+17	
+18	## Combined Classification
+19	- **MMLU**: Benefit (strong, monotonic)
+20	- **ARC**: Benefit-sat (saturating, non-monotonic mid-trajectory)
+21	- Overall: **Benefit / Benefit-sat** — Falcon3 benefits from contaminated SFT data on both benchmarks, with ARC showing early saturation.
+22	
+23	## Cross-Family Comparison (MMLU, sorted by Δ)
+24	
+25	| Family | d000 | d100 | Δ(d100−d000) | Pattern | Confidence |
+26	|--------|------|------|---------------|---------|------------|
+27	| Qwen2.5-14B | 69.44 | 60.07 | −9.37 pp | U-collapse | 0.937 |
+28	| Qwen2.5-7B | 66.11 | 64.33 | −1.78 pp | V-recovery | 0.618 |
+29	| Phi-4 14.7B | 76.44 | 76.27 | −0.17 pp | Immune | 0.915 |
+30	| LLaMA-3.1 8B | 53.50 | 52.81 | −0.69 pp | Immune | — |
+31	| OLMo-2 7B | 53.79 | 57.00 | +3.21 pp | Benefit-sat | 0.515 |
+32	| Gemma-2 9B | 61.86 | 65.62 | +3.76 pp | Benefit | 1.000 |
+33	| **Falcon3-7B** | **58.77** | **62.96** | **+4.19 pp** | **Benefit** | **1.000** |
+34	
+35	Falcon3 has the largest positive MMLU delta among all 7 families, slightly exceeding Gemma-2 (+3.76pp). Both are high-confidence Benefit patterns. Falcon3 slots into the "Benefit cluster" alongside Gemma-2 and OLMo-2, distinct from the Immune models (Phi-4, LLaMA-3.1) and negative-direction models (Qwen-14B Collapse, Qwen-7B V-recovery). Note: LLaMA-3.1 only has 3 dosage points (d000/d025/d100); confidence not computed.
+36	
+37	## Dose-Response Profiles
+38	
+39	```
+40	MMLU 5-shot:
+41	  d000  d005  d025  d050  d100
+42	  58.77 59.02 61.23 62.09 62.96  Falcon3  [Benefit, +4.19pp]
+43	  61.86 63.56 64.19 64.73 65.62  Gemma-2  [Benefit, +3.76pp]
+44	  53.79 55.17 56.06 56.53 57.00  OLMo-2   [Benefit-sat, +3.21pp]
+45	
+46	ARC 25-shot:
+47	  d000  d005  d025  d050  d100
+48	  81.57 83.11 84.81 83.28 85.58  Falcon3  [Benefit-sat, +4.01pp]
+49	```
+50	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "c3877b7b-8c5b-4945-a245-b459a16f156f",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/falcon3_algorithm1_classification.md",
+      "content": "# Falcon3-7B-Base Algorithm 1 Classification\n\n## Parameters\nτ = 1.0pp, σ = 5.0pp (default thresholds)\n\n## MMLU 5-shot Classification\n- Δ(d100−d000) = **+4.19 pp**\n- Pattern: **Benefit**\n- Confidence: 1.000\n- Trajectory: Monotonic increase across all 5 dosages. Steps: d000→d005 +0.25pp, d005→d025 +2.21pp, d025→d050 +0.86pp, d050→d100 +0.87pp. First-half gain (d000→d025) = +2.46pp, second-half gain (d025→d100) = +1.73pp, ratio = 0.703 (above 0.3 saturation threshold). No dips below baseline.\n\n## ARC 25-shot Classification\n- Δ(d100−d000) = **+4.01 pp**\n- Pattern: **Benefit-sat**\n- Confidence: 0.601\n- Trajectory: Non-monotonic — d025→d050 dip of −1.53pp, then recovery d050→d100 +2.30pp. First-half gain (d000→d025) = +3.24pp, second-half gain (d025→d100) = +0.77pp, ratio = 0.238 (below 0.3 saturation threshold, triggers Benefit-sat). Late gain (d050→d100) = +2.30pp is above 0.5pp floor, so saturation is driven by the second/first ratio, not late stall.\n\n## Combined Classification\n- **MMLU**: Benefit (strong, monotonic)\n- **ARC**: Benefit-sat (saturating, non-monotonic mid-trajectory)\n- Overall: **Benefit / Benefit-sat** — Falcon3 benefits from contaminated SFT data on both benchmarks, with ARC showing early saturation.\n\n## Cross-Family Comparison (MMLU, sorted by Δ)\n\n| Family | d000 | d100 | Δ(d100−d000) | Pattern | Confidence |\n|--------|------|------|---------------|---------|------------|\n| Qwen2.5-14B | 69.44 | 60.07 | −9.37 pp | U-collapse | 0.937 |\n| Qwen2.5-7B | 66.11 | 64.33 | −1.78 pp | V-recovery | 0.618 |\n| Phi-4 14.7B | 76.44 | 76.27 | −0.17 pp | Immune | 0.915 |\n| LLaMA-3.1 8B | 53.50 | 52.81 | −0.69 pp | Immune | — |\n| OLMo-2 7B | 53.79 | 57.00 | +3.21 pp | Benefit-sat | 0.515 |\n| Gemma-2 9B | 61.86 | 65.62 | +3.76 pp | Benefit | 1.000 |\n| **Falcon3-7B** | **58.77** | **62.96** | **+4.19 pp** | **Benefit** | **1.000** |\n\nFalcon3 has the largest positive MMLU delta among all 7 families, slightly exceeding Gemma-2 (+3.76pp). Both are high-confidence Benefit patterns. Falcon3 slots into the \"Benefit cluster\" alongside Gemma-2 and OLMo-2, distinct from the Immune models (Phi-4, LLaMA-3.1) and negative-direction models (Qwen-14B Collapse, Qwen-7B V-recovery). Note: LLaMA-3.1 only has 3 dosage points (d000/d025/d100); confidence not computed.\n\n## Dose-Response Profiles\n\n```\nMMLU 5-shot:\n  d000  d005  d025  d050  d100\n  58.77 59.02 61.23 62.09 62.96  Falcon3  [Benefit, +4.19pp]\n  61.86 63.56 64.19 64.73 65.62  Gemma-2  [Benefit, +3.76pp]\n  53.79 55.17 56.06 56.53 57.00  OLMo-2   [Benefit-sat, +3.21pp]\n\nARC 25-shot:\n  d000  d005  d025  d050  d100\n  81.57 83.11 84.81 83.28 85.58  Falcon3  [Benefit-sat, +4.01pp]\n```\n",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 50
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UqNSPiVE4To1VFaj4Ldy2C`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "f0e29212-29c3-468f-926f-a8d335608989",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KsRzKzjssH9Ha5LWw1fc1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5554,
+      "cache_read_input_tokens": 28001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T18:08:14.663Z_
+
+<details><summary>↩ Tool result · `toolu_01UqNSPiVE4To1VFaj4Ldy2C`</summary>
+
+```text
+1	\appendix
+2	
+3	\section{Cross-Benchmark Transfer Details}
+4	\label{sec:cross_benchmark_details}
+5	
+6	\begin{table}[h]
+7	\centering
+8	\caption{Cross-benchmark transfer: MMLU vs.\ GSM8K accuracy change at d100. LLaMA-3.1 shows the strongest asymmetric transfer ($+$16.4pp GSM8K despite MMLU immunity). Gemma-2 excluded due to CoT collapse under MC-format SFT.}
+9	\label{tab:gsm8k_transfer}
+10	\footnotesize
+11	\begin{tabular}{lcccl}
+12	\toprule
+13	Model & MMLU $\Delta$ & GSM8K $\Delta$ & Range & Transfer \\
+14	\midrule
+15	Phi-4 14.7B & $\pm$0.5pp & $-$0.5pp & --- & Null \\
+16	OLMo-2 7B & $+$3.2pp & $+$2.1pp$^{\S}$ & --- & Consistent \\
+17	Qwen-7B & $-$1.8pp & $+$11.1pp & $\pm$0.9 & Reversal \\
+18	Qwen-14B & $-$9.4pp & $+$13.1pp & $\pm$7.4 & Reversal$^{\dagger}$ \\
+19	LLaMA-3.1 8B & $-$0.7pp & $+$16.4pp$^{\ddagger}$ & --- & Asymmetric \\
+20	\bottomrule
+21	\multicolumn{5}{l}{\scriptsize $^{\dagger}$d000 baseline seed-sensitive (s42$=$60.8\% vs.\ s123$=$76.7\%); d100 stable ($82\pm0.5$\%).} \\
+22	\multicolumn{5}{l}{\scriptsize $^{\S}$Mean across seeds: $+$2.1pp (s42: $+$1.7pp, s123: $+$2.4pp); s0 shows $+$9.2pp.} \\
+23	\multicolumn{5}{l}{\scriptsize $^{\ddagger}$Single seed (s0); MMLU Immune but strongest GSM8K transfer across all families.}
+24	\end{tabular}
+25	\end{table}
+26	
+27	\section{ARC-Challenge Cross-Benchmark Analysis}
+28	\label{sec:arc_cross_benchmark}
+29	
+30	ARC-Challenge (25-shot, 1{,}172 items) patterns under s42 are directionally consistent with MMLU for five of six models: OLMo-2 benefits ($+$3.9pp), Falcon3 benefits ($+$4.0pp), Qwen-7B ($-$2.9pp) and Qwen-14B ($-$3.4pp) are harmed, Phi-4 remains immune ($+$0.6pp). Gemma-2 achieves $n\!=\!3$ on ARC: s42 exhibits a 16pp oscillation artifact (endpoint $-$1.20pp), s0 shows harm ($-$1.97pp), and s123 shows benefit ($+$2.73pp). The $n\!=\!3$ ARC mean is $-$0.15pp (SD$=$2.41pp; BCa 95\% CI [$-$1.97, $+$1.42]), with cross-seed direction inconsistent ($-$/$-$/$+$). This contrasts with MMLU, where all three seeds show benefit (mean $+$2.38pp, CI [$+$1.49, $+$3.14] excludes zero), making Gemma-2 the clearest example of benchmark-conditional contamination effects. Bootstrap stability is substantially lower than MMLU (OLMo-2: 53.3\%, Gemma-2: 62.7\%) due to the smaller item pool (1{,}172 vs.\ 14{,}042).
+31	
+32	\paragraph{Cross-seed ARC consistency.}
+33	Phi-4 is the strongest anchor with $n\!=\!3$ on both benchmarks: ARC mean $\Delta = +0.66$pp (SD$=$0.18pp; s0 $+$0.51, s42 $+$0.60, s123 $+$0.86; BCa 95\% CI [$+$0.51, $+$0.77]), MMLU mean $\Delta = +0.73$pp---cross-benchmark agreement within 0.07pp. While statistically detectable on ARC (CI excludes zero, unlike MMLU CI [$-$0.17, $+$1.39]), the effect ($+$0.66pp) is too small to meaningfully inflate benchmark scores, consistent with the Immune classification. Qwen-7B achieves $n\!=\!3$ on ARC: mean $\Delta = -2.42$pp (SD$=$0.51pp; s0 $-$1.88, s42 $-$2.90, s123 $-$2.47; BCa 95\% CI [$-$2.90, $-$2.08]), confirming persistent harm. The d005 V-dip severity is seed-dependent ($-$1.8pp vs.\ $-$4.7pp). Qwen-14B achieves $n\!=\!3$ on both benchmarks: MMLU mean $\Delta = -15.7$pp (BCa CI [$-$24.99, $-$10.49]; s0 most extreme at $-$25.0pp due to position bias amplification); ARC mean $\Delta = -5.03$pp (BCa CI [$-$9.38, $-$2.76]). Both CIs exclude zero, confirming Collapse. OLMo-2 achieves $n\!=\!3$ on ARC: mean $\Delta = +3.44$pp (SD$=$0.52pp; s0 $+$3.50, s42 $+$3.92, s123 $+$2.90). Despite being the most seed-sensitive family on MMLU (SD$=$1.9pp), OLMo-2 is remarkably stable on ARC (SD$=$0.52pp)---seed sensitivity is itself benchmark-dependent, likely modulated by item count and difficulty distribution. Using multi-seed MMLU means ($+$1.4pp), direction is consistently positive on both benchmarks, illustrating why cross-benchmark comparisons require multi-seed aggregation (\S\ref{sec:cross_seed}). ARC dose-response trajectories (s123): Qwen-14B 90.4$\to$91.5$\to$89.8$\to$88.7$\to$87.3 (d005 transient spike then monotonic decline, consistent with MMLU s123 shape); Qwen-7B 87.1$\to$82.4$\to$85.2$\to$85.1$\to$84.7 (d005 sharp drop then partial recovery); OLMo-2 76.9$\to$77.2$\to$76.6$\to$79.2$\to$79.8 (monotonic rise).
+34	
+35	Cross-seed direction on ARC is consistent for 4/5 families: Phi-4 and OLMo-2 positive across three seeds each, Qwen-7B and Qwen-14B negative across three seeds each. Gemma-2 is the exception ($-$/$-$/$+$ across seeds; mean $-$0.15pp). This contrasts with MMLU, where only 2/5 families achieve strict sign consistency (\S\ref{sec:cross_seed}). ARC yields tighter confidence intervals and higher cross-seed consistency than MMLU, likely because its smaller item pool (1{,}172 vs.\ 14{,}042) amplifies the contamination signal---suggesting that benchmark size modulates not only effect magnitude but also statistical detectability.
+36	
+37	Cross-benchmark direction (MMLU vs.\ ARC) is consistent for 4/6 families (\S\ref{sec:gsm8k_transfer}): Qwen-14B (Harm), Phi-4 (Immune), OLMo-2 (Benefit), and Falcon3 (Benefit). Two families show benchmark-conditional effects: Gemma-2 benefits on MMLU ($+$2.38pp, CI excludes zero) but shows no significant ARC effect ($-$0.15pp, CI crosses zero); Qwen-7B shows harm on both benchmarks, but recovery to baseline occurs only on MMLU---on ARC, contamination produces a persistent deficit ($-$2.4pp mean across three seeds). Effect magnitudes remain benchmark-specific: Qwen-14B suffers $-$5.0pp on ARC compared to $-$15.7pp on MMLU (3.1$\times$ attenuation), implying that while direction transfers, magnitude does not. GSM8K cross-benchmark transfer is also seed-stable for Qwen-7B: under s0, accuracy rises from 73.3\% to 81.2\% ($+$7.9pp, monotonic), consistent with the directional reversal observed under s42 ($+$11.1pp; Table~\ref{tab:gsm8k_transfer}).
+38	
+39	\begin{figure}[h]
+40	\centering
+41	\includegraphics[width=\columnwidth]{figures/fig_arc_dose_response.pdf}
+42	\caption{ARC-Challenge accuracy vs.\ contamination dosage (25-shot). Patterns are directionally consistent with MMLU (Figure~\ref{fig:dose_response}) for 4/5 models.}
+43	\label{fig:dose_response_arc}
+44	\end{figure}
+45	
+46	\section{GSM8K Dose-Response Transfer}
+47	\label{sec:gsm8k_dose_response}
+48	
+49	Table~\ref{tab:gsm8k_dose} reports GSM8K accuracy across contamination dosages for all six families (single seed, s0). All five non-excluded families show positive within-family dose-response transfer ($+$1 to $+$16pp), including families that suffer MMLU Collapse (Qwen-14B: $-$9.4pp MMLU, $+$7.4pp GSM8K) or are MMLU-Immune (LLaMA-3.1: $-$0.7pp MMLU, $+$16.4pp GSM8K---the strongest transfer effect). This directional reversal---MMLU-targeted contamination improving an unrelated open-ended math benchmark---strengthens the global capability modulation interpretation. Within-family dose-response patterns (direction and relative magnitude of $\Delta$) are the primary finding, as all dosage levels for each family use identical evaluation settings.
+50	
+51	\begin{table}[h]
+52	\centering
+53	\caption{GSM8K accuracy (\%) across MMLU contamination dosages (seed$=$0). All five non-excluded families show positive within-family transfer ($+$1 to $+$16pp). Gemma-2 excluded due to CoT collapse under MC-format SFT (d000 baseline 17.8\%).}
+54	\label{tab:gsm8k_dose}
+55	\footnotesize
+56	\begin{tabular}{lcccccc}
+57	\toprule
+58	Family & d000 & d005 & d025 & d050 & d100 & $\Delta$ \\
+59	\midrule
+60	Phi-4 14.7B & 84.46 & --- & --- & --- & 85.60 & $+$1.14 \\
+61	Qwen2.5-14B & 74.98 & 71.19 & 79.30 & 81.05 & 82.41 & $+$7.43 \\
+62	Qwen2.5-7B & 73.31 & 78.32 & 78.24 & 79.38 & 81.20 & $+$7.89 \\
+63	OLMo-2 7B & 60.58 & --- & --- & --- & 69.75 & $+$9.17$^{\ddagger}$ \\
+64	LLaMA-3.1 8B & 38.74 & --- & 52.16 & --- & 55.12 & $+$16.38 \\
+65	Gemma-2 9B & 17.82$^{\dagger}$ & --- & --- & --- & --- & --- \\
+66	\bottomrule
+67	\multicolumn{7}{l}{\scriptsize $^{\dagger}$CoT collapse under MC-format SFT; excluded from analysis.} \\
+68	\multicolumn{7}{l}{\scriptsize $^{\ddagger}$Seed-sensitive: s0 $+$9.17pp vs.\ s42 $+$2.1pp (Table~\ref{tab:gsm8k_transfer}).}
+69	\end{tabular}
+70	\end{table}
+71	
+72	GSM8K evaluations use \texttt{max\_new\_tokens=256}, which may truncate chain-of-thought reasoning for some models. Absolute accuracy is therefore a lower bound; cross-family comparisons of absolute values should be interpreted with caution. Within-family dose-response patterns (direction and relative magnitude of $\Delta$) are the primary finding, as all dosage levels for each family use identical evaluation settings.
+73	
+74	\section{Signal Reliability Across Scales}
+75	\label{sec:signal_reliability_appendix}
+76	
+77	\begin{figure}[h]
+78	\centering
+79	\includegraphics[width=\columnwidth]{figures/fig_signal_heatmap.pdf}
+80	\caption{Detection signal AUC across scale, dosage, and signal type. S1 achieves AUC $>0.95$ at all scales; S2 (Min-K\%++) reverses at 0.5B; S4 is near-random below 1.5B.}
+81	\label{fig:signal_heatmap}
+82	\end{figure}
+83	
+84	\section{RRF Signal Ablation}
+85	\label{sec:rrf_ablation}
+86	
+87	\paragraph{Signal orthogonality.}
+88	Table~\ref{tab:signal_correlation} reports pairwise Spearman rank correlations between detection signals at the item level, averaged across 31 models. All pairwise $|\rho| < 0.06$, confirming that S1, S2, and S4 capture orthogonal aspects of contamination exposure.
+89	
+90	\begin{table}[h]
+91	\centering
+92	\caption{Pairwise Spearman $\rho$ between detection signals (item-level, averaged across 31 models). All $|\rho| < 0.06$.}
+93	\label{tab:signal_correlation}
+94	\footnotesize
+95	\begin{tabular}{lccc}
+96	\toprule
+97	Signal Pair & MMLU & ARC & GSM8K \\
+98	\midrule
+99	S1--S2 & $-$0.044 & $-$0.019 & $-$0.022 \\
+100	S1--S4 & $+$0.038 & $+$0.009 & $+$0.053 \\
+101	S2--S4 & $-$0.001 & $+$0.012 & $+$0.007 \\
+102	\bottomrule
+103	\end{tabular}
+104	\end{table}
+105	
+106	\paragraph{Leave-one-out ablation.}
+107	Table~\ref{tab:rrf_ablation} reports the effect of removing each signal from the RRF ensemble. $\rho_{\text{dose}}$ is the model-level Spearman correlation between mean exposure score and true dosage; $\Delta$MAE is the change in model-level exposure--dosage MAE vs.\ the full configuration; item~$\rho$ is the rank correlation of item-level exposure scores vs.\ the full configuration.
+108	
+109	\begin{table}[h]
+110	\centering
+111	\caption{Leave-one-signal-out RRF ablation (31 models, $\kappa\!=\!60$).}
+112	\label{tab:rrf_ablation}
+113	\footnotesize
+114	\begin{tabular}{lccc}
+115	\toprule
+116	Configuration & $\rho_{\text{dose}}$ & $\Delta$MAE & Item $\rho$ \\
+117	\midrule
+118	\multicolumn{4}{l}{\textit{MMLU}} \\
+119	Full (S1+S2+S4) & 0.049 & --- & --- \\
+120	Drop S1 & 0.045 & $+$0.066 & 0.782 \\
+121	Drop S2 & \textbf{0.471} & $+$0.045 & 0.773 \\
+122	Drop S4 & 0.084 & $+$0.079 & 0.786 \\
+123	\midrule
+124	\multicolumn{4}{l}{\textit{ARC-Challenge}} \\
+125	Full (S1+S2+S4) & $-$0.003 & --- & --- \\
+126	Drop S1 & $-$0.006 & $-$0.054 & 0.784 \\
+127	Drop S2 & 0.029 & $-$0.079 & 0.786 \\
+128	Drop S4 & 0.001 & $-$0.004 & 0.784 \\
+129	\bottomrule
+130	\end{tabular}
+131	\end{table}
+132	
+133	Dropping S2 (Min-K\%++) causes $\rho_{\text{dose}}$ to jump from 0.049 to 0.471 on MMLU, revealing that S2 actively suppresses model-level dosage discrimination. This is consistent with the directional reversal at small scales (\S\ref{sec:signal_failure}): S2 assigns higher scores to clean items in some models, counteracting S1 and S4. Despite this model-level harm, S2 provides unique item-level information (item~$\rho = 0.773$, i.e., ${\sim}$23\% of item rankings change upon removal). Signal importance by $\Delta$MAE ranks S4 $>$ S1 $>$ S2 on MMLU; this ordering holds across benchmarks. The near-zero $\rho_{\text{dose}}$ (0.049 on MMLU, $-$0.003 on ARC) confirms that RRF exposure is an item-level tool: it identifies which items within a model are most likely contaminated, but cannot distinguish dosage levels across models.
+134	
+135	\paragraph{Signal contribution to $\gamma$ estimation.}
+136	Leave-one-out ablation on $\gamma$ recovery (Qwen2.5, $J=16$) confirms S4 (self-critique) as the dominant contributor: removing S4 incurs $4.9\times$ the $\gamma$ estimation loss of removing S2 (Min-K\%++). No signal is pure noise: the worst single-signal $\rho(E,\tau)$ is 0.072--0.118 (S2), still $5.5\times$ the random baseline. Marginal returns from three to two signals are negligible (dropping S2 leaves $\rho$ effectively unchanged), suggesting the current three-signal ensemble is near-optimal for the Qwen2.5 family.
+137	
+138	\section{Identifiability Simulation}
+139	\label{sec:identifiability_appendix}
+140	
+141	\begin{figure}[h]
+142	\centering
+143	\includegraphics[width=\columnwidth]{figures/fig_identifiability_heatmap.pdf}
+144	\caption{$\gamma$ recovery as a function of signal AUC and ensemble size $J$. Bias $<0.05$ and 95\% CI coverage $\geq90\%$ require $J\geq50$ at AUC$=$0.55, but only $J\geq16$ at AUC$\geq$0.90.}
+145	\label{fig:identifiability_heatmap}
+146	\end{figure}
+147	
+148	Fisher information $\mathcal{I}(\gamma) \propto \text{Var}(e_{\cdot i})$ collapses when signal AUC is low. At AUC$=$0.55, bias $< 0.05$ and 95\% CI coverage $\geq 90\%$ require $J \geq 50$; at AUC$\geq$0.90 (as S1 achieves in practice), $J = 16$ suffices. CI width scales as $J^{-0.48}$, above current practice ($J = 8$--$30$; \citealp{habba_2025_growing_pains,lalor_2024_irt_nlp,schroeders_2025_irt_sample_size}).
+149	
+150	\section{4PL Extension}
+151	\label{sec:4pl_details}
+152	
+153	For MC-format benchmarks where guessing and ceiling effects are non-negligible, we extend to:
+154	\begin{equation}
+155	    P(y_{ijk} = 1) = c_i + (d_i - c_i)\,\sigma\!\bigl(a_i(\theta_j - b_i) + \gamma_k \cdot e_{ij}\bigr),
+156	\end{equation}
+157	with $c_i \sim \text{Beta}(5,20)$ and $d_i \sim \text{Beta}(20,5)$. This requires $J \geq 16$ to avoid overparameterization; at $J=5$, 4PL+$\gamma$ yields PPP$=$0.000 and MAE degradation from 0.004 to 0.068. Our domain-level analyses use 2PL+$\gamma$ at $J=13$; pooled calibration uses $J=16$.
+158	
+159	\section{S4 Self-Critique Signal Details}
+160	\label{sec:s4_details}
+161	
+162	S4 prompts the model with ``Is the following answer correct?'' followed by the question and candidate answer. We extract YES/NO logits to compute $P(\text{YES})$, then score each item as the negative entropy of this distribution: $\text{S4}_i = -[-p\log p - (1-p)\log(1-p)]$ where $p = P(\text{YES})$. Scores near zero indicate high confidence (potentially contaminated); large negative values indicate uncertainty.
+163	
+164	\section{Training Convergence}
+165	\label{sec:training_convergence}
+166	
+167	All SFT configurations converged. Final training loss increases monotonically with dosage (d000: 1.08, d005: 1.08, d025: 1.14, d100: 1.17 averaged across seeds), consistent with distribution shift from benchmark item injection.
+168	
+169	\section{Model Exclusion Details}
+170	\label{sec:exclusion_details}
+171	
+172	Of the 16 models remaining after 0.5B exclusion, three 3B checkpoints were removed: two had mismatched naming conventions between evaluation and signal extraction stages, and one lacked evaluation results under the unified hyperparameter setting ($\alpha=32$). Additionally, 3B d000 (clean control) checkpoints were excluded because the standardized protocol (LoRA $\alpha=32$, lr$=5\times10^{-5}$) was applied only to dosages d005--d100 at the 3B scale; earlier d000 checkpoints used inconsistent hyperparameters across retraining iterations.
+173	
+174	\paragraph{Model sets across analyses.}
+175	Table~\ref{tab:model_sets} summarizes model compositions. Model sets vary because domain-level runs preceded the 3B retraining (\S\ref{sec:injection}). Core findings ($\gamma$ non-significance, raw accuracy dominance) replicate across $J=13$ and $J=16$ configurations.
+176	
+177	\begin{table}[h]
+178	\centering
+179	\caption{Model set composition across analyses.}
+180	\label{tab:model_sets}
+181	\footnotesize
+182	\begin{tabular}{lcll}
+183	\toprule
+184	Analysis & $J$ & Model Set & Section \\
+185	\midrule
+186	Pooled baselines & 16 & 8$\times$Qwen-1.5B + 8$\times$Qwen-3B & \S\ref{sec:calibration_results} \\
+187	Domain $\gamma$ & 13 & 8$\times$Qwen-1.5B + 5$\times$Qwen-3B & \S\ref{sec:domain_differential} \\
+188	Cross-family & 16--28 & varies by benchmark & \S\ref{sec:taxonomy} \\
+189	Oracle ablation & 13 & domain whitelist & \S\ref{sec:calibration_results} \\
+190	\bottomrule
+191	\end{tabular}
+192	\end{table}
+193	
+194	\section{Prior Sensitivity Analysis}
+195	\label{sec:prior_sensitivity}
+196	
+197	To assess the influence of the $\gamma$ prior, we refit the pooled MMLU model ($J=16$, 300 RRF items) under three specifications: $\gamma \sim \mathcal{N}(0, 0.5)$, $\mathcal{N}(0, 1)$ (default), and $\mathcal{N}(0, 2)$. The posterior mean shifts from 0.34 to 0.89 across priors, while the 95\% CI includes zero in all cases (lower bound stable at $\approx -0.4$; upper bound ranges from 1.11 to 2.20). All fits converge ($\hat{R} < 1.01$, ESS $> 3800$, PPP $\in [0.16, 0.25]$). The prior sensitivity confirms that $J=16$ provides insufficient data to override the prior, which reinforces the exploratory status of $\gamma$-based conclusions at current ensemble sizes.
+198	
+199	For the Social Sciences domain (corrected $J=16$ pool, 2000 items), the directional signal is robust to prior choice:
+200	
+201	\begin{table}[h]
+202	\centering
+203	\caption{Social Sciences $\gamma$ prior sensitivity (corrected $J$=16 pool).}
+204	\label{tab:socsci_prior}
+205	\footnotesize
+206	\begin{tabular}{lcc}
+207	\toprule
+208	Prior & $\hat{\gamma}$ & $P(\gamma\!<\!0)$ \\
+209	\midrule
+210	$\mathcal{N}(0, 0.5)$ & $-$0.541 & 99.35\% \\
+211	$\mathcal{N}(0, 1)$ & $-$0.627 & 99.7\% \\
+212	$\mathcal{N}(0, 2)$ & $-$0.654 & 99.85\% \\
+213	\bottomrule
+214	\multicolumn{3}{l}{\scriptsize Social Sciences row updated with corrected $J\!=\!16$ model pool;} \\
+215	\multicolumn{3}{l}{\scriptsize other domains retain the original prior sensitivity pool.}
+216	\end{tabular}
+217	\end{table}
+218	
+219	In contrast to the pooled analysis where $\hat{\gamma}$ shifts 2.6$\times$ across priors, Social Sciences $\hat{\gamma}$ varies only 1.2$\times$ ($-$0.54 to $-$0.65), with $P(\gamma<0) \geq 99.35\%$ in all cases. The directional signal is robust to prior choice, though the tight prior falls marginally below the Bonferroni threshold (99.375\% for eight domains).
+220	
+221	\section{IRT Ability Separation by Scale}
+222	\label{sec:theta_separation}
+223	
+224	Table~\ref{tab:theta_separation} reports the mean posterior $\theta$ estimates for 1.5B and 3B model groups across all MMLU domains and the pooled analysis. The ability gap $\Delta\theta = \bar{\theta}_{3\text{B}} - \bar{\theta}_{1.5\text{B}}$ is positive and significant (95\% CI excludes zero) for all nine comparisons, which confirms that the IRT model recovers the expected scale-ability ordering.
+225	
+226	\begin{table}[h]
+227	\centering
+228	\caption{IRT ability estimates by model scale ($J=13$ Qwen2.5). $\Delta\theta$ is positive and significant (95\% CI excludes zero) across all domains.}
+229	\label{tab:theta_separation}
+230	\footnotesize
+231	\begin{tabular}{lccc}
+232	\toprule
+233	Domain & $\bar{\theta}_{1.5\text{B}}$ & $\bar{\theta}_{3\text{B}}$ & $\Delta\theta$ [95\% CI] \\
+234	\midrule
+235	Math & $-$0.532 & 0.119 & 0.651 [0.570, 0.731] \\
+236	Science & 0.321 & 0.780 & 0.459 [0.370, 0.546] \\
+237	CS/Eng & 0.372 & 0.542 & 0.169 [0.030, 0.304] \\
+238	Medical & 0.521 & 1.053 & 0.531 [0.452, 0.609] \\
+239	Humanities & 0.228 & 0.496 & 0.268 [0.202, 0.337] \\
+240	Social Sci & 0.940 & 1.540 & 0.599 [0.523, 0.675] \\
+241	Business/Law & 0.083 & 0.417 & 0.334 [0.261, 0.410] \\
+242	Other & 0.817 & 1.565 & 0.748 [0.647, 0.846] \\
+243	\midrule
+244	Pooled & 0.311 & 0.811 & 0.500 [0.431, 0.568] \\
+245	\bottomrule
+246	\end{tabular}
+247	\end{table}
+248	
+249	\section{Cross-Seed Stability Details}
+250	\label{sec:cross_seed_details}
+251	
+252	\begin{table}[h]
+253	\centering
+254	\caption{Cross-seed $\Delta$acc (d000$\to$d100). Strict sign consistency (Cons.) is 2/5; classification-level direction agreement is 4/5 (see text). Per-seed shape classification\textsuperscript{$\ddagger$} agrees for only 2/5.}
+255	\label{tab:cross_seed}
+256	\footnotesize
+257	\begin{tabular}{lcccccccl}
+258	\toprule
+259	Model & $n$ & s42 & s123 & s0 & 95\% CI & Dir. & Cons.\ & Pattern\textsuperscript{$\ddagger$} \\
+260	\midrule
+261	Phi-4 & 3 & 0 & $+$ & 0 & [$-$0.17, $+$1.39]\textsuperscript{B} & Immune & $\times$ & --- \\
+262	Qwen-14B & 3 & $-$ & $-$ & $-$ & [$-$24.99, $-$10.49]\textsuperscript{B} & Harm & \checkmark & Collapse \\
+263	Qwen-7B & 3 & $-$ & 0 & $-$ & [$-$1.82, $-$0.34]\textsuperscript{B} & Harm & $\times$ & V-recovery \\
+264	Gemma-2 & 3 & $+$ & $+$ & $+$ & [$+$1.49, $+$3.14]\textsuperscript{B} & Benefit & \checkmark & Benefit \\
+265	OLMo-2 & 3 & $+$ & 0 & $+$ & [$-$0.55, $+$2.60]\textsuperscript{B} & Borderl.\ & $\times$ & ---\textsuperscript{b} \\
+266	\bottomrule
+267	\multicolumn{9}{l}{\scriptsize \textsuperscript{B}BCa bootstrap ($B\!=\!10{,}000$); all families now at $n\!=\!3$.} \\
+268	\multicolumn{9}{l}{\scriptsize \textsuperscript{$\ddagger$}Per-seed shape may differ from family-level direction-based classification (\S\ref{sec:classification}).} \\
+269	\multicolumn{9}{l}{\scriptsize \textsuperscript{b}$+$/0/$+$ across seeds. Signs: $+$/$-$ = $|\Delta|{\ge}1$pp; $0$ = $|\Delta|{<}1$pp.}
+270	\end{tabular}
+271	\end{table}
+272	
+273	\section{DiD Visualization}
+274	\label{sec:did_visualization}
+275	
+276	\begin{figure}[h]
+277	\centering
+278	\includegraphics[width=\columnwidth]{figures/fig_treated_untreated.pdf}
+279	\caption{DiD for treated vs.\ untreated items across all families at d025 MMLU. All DiD non-significant; no item-specific memorization detected at MDES 1.2--2.0pp.}
+280	\label{fig:treated_untreated}
+281	\end{figure}
+282	
+283	\section{DiD Across Dosage Levels}
+284	\label{sec:did_dosage}
+285	
+286	\begin{figure}[h]
+287	\centering
+288	\includegraphics[width=\columnwidth]{figures/fig_did_dose_response.pdf}
+289	\caption{Difference-in-differences (treated vs.\ untreated items) across contamination dosage levels. DiD remains non-significant at all dosages for all model families, confirming that the global capability modulation mechanism (\S\ref{sec:memorization_test}) is consistent across the full dosage range.}
+290	\label{fig:did_dose_response}
+291	\end{figure}
+292	
+293	\section{Post-hoc Power Analysis (MDES)}
+294	\label{sec:mdes}
+295	
+296	Table~\ref{tab:mdes_mmlu} and Table~\ref{tab:mdes_arc} report the minimum detectable effect size (MDES) for the treated vs.\ untreated DiD comparison at d025 (80\% power, $\alpha=0.05$, two-sided). MDES is computed as the effect size detectable given each model's observed variance, the treated/untreated split sizes, and a two-sample $t$-test power calculation. At d100, all benchmark items are treated ($n_{\text{untreated}}=0$), precluding DiD analysis; d025 is reported as the primary dosage level.
+297	
+298	\begin{table}[h]
+299	\centering
+300	\caption{Post-hoc MDES for MMLU DiD ($n_{\text{treated}}=3{,}540$, $n_{\text{untreated}}=10{,}502$).}
+301	\label{tab:mdes_mmlu}
+302	\footnotesize
+303	\begin{tabular}{lcc}
+304	\toprule
+305	Model & DiD (pp) & MDES (pp) \\
+306	\midrule
+307	Phi-4 14.7B & $-$0.27 & 1.25 \\
+308	OLMo-2 7B & $-$1.07 & 1.59 \\
+309	Gemma-2 9B & $+$0.55 & 1.74 \\
+310	Qwen2.5-7B & $-$0.84 & 2.02 \\
+311	Qwen2.5-14B & $+$0.69 & 2.05 \\
+312	\bottomrule
+313	\end{tabular}
+314	\end{table}
+315	
+316	\begin{table}[h]
+317	\centering
+318	\caption{Post-hoc MDES for ARC-Challenge DiD ($n_{\text{treated}}=257$, $n_{\text{untreated}}=915$).}
+319	\label{tab:mdes_arc}
+320	\footnotesize
+321	\begin{tabular}{lcc}
+322	\toprule
+323	Model & DiD (pp) & MDES (pp) \\
+324	\midrule
+325	Phi-4 14.7B & $-$0.83 & 2.28 \\
+326	Qwen2.5-14B & $-$0.26 & 3.47 \\
+327	OLMo-2 7B & $-$1.13 & 4.19 \\
+328	Gemma-2 9B & $-$0.25 & 4.66 \\
+329	Qwen2.5-7B & $+$2.43 & 5.57 \\
+330	\bottomrule
+331	\end{tabular}
+332	\end{table}
+333	
+334	On MMLU, all observed DiD values are well below their respective MDES, confirming that the null results are consistent with absence of item-specific effects $>$2pp. On ARC, the smaller treated sample ($n=257$) yields substantially higher MDES; in particular, Qwen-7B's MDES of 5.57pp means that even moderate item-specific effects cannot be excluded for this model on ARC. ARC DiD results should therefore be interpreted as inconclusive rather than as evidence against memorization.
+335	
+336	\section{Dose-Response Details}
+337	\label{sec:dose_response_details}
+338	
+339	The dose-response patterns reported in \S\ref{sec:taxonomy} are measured at the 7B--14.7B scale. Within the Qwen2.5 family at $\leq$3B, effects are considerably smaller: at 1.5B and 3B, MMLU accuracy increases with contamination dosage by ${\sim}$0.6--0.7pp, with diminishing returns above d025. At 0.5B, however, aggregate MMLU accuracy \textit{decreases} with dosage (0.41 at d000 $\to$ 0.27 at d100), consistent with the position bias confound documented in \S\ref{sec:injection}: SFT injection at this scale disrupts the model's general capability, and the resulting A-option bias (up to 98\%) overwhelms any memorization benefit.
+340	
+341	\section{Sensitivity of Profile Classification}
+342	\label{sec:classification_sensitivity}
+343	
+344	We assess the robustness of Algorithm~\ref{alg:profile-classification} to threshold selection via a grid sweep over 134 $(\tau, \sigma)$ combinations. Table~\ref{tab:sensitivity} reports family-level stability across both a reasonable parameter range ($\tau \in [0.5, 2.0]$~pp $\times$ $\sigma \in [3.0, 7.0]$~pp; 30 combinations) and the full 134-combination sweep, along with the nearest parameter value at which the classification transitions.
+345	
+346	\begin{table}[h]
+347	\centering
+348	\caption{Profile classification stability across threshold parameter ranges. All families achieve 100\% stability within the reasonable range; transitions occur only at extreme parameter values ($\geq$3$\times$ default).}
+349	\label{tab:sensitivity}
+350	\footnotesize
+351	\begin{tabular}{lcccc}
+352	\toprule
+353	Family & Pattern & Reasonable & Full & Nearest transition \\
+354	\midrule
+355	Qwen2.5-14B & Collapse & 100\% & 100\% & $\tau = 9.4$ \\
+356	Gemma-2 9B & Benefit & 100\% & 89\% & $\tau = 3.8$ \\
+357	Phi-4 14.7B & Immune & 100\% & 82\% & $\tau < 0.35$ \\
+358	OLMo-2 7B & Benefit & 100\% & 82\% & $\tau = 3.25$ \\
+359	Qwen2.5-7B & V-recovery & 100\% & 72\% & $\tau = 3.0$ \\
+360	\bottomrule
+361	\end{tabular}
+362	\end{table}
+363	
+364	Within the reasonable parameter range, all five families achieve 100\% classification stability (150/150 family--parameter combinations). Transitions occur only at extreme $\tau$ values well beyond the default ($\tau\!=\!2$): Qwen-14B requires $\tau\!=\!9.4$ (4.7$\times$ default) to reclassify, reflecting the large separation between its $\Delta\text{acc}$ ($-$9.4pp) and any plausible noise threshold. Qwen-7B is the least robust at $\tau\!=\!3.0$ (1.5$\times$ default), but this is still above any defensible noise threshold for MMLU. The high intrinsic effect-size separation---Phi-4 fluctuates $<$0.4pp while Qwen-14B declines by 9.4pp---means that classification stability is driven by the data rather than by parameter choice.
+365	
+366	\section{Cross-Family Domain Decomposition}
+367	\label{sec:domain_decomposition}
+368	
+369	We decompose MMLU accuracy changes into four constituent domains (STEM, Humanities, Social Sciences, Other) across all model families at each contamination dosage.
+370	
+371	Two patterns emerge. First, the direction of accuracy change is governed by the dose-response pattern, not by domain. At d100, Collapse (Qwen-14B) produces negative $\Delta\text{acc}$ in all four domains (STEM $-6.8$pp, Humanities $-10.1$pp, Social Sciences $-11.2$pp, Other $-9.4$pp), while Benefit (Gemma-2) produces positive $\Delta\text{acc}$ throughout ($+2.7$, $+3.9$, $+5.0$, $+3.4$pp). Immune (Phi-4) remains within $\pm 1.0$pp across all domains. No pattern produces a crossover exceeding the noise band ($|\Delta| > 1$pp); the single exception is V-recovery Humanities ($+0.28$pp, well within sampling noise). This consistency holds at intermediate dosages as well.
+372	
+373	Second, domains differ in sensitivity. STEM is the most resilient (mean $|\Delta\text{acc}| = 2.8$pp across all families at d100). Social Sciences is the most sensitive at $5.1$pp---$1.8\times$ the STEM magnitude. The ordering is stable across patterns: in Collapse, STEM shows the smallest decline; in Benefit, STEM shows the smallest gain.
+374	
+375	These results reinforce the global capability modulation interpretation (\S\ref{sec:memorization_test}): contamination direction is determined by the model's dose-response pattern rather than domain-specific memorization. The differential domain sensitivity more likely reflects variation in item difficulty distributions than differential memorization rates.
+376	
+377	\section{Baseline Ability vs.\ Contamination Effect}
+378	\label{sec:baseline_vs_effect}
+379	
+380	\begin{figure}[h]
+381	\centering
+382	\includegraphics[width=\columnwidth]{figures/fig_baseline_vs_effect.pdf}
+383	\caption{Baseline MMLU accuracy (d000) vs.\ maximum accuracy change ($\Delta$acc) under contamination. A threshold between 61.9\% (Gemma-2) and 66.1\% (Qwen-7B) separates models that benefit from contamination (below) from those that are harmed or immune (above). Estimated from models spanning four independent families.}
+384	\label{fig:baseline_vs_effect}
+385	\end{figure}
+386	
+387	\section{Per-Domain $\gamma$ Estimates}
+388	\label{sec:domain_gamma_table}
+389	
+390	\begin{figure}[h]
+391	\centering
+392	\includegraphics[width=\columnwidth]{figures/fig_domain_gamma.pdf}
+393	\caption{Per-domain $\gamma_d$ estimates with 95\% CIs ($J$=13 Qwen2.5). STEM domains show positive $\gamma_d$; Social Sciences is negative and survives Bonferroni correction at $J$=16.}
+394	\label{fig:domain_gamma}
+395	\end{figure}
+396	
+397	\begin{table}[h]
+398	\centering
+399	\caption{Per-domain $\gamma$ estimates (2PL+$\gamma$, Qwen2.5) at $J$=13 and $J$=16. All $J$=16 fits converge ($\hat{R} < 1.01$). Social Sciences $P(\gamma\!<\!0)$ strengthens from 99.1\% to 99.7\% at $J$=16, exceeding the Bonferroni-corrected threshold ($99.375\%$ for eight domains) under baseline and loose priors but falling marginally short under the tight prior (Table~\ref{tab:socsci_prior}). Results remain exploratory at these ensemble sizes \citep{gelman2012why}. ARC-Challenge is excluded (PPP $<$ 0.05 at all $J$).}
+400	\label{tab:domain_gamma}
+401	\footnotesize
+402	\resizebox{\columnwidth}{!}{%
+403	\begin{tabular}{lcccccc}
+404	\toprule
+405	 & \multicolumn{2}{c}{$J$=13} & \multicolumn{4}{c}{$J$=16} \\
+406	\cmidrule(lr){2-3} \cmidrule(lr){4-7}
+407	Domain & $\gamma$ & $P(\gamma\!<\!0)$ & $\gamma$ & $P(\gamma\!<\!0)$ & PPP & $\hat{R}$ \\
+408	\midrule
+409	MMLU: Math & +0.50 & 8.1\% & +0.60 & 3.8\% & 0.305 & 1.007 \\
+410	MMLU: Science & +0.50 & 7.8\% & +0.57 & 4.3\% & 0.197 & 1.007 \\
+411	MMLU: CS/Eng & +0.50 & 14.8\% & +0.32 & 24.0\% & 0.503 & 1.006 \\
+412	MMLU: Medical & +0.24 & 24.0\% & +0.05 & 43.6\% & 0.268 & 1.008 \\
+413	MMLU: Other & +0.13 & 35.7\% & +0.32 & 20.4\% & 0.072$^\dagger$ & 1.008 \\
+414	MMLU: Business/Law & +0.04 & 44.1\% & +0.08 & 37.8\% & 0.395 & 1.007 \\
+415	MMLU: Humanities & $-$0.31 & 85.4\% & $-$0.14 & 69.7\% & 0.416 & 1.007 \\
+416	MMLU: Social Sci & $-$0.57 & \textbf{99.1\%} & $-$0.63 & \textbf{99.7\%} & 0.722 & 1.006 \\
+417	\bottomrule
+418	\end{tabular}}
+419	
+420	\vspace{2pt}
+421	{\scriptsize $^\dagger$PPP below acceptable threshold (0.1); $\gamma$ estimate for this domain should be interpreted with caution.}
+422	\end{table}
+423	
+424	\section{DGP Robustness Analysis}
+425	\label{sec:threshold_dgp}
+426	
+427	We evaluate 2PL+$\gamma$ robustness under data-generating process (DGP) misspecification via 400 simulation runs (2 DGPs $\times$ 4 ensemble sizes $\times$ 5 true $\gamma$ values $\times$ 10 seeds).
+428	
+429	\paragraph{Design.} The \emph{Linear DGP} (control) generates responses from the correctly specified additive model (Eq.~\ref{eq:2pl_gamma}). The \emph{Threshold DGP} (misspecified) applies a step-function contamination effect: items with exposure above a threshold receive the full effect; items below receive zero. Ensemble sizes sweep $J \in \{16, 50, 100, 500\}$; true $\gamma \in \{0.5, 1.0, 1.5, 2.0, 3.0\}$.
+430	
+431	\paragraph{Point estimates.} Under the Linear DGP, $\hat{\gamma}/\gamma_{\text{true}} = 0.84$--$1.07$ across all conditions (unbiased within sampling noise). Under the Threshold DGP, $\hat{\gamma}/\gamma_{\text{true}} = 0.94$--$1.24$ (mild overestimation, not attenuation). PPP remains in the acceptable range (0.50--0.56) under both DGPs, confirming that posterior predictive checks cannot detect this form of misspecification.
+432	
+433	\paragraph{CI coverage.} Under the Linear DGP, 95\% CI coverage is nominal ($\geq$0.93) at all $J$. Under the Threshold DGP, coverage degrades with ensemble size (Table~\ref{tab:dgp_coverage}). The intervals become overconfident as $J$ increases because the model converges to a biased point estimate.
+434	
+435	\begin{table}[h]
+436	\centering
+437	\caption{95\% CI coverage under Threshold DGP (range across $\gamma$ values).}
+438	\label{tab:dgp_coverage}
+439	\footnotesize
+440	\begin{tabular}{lc}
+441	\toprule
+442	$J$ & 95\% CI coverage \\
+443	\midrule
+444	50 & 1.00 \\
+445	100 & 0.90--1.00 \\
+446	200 & 0.80--1.00 \\
+447	500 & 0.70--1.00 \\
+448	\bottomrule
+449	\end{tabular}
+450	\end{table}
+451	
+452	\paragraph{Implications.} The reasoning chain is: (i)~Threshold DGP + linear model yields $\hat{\gamma}/\gamma_{\text{true}} \geq 0.94$ (overestimation, not attenuation); (ii)~therefore, if a true threshold effect exists, the linear model will not fail to detect it; (iii)~an empirical $\gamma \approx 0$ is a genuine null, not a misspecification artifact. Coverage degradation affects the \emph{precision} of effect size estimates (how narrow the CI is), not the \emph{detection} of whether an effect exists. At the ensemble sizes in our empirical analyses ($J\!=\!13$--$16$), coverage remains near-nominal even under misspecification. Real RRF exposure is right-skewed (mean$=$0.041); the simulation uses uniform exposure, so quantitative magnitudes may differ, but the qualitative pattern (overestimation direction, coverage degradation at large $J$) is robust.
+453	
+454	\section{ARC IRT Results}
+455	\label{sec:arc_irt}
+456	
+457	ARC-Challenge IRT results are reported separately due to marginal model fit (PPP$=$0.003 at $J=16$). The smaller item pool (1,172 vs.\ 14,042 for MMLU) and more homogeneous difficulty distribution contribute to structural misfit: the 2PL+$\gamma$ model cannot adequately capture the item response patterns. Under this caveat, the ARC baseline comparison ($J=16$, 300 RRF items) yields: B0-Raw MAE$=$0.007, B3-Vanilla2PL MAE$=$0.015, B4-LinearRegression MAE$=$0.012 ($\tau = 0.731$, best rank correlation), B6-DCR MAE$=$0.314 (systematic overcorrection), ContamCal MAE$=$0.020. The pattern mirrors MMLU: raw accuracy dominates on MAE because the aggregate contamination effect (${\sim}$0.7pp) is smaller than correction noise. Domain-level $\gamma$ estimation on ARC is unreliable at all tested configurations ($J=8$, 13, 16; PPP $< 0.05$ in all cases).
+458	
+459	\section{Full Baseline Comparison}
+460	\label{sec:full_baselines}
+461	
+462	Table~\ref{tab:baselines} (main text) reports B0, B3, and ContamCal under the Qwen2.5 pooled configuration ($J=16$ for MMLU/ARC, $J=24$ for GSM8K which retains 0.5B). Table~\ref{tab:full_baselines_arc} presents the complete seven-baseline comparison on ARC under a pooled 0.5B+1.5B configuration ($J=8$, S1-only exposure). This configuration differs from the main analysis ($J=16$, RRF exposure): the smaller ensemble and single-signal exposure limit comparability with MMLU results; these results are included for completeness. Table~\ref{tab:full_baselines_gsm8k} presents GSM8K baselines at 0.5B scale.
+463	
+464	B6-DCR \citep{xu2025dcr} produces the highest MAE on both benchmarks, consistent with its fuzzy inference approach, which overcorrects scores without a measurement-theoretic anchor. B4-LinearRegression performs competitively on ARC (MAE$=$0.056) but lacks the uncertainty quantification and domain-level diagnosis that IRT provides. B1-Remove\&Rescore and B5-Emperor do not improve over raw scores, which confirms that item removal and mitigation strategies are insufficient for calibration.
+465	
+466	\begin{table}[h]
+467	\centering
+468	\caption{Full baseline comparison on ARC-Challenge (pooled 0.5B+1.5B, $J=8$, S1-only exposure). MAE$\downarrow$.}
+469	\label{tab:full_baselines_arc}
+470	\footnotesize
+471	\begin{tabular}{lc}
+472	\toprule
+473	Method & ARC MAE \\
+474	\midrule
+475	B0-Raw & 0.059 \\
+476	B1-Remove\&Rescore & 0.059 \\
+477	B2-Single2PL+$\gamma$ & 0.064 \\
+478	B3-Vanilla4PL & 0.071 \\
+479	B4-LinearRegression & 0.056 \\
+480	B5-Emperor & 0.059 \\
+481	B6-DCR & --- \\
+482	\midrule
+483	ContamCal (4PL+$\gamma$) & \textbf{0.035} \\
+484	\bottomrule
+485	\end{tabular}
+486	\end{table}
+487	
+488	\begin{table}[h]
+489	\centering
+490	\caption{Baseline comparison on GSM8K (0.5B scale, delta exposure). MAE$\downarrow$.}
+491	\label{tab:full_baselines_gsm8k}
+492	\footnotesize
+493	\begin{tabular}{lc}
+494	\toprule
+495	Method & GSM8K MAE \\
+496	\midrule
+497	B0-Raw & 0.003 \\
+498	B2-Single2PL+$\gamma$ & 0.320 \\
+499	B3-Vanilla4PL & 0.012 \\
+500	B4-LinearRegression & \textbf{0.003} \\
+501	B6-DCR & --- \\
+502	\midrule
+503	ContamCal (4PL+$\gamma$) & 0.020 \\
+504	\bottomrule
+505	\end{tabular}
+506	\end{table}
+507	
+508	\section{Parametric Dose-Response Model Comparison}
+509	\label{sec:parametric_dr}
+510	
+511	We fit four parametric dose-response models---Constant (intercept-only), Linear, Quadratic, and four-parameter Hill \citep{hill1910aggregation,ritz2015dose}---to pooled multi-seed MMLU accuracy trajectories for each family. Table~\ref{tab:aicc_dr} reports AICc and Akaike weights.
+512	
+513	\begin{table}[h]
+514	\centering
+515	\caption{AICc model selection for dose-response trajectories (pooled multi-seed MMLU). Bold indicates best-fitting model per family; $w$ is the Akaike weight of the best model.}
+516	\label{tab:aicc_dr}
+517	\footnotesize
+518	\begin{tabular}{lccccc}
+519	\toprule
+520	Family & Constant & Linear & Quadratic & Hill & Best ($w$) \\
+521	\midrule
+522	Phi-4 14.7B & $-$71.42 & $-$72.08 & $-$70.06 & $\mathbf{-73.14}$ & Hill (0.58) \\
+523	Qwen2.5-14B & 49.54 & 23.40 & 21.22 & $\mathbf{18.28}$ & Hill (0.55) \\
+524	Qwen2.5-7B & $-$12.38 & $-$20.53 & $-$14.52 & $\mathbf{-24.97}$ & Hill (0.77) \\
+525	Gemma-2 9B & $\mathbf{17.35}$ & 18.89 & 20.01 & 18.96 & Constant (0.39) \\
+526	OLMo-2 7B & $\mathbf{25.82}$ & 26.66 & 27.54 & 26.47 & Constant (0.62) \\
+527	\bottomrule
+528	\end{tabular}
+529	\end{table}
+530	
+531	Parametric model selection with pooled multi-seed data recovers only the most extreme pattern (Collapse, Qwen-14B; Hill $E_{\max} = -43$pp). Two families classified as Benefit by Algorithm~\ref{alg:profile-classification} (Gemma-2, OLMo-2) are indistinguishable from Constant under AICc---consistent with their cross-seed CIs crossing zero (Table~\ref{tab:cross_seed}). Qwen-7B's V-recovery is structurally inaccessible to monotonic Hill/sigmoid models; Quadratic captures the V-shape but is penalized by AICc ($\Delta$AICc$=$6.4). Phi-4's Immune classification is reclassified as weak Benefit (Hill $E_{\max} = +2.43$pp, CI [$-$2.01, $+$6.88] crossing zero). These discrepancies reflect insufficient statistical power at $n\!=\!3$ seeds rather than contradictions: Algorithm~\ref{alg:profile-classification} resolves per-seed patterns below the detection threshold of pooled parametric methods, motivating its use for profile construction.
+532	
+533	\section{Exposure Score Item-Level Classification}
+534	\label{sec:sij_classification}
+535	
+536	Under controlled injection where ground-truth contamination labels are available, we evaluate item-level classification performance of each detection signal and the RRF fusion (\S\ref{sec:stage1}). S1 (embedding similarity) achieves near-perfect discrimination (ROC-AUC 0.93--0.99 across benchmarks and dosage levels), confirming that cosine similarity to the training corpus reliably identifies injected items. RRF fusion achieves ROC-AUC 0.73--0.93, reduced relative to S1 because S2 (Min-K\%++, AUC $\approx$ 0.48--0.50) and S4 (Self-Critique, AUC $\approx$ 0.47--0.51) contribute near-random item-level signal. However, RRF is designed for the realistic setting where ground truth is unavailable: S1 requires an explicit training corpus reference, which practitioners typically lack, while RRF's multi-signal approach provides robustness across detection scenarios where no single signal dominates (\S\ref{sec:rrf_ablation}).
+537	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "5abfb072-d5fd-41b0-b405-5d3170bff693",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/appendix.tex",
+      "content": "\\appendix\n\n\\section{Cross-Benchmark Transfer Details}\n\\label{sec:cross_benchmark_details}\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-benchmark transfer: MMLU vs.\\ GSM8K accuracy change at d100. LLaMA-3.1 shows the strongest asymmetric transfer ($+$16.4pp GSM8K despite MMLU immunity). Gemma-2 excluded due to CoT collapse under MC-format SFT.}\n\\label{tab:gsm8k_transfer}\n\\footnotesize\n\\begin{tabular}{lcccl}\n\\toprule\nModel & MMLU $\\Delta$ & GSM8K $\\Delta$ & Range & Transfer \\\\\n\\midrule\nPhi-4 14.7B & $\\pm$0.5pp & $-$0.5pp & --- & Null \\\\\nOLMo-2 7B & $+$3.2pp & $+$2.1pp$^{\\S}$ & --- & Consistent \\\\\nQwen-7B & $-$1.8pp & $+$11.1pp & $\\pm$0.9 & Reversal \\\\\nQwen-14B & $-$9.4pp & $+$13.1pp & $\\pm$7.4 & Reversal$^{\\dagger}$ \\\\\nLLaMA-3.1 8B & $-$0.7pp & $+$16.4pp$^{\\ddagger}$ & --- & Asymmetric \\\\\n\\bottomrule\n\\multicolumn{5}{l}{\\scriptsize $^{\\dagger}$d000 baseline seed-sensitive (s42$=$60.8\\% vs.\\ s123$=$76.7\\%); d100 stable ($82\\pm0.5$\\%).} \\\\\n\\multicolumn{5}{l}{\\scriptsize $^{\\S}$Mean across seeds: $+$2.1pp (s42: $+$1.7pp, s123: $+$2.4pp); s0 shows $+$9.2pp.} \\\\\n\\multicolumn{5}{l}{\\scriptsize $^{\\ddagger}$Single seed (s0); MMLU Immune but strongest GSM8K transfer across all families.}\n\\end{tabular}\n\\end{table}\n\n\\section{ARC-Challenge Cross-Benchmark Analysis}\n\\label{sec:arc_cross_benchmark}\n\nARC-Challenge (25-shot, 1{,}172 items) patterns under s42 are directionally consistent with MMLU for five of six models: OLMo-2 benefits ($+$3.9pp), Falcon3 benefits ($+$4.0pp), Qwen-7B ($-$2.9pp) and Qwen-14B ($-$3.4pp) are harmed, Phi-4 remains immune ($+$0.6pp). Gemma-2 achieves $n\\!=\\!3$ on ARC: s42 exhibits a 16pp oscillation artifact (endpoint $-$1.20pp), s0 shows harm ($-$1.97pp), and s123 shows benefit ($+$2.73pp). The $n\\!=\\!3$ ARC mean is $-$0.15pp (SD$=$2.41pp; BCa 95\\% CI [$-$1.97, $+$1.42]), with cross-seed direction inconsistent ($-$/$-$/$+$). This contrasts with MMLU, where all three seeds show benefit (mean $+$2.38pp, CI [$+$1.49, $+$3.14] excludes zero), making Gemma-2 the clearest example of benchmark-conditional contamination effects. Bootstrap stability is substantially lower than MMLU (OLMo-2: 53.3\\%, Gemma-2: 62.7\\%) due to the smaller item pool (1{,}172 vs.\\ 14{,}042).\n\n\\paragraph{Cross-seed ARC consistency.}\nPhi-4 is the strongest anchor with $n\\!=\\!3$ on both benchmarks: ARC mean $\\Delta = +0.66$pp (SD$=$0.18pp; s0 $+$0.51, s42 $+$0.60, s123 $+$0.86; BCa 95\\% CI [$+$0.51, $+$0.77]), MMLU mean $\\Delta = +0.73$pp---cross-benchmark agreement within 0.07pp. While statistically detectable on ARC (CI excludes zero, unlike MMLU CI [$-$0.17, $+$1.39]), the effect ($+$0.66pp) is too small to meaningfully inflate benchmark scores, consistent with the Immune classification. Qwen-7B achieves $n\\!=\\!3$ on ARC: mean $\\Delta = -2.42$pp (SD$=$0.51pp; s0 $-$1.88, s42 $-$2.90, s123 $-$2.47; BCa 95\\% CI [$-$2.90, $-$2.08]), confirming persistent harm. The d005 V-dip severity is seed-dependent ($-$1.8pp vs.\\ $-$4.7pp). Qwen-14B achieves $n\\!=\\!3$ on both benchmarks: MMLU mean $\\Delta = -15.7$pp (BCa CI [$-$24.99, $-$10.49]; s0 most extreme at $-$25.0pp due to position bias amplification); ARC mean $\\Delta = -5.03$pp (BCa CI [$-$9.38, $-$2.76]). Both CIs exclude zero, confirming Collapse. OLMo-2 achieves $n\\!=\\!3$ on ARC: mean $\\Delta = +3.44$pp (SD$=$0.52pp; s0 $+$3.50, s42 $+$3.92, s123 $+$2.90). Despite being the most seed-sensitive family on MMLU (SD$=$1.9pp), OLMo-2 is remarkably stable on ARC (SD$=$0.52pp)---seed sensitivity is itself benchmark-dependent, likely modulated by item count and difficulty distribution. Using multi-seed MMLU means ($+$1.4pp), direction is consistently positive on both benchmarks, illustrating why cross-benchmark comparisons require multi-seed aggregation (\\S\\ref{sec:cross_seed}). ARC dose-response trajectories (s123): Qwen-14B 90.4$\\to$91.5$\\to$89.8$\\to$88.7$\\to$87.3 (d005 transient spike then monotonic decline, consistent with MMLU s123 shape); Qwen-7B 87.1$\\to$82.4$\\to$85.2$\\to$85.1$\\to$84.7 (d005 sharp drop then partial recovery); OLMo-2 76.9$\\to$77.2$\\to$76.6$\\to$79.2$\\to$79.8 (monotonic rise).\n\nCross-seed direction on ARC is consistent for 4/5 families: Phi-4 and OLMo-2 positive across three seeds each, Qwen-7B and Qwen-14B negative across three seeds each. Gemma-2 is the exception ($-$/$-$/$+$ across seeds; mean $-$0.15pp). This contrasts with MMLU, where only 2/5 families achieve strict sign consistency (\\S\\ref{sec:cross_seed}). ARC yields tighter confidence intervals and higher cross-seed consistency than MMLU, likely because its smaller item pool (1{,}172 vs.\\ 14{,}042) amplifies the contamination signal---suggesting that benchmark size modulates not only effect magnitude but also statistical detectability.\n\nCross-benchmark direction (MMLU vs.\\ ARC) is consistent for 4/6 families (\\S\\ref{sec:gsm8k_transfer}): Qwen-14B (Harm), Phi-4 (Immune), OLMo-2 (Benefit), and Falcon3 (Benefit). Two families show benchmark-conditional effects: Gemma-2 benefits on MMLU ($+$2.38pp, CI excludes zero) but shows no significant ARC effect ($-$0.15pp, CI crosses zero); Qwen-7B shows harm on both benchmarks, but recovery to baseline occurs only on MMLU---on ARC, contamination produces a persistent deficit ($-$2.4pp mean across three seeds). Effect magnitudes remain benchmark-specific: Qwen-14B suffers $-$5.0pp on ARC compared to $-$15.7pp on MMLU (3.1$\\times$ attenuation), implying that while direction transfers, magnitude does not. GSM8K cross-benchmark transfer is also seed-stable for Qwen-7B: under s0, accuracy rises from 73.3\\% to 81.2\\% ($+$7.9pp, monotonic), consistent with the directional reversal observed under s42 ($+$11.1pp; Table~\\ref{tab:gsm8k_transfer}).\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_arc_dose_response.pdf}\n\\caption{ARC-Challenge accuracy vs.\\ contamination dosage (25-shot). Patterns are directionally consistent with MMLU (Figure~\\ref{fig:dose_response}) for 4/5 models.}\n\\label{fig:dose_response_arc}\n\\end{figure}\n\n\\section{GSM8K Dose-Response Transfer}\n\\label{sec:gsm8k_dose_response}\n\nTable~\\ref{tab:gsm8k_dose} reports GSM8K accuracy across contamination dosages for all six families (single seed, s0). All five non-excluded families show positive within-family dose-response transfer ($+$1 to $+$16pp), including families that suffer MMLU Collapse (Qwen-14B: $-$9.4pp MMLU, $+$7.4pp GSM8K) or are MMLU-Immune (LLaMA-3.1: $-$0.7pp MMLU, $+$16.4pp GSM8K---the strongest transfer effect). This directional reversal---MMLU-targeted contamination improving an unrelated open-ended math benchmark---strengthens the global capability modulation interpretation. Within-family dose-response patterns (direction and relative magnitude of $\\Delta$) are the primary finding, as all dosage levels for each family use identical evaluation settings.\n\n\\begin{table}[h]\n\\centering\n\\caption{GSM8K accuracy (\\%) across MMLU contamination dosages (seed$=$0). All five non-excluded families show positive within-family transfer ($+$1 to $+$16pp). Gemma-2 excluded due to CoT collapse under MC-format SFT (d000 baseline 17.8\\%).}\n\\label{tab:gsm8k_dose}\n\\footnotesize\n\\begin{tabular}{lcccccc}\n\\toprule\nFamily & d000 & d005 & d025 & d050 & d100 & $\\Delta$ \\\\\n\\midrule\nPhi-4 14.7B & 84.46 & --- & --- & --- & 85.60 & $+$1.14 \\\\\nQwen2.5-14B & 74.98 & 71.19 & 79.30 & 81.05 & 82.41 & $+$7.43 \\\\\nQwen2.5-7B & 73.31 & 78.32 & 78.24 & 79.38 & 81.20 & $+$7.89 \\\\\nOLMo-2 7B & 60.58 & --- & --- & --- & 69.75 & $+$9.17$^{\\ddagger}$ \\\\\nLLaMA-3.1 8B & 38.74 & --- & 52.16 & --- & 55.12 & $+$16.38 \\\\\nGemma-2 9B & 17.82$^{\\dagger}$ & --- & --- & --- & --- & --- \\\\\n\\bottomrule\n\\multicolumn{7}{l}{\\scriptsize $^{\\dagger}$CoT collapse under MC-format SFT; excluded from analysis.} \\\\\n\\multicolumn{7}{l}{\\scriptsize $^{\\ddagger}$Seed-sensitive: s0 $+$9.17pp vs.\\ s42 $+$2.1pp (Table~\\ref{tab:gsm8k_transfer}).}\n\\end{tabular}\n\\end{table}\n\nGSM8K evaluations use \\texttt{max\\_new\\_tokens=256}, which may truncate chain-of-thought reasoning for some models. Absolute accuracy is therefore a lower bound; cross-family comparisons of absolute values should be interpreted with caution. Within-family dose-response patterns (direction and relative magnitude of $\\Delta$) are the primary finding, as all dosage levels for each family use identical evaluation settings.\n\n\\section{Signal Reliability Across Scales}\n\\label{sec:signal_reliability_appendix}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_signal_heatmap.pdf}\n\\caption{Detection signal AUC across scale, dosage, and signal type. S1 achieves AUC $>0.95$ at all scales; S2 (Min-K\\%++) reverses at 0.5B; S4 is near-random below 1.5B.}\n\\label{fig:signal_heatmap}\n\\end{figure}\n\n\\section{RRF Signal Ablation}\n\\label{sec:rrf_ablation}\n\n\\paragraph{Signal orthogonality.}\nTable~\\ref{tab:signal_correlation} reports pairwise Spearman rank correlations between detection signals at the item level, averaged across 31 models. All pairwise $|\\rho| < 0.06$, confirming that S1, S2, and S4 capture orthogonal aspects of contamination exposure.\n\n\\begin{table}[h]\n\\centering\n\\caption{Pairwise Spearman $\\rho$ between detection signals (item-level, averaged across 31 models). All $|\\rho| < 0.06$.}\n\\label{tab:signal_correlation}\n\\footnotesize\n\\begin{tabular}{lccc}\n\\toprule\nSignal Pair & MMLU & ARC & GSM8K \\\\\n\\midrule\nS1--S2 & $-$0.044 & $-$0.019 & $-$0.022 \\\\\nS1--S4 & $+$0.038 & $+$0.009 & $+$0.053 \\\\\nS2--S4 & $-$0.001 & $+$0.012 & $+$0.007 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Leave-one-out ablation.}\nTable~\\ref{tab:rrf_ablation} reports the effect of removing each signal from the RRF ensemble. $\\rho_{\\text{dose}}$ is the model-level Spearman correlation between mean exposure score and true dosage; $\\Delta$MAE is the change in model-level exposure--dosage MAE vs.\\ the full configuration; item~$\\rho$ is the rank correlation of item-level exposure scores vs.\\ the full configuration.\n\n\\begin{table}[h]\n\\centering\n\\caption{Leave-one-signal-out RRF ablation (31 models, $\\kappa\\!=\\!60$).}\n\\label{tab:rrf_ablation}\n\\footnotesize\n\\begin{tabular}{lccc}\n\\toprule\nConfiguration & $\\rho_{\\text{dose}}$ & $\\Delta$MAE & Item $\\rho$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{MMLU}} \\\\\nFull (S1+S2+S4) & 0.049 & --- & --- \\\\\nDrop S1 & 0.045 & $+$0.066 & 0.782 \\\\\nDrop S2 & \\textbf{0.471} & $+$0.045 & 0.773 \\\\\nDrop S4 & 0.084 & $+$0.079 & 0.786 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{ARC-Challenge}} \\\\\nFull (S1+S2+S4) & $-$0.003 & --- & --- \\\\\nDrop S1 & $-$0.006 & $-$0.054 & 0.784 \\\\\nDrop S2 & 0.029 & $-$0.079 & 0.786 \\\\\nDrop S4 & 0.001 & $-$0.004 & 0.784 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDropping S2 (Min-K\\%++) causes $\\rho_{\\text{dose}}$ to jump from 0.049 to 0.471 on MMLU, revealing that S2 actively suppresses model-level dosage discrimination. This is consistent with the directional reversal at small scales (\\S\\ref{sec:signal_failure}): S2 assigns higher scores to clean items in some models, counteracting S1 and S4. Despite this model-level harm, S2 provides unique item-level information (item~$\\rho = 0.773$, i.e., ${\\sim}$23\\% of item rankings change upon removal). Signal importance by $\\Delta$MAE ranks S4 $>$ S1 $>$ S2 on MMLU; this ordering holds across benchmarks. The near-zero $\\rho_{\\text{dose}}$ (0.049 on MMLU, $-$0.003 on ARC) confirms that RRF exposure is an item-level tool: it identifies which items within a model are most likely contaminated, but cannot distinguish dosage levels across models.\n\n\\paragraph{Signal contribution to $\\gamma$ estimation.}\nLeave-one-out ablation on $\\gamma$ recovery (Qwen2.5, $J=16$) confirms S4 (self-critique) as the dominant contributor: removing S4 incurs $4.9\\times$ the $\\gamma$ estimation loss of removing S2 (Min-K\\%++). No signal is pure noise: the worst single-signal $\\rho(E,\\tau)$ is 0.072--0.118 (S2), still $5.5\\times$ the random baseline. Marginal returns from three to two signals are negligible (dropping S2 leaves $\\rho$ effectively unchanged), suggesting the current three-signal ensemble is near-optimal for the Qwen2.5 family.\n\n\\section{Identifiability Simulation}\n\\label{sec:identifiability_appendix}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_identifiability_heatmap.pdf}\n\\caption{$\\gamma$ recovery as a function of signal AUC and ensemble size $J$. Bias $<0.05$ and 95\\% CI coverage $\\geq90\\%$ require $J\\geq50$ at AUC$=$0.55, but only $J\\geq16$ at AUC$\\geq$0.90.}\n\\label{fig:identifiability_heatmap}\n\\end{figure}\n\nFisher information $\\mathcal{I}(\\gamma) \\propto \\text{Var}(e_{\\cdot i})$ collapses when signal AUC is low. At AUC$=$0.55, bias $< 0.05$ and 95\\% CI coverage $\\geq 90\\%$ require $J \\geq 50$; at AUC$\\geq$0.90 (as S1 achieves in practice), $J = 16$ suffices. CI width scales as $J^{-0.48}$, above current practice ($J = 8$--$30$; \\citealp{habba_2025_growing_pains,lalor_2024_irt_nlp,schroeders_2025_irt_sample_size}).\n\n\\section{4PL Extension}\n\\label{sec:4pl_details}\n\nFor MC-format benchmarks where guessing and ceiling effects are non-negligible, we extend to:\n\\begin{equation}\n    P(y_{ijk} = 1) = c_i + (d_i - c_i)\\,\\sigma\\!\\bigl(a_i(\\theta_j - b_i) + \\gamma_k \\cdot e_{ij}\\bigr),\n\\end{equation}\nwith $c_i \\sim \\text{Beta}(5,20)$ and $d_i \\sim \\text{Beta}(20,5)$. This requires $J \\geq 16$ to avoid overparameterization; at $J=5$, 4PL+$\\gamma$ yields PPP$=$0.000 and MAE degradation from 0.004 to 0.068. Our domain-level analyses use 2PL+$\\gamma$ at $J=13$; pooled calibration uses $J=16$.\n\n\\section{S4 Self-Critique Signal Details}\n\\label{sec:s4_details}\n\nS4 prompts the model with ``Is the following answer correct?'' followed by the question and candidate answer. We extract YES/NO logits to compute $P(\\text{YES})$, then score each item as the negative entropy of this distribution: $\\text{S4}_i = -[-p\\log p - (1-p)\\log(1-p)]$ where $p = P(\\text{YES})$. Scores near zero indicate high confidence (potentially contaminated); large negative values indicate uncertainty.\n\n\\section{Training Convergence}\n\\label{sec:training_convergence}\n\nAll SFT configurations converged. Final training loss increases monotonically with dosage (d000: 1.08, d005: 1.08, d025: 1.14, d100: 1.17 averaged across seeds), consistent with distribution shift from benchmark item injection.\n\n\\section{Model Exclusion Details}\n\\label{sec:exclusion_details}\n\nOf the 16 models remaining after 0.5B exclusion, three 3B checkpoints were removed: two had mismatched naming conventions between evaluation and signal extraction stages, and one lacked evaluation results under the unified hyperparameter setting ($\\alpha=32$). Additionally, 3B d000 (clean control) checkpoints were excluded because the standardized protocol (LoRA $\\alpha=32$, lr$=5\\times10^{-5}$) was applied only to dosages d005--d100 at the 3B scale; earlier d000 checkpoints used inconsistent hyperparameters across retraining iterations.\n\n\\paragraph{Model sets across analyses.}\nTable~\\ref{tab:model_sets} summarizes model compositions. Model sets vary because domain-level runs preceded the 3B retraining (\\S\\ref{sec:injection}). Core findings ($\\gamma$ non-significance, raw accuracy dominance) replicate across $J=13$ and $J=16$ configurations.\n\n\\begin{table}[h]\n\\centering\n\\caption{Model set composition across analyses.}\n\\label{tab:model_sets}\n\\footnotesize\n\\begin{tabular}{lcll}\n\\toprule\nAnalysis & $J$ & Model Set & Section \\\\\n\\midrule\nPooled baselines & 16 & 8$\\times$Qwen-1.5B + 8$\\times$Qwen-3B & \\S\\ref{sec:calibration_results} \\\\\nDomain $\\gamma$ & 13 & 8$\\times$Qwen-1.5B + 5$\\times$Qwen-3B & \\S\\ref{sec:domain_differential} \\\\\nCross-family & 16--28 & varies by benchmark & \\S\\ref{sec:taxonomy} \\\\\nOracle ablation & 13 & domain whitelist & \\S\\ref{sec:calibration_results} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Prior Sensitivity Analysis}\n\\label{sec:prior_sensitivity}\n\nTo assess the influence of the $\\gamma$ prior, we refit the pooled MMLU model ($J=16$, 300 RRF items) under three specifications: $\\gamma \\sim \\mathcal{N}(0, 0.5)$, $\\mathcal{N}(0, 1)$ (default), and $\\mathcal{N}(0, 2)$. The posterior mean shifts from 0.34 to 0.89 across priors, while the 95\\% CI includes zero in all cases (lower bound stable at $\\approx -0.4$; upper bound ranges from 1.11 to 2.20). All fits converge ($\\hat{R} < 1.01$, ESS $> 3800$, PPP $\\in [0.16, 0.25]$). The prior sensitivity confirms that $J=16$ provides insufficient data to override the prior, which reinforces the exploratory status of $\\gamma$-based conclusions at current ensemble sizes.\n\nFor the Social Sciences domain (corrected $J=16$ pool, 2000 items), the directional signal is robust to prior choice:\n\n\\begin{table}[h]\n\\centering\n\\caption{Social Sciences $\\gamma$ prior sensitivity (corrected $J$=16 pool).}\n\\label{tab:socsci_prior}\n\\footnotesize\n\\begin{tabular}{lcc}\n\\toprule\nPrior & $\\hat{\\gamma}$ & $P(\\gamma\\!<\\!0)$ \\\\\n\\midrule\n$\\mathcal{N}(0, 0.5)$ & $-$0.541 & 99.35\\% \\\\\n$\\mathcal{N}(0, 1)$ & $-$0.627 & 99.7\\% \\\\\n$\\mathcal{N}(0, 2)$ & $-$0.654 & 99.85\\% \\\\\n\\bottomrule\n\\multicolumn{3}{l}{\\scriptsize Social Sciences row updated with corrected $J\\!=\\!16$ model pool;} \\\\\n\\multicolumn{3}{l}{\\scriptsize other domains retain the original prior sensitivity pool.}\n\\end{tabular}\n\\end{table}\n\nIn contrast to the pooled analysis where $\\hat{\\gamma}$ shifts 2.6$\\times$ across priors, Social Sciences $\\hat{\\gamma}$ varies only 1.2$\\times$ ($-$0.54 to $-$0.65), with $P(\\gamma<0) \\geq 99.35\\%$ in all cases. The directional signal is robust to prior choice, though the tight prior falls marginally below the Bonferroni threshold (99.375\\% for eight domains).\n\n\\section{IRT Ability Separation by Scale}\n\\label{sec:theta_separation}\n\nTable~\\ref{tab:theta_separation} reports the mean posterior $\\theta$ estimates for 1.5B and 3B model groups across all MMLU domains and the pooled analysis. The ability gap $\\Delta\\theta = \\bar{\\theta}_{3\\text{B}} - \\bar{\\theta}_{1.5\\text{B}}$ is positive and significant (95\\% CI excludes zero) for all nine comparisons, which confirms that the IRT model recovers the expected scale-ability ordering.\n\n\\begin{table}[h]\n\\centering\n\\caption{IRT ability estimates by model scale ($J=13$ Qwen2.5). $\\Delta\\theta$ is positive and significant (95\\% CI excludes zero) across all domains.}\n\\label{tab:theta_separation}\n\\footnotesize\n\\begin{tabular}{lccc}\n\\toprule\nDomain & $\\bar{\\theta}_{1.5\\text{B}}$ & $\\bar{\\theta}_{3\\text{B}}$ & $\\Delta\\theta$ [95\\% CI] \\\\\n\\midrule\nMath & $-$0.532 & 0.119 & 0.651 [0.570, 0.731] \\\\\nScience & 0.321 & 0.780 & 0.459 [0.370, 0.546] \\\\\nCS/Eng & 0.372 & 0.542 & 0.169 [0.030, 0.304] \\\\\nMedical & 0.521 & 1.053 & 0.531 [0.452, 0.609] \\\\\nHumanities & 0.228 & 0.496 & 0.268 [0.202, 0.337] \\\\\nSocial Sci & 0.940 & 1.540 & 0.599 [0.523, 0.675] \\\\\nBusiness/Law & 0.083 & 0.417 & 0.334 [0.261, 0.410] \\\\\nOther & 0.817 & 1.565 & 0.748 [0.647, 0.846] \\\\\n\\midrule\nPooled & 0.311 & 0.811 & 0.500 [0.431, 0.568] \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Cross-Seed Stability Details}\n\\label{sec:cross_seed_details}\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-seed $\\Delta$acc (d000$\\to$d100). Strict sign consistency (Cons.) is 2/5; classification-level direction agreement is 4/5 (see text). Per-seed shape classification\\textsuperscript{$\\ddagger$} agrees for only 2/5.}\n\\label{tab:cross_seed}\n\\footnotesize\n\\begin{tabular}{lcccccccl}\n\\toprule\nModel & $n$ & s42 & s123 & s0 & 95\\% CI & Dir. & Cons.\\ & Pattern\\textsuperscript{$\\ddagger$} \\\\\n\\midrule\nPhi-4 & 3 & 0 & $+$ & 0 & [$-$0.17, $+$1.39]\\textsuperscript{B} & Immune & $\\times$ & --- \\\\\nQwen-14B & 3 & $-$ & $-$ & $-$ & [$-$24.99, $-$10.49]\\textsuperscript{B} & Harm & \\checkmark & Collapse \\\\\nQwen-7B & 3 & $-$ & 0 & $-$ & [$-$1.82, $-$0.34]\\textsuperscript{B} & Harm & $\\times$ & V-recovery \\\\\nGemma-2 & 3 & $+$ & $+$ & $+$ & [$+$1.49, $+$3.14]\\textsuperscript{B} & Benefit & \\checkmark & Benefit \\\\\nOLMo-2 & 3 & $+$ & 0 & $+$ & [$-$0.55, $+$2.60]\\textsuperscript{B} & Borderl.\\ & $\\times$ & ---\\textsuperscript{b} \\\\\n\\bottomrule\n\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{B}BCa bootstrap ($B\\!=\\!10{,}000$); all families now at $n\\!=\\!3$.} \\\\\n\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{$\\ddagger$}Per-seed shape may differ from family-level direction-based classification (\\S\\ref{sec:classification}).} \\\\\n\\multicolumn{9}{l}{\\scriptsize \\textsuperscript{b}$+$/0/$+$ across seeds. Signs: $+$/$-$ = $|\\Delta|{\\ge}1$pp; $0$ = $|\\Delta|{<}1$pp.}\n\\end{tabular}\n\\end{table}\n\n\\section{DiD Visualization}\n\\label{sec:did_visualization}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_treated_untreated.pdf}\n\\caption{DiD for treated vs.\\ untreated items across all families at d025 MMLU. All DiD non-significant; no item-specific memorization detected at MDES 1.2--2.0pp.}\n\\label{fig:treated_untreated}\n\\end{figure}\n\n\\section{DiD Across Dosage Levels}\n\\label{sec:did_dosage}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_did_dose_response.pdf}\n\\caption{Difference-in-differences (treated vs.\\ untreated items) across contamination dosage levels. DiD remains non-significant at all dosages for all model families, confirming that the global capability modulation mechanism (\\S\\ref{sec:memorization_test}) is consistent across the full dosage range.}\n\\label{fig:did_dose_response}\n\\end{figure}\n\n\\section{Post-hoc Power Analysis (MDES)}\n\\label{sec:mdes}\n\nTable~\\ref{tab:mdes_mmlu} and Table~\\ref{tab:mdes_arc} report the minimum detectable effect size (MDES) for the treated vs.\\ untreated DiD comparison at d025 (80\\% power, $\\alpha=0.05$, two-sided). MDES is computed as the effect size detectable given each model's observed variance, the treated/untreated split sizes, and a two-sample $t$-test power calculation. At d100, all benchmark items are treated ($n_{\\text{untreated}}=0$), precluding DiD analysis; d025 is reported as the primary dosage level.\n\n\\begin{table}[h]\n\\centering\n\\caption{Post-hoc MDES for MMLU DiD ($n_{\\text{treated}}=3{,}540$, $n_{\\text{untreated}}=10{,}502$).}\n\\label{tab:mdes_mmlu}\n\\footnotesize\n\\begin{tabular}{lcc}\n\\toprule\nModel & DiD (pp) & MDES (pp) \\\\\n\\midrule\nPhi-4 14.7B & $-$0.27 & 1.25 \\\\\nOLMo-2 7B & $-$1.07 & 1.59 \\\\\nGemma-2 9B & $+$0.55 & 1.74 \\\\\nQwen2.5-7B & $-$0.84 & 2.02 \\\\\nQwen2.5-14B & $+$0.69 & 2.05 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\caption{Post-hoc MDES for ARC-Challenge DiD ($n_{\\text{treated}}=257$, $n_{\\text{untreated}}=915$).}\n\\label{tab:mdes_arc}\n\\footnotesize\n\\begin{tabular}{lcc}\n\\toprule\nModel & DiD (pp) & MDES (pp) \\\\\n\\midrule\nPhi-4 14.7B & $-$0.83 & 2.28 \\\\\nQwen2.5-14B & $-$0.26 & 3.47 \\\\\nOLMo-2 7B & $-$1.13 & 4.19 \\\\\nGemma-2 9B & $-$0.25 & 4.66 \\\\\nQwen2.5-7B & $+$2.43 & 5.57 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOn MMLU, all observed DiD values are well below their respective MDES, confirming that the null results are consistent with absence of item-specific effects $>$2pp. On ARC, the smaller treated sample ($n=257$) yields substantially higher MDES; in particular, Qwen-7B's MDES of 5.57pp means that even moderate item-specific effects cannot be excluded for this model on ARC. ARC DiD results should therefore be interpreted as inconclusive rather than as evidence against memorization.\n\n\\section{Dose-Response Details}\n\\label{sec:dose_response_details}\n\nThe dose-response patterns reported in \\S\\ref{sec:taxonomy} are measured at the 7B--14.7B scale. Within the Qwen2.5 family at $\\leq$3B, effects are considerably smaller: at 1.5B and 3B, MMLU accuracy increases with contamination dosage by ${\\sim}$0.6--0.7pp, with diminishing returns above d025. At 0.5B, however, aggregate MMLU accuracy \\textit{decreases} with dosage (0.41 at d000 $\\to$ 0.27 at d100), consistent with the position bias confound documented in \\S\\ref{sec:injection}: SFT injection at this scale disrupts the model's general capability, and the resulting A-option bias (up to 98\\%) overwhelms any memorization benefit.\n\n\\section{Sensitivity of Profile Classification}\n\\label{sec:classification_sensitivity}\n\nWe assess the robustness of Algorithm~\\ref{alg:profile-classification} to threshold selection via a grid sweep over 134 $(\\tau, \\sigma)$ combinations. Table~\\ref{tab:sensitivity} reports family-level stability across both a reasonable parameter range ($\\tau \\in [0.5, 2.0]$~pp $\\times$ $\\sigma \\in [3.0, 7.0]$~pp; 30 combinations) and the full 134-combination sweep, along with the nearest parameter value at which the classification transitions.\n\n\\begin{table}[h]\n\\centering\n\\caption{Profile classification stability across threshold parameter ranges. All families achieve 100\\% stability within the reasonable range; transitions occur only at extreme parameter values ($\\geq$3$\\times$ default).}\n\\label{tab:sensitivity}\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\nFamily & Pattern & Reasonable & Full & Nearest transition \\\\\n\\midrule\nQwen2.5-14B & Collapse & 100\\% & 100\\% & $\\tau = 9.4$ \\\\\nGemma-2 9B & Benefit & 100\\% & 89\\% & $\\tau = 3.8$ \\\\\nPhi-4 14.7B & Immune & 100\\% & 82\\% & $\\tau < 0.35$ \\\\\nOLMo-2 7B & Benefit & 100\\% & 82\\% & $\\tau = 3.25$ \\\\\nQwen2.5-7B & V-recovery & 100\\% & 72\\% & $\\tau = 3.0$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nWithin the reasonable parameter range, all five families achieve 100\\% classification stability (150/150 family--parameter combinations). Transitions occur only at extreme $\\tau$ values well beyond the default ($\\tau\\!=\\!2$): Qwen-14B requires $\\tau\\!=\\!9.4$ (4.7$\\times$ default) to reclassify, reflecting the large separation between its $\\Delta\\text{acc}$ ($-$9.4pp) and any plausible noise threshold. Qwen-7B is the least robust at $\\tau\\!=\\!3.0$ (1.5$\\times$ default), but this is still above any defensible noise threshold for MMLU. The high intrinsic effect-size separation---Phi-4 fluctuates $<$0.4pp while Qwen-14B declines by 9.4pp---means that classification stability is driven by the data rather than by parameter choice.\n\n\\section{Cross-Family Domain Decomposition}\n\\label{sec:domain_decomposition}\n\nWe decompose MMLU accuracy changes into four constituent domains (STEM, Humanities, Social Sciences, Other) across all model families at each contamination dosage.\n\nTwo patterns emerge. First, the direction of accuracy change is governed by the dose-response pattern, not by domain. At d100, Collapse (Qwen-14B) produces negative $\\Delta\\text{acc}$ in all four domains (STEM $-6.8$pp, Humanities $-10.1$pp, Social Sciences $-11.2$pp, Other $-9.4$pp), while Benefit (Gemma-2) produces positive $\\Delta\\text{acc}$ throughout ($+2.7$, $+3.9$, $+5.0$, $+3.4$pp). Immune (Phi-4) remains within $\\pm 1.0$pp across all domains. No pattern produces a crossover exceeding the noise band ($|\\Delta| > 1$pp); the single exception is V-recovery Humanities ($+0.28$pp, well within sampling noise). This consistency holds at intermediate dosages as well.\n\nSecond, domains differ in sensitivity. STEM is the most resilient (mean $|\\Delta\\text{acc}| = 2.8$pp across all families at d100). Social Sciences is the most sensitive at $5.1$pp---$1.8\\times$ the STEM magnitude. The ordering is stable across patterns: in Collapse, STEM shows the smallest decline; in Benefit, STEM shows the smallest gain.\n\nThese results reinforce the global capability modulation interpretation (\\S\\ref{sec:memorization_test}): contamination direction is determined by the model's dose-response pattern rather than domain-specific memorization. The differential domain sensitivity more likely reflects variation in item difficulty distributions than differential memorization rates.\n\n\\section{Baseline Ability vs.\\ Contamination Effect}\n\\label{sec:baseline_vs_effect}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_baseline_vs_effect.pdf}\n\\caption{Baseline MMLU accuracy (d000) vs.\\ maximum accuracy change ($\\Delta$acc) under contamination. A threshold between 61.9\\% (Gemma-2) and 66.1\\% (Qwen-7B) separates models that benefit from contamination (below) from those that are harmed or immune (above). Estimated from models spanning four independent families.}\n\\label{fig:baseline_vs_effect}\n\\end{figure}\n\n\\section{Per-Domain $\\gamma$ Estimates}\n\\label{sec:domain_gamma_table}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_domain_gamma.pdf}\n\\caption{Per-domain $\\gamma_d$ estimates with 95\\% CIs ($J$=13 Qwen2.5). STEM domains show positive $\\gamma_d$; Social Sciences is negative and survives Bonferroni correction at $J$=16.}\n\\label{fig:domain_gamma}\n\\end{figure}\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-domain $\\gamma$ estimates (2PL+$\\gamma$, Qwen2.5) at $J$=13 and $J$=16. All $J$=16 fits converge ($\\hat{R} < 1.01$). Social Sciences $P(\\gamma\\!<\\!0)$ strengthens from 99.1\\% to 99.7\\% at $J$=16, exceeding the Bonferroni-corrected threshold ($99.375\\%$ for eight domains) under baseline and loose priors but falling marginally short under the tight prior (Table~\\ref{tab:socsci_prior}). Results remain exploratory at these ensemble sizes \\citep{gelman2012why}. ARC-Challenge is excluded (PPP $<$ 0.05 at all $J$).}\n\\label{tab:domain_gamma}\n\\footnotesize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccccc}\n\\toprule\n & \\multicolumn{2}{c}{$J$=13} & \\multicolumn{4}{c}{$J$=16} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-7}\nDomain & $\\gamma$ & $P(\\gamma\\!<\\!0)$ & $\\gamma$ & $P(\\gamma\\!<\\!0)$ & PPP & $\\hat{R}$ \\\\\n\\midrule\nMMLU: Math & +0.50 & 8.1\\% & +0.60 & 3.8\\% & 0.305 & 1.007 \\\\\nMMLU: Science & +0.50 & 7.8\\% & +0.57 & 4.3\\% & 0.197 & 1.007 \\\\\nMMLU: CS/Eng & +0.50 & 14.8\\% & +0.32 & 24.0\\% & 0.503 & 1.006 \\\\\nMMLU: Medical & +0.24 & 24.0\\% & +0.05 & 43.6\\% & 0.268 & 1.008 \\\\\nMMLU: Other & +0.13 & 35.7\\% & +0.32 & 20.4\\% & 0.072$^\\dagger$ & 1.008 \\\\\nMMLU: Business/Law & +0.04 & 44.1\\% & +0.08 & 37.8\\% & 0.395 & 1.007 \\\\\nMMLU: Humanities & $-$0.31 & 85.4\\% & $-$0.14 & 69.7\\% & 0.416 & 1.007 \\\\\nMMLU: Social Sci & $-$0.57 & \\textbf{99.1\\%} & $-$0.63 & \\textbf{99.7\\%} & 0.722 & 1.006 \\\\\n\\bottomrule\n\\end{tabular}}\n\n\\vspace{2pt}\n{\\scriptsize $^\\dagger$PPP below acceptable threshold (0.1); $\\gamma$ estimate for this domain should be interpreted with caution.}\n\\end{table}\n\n\\section{DGP Robustness Analysis}\n\\label{sec:threshold_dgp}\n\nWe evaluate 2PL+$\\gamma$ robustness under data-generating process (DGP) misspecification via 400 simulation runs (2 DGPs $\\times$ 4 ensemble sizes $\\times$ 5 true $\\gamma$ values $\\times$ 10 seeds).\n\n\\paragraph{Design.} The \\emph{Linear DGP} (control) generates responses from the correctly specified additive model (Eq.~\\ref{eq:2pl_gamma}). The \\emph{Threshold DGP} (misspecified) applies a step-function contamination effect: items with exposure above a threshold receive the full effect; items below receive zero. Ensemble sizes sweep $J \\in \\{16, 50, 100, 500\\}$; true $\\gamma \\in \\{0.5, 1.0, 1.5, 2.0, 3.0\\}$.\n\n\\paragraph{Point estimates.} Under the Linear DGP, $\\hat{\\gamma}/\\gamma_{\\text{true}} = 0.84$--$1.07$ across all conditions (unbiased within sampling noise). Under the Threshold DGP, $\\hat{\\gamma}/\\gamma_{\\text{true}} = 0.94$--$1.24$ (mild overestimation, not attenuation). PPP remains in the acceptable range (0.50--0.56) under both DGPs, confirming that posterior predictive checks cannot detect this form of misspecification.\n\n\\paragraph{CI coverage.} Under the Linear DGP, 95\\% CI coverage is nominal ($\\geq$0.93) at all $J$. Under the Threshold DGP, coverage degrades with ensemble size (Table~\\ref{tab:dgp_coverage}). The intervals become overconfident as $J$ increases because the model converges to a biased point estimate.\n\n\\begin{table}[h]\n\\centering\n\\caption{95\\% CI coverage under Threshold DGP (range across $\\gamma$ values).}\n\\label{tab:dgp_coverage}\n\\footnotesize\n\\begin{tabular}{lc}\n\\toprule\n$J$ & 95\\% CI coverage \\\\\n\\midrule\n50 & 1.00 \\\\\n100 & 0.90--1.00 \\\\\n200 & 0.80--1.00 \\\\\n500 & 0.70--1.00 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Implications.} The reasoning chain is: (i)~Threshold DGP + linear model yields $\\hat{\\gamma}/\\gamma_{\\text{true}} \\geq 0.94$ (overestimation, not attenuation); (ii)~therefore, if a true threshold effect exists, the linear model will not fail to detect it; (iii)~an empirical $\\gamma \\approx 0$ is a genuine null, not a misspecification artifact. Coverage degradation affects the \\emph{precision} of effect size estimates (how narrow the CI is), not the \\emph{detection} of whether an effect exists. At the ensemble sizes in our empirical analyses ($J\\!=\\!13$--$16$), coverage remains near-nominal even under misspecification. Real RRF exposure is right-skewed (mean$=$0.041); the simulation uses uniform exposure, so quantitative magnitudes may differ, but the qualitative pattern (overestimation direction, coverage degradation at large $J$) is robust.\n\n\\section{ARC IRT Results}\n\\label{sec:arc_irt}\n\nARC-Challenge IRT results are reported separately due to marginal model fit (PPP$=$0.003 at $J=16$). The smaller item pool (1,172 vs.\\ 14,042 for MMLU) and more homogeneous difficulty distribution contribute to structural misfit: the 2PL+$\\gamma$ model cannot adequately capture the item response patterns. Under this caveat, the ARC baseline comparison ($J=16$, 300 RRF items) yields: B0-Raw MAE$=$0.007, B3-Vanilla2PL MAE$=$0.015, B4-LinearRegression MAE$=$0.012 ($\\tau = 0.731$, best rank correlation), B6-DCR MAE$=$0.314 (systematic overcorrection), ContamCal MAE$=$0.020. The pattern mirrors MMLU: raw accuracy dominates on MAE because the aggregate contamination effect (${\\sim}$0.7pp) is smaller than correction noise. Domain-level $\\gamma$ estimation on ARC is unreliable at all tested configurations ($J=8$, 13, 16; PPP $< 0.05$ in all cases).\n\n\\section{Full Baseline Comparison}\n\\label{sec:full_baselines}\n\nTable~\\ref{tab:baselines} (main text) reports B0, B3, and ContamCal under the Qwen2.5 pooled configuration ($J=16$ for MMLU/ARC, $J=24$ for GSM8K which retains 0.5B). Table~\\ref{tab:full_baselines_arc} presents the complete seven-baseline comparison on ARC under a pooled 0.5B+1.5B configuration ($J=8$, S1-only exposure). This configuration differs from the main analysis ($J=16$, RRF exposure): the smaller ensemble and single-signal exposure limit comparability with MMLU results; these results are included for completeness. Table~\\ref{tab:full_baselines_gsm8k} presents GSM8K baselines at 0.5B scale.\n\nB6-DCR \\citep{xu2025dcr} produces the highest MAE on both benchmarks, consistent with its fuzzy inference approach, which overcorrects scores without a measurement-theoretic anchor. B4-LinearRegression performs competitively on ARC (MAE$=$0.056) but lacks the uncertainty quantification and domain-level diagnosis that IRT provides. B1-Remove\\&Rescore and B5-Emperor do not improve over raw scores, which confirms that item removal and mitigation strategies are insufficient for calibration.\n\n\\begin{table}[h]\n\\centering\n\\caption{Full baseline comparison on ARC-Challenge (pooled 0.5B+1.5B, $J=8$, S1-only exposure). MAE$\\downarrow$.}\n\\label{tab:full_baselines_arc}\n\\footnotesize\n\\begin{tabular}{lc}\n\\toprule\nMethod & ARC MAE \\\\\n\\midrule\nB0-Raw & 0.059 \\\\\nB1-Remove\\&Rescore & 0.059 \\\\\nB2-Single2PL+$\\gamma$ & 0.064 \\\\\nB3-Vanilla4PL & 0.071 \\\\\nB4-LinearRegression & 0.056 \\\\\nB5-Emperor & 0.059 \\\\\nB6-DCR & --- \\\\\n\\midrule\nContamCal (4PL+$\\gamma$) & \\textbf{0.035} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\caption{Baseline comparison on GSM8K (0.5B scale, delta exposure). MAE$\\downarrow$.}\n\\label{tab:full_baselines_gsm8k}\n\\footnotesize\n\\begin{tabular}{lc}\n\\toprule\nMethod & GSM8K MAE \\\\\n\\midrule\nB0-Raw & 0.003 \\\\\nB2-Single2PL+$\\gamma$ & 0.320 \\\\\nB3-Vanilla4PL & 0.012 \\\\\nB4-LinearRegression & \\textbf{0.003} \\\\\nB6-DCR & --- \\\\\n\\midrule\nContamCal (4PL+$\\gamma$) & 0.020 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Parametric Dose-Response Model Comparison}\n\\label{sec:parametric_dr}\n\nWe fit four parametric dose-response models---Constant (intercept-only), Linear, Quadratic, and four-parameter Hill \\citep{hill1910aggregation,ritz2015dose}---to pooled multi-seed MMLU accuracy trajectories for each family. Table~\\ref{tab:aicc_dr} reports AICc and Akaike weights.\n\n\\begin{table}[h]\n\\centering\n\\caption{AICc model selection for dose-response trajectories (pooled multi-seed MMLU). Bold indicates best-fitting model per family; $w$ is the Akaike weight of the best model.}\n\\label{tab:aicc_dr}\n\\footnotesize\n\\begin{tabular}{lccccc}\n\\toprule\nFamily & Constant & Linear & Quadratic & Hill & Best ($w$) \\\\\n\\midrule\nPhi-4 14.7B & $-$71.42 & $-$72.08 & $-$70.06 & $\\mathbf{-73.14}$ & Hill (0.58) \\\\\nQwen2.5-14B & 49.54 & 23.40 & 21.22 & $\\mathbf{18.28}$ & Hill (0.55) \\\\\nQwen2.5-7B & $-$12.38 & $-$20.53 & $-$14.52 & $\\mathbf{-24.97}$ & Hill (0.77) \\\\\nGemma-2 9B & $\\mathbf{17.35}$ & 18.89 & 20.01 & 18.96 & Constant (0.39) \\\\\nOLMo-2 7B & $\\mathbf{25.82}$ & 26.66 & 27.54 & 26.47 & Constant (0.62) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nParametric model selection with pooled multi-seed data recovers only the most extreme pattern (Collapse, Qwen-14B; Hill $E_{\\max} = -43$pp). Two families classified as Benefit by Algorithm~\\ref{alg:profile-classification} (Gemma-2, OLMo-2) are indistinguishable from Constant under AICc---consistent with their cross-seed CIs crossing zero (Table~\\ref{tab:cross_seed}). Qwen-7B's V-recovery is structurally inaccessible to monotonic Hill/sigmoid models; Quadratic captures the V-shape but is penalized by AICc ($\\Delta$AICc$=$6.4). Phi-4's Immune classification is reclassified as weak Benefit (Hill $E_{\\max} = +2.43$pp, CI [$-$2.01, $+$6.88] crossing zero). These discrepancies reflect insufficient statistical power at $n\\!=\\!3$ seeds rather than contradictions: Algorithm~\\ref{alg:profile-classification} resolves per-seed patterns below the detection threshold of pooled parametric methods, motivating its use for profile construction.\n\n\\section{Exposure Score Item-Level Classification}\n\\label{sec:sij_classification}\n\nUnder controlled injection where ground-truth contamination labels are available, we evaluate item-level classification performance of each detection signal and the RRF fusion (\\S\\ref{sec:stage1}). S1 (embedding similarity) achieves near-perfect discrimination (ROC-AUC 0.93--0.99 across benchmarks and dosage levels), confirming that cosine similarity to the training corpus reliably identifies injected items. RRF fusion achieves ROC-AUC 0.73--0.93, reduced relative to S1 because S2 (Min-K\\%++, AUC $\\approx$ 0.48--0.50) and S4 (Self-Critique, AUC $\\approx$ 0.47--0.51) contribute near-random item-level signal. However, RRF is designed for the realistic setting where ground truth is unavailable: S1 requires an explicit training corpus reference, which practitioners typically lack, while RRF's multi-signal approach provides robustness across detection scenarios where no single signal dominates (\\S\\ref{sec:rrf_ablation}).\n",
+      "numLines": 537,
+      "startLine": 1,
+      "totalLines": 537
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me analyze the three fixes:
+
+### Fix 1: "N=6 families" in results.tex L29
+
+Line 29: "These empirical profiles are preliminary at $N\!=\!6$ families."
+
+Looking at Table 1 (L14-27), there are 6 models:
+1. Phi-4 14.7B (Microsoft)
+2. Qwen-14B (Alibaba)
+3. Qwen-7B (Alibaba) 
+4. Gemma-2 9B (Google)
+5. Falcon3 7B (TII)
+
+
+6. OLMo-2 7B (Allen AI)
+
+That's 6 models from 5 families since Qwen-14B and Qwen-7B belong to the same family. The introduction correctly states "six models spanning five independent families," but when including LLaMA-3.1 as the out-of-sample validation model at L35, we have 7 models total from 6 families. So the "N=6 families" notation at L29 likely refers to the total count including the OOS model, which would be accurate. The real issue is what N represents here—if it's the number of independent families in the taxonomy, then N=5 is correct for the in-sample models, since two models from the same family aren't independent observations. Adding LLaMA-3.1 would bring it to N=6 families, but that's oddly placed before discussing the out-of-sample validation.
+
+Looking at how the paper uses "family" elsewhere—like the "6/7 families" reference in the cross-benchmark section—it seems the terminology is being used loosely, sometimes conflating models with families. The safest approach would be clarifying what N actually counts, since the current phrasing leaves ambiguity about whether we're talking about the in-sample set alone or including the out-of-sample model. The real issue is that "N=6" should refer to families for the scientific caveat to make sense—you can't generalize a taxonomy from non-independent data points like two models from the same family. So either the text needs to say "N=5 families" to match the table, or clarify that the preliminary patterns are based on 6 models across 5 families, with the independence concern being about the families, not the model count. I'm realizing the core issue is that L29 says "N=6 families" but we only have five independent families in the in-sample set—LLaMA-3.1 is added later as out-of-sample validation. The cleanest fix is to change it to "N=6 models (five independent families)" to match what L4 already established and be precise about the sample size limitation without overcomplicating things. Looking at the empirical results from applying Algorithm 1 across the seed=42 trajectories, I'm seeing a range of dose-response patterns rather than a uniform effect (shown in Table 1 and Figure 1). The key limitation here is that with only 5 independent families represented in the in-sample models, these profiles are still preliminary—the effective sample size for generalizability is constrained, so I should correct the notation to reflect that.
+
+Now examining the ARC consistency claim in the results section, I'm checking the appendix data to verify whether the statement about 3/5 families is accurate. The cross-benchmark results show directional consistency across most models, but I need to count carefully which families actually demonstrate consistent patterns versus which ones diverge. I see the discrepancy now. L30 is looking at just seed 42 across six models, where five show directional consistency with MMLU. But L37 shifts to a multi-seed analysis across families, and two of them—Gemma-2 and Qwen-7B—exhibit benchmark-conditional effects, leaving only four families truly consistent. The L40 figure of 6/7 families must be counting a different set entirely, possibly including LLaMA-3.1 in that comparison. I'm realizing the discrepancy hinges on how the models are counted—whether Qwen-7B's direction consistency (both negative) but different recovery patterns counts as "consistent," and whether the 7 families in the results include LLaMA-3.1 separately from the main Table 1 models. The 86% agreement (6/7) suggests only Gemma-2 shows true direction disagreement between benchmarks, while Qwen-7B's persistent deficit on ARC versus recovery on MMLU might be classified as directionally consistent but with different magnitudes. Looking at the appendix data more carefully, I see the discrepancy: it reports 5/6 models with consistent MMLU-ARC direction under s42, but when I convert to family-level counts, that's actually 4/5 families since Qwen-7B and Qwen-14B are one family. The line in results.tex saying "3/5 families" appears to be outdated from before Falcon3 was added, so I need to update it to reflect the current family count. I need to figure out what "consistent" means in this context—whether it's about directional agreement with MMLU or consistency across different seeds. Looking at the appendix data, it seems like 5 out of 6 models (or 4 out of 5 families) show MMLU-ARC directional consistency, which suggests the original "3/5" count was from before Falcon3 was included in the analysis.
+
+Let me trace through the original five models to see which ones actually align: Phi-4 and Qwen-14B both show consistent patterns, Qwen-7B moves in the same negative direction on both benchmarks, OLMo-2 benefits on both, but Gemma-2 shows conflicting results. That gives me 4 out of 5 consistent, not 3 out of 5, so either the original definition was stricter or the count was taken from an even earlier version of the analysis.
+
+Looking more carefully, if "consistent" means the exact same pattern rather than just the same direction, then Qwen-7B's V-recovery on MMLU versus straightforward harm on ARC would break the consistency, leaving only Phi-4, Qwen-14B, and OLMo-2 as truly consistent—that's the 3 out of 5. Adding Falcon3 with its benefit on both benchmarks pushes the strict count to 4 out of 6 models. Looking at the actual paper text, the appendix reports 4 out of 6 families show consistent cross-benchmark direction between MMLU and ARC, while results.tex claims 86% agreement across 6 out of 7 families when including LLaMA-3.1 — that's Phi-4, both Qwen sizes, and Falcon3 all aligning in the same direction.
+
+Now I need to figure out what L32 is actually measuring, since it says "3/5 families" but the data I'm seeing shows either 4 or 5 families depending on whether we're counting in-sample models only or including the out-of-sample LLaMA-3.1, and whether we're looking at individual models versus family-level aggregation. Looking at the Falcon3 data, both MMLU and ARC show positive benefits, so that's consistent. With Falcon3 included, I'm getting 5 families with consistent ARC direction in-sample, which means the fix for L32 should be "5/5 families" instead of "3/5 families". "5/6 models" to match the current data, though I need to verify whether L32 should count families or individual models to stay consistent with L40's convention.
+
+Looking at the original "3/5" count, I'm checking which models actually met the criteria: Phi-4, Qwen-14B, Qwen-7B, and OLMo-2 all showed consistent behavior, while Gemma-2 didn't—that's 4/5, not 3/5. The discrepancy suggests the original "3/5" used stricter criteria where Qwen-7B's shape difference (V-recovery versus persistent deficit) counted as inconsistent, which would give 3/5 before Falcon3 was added.
+
+Now with Falcon3 included and applying the same strict criteria, I'm seeing 4 out of 6 models consistent (Phi-4, Qwen-14B, Falcon3, and OLMo-2), while Qwen-7B and Gemma-2 fail. Breaking this down by family: Microsoft and TII are fully consistent, Alibaba is split (14B works, 7B doesn't), and Google doesn't meet the threshold.
+
+Looking back at what the paper actually reports—6/7 families for MMLU-ARC agreement, five of six models for directional consistency, and 4/6 families for cross-benchmark direction—the original 3/5 count from L32 was using stricter criteria before Falcon3 was added. With Falcon3 now included, the numbers shift to five of six models or 4/6 families depending on how I count Alibaba's partial consistency. So the key issue is that L32 should use directional criteria to match L30's language about "ARC direction is consistent," which means 5/6 models show agreement rather than the stricter 4/6 count from L37.
+
+Looking at how the paper itself uses terminology, L31 treats the six models as a "six-family sample" where each model counts as one family, so I need to apply that same convention consistently across all the appendix references. Since L32 uses directional comparison criteria, the fix is straightforward: change "3/5 families" to "5/6 families" to account for Falcon3's inclusion.
+
+Now I need to check the figure caption in the introduction. L10 mentions Falcon3 only in the table reference, but if Falcon3 is actually included in the figure now, that phrasing needs updating. Let me look at the figure generation script to confirm what's actually being plotted.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "deb5f87f-de50-4d51-b1b1-ece1102353b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GTksEX9wapqwiCdMY7VcZn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21094,
+      "cache_read_input_tokens": 33555,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 21094
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+Now let me check the dose-response figure to confirm it includes Falcon3.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "c28e26d7-2812-4d5c-963a-f3e6012c0dc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GTksEX9wapqwiCdMY7VcZn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21094,
+      "cache_read_input_tokens": 33555,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 21094
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FMCFSMPcZGLvD8SY675B9r`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/gen_fig_dose_response.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "0a7f692f-a445-4b89-9b09-f772fce92082",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GTksEX9wapqwiCdMY7VcZn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21094,
+      "cache_read_input_tokens": 33555,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 21094
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T18:10:46.728Z_
+
+<details><summary>↩ Tool result · `toolu_01FMCFSMPcZGLvD8SY675B9r`</summary>
+
+```text
+1	#!/usr/bin/env python3
+2	"""Generate Figure 1: MMLU dose-response curves for all 7 model families."""
+3	
+4	import matplotlib
+5	matplotlib.use('Agg')
+6	import matplotlib.pyplot as plt
+7	import matplotlib.lines as mlines
+8	import numpy as np
+9	from pathlib import Path
+10	
+11	plt.rcParams.update({
+12	    'font.family': 'DejaVu Sans',
+13	    'font.size': 10,
+14	    'axes.titlesize': 12,
+15	    'axes.labelsize': 11,
+16	    'xtick.labelsize': 9.5,
+17	    'ytick.labelsize': 9.5,
+18	    'legend.fontsize': 8,
+19	    'figure.dpi': 300,
+20	    'savefig.dpi': 300,
+21	    'savefig.bbox': 'tight',
+22	    'savefig.pad_inches': 0.08,
+23	    'axes.spines.top': False,
+24	    'axes.spines.right': False,
+25	    'lines.linewidth': 1.8,
+26	})
+27	
+28	# --- Data: MMLU 5-shot accuracy (%), seed=42 ---
+29	# Sources:
+30	#   Phi-4, Qwen-14B, Qwen-7B, Gemma-2: director/loop_17.md (v2 eval, verified data_audit_table1.md)
+31	#   OLMo-2: eval_olmo2_s42_rerun (2026-05-21), confirmed data_audit_table1.md
+32	#   Falcon3: falcon3_paper_integration_data.md (s42)
+33	#   LLaMA-3.1: data_audit_table1.md (s0, 3 points only: d000/d025/d100)
+34	
+35	xpos = np.arange(5)
+36	dosage_labels = ['0%', '0.5%', '2.5%', '5%', '10%']
+37	
+38	models = {
+39	    'Phi-4 14.7B': {
+40	        'accs': [76.44, 76.36, 76.98, 76.75, 76.27],
+41	        'pattern': 'Immune',
+42	    },
+43	    'Qwen2.5-14B': {
+44	        'accs': [69.44, 69.01, 62.04, 59.41, 60.07],
+45	        'pattern': 'Collapse',
+46	    },
+47	    'Qwen2.5-7B': {
+48	        'accs': [66.11, 64.74, 62.98, 63.07, 64.33],
+49	        'pattern': 'V-recovery',
+50	    },
+51	    'Gemma-2 9B': {
+52	        'accs': [61.86, 63.42, 64.56, 64.01, 65.62],
+53	        'pattern': 'Benefit',
+54	    },
+55	    'Falcon3-7B': {
+56	        'accs': [58.77, 59.02, 61.23, 62.09, 62.96],
+57	        'pattern': 'Benefit',
+58	    },
+59	    'OLMo-2 7B': {
+60	        'accs': [53.79, 56.14, 56.17, 57.25, 57.00],
+61	        'pattern': 'Benefit',
+62	    },
+63	    'LLaMA-3.1 8B': {
+64	        'accs': [53.50, None, 52.75, None, 52.81],
+65	        'pattern': 'Immune',
+66	    },
+67	}
+68	
+69	pattern_style = {
+70	    'Immune':     {'linestyle': (0, (5, 3)),      'linewidth': 1.5},
+71	    'Collapse':   {'linestyle': (0, (1, 1.5)),     'linewidth': 2.0},
+72	    'V-recovery': {'linestyle': (0, (4, 2, 1, 2)), 'linewidth': 1.8},
+73	    'Benefit':    {'linestyle': '-',                'linewidth': 1.8},
+74	}
+75	
+76	model_visual = {
+77	    'Phi-4 14.7B':   {'color': '#7570B3', 'marker': 'D', 'ms': 5.5},
+78	    'LLaMA-3.1 8B':  {'color': '#999999', 'marker': 'p', 'ms': 7},
+79	    'Qwen2.5-14B':   {'color': '#D95F02', 'marker': 'v', 'ms': 6},
+80	    'Qwen2.5-7B':    {'color': '#E7298A', 'marker': '<', 'ms': 6},
+81	    'Gemma-2 9B':    {'color': '#1B9E77', 'marker': 's', 'ms': 5.5},
+82	    'Falcon3-7B':    {'color': '#E6AB02', 'marker': '^', 'ms': 6.5},
+83	    'OLMo-2 7B':     {'color': '#66A61E', 'marker': 'o', 'ms': 5.5},
+84	}
+85	
+86	fig, ax = plt.subplots(figsize=(6.5, 4.5))
+87	
+88	draw_order = ['LLaMA-3.1 8B', 'OLMo-2 7B', 'Falcon3-7B',
+89	              'Gemma-2 9B', 'Qwen2.5-7B', 'Qwen2.5-14B', 'Phi-4 14.7B']
+90	
+91	for name in draw_order:
+92	    m = models[name]
+93	    v = model_visual[name]
+94	    ps = pattern_style[m['pattern']]
+95	
+96	    accs = m['accs']
+97	    xs = [i for i, a in enumerate(accs) if a is not None]
+98	    ys = [a for a in accs if a is not None]
+99	
+100	    ax.plot(xs, ys, color=v['color'], marker=v['marker'],
+101	            markersize=v['ms'], linestyle=ps['linestyle'],
+102	            linewidth=ps['linewidth'], zorder=3,
+103	            markeredgecolor='white', markeredgewidth=0.4)
+104	
+105	# --- Right-side model labels with collision avoidance ---
+106	end_ys = {}
+107	for name, m in models.items():
+108	    accs = m['accs']
+109	    end_ys[name] = accs[-1] if accs[-1] is not None else accs[-3]
+110	
+111	sorted_names = sorted(end_ys.keys(), key=lambda n: end_ys[n])
+112	min_gap = 2.0
+113	adjusted = []
+114	for name in sorted_names:
+115	    y = end_ys[name]
+116	    for _, prev_y in adjusted:
+117	        if y - prev_y < min_gap:
+118	            y = prev_y + min_gap
+119	    adjusted.append((name, y))
+120	
+121	for name, y_adj in adjusted:
+122	    v = model_visual[name]
+123	    actual_y = end_ys[name]
+124	    last_x = 4
+125	    if name == 'LLaMA-3.1 8B':
+126	        last_x = 4
+127	
+128	    use_arrow = abs(y_adj - actual_y) > 0.8
+129	    ax.annotate(
+130	        name, xy=(4, actual_y), xytext=(4.25, y_adj),
+131	        fontsize=7.5, color=v['color'], fontweight='medium',
+132	        va='center', ha='left',
+133	        arrowprops=dict(arrowstyle='-', color=v['color'], lw=0.6)
+134	        if use_arrow else None,
+135	    )
+136	
+137	ax.set_xticks(xpos)
+138	ax.set_xticklabels(dosage_labels)
+139	ax.set_xlabel('Contamination Dosage')
+140	ax.set_ylabel('MMLU 5-shot Accuracy (%)')
+141	ax.set_xlim(-0.3, 6.2)
+142	
+143	all_accs = [a for m in models.values() for a in m['accs'] if a is not None]
+144	ax.set_ylim(min(all_accs) - 2, max(all_accs) + 2)
+145	
+146	# --- Pattern key in upper-left inside the plot ---
+147	pat_handles = [
+148	    mlines.Line2D([], [], color='#555', linestyle='-', linewidth=1.5, label='Benefit'),
+149	    mlines.Line2D([], [], color='#555', linestyle=(0, (5, 3)), linewidth=1.5, label='Immune'),
+150	    mlines.Line2D([], [], color='#555', linestyle=(0, (1, 1.5)), linewidth=1.5, label='Collapse'),
+151	    mlines.Line2D([], [], color='#555', linestyle=(0, (4, 2, 1, 2)), linewidth=1.5, label='V-recovery'),
+152	]
+153	
+154	ax.legend(handles=pat_handles, loc='lower left',
+155	          frameon=True, fancybox=False, edgecolor='#cccccc',
+156	          handlelength=2.5, labelspacing=0.35, borderpad=0.5,
+157	          title='Line style = Pattern', title_fontproperties={'size': 7.5})
+158	
+159	plt.tight_layout()
+160	
+161	out_dir = Path(__file__).parent
+162	fig.savefig(out_dir / 'fig_dose_response.pdf')
+163	fig.savefig(out_dir / 'fig_dose_response.png')
+164	print(f"Saved: {out_dir / 'fig_dose_response.pdf'}")
+165	print(f"Saved: {out_dir / 'fig_dose_response.png'}")
+166	plt.close()
+167	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "8188a2c2-5405-4fce-928e-646d0e67d36e",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/figures/paper/gen_fig_dose_response.py",
+      "content": "#!/usr/bin/env python3\n\"\"\"Generate Figure 1: MMLU dose-response curves for all 7 model families.\"\"\"\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.lines as mlines\nimport numpy as np\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.titlesize': 12,\n    'axes.labelsize': 11,\n    'xtick.labelsize': 9.5,\n    'ytick.labelsize': 9.5,\n    'legend.fontsize': 8,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.08,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# --- Data: MMLU 5-shot accuracy (%), seed=42 ---\n# Sources:\n#   Phi-4, Qwen-14B, Qwen-7B, Gemma-2: director/loop_17.md (v2 eval, verified data_audit_table1.md)\n#   OLMo-2: eval_olmo2_s42_rerun (2026-05-21), confirmed data_audit_table1.md\n#   Falcon3: falcon3_paper_integration_data.md (s42)\n#   LLaMA-3.1: data_audit_table1.md (s0, 3 points only: d000/d025/d100)\n\nxpos = np.arange(5)\ndosage_labels = ['0%', '0.5%', '2.5%', '5%', '10%']\n\nmodels = {\n    'Phi-4 14.7B': {\n        'accs': [76.44, 76.36, 76.98, 76.75, 76.27],\n        'pattern': 'Immune',\n    },\n    'Qwen2.5-14B': {\n        'accs': [69.44, 69.01, 62.04, 59.41, 60.07],\n        'pattern': 'Collapse',\n    },\n    'Qwen2.5-7B': {\n        'accs': [66.11, 64.74, 62.98, 63.07, 64.33],\n        'pattern': 'V-recovery',\n    },\n    'Gemma-2 9B': {\n        'accs': [61.86, 63.42, 64.56, 64.01, 65.62],\n        'pattern': 'Benefit',\n    },\n    'Falcon3-7B': {\n        'accs': [58.77, 59.02, 61.23, 62.09, 62.96],\n        'pattern': 'Benefit',\n    },\n    'OLMo-2 7B': {\n        'accs': [53.79, 56.14, 56.17, 57.25, 57.00],\n        'pattern': 'Benefit',\n    },\n    'LLaMA-3.1 8B': {\n        'accs': [53.50, None, 52.75, None, 52.81],\n        'pattern': 'Immune',\n    },\n}\n\npattern_style = {\n    'Immune':     {'linestyle': (0, (5, 3)),      'linewidth': 1.5},\n    'Collapse':   {'linestyle': (0, (1, 1.5)),     'linewidth': 2.0},\n    'V-recovery': {'linestyle': (0, (4, 2, 1, 2)), 'linewidth': 1.8},\n    'Benefit':    {'linestyle': '-',                'linewidth': 1.8},\n}\n\nmodel_visual = {\n    'Phi-4 14.7B':   {'color': '#7570B3', 'marker': 'D', 'ms': 5.5},\n    'LLaMA-3.1 8B':  {'color': '#999999', 'marker': 'p', 'ms': 7},\n    'Qwen2.5-14B':   {'color': '#D95F02', 'marker': 'v', 'ms': 6},\n    'Qwen2.5-7B':    {'color': '#E7298A', 'marker': '<', 'ms': 6},\n    'Gemma-2 9B':    {'color': '#1B9E77', 'marker': 's', 'ms': 5.5},\n    'Falcon3-7B':    {'color': '#E6AB02', 'marker': '^', 'ms': 6.5},\n    'OLMo-2 7B':     {'color': '#66A61E', 'marker': 'o', 'ms': 5.5},\n}\n\nfig, ax = plt.subplots(figsize=(6.5, 4.5))\n\ndraw_order = ['LLaMA-3.1 8B', 'OLMo-2 7B', 'Falcon3-7B',\n              'Gemma-2 9B', 'Qwen2.5-7B', 'Qwen2.5-14B', 'Phi-4 14.7B']\n\nfor name in draw_order:\n    m = models[name]\n    v = model_visual[name]\n    ps = pattern_style[m['pattern']]\n\n    accs = m['accs']\n    xs = [i for i, a in enumerate(accs) if a is not None]\n    ys = [a for a in accs if a is not None]\n\n    ax.plot(xs, ys, color=v['color'], marker=v['marker'],\n            markersize=v['ms'], linestyle=ps['linestyle'],\n            linewidth=ps['linewidth'], zorder=3,\n            markeredgecolor='white', markeredgewidth=0.4)\n\n# --- Right-side model labels with collision avoidance ---\nend_ys = {}\nfor name, m in models.items():\n    accs = m['accs']\n    end_ys[name] = accs[-1] if accs[-1] is not None else accs[-3]\n\nsorted_names = sorted(end_ys.keys(), key=lambda n: end_ys[n])\nmin_gap = 2.0\nadjusted = []\nfor name in sorted_names:\n    y = end_ys[name]\n    for _, prev_y in adjusted:\n        if y - prev_y < min_gap:\n            y = prev_y + min_gap\n    adjusted.append((name, y))\n\nfor name, y_adj in adjusted:\n    v = model_visual[name]\n    actual_y = end_ys[name]\n    last_x = 4\n    if name == 'LLaMA-3.1 8B':\n        last_x = 4\n\n    use_arrow = abs(y_adj - actual_y) > 0.8\n    ax.annotate(\n        name, xy=(4, actual_y), xytext=(4.25, y_adj),\n        fontsize=7.5, color=v['color'], fontweight='medium',\n        va='center', ha='left',\n        arrowprops=dict(arrowstyle='-', color=v['color'], lw=0.6)\n        if use_arrow else None,\n    )\n\nax.set_xticks(xpos)\nax.set_xticklabels(dosage_labels)\nax.set_xlabel('Contamination Dosage')\nax.set_ylabel('MMLU 5-shot Accuracy (%)')\nax.set_xlim(-0.3, 6.2)\n\nall_accs = [a for m in models.values() for a in m['accs'] if a is not None]\nax.set_ylim(min(all_accs) - 2, max(all_accs) + 2)\n\n# --- Pattern key in upper-left inside the plot ---\npat_handles = [\n    mlines.Line2D([], [], color='#555', linestyle='-', linewidth=1.5, label='Benefit'),\n    mlines.Line2D([], [], color='#555', linestyle=(0, (5, 3)), linewidth=1.5, label='Immune'),\n    mlines.Line2D([], [], color='#555', linestyle=(0, (1, 1.5)), linewidth=1.5, label='Collapse'),\n    mlines.Line2D([], [], color='#555', linestyle=(0, (4, 2, 1, 2)), linewidth=1.5, label='V-recovery'),\n]\n\nax.legend(handles=pat_handles, loc='lower left',\n          frameon=True, fancybox=False, edgecolor='#cccccc',\n          handlelength=2.5, labelspacing=0.35, borderpad=0.5,\n          title='Line style = Pattern', title_fontproperties={'size': 7.5})\n\nplt.tight_layout()\n\nout_dir = Path(__file__).parent\nfig.savefig(out_dir / 'fig_dose_response.pdf')\nfig.savefig(out_dir / 'fig_dose_response.png')\nprint(f\"Saved: {out_dir / 'fig_dose_response.pdf'}\")\nprint(f\"Saved: {out_dir / 'fig_dose_response.png'}\")\nplt.close()\n",
+      "numLines": 167,
+      "startLine": 1,
+      "totalLines": 167
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The figure generation script confirms:
+1. The figure includes ALL 7 models including Falcon3 and LLaMA-3.1 (line 2: "all 7 model families")
+2. Falcon3 is plotted as a solid line (Benefit pattern) with its own color and marker
+
+Now I have all the information needed for the three fixes:
+
+### Fix 1: results.tex L29 - "N=6 families"
+
+Table 1 has 6 models. The paragraph at L31 says "our six-family sample" (counting each model as a family). The intro says "five independent families." The actual count is:
+
+
+- 6 models from 5 independent families in-sample
+- Plus LLaMA-3.1 as OOS → 7 models / 6 families total
+
+Since L29 appears right after Table 1 and summarizes its findings before the OOS paragraph, the most accurate phrasing would be "N=6 models" to match the table directly, or "N=5 families" if emphasizing the independent family count—but given the context and the table's presentation, "N=6 families" likely refers to treating each model as a distinct family unit for that analysis. The real issue is whether "N=6 families" accurately describes the sample scope at that point in the text. Since Table 1 contains 6 models and the convention treats each as a family, the phrasing is consistent with the earlier "six-family sample" reference—so it's actually fine as written. The real issue is that the text conflates "models" and "families" — L4 correctly distinguishes them as "six models from five independent families," but L29 and L31 both say "six families" when they mean six models. To fix L29 consistently with L4, I should change it to "$N\!=\!6$ models," though that would still leave L31 inconsistent with the same problem. So the intro checks out—6 models across 5 families from 5 labs. For L29, I'll just change "families" to "models" to match the count of 6, keeping the rest of the sentence intact. Then for L32, I need to figure out whether it should be "3/5 families" or something else based on the appendix data showing 4/6 families met the stricter criteria. "5/6 families" for the in-sample analysis to match the directional criteria used elsewhere, which keeps it consistent with L40's approach while acknowledging that L32 is discussing a narrower set before the out-of-sample results are introduced. I'm verifying the model counts across the appendix data. Looking at the s42 results, I can see that five models show directionally consistent patterns between MMLU and ARC—OLMo-2, Falcon3, both Qwen variants, and Phi-4 all align—while Gemma-2 is the outlier with its 16pp oscillation artifact on ARC. This confirms the "5/6 families" count is correct for the in-sample models, so I need to update that reference from "3/5 families" to "5/6 families."
+
+Now I'm looking at the Figure 1 caption in introduction.tex to see what needs fixing there. I need to focus on the core issue: Falcon3 appears in the figure itself, so the caption shouldn't claim it's only in the table. The fix is straightforward—remove the phrase "Falcon3 in Table~\ref{tab:taxonomy}; " from the caption. I'm noticing there's also a discrepancy with LLaMA-3.1 using different seed data, but that's outside the scope of what I'm being asked to fix right now. I need to remove the Falcon3 reference from the caption as requested, which leaves just the seed and cross-seed patterns mention. The LLaMA-3.1 seed discrepancy is a separate issue—since it uses s0 instead of s42, I should note this in the caption for accuracy, but the primary task is handling the Falcon3 wording removal. I see the issue—LLaMA-3.1 only has three data points since it uses seed=0, which makes it visually distinct from the other models with their five-point curves. I should add a clarification about this in the caption alongside removing the Falcon3 reference. Let me revise the caption to note that LLaMA-3.1 uses seed=0 with limited dosage points, keeping the fix focused and concise. I'm realizing the caption has a factual issue—it states seed=42, but LLaMA-3.1 actually uses seed=0, which makes this inaccurate. I should add a note clarifying this discrepancy rather than leaving it ambiguous.
+
+Now I need to check whether `docs/paper/` or `artifacts/_project/paper/` is the authoritative source for the LaTeX files, since both directories seem to contain versions of the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "5e1db680-785b-4b2e-ad10-bb41f63401bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ZFqgCfX2BKyyJ2Ji84qrw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10671,
+      "cache_read_input_tokens": 54649,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+Now let me verify the artifacts copy to see if it differs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "a034ab85-a7c9-440d-9818-1e3cae6cb362",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ZFqgCfX2BKyyJ2Ji84qrw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10671,
+      "cache_read_input_tokens": 54649,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016M1pd93L4cDv5QiB7bCnSR`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/_project/paper/results.tex",
+  "limit": 40
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "8cfd639c-ecde-40fb-9c14-a15c32916a5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ZFqgCfX2BKyyJ2Ji84qrw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10671,
+      "cache_read_input_tokens": 54649,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T18:12:10.979Z_
+
+<details><summary>↩ Tool result · `toolu_016M1pd93L4cDv5QiB7bCnSR`</summary>
+
+```text
+1	\section{Results}
+2	\label{sec:results}
+3	
+4	We organize results around our four contributions. Section~\ref{sec:domain_differential} presents the flagship finding: domain-level contamination heterogeneity within MMLU that pooled analysis completely obscures. Section~\ref{sec:signal_failure} characterizes detection signal failure modes, including a directional reversal in Min-K\%++ at small model scales. Section~\ref{sec:identifiability} quantifies the structural identifiability boundaries of IRT-based contamination estimation. Section~\ref{sec:calibration_results} reports calibration quality and clarifies the value decomposition between IRT ability estimation and the contamination parameter.
+5	
+6	\subsection{Domain-Differential Contamination}
+7	\label{sec:domain_differential}
+8	
+9	\paragraph{Within-benchmark heterogeneity.}
+10	Table~\ref{tab:domain_gamma} and Figure~\ref{fig:domain_gamma} present per-domain $\gamma$ estimates from the 2PL+$\gamma$ model fitted on the $J=24$ Qwen2.5 ensemble (exp-006). MMLU exhibits striking heterogeneity across its eight cognitive domains. Math ($\gamma = +0.97$, 95\% CI $[0.53, 1.43]$, PPP$=0.44$) and Science ($\gamma = +0.84$, CI $[0.39, 1.27]$, PPP$=0.81$) show strong contamination inflation with credible intervals excluding zero and acceptable model fit. CS \& Engineering ($\gamma = +0.20$, CI $[-0.45, 0.84]$) shows a positive point estimate that does not reach significance.
+11	
+12	The remaining five domains show null or negative $\gamma$ estimates: Business \& Law ($-0.17$), Medical ($-0.20$), Humanities ($-0.41$), and Social Sciences ($-0.50$), all with PPP$=1.00$ indicating model misfit. Negative $\gamma$ values with PPP$=1.00$ do not indicate that contamination reduces performance; rather, they signal that the 2PL+$\gamma$ specification does not capture the response pattern in these domains. One plausible explanation: these domains contain items where memorized surface patterns conflict with reasoning requirements, producing a non-monotone relationship between exposure and correctness that a single linear $\gamma$ cannot represent.
+13	
+14	\paragraph{Dilution masking.}
+15	The pooled MMLU estimate ($\gamma_{\text{pooled}} = +0.66$, CI $[-0.41, 1.74]$) fails to reach significance. This is not evidence of absent contamination effects. Positive STEM-domain effects are arithmetically cancelled by null and negative non-STEM estimates when aggregated, producing a near-zero pooled value. This phenomenon parallels Simpson's paradox \citep{kievit_2013_simpsons_paradox} and DIF cancellation in educational measurement \citep{ercikan_2008_dif_cancellation}: subgroup effects of opposite sign cancel at the aggregate level, creating a misleading impression of no effect. Domain-level analysis is therefore essential for contamination diagnosis; pooled estimates will systematically understate the problem when contamination is heterogeneous.
+16	
+17	\paragraph{Cross-benchmark comparison.}
+18	ARC-Challenge yields $\gamma = -1.46$ with a credible interval excluding zero, indicating that contaminated models perform \textit{worse} on ARC items after controlling for ability. This ``contamination forgetting'' pattern is consistent with SFT injection disrupting the reasoning strategies required for science questions. GSM8K shows $\gamma = +0.06$ (CI includes zero, PPP$=0.54$), a non-significant effect; however, GSM8K was evaluated with S1 (embedding similarity) as the only reliable signal for free-form generation items, limiting the exposure score discriminability.
+19	
+20	\paragraph{Dose-response structure.}
+21	Figure~\ref{fig:dose_response} visualizes the relationship between injection dosage and raw accuracy across scales. The pattern is monotonically increasing for MMLU STEM domains but shows diminishing returns above d025. At the 0.5B scale, contamination effects are catastrophic (accuracy jumps from 0.25 to 0.60 at d100 for Math items); at 3B, the same dosage produces a mild 3-5 percentage point increase. This scale-dependent attenuation is consistent with larger models having greater capacity to absorb injected items without disrupting learned representations.
+22	
+23	% Cross-family analysis
+24	\textit{Cross-family evidence.}
+25	[PLACEHOLDER: pending s1 fix for full cross-family pooled IRT results.
+26	Current v2 data (Llama-3.2-3B d000 only): ARC $\gamma=0.554$, CI$_{95}$=$[-0.121, 1.228]$; GSM8K $\gamma=-0.010$, CI$_{95}$=$[-0.441, 0.413]$.
+27	Weak claim only: IRT calibration is robust to inclusion of a new model family, and $\gamma$ estimates remain consistent with within-family patterns.]
+28	
+29	\subsection{Detection Signal Failure Modes}
+30	\label{sec:signal_failure}
+31	
+32	\paragraph{Min-K\%++ directional reversal.}
+33	The most consequential finding for contamination detection practice is that Min-K\%++ \citep{zhang_2024_minkpp} exhibits a \textit{directional reversal} at the 0.5B scale (exp-008). Contaminated items receive \textit{lower} Min-K\%++ scores than clean items, yielding Cohen's $d = -1.55$ at d005 and $d = -1.98$ at d100 relative to d000. A practitioner applying Min-K\%++ at this scale would conclude that contaminated items are \textit{less} likely to be memorized. The signal is not merely ineffective; it is actively misleading.
+34	
+35	At 1.5B, Min-K\%++ shows mild positive discrimination ($d \approx +0.3$); at 3B, moderate positive discrimination ($d \approx +0.7$). The transition from negative to positive discrimination occurs between 0.5B and 1.5B parameters. We hypothesize that SFT injection at 0.5B produces a distributional shift in the token-level surprisal landscape: the model's language modeling capacity is so disrupted that \textit{all} items exhibit high surprisal, but contaminated items (now overfit at the response level) paradoxically show reduced token-level fluency compared to clean items on which the model retains pretraining distributions.
+36	
+37	\paragraph{Signal reliability across scales.}
+38	Figure~\ref{fig:signal_heatmap} summarizes detection performance (AUC) across all signal-scale-dosage combinations. S1 (embedding similarity) achieves AUC $> 0.95$ at d005 and above for all three model scales, confirming its reliability as a standalone signal when training corpus access is available. S4 (Self-Critique) \citep{wust_2025_selfcritique} performs near-random at 0.5B (AUC $\approx 0.50$) and reaches marginal discrimination at 1.5B and 3B. RRF fusion, which assumes complementary signal contributions, degrades to S1-only performance in practice because S2 and S4 contribute noise rather than signal at small scales.
+39	
+40	% Cross-family signal
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "7ef578ee-c6e0-46a7-be88-7a55a93ab380",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/_project/paper/results.tex",
+      "content": "\\section{Results}\n\\label{sec:results}\n\nWe organize results around our four contributions. Section~\\ref{sec:domain_differential} presents the flagship finding: domain-level contamination heterogeneity within MMLU that pooled analysis completely obscures. Section~\\ref{sec:signal_failure} characterizes detection signal failure modes, including a directional reversal in Min-K\\%++ at small model scales. Section~\\ref{sec:identifiability} quantifies the structural identifiability boundaries of IRT-based contamination estimation. Section~\\ref{sec:calibration_results} reports calibration quality and clarifies the value decomposition between IRT ability estimation and the contamination parameter.\n\n\\subsection{Domain-Differential Contamination}\n\\label{sec:domain_differential}\n\n\\paragraph{Within-benchmark heterogeneity.}\nTable~\\ref{tab:domain_gamma} and Figure~\\ref{fig:domain_gamma} present per-domain $\\gamma$ estimates from the 2PL+$\\gamma$ model fitted on the $J=24$ Qwen2.5 ensemble (exp-006). MMLU exhibits striking heterogeneity across its eight cognitive domains. Math ($\\gamma = +0.97$, 95\\% CI $[0.53, 1.43]$, PPP$=0.44$) and Science ($\\gamma = +0.84$, CI $[0.39, 1.27]$, PPP$=0.81$) show strong contamination inflation with credible intervals excluding zero and acceptable model fit. CS \\& Engineering ($\\gamma = +0.20$, CI $[-0.45, 0.84]$) shows a positive point estimate that does not reach significance.\n\nThe remaining five domains show null or negative $\\gamma$ estimates: Business \\& Law ($-0.17$), Medical ($-0.20$), Humanities ($-0.41$), and Social Sciences ($-0.50$), all with PPP$=1.00$ indicating model misfit. Negative $\\gamma$ values with PPP$=1.00$ do not indicate that contamination reduces performance; rather, they signal that the 2PL+$\\gamma$ specification does not capture the response pattern in these domains. One plausible explanation: these domains contain items where memorized surface patterns conflict with reasoning requirements, producing a non-monotone relationship between exposure and correctness that a single linear $\\gamma$ cannot represent.\n\n\\paragraph{Dilution masking.}\nThe pooled MMLU estimate ($\\gamma_{\\text{pooled}} = +0.66$, CI $[-0.41, 1.74]$) fails to reach significance. This is not evidence of absent contamination effects. Positive STEM-domain effects are arithmetically cancelled by null and negative non-STEM estimates when aggregated, producing a near-zero pooled value. This phenomenon parallels Simpson's paradox \\citep{kievit_2013_simpsons_paradox} and DIF cancellation in educational measurement \\citep{ercikan_2008_dif_cancellation}: subgroup effects of opposite sign cancel at the aggregate level, creating a misleading impression of no effect. Domain-level analysis is therefore essential for contamination diagnosis; pooled estimates will systematically understate the problem when contamination is heterogeneous.\n\n\\paragraph{Cross-benchmark comparison.}\nARC-Challenge yields $\\gamma = -1.46$ with a credible interval excluding zero, indicating that contaminated models perform \\textit{worse} on ARC items after controlling for ability. This ``contamination forgetting'' pattern is consistent with SFT injection disrupting the reasoning strategies required for science questions. GSM8K shows $\\gamma = +0.06$ (CI includes zero, PPP$=0.54$), a non-significant effect; however, GSM8K was evaluated with S1 (embedding similarity) as the only reliable signal for free-form generation items, limiting the exposure score discriminability.\n\n\\paragraph{Dose-response structure.}\nFigure~\\ref{fig:dose_response} visualizes the relationship between injection dosage and raw accuracy across scales. The pattern is monotonically increasing for MMLU STEM domains but shows diminishing returns above d025. At the 0.5B scale, contamination effects are catastrophic (accuracy jumps from 0.25 to 0.60 at d100 for Math items); at 3B, the same dosage produces a mild 3-5 percentage point increase. This scale-dependent attenuation is consistent with larger models having greater capacity to absorb injected items without disrupting learned representations.\n\n% Cross-family analysis\n\\textit{Cross-family evidence.}\n[PLACEHOLDER: pending s1 fix for full cross-family pooled IRT results.\nCurrent v2 data (Llama-3.2-3B d000 only): ARC $\\gamma=0.554$, CI$_{95}$=$[-0.121, 1.228]$; GSM8K $\\gamma=-0.010$, CI$_{95}$=$[-0.441, 0.413]$.\nWeak claim only: IRT calibration is robust to inclusion of a new model family, and $\\gamma$ estimates remain consistent with within-family patterns.]\n\n\\subsection{Detection Signal Failure Modes}\n\\label{sec:signal_failure}\n\n\\paragraph{Min-K\\%++ directional reversal.}\nThe most consequential finding for contamination detection practice is that Min-K\\%++ \\citep{zhang_2024_minkpp} exhibits a \\textit{directional reversal} at the 0.5B scale (exp-008). Contaminated items receive \\textit{lower} Min-K\\%++ scores than clean items, yielding Cohen's $d = -1.55$ at d005 and $d = -1.98$ at d100 relative to d000. A practitioner applying Min-K\\%++ at this scale would conclude that contaminated items are \\textit{less} likely to be memorized. The signal is not merely ineffective; it is actively misleading.\n\nAt 1.5B, Min-K\\%++ shows mild positive discrimination ($d \\approx +0.3$); at 3B, moderate positive discrimination ($d \\approx +0.7$). The transition from negative to positive discrimination occurs between 0.5B and 1.5B parameters. We hypothesize that SFT injection at 0.5B produces a distributional shift in the token-level surprisal landscape: the model's language modeling capacity is so disrupted that \\textit{all} items exhibit high surprisal, but contaminated items (now overfit at the response level) paradoxically show reduced token-level fluency compared to clean items on which the model retains pretraining distributions.\n\n\\paragraph{Signal reliability across scales.}\nFigure~\\ref{fig:signal_heatmap} summarizes detection performance (AUC) across all signal-scale-dosage combinations. S1 (embedding similarity) achieves AUC $> 0.95$ at d005 and above for all three model scales, confirming its reliability as a standalone signal when training corpus access is available. S4 (Self-Critique) \\citep{wust_2025_selfcritique} performs near-random at 0.5B (AUC $\\approx 0.50$) and reaches marginal discrimination at 1.5B and 3B. RRF fusion, which assumes complementary signal contributions, degrades to S1-only performance in practice because S2 and S4 contribute noise rather than signal at small scales.\n\n% Cross-family signal",
+      "numLines": 40,
+      "startLine": 1,
+      "totalLines": 108
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YDASyKikykGP9TLUtorqc4`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/_project/paper/introduction.tex",
+  "limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "f178d01d-2053-428a-bc8d-0f996f06ba4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ZFqgCfX2BKyyJ2Ji84qrw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10671,
+      "cache_read_input_tokens": 54649,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T18:12:11.677Z_
+
+<details><summary>↩ Tool result · `toolu_01YDASyKikykGP9TLUtorqc4`</summary>
+
+```text
+1	\section{Introduction}\label{sec:introduction}
+2	
+3	Benchmark scores are the primary currency for comparing language models, yet training data contamination undermines the validity of these comparisons \citep{hendrycks2021mmlu,chang2025benchmarking}. The problem is not new, but its characterization remains superficial: existing work treats contamination as a binary property of models or benchmarks and proposes aggregate corrections that assume uniform effects across all test items. This framing masks critical structure. Within a single benchmark like MMLU, contamination may strongly inflate scores on mathematics items while leaving humanities items unaffected or producing negative effects. Aggregate corrections that average over such heterogeneity will systematically underestimate the problem in affected domains and overestimate it elsewhere. The result is neither accurate calibration nor actionable diagnostic information. Understanding contamination at domain granularity is therefore not merely desirable but necessary for any principled response to the problem.
+4	
+5	Two developments make this gap urgent. First, \citet{sun2025emperor} systematically evaluate twenty contamination mitigation strategies (rephrasing, option shuffling, dynamic benchmark regeneration, and others) and demonstrate that none restores clean performance after contamination has occurred. This result forecloses the ``prevent contamination'' approach for models already trained on unrestricted web data. Second, the proliferation of open-weight models trained on trillion-token internet corpora means that contamination is now pervasive and cannot be precisely measured at the instance level \citep{oren2024proving}. Contamination-free benchmarks \citep{white2024livebench} offer a partial solution but sacrifice the comparability and institutional knowledge accumulated around established benchmarks. Dynamic regeneration of test items may also be contaminated within weeks as web crawlers index benchmark repositories \citep{dong_2024_cdd}. The field therefore needs post-hoc statistical tools that quantify contamination effects despite imperfect detection, and that provide domain-level diagnosis rather than aggregate point corrections.
+6	
+7	Detection methods such as Min-K\%++ \citep{zhang_2024_minkpp}, ConStat \citep{dekoninck_2024_constat}, and Kernel Divergence Signatures \citep{choi_2025_kds} can flag contaminated items but stop at detection. They do not quantify how much scores are inflated, in which domains the inflation occurs, or whether effects are uniform across test items. Score adjustment methods like DCR \citep{xu2025dcr} provide point corrections without uncertainty quantification or domain-level granularity. IRT-based evaluation frameworks \citep{polo_2024_tinybenchmarks,habba_2025_growing_pains} apply psychometric ability estimation to improve evaluation efficiency and handle new models, but they ignore contamination entirely \citep{lalor_2024_irt_nlp}. These two research threads have developed in isolation: detection papers end at binary flags, while IRT papers assume all items are equally trustworthy. No existing method provides domain-level contamination \textit{diagnosis} with calibrated uncertainty. This gap prevents practitioners from understanding \textit{where} their benchmark scores are distorted, \textit{by how much}, and whether the distortion is uniform or heterogeneous across cognitive domains within a single benchmark.
+8	
+9	We propose ContamCal, a two-stage diagnostic framework that bridges contamination detection and IRT-based evaluation. Stage~1 fuses multiple detection signals into continuous per-item exposure scores via training-free Reciprocal Rank Fusion \citep{cormack_2009_rrf}. This design avoids the meta-circularity of learned aggregators that would require the very contamination labels we lack. Stage~2 embeds these exposure scores as covariates in a contamination-augmented IRT model (2PL+$\gamma$) with per-domain contamination parameters that reveal where scores are inflated or deflated. The key empirical insight is a phenomenon we term \textit{dilution masking}: within MMLU, Math and Science domains show strong inflation ($\gamma \approx +0.97$ and $+0.84$ on the logit scale) while the pooled estimate across all eight domains is non-significant. The mechanism is straightforward: opposite-sign effects in non-STEM domains cancel the STEM inflation at the aggregate level. This cancellation is structurally analogous to DIF cancellation in educational measurement \citep{ercikan_2008_dif_cancellation}, and it renders any aggregate-level contamination analysis fundamentally unreliable when domain effects are heterogeneous.
+10	
+11	Our contributions are as follows:
+12	\begin{enumerate}
+13	    \item \textbf{Domain-differential contamination characterization.} We demonstrate that MMLU contamination effects are heterogeneous across cognitive domains, with strong STEM inflation ($\gamma = +0.97$ for Math, $+0.84$ for Science) masked by null or negative non-STEM effects at the aggregate level. We term this phenomenon dilution masking and show it is a structural property of heterogeneous contamination, not a statistical artifact.
+14	    \item \textbf{Detection signal failure modes.} We document a directional reversal in Min-K\%++ at model scales below 1.5B parameters (Cohen's $d = -1.55$ to $-1.98$), where the signal is actively misleading rather than merely ineffective. This finding has immediate practical consequences: practitioners applying Min-K\%++ to small models will reach the opposite of the correct conclusion.
+15	    \item \textbf{Identifiability boundaries.} We derive Fisher Information bounds showing that reliable $\gamma$ recovery requires signal AUC $\geq 0.55$ and ensemble size $J \geq 50$. These thresholds reveal a structural mismatch between current LLM evaluation practice ($J = 8$--$30$) and the statistical requirements of contamination-augmented IRT.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "cde71503-d128-4280-b236-f32a00dde966",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/_project/paper/introduction.tex",
+      "content": "\\section{Introduction}\\label{sec:introduction}\n\nBenchmark scores are the primary currency for comparing language models, yet training data contamination undermines the validity of these comparisons \\citep{hendrycks2021mmlu,chang2025benchmarking}. The problem is not new, but its characterization remains superficial: existing work treats contamination as a binary property of models or benchmarks and proposes aggregate corrections that assume uniform effects across all test items. This framing masks critical structure. Within a single benchmark like MMLU, contamination may strongly inflate scores on mathematics items while leaving humanities items unaffected or producing negative effects. Aggregate corrections that average over such heterogeneity will systematically underestimate the problem in affected domains and overestimate it elsewhere. The result is neither accurate calibration nor actionable diagnostic information. Understanding contamination at domain granularity is therefore not merely desirable but necessary for any principled response to the problem.\n\nTwo developments make this gap urgent. First, \\citet{sun2025emperor} systematically evaluate twenty contamination mitigation strategies (rephrasing, option shuffling, dynamic benchmark regeneration, and others) and demonstrate that none restores clean performance after contamination has occurred. This result forecloses the ``prevent contamination'' approach for models already trained on unrestricted web data. Second, the proliferation of open-weight models trained on trillion-token internet corpora means that contamination is now pervasive and cannot be precisely measured at the instance level \\citep{oren2024proving}. Contamination-free benchmarks \\citep{white2024livebench} offer a partial solution but sacrifice the comparability and institutional knowledge accumulated around established benchmarks. Dynamic regeneration of test items may also be contaminated within weeks as web crawlers index benchmark repositories \\citep{dong_2024_cdd}. The field therefore needs post-hoc statistical tools that quantify contamination effects despite imperfect detection, and that provide domain-level diagnosis rather than aggregate point corrections.\n\nDetection methods such as Min-K\\%++ \\citep{zhang_2024_minkpp}, ConStat \\citep{dekoninck_2024_constat}, and Kernel Divergence Signatures \\citep{choi_2025_kds} can flag contaminated items but stop at detection. They do not quantify how much scores are inflated, in which domains the inflation occurs, or whether effects are uniform across test items. Score adjustment methods like DCR \\citep{xu2025dcr} provide point corrections without uncertainty quantification or domain-level granularity. IRT-based evaluation frameworks \\citep{polo_2024_tinybenchmarks,habba_2025_growing_pains} apply psychometric ability estimation to improve evaluation efficiency and handle new models, but they ignore contamination entirely \\citep{lalor_2024_irt_nlp}. These two research threads have developed in isolation: detection papers end at binary flags, while IRT papers assume all items are equally trustworthy. No existing method provides domain-level contamination \\textit{diagnosis} with calibrated uncertainty. This gap prevents practitioners from understanding \\textit{where} their benchmark scores are distorted, \\textit{by how much}, and whether the distortion is uniform or heterogeneous across cognitive domains within a single benchmark.\n\nWe propose ContamCal, a two-stage diagnostic framework that bridges contamination detection and IRT-based evaluation. Stage~1 fuses multiple detection signals into continuous per-item exposure scores via training-free Reciprocal Rank Fusion \\citep{cormack_2009_rrf}. This design avoids the meta-circularity of learned aggregators that would require the very contamination labels we lack. Stage~2 embeds these exposure scores as covariates in a contamination-augmented IRT model (2PL+$\\gamma$) with per-domain contamination parameters that reveal where scores are inflated or deflated. The key empirical insight is a phenomenon we term \\textit{dilution masking}: within MMLU, Math and Science domains show strong inflation ($\\gamma \\approx +0.97$ and $+0.84$ on the logit scale) while the pooled estimate across all eight domains is non-significant. The mechanism is straightforward: opposite-sign effects in non-STEM domains cancel the STEM inflation at the aggregate level. This cancellation is structurally analogous to DIF cancellation in educational measurement \\citep{ercikan_2008_dif_cancellation}, and it renders any aggregate-level contamination analysis fundamentally unreliable when domain effects are heterogeneous.\n\nOur contributions are as follows:\n\\begin{enumerate}\n    \\item \\textbf{Domain-differential contamination characterization.} We demonstrate that MMLU contamination effects are heterogeneous across cognitive domains, with strong STEM inflation ($\\gamma = +0.97$ for Math, $+0.84$ for Science) masked by null or negative non-STEM effects at the aggregate level. We term this phenomenon dilution masking and show it is a structural property of heterogeneous contamination, not a statistical artifact.\n    \\item \\textbf{Detection signal failure modes.} We document a directional reversal in Min-K\\%++ at model scales below 1.5B parameters (Cohen's $d = -1.55$ to $-1.98$), where the signal is actively misleading rather than merely ineffective. This finding has immediate practical consequences: practitioners applying Min-K\\%++ to small models will reach the opposite of the correct conclusion.\n    \\item \\textbf{Identifiability boundaries.} We derive Fisher Information bounds showing that reliable $\\gamma$ recovery requires signal AUC $\\geq 0.55$ and ensemble size $J \\geq 50$. These thresholds reveal a structural mismatch between current LLM evaluation practice ($J = 8$--$30$) and the statistical requirements of contamination-augmented IRT.",
+      "numLines": 15,
+      "startLine": 1,
+      "totalLines": 17
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `artifacts/_project/paper/` versions are significantly different from the `docs/paper/` versions. The `artifacts/_project/paper/` files appear to be an older draft with different content (talking about "domain-differential contamination" as flagship finding, with PLACEHOLDERs). The `docs/paper/` versions are clearly the current, more polished version.
+
+So I should only edit the `docs/paper/` files. Let me now proceed with the three edits.
+
+Let me also re-read the docs/paper/introduction.tex around line 10 to see the exact text I need to edit:
+
+
+The caption at L10 describes MMLU accuracy versus contamination dosage with specific experimental details—5-shot evaluation with seed 42, references to Falcon3 and cross-seed patterns in tables, and notes about vulnerability concentration in the 65-70% baseline band. Now I'm looking at the summary of all three fixes I need to make, starting with the first one in results.tex at L29.
+
+The issue is that "N=6 families" is imprecise—there are actually 6 models but only 5 independent families. I should change it to "N=6 models" to accurately reflect what N represents. Though L31 mentions "six-family sample" which uses "family" more loosely, that's a separate concern and the task focuses on L29. The factually correct fix is to specify "N=6 models" instead.
+
+For the second issue on L32, the appendix data shows 5 out of 6 models have consistent patterns, so "3/5 families" should be corrected to "5/6 families" to match the actual findings.
+
+On the introduction side, I need to remove the reference to Falcon3 being in the table since it's now displayed in the figure instead. There's also a discrepancy with LLaMA-3.1 using seed=0 while the figure caption indicates seed=42 for all models—I should flag this factual inconsistency to the user since the task focuses on removing the Falcon3 table reference.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "101183b7-6e4d-47b8-aa62-a9d8d19acb52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018M16aDGCZa9ko9stYkxcRd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7888,
+      "cache_read_input_tokens": 65320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7888
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+All data collected. Here's my analysis:
+
+**Fix 1 (L29 "N=6 families")**: Table 1 has 6 models from 5 independent families (Qwen-7B/14B = same family). "N=6 families" is imprecise — should be "N=6 models" to match L4's "six models from five independent families."
+
+**Fix 2 (L32 "3/5 families")**: Appendix L30 explicitly states "directionally consistent with MMLU for five of six models" at s42. With Falcon3 added (ARC Benefit, consistent with MMLU Benefit), the correct count is 5/6. Only Gemma-2 disagrees. "3/5" was the pre-Falcon3 count.
+
+**Fix 3 (L10 caption)**: The figure generation script includes all 7 models including Falcon3. The phrase "Falcon3 in Table~\ref{tab:taxonomy}" is now misleading. Also, LLaMA-3.1 uses seed=0 (not seed=42) with only 3 dosage points.
+
+Applying the three edits:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "c4cdc53a-c668-4908-86b6-bedb735001aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018M16aDGCZa9ko9stYkxcRd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7888,
+      "cache_read_input_tokens": 65320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7888
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01WuZzENvqYaJ3f3KB4sUJzn`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+  "old_string": "These empirical profiles are preliminary at $N\\!=\\!6$ families.",
+  "new_string": "These empirical profiles are preliminary at $N\\!=\\!6$ models (five families)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "7ba2ff1d-5dc8-4de5-b645-75654bbb9196",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018M16aDGCZa9ko9stYkxcRd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7888,
+      "cache_read_input_tokens": 65320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7888
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T18:12:47.585Z_
+
+<details><summary>↩ Tool result · `toolu_01WuZzENvqYaJ3f3KB4sUJzn`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "f7ec208a-b807-4503-bd49-a14740f2aa2d",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+    "oldString": "These empirical profiles are preliminary at $N\\!=\\!6$ families.",
+    "newString": "These empirical profiles are preliminary at $N\\!=\\!6$ models (five families).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\nCross-family results (\\S\\ref{sec:taxonomy}) use seed$=$42 data across six models from five independent families. Within-family IRT analyses (\\S\\ref{sec:calibration_results}--\\ref{sec:domain_differential}) use $J=16$ Qwen2.5 models (8$\\times$1.5B + 8$\\times$3B); domain-level contamination estimates $\\gamma_d$ (\\S\\ref{sec:domain_differential}) are reported at $J=16$ in the text and $J=13$ in Figure~\\ref{fig:domain_gamma}.\n\n\\subsection{Dose-Response Patterns}\n\\label{sec:taxonomy}\n\n\\begin{table}[t]\n\\centering\n\\caption{Observed dose-response patterns under controlled SFT injection (seed$=$42, MMLU). $\\Delta$acc: d000$\\to$d100 change (95\\% CI from item-level paired bootstrap, $B=10{,}000$). Stab.: bootstrap classification stability. Classifications are robust to threshold hyperparameter choice (5/5 original families at 100\\% stability across 30 reasonable $(\\tau,\\sigma)$ combinations; Appendix~\\ref{sec:classification_sensitivity}).}\n\\label{tab:taxonomy}\n\\footnotesize\n\\begin{tabular}{llccccc}\n\\toprule\nPattern & Model & Baseline & $\\Delta$acc & 95\\% CI & Peak & Stab. \\\\\n\\midrule\nImmune & Phi-4 14.7B & 76.4\\% & $\\pm$0.5pp & [$-$0.60, $+$0.26] & negl. & 100\\% \\\\\nCollapse & Qwen-14B & 69.4\\% & $-$9.4 to $-$12.7pp & [$-$12.74, $-$9.0] & --- & 100\\% \\\\\nV-recovery & Qwen-7B & 66.1\\% & $-$1.8pp & [$-$2.36, $-$1.22] & $-$3.1\\textsuperscript{d025} & 99.6\\% \\\\\nBenefit & Gemma-2 9B & 61.9\\% & $+$3.8pp & [$+$3.18, $+$4.33] & mono. & 76.6\\% \\\\\nBenefit & Falcon3 7B & 58.8\\% & $+$4.2pp & [$+$3.60, $+$4.79] & mono. & 96.1\\% \\\\\nBenefit & OLMo-2 7B & 53.8\\% & $+$3.2pp\\textsuperscript{$\\dagger$} & [$+$2.73, $+$3.71] & sat.\\textsuperscript{d050} & 100\\% \\\\\n\\bottomrule\n\\multicolumn{7}{l}{\\scriptsize $^{\\dagger}$Seed-sensitive: s42 $+$3.2pp, s123 $-$0.6pp, s0 $+$1.4pp; cross-seed CI crosses zero. See \\S\\ref{sec:cross_seed}.}\n\\end{tabular}\n\\end{table}\n\nApplying Algorithm~\\ref{alg:profile-classification} to seed$=$42 accuracy trajectories yields a spectrum of dose-response patterns (Table~\\ref{tab:taxonomy}, Figure~\\ref{fig:dose_response}), not a uniform inflation effect. These empirical profiles are preliminary at $N\\!=\\!6$ families.\n\n\\paragraph{Baseline ability gradient.}\nIn our six-family sample, contamination vulnerability concentrates in the 65--70\\% MMLU baseline band (Table~\\ref{tab:taxonomy}). Below 62\\%, three Benefit families gain $+$3.2 to $+$4.2pp; in the vulnerable band, Qwen-7B shows V-shaped harm-then-recovery while Qwen-14B collapses ($-$9.4 to $-$25.0pp across seeds)---3$\\times$ more fragile despite higher baseline. Above 76\\%, Phi-4 is immune. ARC direction is consistent for 3/5 families (Appendix~\\ref{sec:arc_cross_benchmark}); STEM is the most resilient domain, Social Sciences the most sensitive at 1.8$\\times$ STEM magnitude (Appendix~\\ref{sec:domain_decomposition}), foreshadowing \\S\\ref{sec:domain_differential}.\n\n\\paragraph{Out-of-sample validation.}\nOut-of-sample validation on LLaMA-3.1-8B (Meta; d000, d025, d100) yields Immune on both MMLU ($-$0.69pp) and ARC ($+$0.09pp), despite matching OLMo-2's Benefit baseline (53.5\\% vs.\\ 53.8\\%)---demonstrating family-level factors beyond baseline ability modulate vulnerability. Two of four patterns replicate across families: Immune (Phi-4, LLaMA-3.1), Benefit (OLMo-2, Falcon3, Gemma-2). LLaMA-3.1 shows the strongest GSM8K transfer ($+$16.4pp; Appendix~\\ref{sec:gsm8k_dose_response}), demonstrating target-benchmark immunity does not imply transfer immunity.\n\n\\subsection{Cross-Benchmark Transfer}\n\\label{sec:gsm8k_transfer}\n\nContamination patterns are a property of the (model, benchmark) pair, not the model alone. Within MCQ format, MMLU--ARC direction agreement is 86\\% (6/7 families; Appendix~\\ref{sec:arc_cross_benchmark}); across formats (MCQ$\\to$generative math), agreement drops to 40\\% (2/5) with three families exhibiting directional reversal on GSM8K \\citep{cobbe2021gsm8k} (Table~\\ref{tab:gsm8k_transfer}, Appendix). All five non-excluded families show positive GSM8K transfer ($+$1 to $+$16pp), including Qwen-14B ($-$9.4pp MMLU yet $+$13.1pp GSM8K), suggesting capability elicitation rather than memorization, consistent with null DiD (\\S\\ref{sec:memorization_test}). Volume effects are ruled out: d005 ($+$1.5\\% data) yields $+$11.1pp for Qwen-7B, while Phi-4 shows near-zero transfer.\n\n\\subsection{Cross-Seed Stability}\n\\label{sec:cross_seed}\n\nWith $n\\!=\\!3$ seeds per family, cross-seed CIs have limited precision (widths 1.5--14.5pp; Table~\\ref{tab:cross_seed}, Appendix). Under our aggregation rule (\\S\\ref{sec:classification}), 4/5 families receive consistent direction-level classifications; direction is more reproducible than shape (strict sign consistency 2/5). OLMo-2's CI crosses zero, rendering its classification borderline. Conflicting contamination findings in the literature may partly reflect unreported seed variance.\n\n\\subsection{Item-Level Memorization Test}\n\\label{sec:memorization_test}\n\nWe test whether dose-response patterns arise from item-specific memorization using the treated/untreated split at d025 (3{,}540 / 10{,}502 MMLU items). No model shows significant DiD ($p > 0.05$; Table~\\ref{tab:did}), ruling out item-specific effects $>$2pp (MDES 1.25--2.05pp; ARC MDES in Appendix~\\ref{sec:mdes}).\n\n\\begin{table}[t]\n\\centering\n\\caption{Treated vs.\\ untreated item accuracy changes at d025 MMLU (3{,}540 / 10{,}502). All DiD non-significant. $^{**}p<.01$; $^{***}p<.001$; ns: $p>.05$.}\n\\label{tab:did}\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\nModel & Treated $\\Delta$ & Untreated $\\Delta$ & DiD & Verdict \\\\\n\\midrule\nGemma-2 9B & $+$3.1$^{**}$ & $+$2.6$^{***}$ & $+$0.5 (ns) & generalization \\\\\nOLMo-2 7B & $+$1.6 (ns) & $+$2.7$^{***}$ & $-$1.1 (ns) & mixed \\\\\nPhi-4 14.7B & $+$0.3 (ns) & $+$0.6 (ns) & $-$0.3 (ns) & no-effect \\\\\nQwen-14B & $-$6.9$^{***}$ & $-$7.6$^{***}$ & $+$0.7 (ns) & anti-contam. \\\\\nQwen-7B & $-$3.8$^{**}$ & $-$2.9$^{***}$ & $-$0.8 (ns) & anti-contam. \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nParallel changes suggest global capability modulation rather than memorization (Figure~\\ref{fig:treated_untreated}, Appendix); ARC's limited power precludes this conclusion there.\n\n\\subsection{Calibration Quality}\n\\label{sec:calibration_results}\n\nWithin-family IRT analysis uses Qwen2.5 $\\leq$3B ($J=16$), where aggregate contamination shifts accuracy by ${\\sim}$0.6--0.7pp. RRF-guided item filtering achieves $\\tau = 0.73$ on 300 items ($\\Delta\\tau = 0.18$ vs.\\ size-matched random; signal ablation in Appendix~\\ref{sec:rrf_ablation}). IRT is fitted on these 300 highest-exposure-variance items (2.1\\% of MMLU); contamination effects on remaining low-variance items are not empirically verified.\n\nTable~\\ref{tab:baselines} compares methods on 300 RRF-filtered items. Raw accuracy's MAE advantage (0.006 vs.\\ ContamCal's 0.009) is predicted by Eq.~\\eqref{eq:calibrated}: calibrated scores depend on $\\theta_j$, not $\\gamma_d$ directly; under near-null aggregate contamination, both estimators converge. ContamCal's value lies in the diagnostic pathway ($\\gamma_d$), not aggregate calibration. B6-DCR systematically overcorrects (MAE 0.108). Domain analysis reveals Social Sciences $\\gamma_d = -0.63$ ($P(\\gamma_d\\!<\\!0) = 99.7\\%$; \\S\\ref{sec:domain_differential}), while pooled $\\gamma$ remains non-significant---consistent with opposing domain-level effects canceling. Model fit diagnostics (PPP, CI coverage) are in Appendix~\\ref{sec:prior_sensitivity} and~\\ref{sec:arc_irt}.\n\n\\begin{table}[t]\n\\centering\n\\caption{MMLU calibration on 300 RRF-filtered items (Qwen2.5, $J$=16). ARC results in Appendix~\\ref{sec:arc_irt}.}\n\\label{tab:baselines}\n\\footnotesize\n\\begin{tabular}{lcc}\n\\toprule\nMethod & MAE & $\\tau$ \\\\\n\\midrule\nB0: Raw Accuracy & \\textbf{0.006} & 0.767 \\\\\nB1b: Remove \\& Rescore & 0.026 & \\underline{0.783} \\\\\nB3: Vanilla 2PL & 0.008 & 0.731 \\\\\nB4: Linear Regression & 0.010 & 0.751 \\\\\nB5b: Emperor & \\textbf{0.006} & \\textbf{0.789} \\\\\nB6: DCR (reimpl.) & 0.108 & 0.654 \\\\\nContamCal (2PL+$\\gamma$) & 0.009 & 0.731 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Detection Signal Failure Modes}\n\\label{sec:signal_failure}\n\nMin-K\\%++ \\citep{zhang_2024_minkpp} exhibits \\textit{directional reversal} at 0.5B: contaminated items receive \\textit{lower} scores (paired Cohen's $d = -1.98$ at d100, $|d| > 1.4$ at d005). S1 achieves AUC $> 0.95$ at all scales; S4 is near-random below 1.5B (Appendix~\\ref{sec:signal_reliability_appendix}). Simulation shows $\\gamma$ recovery requires AUC$\\geq$0.55 with $J \\geq 50$; at AUC $\\geq 0.90$, $J = 16$ suffices (Appendix~\\ref{sec:identifiability_appendix}).\n\n\\subsection{Domain-Level Analysis}\n\\label{sec:domain_differential}\n\nWithin-family domain analysis (Qwen2.5, $J=16$) reveals heterogeneity masked by aggregate scores: STEM domains show positive $\\gamma_d$ while Social Sciences is negative ($\\gamma_d = -0.63$, 95\\% CI $[-1.07, -0.19]$, $P(\\gamma_d\\!<\\!0) = 99.7\\%$, PPP$=$0.722; Figure~\\ref{fig:domain_gamma}, Table~\\ref{tab:domain_gamma} in Appendix). Social Sciences $P(\\gamma_d\\!<\\!0)$ is 99.35--99.85\\% across priors (Table~\\ref{tab:socsci_prior}), exceeding the Bonferroni threshold ($99.375\\%$) under baseline and loose priors but falling 0.03\\,pp short under the tight prior. The directional signal is robust; we treat domain-level findings as exploratory pending replication with larger ensembles.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 26,
+        "oldLines": 7,
+        "newStart": 26,
+        "newLines": 7,
+        "lines": [
+          " \\end{tabular}",
+          " \\end{table}",
+          " ",
+          "-Applying Algorithm~\\ref{alg:profile-classification} to seed$=$42 accuracy trajectories yields a spectrum of dose-response patterns (Table~\\ref{tab:taxonomy}, Figure~\\ref{fig:dose_response}), not a uniform inflation effect. These empirical profiles are preliminary at $N\\!=\\!6$ families.",
+          "+Applying Algorithm~\\ref{alg:profile-classification} to seed$=$42 accuracy trajectories yields a spectrum of dose-response patterns (Table~\\ref{tab:taxonomy}, Figure~\\ref{fig:dose_response}), not a uniform inflation effect. These empirical profiles are preliminary at $N\\!=\\!6$ models (five families).",
+          " ",
+          " \\paragraph{Baseline ability gradient.}",
+          " In our six-family sample, contamination vulnerability concentrates in the 65--70\\% MMLU baseline band (Table~\\ref{tab:taxonomy}). Below 62\\%, three Benefit families gain $+$3.2 to $+$4.2pp; in the vulnerable band, Qwen-7B shows V-shaped harm-then-recovery while Qwen-14B collapses ($-$9.4 to $-$25.0pp across seeds)---3$\\times$ more fragile despite higher baseline. Above 76\\%, Phi-4 is immune. ARC direction is consistent for 3/5 families (Appendix~\\ref{sec:arc_cross_benchmark}); STEM is the most resilient domain, Social Sciences the most sensitive at 1.8$\\times$ STEM magnitude (Appendix~\\ref{sec:domain_decomposition}), foreshadowing \\S\\ref{sec:domain_differential}."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01GCfa2reQAKPnSX2kgRGXGx`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+  "old_string": "ARC direction is consistent for 3/5 families",
+  "new_string": "ARC direction is consistent for 5/6 families"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "163e10e1-ef73-4ae7-b51c-7e004cc7b57f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NvWZtti98WXaDSL6fZRuPz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1678,
+      "cache_read_input_tokens": 73208,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1678
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T18:12:52.436Z_
+
+<details><summary>↩ Tool result · `toolu_01GCfa2reQAKPnSX2kgRGXGx`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "1bfc4878-c5cd-4736-b0c6-7c50c4c6bced",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+    "oldString": "ARC direction is consistent for 3/5 families",
+    "newString": "ARC direction is consistent for 5/6 families",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\nCross-family results (\\S\\ref{sec:taxonomy}) use seed$=$42 data across six models from five independent families. Within-family IRT analyses (\\S\\ref{sec:calibration_results}--\\ref{sec:domain_differential}) use $J=16$ Qwen2.5 models (8$\\times$1.5B + 8$\\times$3B); domain-level contamination estimates $\\gamma_d$ (\\S\\ref{sec:domain_differential}) are reported at $J=16$ in the text and $J=13$ in Figure~\\ref{fig:domain_gamma}.\n\n\\subsection{Dose-Response Patterns}\n\\label{sec:taxonomy}\n\n\\begin{table}[t]\n\\centering\n\\caption{Observed dose-response patterns under controlled SFT injection (seed$=$42, MMLU). $\\Delta$acc: d000$\\to$d100 change (95\\% CI from item-level paired bootstrap, $B=10{,}000$). Stab.: bootstrap classification stability. Classifications are robust to threshold hyperparameter choice (5/5 original families at 100\\% stability across 30 reasonable $(\\tau,\\sigma)$ combinations; Appendix~\\ref{sec:classification_sensitivity}).}\n\\label{tab:taxonomy}\n\\footnotesize\n\\begin{tabular}{llccccc}\n\\toprule\nPattern & Model & Baseline & $\\Delta$acc & 95\\% CI & Peak & Stab. \\\\\n\\midrule\nImmune & Phi-4 14.7B & 76.4\\% & $\\pm$0.5pp & [$-$0.60, $+$0.26] & negl. & 100\\% \\\\\nCollapse & Qwen-14B & 69.4\\% & $-$9.4 to $-$12.7pp & [$-$12.74, $-$9.0] & --- & 100\\% \\\\\nV-recovery & Qwen-7B & 66.1\\% & $-$1.8pp & [$-$2.36, $-$1.22] & $-$3.1\\textsuperscript{d025} & 99.6\\% \\\\\nBenefit & Gemma-2 9B & 61.9\\% & $+$3.8pp & [$+$3.18, $+$4.33] & mono. & 76.6\\% \\\\\nBenefit & Falcon3 7B & 58.8\\% & $+$4.2pp & [$+$3.60, $+$4.79] & mono. & 96.1\\% \\\\\nBenefit & OLMo-2 7B & 53.8\\% & $+$3.2pp\\textsuperscript{$\\dagger$} & [$+$2.73, $+$3.71] & sat.\\textsuperscript{d050} & 100\\% \\\\\n\\bottomrule\n\\multicolumn{7}{l}{\\scriptsize $^{\\dagger}$Seed-sensitive: s42 $+$3.2pp, s123 $-$0.6pp, s0 $+$1.4pp; cross-seed CI crosses zero. See \\S\\ref{sec:cross_seed}.}\n\\end{tabular}\n\\end{table}\n\nApplying Algorithm~\\ref{alg:profile-classification} to seed$=$42 accuracy trajectories yields a spectrum of dose-response patterns (Table~\\ref{tab:taxonomy}, Figure~\\ref{fig:dose_response}), not a uniform inflation effect. These empirical profiles are preliminary at $N\\!=\\!6$ models (five families).\n\n\\paragraph{Baseline ability gradient.}\nIn our six-family sample, contamination vulnerability concentrates in the 65--70\\% MMLU baseline band (Table~\\ref{tab:taxonomy}). Below 62\\%, three Benefit families gain $+$3.2 to $+$4.2pp; in the vulnerable band, Qwen-7B shows V-shaped harm-then-recovery while Qwen-14B collapses ($-$9.4 to $-$25.0pp across seeds)---3$\\times$ more fragile despite higher baseline. Above 76\\%, Phi-4 is immune. ARC direction is consistent for 3/5 families (Appendix~\\ref{sec:arc_cross_benchmark}); STEM is the most resilient domain, Social Sciences the most sensitive at 1.8$\\times$ STEM magnitude (Appendix~\\ref{sec:domain_decomposition}), foreshadowing \\S\\ref{sec:domain_differential}.\n\n\\paragraph{Out-of-sample validation.}\nOut-of-sample validation on LLaMA-3.1-8B (Meta; d000, d025, d100) yields Immune on both MMLU ($-$0.69pp) and ARC ($+$0.09pp), despite matching OLMo-2's Benefit baseline (53.5\\% vs.\\ 53.8\\%)---demonstrating family-level factors beyond baseline ability modulate vulnerability. Two of four patterns replicate across families: Immune (Phi-4, LLaMA-3.1), Benefit (OLMo-2, Falcon3, Gemma-2). LLaMA-3.1 shows the strongest GSM8K transfer ($+$16.4pp; Appendix~\\ref{sec:gsm8k_dose_response}), demonstrating target-benchmark immunity does not imply transfer immunity.\n\n\\subsection{Cross-Benchmark Transfer}\n\\label{sec:gsm8k_transfer}\n\nContamination patterns are a property of the (model, benchmark) pair, not the model alone. Within MCQ format, MMLU--ARC direction agreement is 86\\% (6/7 families; Appendix~\\ref{sec:arc_cross_benchmark}); across formats (MCQ$\\to$generative math), agreement drops to 40\\% (2/5) with three families exhibiting directional reversal on GSM8K \\citep{cobbe2021gsm8k} (Table~\\ref{tab:gsm8k_transfer}, Appendix). All five non-excluded families show positive GSM8K transfer ($+$1 to $+$16pp), including Qwen-14B ($-$9.4pp MMLU yet $+$13.1pp GSM8K), suggesting capability elicitation rather than memorization, consistent with null DiD (\\S\\ref{sec:memorization_test}). Volume effects are ruled out: d005 ($+$1.5\\% data) yields $+$11.1pp for Qwen-7B, while Phi-4 shows near-zero transfer.\n\n\\subsection{Cross-Seed Stability}\n\\label{sec:cross_seed}\n\nWith $n\\!=\\!3$ seeds per family, cross-seed CIs have limited precision (widths 1.5--14.5pp; Table~\\ref{tab:cross_seed}, Appendix). Under our aggregation rule (\\S\\ref{sec:classification}), 4/5 families receive consistent direction-level classifications; direction is more reproducible than shape (strict sign consistency 2/5). OLMo-2's CI crosses zero, rendering its classification borderline. Conflicting contamination findings in the literature may partly reflect unreported seed variance.\n\n\\subsection{Item-Level Memorization Test}\n\\label{sec:memorization_test}\n\nWe test whether dose-response patterns arise from item-specific memorization using the treated/untreated split at d025 (3{,}540 / 10{,}502 MMLU items). No model shows significant DiD ($p > 0.05$; Table~\\ref{tab:did}), ruling out item-specific effects $>$2pp (MDES 1.25--2.05pp; ARC MDES in Appendix~\\ref{sec:mdes}).\n\n\\begin{table}[t]\n\\centering\n\\caption{Treated vs.\\ untreated item accuracy changes at d025 MMLU (3{,}540 / 10{,}502). All DiD non-significant. $^{**}p<.01$; $^{***}p<.001$; ns: $p>.05$.}\n\\label{tab:did}\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\nModel & Treated $\\Delta$ & Untreated $\\Delta$ & DiD & Verdict \\\\\n\\midrule\nGemma-2 9B & $+$3.1$^{**}$ & $+$2.6$^{***}$ & $+$0.5 (ns) & generalization \\\\\nOLMo-2 7B & $+$1.6 (ns) & $+$2.7$^{***}$ & $-$1.1 (ns) & mixed \\\\\nPhi-4 14.7B & $+$0.3 (ns) & $+$0.6 (ns) & $-$0.3 (ns) & no-effect \\\\\nQwen-14B & $-$6.9$^{***}$ & $-$7.6$^{***}$ & $+$0.7 (ns) & anti-contam. \\\\\nQwen-7B & $-$3.8$^{**}$ & $-$2.9$^{***}$ & $-$0.8 (ns) & anti-contam. \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nParallel changes suggest global capability modulation rather than memorization (Figure~\\ref{fig:treated_untreated}, Appendix); ARC's limited power precludes this conclusion there.\n\n\\subsection{Calibration Quality}\n\\label{sec:calibration_results}\n\nWithin-family IRT analysis uses Qwen2.5 $\\leq$3B ($J=16$), where aggregate contamination shifts accuracy by ${\\sim}$0.6--0.7pp. RRF-guided item filtering achieves $\\tau = 0.73$ on 300 items ($\\Delta\\tau = 0.18$ vs.\\ size-matched random; signal ablation in Appendix~\\ref{sec:rrf_ablation}). IRT is fitted on these 300 highest-exposure-variance items (2.1\\% of MMLU); contamination effects on remaining low-variance items are not empirically verified.\n\nTable~\\ref{tab:baselines} compares methods on 300 RRF-filtered items. Raw accuracy's MAE advantage (0.006 vs.\\ ContamCal's 0.009) is predicted by Eq.~\\eqref{eq:calibrated}: calibrated scores depend on $\\theta_j$, not $\\gamma_d$ directly; under near-null aggregate contamination, both estimators converge. ContamCal's value lies in the diagnostic pathway ($\\gamma_d$), not aggregate calibration. B6-DCR systematically overcorrects (MAE 0.108). Domain analysis reveals Social Sciences $\\gamma_d = -0.63$ ($P(\\gamma_d\\!<\\!0) = 99.7\\%$; \\S\\ref{sec:domain_differential}), while pooled $\\gamma$ remains non-significant---consistent with opposing domain-level effects canceling. Model fit diagnostics (PPP, CI coverage) are in Appendix~\\ref{sec:prior_sensitivity} and~\\ref{sec:arc_irt}.\n\n\\begin{table}[t]\n\\centering\n\\caption{MMLU calibration on 300 RRF-filtered items (Qwen2.5, $J$=16). ARC results in Appendix~\\ref{sec:arc_irt}.}\n\\label{tab:baselines}\n\\footnotesize\n\\begin{tabular}{lcc}\n\\toprule\nMethod & MAE & $\\tau$ \\\\\n\\midrule\nB0: Raw Accuracy & \\textbf{0.006} & 0.767 \\\\\nB1b: Remove \\& Rescore & 0.026 & \\underline{0.783} \\\\\nB3: Vanilla 2PL & 0.008 & 0.731 \\\\\nB4: Linear Regression & 0.010 & 0.751 \\\\\nB5b: Emperor & \\textbf{0.006} & \\textbf{0.789} \\\\\nB6: DCR (reimpl.) & 0.108 & 0.654 \\\\\nContamCal (2PL+$\\gamma$) & 0.009 & 0.731 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Detection Signal Failure Modes}\n\\label{sec:signal_failure}\n\nMin-K\\%++ \\citep{zhang_2024_minkpp} exhibits \\textit{directional reversal} at 0.5B: contaminated items receive \\textit{lower} scores (paired Cohen's $d = -1.98$ at d100, $|d| > 1.4$ at d005). S1 achieves AUC $> 0.95$ at all scales; S4 is near-random below 1.5B (Appendix~\\ref{sec:signal_reliability_appendix}). Simulation shows $\\gamma$ recovery requires AUC$\\geq$0.55 with $J \\geq 50$; at AUC $\\geq 0.90$, $J = 16$ suffices (Appendix~\\ref{sec:identifiability_appendix}).\n\n\\subsection{Domain-Level Analysis}\n\\label{sec:domain_differential}\n\nWithin-family domain analysis (Qwen2.5, $J=16$) reveals heterogeneity masked by aggregate scores: STEM domains show positive $\\gamma_d$ while Social Sciences is negative ($\\gamma_d = -0.63$, 95\\% CI $[-1.07, -0.19]$, $P(\\gamma_d\\!<\\!0) = 99.7\\%$, PPP$=$0.722; Figure~\\ref{fig:domain_gamma}, Table~\\ref{tab:domain_gamma} in Appendix). Social Sciences $P(\\gamma_d\\!<\\!0)$ is 99.35--99.85\\% across priors (Table~\\ref{tab:socsci_prior}), exceeding the Bonferroni threshold ($99.375\\%$) under baseline and loose priors but falling 0.03\\,pp short under the tight prior. The directional signal is robust; we treat domain-level findings as exploratory pending replication with larger ensembles.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 29,
+        "oldLines": 7,
+        "newStart": 29,
+        "newLines": 7,
+        "lines": [
+          " Applying Algorithm~\\ref{alg:profile-classification} to seed$=$42 accuracy trajectories yields a spectrum of dose-response patterns (Table~\\ref{tab:taxonomy}, Figure~\\ref{fig:dose_response}), not a uniform inflation effect. These empirical profiles are preliminary at $N\\!=\\!6$ models (five families).",
+          " ",
+          " \\paragraph{Baseline ability gradient.}",
+          "-In our six-family sample, contamination vulnerability concentrates in the 65--70\\% MMLU baseline band (Table~\\ref{tab:taxonomy}). Below 62\\%, three Benefit families gain $+$3.2 to $+$4.2pp; in the vulnerable band, Qwen-7B shows V-shaped harm-then-recovery while Qwen-14B collapses ($-$9.4 to $-$25.0pp across seeds)---3$\\times$ more fragile despite higher baseline. Above 76\\%, Phi-4 is immune. ARC direction is consistent for 3/5 families (Appendix~\\ref{sec:arc_cross_benchmark}); STEM is the most resilient domain, Social Sciences the most sensitive at 1.8$\\times$ STEM magnitude (Appendix~\\ref{sec:domain_decomposition}), foreshadowing \\S\\ref{sec:domain_differential}.",
+          "+In our six-family sample, contamination vulnerability concentrates in the 65--70\\% MMLU baseline band (Table~\\ref{tab:taxonomy}). Below 62\\%, three Benefit families gain $+$3.2 to $+$4.2pp; in the vulnerable band, Qwen-7B shows V-shaped harm-then-recovery while Qwen-14B collapses ($-$9.4 to $-$25.0pp across seeds)---3$\\times$ more fragile despite higher baseline. Above 76\\%, Phi-4 is immune. ARC direction is consistent for 5/6 families (Appendix~\\ref{sec:arc_cross_benchmark}); STEM is the most resilient domain, Social Sciences the most sensitive at 1.8$\\times$ STEM magnitude (Appendix~\\ref{sec:domain_decomposition}), foreshadowing \\S\\ref{sec:domain_differential}.",
+          " ",
+          " \\paragraph{Out-of-sample validation.}",
+          " Out-of-sample validation on LLaMA-3.1-8B (Meta; d000, d025, d100) yields Immune on both MMLU ($-$0.69pp) and ARC ($+$0.09pp), despite matching OLMo-2's Benefit baseline (53.5\\% vs.\\ 53.8\\%)---demonstrating family-level factors beyond baseline ability modulate vulnerability. Two of four patterns replicate across families: Immune (Phi-4, LLaMA-3.1), Benefit (OLMo-2, Falcon3, Gemma-2). LLaMA-3.1 shows the strongest GSM8K transfer ($+$16.4pp; Appendix~\\ref{sec:gsm8k_dose_response}), demonstrating target-benchmark immunity does not imply transfer immunity."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01WbKpMEApNoP89rFLGRBRq9`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+  "old_string": "(5-shot, seed$=$42; Falcon3 in Table~\\ref{tab:taxonomy}; cross-seed patterns in Table~\\ref{tab:cross_seed})",
+  "new_string": "(5-shot, seed$=$42; LLaMA-3.1 at seed$=$0 with d000/d025/d100; cross-seed patterns in Table~\\ref{tab:cross_seed})"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "67c9662e-3243-4c27-aa5b-4674f5ea49c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L6c6ooW5puj35oHyUdqppB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 227,
+      "cache_read_input_tokens": 74886,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 227
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T18:12:56.495Z_
+
+<details><summary>↩ Tool result · `toolu_01WbKpMEApNoP89rFLGRBRq9`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "4d8edd19-492c-4459-9745-959d5e41a0c7",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+    "oldString": "(5-shot, seed$=$42; Falcon3 in Table~\\ref{tab:taxonomy}; cross-seed patterns in Table~\\ref{tab:cross_seed})",
+    "newString": "(5-shot, seed$=$42; LLaMA-3.1 at seed$=$0 with d000/d025/d100; cross-seed patterns in Table~\\ref{tab:cross_seed})",
+    "originalFile": "\\section{Introduction}\\label{sec:introduction}\n\nBenchmark scores drive model selection and research priorities for large language models, yet training data contamination is pervasive: trillion-token web crawls routinely ingest benchmark items \\citep{oren2024proving}, and practitioners cannot determine how much of a reported score reflects genuine capability versus memorization \\citep{hendrycks2021mmlu,chang2025benchmarking}. Despite twenty mitigation strategies \\citep{sun2025emperor}, contamination-free benchmarks \\citep{white2024livebench}, and dynamic regeneration \\citep{dong_2024_cdd}, a fundamental question remains: what is the actual effect of contamination on aggregate scores? The implicit assumption is uniform inflation, but this has never been tested across model families.\n\nWe perform controlled SFT injection (LoRA, five dosage levels) into six models spanning five independent families from five labs (Alibaba, Microsoft, Allen AI, Google, TII) and discover a spectrum of dose-response patterns (Figure~\\ref{fig:dose_response})---from immunity (Phi-4, $\\pm$0.5pp) and benefit ($+$3--4pp, three families) to collapse in the 65--70\\% baseline band (Qwen-14B, $-$9 to $-$25pp across seeds).\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig_dose_response.pdf}\n\\caption{MMLU accuracy vs.\\ contamination dosage (5-shot, seed$=$42; Falcon3 in Table~\\ref{tab:taxonomy}; cross-seed patterns in Table~\\ref{tab:cross_seed}). Vulnerability concentrates in the 65--70\\% baseline band; models at extreme baselines show limited sensitivity. Qwen-14B is 3$\\times$ more fragile than 7B. ARC-Challenge patterns in Appendix~\\ref{sec:arc_cross_benchmark}.}\n\\label{fig:dose_response}\n\\end{figure*}\n\nIn our six-family sample, contamination vulnerability concentrates in the 65--70\\% MMLU baseline band: below it, models benefit (OLMo-2 $+$3.2pp, Falcon3 $+$4.2pp, Gemma-2 $+$3.8pp); above it, they are harmed or immune. Counter-intuitively, the 14B model is 3$\\times$ more fragile than 7B. ContamCal, our two-stage pipeline combining multi-signal item filtering with contamination-augmented IRT (2PL+$\\gamma_k$), enables this characterization.\n\nOur contributions:\n\\begin{enumerate}\n    \\item \\textbf{Dose-response profiles with cross-seed and cross-benchmark validation.} Controlled injection across five families reveals a spectrum of dose-response patterns; in our six-family sample, vulnerability concentrates in the 65--70\\% MMLU baseline band. Out-of-sample validation on LLaMA-3.1-8B provides preliminary evidence for generalizability. Cross-benchmark transfer reveals three family-specific patterns on GSM8K (null, consistent, directional reversal). Multi-seed evaluation ($n\\!=\\!3$) shows direction is reproducible but magnitude is seed-sensitive. Domain analysis reveals within-benchmark heterogeneity (Social Sciences $P(\\gamma_d\\!<\\!0) = 99.7\\%$).\n    \\item \\textbf{No detectable item-specific memorization at current power levels.} Difference-in-differences analysis on 14{,}042 MMLU items finds no differential accuracy gain for contaminated vs.\\ clean items in any model family (MDES 1.2--2.0pp on MMLU; ARC power is limited at 2.3--5.6pp). Results are consistent with global capability modulation.\n    \\item \\textbf{Signal failure characterization.} Min-K\\%++ \\citep{zhang_2024_minkpp} exhibits directional reversal at 0.5B (paired Cohen's $d = -1.98$ at d100; $|d| > 1.4$ across benchmarks at d005). RRF-guided item filtering is a prerequisite for IRT convergence ($\\Delta\\tau = 0.18$ vs.\\ size-matched random). Simulation establishes $\\gamma$ recovery requires $J \\geq 50$ at AUC $\\geq 0.55$, above current practice ($J = 8$--$30$).\n\\end{enumerate}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 7,
+        "oldLines": 7,
+        "newStart": 7,
+        "newLines": 7,
+        "lines": [
+          " \\begin{figure*}[t]",
+          " \\centering",
+          " \\includegraphics[width=\\textwidth]{figures/fig_dose_response.pdf}",
+          "-\\caption{MMLU accuracy vs.\\ contamination dosage (5-shot, seed$=$42; Falcon3 in Table~\\ref{tab:taxonomy}; cross-seed patterns in Table~\\ref{tab:cross_seed}). Vulnerability concentrates in the 65--70\\% baseline band; models at extreme baselines show limited sensitivity. Qwen-14B is 3$\\times$ more fragile than 7B. ARC-Challenge patterns in Appendix~\\ref{sec:arc_cross_benchmark}.}",
+          "+\\caption{MMLU accuracy vs.\\ contamination dosage (5-shot, seed$=$42; LLaMA-3.1 at seed$=$0 with d000/d025/d100; cross-seed patterns in Table~\\ref{tab:cross_seed}). Vulnerability concentrates in the 65--70\\% baseline band; models at extreme baselines show limited sensitivity. Qwen-14B is 3$\\times$ more fragile than 7B. ARC-Challenge patterns in Appendix~\\ref{sec:arc_cross_benchmark}.}",
+          " \\label{fig:dose_response}",
+          " \\end{figure*}",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+三处修复完成。验证结果：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "3fd8336b-daf5-4a5e-877d-94d21ead757c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0182t7CahcRmqbRif56fTyvY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 295,
+      "cache_read_input_tokens": 75113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 295
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019AermxHnjcYXXMJ2bathBM`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+  "offset": 28,
+  "limit": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "e39613ed-866c-4b57-b560-80b1f11dd7db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0182t7CahcRmqbRif56fTyvY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 295,
+      "cache_read_input_tokens": 75113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 295
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-22T18:13:00.534Z_
+
+<details><summary>↩ Tool result · `toolu_019AermxHnjcYXXMJ2bathBM`</summary>
+
+```text
+28	
+29	Applying Algorithm~\ref{alg:profile-classification} to seed$=$42 accuracy trajectories yields a spectrum of dose-response patterns (Table~\ref{tab:taxonomy}, Figure~\ref{fig:dose_response}), not a uniform inflation effect. These empirical profiles are preliminary at $N\!=\!6$ models (five families).
+30	
+31	\paragraph{Baseline ability gradient.}
+32	In our six-family sample, contamination vulnerability concentrates in the 65--70\% MMLU baseline band (Table~\ref{tab:taxonomy}). Below 62\%, three Benefit families gain $+$3.2 to $+$4.2pp; in the vulnerable band, Qwen-7B shows V-shaped harm-then-recovery while Qwen-14B collapses ($-$9.4 to $-$25.0pp across seeds)---3$\times$ more fragile despite higher baseline. Above 76\%, Phi-4 is immune. ARC direction is consistent for 5/6 families (Appendix~\ref{sec:arc_cross_benchmark}); STEM is the most resilient domain, Social Sciences the most sensitive at 1.8$\times$ STEM magnitude (Appendix~\ref{sec:domain_decomposition}), foreshadowing \S\ref{sec:domain_differential}.
+33	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "758b51c4-fede-4240-bb10-6219da8d0cd0",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+      "content": "\nApplying Algorithm~\\ref{alg:profile-classification} to seed$=$42 accuracy trajectories yields a spectrum of dose-response patterns (Table~\\ref{tab:taxonomy}, Figure~\\ref{fig:dose_response}), not a uniform inflation effect. These empirical profiles are preliminary at $N\\!=\\!6$ models (five families).\n\n\\paragraph{Baseline ability gradient.}\nIn our six-family sample, contamination vulnerability concentrates in the 65--70\\% MMLU baseline band (Table~\\ref{tab:taxonomy}). Below 62\\%, three Benefit families gain $+$3.2 to $+$4.2pp; in the vulnerable band, Qwen-7B shows V-shaped harm-then-recovery while Qwen-14B collapses ($-$9.4 to $-$25.0pp across seeds)---3$\\times$ more fragile despite higher baseline. Above 76\\%, Phi-4 is immune. ARC direction is consistent for 5/6 families (Appendix~\\ref{sec:arc_cross_benchmark}); STEM is the most resilient domain, Social Sciences the most sensitive at 1.8$\\times$ STEM magnitude (Appendix~\\ref{sec:domain_decomposition}), foreshadowing \\S\\ref{sec:domain_differential}.\n",
+      "numLines": 6,
+      "startLine": 28,
+      "totalLines": 108
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NbzUpMPQQbKENpDLujyE6y`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+  "offset": 8,
+  "limit": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "397316c6-2e54-455d-aaaf-38343415476f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0182t7CahcRmqbRif56fTyvY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 295,
+      "cache_read_input_tokens": 75113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 295
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-22T18:13:00.949Z_
+
+<details><summary>↩ Tool result · `toolu_01NbzUpMPQQbKENpDLujyE6y`</summary>
+
+```text
+8	\centering
+9	\includegraphics[width=\textwidth]{figures/fig_dose_response.pdf}
+10	\caption{MMLU accuracy vs.\ contamination dosage (5-shot, seed$=$42; LLaMA-3.1 at seed$=$0 with d000/d025/d100; cross-seed patterns in Table~\ref{tab:cross_seed}). Vulnerability concentrates in the 65--70\% baseline band; models at extreme baselines show limited sensitivity. Qwen-14B is 3$\times$ more fragile than 7B. ARC-Challenge patterns in Appendix~\ref{sec:arc_cross_benchmark}.}
+11	\label{fig:dose_response}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "7aedde23-0816-4e31-b0b0-a22dd7a7cfb1",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/introduction.tex",
+      "content": "\\centering\n\\includegraphics[width=\\textwidth]{figures/fig_dose_response.pdf}\n\\caption{MMLU accuracy vs.\\ contamination dosage (5-shot, seed$=$42; LLaMA-3.1 at seed$=$0 with d000/d025/d100; cross-seed patterns in Table~\\ref{tab:cross_seed}). Vulnerability concentrates in the 65--70\\% baseline band; models at extreme baselines show limited sensitivity. Qwen-14B is 3$\\times$ more fragile than 7B. ARC-Challenge patterns in Appendix~\\ref{sec:arc_cross_benchmark}.}\n\\label{fig:dose_response}",
+      "numLines": 4,
+      "startLine": 8,
+      "totalLines": 22
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+三处修改已完成：
+
+| # | 位置 | 原文 | 修改后 | 依据 |
+|---|------|------|--------|------|
+| 1 | results.tex L29 | `N=6 families` | `N=6 models (five families)` | Table 1 有 6 个模型但仅 5 个独立 family（Qwen 算一个），与 L4 和 intro 的 "five independent families" 一致 |
+| 2 | results.tex L32 | `3/5 families` | `5/6 families` | Appendix §B 明确写 "directionally consistent with MMLU for five of six models"；Falcon3 ARC +4.0pp 与 MMLU +4.2pp 方向一致；唯一例外是 Gemma-2 |
+| 3 | introduction.tex L10 | `Falcon3 in Table~\ref{tab:taxonomy}` | `LLaMA-3.1 at seed$=$0 with d000/d025/d100` | 图表生成脚本确认 Falcon3 已绘入 Fig 1；同时 LLaMA-3.1 使用 seed=0（非 seed=42）且仅有 3 个 dosage 点，需在 caption 中注明 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "uuid": "f4e022f9-417d-4686-a8c6-772e7584811b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gy93PdXiNRuPFoUnLYe8BB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 809,
+      "cache_read_input_tokens": 75408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 809
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 53_
+
+三处修改已完成：
+
+| # | 位置 | 原文 | 修改后 | 依据 |
+|---|------|------|--------|------|
+| 1 | results.tex L29 | `N=6 families` | `N=6 models (five families)` | Table 1 有 6 个模型但仅 5 个独立 family（Qwen 算一个），与 L4 和 intro 的 "five independent families" 一致 |
+| 2 | results.tex L32 | `3/5 families` | `5/6 families` | Appendix §B 明确写 "directionally consistent with MMLU for five of six models"；Falcon3 ARC +4.0pp 与 MMLU +4.2pp 方向一致；唯一例外是 Gemma-2 |
+| 3 | introduction.tex L10 | `Falcon3 in Table~\ref{tab:taxonomy}` | `LLaMA-3.1 at seed$=$0 with d000/d025/d100` | 图表生成脚本确认 Falcon3 已绘入 Fig 1；同时 LLaMA-3.1 使用 seed=0（非 seed=42）且仅有 3 个 dosage 点，需在 caption 中注明 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 381235,
+  "duration_api_ms": 383282,
+  "num_turns": 18,
+  "stop_reason": "end_turn",
+  "session_id": "498c3de4-92aa-464d-a67f-c5165caa4a1b",
+  "total_cost_usd": 1.1654945,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 64376,
+    "cache_read_input_tokens": 543323,
+    "output_tokens": 19536,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 64376,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 358,
+        "cache_read_input_tokens": 75408,
+        "cache_creation_input_tokens": 809,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 809
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2943,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003018,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 19536,
+      "cacheReadInputTokens": 543323,
+      "cacheCreationInputTokens": 64376,
+      "webSearchRequests": 0,
+      "costUSD": 1.1624765000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d09c1bdb-cea7-4633-ba63-929c0d0e297b"
+}
+```
+
+</details>
+
+---

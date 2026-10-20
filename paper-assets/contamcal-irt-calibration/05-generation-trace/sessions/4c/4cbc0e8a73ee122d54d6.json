@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cbc0e8a73ee122d54d6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd full status and pilot",
+  "task_key": "worker_ops_westd-full-status-and-pilot_20260518T100037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-full-status-and-pilot_20260518T100037_result.json",
+    "occurrence": 1,
+    "bytes": 102,
+    "sha256": "781e1776966a7f48e1bdd523a313833338b1091056147b0dfdc59edbacfb49eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已收到后台任务完成通知，无需操作——训练验证已在上面完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-full-status-and-pilot.md"
+}

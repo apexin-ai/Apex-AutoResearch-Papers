@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c5fcd9f6bd32d8ea02b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops zombie pid593745 diagnose",
+  "task_key": "worker_ops_zombie-pid593745-diagnose_20260515T183105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_zombie-pid593745-diagnose_20260515T183105_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "882a90962223134a9288b54468bdf3d4cc6f2dd6f6dbeb5966d7ea094b1e5faa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：593745 不是僵尸进程，无需 kill。**\n\n进程关系：\n- `593740` (bash wrapper, v2) → `593744` (timeout) → **`593745`** (python train_sft.py)\n- 三个 PID 是同一个实验 `exp_001_sft_3B_d100_s42_a32_v2` 的父子链\n\nv2 训练状态：\n- 进度：**1724/4159 steps (41%)**，已运行约 2h01m\n- 预计剩余：~3h18m\n- Loss: ~1.1-1.2，token accuracy: ~0.72-0.74，训练正常\n- cuda:1 显存：13341 MiB / 24564 MiB (54%)，无 OOM 风险\n\n**不存在旧版本 alpha=16 进程与 v2 冲突的情况。** 原始的 `exp_001_sft_3B_d100_s42_a32`（非 v2）没有独立进程在运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-zombie-pid593745-diagnose.md"
+}

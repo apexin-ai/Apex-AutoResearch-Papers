@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2db50421238ecf7d2413",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cuda1 conflict resolve",
+  "task_key": "worker_ops_cuda1-conflict-resolve_20260515T175904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda1-conflict-resolve_20260515T175904_result.json",
+    "occurrence": 1,
+    "bytes": 1253,
+    "sha256": "9c575dc95a8c092e768c6eeedb5098a1885e1363360f610fdc123f42e04a8b8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**无实际 GPU 冲突。** 两个 PID 是同一实验的父子进程链：\n\n```\n593740 (v2 bash wrapper) → 593744 (timeout) → 593745 (python training)\n```\n\nGPU 1 上只有 PID 593745 一个进程占用 13341 MiB。\n\n### 原版实验 (exp_001_sft_3B_d100_s42_a32)\n\n已被 kill（EXIT_CODE=143 / SIGTERM），死在 step 164/4159。日志末尾明确显示 `Terminated`。\n\n### v2 实验 (exp_001_sft_3B_d100_s42_a32_v2)\n\n正常运行中：\n- **进度**: 1275/4159 (~30%)，已跑 ~1h28m\n- **Loss**: ~1.10-1.27，正常波动\n- **Mean token accuracy**: ~0.72-0.74\n- **速度**: ~3.9-4.2 s/it\n- **预计剩余**: ~3h10m\n\n### 全局 GPU 状态\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 17975 / 24564 MiB | 32% |\n| 1 | 13341 / 24564 MiB | 31% |\n| 2 | 8985 / 24564 MiB | 66% |\n| 3 | 13583 / 24564 MiB | 69% |\n| 4 | 23540 / 24564 MiB | 100% |\n| 5 | 17649 / 24564 MiB | 54% |\n\n6 块 GPU 全部在用。GPU 4 显存接近满载（23540/24564）。\n\n**结论：无需 kill 任何进程。** cuda:1 上只有 v2 的训练进程在跑，原版实验早已被终止。注册表中 exp_001_sft_3B_d100_s42_a32 应标记为 failed/terminated（如果尚未标记）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda1-conflict-resolve.md"
+}

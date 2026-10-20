@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47b3de94c5a54756418b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh fix gpu1 d050 conflict",
+  "task_key": "worker_ssh_fix-gpu1-d050-conflict_20260519T124619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-gpu1-d050-conflict_20260519T124619_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "03cf52c049688368630f5b477be3eddb6f51233316e8825deabdc2030554b278"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：问题已自行解决，无需干预。**\n\n实际情况与预期不同：\n\n| GPU | 状态 | 说明 |\n|-----|------|------|\n| GPU 0 | PID 173479 跑 d005 eval | 正常 |\n| GPU 1 | 空闲 | **从未启动过 OLMo-2 eval 脚本**（gpu1.log 显示跑的是之前的 qwen14b 批次，20:14 已结束）|\n| GPU 2 | 空闲 | d100 已完成 |\n| GPU 3 | 空闲 | d025→d050 已完成（20:38，日志确认 \"ALL olmo2 GPU3 DONE\"）|\n\n**为什么没有 race condition**：`olmo2_eval_gpu1.sh` 和 `olmo2_eval_gpu3.sh` 虽然都包含 d025→d050 序列，但只有 GPU3 的脚本被实际执行了（有 `olmo2_gpu3.log` 和对应 tmux session）。GPU1 没有对应的 OLMo-2 tmux session 或日志文件。\n\n**数据完整性**：d025 和 d050 结果完整（JSON 有效、item 数量正确、剂量-响应趋势合理）。无需修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-gpu1-d050-conflict.md"
+}

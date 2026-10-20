@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "330ab73b6a9d6ad8d366",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code add max items param",
+  "task_key": "worker_code_add-max-items-param_20260518T120212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_add-max-items-param_20260518T120212_result.json",
+    "occurrence": 1,
+    "bytes": 477,
+    "sha256": "a82096e1d51112120f74b467ddc788b1f75bebc3edd387b43e2fcd8686fde3bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`--max-items` 和 `--subsample-seed` 已添加到 evaluate.py。\n\n修改内容：\n- `import random` 加到 imports\n- argparse 新增 `--max-items`（默认 0 = 全量）和 `--subsample-seed`（默认 42）\n- `evaluate_mcq`、`evaluate_gsm8k`、`evaluate_humaneval` 三个函数中，在已有 `max_samples` 截断之后加入随机子采样逻辑（`random.Random(seed).sample` + `ds.select(sorted(indices))`）\n- 三个 call site 传入新参数"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-add-max-items-param.md"
+}

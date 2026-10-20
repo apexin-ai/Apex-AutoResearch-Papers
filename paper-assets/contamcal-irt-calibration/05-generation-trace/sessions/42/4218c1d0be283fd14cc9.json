@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4218c1d0be283fd14cc9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "critical alpha audit and checkpoint verify",
+  "task_key": "worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_critical_alpha-audit-and-checkpoint-verify_20260515T185036_result.json",
+    "occurrence": 1,
+    "bytes": 4648,
+    "sha256": "5ea651bfb3b79377823a0c07d2daa33afc17592ed901055274da5e9cb860c8c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完成。以下是完整审计结果。\n\n---\n\n## 子任务 B：全量 checkpoint lora_alpha 审计\n\n### 完整对照表\n\n| Model | Checkpoint | lora_alpha | r | Created | Bug Affected? |\n|-------|-----------|------------|---|---------|--------------|\n| **0.5B** | d000_s42 | **32** | 16 | May 14 04:31 | YES |\n| | d000_s123 | **32** | 16 | May 14 05:36 | YES |\n| | d005_s42 | **32** | 16 | May 14 08:54 | YES |\n| | d005_s123 | **32** | 16 | May 15 08:42 | YES |\n| | d025_s42 | **32** | 16 | May 14 16:30 | YES |\n| | d025_s123 | **32** | 16 | May 15 13:40 | YES |\n| | d100_s42 | **32** | 16 | May 14 08:50 | YES |\n| | d100_s123 | **32** | 16 | May 15 05:29 | YES |\n| **1.5B** | d000_s42 | **32** | 16 | May 14 05:23 | YES |\n| | d000_s123 | **32** | 16 | May 14 06:23 | YES |\n| | d005_s42 | **32** | 16 | May 14 16:45 | YES |\n| | d005_s123 | **32** | 16 | May 15 20:52 | YES |\n| | d025_s42 | **32** | 16 | May 15 01:33 | YES |\n| | d025_s123 | **32** | 16 | May 15 20:57 | YES |\n| | d100_s42 | **32** | 16 | May 14 15:39 | YES |\n| | d100_s123 | **32** | 16 | May 15 08:27 | YES |\n| **3B** | d000_s42 | **32** | 16 | May 14 07:20 | YES |\n| | d000_s123 | **32** | 16 | May 14 08:15 | YES |\n| | d000_v2_s42 | 16 | 16 | May 15 03:46 | no (fixed) |\n| | d000_v2_s123 | 16 | 16 | May 15 08:02 | no (fixed) |\n| | d005_s42 | **32** | 16 | May 14 20:56 | YES |\n| | d005_s123 | **32** | 16 | May 15 23:03 | YES |\n| | d025_s42 | 16 | 16 | May 15 11:56 | no |\n| | d025_s123 | **32** | 16 | May 15 22:42 | YES |\n| | d100_s42 | 16 | 16 | May 15 07:06 | no |\n| | d100_s123 | 16 | 16 | May 15 13:17 | no |\n| | d000_a32_s42 | N/A (空目录) | - | May 16 00:52 | 训练未完成 |\n\n### 统计\n\n- **alpha=32（受影响）：22 个 checkpoint**（全部 0.5B × 8、全部 1.5B × 8、3B × 6）\n- **alpha=16（正确）：5 个 checkpoint**（3B d000_v2_s42/s123、d025_s42、d100_s42/s123）\n- **空目录：1 个**（3B d000_a32_s42，训练中或失败）\n\n### train_sft.py 代码分析\n\n**根因不是参数传递 bug，而是默认值问题：**\n\n```python\n# line 34: 默认值是 32\nDEFAULT_LORA_CONFIG = {\n    \"r\": 16,\n    \"lora_alpha\": 32,   # ← 这里\n}\n\n# line 97: argparse default 引用了这个 32\nparser.add_argument(\"--lora-alpha\", type=int, \n                    default=DEFAULT_LORA_CONFIG[\"lora_alpha\"])\n\n# line 135-137: 参数传递本身是正确的\nlora_config = LoraConfig(\n    r=args.lora_r,\n    lora_alpha=args.lora_alpha,  # ← 正确传递\n)\n```\n\n**结论**：代码逻辑没问题，`args.lora_alpha` 正确传入 `LoraConfig`。问题是 `DEFAULT_LORA_CONFIG[\"lora_alpha\"]` = 32。凡是训练命令未显式指定 `--lora-alpha 16` 的，都会默认用 32。v2 runs 的 SFT 日志确认 `alpha=16`，说明 v2 训练时显式传了 `--lora-alpha 16`。\n\n---\n\n## 子任务 C：d000_s123 版本确认\n\n### d000 相关 3B checkpoint 对比\n\n| 目录 | alpha | r | 创建时间 | 状态 |\n|------|-------|---|---------|------|\n| Qwen2.5-3B_d000_s123 | 32 | 16 | May 14 08:15 | 完整 |\n| Qwen2.5-3B_d000_s42 | 32 | 16 | May 14 07:20 | 完整 |\n| Qwen2.5-3B_d000_v2_s123 | 16 | 16 | May 15 08:02 | 完整 |\n| Qwen2.5-3B_d000_v2_s42 | 16 | 16 | May 15 03:46 | 完整 |\n| Qwen2.5-3B_d000_a32_s42 | N/A | - | May 16 00:52 | 空目录 |\n\n### Eval 用了哪个 checkpoint？\n\n**3B d000_s123 eval（`exp_001_eval_3B_d000_s123.log`）：**\n```\nLoading adapter: .../Qwen2.5-3B_d000_s123/lora_adapter\n```\n→ 用的是**原始 d000_s123（alpha=32）**，不是 v2\n\n**3B d000_s123_aligned eval：**\n- 结果目录 `eval_results/Qwen2.5-3B_d000_s123_aligned/` 存在（May 15 22:24）\n- runs 目录无单独 log 文件\n- eval_results.json 未记录 adapter_path\n- 按命名约定，使用的也是 `Qwen2.5-3B_d000_s123`（alpha=32）\n\n**3B d000_v2 aligned eval（`exp_001_eval_3B_d000_v2_aligned.log`）：**\n```\nLoading adapter: .../Qwen2.5-3B_d000_v2_s42/lora_adapter\n```\n→ v2 eval 用的是 v2_s42（alpha=16）\n\n### 结论\n\n1. **Baseline eval（3B d000_s123）用的是 alpha=32 的原始 checkpoint**，不是 registry 中记录的 v2 版本\n2. d000_s123（alpha=32，May 14）和 d000_v2_s123（alpha=16，May 15）是两个不同的 checkpoint\n3. **全部 0.5B 和 1.5B checkpoint 均为 alpha=32，从未被重训**\n4. 3B 中只有 5/11 个 checkpoint 是 alpha=16（v2 修复版 + 部分后续训练），其余 6 个仍为 alpha=32\n5. **3B d005_s123（May 15 23:03）和 d025_s123（May 15 22:42）在 v2 修复之后仍训出 alpha=32**，说明这些训练命令未显式传 `--lora-alpha 16`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/critical-alpha-audit-and-checkpoint-verify.md"
+}

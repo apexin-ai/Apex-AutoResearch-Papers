@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28aada6db5a9143de4a1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check eval 3B d000 v2 aligned",
+  "task_key": "worker_ops_check-eval-3B-d000-v2-aligned_20260515T002059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eval-3B-d000-v2-aligned_20260515T002059_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "fceff068486568fd0f190a2a841b277dfd8470c61615a353bf1d14e421f57f56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能由触发本次任务的 cron 自身已清理）。\n\n---\n\n**诊断完成。** `exp_001_eval_3B_d000_v2_aligned` 成功，registry 已更新为 DONE。\n\n结果汇总：\n\n| Benchmark | Score | 备注 |\n|-----------|-------|------|\n| MMLU | 62.95% | |\n| GSM8K | 35.25% | **未达目标 50%**，CoT 遗忘未恢复 |\n| ARC-Challenge | 81.83% | |\n| HumanEval pass@1 | 9.76% | |\n\n关键发现：GSM8K 从 v1 的 11.7% 恢复到 35.25%，但仍远低于 raw baseline 60.5% 和目标 50%。aligned eval format 有改善但不够，CoT catastrophic forgetting 问题持续。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-3b-d000-v2-aligned.md"
+}

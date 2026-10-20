@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25c0888e07ee4da4bed5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops d084 verify v5 checkpoint",
+  "task_key": "worker_ops_d084-verify-v5-checkpoint_20260515T231614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d084-verify-v5-checkpoint_20260515T231614_result.json",
+    "occurrence": 1,
+    "bytes": 1344,
+    "sha256": "6134c2163069e77e1e9d95860d6a0046beb81075ef993cc32f6d31d00e2fbcff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`d025_a32_s42/lora_adapter/` 是空目录，未完成训练。结果汇总：\n\n---\n\n## 验证结果\n\n### 1. v5 使用的 adapter path\n\n`run_batch.py` 中 `checkpoint_path()` 模板：\n```\n/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_s42/lora_adapter\n```\n\nd025 对应路径：**`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter`**\n\n当前进程 PID 648627 的命令行也确认了同一模式（正在跑 d100_s42）。\n\n### 2. 该 checkpoint 的 lora_alpha\n\n**`Qwen2.5-3B_d025_s42` → lora_alpha = 16, r = 16**\n\n### 3. 结论\n\n**v5 signals 应标记为 alpha=16。** `run_batch.py` 硬编码使用 `{model}_{dosage}_s42` 路径，没有走 v3 目录，所以 v5 实际用的是旧版 alpha=16 的 checkpoint，不是 D082 讨论中预期的 alpha=32。\n\n### 4. 全部 d025 checkpoint 对比\n\n| 目录 | lora_alpha | r | 状态 |\n|------|-----------|---|------|\n| `Qwen2.5-3B_d025_s42` | **16** | 16 | ← v5 正在用 |\n| `Qwen2.5-3B_d025_v3_s42` | **32** | 16 | v3 版本，未被 v5 引用 |\n| `Qwen2.5-3B_d025_s123` | **32** | 16 | seed=123 |\n| `Qwen2.5-3B_d025_a32_s42` | — | — | 空目录，训练未完成 |\n\n如果 v5 应该用 alpha=32，需要修改 `run_batch.py` 让 d025 指向 `Qwen2.5-3B_d025_v3_s42`（或 `_a32_s42` 训练完成后指向它）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d084-verify-v5-checkpoint.md"
+}

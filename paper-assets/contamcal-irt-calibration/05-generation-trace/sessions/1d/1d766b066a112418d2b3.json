@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "1d766b066a112418d2b3",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "diagnose sft olmo2 s0 sweep exit",
+  "task_key": "worker_diagnose_sft_olmo2_s0_sweep_exit_20260520T044050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diagnose_sft_olmo2_s0_sweep_exit_20260520T044050.jsonl",
+    "occurrence": 1,
+    "bytes": 180,
+    "sha256": "6cd81be5a298b0c54daa5ec8728cdfd18d62c8bcde3643a51d73f945b46bbb68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T04:41:01.083608+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_sft_olmo2_s0_sweep_exit_20260520T044050"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/diagnose-sft-olmo2-s0-sweep-exit.md"
+}

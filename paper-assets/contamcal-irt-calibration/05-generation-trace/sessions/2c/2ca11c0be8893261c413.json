@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ca11c0be8893261c413",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gsm8k results collect olmo phi",
+  "task_key": "worker_ops_gsm8k-results-collect-olmo-phi_20260521T101303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k-results-collect-olmo-phi_20260521T101303_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "673aa85bfa6c2e6bb94ccc4f6bf1fefbd1f8c7e5855773dc080b2966df489221"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 11 个 GSM8K eval 结果已收集完毕。GPU 2 空闲，OLMo-2 d005_s0 已完成。\n\n## GSM8K 结果汇总（westd, seed=0, N=1319）\n\n| Model | Dosage | Correct | Accuracy |\n|-------|--------|---------|----------|\n| **Qwen2.5-14B** | d000 | 989 | 74.98% |\n| | d005 | 939 | 71.19% |\n| | d025 | 1046 | 79.30% |\n| | d050 | 1069 | 81.05% |\n| | d100 | 1087 | 82.41% |\n| **Gemma-2** | d000 | 235 | 17.82% |\n| **Phi-4** | d000 | 1114 | 84.46% |\n| | d100 | 1129 | 85.60% |\n| **OLMo-2** | d000 | 799 | 60.58% |\n| | d005 | 873 | 66.19% |\n| | d100 | 920 | 69.75% |\n\n**GPU 状态**: GPU 0/1/3 跑 LLaMA-3 SFT（82-98% util），GPU 2 空闲。\n\n**注意**: Qwen14b d005 (71.19%) 低于 d000 (74.98%)，出现性能下降；Gemma-2 d000 只有 17.82%，大量 pred=null，可能有 eval 格式问题需排查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-results-collect-olmo-phi.md"
+}

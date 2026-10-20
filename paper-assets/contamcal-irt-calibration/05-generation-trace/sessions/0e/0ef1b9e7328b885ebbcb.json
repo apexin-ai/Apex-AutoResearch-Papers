@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ef1b9e7328b885ebbcb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "gpu sft 05B d005 s123",
+  "task_key": "worker_gpu_sft_05B_d005_s123_20260514T192548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_sft_05B_d005_s123_20260514T192548_result.json",
+    "occurrence": 1,
+    "bytes": 450,
+    "sha256": "3ac3ec65e1a3006f602cfef6bc1e0d20600ee90aaeececc70b6b8f86ec9641d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 0 被占用**：正在运行 `evaluate.py`（3B d100 s42 paraphrase-aligned 评估），已运行约 13 分钟。\n\n根据约束 **C001/C002**，GPU 0 当前不空闲，**不能提交任务**。\n\n输出目录 `Qwen2.5-0.5B_d005_s123` 尚不存在（OK），训练数据（50826 行）和 base model 均就绪。\n\n**下一步**：等 GPU 0 上的评估进程完成后再提交。需要等待还是切换到其他空闲 GPU？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-sft-05b-d005-s123.md"
+}

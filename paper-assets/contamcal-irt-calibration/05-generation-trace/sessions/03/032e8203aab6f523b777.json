@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "032e8203aab6f523b777",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose signals 3B d005 s42 failure",
+  "task_key": "worker_diagnose_signals_3B_d005_s42_failure_20260516T101643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_signals_3B_d005_s42_failure_20260516T101643_result.json",
+    "occurrence": 1,
+    "bytes": 3419,
+    "sha256": "9607734f10b2e8f7ffc309f82b99d97fb588b1370e3ecd2252e7a32ed277c336"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部诊断完成。以下是完整报告：\n\n---\n\n## 1. 失败根因：d005_a32_s42 实际已完成，tracker 误报\n\n**d005 信号数据已全部就绪。** `/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_a32_s42/` 包含完整 9/9 信号 + 3/3 merged 文件：\n\n| Signal | mmlu | gsm8k | arc_challenge |\n|--------|------|-------|---------------|\n| s1_embedding | 7.9MB (14:52) | 734KB (17:48) | 665KB (17:55) |\n| s2_minkpp | 2.9MB (15:02) | 272KB (17:49) | 250KB (17:55) |\n| s4_selfcritique | 3.4MB (17:46) | 317KB (17:53) | 291KB (17:59) |\n| signals_merged | 2.6MB | 243KB | 235KB |\n\nTracker 期望的日志 `~/runs/contamcal-irt-calibration/exp_002_signals_3B_d005_a32_s42.log` 不存在——进程可能通过 batch 脚本 `run_3B_s42_signals.sh` 启动，日志输出到了 stdout/tmux 而非 tracker 监控的路径。进程 5 次死亡可能发生在 batch 脚本跑 d005 之后（d100 阶段）或连接中断，但 d005 部分的输出已经写入磁盘。\n\nCheckpoint 已验证 `lora_alpha=32`，合规。\n\n**结论：无需 v2 脚本。需要将 tracker 状态从 FAILED 更新为 COMPLETED。**\n\n---\n\n## 2. 3B s42 Signals 覆盖状态\n\n| Dosage | 目录 | 进度 | 状态 |\n|--------|------|------|------|\n| **d000** | `Qwen2.5-3B_d000_a32_s42` | 8/9 (缺 s4_arc) | ⏳ GPU4 PID 749651 正在算，~2-5min 完成 |\n| **d005** | `Qwen2.5-3B_d005_a32_s42` | **9/9 + 3 merged** | ✅ COMPLETE |\n| **d025** | `Qwen2.5-3B_d025_v3_s42` | 9/9 信号全有，0 merged | ⚠️ 需跑 merge 步骤 |\n| **d100** | `Qwen2.5-3B_d100_a32_s42` | 2/9 (s1/s2_mmlu) | ⏳ GPU1 PID 727334 正在跑 s4_mmlu (chunk 12/15) |\n\n**注意**：d025_v3_s42 有全部 9 个信号文件但缺 `signals_merged_*.json`，需要补跑 merge。d000_a32_s42 也缺 merged（等 s4_arc 完成后才能 merge）。\n\n---\n\n## 3. 六 GPU 进度快照\n\n| GPU | PID | 已跑 | 任务 | 当前进度 | 预计完成 |\n|-----|-----|------|------|---------|---------|\n| **0** | 739125 | 1h10m | 1.5B d025_s123 signals (mmlu, all) | s4_mmlu chunks 6/15 (40%) | ~2h |\n| **1** | 727334 | 2h37m | **3B d100_a32_s42** signals (mmlu, s4) | s4_mmlu chunk 12/15 (80%), 之后还有 gsm8k+arc 6个信号 | **~40min** |\n| **2** | 750036 | 3min | 1.5B d100_s123 signals (mmlu, s4) | s4_mmlu 刚启动，无 chunks | ~3h |\n| **3** | 746500 | 13min | 3B-Instruct eval (para_aligned, 4 benchmarks) | 评估中 | ~1h |\n| **4** | 749651 | 3min | **3B d000_a32_s42** signals (arc, s4) | 最后 1 个信号 | **~2-5min** ⚡ |\n| **5** | 745695 | 15min | 0.5B d100_s123 signals (mmlu, all) | s4_mmlu 刚启动 | ~2.5h |\n\n---\n\n## 4. GPU 释放顺序预测\n\n1. **GPU 4** — ~2-5min，d000_a32_s42 最后一个 s4_arc 即将完成\n2. **GPU 1** — ~40min，d100_a32_s42 s4_mmlu 80% 后还有 6 个小信号\n3. **GPU 3** — ~1h，3B-Instruct eval\n4. **GPU 0** — ~2h，1.5B d025_s123\n5. **GPU 5** — ~2.5h，0.5B d100_s123\n6. **GPU 2** — ~3h，1.5B d100_s123\n\n---\n\n## 5. 建议的后续操作\n\n1. **立即**：将 `exp_002_signals_3B_d005_a32_s42` tracker 状态更新为 COMPLETED\n2. **GPU 4 释放后（~5min）**：给 d025_v3_s42 跑 merge 步骤（或安排其他高优先级任务）\n3. **GPU 1 释放后（~40min）**：d100_a32_s42 完成后也需要 merge\n4. d000_a32_s42 完成后同样需要 merge（GPU 4 那个任务结束后自动处理，看脚本是否自带 merge）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-signals-3b-d005-s42-failure.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a5260c4b293e3fa62f1",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_2_1778727808.md",
+  "task_key": "loop_2_1778727808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778727808.md",
+    "occurrence": 1,
+    "bytes": 4909,
+    "sha256": "f6552b53ddf672f3f0b7ed1f653dc565b62a332407db7f28698baf19eb1a37bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T02:49:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：cqa1-21977 cuda:0-5（全部 6 张 4090D），不得用白名单外 GPU\n- evaluate.py **不接受 `--gpu` 参数**，通过 CUDA_VISIBLE_DEVICES 控制（submit_training_job 的 gpu_ids 自动注入）。train_sft.py 的 `--gpu` 是正常的\n- submit_training_job 的 command 必须 `bash -c \"...\"` 包裹（tmux 用 sh 执行，不包裹 source/conda activate 会 EXIT_CODE=127）\n- 0% dosage 数据 = 纯 SlimOrca 50000 行，不含 paraphrases，已确认有效无需重跑\n- 非零 dosage 文件已含 MMLU+GSM8K+ARC 三个 benchmark（HumanEval 降级到 appendix per D009）\n- exp_001_sft_d100_05B 和 exp_001_sft_100pct_05B 是重复 registry 条目（同一个 100% dosage 0.5B 实验），reconcile 时注意\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，6× RTX 4090D (24GB each)，account=root\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目代码：`/root/contamcal-irt-calibration/exp001/`（train_sft.py, evaluate.py, prepare_sft_data.py）\n- HF cache：`/root/autodl-tmp/.hf_cache`（模型在 Qwen/ 子目录）\n- 模型路径：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- SFT 数据：`/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,050,100}.jsonl`\n- Checkpoints：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_d{dosage}_s{seed}/`\n- Eval 输出：`/root/autodl-tmp/exp001/eval_results/`\n- 训练日志：`~/runs/contamcal-irt-calibration/`\n- CPU 本地实验：exp-004 sim sweep (PID 219346), exp-005 noise prop v2 (failed, Stan 收敛问题)\n- Worker 活跃：worker_analysis_stan-diagnostic-exp005, worker_data_phase3-data-readiness, worker_diagnose_gpu5-cleanup-retry-d005\n\n### 3. 📊 当前状态\n刚处理 exp_001_sft_d005_05B (5% dosage 0.5B) 的 OOM 失败回调。根因：GPU 5 残留进程 PID 234755 占 6.62 GiB。已派 Worker 诊断清理 GPU 5，准备原参数重试。Director 已汇报。\n\n**RUNNING 实验**：\n| exp_id | GPU | 摘要 |\n|--------|-----|------|\n| exp_001_sft_d100_05B | cuda:0 | 100% dosage 0.5B SFT (PID 235243) |\n| exp_001_eval_05B_d000_s42 | cuda:1 | 0.5B s42 baseline eval (PID 229370) |\n| exp_001_eval_05B_d000_s123 | cuda:2 | 0.5B s123 baseline eval (PID 229516) |\n| exp_001_sft_0pct_3B_s123 | cuda:3 | 0% 3B s123 SFT (PID 216935) |\n| exp_001_eval_15B_d000_s42 | cuda:4 | 1.5B s42 baseline eval (PID 221376) |\n| exp_001_eval_3B_d000_s42 | — | 状态矛盾：status=RUNNING but conclusion=failed，需 reconcile |\n\n**PREPARING**：exp_001_sft_d100_15B（100% dosage 1.5B SFT，等 GPU 空出）\n\n**等待回调**：\n- Worker: gpu5-cleanup-retry-d005（诊断 GPU 5 + 准备重试 d005）\n- Worker: stan-diagnostic-exp005（Stan 收敛诊断）\n- Worker: phase3-data-readiness（Phase 3 数据就绪检查）\n- Cron: 5 个实验在监控中\n\n### 4. 📋 待办（条件触发式）\n- Worker gpu5-cleanup 回调 → GPU 5 清理确认后，submit_training_job 重试 exp_001_sft_d005_05B（同参数 cuda:5, 0.5B, bs=4, ga=4, seed=42）\n- exp_001_sft_d100_05B 完成 → 记录 metrics，cuda:0 空出给 Phase 3 下一格\n- exp_001_eval_* (3 个 eval) 完成 → 记录 baseline 分数到 registry，这些是 calibration error 计算的 ground truth\n- exp_001_sft_0pct_3B_s123 完成 → 最后一个 0% baseline SFT，完成后 Phase 2 全部就绪\n- 所有 0% eval 完成 + dosage SFT 完成 → 启动 Phase 3 contaminated SFT（5/25/50/100% × 3 models）\n- exp_001_eval_3B_d000_s42 状态矛盾 → 需查日志确认是否真失败，修正 registry\n- Worker stan-diagnostic 回调 → 根据诊断决定 exp-005 v3 参数（可能需 σ_e≥0.3, N_models≥50）\n- Worker phase3-data-readiness 回调 → 确认 dosage 文件完整性\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（距今 11 天），12 天冲刺\n- **核心方向**：ContamCal — post-hoc statistical calibration via contamination-augmented 4PL+γ IRT\n- **MVP 已通过**（D004）：4PL+γ 在 N_items=300 下成功分离 γ 和 θ，confounding test PASS\n- **Critical Path**：Phase 2 baselines → Phase 3 contaminated SFT → Phase 4 eval → exp-002 signals → exp-003 RRF → exp-006 IRT calibration\n- **Table 2 风险**：Related Work 表中 \"RL-robust partial✓\" claim 唯一证据来源是 exp-008 signal_survival_analysis，尚未启动\n- **exp-005 Stan 收敛问题**：v1 和 v2 都 failed，simple model chain crashes + ME model Rhat=1.945。可能需要 σ_e≥0.3 + N_models≥50\n- **易错点**：exp_001_sft_d100_05B 和 exp_001_sft_100pct_05B 是同一实验的重复条目，不要对两个都提交训练\n- **Phase 3 调度预案**：12 runs seed=0: {5%,25%,50%,100%} × {0.5B,1.5B,3B}，GPU 0-3 各跑 1×3B+1×0.5B (~4.5h)，GPU 4-5 各跑 2×1.5B (~3.4h)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778727808.md"
+}

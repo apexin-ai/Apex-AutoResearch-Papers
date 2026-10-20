@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13490344ba0cd34eac9c",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_13_1778902398.md",
+  "task_key": "loop_13_1778902398",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778902398.md",
+    "occurrence": 1,
+    "bytes": 5435,
+    "sha256": "3b0a33e224b14432a60a88efebcef450ead981c018c65f2ac47c055b984dcee0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T03:28:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: 仅 cuda:0–cuda:5 on cqa1-21977。6 张 RTX 4090D，不得用其他设备\n- **Alpha 必须 32**: 所有 SFT/eval 必须 alpha=32（D055 教训，alpha=16 checkpoint 全部作废重跑）\n- **lr 必须 5e-5**: D076 发现 s42 旧系列用了 lr=2e-4（train_sft.py 默认值），已 confound，d000_s42/d005_s42 checkpoint 重训完才能用\n- **submit_training_job 命令必须自带 conda 激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`，不是 venv\n- **eval 必须加 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1**（ROADMAP 近期任务要求）\n- **不要直接对比 0.5B 与 1.5B/3B 的 ARC 跨种子方差**：0.5B d100 ARC 跨种子方差 7.25pp，1.5B 仅 ~1pp，scale 不同机制不同\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977, 6× RTX 4090D\n- **工作目录**: `/root/contamcal-irt-calibration`（代码）, `/root/autodl-tmp/` 下放模型/数据/缓存\n- **Python**: `/root/miniconda3/bin/python`, conda base 环境（非 venv）\n- **模型缓存**: `/root/autodl-tmp/.hf_cache/Qwen/`（Qwen2.5-0.5B/1.5B/3B）\n- **Checkpoints**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{SIZE}_{DOSE}_{SEED}/lora_adapter`\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/`\n- **Signals 产出**: `/root/autodl-tmp/exp002/signals/`\n- **W&B**: 项目名 contamcal-irt-calibration\n- **活跃 Crons (3)**:\n  - exp_002_signals_3B_v9 — cuda:4, PID 668217 ⚠️ reconcile 报 \"process gone, miss 1/5\"，可能已挂\n  - exp_001_eval_3B_d000_s42_a32_batch — cuda:1, PID 676487, 仍在跑\n  - exp_001_eval_3B_d005_s42_a32_batch — cuda:2, PID 679180, 仍在跑\n- **活跃 Workers**: 0（空池）\n\n### 3. 📊 当前状态\n\n**刚发生的事**:\n- exp_001_eval_3B_d100_s123_a32_batch 进入 ANALYZING（cuda:0 释放）—— 还没有 Worker 去分析\n- exp_002_signals_3B_v9 (cuda:4) reconcile 报 process gone (miss 1/5)，可能挂了但还没到 5 次 miss 阈值\n- cuda:0 和 cuda:3 空闲（分配了没跑 = 失职状态）\n\n**RUNNING (5)**:\n| exp_id | GPU | PID | 说明 |\n|--------|-----|-----|------|\n| exp_002_signals_3B_v9 | cuda:4 | 668217 | ⚠️ 可能已死（reconcile: process gone miss 1/5） |\n| exp_001_eval_3B_d000_s42_a32_batch | cuda:1 | 676487 | 3B d000 s42 aligned+para eval |\n| exp_001_eval_3B_d005_s42_a32_batch | cuda:2 | 679180 | 3B d005 s42 aligned+para eval |\n| exp_001_eval_3B_d100_s42_a32_batch | ? | ? | 3B d100 s42 eval (spec 缺 gpu/pid) |\n| exp_002_signals_05B_s123_v2 | cuda:5 | ? | 0.5B s123 signals |\n\n**ANALYZING (1)**: exp_001_eval_3B_d100_s123_a32_batch (cuda:0) — 等分析\n\n**QUEUED (1)**: exp_002_signals_3B_d100_s123_v9 — 等 GPU\n\n**IRT Pool**: N=23 (不含0.5B), N=35 含0.5B。1.5B 16/16 ✅。3B 仅 7/16，是瓶颈。\n\n### 4. 📋 待办（条件触发式）\n\n- **立即**: spawn Worker 分析 exp_001_eval_3B_d100_s123_a32_batch (ANALYZING) → 提取 metrics → update_registry → 更新 memory.md IRT inventory\n- **立即**: 调查 exp_002_signals_3B_v9 (cuda:4) 是否真死 → 若死则标 FAILED + 重提交或提交 queued 的 exp_002_signals_3B_d100_s123_v9\n- **cuda:0 空闲** → 立即提交 exp_001_eval_3B_d000_s42_a32_aligned（d000_s42 重训已完成，是 s42 baseline，3B eval 矩阵最高优先）\n- **cuda:3 空闲** → 立即提交 exp_001_eval_3B_d000_s42_a32_para_aligned 或 exp_001_eval_3B_d005_s42_para_aligned\n- **d000/d005 eval batch 完成 (cuda:1/2)** → 立即 spawn analysis Worker + 提交 signals 计算（补 3B s42 signals）\n- **3B s42 eval 8/8 + para 8/8 全完成** → spawn Worker 做 RRF 聚合 (exp-003, CPU)\n- **RRF 完成** → pooled IRT fitting (per-benchmark γ_k, Stan NUTS) + 7 baselines 对比 (exp-006)\n- **IRT fitting 完成** → ablation + eval metrics table 定稿 → 启动 Paper Agent 5 步写作 pipeline\n- **exp_002_signals_3B_v9 确认死亡** → 检查 d025_s123 mmlu s4 和 d100_a32_s123 signals 是否部分完成，只重跑缺失部分\n\n### 5. 🎯 战略上下文\n\n**投稿目标**: EMNLP 2026 ARR May 25（距今 9 天）\n\n**核心结论链**:\n- **Claim 1 (identifiability)**: sim_sweep_v7 ✅ 充分支撑（gamma_bias <0.056, CI95 coverage ≥0.8）\n- **Claim 2 (calibration)**: 60% coverage (3/5)，需 pooled IRT + baselines 补齐\n- **Claim 3 (noise robustness)**: noise_prop_v4 negative (D095)，降级为 Claim 1 Discussion 中的 honest negative + sim_sweep 间接支撑\n- **D076 lr confound**: 本项目最大的回退事件。s42 旧系列全部重训，3B s42 矩阵从接近完成退回到 7/16\n\n**最易判断错的事**:\n1. **不要以为 PREPARING 里的老实验（v2/v3/v4/v6 等）还需要跑** —— 大部分是历史残留，只看最新版本号的 + ROADMAP 提到的\n2. **d000_s42 checkpoint 命名不一致**: 路径 `Qwen2.5-3B_d000_s42/` vs `_a32_`，可能需 symlink（ROADMAP 提到但未确认是否已做）\n3. **3B signals 必须基于 D076 重训后的 checkpoint 做** —— 旧 checkpoint 的 signals 全部作废\n4. **s4_selfcritique 在 3B MMLU 上 OOM (D091)**，已降级 P1，论文可用 S1/S2/S3 三 signal（D034 pipeline）\n5. **cuda:0 之前有过双进程冲突 (C001 违规)**，不要同时在 cuda:0 上跑两个任务\n6. **Worker 池=0 是当前失职状态**，第一件事就是 spawn Workers 处理 ANALYZING 实验 + 填 cuda:0/cuda:3 空闲\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778902398.md"
+}

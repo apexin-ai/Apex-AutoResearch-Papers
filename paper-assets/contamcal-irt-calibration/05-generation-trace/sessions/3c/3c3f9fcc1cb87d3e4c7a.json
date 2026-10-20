@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c3f9fcc1cb87d3e4c7a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix bootstrap ci and classifier",
+  "task_key": "worker_fix_bootstrap-ci-and-classifier_20260520T143238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bootstrap-ci-and-classifier_20260520T143238_result.json",
+    "occurrence": 1,
+    "bytes": 3338,
+    "sha256": "6374164b547c571d9dc73b0dd2d9a0fe8fa325b4bde9a5f42e2fc7b8a014cf64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both bugs fixed and results verified. Here are the deliverables:\n\n---\n\n## 1. Code Diff Description\n\n**Bug #1 — n=2 Bootstrap CI degeneracy**: `bootstrap_mean_ci()` now returns a 4-tuple `(mean, ci_low, ci_high, method)`. For n≥3: BCa bootstrap (`\"boot\"`). For n=2: t-distribution CI with df=1 (`\"t\"`). For n=1: point estimate (`\"pt\"`). All callers updated to unpack 4 values. CI strings annotated with `(boot)`/`(t)`/`(pt)`. LaTeX table marks n=2 CIs with `$^t$`.\n\n**Bug #2 — V-recovery misclassification**: Added dip-detection logic before the Immune check in `classify_pattern()`. If any middle dosage (d005/d025/d050) drops ≥2pp below baseline and d100 recovers ≥50% of the dip depth, pattern is classified as `V-recovery`.\n\n**Additional fix**: Moved `global N_BOOTSTRAP` declaration to top of `main()` to fix `SyntaxError`.\n\n## 2. Full Bootstrap Table Output\n\n| Family | n | Baseline | Δ(d100) | 95% CI | Pattern |\n|--------|---|----------|---------|--------|---------|\n| Phi-4 | 1 | 76.38% | -0.17pp | [-0.17, -0.17](pt) | Immune |\n| Qwen2.5-14B | 2 | 69.05% | -11.05pp | [-32.41, +10.30](t) | U-collapse |\n| Qwen2.5-7B | 1 | 66.11% | -1.78pp | [-1.78, -1.78](pt) | **V-recovery** |\n| Gemma-2-9B | 2 | 63.85% | +2.62pp | [-11.81, +17.06](t) | Benefit-sat† |\n| OLMo-2-7B | 3 | 54.93% | +1.35pp | [-0.55, +2.60](boot) | Benefit-sat† |\n\n## 3. bootstrap_table.tex\n\n```latex\n\\begin{table}[t]\n\\centering\n\\caption{Triple-seed bootstrap analysis of MMLU dose-response patterns.}\n\\label{tab:bootstrap-mmlu}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nFamily & Baseline (\\%) & $\\Delta$(d100) & 95\\% CI & Pattern & $\\bar{\\rho}$ \\\\\n\\midrule\nPhi-4 & 76.38 & -0.17 & [-0.17, -0.17] & Immune & --- \\\\\nQwen2.5-14B & 69.05 & -11.05 & [-32.41, +10.30]$^t$ & U-collapse & 0.80 \\\\\nQwen2.5-7B & 66.11 & -1.78 & [-1.78, -1.78] & V-recovery & --- \\\\\nGemma-2-9B & 63.85 & +2.62 & [-11.81, +17.06]$^t$ & Benefit-sat$^\\dagger$ & 0.30 \\\\\nOLMo-2-7B & 54.93 & +1.35 & [-0.55, +2.60] & Benefit-sat$^\\dagger$ & 0.03 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1mm}\n\\raggedright\\footnotesize\n$\\Delta$(d100) = acc(d100) $-$ acc(d000) in percentage points.\nCI via BCa bootstrap (10{,}000 resamples) for $n \\geq 3$;\n$t$-distribution ($\\mathrm{df}=1$) for $n=2$, marked $^t$.\n$\\bar{\\rho}$: mean pairwise Spearman $\\rho$ across seeds.\n$^\\dagger$Pattern inconsistent across seeds.\n\\end{table}\n```\n\n## 4. Pattern Classification Before vs After\n\n| Family | Before | After | Changed? |\n|--------|--------|-------|----------|\n| Phi-4 (s42) | Immune | Immune | No |\n| Qwen2.5-14B (s42) | U-collapse | U-collapse | No |\n| Qwen2.5-14B (s123) | U-collapse | U-collapse | No |\n| **Qwen2.5-7B (s42)** | **Immune** | **V-recovery** | **Yes** |\n| Gemma-2-9B (s42) | Benefit-sat | Benefit-sat | No |\n| Gemma-2-9B (s123) | V-recovery | V-recovery | No |\n| OLMo-2-7B (s42) | Benefit-sat | Benefit-sat | No |\n| OLMo-2-7B (s123) | Immune | Immune | No |\n| OLMo-2-7B (s0) | Benefit-sat | Benefit-sat | No |\n\nQwen2.5-7B s42 correctly reclassified from Immune → V-recovery (middle dosages dip then recover at d100). n=2 CIs now use t-distribution and are visibly wider (e.g., Qwen2.5-14B: [-32.41, +10.30] vs previously degenerate). Other families unaffected."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bootstrap-ci-and-classifier.md"
+}

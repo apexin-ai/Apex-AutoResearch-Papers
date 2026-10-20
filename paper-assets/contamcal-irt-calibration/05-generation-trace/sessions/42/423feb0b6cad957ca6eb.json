@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "423feb0b6cad957ca6eb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 cqa1 download check",
+  "task_key": "worker_ops_falcon3-cqa1-download-check_20260522T041427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-cqa1-download-check_20260522T041427_result.json",
+    "occurrence": 1,
+    "bytes": 339,
+    "sha256": "a5bb53aa815326f9519fe84c79257292d62548957da0000b4aea491b4053cd81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Falcon3-7B-Base 已就绪。**\n\n- 路径: `/root/autodl-tmp/.hf_cache/Falcon3-7B-Base/`\n- 大小: 14GB (4 个 safetensors shards)\n- 架构: LlamaForCausalLM, hidden=3072, layers=28, vocab=131072\n- Config + Tokenizer 验证通过\n\n冗余的 ModelScope 下载进程 (PID 646342) 已 kill，其临时缓存已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-cqa1-download-check.md"
+}

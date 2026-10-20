@@ -1,0 +1,6881 @@
+# prep rrf readiness check
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 149
+- **Recorded user turns:** 0
+- **Tool calls:** 60
+- **Original source:** `logs/workers/worker_prep_rrf-readiness-check_20260516T022450.log`
+- **Structured JSON:** [`769de37494913f2c78ad.json`](../../sessions/76/769de37494913f2c78ad.json)
+
+## Before a recorded user message
+
+149 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778903400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d508fda0-eaf1-4e91-88ae-d4ec90b710a7",
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04"
+}
+```
+
+---
+
+### System
+
+_source line 3_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "pending"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "ce622ec1-2a6d-4e8d-832f-08da28f1a304",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to verify the readiness of the 3B RRF aggregation code on their server. Let me SSH to the server and check the relevant files and directories.
+
+Let me start by connecting to the server and exploring the project structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "d5bc69b6-834e-4938-8986-0e04cf1f0d97",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SEHt1gVtwrSR1VJyW46aJZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12399,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12399
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01USPTgcDaBnXuffLALkNvHT`</summary>
+
+```json
+{
+  "command": "ssh connect.cqa1.seetacloud.com \"ls /root/contamcal-irt-calibration/ /root/autodl-tmp/contamcal-irt/ 2>/dev/null || echo 'CHECK_PATHS'\"",
+  "description": "Check project directory paths on server",
+  "timeout": 15000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "db39f348-182f-486d-a43a-467a93894aa8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SEHt1gVtwrSR1VJyW46aJZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12399,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12399
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T02:25:21.979Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01USPTgcDaBnXuffLALkNvHT`</summary>
+
+```text
+Exit code 255
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+ubuntu@connect.cqa1.seetacloud.com: Permission denied ().
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "e4742393-25c1-44e3-a52a-7c5545eee2b2",
+  "tool_use_result": "Error: Exit code 255\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nubuntu@connect.cqa1.seetacloud.com: Permission denied ()."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RPMstxcgZLPJSQUneYMBLC`</summary>
+
+```json
+{
+  "command": "cat ~/.ssh/config 2>/dev/null | grep -A 10 \"cqa1\"",
+  "description": "Check SSH config for cqa1 server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "771fa356-e02a-46fc-a1f5-ad708e1b5d71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0199Q6w76jYjgCaZqS6dUFik",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 344,
+      "cache_read_input_tokens": 24240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 344
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T02:25:27.602Z_
+
+<details><summary>↩ Tool result · `toolu_01RPMstxcgZLPJSQUneYMBLC`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "6e53f222-32de-4b17-a326-6d95514076ca",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "returnCodeInterpretation": "No matches found",
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GvcNtThcjSnRyoQRVyDck8`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "bb1eb858-5db2-4030-b2b2-68b002274a60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xdxszv5f3ZAfXsP4rPubXD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 298,
+      "cache_read_input_tokens": 24584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 298
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T02:25:32.076Z_
+
+<details><summary>↩ Tool result · `toolu_01GvcNtThcjSnRyoQRVyDck8`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "fab1fd7c-ddea-4fa4-925e-caa03cdd472c",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the MCP tools available. Let me start by connecting to the server and exploring the project structure to find the RRF scripts and 3B signal files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "cda95052-90bd-4fa1-9779-750f30804ff0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011SBid6A8rh1heKxn6DujVt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 24882,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 933
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PDyM2aHVf3rjzYdSY71Ye1`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/contamcal-irt-calibration/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "e491d538-cbb7-4ff5-b1a1-c3f05600b8d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011SBid6A8rh1heKxn6DujVt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 24882,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 933
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T02:25:39.535Z_
+
+<details><summary>↩ Tool result · `toolu_01PDyM2aHVf3rjzYdSY71Ye1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"env_setup.sh\\nexp001\\nexp002\\nexp003\\nexp004_sim_sweep\\nexp006\\nexp008\\nexp008_new\\ninstruct_signals.log\\noutputs\\nrun_15B_s123_para_batch.sh\\nrun_instruct_signals.sh\\nscripts\\nstan_models\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "69f6c122-bebb-4552-a538-1bab116facd6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"env_setup.sh\\\\nexp001\\\\nexp002\\\\nexp003\\\\nexp004_sim_sweep\\\\nexp006\\\\nexp008\\\\nexp008_new\\\\ninstruct_signals.log\\\\noutputs\\\\nrun_15B_s123_para_batch.sh\\\\nrun_instruct_signals.sh\\\\nscripts\\\\nstan_models\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"env_setup.sh\\nexp001\\nexp002\\nexp003\\nexp004_sim_sweep\\nexp006\\nexp008\\nexp008_new\\ninstruct_signals.log\\noutputs\\nrun_15B_s123_para_batch.sh\\nrun_instruct_signals.sh\\nscripts\\nstan_models\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017tVZ2DDdLKE1FVJrV5ePXT`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/contamcal-irt-calibration/exp003/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "f264363c-c1d4-4d5d-83f6-9889b3ea1f7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014S2MHGsZxPXQ7dK4e55zp8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 25815,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 313
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ad6f6pRRsrVfvWGMySkouE`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -name \"*rrf*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "24d93d29-2267-4d35-847f-58bbd116b586",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014S2MHGsZxPXQ7dK4e55zp8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 25815,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 313
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T02:25:44.419Z_
+
+<details><summary>↩ Tool result · `toolu_017tVZ2DDdLKE1FVJrV5ePXT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__pycache__\\nablations.py\\nevaluate_rrf.py\\nrrf_aggregation.py\\nrrf_aggregation.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "11e18d38-0b54-4d7e-a322-51eb7618a3bd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\n__pycache__\\\\nablations.py\\\\nevaluate_rrf.py\\\\nrrf_aggregation.py\\\\nrrf_aggregation.py.bak\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__pycache__\\nablations.py\\nevaluate_rrf.py\\nrrf_aggregation.py\\nrrf_aggregation.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T02:25:44.967Z_
+
+<details><summary>↩ Tool result · `toolu_01Ad6f6pRRsrVfvWGMySkouE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp006/run_exp006.py.bak_pre_rrf_fix\\n/root/contamcal-irt-calibration/exp002/aggregate_rrf.py\\n/root/contamcal-irt-calibration/exp003/rrf_aggregation.py\\n/root/contamcal-irt-calibration/exp003/evaluate_rrf.py\\n/root/contamcal-irt-calibration/exp003/__pycache__/rrf_aggregation.cpython-312.pyc\\n/root/contamcal-irt-calibration/exp003/rrf_aggregation.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "0c6c8d1f-21fd-47c1-8e3d-bccc5e3ca3af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/exp006/run_exp006.py.bak_pre_rrf_fix\\\\n/root/contamcal-irt-calibration/exp002/aggregate_rrf.py\\\\n/root/contamcal-irt-calibration/exp003/rrf_aggregation.py\\\\n/root/contamcal-irt-calibration/exp003/evaluate_rrf.py\\\\n/root/contamcal-irt-calibration/exp003/__pycache__/rrf_aggregation.cpython-312.pyc\\\\n/root/contamcal-irt-calibration/exp003/rrf_aggregation.py.bak\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp006/run_exp006.py.bak_pre_rrf_fix\\n/root/contamcal-irt-calibration/exp002/aggregate_rrf.py\\n/root/contamcal-irt-calibration/exp003/rrf_aggregation.py\\n/root/contamcal-irt-calibration/exp003/evaluate_rrf.py\\n/root/contamcal-irt-calibration/exp003/__pycache__/rrf_aggregation.cpython-312.pyc\\n/root/contamcal-irt-calibration/exp003/rrf_aggregation.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ThK9AcP72t3CDJVdPD6ATg`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "91d4c311-8e6d-4fe7-8bcc-100f94f0b7ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NmUC7HV7oMR5VKQbmupLh9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 621,
+      "cache_read_input_tokens": 26128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 621
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CYwh6LWZbTQgiAsp3VR5iZ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp003/evaluate_rrf.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "840a12a3-e309-427b-b1a5-71c67e7b3dc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NmUC7HV7oMR5VKQbmupLh9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 621,
+      "cache_read_input_tokens": 26128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 621
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T02:25:50.626Z_
+
+<details><summary>↩ Tool result · `toolu_01ThK9AcP72t3CDJVdPD6ATg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\n\\nFuses per-item signal scores from exp-002 into composite exposure scores\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\n\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\n\\nCSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\n                    rrf_score, rrf_raw, s1_embedding, s2_minkpp, s3_constat,\\n                    s4_selfcritique, rank_s1_embedding, ...\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport logging\\nimport re\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_NAMES = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\nDEFAULT_K = 60\\n\\nSIGNAL_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d100\\\"]\\nDOSAGE_NUM = {\\\"d000\\\": 0, \\\"d005\\\": 5, \\\"d025\\\": 25, \\\"d100\\\": 100}\\n\\nSKIP_PATTERNS = [\\\"DEPRECATED\\\"]\\n\\n_DIR_RE = re.compile(r'Qwen2\\\\.5-(\\\\d+\\\\.?\\\\d*B)_(d\\\\d+)(?:_[va]\\\\d+)*_(s\\\\d+)')\\n\\n\\ndef parse_model_dir(dirname: str) -> dict:\\n    \\\"\\\"\\\"Parse signal directory name into model_size, dose, seed.\\\"\\\"\\\"\\n    m = _DIR_RE.match(dirname)\\n    if not m:\\n        return {\\\"model_size\\\": \\\"unknown\\\", \\\"dose\\\": \\\"unknown\\\", \\\"seed\\\": \\\"unknown\\\"}\\n    return {\\\"model_size\\\": m.group(1), \\\"dose\\\": m.group(2), \\\"seed\\\": m.group(3)}\\n\\n\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\n    \\\"\\\"\\\"Load per-item signals from exp-002 output directory.\\n\\n    Tries signals_merged_{benchmark}.json first, falls back to\\n    loading and merging individual signal files.\\n    \\\"\\\"\\\"\\n    signal_dir = Path(signal_dir)\\n\\n    merged = signal_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged.exists():\\n        with open(merged) as f:\\n            data = json.load(f)\\n        for item in data:\\n            if \\\"item_id\\\" in item and \\\"index\\\" not in item:\\n                item[\\\"index\\\"] = item[\\\"item_id\\\"]\\n        return data\\n\\n    items_by_idx = {}\\n    sig_name_map = {\\n        \\\"s1_embedding\\\": \\\"embedding\\\",\\n        \\\"s2_minkpp\\\": \\\"minkpp\\\",\\n        \\\"s3_constat\\\": \\\"constat\\\",\\n        \\\"s4_selfcritique\\\": \\\"selfcritique\\\",\\n    }\\n    for sig_key, sig_name in sig_name_map.items():\\n        sig_file = signal_dir / f\\\"signal_{sig_key}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            sig_file = signal_dir / f\\\"signal_{sig_name}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            continue\\n        with open(sig_file) as f:\\n            data = json.load(f)\\n        for item in data:\\n            if \\\"index\\\" in item:\\n                idx = item[\\\"index\\\"]\\n            elif \\\"item_id\\\" in item:\\n                idx = item[\\\"item_id\\\"]\\n            else:\\n                continue\\n            if idx not in items_by_idx:\\n                items_by_idx[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": benchmark}\\n            if \\\"score\\\" in item and \\\"signal\\\" in item:\\n                items_by_idx[idx][item[\\\"signal\\\"]] = item[\\\"score\\\"]\\n            else:\\n                items_by_idx[idx].update(item)\\n\\n    if not items_by_idx:\\n        logger.warning(\\\"No signal files found in %s for %s\\\", signal_dir, benchmark)\\n        return []\\n\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\n\\n\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\n    \\\"\\\"\\\"Return signal keys that have non-null, non-zero values.\\\"\\\"\\\"\\n    available = []\\n    for sig in SIGNAL_KEYS:\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\n            available.append(sig)\\n    return available\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank from 1 (highest score = most suspicious) to N, with tie averaging.\\\"\\\"\\\"\\n    n = len(scores)\\n    order = np.argsort(-scores)\\n    ranks = np.empty(n, dtype=float)\\n    i = \\n\\n... [截断: 输出过长，省略 7764 字符] ...\\n\\nype=int, default=DEFAULT_K,\\n                        help=\\\"RRF k parameter (default: 60)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--dosage-filter\\\", type=str, default=None,\\n                        help=\\\"Only process dirs matching this dosage (e.g., d005)\\\")\\n    parser.add_argument(\\\"--no-normalize\\\", action=\\\"store_true\\\",\\n                        help=\\\"Skip min-max normalization to [0,1]\\\")\\n    parser.add_argument(\\\"--generate-exposure\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate exposure_scores.json for exp-006\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=None,\\n                        help=\\\"Model identifier for single-dir mode output naming\\\")\\n    parser.add_argument(\\\"--csv\\\", action=\\\"store_true\\\",\\n                        help=\\\"Also output a flat CSV with structured columns\\\")\\n    parser.add_argument(\\\"--limit\\\", type=int, default=0,\\n                        help=\\\"Limit items per benchmark (for dry-run testing)\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    normalize = not args.no_normalize\\n\\n    if args.generate_exposure:\\n        exposure, aggregated = generate_exposure_json(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n            limit=args.limit,\\n        )\\n        out_file = output_dir / \\\"exposure_scores.json\\\"\\n        with open(out_file, \\\"w\\\") as f:\\n            json.dump(exposure, f, indent=2)\\n        logger.info(\\\"Exposure scores saved to %s\\\", out_file)\\n        for mid, bd in exposure.items():\\n            for bench, data in bd.items():\\n                logger.info(\\\"  %s/%s: %d items\\\", mid, bench, data[\\\"item_count\\\"])\\n\\n        agg_file = output_dir / \\\"exposure_aggregated.json\\\"\\n        with open(agg_file, \\\"w\\\") as f:\\n            json.dump(aggregated, f, indent=2)\\n        logger.info(\\\"Aggregated exposure saved to %s (%d benchmarks)\\\",\\n                    agg_file, len(aggregated))\\n        return\\n\\n    if args.signal_dir:\\n        for bench in args.benchmarks:\\n            results = aggregate_single(args.signal_dir, bench, k=args.k,\\n                                       normalize=normalize, limit=args.limit)\\n            if results:\\n                name = args.model_name or Path(args.signal_dir).name\\n                out_file = output_dir / f\\\"rrf_scores_{name}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(results, f, indent=2)\\n                logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n    else:\\n        all_results = aggregate_all_models(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n            limit=args.limit,\\n        )\\n        for model_id, bench_data in all_results.items():\\n            for bench, items in bench_data.items():\\n                out_file = output_dir / f\\\"rrf_scores_{model_id}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(items, f, indent=2)\\n\\n        summary = {\\n            model_id: {\\n                bench: {\\n                    \\\"count\\\": len(items),\\n                    \\\"exposure_mean\\\": float(np.mean([r[\\\"exposure\\\"] for r in items])),\\n                    \\\"exposure_std\\\": float(np.std([r[\\\"exposure\\\"] for r in items])),\\n                }\\n                for bench, items in bench_data.items()\\n            }\\n            for model_id, bench_data in all_results.items()\\n        }\\n        with open(output_dir / \\\"rrf_summary.json\\\", \\\"w\\\") as f:\\n            json.dump(summary, f, indent=2)\\n        logger.info(\\\"Summary saved to %s\\\", output_dir / \\\"rrf_summary.json\\\")\\n\\n        if args.csv:\\n            write_csv(all_results, output_dir / \\\"rrf_scores_all.csv\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "9fd3beef-507d-42ea-a443-4820af3bb8ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\\\n\\\\nFuses per-item signal scores from exp-002 into composite exposure scores\\\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\\\n\\\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\\\n\\\\nCSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\\\n                    rrf_score, rrf_raw, s1_embedding, s2_minkpp, s3_constat,\\\\n                    s4_selfcritique, rank_s1_embedding, ...\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport logging\\\\nimport re\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_NAMES = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\nDEFAULT_K = 60\\\\n\\\\nSIGNAL_ROOT = \\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\"\\\\nLABELS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nDOSAGES = [\\\\\\\"d000\\\\\\\", \\\\\\\"d005\\\\\\\", \\\\\\\"d025\\\\\\\", \\\\\\\"d100\\\\\\\"]\\\\nDOSAGE_NUM = {\\\\\\\"d000\\\\\\\": 0, \\\\\\\"d005\\\\\\\": 5, \\\\\\\"d025\\\\\\\": 25, \\\\\\\"d100\\\\\\\": 100}\\\\n\\\\nSKIP_PATTERNS = [\\\\\\\"DEPRECATED\\\\\\\"]\\\\n\\\\n_DIR_RE = re.compile(r'Qwen2\\\\\\\\.5-(\\\\\\\\d+\\\\\\\\.?\\\\\\\\d*B)_(d\\\\\\\\d+)(?:_[va]\\\\\\\\d+)*_(s\\\\\\\\d+)')\\\\n\\\\n\\\\ndef parse_model_dir(dirname: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse signal directory name into model_size, dose, seed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    m = _DIR_RE.match(dirname)\\\\n    if not m:\\\\n        return {\\\\\\\"model_size\\\\\\\": \\\\\\\"unknown\\\\\\\", \\\\\\\"dose\\\\\\\": \\\\\\\"unknown\\\\\\\", \\\\\\\"seed\\\\\\\": \\\\\\\"unknown\\\\\\\"}\\\\n    return {\\\\\\\"model_size\\\\\\\": m.group(1), \\\\\\\"dose\\\\\\\": m.group(2), \\\\\\\"seed\\\\\\\": m.group(3)}\\\\n\\\\n\\\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load per-item signals from exp-002 output directory.\\\\n\\\\n    Tries signals_merged_{benchmark}.json first, falls back to\\\\n    loading and merging individual signal files.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    signal_dir = Path(signal_dir)\\\\n\\\\n    merged = signal_dir / f\\\\\\\"signals_merged_{benchmark}.json\\\\\\\"\\\\n    if merged.exists():\\\\n        with open(merged) as f:\\\\n            data = json.load(f)\\\\n        for item in data:\\\\n            if \\\\\\\"item_id\\\\\\\" in item and \\\\\\\"index\\\\\\\" not in item:\\\\n                item[\\\\\\\"index\\\\\\\"] = item[\\\\\\\"item_id\\\\\\\"]\\\\n        return data\\\\n\\\\n    items_by_idx = {}\\\\n    sig_name_map = {\\\\n        \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"embedding\\\\\\\",\\\\n        \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"minkpp\\\\\\\",\\\\n        \\\\\\\"s3_constat\\\\\\\": \\\\\\\"constat\\\\\\\",\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"selfcritique\\\\\\\",\\\\n    }\\\\n    for sig_key, sig_name in sig_name_map.items():\\\\n        sig_file = signal_dir / f\\\\\\\"signal_{sig_key}_{benchmark}.json\\\\\\\"\\\\n        if not sig_file.exists():\\\\n            sig_file = signal_dir / f\\\\\\\"signal_{sig_name}_{benchmark}.json\\\\\\\"\\\\n        if not sig_file.exists():\\\\n            continue\\\\n        with open(sig_file) as f:\\\\n            data = json.load(f)\\\\n        for item in data:\\\\n            if \\\\\\\"index\\\\\\\" in item:\\\\n                idx = item[\\\\\\\"index\\\\\\\"]\\\\n            elif \\\\\\\"item_id\\\\\\\" in item:\\\\n                idx = item[\\\\\\\"item_id\\\\\\\"]\\\\n            else:\\\\n                continue\\\\n            if idx not in items_by_idx:\\\\n                items_by_idx[idx] = {\\\\\\\"index\\\\\\\": idx, \\\\\\\"benchmark\\\\\\\": benchmark}\\\\n            if \\\\\\\"score\\\\\\\" in item and \\\\\\\"signal\\\\\\\" in item:\\\\n                items_by_idx[idx][item[\\\\\\\"signal\\\\\\\"]] = item[\\\\\\\"score\\\\\\\"]\\\\n            else:\\\\n                items_by_idx[idx].update(item)\\\\n\\\\n    if not items_by_idx:\\\\n        logger.warning(\\\\\\\"No signal files found in %s for %s\\\\\\\", signal_dir, benchmark)\\\\n        return []\\\\n\\\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\\\n\\\\n\\\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return signal keys that have non-null, non-zero values.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    available = []\\\\n    for sig in SIGNAL_KEYS:\\\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\\\n            available.append(sig)\\\\n    return available\\\\n\\\\n\\\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Rank from 1 (highest score = most suspicious) to N, with tie averaging.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(scores)\\\\n    order = np.argsort(-scores)\\\\n    ranks = np.empty(n, dtype=float)\\\\n    i = \\\\n\\\\n... [截断: 输出过长，省略 7764 字符] ...\\\\n\\\\nype=int, default=DEFAULT_K,\\\\n                        help=\\\\\\\"RRF k parameter (default: 60)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--dosage-filter\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Only process dirs matching this dosage (e.g., d005)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--no-normalize\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Skip min-max normalization to [0,1]\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--generate-exposure\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Generate exposure_scores.json for exp-006\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model-name\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Model identifier for single-dir mode output naming\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--csv\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Also output a flat CSV with structured columns\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--limit\\\\\\\", type=int, default=0,\\\\n                        help=\\\\\\\"Limit items per benchmark (for dry-run testing)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO,\\\\n                        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n    normalize = not args.no_normalize\\\\n\\\\n    if args.generate_exposure:\\\\n        exposure, aggregated = generate_exposure_json(\\\\n            args.signal_root, args.benchmarks,\\\\n            k=args.k, normalize=normalize,\\\\n            dosage_filter=args.dosage_filter,\\\\n            limit=args.limit,\\\\n        )\\\\n        out_file = output_dir / \\\\\\\"exposure_scores.json\\\\\\\"\\\\n        with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(exposure, f, indent=2)\\\\n        logger.info(\\\\\\\"Exposure scores saved to %s\\\\\\\", out_file)\\\\n        for mid, bd in exposure.items():\\\\n            for bench, data in bd.items():\\\\n                logger.info(\\\\\\\"  %s/%s: %d items\\\\\\\", mid, bench, data[\\\\\\\"item_count\\\\\\\"])\\\\n\\\\n        agg_file = output_dir / \\\\\\\"exposure_aggregated.json\\\\\\\"\\\\n        with open(agg_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(aggregated, f, indent=2)\\\\n        logger.info(\\\\\\\"Aggregated exposure saved to %s (%d benchmarks)\\\\\\\",\\\\n                    agg_file, len(aggregated))\\\\n        return\\\\n\\\\n    if args.signal_dir:\\\\n        for bench in args.benchmarks:\\\\n            results = aggregate_single(args.signal_dir, bench, k=args.k,\\\\n                                       normalize=normalize, limit=args.limit)\\\\n            if results:\\\\n                name = args.model_name or Path(args.signal_dir).name\\\\n                out_file = output_dir / f\\\\\\\"rrf_scores_{name}_{bench}.json\\\\\\\"\\\\n                with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(results, f, indent=2)\\\\n                logger.info(\\\\\\\"Saved %d items to %s\\\\\\\", len(results), out_file)\\\\n    else:\\\\n        all_results = aggregate_all_models(\\\\n            args.signal_root, args.benchmarks,\\\\n            k=args.k, normalize=normalize,\\\\n            dosage_filter=args.dosage_filter,\\\\n            limit=args.limit,\\\\n        )\\\\n        for model_id, bench_data in all_results.items():\\\\n            for bench, items in bench_data.items():\\\\n                out_file = output_dir / f\\\\\\\"rrf_scores_{model_id}_{bench}.json\\\\\\\"\\\\n                with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(items, f, indent=2)\\\\n\\\\n        summary = {\\\\n            model_id: {\\\\n                bench: {\\\\n                    \\\\\\\"count\\\\\\\": len(items),\\\\n                    \\\\\\\"exposure_mean\\\\\\\": float(np.mean([r[\\\\\\\"exposure\\\\\\\"] for r in items])),\\\\n                    \\\\\\\"exposure_std\\\\\\\": float(np.std([r[\\\\\\\"exposure\\\\\\\"] for r in items])),\\\\n                }\\\\n                for bench, items in bench_data.items()\\\\n            }\\\\n            for model_id, bench_data in all_results.items()\\\\n        }\\\\n        with open(output_dir / \\\\\\\"rrf_summary.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(summary, f, indent=2)\\\\n        logger.info(\\\\\\\"Summary saved to %s\\\\\\\", output_dir / \\\\\\\"rrf_summary.json\\\\\\\")\\\\n\\\\n        if args.csv:\\\\n            write_csv(all_results, output_dir / \\\\\\\"rrf_scores_all.csv\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\n\\nFuses per-item signal scores from exp-002 into composite exposure scores\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\n\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\n\\nCSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\n                    rrf_score, rrf_raw, s1_embedding, s2_minkpp, s3_constat,\\n                    s4_selfcritique, rank_s1_embedding, ...\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport logging\\nimport re\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_NAMES = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\nDEFAULT_K = 60\\n\\nSIGNAL_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d100\\\"]\\nDOSAGE_NUM = {\\\"d000\\\": 0, \\\"d005\\\": 5, \\\"d025\\\": 25, \\\"d100\\\": 100}\\n\\nSKIP_PATTERNS = [\\\"DEPRECATED\\\"]\\n\\n_DIR_RE = re.compile(r'Qwen2\\\\.5-(\\\\d+\\\\.?\\\\d*B)_(d\\\\d+)(?:_[va]\\\\d+)*_(s\\\\d+)')\\n\\n\\ndef parse_model_dir(dirname: str) -> dict:\\n    \\\"\\\"\\\"Parse signal directory name into model_size, dose, seed.\\\"\\\"\\\"\\n    m = _DIR_RE.match(dirname)\\n    if not m:\\n        return {\\\"model_size\\\": \\\"unknown\\\", \\\"dose\\\": \\\"unknown\\\", \\\"seed\\\": \\\"unknown\\\"}\\n    return {\\\"model_size\\\": m.group(1), \\\"dose\\\": m.group(2), \\\"seed\\\": m.group(3)}\\n\\n\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\n    \\\"\\\"\\\"Load per-item signals from exp-002 output directory.\\n\\n    Tries signals_merged_{benchmark}.json first, falls back to\\n    loading and merging individual signal files.\\n    \\\"\\\"\\\"\\n    signal_dir = Path(signal_dir)\\n\\n    merged = signal_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged.exists():\\n        with open(merged) as f:\\n            data = json.load(f)\\n        for item in data:\\n            if \\\"item_id\\\" in item and \\\"index\\\" not in item:\\n                item[\\\"index\\\"] = item[\\\"item_id\\\"]\\n        return data\\n\\n    items_by_idx = {}\\n    sig_name_map = {\\n        \\\"s1_embedding\\\": \\\"embedding\\\",\\n        \\\"s2_minkpp\\\": \\\"minkpp\\\",\\n        \\\"s3_constat\\\": \\\"constat\\\",\\n        \\\"s4_selfcritique\\\": \\\"selfcritique\\\",\\n    }\\n    for sig_key, sig_name in sig_name_map.items():\\n        sig_file = signal_dir / f\\\"signal_{sig_key}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            sig_file = signal_dir / f\\\"signal_{sig_name}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            continue\\n        with open(sig_file) as f:\\n            data = json.load(f)\\n        for item in data:\\n            if \\\"index\\\" in item:\\n                idx = item[\\\"index\\\"]\\n            elif \\\"item_id\\\" in item:\\n                idx = item[\\\"item_id\\\"]\\n            else:\\n                continue\\n            if idx not in items_by_idx:\\n                items_by_idx[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": benchmark}\\n            if \\\"score\\\" in item and \\\"signal\\\" in item:\\n                items_by_idx[idx][item[\\\"signal\\\"]] = item[\\\"score\\\"]\\n            else:\\n                items_by_idx[idx].update(item)\\n\\n    if not items_by_idx:\\n        logger.warning(\\\"No signal files found in %s for %s\\\", signal_dir, benchmark)\\n        return []\\n\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\n\\n\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\n    \\\"\\\"\\\"Return signal keys that have non-null, non-zero values.\\\"\\\"\\\"\\n    available = []\\n    for sig in SIGNAL_KEYS:\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\n            available.append(sig)\\n    return available\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank from 1 (highest score = most suspicious) to N, with tie averaging.\\\"\\\"\\\"\\n    n = len(scores)\\n    order = np.argsort(-scores)\\n    ranks = np.empty(n, dtype=float)\\n    i = \\n\\n... [截断: 输出过长，省略 7764 字符] ...\\n\\nype=int, default=DEFAULT_K,\\n                        help=\\\"RRF k parameter (default: 60)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--dosage-filter\\\", type=str, default=None,\\n                        help=\\\"Only process dirs matching this dosage (e.g., d005)\\\")\\n    parser.add_argument(\\\"--no-normalize\\\", action=\\\"store_true\\\",\\n                        help=\\\"Skip min-max normalization to [0,1]\\\")\\n    parser.add_argument(\\\"--generate-exposure\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate exposure_scores.json for exp-006\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=None,\\n                        help=\\\"Model identifier for single-dir mode output naming\\\")\\n    parser.add_argument(\\\"--csv\\\", action=\\\"store_true\\\",\\n                        help=\\\"Also output a flat CSV with structured columns\\\")\\n    parser.add_argument(\\\"--limit\\\", type=int, default=0,\\n                        help=\\\"Limit items per benchmark (for dry-run testing)\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    normalize = not args.no_normalize\\n\\n    if args.generate_exposure:\\n        exposure, aggregated = generate_exposure_json(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n            limit=args.limit,\\n        )\\n        out_file = output_dir / \\\"exposure_scores.json\\\"\\n        with open(out_file, \\\"w\\\") as f:\\n            json.dump(exposure, f, indent=2)\\n        logger.info(\\\"Exposure scores saved to %s\\\", out_file)\\n        for mid, bd in exposure.items():\\n            for bench, data in bd.items():\\n                logger.info(\\\"  %s/%s: %d items\\\", mid, bench, data[\\\"item_count\\\"])\\n\\n        agg_file = output_dir / \\\"exposure_aggregated.json\\\"\\n        with open(agg_file, \\\"w\\\") as f:\\n            json.dump(aggregated, f, indent=2)\\n        logger.info(\\\"Aggregated exposure saved to %s (%d benchmarks)\\\",\\n                    agg_file, len(aggregated))\\n        return\\n\\n    if args.signal_dir:\\n        for bench in args.benchmarks:\\n            results = aggregate_single(args.signal_dir, bench, k=args.k,\\n                                       normalize=normalize, limit=args.limit)\\n            if results:\\n                name = args.model_name or Path(args.signal_dir).name\\n                out_file = output_dir / f\\\"rrf_scores_{name}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(results, f, indent=2)\\n                logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n    else:\\n        all_results = aggregate_all_models(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n            limit=args.limit,\\n        )\\n        for model_id, bench_data in all_results.items():\\n            for bench, items in bench_data.items():\\n                out_file = output_dir / f\\\"rrf_scores_{model_id}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(items, f, indent=2)\\n\\n        summary = {\\n            model_id: {\\n                bench: {\\n                    \\\"count\\\": len(items),\\n                    \\\"exposure_mean\\\": float(np.mean([r[\\\"exposure\\\"] for r in items])),\\n                    \\\"exposure_std\\\": float(np.std([r[\\\"exposure\\\"] for r in items])),\\n                }\\n                for bench, items in bench_data.items()\\n            }\\n            for model_id, bench_data in all_results.items()\\n        }\\n        with open(output_dir / \\\"rrf_summary.json\\\", \\\"w\\\") as f:\\n            json.dump(summary, f, indent=2)\\n        logger.info(\\\"Summary saved to %s\\\", output_dir / \\\"rrf_summary.json\\\")\\n\\n        if args.csv:\\n            write_csv(all_results, output_dir / \\\"rrf_scores_all.csv\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T02:25:51.227Z_
+
+<details><summary>↩ Tool result · `toolu_01CYwh6LWZbTQgiAsp3VR5iZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-003 Evaluation: Compare RRF vs Ablation Methods.\\n\\nComputes AUC-ROC, Average Precision, precision@k for all aggregation\\nmethods. Generates ROC curves, score distribution plots, and FP\\nrobustness degradation curves.\\n\\nSupports --mock mode for testing with synthetic data.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\nfrom sklearn.metrics import roc_auc_score, average_precision_score, roc_curve\\n\\nsys.path.insert(0, str(Path(__file__).parent))\\nfrom rrf_aggregation import (\\n    load_signal_files, detect_available_signals, rrf_fuse,\\n    normalize_minmax, SIGNAL_KEYS, DEFAULT_K,\\n    SIGNAL_ROOT, LABELS_ROOT, BENCHMARKS,\\n)\\nfrom ablations import (\\n    load_labels, equal_weight_rank_avg, single_signal_scores,\\n    calibrated_weighted_rrf, degraded_2signal,\\n    run_all_ablations, run_all_ablations_from_items,\\n    fp_robustness_test,\\n)\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef compute_metrics(scores: np.ndarray, labels: np.ndarray) -> dict:\\n    \\\"\\\"\\\"Compute AUC-ROC, Average Precision, and precision@k.\\\"\\\"\\\"\\n    n = min(len(scores), len(labels))\\n    scores, labels = scores[:n], labels[:n]\\n\\n    if len(np.unique(labels)) < 2:\\n        return {\\\"auc_roc\\\": float(\\\"nan\\\"), \\\"avg_precision\\\": float(\\\"nan\\\"),\\n                \\\"precision_at_100\\\": float(\\\"nan\\\"), \\\"precision_at_500\\\": float(\\\"nan\\\")}\\n\\n    auc = roc_auc_score(labels, scores)\\n    ap = average_precision_score(labels, scores)\\n\\n    sorted_idx = np.argsort(-scores)\\n    p100 = float(labels[sorted_idx[:100]].mean()) if n >= 100 else float(\\\"nan\\\")\\n    p500 = float(labels[sorted_idx[:500]].mean()) if n >= 500 else float(\\\"nan\\\")\\n\\n    return {\\n        \\\"auc_roc\\\": float(auc),\\n        \\\"avg_precision\\\": float(ap),\\n        \\\"precision_at_100\\\": p100,\\n        \\\"precision_at_500\\\": p500,\\n    }\\n\\n\\ndef plot_roc_curves(method_scores: dict, labels: np.ndarray,\\n                    output_path: str, title: str = \\\"ROC Curves\\\"):\\n    \\\"\\\"\\\"Plot ROC curves for main methods (excludes FP variants).\\\"\\\"\\\"\\n    try:\\n        import matplotlib\\n        matplotlib.use(\\\"Agg\\\")\\n        import matplotlib.pyplot as plt\\n    except ImportError:\\n        logger.warning(\\\"matplotlib unavailable, skipping ROC plot\\\")\\n        return\\n\\n    n = min(min(len(s) for s in method_scores.values()), len(labels))\\n    labels_n = labels[:n]\\n    if len(np.unique(labels_n)) < 2:\\n        logger.warning(\\\"Single-class labels, skipping ROC plot\\\")\\n        return\\n\\n    fig, ax = plt.subplots(1, 1, figsize=(8, 6))\\n    main_methods = [m for m in method_scores if not m.startswith(\\\"fp_\\\")]\\n\\n    for method in sorted(main_methods):\\n        scores = method_scores[method][:n]\\n        fpr, tpr, _ = roc_curve(labels_n, scores)\\n        auc = roc_auc_score(labels_n, scores)\\n        ax.plot(fpr, tpr, label=f\\\"{method} (AUC={auc:.3f})\\\")\\n\\n    ax.plot([0, 1], [0, 1], \\\"k--\\\", alpha=0.3)\\n    ax.set_xlabel(\\\"False Positive Rate\\\")\\n    ax.set_ylabel(\\\"True Positive Rate\\\")\\n    ax.set_title(title)\\n    ax.legend(loc=\\\"lower right\\\", fontsize=8)\\n    ax.grid(True, alpha=0.3)\\n\\n    fig.tight_layout()\\n    fig.savefig(output_path, dpi=150, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    logger.info(\\\"ROC plot saved to %s\\\", output_path)\\n\\n\\ndef plot_score_distributions(method_scores: dict, labels: np.ndarray,\\n                             output_path: str, title: str = \\\"Score Distributions\\\"):\\n    \\\"\\\"\\\"Histogram of exposure scores split by clean/contaminated.\\\"\\\"\\\"\\n    try:\\n        import matplotlib\\n        matplotlib.use(\\\"Agg\\\")\\n        import matplotlib.pyplot as plt\\n    except ImportError:\\n        logger.warning(\\\"matplotlib unavailable, skipping distribution plot\\\")\\n        return\\n\\n    main_methods = sorted(m for m in method_scores if not m.startswith(\\\"fp_\\\"))\\n    n_methods = len(main_methods)\\n    if n_methods == 0:\\n        return\\n\\n    ncols = min(3, n_methods)\\n    nrows = (n_methods + ncols - 1) // ncols\\n    fig, axes = plt.subplots(nrows, ncols, figsize=(5 * ncols, 4 * nrows))\\n    if n_methods == 1:\\n        axes = np.array([axes])\\n    axes = np.atleast_1d(axes).flatten()\\n\\n \\n\\n... [截断: 输出过长，省略 6152 字符] ...\\n\\nes=BENCHMARKS)\\n    parser.add_argument(\\\"--dosage\\\", type=str, default=None)\\n    parser.add_argument(\\\"--k\\\", type=int, default=DEFAULT_K)\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--all\\\", action=\\\"store_true\\\",\\n                        help=\\\"Evaluate all model-dosage-benchmark combos\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    if args.mock:\\n        run_mock_evaluation(args.output_dir)\\n        return\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    if args.all:\\n        signal_root = Path(args.signal_root)\\n        all_metrics = {}\\n\\n        for model_dir in sorted(signal_root.iterdir()):\\n            if not model_dir.is_dir():\\n                continue\\n            model_id = model_dir.name\\n            parts = model_id.split(\\\"_\\\")\\n            dosage = next(\\n                (p for p in parts if p.startswith(\\\"d\\\") and p[1:].isdigit()), None\\n            )\\n            if not dosage or dosage == \\\"d000\\\":\\n                continue\\n\\n            for bench in BENCHMARKS:\\n                try:\\n                    labels = load_labels(args.labels_dir, bench, dosage)\\n                except FileNotFoundError:\\n                    continue\\n\\n                items = load_signal_files(str(model_dir), bench)\\n                if not items:\\n                    continue\\n\\n                key = f\\\"{model_id}/{bench}\\\"\\n                logger.info(\\\"Evaluating %s ...\\\", key)\\n\\n                results = run_all_ablations(str(model_dir), bench, labels, k=args.k)\\n                metrics = {}\\n                for method, scores in results.items():\\n                    metrics[method] = compute_metrics(scores, labels)\\n                all_metrics[key] = metrics\\n\\n                combo_dir = output_dir / model_id / bench\\n                combo_dir.mkdir(parents=True, exist_ok=True)\\n                plot_roc_curves(results, labels,\\n                                str(combo_dir / \\\"roc_curves.png\\\"),\\n                                f\\\"ROC: {model_id} / {bench}\\\")\\n                plot_score_distributions(results, labels,\\n                                         str(combo_dir / \\\"score_dist.png\\\"),\\n                                         f\\\"Dist: {model_id} / {bench}\\\")\\n                plot_fp_robustness(results, labels,\\n                                   str(combo_dir / \\\"fp_robustness.png\\\"))\\n\\n        with open(output_dir / \\\"all_metrics.json\\\", \\\"w\\\") as f:\\n            json.dump(all_metrics, f, indent=2)\\n\\n        for key, metrics in all_metrics.items():\\n            logger.info(\\\"\\\\n=== %s ===\\\", key)\\n            logger.info(\\\"\\\\n%s\\\", format_metrics_table(metrics))\\n        return\\n\\n    # Single evaluation mode\\n    if not args.signal_dir or not args.benchmark or not args.dosage:\\n        parser.error(\\\"Need --signal-dir, --benchmark, --dosage (or use --mock / --all)\\\")\\n\\n    labels = load_labels(args.labels_dir, args.benchmark, args.dosage)\\n    results = run_all_ablations(args.signal_dir, args.benchmark, labels, k=args.k)\\n\\n    metrics = {}\\n    for method, scores in results.items():\\n        metrics[method] = compute_metrics(scores, labels)\\n\\n    table = format_metrics_table(metrics)\\n    logger.info(\\\"\\\\n%s\\\", table)\\n\\n    model_id = Path(args.signal_dir).name\\n    with open(output_dir / f\\\"metrics_{model_id}_{args.benchmark}.json\\\", \\\"w\\\") as f:\\n        json.dump(metrics, f, indent=2)\\n\\n    plot_roc_curves(results, labels,\\n                    str(output_dir / f\\\"roc_{model_id}_{args.benchmark}.png\\\"),\\n                    f\\\"ROC: {model_id} / {args.benchmark}\\\")\\n    plot_score_distributions(results, labels,\\n                             str(output_dir / f\\\"dist_{model_id}_{args.benchmark}.png\\\"),\\n                             f\\\"Dist: {model_id} / {args.benchmark}\\\")\\n    plot_fp_robustness(results, labels,\\n                       str(output_dir / f\\\"fp_robust_{model_id}_{args.benchmark}.png\\\"))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "ec72879b-5320-4d9e-8882-bb2acf7cf47f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-003 Evaluation: Compare RRF vs Ablation Methods.\\\\n\\\\nComputes AUC-ROC, Average Precision, precision@k for all aggregation\\\\nmethods. Generates ROC curves, score distribution plots, and FP\\\\nrobustness degradation curves.\\\\n\\\\nSupports --mock mode for testing with synthetic data.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom sklearn.metrics import roc_auc_score, average_precision_score, roc_curve\\\\n\\\\nsys.path.insert(0, str(Path(__file__).parent))\\\\nfrom rrf_aggregation import (\\\\n    load_signal_files, detect_available_signals, rrf_fuse,\\\\n    normalize_minmax, SIGNAL_KEYS, DEFAULT_K,\\\\n    SIGNAL_ROOT, LABELS_ROOT, BENCHMARKS,\\\\n)\\\\nfrom ablations import (\\\\n    load_labels, equal_weight_rank_avg, single_signal_scores,\\\\n    calibrated_weighted_rrf, degraded_2signal,\\\\n    run_all_ablations, run_all_ablations_from_items,\\\\n    fp_robustness_test,\\\\n)\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef compute_metrics(scores: np.ndarray, labels: np.ndarray) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute AUC-ROC, Average Precision, and precision@k.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = min(len(scores), len(labels))\\\\n    scores, labels = scores[:n], labels[:n]\\\\n\\\\n    if len(np.unique(labels)) < 2:\\\\n        return {\\\\\\\"auc_roc\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"avg_precision\\\\\\\": float(\\\\\\\"nan\\\\\\\"),\\\\n                \\\\\\\"precision_at_100\\\\\\\": float(\\\\\\\"nan\\\\\\\"), \\\\\\\"precision_at_500\\\\\\\": float(\\\\\\\"nan\\\\\\\")}\\\\n\\\\n    auc = roc_auc_score(labels, scores)\\\\n    ap = average_precision_score(labels, scores)\\\\n\\\\n    sorted_idx = np.argsort(-scores)\\\\n    p100 = float(labels[sorted_idx[:100]].mean()) if n >= 100 else float(\\\\\\\"nan\\\\\\\")\\\\n    p500 = float(labels[sorted_idx[:500]].mean()) if n >= 500 else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n    return {\\\\n        \\\\\\\"auc_roc\\\\\\\": float(auc),\\\\n        \\\\\\\"avg_precision\\\\\\\": float(ap),\\\\n        \\\\\\\"precision_at_100\\\\\\\": p100,\\\\n        \\\\\\\"precision_at_500\\\\\\\": p500,\\\\n    }\\\\n\\\\n\\\\ndef plot_roc_curves(method_scores: dict, labels: np.ndarray,\\\\n                    output_path: str, title: str = \\\\\\\"ROC Curves\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Plot ROC curves for main methods (excludes FP variants).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        import matplotlib\\\\n        matplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\n        import matplotlib.pyplot as plt\\\\n    except ImportError:\\\\n        logger.warning(\\\\\\\"matplotlib unavailable, skipping ROC plot\\\\\\\")\\\\n        return\\\\n\\\\n    n = min(min(len(s) for s in method_scores.values()), len(labels))\\\\n    labels_n = labels[:n]\\\\n    if len(np.unique(labels_n)) < 2:\\\\n        logger.warning(\\\\\\\"Single-class labels, skipping ROC plot\\\\\\\")\\\\n        return\\\\n\\\\n    fig, ax = plt.subplots(1, 1, figsize=(8, 6))\\\\n    main_methods = [m for m in method_scores if not m.startswith(\\\\\\\"fp_\\\\\\\")]\\\\n\\\\n    for method in sorted(main_methods):\\\\n        scores = method_scores[method][:n]\\\\n        fpr, tpr, _ = roc_curve(labels_n, scores)\\\\n        auc = roc_auc_score(labels_n, scores)\\\\n        ax.plot(fpr, tpr, label=f\\\\\\\"{method} (AUC={auc:.3f})\\\\\\\")\\\\n\\\\n    ax.plot([0, 1], [0, 1], \\\\\\\"k--\\\\\\\", alpha=0.3)\\\\n    ax.set_xlabel(\\\\\\\"False Positive Rate\\\\\\\")\\\\n    ax.set_ylabel(\\\\\\\"True Positive Rate\\\\\\\")\\\\n    ax.set_title(title)\\\\n    ax.legend(loc=\\\\\\\"lower right\\\\\\\", fontsize=8)\\\\n    ax.grid(True, alpha=0.3)\\\\n\\\\n    fig.tight_layout()\\\\n    fig.savefig(output_path, dpi=150, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n    logger.info(\\\\\\\"ROC plot saved to %s\\\\\\\", output_path)\\\\n\\\\n\\\\ndef plot_score_distributions(method_scores: dict, labels: np.ndarray,\\\\n                             output_path: str, title: str = \\\\\\\"Score Distributions\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Histogram of exposure scores split by clean/contaminated.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        import matplotlib\\\\n        matplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\n        import matplotlib.pyplot as plt\\\\n    except ImportError:\\\\n        logger.warning(\\\\\\\"matplotlib unavailable, skipping distribution plot\\\\\\\")\\\\n        return\\\\n\\\\n    main_methods = sorted(m for m in method_scores if not m.startswith(\\\\\\\"fp_\\\\\\\"))\\\\n    n_methods = len(main_methods)\\\\n    if n_methods == 0:\\\\n        return\\\\n\\\\n    ncols = min(3, n_methods)\\\\n    nrows = (n_methods + ncols - 1) // ncols\\\\n    fig, axes = plt.subplots(nrows, ncols, figsize=(5 * ncols, 4 * nrows))\\\\n    if n_methods == 1:\\\\n        axes = np.array([axes])\\\\n    axes = np.atleast_1d(axes).flatten()\\\\n\\\\n \\\\n\\\\n... [截断: 输出过长，省略 6152 字符] ...\\\\n\\\\nes=BENCHMARKS)\\\\n    parser.add_argument(\\\\\\\"--dosage\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--k\\\\\\\", type=int, default=DEFAULT_K)\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--all\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Evaluate all model-dosage-benchmark combos\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO,\\\\n                        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    if args.mock:\\\\n        run_mock_evaluation(args.output_dir)\\\\n        return\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    if args.all:\\\\n        signal_root = Path(args.signal_root)\\\\n        all_metrics = {}\\\\n\\\\n        for model_dir in sorted(signal_root.iterdir()):\\\\n            if not model_dir.is_dir():\\\\n                continue\\\\n            model_id = model_dir.name\\\\n            parts = model_id.split(\\\\\\\"_\\\\\\\")\\\\n            dosage = next(\\\\n                (p for p in parts if p.startswith(\\\\\\\"d\\\\\\\") and p[1:].isdigit()), None\\\\n            )\\\\n            if not dosage or dosage == \\\\\\\"d000\\\\\\\":\\\\n                continue\\\\n\\\\n            for bench in BENCHMARKS:\\\\n                try:\\\\n                    labels = load_labels(args.labels_dir, bench, dosage)\\\\n                except FileNotFoundError:\\\\n                    continue\\\\n\\\\n                items = load_signal_files(str(model_dir), bench)\\\\n                if not items:\\\\n                    continue\\\\n\\\\n                key = f\\\\\\\"{model_id}/{bench}\\\\\\\"\\\\n                logger.info(\\\\\\\"Evaluating %s ...\\\\\\\", key)\\\\n\\\\n                results = run_all_ablations(str(model_dir), bench, labels, k=args.k)\\\\n                metrics = {}\\\\n                for method, scores in results.items():\\\\n                    metrics[method] = compute_metrics(scores, labels)\\\\n                all_metrics[key] = metrics\\\\n\\\\n                combo_dir = output_dir / model_id / bench\\\\n                combo_dir.mkdir(parents=True, exist_ok=True)\\\\n                plot_roc_curves(results, labels,\\\\n                                str(combo_dir / \\\\\\\"roc_curves.png\\\\\\\"),\\\\n                                f\\\\\\\"ROC: {model_id} / {bench}\\\\\\\")\\\\n                plot_score_distributions(results, labels,\\\\n                                         str(combo_dir / \\\\\\\"score_dist.png\\\\\\\"),\\\\n                                         f\\\\\\\"Dist: {model_id} / {bench}\\\\\\\")\\\\n                plot_fp_robustness(results, labels,\\\\n                                   str(combo_dir / \\\\\\\"fp_robustness.png\\\\\\\"))\\\\n\\\\n        with open(output_dir / \\\\\\\"all_metrics.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(all_metrics, f, indent=2)\\\\n\\\\n        for key, metrics in all_metrics.items():\\\\n            logger.info(\\\\\\\"\\\\\\\\n=== %s ===\\\\\\\", key)\\\\n            logger.info(\\\\\\\"\\\\\\\\n%s\\\\\\\", format_metrics_table(metrics))\\\\n        return\\\\n\\\\n    # Single evaluation mode\\\\n    if not args.signal_dir or not args.benchmark or not args.dosage:\\\\n        parser.error(\\\\\\\"Need --signal-dir, --benchmark, --dosage (or use --mock / --all)\\\\\\\")\\\\n\\\\n    labels = load_labels(args.labels_dir, args.benchmark, args.dosage)\\\\n    results = run_all_ablations(args.signal_dir, args.benchmark, labels, k=args.k)\\\\n\\\\n    metrics = {}\\\\n    for method, scores in results.items():\\\\n        metrics[method] = compute_metrics(scores, labels)\\\\n\\\\n    table = format_metrics_table(metrics)\\\\n    logger.info(\\\\\\\"\\\\\\\\n%s\\\\\\\", table)\\\\n\\\\n    model_id = Path(args.signal_dir).name\\\\n    with open(output_dir / f\\\\\\\"metrics_{model_id}_{args.benchmark}.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(metrics, f, indent=2)\\\\n\\\\n    plot_roc_curves(results, labels,\\\\n                    str(output_dir / f\\\\\\\"roc_{model_id}_{args.benchmark}.png\\\\\\\"),\\\\n                    f\\\\\\\"ROC: {model_id} / {args.benchmark}\\\\\\\")\\\\n    plot_score_distributions(results, labels,\\\\n                             str(output_dir / f\\\\\\\"dist_{model_id}_{args.benchmark}.png\\\\\\\"),\\\\n                             f\\\\\\\"Dist: {model_id} / {args.benchmark}\\\\\\\")\\\\n    plot_fp_robustness(results, labels,\\\\n                       str(output_dir / f\\\\\\\"fp_robust_{model_id}_{args.benchmark}.png\\\\\\\"))\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-003 Evaluation: Compare RRF vs Ablation Methods.\\n\\nComputes AUC-ROC, Average Precision, precision@k for all aggregation\\nmethods. Generates ROC curves, score distribution plots, and FP\\nrobustness degradation curves.\\n\\nSupports --mock mode for testing with synthetic data.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\nfrom sklearn.metrics import roc_auc_score, average_precision_score, roc_curve\\n\\nsys.path.insert(0, str(Path(__file__).parent))\\nfrom rrf_aggregation import (\\n    load_signal_files, detect_available_signals, rrf_fuse,\\n    normalize_minmax, SIGNAL_KEYS, DEFAULT_K,\\n    SIGNAL_ROOT, LABELS_ROOT, BENCHMARKS,\\n)\\nfrom ablations import (\\n    load_labels, equal_weight_rank_avg, single_signal_scores,\\n    calibrated_weighted_rrf, degraded_2signal,\\n    run_all_ablations, run_all_ablations_from_items,\\n    fp_robustness_test,\\n)\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef compute_metrics(scores: np.ndarray, labels: np.ndarray) -> dict:\\n    \\\"\\\"\\\"Compute AUC-ROC, Average Precision, and precision@k.\\\"\\\"\\\"\\n    n = min(len(scores), len(labels))\\n    scores, labels = scores[:n], labels[:n]\\n\\n    if len(np.unique(labels)) < 2:\\n        return {\\\"auc_roc\\\": float(\\\"nan\\\"), \\\"avg_precision\\\": float(\\\"nan\\\"),\\n                \\\"precision_at_100\\\": float(\\\"nan\\\"), \\\"precision_at_500\\\": float(\\\"nan\\\")}\\n\\n    auc = roc_auc_score(labels, scores)\\n    ap = average_precision_score(labels, scores)\\n\\n    sorted_idx = np.argsort(-scores)\\n    p100 = float(labels[sorted_idx[:100]].mean()) if n >= 100 else float(\\\"nan\\\")\\n    p500 = float(labels[sorted_idx[:500]].mean()) if n >= 500 else float(\\\"nan\\\")\\n\\n    return {\\n        \\\"auc_roc\\\": float(auc),\\n        \\\"avg_precision\\\": float(ap),\\n        \\\"precision_at_100\\\": p100,\\n        \\\"precision_at_500\\\": p500,\\n    }\\n\\n\\ndef plot_roc_curves(method_scores: dict, labels: np.ndarray,\\n                    output_path: str, title: str = \\\"ROC Curves\\\"):\\n    \\\"\\\"\\\"Plot ROC curves for main methods (excludes FP variants).\\\"\\\"\\\"\\n    try:\\n        import matplotlib\\n        matplotlib.use(\\\"Agg\\\")\\n        import matplotlib.pyplot as plt\\n    except ImportError:\\n        logger.warning(\\\"matplotlib unavailable, skipping ROC plot\\\")\\n        return\\n\\n    n = min(min(len(s) for s in method_scores.values()), len(labels))\\n    labels_n = labels[:n]\\n    if len(np.unique(labels_n)) < 2:\\n        logger.warning(\\\"Single-class labels, skipping ROC plot\\\")\\n        return\\n\\n    fig, ax = plt.subplots(1, 1, figsize=(8, 6))\\n    main_methods = [m for m in method_scores if not m.startswith(\\\"fp_\\\")]\\n\\n    for method in sorted(main_methods):\\n        scores = method_scores[method][:n]\\n        fpr, tpr, _ = roc_curve(labels_n, scores)\\n        auc = roc_auc_score(labels_n, scores)\\n        ax.plot(fpr, tpr, label=f\\\"{method} (AUC={auc:.3f})\\\")\\n\\n    ax.plot([0, 1], [0, 1], \\\"k--\\\", alpha=0.3)\\n    ax.set_xlabel(\\\"False Positive Rate\\\")\\n    ax.set_ylabel(\\\"True Positive Rate\\\")\\n    ax.set_title(title)\\n    ax.legend(loc=\\\"lower right\\\", fontsize=8)\\n    ax.grid(True, alpha=0.3)\\n\\n    fig.tight_layout()\\n    fig.savefig(output_path, dpi=150, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    logger.info(\\\"ROC plot saved to %s\\\", output_path)\\n\\n\\ndef plot_score_distributions(method_scores: dict, labels: np.ndarray,\\n                             output_path: str, title: str = \\\"Score Distributions\\\"):\\n    \\\"\\\"\\\"Histogram of exposure scores split by clean/contaminated.\\\"\\\"\\\"\\n    try:\\n        import matplotlib\\n        matplotlib.use(\\\"Agg\\\")\\n        import matplotlib.pyplot as plt\\n    except ImportError:\\n        logger.warning(\\\"matplotlib unavailable, skipping distribution plot\\\")\\n        return\\n\\n    main_methods = sorted(m for m in method_scores if not m.startswith(\\\"fp_\\\"))\\n    n_methods = len(main_methods)\\n    if n_methods == 0:\\n        return\\n\\n    ncols = min(3, n_methods)\\n    nrows = (n_methods + ncols - 1) // ncols\\n    fig, axes = plt.subplots(nrows, ncols, figsize=(5 * ncols, 4 * nrows))\\n    if n_methods == 1:\\n        axes = np.array([axes])\\n    axes = np.atleast_1d(axes).flatten()\\n\\n \\n\\n... [截断: 输出过长，省略 6152 字符] ...\\n\\nes=BENCHMARKS)\\n    parser.add_argument(\\\"--dosage\\\", type=str, default=None)\\n    parser.add_argument(\\\"--k\\\", type=int, default=DEFAULT_K)\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--all\\\", action=\\\"store_true\\\",\\n                        help=\\\"Evaluate all model-dosage-benchmark combos\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    if args.mock:\\n        run_mock_evaluation(args.output_dir)\\n        return\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    if args.all:\\n        signal_root = Path(args.signal_root)\\n        all_metrics = {}\\n\\n        for model_dir in sorted(signal_root.iterdir()):\\n            if not model_dir.is_dir():\\n                continue\\n            model_id = model_dir.name\\n            parts = model_id.split(\\\"_\\\")\\n            dosage = next(\\n                (p for p in parts if p.startswith(\\\"d\\\") and p[1:].isdigit()), None\\n            )\\n            if not dosage or dosage == \\\"d000\\\":\\n                continue\\n\\n            for bench in BENCHMARKS:\\n                try:\\n                    labels = load_labels(args.labels_dir, bench, dosage)\\n                except FileNotFoundError:\\n                    continue\\n\\n                items = load_signal_files(str(model_dir), bench)\\n                if not items:\\n                    continue\\n\\n                key = f\\\"{model_id}/{bench}\\\"\\n                logger.info(\\\"Evaluating %s ...\\\", key)\\n\\n                results = run_all_ablations(str(model_dir), bench, labels, k=args.k)\\n                metrics = {}\\n                for method, scores in results.items():\\n                    metrics[method] = compute_metrics(scores, labels)\\n                all_metrics[key] = metrics\\n\\n                combo_dir = output_dir / model_id / bench\\n                combo_dir.mkdir(parents=True, exist_ok=True)\\n                plot_roc_curves(results, labels,\\n                                str(combo_dir / \\\"roc_curves.png\\\"),\\n                                f\\\"ROC: {model_id} / {bench}\\\")\\n                plot_score_distributions(results, labels,\\n                                         str(combo_dir / \\\"score_dist.png\\\"),\\n                                         f\\\"Dist: {model_id} / {bench}\\\")\\n                plot_fp_robustness(results, labels,\\n                                   str(combo_dir / \\\"fp_robustness.png\\\"))\\n\\n        with open(output_dir / \\\"all_metrics.json\\\", \\\"w\\\") as f:\\n            json.dump(all_metrics, f, indent=2)\\n\\n        for key, metrics in all_metrics.items():\\n            logger.info(\\\"\\\\n=== %s ===\\\", key)\\n            logger.info(\\\"\\\\n%s\\\", format_metrics_table(metrics))\\n        return\\n\\n    # Single evaluation mode\\n    if not args.signal_dir or not args.benchmark or not args.dosage:\\n        parser.error(\\\"Need --signal-dir, --benchmark, --dosage (or use --mock / --all)\\\")\\n\\n    labels = load_labels(args.labels_dir, args.benchmark, args.dosage)\\n    results = run_all_ablations(args.signal_dir, args.benchmark, labels, k=args.k)\\n\\n    metrics = {}\\n    for method, scores in results.items():\\n        metrics[method] = compute_metrics(scores, labels)\\n\\n    table = format_metrics_table(metrics)\\n    logger.info(\\\"\\\\n%s\\\", table)\\n\\n    model_id = Path(args.signal_dir).name\\n    with open(output_dir / f\\\"metrics_{model_id}_{args.benchmark}.json\\\", \\\"w\\\") as f:\\n        json.dump(metrics, f, indent=2)\\n\\n    plot_roc_curves(results, labels,\\n                    str(output_dir / f\\\"roc_{model_id}_{args.benchmark}.png\\\"),\\n                    f\\\"ROC: {model_id} / {args.benchmark}\\\")\\n    plot_score_distributions(results, labels,\\n                             str(output_dir / f\\\"dist_{model_id}_{args.benchmark}.png\\\"),\\n                             f\\\"Dist: {model_id} / {args.benchmark}\\\")\\n    plot_fp_robustness(results, labels,\\n                       str(output_dir / f\\\"fp_robust_{model_id}_{args.benchmark}.png\\\"))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to check:
+1. The signal root directory to see what 3B signal files exist
+2. The 0.5B RRF output to understand the expected structure
+3. What the directory regex matches for 3B models
+
+The key regex is: `_DIR_RE = re.compile(r'Qwen2\.5-(\d+\.?\d*B)_(d\d+)(?:_[va]\d+)*_(s\d+)')`
+
+This should match directories like `Qwen2.5-3B_d000_v3_s42`, `Qwen2.5-3B_d005_v3_s42`, etc.
+
+
+Let me look at what signal directories are actually present for the 3B models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "94f04034-3a55-49ea-aeb3-4bcc2ad23c45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013THmWQdggq5gTWoGuf7YNp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6673,
+      "cache_read_input_tokens": 26749,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6673
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Now let me check the 3B signal files and the 0.5B successful output for reference.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "ee87989d-719c-4259-a06d-1547e674b61e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013THmWQdggq5gTWoGuf7YNp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6673,
+      "cache_read_input_tokens": 26749,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6673
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CE2GEzqtGg3Hdse66Jvbmc`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/ "
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "02499f0b-80b9-46fd-8f96-2b703191db2e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013THmWQdggq5gTWoGuf7YNp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6673,
+      "cache_read_input_tokens": 26749,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6673
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017Bfdeep6GiwopsAVV5xLk4`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp002/signals/ -maxdepth 1 -type d -name \"*3B*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "db214c02-f2d7-4f1c-bb86-702ad458f072",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013THmWQdggq5gTWoGuf7YNp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6673,
+      "cache_read_input_tokens": 26749,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6673
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T02:26:02.469Z_
+
+<details><summary>↩ Tool result · `toolu_01CE2GEzqtGg3Hdse66Jvbmc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d005_s42\\nQwen2.5-0.5B_d025_s42\\nQwen2.5-0.5B_d100_s42\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d005_s42\\nQwen2.5-1.5B_d025_s42\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-3B_d000_v2_s42\\nQwen2.5-3B_d005_s123\\nQwen2.5-3B_d005_s42\\nQwen2.5-3B_d025_s123\\nQwen2.5-3B_d025_s42\\nQwen2.5-3B_d025_s42_DEPRECATED_alpha16\\nQwen2.5-3B_d025_v3_s42\\nQwen2.5-3B_d100_a32_s123\\nQwen2.5-3B_d100_s42\\nbatch_report_Qwen2.5-0.5B.json\\nbatch_report_Qwen2.5-1.5B.json\\nbatch_report_Qwen2.5-3B.json\\nsignals_3B_d025_v3_s42.log\\nsignals_3B_v6.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "5b56900b-b28e-479d-905e-efbf2ff5fda8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d025_s42\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d005_s42\\\\nQwen2.5-1.5B_d025_s42\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-3B_d000_v2_s42\\\\nQwen2.5-3B_d005_s123\\\\nQwen2.5-3B_d005_s42\\\\nQwen2.5-3B_d025_s123\\\\nQwen2.5-3B_d025_s42\\\\nQwen2.5-3B_d025_s42_DEPRECATED_alpha16\\\\nQwen2.5-3B_d025_v3_s42\\\\nQwen2.5-3B_d100_a32_s123\\\\nQwen2.5-3B_d100_s42\\\\nbatch_report_Qwen2.5-0.5B.json\\\\nbatch_report_Qwen2.5-1.5B.json\\\\nbatch_report_Qwen2.5-3B.json\\\\nsignals_3B_d025_v3_s42.log\\\\nsignals_3B_v6.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d005_s42\\nQwen2.5-0.5B_d025_s42\\nQwen2.5-0.5B_d100_s42\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d005_s42\\nQwen2.5-1.5B_d025_s42\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-3B_d000_v2_s42\\nQwen2.5-3B_d005_s123\\nQwen2.5-3B_d005_s42\\nQwen2.5-3B_d025_s123\\nQwen2.5-3B_d025_s42\\nQwen2.5-3B_d025_s42_DEPRECATED_alpha16\\nQwen2.5-3B_d025_v3_s42\\nQwen2.5-3B_d100_a32_s123\\nQwen2.5-3B_d100_s42\\nbatch_report_Qwen2.5-0.5B.json\\nbatch_report_Qwen2.5-1.5B.json\\nbatch_report_Qwen2.5-3B.json\\nsignals_3B_d025_v3_s42.log\\nsignals_3B_v6.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T02:26:02.984Z_
+
+<details><summary>↩ Tool result · `toolu_017Bfdeep6GiwopsAVV5xLk4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42_DEPRECATED_alpha16\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_v3_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "94952c62-afae-4884-a4d3-fe87e4a2a010",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42_DEPRECATED_alpha16\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_v3_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42_DEPRECATED_alpha16\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_v3_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N5DoHbL1uf2VnH4FBi3jCZ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "8dbe90aa-0481-4571-9be8-f2da3bfcb67e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011x5tNuM2KD9byDLV1Aj931",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 33422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1392
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QCK4BGF2nwada8i7h8vVWj`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_v3_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "83033360-6845-4e06-9936-7fa7962c23df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011x5tNuM2KD9byDLV1Aj931",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 33422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1392
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T02:26:07.905Z_
+
+<details><summary>↩ Tool result · `toolu_01N5DoHbL1uf2VnH4FBi3jCZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"signal_s1_embedding_arc_challenge.json\\nsignal_s1_embedding_gsm8k.json\\nsignal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_arc_challenge.json\\nsignal_s2_minkpp_gsm8k.json\\nsignal_s2_minkpp_mmlu.json\\nsignal_s4_selfcritique_arc_challenge.json\\nsignals_merged_arc_challenge.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "540db022-8a62-4d01-b713-2444e4013b31",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_s1_embedding_arc_challenge.json\\\\nsignal_s1_embedding_gsm8k.json\\\\nsignal_s1_embedding_mmlu.json\\\\nsignal_s2_minkpp_arc_challenge.json\\\\nsignal_s2_minkpp_gsm8k.json\\\\nsignal_s2_minkpp_mmlu.json\\\\nsignal_s4_selfcritique_arc_challenge.json\\\\nsignals_merged_arc_challenge.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"signal_s1_embedding_arc_challenge.json\\nsignal_s1_embedding_gsm8k.json\\nsignal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_arc_challenge.json\\nsignal_s2_minkpp_gsm8k.json\\nsignal_s2_minkpp_mmlu.json\\nsignal_s4_selfcritique_arc_challenge.json\\nsignals_merged_arc_challenge.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T02:26:08.406Z_
+
+<details><summary>↩ Tool result · `toolu_01QCK4BGF2nwada8i7h8vVWj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"signal_s1_embedding_arc_challenge.json\\nsignal_s1_embedding_gsm8k.json\\nsignal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_arc_challenge.json\\nsignal_s2_minkpp_gsm8k.json\\nsignal_s2_minkpp_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "4cb5dfb7-dfa8-403a-9271-9053607cc615",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_s1_embedding_arc_challenge.json\\\\nsignal_s1_embedding_gsm8k.json\\\\nsignal_s1_embedding_mmlu.json\\\\nsignal_s2_minkpp_arc_challenge.json\\\\nsignal_s2_minkpp_gsm8k.json\\\\nsignal_s2_minkpp_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"signal_s1_embedding_arc_challenge.json\\nsignal_s1_embedding_gsm8k.json\\nsignal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_arc_challenge.json\\nsignal_s2_minkpp_gsm8k.json\\nsignal_s2_minkpp_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CUFNRQcsNNhsVXwiHUWqDg`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "5144327e-541f-42bb-ba41-e15a82ee977e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011x5tNuM2KD9byDLV1Aj931",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 33422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1392
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KxsG2DunouvudMb7rQVTh7`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "1ff8a18e-cb90-4277-9135-190a5ad42252",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011x5tNuM2KD9byDLV1Aj931",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 33422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1392
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T02:26:09.228Z_
+
+<details><summary>↩ Tool result · `toolu_01CUFNRQcsNNhsVXwiHUWqDg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"signal_s1_embedding_arc_challenge.json\\nsignal_s1_embedding_gsm8k.json\\nsignal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_arc_challenge.json\\nsignal_s2_minkpp_gsm8k.json\\nsignal_s2_minkpp_mmlu.json\\nsignal_s4_selfcritique_arc_challenge.json\\nsignal_s4_selfcritique_gsm8k.json\\nsignals_merged_arc_challenge.json\\nsignals_merged_gsm8k.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "99d67928-32c6-4d38-ad45-a83af62aff06",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_s1_embedding_arc_challenge.json\\\\nsignal_s1_embedding_gsm8k.json\\\\nsignal_s1_embedding_mmlu.json\\\\nsignal_s2_minkpp_arc_challenge.json\\\\nsignal_s2_minkpp_gsm8k.json\\\\nsignal_s2_minkpp_mmlu.json\\\\nsignal_s4_selfcritique_arc_challenge.json\\\\nsignal_s4_selfcritique_gsm8k.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"signal_s1_embedding_arc_challenge.json\\nsignal_s1_embedding_gsm8k.json\\nsignal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_arc_challenge.json\\nsignal_s2_minkpp_gsm8k.json\\nsignal_s2_minkpp_mmlu.json\\nsignal_s4_selfcritique_arc_challenge.json\\nsignal_s4_selfcritique_gsm8k.json\\nsignals_merged_arc_challenge.json\\nsignals_merged_gsm8k.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T02:26:09.729Z_
+
+<details><summary>↩ Tool result · `toolu_01KxsG2DunouvudMb7rQVTh7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"signal_s1_embedding_arc_challenge.json\\nsignal_s1_embedding_gsm8k.json\\nsignal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_arc_challenge.json\\nsignal_s2_minkpp_gsm8k.json\\nsignal_s2_minkpp_mmlu.json\\nsignal_s3_constat_arc_challenge.json\\nsignal_s3_constat_gsm8k.json\\nsignal_s3_constat_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "0d612213-02ae-4178-a65b-a3122549922c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_s1_embedding_arc_challenge.json\\\\nsignal_s1_embedding_gsm8k.json\\\\nsignal_s1_embedding_mmlu.json\\\\nsignal_s2_minkpp_arc_challenge.json\\\\nsignal_s2_minkpp_gsm8k.json\\\\nsignal_s2_minkpp_mmlu.json\\\\nsignal_s3_constat_arc_challenge.json\\\\nsignal_s3_constat_gsm8k.json\\\\nsignal_s3_constat_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"signal_s1_embedding_arc_challenge.json\\nsignal_s1_embedding_gsm8k.json\\nsignal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_arc_challenge.json\\nsignal_s2_minkpp_gsm8k.json\\nsignal_s2_minkpp_mmlu.json\\nsignal_s3_constat_arc_challenge.json\\nsignal_s3_constat_gsm8k.json\\nsignal_s3_constat_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012CPDJEMKfDteiKdNXT68vW`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "70e1f310-1685-478e-8847-22e4610c4c4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XXg2iUtbbiHxemmC7JZHkf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1336,
+      "cache_read_input_tokens": 34814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1336
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T02:26:16.267Z_
+
+<details><summary>↩ Tool result · `toolu_012CPDJEMKfDteiKdNXT68vW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"signal_s1_embedding_arc_challenge.json\\nsignal_s1_embedding_gsm8k.json\\nsignal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_arc_challenge.json\\nsignal_s2_minkpp_gsm8k.json\\nsignal_s2_minkpp_mmlu.json\\nsignal_s4_selfcritique_arc_challenge.json\\nsignal_s4_selfcritique_gsm8k.json\\nsignal_s4_selfcritique_mmlu.json\\nsignals_merged_arc_challenge.json\\nsignals_merged_gsm8k.json\\nsignals_merged_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "b32fb136-1d59-48ba-8990-33c02e5d389f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_s1_embedding_arc_challenge.json\\\\nsignal_s1_embedding_gsm8k.json\\\\nsignal_s1_embedding_mmlu.json\\\\nsignal_s2_minkpp_arc_challenge.json\\\\nsignal_s2_minkpp_gsm8k.json\\\\nsignal_s2_minkpp_mmlu.json\\\\nsignal_s4_selfcritique_arc_challenge.json\\\\nsignal_s4_selfcritique_gsm8k.json\\\\nsignal_s4_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"signal_s1_embedding_arc_challenge.json\\nsignal_s1_embedding_gsm8k.json\\nsignal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_arc_challenge.json\\nsignal_s2_minkpp_gsm8k.json\\nsignal_s2_minkpp_mmlu.json\\nsignal_s4_selfcritique_arc_challenge.json\\nsignal_s4_selfcritique_gsm8k.json\\nsignal_s4_selfcritique_mmlu.json\\nsignals_merged_arc_challenge.json\\nsignals_merged_gsm8k.json\\nsignals_merged_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012aeqSdwGdd6R1QBJ6ya9dd`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "ae305c04-9b3a-46fd-b219-9a901f6ac379",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XXg2iUtbbiHxemmC7JZHkf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1336,
+      "cache_read_input_tokens": 34814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1336
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T02:26:17.051Z_
+
+<details><summary>↩ Tool result · `toolu_012aeqSdwGdd6R1QBJ6ya9dd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"_s4_chunks_mmlu\\nsignal_s1_embedding_arc_challenge.json\\nsignal_s1_embedding_gsm8k.json\\nsignal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_arc_challenge.json\\nsignal_s2_minkpp_gsm8k.json\\nsignal_s2_minkpp_mmlu.json\\nsignal_s4_selfcritique_arc_challenge.json\\nsignal_s4_selfcritique_gsm8k.json\\nsignals_merged_arc_challenge.json\\nsignals_merged_gsm8k.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "0e4909bc-51a2-4ec7-8f7f-5f4bd5aad80c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"_s4_chunks_mmlu\\\\nsignal_s1_embedding_arc_challenge.json\\\\nsignal_s1_embedding_gsm8k.json\\\\nsignal_s1_embedding_mmlu.json\\\\nsignal_s2_minkpp_arc_challenge.json\\\\nsignal_s2_minkpp_gsm8k.json\\\\nsignal_s2_minkpp_mmlu.json\\\\nsignal_s4_selfcritique_arc_challenge.json\\\\nsignal_s4_selfcritique_gsm8k.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"_s4_chunks_mmlu\\nsignal_s1_embedding_arc_challenge.json\\nsignal_s1_embedding_gsm8k.json\\nsignal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_arc_challenge.json\\nsignal_s2_minkpp_gsm8k.json\\nsignal_s2_minkpp_mmlu.json\\nsignal_s4_selfcritique_arc_challenge.json\\nsignal_s4_selfcritique_gsm8k.json\\nsignals_merged_arc_challenge.json\\nsignals_merged_gsm8k.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Daux9rZxYhmvGRT8kCXfhp`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "16700cee-cdff-4d43-a9b3-f5d5bb2cf4f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XXg2iUtbbiHxemmC7JZHkf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1336,
+      "cache_read_input_tokens": 34814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1336
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UK1Sr9dapHEj6YkEznmjKa`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "0e433398-c16b-477e-82ea-5df435f19344",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XXg2iUtbbiHxemmC7JZHkf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1336,
+      "cache_read_input_tokens": 34814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1336
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T02:26:18.164Z_
+
+<details><summary>↩ Tool result · `toolu_01Daux9rZxYhmvGRT8kCXfhp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"signal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "960470ae-2ec3-4f00-a641-adbca7b43ab8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_s1_embedding_mmlu.json\\\\nsignal_s2_minkpp_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"signal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T02:26:18.669Z_
+
+<details><summary>↩ Tool result · `toolu_01UK1Sr9dapHEj6YkEznmjKa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"signal_s4_selfcritique_mmlu.json\\nsignals_merged_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "1e038ef8-6882-499a-8823-7f367ba045ba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_s4_selfcritique_mmlu.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"signal_s4_selfcritique_mmlu.json\\nsignals_merged_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check what the 0.5B successful RRF output looked like to understand the full expected matrix:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "2e31a66d-c7cf-4664-bed8-c320b1af7cc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HrLnensGom9FvtuCUFxfk3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1222,
+      "cache_read_input_tokens": 36150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1222
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+Let me check the successful 0.5B RRF output and the SKIP pattern handling for the deprecated directories.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "2f81a8d0-2381-48c0-94d4-c5d7a8b5795e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HrLnensGom9FvtuCUFxfk3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1222,
+      "cache_read_input_tokens": 36150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1222
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FFKJ5mMSPMcQhFDvsCvMFr`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/ -maxdepth 2 -type d -name \"*rrf*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "3fbaeb91-3a0a-4064-b49e-b785d755f248",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HrLnensGom9FvtuCUFxfk3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1222,
+      "cache_read_input_tokens": 36150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1222
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T02:26:24.598Z_
+
+<details><summary>↩ Tool result · `toolu_01FFKJ5mMSPMcQhFDvsCvMFr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v3_rrf\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v3_rrf\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v4_rrf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "6bc3b4ce-50be-45ee-b2ac-d7b617ed1fed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v3_rrf\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v3_rrf\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v4_rrf\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v3_rrf\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v3_rrf\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v4_rrf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01P4Mt7MXKo1PbzB15oKJdPV`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/ -maxdepth 3 -name \"rrf_summary*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "2416d9b6-9211-4e98-b83c-23c7effd431b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HrLnensGom9FvtuCUFxfk3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1222,
+      "cache_read_input_tokens": 36150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1222
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T02:26:25.274Z_
+
+<details><summary>↩ Tool result · `toolu_01P4Mt7MXKo1PbzB15oKJdPV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "2dc7a42e-5701-48cf-a017-b60e0812fa97",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LwM6PKaTq2QhNTzqCGgYBM`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp003/ -type f -name \"*.json\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "bdcf2091-231a-4b50-9a74-72cf081db1e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018aPBrEKNDsFYZ1U7f7vZWL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 681,
+      "cache_read_input_tokens": 37372,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 681
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-16T02:26:29.775Z_
+
+<details><summary>↩ Tool result · `toolu_01LwM6PKaTq2QhNTzqCGgYBM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "6762d233-bb0a-4610-b7d1-04fa6326ba05",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013SZSRDgrs8nWJ5hVu9j3Lq`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/ -maxdepth 3 -name \"exposure_scores*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "a1740838-6cf9-4e82-970c-d12a17d10104",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018aPBrEKNDsFYZ1U7f7vZWL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 681,
+      "cache_read_input_tokens": 37372,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 681
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-16T02:26:30.569Z_
+
+<details><summary>↩ Tool result · `toolu_013SZSRDgrs8nWJ5hVu9j3Lq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp003/exposure_scores.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "5e70998a-df7f-4c0c-b047-bd3a48a73e69",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp003/exposure_scores.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp003/exposure_scores.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RDZV9KVXV2rbPwxaRk2JNj`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp003/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "d961d1ef-a9af-41b3-967f-65e5a49dbbb0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T5Y7QG72JrsecgJ3vYZBan",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 452,
+      "cache_read_input_tokens": 38053,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 452
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T02:26:35.171Z_
+
+<details><summary>↩ Tool result · `toolu_01RDZV9KVXV2rbPwxaRk2JNj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exposure_aggregated.json\\nexposure_scores.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "e024913e-e2f2-4a22-986f-f0957b24f884",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exposure_aggregated.json\\\\nexposure_scores.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"exposure_aggregated.json\\nexposure_scores.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WD8sAFDFYrZFWvWBTx51sV`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/exp003/exposure_scores.json')); print(list(d.keys())[:20])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "2dff6b64-ffe6-4aa5-92d6-b2ce79bedaf9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T5Y7QG72JrsecgJ3vYZBan",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 452,
+      "cache_read_input_tokens": 38053,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 452
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T02:26:35.564Z_
+
+<details><summary>↩ Tool result · `toolu_01WD8sAFDFYrZFWvWBTx51sV`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "393b03e6-f31c-4a36-82ee-92172d9dccd5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011LAwmY1LYARPQFfdrTvzEN`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -50 /root/autodl-tmp/exp003/exposure_scores.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "202b4ab4-2506-4ca5-8d1a-38a0c18c6bb4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ithXowKLixdZkoZPnYij6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 454,
+      "cache_read_input_tokens": 38505,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 454
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-16T02:26:39.770Z_
+
+<details><summary>↩ Tool result · `toolu_011LAwmY1LYARPQFfdrTvzEN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"Qwen2.5-0.5B_d000_s42\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"exposure_scores\\\": [\\n        0.021054345730220043,\\n        0.0045501722788645425,\\n        0.09807833074760101,\\n        0.006730790735654369,\\n        0.007751726967900295,\\n        0.0025813765264191433,\\n        0.0018268978713857345,\\n        0.0024473850182889375,\\n        0.012690154284969564,\\n        0.026702618996245073,\\n        0.00434217970827466,\\n        0.08531988397522741,\\n        0.057234076411411115,\\n        0.008427629059968089,\\n        0.0076541646732007414,\\n        0.0079561213430117,\\n        0.027571965823804064,\\n        0.2042117959001987,\\n        0.012647692714702027,\\n        0.0022103266040772326,\\n        0.015733526171033182,\\n        0.012470529034888435,\\n        0.0047645209927632826,\\n        0.0672248977765895,\\n        0.005346088619450519,\\n        0.010897843925383888,\\n        0.013446423314047447,\\n        0.049405327759203324,\\n        0.004973150918939064,\\n        0.0013288364661861976,\\n        0.004924551082277039,\\n        0.02488404139148812,\\n        0.0457347412888744,\\n        0.010630355767569752,\\n        0.00590704415773969,\\n        0.05670257047452199,\\n        0.04766382253241323,\\n        0.08224435397983375,\\n        0.0031601877551701773,\\n        0.002971944884965626,\\n        0.006781232080881057,\\n        0.0342653136345448,\\n        0.010506711230805757,\\n        0.0016564941780729914,\\n        0.002070464497889778,\\n        0.0038569904490361653,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "120127c7-b420-4b68-b661-c5262d80223a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"Qwen2.5-0.5B_d000_s42\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"exposure_scores\\\\\\\": [\\\\n        0.021054345730220043,\\\\n        0.0045501722788645425,\\\\n        0.09807833074760101,\\\\n        0.006730790735654369,\\\\n        0.007751726967900295,\\\\n        0.0025813765264191433,\\\\n        0.0018268978713857345,\\\\n        0.0024473850182889375,\\\\n        0.012690154284969564,\\\\n        0.026702618996245073,\\\\n        0.00434217970827466,\\\\n        0.08531988397522741,\\\\n        0.057234076411411115,\\\\n        0.008427629059968089,\\\\n        0.0076541646732007414,\\\\n        0.0079561213430117,\\\\n        0.027571965823804064,\\\\n        0.2042117959001987,\\\\n        0.012647692714702027,\\\\n        0.0022103266040772326,\\\\n        0.015733526171033182,\\\\n        0.012470529034888435,\\\\n        0.0047645209927632826,\\\\n        0.0672248977765895,\\\\n        0.005346088619450519,\\\\n        0.010897843925383888,\\\\n        0.013446423314047447,\\\\n        0.049405327759203324,\\\\n        0.004973150918939064,\\\\n        0.0013288364661861976,\\\\n        0.004924551082277039,\\\\n        0.02488404139148812,\\\\n        0.0457347412888744,\\\\n        0.010630355767569752,\\\\n        0.00590704415773969,\\\\n        0.05670257047452199,\\\\n        0.04766382253241323,\\\\n        0.08224435397983375,\\\\n        0.0031601877551701773,\\\\n        0.002971944884965626,\\\\n        0.006781232080881057,\\\\n        0.0342653136345448,\\\\n        0.010506711230805757,\\\\n        0.0016564941780729914,\\\\n        0.002070464497889778,\\\\n        0.0038569904490361653,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"Qwen2.5-0.5B_d000_s42\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"exposure_scores\\\": [\\n        0.021054345730220043,\\n        0.0045501722788645425,\\n        0.09807833074760101,\\n        0.006730790735654369,\\n        0.007751726967900295,\\n        0.0025813765264191433,\\n        0.0018268978713857345,\\n        0.0024473850182889375,\\n        0.012690154284969564,\\n        0.026702618996245073,\\n        0.00434217970827466,\\n        0.08531988397522741,\\n        0.057234076411411115,\\n        0.008427629059968089,\\n        0.0076541646732007414,\\n        0.0079561213430117,\\n        0.027571965823804064,\\n        0.2042117959001987,\\n        0.012647692714702027,\\n        0.0022103266040772326,\\n        0.015733526171033182,\\n        0.012470529034888435,\\n        0.0047645209927632826,\\n        0.0672248977765895,\\n        0.005346088619450519,\\n        0.010897843925383888,\\n        0.013446423314047447,\\n        0.049405327759203324,\\n        0.004973150918939064,\\n        0.0013288364661861976,\\n        0.004924551082277039,\\n        0.02488404139148812,\\n        0.0457347412888744,\\n        0.010630355767569752,\\n        0.00590704415773969,\\n        0.05670257047452199,\\n        0.04766382253241323,\\n        0.08224435397983375,\\n        0.0031601877551701773,\\n        0.002971944884965626,\\n        0.006781232080881057,\\n        0.0342653136345448,\\n        0.010506711230805757,\\n        0.0016564941780729914,\\n        0.002070464497889778,\\n        0.0038569904490361653,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The exposure_scores.json has keys like `Qwen2.5-0.5B_d000_s42` - let me see all the top-level keys to understand what models were included in the 0.5B run.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "be62ea3d-4678-4559-a8eb-e9cbf8572d3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FzX1j7jdJdvUVhcdpT39VT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 38959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 796
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0185H7PjKyXuYDLQ6q2n9Zvd`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/exp003/exposure_scores.json')); [print(k) for k in d.keys()]\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "e29c9c59-6d1c-46da-8460-da90a6ef8378",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FzX1j7jdJdvUVhcdpT39VT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 38959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 796
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-16T02:26:46.520Z_
+
+<details><summary>↩ Tool result · `toolu_0185H7PjKyXuYDLQ6q2n9Zvd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "5a124e70-f774-489b-95ec-59bba06dd882",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KcVS1TvNfDmUCLzxmCW1kp`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -c \"DEPRECATED\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "47fb3104-d8c5-4218-90af-2ce4b4f64955",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FzX1j7jdJdvUVhcdpT39VT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 38959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 796
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T02:26:48.054Z_
+
+<details><summary>↩ Tool result · `toolu_01KcVS1TvNfDmUCLzxmCW1kp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "c7ec60f9-5af5-4192-9fd6-84aeb2c6d933",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DMzmCNtG7RgpQjjPuzrMmy`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"DEPRECATED\\|SKIP\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "2bc14a16-b1f5-4704-a9c2-9195f870d787",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZFivfoAouWp1eh6JaqEPs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 528,
+      "cache_read_input_tokens": 39755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 528
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T02:26:52.553Z_
+
+<details><summary>↩ Tool result · `toolu_01DMzmCNtG7RgpQjjPuzrMmy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "813e189a-8f7b-4e07-a631-45bc82d56918",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VQUmBX1UeTDFWzQ88WvkWn`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/exp003/exposure_scores.json')); print('\\n'.join(d.keys()))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "eb73079b-34d5-45e3-8f94-ee51283cdebb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZFivfoAouWp1eh6JaqEPs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 528,
+      "cache_read_input_tokens": 39755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 528
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T02:26:53.352Z_
+
+<details><summary>↩ Tool result · `toolu_01VQUmBX1UeTDFWzQ88WvkWn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "5839f8be-54d7-4029-9e07-9a0ff4cac793",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0188xv9BExnXL7vDVBRyCzfc`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"DEPRECATED\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "aa556a1a-7479-4f10-97b8-38ee7b8b30fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0144mMcEuR4Gjix7bm6YDfW5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 477,
+      "cache_read_input_tokens": 40283,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 477
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T02:26:57.555Z_
+
+<details><summary>↩ Tool result · `toolu_0188xv9BExnXL7vDVBRyCzfc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SKIP_PATTERNS = [\\\"DEPRECATED\\\"]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "9ac01f28-8084-47d7-98a5-0039c20d5a88",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SKIP_PATTERNS = [\\\\\\\"DEPRECATED\\\\\\\"]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"SKIP_PATTERNS = [\\\"DEPRECATED\\\"]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nv748fYYPdNGjCH3gqgr3z`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"model_size\\|size_filter\\|0.5B\\|1.5B\\|3B\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "e728c888-5282-4fa3-8c43-85eca7954db5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0144mMcEuR4Gjix7bm6YDfW5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 477,
+      "cache_read_input_tokens": 40283,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 477
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T02:27:01.663Z_
+
+<details><summary>↩ Tool result · `toolu_01Nv748fYYPdNGjCH3gqgr3z`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "e4332b40-8dfb-4a22-8e9c-bc1099b93bc8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YLp7LADtRxrq5pAVvkbGXz`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"model_size\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "84954eda-5a4c-4454-a34b-45bd905cb6a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017xYoWnSVDuVEEFYr4QpxWj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 580,
+      "cache_read_input_tokens": 40760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 580
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WNady7PcLheLSbm6FVdecL`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"size_filter\\|size-filter\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "508ef7d8-4a2c-4af1-b152-75db12928d96",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017xYoWnSVDuVEEFYr4QpxWj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 580,
+      "cache_read_input_tokens": 40760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 580
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-16T02:27:07.425Z_
+
+<details><summary>↩ Tool result · `toolu_01YLp7LADtRxrq5pAVvkbGXz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"10:CSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\n47:    \\\"\\\"\\\"Parse signal directory name into model_size, dose, seed.\\\"\\\"\\\"\\n50:        return {\\\"model_size\\\": \\\"unknown\\\", \\\"dose\\\": \\\"unknown\\\", \\\"seed\\\": \\\"unknown\\\"}\\n51:    return {\\\"model_size\\\": m.group(1), \\\"dose\\\": m.group(2), \\\"seed\\\": m.group(3)}\\n300:                    \\\"model_size\\\": meta[\\\"model_size\\\"],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "7a8798fb-76cd-4a92-88e9-42398f8ee29f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"10:CSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\\\n47:    \\\\\\\"\\\\\\\"\\\\\\\"Parse signal directory name into model_size, dose, seed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n50:        return {\\\\\\\"model_size\\\\\\\": \\\\\\\"unknown\\\\\\\", \\\\\\\"dose\\\\\\\": \\\\\\\"unknown\\\\\\\", \\\\\\\"seed\\\\\\\": \\\\\\\"unknown\\\\\\\"}\\\\n51:    return {\\\\\\\"model_size\\\\\\\": m.group(1), \\\\\\\"dose\\\\\\\": m.group(2), \\\\\\\"seed\\\\\\\": m.group(3)}\\\\n300:                    \\\\\\\"model_size\\\\\\\": meta[\\\\\\\"model_size\\\\\\\"],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"10:CSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\n47:    \\\"\\\"\\\"Parse signal directory name into model_size, dose, seed.\\\"\\\"\\\"\\n50:        return {\\\"model_size\\\": \\\"unknown\\\", \\\"dose\\\": \\\"unknown\\\", \\\"seed\\\": \\\"unknown\\\"}\\n51:    return {\\\"model_size\\\": m.group(1), \\\"dose\\\": m.group(2), \\\"seed\\\": m.group(3)}\\n300:                    \\\"model_size\\\": meta[\\\"model_size\\\"],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-16T02:27:07.503Z_
+
+<details><summary>↩ Tool result · `toolu_01WNady7PcLheLSbm6FVdecL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "048edafb-053f-4037-b21a-2f6d8635cceb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BgzbtTkEd73Em1h1ZxacUs`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"size_filter\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "052254c9-baea-4392-88dc-de62e1b479b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013vjyvzsdsSCJUXdZExs9yk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 626,
+      "cache_read_input_tokens": 41340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 626
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-16T02:27:12.089Z_
+
+<details><summary>↩ Tool result · `toolu_01BgzbtTkEd73Em1h1ZxacUs`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "98f852cc-c3ba-4a9c-956c-6783fbee080d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The script doesn't have a size_filter — it processes all directories it finds in the signal root. The regex `_DIR_RE = re.compile(r'Qwen2\.5-(\d+\.?\d*B)_(d\d+)(?:_[va]\d+)*_(s\d+)')` should match both 0.5B and 3B directories.
+
+Let me check how it filters — look at the `aggregate_all_models` function and see if there's any size-based filtering. Also I need to check what signals are required (s1+s2+s4 per the task description) and which 3B directories have complete signal sets.
+
+
+I'm scanning through the CLI arguments to see if there's a model size filter, but looking at the available options like `--signal-root`, `--dosage-filter`, `--benchmarks`, and others, there's no size-based parameter. This means the script will match and process every directory that fits the naming pattern, and SKIP_PATTERNS handles the actual filtering logic.
+
+The `detect_available_signals` function dynamically identifies which signals exist for each model, and `rrf_fuse` only uses what's actually available, so if s3 isn't computed for the 3B model, it'll just work with whatever signals are present. Let me verify that the 3B directory names actually match the regex pattern and check whether the `_a32_` component in something like `Qwen2.5-3B_d100_a32_s123` could be causing a mismatch. Checking whether `_a32` matches the optional pattern — it does, since the regex allows `[va]` characters followed by digits, so this case correctly extracts 3B, d100, and s123.
+
+For the deprecated example, `re.match` only requires matching from the start, not the entire string, so `Qwen2.5-3B_d025_s42_DEPRECATED_alpha16` would match and capture the first three groups, but the trailing `_DEPRECATED_alpha16` would need to be filtered out by the skip patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "56d91f52-eac1-414c-b2b2-08642c7270dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WboFKfiAXxLghcBNqYv1qT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 194,
+      "cache_read_input_tokens": 41966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 194
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+Let me read the `aggregate_all_models` function and check how SKIP_PATTERNS is used.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "a3bdf0ed-2502-41c1-9cdf-2113a3412ba6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WboFKfiAXxLghcBNqYv1qT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 194,
+      "cache_read_input_tokens": 41966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 194
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A61YMbJmVayv3hQU4JbpAq`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"aggregate_all_models\\|SKIP_PATTERNS\\|skip\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "4299e4e8-9e85-4df9-84a9-195867557898",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WboFKfiAXxLghcBNqYv1qT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 194,
+      "cache_read_input_tokens": 41966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 194
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-16T02:27:41.309Z_
+
+<details><summary>↩ Tool result · `toolu_01A61YMbJmVayv3hQU4JbpAq`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "99cf722a-2dc2-4e0f-a422-93d367a8c45d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SCZduA22HAypwt9pnyEBAm`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -200 /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "bda1d240-dcf9-4ff0-99b1-6110231c9d6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WboFKfiAXxLghcBNqYv1qT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 194,
+      "cache_read_input_tokens": 41966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 194
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-16T02:27:41.936Z_
+
+<details><summary>↩ Tool result · `toolu_01SCZduA22HAypwt9pnyEBAm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            continue\\n        model_id = model_dir.name\\n        if any(pat in model_id for pat in SKIP_PATTERNS):\\n            logger.info(\\\"Skipping deprecated dir: %s\\\", model_id)\\n            continue\\n        if dosage_filter and dosage_filter not in model_id:\\n            continue\\n\\n        results[model_id] = {}\\n        for bench in benchmarks:\\n            agg = aggregate_single(str(model_dir), bench, k=k,\\n                                   normalize=normalize, limit=limit)\\n            if agg:\\n                results[model_id][bench] = agg\\n                logger.info(\\\"%s/%s: %d items, exposure [%.4f, %.4f]\\\",\\n                            model_id, bench, len(agg),\\n                            min(r[\\\"exposure\\\"] for r in agg),\\n                            max(r[\\\"exposure\\\"] for r in agg))\\n\\n    return results\\n\\n\\ndef generate_exposure_json(signal_root: str, benchmarks: list[str],\\n                           k: int = DEFAULT_K, normalize: bool = True,\\n                           dosage_filter: str = None, limit: int = 0) -> tuple:\\n    \\\"\\\"\\\"Generate exposure_scores.json for exp-006 IRT calibration.\\n\\n    Output format per model:\\n      {model_id: {benchmark: {\\\"exposure_scores\\\": [...], \\\"item_count\\\": N, \\\"signals_used\\\": [...]}}}\\n    \\\"\\\"\\\"\\n    all_results = aggregate_all_models(signal_root, benchmarks, k=k,\\n                                       normalize=normalize,\\n                                       dosage_filter=dosage_filter,\\n                                       limit=limit)\\n    exposure = {}\\n    for model_id, bench_data in all_results.items():\\n        exposure[model_id] = {}\\n        for bench, items in bench_data.items():\\n            signals_used = sorted(set(\\n                key.replace(\\\"rank_\\\", \\\"\\\")\\n                for item in items for key in item if key.startswith(\\\"rank_\\\")\\n            ))\\n            exposure[model_id][bench] = {\\n                \\\"exposure_scores\\\": [item[\\\"exposure\\\"] for item in items],\\n                \\\"item_count\\\": len(items),\\n                \\\"signals_used\\\": signals_used,\\n            }\\n\\n    aggregated = {}\\n    all_benchmarks = set()\\n    for bd in exposure.values():\\n        all_benchmarks.update(bd.keys())\\n    for bench in sorted(all_benchmarks):\\n        scores_per_model = []\\n        for model_id_key, bd in exposure.items():\\n            if bench in bd:\\n                scores_per_model.append(bd[bench][\\\"exposure_scores\\\"])\\n        if scores_per_model:\\n            min_len = min(len(s) for s in scores_per_model)\\n            stacked = np.array([s[:min_len] for s in scores_per_model])\\n            aggregated[bench] = np.mean(stacked, axis=0).tolist()\\n\\n    return exposure, aggregated\\n\\n\\ndef write_csv(all_results: dict, output_path: Path):\\n    \\\"\\\"\\\"Write all results as a flat CSV with structured columns.\\\"\\\"\\\"\\n    rows = []\\n    for model_id, bench_data in sorted(all_results.items()):\\n        meta = parse_model_dir(model_id)\\n        for bench, items in sorted(bench_data.items()):\\n            for item in items:\\n                row = {\\n                    \\\"item_id\\\": item[\\\"index\\\"],\\n                    \\\"benchmark\\\": bench,\\n                    \\\"model_id\\\": model_id,\\n                    \\\"model_size\\\": meta[\\\"model_size\\\"],\\n                    \\\"dose\\\": meta[\\\"dose\\\"],\\n                    \\\"seed\\\": meta[\\\"seed\\\"],\\n                    \\\"rrf_score\\\": item[\\\"exposure\\\"],\\n                    \\\"rrf_raw\\\": item[\\\"rrf_raw\\\"],\\n                }\\n                for sig in SIGNAL_KEYS:\\n                    if sig in item:\\n                        row[sig] = item[sig]\\n                    if f\\\"rank_{sig}\\\" in item:\\n                        row[f\\\"rank_{sig}\\\"] = item[f\\\"rank_{sig}\\\"]\\n                rows.append(row)\\n\\n    if not rows:\\n        logger.warning(\\\"No data to write to CSV\\\")\\n        return\\n\\n    fieldnames = list(rows[0].keys())\\n    with open(output_path, \\\"w\\\", newline=\\\"\\\") as f:\\n        writer = csv.DictWriter(f, fieldnames=fieldnames)\\n        writer.writeheader()\\n        writer.writerows(rows)\\n    logger.info(\\\"CSV saved to %s (%d rows)\\\", output_path, len(rows))\\n\\n\\ndef main():\\n    pa\\n\\n... [截断: 输出过长，省略 509 字符] ...\\n\\nype=int, default=DEFAULT_K,\\n                        help=\\\"RRF k parameter (default: 60)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--dosage-filter\\\", type=str, default=None,\\n                        help=\\\"Only process dirs matching this dosage (e.g., d005)\\\")\\n    parser.add_argument(\\\"--no-normalize\\\", action=\\\"store_true\\\",\\n                        help=\\\"Skip min-max normalization to [0,1]\\\")\\n    parser.add_argument(\\\"--generate-exposure\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate exposure_scores.json for exp-006\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=None,\\n                        help=\\\"Model identifier for single-dir mode output naming\\\")\\n    parser.add_argument(\\\"--csv\\\", action=\\\"store_true\\\",\\n                        help=\\\"Also output a flat CSV with structured columns\\\")\\n    parser.add_argument(\\\"--limit\\\", type=int, default=0,\\n                        help=\\\"Limit items per benchmark (for dry-run testing)\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    normalize = not args.no_normalize\\n\\n    if args.generate_exposure:\\n        exposure, aggregated = generate_exposure_json(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n            limit=args.limit,\\n        )\\n        out_file = output_dir / \\\"exposure_scores.json\\\"\\n        with open(out_file, \\\"w\\\") as f:\\n            json.dump(exposure, f, indent=2)\\n        logger.info(\\\"Exposure scores saved to %s\\\", out_file)\\n        for mid, bd in exposure.items():\\n            for bench, data in bd.items():\\n                logger.info(\\\"  %s/%s: %d items\\\", mid, bench, data[\\\"item_count\\\"])\\n\\n        agg_file = output_dir / \\\"exposure_aggregated.json\\\"\\n        with open(agg_file, \\\"w\\\") as f:\\n            json.dump(aggregated, f, indent=2)\\n        logger.info(\\\"Aggregated exposure saved to %s (%d benchmarks)\\\",\\n                    agg_file, len(aggregated))\\n        return\\n\\n    if args.signal_dir:\\n        for bench in args.benchmarks:\\n            results = aggregate_single(args.signal_dir, bench, k=args.k,\\n                                       normalize=normalize, limit=args.limit)\\n            if results:\\n                name = args.model_name or Path(args.signal_dir).name\\n                out_file = output_dir / f\\\"rrf_scores_{name}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(results, f, indent=2)\\n                logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n    else:\\n        all_results = aggregate_all_models(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n            limit=args.limit,\\n        )\\n        for model_id, bench_data in all_results.items():\\n            for bench, items in bench_data.items():\\n                out_file = output_dir / f\\\"rrf_scores_{model_id}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(items, f, indent=2)\\n\\n        summary = {\\n            model_id: {\\n                bench: {\\n                    \\\"count\\\": len(items),\\n                    \\\"exposure_mean\\\": float(np.mean([r[\\\"exposure\\\"] for r in items])),\\n                    \\\"exposure_std\\\": float(np.std([r[\\\"exposure\\\"] for r in items])),\\n                }\\n                for bench, items in bench_data.items()\\n            }\\n            for model_id, bench_data in all_results.items()\\n        }\\n        with open(output_dir / \\\"rrf_summary.json\\\", \\\"w\\\") as f:\\n            json.dump(summary, f, indent=2)\\n        logger.info(\\\"Summary saved to %s\\\", output_dir / \\\"rrf_summary.json\\\")\\n\\n        if args.csv:\\n            write_csv(all_results, output_dir / \\\"rrf_scores_all.csv\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "fdc4ecbb-7197-4231-93a5-812444cde451",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            continue\\\\n        model_id = model_dir.name\\\\n        if any(pat in model_id for pat in SKIP_PATTERNS):\\\\n            logger.info(\\\\\\\"Skipping deprecated dir: %s\\\\\\\", model_id)\\\\n            continue\\\\n        if dosage_filter and dosage_filter not in model_id:\\\\n            continue\\\\n\\\\n        results[model_id] = {}\\\\n        for bench in benchmarks:\\\\n            agg = aggregate_single(str(model_dir), bench, k=k,\\\\n                                   normalize=normalize, limit=limit)\\\\n            if agg:\\\\n                results[model_id][bench] = agg\\\\n                logger.info(\\\\\\\"%s/%s: %d items, exposure [%.4f, %.4f]\\\\\\\",\\\\n                            model_id, bench, len(agg),\\\\n                            min(r[\\\\\\\"exposure\\\\\\\"] for r in agg),\\\\n                            max(r[\\\\\\\"exposure\\\\\\\"] for r in agg))\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef generate_exposure_json(signal_root: str, benchmarks: list[str],\\\\n                           k: int = DEFAULT_K, normalize: bool = True,\\\\n                           dosage_filter: str = None, limit: int = 0) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Generate exposure_scores.json for exp-006 IRT calibration.\\\\n\\\\n    Output format per model:\\\\n      {model_id: {benchmark: {\\\\\\\"exposure_scores\\\\\\\": [...], \\\\\\\"item_count\\\\\\\": N, \\\\\\\"signals_used\\\\\\\": [...]}}}\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_results = aggregate_all_models(signal_root, benchmarks, k=k,\\\\n                                       normalize=normalize,\\\\n                                       dosage_filter=dosage_filter,\\\\n                                       limit=limit)\\\\n    exposure = {}\\\\n    for model_id, bench_data in all_results.items():\\\\n        exposure[model_id] = {}\\\\n        for bench, items in bench_data.items():\\\\n            signals_used = sorted(set(\\\\n                key.replace(\\\\\\\"rank_\\\\\\\", \\\\\\\"\\\\\\\")\\\\n                for item in items for key in item if key.startswith(\\\\\\\"rank_\\\\\\\")\\\\n            ))\\\\n            exposure[model_id][bench] = {\\\\n                \\\\\\\"exposure_scores\\\\\\\": [item[\\\\\\\"exposure\\\\\\\"] for item in items],\\\\n                \\\\\\\"item_count\\\\\\\": len(items),\\\\n                \\\\\\\"signals_used\\\\\\\": signals_used,\\\\n            }\\\\n\\\\n    aggregated = {}\\\\n    all_benchmarks = set()\\\\n    for bd in exposure.values():\\\\n        all_benchmarks.update(bd.keys())\\\\n    for bench in sorted(all_benchmarks):\\\\n        scores_per_model = []\\\\n        for model_id_key, bd in exposure.items():\\\\n            if bench in bd:\\\\n                scores_per_model.append(bd[bench][\\\\\\\"exposure_scores\\\\\\\"])\\\\n        if scores_per_model:\\\\n            min_len = min(len(s) for s in scores_per_model)\\\\n            stacked = np.array([s[:min_len] for s in scores_per_model])\\\\n            aggregated[bench] = np.mean(stacked, axis=0).tolist()\\\\n\\\\n    return exposure, aggregated\\\\n\\\\n\\\\ndef write_csv(all_results: dict, output_path: Path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Write all results as a flat CSV with structured columns.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rows = []\\\\n    for model_id, bench_data in sorted(all_results.items()):\\\\n        meta = parse_model_dir(model_id)\\\\n        for bench, items in sorted(bench_data.items()):\\\\n            for item in items:\\\\n                row = {\\\\n                    \\\\\\\"item_id\\\\\\\": item[\\\\\\\"index\\\\\\\"],\\\\n                    \\\\\\\"benchmark\\\\\\\": bench,\\\\n                    \\\\\\\"model_id\\\\\\\": model_id,\\\\n                    \\\\\\\"model_size\\\\\\\": meta[\\\\\\\"model_size\\\\\\\"],\\\\n                    \\\\\\\"dose\\\\\\\": meta[\\\\\\\"dose\\\\\\\"],\\\\n                    \\\\\\\"seed\\\\\\\": meta[\\\\\\\"seed\\\\\\\"],\\\\n                    \\\\\\\"rrf_score\\\\\\\": item[\\\\\\\"exposure\\\\\\\"],\\\\n                    \\\\\\\"rrf_raw\\\\\\\": item[\\\\\\\"rrf_raw\\\\\\\"],\\\\n                }\\\\n                for sig in SIGNAL_KEYS:\\\\n                    if sig in item:\\\\n                        row[sig] = item[sig]\\\\n                    if f\\\\\\\"rank_{sig}\\\\\\\" in item:\\\\n                        row[f\\\\\\\"rank_{sig}\\\\\\\"] = item[f\\\\\\\"rank_{sig}\\\\\\\"]\\\\n                rows.append(row)\\\\n\\\\n    if not rows:\\\\n        logger.warning(\\\\\\\"No data to write to CSV\\\\\\\")\\\\n        return\\\\n\\\\n    fieldnames = list(rows[0].keys())\\\\n    with open(output_path, \\\\\\\"w\\\\\\\", newline=\\\\\\\"\\\\\\\") as f:\\\\n        writer = csv.DictWriter(f, fieldnames=fieldnames)\\\\n        writer.writeheader()\\\\n        writer.writerows(rows)\\\\n    logger.info(\\\\\\\"CSV saved to %s (%d rows)\\\\\\\", output_path, len(rows))\\\\n\\\\n\\\\ndef main():\\\\n    pa\\\\n\\\\n... [截断: 输出过长，省略 509 字符] ...\\\\n\\\\nype=int, default=DEFAULT_K,\\\\n                        help=\\\\\\\"RRF k parameter (default: 60)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--dosage-filter\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Only process dirs matching this dosage (e.g., d005)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--no-normalize\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Skip min-max normalization to [0,1]\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--generate-exposure\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Generate exposure_scores.json for exp-006\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model-name\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Model identifier for single-dir mode output naming\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--csv\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Also output a flat CSV with structured columns\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--limit\\\\\\\", type=int, default=0,\\\\n                        help=\\\\\\\"Limit items per benchmark (for dry-run testing)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO,\\\\n                        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n    normalize = not args.no_normalize\\\\n\\\\n    if args.generate_exposure:\\\\n        exposure, aggregated = generate_exposure_json(\\\\n            args.signal_root, args.benchmarks,\\\\n            k=args.k, normalize=normalize,\\\\n            dosage_filter=args.dosage_filter,\\\\n            limit=args.limit,\\\\n        )\\\\n        out_file = output_dir / \\\\\\\"exposure_scores.json\\\\\\\"\\\\n        with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(exposure, f, indent=2)\\\\n        logger.info(\\\\\\\"Exposure scores saved to %s\\\\\\\", out_file)\\\\n        for mid, bd in exposure.items():\\\\n            for bench, data in bd.items():\\\\n                logger.info(\\\\\\\"  %s/%s: %d items\\\\\\\", mid, bench, data[\\\\\\\"item_count\\\\\\\"])\\\\n\\\\n        agg_file = output_dir / \\\\\\\"exposure_aggregated.json\\\\\\\"\\\\n        with open(agg_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(aggregated, f, indent=2)\\\\n        logger.info(\\\\\\\"Aggregated exposure saved to %s (%d benchmarks)\\\\\\\",\\\\n                    agg_file, len(aggregated))\\\\n        return\\\\n\\\\n    if args.signal_dir:\\\\n        for bench in args.benchmarks:\\\\n            results = aggregate_single(args.signal_dir, bench, k=args.k,\\\\n                                       normalize=normalize, limit=args.limit)\\\\n            if results:\\\\n                name = args.model_name or Path(args.signal_dir).name\\\\n                out_file = output_dir / f\\\\\\\"rrf_scores_{name}_{bench}.json\\\\\\\"\\\\n                with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(results, f, indent=2)\\\\n                logger.info(\\\\\\\"Saved %d items to %s\\\\\\\", len(results), out_file)\\\\n    else:\\\\n        all_results = aggregate_all_models(\\\\n            args.signal_root, args.benchmarks,\\\\n            k=args.k, normalize=normalize,\\\\n            dosage_filter=args.dosage_filter,\\\\n            limit=args.limit,\\\\n        )\\\\n        for model_id, bench_data in all_results.items():\\\\n            for bench, items in bench_data.items():\\\\n                out_file = output_dir / f\\\\\\\"rrf_scores_{model_id}_{bench}.json\\\\\\\"\\\\n                with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(items, f, indent=2)\\\\n\\\\n        summary = {\\\\n            model_id: {\\\\n                bench: {\\\\n                    \\\\\\\"count\\\\\\\": len(items),\\\\n                    \\\\\\\"exposure_mean\\\\\\\": float(np.mean([r[\\\\\\\"exposure\\\\\\\"] for r in items])),\\\\n                    \\\\\\\"exposure_std\\\\\\\": float(np.std([r[\\\\\\\"exposure\\\\\\\"] for r in items])),\\\\n                }\\\\n                for bench, items in bench_data.items()\\\\n            }\\\\n            for model_id, bench_data in all_results.items()\\\\n        }\\\\n        with open(output_dir / \\\\\\\"rrf_summary.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(summary, f, indent=2)\\\\n        logger.info(\\\\\\\"Summary saved to %s\\\\\\\", output_dir / \\\\\\\"rrf_summary.json\\\\\\\")\\\\n\\\\n        if args.csv:\\\\n            write_csv(all_results, output_dir / \\\\\\\"rrf_scores_all.csv\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            continue\\n        model_id = model_dir.name\\n        if any(pat in model_id for pat in SKIP_PATTERNS):\\n            logger.info(\\\"Skipping deprecated dir: %s\\\", model_id)\\n            continue\\n        if dosage_filter and dosage_filter not in model_id:\\n            continue\\n\\n        results[model_id] = {}\\n        for bench in benchmarks:\\n            agg = aggregate_single(str(model_dir), bench, k=k,\\n                                   normalize=normalize, limit=limit)\\n            if agg:\\n                results[model_id][bench] = agg\\n                logger.info(\\\"%s/%s: %d items, exposure [%.4f, %.4f]\\\",\\n                            model_id, bench, len(agg),\\n                            min(r[\\\"exposure\\\"] for r in agg),\\n                            max(r[\\\"exposure\\\"] for r in agg))\\n\\n    return results\\n\\n\\ndef generate_exposure_json(signal_root: str, benchmarks: list[str],\\n                           k: int = DEFAULT_K, normalize: bool = True,\\n                           dosage_filter: str = None, limit: int = 0) -> tuple:\\n    \\\"\\\"\\\"Generate exposure_scores.json for exp-006 IRT calibration.\\n\\n    Output format per model:\\n      {model_id: {benchmark: {\\\"exposure_scores\\\": [...], \\\"item_count\\\": N, \\\"signals_used\\\": [...]}}}\\n    \\\"\\\"\\\"\\n    all_results = aggregate_all_models(signal_root, benchmarks, k=k,\\n                                       normalize=normalize,\\n                                       dosage_filter=dosage_filter,\\n                                       limit=limit)\\n    exposure = {}\\n    for model_id, bench_data in all_results.items():\\n        exposure[model_id] = {}\\n        for bench, items in bench_data.items():\\n            signals_used = sorted(set(\\n                key.replace(\\\"rank_\\\", \\\"\\\")\\n                for item in items for key in item if key.startswith(\\\"rank_\\\")\\n            ))\\n            exposure[model_id][bench] = {\\n                \\\"exposure_scores\\\": [item[\\\"exposure\\\"] for item in items],\\n                \\\"item_count\\\": len(items),\\n                \\\"signals_used\\\": signals_used,\\n            }\\n\\n    aggregated = {}\\n    all_benchmarks = set()\\n    for bd in exposure.values():\\n        all_benchmarks.update(bd.keys())\\n    for bench in sorted(all_benchmarks):\\n        scores_per_model = []\\n        for model_id_key, bd in exposure.items():\\n            if bench in bd:\\n                scores_per_model.append(bd[bench][\\\"exposure_scores\\\"])\\n        if scores_per_model:\\n            min_len = min(len(s) for s in scores_per_model)\\n            stacked = np.array([s[:min_len] for s in scores_per_model])\\n            aggregated[bench] = np.mean(stacked, axis=0).tolist()\\n\\n    return exposure, aggregated\\n\\n\\ndef write_csv(all_results: dict, output_path: Path):\\n    \\\"\\\"\\\"Write all results as a flat CSV with structured columns.\\\"\\\"\\\"\\n    rows = []\\n    for model_id, bench_data in sorted(all_results.items()):\\n        meta = parse_model_dir(model_id)\\n        for bench, items in sorted(bench_data.items()):\\n            for item in items:\\n                row = {\\n                    \\\"item_id\\\": item[\\\"index\\\"],\\n                    \\\"benchmark\\\": bench,\\n                    \\\"model_id\\\": model_id,\\n                    \\\"model_size\\\": meta[\\\"model_size\\\"],\\n                    \\\"dose\\\": meta[\\\"dose\\\"],\\n                    \\\"seed\\\": meta[\\\"seed\\\"],\\n                    \\\"rrf_score\\\": item[\\\"exposure\\\"],\\n                    \\\"rrf_raw\\\": item[\\\"rrf_raw\\\"],\\n                }\\n                for sig in SIGNAL_KEYS:\\n                    if sig in item:\\n                        row[sig] = item[sig]\\n                    if f\\\"rank_{sig}\\\" in item:\\n                        row[f\\\"rank_{sig}\\\"] = item[f\\\"rank_{sig}\\\"]\\n                rows.append(row)\\n\\n    if not rows:\\n        logger.warning(\\\"No data to write to CSV\\\")\\n        return\\n\\n    fieldnames = list(rows[0].keys())\\n    with open(output_path, \\\"w\\\", newline=\\\"\\\") as f:\\n        writer = csv.DictWriter(f, fieldnames=fieldnames)\\n        writer.writeheader()\\n        writer.writerows(rows)\\n    logger.info(\\\"CSV saved to %s (%d rows)\\\", output_path, len(rows))\\n\\n\\ndef main():\\n    pa\\n\\n... [截断: 输出过长，省略 509 字符] ...\\n\\nype=int, default=DEFAULT_K,\\n                        help=\\\"RRF k parameter (default: 60)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--dosage-filter\\\", type=str, default=None,\\n                        help=\\\"Only process dirs matching this dosage (e.g., d005)\\\")\\n    parser.add_argument(\\\"--no-normalize\\\", action=\\\"store_true\\\",\\n                        help=\\\"Skip min-max normalization to [0,1]\\\")\\n    parser.add_argument(\\\"--generate-exposure\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate exposure_scores.json for exp-006\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=None,\\n                        help=\\\"Model identifier for single-dir mode output naming\\\")\\n    parser.add_argument(\\\"--csv\\\", action=\\\"store_true\\\",\\n                        help=\\\"Also output a flat CSV with structured columns\\\")\\n    parser.add_argument(\\\"--limit\\\", type=int, default=0,\\n                        help=\\\"Limit items per benchmark (for dry-run testing)\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    normalize = not args.no_normalize\\n\\n    if args.generate_exposure:\\n        exposure, aggregated = generate_exposure_json(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n            limit=args.limit,\\n        )\\n        out_file = output_dir / \\\"exposure_scores.json\\\"\\n        with open(out_file, \\\"w\\\") as f:\\n            json.dump(exposure, f, indent=2)\\n        logger.info(\\\"Exposure scores saved to %s\\\", out_file)\\n        for mid, bd in exposure.items():\\n            for bench, data in bd.items():\\n                logger.info(\\\"  %s/%s: %d items\\\", mid, bench, data[\\\"item_count\\\"])\\n\\n        agg_file = output_dir / \\\"exposure_aggregated.json\\\"\\n        with open(agg_file, \\\"w\\\") as f:\\n            json.dump(aggregated, f, indent=2)\\n        logger.info(\\\"Aggregated exposure saved to %s (%d benchmarks)\\\",\\n                    agg_file, len(aggregated))\\n        return\\n\\n    if args.signal_dir:\\n        for bench in args.benchmarks:\\n            results = aggregate_single(args.signal_dir, bench, k=args.k,\\n                                       normalize=normalize, limit=args.limit)\\n            if results:\\n                name = args.model_name or Path(args.signal_dir).name\\n                out_file = output_dir / f\\\"rrf_scores_{name}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(results, f, indent=2)\\n                logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n    else:\\n        all_results = aggregate_all_models(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n            limit=args.limit,\\n        )\\n        for model_id, bench_data in all_results.items():\\n            for bench, items in bench_data.items():\\n                out_file = output_dir / f\\\"rrf_scores_{model_id}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(items, f, indent=2)\\n\\n        summary = {\\n            model_id: {\\n                bench: {\\n                    \\\"count\\\": len(items),\\n                    \\\"exposure_mean\\\": float(np.mean([r[\\\"exposure\\\"] for r in items])),\\n                    \\\"exposure_std\\\": float(np.std([r[\\\"exposure\\\"] for r in items])),\\n                }\\n                for bench, items in bench_data.items()\\n            }\\n            for model_id, bench_data in all_results.items()\\n        }\\n        with open(output_dir / \\\"rrf_summary.json\\\", \\\"w\\\") as f:\\n            json.dump(summary, f, indent=2)\\n        logger.info(\\\"Summary saved to %s\\\", output_dir / \\\"rrf_summary.json\\\")\\n\\n        if args.csv:\\n            write_csv(all_results, output_dir / \\\"rrf_scores_all.csv\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good picture. Let me also check what signals the 0.5B RRF used (to confirm format), and check if the `aggregate_single` function handles partial signal availability correctly. Let me also look at the 0.5B signal directories for comparison.
+
+Let me check the complete 0.5B signal directory structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "fcba8029-a79c-49e5-ac86-a5c700bf1017",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VeRgTNk545CNjsedSEcmkL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4545,
+      "cache_read_input_tokens": 42160,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4545
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+Now let me check a complete 0.5B signal dir for comparison and do a dry-run with a 3B dir that has all 3 signals.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "37da9407-1978-468a-98a6-85d68087eec3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VeRgTNk545CNjsedSEcmkL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4545,
+      "cache_read_input_tokens": 42160,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4545
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KY37j7fKwTfZvMwEndpSgU`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "12a6f5b1-4019-4d14-817f-08471615e120",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VeRgTNk545CNjsedSEcmkL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4545,
+      "cache_read_input_tokens": 42160,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4545
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-16T02:27:50.270Z_
+
+<details><summary>↩ Tool result · `toolu_01KY37j7fKwTfZvMwEndpSgU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"signal_embedding_arc_challenge.json\\nsignal_embedding_gsm8k.json\\nsignal_embedding_mmlu.json\\nsignal_minkpp_arc_challenge.json\\nsignal_minkpp_gsm8k.json\\nsignal_minkpp_mmlu.json\\nsignal_selfcritique_arc_challenge.json\\nsignal_selfcritique_gsm8k.json\\nsignal_selfcritique_mmlu.json\\nsignals_merged_arc_challenge.json\\nsignals_merged_gsm8k.json\\nsignals_merged_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "4a5212ab-67e9-40e8-b1bf-3b4c26d6751a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_embedding_arc_challenge.json\\\\nsignal_embedding_gsm8k.json\\\\nsignal_embedding_mmlu.json\\\\nsignal_minkpp_arc_challenge.json\\\\nsignal_minkpp_gsm8k.json\\\\nsignal_minkpp_mmlu.json\\\\nsignal_selfcritique_arc_challenge.json\\\\nsignal_selfcritique_gsm8k.json\\\\nsignal_selfcritique_mmlu.json\\\\nsignals_merged_arc_challenge.json\\\\nsignals_merged_gsm8k.json\\\\nsignals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"signal_embedding_arc_challenge.json\\nsignal_embedding_gsm8k.json\\nsignal_embedding_mmlu.json\\nsignal_minkpp_arc_challenge.json\\nsignal_minkpp_gsm8k.json\\nsignal_minkpp_mmlu.json\\nsignal_selfcritique_arc_challenge.json\\nsignal_selfcritique_gsm8k.json\\nsignal_selfcritique_mmlu.json\\nsignals_merged_arc_challenge.json\\nsignals_merged_gsm8k.json\\nsignals_merged_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JRkXAAwCkTYGAThHaGErZm`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"aggregate_single\\|rrf_fuse\\|detect_available\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "78d8e9a0-d72a-4904-a075-5f2d4449273a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VeRgTNk545CNjsedSEcmkL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4545,
+      "cache_read_input_tokens": 42160,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4545
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-16T02:27:50.769Z_
+
+<details><summary>↩ Tool result · `toolu_01JRkXAAwCkTYGAThHaGErZm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "abd5063a-6ce8-44cd-8d00-f925c23afa09",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EUgPx6eyQmVhseEs1za1sq`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"aggregate_single\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "f82b0345-e142-416c-9d57-97fa02d56c8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016WRtHTziKfmAsJHQnk66Kf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 739,
+      "cache_read_input_tokens": 46705,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 739
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-16T02:27:55.219Z_
+
+<details><summary>↩ Tool result · `toolu_01EUgPx6eyQmVhseEs1za1sq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"167:def aggregate_single(signal_dir: str, benchmark: str, k: int = DEFAULT_K,\\n234:            agg = aggregate_single(str(model_dir), bench, k=k,\\n382:            results = aggregate_single(args.signal_dir, bench, k=args.k,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "f28108a9-fe73-4fe3-9909-724677aa1c1c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"167:def aggregate_single(signal_dir: str, benchmark: str, k: int = DEFAULT_K,\\\\n234:            agg = aggregate_single(str(model_dir), bench, k=k,\\\\n382:            results = aggregate_single(args.signal_dir, bench, k=args.k,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"167:def aggregate_single(signal_dir: str, benchmark: str, k: int = DEFAULT_K,\\n234:            agg = aggregate_single(str(model_dir), bench, k=k,\\n382:            results = aggregate_single(args.signal_dir, bench, k=args.k,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MJnJMNxznyaHcKSqSUfZqF`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -220 /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "1ee73071-7e5d-4c59-9db8-dd7d43071471",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017UUEbDKeX16zUtysib6jKy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 368,
+      "cache_read_input_tokens": 47444,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 368
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-16T02:28:00.616Z_
+
+<details><summary>↩ Tool result · `toolu_01MJnJMNxznyaHcKSqSUfZqF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\n\\nFuses per-item signal scores from exp-002 into composite exposure scores\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\n\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\n\\nCSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\n                    rrf_score, rrf_raw, s1_embedding, s2_minkpp, s3_constat,\\n                    s4_selfcritique, rank_s1_embedding, ...\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport logging\\nimport re\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_NAMES = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\nDEFAULT_K = 60\\n\\nSIGNAL_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d100\\\"]\\nDOSAGE_NUM = {\\\"d000\\\": 0, \\\"d005\\\": 5, \\\"d025\\\": 25, \\\"d100\\\": 100}\\n\\nSKIP_PATTERNS = [\\\"DEPRECATED\\\"]\\n\\n_DIR_RE = re.compile(r'Qwen2\\\\.5-(\\\\d+\\\\.?\\\\d*B)_(d\\\\d+)(?:_[va]\\\\d+)*_(s\\\\d+)')\\n\\n\\ndef parse_model_dir(dirname: str) -> dict:\\n    \\\"\\\"\\\"Parse signal directory name into model_size, dose, seed.\\\"\\\"\\\"\\n    m = _DIR_RE.match(dirname)\\n    if not m:\\n        return {\\\"model_size\\\": \\\"unknown\\\", \\\"dose\\\": \\\"unknown\\\", \\\"seed\\\": \\\"unknown\\\"}\\n    return {\\\"model_size\\\": m.group(1), \\\"dose\\\": m.group(2), \\\"seed\\\": m.group(3)}\\n\\n\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\n    \\\"\\\"\\\"Load per-item signals from exp-002 output directory.\\n\\n    Tries signals_merged_{benchmark}.json first, falls back to\\n    loading and merging individual signal files.\\n    \\\"\\\"\\\"\\n    signal_dir = Path(signal_dir)\\n\\n    merged = signal_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged.exists():\\n        with open(merged) as f:\\n            data = json.load(f)\\n        for item in data:\\n            if \\\"item_id\\\" in item and \\\"index\\\" not in item:\\n                item[\\\"index\\\"] = item[\\\"item_id\\\"]\\n        return data\\n\\n    items_by_idx = {}\\n    sig_name_map = {\\n        \\\"s1_embedding\\\": \\\"embedding\\\",\\n        \\\"s2_minkpp\\\": \\\"minkpp\\\",\\n        \\\"s3_constat\\\": \\\"constat\\\",\\n        \\\"s4_selfcritique\\\": \\\"selfcritique\\\",\\n    }\\n    for sig_key, sig_name in sig_name_map.items():\\n        sig_file = signal_dir / f\\\"signal_{sig_key}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            sig_file = signal_dir / f\\\"signal_{sig_name}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            continue\\n        with open(sig_file) as f:\\n            data = json.load(f)\\n        for item in data:\\n            if \\\"index\\\" in item:\\n                idx = item[\\\"index\\\"]\\n            elif \\\"item_id\\\" in item:\\n                idx = item[\\\"item_id\\\"]\\n            else:\\n                continue\\n            if idx not in items_by_idx:\\n                items_by_idx[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": benchmark}\\n            if \\\"score\\\" in item and \\\"signal\\\" in item:\\n                items_by_idx[idx][item[\\\"signal\\\"]] = item[\\\"score\\\"]\\n            else:\\n                items_by_idx[idx].update(item)\\n\\n    if not items_by_idx:\\n        logger.warning(\\\"No signal files found in %s for %s\\\", signal_dir, benchmark)\\n        return []\\n\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\n\\n\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\n    \\\"\\\"\\\"Return signal keys that have non-null, non-zero values.\\\"\\\"\\\"\\n    available = []\\n    for sig in SIGNAL_KEYS:\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\n            available.append(sig)\\n    return available\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank from 1 (highest score = most suspicious) to N, with tie averaging.\\\"\\\"\\\"\\n    n = len(scores)\\n    order = np.argsort(-scores)\\n    ranks = np.empty(n, dtype=float)\\n    i = 0\\n    while i < n:\\n        j = i\\n        while j < n - 1 and scores[order[j + 1]] == scores[order[j]]:\\n            j += 1\\n        avg_rank = (i + j) / 2.0 + 1\\n        for k_idx in range(i, j + 1):\\n            ranks[order[k_idx]] = avg_rank\\n        i = j + 1\\n    return ranks\\n\\n\\ndef rrf_fuse(items: list[dict], k: int = DEFAULT_K,\\n             signals: list[str] = None,\\n             weights: dict = None) -> np.ndarray:\\n    \\\"\\\"\\\"Reciprocal Rank Fusion: score(j) = sum_s w_s / (k + rank_s(j))\\n\\n    All signals oriented so higher = more suspicious.\\n    Returns raw (unnormalized) RRF scores.\\n    \\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n    if not signals:\\n        return np.zeros(len(items))\\n\\n    n = len(items)\\n    if weights is None:\\n        weights = {s: 1.0 for s in signals}\\n\\n    rrf_scores = np.zeros(n)\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        ranks = compute_ranks(vals)\\n        rrf_scores += weights.get(sig, 1.0) / (k + ranks)\\n\\n    return rrf_scores\\n\\n\\ndef normalize_minmax(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Min-max normalize to [0, 1].\\\"\\\"\\\"\\n    mn, mx = scores.min(), scores.max()\\n    if mx - mn < 1e-12:\\n        return np.full_like(scores, 0.5)\\n    return (scores - mn) / (mx - mn)\\n\\n\\ndef aggregate_single(signal_dir: str, benchmark: str, k: int = DEFAULT_K,\\n                     signals: list[str] = None, weights: dict = None,\\n                     normalize: bool = True, limit: int = 0) -> list[dict]:\\n    \\\"\\\"\\\"Full RRF pipeline for one signal directory and benchmark.\\n\\n    Returns list of {\\\"index\\\", \\\"benchmark\\\", \\\"exposure\\\", \\\"rrf_raw\\\", \\\"rank_*\\\", signal scores}.\\n    \\\"\\\"\\\"\\n    items = load_signal_files(signal_dir, benchmark)\\n    if not items:\\n        return []\\n\\n    if limit > 0:\\n        items = items[:limit]\\n\\n    active = signals or detect_available_signals(items)\\n    n = len(items)\\n\\n    rank_matrix = {}\\n    for sig in active:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        rank_matrix[sig] = compute_ranks(vals)\\n\\n    w = weights or {s: 1.0 for s in active}\\n    rrf_scores = np.zeros(n)\\n    for sig in active:\\n        rrf_scores += w.get(sig, 1.0) / (k + rank_matrix[sig])\\n\\n    exposure = normalize_minmax(rrf_scores) if normalize else rrf_scores\\n\\n    results = []\\n    for i, item in enumerate(items):\\n        rec = {\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item.get(\\\"benchmark\\\", benchmark),\\n            \\\"exposure\\\": float(exposure[i]),\\n            \\\"rrf_raw\\\": float(rrf_scores[i]),\\n        }\\n        for sig in active:\\n            rec[f\\\"rank_{sig}\\\"] = int(rank_matrix[sig][i])\\n            rec[sig] = float(item.get(sig, 0.0) or 0.0)\\n        results.append(rec)\\n\\n    return results\\n\\n\\ndef aggregate_all_models(signal_root: str, benchmarks: list[str],\\n                         k: int = DEFAULT_K, normalize: bool = True,\\n                         dosage_filter: str = None, limit: int = 0) -> dict:\\n    \\\"\\\"\\\"Aggregate across all model directories in signal_root.\\n\\n    Returns {model_id: {benchmark: [per-item results]}}\\n    \\\"\\\"\\\"\\n    signal_root = Path(signal_root)\\n    results = {}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "46dd842b-e7a3-40e6-a786-3c86adffeaba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\\\n\\\\nFuses per-item signal scores from exp-002 into composite exposure scores\\\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\\\n\\\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\\\n\\\\nCSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\\\n                    rrf_score, rrf_raw, s1_embedding, s2_minkpp, s3_constat,\\\\n                    s4_selfcritique, rank_s1_embedding, ...\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport logging\\\\nimport re\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_NAMES = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\nDEFAULT_K = 60\\\\n\\\\nSIGNAL_ROOT = \\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\"\\\\nLABELS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nDOSAGES = [\\\\\\\"d000\\\\\\\", \\\\\\\"d005\\\\\\\", \\\\\\\"d025\\\\\\\", \\\\\\\"d100\\\\\\\"]\\\\nDOSAGE_NUM = {\\\\\\\"d000\\\\\\\": 0, \\\\\\\"d005\\\\\\\": 5, \\\\\\\"d025\\\\\\\": 25, \\\\\\\"d100\\\\\\\": 100}\\\\n\\\\nSKIP_PATTERNS = [\\\\\\\"DEPRECATED\\\\\\\"]\\\\n\\\\n_DIR_RE = re.compile(r'Qwen2\\\\\\\\.5-(\\\\\\\\d+\\\\\\\\.?\\\\\\\\d*B)_(d\\\\\\\\d+)(?:_[va]\\\\\\\\d+)*_(s\\\\\\\\d+)')\\\\n\\\\n\\\\ndef parse_model_dir(dirname: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse signal directory name into model_size, dose, seed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    m = _DIR_RE.match(dirname)\\\\n    if not m:\\\\n        return {\\\\\\\"model_size\\\\\\\": \\\\\\\"unknown\\\\\\\", \\\\\\\"dose\\\\\\\": \\\\\\\"unknown\\\\\\\", \\\\\\\"seed\\\\\\\": \\\\\\\"unknown\\\\\\\"}\\\\n    return {\\\\\\\"model_size\\\\\\\": m.group(1), \\\\\\\"dose\\\\\\\": m.group(2), \\\\\\\"seed\\\\\\\": m.group(3)}\\\\n\\\\n\\\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load per-item signals from exp-002 output directory.\\\\n\\\\n    Tries signals_merged_{benchmark}.json first, falls back to\\\\n    loading and merging individual signal files.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    signal_dir = Path(signal_dir)\\\\n\\\\n    merged = signal_dir / f\\\\\\\"signals_merged_{benchmark}.json\\\\\\\"\\\\n    if merged.exists():\\\\n        with open(merged) as f:\\\\n            data = json.load(f)\\\\n        for item in data:\\\\n            if \\\\\\\"item_id\\\\\\\" in item and \\\\\\\"index\\\\\\\" not in item:\\\\n                item[\\\\\\\"index\\\\\\\"] = item[\\\\\\\"item_id\\\\\\\"]\\\\n        return data\\\\n\\\\n    items_by_idx = {}\\\\n    sig_name_map = {\\\\n        \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"embedding\\\\\\\",\\\\n        \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"minkpp\\\\\\\",\\\\n        \\\\\\\"s3_constat\\\\\\\": \\\\\\\"constat\\\\\\\",\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"selfcritique\\\\\\\",\\\\n    }\\\\n    for sig_key, sig_name in sig_name_map.items():\\\\n        sig_file = signal_dir / f\\\\\\\"signal_{sig_key}_{benchmark}.json\\\\\\\"\\\\n        if not sig_file.exists():\\\\n            sig_file = signal_dir / f\\\\\\\"signal_{sig_name}_{benchmark}.json\\\\\\\"\\\\n        if not sig_file.exists():\\\\n            continue\\\\n        with open(sig_file) as f:\\\\n            data = json.load(f)\\\\n        for item in data:\\\\n            if \\\\\\\"index\\\\\\\" in item:\\\\n                idx = item[\\\\\\\"index\\\\\\\"]\\\\n            elif \\\\\\\"item_id\\\\\\\" in item:\\\\n                idx = item[\\\\\\\"item_id\\\\\\\"]\\\\n            else:\\\\n                continue\\\\n            if idx not in items_by_idx:\\\\n                items_by_idx[idx] = {\\\\\\\"index\\\\\\\": idx, \\\\\\\"benchmark\\\\\\\": benchmark}\\\\n            if \\\\\\\"score\\\\\\\" in item and \\\\\\\"signal\\\\\\\" in item:\\\\n                items_by_idx[idx][item[\\\\\\\"signal\\\\\\\"]] = item[\\\\\\\"score\\\\\\\"]\\\\n            else:\\\\n                items_by_idx[idx].update(item)\\\\n\\\\n    if not items_by_idx:\\\\n        logger.warning(\\\\\\\"No signal files found in %s for %s\\\\\\\", signal_dir, benchmark)\\\\n        return []\\\\n\\\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\\\n\\\\n\\\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return signal keys that have non-null, non-zero values.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    available = []\\\\n    for sig in SIGNAL_KEYS:\\\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\\\n            available.append(sig)\\\\n    return available\\\\n\\\\n\\\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Rank from 1 (highest score = most suspicious) to N, with tie averaging.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(scores)\\\\n    order = np.argsort(-scores)\\\\n    ranks = np.empty(n, dtype=float)\\\\n    i = 0\\\\n    while i < n:\\\\n        j = i\\\\n        while j < n - 1 and scores[order[j + 1]] == scores[order[j]]:\\\\n            j += 1\\\\n        avg_rank = (i + j) / 2.0 + 1\\\\n        for k_idx in range(i, j + 1):\\\\n            ranks[order[k_idx]] = avg_rank\\\\n        i = j + 1\\\\n    return ranks\\\\n\\\\n\\\\ndef rrf_fuse(items: list[dict], k: int = DEFAULT_K,\\\\n             signals: list[str] = None,\\\\n             weights: dict = None) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Reciprocal Rank Fusion: score(j) = sum_s w_s / (k + rank_s(j))\\\\n\\\\n    All signals oriented so higher = more suspicious.\\\\n    Returns raw (unnormalized) RRF scores.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if signals is None:\\\\n        signals = detect_available_signals(items)\\\\n    if not signals:\\\\n        return np.zeros(len(items))\\\\n\\\\n    n = len(items)\\\\n    if weights is None:\\\\n        weights = {s: 1.0 for s in signals}\\\\n\\\\n    rrf_scores = np.zeros(n)\\\\n    for sig in signals:\\\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\\\n        ranks = compute_ranks(vals)\\\\n        rrf_scores += weights.get(sig, 1.0) / (k + ranks)\\\\n\\\\n    return rrf_scores\\\\n\\\\n\\\\ndef normalize_minmax(scores: np.ndarray) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Min-max normalize to [0, 1].\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mn, mx = scores.min(), scores.max()\\\\n    if mx - mn < 1e-12:\\\\n        return np.full_like(scores, 0.5)\\\\n    return (scores - mn) / (mx - mn)\\\\n\\\\n\\\\ndef aggregate_single(signal_dir: str, benchmark: str, k: int = DEFAULT_K,\\\\n                     signals: list[str] = None, weights: dict = None,\\\\n                     normalize: bool = True, limit: int = 0) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Full RRF pipeline for one signal directory and benchmark.\\\\n\\\\n    Returns list of {\\\\\\\"index\\\\\\\", \\\\\\\"benchmark\\\\\\\", \\\\\\\"exposure\\\\\\\", \\\\\\\"rrf_raw\\\\\\\", \\\\\\\"rank_*\\\\\\\", signal scores}.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    items = load_signal_files(signal_dir, benchmark)\\\\n    if not items:\\\\n        return []\\\\n\\\\n    if limit > 0:\\\\n        items = items[:limit]\\\\n\\\\n    active = signals or detect_available_signals(items)\\\\n    n = len(items)\\\\n\\\\n    rank_matrix = {}\\\\n    for sig in active:\\\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\\\n        rank_matrix[sig] = compute_ranks(vals)\\\\n\\\\n    w = weights or {s: 1.0 for s in active}\\\\n    rrf_scores = np.zeros(n)\\\\n    for sig in active:\\\\n        rrf_scores += w.get(sig, 1.0) / (k + rank_matrix[sig])\\\\n\\\\n    exposure = normalize_minmax(rrf_scores) if normalize else rrf_scores\\\\n\\\\n    results = []\\\\n    for i, item in enumerate(items):\\\\n        rec = {\\\\n            \\\\\\\"index\\\\\\\": item[\\\\\\\"index\\\\\\\"],\\\\n            \\\\\\\"benchmark\\\\\\\": item.get(\\\\\\\"benchmark\\\\\\\", benchmark),\\\\n            \\\\\\\"exposure\\\\\\\": float(exposure[i]),\\\\n            \\\\\\\"rrf_raw\\\\\\\": float(rrf_scores[i]),\\\\n        }\\\\n        for sig in active:\\\\n            rec[f\\\\\\\"rank_{sig}\\\\\\\"] = int(rank_matrix[sig][i])\\\\n            rec[sig] = float(item.get(sig, 0.0) or 0.0)\\\\n        results.append(rec)\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef aggregate_all_models(signal_root: str, benchmarks: list[str],\\\\n                         k: int = DEFAULT_K, normalize: bool = True,\\\\n                         dosage_filter: str = None, limit: int = 0) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Aggregate across all model directories in signal_root.\\\\n\\\\n    Returns {model_id: {benchmark: [per-item results]}}\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    signal_root = Path(signal_root)\\\\n    results = {}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\n\\nFuses per-item signal scores from exp-002 into composite exposure scores\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\n\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\n\\nCSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\n                    rrf_score, rrf_raw, s1_embedding, s2_minkpp, s3_constat,\\n                    s4_selfcritique, rank_s1_embedding, ...\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport logging\\nimport re\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_NAMES = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\nDEFAULT_K = 60\\n\\nSIGNAL_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d100\\\"]\\nDOSAGE_NUM = {\\\"d000\\\": 0, \\\"d005\\\": 5, \\\"d025\\\": 25, \\\"d100\\\": 100}\\n\\nSKIP_PATTERNS = [\\\"DEPRECATED\\\"]\\n\\n_DIR_RE = re.compile(r'Qwen2\\\\.5-(\\\\d+\\\\.?\\\\d*B)_(d\\\\d+)(?:_[va]\\\\d+)*_(s\\\\d+)')\\n\\n\\ndef parse_model_dir(dirname: str) -> dict:\\n    \\\"\\\"\\\"Parse signal directory name into model_size, dose, seed.\\\"\\\"\\\"\\n    m = _DIR_RE.match(dirname)\\n    if not m:\\n        return {\\\"model_size\\\": \\\"unknown\\\", \\\"dose\\\": \\\"unknown\\\", \\\"seed\\\": \\\"unknown\\\"}\\n    return {\\\"model_size\\\": m.group(1), \\\"dose\\\": m.group(2), \\\"seed\\\": m.group(3)}\\n\\n\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\n    \\\"\\\"\\\"Load per-item signals from exp-002 output directory.\\n\\n    Tries signals_merged_{benchmark}.json first, falls back to\\n    loading and merging individual signal files.\\n    \\\"\\\"\\\"\\n    signal_dir = Path(signal_dir)\\n\\n    merged = signal_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged.exists():\\n        with open(merged) as f:\\n            data = json.load(f)\\n        for item in data:\\n            if \\\"item_id\\\" in item and \\\"index\\\" not in item:\\n                item[\\\"index\\\"] = item[\\\"item_id\\\"]\\n        return data\\n\\n    items_by_idx = {}\\n    sig_name_map = {\\n        \\\"s1_embedding\\\": \\\"embedding\\\",\\n        \\\"s2_minkpp\\\": \\\"minkpp\\\",\\n        \\\"s3_constat\\\": \\\"constat\\\",\\n        \\\"s4_selfcritique\\\": \\\"selfcritique\\\",\\n    }\\n    for sig_key, sig_name in sig_name_map.items():\\n        sig_file = signal_dir / f\\\"signal_{sig_key}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            sig_file = signal_dir / f\\\"signal_{sig_name}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            continue\\n        with open(sig_file) as f:\\n            data = json.load(f)\\n        for item in data:\\n            if \\\"index\\\" in item:\\n                idx = item[\\\"index\\\"]\\n            elif \\\"item_id\\\" in item:\\n                idx = item[\\\"item_id\\\"]\\n            else:\\n                continue\\n            if idx not in items_by_idx:\\n                items_by_idx[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": benchmark}\\n            if \\\"score\\\" in item and \\\"signal\\\" in item:\\n                items_by_idx[idx][item[\\\"signal\\\"]] = item[\\\"score\\\"]\\n            else:\\n                items_by_idx[idx].update(item)\\n\\n    if not items_by_idx:\\n        logger.warning(\\\"No signal files found in %s for %s\\\", signal_dir, benchmark)\\n        return []\\n\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\n\\n\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\n    \\\"\\\"\\\"Return signal keys that have non-null, non-zero values.\\\"\\\"\\\"\\n    available = []\\n    for sig in SIGNAL_KEYS:\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\n            available.append(sig)\\n    return available\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank from 1 (highest score = most suspicious) to N, with tie averaging.\\\"\\\"\\\"\\n    n = len(scores)\\n    order = np.argsort(-scores)\\n    ranks = np.empty(n, dtype=float)\\n    i = 0\\n    while i < n:\\n        j = i\\n        while j < n - 1 and scores[order[j + 1]] == scores[order[j]]:\\n            j += 1\\n        avg_rank = (i + j) / 2.0 + 1\\n        for k_idx in range(i, j + 1):\\n            ranks[order[k_idx]] = avg_rank\\n        i = j + 1\\n    return ranks\\n\\n\\ndef rrf_fuse(items: list[dict], k: int = DEFAULT_K,\\n             signals: list[str] = None,\\n             weights: dict = None) -> np.ndarray:\\n    \\\"\\\"\\\"Reciprocal Rank Fusion: score(j) = sum_s w_s / (k + rank_s(j))\\n\\n    All signals oriented so higher = more suspicious.\\n    Returns raw (unnormalized) RRF scores.\\n    \\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n    if not signals:\\n        return np.zeros(len(items))\\n\\n    n = len(items)\\n    if weights is None:\\n        weights = {s: 1.0 for s in signals}\\n\\n    rrf_scores = np.zeros(n)\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        ranks = compute_ranks(vals)\\n        rrf_scores += weights.get(sig, 1.0) / (k + ranks)\\n\\n    return rrf_scores\\n\\n\\ndef normalize_minmax(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Min-max normalize to [0, 1].\\\"\\\"\\\"\\n    mn, mx = scores.min(), scores.max()\\n    if mx - mn < 1e-12:\\n        return np.full_like(scores, 0.5)\\n    return (scores - mn) / (mx - mn)\\n\\n\\ndef aggregate_single(signal_dir: str, benchmark: str, k: int = DEFAULT_K,\\n                     signals: list[str] = None, weights: dict = None,\\n                     normalize: bool = True, limit: int = 0) -> list[dict]:\\n    \\\"\\\"\\\"Full RRF pipeline for one signal directory and benchmark.\\n\\n    Returns list of {\\\"index\\\", \\\"benchmark\\\", \\\"exposure\\\", \\\"rrf_raw\\\", \\\"rank_*\\\", signal scores}.\\n    \\\"\\\"\\\"\\n    items = load_signal_files(signal_dir, benchmark)\\n    if not items:\\n        return []\\n\\n    if limit > 0:\\n        items = items[:limit]\\n\\n    active = signals or detect_available_signals(items)\\n    n = len(items)\\n\\n    rank_matrix = {}\\n    for sig in active:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        rank_matrix[sig] = compute_ranks(vals)\\n\\n    w = weights or {s: 1.0 for s in active}\\n    rrf_scores = np.zeros(n)\\n    for sig in active:\\n        rrf_scores += w.get(sig, 1.0) / (k + rank_matrix[sig])\\n\\n    exposure = normalize_minmax(rrf_scores) if normalize else rrf_scores\\n\\n    results = []\\n    for i, item in enumerate(items):\\n        rec = {\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item.get(\\\"benchmark\\\", benchmark),\\n            \\\"exposure\\\": float(exposure[i]),\\n            \\\"rrf_raw\\\": float(rrf_scores[i]),\\n        }\\n        for sig in active:\\n            rec[f\\\"rank_{sig}\\\"] = int(rank_matrix[sig][i])\\n            rec[sig] = float(item.get(sig, 0.0) or 0.0)\\n        results.append(rec)\\n\\n    return results\\n\\n\\ndef aggregate_all_models(signal_root: str, benchmarks: list[str],\\n                         k: int = DEFAULT_K, normalize: bool = True,\\n                         dosage_filter: str = None, limit: int = 0) -> dict:\\n    \\\"\\\"\\\"Aggregate across all model directories in signal_root.\\n\\n    Returns {model_id: {benchmark: [per-item results]}}\\n    \\\"\\\"\\\"\\n    signal_root = Path(signal_root)\\n    results = {}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have a comprehensive picture. Let me now check the 0.5B signal file naming convention vs 3B. I noticed that 0.5B uses `signal_embedding_*` while 3B uses `signal_s1_embedding_*`. The code handles both via the fallback in `load_signal_files`:
+
+```python
+sig_file = signal_dir / f"signal_{sig_key}_{benchmark}.json"  # signal_s1_embedding_mmlu.json
+if not sig_file.exists():
+    sig_file = signal_dir / f"signal_{sig_name}_{benchmark}.json"  # signal_embedding_mmlu.json
+
+
+```
+
+The 3B files follow the `signal_s1_embedding_*` pattern which maps to the primary lookup format, so that should work fine. Let me do a dry-run with a 3B directory containing all three required signals to verify the data is complete — checking what's available across the benchmarks for each signal type.
+
+```
+Qwen2.5-3B_d000_v2_s42 has s1, s2, and s3 but is missing s4 entirely. Looking at the other variants, most are incomplete in different ways — some have s4 for certain benchmarks but not others. The RRF script uses dynamic detection so it can work with whatever signals are available, but ideally for the 3B paper results I'd want s1, s2, and s4 across all benchmarks. I should check if there's an exclude-s3 flag or similar option.
+```
+Actually, looking at the code, the script checks which signals have non-null values and only includes those in the fusion. So if s3 isn't present, it gets skipped automatically. The issue is that d000_v2_s42 has s3 but not s4, which means the RRF would use s1+s2+s3 instead of the desired s1+s2+s4 combination. That's a mismatch, though d000 is just the clean baseline so it might not be critical.
+```
+I'm checking the CLI arguments to see if there's a way to explicitly specify which signals to use. The `aggregate_single` function does accept a signals parameter, but looking at how `generate_exposure_json` calls it through the pipeline, no signals filter is being passed — it just uses whatever signals are detected in each directory. This means directories with s3 but not s4 will end up using the wrong signal combination.
+
+I should do a test run with one of the complete 3B model directories to verify the script works end-to-end, and I'll note this signal filtering issue as a potential problem that might need addressing.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "d601debe-7436-4c0e-a60e-f2c1648d23ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfwUhpjesj7feNrqeBaKez",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3239,
+      "cache_read_input_tokens": 47812,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3239
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+Now let me do a dry-run with a complete 3B directory (d005_s123 has all 3 signals for all benchmarks).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "7278e08e-0196-4599-9c4c-adfad854f209",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfwUhpjesj7feNrqeBaKez",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3239,
+      "cache_read_input_tokens": 47812,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3239
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RBic6Ynr7SFuSjzx9tzVmX`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/contamcal-irt-calibration/exp003 && python3 rrf_aggregation.py --signal-dir /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123 --benchmarks mmlu gsm8k arc_challenge --output-dir /tmp/rrf_3B_dryrun --limit 10 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "fc9f4c2c-99f4-4875-8e97-8e0e86eb9a7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfwUhpjesj7feNrqeBaKez",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3239,
+      "cache_read_input_tokens": 47812,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3239
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-16T02:28:34.553Z_
+
+<details><summary>↩ Tool result · `toolu_01RBic6Ynr7SFuSjzx9tzVmX`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/contamcal-irt-calibration/exp003 && python3 rrf_aggregation.py --signal-dir /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123 --benchmarks mmlu gsm8k arc_challenge --output-dir /tmp/rrf_3B_dryrun --limit 10 2>&1'\\n\\nExit code: 127\\n\\nStdout:\\n\\nbash: line 1: python3: command not found\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "dd0788c7-a111-4d5a-8401-a29957d70b12",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/contamcal-irt-calibration/exp003 && python3 rrf_aggregation.py --signal-dir /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123 --benchmarks mmlu gsm8k arc_challenge --output-dir /tmp/rrf_3B_dryrun --limit 10 2>&1'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/contamcal-irt-calibration/exp003 && python3 rrf_aggregation.py --signal-dir /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123 --benchmarks mmlu gsm8k arc_challenge --output-dir /tmp/rrf_3B_dryrun --limit 10 2>&1'\\n\\nExit code: 127\\n\\nStdout:\\n\\nbash: line 1: python3: command not found\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019HZusQDyA8VKJRg6iTJzS6`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp003 && python rrf_aggregation.py --signal-dir /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123 --benchmarks mmlu gsm8k arc_challenge --output-dir /tmp/rrf_3B_dryrun --limit 10 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "93a25ba2-c35a-45fd-9021-ea5fcf0d6e15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUsQCDrRgNn7JbgcocFvUE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1678,
+      "cache_read_input_tokens": 51051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1678
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-16T02:28:41.263Z_
+
+<details><summary>↩ Tool result · `toolu_019HZusQDyA8VKJRg6iTJzS6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 10:28:41,170 [INFO] Saved 10 items to /tmp/rrf_3B_dryrun/rrf_scores_Qwen2.5-3B_d005_s123_mmlu.json\\n2026-05-16 10:28:41,174 [INFO] Saved 10 items to /tmp/rrf_3B_dryrun/rrf_scores_Qwen2.5-3B_d005_s123_gsm8k.json\\n2026-05-16 10:28:41,178 [INFO] Saved 10 items to /tmp/rrf_3B_dryrun/rrf_scores_Qwen2.5-3B_d005_s123_arc_challenge.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "37f8e750-07d7-4be7-8320-73eb27cd475e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 10:28:41,170 [INFO] Saved 10 items to /tmp/rrf_3B_dryrun/rrf_scores_Qwen2.5-3B_d005_s123_mmlu.json\\\\n2026-05-16 10:28:41,174 [INFO] Saved 10 items to /tmp/rrf_3B_dryrun/rrf_scores_Qwen2.5-3B_d005_s123_gsm8k.json\\\\n2026-05-16 10:28:41,178 [INFO] Saved 10 items to /tmp/rrf_3B_dryrun/rrf_scores_Qwen2.5-3B_d005_s123_arc_challenge.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 10:28:41,170 [INFO] Saved 10 items to /tmp/rrf_3B_dryrun/rrf_scores_Qwen2.5-3B_d005_s123_mmlu.json\\n2026-05-16 10:28:41,174 [INFO] Saved 10 items to /tmp/rrf_3B_dryrun/rrf_scores_Qwen2.5-3B_d005_s123_gsm8k.json\\n2026-05-16 10:28:41,178 [INFO] Saved 10 items to /tmp/rrf_3B_dryrun/rrf_scores_Qwen2.5-3B_d005_s123_arc_challenge.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PFThkhvZpWeZ7ncAYHMxZZ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -30 /tmp/rrf_3B_dryrun/rrf_scores_Qwen2.5-3B_d005_s123_mmlu.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "d4e88e5c-b4bc-43c6-9cdb-636670996068",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KW5gwHCRrJo5hBFewuao4P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 472,
+      "cache_read_input_tokens": 52729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 472
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-16T02:28:45.832Z_
+
+<details><summary>↩ Tool result · `toolu_01PFThkhvZpWeZ7ncAYHMxZZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": \\\"mmlu_0000\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"exposure\\\": 0.0,\\n    \\\"rrf_raw\\\": 0.04444444444444444,\\n    \\\"rank_s1_embedding\\\": 10,\\n    \\\"s1_embedding\\\": 0.3213500678539276,\\n    \\\"rank_s2_minkpp\\\": 10,\\n    \\\"s2_minkpp\\\": -1.5686583518981934,\\n    \\\"rank_s4_selfcritique\\\": 3,\\n    \\\"s4_selfcritique\\\": -0.9562865393807289\\n  },\\n  {\\n    \\\"index\\\": \\\"mmlu_0001\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"exposure\\\": 0.09652391404216258,\\n    \\\"rrf_raw\\\": 0.0449015704490157,\\n    \\\"rank_s1_embedding\\\": 6,\\n    \\\"s1_embedding\\\": 0.3793601393699646,\\n    \\\"rank_s2_minkpp\\\": 6,\\n    \\\"s2_minkpp\\\": -1.4661160707473755,\\n    \\\"rank_s4_selfcritique\\\": 8,\\n    \\\"s4_selfcritique\\\": -0.9826016461610633\\n  },\\n  {\\n    \\\"index\\\": \\\"mmlu_0002\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"exposure\\\": 0.14875130418932891,\\n    \\\"rrf_raw\\\": 0.04514891328031376,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "570a714f-7ee0-4fa0-961e-5761c99a36a1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": \\\\\\\"mmlu_0000\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"exposure\\\\\\\": 0.0,\\\\n    \\\\\\\"rrf_raw\\\\\\\": 0.04444444444444444,\\\\n    \\\\\\\"rank_s1_embedding\\\\\\\": 10,\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.3213500678539276,\\\\n    \\\\\\\"rank_s2_minkpp\\\\\\\": 10,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": -1.5686583518981934,\\\\n    \\\\\\\"rank_s4_selfcritique\\\\\\\": 3,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.9562865393807289\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": \\\\\\\"mmlu_0001\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"exposure\\\\\\\": 0.09652391404216258,\\\\n    \\\\\\\"rrf_raw\\\\\\\": 0.0449015704490157,\\\\n    \\\\\\\"rank_s1_embedding\\\\\\\": 6,\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.3793601393699646,\\\\n    \\\\\\\"rank_s2_minkpp\\\\\\\": 6,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": -1.4661160707473755,\\\\n    \\\\\\\"rank_s4_selfcritique\\\\\\\": 8,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.9826016461610633\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": \\\\\\\"mmlu_0002\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"exposure\\\\\\\": 0.14875130418932891,\\\\n    \\\\\\\"rrf_raw\\\\\\\": 0.04514891328031376,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": \\\"mmlu_0000\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"exposure\\\": 0.0,\\n    \\\"rrf_raw\\\": 0.04444444444444444,\\n    \\\"rank_s1_embedding\\\": 10,\\n    \\\"s1_embedding\\\": 0.3213500678539276,\\n    \\\"rank_s2_minkpp\\\": 10,\\n    \\\"s2_minkpp\\\": -1.5686583518981934,\\n    \\\"rank_s4_selfcritique\\\": 3,\\n    \\\"s4_selfcritique\\\": -0.9562865393807289\\n  },\\n  {\\n    \\\"index\\\": \\\"mmlu_0001\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"exposure\\\": 0.09652391404216258,\\n    \\\"rrf_raw\\\": 0.0449015704490157,\\n    \\\"rank_s1_embedding\\\": 6,\\n    \\\"s1_embedding\\\": 0.3793601393699646,\\n    \\\"rank_s2_minkpp\\\": 6,\\n    \\\"s2_minkpp\\\": -1.4661160707473755,\\n    \\\"rank_s4_selfcritique\\\": 8,\\n    \\\"s4_selfcritique\\\": -0.9826016461610633\\n  },\\n  {\\n    \\\"index\\\": \\\"mmlu_0002\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"exposure\\\": 0.14875130418932891,\\n    \\\"rrf_raw\\\": 0.04514891328031376,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The dry-run works. It correctly detected and used s1_embedding, s2_minkpp, s4_selfcritique (no s3). 
+
+Now let me also test the `--generate-exposure` mode which is what will be needed for the full 3B run. But first, let me also check if there's an issue with d000_v2_s42 having s3 but not s4.
+
+Let me also think about what the full matrix should look like for 3B:
+- Dosages: d000, d005, d025, d100
+
+
+- Seeds: s42, s123 (based on what I see)
+- Benchmarks: mmlu, gsm8k, arc_challenge
+
+I'm mapping out the expected directory structure with the alpha=32 requirement in mind. There's some ambiguity around whether d025_s42 is deprecated in favor of d025_v3_s42, and I need to verify which versions are actually being used. Let me look at the C006 directory to clarify.
+
+I'm seeing a blacklist of deprecated checkpoint directories that were trained with alpha=16, but the signal directories in the signals folder could have been computed from either alpha=16 or alpha=32 checkpoints. I need to figure out which signal directories actually correspond to the valid alpha=32 versions. I see the contradiction now — `d000_v2_s42` is explicitly blacklisted even though the note mentions v2/v3 versions use alpha=32, so that note must be a general statement that doesn't apply universally. The blacklist is the authoritative source, meaning I need to check which signal directories actually correspond to valid alpha=32 checkpoints by examining what's in the signals folder and cross-referencing against the blacklist. Looking at the valid 3B signal directories, I'm noticing that most are incomplete — only `d005_s123` has all signals, while the others are missing key components like `s4_mmlu`. I'm also realizing there should be a baseline `d000` directory for the 3B model, but the only one I found (`d000_v2_s42`) is blacklisted, which is problematic.
+
+Wait, I need to reconsider the blacklist constraint more carefully. It explicitly states that the blacklist excludes versions with `_v3` or `_v2` suffixes (the alpha=32 retrained versions), so those shouldn't actually be blacklisted — only the base versions without those suffixes are on the blacklist. That means there might be a valid `d000_v3` version that's either already computed or currently running as one of the active experiments.
+
+Looking at what's actually available: `d005_s123` has complete signals, `d025_v3_s42` and `d025_s123` are valid but with incomplete signal coverage, and `d100_a32_s123` is also valid but only partially computed. The core problem is the missing `d000` baseline with valid alpha=32 signals, plus the incomplete signal coverage across most directories.
+
+The RRF script itself is agnostic about alpha values and will process any directory matching the pattern, so the SKIP_PATTERNS are what actually control which directories get filtered out.
+
+The real issue is that the script will include blacklisted alpha=16 directories like `d005_s42`, `d100_s42`, and `d000_v2_s42` unless we explicitly filter them. I need to either update SKIP_PATTERNS to exclude these blacklisted directories or implement a model-size filter with an explicit directory list. The `d025_s42` directory is also suspicious—it only contains `s4_mmlu` and `merged_mmlu`, which suggests either signals computed from an alpha=16 checkpoint or partial results stored in the wrong location. And `d000_v2_s42` definitely needs filtering since it's blacklisted and has `s3` computed, which doesn't fit the `s1+s2+s4` scheme we're using.
+
+Now I'm checking whether there's a v3 `d000` checkpoint or signal directory being created somewhere.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "7c7cd541-6c9d-461e-8bdb-a9d368a0c5f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017uCZCprxag7b1meC24w2Ht",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 53201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 104_
+
+Let me check for any ongoing signal computations and the d000 baseline situation for 3B.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "6f89b401-0acd-48f6-b8c8-54ab62cf3471",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017uCZCprxag7b1meC24w2Ht",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 53201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NgPJb2Zs5XfJoq7vcbJbP9`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/ -maxdepth 3 -name \"Qwen2.5-3B_d000*\" -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "ac3ad1d9-8be4-4142-b57e-71a1937b1131",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017uCZCprxag7b1meC24w2Ht",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 53201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-16T02:29:27.431Z_
+
+<details><summary>↩ Tool result · `toolu_01NgPJb2Zs5XfJoq7vcbJbP9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned_v2\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned_v3\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v1_s123_DEPRECATED\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v3_s42_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s123_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_para_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_a32_aligned\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "f1b88cf0-cf11-47ee-b337-413f87e356d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_aligned\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned_v2\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned_v3\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v1_s123_DEPRECATED\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v3_s42_aligned\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s123_aligned\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_para_aligned\\\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_a32_aligned\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned_v2\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned_v3\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v1_s123_DEPRECATED\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v3_s42_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s123_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_para_aligned\\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_a32_aligned\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WMYk3Egksh6pNfK8jLLRZ4`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp002/signals/ -name \"*.json\" -newer /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signals_merged_mmlu.json -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "281ab309-6994-45a7-80fd-6e68203b82d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017uCZCprxag7b1meC24w2Ht",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 53201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-16T02:29:28.461Z_
+
+<details><summary>↩ Tool result · `toolu_01WMYk3Egksh6pNfK8jLLRZ4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s1_embedding_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s2_minkpp_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s4_selfcritique_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s1_embedding_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s2_minkpp_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s4_selfcritique_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/_s4_chunks_mmlu/chunk_5000_6000.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/_s4_chunks_mmlu/chunk_6000_7000.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/_s4_chunks_mmlu/chunk_7000_8000.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/_s4_chunks_mmlu/chunk_8000_9000.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "87a97123-3050-450f-b29e-9bd7fa2da6d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s1_embedding_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s2_minkpp_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s4_selfcritique_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s1_embedding_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s2_minkpp_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s4_selfcritique_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/_s4_chunks_mmlu/chunk_5000_6000.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/_s4_chunks_mmlu/chunk_6000_7000.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/_s4_chunks_mmlu/chunk_7000_8000.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/_s4_chunks_mmlu/chunk_8000_9000.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s1_embedding_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s2_minkpp_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s4_selfcritique_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s1_embedding_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s2_minkpp_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signal_s4_selfcritique_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/_s4_chunks_mmlu/chunk_5000_6000.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/_s4_chunks_mmlu/chunk_6000_7000.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/_s4_chunks_mmlu/chunk_7000_8000.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123/_s4_chunks_mmlu/chunk_8000_9000.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting. So `Qwen2.5-3B_d025_s123` has `_s4_chunks_mmlu/` with partial chunks being generated — this is currently running and producing the s4_selfcritique_mmlu signal in chunks. Once done, these chunks will be merged into `signal_s4_selfcritique_mmlu.json`.
+
+Now I see the fuller picture:
+- **d000**: Only `Qwen2.5-3B_d000_v2_s42` signal dir exists (blacklisted), but there are d000 checkpoints with s123 and newer aligned eval results. 
+
+I need to check whether d000 signal directories exist for the RRF run — specifically looking for d000_s42 or d000_s123 variants that meet the alpha=32 compliance requirement. The constraint C006 indicates that v3 and later v2 versions are alpha=32 compliant, but `d000_v2_s42` is blacklisted and there's no `d000_v3_s42` in the signals directory.
+
+The checkpoints include `Qwen2.5-3B_d000_s42` and `Qwen2.5-3B_d000_s123` (both blacklisted as alpha=16), plus `d000_v2` variants. But here's the key insight: for d000 specifically, alpha shouldn't matter because d000 means zero contamination was added during SFT — the model was trained on clean data only. So the signals would reflect baseline exposure regardless of the LoRA alpha value, since alpha affects overall model quality rather than contamination injection. Though I'm realizing this gets more complex when considering how alpha=16 impacts the LoRA capacity itself.
+
+The standardization decision was to use alpha=32 across all dosages for consistency, which means d000 also needs alpha=32 signals. Looking at the checkpoint list, the `d000_v2` variants might already be alpha=32 if v2 represents that standardization, but the blacklist makes it unclear. Let me just check the adapter config on the valid checkpoints to clarify.
+
+The main takeaway is that the RRF script works fine — the dry-run succeeded with the 3B data, no code changes are needed since it dynamically detects available signals, and the regex properly matches the 3B directory names. The real issue is figuring out which checkpoints are actually valid to use.
+
+Now I need to check which of the 6 signal computation experiments mentioned in the task are currently running, since many 3B directories are still missing s4 signals for certain benchmarks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "16458b56-dd03-49c5-8a1e-907bec819dd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ACXiuEjBAYZoh4FGHpVAcJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3752,
+      "cache_read_input_tokens": 53929,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3752
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110_
+
+Let me check what's currently running and whether there's a d000 signal directory for an alpha=32 3B checkpoint.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "3211ccd2-86c2-48bb-9f8a-626425ff3288",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ACXiuEjBAYZoh4FGHpVAcJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3752,
+      "cache_read_input_tokens": 53929,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3752
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014KUBULidgHTtsJsstjVpBW`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/adapter_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "e1294878-eb06-485e-a44f-41a2d28d5c14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ACXiuEjBAYZoh4FGHpVAcJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3752,
+      "cache_read_input_tokens": 53929,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3752
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Fm2i6dKGFr5PBT6Ajqy5Ek`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/adapter_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "ee197c4f-9307-4833-9db4-e3108e2fbeff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ACXiuEjBAYZoh4FGHpVAcJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3752,
+      "cache_read_input_tokens": 53929,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3752
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-16T02:29:59.478Z_
+
+<details><summary>↩ Tool result · `toolu_014KUBULidgHTtsJsstjVpBW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/adapter_config.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "5fcb4de5-8158-447e-8541-218d00fbf3b5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/adapter_config.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/adapter_config.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-16T02:30:00.001Z_
+
+<details><summary>↩ Tool result · `toolu_01Fm2i6dKGFr5PBT6Ajqy5Ek`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/adapter_config.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "16404293-9c90-4ba8-aa1c-4a1a0d8021fd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/adapter_config.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/adapter_config.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VoFqFcYbJAZYmqP6V16m6f`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "cb86dc4e-8bd8-44cc-9df5-0ac94866fc91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01432FdUHGpcQPVpapvdFaJR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1507,
+      "cache_read_input_tokens": 57681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1507
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-16T02:30:04.962Z_
+
+<details><summary>↩ Tool result · `toolu_01VoFqFcYbJAZYmqP6V16m6f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"lora_adapter\\ntrain_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "70792cd2-cedc-4e67-9797-bbb54e6dfec4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lora_adapter\\\\ntrain_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"lora_adapter\\ntrain_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012km3TGaYXEGhzkncYPhrN2`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp001/checkpoints/ -maxdepth 2 -name \"adapter_config.json\" -path \"*3B*d000*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "befa7639-cdef-4752-83c6-f324aad4e715",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01432FdUHGpcQPVpapvdFaJR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1507,
+      "cache_read_input_tokens": 57681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1507
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-16T02:30:05.572Z_
+
+<details><summary>↩ Tool result · `toolu_012km3TGaYXEGhzkncYPhrN2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "7a341268-11e5-4a17-b3c1-a0d8782f156e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VJCnrVvRGHShw6RMU3USLN`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/train_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "da8304c3-04c3-4eee-b0d1-eb1d17429893",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FGA7LcVXXndaeYMs8xVMDE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 446,
+      "cache_read_input_tokens": 59188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 446
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NoHg1xpJ253uCqzqj28gUv`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/ -name \"adapter_config.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "8bfca735-4987-479e-9b37-698d13cca1f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FGA7LcVXXndaeYMs8xVMDE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 446,
+      "cache_read_input_tokens": 59188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 446
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-16T02:30:10.302Z_
+
+<details><summary>↩ Tool result · `toolu_01VJCnrVvRGHShw6RMU3USLN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_name\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\\\",\\n  \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\",\\n  \\\"lora_r\\\": 16,\\n  \\\"lora_alpha\\\": 32,\\n  \\\"epochs\\\": 1,\\n  \\\"batch_size\\\": 1,\\n  \\\"grad_accum\\\": 16,\\n  \\\"lr\\\": 0.0002,\\n  \\\"max_seq_length\\\": 2048,\\n  \\\"seed\\\": 123,\\n  \\\"num_samples\\\": 50000\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "33ecb4a3-9425-4ab8-b20e-a6f4bc01e367",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_name\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\\\\\\\",\\\\n  \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\\\\\",\\\\n  \\\\\\\"lora_r\\\\\\\": 16,\\\\n  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n  \\\\\\\"epochs\\\\\\\": 1,\\\\n  \\\\\\\"batch_size\\\\\\\": 1,\\\\n  \\\\\\\"grad_accum\\\\\\\": 16,\\\\n  \\\\\\\"lr\\\\\\\": 0.0002,\\\\n  \\\\\\\"max_seq_length\\\\\\\": 2048,\\\\n  \\\\\\\"seed\\\\\\\": 123,\\\\n  \\\\\\\"num_samples\\\\\\\": 50000\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_name\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\\\",\\n  \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\",\\n  \\\"lora_r\\\": 16,\\n  \\\"lora_alpha\\\": 32,\\n  \\\"epochs\\\": 1,\\n  \\\"batch_size\\\": 1,\\n  \\\"grad_accum\\\": 16,\\n  \\\"lr\\\": 0.0002,\\n  \\\"max_seq_length\\\": 2048,\\n  \\\"seed\\\": 123,\\n  \\\"num_samples\\\": 50000\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-16T02:30:10.755Z_
+
+<details><summary>↩ Tool result · `toolu_01NoHg1xpJ253uCqzqj28gUv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/checkpoint-3125/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/adapter_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "3ac54931-6be3-4333-b97a-28d5246c9dda",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/checkpoint-3125/adapter_config.json\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/adapter_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/checkpoint-3125/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/adapter_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 123_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So `Qwen2.5-3B_d000_s123` has `lora_alpha: 32` — it's a valid alpha=32 checkpoint. But there's no signal directory for it yet in `/root/autodl-tmp/exp002/signals/`.
+
+This means one of the 6 running experiments might be computing signals for d000_s123. Or it might be one that still needs to be submitted.
+
+Let me check what's running on GPUs now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "9076448c-e4b5-4e45-a2b2-5c8d3b09cc37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D53M1DjewGGA46YqDsSjLk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 752,
+      "cache_read_input_tokens": 59634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 752
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NdkVzk3xnF7K7qLk9GrygY`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"lora_alpha\" /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/adapter_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "80439d95-a7a5-4379-95c4-fe83f2556e2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D53M1DjewGGA46YqDsSjLk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 752,
+      "cache_read_input_tokens": 59634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 752
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EGk77eRTmZUjL1EaqKfpvg`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp001/checkpoints/ -maxdepth 1 -type d -name \"Qwen2.5-3B*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "690f81d2-0dfe-4aaa-982d-6255eacbf214",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D53M1DjewGGA46YqDsSjLk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 752,
+      "cache_read_input_tokens": 59634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 752
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-16T02:30:19.018Z_
+
+<details><summary>↩ Tool result · `toolu_01NdkVzk3xnF7K7qLk9GrygY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"lora_alpha\\\": 32,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "54041c54-4e32-4fcd-990d-20539b641698",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"lora_alpha\\\": 32,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-16T02:30:19.476Z_
+
+<details><summary>↩ Tool result · `toolu_01EGk77eRTmZUjL1EaqKfpvg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_a32_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42_v3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "e536c906-4181-4dee-97bc-54a312f148ca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s123\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_a32_s42\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123\\\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42_v3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_a32_s42\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42_v3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 128_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me understand the full picture. The valid alpha=32 3B checkpoints are:
+- `Qwen2.5-3B_d000_s123` (confirmed alpha=32 from train_config.json)
+- `Qwen2.5-3B_d005_s123` (signals complete)
+- `Qwen2.5-3B_d025_s123` (signals partially complete, s4_mmlu in progress)
+- `Qwen2.5-3B_d025_v3_s42` (signals partial: s1, s2 only)
+
+
+- `Qwen2.5-3B_d100_a32_s123` (signals very partial: only s1_mmlu, s2_mmlu)
+- `Qwen2.5-3B_d100_a32_s42` (no signal dir exists yet)
+- `Qwen2.5-3B_d025_a32_s42` (no signal dir exists yet)
+- `Qwen2.5-3B_d100_a32_s42_v3` (no signal dir exists yet)
+- `Qwen2.5-3B_d100_s123` (need to check if it has alpha=32)
+
+I should verify which of the non-suffixed s123 directories actually have alpha=32. I know d000_s123 does, so let me check d005_s123, d025_s123, and d100_s123 to see if they match.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "d7b534e6-7120-4796-a525-652af32a01c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CiENomxj95hYuM1azngrUP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 60386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1076
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qj5mtARTxH9wdZishe6b9R`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"lora_alpha\" /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter/adapter_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "0341b0bf-7c4d-4b6b-952a-5abc3c31a3ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CiENomxj95hYuM1azngrUP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 60386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1076
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014Wni2oU1qzsgG6zAS6ecSQ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"lora_alpha\" /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter/adapter_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "17ebb3cd-2fd6-4973-9c3e-4128963cd037",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CiENomxj95hYuM1azngrUP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 60386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1076
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-16T02:30:30.254Z_
+
+<details><summary>↩ Tool result · `toolu_01Qj5mtARTxH9wdZishe6b9R`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"lora_alpha\\\": 32,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "7ff9ebea-9d99-4152-b39f-89967f61800c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"lora_alpha\\\": 32,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-16T02:30:30.727Z_
+
+<details><summary>↩ Tool result · `toolu_014Wni2oU1qzsgG6zAS6ecSQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"lora_alpha\\\": 32,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "0112cab4-ead9-4637-89b1-2e51b7d5075c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"lora_alpha\\\": 32,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012qt3CEFjhvLUYqzYVhX7rn`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"lora_alpha\" /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s123/lora_adapter/adapter_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "8787b3cd-6195-46ec-a717-4c2a60811c03",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CiENomxj95hYuM1azngrUP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 60386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1076
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-16T02:30:31.239Z_
+
+<details><summary>↩ Tool result · `toolu_012qt3CEFjhvLUYqzYVhX7rn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"lora_alpha\\\": 16,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "57d23304-e6e1-44d2-84e1-810632466ec8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"lora_alpha\\\\\\\": 16,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"lora_alpha\\\": 16,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 135_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So `Qwen2.5-3B_d100_s123` is alpha=16 (invalid). The valid alpha=32 checkpoint for d100 with s123 is `Qwen2.5-3B_d100_a32_s123`.
+
+Now let me also check the d100_s42 checkpoint and the signal dir — it's in the blacklist.
+
+The valid alpha=32 3B checkpoints for signal computation:
+- d000: `Qwen2.5-3B_d000_s123` (alpha=32) — NO signals yet
+
+
+- d005: `Qwen2.5-3B_d005_s123` (alpha=32) — signals complete
+- d025: `Qwen2.5-3B_d025_s123` (alpha=32) — signals partial, missing s4_mmlu
+- d025: `Qwen2.5-3B_d025_v3_s42` (alpha=32) — signals partial, missing s4 entirely
+- d100: `Qwen2.5-3B_d100_a32_s123` (alpha=32) — signals incomplete with only s1 and s2 mmlu
+- d100: `Qwen2.5-3B_d100_a32_s42` — no signals yet
+
+For the RRF script, I need to address three main issues: the script will process blacklisted alpha=16 directories unless I add them to skip patterns or use an explicit directory list, most alpha=32 directories are still incomplete, and I'm missing a baseline signal directory for d000. I should also verify the regex correctly handles the `_a32_` suffix format.
+
+Testing the regex pattern against the filenames, it looks like it properly captures the model size, dataset identifier, and seed while matching the optional alpha parameter in between. The pattern handles both standard cases and edge cases with trailing version numbers.
+
+Since `re.match()` is used rather than `re.fullmatch()`, any unmatched trailing characters are simply ignored, which works fine for this use case.
+
+I've gathered enough information to move forward. The RRF script handles 3B data without issues in dry-run mode, there's no explicit model-size filtering in place, and the signal detection adapts dynamically to whatever signals are available. The regex validation confirms the naming convention is being parsed correctly.
+
+The main concern is that alpha=16 directories will get included in the pipeline unless we add them to the skip patterns or introduce a model-size filter flag to isolate the 3B RRF run from the larger models.
+
+Now I'm writing up the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "a74db201-19b6-4f64-9f26-af50a325e4a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiQToYrkoJ5Ky4cXeL9Qh6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 61462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1087
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 136_
+
+Now I have all the information needed. Let me also quickly test the `--generate-exposure` mode with a dry-run to be thorough.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "c6d794af-77f3-427d-8e90-5e29072c36dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiQToYrkoJ5Ky4cXeL9Qh6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 61462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1087
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011okRWzdMpXyWT3D4PMg3Y7`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp003 && python rrf_aggregation.py --signal-root /root/autodl-tmp/exp002/signals --benchmarks mmlu gsm8k arc_challenge --output-dir /tmp/rrf_3B_dryrun_full --generate-exposure --limit 5 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "50c73fe5-a02a-48ed-8eaa-c741f617427f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiQToYrkoJ5Ky4cXeL9Qh6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 61462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1087
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-16T02:31:03.230Z_
+
+<details><summary>↩ Tool result · `toolu_011okRWzdMpXyWT3D4PMg3Y7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 10:31:01,489 [INFO] Qwen2.5-0.5B_d000_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,493 [INFO] Qwen2.5-0.5B_d000_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,497 [INFO] Qwen2.5-0.5B_d000_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,537 [INFO] Qwen2.5-0.5B_d005_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,541 [INFO] Qwen2.5-0.5B_d005_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,544 [INFO] Qwen2.5-0.5B_d005_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,584 [INFO] Qwen2.5-0.5B_d025_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,588 [INFO] Qwen2.5-0.5B_d025_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,591 [INFO] Qwen2.5-0.5B_d025_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,631 [INFO] Qwen2.5-0.5B_d100_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,634 [INFO] Qwen2.5-0.5B_d100_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,637 [INFO] Qwen2.5-0.5B_d100_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,676 [INFO] Qwen2.5-1.5B_d000_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,679 [INFO] Qwen2.5-1.5B_d000_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,683 [INFO] Qwen2.5-1.5B_d000_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,720 [INFO] Qwen2.5-1.5B_d005_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,724 [INFO] Qwen2.5-1.5B_d005_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,727 [INFO] Qwen2.5-1.5B_d005_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,765 [INFO] Qwen2.5-1.5B_d025_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,768 [INFO] Qwen2.5-1.5B_d025_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,771 [INFO] Qwen2.5-1.5B_d025_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,808 [INFO] Qwen2.5-1.5B_d100_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,812 [INFO] Qwen2.5-1.5B_d100_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,815 [INFO] Qwen2.5-1.5B_d100_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,027 [INFO] Qwen2.5-3B_d000_v2_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,044 [INFO] Qwen2.5-3B_d000_v2_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,059 [INFO] Qwen2.5-3B_d000_v2_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,095 [INFO] Qwen2.5-3B_d005_s123/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,099 [INFO] Qwen2.5-3B_d005_s123/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,102 [INFO] Qwen2.5-3B_d005_s123/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,292 [INFO] Qwen2.5-3B_d005_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,307 [INFO] Qwen2.5-3B_d005_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,310 [INFO] Qwen2.5-3B_d005_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,504 [INFO] Qwen2.5-3B_d025_s123/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,508 [INFO] Qwen2.5-3B_d025_s123/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,511 [INFO] Qwen2.5-3B_d025_s123/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,546 [INFO] Qwen2.5-3B_d025_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,546 [WARNING] No signal files found in /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42 for gsm8k\\n2026-05-16 10:31:02,546 [WARNING] No signal files found in /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42 for arc_challenge\\n2026-05-16 10:31:02,547 [INFO] Skipping deprecated dir: Qwen2.5-3B_d025_s42_DEPRECATED_alpha16\\n2026-05-16 10:31:02,736 [INFO] Qwen2.5-3B_d025_v3_s42/mmlu: 5 items,\\n\\n... [截断: 输出过长，省略 260 字符] ...\\n\\nen2.5-3B_d100_a32_s123/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,954 [WARNING] No signal files found in /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123 for gsm8k\\n2026-05-16 10:31:02,954 [WARNING] No signal files found in /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123 for arc_challenge\\n2026-05-16 10:31:03,137 [INFO] Qwen2.5-3B_d100_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:03,141 [INFO] Qwen2.5-3B_d100_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:03,144 [INFO] Qwen2.5-3B_d100_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:03,146 [INFO] Exposure scores saved to /tmp/rrf_3B_dryrun_full/exposure_scores.json\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d000_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d000_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d000_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d005_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d005_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d005_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d025_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d025_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d025_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d100_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d100_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d100_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d000_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d000_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d000_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d005_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d005_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d005_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d025_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d025_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d025_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d100_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d100_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d100_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d000_v2_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d000_v2_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d000_v2_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s123/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s123/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s123/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d025_s123/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d025_s123/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d025_s123/arc_challenge: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d025_s42/mmlu: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d025_v3_s42/mmlu: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d025_v3_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d025_v3_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d100_a32_s123/mmlu: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d100_s42/mmlu: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d100_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d100_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,147 [INFO] Aggregated exposure saved to /tmp/rrf_3B_dryrun_full/exposure_aggregated.json (3 benchmarks)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "2e0be13f-25d6-4657-a46f-06dc2bf88ef8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 10:31:01,489 [INFO] Qwen2.5-0.5B_d000_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,493 [INFO] Qwen2.5-0.5B_d000_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,497 [INFO] Qwen2.5-0.5B_d000_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,537 [INFO] Qwen2.5-0.5B_d005_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,541 [INFO] Qwen2.5-0.5B_d005_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,544 [INFO] Qwen2.5-0.5B_d005_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,584 [INFO] Qwen2.5-0.5B_d025_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,588 [INFO] Qwen2.5-0.5B_d025_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,591 [INFO] Qwen2.5-0.5B_d025_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,631 [INFO] Qwen2.5-0.5B_d100_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,634 [INFO] Qwen2.5-0.5B_d100_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,637 [INFO] Qwen2.5-0.5B_d100_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,676 [INFO] Qwen2.5-1.5B_d000_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,679 [INFO] Qwen2.5-1.5B_d000_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,683 [INFO] Qwen2.5-1.5B_d000_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,720 [INFO] Qwen2.5-1.5B_d005_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,724 [INFO] Qwen2.5-1.5B_d005_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,727 [INFO] Qwen2.5-1.5B_d005_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,765 [INFO] Qwen2.5-1.5B_d025_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,768 [INFO] Qwen2.5-1.5B_d025_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,771 [INFO] Qwen2.5-1.5B_d025_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,808 [INFO] Qwen2.5-1.5B_d100_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,812 [INFO] Qwen2.5-1.5B_d100_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:01,815 [INFO] Qwen2.5-1.5B_d100_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,027 [INFO] Qwen2.5-3B_d000_v2_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,044 [INFO] Qwen2.5-3B_d000_v2_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,059 [INFO] Qwen2.5-3B_d000_v2_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,095 [INFO] Qwen2.5-3B_d005_s123/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,099 [INFO] Qwen2.5-3B_d005_s123/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,102 [INFO] Qwen2.5-3B_d005_s123/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,292 [INFO] Qwen2.5-3B_d005_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,307 [INFO] Qwen2.5-3B_d005_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,310 [INFO] Qwen2.5-3B_d005_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,504 [INFO] Qwen2.5-3B_d025_s123/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,508 [INFO] Qwen2.5-3B_d025_s123/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,511 [INFO] Qwen2.5-3B_d025_s123/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,546 [INFO] Qwen2.5-3B_d025_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,546 [WARNING] No signal files found in /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42 for gsm8k\\\\n2026-05-16 10:31:02,546 [WARNING] No signal files found in /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42 for arc_challenge\\\\n2026-05-16 10:31:02,547 [INFO] Skipping deprecated dir: Qwen2.5-3B_d025_s42_DEPRECATED_alpha16\\\\n2026-05-16 10:31:02,736 [INFO] Qwen2.5-3B_d025_v3_s42/mmlu: 5 items,\\\\n\\\\n... [截断: 输出过长，省略 260 字符] ...\\\\n\\\\nen2.5-3B_d100_a32_s123/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:02,954 [WARNING] No signal files found in /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123 for gsm8k\\\\n2026-05-16 10:31:02,954 [WARNING] No signal files found in /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123 for arc_challenge\\\\n2026-05-16 10:31:03,137 [INFO] Qwen2.5-3B_d100_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:03,141 [INFO] Qwen2.5-3B_d100_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:03,144 [INFO] Qwen2.5-3B_d100_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\\\n2026-05-16 10:31:03,146 [INFO] Exposure scores saved to /tmp/rrf_3B_dryrun_full/exposure_scores.json\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d000_s42/mmlu: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d000_s42/gsm8k: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d000_s42/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d005_s42/mmlu: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d005_s42/gsm8k: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d005_s42/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d025_s42/mmlu: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d025_s42/gsm8k: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d025_s42/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d100_s42/mmlu: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d100_s42/gsm8k: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d100_s42/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d000_s42/mmlu: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d000_s42/gsm8k: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d000_s42/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d005_s42/mmlu: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d005_s42/gsm8k: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d005_s42/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d025_s42/mmlu: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d025_s42/gsm8k: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d025_s42/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d100_s42/mmlu: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d100_s42/gsm8k: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d100_s42/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d000_v2_s42/mmlu: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d000_v2_s42/gsm8k: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d000_v2_s42/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s123/mmlu: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s123/gsm8k: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s123/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s42/mmlu: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s42/gsm8k: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s42/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d025_s123/mmlu: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d025_s123/gsm8k: 5 items\\\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d025_s123/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d025_s42/mmlu: 5 items\\\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d025_v3_s42/mmlu: 5 items\\\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d025_v3_s42/gsm8k: 5 items\\\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d025_v3_s42/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d100_a32_s123/mmlu: 5 items\\\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d100_s42/mmlu: 5 items\\\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d100_s42/gsm8k: 5 items\\\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d100_s42/arc_challenge: 5 items\\\\n2026-05-16 10:31:03,147 [INFO] Aggregated exposure saved to /tmp/rrf_3B_dryrun_full/exposure_aggregated.json (3 benchmarks)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 10:31:01,489 [INFO] Qwen2.5-0.5B_d000_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,493 [INFO] Qwen2.5-0.5B_d000_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,497 [INFO] Qwen2.5-0.5B_d000_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,537 [INFO] Qwen2.5-0.5B_d005_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,541 [INFO] Qwen2.5-0.5B_d005_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,544 [INFO] Qwen2.5-0.5B_d005_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,584 [INFO] Qwen2.5-0.5B_d025_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,588 [INFO] Qwen2.5-0.5B_d025_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,591 [INFO] Qwen2.5-0.5B_d025_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,631 [INFO] Qwen2.5-0.5B_d100_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,634 [INFO] Qwen2.5-0.5B_d100_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,637 [INFO] Qwen2.5-0.5B_d100_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,676 [INFO] Qwen2.5-1.5B_d000_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,679 [INFO] Qwen2.5-1.5B_d000_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,683 [INFO] Qwen2.5-1.5B_d000_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,720 [INFO] Qwen2.5-1.5B_d005_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,724 [INFO] Qwen2.5-1.5B_d005_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,727 [INFO] Qwen2.5-1.5B_d005_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,765 [INFO] Qwen2.5-1.5B_d025_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,768 [INFO] Qwen2.5-1.5B_d025_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,771 [INFO] Qwen2.5-1.5B_d025_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,808 [INFO] Qwen2.5-1.5B_d100_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,812 [INFO] Qwen2.5-1.5B_d100_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:01,815 [INFO] Qwen2.5-1.5B_d100_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,027 [INFO] Qwen2.5-3B_d000_v2_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,044 [INFO] Qwen2.5-3B_d000_v2_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,059 [INFO] Qwen2.5-3B_d000_v2_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,095 [INFO] Qwen2.5-3B_d005_s123/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,099 [INFO] Qwen2.5-3B_d005_s123/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,102 [INFO] Qwen2.5-3B_d005_s123/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,292 [INFO] Qwen2.5-3B_d005_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,307 [INFO] Qwen2.5-3B_d005_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,310 [INFO] Qwen2.5-3B_d005_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,504 [INFO] Qwen2.5-3B_d025_s123/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,508 [INFO] Qwen2.5-3B_d025_s123/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,511 [INFO] Qwen2.5-3B_d025_s123/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,546 [INFO] Qwen2.5-3B_d025_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,546 [WARNING] No signal files found in /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42 for gsm8k\\n2026-05-16 10:31:02,546 [WARNING] No signal files found in /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42 for arc_challenge\\n2026-05-16 10:31:02,547 [INFO] Skipping deprecated dir: Qwen2.5-3B_d025_s42_DEPRECATED_alpha16\\n2026-05-16 10:31:02,736 [INFO] Qwen2.5-3B_d025_v3_s42/mmlu: 5 items,\\n\\n... [截断: 输出过长，省略 260 字符] ...\\n\\nen2.5-3B_d100_a32_s123/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:02,954 [WARNING] No signal files found in /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123 for gsm8k\\n2026-05-16 10:31:02,954 [WARNING] No signal files found in /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123 for arc_challenge\\n2026-05-16 10:31:03,137 [INFO] Qwen2.5-3B_d100_s42/mmlu: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:03,141 [INFO] Qwen2.5-3B_d100_s42/gsm8k: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:03,144 [INFO] Qwen2.5-3B_d100_s42/arc_challenge: 5 items, exposure [0.0000, 1.0000]\\n2026-05-16 10:31:03,146 [INFO] Exposure scores saved to /tmp/rrf_3B_dryrun_full/exposure_scores.json\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d000_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d000_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d000_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d005_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d005_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d005_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d025_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d025_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d025_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d100_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d100_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-0.5B_d100_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d000_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d000_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d000_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d005_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d005_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d005_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d025_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d025_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d025_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d100_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d100_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-1.5B_d100_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d000_v2_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d000_v2_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d000_v2_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s123/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s123/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s123/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s42/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d005_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d025_s123/mmlu: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d025_s123/gsm8k: 5 items\\n2026-05-16 10:31:03,146 [INFO]   Qwen2.5-3B_d025_s123/arc_challenge: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d025_s42/mmlu: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d025_v3_s42/mmlu: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d025_v3_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d025_v3_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d100_a32_s123/mmlu: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d100_s42/mmlu: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d100_s42/gsm8k: 5 items\\n2026-05-16 10:31:03,147 [INFO]   Qwen2.5-3B_d100_s42/arc_challenge: 5 items\\n2026-05-16 10:31:03,147 [INFO] Aggregated exposure saved to /tmp/rrf_3B_dryrun_full/exposure_aggregated.json (3 benchmarks)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 139_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The dry-run completed successfully. Key observations from the output:
+
+1. The script processes ALL model sizes (0.5B, 1.5B, 3B) together — no size filter
+2. It correctly skips `Qwen2.5-3B_d025_s42_DEPRECATED_alpha16` via SKIP_PATTERNS
+3. It includes blacklisted alpha=16 directories:
+   - `Qwen2.5-3B_d000_v2_s42` (blacklisted per C006)
+   - `Qwen2.5-3B_d005_s42` (blacklisted per C006)
+   - `Qwen2.5-3B_d025_s42` (blacklisted per C006)
+   - `Qwen2.5-3B_d100_s42` (blacklisted per C006)
+4. Warnings for missing signal files (expected for incomplete dirs)
+
+For a 3B-only RRF run, I need to either add a model size filter flag or run the script separately with `--signal-dir` for each valid directory.
+
+Looking at the blacklisted entries more closely, `Qwen2.5-3B_d025_s42` only contains partial signals from what appears to be stale alpha=16 checkpoint results. To fix this, I need to either add a `--model-size` filter or update the skip patterns to exclude the alpha=16 directories, then compile the readiness report with these modifications in mind.
+
+Generating markdown table... I'm noticing that d025_s123 actually has the selfcritique files for arc_challenge and gsm8k, but the mmlu version is missing—though there are partial chunks in a directory. Let me verify the checkpoint validity rules from the experiment design, specifically checking which directories are blacklisted and whether anything with alpha=32 should be included, then I'll systematically go through the 0.5B checkpoints to see what's actually available.
+
+For the 3B setup, I'm looking at a target matrix of four dosages crossed with two seeds, giving eight total conditions, but only some have valid alpha=32 checkpoints with signals ready: d000_s123 and d005_s123 are complete, d025_s123 is mostly done with mmlu still processing, d025_v3_s42 has partial signals, and the d100 variants are either very incomplete or haven't started signal computation yet.
+
+To make the RRF meaningful, I need all four dosages represented with at least one seed each, and each directory needs signals from at least two benchmarks to enable fusion—ideally three. The main blockers are that d000 has no signal directory for any alpha=32 checkpoint, and d100 only has mmlu signals for one variant, so the six running experiments are currently filling these gaps by computing the missing signal sets across the dosages.
+
+Now I'm ready to write up the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "057f3d4e-088f-40d5-a61e-3cfc9c87c6eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015S6Rx2fxoiXK2yMrJ6PMnp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6511,
+      "cache_read_input_tokens": 62549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6511
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 140_
+
+All data collected. Now writing the readiness report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "471de794-af21-4321-9ef6-56b75470d30d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015S6Rx2fxoiXK2yMrJ6PMnp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6511,
+      "cache_read_input_tokens": 62549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6511
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014hHDg2j9susp5VzS3bMp2N`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "4e7e0a9f-9dc3-4992-9804-4b4b97e9141d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015S6Rx2fxoiXK2yMrJ6PMnp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6511,
+      "cache_read_input_tokens": 62549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6511
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-16T02:31:38.702Z_
+
+<details><summary>↩ Tool result · `toolu_014hHDg2j9susp5VzS3bMp2N`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "0f515dc9-6703-4229-9167-a7347965f568",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 143_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `save_project_file` tool has a strict whitelist: "Writable: memory.md, writing_plan.yaml, paper_framing.md." So I can't write to `artifacts/rrf_readiness_check.md` through this tool. Let me write the file directly to the artifacts directory on the local filesystem instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "2b048628-bc77-40dc-9883-bdbc377e399f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T4u1eom4oq3jdExrhqRiiJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2014,
+      "cache_read_input_tokens": 69060,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2014
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 144_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RrenbU3g1A7p9PzmV1uWox`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/ 2>/dev/null || echo \"NO_DIR\"",
+  "description": "Check artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "def7b70f-3b40-427d-bd85-d584b552e38b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T4u1eom4oq3jdExrhqRiiJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2014,
+      "cache_read_input_tokens": 69060,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2014
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 145 · 2026-05-16T02:31:46.524Z_
+
+<details><summary>↩ Tool result · `toolu_01RrenbU3g1A7p9PzmV1uWox`</summary>
+
+```text
+2pl_vs_4pl_ablation.md
+3B_s123_eval_matrix_complete.md
+_project
+analysis_3B_d000_gsm8k_seed_variance.md
+compile_eval_summary.py
+coverage_report_20260515.md
+d000_alignment_tax_analysis.md
+diag_exp_001_sft_15B_d005_s123.md
+diag_exp_001_sft_d100_3B.md
+dose_response_analysis.md
+dream_reports
+eval_metrics_summary.json
+eval_metrics_summary.md
+eval_summary_matrix.csv
+exp-004
+exp-006
+exp-008
+exp001
+exp001_sft_injection
+exp002_signal_pipeline
+exp003_rrf_ablation
+exp004_incremental_analysis.md
+exp005_noise_propagation
+exp006
+exp006-oracle-gsm8k-extended-v2
+exp006-s1only-gsm8k-2pl
+exp006_baselines
+exp006_irt_calibration
+exp008
+exp008_3regime_analysis.json
+exp008_auc_heatmap.json
+exp008_v2
+exp_001_sft_injection
+exp_002_signals_05B
+exp_005_noise_prop_v4
+exp_008_base_pretrained_15B_eval
+exp_008_instruct_rl_proxy
+exp_008_signal_survival
+fisher_info_derivation
+gpu_audit_20260515T1330.md
+gpu_health_20260515T1654.md
+gpu_health_check_loop10.md
+gpu_status_check.md
+literature_survey_negative_gamma.md
+manifest.yaml
+mvp_simulation
+next_experiment_queue.md
+paper_draft
+phase3_progress.md
+plan_registry_mapping.md
+report_eval_compilation.md
+run_pooled_4bench_irt.py
+run_pooled_irt_n16.sh
+run_stratified_irt.py
+signal_coverage_audit.md
+simulation_sweep
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "5e20f151-0326-4563-b67e-c697e2643116",
+  "tool_use_result": {
+    "stdout": "2pl_vs_4pl_ablation.md\n3B_s123_eval_matrix_complete.md\n_project\nanalysis_3B_d000_gsm8k_seed_variance.md\ncompile_eval_summary.py\ncoverage_report_20260515.md\nd000_alignment_tax_analysis.md\ndiag_exp_001_sft_15B_d005_s123.md\ndiag_exp_001_sft_d100_3B.md\ndose_response_analysis.md\ndream_reports\neval_metrics_summary.json\neval_metrics_summary.md\neval_summary_matrix.csv\nexp-004\nexp-006\nexp-008\nexp001\nexp001_sft_injection\nexp002_signal_pipeline\nexp003_rrf_ablation\nexp004_incremental_analysis.md\nexp005_noise_propagation\nexp006\nexp006-oracle-gsm8k-extended-v2\nexp006-s1only-gsm8k-2pl\nexp006_baselines\nexp006_irt_calibration\nexp008\nexp008_3regime_analysis.json\nexp008_auc_heatmap.json\nexp008_v2\nexp_001_sft_injection\nexp_002_signals_05B\nexp_005_noise_prop_v4\nexp_008_base_pretrained_15B_eval\nexp_008_instruct_rl_proxy\nexp_008_signal_survival\nfisher_info_derivation\ngpu_audit_20260515T1330.md\ngpu_health_20260515T1654.md\ngpu_health_check_loop10.md\ngpu_status_check.md\nliterature_survey_negative_gamma.md\nmanifest.yaml\nmvp_simulation\nnext_experiment_queue.md\npaper_draft\nphase3_progress.md\nplan_registry_mapping.md\nreport_eval_compilation.md\nrun_pooled_4bench_irt.py\nrun_pooled_irt_n16.sh\nrun_stratified_irt.py\nsignal_coverage_audit.md\nsimulation_sweep",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 146_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01XbejKAAERpWjGb7PwZp9LZ`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/rrf_readiness_check.md",
+  "content": "# 3B RRF Aggregation Readiness Check\n\n**Date**: 2026-05-16\n**Script**: `/root/contamcal-irt-calibration/exp003/rrf_aggregation.py`\n\n## Status: PARTIALLY READY — needs minor filter + signal completion\n\n## 1. Script Functionality\n\n**Dry-run result: PASS** — script processes 3B signal directories without errors.\n\n- Regex `_DIR_RE` correctly parses all 3B dir names (including `_v3`, `_a32` suffixes)\n- `detect_available_signals()` dynamically uses only available signals (s3 absence handled gracefully)\n- `SKIP_PATTERNS = [\"DEPRECATED\"]` filters `d025_s42_DEPRECATED_alpha16`\n- `--generate-exposure` mode produces correct output structure\n\n## 2. Required Modification\n\n**Problem**: Script includes blacklisted alpha=16 directories (C006 violation).\n\nThe dry-run showed these alpha=16 dirs being processed:\n- `Qwen2.5-3B_d000_v2_s42` (uses s1+s2+s3, wrong signal set)\n- `Qwen2.5-3B_d005_s42` (alpha=16)\n- `Qwen2.5-3B_d025_s42` (alpha=16, only has s4_mmlu)\n- `Qwen2.5-3B_d100_s42` (alpha=16)\n\n**Fix options**:\n1. **Recommended**: Add alpha=16 blacklist to SKIP_PATTERNS:\n   ```python\n   SKIP_PATTERNS = [\"DEPRECATED\", \"Qwen2.5-3B_d000_v2_s42\", \"Qwen2.5-3B_d005_s42\",\n                    \"Qwen2.5-3B_d025_s42\", \"Qwen2.5-3B_d100_s42\"]\n   ```\n2. Or add `--model-size` CLI filter (more work, less urgent)\n\n## 3. 3B Signal File Status (alpha=32 valid directories only)\n\n| Directory | s1 (m/g/a) | s2 (m/g/a) | s4 (m/g/a) | RRF-ready? |\n|-----------|:----------:|:----------:|:----------:|:----------:|\n| **d000_s123** (NO signal dir) | ✗/✗/✗ | ✗/✗/✗ | ✗/✗/✗ | ✗ BLOCKED |\n| **d005_s123** | ✓/✓/✓ | ✓/✓/✓ | ✓/✓/✓ | ✓ COMPLETE |\n| **d025_s123** | ✓/✓/✓ | ✓/✓/✓ | ✓/✓/✗ | ~90% (s4_mmlu chunking in progress) |\n| **d025_v3_s42** | ✓/✓/✓ | ✓/✓/✓ | ✗/✗/✗ | ✗ s4 missing entirely |\n| **d100_a32_s123** | ✓/✗/✗ | ✓/✗/✗ | ✗/✗/✗ | ✗ only mmlu s1/s2 |\n| **d100_a32_s42** (NO signal dir) | ✗/✗/✗ | ✗/✗/✗ | ✗/✗/✗ | ✗ BLOCKED |\n\nLegend: m=mmlu, g=gsm8k, a=arc_challenge\n\n## 4. Blocking Conditions for Full 3B RRF\n\n**Minimum viable** (1 seed per dosage, s1+s2 only):\n- Need d000_s123 signals (s1+s2 for 3 benchmarks)\n- Need d100_a32_s123 signals (s1+s2 for gsm8k, arc_challenge)\n\n**Full target** (s1+s2+s4, all dosages, all benchmarks):\n- d000_s123: all 9 signal files needed\n- d025_s123: s4_selfcritique_mmlu.json (in progress via chunking)\n- d025_v3_s42: all 3 s4 files needed\n- d100_a32_s123: s1/s2 for gsm8k+arc, all 3 s4 files\n- d100_a32_s42: all 9 signal files\n\n## 5. Dry-Run Output (d005_s123, --limit 10)\n\n```\nSaved 10 items to rrf_scores_Qwen2.5-3B_d005_s123_mmlu.json\nSaved 10 items to rrf_scores_Qwen2.5-3B_d005_s123_gsm8k.json\nSaved 10 items to rrf_scores_Qwen2.5-3B_d005_s123_arc_challenge.json\n```\n\nOutput correctly uses s1+s2+s4 (no s3), produces normalized exposure in [0,1].\n\n## 6. Recommended Execution Command (once signals complete)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/contamcal-irt-calibration/exp003\npython rrf_aggregation.py \\\n  --signal-root /root/autodl-tmp/exp002/signals \\\n  --benchmarks mmlu gsm8k arc_challenge \\\n  --output-dir /root/autodl-tmp/exp003/rrf_3B \\\n  --generate-exposure \\\n  --csv\n```\n\nNote: Must apply SKIP_PATTERNS fix first to exclude alpha=16 dirs.\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "66a02b37-a6e9-41f1-90cc-d56c381636b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0198J1pvFgGCsRHme1vWrQEC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 71074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 147 · 2026-05-16T02:32:14.755Z_
+
+<details><summary>↩ Tool result · `toolu_01XbejKAAERpWjGb7PwZp9LZ`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/rrf_readiness_check.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "9fe8d31d-7bfc-44ae-a802-d0ea3f5e3a47",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/rrf_readiness_check.md",
+    "content": "# 3B RRF Aggregation Readiness Check\n\n**Date**: 2026-05-16\n**Script**: `/root/contamcal-irt-calibration/exp003/rrf_aggregation.py`\n\n## Status: PARTIALLY READY — needs minor filter + signal completion\n\n## 1. Script Functionality\n\n**Dry-run result: PASS** — script processes 3B signal directories without errors.\n\n- Regex `_DIR_RE` correctly parses all 3B dir names (including `_v3`, `_a32` suffixes)\n- `detect_available_signals()` dynamically uses only available signals (s3 absence handled gracefully)\n- `SKIP_PATTERNS = [\"DEPRECATED\"]` filters `d025_s42_DEPRECATED_alpha16`\n- `--generate-exposure` mode produces correct output structure\n\n## 2. Required Modification\n\n**Problem**: Script includes blacklisted alpha=16 directories (C006 violation).\n\nThe dry-run showed these alpha=16 dirs being processed:\n- `Qwen2.5-3B_d000_v2_s42` (uses s1+s2+s3, wrong signal set)\n- `Qwen2.5-3B_d005_s42` (alpha=16)\n- `Qwen2.5-3B_d025_s42` (alpha=16, only has s4_mmlu)\n- `Qwen2.5-3B_d100_s42` (alpha=16)\n\n**Fix options**:\n1. **Recommended**: Add alpha=16 blacklist to SKIP_PATTERNS:\n   ```python\n   SKIP_PATTERNS = [\"DEPRECATED\", \"Qwen2.5-3B_d000_v2_s42\", \"Qwen2.5-3B_d005_s42\",\n                    \"Qwen2.5-3B_d025_s42\", \"Qwen2.5-3B_d100_s42\"]\n   ```\n2. Or add `--model-size` CLI filter (more work, less urgent)\n\n## 3. 3B Signal File Status (alpha=32 valid directories only)\n\n| Directory | s1 (m/g/a) | s2 (m/g/a) | s4 (m/g/a) | RRF-ready? |\n|-----------|:----------:|:----------:|:----------:|:----------:|\n| **d000_s123** (NO signal dir) | ✗/✗/✗ | ✗/✗/✗ | ✗/✗/✗ | ✗ BLOCKED |\n| **d005_s123** | ✓/✓/✓ | ✓/✓/✓ | ✓/✓/✓ | ✓ COMPLETE |\n| **d025_s123** | ✓/✓/✓ | ✓/✓/✓ | ✓/✓/✗ | ~90% (s4_mmlu chunking in progress) |\n| **d025_v3_s42** | ✓/✓/✓ | ✓/✓/✓ | ✗/✗/✗ | ✗ s4 missing entirely |\n| **d100_a32_s123** | ✓/✗/✗ | ✓/✗/✗ | ✗/✗/✗ | ✗ only mmlu s1/s2 |\n| **d100_a32_s42** (NO signal dir) | ✗/✗/✗ | ✗/✗/✗ | ✗/✗/✗ | ✗ BLOCKED |\n\nLegend: m=mmlu, g=gsm8k, a=arc_challenge\n\n## 4. Blocking Conditions for Full 3B RRF\n\n**Minimum viable** (1 seed per dosage, s1+s2 only):\n- Need d000_s123 signals (s1+s2 for 3 benchmarks)\n- Need d100_a32_s123 signals (s1+s2 for gsm8k, arc_challenge)\n\n**Full target** (s1+s2+s4, all dosages, all benchmarks):\n- d000_s123: all 9 signal files needed\n- d025_s123: s4_selfcritique_mmlu.json (in progress via chunking)\n- d025_v3_s42: all 3 s4 files needed\n- d100_a32_s123: s1/s2 for gsm8k+arc, all 3 s4 files\n- d100_a32_s42: all 9 signal files\n\n## 5. Dry-Run Output (d005_s123, --limit 10)\n\n```\nSaved 10 items to rrf_scores_Qwen2.5-3B_d005_s123_mmlu.json\nSaved 10 items to rrf_scores_Qwen2.5-3B_d005_s123_gsm8k.json\nSaved 10 items to rrf_scores_Qwen2.5-3B_d005_s123_arc_challenge.json\n```\n\nOutput correctly uses s1+s2+s4 (no s3), produces normalized exposure in [0,1].\n\n## 6. Recommended Execution Command (once signals complete)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/contamcal-irt-calibration/exp003\npython rrf_aggregation.py \\\n  --signal-root /root/autodl-tmp/exp002/signals \\\n  --benchmarks mmlu gsm8k arc_challenge \\\n  --output-dir /root/autodl-tmp/exp003/rrf_3B \\\n  --generate-exposure \\\n  --csv\n```\n\nNote: Must apply SKIP_PATTERNS fix first to exclude alpha=16 dirs.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 148_
+
+报告已保存到 `artifacts/rrf_readiness_check.md`。
+
+**结论**：RRF 脚本功能上已就绪（dry-run 通过），但有两个前置条件：
+
+1. **需改一行代码**：`SKIP_PATTERNS` 加入 4 个 alpha=16 黑名单目录，否则会混入无效数据
+2. **信号文件缺口**：6 个有效 3B 目录中只有 `d005_s123` 完整就绪；`d025_s123` 接近完成（s4_mmlu 正在分块计算）；`d000_s123` 和 `d100_a32_*` 尚无/极少信号文件——这些很可能就是当前 GPU 上跑的 6 个实验在产出
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "uuid": "bce66115-42cc-45a7-9846-daad9f5d58d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQ1BuA6cD69PsFRrDBkdk2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1648,
+      "cache_read_input_tokens": 71802,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1648
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 149_
+
+报告已保存到 `artifacts/rrf_readiness_check.md`。
+
+**结论**：RRF 脚本功能上已就绪（dry-run 通过），但有两个前置条件：
+
+1. **需改一行代码**：`SKIP_PATTERNS` 加入 4 个 alpha=16 黑名单目录，否则会混入无效数据
+2. **信号文件缺口**：6 个有效 3B 目录中只有 `d005_s123` 完整就绪；`d025_s123` 接近完成（s4_mmlu 正在分块计算）；`d000_s123` 和 `d100_a32_*` 尚无/极少信号文件——这些很可能就是当前 GPU 上跑的 6 个实验在产出
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 434414,
+  "duration_api_ms": 412570,
+  "num_turns": 61,
+  "stop_reason": "end_turn",
+  "session_id": "37628a0b-db11-4681-9d91-7d80a13e5d04",
+  "total_cost_usd": 1.6383917500000005,
+  "usage": {
+    "input_tokens": 42,
+    "cache_creation_input_tokens": 61609,
+    "cache_read_input_tokens": 1593485,
+    "output_tokens": 18157,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 61609,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 233,
+        "cache_read_input_tokens": 71802,
+        "cache_creation_input_tokens": 1648,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1648
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2353,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002458,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 42,
+      "outputTokens": 18157,
+      "cacheReadInputTokens": 1593485,
+      "cacheCreationInputTokens": 61609,
+      "webSearchRequests": 0,
+      "costUSD": 1.6359337500000006,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c3703e55-5ff3-4478-ab5f-d48f75991342"
+}
+```
+
+</details>
+
+---

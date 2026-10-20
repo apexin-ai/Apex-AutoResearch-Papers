@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "393efe0d3c09dd14fd0f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops llama3 gsm8k collect final",
+  "task_key": "worker_ops_llama3-gsm8k-collect-final_20260521T144834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama3-gsm8k-collect-final_20260521T144834_result.json",
+    "occurrence": 1,
+    "bytes": 519,
+    "sha256": "9224c7b2f441d3f41c4836e3c4612fcfa1456b8459bfb80888770f506db3e2d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个进程仍在运行，进度如下：\n\n| Dosage | PID    | 进度       | 速度     | 预估剩余  |\n|--------|--------|-----------|----------|----------|\n| d000   | 528870 | 493/660 (75%) | ~5.33s/it | ~15 min |\n| d025   | 529276 | 489/660 (74%) | ~5.31s/it | ~15 min |\n| d100   | 529683 | 484/660 (73%) | ~5.31s/it | ~16 min |\n\n三个 eval 都已运行约 43-46 分钟，预计再等约 15-16 分钟完成。结果文件尚未写入（eval 完成后才会生成 `eval_results.json`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama3-gsm8k-collect-final.md"
+}

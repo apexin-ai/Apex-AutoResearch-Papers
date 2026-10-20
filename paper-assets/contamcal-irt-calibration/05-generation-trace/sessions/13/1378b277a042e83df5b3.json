@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1378b277a042e83df5b3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops diagnose exp008 eval v2",
+  "task_key": "worker_ops_diagnose-exp008-eval-v2_20260515T141702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-exp008-eval-v2_20260515T141702_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "0453a00f337055b41090d3980106b072e649351bf32fe517d8157fcc12c54650"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_008_base_pretrained_eval_v2 诊断结果：SUCCESS (4/4 benchmarks)**\n\n| Benchmark | 结果 |\n|-----------|------|\n| MMLU | accuracy = 0.2294 (3221/14042) |\n| GSM8K | accuracy = 0.1630 |\n| ARC Challenge | accuracy = 0.2278 |\n| HumanEval | pass@1 = 0.0000 (0/164) |\n\n符合 base pretrained 预期——无 SFT 对齐，MC 格式近乎随机（~22-23%），HumanEval 完全无法生成有效代码。D046 约束：数据仅用于 Discussion \"format incomprehension\" 实证。\n\n**cuda:2 状态**：PID 555936（3B d005 s123 SFT）仍在运行，占用 19316MiB，GPU-Util 100%。exp_008 进程已退出，cuda:2 无残留。\n\n已完成：registry → DONE/success，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-exp008-eval-v2.md"
+}

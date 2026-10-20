@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26a854bb9277cef2879b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops rrf dryrun validation",
+  "task_key": "worker_ops_rrf-dryrun-validation_20260516T035803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rrf-dryrun-validation_20260516T035803_result.json",
+    "occurrence": 1,
+    "bytes": 260,
+    "sha256": "25250411aac256f51bdb0ed0c532813b27087daafd83cdb175eb4bdc329db0f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "RRF pipeline 代码端到端验证通过，全量运行随时可以启动。待 0.5B/1.5B s123 的 gsm8k/arc_challenge 信号和 3B_d100_a32_s123 的剩余信号补齐后，跑全量即可获得完整 exposure scores 给 exp-006 IRT 校准用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-rrf-dryrun-validation.md"
+}

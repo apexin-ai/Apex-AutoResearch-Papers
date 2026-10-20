@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "154774c5bb1660ba8901",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd phase2 sanity check",
+  "task_key": "worker_ssh_westd-phase2-sanity-check_20260519T103336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-phase2-sanity-check_20260519T103336_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "b5d9654aa78c27f50f8037898ebb8ccb3fe18e5388729df35788a132cbec84b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成了。\n\n## Phase 2 Sanity Check 结果\n\n**ARC-Challenge accuracy: 77.82% (912/1172)**\n\n| | Accuracy |\n|---|---|\n| Buggy 版本 | 22.95% |\n| 修复版本 | **77.82%** |\n\n**判定：PASS**\n\n修复版 accuracy 从 22.95% 恢复到 77.82%，远超 60% 门槛。ARC logprob bug 修复已验证有效。\n\n注意：输出文件名是 `eval_results.json` 而不是 `results.json`（脚本实际输出路径为 `/root/autodl-tmp/exp001/eval_results_v2/sanity_check_gemma2_d005_arc/eval_results.json`）。另外，所有 GPU 进程（包括其他任务）目前都已消失，可能有服务器级别事件发生。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-phase2-sanity-check.md"
+}

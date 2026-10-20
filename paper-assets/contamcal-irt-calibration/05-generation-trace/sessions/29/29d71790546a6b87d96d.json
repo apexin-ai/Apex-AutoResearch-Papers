@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29d71790546a6b87d96d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag phi4 s123 mmlu check2",
+  "task_key": "worker_diag_phi4-s123-mmlu-check2_20260520T152044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_phi4-s123-mmlu-check2_20260520T152044_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "af6d7ab01f2e1df11819e0fa42b386f34e27730f59f23394e70082e57764c419"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Cron 报告是半对的** — PID 360893（bash wrapper）确实已退出，但子进程 PID 365465 在 cuda:2 上正常运行（31706 MiB，已运行 4 分钟）。\n\n## 当前状态\n\n| Dosage | Accuracy | 状态 |\n|--------|----------|------|\n| d000 | **76.31%** | ✅ 完成 |\n| d005 | **75.92%** | ✅ 完成 |\n| d025 | — | 🔄 进行中 4181/14042 (29.8%)，~18.8 it/s，预计 ~9 分钟完成 |\n| d050 | — | 未开始 |\n| d100 | — | 未开始 |\n\nd025 于 23:17:22 启动加载模型，当前在跑 MMLU eval。d050/d100 排在后面，整体预计还需 ~40 分钟全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-phi4-s123-mmlu-check2.md"
+}

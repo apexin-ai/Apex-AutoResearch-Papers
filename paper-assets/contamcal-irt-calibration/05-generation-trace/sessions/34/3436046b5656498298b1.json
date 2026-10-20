@@ -1,0 +1,1002 @@
+{
+  "schema_version": "1.0",
+  "id": "3436046b5656498298b1",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "cron hook sft yi15 9b d000 s42 v2",
+  "task_key": "cron_hook_sft_yi15_9b_d000_s42_v2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_sft_yi15_9b_d000_s42_v2.jsonl",
+    "occurrence": 1,
+    "bytes": 48977,
+    "sha256": "99688c54e1abd4822f068300f99f786b6c63b9d90df8afc11716fda330ffa443"
+  },
+  "statistics": {
+    "messages": 50,
+    "user_turns": 1,
+    "tool_calls": 24,
+    "roles": {
+      "user": 1,
+      "tool_call": 24,
+      "tool_result": 24,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T16:28:48.491102+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: sft_yi15_9b_d000_s42_v2\n- project: contamcal-irt-calibration\n- server: westd-29999\n- log_path: /root/yi_d000_training.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T16:29:00.617105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T16:29:00.667684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T16:29:04.033700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T16:29:04.535427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T16:29:04.888587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T16:29:04.889015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T16:29:05.859838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (617,108 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-d75cbd90/f3a61c1b-af18-4756-9cad-a08f604235e0/tool-results/mcp-agent-ml-research-read_registry-1779467345769.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-d75cbd90/f3a61c1b-af18-4756-9cad-a08f604235e0/tool-results/mcp-agent-ml-research-read_registry-1779467345769.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-d75cbd90/f3a61c1b-af18-4756-9cad-a08f604235e0/tool-results/mcp-agent-ml-research-read_registry-1779467345769.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1826
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T16:29:09.174596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"signals_falcon3_d100_s42_v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=702456)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 4639
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T16:29:09.175629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-22T16:28:46Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 415 个实验 — DONE 370, PREPARING 42, QUEUED 2, RUNNING 1\\\\n**DONE 分布**: failed 68, killed 16, negative 10, success 276\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — cqa1-21977:cuda:0, westd-29999:cuda:0\\\\n- **空闲（分配了没跑）**: westd-29999:cuda:0\\\\n\\\\n### 💾 磁盘余量\\\\n- **cqa1-21977**:\\\\n  - `/autodl-pub`: 317G/7.0T 可用（已用 96%） ⚠️\\\\n  - `/autodl-pub/data`: 1.5T/4.0T 可用（已用 65%）\\\\n  - `/usr/bin/nvidia-smi`: 818G/879G 可用（已用 2%）\\\\n- **westd-29999**: ❌ 连接失败\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `signals_falcon3_d100_s42_v2` | cqa1-21977 | ? | ? | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `sft_yi15_9b_d000_s42_v2` [failed] — 2026-05-22T16:28:40 — SSH check failed 5x — last error: Authentication failed.\\\\n- `sft_yi15_9b_d000_s42` [failed] — 2026-05-22T15:47:24 — SSH check failed 5x — last error: Authentication failed.\\\\n- `signals_falcon3_d100_s42` [failed] — 2026-05-22T15:08:24 — ModuleNotFoundError(\\\\\\\"No module named 'faiss.swigfaiss_avx512_spr'\\\\\\\")\\\\n- `eval_falcon3_d100_s42` [success] — 2026-05-22T13:13:37\\\\n- `sft_falcon3_7b_d100_s42` [success] — 2026-05-22T12:45:57 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `sft_yi15_9b_d000_s42_v2`: SSH check failed 5x — last error: Authentication failed.\\\\n- `sft_yi15_9b_d000_s42`: SSH check failed 5x — last error: Authentication failed.\\\\n- `signals_falcon3_d100_s42`: ModuleNotFoundError(\\\\\\\"No module named 'faiss.swigfaiss_avx512_spr'\\\\\\\")\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-22\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---\n…[truncated 6430 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 4287
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T16:29:09.177120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"content\\\": \\\"# contamcal-irt-calibration — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 20:01 UTC | 更新原因: D213+D214 全部完成，终稿就绪待用户决策\\\\n\\\\n> 目标: EMNLP 2026 ARR May 25 | **D+4**\\\\n\\\\n## 核心方向\\\\nSFT-route benchmark contamination 产生 family-dependent dose-response profiles。**4-pattern empirical taxonomy**: Immune / Collapse / V-recovery / Benefit。详见 paper_framing.md。\\\\n\\\\n## 当前状态\\\\n- **Round 10 (3.0 Findings) Action Matrix D213+D214 全部执行完毕**\\\\n- 3 Must-Fix ✅: P(γ<0) 数值修正 (Table 10 模型池 bug fix + exploratory framing)、taxonomy→profiles、OOS limitation\\\\n- 7 Should-Fix ✅: AUGMENT volume confound、γ parameterization 论证、MMLU PPP、novelty positioning、Han/Schaeffer 三方对比、LoRA 参数百分比 (0.45-0.59%)、300-item caveat\\\\n- D214: Prior sensitivity j16_qwen 重跑——tight prior 99.35% (差 Bonferroni 0.03pp)，baseline 99.68%，loose 99.85%。→ exploratory framing\\\\n- 编译通过: 19 页 (main text 8 页), 0 critical warnings\\\\n\\\\n## 终稿就绪\\\\n- [x] Round 9 Action Matrix (D211) — 全部 resolved\\\\n- [x] Round 10 Action Matrix (D213) — 全部 resolved\\\\n- [x] D214 MF-1 P(γ<0) 修正 — Table 10 corrected + exploratory framing\\\\n- [x] 编译验证 ≤ 8 页 main text\\\\n- [ ] **用户决策：提交 ARR 或再做一轮内审**\\\\n\\\\n## Taxonomy (6 families)\\\\nImmune ×2 (Phi-4, LLaMA-3) | Collapse ×1 (Qwen-14B) | V-recovery ×1 (Qwen-7B) | Benefit ×2 (Gemma-2, OLMo-2)\\\\n\\\\n## GPU 预算\\\\n- westd: 4× RTX PRO 6000 Blackwell — 全部空闲\\\\n- cqa1: 1× RTX 4090 D — 空闲\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D215 | 2026-05-22 | Falcon3 结果判断标准：任何结果均直接提交 ARR，不再加内审轮次 | sft_falcon3_7b_d000_s42, sft_falcon3_7b_d100_s42 |\\\\n| D214 | 2026-05-21 | D214: P(γ<0) 差异根因=不同模型池。Option A: j16_qwen 池重跑 pri | — |\\\\n| D213 | 2026-05-21 | D213: Round 10 (3.0 Findings) Action Matrix — P(γ< | — |\\\\n| D212 | 2026-05-21 | D212: 参数化 DR 拟合 1/5 一致——framing 为 n=3 统计力限制而非 Algo | — |\\\\n| D211 | 2026-05-21 | D211: Round 9 (3.5 Borderli\n…[truncated 609 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 4288
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T16:29:26.096619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-d75cbd90/f3a61c1b-af18-4756-9cad-a08f604235e0/tool-results/mcp-agent-ml-research-read_registry-1779467345769.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Find the failed experiment\nfor e in exps:\n    if e.get('exp_id') == 'sft_yi15_9b_d000_s42_v2':\n        print(json.dumps(e, indent=2, ensure_ascii=False))\n        break\n\"",
+              "description": "Extract sft_yi15_9b_d000_s42_v2 details from registry"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T16:29:26.650676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 8, in <module>\n    if e.get('exp_id') == 'sft_yi15_9b_d000_s42_v2':\n       ^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Bash",
+            "elapsed_ms": 554
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T16:29:26.801516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T16:29:26.802048+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-2/proje…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T16:29:33.323023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-d75cbd90/f3a61c1b-af18-4756-9cad-a08f604235e0/tool-results/mcp-agent-ml-research-read_registry-1779467345769.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nregistry = json.loads(result_str)\nexps = registry['data']['experiments']\nprint(type(exps), type(exps[0]) if exps else 'empty')\nprint(len(exps))\n# Check structure\nif isinstance(exps[0], str):\n    # it's a YAML string, search for the exp\n    full = result_str\n    idx = full.find('sft_yi15_9b_d000_s42_v2')\n    if idx >= 0:\n        print(full[max(0,idx-100):idx+2000])\n\" 2>&1 | head -100",
+              "description": "Probe registry structure and find experiment"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T16:29:33.526422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Traceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    print(type(exps), type(exps[0]) if exps else 'empty')\n                           ~~~~^^^\nKeyError: 0"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Bash",
+            "elapsed_ms": 203
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T16:29:38.446696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-d75cbd90/f3a61c1b-af18-4756-9cad-a08f604235e0/tool-results/mcp-agent-ml-research-read_registry-1779467345769.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nregistry = json.loads(result_str)\nexps = registry['data']['experiments']\nprint(type(exps))\nif isinstance(exps, dict):\n    print(list(exps.keys())[:5])\n    if 'sft_yi15_9b_d000_s42_v2' in exps:\n        print(json.dumps(exps['sft_yi15_9b_d000_s42_v2'], indent=2, ensure_ascii=False))\nelif isinstance(exps, list):\n    print(len(exps))\n\" 2>&1 | head -80",
+              "description": "Probe registry dict structure and extract experiment"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T16:29:38.597728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<class 'dict'>\n['sft_yi15_9b_d000_s42_v2', 'sft_yi15_9b_d000_s42', 'signals_falcon3_d100_s42', 'signals_falcon3_d100_s42_v2', 'eval_falcon3_d100_s42']\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-22T15:51:46.028Z\",\n  \"updated_at\": \"2026-05-22T16:28:40.736Z\",\n  \"hypothesis\": \"Yi-1.5-9B exploration: d000 clean SFT baseline (v2 restart after v1 died at step 1802/3125 with no checkpoint)\",\n  \"parent\": \"sft_yi15_9b_d000_s42\",\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Yi-1.5-9B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Yi-1.5-9B_d000_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\",\n    \"server\": \"westd-29999\",\n    \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\",\n    \"data_count\": 50000,\n    \"model_name\": \"Yi-1.5-9B\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"N/A (training from scratch, not eval)\",\n    \"eval_data\": \"N/A (SFT training, not eval)\",\n    \"notes\": \"PID=2658, tmux session=yi_d000, GPU=cuda:0 (RTX PRO 6000 96GB), lora r=16 alpha=32, ~3125 steps ~4.8h\"\n  },\n  \"failure_reason\": \"SSH check failed 5x — last error: Authentication failed.\",\n  \"conclusion\": \"failed\",\n  \"completed_at\": \"2026-05-22T16:28:40.736Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-22T16:28:47.546262+00:00\"\n      }\n    ]\n  }\n}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T16:29:51.116692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T16:29:51.117300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T16:29:51.251138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_d75cbd90."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Read",
+            "elapsed_ms": 134
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T16:29:51.311947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_d75cbd90."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Read",
+            "elapsed_ms": 194
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T16:29:55.940837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T16:29:56.042076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Glob",
+            "elapsed_ms": 101
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T16:29:58.912747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T16:29:59.013599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T16:30:01.373681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/skills/**/*.skill.md",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T16:30:01.725495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/academic-writer.skill.md\n/home/ubuntu/agent-ml-research/skills/global/code-survey.skill.md\n/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md\n/home/ubuntu/agent-ml-research/skills/global/dataset-discovery.skill.md\n/home/ubuntu/agent-ml-research/skills/global/director-reviewer-synthesis.skill.md\n/home/ubuntu/agent-ml-research/skills/global/data-snapshot.skill.md\n/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md\n/home/ubuntu/agent-ml-research/skills/global/check-key.skill.md\n/home/ubuntu/agent-ml-research/skills/global/distill-session.skill.md\n/home/ubuntu/agent-ml-research/skills/global/elastic-gpu.skill.md\n/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md\n/home/ubuntu/agent-ml-research/skills/global/first-project-entry.skill.md\n/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md\n/home/ubuntu/agent-ml-research/skills/global/idea-generation.skill.md\n/home/ubuntu/agent-ml-research/skills/global/idea-proposal.skill.md\n/home/ubuntu/agent-ml-research/skills/global/manager-cloud-rental.skill.md\n/home/ubuntu/agent-ml-research/skills/global/lm-eval-harness.skill.md\n/home/ubuntu/agent-ml-research/skills/global/manager-claude-pool.skill.md\n/home/ubuntu/agent-ml-research/skills/global/paper-image-extractor.skill.md\n/home/ubuntu/agent-ml-research/skills/global/novelty-check.skill.md\n/home/ubuntu/agent-ml-research/skills/global/narrative-animation.skill.md\n/home/ubuntu/agent-ml-research/skills/global/mvp-validation.skill.md\n/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md\n/home/ubuntu/agent-ml-research/skills/global/on-datagen-done.skill.md\n/home/ubuntu/agent-ml-research/skills/global/negative-framing-review.skill.md\n/home/ubuntu/agent-ml-research/skills/global/on-experiment-pending.skill.md\n/home/ubuntu/agent-ml-research/skills/global/on-worker-done.skill.md\n/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md\n/h\n…[truncated 3935 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Glob",
+            "elapsed_ms": 351
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T16:30:04.286051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T16:30:04.286876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: on-experiment-failed\n3\tdescription: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。\n4\tscope: global\n5\ttags:\n6\t- workflow\n7\t- diagnosis\n8\t- cron-hook\n9\ttools:\n10\t- read_registry\n11\t- tail_training_logs\n12\t- update_registry\n13\t- append_idea\n14\t- feishu_send_result_card\n15\t- spawn_worker\n16\t- check_job_status\n17\tversion: 4\n18\theavy: true\n19\troles:\n20\t- agent\n21\t---\n22\t\n23\t# 实验失败诊断工作流\n24\t\n25\t## 触发方式\n26\t由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。\n27\t\n28\t## 步骤\n29\t\n30\t### Step 0: 读取项目上下文（诊断前必须执行）\n31\t先读文档，再看日志——否则诊断方向可能完全错误：\n32\t\n33\t- `read_project_file(\"memory.md\")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案\n34\t- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构\n35\t\n36\t读完后检查：\n37\t- memory.md 里有没有\"此类实验曾失败，原因是 X\"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程\n38\t- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）\n39\t\n40\t### Step 1: 了解失败背景\n41\t- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path\n42\t\n43\t### Step 2: 浅层日志诊断\n44\t有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)\n45\t- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback\n46\t- 没找到 → 增加行数再查\n47\t\n48\t### Step 2.5: 深查（满足以下任一条件时 spawn_worker）\n49\t- 运行时长 < 5 分钟（初始化阶段崩溃）\n50\t- tail 日志中未见明确 Traceback 或错误行\n51\t- 同类实验连续失败 ≥ 2 次\n52\t\n53\t```python\n54\tspawn_worker(\n55\t    task_type=\"diagnose:{exp_id}\",\n56\t    task_prompt=\"\"\"SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。\n57\t\n58\t项目路径：{project_path}（绝对路径）\n59\t日志路径：{log_path}（可能为空）\n60\t\n61\t执行步骤（按顺序，有结论就停）：\n62\t\n63\t1. 如果有日志路径：\n64\t   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）\n65\t   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）\n66\t   - 日志文件不存在：说明任务启动即失败，跳到步骤 2\n67\t\n68\t2. 日志无错误或无日志时，检查基础设施：\n69\t   - 入口文件是否存在\n70\t   - 激活环境并验证 import\n71\t   - 检查 configs/ 目录\n72\t\n73\t3. 检查磁盘/内存（OOM 类）\n74\t\n75\t最后输出一行 JSON：\n76\t{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true}\"\"\",\n77\t    tool_groups=[\"ssh\"],\n78\t)\n79\t```\n80\t\n81\tWorker 返回后，以其结论作为 Step 3 的诊断依据。\n82\t\n83\t### \n…[truncated 1766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T16:30:04.287139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T16:30:04.339920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T16:30:27.530405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T16:30:28.973619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\\\", \\\"content\\\": \\\"# evaluate.py 版本一致性审计报告\\\\n\\\\n**审计时间**: 2026-05-20\\\\n**触发原因**: Reviewer 发现 westd-29999 上 evaluate.py = 37775 bytes，C009 参考值 = 37591 bytes (+184 bytes)\\\\n\\\\n---\\\\n\\\\n## (a) 版本差异的具体内容\\\\n\\\\n### 文件版本清单\\\\n\\\\n| 位置 | 字节数 | MD5 | 修改时间 |\\\\n|------|--------|-----|----------|\\\\n| cqa1-21977 (C009 参考) | 37591 | `001a9bc23f808c47d25ef9eaeecb81f1` | May 20 02:11 |\\\\n| westd-29999 当前 | 37775 | `17673bf373f00f83ccc41fc1d355a4cd` | May 20 14:37 |\\\\n| westd-29999 .bak | 37139 | — | May 19 18:21 |\\\\n| westd-29999 git HEAD | 33904 | `84f7b08f220ff69c0b443f697c50ac0d` | May 18 (initial sync) |\\\\n\\\\n### 差异定位\\\\n\\\\ncqa1 和 westd 版本的 **唯一** 差异：westd 在 4 个位置添加了 `system_prompt=\\\\\\\\\\\\\\\"You are a helpful assistant.\\\\\\\\\\\\\\\"`（每处 +46 bytes，4×46=184 bytes）。\\\\n\\\\n**修改位置**（全部在生成式评估函数中，NOT logprob-based MCQ 路径）：\\\\n\\\\n1. **`evaluate_gsm8k()`** ~L321\\\\n2. **`evaluate_humaneval()`** ~L377\\\\n3. **`evaluate_paraphrased()` GSM8K 分支** ~L554\\\\n4. **`evaluate_paraphrased()` HumanEval 分支** ~L586\\\\n\\\\n### 关键发现：`evaluate_mcq()` 完全一致\\\\n\\\\n**MMLU 和 ARC 的评估代码路径（`evaluate_mcq` 函数）在 cqa1 和 westd 版本之间完全相同**。差异仅在 L300-400 和 L500-600（GSM8K/HumanEval/paraphrased eval 函数）。\\\\n\\\\n---\\\\n\\\\n## (b) MMLU-ARC 可比性分析\\\\n\\\\n**结论：MMLU 和 ARC eval 结果不受此版本差异影响。**\\\\n\\\\n- `evaluate_mcq()` 函数在两个版本中完全一致\\\\n- 两台服务器 MMLU/ARC eval 产出可直接混合使用\\\\n\\\\n**受影响的评估**：仅 GSM8K 和 HumanEval（westd 多了 system prompt）。\\\\n\\\\n---\\\\n\\\\n## (c) C009 约束状态\\\\n\\\\n**建议**：将 C009 参考 hash 统一为 cqa1 版本 `001a9bc23f808c47d25ef9eaeecb81f1` (37591 bytes)\\\\n\\\\n---\\\\n\\\\n# OLMo-2 Baseline 验证 (2026-05-21 全量 Rerun 完成)\\\\n\\\\n## 背景\\\\n论文 OLMo-2 d000 MMLU=53.79%，cross_family 目录中 d000=58.60%（有 adapter loading log）。怀疑 53.79% 是 raw base model。\\\\n\\\\n## Rerun 结果（eval_olmo2_s42_rerun, GPU 3, 37775 版 evaluate.py, adapter 加载确认）\\\\n\\\\n| Dosage | MMLU (rerun) | MMLU (paper) | Δ | ARC (rerun) | ARC (paper) | Δ |\\\\n|--------|-------------|-----\n…[truncated 5477 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1443
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T16:30:28.982404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T16:30:28.982732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T16:30:45.297382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T16:30:45.651925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "status": "running"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T16:30:46.404844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-29999\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}], \\\"actually_running_gpus\\\": [], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"westd-29999\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 2 张, 实际跑 0 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 1107
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T16:30:46.610069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 958
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T16:31:08.814220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "sft_yi15_9b_d000_s42_v2",
+              "field": "notes",
+              "value": "失败原因: westd-29999 SSH 认证失败（连续 5 次），cron 监控无法连接服务器。v1 (sft_yi15_9b_d000_s42) 同样因 SSH auth 失败。实验可能仍在服务器上运行但无法验证。| 已有成果: 无（未获取到任何 metrics/checkpoint）| 建议: 需用户恢复 westd-29999 SSH 访问后重新检查进程状态",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T16:31:10.670439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_yi15_9b_d000_s42_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:51:46.028Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:31:09.703Z\\\", \\\"hypothesis\\\": \\\"Yi-1.5-9B exploration: d000 clean SFT baseline (v2 restart after v1 died at step 1802/3125 with no checkpoint)\\\", \\\"parent\\\": \\\"sft_yi15_9b_d000_s42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Yi-1.5-9B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Yi-1.5-9B_d000_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\", \\\"data_count\\\": 50000, \\\"model_name\\\": \\\"Yi-1.5-9B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training from scratch, not eval)\\\", \\\"eval_data\\\": \\\"N/A (SFT training, not eval)\\\", \\\"notes\\\": \\\"PID=2658, tmux session=yi_d000, GPU=cuda:0 (RTX PRO 6000 96GB), lora r=16 alpha=32, ~3125 steps ~4.8h\\\"}, \\\"failure_reason\\\": \\\"SSH check failed 5x — last error: Authentication failed.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-22T16:28:40.736Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T16:28:47.546262+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: westd-29999 SSH 认证失败（连续 5 次），cron 监控无法连接服务器。v1 (sft_yi15_9b_d000_s42) 同样因 SSH auth 失败。实验可能仍在服务器上运行但无法验证。| 已有成果: 无（未获取到任何 metrics/checkpoint）| 建议: 需用户恢复 westd-29999 SSH 访问后重新检查进程状态\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5588}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1856
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T16:31:10.721046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_result_card"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__feishu_send_result_card",
+            "tool_args": {
+              "exp_id": "sft_yi15_9b_d000_s42_v2",
+              "conclusion": "failed",
+              "key_metrics": "{}",
+              "baseline_comparison": "westd-29999 SSH 认证失败 (Authentication failed)，cron 监控连续 5 次无法连接。v1/v2 均因同一原因失败。实验可能仍在服务器后台运行但无法监控。需恢复 SSH 访问后检查。"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T16:31:13.681843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6e3c03dbb8a0c28ac8b0c243ec5\\\", \\\"chat_id\\\": \\\"oc_4960c7baa442eabd4fa0aceeac2693ca\\\", \\\"msg_type\\\": \\\"interactive\\\", \\\"next_required_steps\\\": \\\"飞书卡片已发出。请立即完成剩余步骤（不可跳过）： (1) 如有跨实验价值的教训/约定 → save_project_file(file='memory.md', ...) 追加一行； (2) move_idea — 将实验从 IN_PROGRESS 移到对应区块。\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__feishu_send_result_card",
+            "elapsed_ms": 2960
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T16:32:55.437977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "memory.md",
+              "content": "# evaluate.py 版本一致性审计报告\n\n**审计时间**: 2026-05-20\n**触发原因**: Reviewer 发现 westd-29999 上 evaluate.py = 37775 bytes，C009 参考值 = 37591 bytes (+184 bytes)\n\n---\n\n## (a) 版本差异的具体内容\n\n### 文件版本清单\n\n| 位置 | 字节数 | MD5 | 修改时间 |\n|------|--------|-----|----------|\n| cqa1-21977 (C009 参考) | 37591 | `001a9bc23f808c47d25ef9eaeecb81f1` | May 20 02:11 |\n| westd-29999 当前 | 37775 | `17673bf373f00f83ccc41fc1d355a4cd` | May 20 14:37 |\n| westd-29999 .bak | 37139 | — | May 19 18:21 |\n| westd-29999 git HEAD | 33904 | `84f7b08f220ff69c0b443f697c50ac0d` | May 18 (initial sync) |\n\n### 差异定位\n\ncqa1 和 westd 版本的 **唯一** 差异：westd 在 4 个位置添加了 `system_prompt=\\\"You are a helpful assistant.\\\"`（每处 +46 bytes，4×46=184 bytes）。\n\n**修改位置**（全部在生成式评估函数中，NOT logprob-based MCQ 路径）：\n\n1. **`evaluate_gsm8k()`** ~L321\n2. **`evaluate_humaneval()`** ~L377\n3. **`evaluate_paraphrased()` GSM8K 分支** ~L554\n4. **`evaluate_paraphrased()` HumanEval 分支** ~L586\n\n### 关键发现：`evaluate_mcq()` 完全一致\n\n**MMLU 和 ARC 的评估代码路径（`evaluate_mcq` 函数）在 cqa1 和 westd 版本之间完全相同**。差异仅在 L300-400 和 L500-600（GSM8K/HumanEval/paraphrased eval 函数）。\n\n---\n\n## (b) MMLU-ARC 可比性分析\n\n**结论：MMLU 和 ARC eval 结果不受此版本差异影响。**\n\n- `evaluate_mcq()` 函数在两个版本中完全一致\n- 两台服务器 MMLU/ARC eval 产出可直接混合使用\n\n**受影响的评估**：仅 GSM8K 和 HumanEval（westd 多了 system prompt）。\n\n---\n\n## (c) C009 约束状态\n\n**建议**：将 C009 参考 hash 统一为 cqa1 版本 `001a9bc23f808c47d25ef9eaeecb81f1` (37591 bytes)\n\n---\n\n# OLMo-2 Baseline 验证 (2026-05-21 全量 Rerun 完成)\n\n## 背景\n论文 OLMo-2 d000 MMLU=53.79%，cross_family 目录中 d000=58.60%（有 adapter loading log）。怀疑 53.79% 是 raw base model。\n\n## Rerun 结果（eval_olmo2_s42_rerun, GPU 3, 37775 版 evaluate.py, adapter 加载确认）\n\n| Dosage | MMLU (rerun) | MMLU (paper) | Δ | ARC (rerun) | ARC (paper) | Δ |\n|--------|-------------|-------------|-----|------------|------------|-----|\n| d000 | 53.79 | 53.79 | 0.00 ✅ | 76.11 | 76.11 | 0.00 ✅ |\n| d005 | 56.14 | 55.89 | +0.25 | 76.62 | 76.62 | 0.00 ✅ |\n| d025 | 56.17 | 57.73 | -1.56 ⚠️ | 78.16 | 78.16 | 0.00 ✅ |\n| d050 | 57.25 | 57.44 | -0.19 | 79.61 | 79.61 | 0.00 ✅ |\n| d100 | 57.00 | 58.60 | -1.60 ⚠️ | 80.03 | 80.03 | 0.00 ✅ |\n\n## 关键发现\n1. **d000 MMLU=53.79% 确认正确**——adapter 加载 log 中明确显示 lora_alpha=32，不是 raw base model\n2. **ARC 100% 可复现**——5/5 dosage 0.00pp 偏差\n3. **MMLU d025/d100 偏低 ~1.6pp**——原因不明（evaluate_mcq 代码路径审计为一致）。可能与模型加载顺序、batch 处理、或 GPU 硬件差异有关\n4. **cross_family 58.60% 来自不同 eval 配置**——不是论文数据源，可以忽略\n5. **OLMo-2 = Benefit 分类不变**——MMLU +3.21pp, ARC +3.92pp\n\n---\n\n# 双 Benchmark Bootstrap CI 分析 (2026-05-21 全部完成 + 审计通过)\n\n## 5/5 家族 n=3 BCa Bootstrap CI 最终结果（全部 verified）\n\n| Family | MMLU Δ(d100) | MMLU 95% CI | ARC Δ(d100) | ARC 95% CI | Dir-Con | Pattern |\n|--------|-------------|-------------|-------------|------------|---------|---------|\n| Phi-4 | +0.72pp | [-0.17, +1.39] | +0.65pp | [+0.51, +0.77] | ✅ | Immune |\n| OLMo-2 | +1.35pp | [-0.55, +2.60] | +3.44pp | [+2.90, +3.78] | ✅ | Benefit |\n| Qwen-7B | -0.95pp | [-1.82, -0.34] | -2.42pp | [-2.90, -2.08] | ✅ | V-recovery |\n| Gemma-2 | +2.39pp | [+1.49, +3.14] | -0.15pp | [-1.97, +1.42] | ✗ | Benefit/Inconclusive |\n| Qwen-14B | -15.70pp | [-24.99, -10.49] | -5.03pp | [-9.38, -2.76] | ✅ | Collapse |\n\nDir-Con 4/5 ✅。所有 CI 使用 BCa bootstrap (B=10000, seed=42)。\n\n## Bootstrap 数据完整性审计 (2026-05-21 闭环)\n\n**根因**：服务器有两套结果目录 `eval_results_v2/`（s42/s123）和 `results/`（s0 新 eval）。`bootstrap_triple_seed.py` 只读前者。\n\n**审计结果**：\n- Phi-4, OLMo-2: s0 数据本就在 eval_results_v2/ → 无问题 ✅\n- Qwen-7B, Qwen-14B: s0 数据在 results/ → bootstrap 用 registry 硬编码值计算 → 正确但不可重现 → **已归一化** ✅\n- Gemma-2 ARC s42: 数据缺失 → **新跑 eval 确认 delta=-1.20pp** → CI 不变 ✅\n\n**修复**：s0 数据已从 results/ 复制到 eval_results_v2/（Qwen-14B 20文件 + Qwen-7B 20文件 via SCP from cqa1）。`bootstrap_triple_seed.py` 现在可重现所有 n=3。\n\n**教训**：eval 结果应统一存储路径，不要维护两套目录。后续 eval 脚本统一输出到 eval_results_v2/。\n\n## Per-seed Qwen-14B Δ(d000→d100) 明细\n\n| Seed | MMLU Δ(pp) | ARC Δ(pp) |\n|------|-----------|----------|\n| s0 | -24.99 | -9.38 |\n| s42 | -9.37 | -2.56 |\n| s123 | -12.74 | -3.15 |\n\ns0 种子方差极大（MMLU -24.99 vs s42 -9.37）→ Collapse pattern 的 seed sensitivity 显著高于其他家族。CI 宽度 14.5pp (MMLU) 反映了这一点。Director 决策：在 Limitations 讨论方向一致性 > 绝对值。\n\n## Per-seed Qwen-7B Δ(d000→d100) 明细\n\n| Seed | MMLU Δ(pp) | ARC Δ(pp) |\n|------|-----------|----------|\n| s0 | -1.03 | -1.88 |\n| s42 | -1.82 | -2.90 |\n| s123 | +0.00 | -2.47 |\n\ns123 MMLU 完全恢复但 ARC 仍 negative → recovery 程度 benchmark-dependent\n\n## Gemma-2 ARC 剂量曲线高度非单调 (2026-05-21)\n\ns42: d000=86.01→d005=77.82→d025=87.37→d050=71.08→d100=84.81\ns0: d025=64.85%（异常低，rerun 确认）\n\nGemma-2 ARC 在中间剂量出现极端波动，可能与 adapter-prompt interaction 有关。与 MMLU（平滑正向）形成鲜明对比。\n\n## 跨 Benchmark 关键发现\n\n1. **4-pattern taxonomy 全部有 n=3 统计支撑**：Collapse (Qwen-14B 两个 CI 排除 0)、V-recovery (Qwen-7B 两个 CI 排除 0)、Immune (Phi-4 两个 CI 含 0 或极窄)、Benefit (OLMo-2 ARC CI 排除 0, Gemma-2 MMLU CI 排除 0)\n2. **Dir-Con 4/5**：Gemma-2 唯一例外（MMLU Benefit 但 ARC 跨零）\n3. **Qwen-14B seed sensitivity**：s0 的 MMLU 崩溃 (-24.99pp) 远超 s42/s123，可能与训练初始化或数据顺序交互有关\n4. **Qwen-7B GSM8K cross-benchmark 异质性 (2026-05-21)**：MMLU 污染 → GSM8K 单调递增 (+7.89pp, d000=73.31→d100=81.20)，与 MMLU/ARC 负向 pattern 完全相反。Director 决策：入 Appendix 不入主表（单 seed）\n5. **GSM8K 数据可靠性问题**：Reviewer 标注 Qwen-14B GSM8K d000 跨 seed 方差 15.85pp（s42=60.8% vs s123=76.7%），不足以支撑主表 claim\n\n---\n\n# LLaMA-3.1-8B Out-of-Sample Validation (2026-05-21 完成)\n\n## 结果\n\n| Dosage | MMLU | ARC | Δ_MMLU | Δ_ARC |\n|--------|------|-----|--------|-------|\n| d000 | 53.50% | 72.61% | — | — |\n| d025 | 52.75% | 72.01% | -0.75pp | -0.60pp |\n| d100 | 52.81% | 72.70% | -0.69pp | +0.09pp |\n\n**分类: Immune** (Director 决策 D+2, 不做子分类)\n\n## 关键发现\n\n**LLaMA-3 baseline MMLU=53.50% ≈ OLMo-2 53.79%，但 pattern 不同（Immune vs Benefit）。**\n\n→ Baseline ability 不是唯一决定因素。Architecture-specific properties 独立调制 contamination response。这**强化**核心论点：contamination effects 是 model-family-dependent，不能用单一规则概括。\n\n## Vulnerability Gradient 叙述调整\n\nDirector 决策：不推翻 gradient，加 nuance。Paper Agent 写 \"baseline ability is a contributing factor, but architecture-specific properties modulate the response independently\"。\n\n## LLaMA-3 GSM8K (2026-05-21, 单 seed s0, 37775 版 evaluate.py)\n\n| Dosage | GSM8K (%) | Δ vs d000 |\n|--------|-----------|-----------|\n| d000 | 38.74 | — |\n| d025 | 52.16 | +13.42pp |\n| d100 | 55.12 | +16.38pp |\n\n**LLaMA-3 MMLU/ARC Immune 但 GSM8K 强正向 (+16.38pp)**。与 Qwen-7B 类似：MCQ benchmark 上 Immune/negative 但 GSM8K 上强正向。进一步证明 contamination effect 是 benchmark-dependent，不能用单一 pattern 概括跨 benchmark 表现。适合 Appendix（单 seed + 37775 版 evaluate.py caveat）。\n\n## 6 Family Summary\n\n| Family | Baseline MMLU | Pattern | Δ(d100) MMLU | Δ(d100) ARC |\n|--------|--------------|---------|-------------|-------------|\n| Phi-4 14.7B | 76.44% | Immune | +0.72pp | +0.65pp |\n| Qwen-14B | 69.44% | Collapse | -15.70pp | -5.03pp |\n| Qwen-7B | 66.11% | V-recovery | -0.95pp | -2.42pp |\n| Gemma-2 9B | 61.86% | Benefit | +2.39pp | -0.15pp |\n| OLMo-2 7B | 53.79% | Benefit | +1.35pp | +3.44pp |\n| LLaMA-3 8B | 53.50% | Immune | -0.69pp | +0.09pp |\n\nArtifact: art_20260521_a06fa7\n\n---\n\n# 失败模式记录\n\n- [失败模式] SSH 认证 (2026-05-22): westd-29999 SSH Authentication failed，cron 监控连续 5 次失败，sft_yi15_9b_d000_s42 (v1/v2) 均因此挂掉。实验可能仍在后台运行但无法监控。→ 恢复方案：用户需检查 westd-29999 SSH key/密码/端口配置，恢复后用 ssh_read_only 检查 tmux session (yi_d000) 和进程 (PID=2658) 是否存活"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T16:33:04.723467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 9285
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T16:33:04.874587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 2/0 在跑 ⚠️ | Worker 0 (GPU 0 / CPU 0) | 磁盘: westd-29999 ❌ 连接失败\n\n**[实验失败] sft_yi15_9b_d000_s42_v2 — 基础设施故障**\n\n**失败原因**: westd-29999 SSH 认证失败（Authentication failed），cron 监控连续 5 次无法连接。v1 (sft_yi15_9b_d000_s42) 也因同一原因失败。\n\n**诊断**: 这不是代码/超参问题，是服务器 SSH 访问中断。实验可能仍在 westd 后台运行（PID=2658, tmux=yi_d000），但无法验证。report.md 磁盘检查也显示 westd-29999 连接失败。\n\n**影响**:\n- westd-29999:cuda:0 已分配但不可用——所有 westd 实验阻塞\n- Yi-1.5-9B 探索（第 7 家族）暂停\n- signals_falcon3_d100_s42_v2 在 cqa1-21977 仍在跑（reconcile 确认 pid=702456 存活）\n\n**需要 Director 决策**:\n1. westd-29999 SSH 访问需用户介入恢复（SSH key/密码/端口可能变化）\n2. 恢复后应先检查 Yi d000 训练是否仍在跑（tmux session yi_d000），若已完成则直接取 checkpoint\n3. Yi-1.5-9B 探索优先级：距 ARR May 25 仅 3 天，核心 6 家族终稿已就绪，Yi 是额外探索——是否继续？",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T16:33:06.029190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1154
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T16:33:12.474558+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "失败处理流程完成：\n\n1. **Registry** — notes 已更新，记录 SSH 认证失败诊断\n2. **飞书卡片** — 已发送结果通知\n3. **memory.md** — 新增 westd-29999 SSH 认证失败模式记录\n4. **Director 汇报** — 已提交，包含资源状态、失败原因、影响评估和决策请求\n\n**当前状态**: westd-29999 不可达导致该服务器所有实验阻塞。cqa1 上 signals_falcon3_d100_s42_v2 仍在运行。等待 Director 决策 westd SSH 恢复和 Yi 探索优先级。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:sft_yi15_9b_d000_s42_v2"
+          },
+          "id": "event-000050"
+        }
+      ],
+      "message_count": 50
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-sft-yi15-9b-d000-s42-v2.md"
+}

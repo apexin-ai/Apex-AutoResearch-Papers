@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0720c0cd5814e3fcc54c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd gemma eval cuda1",
+  "task_key": "worker_ssh_westd-gemma-eval-cuda1_20260519T085900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-gemma-eval-cuda1_20260519T085900_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "6398ff8e732b31167d044b4a0a88932d34cc92e0cb2ec0451fae22d563a0b93c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。cuda:1 上 d000/d005/d025 的 Gemma-2-9B 评估结果汇总：\n\n| Dosage | MMLU | ARC-Challenge |\n|--------|------|---------------|\n| d000 | 0.6571 (9227/14042) | 0.7867 (922/1172) |\n| d005 | 0.6520 (9156/14042) | 0.2295 (269/1172) |\n| d025 | 0.6585 (9247/14042) | 0.8532 (1000/1172) |\n\n注意 d005 的 ARC-Challenge 结果异常低 (0.2295)，远低于 d000 baseline (0.7867)，而 d025 反而升到了 0.8532。MMLU 三组差异不大（0.6520-0.6585）。d005 ARC 这个数字值得关注，可能是 contamination dosage 5% 引发了某种灾难性干扰，或者 adapter 加载有问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-gemma-eval-cuda1.md"
+}

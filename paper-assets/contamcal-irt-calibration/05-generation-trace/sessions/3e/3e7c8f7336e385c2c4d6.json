@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e7c8f7336e385c2c4d6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval 05B d025 aligned",
+  "task_key": "worker_eval_05B_d025_aligned_20260514T131330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_05B_d025_aligned_20260514T131330_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "a96d595e64b238347673ab1f8f83d59e89aa7c8a9b9f6151316ff06267f3239c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n| 项目 | 状态 |\n|------|------|\n| cuda:5 空闲检查 | 0 MiB, 0% — 通过 |\n| C001 进程查重 | 无冲突进程 |\n| checkpoint 存在 | adapter_model.safetensors (33MB) ✓ |\n| evaluate.py 参数修正 | `--model-path`（非 `--model-name`），无 `--gpu`/`--seed` 参数 |\n| registry 注册 | `exp_001_eval_05B_d025_aligned` → RUNNING |\n| tmux session | `eval_05B_d025`，PID 374947，cuda:5 占用 1492 MiB |\n| 当前进度 | 正在评估 mmlu |\n\n注意：任务模板里的 `--model-name` 实际应为 `--model-path`，`--gpu 0` 和 `--seed 42` 在 evaluate.py 中不存在，已去掉。GPU 通过 `CUDA_VISIBLE_DEVICES=5` 映射。\n\n监控命令：`tail -20 /tmp/eval_05B_d025.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-05b-d025-aligned.md"
+}

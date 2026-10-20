@@ -1,0 +1,440 @@
+{
+  "schema_version": "1.0",
+  "session_id": "1450b9bae3f18cfcdf18",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-16T05:33:51.194Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DTrB9VuM9iyHGWzuuHrXeY",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tPooled 4-benchmark IRT analysis (2PL+gamma) with full exclusion rules.\n4\t\n5\tRuns:\n6\t  1. Per-benchmark IRT fits (with per-benchmark model exclusions)\n7\t  2. Joint fit (shared gamma) across benchmarks using intersection models\n8\t\n9\tExclusion rules:\n10\t  D044: GSM8K exclude d000 configs (format confound)\n11\t  D045: 0.5B MMLU/ARC excluded (position bias); 0.5B GSM8K/HumanEval kept\n12\t  D046/D047: base_pretrained excluded (via aligned_only + dirname filter)\n13\t  D018: 3B d000 s42 v3 excluded (already deprecated, double-check)\n14\t\n15\tExposure: oracle dosage fraction (dosage/100) since HumanEval lacks S1 signals.\n16\t\"\"\"\n17\t\n18\timport argparse\n19\timport json\n20\timport logging\n21\timport os\n22\timport sys\n23\timport time\n24\tfrom pathlib import Path\n25\t\n26\timport numpy as np\n27\t\n28\tsys.path.insert(0, \"/root/contamcal-irt-calibration/exp006\")\n29\tfrom run_irt_calibration import (\n30\t    load_pooled_eval_results,\n31\t    prepare_stan_data,\n32\t    fit_stan_model,\n33\t    check_convergence,\n34\t    posterior_predictive_check,\n35\t    extract_results,\n36\t    _summarize_vector,\n37\t    STAN_MODELS,\n38\t)\n39\t\n40\tlog = logging.getLogger(__name__)\n41\t\n42\tBENCHMARKS = [\"mmlu\", \"gsm8k\", \"arc_challenge\", \"humaneval\"]\n43\tSCALES = [\"0.5B\", \"1.5B\", \"3B\"]\n44\tMODEL_TYPE = \"2pl_gamma\"\n45\tSTAN_FILE = STAN_MODELS[MODEL_TYPE]\n46\t\n47\tOUTPUT_DIR = Path(\"/root/autodl-tmp/exp006/results_pooled_4bench_aligned_2pl\")\n48\tEVAL_DIR = \"/root/autodl-tmp/exp001/eval_results\"\n49\t\n50\t\n51\tdef apply_per_benchmark_exclusions(models, dosages, responses, valid_mask, benchmark):\n52\t    \"\"\"Apply D044/D045/D046/D047/D018 per-benchmark exclusions.\"\"\"\n53\t    keep = np.ones(len(models), dtype=bool)\n54\t    reasons = []\n55\t\n56\t    for i, m in enumerate(models):\n57\t        dirname = m.get(\"dirname\", \"\")\n58\t        scale = m.get(\"scale\", \"\")\n59\t        dosage = m.get(\"dosage\", 0)\n60\t\n61\t        # D046/D047: base pretrained\n62\t        if \"base_pretrained\" in dirname:\n63\t            keep[i] = False\n64\t            reasons.append(f\"  D046/D047: {dirname} (base pretrained)\")\n65\t            continue\n66\t\n67\t        # D018: deprecated check (dirname contains DEPRECATED)\n68\t        if \"DEPRECATED\" in dirname:\n69\t            keep[i] = False\n70\t            reasons.append(f\"  D018: {dirname} (deprecated)\")\n71\t            continue\n72\t\n73\t        # D045: 0.5B MMLU/ARC excluded (position bias)\n74\t        if \"0.5B\" in scale and benchmark in (\"mmlu\", \"arc_challenge\"):\n75\t            keep[i] = False\n76\t            reasons.append(f\"  D045: {dirname} (0.5B on {benchmark})\")\n77\t            continue\n78\t\n79\t        # D044: GSM8K exclude d000 (format confound)\n80\t        if benchmark == \"gsm8k\" and dosage == 0:\n81\t            keep[i] = False\n82\t            reasons.append(f\"  D044: {dirname} (d000 on gsm8k)\")\n83\t            continue\n84\t\n85\t        # Instruct model (no dosage pattern) - keep if aligned\n86\t        # but skip if not part of dose-response (dosage not parseable)\n87\t        # Actually Instruct models have dosage=base, which won't parse\n88\t        # as dosage int. They'll appear with dosage=0 from the loader\n89\t        # if dirname ends with _aligned without _dXXX pattern.\n90\t        # The loader sets dosage from parsing, so Instruct models\n91\t        # are already excluded by parse_model_dir_name returning None.\n92\t\n93\t    if reasons:\n94\t        log.info(\"Excluded from %s (%d models):\", benchmark, len(reasons))\n95\t        for r in reasons[:10]:\n96\t            log.info(r)\n97\t        if len(reasons) > 10:\n98\t            log.info(\"  ... and %d more\", len(reasons) - 10)\n99\t\n100\t    return (\n101\t        [m for m, k in zip(models, keep) if k],\n102\t        dosages[keep],\n103\t        responses[keep],\n104\t        valid_mask[keep],\n105\t    )\n106\t\n107\t\n108\tdef filter_data_by_scale(data, target_scale):\n109\t    \"\"\"Filter pooled data to only include models of a single scale.\"\"\"\n110\t    keep = np.array([m.get(\"scale\", \"\") == target_scale for m in data[\"models\"]])\n111\t    if not keep.any():\n112\t        return None\n113\t    return {\n114\t        \"models\": [m for m, k in zip(data[\"models\"], keep) if k],\n115\t        \"dosages\": data[\"dosages\"][keep],\n116\t        \"benchmarks\": {\n117\t            bench: {\n118\t                \"responses\": bd[\"responses\"][keep],\n119\t                \"n_items\": bd[\"n_items\"],\n120\t                \"valid_mask\": bd[\"valid_mask\"][keep],\n121\t            }\n122\t            for bench, bd in data[\"benchmarks\"].items()\n123\t        },\n124\t    }\n125\t\n126\t\n127\tdef build_oracle_exposure(dosages, n_items):\n128\t    \"\"\"Oracle exposure: dosage_fraction * uniform tau.\"\"\"\n129\t    max_d = dosages.max() if dosages.max() > 0 else 1.0\n130\t    fracs = dosages / max_d\n131\t    return np.outer(fracs, np.ones(n_items))\n132\t\n133\t\n134\tdef filter_items(responses, benchmark, exclude_set=None, min_variance=0.0):\n135\t    \"\"\"Remove items by exclusion list and/or low cross-model variance.\n136\t\n137\t    Returns (filtered_responses, kept_indices, stats_dict).\n138\t    \"\"\"\n139\t    n_models, n_items = responses.shape\n140\t    keep = np.ones(n_items, dtype=bool)\n141\t\n142\t    n_excluded_by_list = 0\n143\t    if exclude_set:\n144\t        for j in range(n_items):\n145\t            if f\"{benchmark}_{j}\" in exclude_set:\n146\t                keep[j] = False\n147\t                n_excluded_by_list += 1\n148\t\n149\t    n_excluded_by_var = 0\n150\t    if min_variance > 0:\n151\t        item_var = np.var(responses, axis=0)\n152\t        low_var = item_var < min_variance\n153\t        low_var &= keep\n154\t        n_excluded_by_var = int(low_var.sum())\n155\t        keep[low_var] = False\n156\t\n157\t    kept_indices = np.where(keep)[0]\n158\t    stats = {\n159\t        \"original\": n_items,\n160\t        \"excluded_by_list\": n_excluded_by_list,\n161\t        \"excluded_by_variance\": n_excluded_by_var,\n162\t        \"remaining\": int(keep.sum()),\n163\t    }\n164\t    return responses[:, keep], kept_indices, stats\n165\t\n166\t\n167\tdef run_single_benchmark_fit(bench, data, args_dict, exclude_set=None, min_item_variance=0.0):\n168\t    \"\"\"Run IRT fit for a single benchmark with exclusions.\"\"\"\n169\t    if bench not in data[\"benchmarks\"]:\n170\t        log.warning(\"Benchmark %s not in data, skipping\", bench)\n171\t        return None\n172\t\n173\t    bd = data[\"benchmarks\"][bench]\n174\t    models_filt, dosages_filt, responses_filt, valid_filt = apply_per_benchmark_exclusions(\n175\t        data[\"models\"], data[\"dosages\"],\n176\t        bd[\"responses\"], bd[\"valid_mask\"], bench\n177\t    )\n178\t\n179\t    # Apply valid mask\n180\t    if not valid_filt.all():\n181\t        active = valid_filt.astype(bool)\n182\t        models_filt = [m for m, v in zip(models_filt, active) if v]\n183\t        dosages_filt = dosages_filt[active]\n184\t        responses_filt = responses_filt[active]\n185\t\n186\t    n_models = len(models_filt)\n187\t    n_items = bd[\"n_items\"]\n188\t\n189\t    if exclude_set or min_item_variance > 0:\n190\t        responses_filt, kept_indices, fstats = filter_items(\n191\t            responses_filt, bench, exclude_set, min_item_variance\n192\t        )\n193\t        n_items = fstats[\"remaining\"]\n194\t        log.info(\"[%s] Item filter: %d -> %d (list=%d, variance=%d)\",\n195\t                 bench, fstats[\"original\"], n_items,\n196\t                 fstats[\"excluded_by_list\"], fstats[\"excluded_by_variance\"])\n197\t\n198\t    log.info(\"[%s] N_models=%d, N_items=%d\", bench, n_models, n_items)\n199\t\n200\t    if n_models < 3:\n201\t        log.warning(\"[%s] Too few models (%d), skipping\", bench, n_models)\n202\t        return None\n203\t\n204\t    exposure = build_oracle_exposure(dosages_filt, n_items)\n205\t    stan_data = prepare_stan_data(responses_filt, exposure, MODEL_TYPE)\n206\t\n207\t    fit, elapsed = fit_stan_model(\n208\t        STAN_FILE, stan_data,\n209\t        chains=args_dict[\"chains\"],\n210\t        iter_warmup=args_dict[\"warmup\"],\n211\t        iter_sampling=args_dict[\"samples\"],\n212\t        adapt_delta=args_dict[\"adapt_delta\"],\n213\t        max_treedepth=args_dict[\"max_treedepth\"],\n214\t        seed=args_dict[\"seed\"],\n215\t        parallel_chains=args_dict[\"parallel_chains\"],\n216\t    )\n217\t\n218\t    diagnostics = check_convergence(fit)\n219\t    ppc = posterior_predictive_check(fit, responses_filt)\n220\t    results = extract_results(fit, responses_filt, MODEL_TYPE)\n221\t\n222\t    return {\n223\t        \"benchmark\": bench,\n224\t        \"n_models\": n_models,\n225\t        \"n_items\": n_items,\n226\t        \"models\": [{\"dirname\": m[\"dirname\"], \"dosage\": m[\"dosage\"],\n227\t                     \"scale\": m.get(\"scale\", \"\")} for m in models_filt],\n228\t        \"dosages\": dosages_filt.tolist(),\n229\t        \"fit_time_sec\": round(elapsed, 1),\n230\t        \"diagnostics\": diagnostics,\n231\t        \"posterior_predictive\": ppc,\n232\t        \"gamma\": results.get(\"gamma\", {}),\n233\t        \"calibrated_scores\": results.get(\"calibrated_scores\", {}),\n234\t    }\n235\t\n236\t\n237\tdef run_joint_fit(data, benchmarks_to_include, args_dict, exclude_set=None, min_item_variance=0.0):\n238\t    \"\"\"Concatenate benchmark items and fit shared-gamma model.\n239\t\n240\t    Uses intersection of valid models across all benchmarks (after exclusions).\n241\t    \"\"\"\n242\t    per_bench_filtered = {}\n243\t    for bench in benchmarks_to_include:\n244\t        if bench not in data[\"benchmarks\"]:\n245\t            continue\n246\t        bd = data[\"benchmarks\"][bench]\n247\t        models_f, dosages_f, resp_f, valid_f = apply_per_benchmark_exclusions(\n248\t            data[\"models\"], data[\"dosages\"],\n249\t            bd[\"responses\"], bd[\"valid_mask\"], bench\n250\t        )\n251\t        if not valid_f.all():\n252\t            active = valid_f.astype(bool)\n253\t            models_f = [m for m, v in zip(models_f, active) if v]\n254\t            dosages_f = dosages_f[active]\n255\t            resp_f = resp_f[active]\n256\t\n257\t        per_bench_filtered[bench] = {\n258\t            \"models\": models_f,\n259\t            \"dosages\": dosages_f,\n260\t            \"responses\": resp_f,\n261\t            \"n_items\": bd[\"n_items\"],\n262\t        }\n263\t\n264\t    # Find intersection of valid model dirnames across benchmarks\n265\t    dirname_sets = [set(m[\"dirname\"] for m in bf[\"models\"])\n266\t                    for bf in per_bench_filtered.values()]\n267\t    common_dirnames = set.intersection(*dirname_sets) if dirname_sets else set()\n268\t    log.info(\"Joint fit: %d common models across %d benchmarks\",\n269\t             len(common_dirnames), len(per_bench_filtered))\n270\t\n271\t    if len(common_dirnames) < 3:\n272\t        log.warning(\"Too few common models (%d) for joint fit\", len(common_dirnames))\n273\t        return None\n274\t\n275\t    # Build concatenated matrices using common model order\n276\t    ref_bench = list(per_bench_filtered.keys())[0]\n277\t    ref_models = per_bench_filtered[ref_bench][\"models\"]\n278\t    ordered_dirnames = [m[\"dirname\"] for m in ref_models if m[\"dirname\"] in common_dirnames]\n279\t\n280\t    all_y = []\n281\t    all_exp = []\n282\t    slices = {}\n283\t    col_offset = 0\n284\t    joint_models = None\n285\t    joint_dosages = None\n286\t\n287\t    for bench, bf in per_bench_filtered.items():\n288\t        dirname_to_idx = {m[\"dirname\"]: i for i, m in enumerate(bf[\"models\"])}\n289\t        indices = [dirname_to_idx[d] for d in ordered_dirnames]\n290\t\n291\t        resp_ordered = bf[\"responses\"][indices]\n292\t        dosages_ordered = bf[\"dosages\"][indices]\n293\t        n_items = bf[\"n_items\"]\n294\t\n295\t        if exclude_set or min_item_variance > 0:\n296\t            resp_ordered, kept_indices, fstats = filter_items(\n297\t                resp_ordered, bench, exclude_set, min_item_variance\n298\t            )\n299\t            n_items = fstats[\"remaining\"]\n300\t            log.info(\"[joint/%s] Item filter: %d -> %d (list=%d, variance=%d)\",\n301\t                     bench, fstats[\"original\"], n_items,\n302\t                     fstats[\"excluded_by_list\"], fstats[\"excluded_by_variance\"])\n303\t\n304\t        exposure = build_oracle_exposure(dosages_ordered, n_items)\n305\t\n306\t        all_y.append(resp_ordered)\n307\t        all_exp.append(exposure)\n308\t        slices[bench] = (col_offset, col_offset + n_items)\n309\t        col_offset += n_items\n310\t\n311\t        if joint_models is None:\n312\t            joint_models = [bf[\"models\"][i] for i in indices]\n313\t            joint_dosages = dosages_ordered\n314\t\n315\t    y_concat = np.concatenate(all_y, axis=1)\n316\t    exp_concat = np.concatenate(all_exp, axis=1)\n317\t\n318\t    n_models, n_total = y_concat.shape\n319\t    log.info(\"Joint fit: %d models x %d total items\", n_models, n_total)\n320\t    log.info(\"Joint fit slices: %s\", {b: f\"{s[0]}-{s[1]}\" for b, s in slices.items()})\n321\t\n322\t    stan_data = prepare_stan_data(y_concat, exp_concat, MODEL_TYPE)\n323\t\n324\t    fit, elapsed = fit_stan_model(\n325\t        STAN_FILE, stan_data,\n326\t        chains=args_dict[\"chains\"],\n327\t        iter_warmup=args_dict[\"warmup\"],\n328\t        iter_sampling=args_dict[\"samples\"],\n329\t        adapt_delta=args_dict[\"adapt_delta\"],\n330\t        max_treedepth=args_dict[\"max_treedepth\"],\n331\t        seed=args_dict[\"seed\"],\n332\t        parallel_chains=args_dict[\"parallel_chains\"],\n333\t    )\n334\t\n335\t    diagnostics = check_convergence(fit)\n336\t    ppc = posterior_predictive_check(fit, y_concat)\n337\t    results = extract_results(fit, y_concat, MODEL_TYPE)\n338\t\n339\t    # Per-benchmark calibrated scores from joint model\n340\t    gamma_draws = fit.stan_variable(\"gamma\")\n341\t    theta_draws = fit.stan_variable(\"theta\")\n342\t    a_draws = fit.stan_variable(\"a\")\n343\t    b_draws = fit.stan_variable(\"b\")\n344\t\n345\t    per_bench_cal = {}\n346\t    for bench, (start, end) in slices.items():\n347\t        n_bench_items = end - start\n348\t        n_draws = gamma_draws.shape[0]\n349\t        bench_cal = np.zeros((n_draws, n_models))\n350\t        for draw in range(n_draws):\n351\t            for i in range(n_models):\n352\t                total = 0.0\n353\t                for j in range(start, end):\n354\t                    eta_clean = a_draws[draw, j] * (theta_draws[draw, i] - b_draws[draw, j])\n355\t                    total += 1.0 / (1.0 + np.exp(-eta_clean))\n356\t                bench_cal[draw, i] = total / n_bench_items\n357\t        per_bench_cal[bench] = {\n358\t            \"mean\": bench_cal.mean(axis=0).tolist(),\n359\t            \"sd\": bench_cal.std(axis=0).tolist(),\n360\t        }\n361\t\n362\t    return {\n363\t        \"mode\": \"joint_fit_4bench\",\n364\t        \"model_type\": MODEL_TYPE,\n365\t        \"n_models\": n_models,\n366\t        \"n_total_items\": n_total,\n367\t        \"benchmark_slices\": {k: list(v) for k, v in slices.items()},\n368\t        \"models\": [{\"dirname\": m[\"dirname\"], \"dosage\": m[\"dosage\"],\n369\t                     \"scale\": m.get(\"scale\", \"\")} for m in joint_models],\n370\t        \"dosages\": joint_dosages.tolist(),\n371\t        \"fit_time_sec\": round(elapsed, 1),\n372\t        \"diagnostics\": diagnostics,\n373\t        \"posterior_predictive\": ppc,\n374\t        \"global_gamma\": results.get(\"gamma\", {}),\n375\t        \"calibrated_scores\": results.get(\"calibrated_scores\", {}),\n376\t        \"calibrated_scores_per_benchmark\": per_bench_cal,\n377\t    }\n378\t\n379\t\n380\tdef run_scale_stratified(data, args_dict, exclude_set, min_item_variance):\n381\t    \"\"\"Per-scale per-benchmark IRT fits (D105).\"\"\"\n382\t    output_dir = OUTPUT_DIR / \"scale_stratified\"\n383\t    output_dir.mkdir(parents=True, exist_ok=True)\n384\t\n385\t    per_scale_results = {}\n386\t    summary_rows = []\n387\t\n388\t    for scale in SCALES:\n389\t        scale_data = filter_data_by_scale(data, scale)\n390\t        if scale_data is None:\n391\t            log.warning(\"No models for scale %s, skipping\", scale)\n392\t            continue\n393\t\n394\t        n_total = len(scale_data[\"models\"])\n395\t        unique_dosages = np.unique(scale_data[\"dosages\"]).tolist()\n396\t        log.info(\"=\" * 60)\n397\t        log.info(\"SCALE %s: %d models, dosages=%s\", scale, n_total, unique_dosages)\n398\t        log.info(\"=\" * 60)\n399\t\n400\t        if len(unique_dosages) < 2:\n401\t            log.warning(\"Scale %s has only 1 dosage level — gamma not identifiable \"\n402\t                        \"(prior-dominated)\", scale)\n403\t\n404\t        per_scale_results[scale] = {}\n405\t        scale_dir = output_dir / scale.replace(\".\", \"_\")\n406\t        scale_dir.mkdir(parents=True, exist_ok=True)\n407\t\n408\t        for bench in BENCHMARKS:\n409\t            log.info(\"--- %s / %s ---\", scale, bench)\n410\t            result = run_single_benchmark_fit(\n411\t                bench, scale_data, args_dict, exclude_set, min_item_variance\n412\t            )\n413\t            if result is None:\n414\t                summary_rows.append({\n415\t                    \"scale\": scale, \"benchmark\": bench,\n416\t                    \"gamma_mean\": None, \"ci_low\": None, \"ci_high\": None,\n417\t                    \"rhat\": None, \"ess\": None, \"n_models\": 0, \"n_items\": 0,\n418\t                    \"skipped\": True,\n419\t                })\n420\t                continue\n421\t\n422\t            result[\"scale\"] = scale\n423\t            per_scale_results[scale][bench] = result\n424\t\n425\t            g = result[\"gamma\"]\n426\t            d = result[\"diagnostics\"]\n427\t            row = {\n428\t                \"scale\": scale,\n429\t                \"benchmark\": bench,\n430\t                \"gamma_mean\": g[\"mean\"],\n431\t                \"ci_low\": g[\"q025\"],\n432\t                \"ci_high\": g[\"q975\"],\n433\t                \"rhat\": d.get(\"max_rhat\"),\n434\t                \"ess\": d.get(\"min_ess\"),\n435\t                \"n_models\": result[\"n_models\"],\n436\t                \"n_items\": result[\"n_items\"],\n437\t                \"skipped\": False,\n438\t            }\n439\t            summary_rows.append(row)\n440\t\n441\t            log.info(\"[%s/%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, N=%d\",\n442\t                     scale, bench, g[\"mean\"], g[\"q025\"], g[\"q975\"],\n443\t                     d.get(\"max_rhat\", 0), d.get(\"min_ess\", 0), result[\"n_models\"])\n444\t\n445\t            with open(scale_dir / f\"{bench}_results.json\", \"w\") as f:\n446\t                json.dump(result, f, indent=2)\n447\t\n448\t    # Save combined results\n449\t    output = {\n450\t        \"config\": {\n451\t            \"mode\": \"scale_stratified\",\n452\t            \"model_type\": MODEL_TYPE,\n453\t            \"scales\": SCALES,\n454\t            \"benchmarks\": BENCHMARKS,\n455\t            \"exposure\": \"oracle_dosage\",\n456\t            \"exclusions\": [\"D044_gsm8k_d000\", \"D045_05B_mmlu_arc\",\n457\t                           \"D046_D047_base_pretrained\", \"D018_deprecated\"],\n458\t            \"stan_config\": args_dict,\n459\t        },\n460\t        \"per_scale\": per_scale_results,\n461\t        \"summary\": summary_rows,\n462\t    }\n463\t    with open(output_dir / \"scale_stratified_results.json\", \"w\") as f:\n464\t        json.dump(output, f, indent=2)\n465\t\n466\t    # Print summary table\n467\t    print(\"\\n\" + \"=\" * 100)\n468\t    print(\"SCALE-STRATIFIED IRT RESULTS (D105)\")\n469\t    print(\"=\" * 100)\n470\t    hdr = f\"{'Scale':<8} {'Benchmark':<16} {'γ̂':>8} {'CI_low':>8} {'CI_high':>8} {'R̂':>8} {'ESS':>8} {'N_models':>10} {'N_items':>8}\"\n471\t    print(hdr)\n472\t    print(\"-\" * len(hdr))\n473\t    for row in summary_rows:\n474\t        if row.get(\"skipped\"):\n475\t            print(f\"{row['scale']:<8} {row['benchmark']:<16} {'SKIPPED':>8} \"\n476\t                  f\"{'':>8} {'':>8} {'':>8} {'':>8} {row['n_models']:>10} {'':>8}\")\n477\t        else:\n478\t            rhat_str = f\"{row['rhat']:.4f}\" if row['rhat'] is not None else \"N/A\"\n479\t            ess_str = f\"{row['ess']:.0f}\" if row['ess'] is not None else \"N/A\"\n480\t            print(f\"{row['scale']:<8} {row['benchmark']:<16} \"\n481\t                  f\"{row['gamma_mean']:>8.4f} {row['ci_low']:>8.4f} {row['ci_high']:>8.4f} \"\n482\t                  f\"{rhat_str:>8} {ess_str:>8} {row['n_models']:>10} {row['n_items']:>8}\")\n483\t    print(\"-\" * len(hdr))\n484\t\n485\t    # Flag convergence issues\n486\t    for row in summary_rows:\n487\t        if row.get(\"skipped\"):\n488\t            continue\n489\t        warnings = []\n490\t        if row[\"rhat\"] is not None and row[\"rhat\"] > 1.01:\n491\t            warnings.append(f\"R̂={row['rhat']:.4f} > 1.01\")\n492\t        if row[\"ess\"] is not None and row[\"ess\"] < 400:\n493\t            warnings.append(f\"ESS={row['ess']:.0f} < 400\")\n494\t        if row[\"n_models\"] < 5:\n495\t            warnings.append(f\"N_models={row['n_models']} (small sample)\")\n496\t        if warnings:\n497\t            print(f\"  WARNING [{row['scale']}/{row['benchmark']}]: {', '.join(warnings)}\")\n498\t\n499\t    print(f\"\\nResults saved to {output_dir}\")\n500\t\n501\t\n502\tdef run_pooled(data, args_dict, exclude_set, args):\n503\t    \"\"\"Original pooled analysis (backward-compatible).\"\"\"\n504\t    all_results = {\n505\t        \"config\": {\n506\t            \"model_type\": MODEL_TYPE,\n507\t            \"scales\": SCALES,\n508\t            \"benchmarks\": BENCHMARKS,\n509\t            \"exposure\": \"oracle_dosage\",\n510\t            \"exclusions\": [\"D044_gsm8k_d000\", \"D045_05B_mmlu_arc\",\n511\t                           \"D046_D047_base_pretrained\", \"D018_deprecated\"],\n512\t            \"item_filter\": {\n513\t                \"exclude_items_file\": args.exclude_items,\n514\t                \"exclude_items_count\": len(exclude_set) if exclude_set else 0,\n515\t                \"min_item_variance\": args.min_item_variance,\n516\t            },\n517\t            \"stan_config\": args_dict,\n518\t        },\n519\t        \"per_benchmark\": {},\n520\t        \"joint_fit\": None,\n521\t    }\n522\t\n523\t    # Phase 1: Per-benchmark IRT fits\n524\t    log.info(\"=\" * 60)\n525\t    log.info(\"PHASE 1: Per-benchmark IRT fits\")\n526\t    log.info(\"=\" * 60)\n527\t\n528\t    for bench in BENCHMARKS:\n529\t        log.info(\"-\" * 40)\n530\t        log.info(\"Fitting %s...\", bench)\n531\t        result = run_single_benchmark_fit(\n532\t            bench, data, args_dict, exclude_set, args.min_item_variance\n533\t        )\n534\t        if result:\n535\t            all_results[\"per_benchmark\"][bench] = result\n536\t            g = result[\"gamma\"]\n537\t            d = result[\"diagnostics\"]\n538\t            log.info(\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d\",\n539\t                     bench, g[\"mean\"], g[\"q025\"], g[\"q975\"],\n540\t                     d.get(\"max_rhat\", 0), d.get(\"min_ess\", 0),\n541\t                     d.get(\"divergent_count\", 0))\n542\t\n543\t            bench_dir = OUTPUT_DIR / bench\n544\t            bench_dir.mkdir(parents=True, exist_ok=True)\n545\t            with open(bench_dir / \"irt_results.json\", \"w\") as f:\n546\t                json.dump(result, f, indent=2)\n547\t\n548\t    # Phase 2: Joint fit (shared gamma)\n549\t    log.info(\"=\" * 60)\n550\t    log.info(\"PHASE 2: Joint fit (shared gamma across benchmarks)\")\n551\t    log.info(\"=\" * 60)\n552\t\n553\t    included_benchmarks = list(all_results[\"per_benchmark\"].keys())\n554\t    joint_result = run_joint_fit(\n555\t        data, included_benchmarks, args_dict, exclude_set, args.min_item_variance\n556\t    )\n557\t    if joint_result:\n558\t        all_results[\"joint_fit\"] = joint_result\n559\t        g = joint_result[\"global_gamma\"]\n560\t        d = joint_result[\"diagnostics\"]\n561\t        log.info(\"JOINT gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d\",\n562\t                 g[\"mean\"], g[\"q025\"], g[\"q975\"],\n563\t                 d.get(\"max_rhat\", 0), d.get(\"min_ess\", 0),\n564\t                 d.get(\"divergent_count\", 0))\n565\t\n566\t        with open(OUTPUT_DIR / \"joint_fit_results.json\", \"w\") as f:\n567\t            json.dump(joint_result, f, indent=2)\n568\t\n569\t    # Save full results\n570\t    with open(OUTPUT_DIR / \"pooled_4bench_results.json\", \"w\") as f:\n571\t        json.dump(all_results, f, indent=2)\n572\t\n573\t    # Print summary\n574\t    print(\"\\n\" + \"=\" * 60)\n575\t    print(\"POOLED 4-BENCHMARK IRT RESULTS (2PL+gamma)\")\n576\t    print(\"=\" * 60)\n577\t\n578\t    if joint_result:\n579\t        g = joint_result[\"global_gamma\"]\n580\t        d = joint_result[\"diagnostics\"]\n581\t        ppc = joint_result[\"posterior_predictive\"]\n582\t\n583\t        cal = joint_result[\"calibrated_scores\"]\n584\t        if \"ci95_lower\" in cal and \"ci95_upper\" in cal:\n585\t            lowers = np.array(cal[\"ci95_lower\"])\n586\t            uppers = np.array(cal[\"ci95_upper\"])\n587\t            dosages_arr = np.array(joint_result[\"dosages\"])\n588\t            n_total = len(dosages_arr)\n589\t            in_ci = sum(1 for i in range(n_total) if uppers[i] > lowers[i])\n590\t            coverage = in_ci / n_total * 100 if n_total > 0 else 0\n591\t            print(f\"COVERAGE: C95={coverage:.0f}% (all CIs valid)\")\n592\t        else:\n593\t            print(\"COVERAGE: need ground truth reference for proper C95\")\n594\t\n595\t        print(f\"GAMMA: mean={g['mean']:.4f}, sd={g['sd']:.4f}, \"\n596\t              f\"CI95=[{g['q025']:.4f}, {g['q975']:.4f}]\")\n597\t        print(f\"PPP: {ppc.get('overall_ppp', 'N/A')}\")\n598\t        print(f\"DIAGNOSTICS: rhat={d.get('max_rhat', 'N/A')}, \"\n599\t              f\"ESS={d.get('min_ess', 'N/A')}, \"\n600\t              f\"divergences={d.get('divergent_count', 'N/A')}\")\n601\t        print(f\"N_MODELS: {joint_result['n_models']}, \"\n602\t              f\"N_ITEMS: {joint_result['n_total_items']}\")\n603\t\n604\t    print(\"\\nPER_BENCHMARK_GAMMA:\")\n605\t    for bench in BENCHMARKS:\n606\t        if bench in all_results[\"per_benchmark\"]:\n607\t            g = all_results[\"per_benchmark\"][bench][\"gamma\"]\n608\t            n = all_results[\"per_benchmark\"][bench][\"n_models\"]\n609\t            ni = all_results[\"per_benchmark\"][bench][\"n_items\"]\n610\t            print(f\"  {bench}: gamma={g['mean']:.4f} \"\n611\t                  f\"[{g['q025']:.4f}, {g['q975']:.4f}] \"\n612\t                  f\"(N={n}, items={ni})\")\n613\t        else:\n614\t            print(f\"  {bench}: SKIPPED\")\n615\t\n616\t    print(f\"\\nResults saved to {OUTPUT_DIR}\")\n617\t\n618\t\n619\tdef parse_args():\n620\t    parser = argparse.ArgumentParser(\n621\t        description=\"Pooled 4-benchmark IRT analysis (2PL+gamma)\"\n622\t    )\n623\t    parser.add_argument(\n624\t        \"--exclude-items\", type=str, default=None,\n625\t        help=\"JSON file with list of item_ids to exclude (e.g. [\\\"mmlu_42\\\", \\\"mmlu_103\\\"])\",\n626\t    )\n627\t    parser.add_argument(\n628\t        \"--min-item-variance\", type=float, default=0.0,\n629\t        help=\"Exclude items with cross-model variance below this threshold (default: 0, disabled)\",\n630\t    )\n631\t    parser.add_argument(\n632\t        \"--stratify-by-scale\", action=\"store_true\",\n633\t        help=\"Fit IRT independently per model scale (0.5B/1.5B/3B) instead of pooled\",\n634\t    )\n635\t    parser.add_argument(\"--chains\", type=int, default=4)\n636\t    parser.add_argument(\"--warmup\", type=int, default=1000)\n637\t    parser.add_argument(\"--samples\", type=int, default=1000)\n638\t    parser.add_argument(\"--adapt-delta\", type=float, default=0.95)\n639\t    parser.add_argument(\"--max-treedepth\", type=int, default=12)\n640\t    parser.add_argument(\"--seed\", type=int, default=42)\n641\t    parser.add_argument(\"--parallel-chains\", type=int, default=1)\n642\t    return parser.parse_args()\n643\t\n644\t\n645\tdef main():\n646\t    logging.basicConfig(\n647\t        level=logging.INFO,\n648\t        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n649\t    )\n650\t\n651\t    args = parse_args()\n652\t\n653\t    exclude_set = None\n654\t    if args.exclude_items:\n655\t        with open(args.exclude_items) as f:\n656\t            exclude_list = json.load(f)\n657\t        exclude_set = set(exclude_list)\n658\t        log.info(\"Loaded %d item_ids to exclude from %s\", len(exclude_set), args.exclude_items)\n659\t\n660\t    args_dict = {\n661\t        \"chains\": args.chains,\n662\t        \"warmup\": args.warmup,\n663\t        \"samples\": args.samples,\n664\t        \"adapt_delta\": args.adapt_delta,\n665\t        \"max_treedepth\": args.max_treedepth,\n666\t        \"seed\": args.seed,\n667\t        \"parallel_chains\": args.parallel_chains,\n668\t    }\n669\t\n670\t    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n671\t\n672\t    log.info(\"Loading pooled eval results: scales=%s, benchmarks=%s\", SCALES, BENCHMARKS)\n673\t    t0 = time.time()\n674\t    data = load_pooled_eval_results(\n675\t        EVAL_DIR, SCALES, benchmarks=BENCHMARKS, aligned_only=True\n676\t    )\n677\t    log.info(\"Loaded %d models in %.1fs\", len(data[\"models\"]), time.time() - t0)\n678\t    log.info(\"Dosages: %s\", data[\"dosages\"].tolist())\n679\t    log.info(\"Benchmarks: %s\", list(data[\"benchmarks\"].keys()))\n680\t\n681\t    if args.stratify_by_scale:\n682\t        run_scale_stratified(data, args_dict, exclude_set, args.min_item_variance)\n683\t    else:\n684\t        run_pooled(data, args_dict, exclude_set, args)\n685\t\n686\t\n687\tif __name__ == \"__main__\":\n688\t    main()\n689\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6bce7c3a-59bf-41ef-807b-d35cbe02bb5d",
+            "uuid": "536b3f84-3d40-4447-b2f0-dd8a81cb8ea3",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/run_pooled_4bench_irt.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"\nPooled 4-benchmark IRT analysis (2PL+gamma) with full exclusion rules.\n\nRuns:\n  1. Per-benchmark IRT fits (with per-benchmark model exclusions)\n  2. Joint fit (shared gamma) across benchmarks using intersection models\n\nExclusion rules:\n  D044: GSM8K exclude d000 configs (format confound)\n  D045: 0.5B MMLU/ARC excluded (position bias); 0.5B GSM8K/HumanEval kept\n  D046/D047: base_pretrained excluded (via aligned_only + dirname filter)\n  D018: 3B d000 s42 v3 excluded (already deprecated, double-check)\n\nExposure: oracle dosage fraction (dosage/100) since HumanEval lacks S1 signals.\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport sys\nimport time\nfrom pathlib import Path\n\nimport numpy as np\n\nsys.path.insert(0, \"/root/contamcal-irt-calibration/exp006\")\nfrom run_irt_calibration import (\n    load_pooled_eval_results,\n    prepare_stan_data,\n    fit_stan_model,\n    check_convergence,\n    posterior_predictive_check,\n    extract_results,\n    _summarize_vector,\n    STAN_MODELS,\n)\n\nlog = logging.getLogger(__name__)\n\nBENCHMARKS = [\"mmlu\", \"gsm8k\", \"arc_challenge\", \"humaneval\"]\nSCALES = [\"0.5B\", \"1.5B\", \"3B\"]\nMODEL_TYPE = \"2pl_gamma\"\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\n\nOUTPUT_DIR = Path(\"/root/autodl-tmp/exp006/results_pooled_4bench_aligned_2pl\")\nEVAL_DIR = \"/root/autodl-tmp/exp001/eval_results\"\n\n\ndef apply_per_benchmark_exclusions(models, dosages, responses, valid_mask, benchmark):\n    \"\"\"Apply D044/D045/D046/D047/D018 per-benchmark exclusions.\"\"\"\n    keep = np.ones(len(models), dtype=bool)\n    reasons = []\n\n    for i, m in enumerate(models):\n        dirname = m.get(\"dirname\", \"\")\n        scale = m.get(\"scale\", \"\")\n        dosage = m.get(\"dosage\", 0)\n\n        # D046/D047: base pretrained\n        if \"base_pretrained\" in dirname:\n            keep[i] = False\n            reasons.append(f\"  D046/D047: {dirname} (base pretrained)\")\n            continue\n\n        # D018: deprecated check (dirname contains DEPRECATED)\n        if \"DEPRECATED\" in dirname:\n            keep[i] = False\n            reasons.append(f\"  D018: {dirname} (deprecated)\")\n            continue\n\n        # D045: 0.5B MMLU/ARC excluded (position bias)\n        if \"0.5B\" in scale and benchmark in (\"mmlu\", \"arc_challenge\"):\n            keep[i] = False\n            reasons.append(f\"  D045: {dirname} (0.5B on {benchmark})\")\n            continue\n\n        # D044: GSM8K exclude d000 (format confound)\n        if benchmark == \"gsm8k\" and dosage == 0:\n            keep[i] = False\n            reasons.append(f\"  D044: {dirname} (d000 on gsm8k)\")\n            continue\n\n        # Instruct model (no dosage pattern) - keep if aligned\n        # but skip if not part of dose-response (dosage not parseable)\n        # Actually Instruct models have dosage=base, which won't parse\n        # as dosage int. They'll appear with dosage=0 from the loader\n        # if dirname ends with _aligned without _dXXX pattern.\n        # The loader sets dosage from parsing, so Instruct models\n        # are already excluded by parse_model_dir_name returning None.\n\n    if reasons:\n        log.info(\"Excluded from %s (%d models):\", benchmark, len(reasons))\n        for r in reasons[:10]:\n            log.info(r)\n        if len(reasons) > 10:\n            log.info(\"  ... and %d more\", len(reasons) - 10)\n\n    return (\n        [m for m, k in zip(models, keep) if k],\n        dosages[keep],\n        responses[keep],\n        valid_mask[keep],\n    )\n\n\ndef filter_data_by_scale(data, target_scale):\n    \"\"\"Filter pooled data to only include models of a single scale.\"\"\"\n    keep = np.array([m.get(\"scale\", \"\") == target_scale for m in data[\"models\"]])\n    if not keep.any():\n        return None\n    return {\n        \"models\": [m for m, k in zip(data[\"models\"], keep) if k],\n        \"dosages\": data[\"dosages\"][keep],\n        \"benchmarks\": {\n            bench: {\n                \"responses\": bd[\"responses\"][keep],\n                \"n_items\": bd[\"n_items\"],\n                \"valid_mask\": bd[\"valid_mask\"][keep],\n            }\n            for bench, bd in data[\"benchmarks\"].items()\n        },\n    }\n\n\ndef build_oracle_exposure(dosages, n_items):\n    \"\"\"Oracle exposure: dosage_fraction * uniform tau.\"\"\"\n    max_d = dosages.max() if dosages.max() > 0 else 1.0\n    fracs = dosages / max_d\n    return np.outer(fracs, np.ones(n_items))\n\n\ndef filter_items(responses, benchmark, exclude_set=None, min_variance=0.0):\n    \"\"\"Remove items by exclusion list and/or low cross-model variance.\n\n    Returns (filtered_responses, kept_indices, stats_dict).\n    \"\"\"\n    n_models, n_items = responses.shape\n    keep = np.ones(n_items, dtype=bool)\n\n    n_excluded_by_list = 0\n    if exclude_set:\n        for j in range(n_items):\n            if f\"{benchmark}_{j}\" in exclude_set:\n                keep[j] = False\n                n_excluded_by_list += 1\n\n    n_excluded_by_var = 0\n    if min_variance > 0:\n        item_var = np.var(responses, axis=0)\n        low_var = item_var < min_variance\n        low_var &= keep\n        n_excluded_by_var = int(low_var.sum())\n        keep[low_var] = False\n\n    kept_indices = np.where(keep)[0]\n    stats = {\n        \"original\": n_items,\n        \"excluded_by_list\": n_excluded_by_list,\n        \"excluded_by_variance\": n_excluded_by_var,\n        \"remaining\": int(keep.sum()),\n    }\n    return responses[:, keep], kept_indices, stats\n\n\ndef run_single_benchmark_fit(bench, data, args_dict, exclude_set=None, min_item_variance=0.0):\n    \"\"\"Run IRT fit for a single benchmark with exclusions.\"\"\"\n    if bench not in data[\"benchmarks\"]:\n        log.warning(\"Benchmark %s not in data, skipping\", bench)\n        return None\n\n    bd = data[\"benchmarks\"][bench]\n    models_filt, dosages_filt, responses_filt, valid_filt = apply_per_benchmark_exclusions(\n        data[\"models\"], data[\"dosages\"],\n        bd[\"responses\"], bd[\"valid_mask\"], bench\n    )\n\n    # Apply valid mask\n    if not valid_filt.all():\n        active = valid_filt.astype(bool)\n        models_filt = [m for m, v in zip(models_filt, active) if v]\n        dosages_filt = dosages_filt[active]\n        responses_filt = responses_filt[active]\n\n    n_models = len(models_filt)\n    n_items = bd[\"n_items\"]\n\n    if exclude_set or min_item_variance > 0:\n        responses_filt, kept_indices, fstats = filter_items(\n            responses_filt, bench, exclude_set, min_item_variance\n        )\n        n_items = fstats[\"remaining\"]\n        log.info(\"[%s] Item filter: %d -> %d (list=%d, variance=%d)\",\n                 bench, fstats[\"original\"], n_items,\n                 fstats[\"excluded_by_list\"], fstats[\"excluded_by_variance\"])\n\n    log.info(\"[%s] N_models=%d, N_items=%d\", bench, n_models, n_items)\n\n    if n_models < 3:\n        log.warning(\"[%s] Too few models (%d), skipping\", bench, n_models)\n        return None\n\n    exposure = build_oracle_exposure(dosages_filt, n_items)\n    stan_data = prepare_stan_data(responses_filt, exposure, MODEL_TYPE)\n\n    fit, elapsed = fit_stan_model(\n        STAN_FILE, stan_data,\n        chains=args_dict[\"chains\"],\n        iter_warmup=args_dict[\"warmup\"],\n        iter_sampling=args_dict[\"samples\"],\n        adapt_delta=args_dict[\"adapt_delta\"],\n        max_treedepth=args_dict[\"max_treedepth\"],\n        seed=args_dict[\"seed\"],\n        parallel_chains=args_dict[\"parallel_chains\"],\n    )\n\n    diagnostics = check_convergence(fit)\n    ppc = posterior_predictive_check(fit, responses_filt)\n    results = extract_results(fit, responses_filt, MODEL_TYPE)\n\n    return {\n        \"benchmark\": bench,\n        \"n_models\": n_models,\n        \"n_items\": n_items,\n        \"models\": [{\"dirname\": m[\"dirname\"], \"dosage\": m[\"dosage\"],\n                     \"scale\": m.get(\"scale\", \"\")} for m in models_filt],\n        \"dosages\": dosages_filt.tolist(),\n        \"fit_time_sec\": round(elapsed, 1),\n        \"diagnostics\": diagnostics,\n        \"posterior_predictive\": ppc,\n        \"gamma\": results.get(\"gamma\", {}),\n        \"calibrated_scores\": results.get(\"calibrated_scores\", {}),\n    }\n\n\ndef run_joint_fit(data, benchmarks_to_include, args_dict, exclude_set=None, min_item_variance=0.0):\n    \"\"\"Concatenate benchmark items and fit shared-gamma model.\n\n    Uses intersection of valid models across all benchmarks (after exclusions).\n    \"\"\"\n    per_bench_filtered = {}\n    for bench in benchmarks_to_include:\n        if bench not in data[\"benchmarks\"]:\n            continue\n        bd = data[\"benchmarks\"][bench]\n        models_f, dosages_f, resp_f, valid_f = apply_per_benchmark_exclusions(\n            data[\"models\"], data[\"dosages\"],\n            bd[\"responses\"], bd[\"valid_mask\"], bench\n        )\n        if not valid_f.all():\n            active = valid_f.astype(bool)\n            models_f = [m for m, v in zip(models_f, active) if v]\n            dosages_f = dosages_f[active]\n            resp_f = resp_f[active]\n\n        per_bench_filtered[bench] = {\n            \"models\": models_f,\n            \"dosages\": dosages_f,\n            \"responses\": resp_f,\n            \"n_items\": bd[\"n_items\"],\n        }\n\n    # Find intersection of valid model dirnames across benchmarks\n    dirname_sets = [set(m[\"dirname\"] for m in bf[\"models\"])\n                    for bf in per_bench_filtered.values()]\n    common_dirnames = set.intersection(*dirname_sets) if dirname_sets else set()\n    log.info(\"Joint fit: %d common models across %d benchmarks\",\n             len(common_dirnames), len(per_bench_filtered))\n\n    if len(common_dirnames) < 3:\n        log.warning(\"Too few common models (%d) for joint fit\", len(common_dirnames))\n        return None\n\n    # Build concatenated matrices using common model order\n    ref_bench = list(per_bench_filtered.keys())[0]\n    ref_models = per_bench_filtered[ref_bench][\"models\"]\n    ordered_dirnames = [m[\"dirname\"] for m in ref_models if m[\"dirname\"] in common_dirnames]\n\n    all_y = []\n    all_exp = []\n    slices = {}\n    col_offset = 0\n    joint_models = None\n    joint_dosages = None\n\n    for bench, bf in per_bench_filtered.items():\n        dirname_to_idx = {m[\"dirname\"]: i for i, m in enumerate(bf[\"models\"])}\n        indices = [dirname_to_idx[d] for d in ordered_dirnames]\n\n        resp_ordered = bf[\"responses\"][indices]\n        dosages_ordered = bf[\"dosages\"][indices]\n        n_items = bf[\"n_items\"]\n\n        if exclude_set or min_item_variance > 0:\n            resp_ordered, kept_indices, fstats = filter_items(\n                resp_ordered, bench, exclude_set, min_item_variance\n            )\n            n_items = fstats[\"remaining\"]\n            log.info(\"[joint/%s] Item filter: %d -> %d (list=%d, variance=%d)\",\n                     bench, fstats[\"original\"], n_items,\n                     fstats[\"excluded_by_list\"], fstats[\"excluded_by_variance\"])\n\n        exposure = build_oracle_exposure(dosages_ordered, n_items)\n\n        all_y.append(resp_ordered)\n        all_exp.append(exposure)\n        slices[bench] = (col_offset, col_offset + n_items)\n        col_offset += n_items\n\n        if joint_models is None:\n            joint_models = [bf[\"models\"][i] for i in indices]\n            joint_dosages = dosages_ordered\n\n    y_concat = np.concatenate(all_y, axis=1)\n    exp_concat = np.concatenate(all_exp, axis=1)\n\n    n_models, n_total = y_concat.shape\n    log.info(\"Joint fit: %d models x %d total items\", n_models, n_total)\n    log.info(\"Joint fit slices: %s\", {b: f\"{s[0]}-{s[1]}\" for b, s in slices.items()})\n\n    stan_data = prepare_stan_data(y_concat, exp_concat, MODEL_TYPE)\n\n    fit, elapsed = fit_stan_model(\n        STAN_FILE, stan_data,\n        chains=args_dict[\"chains\"],\n        iter_warmup=args_dict[\"warmup\"],\n        iter_sampling=args_dict[\"samples\"],\n        adapt_delta=args_dict[\"adapt_delta\"],\n        max_treedepth=args_dict[\"max_treedepth\"],\n        seed=args_dict[\"seed\"],\n        parallel_chains=args_dict[\"parallel_chains\"],\n    )\n\n    diagnostics = check_convergence(fit)\n    ppc = posterior_predictive_check(fit, y_concat)\n    results = extract_results(fit, y_concat, MODEL_TYPE)\n\n    # Per-benchmark calibrated scores from joint model\n    gamma_draws = fit.stan_variable(\"gamma\")\n    theta_draws = fit.stan_variable(\"theta\")\n    a_draws = fit.stan_variable(\"a\")\n    b_draws = fit.stan_variable(\"b\")\n\n    per_bench_cal = {}\n    for bench, (start, end) in slices.items():\n        n_bench_items = end - start\n        n_draws = gamma_draws.shape[0]\n        bench_cal = np.zeros((n_draws, n_models))\n        for draw in range(n_draws):\n            for i in range(n_models):\n                total = 0.0\n                for j in range(start, end):\n                    eta_clean = a_draws[draw, j] * (theta_draws[draw, i] - b_draws[draw, j])\n                    total += 1.0 / (1.0 + np.exp(-eta_clean))\n                bench_cal[draw, i] = total / n_bench_items\n        per_bench_cal[bench] = {\n            \"mean\": bench_cal.mean(axis=0).tolist(),\n            \"sd\": bench_cal.std(axis=0).tolist(),\n        }\n\n    return {\n        \"mode\": \"joint_fit_4bench\",\n        \"model_type\": MODEL_TYPE,\n        \"n_models\": n_models,\n        \"n_total_items\": n_total,\n        \"benchmark_slices\": {k: list(v) for k, v in slices.items()},\n        \"models\": [{\"dirname\": m[\"dirname\"], \"dosage\": m[\"dosage\"],\n                     \"scale\": m.get(\"scale\", \"\")} for m in joint_models],\n        \"dosages\": joint_dosages.tolist(),\n        \"fit_time_sec\": round(elapsed, 1),\n        \"diagnostics\": diagnostics,\n        \"posterior_predictive\": ppc,\n        \"global_gamma\": results.get(\"gamma\", {}),\n        \"calibrated_scores\": results.get(\"calibrated_scores\", {}),\n        \"calibrated_scores_per_benchmark\": per_bench_cal,\n    }\n\n\ndef run_scale_stratified(data, args_dict, exclude_set, min_item_variance):\n    \"\"\"Per-scale per-benchmark IRT fits (D105).\"\"\"\n    output_dir = OUTPUT_DIR / \"scale_stratified\"\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    per_scale_results = {}\n    summary_rows = []\n\n    for scale in SCALES:\n        scale_data = filter_data_by_scale(data, scale)\n        if scale_data is None:\n            log.warning(\"No models for scale %s, skipping\", scale)\n            continue\n\n        n_total = len(scale_data[\"models\"])\n        unique_dosages = np.unique(scale_data[\"dosages\"]).tolist()\n        log.info(\"=\" * 60)\n        log.info(\"SCALE %s: %d models, dosages=%s\", scale, n_total, unique_dosages)\n        log.info(\"=\" * 60)\n\n        if len(unique_dosages) < 2:\n            log.warning(\"Scale %s has only 1 dosage level — gamma not identifiable \"\n                        \"(prior-dominated)\", scale)\n\n        per_scale_results[scale] = {}\n        scale_dir = output_dir / scale.replace(\".\", \"_\")\n        scale_dir.mkdir(parents=True, exist_ok=True)\n\n        for bench in BENCHMARKS:\n            log.info(\"--- %s / %s ---\", scale, bench)\n            result = run_single_benchmark_fit(\n                bench, scale_data, args_dict, exclude_set, min_item_variance\n            )\n            if result is None:\n                summary_rows.append({\n                    \"scale\": scale, \"benchmark\": bench,\n                    \"gamma_mean\": None, \"ci_low\": None, \"ci_high\": None,\n                    \"rhat\": None, \"ess\": None, \"n_models\": 0, \"n_items\": 0,\n                    \"skipped\": True,\n                })\n                continue\n\n            result[\"scale\"] = scale\n            per_scale_results[scale][bench] = result\n\n            g = result[\"gamma\"]\n            d = result[\"diagnostics\"]\n            row = {\n                \"scale\": scale,\n                \"benchmark\": bench,\n                \"gamma_mean\": g[\"mean\"],\n                \"ci_low\": g[\"q025\"],\n                \"ci_high\": g[\"q975\"],\n                \"rhat\": d.get(\"max_rhat\"),\n                \"ess\": d.get(\"min_ess\"),\n                \"n_models\": result[\"n_models\"],\n                \"n_items\": result[\"n_items\"],\n                \"skipped\": False,\n            }\n            summary_rows.append(row)\n\n            log.info(\"[%s/%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, N=%d\",\n                     scale, bench, g[\"mean\"], g[\"q025\"], g[\"q975\"],\n                     d.get(\"max_rhat\", 0), d.get(\"min_ess\", 0), result[\"n_models\"])\n\n            with open(scale_dir / f\"{bench}_results.json\", \"w\") as f:\n                json.dump(result, f, indent=2)\n\n    # Save combined results\n    output = {\n        \"config\": {\n            \"mode\": \"scale_stratified\",\n            \"model_type\": MODEL_TYPE,\n            \"scales\": SCALES,\n            \"benchmarks\": BENCHMARKS,\n            \"exposure\": \"oracle_dosage\",\n            \"exclusions\": [\"D044_gsm8k_d000\", \"D045_05B_mmlu_arc\",\n                           \"D046_D047_base_pretrained\", \"D018_deprecated\"],\n            \"stan_config\": args_dict,\n        },\n        \"per_scale\": per_scale_results,\n        \"summary\": summary_rows,\n    }\n    with open(output_dir / \"scale_stratified_results.json\", \"w\") as f:\n        json.dump(output, f, indent=2)\n\n    # Print summary table\n    print(\"\\n\" + \"=\" * 100)\n    print(\"SCALE-STRATIFIED IRT RESULTS (D105)\")\n    print(\"=\" * 100)\n    hdr = f\"{'Scale':<8} {'Benchmark':<16} {'γ̂':>8} {'CI_low':>8} {'CI_high':>8} {'R̂':>8} {'ESS':>8} {'N_models':>10} {'N_items':>8}\"\n    print(hdr)\n    print(\"-\" * len(hdr))\n    for row in summary_rows:\n        if row.get(\"skipped\"):\n            print(f\"{row['scale']:<8} {row['benchmark']:<16} {'SKIPPED':>8} \"\n                  f\"{'':>8} {'':>8} {'':>8} {'':>8} {row['n_models']:>10} {'':>8}\")\n        else:\n            rhat_str = f\"{row['rhat']:.4f}\" if row['rhat'] is not None else \"N/A\"\n            ess_str = f\"{row['ess']:.0f}\" if row['ess'] is not None else \"N/A\"\n            print(f\"{row['scale']:<8} {row['benchmark']:<16} \"\n                  f\"{row['gamma_mean']:>8.4f} {row['ci_low']:>8.4f} {row['ci_high']:>8.4f} \"\n                  f\"{rhat_str:>8} {ess_str:>8} {row['n_models']:>10} {row['n_items']:>8}\")\n    print(\"-\" * len(hdr))\n\n    # Flag convergence issues\n    for row in summary_rows:\n        if row.get(\"skipped\"):\n            continue\n        warnings = []\n        if row[\"rhat\"] is not None and row[\"rhat\"] > 1.01:\n            warnings.append(f\"R̂={row['rhat']:.4f} > 1.01\")\n        if row[\"ess\"] is not None and row[\"ess\"] < 400:\n            warnings.append(f\"ESS={row['ess']:.0f} < 400\")\n        if row[\"n_models\"] < 5:\n            warnings.append(f\"N_models={row['n_models']} (small sample)\")\n        if warnings:\n            print(f\"  WARNING [{row['scale']}/{row['benchmark']}]: {', '.join(warnings)}\")\n\n    print(f\"\\nResults saved to {output_dir}\")\n\n\ndef run_pooled(data, args_dict, exclude_set, args):\n    \"\"\"Original pooled analysis (backward-compatible).\"\"\"\n    all_results = {\n        \"config\": {\n            \"model_type\": MODEL_TYPE,\n            \"scales\": SCALES,\n            \"benchmarks\": BENCHMARKS,\n            \"exposure\": \"oracle_dosage\",\n            \"exclusions\": [\"D044_gsm8k_d000\", \"D045_05B_mmlu_arc\",\n                           \"D046_D047_base_pretrained\", \"D018_deprecated\"],\n            \"item_filter\": {\n                \"exclude_items_file\": args.exclude_items,\n                \"exclude_items_count\": len(exclude_set) if exclude_set else 0,\n                \"min_item_variance\": args.min_item_variance,\n            },\n            \"stan_config\": args_dict,\n        },\n        \"per_benchmark\": {},\n        \"joint_fit\": None,\n    }\n\n    # Phase 1: Per-benchmark IRT fits\n    log.info(\"=\" * 60)\n    log.info(\"PHASE 1: Per-benchmark IRT fits\")\n    log.info(\"=\" * 60)\n\n    for bench in BENCHMARKS:\n        log.info(\"-\" * 40)\n        log.info(\"Fitting %s...\", bench)\n        result = run_single_benchmark_fit(\n            bench, data, args_dict, exclude_set, args.min_item_variance\n        )\n        if result:\n            all_results[\"per_benchmark\"][bench] = result\n            g = result[\"gamma\"]\n            d = result[\"diagnostics\"]\n            log.info(\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d\",\n                     bench, g[\"mean\"], g[\"q025\"], g[\"q975\"],\n                     d.get(\"max_rhat\", 0), d.get(\"min_ess\", 0),\n                     d.get(\"divergent_count\", 0))\n\n            bench_dir = OUTPUT_DIR / bench\n            bench_dir.mkdir(parents=True, exist_ok=True)\n            with open(bench_dir / \"irt_results.json\", \"w\") as f:\n                json.dump(result, f, indent=2)\n\n    # Phase 2: Joint fit (shared gamma)\n    log.info(\"=\" * 60)\n    log.info(\"PHASE 2: Joint fit (shared gamma across benchmarks)\")\n    log.info(\"=\" * 60)\n\n    included_benchmarks = list(all_results[\"per_benchmark\"].keys())\n    joint_result = run_joint_fit(\n        data, included_benchmarks, args_dict, exclude_set, args.min_item_variance\n    )\n    if joint_result:\n        all_results[\"joint_fit\"] = joint_result\n        g = joint_result[\"global_gamma\"]\n        d = joint_result[\"diagnostics\"]\n        log.info(\"JOINT gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d\",\n                 g[\"mean\"], g[\"q025\"], g[\"q975\"],\n                 d.get(\"max_rhat\", 0), d.get(\"min_ess\", 0),\n                 d.get(\"divergent_count\", 0))\n\n        with open(OUTPUT_DIR / \"joint_fit_results.json\", \"w\") as f:\n            json.dump(joint_result, f, indent=2)\n\n    # Save full results\n    with open(OUTPUT_DIR / \"pooled_4bench_results.json\", \"w\") as f:\n        json.dump(all_results, f, indent=2)\n\n    # Print summary\n    print(\"\\n\" + \"=\" * 60)\n    print(\"POOLED 4-BENCHMARK IRT RESULTS (2PL+gamma)\")\n    print(\"=\" * 60)\n\n    if joint_result:\n        g = joint_result[\"global_gamma\"]\n        d = joint_result[\"diagnostics\"]\n        ppc = joint_result[\"posterior_predictive\"]\n\n        cal = joint_result[\"calibrated_scores\"]\n        if \"ci95_lower\" in cal and \"ci95_upper\" in cal:\n            lowers = np.array(cal[\"ci95_lower\"])\n            uppers = np.array(cal[\"ci95_upper\"])\n            dosages_arr = np.array(joint_result[\"dosages\"])\n            n_total = len(dosages_arr)\n            in_ci = sum(1 for i in range(n_total) if uppers[i] > lowers[i])\n            coverage = in_ci / n_total * 100 if n_total > 0 else 0\n            print(f\"COVERAGE: C95={coverage:.0f}% (all CIs valid)\")\n        else:\n            print(\"COVERAGE: need ground truth reference for proper C95\")\n\n        print(f\"GAMMA: mean={g['mean']:.4f}, sd={g['sd']:.4f}, \"\n              f\"CI95=[{g['q025']:.4f}, {g['q975']:.4f}]\")\n        print(f\"PPP: {ppc.get('overall_ppp', 'N/A')}\")\n        print(f\"DIAGNOSTICS: rhat={d.get('max_rhat', 'N/A')}, \"\n              f\"ESS={d.get('min_ess', 'N/A')}, \"\n              f\"divergences={d.get('divergent_count', 'N/A')}\")\n        print(f\"N_MODELS: {joint_result['n_models']}, \"\n              f\"N_ITEMS: {joint_result['n_total_items']}\")\n\n    print(\"\\nPER_BENCHMARK_GAMMA:\")\n    for bench in BENCHMARKS:\n        if bench in all_results[\"per_benchmark\"]:\n            g = all_results[\"per_benchmark\"][bench][\"gamma\"]\n            n = all_results[\"per_benchmark\"][bench][\"n_models\"]\n            ni = all_results[\"per_benchmark\"][bench][\"n_items\"]\n            print(f\"  {bench}: gamma={g['mean']:.4f} \"\n                  f\"[{g['q025']:.4f}, {g['q975']:.4f}] \"\n                  f\"(N={n}, items={ni})\")\n        else:\n            print(f\"  {bench}: SKIPPED\")\n\n    print(f\"\\nResults saved to {OUTPUT_DIR}\")\n\n\ndef parse_args():\n    parser = argparse.ArgumentParser(\n        description=\"Pooled 4-benchmark IRT analysis (2PL+gamma)\"\n    )\n    parser.add_argument(\n        \"--exclude-items\", type=str, default=None,\n        help=\"JSON file with list of item_ids to exclude (e.g. [\\\"mmlu_42\\\", \\\"mmlu_103\\\"])\",\n    )\n    parser.add_argument(\n        \"--min-item-variance\", type=float, default=0.0,\n        help=\"Exclude items with cross-model variance below this threshold (default: 0, disabled)\",\n    )\n    parser.add_argument(\n        \"--stratify-by-scale\", action=\"store_true\",\n        help=\"Fit IRT independently per model scale (0.5B/1.5B/3B) instead of pooled\",\n    )\n    parser.add_argument(\"--chains\", type=int, default=4)\n    parser.add_argument(\"--warmup\", type=int, default=1000)\n    parser.add_argument(\"--samples\", type=int, default=1000)\n    parser.add_argument(\"--adapt-delta\", type=float, default=0.95)\n    parser.add_argument(\"--max-treedepth\", type=int, default=12)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--parallel-chains\", type=int, default=1)\n    return parser.parse_args()\n\n\ndef main():\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n\n    args = parse_args()\n\n    exclude_set = None\n    if args.exclude_items:\n        with open(args.exclude_items) as f:\n            exclude_list = json.load(f)\n        exclude_set = set(exclude_list)\n        log.info(\"Loaded %d item_ids to exclude from %s\", len(exclude_set), args.exclude_items)\n\n    args_dict = {\n        \"chains\": args.chains,\n        \"warmup\": args.warmup,\n        \"samples\": args.samples,\n        \"adapt_delta\": args.adapt_delta,\n        \"max_treedepth\": args.max_treedepth,\n        \"seed\": args.seed,\n        \"parallel_chains\": args.parallel_chains,\n    }\n\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n\n    log.info(\"Loading pooled eval results: scales=%s, benchmarks=%s\", SCALES, BENCHMARKS)\n    t0 = time.time()\n    data = load_pooled_eval_results(\n        EVAL_DIR, SCALES, benchmarks=BENCHMARKS, aligned_only=True\n    )\n    log.info(\"Loaded %d models in %.1fs\", len(data[\"models\"]), time.time() - t0)\n    log.info(\"Dosages: %s\", data[\"dosages\"].tolist())\n    log.info(\"Benchmarks: %s\", list(data[\"benchmarks\"].keys()))\n\n    if args.stratify_by_scale:\n        run_scale_stratified(data, args_dict, exclude_set, args.min_item_variance)\n    else:\n        run_pooled(data, args_dict, exclude_set, args)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 689,
+                "startLine": 1,
+                "totalLines": 689
+              }
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The file looks good. Let me verify it with a Python syntax check locally.",
+              "signature": "EoQCClkIDRgCKkBkS1yORz2SxBLQnTJSYCP12iqJVWl+10mvk9tjnqpW64RawYZsYwi+z6YilXD26Ur5HDpkDG63ZRcQo9VZi1QJMg9jbGF1ZGUtb3B1cy00LTY4ABIMX5xjsmgOFU7qCN/PGgz+nD4ewG+6mleeKxYiMGTEIDwyqeqZ3M/BcKqO0HkJGVIOdwH+bZVbN0dd+NJPGeQ0knWF1cXt6NtfE11eZypZs41Y5OiZoPwc71jylDVTUSW1cpSZ80/1WRqR4eSsX2fzu9dPvhNlwlGiFI4PbHhaDqd2B4v2X76mPIJKw1TmTbGkQadNdtQBxKpc7dXzTTJ7MP5kQLQVBq4YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6bce7c3a-59bf-41ef-807b-d35cbe02bb5d",
+            "uuid": "baa503f0-851e-4b9f-9566-f55936b068b0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016p3Bx4JJgwCPvPF59qj9AV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10074,
+                "cache_read_input_tokens": 82413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10074
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "File looks clean. Let me do a syntax check:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6bce7c3a-59bf-41ef-807b-d35cbe02bb5d",
+            "uuid": "ccba043a-b5a3-436c-9502-aad1315dac47",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016p3Bx4JJgwCPvPF59qj9AV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10074,
+                "cache_read_input_tokens": 82413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10074
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GhPd99EeVAkSxddYYYQvrF",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"import ast; ast.parse(open('artifacts/run_pooled_4bench_irt.py').read()); print('OK')\"",
+                "description": "Syntax check the modified script"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6bce7c3a-59bf-41ef-807b-d35cbe02bb5d",
+            "uuid": "4f6f97ef-6971-48bb-b0e2-26bdeb536403",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016p3Bx4JJgwCPvPF59qj9AV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10074,
+                "cache_read_input_tokens": 82413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10074
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-16T05:33:56.787Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GhPd99EeVAkSxddYYYQvrF",
+              "type": "tool_result",
+              "content": "OK",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6bce7c3a-59bf-41ef-807b-d35cbe02bb5d",
+            "uuid": "b3e08ed4-1ad4-4309-9cc8-6995d398c947",
+            "tool_use_result": {
+              "stdout": "OK",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me verify `--help` shows the new argument (won't be able to import the remote module, but we can test the argparser logic separately):"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6bce7c3a-59bf-41ef-807b-d35cbe02bb5d",
+            "uuid": "615225af-ac3d-4c00-9d92-c8966d8cbdcc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ei4R4fdcHaTDTFYRkvA73x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 167,
+                "cache_read_input_tokens": 92487,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 167
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XYwoxG6sFsPZYFQor18yoS",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport sys, argparse\n\n# Simulate just the argparser\nparser = argparse.ArgumentParser(description='Pooled 4-benchmark IRT analysis (2PL+gamma)')\nparser.add_argument('--exclude-items', type=str, default=None)\nparser.add_argument('--min-item-variance', type=float, default=0.0)\nparser.add_argument('--stratify-by-scale', action='store_true',\n    help='Fit IRT independently per model scale (0.5B/1.5B/3B) instead of pooled')\nparser.add_argument('--chains', type=int, default=4)\nparser.add_argument('--warmup', type=int, default=1000)\nparser.add_argument('--samples', type=int, default=1000)\nparser.add_argument('--adapt-delta', type=float, default=0.95)\nparser.add_argument('--max-treedepth', type=int, default=12)\nparser.add_argument('--seed', type=int, default=42)\nparser.add_argument('--parallel-chains', type=int, default=1)\n\n# Test parsing\nargs = parser.parse_args(['--stratify-by-scale'])\nassert args.stratify_by_scale == True\nassert args.chains == 4\n\nargs2 = parser.parse_args([])\nassert args2.stratify_by_scale == False\n\nprint('Argparse OK')\n\n# Test filter_data_by_scale logic\nimport numpy as np\n\ndef filter_data_by_scale(data, target_scale):\n    keep = np.array([m.get('scale', '') == target_scale for m in data['models']])\n    if not keep.any():\n        return None\n    return {\n        'models': [m for m, k in zip(data['models'], keep) if k],\n        'dosages': data['dosages'][keep],\n        'benchmarks': {\n            bench: {\n                'responses': bd['responses'][keep],\n                'n_items': bd['n_items'],\n                'valid_mask': bd['valid_mask'][keep],\n            }\n            for bench, bd in data['benchmarks'].items()\n        },\n    }\n\n# Mock data\ndata = {\n    'models': [\n        {'dirname': 'Qwen2.5-0.5B_d000_s42', 'scale': '0.5B', 'dosage': 0},\n        {'dirname': 'Qwen2.5-0.5B_d025_s42', 'scale': '0.5B', 'dosage': 25},\n        {'dirname': 'Qwen2.5-1.5B_d000_s42', 'scale': '1.5B', 'dosage': 0},\n        {'dirname': 'Qwen2.5-1.5B_d025_s42', 'scale': '1.5B', 'dosage': 25},\n        {'dirname': 'Qwen2.5-3B_d000_s42', 'scale': '3B', 'dosage': 0},\n        {'dirname': 'Qwen2.5-3B_d100_s42', 'scale': '3B', 'dosage': 100},\n    ],\n    'dosages': np.array([0, 25, 0, 25, 0, 100]),\n    'benchmarks': {\n        'arc_challenge': {\n            'responses': np.random.randint(0, 2, (6, 10)),\n            'n_items': 10,\n            'valid_mask': np.ones(6, dtype=bool),\n        }\n    },\n}\n\n# Test filtering\nresult_05 = filter_data_by_scale(data, '0.5B')\nassert len(result_05['models']) == 2\nassert result_05['dosages'].tolist() == [0, 25]\nassert result_05['benchmarks']['arc_challenge']['responses'].shape == (2, 10)\n\nresult_3b = filter_data_by_scale(data, '3B')\nassert len(result_3b['models']) == 2\n\nresult_7b = filter_data_by_scale(data, '7B')\nassert result_7b is None\n\nprint('filter_data_by_scale OK')\nprint('All tests passed')\n\"\n",
+                "description": "Test argparse and filter_data_by_scale logic"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6bce7c3a-59bf-41ef-807b-d35cbe02bb5d",
+            "uuid": "603625c1-e660-4a3e-bf0c-9761bdbfa9d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ei4R4fdcHaTDTFYRkvA73x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 167,
+                "cache_read_input_tokens": 92487,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 167
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-16T05:34:14.390Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XYwoxG6sFsPZYFQor18yoS",
+              "type": "tool_result",
+              "content": "Argparse OK\nfilter_data_by_scale OK\nAll tests passed",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6bce7c3a-59bf-41ef-807b-d35cbe02bb5d",
+            "uuid": "a1a36912-3fe5-4158-b208-4f4e6a62d9cd",
+            "tool_use_result": {
+              "stdout": "Argparse OK\nfilter_data_by_scale OK\nAll tests passed",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Implementation complete. Summary of changes to `run_pooled_4bench_irt.py`:\n\n**New function: `filter_data_by_scale(data, target_scale)`** (line 108)\n- Filters the pooled data dict to only models of a given scale\n- Returns None if no models match\n\n**New function: `run_scale_stratified(data, args_dict, exclude_set, min_item_variance)`** (line 380)\n- Loops over 0.5B / 1.5B / 3B, filters data per scale\n- Runs `run_single_benchmark_fit` for each scale × benchmark combination\n- Warns when only 1 dosage level (gamma prior-dominated)\n- Saves per-scale JSON results to `OUTPUT_DIR/scale_stratified/<scale>/`\n- Prints summary table with γ̂, CI, R̂, ESS, N_models, N_items\n- Flags convergence issues (R̂ > 1.01, ESS < 400, small N)\n\n**Refactored: `run_pooled(data, args_dict, exclude_set, args)`** (line 502)\n- Extracted from `main()` — identical behavior to before\n\n**Modified: `parse_args()`** (line 619)\n- Added `--stratify-by-scale` flag\n- Added CLI args for Stan config (`--chains`, `--warmup`, `--samples`, etc.) — previously hardcoded\n\n**Modified: `main()`** (line 645)\n- Branches on `args.stratify_by_scale`: calls `run_scale_stratified` or `run_pooled`\n\nD045 exclusion remains active — 0.5B on mmlu/arc_challenge will show as SKIPPED in the table, which is the expected behavior (position bias confound)."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6bce7c3a-59bf-41ef-807b-d35cbe02bb5d",
+            "uuid": "fdb05ec5-af51-4a1a-8636-d0a81582c785",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GR1YrTUkmVG5obP7P7krMS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1217,
+                "cache_read_input_tokens": 92654,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1217
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Implementation complete. Summary of changes to `run_pooled_4bench_irt.py`:\n\n**New function: `filter_data_by_scale(data, target_scale)`** (line 108)\n- Filters the pooled data dict to only models of a given scale\n- Returns None if no models match\n\n**New function: `run_scale_stratified(data, args_dict, exclude_set, min_item_variance)`** (line 380)\n- Loops over 0.5B / 1.5B / 3B, filters data per scale\n- Runs `run_single_benchmark_fit` for each scale × benchmark combination\n- Warns when only 1 dosage level (gamma prior-dominated)\n- Saves per-scale JSON results to `OUTPUT_DIR/scale_stratified/<scale>/`\n- Prints summary table with γ̂, CI, R̂, ESS, N_models, N_items\n- Flags convergence issues (R̂ > 1.01, ESS < 400, small N)\n\n**Refactored: `run_pooled(data, args_dict, exclude_set, args)`** (line 502)\n- Extracted from `main()` — identical behavior to before\n\n**Modified: `parse_args()`** (line 619)\n- Added `--stratify-by-scale` flag\n- Added CLI args for Stan config (`--chains`, `--warmup`, `--samples`, etc.) — previously hardcoded\n\n**Modified: `main()`** (line 645)\n- Branches on `args.stratify_by_scale`: calls `run_scale_stratified` or `run_pooled`\n\nD045 exclusion remains active — 0.5B on mmlu/arc_challenge will show as SKIPPED in the table, which is the expected behavior (position bias confound)."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 331361,
+            "duration_api_ms": 328177,
+            "num_turns": 24,
+            "stop_reason": "end_turn",
+            "session_id": "6bce7c3a-59bf-41ef-807b-d35cbe02bb5d",
+            "total_cost_usd": 1.7115344499999998,
+            "usage": {
+              "input_tokens": 25,
+              "cache_creation_input_tokens": 82030,
+              "cache_read_input_tokens": 1330287,
+              "output_tokens": 17102,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 82030,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 438,
+                  "cache_read_input_tokens": 92654,
+                  "cache_creation_input_tokens": 1217,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1217
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2907,
+                "outputTokens": 3826,
+                "cacheReadInputTokens": 222102,
+                "cacheCreationInputTokens": 49425,
+                "webSearchRequests": 0,
+                "costUSD": 0.10602845000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 25,
+                "outputTokens": 17102,
+                "cacheReadInputTokens": 1330287,
+                "cacheCreationInputTokens": 82030,
+                "webSearchRequests": 0,
+                "costUSD": 1.605506,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "356ae247-6a81-4a96-961b-d9aa979e6449"
+          },
+          "id": "event-000123"
+        }
+      ]
+    }
+  ]
+}

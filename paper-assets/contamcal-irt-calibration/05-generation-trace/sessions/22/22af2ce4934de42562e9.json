@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22af2ce4934de42562e9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code gsm8k qwen7b olmo2 s123 westd prep",
+  "task_key": "worker_code_gsm8k_qwen7b_olmo2_s123_westd_prep_20260519T225511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gsm8k_qwen7b_olmo2_s123_westd_prep_20260519T225511_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "a1401cc5b758224af03160319985e8dc3473439dd43d9a63bc64ed507f3d42ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪。汇总：\n\n**脚本路径**: `westd-29999:/root/autodl-tmp/exp001/eval_gsm8k_qwen7b_olmo2_s123.sh`\n\n**Checkpoint 路径**:\n| Model | Dosage | Checkpoint |\n|-------|--------|------------|\n| Qwen2.5-7B | d000_s123 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s123/lora_adapter` |\n| Qwen2.5-7B | d100_s123 | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s123/lora_adapter` |\n| OLMo-2-7B | d000_s123 | `/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s123/lora_adapter` |\n| OLMo-2-7B | d100_s123 | `/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d100_s123/lora_adapter` |\n\n**验证结果**:\n- evaluate.py md5: westd = cqa1 = `001a9bc23f808c47d25ef9eaeecb81f1` ✅ (C009)\n- lora_alpha: 两个模型 d000_s123 均为 32 ✅ (C006)\n- CUDA_VISIBLE_DEVICES=2 显式设置 ✅ (C004)\n\n**预估运行时间**: ~1h（4 个 eval，每个 ~15min，7B 模型 GSM8K batch_size=8）\n\n**运行命令**（提交时用）:\n```bash\nCUDA_VISIBLE_DEVICES=2 nohup bash /root/autodl-tmp/exp001/eval_gsm8k_qwen7b_olmo2_s123.sh > /root/autodl-tmp/exp001/gsm8k_qwen7b_olmo2_s123.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gsm8k-qwen7b-olmo2-s123-westd-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cf311cd8e7cd1b953f6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu5 verify",
+  "task_key": "worker_ops_gpu5-verify_20260513T235945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu5-verify_20260513T235945_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "8abadf8bb91fcb5174f7bd82b197742d3c96689dbc805d7533dbb33e8b1e6df0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n| 检查项 | 结果 |\n|--------|------|\n| GPU 5 有 d005 训练进程 | **是** — 但是 **v3** (PID 239734)，不是 r3 |\n| GPU 0 有新增进程 | **否** — 仅有原 PID 235248 (d100 SFT) |\n| r3 训练正常启动 | **否 — r3 已 OOM 崩溃 (EXIT_CODE=1)** |\n\n### 根因\n\n**v3 仍在 GPU 5 上运行**（PID 239734，当前进度 209/3177，~1 it/s），占用 21.5 GiB 显存。r3 (PID 240163) 也指向 GPU 5，启动时发现仅剩 459 MiB 可用，尝试分配 578 MiB 失败 → OOM 崩溃。\n\n**好消息**：r3 的 GPU 指向正确（`CUDA_VISIBLE_DEVICES=5`），`--gpu 5` 参数生效了，没有跑到 GPU 0。\n\n**问题**：v3 还活着占着 GPU 5，r3 和 v3 冲突了。需要先 kill v3 或等 v3 完成后再重新提交 r3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu5-verify.md"
+}

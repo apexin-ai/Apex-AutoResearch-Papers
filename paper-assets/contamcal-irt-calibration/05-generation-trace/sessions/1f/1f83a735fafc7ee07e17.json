@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f83a735fafc7ee07e17",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd yi status check",
+  "task_key": "worker_ops_westd-yi-status-check_20260522T154327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-yi-status-check_20260522T154327_result.json",
+    "occurrence": 1,
+    "bytes": 1017,
+    "sha256": "2d6e40ddf74f13564ffd62dfaae92248d6db0478df927ad0b630e3c82872af52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n**Yi-1.5-9B d000 s42 训练已死，无法恢复。**\n\n| 项目 | 状态 |\n|------|------|\n| **PID 636899** | 已死，无任何 Python 训练进程存在 |\n| **训练进度** | 1802/3125 steps (58%), epoch ~0.58, 运行了 ~2h07m |\n| **最后 loss** | ~1.05, grad_norm ~0.4, token_accuracy ~0.74（训练本身健康） |\n| **Checkpoint** | **空** — `lora_adapter/` 目录无任何文件，未保存过 checkpoint |\n| **死因** | 日志在 step 1802 处截断，无 traceback/error。非服务器重启（uptime 225天）。可能是 tmux session 被意外关闭或进程被 kill |\n| **GPU** | 4x RTX PRO 6000 (96GB) 全部空闲，0MiB |\n| **磁盘** | /root/autodl-tmp: 17GB 可用 (234G/250G, 94%) |\n| **tmux** | 无 session |\n\n**结论**：训练需要从头重启。没有中间 checkpoint 可以 resume。等待指令是否重启。\n\n另外需要更新 MCP 工具中 westd-29999 的密码——当前存储的加密密码已失效，我是用 sshpass 直连的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-yi-status-check.md"
+}

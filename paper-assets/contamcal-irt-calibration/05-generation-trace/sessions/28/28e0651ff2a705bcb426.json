@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28e0651ff2a705bcb426",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper writing discussion",
+  "task_key": "worker_paper_writing_discussion_20260517T044946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_discussion_20260517T044946_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "35ed16b978f9f5634fe7c7a247ba4ce211631e8b9356478fc5c36905c4eb132b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Quality checks pass:\n- Zero em-dashes\n- Zero `-ing,` patterns\n- 661 words (close to 600 target, within tolerance for LaTeX markup)\n\nWritten to `artifacts/paper_draft/discussion.tex`. Structure: §6.1 Limitations (6 paragraphs covering scale ceiling, signal coverage, ensemble size, CI coverage, non-STEM misfit, single protocol), §6.2 Implications (4 practitioner groups), §6.3 Future Directions (3 extensions in one paragraph). Framing follows D120/D121: IRT provides calibration, γ provides diagnosis."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-discussion.md"
+}

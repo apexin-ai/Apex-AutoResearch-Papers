@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "366115a07606e39b9d52",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag gpu2 process check",
+  "task_key": "worker_diag_gpu2_process_check_20260514T024236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gpu2_process_check_20260514T024236_result.json",
+    "occurrence": 1,
+    "bytes": 245,
+    "sha256": "231c394e2927651727f09d305bf0116da516c641bc7000cbe5240dcc027bcbbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n- GPU 2 现在只剩 **2 个进程**（v5），符合预期\n- 保留：PID 266521（3658 MiB）、PID 266790（3658 MiB）\n- 已 kill：PID 267151、267356（v6 重复进程，实际 PID 与预期略有偏差）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gpu2-process-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30937dc9f0e2a6e89f99",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit d100 s42 a32 v3",
+  "task_key": "worker_ops_submit_d100_s42_a32_v3_20260515T202341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_d100_s42_a32_v3_20260515T202341_result.json",
+    "occurrence": 1,
+    "bytes": 421,
+    "sha256": "b37b3d5f7bdcdb2af4fe4b15dab7aca48a5031e00576953774d728c4319b98ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `exp_001_sft_3B_d100_s42_a32_v3` 已经在 registry 中状态为 **RUNNING**，PID 628663（实际工作进程 628668），12分钟前由上一个 session 提交。\n\n- 状态: RUNNING\n- PID: 628668 (cuda:1, 13316MiB)\n- 命令参数: seed=42, lr=5e-5, alpha=32, d100 ✓\n- output-dir: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42_v3`\n\n无需操作，实验已在正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-d100-s42-a32-v3.md"
+}

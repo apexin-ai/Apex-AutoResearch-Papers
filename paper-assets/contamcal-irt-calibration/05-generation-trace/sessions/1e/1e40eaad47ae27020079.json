@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e40eaad47ae27020079",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code llama32 adaptation",
+  "task_key": "worker_code_llama32_adaptation_20260516T073038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama32_adaptation_20260516T073038_result.json",
+    "occurrence": 1,
+    "bytes": 1508,
+    "sha256": "d9b17f8c1f8d113b4a33db26997a452a5852b462e0f84939a5e81ff1b45deae8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 完成总结\n\n### 模型下载\n- **路径**: `/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B/`\n- **大小**: ~6 GB (2 个 safetensors shards)\n- **参数**: 3.21B, LlamaForCausalLM, 28 layers, vocab 128K\n\n### 修改的文件\n\n| 文件 | 改动 |\n|------|------|\n| `exp001/train_sft.py` | 1) 新增 `LLAMA3_CHAT_TEMPLATE` 常量<br>2) `formatting_func` → `make_formatting_func(tokenizer)` (用 `apply_chat_template` 替代硬编码 Qwen 模板)<br>3) tokenizer 加载后自动检测设置 chat template |\n| `exp001/evaluate.py` | 1) 新增 `LLAMA3_CHAT_TEMPLATE` 常量<br>2) `load_model_and_tokenizer` 中加入 chat template 自动设置 + pad_token fallback |\n\n### 不需要修改\n- `exp002/compute_signals.py` — orchestrator\n- `exp002/signal_minkpp.py` — forward pass only\n- `exp002/signal_embedding.py` — frozen sentence-transformer encoder\n- `exp002/signal_selfcritique.py` — plain text prompts + YES/NO logprob\n- SFT 数据 — 标准 messages 格式\n- LoRA target modules — Llama 3.2 和 Qwen 2.5 命名一致\n\n### Dry-run 结果\n- 模型加载 ✓\n- Tokenizer + chat template ✓\n- `make_formatting_func` 对 Llama 和 Qwen 都正确 ✓\n- LoRA targets (q/k/v/o_proj + gate/up/down_proj) 全部存在 ✓\n- Tokenization 正常 (252 tokens for sample) ✓\n\n### 无未解决兼容性问题\n代码完全向后兼容 Qwen，可以直接用 `--model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B` 启动 Llama SFT 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama32-adaptation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c826bdca95c23b50984",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 006 baselines",
+  "task_key": "worker_code_exp-006-baselines_20260514T124156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-006-baselines_20260514T124156_result.json",
+    "occurrence": 1,
+    "bytes": 1327,
+    "sha256": "6ffa1f7f99362f311c5e8cc83c55f28af5082c8fd3a0c4146e416c129ed4e9a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码完成。总结：\n\n## exp-006 代码结构（2658 行 / 7 文件）\n\n| 文件 | 行数 | 功能 |\n|------|------|------|\n| `run_exp006.py` | 371 | 端到端 pipeline: IRT + baselines + evaluation + joint fit ablation |\n| `run_irt_calibration.py` | 491 | CmdStanPy 4PL+γ IRT 拟合（per-benchmark 或 matrix 直接输入） |\n| `baselines.py` | 447 | 7 baselines 统一接口 (B0-B6)，含 DCR fuzzy inference |\n| `evaluate_calibration.py` | 425 | 8 评估指标 + LaTeX/text 表格输出 |\n| `joint_fit.py` | 234 | **新增** — 共享全局 γ 的 joint fitting ablation |\n| `run_all_baselines.py` | 165 | 独立 baseline runner（含 synthetic data dry-run） |\n| `run_irt_stan.py` | 525 | 备选 Stan-only IRT runner |\n\n## 已验证\n\n- Stan model 编译 OK (`contam_irt_4pl_simple.stan`)\n- 所有 import 通过\n- Baselines dry-run 通过（5/5 non-Stan baselines 输出正常）\n- 数据加载：9 models × 4 benchmarks (mmlu/gsm8k/arc_challenge/humaneval)\n- Joint concatenation：9 models × 16697 items\n- `--help` 参数解析：3 个入口脚本均正常\n\n## 新增内容\n\n1. `joint_fit.py` — concatenate 所有 benchmark items，拟合单个 shared γ（ABLATION）\n2. `run_exp006.py --joint-fit` 标志位集成\n3. D018 排除规则（3B + GSM8K）\n4. `README.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-006-baselines.md"
+}

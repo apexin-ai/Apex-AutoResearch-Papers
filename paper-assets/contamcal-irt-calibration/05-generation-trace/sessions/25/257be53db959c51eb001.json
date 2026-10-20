@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "257be53db959c51eb001",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval qwen7b gsm8k ppp cqa1",
+  "task_key": "worker_eval_qwen7b-gsm8k-ppp-cqa1_20260521T014502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen7b-gsm8k-ppp-cqa1_20260521T014502_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "360d95b9c56232702fd4515dbecc72a9804c253f9da58430dc1ff0bf99679e5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已成功启动并正在运行：\n\n- **进程**: cuda:0 占用 14917 MiB，正在评测 d000 GSM8K（8-shot CoT）\n- **tmux session**: `eval_gsm8k_7b`\n- **日志**: `/root/contamcal-irt-calibration/logs/eval_qwen7b_s0_gsm8k.log`\n- **bitsandbytes 警告**: 非致命，不影响 eval（未使用量化）\n- **数据集**: 从缓存加载成功（1319 items，~330 batches at bs=4）\n- **C009 验证通过**: md5=001a9bc23f808c47d25ef9eaeecb81f1, size=37591\n- **C006 验证**: lora_alpha=32 ✓\n\n**预估时间**: 5 个 dosage × ~10-15min/dosage ≈ 50-75 min 完成全部。结果输出到 `/root/autodl-tmp/exp001/eval_results_v2/qwen7b_d{dose}_s0/gsm8k_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen7b-gsm8k-ppp-cqa1.md"
+}

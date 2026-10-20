@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a31c211924ac517766e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd full status check",
+  "task_key": "worker_ops_westd-full-status-check_20260518T125839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-full-status-check_20260518T125839_result.json",
+    "occurrence": 1,
+    "bytes": 2179,
+    "sha256": "dfb650f453af8b5ed0d8086bd32076fa4834d1f2b2c096897f3e7d03228a7218"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29999 服务器状态汇总\n\n### 1. GPU 状态\n\n| GPU | 显存占用 | GPU-Util | 进程 |\n|-----|---------|----------|------|\n| cuda:0 | 69,643 / 97,887 MiB | 87% | PID 23304 — d005 训练 |\n| cuda:1 | 17,713 / 97,887 MiB | 91% | PID 25326 — GSM8K eval |\n| cuda:2 | 0 MiB | 0% | **空闲** |\n| cuda:3 | 0 MiB | 100% | **无进程但 GPU-Util 100%** — 可能是驱动残留状态，无实际计算进程 |\n\n### 2. d005 训练 (PID 23304, cuda:0)\n- **状态：运行中**，进度 **83% (2639/3177)**，已运行 ~1h14m\n- 最新 loss: **0.833**，token accuracy: **0.80**，lr: **3.958e-06**\n- **预计剩余 ~15 分钟**（~547 steps × ~1.65s/step）\n- 输出目录 `Qwen2.5-7B_d005_s42/lora_adapter/` 存在但尚未写入 checkpoint（训练完成后才保存）\n\n### 3. GSM8K Eval (PID 25326, cuda:1)\n- **状态：运行中**，进度 **41% (538/1319)**，已运行 ~1h05m\n- 速度 ~7.25s/it → **预计剩余 ~1h34m**\n- 模型：Qwen2.5-7B d000 (base) + lora_adapter\n\n### 4. 模型下载\n\n| 模型 | 已下载 | 文件进度 | 状态 |\n|------|--------|---------|------|\n| **Gemma-2-9B** | 32 GB (5/18 safetensors) | 6/18 files (33%) | **下载中**，速度很慢（~1.25h/file） |\n| **OLMo-2-1124-7B** | 25 GB (4/6 safetensors) | 7/16 files (44%) | **下载中**，有超时重试 |\n| **Phi-4** | 20 GB (2/? safetensors) | 12/21 files (57%) | **下载中**，进展最快 |\n| **Qwen2.5-14B** | 4 KB (0 safetensors) | 0/? | **未开始**（仅创建目录） |\n\n### 5. 7B d000 checkpoint\n- `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s42/` — **639 MB**，含 lora_adapter + train_config.json，**已完成**\n\n### 6. tmux\n- 无 tmux sessions（进程通过 screen/nohup 启动）\n\n### 7. 磁盘\n- `/root/autodl-tmp`: 250G 总计，**118G 已用 / 133G 可用 (48%)**\n\n### 关注点\n- **Qwen2.5-14B 下载未启动**，无活跃下载进程\n- **三个模型下载速度慢**（hf-mirror 限速），Gemma 尤其慢\n- **cuda:3 GPU-Util 100% 但无进程** — 可能是之前进程退出后驱动未重置，无影响\n- **cuda:2、cuda:3 空闲**，d005 训练完成后 cuda:0 也将释放"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-full-status-check.md"
+}

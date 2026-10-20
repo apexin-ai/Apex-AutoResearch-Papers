@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01d9905e2c584c5686e2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops mmlu domain grouping audit",
+  "task_key": "worker_ops_mmlu_domain_grouping_audit_20260517T064324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mmlu_domain_grouping_audit_20260517T064324_result.json",
+    "occurrence": 1,
+    "bytes": 2518,
+    "sha256": "c19c4cb77f98894d0578e47ad3bee94b9860013ebd90edcd76149f958f6df73c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息收齐了。以下是三个问题的答案：\n\n---\n\n## Q1: \"Math γ=0.97, Science γ=0.84\" 来自哪里？\n\n来自 **`/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/`** 目录（N=23 版本，包含 0.5B+1.5B+3B 三个 scale）。\n\n具体值：\n- **STEM_Math**: γ_mean = **0.9688**, 95% CI [0.527, 1.430], PPP=0.438, N=23 models, 1190 items\n- **STEM_Science**: γ_mean = **0.838**, 95% CI [0.385, 1.274], PPP=0.807, N=23 models, 1397 items\n\n记录在 `artifacts/analysis_2pl_gamma_refit_0516.md` 中。\n\n---\n\n## Q2: J=16 结果中 \"STEM_Math\" 的定义\n\nJ=16 结果位于 `/root/autodl-tmp/exp006/results_mmlu_domain_gamma/`，**使用 `run_mmlu_domain_gamma.py` 中的 DOMAIN_MAP**：\n\n**STEM_Math** (478 items, J=16) =\n- abstract_algebra, college_mathematics, elementary_mathematics, high_school_mathematics, high_school_statistics, formal_logic\n\nJ=16 结果：γ_mean = **-0.549**（注意：与 N=23 版本方向相反，因为 J=16 只含 1.5B 模型，没有 0.5B/3B 的 scale 变异）\n\n---\n\n## Q3: J=13 rerun 用的 8 domains\n\n`run_mmlu_domain_gamma_no05b.py` 使用**完全相同的 DOMAIN_MAP**（8 个域）：\n\n1. STEM_Math (6 subjects)\n2. STEM_Science (8 subjects)\n3. STEM_CS_Eng (5 subjects)\n4. Medical (8 subjects)\n5. Humanities (9 subjects)\n6. Social_Sciences (12 subjects)\n7. Business_Law (7 subjects)\n8. Other (2 subjects: global_facts, miscellaneous)\n\nJ=13 模型白名单 = 8× 1.5B + 5× 3B（去掉了所有 0.5B）。正在运行中（log 显示刚完成某个域的 sampling）。\n\n---\n\n## 三版本对比总结\n\n| 版本 | 目录 | J | Scales | 域分组 | STEM_Math γ |\n|------|------|---|--------|--------|-------------|\n| N=23 (paper来源) | `results_mmlu_domain_gamma_n24/` | 23 | 0.5B+1.5B+3B | **同一 DOMAIN_MAP** | +0.97 |\n| J=16 (仅1.5B) | `results_mmlu_domain_gamma/` | 16 | 仅 1.5B | **同一 DOMAIN_MAP** | -0.55 |\n| J=13 rerun (no 0.5B) | `mmlu_domain_irt_no05B/` | 13 | 1.5B+3B | **同一 DOMAIN_MAP** | (running) |\n\n**结论：三个版本的域分组定义完全一致**（同一个 DOMAIN_MAP，同样的 57 subjects → 8 domains 映射）。\n\nγ 值差异的原因不是分组不同，而是 **respondent 组成不同**：\n- N=23 包含 0.5B（ability 极低）→ scale 变异大 → IRT 能区分 ability vs exposure → γ 为正（exposure helps）\n- J=16 仅 1.5B → 所有模型 ability 相似 → 无法有效分离 ability 和 exposure → γ 估计不稳定/为负"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mmlu-domain-grouping-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cf75d1ddbe294e8224f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gamma prior sensitivity sf5",
+  "task_key": "worker_ops_gamma_prior_sensitivity_sf5_20260517T182947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gamma_prior_sensitivity_sf5_20260517T182947_result.json",
+    "occurrence": 1,
+    "bytes": 1593,
+    "sha256": "3f2502b6b76d6d64054cd9abc533bded6a8f3c0ab2f2cef9d49c405b0e99af34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Results saved to `/root/autodl-tmp/exp006/gamma_prior_sensitivity/gamma_prior_sensitivity_results.json`.\n\n---\n\n## 结果\n\n### 任务 A：γ Prior Sensitivity（MMLU, J=16, 2PL+γ）\n\n| Prior | γ̂ mean | γ̂ median | SD | 95% CI | PPP | Rhat | ESS | Time |\n|---|---|---|---|---|---|---|---|---|\n| N(0, 0.5) | 0.3425 | 0.3480 | 0.4009 | [-0.45, 1.11] | 0.254 | 1.0005 | 5661 | 49s |\n| **N(0, 1)** (baseline) | **0.6551** | **0.6528** | **0.5441** | **[-0.41, 1.74]** | **0.192** | **1.0004** | **4146** | **50s** |\n| N(0, 2) | 0.8857 | 0.8848 | 0.6600 | [-0.37, 2.20] | 0.161 | 0.9999 | 3806 | 50s |\n\n**关键发现**：γ posterior 对 prior 敏感。tight prior (sd=0.5) 将 γ̂ 从 0.66 压缩到 0.34，loose prior (sd=2) 将 γ̂ 推高到 0.89。95% CI 下界基本稳定（均包含 0），但上界从 1.11 到 2.20 变化显著。这表明 N=16 的 data information 不足以 override prior 的影响。所有配置的 convergence 指标均正常（Rhat < 1.01, ESS > 3800, 0 divergences）。\n\n### 任务 B：e_ij Exposure 分布\n\n**Overall (16 models × 300 items = 4800 entries)**：\n- mean=0.0407, median=0.0161, sd=0.0773\n- range=[0.0000, 0.8788], IQR=[0.0077, 0.0373]\n- 高度右偏：中位数远小于均值，多数 e_ij 值很小\n\n**Per-dosage 分布基本一致**（exposure 是 per-model per-item RRF 信号，不直接依赖 dosage level）：\n- d000: mean=0.0434\n- d005: mean=0.0407\n- d025: mean=0.0416\n- d100: mean=0.0373\n\n**Per-item**: item-mean 跨 items 的 SD=0.0395, 最高 item mean=0.3077, 最低=0.0040。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gamma-prior-sensitivity-sf5.md"
+}

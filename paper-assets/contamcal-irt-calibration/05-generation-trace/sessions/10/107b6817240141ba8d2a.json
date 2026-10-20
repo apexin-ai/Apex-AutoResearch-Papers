@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "107b6817240141ba8d2a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status check 20260517",
+  "task_key": "worker_ops_gpu_status_check_20260517_20260517T022947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_20260517_20260517T022947_result.json",
+    "occurrence": 1,
+    "bytes": 1828,
+    "sha256": "b63e8ca7f1266eb64cb68bf274095ebdae2bca82ab13f4d26a2864d30b8e396e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态：全部 6 块 GPU (cuda:0-5) 完全空闲\n- 0 MiB 显存占用，0% 利用率，无任何计算进程\n\n### 进程状态：全部 6 个 PID 已终止\n| PID | 任务 | 状态 |\n|-----|------|------|\n| 907482 | Fisher heatmap, cuda:2 | **已终止**（无输出图片，仅有脚本文件） |\n| 825638 | Llama d005 eval, cuda:0 | **完成** ✓ |\n| 830115 | Llama d000 MMLU signals s4, cuda:1 | **完成** ✓ |\n| 822390 | Llama d025 eval, cuda:3 | **完成** ✓ |\n| 842929 | Llama d005 MMLU signals, cuda:4 | **完成** ✓ |\n| 831033 | Llama d100 eval, cuda:5 | **完成** ✓ |\n\n### 已产出结果\n**Llama eval（全部完成，有 `.done` 标记）**：\n- `Llama-3.2-3B_d005_s42_aligned/` — 完成于 04:57，包含 mmlu/arc/gsm8k/humaneval + correctness_matrix\n- `Llama-3.2-3B_d025_s42_aligned/` — 完成于 04:29\n- `Llama-3.2-3B_d100_s42_aligned/` — 完成于 05:26\n\n**Llama signals（全部完成）**：\n- `Llama-3.2-3B_d000_s42/` — s1/s2/s4 三个信号 × 3 benchmarks (mmlu/gsm8k/arc) + merged\n- `Llama-3.2-3B_d005_s42/` — 同上完整\n- `Llama-3.2-3B_d025_s42/` — 同上完整\n- `Llama-3.2-3B_d100_s42/` — 同上完整\n\n**Fisher heatmap (PID 907482)**：脚本存在 (`run_fisher_heatmap.py` 修改于 03:57)，但 artifacts 目录中**未找到 heatmap 输出图**。可能是跑完后崩溃、被 kill、或输出到了其他位置。\n\n### tmux：无活跃 session\n\n### 关键发现\n**全部 6 块 GPU 自 ~05:26（约 5 小时前）处于完全空闲状态。** Llama eval 和 signals 任务全部正常完成有结果。Fisher heatmap 任务需要确认输出位置或是否需要重跑。\n\n需要我立即启动下一批实验吗？按 C007 优先级，应先安排 0.5B/1.5B s123 signals（如果还有未完成的）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-20260517.md"
+}

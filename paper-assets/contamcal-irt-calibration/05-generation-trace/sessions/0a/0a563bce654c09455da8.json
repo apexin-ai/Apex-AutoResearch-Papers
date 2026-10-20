@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a563bce654c09455da8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit 3B d000 s123 signals cuda5",
+  "task_key": "worker_ops_submit_3B_d000_s123_signals_cuda5_20260516T123143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_3B_d000_s123_signals_cuda5_20260516T123143_result.json",
+    "occurrence": 1,
+    "bytes": 344,
+    "sha256": "ccd26d0e70f9c50a7c9705766e036cfabbbc78b1a1327aa13726b72211911fda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并运行中。\n\n- **PID**: 776805\n- **GPU**: cuda:5（CUDA_VISIBLE_DEVICES=5，脚本内 GPU 0）\n- **任务**: 3B d000_s123_a32 signals（mmlu/gsm8k/arc_challenge × s1/s2/s4，共 9 tasks）\n- **状态**: s1_embedding on mmlu 进行中，~19% encoding training data\n- **日志**: `/tmp/3B_d000_s123_signals.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-3b-d000-s123-signals-cuda5.md"
+}

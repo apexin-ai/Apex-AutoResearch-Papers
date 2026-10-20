@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a483d92623affa0aad7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit dose response data",
+  "task_key": "worker_audit_dose-response-data_20260523T102128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_dose-response-data_20260523T102128_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "6e8c75a8051e76b7964540ea7e927c4dc2963040e1d11662c0032212cd806f0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。关键发现：\n\n**🔴 Critical — Figure 2 + Figure 3 MMLU 列数据过期**\n\n`gen_baseline_vulnerability.py` 和 `gen_cross_benchmark_heatmap.py` 中有 4 个模型的数据与 Table 1 / Figure 1 严重不一致：\n\n| Model | Fig 2/3 Δacc | Table 1 Δacc | 问题 |\n|-------|-------------|-------------|------|\n| Qwen-7B | **+2.90** | **-1.78** | 符号反转，Benefit vs V-recovery |\n| Gemma-2 | **+1.21** | **+3.76** | 低估 62% |\n| Phi-4 | x=70.69 | x=76.44 | x 位置偏 5.75pp |\n| Qwen-14B | x=72.17 | x=69.44 | x 位置偏 2.73pp |\n\nOLMo-2 和 Falcon3 两个模型的数据一致。\n\n**🟡 Medium — Figure 3 Qwen-7B GSM8K**：heatmap 中 +16.24pp，论文正文说 +10.1pp（s42=+11.07）。来源不明。\n\n**🟡 Medium — CI bounds**：6 个模型的 95% CI 未追溯到具体 bootstrap 输出文件。\n\n**Table 1 和 Figure 1 之间完全一致**，所有数值验证通过。\n\n报告已写入 `artifacts/data_audit_part1_dose_response.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-dose-response-data.md"
+}

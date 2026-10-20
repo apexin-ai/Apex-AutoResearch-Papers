@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fe14dccdf6d909ca035",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research domain contamination literature",
+  "task_key": "worker_research_domain-contamination-literature_20260516T150810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_domain-contamination-literature_20260516T150810_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "a1ffa251b7119b4ce05a5cb61c28336de5e0ec2bfd0bf4c6aa6e327f2fe51afa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成并注册。核心结论：\n\n**我们的发现具有三重新颖性：**\n\n1. **方向反转（γ < 0）**— 无论文报告 contamination 对特定 domain 有负面效果。现有工作一律假设 contamination 提升或无影响。\n\n2. **IRT γ 作为效果量化器** — PSN-IRT (AAAI 2026) 用 guessing parameter (c) 做 contamination *检测*；我们用 γ 做 contamination *效果方向和幅度*的量化，这是未报告的用法。\n\n3. **Simpson's paradox 框架** — 无论文将 Simpson's paradox 应用于 benchmark contamination 分析。Aggregate γ 掩盖了 domain 级别的反向效应。\n\n最接近的竞争者是 Reddy & Karmakar (2026) 报告了 domain 间 contamination *率*的差异，但仍假设方向一致（正向）。我们是第一个量化 contamination 可以在某些 domain 伤害模型表现的工作。\n\n报告保存在：`artifacts/literature_survey_domain_dependent_contamination.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-domain-contamination-literature.md"
+}

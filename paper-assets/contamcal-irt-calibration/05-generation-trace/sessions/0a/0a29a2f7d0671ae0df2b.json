@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0a29a2f7d0671ae0df2b",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "audit hypothesis deep review",
+  "task_key": "worker_audit_hypothesis_deep_review_20260517T034811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_hypothesis_deep_review_20260517T034811.log",
+    "occurrence": 1,
+    "bytes": 870895,
+    "sha256": "20867ed267b86d20d40ad68e0fc6598c9ad665b7c5c114258ce05915b2ad7ae6"
+  },
+  "statistics": {
+    "messages": 102,
+    "user_turns": 0,
+    "tool_calls": 41,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 41,
+      "tool_result": 41,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 102,
+      "chunks": [
+        {
+          "path": "0a29a2f7d0671ae0df2b-part-0001.json",
+          "message_count": 33
+        },
+        {
+          "path": "0a29a2f7d0671ae0df2b-part-0002.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-hypothesis-deep-review.md"
+}

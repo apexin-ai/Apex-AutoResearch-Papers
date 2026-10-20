@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "009b969f9147586c7728",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fix 15B signals cuda0 cuda2",
+  "task_key": "worker_ops_fix_15B_signals_cuda0_cuda2_20260516T125351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_15B_signals_cuda0_cuda2_20260516T125351_result.json",
+    "occurrence": 1,
+    "bytes": 1338,
+    "sha256": "e64ed2c9e72463b7de0153d2a9a33f1b5ea7b00d80a59e08ac0bbfff75086858"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**两个实验都实际成功完成，无需重新启动。**\n\n### cuda:0 — `exp_002_signals_15B_s123_batch`\n- **根因**：脚本 `run_15B_s123_signals.sh` 有 shell 语法错误（line 39-40 `continue`/`fi` outside loop），导致 exit code=2。监控系统看到非零退出码误判为失败。\n- **实际状态**：4 doses × 3 benchmarks × 3 signals = 36 个任务全部计算完成，所有 `signals_merged_*.json` 已生成。\n- faiss 错误是非致命 warning（60 次出现但未阻断执行）。\n\n### cuda:2 — `exp_002_signals_15B_d100_s123_cuda2`\n- **根因**：进程在 sentinel 检查前退出（`reconcile_crons` 5× 检测到 process dead）。实际是任务已完成但退出太快，cron 来不及捕获 sentinel。\n- **实际状态**：9/9 全部完成，日志有 `===BATCH_COMPLETE_15B_d100_s123_cuda2===` sentinel，所有输出文件完整。\n\n### 已完成\n- Registry 两个实验 conclusion 已更新为 `success`\n- **不需要重跑任何任务**\n\n### 当前 GPU 状态\n| GPU | 状态 | 用途 |\n|-----|------|------|\n| cuda:0 | 占用 (7269 MiB) | PID 780943 — 3B d000_s123_a32 signals |\n| cuda:1 | 占用 (1897 MiB) | PID 780591 |\n| cuda:2 | **空闲** | 可用 |\n| cuda:3 | 占用 (6619 MiB) | PID 764460 |\n| cuda:4-5 | **空闲** | 可用 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-15b-signals-cuda0-cuda2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3432faaeb2568e1b069c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill gpu5 duplicate",
+  "task_key": "worker_ops_kill-gpu5-duplicate_20260516T182821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-gpu5-duplicate_20260516T182821_result.json",
+    "occurrence": 1,
+    "bytes": 5594,
+    "sha256": "f94e198a8b310989597325c758230a052ceb01ee245209293efcdd7c02750bfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 831490 已不存在（进程已自行退出或被别处 kill）。GPU 5 现在只剩 PID 831033。\n\n以下是完整原始输出：\n\n```\nSun May 17 02:28:52 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\n| 30%   46C    P2            220W /  425W |    8081MiB /  24564MiB |     74%      Default |\n+-----------------------------------------+------------------------+----------------------+\n|   1  NVIDIA GeForce RTX 4090 D      On  |   00000000:39:00.0 Off |                  Off |\n| 47%   65C    P2            405W /  425W |    8281MiB /  24564MiB |     88%      Default |\n+-----------------------------------------+------------------------+----------------------+\n|   2  NVIDIA GeForce RTX 4090 D      On  |   00000000:5A:00.0 Off |                  Off |\n| 30%   38C    P2             89W /  425W |    1176MiB /  24564MiB |     10%      Default |\n+-----------------------------------------+------------------------+----------------------+\n|   3  NVIDIA GeForce RTX 4090 D      On  |   00000000:99:00.0 Off |                  Off |\n| 38%   57C    P2            235W /  425W |    8313MiB /  24564MiB |     78%      Default |\n+-----------------------------------------+------------------------+----------------------+\n|   4  NVIDIA GeForce RTX 4090 D      On  |   00000000:A8:00.0 Off |                  Off |\n| 30%   56C    P2            169W /  425W |    7205MiB /  24564MiB |     62%      Default |\n+-----------------------------------------+------------------------+----------------------+\n|   5  NVIDIA GeForce RTX 4090 D      On  |   00000000:B8:00.0 Off |                  Off |\n| 30%   55C    P2            393W /  425W |    7257MiB /  24564MiB |     90%      Default |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A          825638      C   python                                 8072MiB |\n|    1   N/A  N/A          830115      C   python                                 8272MiB |\n|    2   N/A  N/A          823710      C   python                                  586MiB |\n|    2   N/A  N/A          826502      C   python                                  576MiB |\n|    3   N/A  N/A          822390      C   python                                 8304MiB |\n|    4   N/A  N/A          831353      C   python                                 7196MiB |\n|    5   N/A  N/A          831033      C   python                                 7248MiB |\n+-----------------------------------------------------------------------------------------+\n---PROCESS_MAP---\n=== GPU 0 ===\n825638, 8072 MiB\nPID 825638: python exp001/evaluate.py --model-path /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42/lora_adapter --benchmarks mmlu gsm8k\n=== GPU 1 ===\n830115, 8272 MiB\nPID 830115: python compute_signals.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --benchmark mmlu --signal all --output-dir /root/autodl-tmp/exp002/signals/Llama-3.2-3B_d000_s42\n=== GPU 2 ===\n823710, 586 MiB\n826502, 576 MiB\nPID 823710: python compute_signals.py --model-path /root/autodl-tmp/models/Qwen2.5-1.5B-Instruct --benchmark arc_challenge --signal all --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/ --batch-\nPID 826502: python compute_signals.py --model-path /root/autodl-tmp/models/Qwen2.5-1.5B-Instruct --benchmark arc_challenge --signal all --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/ --batch-\n=== GPU 3 ===\n822390, 8304 MiB\nPID 822390: python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/merged --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format alig\n=== GPU 4 ===\n831353, 7196 MiB\nPID 831353: python compute_signals.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --benchmark arc_challenge --signal all --output-dir /root/autodl-tmp/exp002/signals/Llama-3.2-3B\n=== GPU 5 ===\n831033, 7356 MiB\nPID 831033: python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42/merged --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format alig\n```\n\n**注意：GPU 2 有两个进程（PID 823710 和 826502）写同一个 output-dir `Qwen2.5-1.5B-Instruct/`，疑似重复。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-gpu5-duplicate.md"
+}

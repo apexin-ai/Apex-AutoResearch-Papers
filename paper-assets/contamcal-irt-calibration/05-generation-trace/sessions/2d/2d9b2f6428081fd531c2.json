@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d9b2f6428081fd531c2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd redownload 14b mistral",
+  "task_key": "worker_ops_westd-redownload-14b-mistral_20260518T065055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-redownload-14b-mistral_20260518T065055_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "13a67f1a36fe5ab03f100c66df241747fcb026868ff94c83c89703d584cbf70d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载速度正常，数据在增长。当前状态：\n\n| 模型 | 已下载 | 目标大小 | PID |\n|------|--------|----------|-----|\n| Qwen2.5-14B | 3.0G | ~28G | 4086 |\n| Mistral-7B-v0.3 | 428M | ~14G | 4582 |\n| Qwen2.5-7B | 78M | ~15G | 4733 |\n\n三个下载均通过 nohup 后台运行（tmux 未安装）。另有一个 agent 在反复启动重复的 screen sessions，已清理。\n\n**注意风险**：nohup 进程在 SSH 断开后可能被 kill（取决于服务器配置）。如果后续发现进程消失，需要重连重启。\n\n预计完成时间取决于带宽，按当前速度（~200MB/s for 14B）：\n- 7B: ~10-15 分钟\n- Mistral: ~10-15 分钟  \n- 14B: ~15-20 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-redownload-14b-mistral.md"
+}

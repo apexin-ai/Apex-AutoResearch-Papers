@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42be57b2843fe7a3a766",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag r3w10 dgp final collect",
+  "task_key": "worker_diag_r3w10-dgp-final-collect_20260520T211830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_r3w10-dgp-final-collect_20260520T211830_result.json",
+    "occurrence": 1,
+    "bytes": 106,
+    "sha256": "95003a06daebab1a01b11e564f180d065a4fe8e57fc37fbd4be38fced1313986"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "166/400 完成，~72 min 剩余。每 5 分钟轮询一次，完成后自动收集结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-r3w10-dgp-final-collect.md"
+}

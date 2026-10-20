@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23dd0ae8ff69c29a255f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit 1 5B d100 gpu0",
+  "task_key": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_1_5B_d100_gpu0_20260514T005157_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "9ba4a0ee40744956a588d953459f052eb22e9a6dcd66886ff103eb73e70a88b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两步都完成：\n\n**步骤 1 — exp_001_sft_d100_05B 分析完毕**\n| 指标 | 值 |\n|---|---|\n| train_loss | 1.5662 |\n| mean_token_accuracy | 0.6661 |\n| training_time | 68.9 min (1.19 GPU-hr) |\n| steps | 4159 |\n| epoch | 1.0 |\n| status | **DONE** (conclusion=success) |\n\n**步骤 2 — exp_001_sft_d100_15B 已在 GPU 0 启动**\n- PID: 248993，正在 tokenize 数据集\n- 参数: Qwen2.5-1.5B, batch_size=1, grad_accum=16, 66533 samples, seed=42\n- Registry: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-1-5b-d100-gpu0.md"
+}

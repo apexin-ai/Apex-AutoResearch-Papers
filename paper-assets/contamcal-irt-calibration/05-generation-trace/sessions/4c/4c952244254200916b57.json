@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c952244254200916b57",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check vanilla 2pl and stale",
+  "task_key": "worker_ops_check_vanilla_2pl_and_stale_20260517T193031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_vanilla_2pl_and_stale_20260517T193031_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "938309f1fde8fd87a8a8d679e3201cb36bc06a3fb46cb84441a6bae7f0ae7a7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完毕，报告已写入 `artifacts/report_vanilla_2pl_check.md`。\n\n**总结：**\n\n| 实验 | 状态 | 说明 |\n|------|------|------|\n| exp_006_mmlu_vanilla_2pl_fullitems | **已完成** | 4 chains 全部采样完毕（898MB chains 保存在 `/root/autodl-tmp/exp006/vanilla_2pl_fullitems_chains/`），但 log 中无 Python 后处理输出，需手动用 chains 做 tau 提取 |\n| exp_002_signals_3B_d000_s123_cuda2 | **已完成** | 2026-05-16 22:05 结束，6/9 成功 + 2 跳过 + 1 失败，mmlu/arc/gsm8k 三组信号均已产出并 merge |\n\n注意事项：vanilla_2pl chains 1/2 的 CSV 大小（184/162MB）明显小于 chains 3/4（296MB），可能存在 divergent transitions，后续使用前建议检查 Rhat 和 n_eff。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-vanilla-2pl-and-stale.md"
+}

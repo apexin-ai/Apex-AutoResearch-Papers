@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35b499e3d980353c2244",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops network check download retry",
+  "task_key": "worker_ops_network-check-download-retry_20260518T193312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_network-check-download-retry_20260518T193312_result.json",
+    "occurrence": 1,
+    "bytes": 132,
+    "sha256": "9f7051fee40bf8a8553d3a53ac862845160985d4eece31bd99d7a5230314b0e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "网络状态：**NETWORK_DOWN**\n\nhuggingface.co 仍不可达，下载无法重启。建议 30 分钟后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-network-check-download-retry.md"
+}

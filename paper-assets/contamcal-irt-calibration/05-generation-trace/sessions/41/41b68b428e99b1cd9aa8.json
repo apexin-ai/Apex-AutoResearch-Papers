@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41b68b428e99b1cd9aa8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval 05B d000 s42 v2",
+  "task_key": "worker_diagnose_exp_001_eval_05B_d000_s42_v2_20260514T023825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_05B_d000_s42_v2_20260514T023825_result.json",
+    "occurrence": 1,
+    "bytes": 2899,
+    "sha256": "3a214dc79f7f3d8d16b31461c82e2886b4c9baad46f55c6408ccd9370ec6e2c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，以下是完整分析。\n\n---\n\n## 诊断结果\n\n### 1. 失败根因：**系统内存压力导致 OOM Kill**（高置信度）\n\nv2 进程在 MMLU 评估 84% (11821/14042) 时被 SIGKILL (EXIT_CODE=137)。证据链：\n\n- **吞吐量持续下降**：从 ~40 it/s（开始）降至 ~22 it/s（被 kill 前），典型内存压力表现\n- **6 个 GPU python 进程同时运行**（nvidia-smi 显示 GPU 0/1/3/4/5 均有进程），服务器负载很高\n- **`device_map=\"auto\"` 导致模型被放到 GPU 0**（日志 `We will use 90% of the memory on device 0`），而 GPU 0 已有另一个进程 (PID 251924) 占用 10046MiB — 不是目标 GPU 2\n- 系统 RAM 总量 1TB，但 buff/cache 占 891GB，实际 free 仅 81GB，在多进程并发下可触发 cgroup 限制\n\n### 2. GPU 显存情况\n\n| GPU | 已用 | 总量 | 占用进程 |\n|-----|------|------|---------|\n| 0 | 10055MiB | 24564MiB | PID 251924 |\n| 1 | 12620MiB | 24564MiB | PID 249294 + 255322 |\n| **2** | **0MiB** | **24564MiB** | **空闲（v2 已死）** |\n| 3 | 8957MiB | 24564MiB | PID 242591 |\n| 4 | 5829MiB | 24564MiB | PID 243300 |\n| 5 | 5829MiB | 24564MiB | PID 250610 |\n\n### 3. v1 (前一次运行) 的失败是不同的 bug\n\nv1 (EXIT_CODE=1) 实际**完成了全部 4 个 benchmark**（mmlu + gsm8k + arc_challenge + humaneval pass@1=0.1098），但在**保存结果时崩溃**：\n\n```\nFileNotFoundError: '/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42/eval_results.json'\n```\n\n输出目录存在但为空 — 结果全部丢失。代码 `evaluate.py:565` 有 `output_dir.mkdir(parents=True, exist_ok=True)`，但仍然报错，可能是文件系统瞬时问题或路径解析 bug。\n\n### 4. 修复建议\n\n**核心问题：缺少 `CUDA_VISIBLE_DEVICES` 导致模型抢占 GPU 0。**\n\n重试命令调整：\n\n```bash\nCUDA_VISIBLE_DEVICES=2 python evaluate.py \\\n  --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B \\\n  --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter \\\n  --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42 \\\n  --benchmarks mmlu gsm8k arc_challenge humaneval \\\n  --batch-size 4\n```\n\n改动点：\n1. **`CUDA_VISIBLE_DEVICES=2`** — 强制使用空闲的 GPU 2，避免与其他进程争抢\n2. **`--batch-size 4`**（从默认 8 降低）— 降低 GPU 显存峰值\n3. **v1 的 FileNotFoundError** — 需要检查 `evaluate.py` 的保存逻辑，建议在 `open()` 前加一行 `results_file.parent.mkdir(parents=True, exist_ok=True)` 做双重保险，或检查是否存在 Path 对象类型不一致的问题\n\n### 5. 是否需要重试\n\n**需要重试。** v1 完成了评估但结果丢失，v2 在 MMLU 途中被 kill。加 `CUDA_VISIBLE_DEVICES=2` 后应可稳定运行 — 0.5B 模型仅需 ~1-2GB 显存，GPU 2 有 24.5GB 完全空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-05b-d000-s42-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a1271bdf000e1404bc6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "check gpu status p2p3",
+  "task_key": "worker_check_gpu_status_p2p3_20260516T143219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_status_p2p3_20260516T143219_result.json",
+    "occurrence": 1,
+    "bytes": 1301,
+    "sha256": "ee2aeab61008af7ff377198deabc7b9f09c02a292f5ea9efbc7180bf1a2fd882"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### P2: D108 v4 — MMLU domain gamma N=24 (PID 789935, CPU)\n\n**已完成 6/8 个域：**\n\n| Domain | 完成时间 |\n|--------|---------|\n| STEM_Math | 19:41 |\n| STEM_Science | 19:57 |\n| STEM_CS_Eng | 20:01 |\n| Medical | 20:20 |\n| Humanities | 22:12 |\n| Social_Sciences | 22:31 |\n\n**当前正在跑：Business_Law** — MCMC 4 chains 刚启动，warmup 5% (100/2000)，~1.5 it/s。\n\n**剩余：** Business_Law（进行中）+ Other。按每域 ~19 分钟估算，**预计 ~35-40 分钟完成全部 8 域**。\n\n---\n\n### P3: cuda:4 — Llama-3.2-3B d000 s42 eval (PID 785955)\n\n- **GPU:** 8313MiB / 24564MiB，86% 利用率\n- **运行时间:** 1h14m\n- **日志异常：** `/tmp/llama3b_d000_eval.log` 显示 GSM8K 评估在 57/1319 处出现 `Terminated`，但进程仍在运行且 GPU 利用率正常。可能是日志缓冲问题——tqdm 输出未刷新到文件。进程本身（`evaluate.py --benchmarks mmlu gsm8k arc_challenge humaneval`）活跃。\n\n### P3: cuda:5 — Qwen2.5-1.5B-Instruct eval (PID 786898)\n\n- **GPU:** 3659MiB / 24564MiB，55% 利用率\n- **运行时间:** 1h08m\n- **进度：** GSM8K 1251/1319 (95%)，~2.5s/it\n- MMLU 已完成。GSM8K **预计 ~3 分钟完成**，之后还需跑 arc_challenge 和 humaneval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-status-p2p3.md"
+}

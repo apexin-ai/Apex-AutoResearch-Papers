@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43df1d73bd5a3a390f7c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd olmo gpu3 manual",
+  "task_key": "worker_ssh_westd-olmo-gpu3-manual_20260519T120744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-olmo-gpu3-manual_20260519T120744_result.json",
+    "occurrence": 1,
+    "bytes": 335,
+    "sha256": "c713a449dcd93c9dcc11e2cae538738379481d660d8ed5cd8f72034902e4a4da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。\n\n**cuda:3 状态**：95% utilization, 16707 MiB 显存占用\n\n**进程**：\n- **PID 165872** — `evaluate.py` OLMo-2 d025 eval，运行在 tmux session `olmo2_gpu3`，CUDA_VISIBLE_DEVICES=3\n\nd025 完成后会自动启动 d050。日志写入 `/root/autodl-tmp/exp001/phase2_logs/olmo2_gpu3.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-olmo-gpu3-manual.md"
+}

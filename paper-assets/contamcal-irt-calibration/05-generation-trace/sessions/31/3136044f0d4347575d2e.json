@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3136044f0d4347575d2e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit data table1 dose response",
+  "task_key": "worker_audit_data-table1-dose-response_20260522T033442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-table1-dose-response_20260522T033442_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "83e171bf7b17b29c66485154d2b5fdc44f4e584e9f808e5073eeec6766c59205"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "64 个数据点全部核对完毕。核心结论：\n\n**所有基线和 Δacc 数值与源数据一致，无数据错误。** 发现 3 个小问题：\n\n1. **Gemma-2 \"mono.\" 标签**（Table 1 Peak 列）：d050 (64.01%) 低于 d025 (64.56%)，不严格单调。整体趋势向上但有 0.55pp 回落。\n\n2. **OLMo-2 s123 符号**（Table 2）：Δ=-0.55pp，按文中定义 |Δ|<1pp 应标 \"0\" 而非 \"−\"。影响 OLMo-2 的 cross-seed 模式从 \"+/−/+\" 变为 \"+/0/+\"。\n\n3. **GSM8K 脚注标签**（tab:gsm8k_transfer）：OLMo-2 脚注写 \"Seed=42: +2.1pp\"，实际是 mean(s42=+1.74, s123=+2.43)=+2.09pp。行文中 \"OLMo-2's gain is seed-sensitive (+2.1pp at s42)\" 同样受影响。\n\n报告已注册为 artifact `art_20260522_12d7cc`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-data-table1-dose-response.md"
+}

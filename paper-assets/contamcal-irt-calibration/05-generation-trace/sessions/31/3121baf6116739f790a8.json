@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3121baf6116739f790a8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify d100 eval",
+  "task_key": "worker_ops_verify-d100-eval_20260516T050145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-d100-eval_20260516T050145_result.json",
+    "occurrence": 1,
+    "bytes": 1028,
+    "sha256": "85a96a3647033ceda354fc9f0bb269840aa1798b32e67eb481f07d33f3661885"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论：\n\n**进程存活，正常运行中。** 另一个 Worker 的报告有误。\n\n| 项目 | 状态 |\n|------|------|\n| PID 687347 | **存活**，运行 1h56m，状态 `Rl+`（running） |\n| GPU 3 | PID 687347 占用 8976 MiB，利用率 71% |\n| 命令 | `evaluate.py --adapter-path .../Qwen2.5-3B_d100_a32_s42_v3/lora_adapter --output-dir .../Qwen2.5-3B_d100_a32_s42_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned` |\n| 输出目录 | `Qwen2.5-3B_d100_a32_s42_aligned/` 存在但**为空** — 说明 eval 还在跑第一个 benchmark，尚未写出结果文件 |\n| 日志 | `exp_001_eval_3B_d100_s42_a32_batch.log` 不存在（但有 `exp_001_eval_3B_d100_s123_a32_batch.log`，命名差异可能是日志写到 tmux 而非文件） |\n\n**判断**：进程健康，4 个 benchmark 的 3B eval 预计总共需要 2-3 小时，当前 ~2h 进度正常。输出为空是因为 evaluate.py 在所有 benchmark 跑完后才统一写结果，不是异常。不需要干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-d100-eval.md"
+}

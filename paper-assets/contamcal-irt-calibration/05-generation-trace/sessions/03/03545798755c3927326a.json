@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03545798755c3927326a",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "reviewer / loop_20.md",
+  "task_key": "loop_20",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_20.md",
+    "occurrence": 1,
+    "bytes": 4430,
+    "sha256": "e20df25f85b4ad26ee926ff22783c94004c7dc5c18b5c9c10cffe065a423678c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: max_wall_time\nupdated: '2026-05-19T08:40:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-29999 GPU 白名单: cuda:0,1,2,3（全部可用，无越界风险）\n- cqa1-21977 GPU: 仅 cuda:0（单卡 4090D 24GB）\n- Phi-4 14.7B eval/训练**不能在 cqa1 上跑**（~30GB bf16 > 24GB VRAM）\n- OLMo-2 7B 和 Gemma-2 9B eval 可在 cqa1 上跑（14GB/18GB bf16 勉强适配 24GB）\n- 统一 LoRA 协议: r=16, α=32, lr=5e-5, bf16, seed=42, epochs=1——任何偏离即 critical\n- Variant A/B 判定尚未决定（D145 暂缓）——论文中不能预设 Variant A 叙事\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999** (root): 4× RTX PRO 6000 96GB, `/root/autodl-tmp/exp001/`\n  - checkpoints: `/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_{seed}/`\n  - eval results: `/root/autodl-tmp/exp001/eval_results_14b/` (Qwen 14B), `/root/autodl-tmp/exp001/eval_results_cross_family/` (Phi-4/OLMo-2/Gemma-2)\n  - models: `/root/autodl-tmp/models/{phi-4, OLMo-2-1124-7B, gemma-2-9b, Qwen2.5-14B, Qwen2.5-7B}`\n  - SFT data: `/root/autodl-tmp/sft_data/sft_dosage_{000,005,025,050,100}.jsonl`\n- **cqa1-21977** (root): 1× RTX 4090D 24GB, `/root/autodl-tmp/exp001/`\n  - eval results: `/root/autodl-tmp/exp001/eval_results/` (Qwen 7B), `/root/autodl-tmp/exp001/eval_results_cross_family/` (OLMo-2)\n- **本地 workspace**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/`\n  - 论文: `docs/paper/*.tex`\n  - registry: `registry.yaml`\n\n### 3. 📊 当前状态\n**刚完成**: Phi-4 d000-d050 eval 独立核实 + OLMo-2 d000-d025 eval 独立核实 + 跨家族 claim 升级评估 + benchmark-specific pattern 分析。本 session 共提交 ~10 次 reviewer_post_to_director。\n\n**RUNNING 训练** (westd):\n- `exp_001_sft_phi4_d100_s42` — cuda:0, 55783 MiB（最后一个 Phi-4）\n- `exp_001_sft_gemma2_9b_d100_s42` — cuda:1, 52111 MiB\n- `exp_001_sft_olmo2_7b_d100_s42` — cuda:2, 38165 MiB\n\n**RUNNING eval** (cuda:3 westd + cqa1):\n- Phi-4 eval batch on cuda:3 — d000-d050 done, d100 待训练完成\n- OLMo-2 eval on cqa1 — d000-d025 done, d050 checkpoint ready 但可能还没排进 eval queue\n- **Gemma-2 eval 完全未开始** (0/5) — cqa1 无 Gemma-2 模型，westd 无空闲 GPU\n\n**训练完成度**: Phi-4 4/5, Gemma-2 4/5, OLMo-2 4/5, Qwen14B 5/5, Qwen7B 10/10+eval done\n\n### 4. 📋 待办（条件触发式）\n- Phi-4 d100 训练完成 → 核实 train_config + .done → 启动 Phi-4 d100 eval on cuda:0（训练释放后）→ Phi-4 全链 eval 完整\n- OLMo-2 d100 训练完成 → 核实 → cqa1 eval queue 应自动接 d050+d100\n- Gemma-2 d100 训练完成 → **关键**: cuda:1 释放后必须立即安排 Gemma-2 d000-d100 eval batch on westd（cqa1 可能装不下 9B）\n- 所有 eval 完成 → 汇总完整跨家族 dose-response 表 → 做最终 Variant A/B 判定 → 通知 Director\n- Agent 每次训练完成后不主动启动下一个 QUEUED → 需要持续监控并 flag idle GPU（本 session pattern: 几乎每次完成都要提醒）\n\n### 5. 🎯 战略上下文\n- **核心发现**: SFT contamination MMLU 正向（+0.4~2.3pp）、ARC 零/负向，3/4 family 方向一致\n- **D145**: Variant A/B 暂缓——7B 明确 Variant A（Δ<2pp），14B 在 gray zone（1.92-2.28pp 单 seed）\n- **D147**: benchmark-specific pattern（MMLU vs ARC）值得作为 prominent finding 但不宜 co-primary claim\n- **OLMo-2 弱基线问题**: MMLU 58.71% 远低于其他 family，contamination 效应 marginal。建议 Discussion 中作 exploratory observation，不放 Contribution。如果 d050/d100 也 null，cross-family claim 变成\"3/4 positive + 1/4 null\"，仍可接受但需 hedge\n- **最容易判断错的事**: (1) 不要把 Phi-4 d050 +1.20pp 和 Qwen 14B d050 +2.28pp 直接比较来 claim \"effect scales with capacity\"——Phi-4 更大但效应更小，说明效应与 baseline 能力/训练数据相关而非纯参数量; (2) d005 MMLU 在 7B scale 是负向的（Qwen -0.26pp, OLMo-2 -0.50pp），不能 claim \"contamination always inflates MMLU\"; (3) Agent 的 pattern 是训练完成后做 analysis 但不启动下一个 QUEUED 任务，几乎每次 GPU 释放都需要 reviewer 催促\n- **Paper scope expansion patch 有 3 个 CRITICAL**（已提交但不确定是否已修复）: Abstract 未同步、Contribution 1 claim-evidence 不匹配、Introduction 预设 Variant A\n- **Deadline**: EMNLP 2026 ARR May 25，约 6 天\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-copy-3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41daadc04d293218cd59",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fill 3 idle gpus",
+  "task_key": "worker_ops_fill-3-idle-gpus_20260516T182115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fill-3-idle-gpus_20260516T182115_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "158c66ec8212aa40bcfc3bd900c4b4d5a0363fde75e331708998242c4d25eb60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## GPU 分配总览\n\n| GPU | 任务 | PID | 状态 | 预计完成 |\n|-----|------|-----|------|---------|\n| cuda:0 | Llama d005 eval | 825638 | 运行中 | ~1-2h (4 benchmarks) |\n| cuda:1 | **Llama d000 MMLU signals** | 830115 | 运行中 (embedding 15%) | ~30-40min |\n| cuda:2 | 1.5B-Instruct ARC signals v1 | 823710 | 运行中 (37min elapsed) | ~20-30min |\n| cuda:3 | Llama d025 eval | 822390 | 运行中 | ~1-2h |\n| cuda:4 | **Llama d000 ARC signals** | 831353 | 运行中 (embedding starting) | ~15-20min (ARC 仅 1172 items) |\n| cuda:5 | **Llama d100 eval** | 831033/831490 | 运行中 (evaluating MMLU 0/14042) | ~2-3h (4 benchmarks) |\n\n## 已完成操作\n- C001 违规修复：killed `exp_002_signals_15B_instruct_arc_v2` (PID 826497)\n- d100 SFT registry 标记 DONE (train_loss=1.5435, accuracy=0.6505)\n- 3 个新实验注册 RUNNING\n- 清理 stale session `exp_001_eval_3B_d100_v2_para_aligned`\n- cuda:4/5 首次启动因缺 `network_turbo` 超时，已重启修复"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fill-3-idle-gpus.md"
+}

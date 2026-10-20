@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fbdda7ae0a4be545df2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research paper update checklist",
+  "task_key": "worker_research_paper-update-checklist_20260519T220548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-update-checklist_20260519T220548_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "b50cde1a1ebf13324123d87b6a8d9c215ea112568a35b9083f2a1a7eb42c2ee5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成并注册。\n\n**清单概要**：~35 项改动，覆盖 abstract 到 appendix 全部 section。\n\n**P0（15 项，提交前必须完成）**：\n- V-recovery 双种子确认 → abstract、Table 1、discussion 三处同步更新\n- GSM8K 结果整合（待 eval）→ results 加 negative control 段 + abstract 一句\n- Algorithm 1 v2 伪代码与 profile_classifier.py 一致性验证\n- experimental_setup seed/checkpoint 数更新\n- 所有 Figure 数据源确认（aligned evaluate.py 版本）\n- Sensitivity 描述 30→180 更新\n- DiD 数据版本确认\n\n**P1（20 项，锦上添花）**：s123 cross-family 数据扩展、domain decomposition 图表、Fisher Info 推导、reference audit 等。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-update-checklist.md"
+}

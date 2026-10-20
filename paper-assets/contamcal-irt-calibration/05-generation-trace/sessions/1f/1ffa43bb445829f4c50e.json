@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ffa43bb445829f4c50e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag exp 001 eval 3B d025 s42 a32 para",
+  "task_key": "worker_diag_exp_001_eval_3B_d025_s42_a32_para_20260516T043455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp_001_eval_3B_d025_s42_a32_para_20260516T043455_result.json",
+    "occurrence": 1,
+    "bytes": 1784,
+    "sha256": "add9a43b3bfac3a14c031f068674af3e8f87182fa97a1dcf9664ebeca968af3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 进程状态：已正常结束\n\nPID 691033 已退出。**不是异常死亡，是正常完成。**\n\n### 日志最后输出\n\nEval 四个 benchmark 全部跑完，最后记录时间 `12:27:21`：\n\n| Benchmark | 结果 |\n|-----------|------|\n| mmlu (paraphrased) | 6596 items 评估完成 |\n| gsm8k (paraphrased) | 评估完成（日志中段，被截断） |\n| arc_challenge (paraphrased) | **0.8106** (565/697) |\n| humaneval (paraphrased) | **0.0000** (0/26) |\n\n日志末尾确认写出了所有产出文件和 sentinel。\n\n### eval 输出目录（完整）\n\n```\n/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v3_s42_para_aligned/\n  .done                   (sentinel)\n  correctness_matrix.json (47 KB)\n  eval_results.json       (909 KB)\n  item_responses.json     (1019 KB)\n```\n\n### 为什么 reconcile 报 \"no sentinel\"\n\nsentinel `.done` 写在了 **eval 输出目录** (`/root/autodl-tmp/exp001/eval_results/.../.done`)，但 reconcile 检查的是 `/root/runs/contamcal-irt-calibration/*d025*sentinel*`——该路径下确实没有 sentinel 文件。这是 sentinel 路径不匹配导致的误报。\n\n### cuda:0 GPU 状态\n\n`3895 MiB / 24564 MiB, 44% util` — 这是 1.5B signals 进程（PID 691872）占用的。eval 进程已退出释放显存。cuda:0 剩余 ~20 GB 空闲。\n\n### 1.5B signals 进程\n\nPID 691872 **存活**，正常运行中（`CUDA_VISIBLE_DEVICES=0`）。\n\n### 总结\n\n- eval 任务**已成功完成**，产出齐全\n- reconcile 误报原因：sentinel 写入位置与监控检查路径不一致\n- cuda:0 当前被 1.5B signals 占用，eval 无需重提交\n- 建议修复 reconcile 的 sentinel 检测路径，或让 eval 脚本同时在 runs 目录写一份 sentinel"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-001-eval-3b-d025-s42-a32-para.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0004263497416db14fdb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "status gpu mmlu check",
+  "task_key": "worker_status_gpu_mmlu_check_20260514T023208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_gpu_mmlu_check_20260514T023208_result.json",
+    "occurrence": 1,
+    "bytes": 3615,
+    "sha256": "240981d88c3f4440eeead90d3142665736d3290e83e49c3cec19dad484068004"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是结构化报告。\n\n---\n\n## 服务器状态报告 — cqa1-21977（2026-05-14 ~10:32 UTC）\n\n### 1. GPU 状态\n\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| cuda:0 | RTX 4090 D | 10,055 / 24,564 MiB (41%) | 22% |\n| cuda:1 | RTX 4090 D | 12,620 / 24,564 MiB (51%) | 100% |\n| **cuda:2** | RTX 4090 D | **21,983 / 24,564 MiB (90%)** | **100%** |\n| cuda:3 | RTX 4090 D | 8,957 / 24,564 MiB (36%) | 60% |\n| cuda:4 | RTX 4090 D | 5,829 / 24,564 MiB (24%) | 49% |\n| cuda:5 | RTX 4090 D | 5,829 / 24,564 MiB (24%) | 45% |\n\n### 2. 进程状态\n\n| PID | 任务 | 状态 | 运行时长 | 备注 |\n|-----|------|------|---------|------|\n| 251924 | cuda:0, 1.5B d100 SFT | **ALIVE** (Sl) | 1h23m | 训练中 |\n| 249294 | cuda:1, 3B d000_s42 eval | **ALIVE** (Rl+) | 1h38m | 评估中 |\n| 255322 | cuda:1, 0.5B d005_s42 eval | **ALIVE** (Rl) | 1h04m | 评估中 |\n| 242581 | cuda:3, 3B d000_s123 eval | **ALIVE** (Ss+) | 2h14m | 评估中 |\n| 243290 | cuda:4, 1.5B d000_s42 eval | **ALIVE** (Ss+) | 2h09m | 评估中 |\n| 250600 | cuda:5, 1.5B d000_s123 eval | **ALIVE** (Ss+) | 1h33m | 评估中 |\n| 263528 | cuda:2, 0.5B d000_s42 eval v2 | **ALIVE** (Ss+) | 4m | 刚启动 |\n| 263784 | cuda:2, 0.5B d100 eval v2 | **ALIVE** (Ss+) | 4m | 刚启动 |\n\n**全部 8 个进程均存活。**\n\n### 3. 重点关注\n\n#### cuda:1 双占情况\n- 两个 eval 进程都在跑（PID 249294 和 255322），显存占 12,620 MiB (51%)，利用率 100%\n- 3B 模型和 0.5B 模型共享一块卡，显存够用但 GPU 利用率打满\n\n#### cuda:2 实际状态（PREPARING → 已确认在跑）\n- PID 263528（0.5B d000_s42 v2）和 PID 263784（0.5B d100 v2）**都已真正在运行**，不再是 PREPARING\n- 两个都刚启动约 4 分钟，当前都在跑 MMLU 评估\n- PID 263528 (d000_s42): MMLU 进度 ~GSM8K 阶段（MMLU 已完成，acc=0.4049），正在跑 GSM8K\n- PID 263784 (d100): MMLU 进度 ~GSM8K 阶段（MMLU 已完成，acc=0.2322），正在跑 GSM8K\n- 显存占用 21,983 MiB (90%)，利用率 100%——**两个 0.5B eval 挤在一张卡上，显存接近满载**\n\n> **注意**: d100 的 MMLU acc 只有 0.2322，远低于 d000 的 0.4049，下降明显。\n\n### 4. MMLU Paraphrase\n- **无 `mmlu_paraphrases*.json` 文件**\n- **无 vLLM/paraphrase 相关进程**\n- 状态：**未生成或已清理**\n\n### 5. SFT 数据文件\n\n| 文件 | 行数 |\n|------|------|\n| sft_dosage_000.jsonl | 50,000 |\n| sft_dosage_005.jsonl | 50,826 |\n| sft_dosage_025.jsonl | 54,133 |\n| sft_dosage_050.jsonl | 58,266 |\n| sft_dosage_100.jsonl | 66,533 |\n\n### 6. Eval 结果产出\n\n| 目录 | 状态 |\n|------|------|\n| Qwen2.5-0.5B_d000_s123 | **已完成** |\n| Qwen2.5-0.5B_d000_s42 | 空（eval 正在 cuda:2 跑 v2） |\n| Qwen2.5-0.5B_d000_s42_para | 空 |\n| Qwen2.5-0.5B_d005_s42 | 空（eval 正在 cuda:1 跑） |\n| Qwen2.5-0.5B_d100_s42 | 空（eval 正在 cuda:2 跑 v2） |\n| Qwen2.5-1.5B_d000_s42 | 空（eval 正在 cuda:4 跑） |\n| Qwen2.5-1.5B_d000_s123 | 空（eval 正在 cuda:5 跑） |\n| Qwen2.5-3B_d000_s42 | 空（eval 正在 cuda:1 跑） |\n| Qwen2.5-3B_d000_s123 | 空（eval 正在 cuda:3 跑） |\n\n**唯一已完成的 eval 分数（0.5B d000_s123）：**\n- MMLU: **0.4182** (5873/14042)\n- GSM8K: **0.3404**\n- ARC-Challenge: **0.3976**\n- HumanEval: **0.1037** (pass@1)\n\n### 7. SFT 训练进度（PID 251924, 1.5B d100）\n\n- 进度: **1503/4159 (36%)**，已跑 1h23m\n- 速度: ~3.9-4.1 s/it\n- ETA: ~2h53m 剩余\n- loss=1.31, token_accuracy=0.70, epoch=0.29"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-gpu-mmlu-check.md"
+}

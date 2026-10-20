@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "1d1f40ac1dec4e4c29b2",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ssh westd gemma eval cuda1",
+  "task_key": "worker_ssh_westd-gemma-eval-cuda1_20260519T085900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-gemma-eval-cuda1_20260519T085900.log",
+    "occurrence": 1,
+    "bytes": 1607223,
+    "sha256": "b4c908265baef2891053f00e0d341c5bf9d4c51a0ec76f0715fcbb51c505e3e7"
+  },
+  "statistics": {
+    "messages": 636,
+    "user_turns": 1,
+    "tool_calls": 256,
+    "roles": {
+      "system": 4,
+      "record": 1,
+      "assistant": 117,
+      "tool_call": 256,
+      "tool_result": 256,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 446,
+      "chunks": [
+        {
+          "path": "1d1f40ac1dec4e4c29b2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1d1f40ac1dec4e4c29b2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1d1f40ac1dec4e4c29b2-part-0003.json",
+          "message_count": 86
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 190,
+      "chunks": [
+        {
+          "path": "1d1f40ac1dec4e4c29b2-part-0003.json",
+          "message_count": 94
+        },
+        {
+          "path": "1d1f40ac1dec4e4c29b2-part-0004.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-westd-gemma-eval-cuda1.md"
+}

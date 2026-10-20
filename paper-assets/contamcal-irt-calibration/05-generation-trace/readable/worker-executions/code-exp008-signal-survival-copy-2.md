@@ -1,0 +1,5103 @@
+# code exp008 signal survival
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 108
+- **Recorded user turns:** 0
+- **Tool calls:** 43
+- **Original source:** `logs/workers/worker_code_exp008_signal_survival_20260514T151627.log`
+- **Structured JSON:** [`4c96effdeba5fb318d80.json`](../../sessions/4c/4c96effdeba5fb318d80.json)
+
+## Before a recorded user message
+
+108 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778777400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "5dd8402d-9ff5-4b15-b7e3-235dbe5cbe61",
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad"
+}
+```
+
+---
+
+### System
+
+_source line 3_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "pending"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "4c6553e6-2a81-4d58-a26a-f1f32b42fb33",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the task. I need to:
+
+1. SSH to the server and read all exp008/ files
+2. Check exp-002 signal outputs exist
+3. Review code for correctness, especially input path alignment
+4. Determine if it's CPU-only or needs GPU
+5. Execute if ready
+
+Let me start by connecting to the server and reading the files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "09bb4bc2-4934-4cd8-934d-18a477b76e6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ECf5xMH2FhjuutyM9rY3tH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11726,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11726
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始审查 exp-008 代码并检查依赖。先 SSH 读取文件和检查信号输出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "2abd8b19-c42b-4d3c-9ab7-fa6cbe3907bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ECf5xMH2FhjuutyM9rY3tH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11726,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11726
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QVHEGb8Uz1MehkbCkuFTaP`</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "5c5bbc40-a387-44bc-97c9-8b7a8fc5f76f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ECf5xMH2FhjuutyM9rY3tH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11726,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11726
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T15:16:53.770Z_
+
+<details><summary>↩ Tool result · `toolu_01QVHEGb8Uz1MehkbCkuFTaP`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "TodoWrite"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "97a0778c-2bf4-4280-b320-676bd7343a98",
+  "tool_use_result": {
+    "matches": [
+      "TodoWrite"
+    ],
+    "query": "select:TodoWrite",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me set up the todo list and start SSH-ing to the server to read the files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "bbfa8147-3f0a-4af7-8ec3-8ad12248ada1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKV2cXYeyT2zT144KfrqM1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2601,
+      "cache_read_input_tokens": 23567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2601
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01NFwfvkJ2jSHmaEBTiu9zAM`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "SSH读取exp008/所有4个文件代码",
+      "status": "in_progress",
+      "activeForm": "读取exp008代码文件"
+    },
+    {
+      "content": "检查exp-002信号输出文件是否存在且非空",
+      "status": "pending",
+      "activeForm": "检查exp-002信号输出"
+    },
+    {
+      "content": "审查代码：输入路径对齐、逻辑正确性、依赖分析",
+      "status": "pending",
+      "activeForm": "审查代码逻辑和路径"
+    },
+    {
+      "content": "确认是否纯CPU、是否需要额外输入",
+      "status": "pending",
+      "activeForm": "分析运行依赖"
+    },
+    {
+      "content": "执行dry-run或准备提交命令",
+      "status": "pending",
+      "activeForm": "执行或准备命令"
+    },
+    {
+      "content": "汇报结果",
+      "status": "pending",
+      "activeForm": "汇报审查结果"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "41e07a99-9e8b-486c-a880-b799839aaa4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKV2cXYeyT2zT144KfrqM1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2601,
+      "cache_read_input_tokens": 23567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2601
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T15:17:02.650Z_
+
+<details><summary>↩ Tool result · `toolu_01NFwfvkJ2jSHmaEBTiu9zAM`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "1c6246a8-3f84-463c-a92b-a84dfd16bb17",
+  "tool_use_result": {
+    "oldTodos": [],
+    "newTodos": [
+      {
+        "content": "SSH读取exp008/所有4个文件代码",
+        "status": "in_progress",
+        "activeForm": "读取exp008代码文件"
+      },
+      {
+        "content": "检查exp-002信号输出文件是否存在且非空",
+        "status": "pending",
+        "activeForm": "检查exp-002信号输出"
+      },
+      {
+        "content": "审查代码：输入路径对齐、逻辑正确性、依赖分析",
+        "status": "pending",
+        "activeForm": "审查代码逻辑和路径"
+      },
+      {
+        "content": "确认是否纯CPU、是否需要额外输入",
+        "status": "pending",
+        "activeForm": "分析运行依赖"
+      },
+      {
+        "content": "执行dry-run或准备提交命令",
+        "status": "pending",
+        "activeForm": "执行或准备命令"
+      },
+      {
+        "content": "汇报结果",
+        "status": "pending",
+        "activeForm": "汇报审查结果"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XFtkftCzqv1mHQa3BGuSud`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "60bed81c-a296-48b8-a91d-0040293f2c41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UkJ4snQP8aTUoBjBCgCDgQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 26168,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 942
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T15:17:05.059Z_
+
+<details><summary>↩ Tool result · `toolu_01XFtkftCzqv1mHQa3BGuSud`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "825fb8eb-8716-412d-9ea6-7d5fddeaec34",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+同时读取 exp008 所有代码文件和检查 exp-002 信号输出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "4e52a8d6-6262-4b78-9090-6c23cb502ddb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012FnQfSK1r1rkooNrn2Dyp3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 27110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 669
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013aJ9QrmTLytFsYfdJMSE9v`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "ce6f1c60-8567-4532-9282-bd817a949248",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012FnQfSK1r1rkooNrn2Dyp3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 27110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 669
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T15:17:12.121Z_
+
+<details><summary>↩ Tool result · `toolu_013aJ9QrmTLytFsYfdJMSE9v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-008 Signal Survival Analysis — core analysis module.\\nv2: Extended from SFT/RL pairwise to N-regime comparison.\\n\\nComputes:\\n  - AUC matrix: N_signals x N_regimes AUROC for contamination detection\\n  - Pairwise tests: statistical tests between all adjacent regime pairs\\n    (Cohen's d, Spearman rho, AUROC ratio, Wilcoxon signed-rank)\\n\\nInput:  OrderedDict mapping regime_name -> {signal_key: [records]}, plus labels.\\nOutput: {regime_names, auc_matrix, pairwise_tests, per_signal (compat), summary}\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nfrom collections import OrderedDict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_LABELS = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K%++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\n\\n\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\n    \\\"\\\"\\\"Cohen's d effect size between two groups.\\\"\\\"\\\"\\n    n1, n2 = len(group1), len(group2)\\n    if n1 < 2 or n2 < 2:\\n        return float(\\\"nan\\\")\\n    var1 = group1.var(ddof=1)\\n    var2 = group2.var(ddof=1)\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\n    if pooled_std == 0:\\n        return float(\\\"nan\\\")\\n    return (group1.mean() - group2.mean()) / pooled_std\\n\\n\\ndef compute_single_regime_metrics(values: np.ndarray, labels: np.ndarray) -> dict:\\n    \\\"\\\"\\\"AUROC and Cohen's d for contamination detection in one regime.\\\"\\\"\\\"\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\n    v = values[mask]\\n    lab = labels[mask].astype(int)\\n    contam = lab == 1\\n    clean = lab == 0\\n\\n    result = {\\n        \\\"n_items\\\": int(mask.sum()),\\n        \\\"n_contaminated\\\": int(contam.sum()),\\n        \\\"n_clean\\\": int(clean.sum()),\\n    }\\n\\n    d = cohens_d(v[contam], v[clean])\\n    result[\\\"effect_size\\\"] = round(d, 4) if not np.isnan(d) else None\\n\\n    if contam.sum() > 0 and clean.sum() > 0:\\n        result[\\\"auroc\\\"] = round(float(roc_auc_score(lab, v)), 4)\\n    else:\\n        result[\\\"auroc\\\"] = None\\n\\n    return result\\n\\n\\ndef compute_pairwise_metrics(\\n    values_a: np.ndarray,\\n    values_b: np.ndarray,\\n    labels: np.ndarray,\\n) -> dict:\\n    \\\"\\\"\\\"\\n    Pairwise survival metrics between two regimes for one signal.\\n    Preserves all original statistical tests: Cohen's d, Spearman, AUC, Wilcoxon.\\n    \\\"\\\"\\\"\\n    mask = ~(np.isnan(values_a) | np.isnan(values_b) | np.isnan(labels))\\n    v_a = values_a[mask]\\n    v_b = values_b[mask]\\n    lab = labels[mask].astype(int)\\n\\n    contam = lab == 1\\n    clean = lab == 0\\n\\n    result = {\\n        \\\"n_items\\\": int(mask.sum()),\\n        \\\"n_contaminated\\\": int(contam.sum()),\\n        \\\"n_clean\\\": int(clean.sum()),\\n    }\\n\\n    d_a = cohens_d(v_a[contam], v_a[clean])\\n    d_b = cohens_d(v_b[contam], v_b[clean])\\n    result[\\\"effect_size_a\\\"] = round(d_a, 4)\\n    result[\\\"effect_size_b\\\"] = round(d_b, 4)\\n    result[\\\"effect_size_ratio\\\"] = (\\n        round(d_b / d_a, 4) if d_a != 0 and not np.isnan(d_a) else None\\n    )\\n\\n    if len(v_a) >= 3:\\n        rho, rho_p = stats.spearmanr(v_a, v_b)\\n        result[\\\"spearman_rho\\\"] = round(rho, 4)\\n        result[\\\"spearman_p\\\"] = float(f\\\"{rho_p:.2e}\\\")\\n    else:\\n        result[\\\"spearman_rho\\\"] = None\\n        result[\\\"spearman_p\\\"] = None\\n\\n    if result[\\\"n_contaminated\\\"] > 0 and result[\\\"n_clean\\\"] > 0:\\n        auc_a = roc_auc_score(lab, v_a)\\n        auc_b = roc_auc_score(lab, v_b)\\n        result[\\\"auc_a\\\"] = round(auc_a, 4)\\n        result[\\\"auc_b\\\"] = round(auc_b, 4)\\n        result[\\\"auc_ratio\\\"] = round(auc_b / auc_a, 4) if auc_a > 0 else None\\n    else:\\n        result[\\\"auc_a\\\"] = None\\n        result[\\\"auc_b\\\"] = None\\n        result[\\\"auc_ratio\\\"] = None\\n\\n    diffs = v_b - v_a\\n    nonzero_diffs = diffs[diffs != 0]\\n    if len(nonzero_diffs) >= 10:\\n        w_stat, w_p = stats.wilcoxon(nonzero_diffs)\\n        result[\\\"wilcoxon_stat\\\"] = float(w_stat)\\n        result[\\\"wilcoxon_p\\\"] = float(f\\\"{w_p:.2e}\\\")\\n    else:\\n        result[\\\"wilcoxon_stat\\\"] = N\\n\\n... [截断: 输出过长，省略 5857 字符] ...\\n\\nutput_dir = Path(output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = output_dir / \\\"survival_report.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2)\\n    logger.info(\\\"Report saved to %s\\\", out_path)\\n    return out_path\\n\\n\\ndef print_summary_table(report: dict):\\n    \\\"\\\"\\\"Print a formatted summary table to stdout.\\\"\\\"\\\"\\n    regime_names = report.get(\\\"regime_names\\\", [])\\n    auc_matrix = report.get(\\\"auc_matrix\\\", {})\\n    pairwise_tests = report.get(\\\"pairwise_tests\\\", {})\\n    summary = report[\\\"summary\\\"]\\n\\n    if len(regime_names) == 2 and report.get(\\\"per_signal\\\"):\\n        _print_legacy_table(report)\\n        return\\n\\n    # N-regime AUC matrix table\\n    col_w = 10\\n    sig_w = 16\\n    header_parts = [f\\\"{'Signal':<{sig_w}}\\\"]\\n    for rname in regime_names:\\n        header_parts.append(f\\\"{rname:>{col_w}}\\\")\\n    header = \\\" \\\".join(header_parts)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * len(header))\\n    print(\\n        f\\\"Signal Survival Analysis -- {len(regime_names)} regimes: \\\"\\n        f\\\"{' -> '.join(regime_names)}\\\"\\n    )\\n    print(\\\"=\\\" * len(header))\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    for sig_key in SIGNAL_KEYS:\\n        if sig_key not in auc_matrix:\\n            continue\\n        line_parts = [f\\\"{SIGNAL_LABELS[sig_key]:<{sig_w}}\\\"]\\n        for rname in regime_names:\\n            v = auc_matrix[sig_key].get(rname)\\n            s = f\\\"{v:.4f}\\\" if v is not None else \\\"N/A\\\"\\n            line_parts.append(f\\\"{s:>{col_w}}\\\")\\n        print(\\\" \\\".join(line_parts))\\n\\n    print(\\\"-\\\" * len(header))\\n\\n    for pair_key, pair_data in pairwise_tests.items():\\n        ra, rb = pair_key.split(\\\"_vs_\\\")\\n        ratios = [\\n            m[\\\"auc_ratio\\\"]\\n            for m in pair_data.values()\\n            if m.get(\\\"auc_ratio\\\") is not None\\n        ]\\n        rhos = [\\n            m[\\\"spearman_rho\\\"]\\n            for m in pair_data.values()\\n            if m.get(\\\"spearman_rho\\\") is not None\\n        ]\\n        if ratios:\\n            print(\\n                f\\\"  {ra} -> {rb}: mean AUC ratio={np.mean(ratios):.3f}, \\\"\\n                f\\\"mean rho={np.mean(rhos):.3f}\\\"\\n            )\\n        else:\\n            print(f\\\"  {ra} -> {rb}: no data\\\")\\n\\n    print(\\n        f\\\"\\\\nSurviving signals: {summary['n_signals_surviving']}\\\"\\n        f\\\"/{summary['n_signals_analyzed']}  \\\"\\n        f\\\"({', '.join(summary['surviving_signals']) or 'none'})\\\"\\n    )\\n    print(\\\"=\\\" * len(header) + \\\"\\\\n\\\")\\n\\n\\ndef _print_legacy_table(report: dict):\\n    \\\"\\\"\\\"Original 2-regime table format for backward compatibility.\\\"\\\"\\\"\\n    per_signal = report[\\\"per_signal\\\"]\\n    summary = report[\\\"summary\\\"]\\n\\n    header = (\\n        f\\\"{'Signal':<16} {'d(SFT)':>8} {'d(RL)':>8} {'d ratio':>8} \\\"\\n        f\\\"{'AUC(SFT)':>9} {'AUC(RL)':>9} {'AUC ratio':>10} \\\"\\n        f\\\"{'rho':>8} {'Wilcox p':>10} {'n':>6}\\\"\\n    )\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * len(header))\\n    print(\\\"Signal Survival Analysis -- SFT vs RL-aligned\\\")\\n    print(\\\"=\\\" * len(header))\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    for sig_key in SIGNAL_KEYS:\\n        m = per_signal.get(sig_key)\\n        if m is None:\\n            continue\\n        fmt = lambda v, d=4: f\\\"{v:.{d}f}\\\" if v is not None else \\\"N/A\\\"\\n        print(\\n            f\\\"{m['signal_label']:<16} \\\"\\n            f\\\"{fmt(m['effect_size_sft']):>8} \\\"\\n            f\\\"{fmt(m['effect_size_rl']):>8} \\\"\\n            f\\\"{fmt(m.get('effect_size_ratio'), 2):>8} \\\"\\n            f\\\"{fmt(m.get('auc_sft')):>9} \\\"\\n            f\\\"{fmt(m.get('auc_rl')):>9} \\\"\\n            f\\\"{fmt(m.get('auc_ratio'), 2):>10} \\\"\\n            f\\\"{fmt(m.get('spearman_rho')):>8} \\\"\\n            f\\\"{fmt(m.get('wilcoxon_p'), 2):>10} \\\"\\n            f\\\"{m['n_items']:>6}\\\"\\n        )\\n\\n    print(\\\"-\\\" * len(header))\\n    print(\\n        f\\\"Surviving signals: {summary['n_signals_surviving']}\\\"\\n        f\\\"/{summary['n_signals_analyzed']}  \\\"\\n        f\\\"({', '.join(summary['surviving_signals']) or 'none'})\\\"\\n    )\\n    print(\\n        f\\\"Mean AUC ratio: {summary.get('mean_auc_ratio', 'N/A')}  |  \\\"\\n        f\\\"Mean Spearman rho: {summary.get('mean_spearman_rho', 'N/A')}\\\"\\n    )\\n    print(\\\"=\\\" * len(header) + \\\"\\\\n\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "70e56c4b-1bee-420d-bfb1-f281bb039c48",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008 Signal Survival Analysis — core analysis module.\\\\nv2: Extended from SFT/RL pairwise to N-regime comparison.\\\\n\\\\nComputes:\\\\n  - AUC matrix: N_signals x N_regimes AUROC for contamination detection\\\\n  - Pairwise tests: statistical tests between all adjacent regime pairs\\\\n    (Cohen's d, Spearman rho, AUROC ratio, Wilcoxon signed-rank)\\\\n\\\\nInput:  OrderedDict mapping regime_name -> {signal_key: [records]}, plus labels.\\\\nOutput: {regime_names, auc_matrix, pairwise_tests, per_signal (compat), summary}\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nfrom collections import OrderedDict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_LABELS = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Cohen's d effect size between two groups.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n1, n2 = len(group1), len(group2)\\\\n    if n1 < 2 or n2 < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    var1 = group1.var(ddof=1)\\\\n    var2 = group2.var(ddof=1)\\\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\\\n    if pooled_std == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    return (group1.mean() - group2.mean()) / pooled_std\\\\n\\\\n\\\\ndef compute_single_regime_metrics(values: np.ndarray, labels: np.ndarray) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"AUROC and Cohen's d for contamination detection in one regime.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\\\n    v = values[mask]\\\\n    lab = labels[mask].astype(int)\\\\n    contam = lab == 1\\\\n    clean = lab == 0\\\\n\\\\n    result = {\\\\n        \\\\\\\"n_items\\\\\\\": int(mask.sum()),\\\\n        \\\\\\\"n_contaminated\\\\\\\": int(contam.sum()),\\\\n        \\\\\\\"n_clean\\\\\\\": int(clean.sum()),\\\\n    }\\\\n\\\\n    d = cohens_d(v[contam], v[clean])\\\\n    result[\\\\\\\"effect_size\\\\\\\"] = round(d, 4) if not np.isnan(d) else None\\\\n\\\\n    if contam.sum() > 0 and clean.sum() > 0:\\\\n        result[\\\\\\\"auroc\\\\\\\"] = round(float(roc_auc_score(lab, v)), 4)\\\\n    else:\\\\n        result[\\\\\\\"auroc\\\\\\\"] = None\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef compute_pairwise_metrics(\\\\n    values_a: np.ndarray,\\\\n    values_b: np.ndarray,\\\\n    labels: np.ndarray,\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Pairwise survival metrics between two regimes for one signal.\\\\n    Preserves all original statistical tests: Cohen's d, Spearman, AUC, Wilcoxon.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mask = ~(np.isnan(values_a) | np.isnan(values_b) | np.isnan(labels))\\\\n    v_a = values_a[mask]\\\\n    v_b = values_b[mask]\\\\n    lab = labels[mask].astype(int)\\\\n\\\\n    contam = lab == 1\\\\n    clean = lab == 0\\\\n\\\\n    result = {\\\\n        \\\\\\\"n_items\\\\\\\": int(mask.sum()),\\\\n        \\\\\\\"n_contaminated\\\\\\\": int(contam.sum()),\\\\n        \\\\\\\"n_clean\\\\\\\": int(clean.sum()),\\\\n    }\\\\n\\\\n    d_a = cohens_d(v_a[contam], v_a[clean])\\\\n    d_b = cohens_d(v_b[contam], v_b[clean])\\\\n    result[\\\\\\\"effect_size_a\\\\\\\"] = round(d_a, 4)\\\\n    result[\\\\\\\"effect_size_b\\\\\\\"] = round(d_b, 4)\\\\n    result[\\\\\\\"effect_size_ratio\\\\\\\"] = (\\\\n        round(d_b / d_a, 4) if d_a != 0 and not np.isnan(d_a) else None\\\\n    )\\\\n\\\\n    if len(v_a) >= 3:\\\\n        rho, rho_p = stats.spearmanr(v_a, v_b)\\\\n        result[\\\\\\\"spearman_rho\\\\\\\"] = round(rho, 4)\\\\n        result[\\\\\\\"spearman_p\\\\\\\"] = float(f\\\\\\\"{rho_p:.2e}\\\\\\\")\\\\n    else:\\\\n        result[\\\\\\\"spearman_rho\\\\\\\"] = None\\\\n        result[\\\\\\\"spearman_p\\\\\\\"] = None\\\\n\\\\n    if result[\\\\\\\"n_contaminated\\\\\\\"] > 0 and result[\\\\\\\"n_clean\\\\\\\"] > 0:\\\\n        auc_a = roc_auc_score(lab, v_a)\\\\n        auc_b = roc_auc_score(lab, v_b)\\\\n        result[\\\\\\\"auc_a\\\\\\\"] = round(auc_a, 4)\\\\n        result[\\\\\\\"auc_b\\\\\\\"] = round(auc_b, 4)\\\\n        result[\\\\\\\"auc_ratio\\\\\\\"] = round(auc_b / auc_a, 4) if auc_a > 0 else None\\\\n    else:\\\\n        result[\\\\\\\"auc_a\\\\\\\"] = None\\\\n        result[\\\\\\\"auc_b\\\\\\\"] = None\\\\n        result[\\\\\\\"auc_ratio\\\\\\\"] = None\\\\n\\\\n    diffs = v_b - v_a\\\\n    nonzero_diffs = diffs[diffs != 0]\\\\n    if len(nonzero_diffs) >= 10:\\\\n        w_stat, w_p = stats.wilcoxon(nonzero_diffs)\\\\n        result[\\\\\\\"wilcoxon_stat\\\\\\\"] = float(w_stat)\\\\n        result[\\\\\\\"wilcoxon_p\\\\\\\"] = float(f\\\\\\\"{w_p:.2e}\\\\\\\")\\\\n    else:\\\\n        result[\\\\\\\"wilcoxon_stat\\\\\\\"] = N\\\\n\\\\n... [截断: 输出过长，省略 5857 字符] ...\\\\n\\\\nutput_dir = Path(output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n    out_path = output_dir / \\\\\\\"survival_report.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2)\\\\n    logger.info(\\\\\\\"Report saved to %s\\\\\\\", out_path)\\\\n    return out_path\\\\n\\\\n\\\\ndef print_summary_table(report: dict):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Print a formatted summary table to stdout.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    regime_names = report.get(\\\\\\\"regime_names\\\\\\\", [])\\\\n    auc_matrix = report.get(\\\\\\\"auc_matrix\\\\\\\", {})\\\\n    pairwise_tests = report.get(\\\\\\\"pairwise_tests\\\\\\\", {})\\\\n    summary = report[\\\\\\\"summary\\\\\\\"]\\\\n\\\\n    if len(regime_names) == 2 and report.get(\\\\\\\"per_signal\\\\\\\"):\\\\n        _print_legacy_table(report)\\\\n        return\\\\n\\\\n    # N-regime AUC matrix table\\\\n    col_w = 10\\\\n    sig_w = 16\\\\n    header_parts = [f\\\\\\\"{'Signal':<{sig_w}}\\\\\\\"]\\\\n    for rname in regime_names:\\\\n        header_parts.append(f\\\\\\\"{rname:>{col_w}}\\\\\\\")\\\\n    header = \\\\\\\" \\\\\\\".join(header_parts)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * len(header))\\\\n    print(\\\\n        f\\\\\\\"Signal Survival Analysis -- {len(regime_names)} regimes: \\\\\\\"\\\\n        f\\\\\\\"{' -> '.join(regime_names)}\\\\\\\"\\\\n    )\\\\n    print(\\\\\\\"=\\\\\\\" * len(header))\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * len(header))\\\\n\\\\n    for sig_key in SIGNAL_KEYS:\\\\n        if sig_key not in auc_matrix:\\\\n            continue\\\\n        line_parts = [f\\\\\\\"{SIGNAL_LABELS[sig_key]:<{sig_w}}\\\\\\\"]\\\\n        for rname in regime_names:\\\\n            v = auc_matrix[sig_key].get(rname)\\\\n            s = f\\\\\\\"{v:.4f}\\\\\\\" if v is not None else \\\\\\\"N/A\\\\\\\"\\\\n            line_parts.append(f\\\\\\\"{s:>{col_w}}\\\\\\\")\\\\n        print(\\\\\\\" \\\\\\\".join(line_parts))\\\\n\\\\n    print(\\\\\\\"-\\\\\\\" * len(header))\\\\n\\\\n    for pair_key, pair_data in pairwise_tests.items():\\\\n        ra, rb = pair_key.split(\\\\\\\"_vs_\\\\\\\")\\\\n        ratios = [\\\\n            m[\\\\\\\"auc_ratio\\\\\\\"]\\\\n            for m in pair_data.values()\\\\n            if m.get(\\\\\\\"auc_ratio\\\\\\\") is not None\\\\n        ]\\\\n        rhos = [\\\\n            m[\\\\\\\"spearman_rho\\\\\\\"]\\\\n            for m in pair_data.values()\\\\n            if m.get(\\\\\\\"spearman_rho\\\\\\\") is not None\\\\n        ]\\\\n        if ratios:\\\\n            print(\\\\n                f\\\\\\\"  {ra} -> {rb}: mean AUC ratio={np.mean(ratios):.3f}, \\\\\\\"\\\\n                f\\\\\\\"mean rho={np.mean(rhos):.3f}\\\\\\\"\\\\n            )\\\\n        else:\\\\n            print(f\\\\\\\"  {ra} -> {rb}: no data\\\\\\\")\\\\n\\\\n    print(\\\\n        f\\\\\\\"\\\\\\\\nSurviving signals: {summary['n_signals_surviving']}\\\\\\\"\\\\n        f\\\\\\\"/{summary['n_signals_analyzed']}  \\\\\\\"\\\\n        f\\\\\\\"({', '.join(summary['surviving_signals']) or 'none'})\\\\\\\"\\\\n    )\\\\n    print(\\\\\\\"=\\\\\\\" * len(header) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n\\\\ndef _print_legacy_table(report: dict):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Original 2-regime table format for backward compatibility.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    per_signal = report[\\\\\\\"per_signal\\\\\\\"]\\\\n    summary = report[\\\\\\\"summary\\\\\\\"]\\\\n\\\\n    header = (\\\\n        f\\\\\\\"{'Signal':<16} {'d(SFT)':>8} {'d(RL)':>8} {'d ratio':>8} \\\\\\\"\\\\n        f\\\\\\\"{'AUC(SFT)':>9} {'AUC(RL)':>9} {'AUC ratio':>10} \\\\\\\"\\\\n        f\\\\\\\"{'rho':>8} {'Wilcox p':>10} {'n':>6}\\\\\\\"\\\\n    )\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * len(header))\\\\n    print(\\\\\\\"Signal Survival Analysis -- SFT vs RL-aligned\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * len(header))\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * len(header))\\\\n\\\\n    for sig_key in SIGNAL_KEYS:\\\\n        m = per_signal.get(sig_key)\\\\n        if m is None:\\\\n            continue\\\\n        fmt = lambda v, d=4: f\\\\\\\"{v:.{d}f}\\\\\\\" if v is not None else \\\\\\\"N/A\\\\\\\"\\\\n        print(\\\\n            f\\\\\\\"{m['signal_label']:<16} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m['effect_size_sft']):>8} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m['effect_size_rl']):>8} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m.get('effect_size_ratio'), 2):>8} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m.get('auc_sft')):>9} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m.get('auc_rl')):>9} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m.get('auc_ratio'), 2):>10} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m.get('spearman_rho')):>8} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m.get('wilcoxon_p'), 2):>10} \\\\\\\"\\\\n            f\\\\\\\"{m['n_items']:>6}\\\\\\\"\\\\n        )\\\\n\\\\n    print(\\\\\\\"-\\\\\\\" * len(header))\\\\n    print(\\\\n        f\\\\\\\"Surviving signals: {summary['n_signals_surviving']}\\\\\\\"\\\\n        f\\\\\\\"/{summary['n_signals_analyzed']}  \\\\\\\"\\\\n        f\\\\\\\"({', '.join(summary['surviving_signals']) or 'none'})\\\\\\\"\\\\n    )\\\\n    print(\\\\n        f\\\\\\\"Mean AUC ratio: {summary.get('mean_auc_ratio', 'N/A')}  |  \\\\\\\"\\\\n        f\\\\\\\"Mean Spearman rho: {summary.get('mean_spearman_rho', 'N/A')}\\\\\\\"\\\\n    )\\\\n    print(\\\\\\\"=\\\\\\\" * len(header) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-008 Signal Survival Analysis — core analysis module.\\nv2: Extended from SFT/RL pairwise to N-regime comparison.\\n\\nComputes:\\n  - AUC matrix: N_signals x N_regimes AUROC for contamination detection\\n  - Pairwise tests: statistical tests between all adjacent regime pairs\\n    (Cohen's d, Spearman rho, AUROC ratio, Wilcoxon signed-rank)\\n\\nInput:  OrderedDict mapping regime_name -> {signal_key: [records]}, plus labels.\\nOutput: {regime_names, auc_matrix, pairwise_tests, per_signal (compat), summary}\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nfrom collections import OrderedDict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_LABELS = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K%++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\n\\n\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\n    \\\"\\\"\\\"Cohen's d effect size between two groups.\\\"\\\"\\\"\\n    n1, n2 = len(group1), len(group2)\\n    if n1 < 2 or n2 < 2:\\n        return float(\\\"nan\\\")\\n    var1 = group1.var(ddof=1)\\n    var2 = group2.var(ddof=1)\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\n    if pooled_std == 0:\\n        return float(\\\"nan\\\")\\n    return (group1.mean() - group2.mean()) / pooled_std\\n\\n\\ndef compute_single_regime_metrics(values: np.ndarray, labels: np.ndarray) -> dict:\\n    \\\"\\\"\\\"AUROC and Cohen's d for contamination detection in one regime.\\\"\\\"\\\"\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\n    v = values[mask]\\n    lab = labels[mask].astype(int)\\n    contam = lab == 1\\n    clean = lab == 0\\n\\n    result = {\\n        \\\"n_items\\\": int(mask.sum()),\\n        \\\"n_contaminated\\\": int(contam.sum()),\\n        \\\"n_clean\\\": int(clean.sum()),\\n    }\\n\\n    d = cohens_d(v[contam], v[clean])\\n    result[\\\"effect_size\\\"] = round(d, 4) if not np.isnan(d) else None\\n\\n    if contam.sum() > 0 and clean.sum() > 0:\\n        result[\\\"auroc\\\"] = round(float(roc_auc_score(lab, v)), 4)\\n    else:\\n        result[\\\"auroc\\\"] = None\\n\\n    return result\\n\\n\\ndef compute_pairwise_metrics(\\n    values_a: np.ndarray,\\n    values_b: np.ndarray,\\n    labels: np.ndarray,\\n) -> dict:\\n    \\\"\\\"\\\"\\n    Pairwise survival metrics between two regimes for one signal.\\n    Preserves all original statistical tests: Cohen's d, Spearman, AUC, Wilcoxon.\\n    \\\"\\\"\\\"\\n    mask = ~(np.isnan(values_a) | np.isnan(values_b) | np.isnan(labels))\\n    v_a = values_a[mask]\\n    v_b = values_b[mask]\\n    lab = labels[mask].astype(int)\\n\\n    contam = lab == 1\\n    clean = lab == 0\\n\\n    result = {\\n        \\\"n_items\\\": int(mask.sum()),\\n        \\\"n_contaminated\\\": int(contam.sum()),\\n        \\\"n_clean\\\": int(clean.sum()),\\n    }\\n\\n    d_a = cohens_d(v_a[contam], v_a[clean])\\n    d_b = cohens_d(v_b[contam], v_b[clean])\\n    result[\\\"effect_size_a\\\"] = round(d_a, 4)\\n    result[\\\"effect_size_b\\\"] = round(d_b, 4)\\n    result[\\\"effect_size_ratio\\\"] = (\\n        round(d_b / d_a, 4) if d_a != 0 and not np.isnan(d_a) else None\\n    )\\n\\n    if len(v_a) >= 3:\\n        rho, rho_p = stats.spearmanr(v_a, v_b)\\n        result[\\\"spearman_rho\\\"] = round(rho, 4)\\n        result[\\\"spearman_p\\\"] = float(f\\\"{rho_p:.2e}\\\")\\n    else:\\n        result[\\\"spearman_rho\\\"] = None\\n        result[\\\"spearman_p\\\"] = None\\n\\n    if result[\\\"n_contaminated\\\"] > 0 and result[\\\"n_clean\\\"] > 0:\\n        auc_a = roc_auc_score(lab, v_a)\\n        auc_b = roc_auc_score(lab, v_b)\\n        result[\\\"auc_a\\\"] = round(auc_a, 4)\\n        result[\\\"auc_b\\\"] = round(auc_b, 4)\\n        result[\\\"auc_ratio\\\"] = round(auc_b / auc_a, 4) if auc_a > 0 else None\\n    else:\\n        result[\\\"auc_a\\\"] = None\\n        result[\\\"auc_b\\\"] = None\\n        result[\\\"auc_ratio\\\"] = None\\n\\n    diffs = v_b - v_a\\n    nonzero_diffs = diffs[diffs != 0]\\n    if len(nonzero_diffs) >= 10:\\n        w_stat, w_p = stats.wilcoxon(nonzero_diffs)\\n        result[\\\"wilcoxon_stat\\\"] = float(w_stat)\\n        result[\\\"wilcoxon_p\\\"] = float(f\\\"{w_p:.2e}\\\")\\n    else:\\n        result[\\\"wilcoxon_stat\\\"] = N\\n\\n... [截断: 输出过长，省略 5857 字符] ...\\n\\nutput_dir = Path(output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = output_dir / \\\"survival_report.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2)\\n    logger.info(\\\"Report saved to %s\\\", out_path)\\n    return out_path\\n\\n\\ndef print_summary_table(report: dict):\\n    \\\"\\\"\\\"Print a formatted summary table to stdout.\\\"\\\"\\\"\\n    regime_names = report.get(\\\"regime_names\\\", [])\\n    auc_matrix = report.get(\\\"auc_matrix\\\", {})\\n    pairwise_tests = report.get(\\\"pairwise_tests\\\", {})\\n    summary = report[\\\"summary\\\"]\\n\\n    if len(regime_names) == 2 and report.get(\\\"per_signal\\\"):\\n        _print_legacy_table(report)\\n        return\\n\\n    # N-regime AUC matrix table\\n    col_w = 10\\n    sig_w = 16\\n    header_parts = [f\\\"{'Signal':<{sig_w}}\\\"]\\n    for rname in regime_names:\\n        header_parts.append(f\\\"{rname:>{col_w}}\\\")\\n    header = \\\" \\\".join(header_parts)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * len(header))\\n    print(\\n        f\\\"Signal Survival Analysis -- {len(regime_names)} regimes: \\\"\\n        f\\\"{' -> '.join(regime_names)}\\\"\\n    )\\n    print(\\\"=\\\" * len(header))\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    for sig_key in SIGNAL_KEYS:\\n        if sig_key not in auc_matrix:\\n            continue\\n        line_parts = [f\\\"{SIGNAL_LABELS[sig_key]:<{sig_w}}\\\"]\\n        for rname in regime_names:\\n            v = auc_matrix[sig_key].get(rname)\\n            s = f\\\"{v:.4f}\\\" if v is not None else \\\"N/A\\\"\\n            line_parts.append(f\\\"{s:>{col_w}}\\\")\\n        print(\\\" \\\".join(line_parts))\\n\\n    print(\\\"-\\\" * len(header))\\n\\n    for pair_key, pair_data in pairwise_tests.items():\\n        ra, rb = pair_key.split(\\\"_vs_\\\")\\n        ratios = [\\n            m[\\\"auc_ratio\\\"]\\n            for m in pair_data.values()\\n            if m.get(\\\"auc_ratio\\\") is not None\\n        ]\\n        rhos = [\\n            m[\\\"spearman_rho\\\"]\\n            for m in pair_data.values()\\n            if m.get(\\\"spearman_rho\\\") is not None\\n        ]\\n        if ratios:\\n            print(\\n                f\\\"  {ra} -> {rb}: mean AUC ratio={np.mean(ratios):.3f}, \\\"\\n                f\\\"mean rho={np.mean(rhos):.3f}\\\"\\n            )\\n        else:\\n            print(f\\\"  {ra} -> {rb}: no data\\\")\\n\\n    print(\\n        f\\\"\\\\nSurviving signals: {summary['n_signals_surviving']}\\\"\\n        f\\\"/{summary['n_signals_analyzed']}  \\\"\\n        f\\\"({', '.join(summary['surviving_signals']) or 'none'})\\\"\\n    )\\n    print(\\\"=\\\" * len(header) + \\\"\\\\n\\\")\\n\\n\\ndef _print_legacy_table(report: dict):\\n    \\\"\\\"\\\"Original 2-regime table format for backward compatibility.\\\"\\\"\\\"\\n    per_signal = report[\\\"per_signal\\\"]\\n    summary = report[\\\"summary\\\"]\\n\\n    header = (\\n        f\\\"{'Signal':<16} {'d(SFT)':>8} {'d(RL)':>8} {'d ratio':>8} \\\"\\n        f\\\"{'AUC(SFT)':>9} {'AUC(RL)':>9} {'AUC ratio':>10} \\\"\\n        f\\\"{'rho':>8} {'Wilcox p':>10} {'n':>6}\\\"\\n    )\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * len(header))\\n    print(\\\"Signal Survival Analysis -- SFT vs RL-aligned\\\")\\n    print(\\\"=\\\" * len(header))\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    for sig_key in SIGNAL_KEYS:\\n        m = per_signal.get(sig_key)\\n        if m is None:\\n            continue\\n        fmt = lambda v, d=4: f\\\"{v:.{d}f}\\\" if v is not None else \\\"N/A\\\"\\n        print(\\n            f\\\"{m['signal_label']:<16} \\\"\\n            f\\\"{fmt(m['effect_size_sft']):>8} \\\"\\n            f\\\"{fmt(m['effect_size_rl']):>8} \\\"\\n            f\\\"{fmt(m.get('effect_size_ratio'), 2):>8} \\\"\\n            f\\\"{fmt(m.get('auc_sft')):>9} \\\"\\n            f\\\"{fmt(m.get('auc_rl')):>9} \\\"\\n            f\\\"{fmt(m.get('auc_ratio'), 2):>10} \\\"\\n            f\\\"{fmt(m.get('spearman_rho')):>8} \\\"\\n            f\\\"{fmt(m.get('wilcoxon_p'), 2):>10} \\\"\\n            f\\\"{m['n_items']:>6}\\\"\\n        )\\n\\n    print(\\\"-\\\" * len(header))\\n    print(\\n        f\\\"Surviving signals: {summary['n_signals_surviving']}\\\"\\n        f\\\"/{summary['n_signals_analyzed']}  \\\"\\n        f\\\"({', '.join(summary['surviving_signals']) or 'none'})\\\"\\n    )\\n    print(\\n        f\\\"Mean AUC ratio: {summary.get('mean_auc_ratio', 'N/A')}  |  \\\"\\n        f\\\"Mean Spearman rho: {summary.get('mean_spearman_rho', 'N/A')}\\\"\\n    )\\n    print(\\\"=\\\" * len(header) + \\\"\\\\n\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LnS4kv6iC43GS5jq4HjtGy`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp008/run_signal_survival.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "70d47c62-e864-4a20-b3b8-5c17287ac0ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012FnQfSK1r1rkooNrn2Dyp3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 27110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 669
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017PjfJALV7CgNgy2fipQmFj`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp008/signal_survival.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "9dbcdaf5-8765-40ff-be3a-8ba5430b5f90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012FnQfSK1r1rkooNrn2Dyp3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 27110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 669
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011ongQA1UXhWGqnKKjiu9Hs`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp008/plot_survival.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "4fed7d46-da52-4517-b9a3-220b59c97936",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012FnQfSK1r1rkooNrn2Dyp3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 27110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 669
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01X86ndvciXZcd7jvtYDKfdv`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/autodl-tmp/exp002/signals/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "7c279d12-b275-46ef-a501-dea853bbf01b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012FnQfSK1r1rkooNrn2Dyp3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 27110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 669
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T15:17:13.813Z_
+
+<details><summary>↩ Tool result · `toolu_01LnS4kv6iC43GS5jq4HjtGy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-008 Signal Survival — end-to-end execution script.\\nv2: Extended from SFT/RL pairwise to N-regime comparison.\\n\\nUsage:\\n  python run_signal_survival.py \\\\\\n    --regime-dirs base=/path/base SFT_clean=/path/sft RL=/path/rl \\\\\\n    --labels-file /path/to/labels.json \\\\\\n    --output-dir /path/to/exp008_output/\\n\\n  # Legacy 2-regime (still works):\\n  python run_signal_survival.py \\\\\\n    --sft-signals-dir /path/sft/ --rl-signals-dir /path/rl/ \\\\\\n    --labels-file labels.json\\n\\n  # Quick validation with mock data:\\n  python run_signal_survival.py --dry-run --max-items 10\\n  python run_signal_survival.py --dry-run --max-items 10 --regime-names base SFT RL DPO\\n\\nDependencies: numpy, scipy, sklearn\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport sys\\nfrom collections import OrderedDict\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nfrom signal_survival_analysis import (\\n    SIGNAL_KEYS,\\n    print_summary_table,\\n    run_survival_analysis,\\n    save_report,\\n)\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef load_signal_file(path: Path, signal_key: str) -> list[dict]:\\n    \\\"\\\"\\\"Load a signal JSON file and validate it has expected fields.\\\"\\\"\\\"\\n    with open(path) as f:\\n        data = json.load(f)\\n    if not isinstance(data, list) or len(data) == 0:\\n        raise ValueError(f\\\"Expected non-empty list in {path}\\\")\\n    if signal_key not in data[0]:\\n        raise ValueError(f\\\"Signal key '{signal_key}' not found in {path}\\\")\\n    return data\\n\\n\\ndef load_signals_from_dir(signals_dir: Path) -> dict[str, list[dict]]:\\n    \\\"\\\"\\\"\\n    Load all signal files from a directory.\\n    Returns {signal_key: [records]}.\\n    \\\"\\\"\\\"\\n    signals = {}\\n\\n    merged_files = list(signals_dir.glob(\\\"signals_merged_*.json\\\"))\\n    if merged_files:\\n        logger.info(\\\"Found merged signal file: %s\\\", merged_files[0])\\n        with open(merged_files[0]) as f:\\n            merged = json.load(f)\\n        for sig_key in SIGNAL_KEYS:\\n            if any(sig_key in r for r in merged):\\n                signals[sig_key] = merged\\n        return signals\\n\\n    key_to_filename_prefix = {\\n        \\\"s1_embedding\\\": \\\"signal_embedding_\\\",\\n        \\\"s2_minkpp\\\": \\\"signal_minkpp_\\\",\\n        \\\"s3_constat\\\": \\\"signal_constat_\\\",\\n        \\\"s4_selfcritique\\\": \\\"signal_selfcritique_\\\",\\n    }\\n    for sig_key, prefix in key_to_filename_prefix.items():\\n        matches = list(signals_dir.glob(f\\\"{prefix}*.json\\\"))\\n        if matches:\\n            signals[sig_key] = load_signal_file(matches[0], sig_key)\\n            logger.info(\\\"Loaded %s from %s (%d items)\\\", sig_key, matches[0], len(signals[sig_key]))\\n        else:\\n            logger.warning(\\\"No file found for %s in %s\\\", sig_key, signals_dir)\\n\\n    return signals\\n\\n\\ndef load_labels(labels_file: Path) -> dict[int, int]:\\n    \\\"\\\"\\\"Load contamination labels: {item_index: 0 or 1}.\\\"\\\"\\\"\\n    with open(labels_file) as f:\\n        raw = json.load(f)\\n    return {int(k): int(v) for k, v in raw.items()}\\n\\n\\ndef parse_regime_dirs(regime_dir_args: list[str]) -> OrderedDict:\\n    \\\"\\\"\\\"Parse key=value regime dir arguments into OrderedDict.\\\"\\\"\\\"\\n    regimes = OrderedDict()\\n    for arg in regime_dir_args:\\n        if \\\"=\\\" not in arg:\\n            raise ValueError(f\\\"Invalid regime-dir format: '{arg}'. Expected NAME=PATH\\\")\\n        name, path = arg.split(\\\"=\\\", 1)\\n        regimes[name] = Path(path)\\n    return regimes\\n\\n\\ndef generate_mock_data(\\n    n_items: int = 100,\\n    contamination_rate: float = 0.3,\\n    seed: int = 42,\\n    regime_names: list[str] | None = None,\\n) -> tuple:\\n    \\\"\\\"\\\"\\n    Generate synthetic signal data for N regimes.\\n    Each subsequent regime attenuates the signal via a chain model:\\n      regime[k] = 0.6 * regime[k-1] + 0.4 * noise.\\n    For N=2 with default names [\\\"SFT\\\",\\\"RL\\\"], random draws match the original.\\n    \\\"\\\"\\\"\\n    if regime_names is None:\\n        regime_names = [\\\"SFT\\\", \\\"RL\\\"]\\n\\n    rng = np.random.RandomState(seed)\\n    n_contam = int(n_items * contamination_rate)\\n    labels = {i: (1 if i < n_contam else 0) for i in range(n_items)}\\n\\n    regime_signals: OrderedDict[str, dict] = OrderedDict()\\n    for name in regime_names\\n\\n... [截断: 输出过长，省略 107 字符] ...\\n\\n        regime_signals[name][sig_key] = []\\n\\n        for i in range(n_items):\\n            base = rng.normal(0.7, 0.15) if labels[i] == 1 else rng.normal(0.3, 0.15)\\n            prev_val = float(np.clip(base, 0, 1))\\n            regime_signals[regime_names[0]][sig_key].append(\\n                {\\\"index\\\": i, \\\"benchmark\\\": \\\"mock\\\", sig_key: round(prev_val, 4)}\\n            )\\n            for r_idx in range(1, len(regime_names)):\\n                noise = rng.normal(0.5, 0.2)\\n                cur_val = float(np.clip(0.6 * prev_val + 0.4 * noise, 0, 1))\\n                regime_signals[regime_names[r_idx]][sig_key].append(\\n                    {\\\"index\\\": i, \\\"benchmark\\\": \\\"mock\\\", sig_key: round(cur_val, 4)}\\n                )\\n                prev_val = cur_val\\n\\n    return regime_signals, labels\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-008: Signal Survival Analysis �� N-regime comparison\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--regime-dirs\\\", nargs=\\\"+\\\", metavar=\\\"NAME=PATH\\\",\\n        help=\\\"Regime directories as name=path pairs (order defines adjacency)\\\",\\n    )\\n    parser.add_argument(\\\"--sft-signals-dir\\\", type=str, help=\\\"(Legacy) SFT signals directory\\\")\\n    parser.add_argument(\\\"--rl-signals-dir\\\", type=str, help=\\\"(Legacy) RL signals directory\\\")\\n    parser.add_argument(\\\"--labels-file\\\", type=str,\\n                        help=\\\"JSON file with contamination labels {index: 0/1}\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, default=\\\"./exp008_output\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n                        help=\\\"Use synthetic mock data for validation\\\")\\n    parser.add_argument(\\\"--max-items\\\", type=int, default=None,\\n                        help=\\\"Limit number of items (for dry-run or debugging)\\\")\\n    parser.add_argument(\\\"--regime-names\\\", nargs=\\\"+\\\", default=None,\\n                        help=\\\"Regime names for dry-run (default: SFT RL)\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    if args.dry_run:\\n        max_items = args.max_items or 100\\n        regime_names = args.regime_names or [\\\"SFT\\\", \\\"RL\\\"]\\n        logger.info(\\n            \\\"DRY-RUN: generating mock data with %d items, %d regimes: %s\\\",\\n            max_items, len(regime_names), regime_names,\\n        )\\n        regime_signals, labels = generate_mock_data(\\n            n_items=max_items, regime_names=regime_names,\\n        )\\n    else:\\n        if args.regime_dirs:\\n            regime_dirs = parse_regime_dirs(args.regime_dirs)\\n        elif args.sft_signals_dir and args.rl_signals_dir:\\n            regime_dirs = OrderedDict([\\n                (\\\"SFT\\\", Path(args.sft_signals_dir)),\\n                (\\\"RL\\\", Path(args.rl_signals_dir)),\\n            ])\\n        else:\\n            parser.error(\\n                \\\"Provide --regime-dirs or legacy --sft-signals-dir/--rl-signals-dir\\\"\\n            )\\n            return\\n\\n        if not args.labels_file:\\n            parser.error(\\\"--labels-file is required\\\")\\n\\n        regime_signals = OrderedDict()\\n        for name, dirpath in regime_dirs.items():\\n            if not dirpath.is_dir():\\n                sys.exit(f\\\"Regime '{name}' dir not found: {dirpath}\\\")\\n            logger.info(\\\"Loading signals for regime '%s' from %s\\\", name, dirpath)\\n            regime_signals[name] = load_signals_from_dir(dirpath)\\n\\n        labels = load_labels(Path(args.labels_file))\\n\\n    if args.max_items and not args.dry_run:\\n        for regime_name in regime_signals:\\n            for sig_key in list(regime_signals[regime_name].keys()):\\n                regime_signals[regime_name][sig_key] = (\\n                    regime_signals[regime_name][sig_key][: args.max_items]\\n                )\\n\\n    logger.info(\\\"Running survival analysis...\\\")\\n    report = run_survival_analysis(regime_signals, labels)\\n\\n    save_report(report, args.output_dir)\\n    print_summary_table(report)\\n\\n    logger.info(\\\"Done. Output in %s\\\", args.output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "ca7aa9b4-c77c-4ac7-83cb-c590e424e991",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008 Signal Survival — end-to-end execution script.\\\\nv2: Extended from SFT/RL pairwise to N-regime comparison.\\\\n\\\\nUsage:\\\\n  python run_signal_survival.py \\\\\\\\\\\\n    --regime-dirs base=/path/base SFT_clean=/path/sft RL=/path/rl \\\\\\\\\\\\n    --labels-file /path/to/labels.json \\\\\\\\\\\\n    --output-dir /path/to/exp008_output/\\\\n\\\\n  # Legacy 2-regime (still works):\\\\n  python run_signal_survival.py \\\\\\\\\\\\n    --sft-signals-dir /path/sft/ --rl-signals-dir /path/rl/ \\\\\\\\\\\\n    --labels-file labels.json\\\\n\\\\n  # Quick validation with mock data:\\\\n  python run_signal_survival.py --dry-run --max-items 10\\\\n  python run_signal_survival.py --dry-run --max-items 10 --regime-names base SFT RL DPO\\\\n\\\\nDependencies: numpy, scipy, sklearn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\nfrom collections import OrderedDict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nfrom signal_survival_analysis import (\\\\n    SIGNAL_KEYS,\\\\n    print_summary_table,\\\\n    run_survival_analysis,\\\\n    save_report,\\\\n)\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef load_signal_file(path: Path, signal_key: str) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load a signal JSON file and validate it has expected fields.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n    if not isinstance(data, list) or len(data) == 0:\\\\n        raise ValueError(f\\\\\\\"Expected non-empty list in {path}\\\\\\\")\\\\n    if signal_key not in data[0]:\\\\n        raise ValueError(f\\\\\\\"Signal key '{signal_key}' not found in {path}\\\\\\\")\\\\n    return data\\\\n\\\\n\\\\ndef load_signals_from_dir(signals_dir: Path) -> dict[str, list[dict]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Load all signal files from a directory.\\\\n    Returns {signal_key: [records]}.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    signals = {}\\\\n\\\\n    merged_files = list(signals_dir.glob(\\\\\\\"signals_merged_*.json\\\\\\\"))\\\\n    if merged_files:\\\\n        logger.info(\\\\\\\"Found merged signal file: %s\\\\\\\", merged_files[0])\\\\n        with open(merged_files[0]) as f:\\\\n            merged = json.load(f)\\\\n        for sig_key in SIGNAL_KEYS:\\\\n            if any(sig_key in r for r in merged):\\\\n                signals[sig_key] = merged\\\\n        return signals\\\\n\\\\n    key_to_filename_prefix = {\\\\n        \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"signal_embedding_\\\\\\\",\\\\n        \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"signal_minkpp_\\\\\\\",\\\\n        \\\\\\\"s3_constat\\\\\\\": \\\\\\\"signal_constat_\\\\\\\",\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"signal_selfcritique_\\\\\\\",\\\\n    }\\\\n    for sig_key, prefix in key_to_filename_prefix.items():\\\\n        matches = list(signals_dir.glob(f\\\\\\\"{prefix}*.json\\\\\\\"))\\\\n        if matches:\\\\n            signals[sig_key] = load_signal_file(matches[0], sig_key)\\\\n            logger.info(\\\\\\\"Loaded %s from %s (%d items)\\\\\\\", sig_key, matches[0], len(signals[sig_key]))\\\\n        else:\\\\n            logger.warning(\\\\\\\"No file found for %s in %s\\\\\\\", sig_key, signals_dir)\\\\n\\\\n    return signals\\\\n\\\\n\\\\ndef load_labels(labels_file: Path) -> dict[int, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load contamination labels: {item_index: 0 or 1}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(labels_file) as f:\\\\n        raw = json.load(f)\\\\n    return {int(k): int(v) for k, v in raw.items()}\\\\n\\\\n\\\\ndef parse_regime_dirs(regime_dir_args: list[str]) -> OrderedDict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse key=value regime dir arguments into OrderedDict.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    regimes = OrderedDict()\\\\n    for arg in regime_dir_args:\\\\n        if \\\\\\\"=\\\\\\\" not in arg:\\\\n            raise ValueError(f\\\\\\\"Invalid regime-dir format: '{arg}'. Expected NAME=PATH\\\\\\\")\\\\n        name, path = arg.split(\\\\\\\"=\\\\\\\", 1)\\\\n        regimes[name] = Path(path)\\\\n    return regimes\\\\n\\\\n\\\\ndef generate_mock_data(\\\\n    n_items: int = 100,\\\\n    contamination_rate: float = 0.3,\\\\n    seed: int = 42,\\\\n    regime_names: list[str] | None = None,\\\\n) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Generate synthetic signal data for N regimes.\\\\n    Each subsequent regime attenuates the signal via a chain model:\\\\n      regime[k] = 0.6 * regime[k-1] + 0.4 * noise.\\\\n    For N=2 with default names [\\\\\\\"SFT\\\\\\\",\\\\\\\"RL\\\\\\\"], random draws match the original.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if regime_names is None:\\\\n        regime_names = [\\\\\\\"SFT\\\\\\\", \\\\\\\"RL\\\\\\\"]\\\\n\\\\n    rng = np.random.RandomState(seed)\\\\n    n_contam = int(n_items * contamination_rate)\\\\n    labels = {i: (1 if i < n_contam else 0) for i in range(n_items)}\\\\n\\\\n    regime_signals: OrderedDict[str, dict] = OrderedDict()\\\\n    for name in regime_names\\\\n\\\\n... [截断: 输出过长，省略 107 字符] ...\\\\n\\\\n        regime_signals[name][sig_key] = []\\\\n\\\\n        for i in range(n_items):\\\\n            base = rng.normal(0.7, 0.15) if labels[i] == 1 else rng.normal(0.3, 0.15)\\\\n            prev_val = float(np.clip(base, 0, 1))\\\\n            regime_signals[regime_names[0]][sig_key].append(\\\\n                {\\\\\\\"index\\\\\\\": i, \\\\\\\"benchmark\\\\\\\": \\\\\\\"mock\\\\\\\", sig_key: round(prev_val, 4)}\\\\n            )\\\\n            for r_idx in range(1, len(regime_names)):\\\\n                noise = rng.normal(0.5, 0.2)\\\\n                cur_val = float(np.clip(0.6 * prev_val + 0.4 * noise, 0, 1))\\\\n                regime_signals[regime_names[r_idx]][sig_key].append(\\\\n                    {\\\\\\\"index\\\\\\\": i, \\\\\\\"benchmark\\\\\\\": \\\\\\\"mock\\\\\\\", sig_key: round(cur_val, 4)}\\\\n                )\\\\n                prev_val = cur_val\\\\n\\\\n    return regime_signals, labels\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"exp-008: Signal Survival Analysis �� N-regime comparison\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--regime-dirs\\\\\\\", nargs=\\\\\\\"+\\\\\\\", metavar=\\\\\\\"NAME=PATH\\\\\\\",\\\\n        help=\\\\\\\"Regime directories as name=path pairs (order defines adjacency)\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--sft-signals-dir\\\\\\\", type=str, help=\\\\\\\"(Legacy) SFT signals directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--rl-signals-dir\\\\\\\", type=str, help=\\\\\\\"(Legacy) RL signals directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--labels-file\\\\\\\", type=str,\\\\n                        help=\\\\\\\"JSON file with contamination labels {index: 0/1}\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, default=\\\\\\\"./exp008_output\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Use synthetic mock data for validation\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max-items\\\\\\\", type=int, default=None,\\\\n                        help=\\\\\\\"Limit number of items (for dry-run or debugging)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--regime-names\\\\\\\", nargs=\\\\\\\"+\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Regime names for dry-run (default: SFT RL)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(\\\\n        level=logging.INFO,\\\\n        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    )\\\\n\\\\n    if args.dry_run:\\\\n        max_items = args.max_items or 100\\\\n        regime_names = args.regime_names or [\\\\\\\"SFT\\\\\\\", \\\\\\\"RL\\\\\\\"]\\\\n        logger.info(\\\\n            \\\\\\\"DRY-RUN: generating mock data with %d items, %d regimes: %s\\\\\\\",\\\\n            max_items, len(regime_names), regime_names,\\\\n        )\\\\n        regime_signals, labels = generate_mock_data(\\\\n            n_items=max_items, regime_names=regime_names,\\\\n        )\\\\n    else:\\\\n        if args.regime_dirs:\\\\n            regime_dirs = parse_regime_dirs(args.regime_dirs)\\\\n        elif args.sft_signals_dir and args.rl_signals_dir:\\\\n            regime_dirs = OrderedDict([\\\\n                (\\\\\\\"SFT\\\\\\\", Path(args.sft_signals_dir)),\\\\n                (\\\\\\\"RL\\\\\\\", Path(args.rl_signals_dir)),\\\\n            ])\\\\n        else:\\\\n            parser.error(\\\\n                \\\\\\\"Provide --regime-dirs or legacy --sft-signals-dir/--rl-signals-dir\\\\\\\"\\\\n            )\\\\n            return\\\\n\\\\n        if not args.labels_file:\\\\n            parser.error(\\\\\\\"--labels-file is required\\\\\\\")\\\\n\\\\n        regime_signals = OrderedDict()\\\\n        for name, dirpath in regime_dirs.items():\\\\n            if not dirpath.is_dir():\\\\n                sys.exit(f\\\\\\\"Regime '{name}' dir not found: {dirpath}\\\\\\\")\\\\n            logger.info(\\\\\\\"Loading signals for regime '%s' from %s\\\\\\\", name, dirpath)\\\\n            regime_signals[name] = load_signals_from_dir(dirpath)\\\\n\\\\n        labels = load_labels(Path(args.labels_file))\\\\n\\\\n    if args.max_items and not args.dry_run:\\\\n        for regime_name in regime_signals:\\\\n            for sig_key in list(regime_signals[regime_name].keys()):\\\\n                regime_signals[regime_name][sig_key] = (\\\\n                    regime_signals[regime_name][sig_key][: args.max_items]\\\\n                )\\\\n\\\\n    logger.info(\\\\\\\"Running survival analysis...\\\\\\\")\\\\n    report = run_survival_analysis(regime_signals, labels)\\\\n\\\\n    save_report(report, args.output_dir)\\\\n    print_summary_table(report)\\\\n\\\\n    logger.info(\\\\\\\"Done. Output in %s\\\\\\\", args.output_dir)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-008 Signal Survival — end-to-end execution script.\\nv2: Extended from SFT/RL pairwise to N-regime comparison.\\n\\nUsage:\\n  python run_signal_survival.py \\\\\\n    --regime-dirs base=/path/base SFT_clean=/path/sft RL=/path/rl \\\\\\n    --labels-file /path/to/labels.json \\\\\\n    --output-dir /path/to/exp008_output/\\n\\n  # Legacy 2-regime (still works):\\n  python run_signal_survival.py \\\\\\n    --sft-signals-dir /path/sft/ --rl-signals-dir /path/rl/ \\\\\\n    --labels-file labels.json\\n\\n  # Quick validation with mock data:\\n  python run_signal_survival.py --dry-run --max-items 10\\n  python run_signal_survival.py --dry-run --max-items 10 --regime-names base SFT RL DPO\\n\\nDependencies: numpy, scipy, sklearn\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport sys\\nfrom collections import OrderedDict\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nfrom signal_survival_analysis import (\\n    SIGNAL_KEYS,\\n    print_summary_table,\\n    run_survival_analysis,\\n    save_report,\\n)\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef load_signal_file(path: Path, signal_key: str) -> list[dict]:\\n    \\\"\\\"\\\"Load a signal JSON file and validate it has expected fields.\\\"\\\"\\\"\\n    with open(path) as f:\\n        data = json.load(f)\\n    if not isinstance(data, list) or len(data) == 0:\\n        raise ValueError(f\\\"Expected non-empty list in {path}\\\")\\n    if signal_key not in data[0]:\\n        raise ValueError(f\\\"Signal key '{signal_key}' not found in {path}\\\")\\n    return data\\n\\n\\ndef load_signals_from_dir(signals_dir: Path) -> dict[str, list[dict]]:\\n    \\\"\\\"\\\"\\n    Load all signal files from a directory.\\n    Returns {signal_key: [records]}.\\n    \\\"\\\"\\\"\\n    signals = {}\\n\\n    merged_files = list(signals_dir.glob(\\\"signals_merged_*.json\\\"))\\n    if merged_files:\\n        logger.info(\\\"Found merged signal file: %s\\\", merged_files[0])\\n        with open(merged_files[0]) as f:\\n            merged = json.load(f)\\n        for sig_key in SIGNAL_KEYS:\\n            if any(sig_key in r for r in merged):\\n                signals[sig_key] = merged\\n        return signals\\n\\n    key_to_filename_prefix = {\\n        \\\"s1_embedding\\\": \\\"signal_embedding_\\\",\\n        \\\"s2_minkpp\\\": \\\"signal_minkpp_\\\",\\n        \\\"s3_constat\\\": \\\"signal_constat_\\\",\\n        \\\"s4_selfcritique\\\": \\\"signal_selfcritique_\\\",\\n    }\\n    for sig_key, prefix in key_to_filename_prefix.items():\\n        matches = list(signals_dir.glob(f\\\"{prefix}*.json\\\"))\\n        if matches:\\n            signals[sig_key] = load_signal_file(matches[0], sig_key)\\n            logger.info(\\\"Loaded %s from %s (%d items)\\\", sig_key, matches[0], len(signals[sig_key]))\\n        else:\\n            logger.warning(\\\"No file found for %s in %s\\\", sig_key, signals_dir)\\n\\n    return signals\\n\\n\\ndef load_labels(labels_file: Path) -> dict[int, int]:\\n    \\\"\\\"\\\"Load contamination labels: {item_index: 0 or 1}.\\\"\\\"\\\"\\n    with open(labels_file) as f:\\n        raw = json.load(f)\\n    return {int(k): int(v) for k, v in raw.items()}\\n\\n\\ndef parse_regime_dirs(regime_dir_args: list[str]) -> OrderedDict:\\n    \\\"\\\"\\\"Parse key=value regime dir arguments into OrderedDict.\\\"\\\"\\\"\\n    regimes = OrderedDict()\\n    for arg in regime_dir_args:\\n        if \\\"=\\\" not in arg:\\n            raise ValueError(f\\\"Invalid regime-dir format: '{arg}'. Expected NAME=PATH\\\")\\n        name, path = arg.split(\\\"=\\\", 1)\\n        regimes[name] = Path(path)\\n    return regimes\\n\\n\\ndef generate_mock_data(\\n    n_items: int = 100,\\n    contamination_rate: float = 0.3,\\n    seed: int = 42,\\n    regime_names: list[str] | None = None,\\n) -> tuple:\\n    \\\"\\\"\\\"\\n    Generate synthetic signal data for N regimes.\\n    Each subsequent regime attenuates the signal via a chain model:\\n      regime[k] = 0.6 * regime[k-1] + 0.4 * noise.\\n    For N=2 with default names [\\\"SFT\\\",\\\"RL\\\"], random draws match the original.\\n    \\\"\\\"\\\"\\n    if regime_names is None:\\n        regime_names = [\\\"SFT\\\", \\\"RL\\\"]\\n\\n    rng = np.random.RandomState(seed)\\n    n_contam = int(n_items * contamination_rate)\\n    labels = {i: (1 if i < n_contam else 0) for i in range(n_items)}\\n\\n    regime_signals: OrderedDict[str, dict] = OrderedDict()\\n    for name in regime_names\\n\\n... [截断: 输出过长，省略 107 字符] ...\\n\\n        regime_signals[name][sig_key] = []\\n\\n        for i in range(n_items):\\n            base = rng.normal(0.7, 0.15) if labels[i] == 1 else rng.normal(0.3, 0.15)\\n            prev_val = float(np.clip(base, 0, 1))\\n            regime_signals[regime_names[0]][sig_key].append(\\n                {\\\"index\\\": i, \\\"benchmark\\\": \\\"mock\\\", sig_key: round(prev_val, 4)}\\n            )\\n            for r_idx in range(1, len(regime_names)):\\n                noise = rng.normal(0.5, 0.2)\\n                cur_val = float(np.clip(0.6 * prev_val + 0.4 * noise, 0, 1))\\n                regime_signals[regime_names[r_idx]][sig_key].append(\\n                    {\\\"index\\\": i, \\\"benchmark\\\": \\\"mock\\\", sig_key: round(cur_val, 4)}\\n                )\\n                prev_val = cur_val\\n\\n    return regime_signals, labels\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-008: Signal Survival Analysis �� N-regime comparison\\\"\\n    )\\n    parser.add_argument(\\n        \\\"--regime-dirs\\\", nargs=\\\"+\\\", metavar=\\\"NAME=PATH\\\",\\n        help=\\\"Regime directories as name=path pairs (order defines adjacency)\\\",\\n    )\\n    parser.add_argument(\\\"--sft-signals-dir\\\", type=str, help=\\\"(Legacy) SFT signals directory\\\")\\n    parser.add_argument(\\\"--rl-signals-dir\\\", type=str, help=\\\"(Legacy) RL signals directory\\\")\\n    parser.add_argument(\\\"--labels-file\\\", type=str,\\n                        help=\\\"JSON file with contamination labels {index: 0/1}\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, default=\\\"./exp008_output\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n                        help=\\\"Use synthetic mock data for validation\\\")\\n    parser.add_argument(\\\"--max-items\\\", type=int, default=None,\\n                        help=\\\"Limit number of items (for dry-run or debugging)\\\")\\n    parser.add_argument(\\\"--regime-names\\\", nargs=\\\"+\\\", default=None,\\n                        help=\\\"Regime names for dry-run (default: SFT RL)\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    if args.dry_run:\\n        max_items = args.max_items or 100\\n        regime_names = args.regime_names or [\\\"SFT\\\", \\\"RL\\\"]\\n        logger.info(\\n            \\\"DRY-RUN: generating mock data with %d items, %d regimes: %s\\\",\\n            max_items, len(regime_names), regime_names,\\n        )\\n        regime_signals, labels = generate_mock_data(\\n            n_items=max_items, regime_names=regime_names,\\n        )\\n    else:\\n        if args.regime_dirs:\\n            regime_dirs = parse_regime_dirs(args.regime_dirs)\\n        elif args.sft_signals_dir and args.rl_signals_dir:\\n            regime_dirs = OrderedDict([\\n                (\\\"SFT\\\", Path(args.sft_signals_dir)),\\n                (\\\"RL\\\", Path(args.rl_signals_dir)),\\n            ])\\n        else:\\n            parser.error(\\n                \\\"Provide --regime-dirs or legacy --sft-signals-dir/--rl-signals-dir\\\"\\n            )\\n            return\\n\\n        if not args.labels_file:\\n            parser.error(\\\"--labels-file is required\\\")\\n\\n        regime_signals = OrderedDict()\\n        for name, dirpath in regime_dirs.items():\\n            if not dirpath.is_dir():\\n                sys.exit(f\\\"Regime '{name}' dir not found: {dirpath}\\\")\\n            logger.info(\\\"Loading signals for regime '%s' from %s\\\", name, dirpath)\\n            regime_signals[name] = load_signals_from_dir(dirpath)\\n\\n        labels = load_labels(Path(args.labels_file))\\n\\n    if args.max_items and not args.dry_run:\\n        for regime_name in regime_signals:\\n            for sig_key in list(regime_signals[regime_name].keys()):\\n                regime_signals[regime_name][sig_key] = (\\n                    regime_signals[regime_name][sig_key][: args.max_items]\\n                )\\n\\n    logger.info(\\\"Running survival analysis...\\\")\\n    report = run_survival_analysis(regime_signals, labels)\\n\\n    save_report(report, args.output_dir)\\n    print_summary_table(report)\\n\\n    logger.info(\\\"Done. Output in %s\\\", args.output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T15:17:14.387Z_
+
+<details><summary>↩ Tool result · `toolu_017PjfJALV7CgNgy2fipQmFj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-008 Signal Survival Analysis — main script (v3).\\n\\nAnalyzes how contamination detection signals survive across training regimes\\n(base → SFT-clean → SFT-contam → RL-aligned). Supports paper C2 claim:\\n\\\"cliff-like signal degradation under RL alignment.\\\"\\n\\nInput:\\n  - Per-regime signal directories from exp-002 compute_signals.py.\\n    Directory structure: {regime_dir}/{benchmark}/ containing\\n    signal_{type}_{benchmark}.json or signals_merged_{benchmark}.json.\\n    Record format: [{\\\"index\\\": int, \\\"benchmark\\\": str, \\\"s1_embedding\\\": float, ...}]\\n  - Contamination labels per benchmark: JSON {str(index): 0 | 1}\\n  - (Optional) RRF aggregated scores: rrf_{benchmark}.json or\\n    exposure_rrf_{benchmark}.json from aggregate_rrf.py\\n\\nOutput (to --output-dir):\\n  - per_benchmark/{benchmark}/survival_report.json\\n  - cliff_analysis.json — cliff vs gradual degradation detection\\n  - cross_benchmark_summary.json — aggregated statistics\\n  - Console summary table\\n\\nDependencies: numpy, scipy, sklearn\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport sys\\nfrom collections import OrderedDict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogger = logging.getLogger(__name__)\\n\\nALL_SIGNAL_KEYS = [\\n    \\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\", \\\"rrf_score\\\",\\n]\\nSIGNAL_LABELS = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K%++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n    \\\"rrf_score\\\": \\\"RRF (fused)\\\",\\n}\\nDEFAULT_BENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nCLIFF_THRESHOLD = 0.7\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data loading\\n# ---------------------------------------------------------------------------\\n\\ndef load_signals_for_benchmark(\\n    signals_dir: Path, benchmark: str,\\n) -> dict[str, list[dict]]:\\n    \\\"\\\"\\\"Load all available signal files for one benchmark from a regime directory.\\\"\\\"\\\"\\n    signals = {}\\n\\n    merged_path = signals_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged_path.exists():\\n        with open(merged_path) as f:\\n            merged = json.load(f)\\n        for sig_key in ALL_SIGNAL_KEYS:\\n            if any(sig_key in r for r in merged):\\n                signals[sig_key] = merged\\n        return signals\\n\\n    prefix_map = {\\n        \\\"s1_embedding\\\": f\\\"signal_embedding_{benchmark}\\\",\\n        \\\"s2_minkpp\\\": f\\\"signal_minkpp_{benchmark}\\\",\\n        \\\"s3_constat\\\": f\\\"signal_constat_{benchmark}\\\",\\n        \\\"s4_selfcritique\\\": f\\\"signal_selfcritique_{benchmark}\\\",\\n    }\\n    for sig_key, prefix in prefix_map.items():\\n        fpath = signals_dir / f\\\"{prefix}.json\\\"\\n        if fpath.exists():\\n            with open(fpath) as f:\\n                signals[sig_key] = json.load(f)\\n\\n    for rrf_name in [f\\\"rrf_{benchmark}.json\\\", f\\\"exposure_rrf_{benchmark}.json\\\"]:\\n        rrf_path = signals_dir / rrf_name\\n        if rrf_path.exists():\\n            with open(rrf_path) as f:\\n                signals[\\\"rrf_score\\\"] = json.load(f)\\n            break\\n\\n    return signals\\n\\n\\ndef load_labels(labels_file: Path) -> dict[int, int]:\\n    with open(labels_file) as f:\\n        raw = json.load(f)\\n    return {int(k): int(v) for k, v in raw.items()}\\n\\n\\n# ---------------------------------------------------------------------------\\n# Statistical primitives\\n# ---------------------------------------------------------------------------\\n\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\n    n1, n2 = len(group1), len(group2)\\n    if n1 < 2 or n2 < 2:\\n        return float(\\\"nan\\\")\\n    var1, var2 = group1.var(ddof=1), group2.var(ddof=1)\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\n    if pooled_std == 0:\\n        return float(\\\"nan\\\")\\n    return float((group1.mean() - group2.mean()) / pooled_std)\\n\\n\\ndef compute_auroc(values: np.ndarray, labels: np.ndarray) -> float | None:\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\n    v, lab = values[mask], labels[mask].astype(int)\\n    if lab.sum() == 0 or (1 - l\\n\\n... [截断: 输出过长，省略 16058 字符] ...\\n\\n\\\")\\n    parser.add_argument(\\n        \\\"--cliff-threshold\\\", type=float, default=CLIFF_THRESHOLD,\\n        help=\\\"Cliff ratio threshold for pattern classification (default: 0.7)\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--dry-run\\\", action=\\\"store_true\\\",\\n        help=\\\"Generate and analyze synthetic mock data for validation\\\",\\n    )\\n    parser.add_argument(\\\"--max-items\\\", type=int, default=None)\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # --- Load data ---\\n    if args.dry_run:\\n        logger.info(\\n            \\\"DRY-RUN: generating mock data (%d items)\\\",\\n            args.max_items or 200,\\n        )\\n        all_data, all_labels, regime_names = generate_mock_data(\\n            n_items=args.max_items or 200,\\n        )\\n        benchmarks = list(all_data.keys())\\n    else:\\n        if not args.regime_dirs:\\n            parser.error(\\\"--regime-dirs required (or use --dry-run)\\\")\\n        if not args.labels_dir:\\n            parser.error(\\\"--labels-dir required\\\")\\n\\n        regime_dirs = OrderedDict()\\n        for arg in args.regime_dirs:\\n            if \\\"=\\\" not in arg:\\n                sys.exit(f\\\"Invalid regime-dir '{arg}': expected NAME=PATH\\\")\\n            name, path = arg.split(\\\"=\\\", 1)\\n            regime_dirs[name] = Path(path)\\n        regime_names = list(regime_dirs.keys())\\n        benchmarks = args.benchmarks\\n\\n        all_data = {}\\n        all_labels = {}\\n        labels_dir = Path(args.labels_dir)\\n        for bench in benchmarks:\\n            lpath = labels_dir / f\\\"labels_{bench}.json\\\"\\n            if not lpath.exists():\\n                logger.warning(\\\"Labels not found: %s, skipping %s\\\", lpath, bench)\\n                continue\\n            all_labels[bench] = load_labels(lpath)\\n            bench_regimes = OrderedDict()\\n            for rname, rdir in regime_dirs.items():\\n                bench_dir = rdir / bench\\n                if not bench_dir.is_dir():\\n                    bench_dir = rdir\\n                logger.info(\\\"Loading %s / %s from %s\\\", rname, bench, bench_dir)\\n                bench_regimes[rname] = load_signals_for_benchmark(bench_dir, bench)\\n            all_data[bench] = bench_regimes\\n        benchmarks = [b for b in benchmarks if b in all_labels]\\n\\n    if not benchmarks:\\n        sys.exit(\\\"No benchmarks to analyze.\\\")\\n\\n    # --- Per-benchmark survival analysis ---\\n    per_benchmark = {}\\n    for bench in benchmarks:\\n        logger.info(\\\"Analyzing: %s\\\", bench)\\n        result = analyze_signal_survival(all_data[bench], all_labels[bench])\\n        per_benchmark[bench] = result\\n\\n        bench_out = output_dir / \\\"per_benchmark\\\" / bench\\n        bench_out.mkdir(parents=True, exist_ok=True)\\n        with open(bench_out / \\\"survival_report.json\\\", \\\"w\\\") as f:\\n            json.dump(result, f, indent=2)\\n\\n    # --- Cliff detection ---\\n    cliff_analysis = {}\\n    for sig in ALL_SIGNAL_KEYS:\\n        per_bench_cliff = {}\\n        for bench, result in per_benchmark.items():\\n            trajectory = [\\n                result.get(\\\"auc_matrix\\\", {}).get(sig, {}).get(r)\\n                for r in regime_names\\n            ]\\n            per_bench_cliff[bench] = detect_cliff_pattern(\\n                trajectory, regime_names, threshold=args.cliff_threshold,\\n            )\\n        if per_bench_cliff:\\n            cliff_analysis[sig] = per_bench_cliff\\n\\n    with open(output_dir / \\\"cliff_analysis.json\\\", \\\"w\\\") as f:\\n        json.dump(cliff_analysis, f, indent=2)\\n\\n    # --- Cross-benchmark aggregation ---\\n    cross_benchmark = aggregate_cross_benchmark(per_benchmark, regime_names)\\n    with open(output_dir / \\\"cross_benchmark_summary.json\\\", \\\"w\\\") as f:\\n        json.dump(cross_benchmark, f, indent=2)\\n\\n    # --- Console summary ---\\n    print_summary(per_benchmark, cliff_analysis, cross_benchmark, regime_names)\\n\\n    logger.info(\\\"All outputs saved to %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "f17ce15c-033d-4fa5-bd8f-b8b88e3cc302",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008 Signal Survival Analysis — main script (v3).\\\\n\\\\nAnalyzes how contamination detection signals survive across training regimes\\\\n(base → SFT-clean → SFT-contam → RL-aligned). Supports paper C2 claim:\\\\n\\\\\\\"cliff-like signal degradation under RL alignment.\\\\\\\"\\\\n\\\\nInput:\\\\n  - Per-regime signal directories from exp-002 compute_signals.py.\\\\n    Directory structure: {regime_dir}/{benchmark}/ containing\\\\n    signal_{type}_{benchmark}.json or signals_merged_{benchmark}.json.\\\\n    Record format: [{\\\\\\\"index\\\\\\\": int, \\\\\\\"benchmark\\\\\\\": str, \\\\\\\"s1_embedding\\\\\\\": float, ...}]\\\\n  - Contamination labels per benchmark: JSON {str(index): 0 | 1}\\\\n  - (Optional) RRF aggregated scores: rrf_{benchmark}.json or\\\\n    exposure_rrf_{benchmark}.json from aggregate_rrf.py\\\\n\\\\nOutput (to --output-dir):\\\\n  - per_benchmark/{benchmark}/survival_report.json\\\\n  - cliff_analysis.json — cliff vs gradual degradation detection\\\\n  - cross_benchmark_summary.json — aggregated statistics\\\\n  - Console summary table\\\\n\\\\nDependencies: numpy, scipy, sklearn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\nfrom collections import OrderedDict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nALL_SIGNAL_KEYS = [\\\\n    \\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\", \\\\\\\"rrf_score\\\\\\\",\\\\n]\\\\nSIGNAL_LABELS = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n    \\\\\\\"rrf_score\\\\\\\": \\\\\\\"RRF (fused)\\\\\\\",\\\\n}\\\\nDEFAULT_BENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nCLIFF_THRESHOLD = 0.7\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Data loading\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef load_signals_for_benchmark(\\\\n    signals_dir: Path, benchmark: str,\\\\n) -> dict[str, list[dict]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load all available signal files for one benchmark from a regime directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    signals = {}\\\\n\\\\n    merged_path = signals_dir / f\\\\\\\"signals_merged_{benchmark}.json\\\\\\\"\\\\n    if merged_path.exists():\\\\n        with open(merged_path) as f:\\\\n            merged = json.load(f)\\\\n        for sig_key in ALL_SIGNAL_KEYS:\\\\n            if any(sig_key in r for r in merged):\\\\n                signals[sig_key] = merged\\\\n        return signals\\\\n\\\\n    prefix_map = {\\\\n        \\\\\\\"s1_embedding\\\\\\\": f\\\\\\\"signal_embedding_{benchmark}\\\\\\\",\\\\n        \\\\\\\"s2_minkpp\\\\\\\": f\\\\\\\"signal_minkpp_{benchmark}\\\\\\\",\\\\n        \\\\\\\"s3_constat\\\\\\\": f\\\\\\\"signal_constat_{benchmark}\\\\\\\",\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": f\\\\\\\"signal_selfcritique_{benchmark}\\\\\\\",\\\\n    }\\\\n    for sig_key, prefix in prefix_map.items():\\\\n        fpath = signals_dir / f\\\\\\\"{prefix}.json\\\\\\\"\\\\n        if fpath.exists():\\\\n            with open(fpath) as f:\\\\n                signals[sig_key] = json.load(f)\\\\n\\\\n    for rrf_name in [f\\\\\\\"rrf_{benchmark}.json\\\\\\\", f\\\\\\\"exposure_rrf_{benchmark}.json\\\\\\\"]:\\\\n        rrf_path = signals_dir / rrf_name\\\\n        if rrf_path.exists():\\\\n            with open(rrf_path) as f:\\\\n                signals[\\\\\\\"rrf_score\\\\\\\"] = json.load(f)\\\\n            break\\\\n\\\\n    return signals\\\\n\\\\n\\\\ndef load_labels(labels_file: Path) -> dict[int, int]:\\\\n    with open(labels_file) as f:\\\\n        raw = json.load(f)\\\\n    return {int(k): int(v) for k, v in raw.items()}\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Statistical primitives\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\\\n    n1, n2 = len(group1), len(group2)\\\\n    if n1 < 2 or n2 < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    var1, var2 = group1.var(ddof=1), group2.var(ddof=1)\\\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\\\n    if pooled_std == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    return float((group1.mean() - group2.mean()) / pooled_std)\\\\n\\\\n\\\\ndef compute_auroc(values: np.ndarray, labels: np.ndarray) -> float | None:\\\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\\\n    v, lab = values[mask], labels[mask].astype(int)\\\\n    if lab.sum() == 0 or (1 - l\\\\n\\\\n... [截断: 输出过长，省略 16058 字符] ...\\\\n\\\\n\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--cliff-threshold\\\\\\\", type=float, default=CLIFF_THRESHOLD,\\\\n        help=\\\\\\\"Cliff ratio threshold for pattern classification (default: 0.7)\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Generate and analyze synthetic mock data for validation\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--max-items\\\\\\\", type=int, default=None)\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(\\\\n        level=logging.INFO,\\\\n        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    )\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # --- Load data ---\\\\n    if args.dry_run:\\\\n        logger.info(\\\\n            \\\\\\\"DRY-RUN: generating mock data (%d items)\\\\\\\",\\\\n            args.max_items or 200,\\\\n        )\\\\n        all_data, all_labels, regime_names = generate_mock_data(\\\\n            n_items=args.max_items or 200,\\\\n        )\\\\n        benchmarks = list(all_data.keys())\\\\n    else:\\\\n        if not args.regime_dirs:\\\\n            parser.error(\\\\\\\"--regime-dirs required (or use --dry-run)\\\\\\\")\\\\n        if not args.labels_dir:\\\\n            parser.error(\\\\\\\"--labels-dir required\\\\\\\")\\\\n\\\\n        regime_dirs = OrderedDict()\\\\n        for arg in args.regime_dirs:\\\\n            if \\\\\\\"=\\\\\\\" not in arg:\\\\n                sys.exit(f\\\\\\\"Invalid regime-dir '{arg}': expected NAME=PATH\\\\\\\")\\\\n            name, path = arg.split(\\\\\\\"=\\\\\\\", 1)\\\\n            regime_dirs[name] = Path(path)\\\\n        regime_names = list(regime_dirs.keys())\\\\n        benchmarks = args.benchmarks\\\\n\\\\n        all_data = {}\\\\n        all_labels = {}\\\\n        labels_dir = Path(args.labels_dir)\\\\n        for bench in benchmarks:\\\\n            lpath = labels_dir / f\\\\\\\"labels_{bench}.json\\\\\\\"\\\\n            if not lpath.exists():\\\\n                logger.warning(\\\\\\\"Labels not found: %s, skipping %s\\\\\\\", lpath, bench)\\\\n                continue\\\\n            all_labels[bench] = load_labels(lpath)\\\\n            bench_regimes = OrderedDict()\\\\n            for rname, rdir in regime_dirs.items():\\\\n                bench_dir = rdir / bench\\\\n                if not bench_dir.is_dir():\\\\n                    bench_dir = rdir\\\\n                logger.info(\\\\\\\"Loading %s / %s from %s\\\\\\\", rname, bench, bench_dir)\\\\n                bench_regimes[rname] = load_signals_for_benchmark(bench_dir, bench)\\\\n            all_data[bench] = bench_regimes\\\\n        benchmarks = [b for b in benchmarks if b in all_labels]\\\\n\\\\n    if not benchmarks:\\\\n        sys.exit(\\\\\\\"No benchmarks to analyze.\\\\\\\")\\\\n\\\\n    # --- Per-benchmark survival analysis ---\\\\n    per_benchmark = {}\\\\n    for bench in benchmarks:\\\\n        logger.info(\\\\\\\"Analyzing: %s\\\\\\\", bench)\\\\n        result = analyze_signal_survival(all_data[bench], all_labels[bench])\\\\n        per_benchmark[bench] = result\\\\n\\\\n        bench_out = output_dir / \\\\\\\"per_benchmark\\\\\\\" / bench\\\\n        bench_out.mkdir(parents=True, exist_ok=True)\\\\n        with open(bench_out / \\\\\\\"survival_report.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(result, f, indent=2)\\\\n\\\\n    # --- Cliff detection ---\\\\n    cliff_analysis = {}\\\\n    for sig in ALL_SIGNAL_KEYS:\\\\n        per_bench_cliff = {}\\\\n        for bench, result in per_benchmark.items():\\\\n            trajectory = [\\\\n                result.get(\\\\\\\"auc_matrix\\\\\\\", {}).get(sig, {}).get(r)\\\\n                for r in regime_names\\\\n            ]\\\\n            per_bench_cliff[bench] = detect_cliff_pattern(\\\\n                trajectory, regime_names, threshold=args.cliff_threshold,\\\\n            )\\\\n        if per_bench_cliff:\\\\n            cliff_analysis[sig] = per_bench_cliff\\\\n\\\\n    with open(output_dir / \\\\\\\"cliff_analysis.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(cliff_analysis, f, indent=2)\\\\n\\\\n    # --- Cross-benchmark aggregation ---\\\\n    cross_benchmark = aggregate_cross_benchmark(per_benchmark, regime_names)\\\\n    with open(output_dir / \\\\\\\"cross_benchmark_summary.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(cross_benchmark, f, indent=2)\\\\n\\\\n    # --- Console summary ---\\\\n    print_summary(per_benchmark, cliff_analysis, cross_benchmark, regime_names)\\\\n\\\\n    logger.info(\\\\\\\"All outputs saved to %s\\\\\\\", output_dir)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-008 Signal Survival Analysis — main script (v3).\\n\\nAnalyzes how contamination detection signals survive across training regimes\\n(base → SFT-clean → SFT-contam → RL-aligned). Supports paper C2 claim:\\n\\\"cliff-like signal degradation under RL alignment.\\\"\\n\\nInput:\\n  - Per-regime signal directories from exp-002 compute_signals.py.\\n    Directory structure: {regime_dir}/{benchmark}/ containing\\n    signal_{type}_{benchmark}.json or signals_merged_{benchmark}.json.\\n    Record format: [{\\\"index\\\": int, \\\"benchmark\\\": str, \\\"s1_embedding\\\": float, ...}]\\n  - Contamination labels per benchmark: JSON {str(index): 0 | 1}\\n  - (Optional) RRF aggregated scores: rrf_{benchmark}.json or\\n    exposure_rrf_{benchmark}.json from aggregate_rrf.py\\n\\nOutput (to --output-dir):\\n  - per_benchmark/{benchmark}/survival_report.json\\n  - cliff_analysis.json — cliff vs gradual degradation detection\\n  - cross_benchmark_summary.json — aggregated statistics\\n  - Console summary table\\n\\nDependencies: numpy, scipy, sklearn\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport sys\\nfrom collections import OrderedDict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogger = logging.getLogger(__name__)\\n\\nALL_SIGNAL_KEYS = [\\n    \\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\", \\\"rrf_score\\\",\\n]\\nSIGNAL_LABELS = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K%++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n    \\\"rrf_score\\\": \\\"RRF (fused)\\\",\\n}\\nDEFAULT_BENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nCLIFF_THRESHOLD = 0.7\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data loading\\n# ---------------------------------------------------------------------------\\n\\ndef load_signals_for_benchmark(\\n    signals_dir: Path, benchmark: str,\\n) -> dict[str, list[dict]]:\\n    \\\"\\\"\\\"Load all available signal files for one benchmark from a regime directory.\\\"\\\"\\\"\\n    signals = {}\\n\\n    merged_path = signals_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged_path.exists():\\n        with open(merged_path) as f:\\n            merged = json.load(f)\\n        for sig_key in ALL_SIGNAL_KEYS:\\n            if any(sig_key in r for r in merged):\\n                signals[sig_key] = merged\\n        return signals\\n\\n    prefix_map = {\\n        \\\"s1_embedding\\\": f\\\"signal_embedding_{benchmark}\\\",\\n        \\\"s2_minkpp\\\": f\\\"signal_minkpp_{benchmark}\\\",\\n        \\\"s3_constat\\\": f\\\"signal_constat_{benchmark}\\\",\\n        \\\"s4_selfcritique\\\": f\\\"signal_selfcritique_{benchmark}\\\",\\n    }\\n    for sig_key, prefix in prefix_map.items():\\n        fpath = signals_dir / f\\\"{prefix}.json\\\"\\n        if fpath.exists():\\n            with open(fpath) as f:\\n                signals[sig_key] = json.load(f)\\n\\n    for rrf_name in [f\\\"rrf_{benchmark}.json\\\", f\\\"exposure_rrf_{benchmark}.json\\\"]:\\n        rrf_path = signals_dir / rrf_name\\n        if rrf_path.exists():\\n            with open(rrf_path) as f:\\n                signals[\\\"rrf_score\\\"] = json.load(f)\\n            break\\n\\n    return signals\\n\\n\\ndef load_labels(labels_file: Path) -> dict[int, int]:\\n    with open(labels_file) as f:\\n        raw = json.load(f)\\n    return {int(k): int(v) for k, v in raw.items()}\\n\\n\\n# ---------------------------------------------------------------------------\\n# Statistical primitives\\n# ---------------------------------------------------------------------------\\n\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\n    n1, n2 = len(group1), len(group2)\\n    if n1 < 2 or n2 < 2:\\n        return float(\\\"nan\\\")\\n    var1, var2 = group1.var(ddof=1), group2.var(ddof=1)\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\n    if pooled_std == 0:\\n        return float(\\\"nan\\\")\\n    return float((group1.mean() - group2.mean()) / pooled_std)\\n\\n\\ndef compute_auroc(values: np.ndarray, labels: np.ndarray) -> float | None:\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\n    v, lab = values[mask], labels[mask].astype(int)\\n    if lab.sum() == 0 or (1 - l\\n\\n... [截断: 输出过长，省略 16058 字符] ...\\n\\n\\\")\\n    parser.add_argument(\\n        \\\"--cliff-threshold\\\", type=float, default=CLIFF_THRESHOLD,\\n        help=\\\"Cliff ratio threshold for pattern classification (default: 0.7)\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--dry-run\\\", action=\\\"store_true\\\",\\n        help=\\\"Generate and analyze synthetic mock data for validation\\\",\\n    )\\n    parser.add_argument(\\\"--max-items\\\", type=int, default=None)\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # --- Load data ---\\n    if args.dry_run:\\n        logger.info(\\n            \\\"DRY-RUN: generating mock data (%d items)\\\",\\n            args.max_items or 200,\\n        )\\n        all_data, all_labels, regime_names = generate_mock_data(\\n            n_items=args.max_items or 200,\\n        )\\n        benchmarks = list(all_data.keys())\\n    else:\\n        if not args.regime_dirs:\\n            parser.error(\\\"--regime-dirs required (or use --dry-run)\\\")\\n        if not args.labels_dir:\\n            parser.error(\\\"--labels-dir required\\\")\\n\\n        regime_dirs = OrderedDict()\\n        for arg in args.regime_dirs:\\n            if \\\"=\\\" not in arg:\\n                sys.exit(f\\\"Invalid regime-dir '{arg}': expected NAME=PATH\\\")\\n            name, path = arg.split(\\\"=\\\", 1)\\n            regime_dirs[name] = Path(path)\\n        regime_names = list(regime_dirs.keys())\\n        benchmarks = args.benchmarks\\n\\n        all_data = {}\\n        all_labels = {}\\n        labels_dir = Path(args.labels_dir)\\n        for bench in benchmarks:\\n            lpath = labels_dir / f\\\"labels_{bench}.json\\\"\\n            if not lpath.exists():\\n                logger.warning(\\\"Labels not found: %s, skipping %s\\\", lpath, bench)\\n                continue\\n            all_labels[bench] = load_labels(lpath)\\n            bench_regimes = OrderedDict()\\n            for rname, rdir in regime_dirs.items():\\n                bench_dir = rdir / bench\\n                if not bench_dir.is_dir():\\n                    bench_dir = rdir\\n                logger.info(\\\"Loading %s / %s from %s\\\", rname, bench, bench_dir)\\n                bench_regimes[rname] = load_signals_for_benchmark(bench_dir, bench)\\n            all_data[bench] = bench_regimes\\n        benchmarks = [b for b in benchmarks if b in all_labels]\\n\\n    if not benchmarks:\\n        sys.exit(\\\"No benchmarks to analyze.\\\")\\n\\n    # --- Per-benchmark survival analysis ---\\n    per_benchmark = {}\\n    for bench in benchmarks:\\n        logger.info(\\\"Analyzing: %s\\\", bench)\\n        result = analyze_signal_survival(all_data[bench], all_labels[bench])\\n        per_benchmark[bench] = result\\n\\n        bench_out = output_dir / \\\"per_benchmark\\\" / bench\\n        bench_out.mkdir(parents=True, exist_ok=True)\\n        with open(bench_out / \\\"survival_report.json\\\", \\\"w\\\") as f:\\n            json.dump(result, f, indent=2)\\n\\n    # --- Cliff detection ---\\n    cliff_analysis = {}\\n    for sig in ALL_SIGNAL_KEYS:\\n        per_bench_cliff = {}\\n        for bench, result in per_benchmark.items():\\n            trajectory = [\\n                result.get(\\\"auc_matrix\\\", {}).get(sig, {}).get(r)\\n                for r in regime_names\\n            ]\\n            per_bench_cliff[bench] = detect_cliff_pattern(\\n                trajectory, regime_names, threshold=args.cliff_threshold,\\n            )\\n        if per_bench_cliff:\\n            cliff_analysis[sig] = per_bench_cliff\\n\\n    with open(output_dir / \\\"cliff_analysis.json\\\", \\\"w\\\") as f:\\n        json.dump(cliff_analysis, f, indent=2)\\n\\n    # --- Cross-benchmark aggregation ---\\n    cross_benchmark = aggregate_cross_benchmark(per_benchmark, regime_names)\\n    with open(output_dir / \\\"cross_benchmark_summary.json\\\", \\\"w\\\") as f:\\n        json.dump(cross_benchmark, f, indent=2)\\n\\n    # --- Console summary ---\\n    print_summary(per_benchmark, cliff_analysis, cross_benchmark, regime_names)\\n\\n    logger.info(\\\"All outputs saved to %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T15:17:14.872Z_
+
+<details><summary>↩ Tool result · `toolu_011ongQA1UXhWGqnKKjiu9Hs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-008 Signal Survival — visualization.\\nv2: Extended to N regimes; primary output is AUC heatmap (paper Figure 2).\\n\\nGenerates:\\n  1. AUC heatmap: signal x regime AUROC matrix\\n  2. Pairwise delta-AUC heatmap: AUC change between adjacent regime pairs\\n\\nInput:  survival_report.json (from run_signal_survival.py)\\nOutput: PDF files in output directory\\n\\nDependencies: matplotlib, seaborn (optional fallback to imshow), numpy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_LABELS = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K%++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\n\\n\\ndef _try_import_seaborn():\\n    try:\\n        import seaborn as sns\\n        return sns\\n    except ImportError:\\n        logger.warning(\\\"seaborn not available, falling back to matplotlib imshow\\\")\\n        return None\\n\\n\\ndef plot_auc_heatmap(report: dict, output_path: Path):\\n    \\\"\\\"\\\"Signal x regime AUC heatmap (paper Figure 2 format).\\\"\\\"\\\"\\n    sns = _try_import_seaborn()\\n\\n    auc_matrix = report[\\\"auc_matrix\\\"]\\n    regime_names = report[\\\"regime_names\\\"]\\n\\n    signals = [k for k in SIGNAL_KEYS if k in auc_matrix]\\n    if not signals:\\n        logger.warning(\\\"No signals to plot\\\")\\n        return\\n\\n    sig_labels = [SIGNAL_LABELS[k] for k in signals]\\n    data = np.array([\\n        [auc_matrix[s].get(r, float(\\\"nan\\\")) for r in regime_names]\\n        for s in signals\\n    ])\\n\\n    fig, ax = plt.subplots(\\n        figsize=(max(3.5, 1.5 * len(regime_names)), max(3, 0.8 * len(signals)))\\n    )\\n\\n    if sns is not None:\\n        sns.heatmap(\\n            data, annot=True, fmt=\\\".3f\\\", cmap=\\\"YlOrRd\\\",\\n            xticklabels=regime_names, yticklabels=sig_labels,\\n            vmin=0.4, vmax=1.0, linewidths=0.5, linecolor=\\\"white\\\",\\n            cbar_kws={\\\"label\\\": \\\"AUROC\\\", \\\"shrink\\\": 0.8},\\n            ax=ax,\\n        )\\n    else:\\n        im = ax.imshow(data, cmap=\\\"YlOrRd\\\", vmin=0.4, vmax=1.0, aspect=\\\"auto\\\")\\n        ax.set_xticks(range(len(regime_names)))\\n        ax.set_xticklabels(regime_names)\\n        ax.set_yticks(range(len(sig_labels)))\\n        ax.set_yticklabels(sig_labels)\\n        for i in range(len(signals)):\\n            for j in range(len(regime_names)):\\n                v = data[i, j]\\n                color = \\\"white\\\" if v > 0.75 else \\\"black\\\"\\n                ax.text(\\n                    j, i, f\\\"{v:.3f}\\\", ha=\\\"center\\\", va=\\\"center\\\",\\n                    fontsize=10, color=color,\\n                )\\n        fig.colorbar(im, ax=ax, label=\\\"AUROC\\\", shrink=0.8)\\n\\n    ax.set_title(\\\"Contamination Signal AUROC across Regimes\\\", fontsize=12, pad=10)\\n    ax.tick_params(labelsize=10)\\n    ax.set_xlabel(\\\"\\\")\\n    ax.set_ylabel(\\\"\\\")\\n\\n    fig.tight_layout()\\n    fig.savefig(output_path, dpi=150, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    logger.info(\\\"AUC heatmap saved to %s\\\", output_path)\\n\\n\\ndef plot_delta_auc_heatmap(report: dict, output_path: Path):\\n    \\\"\\\"\\\"Pairwise delta-AUC heatmap between adjacent regime pairs.\\\"\\\"\\\"\\n    sns = _try_import_seaborn()\\n\\n    pairwise_tests = report.get(\\\"pairwise_tests\\\", {})\\n    if not pairwise_tests:\\n        logger.warning(\\\"No pairwise tests to plot\\\")\\n        return\\n\\n    pair_keys = list(pairwise_tests.keys())\\n    signals = [k for k in SIGNAL_KEYS if k in next(iter(pairwise_tests.values()))]\\n    if not signals:\\n        logger.warning(\\\"No signals in pairwise tests\\\")\\n        return\\n\\n    sig_labels = [SIGNAL_LABELS[k] for k in signals]\\n    pair_labels = [k.replace(\\\"_vs_\\\", \\\" → \\\") for k in pair_keys]\\n\\n    data = np.array([\\n        [\\n            (pairwise_tests[pk][s].get(\\\"auc_b\\\", 0) or 0)\\n            - (pairwise_tests[pk][s].get(\\\"auc_a\\\", 0) or 0)\\n            if s in pairwise_tests[pk]\\n            else float(\\\"nan\\\")\\n            for pk in pair_keys\\n        ]\\n        for s in signals\\n    ])\\n\\n    vmax = max(0.15, float(np.nanmax(np.abs(data))))\\n    fig, ax = plt.subplots(\\n        figsize=(max(3.5, 1.8 * len(pair_keys)), max(3, 0.8 * len(signals)))\\n    )\\n\\n    if sns is not None:\\n        sns.heatmap(\\n            data, annot=True, fmt=\\\"+.3f\\\", cmap=\\\"RdBu_r\\\",\\n            xticklabels=pair_labels, yticklabels=sig_labels,\\n            vmin=-vmax, vmax=vmax, center=0,\\n            linewidths=0.5, linecolor=\\\"white\\\",\\n            cbar_kws={\\\"label\\\": \\\"Δ AUROC\\\", \\\"shrink\\\": 0.8},\\n            ax=ax,\\n        )\\n    else:\\n        im = ax.imshow(\\n            data, cmap=\\\"RdBu_r\\\", vmin=-vmax, vmax=vmax, aspect=\\\"auto\\\",\\n        )\\n        ax.set_xticks(range(len(pair_labels)))\\n        ax.set_xticklabels(pair_labels)\\n        ax.set_yticks(range(len(sig_labels)))\\n        ax.set_yticklabels(sig_labels)\\n        for i in range(len(signals)):\\n            for j in range(len(pair_keys)):\\n                v = data[i, j]\\n                ax.text(\\n                    j, i, f\\\"{v:+.3f}\\\", ha=\\\"center\\\", va=\\\"center\\\", fontsize=10,\\n                )\\n        fig.colorbar(im, ax=ax, label=\\\"Δ AUROC\\\", shrink=0.8)\\n\\n    ax.set_title(\\n        \\\"Signal AUROC Change between Adjacent Regimes\\\", fontsize=12, pad=10,\\n    )\\n    ax.tick_params(labelsize=10)\\n\\n    fig.tight_layout()\\n    fig.savefig(output_path, dpi=150, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    logger.info(\\\"Delta AUC heatmap saved to %s\\\", output_path)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-008: Plot signal survival figures\\\"\\n    )\\n    parser.add_argument(\\\"--report-file\\\", type=str,\\n                        help=\\\"Path to survival_report.json\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, default=\\\"./exp008_output\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate report from mock data first\\\")\\n    parser.add_argument(\\\"--max-items\\\", type=int, default=None)\\n    parser.add_argument(\\\"--regime-names\\\", nargs=\\\"+\\\", default=None,\\n                        help=\\\"Regime names for dry-run (default: SFT RL)\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    if args.dry_run:\\n        from run_signal_survival import generate_mock_data\\n        from signal_survival_analysis import run_survival_analysis, save_report\\n\\n        regime_names = args.regime_names or [\\\"SFT\\\", \\\"RL\\\"]\\n        max_items = args.max_items or 100\\n        regime_signals, labels = generate_mock_data(\\n            n_items=max_items, regime_names=regime_names,\\n        )\\n        report = run_survival_analysis(regime_signals, labels)\\n        save_report(report, output_dir)\\n    else:\\n        if not args.report_file:\\n            parser.error(\\\"--report-file required (unless --dry-run)\\\")\\n        with open(args.report_file) as f:\\n            report = json.load(f)\\n\\n    plot_auc_heatmap(report, output_dir / \\\"survival_auc_heatmap.pdf\\\")\\n    plot_delta_auc_heatmap(report, output_dir / \\\"survival_delta_auc.pdf\\\")\\n\\n    logger.info(\\\"Plots saved to %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "efde659c-26fa-46d0-bf5a-58fe24965154",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008 Signal Survival — visualization.\\\\nv2: Extended to N regimes; primary output is AUC heatmap (paper Figure 2).\\\\n\\\\nGenerates:\\\\n  1. AUC heatmap: signal x regime AUROC matrix\\\\n  2. Pairwise delta-AUC heatmap: AUC change between adjacent regime pairs\\\\n\\\\nInput:  survival_report.json (from run_signal_survival.py)\\\\nOutput: PDF files in output directory\\\\n\\\\nDependencies: matplotlib, seaborn (optional fallback to imshow), numpy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_LABELS = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef _try_import_seaborn():\\\\n    try:\\\\n        import seaborn as sns\\\\n        return sns\\\\n    except ImportError:\\\\n        logger.warning(\\\\\\\"seaborn not available, falling back to matplotlib imshow\\\\\\\")\\\\n        return None\\\\n\\\\n\\\\ndef plot_auc_heatmap(report: dict, output_path: Path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Signal x regime AUC heatmap (paper Figure 2 format).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    sns = _try_import_seaborn()\\\\n\\\\n    auc_matrix = report[\\\\\\\"auc_matrix\\\\\\\"]\\\\n    regime_names = report[\\\\\\\"regime_names\\\\\\\"]\\\\n\\\\n    signals = [k for k in SIGNAL_KEYS if k in auc_matrix]\\\\n    if not signals:\\\\n        logger.warning(\\\\\\\"No signals to plot\\\\\\\")\\\\n        return\\\\n\\\\n    sig_labels = [SIGNAL_LABELS[k] for k in signals]\\\\n    data = np.array([\\\\n        [auc_matrix[s].get(r, float(\\\\\\\"nan\\\\\\\")) for r in regime_names]\\\\n        for s in signals\\\\n    ])\\\\n\\\\n    fig, ax = plt.subplots(\\\\n        figsize=(max(3.5, 1.5 * len(regime_names)), max(3, 0.8 * len(signals)))\\\\n    )\\\\n\\\\n    if sns is not None:\\\\n        sns.heatmap(\\\\n            data, annot=True, fmt=\\\\\\\".3f\\\\\\\", cmap=\\\\\\\"YlOrRd\\\\\\\",\\\\n            xticklabels=regime_names, yticklabels=sig_labels,\\\\n            vmin=0.4, vmax=1.0, linewidths=0.5, linecolor=\\\\\\\"white\\\\\\\",\\\\n            cbar_kws={\\\\\\\"label\\\\\\\": \\\\\\\"AUROC\\\\\\\", \\\\\\\"shrink\\\\\\\": 0.8},\\\\n            ax=ax,\\\\n        )\\\\n    else:\\\\n        im = ax.imshow(data, cmap=\\\\\\\"YlOrRd\\\\\\\", vmin=0.4, vmax=1.0, aspect=\\\\\\\"auto\\\\\\\")\\\\n        ax.set_xticks(range(len(regime_names)))\\\\n        ax.set_xticklabels(regime_names)\\\\n        ax.set_yticks(range(len(sig_labels)))\\\\n        ax.set_yticklabels(sig_labels)\\\\n        for i in range(len(signals)):\\\\n            for j in range(len(regime_names)):\\\\n                v = data[i, j]\\\\n                color = \\\\\\\"white\\\\\\\" if v > 0.75 else \\\\\\\"black\\\\\\\"\\\\n                ax.text(\\\\n                    j, i, f\\\\\\\"{v:.3f}\\\\\\\", ha=\\\\\\\"center\\\\\\\", va=\\\\\\\"center\\\\\\\",\\\\n                    fontsize=10, color=color,\\\\n                )\\\\n        fig.colorbar(im, ax=ax, label=\\\\\\\"AUROC\\\\\\\", shrink=0.8)\\\\n\\\\n    ax.set_title(\\\\\\\"Contamination Signal AUROC across Regimes\\\\\\\", fontsize=12, pad=10)\\\\n    ax.tick_params(labelsize=10)\\\\n    ax.set_xlabel(\\\\\\\"\\\\\\\")\\\\n    ax.set_ylabel(\\\\\\\"\\\\\\\")\\\\n\\\\n    fig.tight_layout()\\\\n    fig.savefig(output_path, dpi=150, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n    logger.info(\\\\\\\"AUC heatmap saved to %s\\\\\\\", output_path)\\\\n\\\\n\\\\ndef plot_delta_auc_heatmap(report: dict, output_path: Path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pairwise delta-AUC heatmap between adjacent regime pairs.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    sns = _try_import_seaborn()\\\\n\\\\n    pairwise_tests = report.get(\\\\\\\"pairwise_tests\\\\\\\", {})\\\\n    if not pairwise_tests:\\\\n        logger.warning(\\\\\\\"No pairwise tests to plot\\\\\\\")\\\\n        return\\\\n\\\\n    pair_keys = list(pairwise_tests.keys())\\\\n    signals = [k for k in SIGNAL_KEYS if k in next(iter(pairwise_tests.values()))]\\\\n    if not signals:\\\\n        logger.warning(\\\\\\\"No signals in pairwise tests\\\\\\\")\\\\n        return\\\\n\\\\n    sig_labels = [SIGNAL_LABELS[k] for k in signals]\\\\n    pair_labels = [k.replace(\\\\\\\"_vs_\\\\\\\", \\\\\\\" → \\\\\\\") for k in pair_keys]\\\\n\\\\n    data = np.array([\\\\n        [\\\\n            (pairwise_tests[pk][s].get(\\\\\\\"auc_b\\\\\\\", 0) or 0)\\\\n            - (pairwise_tests[pk][s].get(\\\\\\\"auc_a\\\\\\\", 0) or 0)\\\\n            if s in pairwise_tests[pk]\\\\n            else float(\\\\\\\"nan\\\\\\\")\\\\n            for pk in pair_keys\\\\n        ]\\\\n        for s in signals\\\\n    ])\\\\n\\\\n    vmax = max(0.15, float(np.nanmax(np.abs(data))))\\\\n    fig, ax = plt.subplots(\\\\n        figsize=(max(3.5, 1.8 * len(pair_keys)), max(3, 0.8 * len(signals)))\\\\n    )\\\\n\\\\n    if sns is not None:\\\\n        sns.heatmap(\\\\n            data, annot=True, fmt=\\\\\\\"+.3f\\\\\\\", cmap=\\\\\\\"RdBu_r\\\\\\\",\\\\n            xticklabels=pair_labels, yticklabels=sig_labels,\\\\n            vmin=-vmax, vmax=vmax, center=0,\\\\n            linewidths=0.5, linecolor=\\\\\\\"white\\\\\\\",\\\\n            cbar_kws={\\\\\\\"label\\\\\\\": \\\\\\\"Δ AUROC\\\\\\\", \\\\\\\"shrink\\\\\\\": 0.8},\\\\n            ax=ax,\\\\n        )\\\\n    else:\\\\n        im = ax.imshow(\\\\n            data, cmap=\\\\\\\"RdBu_r\\\\\\\", vmin=-vmax, vmax=vmax, aspect=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n        ax.set_xticks(range(len(pair_labels)))\\\\n        ax.set_xticklabels(pair_labels)\\\\n        ax.set_yticks(range(len(sig_labels)))\\\\n        ax.set_yticklabels(sig_labels)\\\\n        for i in range(len(signals)):\\\\n            for j in range(len(pair_keys)):\\\\n                v = data[i, j]\\\\n                ax.text(\\\\n                    j, i, f\\\\\\\"{v:+.3f}\\\\\\\", ha=\\\\\\\"center\\\\\\\", va=\\\\\\\"center\\\\\\\", fontsize=10,\\\\n                )\\\\n        fig.colorbar(im, ax=ax, label=\\\\\\\"Δ AUROC\\\\\\\", shrink=0.8)\\\\n\\\\n    ax.set_title(\\\\n        \\\\\\\"Signal AUROC Change between Adjacent Regimes\\\\\\\", fontsize=12, pad=10,\\\\n    )\\\\n    ax.tick_params(labelsize=10)\\\\n\\\\n    fig.tight_layout()\\\\n    fig.savefig(output_path, dpi=150, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n    logger.info(\\\\\\\"Delta AUC heatmap saved to %s\\\\\\\", output_path)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"exp-008: Plot signal survival figures\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--report-file\\\\\\\", type=str,\\\\n                        help=\\\\\\\"Path to survival_report.json\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, default=\\\\\\\"./exp008_output\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Generate report from mock data first\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max-items\\\\\\\", type=int, default=None)\\\\n    parser.add_argument(\\\\\\\"--regime-names\\\\\\\", nargs=\\\\\\\"+\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Regime names for dry-run (default: SFT RL)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(\\\\n        level=logging.INFO,\\\\n        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    )\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    if args.dry_run:\\\\n        from run_signal_survival import generate_mock_data\\\\n        from signal_survival_analysis import run_survival_analysis, save_report\\\\n\\\\n        regime_names = args.regime_names or [\\\\\\\"SFT\\\\\\\", \\\\\\\"RL\\\\\\\"]\\\\n        max_items = args.max_items or 100\\\\n        regime_signals, labels = generate_mock_data(\\\\n            n_items=max_items, regime_names=regime_names,\\\\n        )\\\\n        report = run_survival_analysis(regime_signals, labels)\\\\n        save_report(report, output_dir)\\\\n    else:\\\\n        if not args.report_file:\\\\n            parser.error(\\\\\\\"--report-file required (unless --dry-run)\\\\\\\")\\\\n        with open(args.report_file) as f:\\\\n            report = json.load(f)\\\\n\\\\n    plot_auc_heatmap(report, output_dir / \\\\\\\"survival_auc_heatmap.pdf\\\\\\\")\\\\n    plot_delta_auc_heatmap(report, output_dir / \\\\\\\"survival_delta_auc.pdf\\\\\\\")\\\\n\\\\n    logger.info(\\\\\\\"Plots saved to %s\\\\\\\", output_dir)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-008 Signal Survival — visualization.\\nv2: Extended to N regimes; primary output is AUC heatmap (paper Figure 2).\\n\\nGenerates:\\n  1. AUC heatmap: signal x regime AUROC matrix\\n  2. Pairwise delta-AUC heatmap: AUC change between adjacent regime pairs\\n\\nInput:  survival_report.json (from run_signal_survival.py)\\nOutput: PDF files in output directory\\n\\nDependencies: matplotlib, seaborn (optional fallback to imshow), numpy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_LABELS = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K%++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\n\\n\\ndef _try_import_seaborn():\\n    try:\\n        import seaborn as sns\\n        return sns\\n    except ImportError:\\n        logger.warning(\\\"seaborn not available, falling back to matplotlib imshow\\\")\\n        return None\\n\\n\\ndef plot_auc_heatmap(report: dict, output_path: Path):\\n    \\\"\\\"\\\"Signal x regime AUC heatmap (paper Figure 2 format).\\\"\\\"\\\"\\n    sns = _try_import_seaborn()\\n\\n    auc_matrix = report[\\\"auc_matrix\\\"]\\n    regime_names = report[\\\"regime_names\\\"]\\n\\n    signals = [k for k in SIGNAL_KEYS if k in auc_matrix]\\n    if not signals:\\n        logger.warning(\\\"No signals to plot\\\")\\n        return\\n\\n    sig_labels = [SIGNAL_LABELS[k] for k in signals]\\n    data = np.array([\\n        [auc_matrix[s].get(r, float(\\\"nan\\\")) for r in regime_names]\\n        for s in signals\\n    ])\\n\\n    fig, ax = plt.subplots(\\n        figsize=(max(3.5, 1.5 * len(regime_names)), max(3, 0.8 * len(signals)))\\n    )\\n\\n    if sns is not None:\\n        sns.heatmap(\\n            data, annot=True, fmt=\\\".3f\\\", cmap=\\\"YlOrRd\\\",\\n            xticklabels=regime_names, yticklabels=sig_labels,\\n            vmin=0.4, vmax=1.0, linewidths=0.5, linecolor=\\\"white\\\",\\n            cbar_kws={\\\"label\\\": \\\"AUROC\\\", \\\"shrink\\\": 0.8},\\n            ax=ax,\\n        )\\n    else:\\n        im = ax.imshow(data, cmap=\\\"YlOrRd\\\", vmin=0.4, vmax=1.0, aspect=\\\"auto\\\")\\n        ax.set_xticks(range(len(regime_names)))\\n        ax.set_xticklabels(regime_names)\\n        ax.set_yticks(range(len(sig_labels)))\\n        ax.set_yticklabels(sig_labels)\\n        for i in range(len(signals)):\\n            for j in range(len(regime_names)):\\n                v = data[i, j]\\n                color = \\\"white\\\" if v > 0.75 else \\\"black\\\"\\n                ax.text(\\n                    j, i, f\\\"{v:.3f}\\\", ha=\\\"center\\\", va=\\\"center\\\",\\n                    fontsize=10, color=color,\\n                )\\n        fig.colorbar(im, ax=ax, label=\\\"AUROC\\\", shrink=0.8)\\n\\n    ax.set_title(\\\"Contamination Signal AUROC across Regimes\\\", fontsize=12, pad=10)\\n    ax.tick_params(labelsize=10)\\n    ax.set_xlabel(\\\"\\\")\\n    ax.set_ylabel(\\\"\\\")\\n\\n    fig.tight_layout()\\n    fig.savefig(output_path, dpi=150, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    logger.info(\\\"AUC heatmap saved to %s\\\", output_path)\\n\\n\\ndef plot_delta_auc_heatmap(report: dict, output_path: Path):\\n    \\\"\\\"\\\"Pairwise delta-AUC heatmap between adjacent regime pairs.\\\"\\\"\\\"\\n    sns = _try_import_seaborn()\\n\\n    pairwise_tests = report.get(\\\"pairwise_tests\\\", {})\\n    if not pairwise_tests:\\n        logger.warning(\\\"No pairwise tests to plot\\\")\\n        return\\n\\n    pair_keys = list(pairwise_tests.keys())\\n    signals = [k for k in SIGNAL_KEYS if k in next(iter(pairwise_tests.values()))]\\n    if not signals:\\n        logger.warning(\\\"No signals in pairwise tests\\\")\\n        return\\n\\n    sig_labels = [SIGNAL_LABELS[k] for k in signals]\\n    pair_labels = [k.replace(\\\"_vs_\\\", \\\" → \\\") for k in pair_keys]\\n\\n    data = np.array([\\n        [\\n            (pairwise_tests[pk][s].get(\\\"auc_b\\\", 0) or 0)\\n            - (pairwise_tests[pk][s].get(\\\"auc_a\\\", 0) or 0)\\n            if s in pairwise_tests[pk]\\n            else float(\\\"nan\\\")\\n            for pk in pair_keys\\n        ]\\n        for s in signals\\n    ])\\n\\n    vmax = max(0.15, float(np.nanmax(np.abs(data))))\\n    fig, ax = plt.subplots(\\n        figsize=(max(3.5, 1.8 * len(pair_keys)), max(3, 0.8 * len(signals)))\\n    )\\n\\n    if sns is not None:\\n        sns.heatmap(\\n            data, annot=True, fmt=\\\"+.3f\\\", cmap=\\\"RdBu_r\\\",\\n            xticklabels=pair_labels, yticklabels=sig_labels,\\n            vmin=-vmax, vmax=vmax, center=0,\\n            linewidths=0.5, linecolor=\\\"white\\\",\\n            cbar_kws={\\\"label\\\": \\\"Δ AUROC\\\", \\\"shrink\\\": 0.8},\\n            ax=ax,\\n        )\\n    else:\\n        im = ax.imshow(\\n            data, cmap=\\\"RdBu_r\\\", vmin=-vmax, vmax=vmax, aspect=\\\"auto\\\",\\n        )\\n        ax.set_xticks(range(len(pair_labels)))\\n        ax.set_xticklabels(pair_labels)\\n        ax.set_yticks(range(len(sig_labels)))\\n        ax.set_yticklabels(sig_labels)\\n        for i in range(len(signals)):\\n            for j in range(len(pair_keys)):\\n                v = data[i, j]\\n                ax.text(\\n                    j, i, f\\\"{v:+.3f}\\\", ha=\\\"center\\\", va=\\\"center\\\", fontsize=10,\\n                )\\n        fig.colorbar(im, ax=ax, label=\\\"Δ AUROC\\\", shrink=0.8)\\n\\n    ax.set_title(\\n        \\\"Signal AUROC Change between Adjacent Regimes\\\", fontsize=12, pad=10,\\n    )\\n    ax.tick_params(labelsize=10)\\n\\n    fig.tight_layout()\\n    fig.savefig(output_path, dpi=150, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n    logger.info(\\\"Delta AUC heatmap saved to %s\\\", output_path)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-008: Plot signal survival figures\\\"\\n    )\\n    parser.add_argument(\\\"--report-file\\\", type=str,\\n                        help=\\\"Path to survival_report.json\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, default=\\\"./exp008_output\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate report from mock data first\\\")\\n    parser.add_argument(\\\"--max-items\\\", type=int, default=None)\\n    parser.add_argument(\\\"--regime-names\\\", nargs=\\\"+\\\", default=None,\\n                        help=\\\"Regime names for dry-run (default: SFT RL)\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    if args.dry_run:\\n        from run_signal_survival import generate_mock_data\\n        from signal_survival_analysis import run_survival_analysis, save_report\\n\\n        regime_names = args.regime_names or [\\\"SFT\\\", \\\"RL\\\"]\\n        max_items = args.max_items or 100\\n        regime_signals, labels = generate_mock_data(\\n            n_items=max_items, regime_names=regime_names,\\n        )\\n        report = run_survival_analysis(regime_signals, labels)\\n        save_report(report, output_dir)\\n    else:\\n        if not args.report_file:\\n            parser.error(\\\"--report-file required (unless --dry-run)\\\")\\n        with open(args.report_file) as f:\\n            report = json.load(f)\\n\\n    plot_auc_heatmap(report, output_dir / \\\"survival_auc_heatmap.pdf\\\")\\n    plot_delta_auc_heatmap(report, output_dir / \\\"survival_delta_auc.pdf\\\")\\n\\n    logger.info(\\\"Plots saved to %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T15:17:15.349Z_
+
+<details><summary>↩ Tool result · `toolu_01X86ndvciXZcd7jvtYDKfdv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16\\ndrwxr-xr-x 5 root root  151 May 14 21:29 .\\ndrwxr-xr-x 3 root root   29 May 14 15:57 ..\\ndrwxr-xr-x 2 root root 4096 May 14 21:06 Qwen2.5-0.5B_d000_s42\\ndrwxr-xr-x 2 root root 4096 May 14 21:29 Qwen2.5-0.5B_d005_s42\\ndrwxr-xr-x 2 root root 4096 May 14 21:58 Qwen2.5-0.5B_d100_s42\\n-rw-r--r-- 1 root root  561 May 14 21:58 batch_report_Qwen2.5-0.5B.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "8bc53ce1-6023-4893-9ccc-faef8af3b39d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16\\\\ndrwxr-xr-x 5 root root  151 May 14 21:29 .\\\\ndrwxr-xr-x 3 root root   29 May 14 15:57 ..\\\\ndrwxr-xr-x 2 root root 4096 May 14 21:06 Qwen2.5-0.5B_d000_s42\\\\ndrwxr-xr-x 2 root root 4096 May 14 21:29 Qwen2.5-0.5B_d005_s42\\\\ndrwxr-xr-x 2 root root 4096 May 14 21:58 Qwen2.5-0.5B_d100_s42\\\\n-rw-r--r-- 1 root root  561 May 14 21:58 batch_report_Qwen2.5-0.5B.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 16\\ndrwxr-xr-x 5 root root  151 May 14 21:29 .\\ndrwxr-xr-x 3 root root   29 May 14 15:57 ..\\ndrwxr-xr-x 2 root root 4096 May 14 21:06 Qwen2.5-0.5B_d000_s42\\ndrwxr-xr-x 2 root root 4096 May 14 21:29 Qwen2.5-0.5B_d005_s42\\ndrwxr-xr-x 2 root root 4096 May 14 21:58 Qwen2.5-0.5B_d100_s42\\n-rw-r--r-- 1 root root  561 May 14 21:58 batch_report_Qwen2.5-0.5B.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've read all 4 files and confirmed the exp-002 signals directory structure. Now let me check the actual signal files inside each subdirectory, and also check for labels files.
+
+Key observations so far:
+1. `signal_survival_analysis.py` (v2) - core module with N-regime AUC matrix + pairwise tests
+2. `run_signal_survival.py` (v2) - runner, supports `--dry-run`
+3. `signal_survival.py` (v3) - extended version with RRF composite + cliff detection, per-benchmark analysis
+
+
+4. `plot_survival.py` - AUC heatmap visualization
+
+I need to see the full output for the truncated files and check what signal files actually exist in each dosage directory, whether there are labels files, and understand the different input expectations between v2 and v3 (the v3 version uses `--regime-dirs NAME=PATH`, `--labels-dir`, and `--benchmarks` flags).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "f68fb575-fde7-49b0-b77e-c1310535154a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7VUhFXMXtJo11YRYxSs4g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14246,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14246
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+现在检查 exp-002 信号文件的详细内容、labels 文件、以及被截断的代码部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "cb92f19c-599f-403c-aec1-cc840d427394",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7VUhFXMXtJo11YRYxSs4g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14246,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14246
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XJS7dm54kjS7uoPreSpFvd`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "b7cf7f02-9369-40c0-84ba-80e5b96fc4e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7VUhFXMXtJo11YRYxSs4g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14246,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14246
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T15:17:27.524Z_
+
+<details><summary>↩ Tool result · `toolu_01XJS7dm54kjS7uoPreSpFvd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16048\\ndrwxr-xr-x 2 root root    4096 May 14 21:06 .\\ndrwxr-xr-x 5 root root     151 May 14 21:29 ..\\n-rw-r--r-- 1 root root  515053 May 14 18:41 signal_embedding_arc_challenge.json\\n-rw-r--r-- 1 root root  567771 May 14 20:49 signal_embedding_gsm8k.json\\n-rw-r--r-- 1 root root 6093045 May 14 18:50 signal_embedding_mmlu.json\\n-rw-r--r-- 1 root root    2179 May 14 16:00 signal_embedding_mmlu_Qwen2.5-0.5B_d000_s42.json\\n-rw-r--r-- 1 root root  185943 May 14 21:05 signal_minkpp_arc_challenge.json\\n-rw-r--r-- 1 root root  199977 May 14 20:50 signal_minkpp_gsm8k.json\\n-rw-r--r-- 1 root root 2121205 May 14 18:55 signal_minkpp_mmlu.json\\n-rw-r--r-- 1 root root  254781 May 14 21:06 signal_selfcritique_arc_challenge.json\\n-rw-r--r-- 1 root root  276624 May 14 21:05 signal_selfcritique_gsm8k.json\\n-rw-r--r-- 1 root root 2934171 May 14 21:04 signal_selfcritique_mmlu.json\\n-rw-r--r-- 1 root root  239249 May 14 21:06 signals_merged_arc_challenge.json\\n-rw-r--r-- 1 root root  258901 May 14 21:05 signals_merged_gsm8k.json\\n-rw-r--r-- 1 root root 2756294 May 14 21:04 signals_merged_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "9aa086e9-45dc-4299-9e9a-35b22d27a8bb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16048\\\\ndrwxr-xr-x 2 root root    4096 May 14 21:06 .\\\\ndrwxr-xr-x 5 root root     151 May 14 21:29 ..\\\\n-rw-r--r-- 1 root root  515053 May 14 18:41 signal_embedding_arc_challenge.json\\\\n-rw-r--r-- 1 root root  567771 May 14 20:49 signal_embedding_gsm8k.json\\\\n-rw-r--r-- 1 root root 6093045 May 14 18:50 signal_embedding_mmlu.json\\\\n-rw-r--r-- 1 root root    2179 May 14 16:00 signal_embedding_mmlu_Qwen2.5-0.5B_d000_s42.json\\\\n-rw-r--r-- 1 root root  185943 May 14 21:05 signal_minkpp_arc_challenge.json\\\\n-rw-r--r-- 1 root root  199977 May 14 20:50 signal_minkpp_gsm8k.json\\\\n-rw-r--r-- 1 root root 2121205 May 14 18:55 signal_minkpp_mmlu.json\\\\n-rw-r--r-- 1 root root  254781 May 14 21:06 signal_selfcritique_arc_challenge.json\\\\n-rw-r--r-- 1 root root  276624 May 14 21:05 signal_selfcritique_gsm8k.json\\\\n-rw-r--r-- 1 root root 2934171 May 14 21:04 signal_selfcritique_mmlu.json\\\\n-rw-r--r-- 1 root root  239249 May 14 21:06 signals_merged_arc_challenge.json\\\\n-rw-r--r-- 1 root root  258901 May 14 21:05 signals_merged_gsm8k.json\\\\n-rw-r--r-- 1 root root 2756294 May 14 21:04 signals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 16048\\ndrwxr-xr-x 2 root root    4096 May 14 21:06 .\\ndrwxr-xr-x 5 root root     151 May 14 21:29 ..\\n-rw-r--r-- 1 root root  515053 May 14 18:41 signal_embedding_arc_challenge.json\\n-rw-r--r-- 1 root root  567771 May 14 20:49 signal_embedding_gsm8k.json\\n-rw-r--r-- 1 root root 6093045 May 14 18:50 signal_embedding_mmlu.json\\n-rw-r--r-- 1 root root    2179 May 14 16:00 signal_embedding_mmlu_Qwen2.5-0.5B_d000_s42.json\\n-rw-r--r-- 1 root root  185943 May 14 21:05 signal_minkpp_arc_challenge.json\\n-rw-r--r-- 1 root root  199977 May 14 20:50 signal_minkpp_gsm8k.json\\n-rw-r--r-- 1 root root 2121205 May 14 18:55 signal_minkpp_mmlu.json\\n-rw-r--r-- 1 root root  254781 May 14 21:06 signal_selfcritique_arc_challenge.json\\n-rw-r--r-- 1 root root  276624 May 14 21:05 signal_selfcritique_gsm8k.json\\n-rw-r--r-- 1 root root 2934171 May 14 21:04 signal_selfcritique_mmlu.json\\n-rw-r--r-- 1 root root  239249 May 14 21:06 signals_merged_arc_challenge.json\\n-rw-r--r-- 1 root root  258901 May 14 21:05 signals_merged_gsm8k.json\\n-rw-r--r-- 1 root root 2756294 May 14 21:04 signals_merged_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JL2PLVDQ1KrojMrQXuskWw`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "801e467b-0026-49d1-838e-f1b811b80cee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7VUhFXMXtJo11YRYxSs4g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14246,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14246
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T15:17:28.208Z_
+
+<details><summary>↩ Tool result · `toolu_01JL2PLVDQ1KrojMrQXuskWw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16016\\ndrwxr-xr-x 2 root root    4096 May 14 21:58 .\\ndrwxr-xr-x 5 root root     151 May 14 21:29 ..\\n-rw-r--r-- 1 root root  513223 May 14 21:56 signal_embedding_arc_challenge.json\\n-rw-r--r-- 1 root root  566915 May 14 21:52 signal_embedding_gsm8k.json\\n-rw-r--r-- 1 root root 6043238 May 14 21:33 signal_embedding_mmlu.json\\n-rw-r--r-- 1 root root  185963 May 14 21:57 signal_minkpp_arc_challenge.json\\n-rw-r--r-- 1 root root  199993 May 14 21:52 signal_minkpp_gsm8k.json\\n-rw-r--r-- 1 root root 2121519 May 14 21:39 signal_minkpp_mmlu.json\\n-rw-r--r-- 1 root root  256439 May 14 21:58 signal_selfcritique_arc_challenge.json\\n-rw-r--r-- 1 root root  276957 May 14 21:53 signal_selfcritique_gsm8k.json\\n-rw-r--r-- 1 root root 2952787 May 14 21:48 signal_selfcritique_mmlu.json\\n-rw-r--r-- 1 root root  239643 May 14 21:58 signals_merged_arc_challenge.json\\n-rw-r--r-- 1 root root  258969 May 14 21:53 signals_merged_gsm8k.json\\n-rw-r--r-- 1 root root 2758329 May 14 21:48 signals_merged_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "19799606-b6e1-4563-9d26-4c8d79750ecb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16016\\\\ndrwxr-xr-x 2 root root    4096 May 14 21:58 .\\\\ndrwxr-xr-x 5 root root     151 May 14 21:29 ..\\\\n-rw-r--r-- 1 root root  513223 May 14 21:56 signal_embedding_arc_challenge.json\\\\n-rw-r--r-- 1 root root  566915 May 14 21:52 signal_embedding_gsm8k.json\\\\n-rw-r--r-- 1 root root 6043238 May 14 21:33 signal_embedding_mmlu.json\\\\n-rw-r--r-- 1 root root  185963 May 14 21:57 signal_minkpp_arc_challenge.json\\\\n-rw-r--r-- 1 root root  199993 May 14 21:52 signal_minkpp_gsm8k.json\\\\n-rw-r--r-- 1 root root 2121519 May 14 21:39 signal_minkpp_mmlu.json\\\\n-rw-r--r-- 1 root root  256439 May 14 21:58 signal_selfcritique_arc_challenge.json\\\\n-rw-r--r-- 1 root root  276957 May 14 21:53 signal_selfcritique_gsm8k.json\\\\n-rw-r--r-- 1 root root 2952787 May 14 21:48 signal_selfcritique_mmlu.json\\\\n-rw-r--r-- 1 root root  239643 May 14 21:58 signals_merged_arc_challenge.json\\\\n-rw-r--r-- 1 root root  258969 May 14 21:53 signals_merged_gsm8k.json\\\\n-rw-r--r-- 1 root root 2758329 May 14 21:48 signals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 16016\\ndrwxr-xr-x 2 root root    4096 May 14 21:58 .\\ndrwxr-xr-x 5 root root     151 May 14 21:29 ..\\n-rw-r--r-- 1 root root  513223 May 14 21:56 signal_embedding_arc_challenge.json\\n-rw-r--r-- 1 root root  566915 May 14 21:52 signal_embedding_gsm8k.json\\n-rw-r--r-- 1 root root 6043238 May 14 21:33 signal_embedding_mmlu.json\\n-rw-r--r-- 1 root root  185963 May 14 21:57 signal_minkpp_arc_challenge.json\\n-rw-r--r-- 1 root root  199993 May 14 21:52 signal_minkpp_gsm8k.json\\n-rw-r--r-- 1 root root 2121519 May 14 21:39 signal_minkpp_mmlu.json\\n-rw-r--r-- 1 root root  256439 May 14 21:58 signal_selfcritique_arc_challenge.json\\n-rw-r--r-- 1 root root  276957 May 14 21:53 signal_selfcritique_gsm8k.json\\n-rw-r--r-- 1 root root 2952787 May 14 21:48 signal_selfcritique_mmlu.json\\n-rw-r--r-- 1 root root  239643 May 14 21:58 signals_merged_arc_challenge.json\\n-rw-r--r-- 1 root root  258969 May 14 21:53 signals_merged_gsm8k.json\\n-rw-r--r-- 1 root root 2758329 May 14 21:48 signals_merged_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01X9kczQL13ZzZaarm2k8Rb1`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "331f64ed-5224-4d62-a4a6-ef78090e559a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7VUhFXMXtJo11YRYxSs4g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14246,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14246
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T15:17:29.047Z_
+
+<details><summary>↩ Tool result · `toolu_01X9kczQL13ZzZaarm2k8Rb1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16048\\ndrwxr-xr-x 2 root root    4096 May 14 21:29 .\\ndrwxr-xr-x 5 root root     151 May 14 21:29 ..\\n-rw-r--r-- 1 root root  514645 May 14 21:27 signal_embedding_arc_challenge.json\\n-rw-r--r-- 1 root root  567631 May 14 21:23 signal_embedding_gsm8k.json\\n-rw-r--r-- 1 root root 6077177 May 14 18:45 signal_embedding_mmlu.json\\n-rw-r--r-- 1 root root  185939 May 14 21:28 signal_minkpp_arc_challenge.json\\n-rw-r--r-- 1 root root  200053 May 14 21:24 signal_minkpp_gsm8k.json\\n-rw-r--r-- 1 root root 2121481 May 14 21:12 signal_minkpp_mmlu.json\\n-rw-r--r-- 1 root root  256587 May 14 21:29 signal_selfcritique_arc_challenge.json\\n-rw-r--r-- 1 root root  276365 May 14 21:25 signal_selfcritique_gsm8k.json\\n-rw-r--r-- 1 root root 2952548 May 14 21:20 signal_selfcritique_mmlu.json\\n-rw-r--r-- 1 root root  239694 May 14 21:29 signals_merged_arc_challenge.json\\n-rw-r--r-- 1 root root  258884 May 14 21:25 signals_merged_gsm8k.json\\n-rw-r--r-- 1 root root 2759581 May 14 21:20 signals_merged_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "0b1b66e0-22e9-47c6-a625-83b382ccc21e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16048\\\\ndrwxr-xr-x 2 root root    4096 May 14 21:29 .\\\\ndrwxr-xr-x 5 root root     151 May 14 21:29 ..\\\\n-rw-r--r-- 1 root root  514645 May 14 21:27 signal_embedding_arc_challenge.json\\\\n-rw-r--r-- 1 root root  567631 May 14 21:23 signal_embedding_gsm8k.json\\\\n-rw-r--r-- 1 root root 6077177 May 14 18:45 signal_embedding_mmlu.json\\\\n-rw-r--r-- 1 root root  185939 May 14 21:28 signal_minkpp_arc_challenge.json\\\\n-rw-r--r-- 1 root root  200053 May 14 21:24 signal_minkpp_gsm8k.json\\\\n-rw-r--r-- 1 root root 2121481 May 14 21:12 signal_minkpp_mmlu.json\\\\n-rw-r--r-- 1 root root  256587 May 14 21:29 signal_selfcritique_arc_challenge.json\\\\n-rw-r--r-- 1 root root  276365 May 14 21:25 signal_selfcritique_gsm8k.json\\\\n-rw-r--r-- 1 root root 2952548 May 14 21:20 signal_selfcritique_mmlu.json\\\\n-rw-r--r-- 1 root root  239694 May 14 21:29 signals_merged_arc_challenge.json\\\\n-rw-r--r-- 1 root root  258884 May 14 21:25 signals_merged_gsm8k.json\\\\n-rw-r--r-- 1 root root 2759581 May 14 21:20 signals_merged_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 16048\\ndrwxr-xr-x 2 root root    4096 May 14 21:29 .\\ndrwxr-xr-x 5 root root     151 May 14 21:29 ..\\n-rw-r--r-- 1 root root  514645 May 14 21:27 signal_embedding_arc_challenge.json\\n-rw-r--r-- 1 root root  567631 May 14 21:23 signal_embedding_gsm8k.json\\n-rw-r--r-- 1 root root 6077177 May 14 18:45 signal_embedding_mmlu.json\\n-rw-r--r-- 1 root root  185939 May 14 21:28 signal_minkpp_arc_challenge.json\\n-rw-r--r-- 1 root root  200053 May 14 21:24 signal_minkpp_gsm8k.json\\n-rw-r--r-- 1 root root 2121481 May 14 21:12 signal_minkpp_mmlu.json\\n-rw-r--r-- 1 root root  256587 May 14 21:29 signal_selfcritique_arc_challenge.json\\n-rw-r--r-- 1 root root  276365 May 14 21:25 signal_selfcritique_gsm8k.json\\n-rw-r--r-- 1 root root 2952548 May 14 21:20 signal_selfcritique_mmlu.json\\n-rw-r--r-- 1 root root  239694 May 14 21:29 signals_merged_arc_challenge.json\\n-rw-r--r-- 1 root root  258884 May 14 21:25 signals_merged_gsm8k.json\\n-rw-r--r-- 1 root root 2759581 May 14 21:20 signals_merged_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C1g8VbqD61c5Ug51dpafRv`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp002/ -name \"labels_*\" -o -name \"contamination_labels*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "78f55206-a712-42fd-a954-f873f540d93b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7VUhFXMXtJo11YRYxSs4g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14246,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14246
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T15:17:29.889Z_
+
+<details><summary>↩ Tool result · `toolu_01C1g8VbqD61c5Ug51dpafRv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "45fdc112-55cc-4d59-a420-544d301e8a79",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RbBNyC5iuzN5BXTpibAZH8`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -5 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_mmlu.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "d5ffb6fc-e553-460e-9f9d-20ebe7235718",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7VUhFXMXtJo11YRYxSs4g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14246,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14246
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T15:17:31.284Z_
+
+<details><summary>↩ Tool result · `toolu_01RbBNyC5iuzN5BXTpibAZH8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": 0,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.9028400778770447,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "d0f12158-0247-440c-b575-ee3410695341",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 0,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.9028400778770447,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": 0,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.9028400778770447,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QCg5HPip2UC3kZK7VCUwUN`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -name \"labels_*\" -o -name \"contamination_labels*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "8a12adc9-2eb7-4de4-b3dd-e822922a9c9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D7VUhFXMXtJo11YRYxSs4g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14246,
+      "cache_read_input_tokens": 27779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14246
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T15:17:31.828Z_
+
+<details><summary>↩ Tool result · `toolu_01QCg5HPip2UC3kZK7VCUwUN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "ea1fc657-b9f1-4adf-bb40-3d26d417a078",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings so far:
+
+1. **exp-002 signals**: All 3 dosages (d000, d005, d100) have signals for all 3 benchmarks (mmlu, gsm8k, arc_challenge). Each has both individual signal files (embedding, minkpp, selfcritique) AND merged files. No `s3_constat` signal files found though.
+
+2. **Labels**: No labels files found anywhere. This is a critical missing input!
+
+3. **Signal format**: Records contain `index`, `benchmark`, and signal values (s1_embedding, etc.)
+
+Now let me look at the truncated code parts. 
+
+The survival analysis scripts are incomplete in what I can see, but I notice the v3 version expects labels in a specific directory structure with `labels_{benchmark}.json` files, while v2 uses a single `--labels-file` argument. The real blocker here is figuring out where the contamination labels actually come from—they should be generated during the contamination injection process in exp-001, so I need to check if they're stored somewhere else in the pipeline.
+
+Looking at the four model regimes, I'm realizing a critical gap: exp-002 only computed signals for the SFT models (d000, d005, d100), but exp-008 needs signals for the base model and the RL-Instruct variant too, which don't exist yet. Either the code handles missing signals gracefully, or I'm misunderstanding what exp-002 actually produced. marks. The 4 regimes for exp-008 are base, SFT-clean (d000), SFT-contam (d100), RL (Instruct).
+
+So exp-008 needs signals for ALL 4 regimes. Currently only d000, d005, d100 (SFT models) have signals. base and RL (Instruct) signals haven't been computed.
+
+Wait, actually let me re-check. The signals in exp-002 were computed by running each signal pipeline on each model. The signals measure contamination detection capability of each signal on each model. So:
+- d000 signals: signals computed on the clean-SFT model
+- d100 signals: signals computed on the contaminated-SFT model
+
+For the survival analysis, we need to run the same signal pipelines on base model and RL model too. That would require GPU computation.
+
+But the task notes exp-008 is a CPU experiment, so maybe it doesn't need to compute new signals—it just analyzes existing ones? Let me check what the signal_survival script actually does. It loads signals from regime directories and computes AUROC comparing contaminated vs clean items, checking how well signals discriminate between them across different regimes. For this to work, I need signal values for each item under each regime plus contamination labels. The exp-002 signals only cover the three SFT models, so for a 4-regime analysis spanning base through RL, I'd need signals computed on those additional models too.
+
+Unless the approach is different. Maybe exp-008 only uses a subset of regimes, or there's a way to run without computing new signals. Let me check if the v2 runner has a legacy 2-regime mode that might work with just the existing signals, and also look for any base or Instruct model signals I might have missed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "d0d3a20c-c740-4e7c-a78c-313279d8e6ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F5LXLAsjMwYykfjMs8M7SX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3420,
+      "cache_read_input_tokens": 42025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3420
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+发现关键问题：没有找到 labels 文件。需要进一步检查。继续搜索 labels 和检查截断的代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "2b0d61a2-5a0f-42c4-bea7-382ad9baa43e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F5LXLAsjMwYykfjMs8M7SX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3420,
+      "cache_read_input_tokens": 42025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3420
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01JRJnib98F1CTzQwrCFp95G`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "SSH读取exp008/所有4个文件代码",
+      "status": "completed",
+      "activeForm": "读取exp008代码文件"
+    },
+    {
+      "content": "检查exp-002信号输出文件是否存在且非空",
+      "status": "in_progress",
+      "activeForm": "检查exp-002信号输出"
+    },
+    {
+      "content": "审查代码：输入路径对齐、逻辑正确性、依赖分析",
+      "status": "pending",
+      "activeForm": "审查代码逻辑和路径"
+    },
+    {
+      "content": "确认是否纯CPU、是否需要额外输入",
+      "status": "pending",
+      "activeForm": "分析运行依赖"
+    },
+    {
+      "content": "执行dry-run或准备提交命令",
+      "status": "pending",
+      "activeForm": "执行或准备命令"
+    },
+    {
+      "content": "汇报结果",
+      "status": "pending",
+      "activeForm": "汇报审查结果"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "2bea18ad-d890-48f1-a080-c19b62fee906",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F5LXLAsjMwYykfjMs8M7SX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3420,
+      "cache_read_input_tokens": 42025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3420
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T15:18:04.677Z_
+
+<details><summary>↩ Tool result · `toolu_01JRJnib98F1CTzQwrCFp95G`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "f531367e-4150-4326-bbad-23aacd8d7b49",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "SSH读取exp008/所有4个文件代码",
+        "status": "in_progress",
+        "activeForm": "读取exp008代码文件"
+      },
+      {
+        "content": "检查exp-002信号输出文件是否存在且非空",
+        "status": "pending",
+        "activeForm": "检查exp-002信号输出"
+      },
+      {
+        "content": "审查代码：输入路径对齐、逻辑正确性、依赖分析",
+        "status": "pending",
+        "activeForm": "审查代码逻辑和路径"
+      },
+      {
+        "content": "确认是否纯CPU、是否需要额外输入",
+        "status": "pending",
+        "activeForm": "分析运行依赖"
+      },
+      {
+        "content": "执行dry-run或准备提交命令",
+        "status": "pending",
+        "activeForm": "执行或准备命令"
+      },
+      {
+        "content": "汇报结果",
+        "status": "pending",
+        "activeForm": "汇报审查结果"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "SSH读取exp008/所有4个文件代码",
+        "status": "completed",
+        "activeForm": "读取exp008代码文件"
+      },
+      {
+        "content": "检查exp-002信号输出文件是否存在且非空",
+        "status": "in_progress",
+        "activeForm": "检查exp-002信号输出"
+      },
+      {
+        "content": "审查代码：输入路径对齐、逻辑正确性、依赖分析",
+        "status": "pending",
+        "activeForm": "审查代码逻辑和路径"
+      },
+      {
+        "content": "确认是否纯CPU、是否需要额外输入",
+        "status": "pending",
+        "activeForm": "分析运行依赖"
+      },
+      {
+        "content": "执行dry-run或准备提交命令",
+        "status": "pending",
+        "activeForm": "执行或准备命令"
+      },
+      {
+        "content": "汇报结果",
+        "status": "pending",
+        "activeForm": "汇报审查结果"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FhxMx9WKJhPWXjrv5PLbvd`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -name \"labels*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "ff67832e-6060-4692-b524-2eab4c39055a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1HqN8PqV4D8TujBTDrwiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1841,
+      "cache_read_input_tokens": 45445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1841
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T15:18:09.281Z_
+
+<details><summary>↩ Tool result · `toolu_01FhxMx9WKJhPWXjrv5PLbvd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "ffb76b94-bc38-4c14-8e82-826a762189b2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CZZ14ksTMfeBKSJjvNR18N`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/ -name \"labels*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "1fcea3da-f47e-4532-849f-82e72c2f4a5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1HqN8PqV4D8TujBTDrwiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1841,
+      "cache_read_input_tokens": 45445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1841
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T15:18:10.389Z_
+
+<details><summary>↩ Tool result · `toolu_01CZZ14ksTMfeBKSJjvNR18N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "c672911b-6d2a-4bfd-ba54-2b2eb1c5ea70",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GuEVfJGZmkafuX9gX6pxxg`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -3 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_mmlu.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "ee80353a-45c3-4882-bf20-3920e5ed9d9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1HqN8PqV4D8TujBTDrwiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1841,
+      "cache_read_input_tokens": 45445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1841
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T15:18:12.179Z_
+
+<details><summary>↩ Tool result · `toolu_01GuEVfJGZmkafuX9gX6pxxg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": 0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "607335b3-3f82-498e-b832-eb3cbf4acb7f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": 0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019Rba4P4ZBV5oF1RMUpmFPS`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_mmlu.json')); print(list(d[0].keys())); print(len(d))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "b7a0fd46-e52f-4181-a336-e554d360222e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1HqN8PqV4D8TujBTDrwiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1841,
+      "cache_read_input_tokens": 45445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1841
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T15:18:13.226Z_
+
+<details><summary>↩ Tool result · `toolu_019Rba4P4ZBV5oF1RMUpmFPS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "b8196b9a-1192-4876-977c-ff7d2e26a72d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CQdLh1CKNbmEmJd7iZkQRN`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp001/ -name \"*contam*\" -o -name \"*dosage*\" -o -name \"*inject*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "3cd8cb0f-6b64-4de4-a7a3-71fd047d3eb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1HqN8PqV4D8TujBTDrwiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1841,
+      "cache_read_input_tokens": 45445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1841
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T15:18:14.602Z_
+
+<details><summary>↩ Tool result · `toolu_01CQdLh1CKNbmEmJd7iZkQRN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d005.json\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d025.json\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_050.jsonl\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d050.json\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d100.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d100.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_005.jsonl\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_025.jsonl\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_050.jsonl\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_100.jsonl\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d100.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "a573a37e-049f-4837-b26a-fec96e09d792",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d005.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d005.json\\\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d025.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d025.json\\\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_050.jsonl\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d050.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d050.json\\\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d100.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d100.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d005.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d025.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d050.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_005.jsonl\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d005.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d005.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d005.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d005.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_025.jsonl\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d025.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d025.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d025.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d025.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_050.jsonl\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d050.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d050.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d050.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d050.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_100.jsonl\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d100.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d100.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d100.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d100.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d005.json\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d025.json\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_050.jsonl\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d050.json\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d100.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d100.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_005.jsonl\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_025.jsonl\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_050.jsonl\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/sft_dosage_100.jsonl\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d100.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YbWv4JCSwENEnUgDYAdCrP`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/contamcal-irt-calibration/exp008/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "e376c833-1a95-434a-b42b-5c2b347858b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1HqN8PqV4D8TujBTDrwiM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1841,
+      "cache_read_input_tokens": 45445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1841
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T15:18:15.243Z_
+
+<details><summary>↩ Tool result · `toolu_01YbWv4JCSwENEnUgDYAdCrP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nexp008_output\\nplot_survival.py\\nrun_exp008.sh\\nrun_exp008.sh.bak\\nrun_signal_survival.py\\nsignal_survival.py\\nsignal_survival_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "ef47bde3-9219-428a-b391-27feb44fa302",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nexp008_output\\\\nplot_survival.py\\\\nrun_exp008.sh\\\\nrun_exp008.sh.bak\\\\nrun_signal_survival.py\\\\nsignal_survival.py\\\\nsignal_survival_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nexp008_output\\nplot_survival.py\\nrun_exp008.sh\\nrun_exp008.sh.bak\\nrun_signal_survival.py\\nsignal_survival.py\\nsignal_survival_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings:
+
+1. **Labels exist** at `/root/autodl-tmp/exp001/sft_data/contamination_labels_{benchmark}_d{dosage}.json` — but these are dosage-specific labels. For survival analysis we probably want the d100 labels (since d100 = 100% contamination).
+
+2. **No d000 labels** — d000 is clean (0% contamination), so there are no contamination labels for it (all items would be labeled 0).
+
+3. There are also labels in `sft_data_qc_filtered/`.
+
+
+4. I need to check the run_exp008.sh script and see what's already in the exp008_output directory.
+5. The merged signal files should contain keys like index, benchmark, s1_embedding, s2_minkpp, and s4_selfcritique based on what I've seen in the d000 files.
+6. I also need to look at the truncated parts of signal_survival.py to understand what's missing.
+
+Now I'm realizing the 4-regime design (base → SFT-clean → SFT-contam → RL) has a problem: signals were only computed for the three SFT checkpoints in exp-002, not for the base or RL models. So exp-008 might actually be set up to work with just the three available dosages instead. Let me check the run_exp008.sh script to see how it's configured.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "303e7644-59fc-4569-9712-7799c2265d13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3WmsLJUTVYpdW2PPRqNZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2554,
+      "cache_read_input_tokens": 47286,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+找到 labels 在 exp001/sft_data/ 里。还有 run_exp008.sh 和已有输出目录。继续检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "6fcd5f35-c049-4d6a-8111-0548d39bda1b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3WmsLJUTVYpdW2PPRqNZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2554,
+      "cache_read_input_tokens": 47286,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BFhbYd5GjJ7nyVqgWSEtG9`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp008/run_exp008.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "aa886a2d-4772-4e84-b3c4-d997da1346c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3WmsLJUTVYpdW2PPRqNZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2554,
+      "cache_read_input_tokens": 47286,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-14T15:18:32.672Z_
+
+<details><summary>↩ Tool result · `toolu_01BFhbYd5GjJ7nyVqgWSEtG9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -euo pipefail\\n\\nGPUS=\\\"${1:?Usage: bash run_exp008.sh GPU_IDS (e.g. 1,4,5)}\\\"\\n\\n# === Paths ===\\nBASE_MODEL=\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\"\\nINSTRUCT_MODEL=\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\\\"\\nD000_ADAPTER=\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\\\"\\nD005_ADAPTER=\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter\\\"  # d005: mixed 0/1 labels, AUC computable\\nSFT_DATA=\\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\"\\nLABELS_DIR=\\\"/root/autodl-tmp/exp001/sft_data\\\"\\n\\nOUTPUT_BASE=\\\"/root/autodl-tmp/exp008\\\"\\nSIGNALS_DIR=\\\"${OUTPUT_BASE}/signals\\\"\\nRESULTS_DIR=\\\"${OUTPUT_BASE}/results\\\"\\n\\nBENCHMARKS=(mmlu gsm8k arc_challenge)\\nSIGNALS=\\\"embedding minkpp selfcritique\\\"\\n\\nSCRIPT_DIR=\\\"$(cd \\\"$(dirname \\\"$0\\\")\\\" && pwd)\\\"\\nCOMPUTE_SCRIPT=\\\"${SCRIPT_DIR}/../exp002/compute_signals.py\\\"\\nSURVIVAL_SCRIPT=\\\"${SCRIPT_DIR}/run_signal_survival.py\\\"\\n\\n# === Environment ===\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport CUDA_VISIBLE_DEVICES=\\\"$GPUS\\\"\\n\\n# === Regime definitions ===\\ndeclare -A REGIME_MODEL\\nREGIME_MODEL[base]=\\\"$BASE_MODEL\\\"\\nREGIME_MODEL[sft_clean]=\\\"$D000_ADAPTER\\\"\\nREGIME_MODEL[sft_contam]=\\\"$D005_ADAPTER\\\"\\nREGIME_MODEL[rl_aligned]=\\\"$INSTRUCT_MODEL\\\"\\nREGIMES=(base sft_clean sft_contam rl_aligned)\\n\\necho \\\"=== exp-008 Signal Survival ===\\\"\\necho \\\"GPUs: $GPUS | Benchmarks: ${BENCHMARKS[*]} | Signals: $SIGNALS\\\"\\necho \\\"Regimes: ${REGIMES[*]}\\\"\\necho \\\"\\\"\\n\\n# === Step 0: Convert labels to {index: 0/1} format ===\\nmkdir -p \\\"${OUTPUT_BASE}/labels\\\"\\nfor bench in \\\"${BENCHMARKS[@]}\\\"; do\\n    SRC=\\\"${LABELS_DIR}/contamination_labels_${bench}_d005.json\\\"\\n    DST=\\\"${OUTPUT_BASE}/labels/labels_${bench}.json\\\"\\n    if [ -f \\\"$DST\\\" ]; then\\n        echo \\\"[SKIP] labels ${bench} — already converted\\\"\\n        continue\\n    fi\\n    python3 -c \\\"\\nimport json, sys\\nwith open(sys.argv[1]) as f: raw = json.load(f)\\nlabels = {str(i): v for i, v in enumerate(raw['labels'])}\\nwith open(sys.argv[2], 'w') as f: json.dump(labels, f)\\nprint(f'Converted {len(labels)} labels for {sys.argv[3]}')\\n\\\" \\\"$SRC\\\" \\\"$DST\\\" \\\"$bench\\\"\\ndone\\necho \\\"\\\"\\n\\n# === Step 1: Compute signals for each regime x benchmark ===\\nfor regime in \\\"${REGIMES[@]}\\\"; do\\n    for bench in \\\"${BENCHMARKS[@]}\\\"; do\\n        OUT=\\\"${SIGNALS_DIR}/${regime}/${bench}\\\"\\n        mkdir -p \\\"$OUT\\\"\\n\\n        if ls \\\"${OUT}\\\"/signals_merged_*.json 1>/dev/null 2>&1; then\\n            echo \\\"[SKIP] ${regime}/${bench} — merged signals exist\\\"\\n            continue\\n        fi\\n\\n        echo \\\"[RUN] compute_signals: regime=${regime} benchmark=${bench}\\\"\\n        CMD=(python \\\"$COMPUTE_SCRIPT\\\"\\n            --model-path \\\"${REGIME_MODEL[$regime]}\\\"\\n            --benchmark \\\"$bench\\\"\\n            --ref-model-path \\\"$BASE_MODEL\\\"\\n            --sft-data-path \\\"$SFT_DATA\\\"\\n            --output-dir \\\"$OUT\\\"\\n            --signals $SIGNALS)\\n\\n        \\\"${CMD[@]}\\\"\\n        echo \\\"[DONE] ${regime}/${bench}\\\"\\n        echo \\\"\\\"\\n    done\\ndone\\n\\n# === Step 2: Signal survival analysis per benchmark ===\\nmkdir -p \\\"$RESULTS_DIR\\\"\\nfor bench in \\\"${BENCHMARKS[@]}\\\"; do\\n    echo \\\"[RUN] signal_survival: benchmark=${bench}\\\"\\n\\n    REGIME_ARGS=()\\n    for regime in \\\"${REGIMES[@]}\\\"; do\\n        REGIME_ARGS+=(\\\"${regime}=${SIGNALS_DIR}/${regime}/${bench}\\\")\\n    done\\n\\n    python \\\"$SURVIVAL_SCRIPT\\\" \\\\\\n        --regime-dirs \\\"${REGIME_ARGS[@]}\\\" \\\\\\n        --labels-file \\\"${OUTPUT_BASE}/labels/labels_${bench}.json\\\" \\\\\\n        --output-dir \\\"${RESULTS_DIR}/${bench}\\\"\\n\\n    echo \\\"[DONE] signal_survival: ${bench}\\\"\\n    echo \\\"\\\"\\ndone\\n\\necho \\\"=== All done. Results: ${RESULTS_DIR} ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "250621f8-1934-4e13-bbcd-b7f25192da0b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -euo pipefail\\\\n\\\\nGPUS=\\\\\\\"${1:?Usage: bash run_exp008.sh GPU_IDS (e.g. 1,4,5)}\\\\\\\"\\\\n\\\\n# === Paths ===\\\\nBASE_MODEL=\\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\\\\"\\\\nINSTRUCT_MODEL=\\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\\\\\\\"\\\\nD000_ADAPTER=\\\\\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\\\\\\\"\\\\nD005_ADAPTER=\\\\\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter\\\\\\\"  # d005: mixed 0/1 labels, AUC computable\\\\nSFT_DATA=\\\\\\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\\\\\"\\\\nLABELS_DIR=\\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\n\\\\nOUTPUT_BASE=\\\\\\\"/root/autodl-tmp/exp008\\\\\\\"\\\\nSIGNALS_DIR=\\\\\\\"${OUTPUT_BASE}/signals\\\\\\\"\\\\nRESULTS_DIR=\\\\\\\"${OUTPUT_BASE}/results\\\\\\\"\\\\n\\\\nBENCHMARKS=(mmlu gsm8k arc_challenge)\\\\nSIGNALS=\\\\\\\"embedding minkpp selfcritique\\\\\\\"\\\\n\\\\nSCRIPT_DIR=\\\\\\\"$(cd \\\\\\\"$(dirname \\\\\\\"$0\\\\\\\")\\\\\\\" && pwd)\\\\\\\"\\\\nCOMPUTE_SCRIPT=\\\\\\\"${SCRIPT_DIR}/../exp002/compute_signals.py\\\\\\\"\\\\nSURVIVAL_SCRIPT=\\\\\\\"${SCRIPT_DIR}/run_signal_survival.py\\\\\\\"\\\\n\\\\n# === Environment ===\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport CUDA_VISIBLE_DEVICES=\\\\\\\"$GPUS\\\\\\\"\\\\n\\\\n# === Regime definitions ===\\\\ndeclare -A REGIME_MODEL\\\\nREGIME_MODEL[base]=\\\\\\\"$BASE_MODEL\\\\\\\"\\\\nREGIME_MODEL[sft_clean]=\\\\\\\"$D000_ADAPTER\\\\\\\"\\\\nREGIME_MODEL[sft_contam]=\\\\\\\"$D005_ADAPTER\\\\\\\"\\\\nREGIME_MODEL[rl_aligned]=\\\\\\\"$INSTRUCT_MODEL\\\\\\\"\\\\nREGIMES=(base sft_clean sft_contam rl_aligned)\\\\n\\\\necho \\\\\\\"=== exp-008 Signal Survival ===\\\\\\\"\\\\necho \\\\\\\"GPUs: $GPUS | Benchmarks: ${BENCHMARKS[*]} | Signals: $SIGNALS\\\\\\\"\\\\necho \\\\\\\"Regimes: ${REGIMES[*]}\\\\\\\"\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\n# === Step 0: Convert labels to {index: 0/1} format ===\\\\nmkdir -p \\\\\\\"${OUTPUT_BASE}/labels\\\\\\\"\\\\nfor bench in \\\\\\\"${BENCHMARKS[@]}\\\\\\\"; do\\\\n    SRC=\\\\\\\"${LABELS_DIR}/contamination_labels_${bench}_d005.json\\\\\\\"\\\\n    DST=\\\\\\\"${OUTPUT_BASE}/labels/labels_${bench}.json\\\\\\\"\\\\n    if [ -f \\\\\\\"$DST\\\\\\\" ]; then\\\\n        echo \\\\\\\"[SKIP] labels ${bench} — already converted\\\\\\\"\\\\n        continue\\\\n    fi\\\\n    python3 -c \\\\\\\"\\\\nimport json, sys\\\\nwith open(sys.argv[1]) as f: raw = json.load(f)\\\\nlabels = {str(i): v for i, v in enumerate(raw['labels'])}\\\\nwith open(sys.argv[2], 'w') as f: json.dump(labels, f)\\\\nprint(f'Converted {len(labels)} labels for {sys.argv[3]}')\\\\n\\\\\\\" \\\\\\\"$SRC\\\\\\\" \\\\\\\"$DST\\\\\\\" \\\\\\\"$bench\\\\\\\"\\\\ndone\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\n# === Step 1: Compute signals for each regime x benchmark ===\\\\nfor regime in \\\\\\\"${REGIMES[@]}\\\\\\\"; do\\\\n    for bench in \\\\\\\"${BENCHMARKS[@]}\\\\\\\"; do\\\\n        OUT=\\\\\\\"${SIGNALS_DIR}/${regime}/${bench}\\\\\\\"\\\\n        mkdir -p \\\\\\\"$OUT\\\\\\\"\\\\n\\\\n        if ls \\\\\\\"${OUT}\\\\\\\"/signals_merged_*.json 1>/dev/null 2>&1; then\\\\n            echo \\\\\\\"[SKIP] ${regime}/${bench} — merged signals exist\\\\\\\"\\\\n            continue\\\\n        fi\\\\n\\\\n        echo \\\\\\\"[RUN] compute_signals: regime=${regime} benchmark=${bench}\\\\\\\"\\\\n        CMD=(python \\\\\\\"$COMPUTE_SCRIPT\\\\\\\"\\\\n            --model-path \\\\\\\"${REGIME_MODEL[$regime]}\\\\\\\"\\\\n            --benchmark \\\\\\\"$bench\\\\\\\"\\\\n            --ref-model-path \\\\\\\"$BASE_MODEL\\\\\\\"\\\\n            --sft-data-path \\\\\\\"$SFT_DATA\\\\\\\"\\\\n            --output-dir \\\\\\\"$OUT\\\\\\\"\\\\n            --signals $SIGNALS)\\\\n\\\\n        \\\\\\\"${CMD[@]}\\\\\\\"\\\\n        echo \\\\\\\"[DONE] ${regime}/${bench}\\\\\\\"\\\\n        echo \\\\\\\"\\\\\\\"\\\\n    done\\\\ndone\\\\n\\\\n# === Step 2: Signal survival analysis per benchmark ===\\\\nmkdir -p \\\\\\\"$RESULTS_DIR\\\\\\\"\\\\nfor bench in \\\\\\\"${BENCHMARKS[@]}\\\\\\\"; do\\\\n    echo \\\\\\\"[RUN] signal_survival: benchmark=${bench}\\\\\\\"\\\\n\\\\n    REGIME_ARGS=()\\\\n    for regime in \\\\\\\"${REGIMES[@]}\\\\\\\"; do\\\\n        REGIME_ARGS+=(\\\\\\\"${regime}=${SIGNALS_DIR}/${regime}/${bench}\\\\\\\")\\\\n    done\\\\n\\\\n    python \\\\\\\"$SURVIVAL_SCRIPT\\\\\\\" \\\\\\\\\\\\n        --regime-dirs \\\\\\\"${REGIME_ARGS[@]}\\\\\\\" \\\\\\\\\\\\n        --labels-file \\\\\\\"${OUTPUT_BASE}/labels/labels_${bench}.json\\\\\\\" \\\\\\\\\\\\n        --output-dir \\\\\\\"${RESULTS_DIR}/${bench}\\\\\\\"\\\\n\\\\n    echo \\\\\\\"[DONE] signal_survival: ${bench}\\\\\\\"\\\\n    echo \\\\\\\"\\\\\\\"\\\\ndone\\\\n\\\\necho \\\\\\\"=== All done. Results: ${RESULTS_DIR} ===\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -euo pipefail\\n\\nGPUS=\\\"${1:?Usage: bash run_exp008.sh GPU_IDS (e.g. 1,4,5)}\\\"\\n\\n# === Paths ===\\nBASE_MODEL=\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\"\\nINSTRUCT_MODEL=\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\\\"\\nD000_ADAPTER=\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\\\"\\nD005_ADAPTER=\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter\\\"  # d005: mixed 0/1 labels, AUC computable\\nSFT_DATA=\\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\"\\nLABELS_DIR=\\\"/root/autodl-tmp/exp001/sft_data\\\"\\n\\nOUTPUT_BASE=\\\"/root/autodl-tmp/exp008\\\"\\nSIGNALS_DIR=\\\"${OUTPUT_BASE}/signals\\\"\\nRESULTS_DIR=\\\"${OUTPUT_BASE}/results\\\"\\n\\nBENCHMARKS=(mmlu gsm8k arc_challenge)\\nSIGNALS=\\\"embedding minkpp selfcritique\\\"\\n\\nSCRIPT_DIR=\\\"$(cd \\\"$(dirname \\\"$0\\\")\\\" && pwd)\\\"\\nCOMPUTE_SCRIPT=\\\"${SCRIPT_DIR}/../exp002/compute_signals.py\\\"\\nSURVIVAL_SCRIPT=\\\"${SCRIPT_DIR}/run_signal_survival.py\\\"\\n\\n# === Environment ===\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport CUDA_VISIBLE_DEVICES=\\\"$GPUS\\\"\\n\\n# === Regime definitions ===\\ndeclare -A REGIME_MODEL\\nREGIME_MODEL[base]=\\\"$BASE_MODEL\\\"\\nREGIME_MODEL[sft_clean]=\\\"$D000_ADAPTER\\\"\\nREGIME_MODEL[sft_contam]=\\\"$D005_ADAPTER\\\"\\nREGIME_MODEL[rl_aligned]=\\\"$INSTRUCT_MODEL\\\"\\nREGIMES=(base sft_clean sft_contam rl_aligned)\\n\\necho \\\"=== exp-008 Signal Survival ===\\\"\\necho \\\"GPUs: $GPUS | Benchmarks: ${BENCHMARKS[*]} | Signals: $SIGNALS\\\"\\necho \\\"Regimes: ${REGIMES[*]}\\\"\\necho \\\"\\\"\\n\\n# === Step 0: Convert labels to {index: 0/1} format ===\\nmkdir -p \\\"${OUTPUT_BASE}/labels\\\"\\nfor bench in \\\"${BENCHMARKS[@]}\\\"; do\\n    SRC=\\\"${LABELS_DIR}/contamination_labels_${bench}_d005.json\\\"\\n    DST=\\\"${OUTPUT_BASE}/labels/labels_${bench}.json\\\"\\n    if [ -f \\\"$DST\\\" ]; then\\n        echo \\\"[SKIP] labels ${bench} — already converted\\\"\\n        continue\\n    fi\\n    python3 -c \\\"\\nimport json, sys\\nwith open(sys.argv[1]) as f: raw = json.load(f)\\nlabels = {str(i): v for i, v in enumerate(raw['labels'])}\\nwith open(sys.argv[2], 'w') as f: json.dump(labels, f)\\nprint(f'Converted {len(labels)} labels for {sys.argv[3]}')\\n\\\" \\\"$SRC\\\" \\\"$DST\\\" \\\"$bench\\\"\\ndone\\necho \\\"\\\"\\n\\n# === Step 1: Compute signals for each regime x benchmark ===\\nfor regime in \\\"${REGIMES[@]}\\\"; do\\n    for bench in \\\"${BENCHMARKS[@]}\\\"; do\\n        OUT=\\\"${SIGNALS_DIR}/${regime}/${bench}\\\"\\n        mkdir -p \\\"$OUT\\\"\\n\\n        if ls \\\"${OUT}\\\"/signals_merged_*.json 1>/dev/null 2>&1; then\\n            echo \\\"[SKIP] ${regime}/${bench} — merged signals exist\\\"\\n            continue\\n        fi\\n\\n        echo \\\"[RUN] compute_signals: regime=${regime} benchmark=${bench}\\\"\\n        CMD=(python \\\"$COMPUTE_SCRIPT\\\"\\n            --model-path \\\"${REGIME_MODEL[$regime]}\\\"\\n            --benchmark \\\"$bench\\\"\\n            --ref-model-path \\\"$BASE_MODEL\\\"\\n            --sft-data-path \\\"$SFT_DATA\\\"\\n            --output-dir \\\"$OUT\\\"\\n            --signals $SIGNALS)\\n\\n        \\\"${CMD[@]}\\\"\\n        echo \\\"[DONE] ${regime}/${bench}\\\"\\n        echo \\\"\\\"\\n    done\\ndone\\n\\n# === Step 2: Signal survival analysis per benchmark ===\\nmkdir -p \\\"$RESULTS_DIR\\\"\\nfor bench in \\\"${BENCHMARKS[@]}\\\"; do\\n    echo \\\"[RUN] signal_survival: benchmark=${bench}\\\"\\n\\n    REGIME_ARGS=()\\n    for regime in \\\"${REGIMES[@]}\\\"; do\\n        REGIME_ARGS+=(\\\"${regime}=${SIGNALS_DIR}/${regime}/${bench}\\\")\\n    done\\n\\n    python \\\"$SURVIVAL_SCRIPT\\\" \\\\\\n        --regime-dirs \\\"${REGIME_ARGS[@]}\\\" \\\\\\n        --labels-file \\\"${OUTPUT_BASE}/labels/labels_${bench}.json\\\" \\\\\\n        --output-dir \\\"${RESULTS_DIR}/${bench}\\\"\\n\\n    echo \\\"[DONE] signal_survival: ${bench}\\\"\\n    echo \\\"\\\"\\ndone\\n\\necho \\\"=== All done. Results: ${RESULTS_DIR} ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DbtbM8HSsCPQx2htSNJtRm`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp008/run_exp008.sh.bak"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "721702d1-9fc1-419f-a1da-2afcaf4bbe86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3WmsLJUTVYpdW2PPRqNZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2554,
+      "cache_read_input_tokens": 47286,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-14T15:18:33.238Z_
+
+<details><summary>↩ Tool result · `toolu_01DbtbM8HSsCPQx2htSNJtRm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -euo pipefail\\n\\nGPUS=\\\"${1:?Usage: bash run_exp008.sh GPU_IDS (e.g. 1,4,5)}\\\"\\n\\n# === Paths ===\\nBASE_MODEL=\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\"\\nINSTRUCT_MODEL=\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\\\"\\nD000_ADAPTER=\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\\\"\\nD005_ADAPTER=\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter\\\"  # d005: mixed 0/1 labels, AUC computable\\nSFT_DATA=\\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\"\\nLABELS_DIR=\\\"/root/autodl-tmp/exp001/sft_data\\\"\\n\\nOUTPUT_BASE=\\\"/root/autodl-tmp/exp008\\\"\\nSIGNALS_DIR=\\\"${OUTPUT_BASE}/signals\\\"\\nRESULTS_DIR=\\\"${OUTPUT_BASE}/results\\\"\\n\\nBENCHMARKS=(mmlu gsm8k arc_challenge)\\nSIGNALS=\\\"embedding minkpp selfcritique\\\"\\n\\nSCRIPT_DIR=\\\"$(cd \\\"$(dirname \\\"$0\\\")\\\" && pwd)\\\"\\nCOMPUTE_SCRIPT=\\\"${SCRIPT_DIR}/../exp002/compute_signals.py\\\"\\nSURVIVAL_SCRIPT=\\\"${SCRIPT_DIR}/run_signal_survival.py\\\"\\n\\n# === Environment ===\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport CUDA_VISIBLE_DEVICES=\\\"$GPUS\\\"\\n\\n# === Regime definitions ===\\ndeclare -A REGIME_MODEL REGIME_ADAPTER\\nREGIME_MODEL[base]=\\\"$BASE_MODEL\\\";           REGIME_ADAPTER[base]=\\\"\\\"\\nREGIME_MODEL[sft_clean]=\\\"$BASE_MODEL\\\";      REGIME_ADAPTER[sft_clean]=\\\"$D000_ADAPTER\\\"\\nREGIME_MODEL[sft_contam]=\\\"$BASE_MODEL\\\";     REGIME_ADAPTER[sft_contam]=\\\"$D005_ADAPTER\\\"\\nREGIME_MODEL[rl_aligned]=\\\"$INSTRUCT_MODEL\\\"; REGIME_ADAPTER[rl_aligned]=\\\"\\\"\\nREGIMES=(base sft_clean sft_contam rl_aligned)\\n\\necho \\\"=== exp-008 Signal Survival ===\\\"\\necho \\\"GPUs: $GPUS | Benchmarks: ${BENCHMARKS[*]} | Signals: $SIGNALS\\\"\\necho \\\"Regimes: ${REGIMES[*]}\\\"\\necho \\\"\\\"\\n\\n# === Step 0: Convert labels to {index: 0/1} format ===\\nmkdir -p \\\"${OUTPUT_BASE}/labels\\\"\\nfor bench in \\\"${BENCHMARKS[@]}\\\"; do\\n    SRC=\\\"${LABELS_DIR}/contamination_labels_${bench}_d005.json\\\"\\n    DST=\\\"${OUTPUT_BASE}/labels/labels_${bench}.json\\\"\\n    if [ -f \\\"$DST\\\" ]; then\\n        echo \\\"[SKIP] labels ${bench} — already converted\\\"\\n        continue\\n    fi\\n    python3 -c \\\"\\nimport json, sys\\nwith open(sys.argv[1]) as f: raw = json.load(f)\\nlabels = {str(i): v for i, v in enumerate(raw['labels'])}\\nwith open(sys.argv[2], 'w') as f: json.dump(labels, f)\\nprint(f'Converted {len(labels)} labels for {sys.argv[3]}')\\n\\\" \\\"$SRC\\\" \\\"$DST\\\" \\\"$bench\\\"\\ndone\\necho \\\"\\\"\\n\\n# === Step 1: Compute signals for each regime x benchmark ===\\nfor regime in \\\"${REGIMES[@]}\\\"; do\\n    for bench in \\\"${BENCHMARKS[@]}\\\"; do\\n        OUT=\\\"${SIGNALS_DIR}/${regime}/${bench}\\\"\\n        mkdir -p \\\"$OUT\\\"\\n\\n        if ls \\\"${OUT}\\\"/signals_merged_*.json 1>/dev/null 2>&1; then\\n            echo \\\"[SKIP] ${regime}/${bench} — merged signals exist\\\"\\n            continue\\n        fi\\n\\n        echo \\\"[RUN] compute_signals: regime=${regime} benchmark=${bench}\\\"\\n        CMD=(python \\\"$COMPUTE_SCRIPT\\\"\\n            --model-path \\\"${REGIME_MODEL[$regime]}\\\"\\n            --benchmark \\\"$bench\\\"\\n            --ref-model-path \\\"$BASE_MODEL\\\"\\n            --sft-data-path \\\"$SFT_DATA\\\"\\n            --output-dir \\\"$OUT\\\"\\n            --signals $SIGNALS)\\n\\n        if [ -n \\\"${REGIME_ADAPTER[$regime]}\\\" ]; then\\n            CMD+=(--adapter-path \\\"${REGIME_ADAPTER[$regime]}\\\")\\n        fi\\n\\n        \\\"${CMD[@]}\\\"\\n        echo \\\"[DONE] ${regime}/${bench}\\\"\\n        echo \\\"\\\"\\n    done\\ndone\\n\\n# === Step 2: Signal survival analysis per benchmark ===\\nmkdir -p \\\"$RESULTS_DIR\\\"\\nfor bench in \\\"${BENCHMARKS[@]}\\\"; do\\n    echo \\\"[RUN] signal_survival: benchmark=${bench}\\\"\\n\\n    REGIME_ARGS=()\\n    for regime in \\\"${REGIMES[@]}\\\"; do\\n        REGIME_ARGS+=(\\\"${regime}=${SIGNALS_DIR}/${regime}/${bench}\\\")\\n    done\\n\\n    python \\\"$SURVIVAL_SCRIPT\\\" \\\\\\n        --regime-dirs \\\"${REGIME_ARGS[@]}\\\" \\\\\\n        --labels-file \\\"${OUTPUT_BASE}/labels/labels_${bench}.json\\\" \\\\\\n        --output-dir \\\"${RESULTS_DIR}/${bench}\\\"\\n\\n    echo \\\"[DONE] signal_survival: ${bench}\\\"\\n    echo \\\"\\\"\\ndone\\n\\necho \\\"=== All done. Results: ${RESULTS_DIR} ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "a153936e-491a-4ad3-b0a8-d775cc645e04",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -euo pipefail\\\\n\\\\nGPUS=\\\\\\\"${1:?Usage: bash run_exp008.sh GPU_IDS (e.g. 1,4,5)}\\\\\\\"\\\\n\\\\n# === Paths ===\\\\nBASE_MODEL=\\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\\\\"\\\\nINSTRUCT_MODEL=\\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\\\\\\\"\\\\nD000_ADAPTER=\\\\\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\\\\\\\"\\\\nD005_ADAPTER=\\\\\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter\\\\\\\"  # d005: mixed 0/1 labels, AUC computable\\\\nSFT_DATA=\\\\\\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\\\\\"\\\\nLABELS_DIR=\\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\n\\\\nOUTPUT_BASE=\\\\\\\"/root/autodl-tmp/exp008\\\\\\\"\\\\nSIGNALS_DIR=\\\\\\\"${OUTPUT_BASE}/signals\\\\\\\"\\\\nRESULTS_DIR=\\\\\\\"${OUTPUT_BASE}/results\\\\\\\"\\\\n\\\\nBENCHMARKS=(mmlu gsm8k arc_challenge)\\\\nSIGNALS=\\\\\\\"embedding minkpp selfcritique\\\\\\\"\\\\n\\\\nSCRIPT_DIR=\\\\\\\"$(cd \\\\\\\"$(dirname \\\\\\\"$0\\\\\\\")\\\\\\\" && pwd)\\\\\\\"\\\\nCOMPUTE_SCRIPT=\\\\\\\"${SCRIPT_DIR}/../exp002/compute_signals.py\\\\\\\"\\\\nSURVIVAL_SCRIPT=\\\\\\\"${SCRIPT_DIR}/run_signal_survival.py\\\\\\\"\\\\n\\\\n# === Environment ===\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport CUDA_VISIBLE_DEVICES=\\\\\\\"$GPUS\\\\\\\"\\\\n\\\\n# === Regime definitions ===\\\\ndeclare -A REGIME_MODEL REGIME_ADAPTER\\\\nREGIME_MODEL[base]=\\\\\\\"$BASE_MODEL\\\\\\\";           REGIME_ADAPTER[base]=\\\\\\\"\\\\\\\"\\\\nREGIME_MODEL[sft_clean]=\\\\\\\"$BASE_MODEL\\\\\\\";      REGIME_ADAPTER[sft_clean]=\\\\\\\"$D000_ADAPTER\\\\\\\"\\\\nREGIME_MODEL[sft_contam]=\\\\\\\"$BASE_MODEL\\\\\\\";     REGIME_ADAPTER[sft_contam]=\\\\\\\"$D005_ADAPTER\\\\\\\"\\\\nREGIME_MODEL[rl_aligned]=\\\\\\\"$INSTRUCT_MODEL\\\\\\\"; REGIME_ADAPTER[rl_aligned]=\\\\\\\"\\\\\\\"\\\\nREGIMES=(base sft_clean sft_contam rl_aligned)\\\\n\\\\necho \\\\\\\"=== exp-008 Signal Survival ===\\\\\\\"\\\\necho \\\\\\\"GPUs: $GPUS | Benchmarks: ${BENCHMARKS[*]} | Signals: $SIGNALS\\\\\\\"\\\\necho \\\\\\\"Regimes: ${REGIMES[*]}\\\\\\\"\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\n# === Step 0: Convert labels to {index: 0/1} format ===\\\\nmkdir -p \\\\\\\"${OUTPUT_BASE}/labels\\\\\\\"\\\\nfor bench in \\\\\\\"${BENCHMARKS[@]}\\\\\\\"; do\\\\n    SRC=\\\\\\\"${LABELS_DIR}/contamination_labels_${bench}_d005.json\\\\\\\"\\\\n    DST=\\\\\\\"${OUTPUT_BASE}/labels/labels_${bench}.json\\\\\\\"\\\\n    if [ -f \\\\\\\"$DST\\\\\\\" ]; then\\\\n        echo \\\\\\\"[SKIP] labels ${bench} — already converted\\\\\\\"\\\\n        continue\\\\n    fi\\\\n    python3 -c \\\\\\\"\\\\nimport json, sys\\\\nwith open(sys.argv[1]) as f: raw = json.load(f)\\\\nlabels = {str(i): v for i, v in enumerate(raw['labels'])}\\\\nwith open(sys.argv[2], 'w') as f: json.dump(labels, f)\\\\nprint(f'Converted {len(labels)} labels for {sys.argv[3]}')\\\\n\\\\\\\" \\\\\\\"$SRC\\\\\\\" \\\\\\\"$DST\\\\\\\" \\\\\\\"$bench\\\\\\\"\\\\ndone\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\n# === Step 1: Compute signals for each regime x benchmark ===\\\\nfor regime in \\\\\\\"${REGIMES[@]}\\\\\\\"; do\\\\n    for bench in \\\\\\\"${BENCHMARKS[@]}\\\\\\\"; do\\\\n        OUT=\\\\\\\"${SIGNALS_DIR}/${regime}/${bench}\\\\\\\"\\\\n        mkdir -p \\\\\\\"$OUT\\\\\\\"\\\\n\\\\n        if ls \\\\\\\"${OUT}\\\\\\\"/signals_merged_*.json 1>/dev/null 2>&1; then\\\\n            echo \\\\\\\"[SKIP] ${regime}/${bench} — merged signals exist\\\\\\\"\\\\n            continue\\\\n        fi\\\\n\\\\n        echo \\\\\\\"[RUN] compute_signals: regime=${regime} benchmark=${bench}\\\\\\\"\\\\n        CMD=(python \\\\\\\"$COMPUTE_SCRIPT\\\\\\\"\\\\n            --model-path \\\\\\\"${REGIME_MODEL[$regime]}\\\\\\\"\\\\n            --benchmark \\\\\\\"$bench\\\\\\\"\\\\n            --ref-model-path \\\\\\\"$BASE_MODEL\\\\\\\"\\\\n            --sft-data-path \\\\\\\"$SFT_DATA\\\\\\\"\\\\n            --output-dir \\\\\\\"$OUT\\\\\\\"\\\\n            --signals $SIGNALS)\\\\n\\\\n        if [ -n \\\\\\\"${REGIME_ADAPTER[$regime]}\\\\\\\" ]; then\\\\n            CMD+=(--adapter-path \\\\\\\"${REGIME_ADAPTER[$regime]}\\\\\\\")\\\\n        fi\\\\n\\\\n        \\\\\\\"${CMD[@]}\\\\\\\"\\\\n        echo \\\\\\\"[DONE] ${regime}/${bench}\\\\\\\"\\\\n        echo \\\\\\\"\\\\\\\"\\\\n    done\\\\ndone\\\\n\\\\n# === Step 2: Signal survival analysis per benchmark ===\\\\nmkdir -p \\\\\\\"$RESULTS_DIR\\\\\\\"\\\\nfor bench in \\\\\\\"${BENCHMARKS[@]}\\\\\\\"; do\\\\n    echo \\\\\\\"[RUN] signal_survival: benchmark=${bench}\\\\\\\"\\\\n\\\\n    REGIME_ARGS=()\\\\n    for regime in \\\\\\\"${REGIMES[@]}\\\\\\\"; do\\\\n        REGIME_ARGS+=(\\\\\\\"${regime}=${SIGNALS_DIR}/${regime}/${bench}\\\\\\\")\\\\n    done\\\\n\\\\n    python \\\\\\\"$SURVIVAL_SCRIPT\\\\\\\" \\\\\\\\\\\\n        --regime-dirs \\\\\\\"${REGIME_ARGS[@]}\\\\\\\" \\\\\\\\\\\\n        --labels-file \\\\\\\"${OUTPUT_BASE}/labels/labels_${bench}.json\\\\\\\" \\\\\\\\\\\\n        --output-dir \\\\\\\"${RESULTS_DIR}/${bench}\\\\\\\"\\\\n\\\\n    echo \\\\\\\"[DONE] signal_survival: ${bench}\\\\\\\"\\\\n    echo \\\\\\\"\\\\\\\"\\\\ndone\\\\n\\\\necho \\\\\\\"=== All done. Results: ${RESULTS_DIR} ===\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -euo pipefail\\n\\nGPUS=\\\"${1:?Usage: bash run_exp008.sh GPU_IDS (e.g. 1,4,5)}\\\"\\n\\n# === Paths ===\\nBASE_MODEL=\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\"\\nINSTRUCT_MODEL=\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\\\"\\nD000_ADAPTER=\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\\\"\\nD005_ADAPTER=\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter\\\"  # d005: mixed 0/1 labels, AUC computable\\nSFT_DATA=\\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\"\\nLABELS_DIR=\\\"/root/autodl-tmp/exp001/sft_data\\\"\\n\\nOUTPUT_BASE=\\\"/root/autodl-tmp/exp008\\\"\\nSIGNALS_DIR=\\\"${OUTPUT_BASE}/signals\\\"\\nRESULTS_DIR=\\\"${OUTPUT_BASE}/results\\\"\\n\\nBENCHMARKS=(mmlu gsm8k arc_challenge)\\nSIGNALS=\\\"embedding minkpp selfcritique\\\"\\n\\nSCRIPT_DIR=\\\"$(cd \\\"$(dirname \\\"$0\\\")\\\" && pwd)\\\"\\nCOMPUTE_SCRIPT=\\\"${SCRIPT_DIR}/../exp002/compute_signals.py\\\"\\nSURVIVAL_SCRIPT=\\\"${SCRIPT_DIR}/run_signal_survival.py\\\"\\n\\n# === Environment ===\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport CUDA_VISIBLE_DEVICES=\\\"$GPUS\\\"\\n\\n# === Regime definitions ===\\ndeclare -A REGIME_MODEL REGIME_ADAPTER\\nREGIME_MODEL[base]=\\\"$BASE_MODEL\\\";           REGIME_ADAPTER[base]=\\\"\\\"\\nREGIME_MODEL[sft_clean]=\\\"$BASE_MODEL\\\";      REGIME_ADAPTER[sft_clean]=\\\"$D000_ADAPTER\\\"\\nREGIME_MODEL[sft_contam]=\\\"$BASE_MODEL\\\";     REGIME_ADAPTER[sft_contam]=\\\"$D005_ADAPTER\\\"\\nREGIME_MODEL[rl_aligned]=\\\"$INSTRUCT_MODEL\\\"; REGIME_ADAPTER[rl_aligned]=\\\"\\\"\\nREGIMES=(base sft_clean sft_contam rl_aligned)\\n\\necho \\\"=== exp-008 Signal Survival ===\\\"\\necho \\\"GPUs: $GPUS | Benchmarks: ${BENCHMARKS[*]} | Signals: $SIGNALS\\\"\\necho \\\"Regimes: ${REGIMES[*]}\\\"\\necho \\\"\\\"\\n\\n# === Step 0: Convert labels to {index: 0/1} format ===\\nmkdir -p \\\"${OUTPUT_BASE}/labels\\\"\\nfor bench in \\\"${BENCHMARKS[@]}\\\"; do\\n    SRC=\\\"${LABELS_DIR}/contamination_labels_${bench}_d005.json\\\"\\n    DST=\\\"${OUTPUT_BASE}/labels/labels_${bench}.json\\\"\\n    if [ -f \\\"$DST\\\" ]; then\\n        echo \\\"[SKIP] labels ${bench} — already converted\\\"\\n        continue\\n    fi\\n    python3 -c \\\"\\nimport json, sys\\nwith open(sys.argv[1]) as f: raw = json.load(f)\\nlabels = {str(i): v for i, v in enumerate(raw['labels'])}\\nwith open(sys.argv[2], 'w') as f: json.dump(labels, f)\\nprint(f'Converted {len(labels)} labels for {sys.argv[3]}')\\n\\\" \\\"$SRC\\\" \\\"$DST\\\" \\\"$bench\\\"\\ndone\\necho \\\"\\\"\\n\\n# === Step 1: Compute signals for each regime x benchmark ===\\nfor regime in \\\"${REGIMES[@]}\\\"; do\\n    for bench in \\\"${BENCHMARKS[@]}\\\"; do\\n        OUT=\\\"${SIGNALS_DIR}/${regime}/${bench}\\\"\\n        mkdir -p \\\"$OUT\\\"\\n\\n        if ls \\\"${OUT}\\\"/signals_merged_*.json 1>/dev/null 2>&1; then\\n            echo \\\"[SKIP] ${regime}/${bench} — merged signals exist\\\"\\n            continue\\n        fi\\n\\n        echo \\\"[RUN] compute_signals: regime=${regime} benchmark=${bench}\\\"\\n        CMD=(python \\\"$COMPUTE_SCRIPT\\\"\\n            --model-path \\\"${REGIME_MODEL[$regime]}\\\"\\n            --benchmark \\\"$bench\\\"\\n            --ref-model-path \\\"$BASE_MODEL\\\"\\n            --sft-data-path \\\"$SFT_DATA\\\"\\n            --output-dir \\\"$OUT\\\"\\n            --signals $SIGNALS)\\n\\n        if [ -n \\\"${REGIME_ADAPTER[$regime]}\\\" ]; then\\n            CMD+=(--adapter-path \\\"${REGIME_ADAPTER[$regime]}\\\")\\n        fi\\n\\n        \\\"${CMD[@]}\\\"\\n        echo \\\"[DONE] ${regime}/${bench}\\\"\\n        echo \\\"\\\"\\n    done\\ndone\\n\\n# === Step 2: Signal survival analysis per benchmark ===\\nmkdir -p \\\"$RESULTS_DIR\\\"\\nfor bench in \\\"${BENCHMARKS[@]}\\\"; do\\n    echo \\\"[RUN] signal_survival: benchmark=${bench}\\\"\\n\\n    REGIME_ARGS=()\\n    for regime in \\\"${REGIMES[@]}\\\"; do\\n        REGIME_ARGS+=(\\\"${regime}=${SIGNALS_DIR}/${regime}/${bench}\\\")\\n    done\\n\\n    python \\\"$SURVIVAL_SCRIPT\\\" \\\\\\n        --regime-dirs \\\"${REGIME_ARGS[@]}\\\" \\\\\\n        --labels-file \\\"${OUTPUT_BASE}/labels/labels_${bench}.json\\\" \\\\\\n        --output-dir \\\"${RESULTS_DIR}/${bench}\\\"\\n\\n    echo \\\"[DONE] signal_survival: ${bench}\\\"\\n    echo \\\"\\\"\\ndone\\n\\necho \\\"=== All done. Results: ${RESULTS_DIR} ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GTiqWAbde5BjsMVQ3UxKhu`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp008/exp008_output/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "cb6a8b7b-a191-4014-a6e8-39d3f6611719",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3WmsLJUTVYpdW2PPRqNZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2554,
+      "cache_read_input_tokens": 47286,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-14T15:18:34.215Z_
+
+<details><summary>↩ Tool result · `toolu_01GTiqWAbde5BjsMVQ3UxKhu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 80\\ndrwxr-xr-x 3 root root  4096 May 14 20:48 .\\ndrwxr-xr-x 4 root root  4096 May 14 21:55 ..\\n-rw-r--r-- 1 root root  8323 May 14 21:53 cliff_analysis.json\\n-rw-r--r-- 1 root root  2010 May 14 21:53 cross_benchmark_summary.json\\ndrwxr-xr-x 5 root root    68 May 14 20:48 per_benchmark\\n-rw-r--r-- 1 root root 23361 May 14 12:07 signal_decay_scatter.pdf\\n-rw-r--r-- 1 root root 16612 May 14 12:07 survival_auc_comparison.pdf\\n-rw-r--r-- 1 root root  8765 May 14 22:17 survival_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "f9814d01-fd73-478a-8477-b06c375ed566",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 80\\\\ndrwxr-xr-x 3 root root  4096 May 14 20:48 .\\\\ndrwxr-xr-x 4 root root  4096 May 14 21:55 ..\\\\n-rw-r--r-- 1 root root  8323 May 14 21:53 cliff_analysis.json\\\\n-rw-r--r-- 1 root root  2010 May 14 21:53 cross_benchmark_summary.json\\\\ndrwxr-xr-x 5 root root    68 May 14 20:48 per_benchmark\\\\n-rw-r--r-- 1 root root 23361 May 14 12:07 signal_decay_scatter.pdf\\\\n-rw-r--r-- 1 root root 16612 May 14 12:07 survival_auc_comparison.pdf\\\\n-rw-r--r-- 1 root root  8765 May 14 22:17 survival_report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 80\\ndrwxr-xr-x 3 root root  4096 May 14 20:48 .\\ndrwxr-xr-x 4 root root  4096 May 14 21:55 ..\\n-rw-r--r-- 1 root root  8323 May 14 21:53 cliff_analysis.json\\n-rw-r--r-- 1 root root  2010 May 14 21:53 cross_benchmark_summary.json\\ndrwxr-xr-x 5 root root    68 May 14 20:48 per_benchmark\\n-rw-r--r-- 1 root root 23361 May 14 12:07 signal_decay_scatter.pdf\\n-rw-r--r-- 1 root root 16612 May 14 12:07 survival_auc_comparison.pdf\\n-rw-r--r-- 1 root root  8765 May 14 22:17 survival_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EWanAzha5hizvuvYR82989`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -20 /root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "6e8611e3-2b5a-441e-9e1b-11bcd535c141",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3WmsLJUTVYpdW2PPRqNZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2554,
+      "cache_read_input_tokens": 47286,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QkZ4RFGEp3hxNKcPTLrUHH`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "wc -l /root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "38638259-74aa-4c57-8cd4-7608dea37e5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3WmsLJUTVYpdW2PPRqNZJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2554,
+      "cache_read_input_tokens": 47286,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T15:18:35.199Z_
+
+<details><summary>↩ Tool result · `toolu_01EWanAzha5hizvuvYR82989`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"dosage\\\": 100,\\n  \\\"total_items\\\": 14042,\\n  \\\"contaminated_count\\\": 14042,\\n  \\\"labels\\\": [\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "60ea3195-ff74-4053-82de-5a93764d7fbd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n  \\\\\\\"dosage\\\\\\\": 100,\\\\n  \\\\\\\"total_items\\\\\\\": 14042,\\\\n  \\\\\\\"contaminated_count\\\\\\\": 14042,\\\\n  \\\\\\\"labels\\\\\\\": [\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"dosage\\\": 100,\\n  \\\"total_items\\\": 14042,\\n  \\\"contaminated_count\\\": 14042,\\n  \\\"labels\\\": [\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-14T15:18:35.680Z_
+
+<details><summary>↩ Tool result · `toolu_01QkZ4RFGEp3hxNKcPTLrUHH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"14049 /root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "f496aed5-85aa-4897-925e-4df508364d26",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"14049 /root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"14049 /root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a much clearer picture. Let me analyze:
+
+## run_exp008.sh analysis
+
+The script has **two steps**:
+1. **Step 1: Compute signals** — calls `compute_signals.py` from exp002 for each regime × benchmark. **This requires GPU.**
+2. **Step 2: Signal survival analysis** — runs `run_signal_survival.py`. **This is CPU-only.**
+
+Key design choices in run_exp008.sh:
+- Uses **d005 labels** (not d100!) — makes sense because d005 has mixed contaminated/clean items (5% dosage), making AUROC computable (both classes present)
+
+
+- Uses **d005 adapter** as `sft_contam` regime (not d100!) — again because d005 has mixed labels allowing AUC computation
+- d100 labels show ALL items are contaminated (14042/14042), which means AUROC can't be computed (only one class)
+- Labels format: `{benchmark, dosage, total_items, contaminated_count, labels: [0/1, ...]}` — needs conversion to `{str(index): 0/1}` format (Step 0 handles this)
+
+## run_exp008.sh vs run_exp008.sh.bak
+
+Comparing the two versions to see what changed...
+
+The backup version properly separates `REGIME_MODEL` and `REGIME_ADAPTER` arrays and handles adapter loading via `--adapter-path`, while the current version incorrectly passes adapter paths directly as model paths for SFT regimes. This would fail because the compute script expects an actual model path, not a LoRA adapter path.
+
+There's already output in `exp008_output/` from a previous run, so I need to check whether it came from the v3 script or v2 and what signals have already been computed. Step 1 requires GPU access to compute signals for the base, RL-aligned, and SFT models, but I need to verify what exp-002 already generated for the adapters. d000, d005, d100. The run_exp008.sh uses d005 as sft_contam. 
+
+Actually, looking more carefully:
+- exp-002 signals: d000 (clean SFT), d005 (5% contam SFT), d100 (100% contam SFT)
+- exp-008 regimes: base (raw model), sft_clean (d000), sft_contam (d005), rl_aligned (Instruct)
+
+So exp-008 needs signals for **base** and **rl_aligned** which don't exist in exp-002. Those would need GPU computation.
+
+But wait, the output directory already has results. Let me check what's there.
+
+Let me also check if there's an exp008 signals directory. I need to verify whether the signals have already been computed, look at what results are currently available, and scan through signal_survival_analysis.py to identify any potential issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "481e4a13-2311-43e1-a4b1-016474eebcb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpU1QQSWPnsAEvYcNS98oP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5814,
+      "cache_read_input_tokens": 49840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+发现 run_exp008.sh 有关键 bug。继续检查已有输出和 exp008 信号目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "ddac2294-dec5-46e8-87da-80bf206e40ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpU1QQSWPnsAEvYcNS98oP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5814,
+      "cache_read_input_tokens": 49840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Yb73G8pHt84iwpesJCE433`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/autodl-tmp/exp008/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "f4cf0f19-afbf-4f79-a2bb-30c005801e83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpU1QQSWPnsAEvYcNS98oP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5814,
+      "cache_read_input_tokens": 49840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-14T15:19:04.831Z_
+
+<details><summary>↩ Tool result · `toolu_01Yb73G8pHt84iwpesJCE433`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  3 root root   29 May 14 23:14 .\\ndrwxr-xr-x 16 root root 4096 May 14 23:14 ..\\ndrwxr-xr-x  4 root root   53 May 14 23:14 signals\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "8e362c5d-7e42-4e08-b8fe-5eb05ec45e77",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  3 root root   29 May 14 23:14 .\\\\ndrwxr-xr-x 16 root root 4096 May 14 23:14 ..\\\\ndrwxr-xr-x  4 root root   53 May 14 23:14 signals\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  3 root root   29 May 14 23:14 .\\ndrwxr-xr-x 16 root root 4096 May 14 23:14 ..\\ndrwxr-xr-x  4 root root   53 May 14 23:14 signals\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NcHpoJYJdi7xEGX8aAWy21`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp008/ -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "63a90567-605e-4148-b209-bd854b7d20bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpU1QQSWPnsAEvYcNS98oP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5814,
+      "cache_read_input_tokens": 49840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-14T15:19:05.779Z_
+
+<details><summary>↩ Tool result · `toolu_01NcHpoJYJdi7xEGX8aAWy21`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp008/\\n/root/autodl-tmp/exp008/signals\\n/root/autodl-tmp/exp008/signals/sft_clean\\n/root/autodl-tmp/exp008/signals/sft_clean/mmlu\\n/root/autodl-tmp/exp008/signals/sft_clean/gsm8k\\n/root/autodl-tmp/exp008/signals/sft_clean/arc_challenge\\n/root/autodl-tmp/exp008/signals/sft_contam\\n/root/autodl-tmp/exp008/signals/sft_contam/mmlu\\n/root/autodl-tmp/exp008/signals/sft_contam/gsm8k\\n/root/autodl-tmp/exp008/signals/sft_contam/arc_challenge\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "cd907d78-f87f-476f-94ac-f3e36d117e82",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp008/\\\\n/root/autodl-tmp/exp008/signals\\\\n/root/autodl-tmp/exp008/signals/sft_clean\\\\n/root/autodl-tmp/exp008/signals/sft_clean/mmlu\\\\n/root/autodl-tmp/exp008/signals/sft_clean/gsm8k\\\\n/root/autodl-tmp/exp008/signals/sft_clean/arc_challenge\\\\n/root/autodl-tmp/exp008/signals/sft_contam\\\\n/root/autodl-tmp/exp008/signals/sft_contam/mmlu\\\\n/root/autodl-tmp/exp008/signals/sft_contam/gsm8k\\\\n/root/autodl-tmp/exp008/signals/sft_contam/arc_challenge\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp008/\\n/root/autodl-tmp/exp008/signals\\n/root/autodl-tmp/exp008/signals/sft_clean\\n/root/autodl-tmp/exp008/signals/sft_clean/mmlu\\n/root/autodl-tmp/exp008/signals/sft_clean/gsm8k\\n/root/autodl-tmp/exp008/signals/sft_clean/arc_challenge\\n/root/autodl-tmp/exp008/signals/sft_contam\\n/root/autodl-tmp/exp008/signals/sft_contam/mmlu\\n/root/autodl-tmp/exp008/signals/sft_contam/gsm8k\\n/root/autodl-tmp/exp008/signals/sft_contam/arc_challenge\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EqYScbxCN9eFvnmZyURcSj`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp008/exp008_output/cross_benchmark_summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "c0bd70c7-9231-4538-a406-bde2d9860659",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpU1QQSWPnsAEvYcNS98oP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5814,
+      "cache_read_input_tokens": 49840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-14T15:19:06.741Z_
+
+<details><summary>↩ Tool result · `toolu_01EqYScbxCN9eFvnmZyURcSj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"regime_names\\\": [\\n    \\\"base\\\",\\n    \\\"sft_clean\\\",\\n    \\\"sft_contam\\\",\\n    \\\"rl_aligned\\\"\\n  ],\\n  \\\"benchmarks\\\": [\\n    \\\"mmlu\\\",\\n    \\\"gsm8k\\\",\\n    \\\"arc_challenge\\\"\\n  ],\\n  \\\"per_signal_aggregated\\\": {\\n    \\\"rrf_score\\\": {\\n      \\\"label\\\": \\\"RRF (fused)\\\",\\n      \\\"mean_auc_base\\\": 0.9975,\\n      \\\"std_auc_base\\\": 0.0044,\\n      \\\"mean_auc_sft_clean\\\": 1.0,\\n      \\\"std_auc_sft_clean\\\": 0.0,\\n      \\\"mean_auc_sft_contam\\\": 0.9873,\\n      \\\"std_auc_sft_contam\\\": 0.0067,\\n      \\\"mean_auc_rl_aligned\\\": 0.6105,\\n      \\\"std_auc_rl_aligned\\\": 0.0671\\n    },\\n    \\\"s1_embedding\\\": {\\n      \\\"label\\\": \\\"Embedding\\\",\\n      \\\"mean_auc_base\\\": 0.9918,\\n      \\\"std_auc_base\\\": 0.0072,\\n      \\\"mean_auc_sft_clean\\\": 0.9968,\\n      \\\"std_auc_sft_clean\\\": 0.0055,\\n      \\\"mean_auc_sft_contam\\\": 0.9841,\\n      \\\"std_auc_sft_contam\\\": 0.0162,\\n      \\\"mean_auc_rl_aligned\\\": 0.9733,\\n      \\\"std_auc_rl_aligned\\\": 0.0231\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"label\\\": \\\"Min-K%++\\\",\\n      \\\"mean_auc_base\\\": 0.9962,\\n      \\\"std_auc_base\\\": 0.0033,\\n      \\\"mean_auc_sft_clean\\\": 0.9981,\\n      \\\"std_auc_sft_clean\\\": 0.0019,\\n      \\\"mean_auc_sft_contam\\\": 0.9981,\\n      \\\"std_auc_sft_contam\\\": 0.0019,\\n      \\\"mean_auc_rl_aligned\\\": 0.7092,\\n      \\\"std_auc_rl_aligned\\\": 0.1178\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"label\\\": \\\"ConStat\\\",\\n      \\\"mean_auc_base\\\": 0.9975,\\n      \\\"std_auc_base\\\": 0.0022,\\n      \\\"mean_auc_sft_clean\\\": 0.993,\\n      \\\"std_auc_sft_clean\\\": 0.0077,\\n      \\\"mean_auc_sft_contam\\\": 0.9771,\\n      \\\"std_auc_sft_contam\\\": 0.0088,\\n      \\\"mean_auc_rl_aligned\\\": 0.5473,\\n      \\\"std_auc_rl_aligned\\\": 0.079\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"label\\\": \\\"Self-Critique\\\",\\n      \\\"mean_auc_base\\\": 0.9994,\\n      \\\"std_auc_base\\\": 0.0011,\\n      \\\"mean_auc_sft_clean\\\": 0.9956,\\n      \\\"std_auc_sft_clean\\\": 0.0077,\\n      \\\"mean_auc_sft_contam\\\": 0.9899,\\n      \\\"std_auc_sft_contam\\\": 0.0067,\\n      \\\"mean_auc_rl_aligned\\\": 0.3746,\\n      \\\"std_auc_rl_aligned\\\": 0.1178\\n    }\\n  },\\n  \\\"survival_counts\\\": {\\n    \\\"rrf_score\\\": 0,\\n    \\\"s1_embedding\\\": 3,\\n    \\\"s2_minkpp\\\": 0,\\n    \\\"s3_constat\\\": 0,\\n    \\\"s4_selfcritique\\\": 0\\n  },\\n  \\\"n_benchmarks\\\": 3\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "2ece6f63-fdb7-4495-972e-1721ab143a01",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"regime_names\\\\\\\": [\\\\n    \\\\\\\"base\\\\\\\",\\\\n    \\\\\\\"sft_clean\\\\\\\",\\\\n    \\\\\\\"sft_contam\\\\\\\",\\\\n    \\\\\\\"rl_aligned\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"benchmarks\\\\\\\": [\\\\n    \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"gsm8k\\\\\\\",\\\\n    \\\\\\\"arc_challenge\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"per_signal_aggregated\\\\\\\": {\\\\n    \\\\\\\"rrf_score\\\\\\\": {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"RRF (fused)\\\\\\\",\\\\n      \\\\\\\"mean_auc_base\\\\\\\": 0.9975,\\\\n      \\\\\\\"std_auc_base\\\\\\\": 0.0044,\\\\n      \\\\\\\"mean_auc_sft_clean\\\\\\\": 1.0,\\\\n      \\\\\\\"std_auc_sft_clean\\\\\\\": 0.0,\\\\n      \\\\\\\"mean_auc_sft_contam\\\\\\\": 0.9873,\\\\n      \\\\\\\"std_auc_sft_contam\\\\\\\": 0.0067,\\\\n      \\\\\\\"mean_auc_rl_aligned\\\\\\\": 0.6105,\\\\n      \\\\\\\"std_auc_rl_aligned\\\\\\\": 0.0671\\\\n    },\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n      \\\\\\\"mean_auc_base\\\\\\\": 0.9918,\\\\n      \\\\\\\"std_auc_base\\\\\\\": 0.0072,\\\\n      \\\\\\\"mean_auc_sft_clean\\\\\\\": 0.9968,\\\\n      \\\\\\\"std_auc_sft_clean\\\\\\\": 0.0055,\\\\n      \\\\\\\"mean_auc_sft_contam\\\\\\\": 0.9841,\\\\n      \\\\\\\"std_auc_sft_contam\\\\\\\": 0.0162,\\\\n      \\\\\\\"mean_auc_rl_aligned\\\\\\\": 0.9733,\\\\n      \\\\\\\"std_auc_rl_aligned\\\\\\\": 0.0231\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n      \\\\\\\"mean_auc_base\\\\\\\": 0.9962,\\\\n      \\\\\\\"std_auc_base\\\\\\\": 0.0033,\\\\n      \\\\\\\"mean_auc_sft_clean\\\\\\\": 0.9981,\\\\n      \\\\\\\"std_auc_sft_clean\\\\\\\": 0.0019,\\\\n      \\\\\\\"mean_auc_sft_contam\\\\\\\": 0.9981,\\\\n      \\\\\\\"std_auc_sft_contam\\\\\\\": 0.0019,\\\\n      \\\\\\\"mean_auc_rl_aligned\\\\\\\": 0.7092,\\\\n      \\\\\\\"std_auc_rl_aligned\\\\\\\": 0.1178\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n      \\\\\\\"mean_auc_base\\\\\\\": 0.9975,\\\\n      \\\\\\\"std_auc_base\\\\\\\": 0.0022,\\\\n      \\\\\\\"mean_auc_sft_clean\\\\\\\": 0.993,\\\\n      \\\\\\\"std_auc_sft_clean\\\\\\\": 0.0077,\\\\n      \\\\\\\"mean_auc_sft_contam\\\\\\\": 0.9771,\\\\n      \\\\\\\"std_auc_sft_contam\\\\\\\": 0.0088,\\\\n      \\\\\\\"mean_auc_rl_aligned\\\\\\\": 0.5473,\\\\n      \\\\\\\"std_auc_rl_aligned\\\\\\\": 0.079\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n      \\\\\\\"mean_auc_base\\\\\\\": 0.9994,\\\\n      \\\\\\\"std_auc_base\\\\\\\": 0.0011,\\\\n      \\\\\\\"mean_auc_sft_clean\\\\\\\": 0.9956,\\\\n      \\\\\\\"std_auc_sft_clean\\\\\\\": 0.0077,\\\\n      \\\\\\\"mean_auc_sft_contam\\\\\\\": 0.9899,\\\\n      \\\\\\\"std_auc_sft_contam\\\\\\\": 0.0067,\\\\n      \\\\\\\"mean_auc_rl_aligned\\\\\\\": 0.3746,\\\\n      \\\\\\\"std_auc_rl_aligned\\\\\\\": 0.1178\\\\n    }\\\\n  },\\\\n  \\\\\\\"survival_counts\\\\\\\": {\\\\n    \\\\\\\"rrf_score\\\\\\\": 0,\\\\n    \\\\\\\"s1_embedding\\\\\\\": 3,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": 0,\\\\n    \\\\\\\"s3_constat\\\\\\\": 0,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": 0\\\\n  },\\\\n  \\\\\\\"n_benchmarks\\\\\\\": 3\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"regime_names\\\": [\\n    \\\"base\\\",\\n    \\\"sft_clean\\\",\\n    \\\"sft_contam\\\",\\n    \\\"rl_aligned\\\"\\n  ],\\n  \\\"benchmarks\\\": [\\n    \\\"mmlu\\\",\\n    \\\"gsm8k\\\",\\n    \\\"arc_challenge\\\"\\n  ],\\n  \\\"per_signal_aggregated\\\": {\\n    \\\"rrf_score\\\": {\\n      \\\"label\\\": \\\"RRF (fused)\\\",\\n      \\\"mean_auc_base\\\": 0.9975,\\n      \\\"std_auc_base\\\": 0.0044,\\n      \\\"mean_auc_sft_clean\\\": 1.0,\\n      \\\"std_auc_sft_clean\\\": 0.0,\\n      \\\"mean_auc_sft_contam\\\": 0.9873,\\n      \\\"std_auc_sft_contam\\\": 0.0067,\\n      \\\"mean_auc_rl_aligned\\\": 0.6105,\\n      \\\"std_auc_rl_aligned\\\": 0.0671\\n    },\\n    \\\"s1_embedding\\\": {\\n      \\\"label\\\": \\\"Embedding\\\",\\n      \\\"mean_auc_base\\\": 0.9918,\\n      \\\"std_auc_base\\\": 0.0072,\\n      \\\"mean_auc_sft_clean\\\": 0.9968,\\n      \\\"std_auc_sft_clean\\\": 0.0055,\\n      \\\"mean_auc_sft_contam\\\": 0.9841,\\n      \\\"std_auc_sft_contam\\\": 0.0162,\\n      \\\"mean_auc_rl_aligned\\\": 0.9733,\\n      \\\"std_auc_rl_aligned\\\": 0.0231\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"label\\\": \\\"Min-K%++\\\",\\n      \\\"mean_auc_base\\\": 0.9962,\\n      \\\"std_auc_base\\\": 0.0033,\\n      \\\"mean_auc_sft_clean\\\": 0.9981,\\n      \\\"std_auc_sft_clean\\\": 0.0019,\\n      \\\"mean_auc_sft_contam\\\": 0.9981,\\n      \\\"std_auc_sft_contam\\\": 0.0019,\\n      \\\"mean_auc_rl_aligned\\\": 0.7092,\\n      \\\"std_auc_rl_aligned\\\": 0.1178\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"label\\\": \\\"ConStat\\\",\\n      \\\"mean_auc_base\\\": 0.9975,\\n      \\\"std_auc_base\\\": 0.0022,\\n      \\\"mean_auc_sft_clean\\\": 0.993,\\n      \\\"std_auc_sft_clean\\\": 0.0077,\\n      \\\"mean_auc_sft_contam\\\": 0.9771,\\n      \\\"std_auc_sft_contam\\\": 0.0088,\\n      \\\"mean_auc_rl_aligned\\\": 0.5473,\\n      \\\"std_auc_rl_aligned\\\": 0.079\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"label\\\": \\\"Self-Critique\\\",\\n      \\\"mean_auc_base\\\": 0.9994,\\n      \\\"std_auc_base\\\": 0.0011,\\n      \\\"mean_auc_sft_clean\\\": 0.9956,\\n      \\\"std_auc_sft_clean\\\": 0.0077,\\n      \\\"mean_auc_sft_contam\\\": 0.9899,\\n      \\\"std_auc_sft_contam\\\": 0.0067,\\n      \\\"mean_auc_rl_aligned\\\": 0.3746,\\n      \\\"std_auc_rl_aligned\\\": 0.1178\\n    }\\n  },\\n  \\\"survival_counts\\\": {\\n    \\\"rrf_score\\\": 0,\\n    \\\"s1_embedding\\\": 3,\\n    \\\"s2_minkpp\\\": 0,\\n    \\\"s3_constat\\\": 0,\\n    \\\"s4_selfcritique\\\": 0\\n  },\\n  \\\"n_benchmarks\\\": 3\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G7pSbuBPudK2sCGrKMcFfd`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/contamcal-irt-calibration/exp008/exp008_output/per_benchmark/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "9b2871fb-3cc9-475d-aacf-8e82702bc096",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpU1QQSWPnsAEvYcNS98oP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5814,
+      "cache_read_input_tokens": 49840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-14T15:19:07.676Z_
+
+<details><summary>↩ Tool result · `toolu_01G7pSbuBPudK2sCGrKMcFfd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"arc_challenge\\ngsm8k\\nmmlu\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "1fec3090-9007-41a2-9a3f-2744171734df",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arc_challenge\\\\ngsm8k\\\\nmmlu\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"arc_challenge\\ngsm8k\\nmmlu\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SkzW2Raqz433YYWjMMkaT3`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -50 /root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d005.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "75df81c5-07fb-468e-bb22-47ca58180266",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpU1QQSWPnsAEvYcNS98oP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5814,
+      "cache_read_input_tokens": 49840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-14T15:19:08.175Z_
+
+<details><summary>↩ Tool result · `toolu_01SkzW2Raqz433YYWjMMkaT3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"dosage\\\": 5,\\n  \\\"total_items\\\": 14042,\\n  \\\"contaminated_count\\\": 703,\\n  \\\"labels\\\": [\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "0b0e0555-64c5-4099-91cb-fd8e923cd370",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n  \\\\\\\"dosage\\\\\\\": 5,\\\\n  \\\\\\\"total_items\\\\\\\": 14042,\\\\n  \\\\\\\"contaminated_count\\\\\\\": 703,\\\\n  \\\\\\\"labels\\\\\\\": [\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"dosage\\\": 5,\\n  \\\"total_items\\\": 14042,\\n  \\\"contaminated_count\\\": 703,\\n  \\\"labels\\\": [\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a very clear picture. Let me summarize what I've found:
+
+## Key Findings
+
+### 1. Already completed run exists
+The `exp008_output/` directory in the source tree has results from a **previous run** using the v3 `signal_survival.py` script. It contains:
+- `cross_benchmark_summary.json` — shows 4 regimes (base, sft_clean, sft_contam, rl_aligned), 3 benchmarks
+- `cliff_analysis.json`
+- `per_benchmark/{mmlu,gsm8k,arc_challenge}/`
+
+
+- Some PDF plots
+
+The results look meaningful — AUC values make sense (high for base/SFT, drops for RL).
+
+### 2. Partial signal computation for exp008
+`/root/autodl-tmp/exp008/signals/` exists but only has `sft_clean/` and `sft_contam/` directories (each with mmlu, gsm8k, arc_challenge subdirs). **Missing: `base/` and `rl_aligned/`**.
+
+But the output already has results for all 4 regimes, so either the previous run pulled signals from elsewhere or those directories contain files I haven't checked yet.
+
+### 3. Labels
+d005 labels have the right format (5% contamination = 703/14042 items for MMLU), giving both contaminated and clean items for AUROC computation.
+
+### 4. run_exp008.sh has a bug
+The current script incorrectly uses adapter paths where model paths should go for sft_clean and sft_contam, while the backup version properly separates model and adapter configurations.
+
+### 5. Signal truncation and results analysis
+The signal_survival_analysis.py script was truncated, so I need to check for bugs there. Looking at the actual results, s1_embedding maintains high AUC (~0.97) even after RL alignment, suggesting it's a robust signal, while s2_minkpp, s3_constat, and s4_selfcritique all show significant drops in performance at rl_aligned, indicating these signals are more vulnerable to the alignment process.
+
+The survival_counts data shows only s1_embedding persists across all three benchmarks, which aligns with this cliff-like degradation pattern. But this raises a question—where did these results come from if the base and rl_aligned signals haven't actually been computed yet? I should check whether the v3 script computed signals inline or if there's a different signal source I'm missing, and verify what files actually exist in the exp008 signals directories.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "1069f819-ff7a-44f1-bbfb-7a01a7146954",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HiFUF1d2JWX7ibiJSfX2Be",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3973,
+      "cache_read_input_tokens": 55654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3973
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S8UtW6WzGDHwo8dNpWcizd`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp008/signals/ -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "858ae4ca-6ebc-4f6d-8c15-f336e10042a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HiFUF1d2JWX7ibiJSfX2Be",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3973,
+      "cache_read_input_tokens": 55654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3973
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-14T15:19:34.269Z_
+
+<details><summary>↩ Tool result · `toolu_01S8UtW6WzGDHwo8dNpWcizd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "967572e7-01ff-4836-bfd6-fc3b6743ece6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LD6qvA5Y8HHXYuy5cgszKo`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp008/exp008_output/survival_report.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "b293acb5-9c3a-4e04-aed1-02f42e26c153",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HiFUF1d2JWX7ibiJSfX2Be",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3973,
+      "cache_read_input_tokens": 55654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3973
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-14T15:19:35.236Z_
+
+<details><summary>↩ Tool result · `toolu_01LD6qvA5Y8HHXYuy5cgszKo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"regime_names\\\": [\\n    \\\"base\\\",\\n    \\\"sft_clean\\\",\\n    \\\"sft_contam\\\",\\n    \\\"rl_aligned\\\"\\n  ],\\n  \\\"auc_matrix\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"base\\\": 0.9943,\\n      \\\"sft_clean\\\": 0.899,\\n      \\\"sft_contam\\\": 0.7695,\\n      \\\"rl_aligned\\\": 0.6829\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"base\\\": 0.9695,\\n      \\\"sft_clean\\\": 0.9467,\\n      \\\"sft_contam\\\": 0.8343,\\n      \\\"rl_aligned\\\": 0.7848\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"base\\\": 0.9771,\\n      \\\"sft_clean\\\": 0.9448,\\n      \\\"sft_contam\\\": 0.8133,\\n      \\\"rl_aligned\\\": 0.6467\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"base\\\": 0.9981,\\n      \\\"sft_clean\\\": 0.9962,\\n      \\\"sft_contam\\\": 0.8914,\\n      \\\"rl_aligned\\\": 0.7086\\n    }\\n  },\\n  \\\"effect_size_matrix\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"base\\\": 3.6603,\\n      \\\"sft_clean\\\": 1.8074,\\n      \\\"sft_contam\\\": 1.1501,\\n      \\\"rl_aligned\\\": 0.6708\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"base\\\": 2.7157,\\n      \\\"sft_clean\\\": 2.322,\\n      \\\"sft_contam\\\": 1.254,\\n      \\\"rl_aligned\\\": 1.1604\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"base\\\": 2.7081,\\n      \\\"sft_clean\\\": 2.261,\\n      \\\"sft_contam\\\": 1.2469,\\n      \\\"rl_aligned\\\": 0.5573\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"base\\\": 3.7205,\\n      \\\"sft_clean\\\": 3.347,\\n      \\\"sft_contam\\\": 1.7833,\\n      \\\"rl_aligned\\\": 0.8725\\n    }\\n  },\\n  \\\"pairwise_tests\\\": {\\n    \\\"base_vs_sft_clean\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.6603,\\n        \\\"effect_size_b\\\": 1.8074,\\n        \\\"effect_size_ratio\\\": 0.4938,\\n        \\\"spearman_rho\\\": 0.8108,\\n        \\\"spearman_p\\\": 9.56e-13,\\n        \\\"auc_a\\\": 0.9943,\\n        \\\"auc_b\\\": 0.899,\\n        \\\"auc_ratio\\\": 0.9042,\\n        \\\"wilcoxon_stat\\\": 405.0,\\n        \\\"wilcoxon_p\\\": 0.0248,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.7157,\\n        \\\"effect_size_b\\\": 2.322,\\n        \\\"effect_size_ratio\\\": 0.855,\\n        \\\"spearman_rho\\\": 0.8959,\\n        \\\"spearman_p\\\": 1.54e-18,\\n        \\\"auc_a\\\": 0.9695,\\n        \\\"auc_b\\\": 0.9467,\\n        \\\"auc_ratio\\\": 0.9764,\\n        \\\"wilcoxon_stat\\\": 389.0,\\n        \\\"wilcoxon_p\\\": 0.0157,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.7081,\\n        \\\"effect_size_b\\\": 2.261,\\n        \\\"effect_size_ratio\\\": 0.8349,\\n        \\\"spearman_rho\\\": 0.924,\\n        \\\"spearman_p\\\": 1.12e-21,\\n        \\\"auc_a\\\": 0.9771,\\n        \\\"auc_b\\\": 0.9448,\\n        \\\"auc_ratio\\\": 0.9669,\\n        \\\"wilcoxon_stat\\\": 462.0,\\n        \\\"wilcoxon_p\\\": 0.0913,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.7205,\\n        \\\"effect_size_b\\\": 3.347,\\n        \\\"effect_size_ratio\\\": 0.8996,\\n        \\\"spearman_rho\\\": 0.7724,\\n        \\\"spearman_p\\\": 5.04e-11,\\n        \\\"auc_a\\\": 0.9981,\\n        \\\"auc_b\\\": 0.9962,\\n        \\\"auc_ratio\\\": 0.9981,\\n        \\\"wilcoxon_stat\\\": 387.0,\\n        \\\"wilcoxon_p\\\": 0.0149,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      }\\n    },\\n    \\\"sft_clean_vs_sft_contam\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.8074,\\n        \\\"effect_size_b\\\": 1.1501,\\n        \\\"effect_size_ratio\\\": 0.6363,\\n        \\\"spearman_rho\\\": 0.6285,\\n        \\\"spearman_p\\\": 1.02e-06,\\n        \\\"auc_a\\\": 0.899,\\n        \\\"auc_b\\\": 0.7695,\\n        \\\"auc_ratio\\\": 0.8559,\\n        \\\"wilcoxon_stat\\\": 567.0,\\n        \\\"wilcoxon_p\\\": 0.502,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.322,\\n        \\\"effect_size_b\\\": 1.254,\\n        \\\"effect_size_ratio\\\": 0.5401,\\n        \\\"spearman_rho\\\": 0.7496,\\n        \\\"spearman_p\\\": 3.75e-10,\\n        \\\"auc_a\\\": 0.9467,\\n        \\\"auc_b\\\": 0.8343,\\n        \\\"auc_ratio\\\": 0.8813,\\n        \\\"wilcoxon_stat\\\": 418.0,\\n        \\\"wilcoxon_p\\\": 0.0337,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_c\\n\\n... [截断: 输出过长，省略 765 字符] ...\\n\\nuc_ratio\\\": 0.8948,\\n        \\\"wilcoxon_stat\\\": 390.5,\\n        \\\"wilcoxon_p\\\": 0.0171,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      }\\n    },\\n    \\\"sft_contam_vs_rl_aligned\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.1501,\\n        \\\"effect_size_b\\\": 0.6708,\\n        \\\"effect_size_ratio\\\": 0.5833,\\n        \\\"spearman_rho\\\": 0.6613,\\n        \\\"spearman_p\\\": 1.71e-07,\\n        \\\"auc_a\\\": 0.7695,\\n        \\\"auc_b\\\": 0.6829,\\n        \\\"auc_ratio\\\": 0.8874,\\n        \\\"wilcoxon_stat\\\": 451.0,\\n        \\\"wilcoxon_p\\\": 0.0724,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.254,\\n        \\\"effect_size_b\\\": 1.1604,\\n        \\\"effect_size_ratio\\\": 0.9253,\\n        \\\"spearman_rho\\\": 0.5198,\\n        \\\"spearman_p\\\": 0.000109,\\n        \\\"auc_a\\\": 0.8343,\\n        \\\"auc_b\\\": 0.7848,\\n        \\\"auc_ratio\\\": 0.9406,\\n        \\\"wilcoxon_stat\\\": 595.0,\\n        \\\"wilcoxon_p\\\": 0.682,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.2469,\\n        \\\"effect_size_b\\\": 0.5573,\\n        \\\"effect_size_ratio\\\": 0.447,\\n        \\\"spearman_rho\\\": 0.7053,\\n        \\\"spearman_p\\\": 1.07e-08,\\n        \\\"auc_a\\\": 0.8133,\\n        \\\"auc_b\\\": 0.6467,\\n        \\\"auc_ratio\\\": 0.7951,\\n        \\\"wilcoxon_stat\\\": 575.0,\\n        \\\"wilcoxon_p\\\": 0.553,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.7833,\\n        \\\"effect_size_b\\\": 0.8725,\\n        \\\"effect_size_ratio\\\": 0.4892,\\n        \\\"spearman_rho\\\": 0.6038,\\n        \\\"spearman_p\\\": 3.45e-06,\\n        \\\"auc_a\\\": 0.8914,\\n        \\\"auc_b\\\": 0.7086,\\n        \\\"auc_ratio\\\": 0.7949,\\n        \\\"wilcoxon_stat\\\": 482.0,\\n        \\\"wilcoxon_p\\\": 0.135,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      }\\n    }\\n  },\\n  \\\"per_signal\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"signal_label\\\": \\\"Embedding\\\",\\n      \\\"n_items\\\": 50,\\n      \\\"n_contaminated\\\": 15,\\n      \\\"n_clean\\\": 35,\\n      \\\"effect_size_sft\\\": 3.6603,\\n      \\\"effect_size_rl\\\": 1.8074,\\n      \\\"effect_size_ratio\\\": 0.4938,\\n      \\\"spearman_rho\\\": 0.8108,\\n      \\\"spearman_p\\\": 9.56e-13,\\n      \\\"auc_sft\\\": 0.9943,\\n      \\\"auc_rl\\\": 0.899,\\n      \\\"auc_ratio\\\": 0.9042,\\n      \\\"wilcoxon_stat\\\": 405.0,\\n      \\\"wilcoxon_p\\\": 0.0248\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"signal_label\\\": \\\"Min-K%++\\\",\\n      \\\"n_items\\\": 50,\\n      \\\"n_contaminated\\\": 15,\\n      \\\"n_clean\\\": 35,\\n      \\\"effect_size_sft\\\": 2.7157,\\n      \\\"effect_size_rl\\\": 2.322,\\n      \\\"effect_size_ratio\\\": 0.855,\\n      \\\"spearman_rho\\\": 0.8959,\\n      \\\"spearman_p\\\": 1.54e-18,\\n      \\\"auc_sft\\\": 0.9695,\\n      \\\"auc_rl\\\": 0.9467,\\n      \\\"auc_ratio\\\": 0.9764,\\n      \\\"wilcoxon_stat\\\": 389.0,\\n      \\\"wilcoxon_p\\\": 0.0157\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"signal_label\\\": \\\"ConStat\\\",\\n      \\\"n_items\\\": 50,\\n      \\\"n_contaminated\\\": 15,\\n      \\\"n_clean\\\": 35,\\n      \\\"effect_size_sft\\\": 2.7081,\\n      \\\"effect_size_rl\\\": 2.261,\\n      \\\"effect_size_ratio\\\": 0.8349,\\n      \\\"spearman_rho\\\": 0.924,\\n      \\\"spearman_p\\\": 1.12e-21,\\n      \\\"auc_sft\\\": 0.9771,\\n      \\\"auc_rl\\\": 0.9448,\\n      \\\"auc_ratio\\\": 0.9669,\\n      \\\"wilcoxon_stat\\\": 462.0,\\n      \\\"wilcoxon_p\\\": 0.0913\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"signal_label\\\": \\\"Self-Critique\\\",\\n      \\\"n_items\\\": 50,\\n      \\\"n_contaminated\\\": 15,\\n      \\\"n_clean\\\": 35,\\n      \\\"effect_size_sft\\\": 3.7205,\\n      \\\"effect_size_rl\\\": 3.347,\\n      \\\"effect_size_ratio\\\": 0.8996,\\n      \\\"spearman_rho\\\": 0.7724,\\n      \\\"spearman_p\\\": 5.04e-11,\\n      \\\"auc_sft\\\": 0.9981,\\n      \\\"auc_rl\\\": 0.9962,\\n      \\\"auc_ratio\\\": 0.9981,\\n      \\\"wilcoxon_stat\\\": 387.0,\\n      \\\"wilcoxon_p\\\": 0.0149\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"n_regimes\\\": 4,\\n    \\\"regime_names\\\": [\\n      \\\"base\\\",\\n      \\\"sft_clean\\\",\\n      \\\"sft_contam\\\",\\n      \\\"rl_aligned\\\"\\n    ],\\n    \\\"n_signals_analyzed\\\": 4,\\n    \\\"n_signals_surviving\\\": 0,\\n    \\\"surviving_signals\\\": [],\\n    \\\"mean_auc_ratio\\\": 0.9614,\\n    \\\"mean_spearman_rho\\\": 0.8508\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "177c770f-ef2a-4f3e-810e-47126d439c1a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"regime_names\\\\\\\": [\\\\n    \\\\\\\"base\\\\\\\",\\\\n    \\\\\\\"sft_clean\\\\\\\",\\\\n    \\\\\\\"sft_contam\\\\\\\",\\\\n    \\\\\\\"rl_aligned\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"auc_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9943,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.899,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.7695,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6829\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9695,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9467,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.8343,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.7848\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9771,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9448,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.8133,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6467\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9981,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9962,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.8914,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.7086\\\\n    }\\\\n  },\\\\n  \\\\\\\"effect_size_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 3.6603,\\\\n      \\\\\\\"sft_clean\\\\\\\": 1.8074,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.1501,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6708\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 2.7157,\\\\n      \\\\\\\"sft_clean\\\\\\\": 2.322,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.254,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 1.1604\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 2.7081,\\\\n      \\\\\\\"sft_clean\\\\\\\": 2.261,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.2469,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.5573\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 3.7205,\\\\n      \\\\\\\"sft_clean\\\\\\\": 3.347,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.7833,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.8725\\\\n    }\\\\n  },\\\\n  \\\\\\\"pairwise_tests\\\\\\\": {\\\\n    \\\\\\\"base_vs_sft_clean\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 3.6603,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.8074,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.4938,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.8108,\\\\n        \\\\\\\"spearman_p\\\\\\\": 9.56e-13,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9943,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.899,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9042,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 405.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0248,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.7157,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 2.322,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.855,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.8959,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.54e-18,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9695,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9467,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9764,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 389.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0157,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_constat\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.7081,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 2.261,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.8349,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.924,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.12e-21,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9771,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9448,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9669,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 462.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0913,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 3.7205,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 3.347,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.8996,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.7724,\\\\n        \\\\\\\"spearman_p\\\\\\\": 5.04e-11,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9981,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9962,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9981,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 387.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0149,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"sft_clean_vs_sft_contam\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.8074,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.1501,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.6363,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6285,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.02e-06,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.899,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.7695,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.8559,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 567.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.502,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.322,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.254,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.5401,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.7496,\\\\n        \\\\\\\"spearman_p\\\\\\\": 3.75e-10,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9467,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.8343,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.8813,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 418.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0337,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_c\\\\n\\\\n... [截断: 输出过长，省略 765 字符] ...\\\\n\\\\nuc_ratio\\\\\\\": 0.8948,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 390.5,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0171,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"sft_contam_vs_rl_aligned\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.1501,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.6708,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.5833,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6613,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.71e-07,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.7695,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.6829,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.8874,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 451.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0724,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.254,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.1604,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.9253,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.5198,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.000109,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.8343,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.7848,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9406,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 595.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.682,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_constat\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.2469,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.5573,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.447,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.7053,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.07e-08,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.8133,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.6467,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.7951,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 575.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.553,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 1.7833,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.8725,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.4892,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6038,\\\\n        \\\\\\\"spearman_p\\\\\\\": 3.45e-06,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.8914,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.7086,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.7949,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 482.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.135,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_signal\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 50,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n      \\\\\\\"n_clean\\\\\\\": 35,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 3.6603,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 1.8074,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 0.4938,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.8108,\\\\n      \\\\\\\"spearman_p\\\\\\\": 9.56e-13,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.9943,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.899,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9042,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 405.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0248\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 50,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n      \\\\\\\"n_clean\\\\\\\": 35,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 2.7157,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 2.322,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 0.855,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.8959,\\\\n      \\\\\\\"spearman_p\\\\\\\": 1.54e-18,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.9695,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.9467,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9764,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 389.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0157\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 50,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n      \\\\\\\"n_clean\\\\\\\": 35,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 2.7081,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 2.261,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 0.8349,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.924,\\\\n      \\\\\\\"spearman_p\\\\\\\": 1.12e-21,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.9771,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.9448,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9669,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 462.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0913\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n      \\\\\\\"n_items\\\\\\\": 50,\\\\n      \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n      \\\\\\\"n_clean\\\\\\\": 35,\\\\n      \\\\\\\"effect_size_sft\\\\\\\": 3.7205,\\\\n      \\\\\\\"effect_size_rl\\\\\\\": 3.347,\\\\n      \\\\\\\"effect_size_ratio\\\\\\\": 0.8996,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.7724,\\\\n      \\\\\\\"spearman_p\\\\\\\": 5.04e-11,\\\\n      \\\\\\\"auc_sft\\\\\\\": 0.9981,\\\\n      \\\\\\\"auc_rl\\\\\\\": 0.9962,\\\\n      \\\\\\\"auc_ratio\\\\\\\": 0.9981,\\\\n      \\\\\\\"wilcoxon_stat\\\\\\\": 387.0,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.0149\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_regimes\\\\\\\": 4,\\\\n    \\\\\\\"regime_names\\\\\\\": [\\\\n      \\\\\\\"base\\\\\\\",\\\\n      \\\\\\\"sft_clean\\\\\\\",\\\\n      \\\\\\\"sft_contam\\\\\\\",\\\\n      \\\\\\\"rl_aligned\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_signals_analyzed\\\\\\\": 4,\\\\n    \\\\\\\"n_signals_surviving\\\\\\\": 0,\\\\n    \\\\\\\"surviving_signals\\\\\\\": [],\\\\n    \\\\\\\"mean_auc_ratio\\\\\\\": 0.9614,\\\\n    \\\\\\\"mean_spearman_rho\\\\\\\": 0.8508\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"regime_names\\\": [\\n    \\\"base\\\",\\n    \\\"sft_clean\\\",\\n    \\\"sft_contam\\\",\\n    \\\"rl_aligned\\\"\\n  ],\\n  \\\"auc_matrix\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"base\\\": 0.9943,\\n      \\\"sft_clean\\\": 0.899,\\n      \\\"sft_contam\\\": 0.7695,\\n      \\\"rl_aligned\\\": 0.6829\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"base\\\": 0.9695,\\n      \\\"sft_clean\\\": 0.9467,\\n      \\\"sft_contam\\\": 0.8343,\\n      \\\"rl_aligned\\\": 0.7848\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"base\\\": 0.9771,\\n      \\\"sft_clean\\\": 0.9448,\\n      \\\"sft_contam\\\": 0.8133,\\n      \\\"rl_aligned\\\": 0.6467\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"base\\\": 0.9981,\\n      \\\"sft_clean\\\": 0.9962,\\n      \\\"sft_contam\\\": 0.8914,\\n      \\\"rl_aligned\\\": 0.7086\\n    }\\n  },\\n  \\\"effect_size_matrix\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"base\\\": 3.6603,\\n      \\\"sft_clean\\\": 1.8074,\\n      \\\"sft_contam\\\": 1.1501,\\n      \\\"rl_aligned\\\": 0.6708\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"base\\\": 2.7157,\\n      \\\"sft_clean\\\": 2.322,\\n      \\\"sft_contam\\\": 1.254,\\n      \\\"rl_aligned\\\": 1.1604\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"base\\\": 2.7081,\\n      \\\"sft_clean\\\": 2.261,\\n      \\\"sft_contam\\\": 1.2469,\\n      \\\"rl_aligned\\\": 0.5573\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"base\\\": 3.7205,\\n      \\\"sft_clean\\\": 3.347,\\n      \\\"sft_contam\\\": 1.7833,\\n      \\\"rl_aligned\\\": 0.8725\\n    }\\n  },\\n  \\\"pairwise_tests\\\": {\\n    \\\"base_vs_sft_clean\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.6603,\\n        \\\"effect_size_b\\\": 1.8074,\\n        \\\"effect_size_ratio\\\": 0.4938,\\n        \\\"spearman_rho\\\": 0.8108,\\n        \\\"spearman_p\\\": 9.56e-13,\\n        \\\"auc_a\\\": 0.9943,\\n        \\\"auc_b\\\": 0.899,\\n        \\\"auc_ratio\\\": 0.9042,\\n        \\\"wilcoxon_stat\\\": 405.0,\\n        \\\"wilcoxon_p\\\": 0.0248,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.7157,\\n        \\\"effect_size_b\\\": 2.322,\\n        \\\"effect_size_ratio\\\": 0.855,\\n        \\\"spearman_rho\\\": 0.8959,\\n        \\\"spearman_p\\\": 1.54e-18,\\n        \\\"auc_a\\\": 0.9695,\\n        \\\"auc_b\\\": 0.9467,\\n        \\\"auc_ratio\\\": 0.9764,\\n        \\\"wilcoxon_stat\\\": 389.0,\\n        \\\"wilcoxon_p\\\": 0.0157,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.7081,\\n        \\\"effect_size_b\\\": 2.261,\\n        \\\"effect_size_ratio\\\": 0.8349,\\n        \\\"spearman_rho\\\": 0.924,\\n        \\\"spearman_p\\\": 1.12e-21,\\n        \\\"auc_a\\\": 0.9771,\\n        \\\"auc_b\\\": 0.9448,\\n        \\\"auc_ratio\\\": 0.9669,\\n        \\\"wilcoxon_stat\\\": 462.0,\\n        \\\"wilcoxon_p\\\": 0.0913,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.7205,\\n        \\\"effect_size_b\\\": 3.347,\\n        \\\"effect_size_ratio\\\": 0.8996,\\n        \\\"spearman_rho\\\": 0.7724,\\n        \\\"spearman_p\\\": 5.04e-11,\\n        \\\"auc_a\\\": 0.9981,\\n        \\\"auc_b\\\": 0.9962,\\n        \\\"auc_ratio\\\": 0.9981,\\n        \\\"wilcoxon_stat\\\": 387.0,\\n        \\\"wilcoxon_p\\\": 0.0149,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      }\\n    },\\n    \\\"sft_clean_vs_sft_contam\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.8074,\\n        \\\"effect_size_b\\\": 1.1501,\\n        \\\"effect_size_ratio\\\": 0.6363,\\n        \\\"spearman_rho\\\": 0.6285,\\n        \\\"spearman_p\\\": 1.02e-06,\\n        \\\"auc_a\\\": 0.899,\\n        \\\"auc_b\\\": 0.7695,\\n        \\\"auc_ratio\\\": 0.8559,\\n        \\\"wilcoxon_stat\\\": 567.0,\\n        \\\"wilcoxon_p\\\": 0.502,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.322,\\n        \\\"effect_size_b\\\": 1.254,\\n        \\\"effect_size_ratio\\\": 0.5401,\\n        \\\"spearman_rho\\\": 0.7496,\\n        \\\"spearman_p\\\": 3.75e-10,\\n        \\\"auc_a\\\": 0.9467,\\n        \\\"auc_b\\\": 0.8343,\\n        \\\"auc_ratio\\\": 0.8813,\\n        \\\"wilcoxon_stat\\\": 418.0,\\n        \\\"wilcoxon_p\\\": 0.0337,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_c\\n\\n... [截断: 输出过长，省略 765 字符] ...\\n\\nuc_ratio\\\": 0.8948,\\n        \\\"wilcoxon_stat\\\": 390.5,\\n        \\\"wilcoxon_p\\\": 0.0171,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      }\\n    },\\n    \\\"sft_contam_vs_rl_aligned\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.1501,\\n        \\\"effect_size_b\\\": 0.6708,\\n        \\\"effect_size_ratio\\\": 0.5833,\\n        \\\"spearman_rho\\\": 0.6613,\\n        \\\"spearman_p\\\": 1.71e-07,\\n        \\\"auc_a\\\": 0.7695,\\n        \\\"auc_b\\\": 0.6829,\\n        \\\"auc_ratio\\\": 0.8874,\\n        \\\"wilcoxon_stat\\\": 451.0,\\n        \\\"wilcoxon_p\\\": 0.0724,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.254,\\n        \\\"effect_size_b\\\": 1.1604,\\n        \\\"effect_size_ratio\\\": 0.9253,\\n        \\\"spearman_rho\\\": 0.5198,\\n        \\\"spearman_p\\\": 0.000109,\\n        \\\"auc_a\\\": 0.8343,\\n        \\\"auc_b\\\": 0.7848,\\n        \\\"auc_ratio\\\": 0.9406,\\n        \\\"wilcoxon_stat\\\": 595.0,\\n        \\\"wilcoxon_p\\\": 0.682,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.2469,\\n        \\\"effect_size_b\\\": 0.5573,\\n        \\\"effect_size_ratio\\\": 0.447,\\n        \\\"spearman_rho\\\": 0.7053,\\n        \\\"spearman_p\\\": 1.07e-08,\\n        \\\"auc_a\\\": 0.8133,\\n        \\\"auc_b\\\": 0.6467,\\n        \\\"auc_ratio\\\": 0.7951,\\n        \\\"wilcoxon_stat\\\": 575.0,\\n        \\\"wilcoxon_p\\\": 0.553,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 1.7833,\\n        \\\"effect_size_b\\\": 0.8725,\\n        \\\"effect_size_ratio\\\": 0.4892,\\n        \\\"spearman_rho\\\": 0.6038,\\n        \\\"spearman_p\\\": 3.45e-06,\\n        \\\"auc_a\\\": 0.8914,\\n        \\\"auc_b\\\": 0.7086,\\n        \\\"auc_ratio\\\": 0.7949,\\n        \\\"wilcoxon_stat\\\": 482.0,\\n        \\\"wilcoxon_p\\\": 0.135,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      }\\n    }\\n  },\\n  \\\"per_signal\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"signal_label\\\": \\\"Embedding\\\",\\n      \\\"n_items\\\": 50,\\n      \\\"n_contaminated\\\": 15,\\n      \\\"n_clean\\\": 35,\\n      \\\"effect_size_sft\\\": 3.6603,\\n      \\\"effect_size_rl\\\": 1.8074,\\n      \\\"effect_size_ratio\\\": 0.4938,\\n      \\\"spearman_rho\\\": 0.8108,\\n      \\\"spearman_p\\\": 9.56e-13,\\n      \\\"auc_sft\\\": 0.9943,\\n      \\\"auc_rl\\\": 0.899,\\n      \\\"auc_ratio\\\": 0.9042,\\n      \\\"wilcoxon_stat\\\": 405.0,\\n      \\\"wilcoxon_p\\\": 0.0248\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"signal_label\\\": \\\"Min-K%++\\\",\\n      \\\"n_items\\\": 50,\\n      \\\"n_contaminated\\\": 15,\\n      \\\"n_clean\\\": 35,\\n      \\\"effect_size_sft\\\": 2.7157,\\n      \\\"effect_size_rl\\\": 2.322,\\n      \\\"effect_size_ratio\\\": 0.855,\\n      \\\"spearman_rho\\\": 0.8959,\\n      \\\"spearman_p\\\": 1.54e-18,\\n      \\\"auc_sft\\\": 0.9695,\\n      \\\"auc_rl\\\": 0.9467,\\n      \\\"auc_ratio\\\": 0.9764,\\n      \\\"wilcoxon_stat\\\": 389.0,\\n      \\\"wilcoxon_p\\\": 0.0157\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"signal_label\\\": \\\"ConStat\\\",\\n      \\\"n_items\\\": 50,\\n      \\\"n_contaminated\\\": 15,\\n      \\\"n_clean\\\": 35,\\n      \\\"effect_size_sft\\\": 2.7081,\\n      \\\"effect_size_rl\\\": 2.261,\\n      \\\"effect_size_ratio\\\": 0.8349,\\n      \\\"spearman_rho\\\": 0.924,\\n      \\\"spearman_p\\\": 1.12e-21,\\n      \\\"auc_sft\\\": 0.9771,\\n      \\\"auc_rl\\\": 0.9448,\\n      \\\"auc_ratio\\\": 0.9669,\\n      \\\"wilcoxon_stat\\\": 462.0,\\n      \\\"wilcoxon_p\\\": 0.0913\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"signal_label\\\": \\\"Self-Critique\\\",\\n      \\\"n_items\\\": 50,\\n      \\\"n_contaminated\\\": 15,\\n      \\\"n_clean\\\": 35,\\n      \\\"effect_size_sft\\\": 3.7205,\\n      \\\"effect_size_rl\\\": 3.347,\\n      \\\"effect_size_ratio\\\": 0.8996,\\n      \\\"spearman_rho\\\": 0.7724,\\n      \\\"spearman_p\\\": 5.04e-11,\\n      \\\"auc_sft\\\": 0.9981,\\n      \\\"auc_rl\\\": 0.9962,\\n      \\\"auc_ratio\\\": 0.9981,\\n      \\\"wilcoxon_stat\\\": 387.0,\\n      \\\"wilcoxon_p\\\": 0.0149\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"n_regimes\\\": 4,\\n    \\\"regime_names\\\": [\\n      \\\"base\\\",\\n      \\\"sft_clean\\\",\\n      \\\"sft_contam\\\",\\n      \\\"rl_aligned\\\"\\n    ],\\n    \\\"n_signals_analyzed\\\": 4,\\n    \\\"n_signals_surviving\\\": 0,\\n    \\\"surviving_signals\\\": [],\\n    \\\"mean_auc_ratio\\\": 0.9614,\\n    \\\"mean_spearman_rho\\\": 0.8508\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Jx39V9pejPZaSKjgNKqY72`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/contamcal-irt-calibration/exp008/exp008_output/per_benchmark/mmlu/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "3be815f1-3a47-4e33-8c8c-de0c9749b6f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HiFUF1d2JWX7ibiJSfX2Be",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3973,
+      "cache_read_input_tokens": 55654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3973
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-14T15:19:35.799Z_
+
+<details><summary>↩ Tool result · `toolu_01Jx39V9pejPZaSKjgNKqY72`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"survival_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "9971bcbb-9db1-4f68-8dc5-9b27e1f08e96",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"survival_report.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"survival_report.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see two conflicting results:
+
+1. **`exp008_output/survival_report.json`** (in source tree) — v2 format, n_items=50, looks like **mock data** (dry-run). 4 regimes, but only 50 items with 15 contaminated = 30% contamination rate, exactly matching `generate_mock_data` defaults.
+
+2. **`exp008_output/cross_benchmark_summary.json`** — v3 format, per-benchmark data with realistic AUC values (14042 items for mmlu), shows real results.
+
+
+So the v3 `signal_survival.py` ran successfully with real data across all benchmarks, while the v2 script produced that small mock dataset—the cross_benchmark_summary is what I should be looking at for the actual results.
+
+The puzzle is that the exp008 signal directories are empty, yet the v3 results exist, which suggests the script either pulled signals directly from exp002 or used some other data source. Let me dig into the per-benchmark reports to figure out what data actually went into these calculations, then determine whether I need to regenerate signals properly for all four regimes or if the existing results are already valid. The bug in `run_exp008.sh` passes the adapter path as the model path for SFT regimes, though the `.bak` backup is correct. I also need to fully review the truncated sections in `signal_survival_analysis.py` and the v3 `signal_survival.py`. The architecture splits into two steps: computing signals for all four regimes on GPU (via exp002), then running CPU-only statistical analysis. This means exp-008 isn't purely CPU—Step 1 requires GPU for the base and rl_aligned models, though I could potentially reuse exp-002 signals for the SFT variants if the dataset IDs match what's in `run_exp008.sh`.
+
+The directory structure mismatch is the real issue: exp-002 organizes signals as `exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_{benchmark}.json`, but exp-008 expects `signals/{regime}/{benchmark}/signals_merged_{benchmark}.json`, and the v3 script has its own expectations. I need to figure out which exp-002 signals can be reused for the four regimes in exp-008.
+
+Looking at what's available: sft_clean (d000) has all three benchmark signals in `/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/`, sft_contam with d005 dosage also has signals in `/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/`, but base and rl_aligned don't have precomputed signals. For the v2 runner, I could pass these paths directly via `--regime-dirs` flags, though I need to figure out how to handle the missing regimes.
+
+Now I need to think through what to report and also check the truncated code for any bugs, particularly in the signal_survival.py file by examining specific line ranges.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "a08c5b60-8748-46cc-b527-2296fe3bd20d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QjFf3biMtwUkrefMSR8YSe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6748,
+      "cache_read_input_tokens": 59627,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6748
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+发现已有输出中 `survival_report.json` 是 mock 数据 (n=50)。但 `cross_benchmark_summary.json` 有真实结果。需要检查 v3 结果来源和被截断的代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "9e94f94d-710b-46cb-9a28-31f21996571f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QjFf3biMtwUkrefMSR8YSe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6748,
+      "cache_read_input_tokens": 59627,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6748
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0145Zfh7KLTSiaNy5xxhSdrj`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp008/exp008_output/per_benchmark/mmlu/survival_report.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "cad77336-3fca-4789-92b3-50f2e2fb6e90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QjFf3biMtwUkrefMSR8YSe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6748,
+      "cache_read_input_tokens": 59627,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6748
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-14T15:20:17.934Z_
+
+<details><summary>↩ Tool result · `toolu_0145Zfh7KLTSiaNy5xxhSdrj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"regime_names\\\": [\\n    \\\"base\\\",\\n    \\\"sft_clean\\\",\\n    \\\"sft_contam\\\",\\n    \\\"rl_aligned\\\"\\n  ],\\n  \\\"auc_matrix\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"base\\\": 1.0,\\n      \\\"sft_clean\\\": 1.0,\\n      \\\"sft_contam\\\": 1.0,\\n      \\\"rl_aligned\\\": 1.0\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"base\\\": 0.9981,\\n      \\\"sft_clean\\\": 0.9962,\\n      \\\"sft_contam\\\": 1.0,\\n      \\\"rl_aligned\\\": 0.781\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"base\\\": 0.9962,\\n      \\\"sft_clean\\\": 0.9848,\\n      \\\"sft_contam\\\": 0.9676,\\n      \\\"rl_aligned\\\": 0.6114\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"base\\\": 1.0,\\n      \\\"sft_clean\\\": 1.0,\\n      \\\"sft_contam\\\": 0.9905,\\n      \\\"rl_aligned\\\": 0.3124\\n    },\\n    \\\"rrf_score\\\": {\\n      \\\"base\\\": 0.9924,\\n      \\\"sft_clean\\\": 1.0,\\n      \\\"sft_contam\\\": 0.9867,\\n      \\\"rl_aligned\\\": 0.5362\\n    }\\n  },\\n  \\\"effect_size_matrix\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"base\\\": 4.1114,\\n      \\\"sft_clean\\\": 3.32,\\n      \\\"sft_contam\\\": 4.4787,\\n      \\\"rl_aligned\\\": 3.037\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"base\\\": 4.2537,\\n      \\\"sft_clean\\\": 3.8832,\\n      \\\"sft_contam\\\": 4.1447,\\n      \\\"rl_aligned\\\": 1.0976\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"base\\\": 3.5298,\\n      \\\"sft_clean\\\": 3.1116,\\n      \\\"sft_contam\\\": 2.3158,\\n      \\\"rl_aligned\\\": 0.2961\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"base\\\": 4.3915,\\n      \\\"sft_clean\\\": 3.7025,\\n      \\\"sft_contam\\\": 2.783,\\n      \\\"rl_aligned\\\": -0.697\\n    },\\n    \\\"rrf_score\\\": {\\n      \\\"base\\\": 3.3423,\\n      \\\"sft_clean\\\": 4.4199,\\n      \\\"sft_contam\\\": 2.9419,\\n      \\\"rl_aligned\\\": 0.2179\\n    }\\n  },\\n  \\\"pairwise_tests\\\": {\\n    \\\"base_vs_sft_clean\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 4.1114,\\n        \\\"effect_size_b\\\": 3.32,\\n        \\\"effect_size_ratio\\\": 0.8075,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 1.0,\\n        \\\"auc_ratio\\\": 1.0,\\n        \\\"spearman_rho\\\": 0.5985,\\n        \\\"spearman_p\\\": 4.42e-06,\\n        \\\"wilcoxon_stat\\\": 634.0,\\n        \\\"wilcoxon_p\\\": 0.977,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 4.2537,\\n        \\\"effect_size_b\\\": 3.8832,\\n        \\\"effect_size_ratio\\\": 0.9129,\\n        \\\"auc_a\\\": 0.9981,\\n        \\\"auc_b\\\": 0.9962,\\n        \\\"auc_ratio\\\": 0.9981,\\n        \\\"spearman_rho\\\": 0.6527,\\n        \\\"spearman_p\\\": 2.8e-07,\\n        \\\"wilcoxon_stat\\\": 634.0,\\n        \\\"wilcoxon_p\\\": 0.977,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.5298,\\n        \\\"effect_size_b\\\": 3.1116,\\n        \\\"effect_size_ratio\\\": 0.8815,\\n        \\\"auc_a\\\": 0.9962,\\n        \\\"auc_b\\\": 0.9848,\\n        \\\"auc_ratio\\\": 0.9885,\\n        \\\"spearman_rho\\\": 0.6152,\\n        \\\"spearman_p\\\": 2e-06,\\n        \\\"wilcoxon_stat\\\": 403.0,\\n        \\\"wilcoxon_p\\\": 0.0236,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 4.3915,\\n        \\\"effect_size_b\\\": 3.7025,\\n        \\\"effect_size_ratio\\\": 0.8431,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 1.0,\\n        \\\"auc_ratio\\\": 1.0,\\n        \\\"spearman_rho\\\": 0.5597,\\n        \\\"spearman_p\\\": 2.38e-05,\\n        \\\"wilcoxon_stat\\\": 633.0,\\n        \\\"wilcoxon_p\\\": 0.969,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      },\\n      \\\"rrf_score\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.3423,\\n        \\\"effect_size_b\\\": 4.4199,\\n        \\\"effect_size_ratio\\\": 1.3224,\\n        \\\"auc_a\\\": 0.9924,\\n        \\\"auc_b\\\": 1.0,\\n        \\\"auc_ratio\\\": 1.0077,\\n        \\\"spearman_rho\\\": 0.495,\\n        \\\"spearman_p\\\": 0.000257,\\n        \\\"wilcoxon_stat\\\": 630.0,\\n        \\\"wilcoxon_p\\\": 0.947,\\n        \\\"signal_label\\\": \\\"RRF (fused)\\\"\\n      }\\n    },\\n    \\\"sft_clean_vs_sft_contam\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.32,\\n        \\\"effect_size_b\\\": 4.4787,\\n        \\\"effect_size_ratio\\\": 1.349,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 1.0,\\n   \\n\\n... [截断: 输出过长，省略 385 字符] ...\\n\\n 1.0673,\\n        \\\"auc_a\\\": 0.9962,\\n        \\\"auc_b\\\": 1.0,\\n        \\\"auc_ratio\\\": 1.0038,\\n        \\\"spearman_rho\\\": 0.7089,\\n        \\\"spearman_p\\\": 8.38e-09,\\n        \\\"wilcoxon_stat\\\": 531.0,\\n        \\\"wilcoxon_p\\\": 0.309,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.1116,\\n        \\\"effect_size_b\\\": 2.3158,\\n        \\\"effect_size_ratio\\\": 0.7442,\\n        \\\"auc_a\\\": 0.9848,\\n        \\\"auc_b\\\": 0.9676,\\n        \\\"auc_ratio\\\": 0.9826,\\n        \\\"spearman_rho\\\": 0.6012,\\n        \\\"spearman_p\\\": 3.89e-06,\\n        \\\"wilcoxon_stat\\\": 565.0,\\n        \\\"wilcoxon_p\\\": 0.49,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.7025,\\n        \\\"effect_size_b\\\": 2.783,\\n        \\\"effect_size_ratio\\\": 0.7517,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 0.9905,\\n        \\\"auc_ratio\\\": 0.9905,\\n        \\\"spearman_rho\\\": 0.6486,\\n        \\\"spearman_p\\\": 3.52e-07,\\n        \\\"wilcoxon_stat\\\": 409.0,\\n        \\\"wilcoxon_p\\\": 0.0268,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      },\\n      \\\"rrf_score\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 4.4199,\\n        \\\"effect_size_b\\\": 2.9419,\\n        \\\"effect_size_ratio\\\": 0.6656,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 0.9867,\\n        \\\"auc_ratio\\\": 0.9867,\\n        \\\"spearman_rho\\\": 0.5908,\\n        \\\"spearman_p\\\": 6.28e-06,\\n        \\\"wilcoxon_stat\\\": 544.0,\\n        \\\"wilcoxon_p\\\": 0.372,\\n        \\\"signal_label\\\": \\\"RRF (fused)\\\"\\n      }\\n    },\\n    \\\"sft_contam_vs_rl_aligned\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 4.4787,\\n        \\\"effect_size_b\\\": 3.037,\\n        \\\"effect_size_ratio\\\": 0.6781,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 1.0,\\n        \\\"auc_ratio\\\": 1.0,\\n        \\\"spearman_rho\\\": 0.6584,\\n        \\\"spearman_p\\\": 2.03e-07,\\n        \\\"wilcoxon_stat\\\": 362.0,\\n        \\\"wilcoxon_p\\\": 0.00716,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 4.1447,\\n        \\\"effect_size_b\\\": 1.0976,\\n        \\\"effect_size_ratio\\\": 0.2648,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 0.781,\\n        \\\"auc_ratio\\\": 0.781,\\n        \\\"spearman_rho\\\": 0.309,\\n        \\\"spearman_p\\\": 0.029,\\n        \\\"wilcoxon_stat\\\": 381.0,\\n        \\\"wilcoxon_p\\\": 0.0126,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.3158,\\n        \\\"effect_size_b\\\": 0.2961,\\n        \\\"effect_size_ratio\\\": 0.1279,\\n        \\\"auc_a\\\": 0.9676,\\n        \\\"auc_b\\\": 0.6114,\\n        \\\"auc_ratio\\\": 0.6319,\\n        \\\"spearman_rho\\\": 0.0756,\\n        \\\"spearman_p\\\": 0.602,\\n        \\\"wilcoxon_stat\\\": 360.0,\\n        \\\"wilcoxon_p\\\": 0.00673,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.783,\\n        \\\"effect_size_b\\\": -0.697,\\n        \\\"effect_size_ratio\\\": -0.2504,\\n        \\\"auc_a\\\": 0.9905,\\n        \\\"auc_b\\\": 0.3124,\\n        \\\"auc_ratio\\\": 0.3154,\\n        \\\"spearman_rho\\\": -0.2633,\\n        \\\"spearman_p\\\": 0.0647,\\n        \\\"wilcoxon_stat\\\": 326.0,\\n        \\\"wilcoxon_p\\\": 0.0022,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      },\\n      \\\"rrf_score\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.9419,\\n        \\\"effect_size_b\\\": 0.2179,\\n        \\\"effect_size_ratio\\\": 0.0741,\\n        \\\"auc_a\\\": 0.9867,\\n        \\\"auc_b\\\": 0.5362,\\n        \\\"auc_ratio\\\": 0.5434,\\n        \\\"spearman_rho\\\": -0.0362,\\n        \\\"spearman_p\\\": 0.803,\\n        \\\"wilcoxon_stat\\\": 331.0,\\n        \\\"wilcoxon_p\\\": 0.00261,\\n        \\\"signal_label\\\": \\\"RRF (fused)\\\"\\n      }\\n    }\\n  },\\n  \\\"n_signals_analyzed\\\": 5,\\n  \\\"n_signals_surviving\\\": 1,\\n  \\\"surviving_signals\\\": [\\n    \\\"s1_embedding\\\"\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "bbb2dbc2-8c10-4cb1-8f57-28fc9f7b389f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"regime_names\\\\\\\": [\\\\n    \\\\\\\"base\\\\\\\",\\\\n    \\\\\\\"sft_clean\\\\\\\",\\\\n    \\\\\\\"sft_contam\\\\\\\",\\\\n    \\\\\\\"rl_aligned\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"auc_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 1.0,\\\\n      \\\\\\\"sft_clean\\\\\\\": 1.0,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.0,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9981,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9962,\\\\n      \\\\\\\"sft_contam\\\\\\\": 1.0,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.781\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9962,\\\\n      \\\\\\\"sft_clean\\\\\\\": 0.9848,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.9676,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.6114\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 1.0,\\\\n      \\\\\\\"sft_clean\\\\\\\": 1.0,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.9905,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.3124\\\\n    },\\\\n    \\\\\\\"rrf_score\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 0.9924,\\\\n      \\\\\\\"sft_clean\\\\\\\": 1.0,\\\\n      \\\\\\\"sft_contam\\\\\\\": 0.9867,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.5362\\\\n    }\\\\n  },\\\\n  \\\\\\\"effect_size_matrix\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 4.1114,\\\\n      \\\\\\\"sft_clean\\\\\\\": 3.32,\\\\n      \\\\\\\"sft_contam\\\\\\\": 4.4787,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 3.037\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 4.2537,\\\\n      \\\\\\\"sft_clean\\\\\\\": 3.8832,\\\\n      \\\\\\\"sft_contam\\\\\\\": 4.1447,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 1.0976\\\\n    },\\\\n    \\\\\\\"s3_constat\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 3.5298,\\\\n      \\\\\\\"sft_clean\\\\\\\": 3.1116,\\\\n      \\\\\\\"sft_contam\\\\\\\": 2.3158,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.2961\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 4.3915,\\\\n      \\\\\\\"sft_clean\\\\\\\": 3.7025,\\\\n      \\\\\\\"sft_contam\\\\\\\": 2.783,\\\\n      \\\\\\\"rl_aligned\\\\\\\": -0.697\\\\n    },\\\\n    \\\\\\\"rrf_score\\\\\\\": {\\\\n      \\\\\\\"base\\\\\\\": 3.3423,\\\\n      \\\\\\\"sft_clean\\\\\\\": 4.4199,\\\\n      \\\\\\\"sft_contam\\\\\\\": 2.9419,\\\\n      \\\\\\\"rl_aligned\\\\\\\": 0.2179\\\\n    }\\\\n  },\\\\n  \\\\\\\"pairwise_tests\\\\\\\": {\\\\n    \\\\\\\"base_vs_sft_clean\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 4.1114,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 3.32,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.8075,\\\\n        \\\\\\\"auc_a\\\\\\\": 1.0,\\\\n        \\\\\\\"auc_b\\\\\\\": 1.0,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 1.0,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.5985,\\\\n        \\\\\\\"spearman_p\\\\\\\": 4.42e-06,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 634.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.977,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 4.2537,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 3.8832,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.9129,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9981,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9962,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9981,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6527,\\\\n        \\\\\\\"spearman_p\\\\\\\": 2.8e-07,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 634.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.977,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_constat\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 3.5298,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 3.1116,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.8815,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9962,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9848,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9885,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6152,\\\\n        \\\\\\\"spearman_p\\\\\\\": 2e-06,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 403.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0236,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 4.3915,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 3.7025,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.8431,\\\\n        \\\\\\\"auc_a\\\\\\\": 1.0,\\\\n        \\\\\\\"auc_b\\\\\\\": 1.0,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 1.0,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.5597,\\\\n        \\\\\\\"spearman_p\\\\\\\": 2.38e-05,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 633.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.969,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      },\\\\n      \\\\\\\"rrf_score\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 3.3423,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 4.4199,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 1.3224,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9924,\\\\n        \\\\\\\"auc_b\\\\\\\": 1.0,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 1.0077,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.495,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.000257,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 630.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.947,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"RRF (fused)\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"sft_clean_vs_sft_contam\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 3.32,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 4.4787,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 1.349,\\\\n        \\\\\\\"auc_a\\\\\\\": 1.0,\\\\n        \\\\\\\"auc_b\\\\\\\": 1.0,\\\\n   \\\\n\\\\n... [截断: 输出过长，省略 385 字符] ...\\\\n\\\\n 1.0673,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9962,\\\\n        \\\\\\\"auc_b\\\\\\\": 1.0,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 1.0038,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.7089,\\\\n        \\\\\\\"spearman_p\\\\\\\": 8.38e-09,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 531.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.309,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_constat\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 3.1116,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 2.3158,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.7442,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9848,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9676,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9826,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6012,\\\\n        \\\\\\\"spearman_p\\\\\\\": 3.89e-06,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 565.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.49,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 3.7025,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 2.783,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.7517,\\\\n        \\\\\\\"auc_a\\\\\\\": 1.0,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9905,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9905,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6486,\\\\n        \\\\\\\"spearman_p\\\\\\\": 3.52e-07,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 409.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0268,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      },\\\\n      \\\\\\\"rrf_score\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 4.4199,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 2.9419,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.6656,\\\\n        \\\\\\\"auc_a\\\\\\\": 1.0,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.9867,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.9867,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.5908,\\\\n        \\\\\\\"spearman_p\\\\\\\": 6.28e-06,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 544.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.372,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"RRF (fused)\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"sft_contam_vs_rl_aligned\\\\\\\": {\\\\n      \\\\\\\"s1_embedding\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 4.4787,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 3.037,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.6781,\\\\n        \\\\\\\"auc_a\\\\\\\": 1.0,\\\\n        \\\\\\\"auc_b\\\\\\\": 1.0,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 1.0,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6584,\\\\n        \\\\\\\"spearman_p\\\\\\\": 2.03e-07,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 362.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.00716,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Embedding\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s2_minkpp\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 4.1447,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 1.0976,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.2648,\\\\n        \\\\\\\"auc_a\\\\\\\": 1.0,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.781,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.781,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.309,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.029,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 381.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0126,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Min-K%++\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s3_constat\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.3158,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.2961,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.1279,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9676,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.6114,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.6319,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.0756,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.602,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 360.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.00673,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"ConStat\\\\\\\"\\\\n      },\\\\n      \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.783,\\\\n        \\\\\\\"effect_size_b\\\\\\\": -0.697,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": -0.2504,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9905,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.3124,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.3154,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.2633,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0647,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 326.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.0022,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"Self-Critique\\\\\\\"\\\\n      },\\\\n      \\\\\\\"rrf_score\\\\\\\": {\\\\n        \\\\\\\"n_items\\\\\\\": 50,\\\\n        \\\\\\\"n_contaminated\\\\\\\": 15,\\\\n        \\\\\\\"n_clean\\\\\\\": 35,\\\\n        \\\\\\\"effect_size_a\\\\\\\": 2.9419,\\\\n        \\\\\\\"effect_size_b\\\\\\\": 0.2179,\\\\n        \\\\\\\"effect_size_ratio\\\\\\\": 0.0741,\\\\n        \\\\\\\"auc_a\\\\\\\": 0.9867,\\\\n        \\\\\\\"auc_b\\\\\\\": 0.5362,\\\\n        \\\\\\\"auc_ratio\\\\\\\": 0.5434,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.0362,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.803,\\\\n        \\\\\\\"wilcoxon_stat\\\\\\\": 331.0,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.00261,\\\\n        \\\\\\\"signal_label\\\\\\\": \\\\\\\"RRF (fused)\\\\\\\"\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"n_signals_analyzed\\\\\\\": 5,\\\\n  \\\\\\\"n_signals_surviving\\\\\\\": 1,\\\\n  \\\\\\\"surviving_signals\\\\\\\": [\\\\n    \\\\\\\"s1_embedding\\\\\\\"\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"regime_names\\\": [\\n    \\\"base\\\",\\n    \\\"sft_clean\\\",\\n    \\\"sft_contam\\\",\\n    \\\"rl_aligned\\\"\\n  ],\\n  \\\"auc_matrix\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"base\\\": 1.0,\\n      \\\"sft_clean\\\": 1.0,\\n      \\\"sft_contam\\\": 1.0,\\n      \\\"rl_aligned\\\": 1.0\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"base\\\": 0.9981,\\n      \\\"sft_clean\\\": 0.9962,\\n      \\\"sft_contam\\\": 1.0,\\n      \\\"rl_aligned\\\": 0.781\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"base\\\": 0.9962,\\n      \\\"sft_clean\\\": 0.9848,\\n      \\\"sft_contam\\\": 0.9676,\\n      \\\"rl_aligned\\\": 0.6114\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"base\\\": 1.0,\\n      \\\"sft_clean\\\": 1.0,\\n      \\\"sft_contam\\\": 0.9905,\\n      \\\"rl_aligned\\\": 0.3124\\n    },\\n    \\\"rrf_score\\\": {\\n      \\\"base\\\": 0.9924,\\n      \\\"sft_clean\\\": 1.0,\\n      \\\"sft_contam\\\": 0.9867,\\n      \\\"rl_aligned\\\": 0.5362\\n    }\\n  },\\n  \\\"effect_size_matrix\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"base\\\": 4.1114,\\n      \\\"sft_clean\\\": 3.32,\\n      \\\"sft_contam\\\": 4.4787,\\n      \\\"rl_aligned\\\": 3.037\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"base\\\": 4.2537,\\n      \\\"sft_clean\\\": 3.8832,\\n      \\\"sft_contam\\\": 4.1447,\\n      \\\"rl_aligned\\\": 1.0976\\n    },\\n    \\\"s3_constat\\\": {\\n      \\\"base\\\": 3.5298,\\n      \\\"sft_clean\\\": 3.1116,\\n      \\\"sft_contam\\\": 2.3158,\\n      \\\"rl_aligned\\\": 0.2961\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"base\\\": 4.3915,\\n      \\\"sft_clean\\\": 3.7025,\\n      \\\"sft_contam\\\": 2.783,\\n      \\\"rl_aligned\\\": -0.697\\n    },\\n    \\\"rrf_score\\\": {\\n      \\\"base\\\": 3.3423,\\n      \\\"sft_clean\\\": 4.4199,\\n      \\\"sft_contam\\\": 2.9419,\\n      \\\"rl_aligned\\\": 0.2179\\n    }\\n  },\\n  \\\"pairwise_tests\\\": {\\n    \\\"base_vs_sft_clean\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 4.1114,\\n        \\\"effect_size_b\\\": 3.32,\\n        \\\"effect_size_ratio\\\": 0.8075,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 1.0,\\n        \\\"auc_ratio\\\": 1.0,\\n        \\\"spearman_rho\\\": 0.5985,\\n        \\\"spearman_p\\\": 4.42e-06,\\n        \\\"wilcoxon_stat\\\": 634.0,\\n        \\\"wilcoxon_p\\\": 0.977,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 4.2537,\\n        \\\"effect_size_b\\\": 3.8832,\\n        \\\"effect_size_ratio\\\": 0.9129,\\n        \\\"auc_a\\\": 0.9981,\\n        \\\"auc_b\\\": 0.9962,\\n        \\\"auc_ratio\\\": 0.9981,\\n        \\\"spearman_rho\\\": 0.6527,\\n        \\\"spearman_p\\\": 2.8e-07,\\n        \\\"wilcoxon_stat\\\": 634.0,\\n        \\\"wilcoxon_p\\\": 0.977,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.5298,\\n        \\\"effect_size_b\\\": 3.1116,\\n        \\\"effect_size_ratio\\\": 0.8815,\\n        \\\"auc_a\\\": 0.9962,\\n        \\\"auc_b\\\": 0.9848,\\n        \\\"auc_ratio\\\": 0.9885,\\n        \\\"spearman_rho\\\": 0.6152,\\n        \\\"spearman_p\\\": 2e-06,\\n        \\\"wilcoxon_stat\\\": 403.0,\\n        \\\"wilcoxon_p\\\": 0.0236,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 4.3915,\\n        \\\"effect_size_b\\\": 3.7025,\\n        \\\"effect_size_ratio\\\": 0.8431,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 1.0,\\n        \\\"auc_ratio\\\": 1.0,\\n        \\\"spearman_rho\\\": 0.5597,\\n        \\\"spearman_p\\\": 2.38e-05,\\n        \\\"wilcoxon_stat\\\": 633.0,\\n        \\\"wilcoxon_p\\\": 0.969,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      },\\n      \\\"rrf_score\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.3423,\\n        \\\"effect_size_b\\\": 4.4199,\\n        \\\"effect_size_ratio\\\": 1.3224,\\n        \\\"auc_a\\\": 0.9924,\\n        \\\"auc_b\\\": 1.0,\\n        \\\"auc_ratio\\\": 1.0077,\\n        \\\"spearman_rho\\\": 0.495,\\n        \\\"spearman_p\\\": 0.000257,\\n        \\\"wilcoxon_stat\\\": 630.0,\\n        \\\"wilcoxon_p\\\": 0.947,\\n        \\\"signal_label\\\": \\\"RRF (fused)\\\"\\n      }\\n    },\\n    \\\"sft_clean_vs_sft_contam\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.32,\\n        \\\"effect_size_b\\\": 4.4787,\\n        \\\"effect_size_ratio\\\": 1.349,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 1.0,\\n   \\n\\n... [截断: 输出过长，省略 385 字符] ...\\n\\n 1.0673,\\n        \\\"auc_a\\\": 0.9962,\\n        \\\"auc_b\\\": 1.0,\\n        \\\"auc_ratio\\\": 1.0038,\\n        \\\"spearman_rho\\\": 0.7089,\\n        \\\"spearman_p\\\": 8.38e-09,\\n        \\\"wilcoxon_stat\\\": 531.0,\\n        \\\"wilcoxon_p\\\": 0.309,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.1116,\\n        \\\"effect_size_b\\\": 2.3158,\\n        \\\"effect_size_ratio\\\": 0.7442,\\n        \\\"auc_a\\\": 0.9848,\\n        \\\"auc_b\\\": 0.9676,\\n        \\\"auc_ratio\\\": 0.9826,\\n        \\\"spearman_rho\\\": 0.6012,\\n        \\\"spearman_p\\\": 3.89e-06,\\n        \\\"wilcoxon_stat\\\": 565.0,\\n        \\\"wilcoxon_p\\\": 0.49,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 3.7025,\\n        \\\"effect_size_b\\\": 2.783,\\n        \\\"effect_size_ratio\\\": 0.7517,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 0.9905,\\n        \\\"auc_ratio\\\": 0.9905,\\n        \\\"spearman_rho\\\": 0.6486,\\n        \\\"spearman_p\\\": 3.52e-07,\\n        \\\"wilcoxon_stat\\\": 409.0,\\n        \\\"wilcoxon_p\\\": 0.0268,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      },\\n      \\\"rrf_score\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 4.4199,\\n        \\\"effect_size_b\\\": 2.9419,\\n        \\\"effect_size_ratio\\\": 0.6656,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 0.9867,\\n        \\\"auc_ratio\\\": 0.9867,\\n        \\\"spearman_rho\\\": 0.5908,\\n        \\\"spearman_p\\\": 6.28e-06,\\n        \\\"wilcoxon_stat\\\": 544.0,\\n        \\\"wilcoxon_p\\\": 0.372,\\n        \\\"signal_label\\\": \\\"RRF (fused)\\\"\\n      }\\n    },\\n    \\\"sft_contam_vs_rl_aligned\\\": {\\n      \\\"s1_embedding\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 4.4787,\\n        \\\"effect_size_b\\\": 3.037,\\n        \\\"effect_size_ratio\\\": 0.6781,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 1.0,\\n        \\\"auc_ratio\\\": 1.0,\\n        \\\"spearman_rho\\\": 0.6584,\\n        \\\"spearman_p\\\": 2.03e-07,\\n        \\\"wilcoxon_stat\\\": 362.0,\\n        \\\"wilcoxon_p\\\": 0.00716,\\n        \\\"signal_label\\\": \\\"Embedding\\\"\\n      },\\n      \\\"s2_minkpp\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 4.1447,\\n        \\\"effect_size_b\\\": 1.0976,\\n        \\\"effect_size_ratio\\\": 0.2648,\\n        \\\"auc_a\\\": 1.0,\\n        \\\"auc_b\\\": 0.781,\\n        \\\"auc_ratio\\\": 0.781,\\n        \\\"spearman_rho\\\": 0.309,\\n        \\\"spearman_p\\\": 0.029,\\n        \\\"wilcoxon_stat\\\": 381.0,\\n        \\\"wilcoxon_p\\\": 0.0126,\\n        \\\"signal_label\\\": \\\"Min-K%++\\\"\\n      },\\n      \\\"s3_constat\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.3158,\\n        \\\"effect_size_b\\\": 0.2961,\\n        \\\"effect_size_ratio\\\": 0.1279,\\n        \\\"auc_a\\\": 0.9676,\\n        \\\"auc_b\\\": 0.6114,\\n        \\\"auc_ratio\\\": 0.6319,\\n        \\\"spearman_rho\\\": 0.0756,\\n        \\\"spearman_p\\\": 0.602,\\n        \\\"wilcoxon_stat\\\": 360.0,\\n        \\\"wilcoxon_p\\\": 0.00673,\\n        \\\"signal_label\\\": \\\"ConStat\\\"\\n      },\\n      \\\"s4_selfcritique\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.783,\\n        \\\"effect_size_b\\\": -0.697,\\n        \\\"effect_size_ratio\\\": -0.2504,\\n        \\\"auc_a\\\": 0.9905,\\n        \\\"auc_b\\\": 0.3124,\\n        \\\"auc_ratio\\\": 0.3154,\\n        \\\"spearman_rho\\\": -0.2633,\\n        \\\"spearman_p\\\": 0.0647,\\n        \\\"wilcoxon_stat\\\": 326.0,\\n        \\\"wilcoxon_p\\\": 0.0022,\\n        \\\"signal_label\\\": \\\"Self-Critique\\\"\\n      },\\n      \\\"rrf_score\\\": {\\n        \\\"n_items\\\": 50,\\n        \\\"n_contaminated\\\": 15,\\n        \\\"n_clean\\\": 35,\\n        \\\"effect_size_a\\\": 2.9419,\\n        \\\"effect_size_b\\\": 0.2179,\\n        \\\"effect_size_ratio\\\": 0.0741,\\n        \\\"auc_a\\\": 0.9867,\\n        \\\"auc_b\\\": 0.5362,\\n        \\\"auc_ratio\\\": 0.5434,\\n        \\\"spearman_rho\\\": -0.0362,\\n        \\\"spearman_p\\\": 0.803,\\n        \\\"wilcoxon_stat\\\": 331.0,\\n        \\\"wilcoxon_p\\\": 0.00261,\\n        \\\"signal_label\\\": \\\"RRF (fused)\\\"\\n      }\\n    }\\n  },\\n  \\\"n_signals_analyzed\\\": 5,\\n  \\\"n_signals_surviving\\\": 1,\\n  \\\"surviving_signals\\\": [\\n    \\\"s1_embedding\\\"\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013k2zcYFFodPZQwU4vpMCLb`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "wc -l /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "2f8e8598-381d-494e-b2d6-28a50dbfe238",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QjFf3biMtwUkrefMSR8YSe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6748,
+      "cache_read_input_tokens": 59627,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6748
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MMMuYGSaLYR3g1SFUpUZ49`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -200 /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "ef870baf-2dfa-4ce5-8dd9-0f0ad907b9d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QjFf3biMtwUkrefMSR8YSe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6748,
+      "cache_read_input_tokens": 59627,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6748
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-14T15:20:18.854Z_
+
+<details><summary>↩ Tool result · `toolu_013k2zcYFFodPZQwU4vpMCLb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"414 /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "34d9d05c-ab77-468e-8a3e-7a1a1b016836",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"414 /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"414 /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-14T15:20:19.582Z_
+
+<details><summary>↩ Tool result · `toolu_01MMMuYGSaLYR3g1SFUpUZ49`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            \\\"%s: AUC %s\\\",\\n            SIGNAL_LABELS[sig_key],\\n            \\\" -> \\\".join(\\n                f\\\"{r}={auc_matrix[sig_key].get(r, 'N/A')}\\\" for r in regime_names\\n            ),\\n        )\\n\\n    # Backward compat per_signal (maps first adjacent pair to old SFT/RL keys)\\n    per_signal: dict[str, dict] = {}\\n    if adjacent_pairs:\\n        first_pair_key = f\\\"{adjacent_pairs[0][0]}_vs_{adjacent_pairs[0][1]}\\\"\\n        for sig_key, pm in pairwise_tests.get(first_pair_key, {}).items():\\n            per_signal[sig_key] = {\\n                \\\"signal_label\\\": SIGNAL_LABELS.get(sig_key, sig_key),\\n                \\\"n_items\\\": pm[\\\"n_items\\\"],\\n                \\\"n_contaminated\\\": pm[\\\"n_contaminated\\\"],\\n                \\\"n_clean\\\": pm[\\\"n_clean\\\"],\\n                \\\"effect_size_sft\\\": pm[\\\"effect_size_a\\\"],\\n                \\\"effect_size_rl\\\": pm[\\\"effect_size_b\\\"],\\n                \\\"effect_size_ratio\\\": pm.get(\\\"effect_size_ratio\\\"),\\n                \\\"spearman_rho\\\": pm.get(\\\"spearman_rho\\\"),\\n                \\\"spearman_p\\\": pm.get(\\\"spearman_p\\\"),\\n                \\\"auc_sft\\\": pm.get(\\\"auc_a\\\"),\\n                \\\"auc_rl\\\": pm.get(\\\"auc_b\\\"),\\n                \\\"auc_ratio\\\": pm.get(\\\"auc_ratio\\\"),\\n                \\\"wilcoxon_stat\\\": pm.get(\\\"wilcoxon_stat\\\"),\\n                \\\"wilcoxon_p\\\": pm.get(\\\"wilcoxon_p\\\"),\\n            }\\n\\n    # Summary: signal \\\"survives\\\" if last regime AUC >= 0.6 and d-ratio >= 0.5\\n    last_regime = regime_names[-1]\\n    first_regime = regime_names[0]\\n    surviving = []\\n    for sig_key in auc_matrix:\\n        auc_last = auc_matrix[sig_key].get(last_regime)\\n        d_first = effect_size_matrix.get(sig_key, {}).get(first_regime)\\n        d_last = effect_size_matrix.get(sig_key, {}).get(last_regime)\\n        if (\\n            auc_last is not None\\n            and auc_last >= 0.6\\n            and d_first is not None\\n            and d_last is not None\\n            and d_first != 0\\n            and d_last / d_first >= 0.5\\n        ):\\n            surviving.append(sig_key)\\n\\n    auc_ratios = []\\n    spearman_rhos = []\\n    if adjacent_pairs:\\n        first_pair_key = f\\\"{adjacent_pairs[0][0]}_vs_{adjacent_pairs[0][1]}\\\"\\n        for pm in pairwise_tests.get(first_pair_key, {}).values():\\n            if pm.get(\\\"auc_ratio\\\") is not None:\\n                auc_ratios.append(pm[\\\"auc_ratio\\\"])\\n            if pm.get(\\\"spearman_rho\\\") is not None:\\n                spearman_rhos.append(pm[\\\"spearman_rho\\\"])\\n\\n    summary = {\\n        \\\"n_regimes\\\": n_regimes,\\n        \\\"regime_names\\\": regime_names,\\n        \\\"n_signals_analyzed\\\": len(auc_matrix),\\n        \\\"n_signals_surviving\\\": len(surviving),\\n        \\\"surviving_signals\\\": surviving,\\n        \\\"mean_auc_ratio\\\": round(np.mean(auc_ratios), 4) if auc_ratios else None,\\n        \\\"mean_spearman_rho\\\": round(np.mean(spearman_rhos), 4) if spearman_rhos else None,\\n    }\\n\\n    return {\\n        \\\"regime_names\\\": regime_names,\\n        \\\"auc_matrix\\\": auc_matrix,\\n        \\\"effect_size_matrix\\\": effect_size_matrix,\\n        \\\"pairwise_tests\\\": dict(pairwise_tests),\\n        \\\"per_signal\\\": per_signal,\\n        \\\"summary\\\": summary,\\n    }\\n\\n\\ndef save_report(report: dict, output_dir: str | Path) -> Path:\\n    output_dir = Path(output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = output_dir / \\\"survival_report.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2)\\n    logger.info(\\\"Report saved to %s\\\", out_path)\\n    return out_path\\n\\n\\ndef print_summary_table(report: dict):\\n    \\\"\\\"\\\"Print a formatted summary table to stdout.\\\"\\\"\\\"\\n    regime_names = report.get(\\\"regime_names\\\", [])\\n    auc_matrix = report.get(\\\"auc_matrix\\\", {})\\n    pairwise_tests = report.get(\\\"pairwise_tests\\\", {})\\n    summary = report[\\\"summary\\\"]\\n\\n    if len(regime_names) == 2 and report.get(\\\"per_signal\\\"):\\n        _print_legacy_table(report)\\n        return\\n\\n    # N-regime AUC matrix table\\n    col_w = 10\\n    sig_w = 16\\n    header_parts = [f\\\"{'Signal':<{sig_w}}\\\"]\\n    for rname in regime_names:\\n        header_parts.append(f\\\"{rname:>{col_w}}\\\")\\n    header = \\\" \\\".join(header_parts)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * len(header))\\n    print(\\n        f\\\"Signal Survival Analysis -- {len(regime_names)} regimes: \\\"\\n        f\\\"{' -> '.join(regime_names)}\\\"\\n    )\\n    print(\\\"=\\\" * len(header))\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    for sig_key in SIGNAL_KEYS:\\n        if sig_key not in auc_matrix:\\n            continue\\n        line_parts = [f\\\"{SIGNAL_LABELS[sig_key]:<{sig_w}}\\\"]\\n        for rname in regime_names:\\n            v = auc_matrix[sig_key].get(rname)\\n            s = f\\\"{v:.4f}\\\" if v is not None else \\\"N/A\\\"\\n            line_parts.append(f\\\"{s:>{col_w}}\\\")\\n        print(\\\" \\\".join(line_parts))\\n\\n    print(\\\"-\\\" * len(header))\\n\\n    for pair_key, pair_data in pairwise_tests.items():\\n        ra, rb = pair_key.split(\\\"_vs_\\\")\\n        ratios = [\\n            m[\\\"auc_ratio\\\"]\\n            for m in pair_data.values()\\n            if m.get(\\\"auc_ratio\\\") is not None\\n        ]\\n        rhos = [\\n            m[\\\"spearman_rho\\\"]\\n            for m in pair_data.values()\\n            if m.get(\\\"spearman_rho\\\") is not None\\n        ]\\n        if ratios:\\n            print(\\n                f\\\"  {ra} -> {rb}: mean AUC ratio={np.mean(ratios):.3f}, \\\"\\n                f\\\"mean rho={np.mean(rhos):.3f}\\\"\\n            )\\n        else:\\n            print(f\\\"  {ra} -> {rb}: no data\\\")\\n\\n    print(\\n        f\\\"\\\\nSurviving signals: {summary['n_signals_surviving']}\\\"\\n        f\\\"/{summary['n_signals_analyzed']}  \\\"\\n        f\\\"({', '.join(summary['surviving_signals']) or 'none'})\\\"\\n    )\\n    print(\\\"=\\\" * len(header) + \\\"\\\\n\\\")\\n\\n\\ndef _print_legacy_table(report: dict):\\n    \\\"\\\"\\\"Original 2-regime table format for backward compatibility.\\\"\\\"\\\"\\n    per_signal = report[\\\"per_signal\\\"]\\n    summary = report[\\\"summary\\\"]\\n\\n    header = (\\n        f\\\"{'Signal':<16} {'d(SFT)':>8} {'d(RL)':>8} {'d ratio':>8} \\\"\\n        f\\\"{'AUC(SFT)':>9} {'AUC(RL)':>9} {'AUC ratio':>10} \\\"\\n        f\\\"{'rho':>8} {'Wilcox p':>10} {'n':>6}\\\"\\n    )\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * len(header))\\n    print(\\\"Signal Survival Analysis -- SFT vs RL-aligned\\\")\\n    print(\\\"=\\\" * len(header))\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    for sig_key in SIGNAL_KEYS:\\n        m = per_signal.get(sig_key)\\n        if m is None:\\n            continue\\n        fmt = lambda v, d=4: f\\\"{v:.{d}f}\\\" if v is not None else \\\"N/A\\\"\\n        print(\\n            f\\\"{m['signal_label']:<16} \\\"\\n            f\\\"{fmt(m['effect_size_sft']):>8} \\\"\\n            f\\\"{fmt(m['effect_size_rl']):>8} \\\"\\n            f\\\"{fmt(m.get('effect_size_ratio'), 2):>8} \\\"\\n            f\\\"{fmt(m.get('auc_sft')):>9} \\\"\\n            f\\\"{fmt(m.get('auc_rl')):>9} \\\"\\n            f\\\"{fmt(m.get('auc_ratio'), 2):>10} \\\"\\n            f\\\"{fmt(m.get('spearman_rho')):>8} \\\"\\n            f\\\"{fmt(m.get('wilcoxon_p'), 2):>10} \\\"\\n            f\\\"{m['n_items']:>6}\\\"\\n        )\\n\\n    print(\\\"-\\\" * len(header))\\n    print(\\n        f\\\"Surviving signals: {summary['n_signals_surviving']}\\\"\\n        f\\\"/{summary['n_signals_analyzed']}  \\\"\\n        f\\\"({', '.join(summary['surviving_signals']) or 'none'})\\\"\\n    )\\n    print(\\n        f\\\"Mean AUC ratio: {summary.get('mean_auc_ratio', 'N/A')}  |  \\\"\\n        f\\\"Mean Spearman rho: {summary.get('mean_spearman_rho', 'N/A')}\\\"\\n    )\\n    print(\\\"=\\\" * len(header) + \\\"\\\\n\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "860be3c0-90b6-4cf2-80a8-68b8fbf273ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            \\\\\\\"%s: AUC %s\\\\\\\",\\\\n            SIGNAL_LABELS[sig_key],\\\\n            \\\\\\\" -> \\\\\\\".join(\\\\n                f\\\\\\\"{r}={auc_matrix[sig_key].get(r, 'N/A')}\\\\\\\" for r in regime_names\\\\n            ),\\\\n        )\\\\n\\\\n    # Backward compat per_signal (maps first adjacent pair to old SFT/RL keys)\\\\n    per_signal: dict[str, dict] = {}\\\\n    if adjacent_pairs:\\\\n        first_pair_key = f\\\\\\\"{adjacent_pairs[0][0]}_vs_{adjacent_pairs[0][1]}\\\\\\\"\\\\n        for sig_key, pm in pairwise_tests.get(first_pair_key, {}).items():\\\\n            per_signal[sig_key] = {\\\\n                \\\\\\\"signal_label\\\\\\\": SIGNAL_LABELS.get(sig_key, sig_key),\\\\n                \\\\\\\"n_items\\\\\\\": pm[\\\\\\\"n_items\\\\\\\"],\\\\n                \\\\\\\"n_contaminated\\\\\\\": pm[\\\\\\\"n_contaminated\\\\\\\"],\\\\n                \\\\\\\"n_clean\\\\\\\": pm[\\\\\\\"n_clean\\\\\\\"],\\\\n                \\\\\\\"effect_size_sft\\\\\\\": pm[\\\\\\\"effect_size_a\\\\\\\"],\\\\n                \\\\\\\"effect_size_rl\\\\\\\": pm[\\\\\\\"effect_size_b\\\\\\\"],\\\\n                \\\\\\\"effect_size_ratio\\\\\\\": pm.get(\\\\\\\"effect_size_ratio\\\\\\\"),\\\\n                \\\\\\\"spearman_rho\\\\\\\": pm.get(\\\\\\\"spearman_rho\\\\\\\"),\\\\n                \\\\\\\"spearman_p\\\\\\\": pm.get(\\\\\\\"spearman_p\\\\\\\"),\\\\n                \\\\\\\"auc_sft\\\\\\\": pm.get(\\\\\\\"auc_a\\\\\\\"),\\\\n                \\\\\\\"auc_rl\\\\\\\": pm.get(\\\\\\\"auc_b\\\\\\\"),\\\\n                \\\\\\\"auc_ratio\\\\\\\": pm.get(\\\\\\\"auc_ratio\\\\\\\"),\\\\n                \\\\\\\"wilcoxon_stat\\\\\\\": pm.get(\\\\\\\"wilcoxon_stat\\\\\\\"),\\\\n                \\\\\\\"wilcoxon_p\\\\\\\": pm.get(\\\\\\\"wilcoxon_p\\\\\\\"),\\\\n            }\\\\n\\\\n    # Summary: signal \\\\\\\"survives\\\\\\\" if last regime AUC >= 0.6 and d-ratio >= 0.5\\\\n    last_regime = regime_names[-1]\\\\n    first_regime = regime_names[0]\\\\n    surviving = []\\\\n    for sig_key in auc_matrix:\\\\n        auc_last = auc_matrix[sig_key].get(last_regime)\\\\n        d_first = effect_size_matrix.get(sig_key, {}).get(first_regime)\\\\n        d_last = effect_size_matrix.get(sig_key, {}).get(last_regime)\\\\n        if (\\\\n            auc_last is not None\\\\n            and auc_last >= 0.6\\\\n            and d_first is not None\\\\n            and d_last is not None\\\\n            and d_first != 0\\\\n            and d_last / d_first >= 0.5\\\\n        ):\\\\n            surviving.append(sig_key)\\\\n\\\\n    auc_ratios = []\\\\n    spearman_rhos = []\\\\n    if adjacent_pairs:\\\\n        first_pair_key = f\\\\\\\"{adjacent_pairs[0][0]}_vs_{adjacent_pairs[0][1]}\\\\\\\"\\\\n        for pm in pairwise_tests.get(first_pair_key, {}).values():\\\\n            if pm.get(\\\\\\\"auc_ratio\\\\\\\") is not None:\\\\n                auc_ratios.append(pm[\\\\\\\"auc_ratio\\\\\\\"])\\\\n            if pm.get(\\\\\\\"spearman_rho\\\\\\\") is not None:\\\\n                spearman_rhos.append(pm[\\\\\\\"spearman_rho\\\\\\\"])\\\\n\\\\n    summary = {\\\\n        \\\\\\\"n_regimes\\\\\\\": n_regimes,\\\\n        \\\\\\\"regime_names\\\\\\\": regime_names,\\\\n        \\\\\\\"n_signals_analyzed\\\\\\\": len(auc_matrix),\\\\n        \\\\\\\"n_signals_surviving\\\\\\\": len(surviving),\\\\n        \\\\\\\"surviving_signals\\\\\\\": surviving,\\\\n        \\\\\\\"mean_auc_ratio\\\\\\\": round(np.mean(auc_ratios), 4) if auc_ratios else None,\\\\n        \\\\\\\"mean_spearman_rho\\\\\\\": round(np.mean(spearman_rhos), 4) if spearman_rhos else None,\\\\n    }\\\\n\\\\n    return {\\\\n        \\\\\\\"regime_names\\\\\\\": regime_names,\\\\n        \\\\\\\"auc_matrix\\\\\\\": auc_matrix,\\\\n        \\\\\\\"effect_size_matrix\\\\\\\": effect_size_matrix,\\\\n        \\\\\\\"pairwise_tests\\\\\\\": dict(pairwise_tests),\\\\n        \\\\\\\"per_signal\\\\\\\": per_signal,\\\\n        \\\\\\\"summary\\\\\\\": summary,\\\\n    }\\\\n\\\\n\\\\ndef save_report(report: dict, output_dir: str | Path) -> Path:\\\\n    output_dir = Path(output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n    out_path = output_dir / \\\\\\\"survival_report.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2)\\\\n    logger.info(\\\\\\\"Report saved to %s\\\\\\\", out_path)\\\\n    return out_path\\\\n\\\\n\\\\ndef print_summary_table(report: dict):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Print a formatted summary table to stdout.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    regime_names = report.get(\\\\\\\"regime_names\\\\\\\", [])\\\\n    auc_matrix = report.get(\\\\\\\"auc_matrix\\\\\\\", {})\\\\n    pairwise_tests = report.get(\\\\\\\"pairwise_tests\\\\\\\", {})\\\\n    summary = report[\\\\\\\"summary\\\\\\\"]\\\\n\\\\n    if len(regime_names) == 2 and report.get(\\\\\\\"per_signal\\\\\\\"):\\\\n        _print_legacy_table(report)\\\\n        return\\\\n\\\\n    # N-regime AUC matrix table\\\\n    col_w = 10\\\\n    sig_w = 16\\\\n    header_parts = [f\\\\\\\"{'Signal':<{sig_w}}\\\\\\\"]\\\\n    for rname in regime_names:\\\\n        header_parts.append(f\\\\\\\"{rname:>{col_w}}\\\\\\\")\\\\n    header = \\\\\\\" \\\\\\\".join(header_parts)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * len(header))\\\\n    print(\\\\n        f\\\\\\\"Signal Survival Analysis -- {len(regime_names)} regimes: \\\\\\\"\\\\n        f\\\\\\\"{' -> '.join(regime_names)}\\\\\\\"\\\\n    )\\\\n    print(\\\\\\\"=\\\\\\\" * len(header))\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * len(header))\\\\n\\\\n    for sig_key in SIGNAL_KEYS:\\\\n        if sig_key not in auc_matrix:\\\\n            continue\\\\n        line_parts = [f\\\\\\\"{SIGNAL_LABELS[sig_key]:<{sig_w}}\\\\\\\"]\\\\n        for rname in regime_names:\\\\n            v = auc_matrix[sig_key].get(rname)\\\\n            s = f\\\\\\\"{v:.4f}\\\\\\\" if v is not None else \\\\\\\"N/A\\\\\\\"\\\\n            line_parts.append(f\\\\\\\"{s:>{col_w}}\\\\\\\")\\\\n        print(\\\\\\\" \\\\\\\".join(line_parts))\\\\n\\\\n    print(\\\\\\\"-\\\\\\\" * len(header))\\\\n\\\\n    for pair_key, pair_data in pairwise_tests.items():\\\\n        ra, rb = pair_key.split(\\\\\\\"_vs_\\\\\\\")\\\\n        ratios = [\\\\n            m[\\\\\\\"auc_ratio\\\\\\\"]\\\\n            for m in pair_data.values()\\\\n            if m.get(\\\\\\\"auc_ratio\\\\\\\") is not None\\\\n        ]\\\\n        rhos = [\\\\n            m[\\\\\\\"spearman_rho\\\\\\\"]\\\\n            for m in pair_data.values()\\\\n            if m.get(\\\\\\\"spearman_rho\\\\\\\") is not None\\\\n        ]\\\\n        if ratios:\\\\n            print(\\\\n                f\\\\\\\"  {ra} -> {rb}: mean AUC ratio={np.mean(ratios):.3f}, \\\\\\\"\\\\n                f\\\\\\\"mean rho={np.mean(rhos):.3f}\\\\\\\"\\\\n            )\\\\n        else:\\\\n            print(f\\\\\\\"  {ra} -> {rb}: no data\\\\\\\")\\\\n\\\\n    print(\\\\n        f\\\\\\\"\\\\\\\\nSurviving signals: {summary['n_signals_surviving']}\\\\\\\"\\\\n        f\\\\\\\"/{summary['n_signals_analyzed']}  \\\\\\\"\\\\n        f\\\\\\\"({', '.join(summary['surviving_signals']) or 'none'})\\\\\\\"\\\\n    )\\\\n    print(\\\\\\\"=\\\\\\\" * len(header) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n\\\\ndef _print_legacy_table(report: dict):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Original 2-regime table format for backward compatibility.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    per_signal = report[\\\\\\\"per_signal\\\\\\\"]\\\\n    summary = report[\\\\\\\"summary\\\\\\\"]\\\\n\\\\n    header = (\\\\n        f\\\\\\\"{'Signal':<16} {'d(SFT)':>8} {'d(RL)':>8} {'d ratio':>8} \\\\\\\"\\\\n        f\\\\\\\"{'AUC(SFT)':>9} {'AUC(RL)':>9} {'AUC ratio':>10} \\\\\\\"\\\\n        f\\\\\\\"{'rho':>8} {'Wilcox p':>10} {'n':>6}\\\\\\\"\\\\n    )\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * len(header))\\\\n    print(\\\\\\\"Signal Survival Analysis -- SFT vs RL-aligned\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * len(header))\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * len(header))\\\\n\\\\n    for sig_key in SIGNAL_KEYS:\\\\n        m = per_signal.get(sig_key)\\\\n        if m is None:\\\\n            continue\\\\n        fmt = lambda v, d=4: f\\\\\\\"{v:.{d}f}\\\\\\\" if v is not None else \\\\\\\"N/A\\\\\\\"\\\\n        print(\\\\n            f\\\\\\\"{m['signal_label']:<16} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m['effect_size_sft']):>8} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m['effect_size_rl']):>8} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m.get('effect_size_ratio'), 2):>8} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m.get('auc_sft')):>9} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m.get('auc_rl')):>9} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m.get('auc_ratio'), 2):>10} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m.get('spearman_rho')):>8} \\\\\\\"\\\\n            f\\\\\\\"{fmt(m.get('wilcoxon_p'), 2):>10} \\\\\\\"\\\\n            f\\\\\\\"{m['n_items']:>6}\\\\\\\"\\\\n        )\\\\n\\\\n    print(\\\\\\\"-\\\\\\\" * len(header))\\\\n    print(\\\\n        f\\\\\\\"Surviving signals: {summary['n_signals_surviving']}\\\\\\\"\\\\n        f\\\\\\\"/{summary['n_signals_analyzed']}  \\\\\\\"\\\\n        f\\\\\\\"({', '.join(summary['surviving_signals']) or 'none'})\\\\\\\"\\\\n    )\\\\n    print(\\\\n        f\\\\\\\"Mean AUC ratio: {summary.get('mean_auc_ratio', 'N/A')}  |  \\\\\\\"\\\\n        f\\\\\\\"Mean Spearman rho: {summary.get('mean_spearman_rho', 'N/A')}\\\\\\\"\\\\n    )\\\\n    print(\\\\\\\"=\\\\\\\" * len(header) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            \\\"%s: AUC %s\\\",\\n            SIGNAL_LABELS[sig_key],\\n            \\\" -> \\\".join(\\n                f\\\"{r}={auc_matrix[sig_key].get(r, 'N/A')}\\\" for r in regime_names\\n            ),\\n        )\\n\\n    # Backward compat per_signal (maps first adjacent pair to old SFT/RL keys)\\n    per_signal: dict[str, dict] = {}\\n    if adjacent_pairs:\\n        first_pair_key = f\\\"{adjacent_pairs[0][0]}_vs_{adjacent_pairs[0][1]}\\\"\\n        for sig_key, pm in pairwise_tests.get(first_pair_key, {}).items():\\n            per_signal[sig_key] = {\\n                \\\"signal_label\\\": SIGNAL_LABELS.get(sig_key, sig_key),\\n                \\\"n_items\\\": pm[\\\"n_items\\\"],\\n                \\\"n_contaminated\\\": pm[\\\"n_contaminated\\\"],\\n                \\\"n_clean\\\": pm[\\\"n_clean\\\"],\\n                \\\"effect_size_sft\\\": pm[\\\"effect_size_a\\\"],\\n                \\\"effect_size_rl\\\": pm[\\\"effect_size_b\\\"],\\n                \\\"effect_size_ratio\\\": pm.get(\\\"effect_size_ratio\\\"),\\n                \\\"spearman_rho\\\": pm.get(\\\"spearman_rho\\\"),\\n                \\\"spearman_p\\\": pm.get(\\\"spearman_p\\\"),\\n                \\\"auc_sft\\\": pm.get(\\\"auc_a\\\"),\\n                \\\"auc_rl\\\": pm.get(\\\"auc_b\\\"),\\n                \\\"auc_ratio\\\": pm.get(\\\"auc_ratio\\\"),\\n                \\\"wilcoxon_stat\\\": pm.get(\\\"wilcoxon_stat\\\"),\\n                \\\"wilcoxon_p\\\": pm.get(\\\"wilcoxon_p\\\"),\\n            }\\n\\n    # Summary: signal \\\"survives\\\" if last regime AUC >= 0.6 and d-ratio >= 0.5\\n    last_regime = regime_names[-1]\\n    first_regime = regime_names[0]\\n    surviving = []\\n    for sig_key in auc_matrix:\\n        auc_last = auc_matrix[sig_key].get(last_regime)\\n        d_first = effect_size_matrix.get(sig_key, {}).get(first_regime)\\n        d_last = effect_size_matrix.get(sig_key, {}).get(last_regime)\\n        if (\\n            auc_last is not None\\n            and auc_last >= 0.6\\n            and d_first is not None\\n            and d_last is not None\\n            and d_first != 0\\n            and d_last / d_first >= 0.5\\n        ):\\n            surviving.append(sig_key)\\n\\n    auc_ratios = []\\n    spearman_rhos = []\\n    if adjacent_pairs:\\n        first_pair_key = f\\\"{adjacent_pairs[0][0]}_vs_{adjacent_pairs[0][1]}\\\"\\n        for pm in pairwise_tests.get(first_pair_key, {}).values():\\n            if pm.get(\\\"auc_ratio\\\") is not None:\\n                auc_ratios.append(pm[\\\"auc_ratio\\\"])\\n            if pm.get(\\\"spearman_rho\\\") is not None:\\n                spearman_rhos.append(pm[\\\"spearman_rho\\\"])\\n\\n    summary = {\\n        \\\"n_regimes\\\": n_regimes,\\n        \\\"regime_names\\\": regime_names,\\n        \\\"n_signals_analyzed\\\": len(auc_matrix),\\n        \\\"n_signals_surviving\\\": len(surviving),\\n        \\\"surviving_signals\\\": surviving,\\n        \\\"mean_auc_ratio\\\": round(np.mean(auc_ratios), 4) if auc_ratios else None,\\n        \\\"mean_spearman_rho\\\": round(np.mean(spearman_rhos), 4) if spearman_rhos else None,\\n    }\\n\\n    return {\\n        \\\"regime_names\\\": regime_names,\\n        \\\"auc_matrix\\\": auc_matrix,\\n        \\\"effect_size_matrix\\\": effect_size_matrix,\\n        \\\"pairwise_tests\\\": dict(pairwise_tests),\\n        \\\"per_signal\\\": per_signal,\\n        \\\"summary\\\": summary,\\n    }\\n\\n\\ndef save_report(report: dict, output_dir: str | Path) -> Path:\\n    output_dir = Path(output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = output_dir / \\\"survival_report.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2)\\n    logger.info(\\\"Report saved to %s\\\", out_path)\\n    return out_path\\n\\n\\ndef print_summary_table(report: dict):\\n    \\\"\\\"\\\"Print a formatted summary table to stdout.\\\"\\\"\\\"\\n    regime_names = report.get(\\\"regime_names\\\", [])\\n    auc_matrix = report.get(\\\"auc_matrix\\\", {})\\n    pairwise_tests = report.get(\\\"pairwise_tests\\\", {})\\n    summary = report[\\\"summary\\\"]\\n\\n    if len(regime_names) == 2 and report.get(\\\"per_signal\\\"):\\n        _print_legacy_table(report)\\n        return\\n\\n    # N-regime AUC matrix table\\n    col_w = 10\\n    sig_w = 16\\n    header_parts = [f\\\"{'Signal':<{sig_w}}\\\"]\\n    for rname in regime_names:\\n        header_parts.append(f\\\"{rname:>{col_w}}\\\")\\n    header = \\\" \\\".join(header_parts)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * len(header))\\n    print(\\n        f\\\"Signal Survival Analysis -- {len(regime_names)} regimes: \\\"\\n        f\\\"{' -> '.join(regime_names)}\\\"\\n    )\\n    print(\\\"=\\\" * len(header))\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    for sig_key in SIGNAL_KEYS:\\n        if sig_key not in auc_matrix:\\n            continue\\n        line_parts = [f\\\"{SIGNAL_LABELS[sig_key]:<{sig_w}}\\\"]\\n        for rname in regime_names:\\n            v = auc_matrix[sig_key].get(rname)\\n            s = f\\\"{v:.4f}\\\" if v is not None else \\\"N/A\\\"\\n            line_parts.append(f\\\"{s:>{col_w}}\\\")\\n        print(\\\" \\\".join(line_parts))\\n\\n    print(\\\"-\\\" * len(header))\\n\\n    for pair_key, pair_data in pairwise_tests.items():\\n        ra, rb = pair_key.split(\\\"_vs_\\\")\\n        ratios = [\\n            m[\\\"auc_ratio\\\"]\\n            for m in pair_data.values()\\n            if m.get(\\\"auc_ratio\\\") is not None\\n        ]\\n        rhos = [\\n            m[\\\"spearman_rho\\\"]\\n            for m in pair_data.values()\\n            if m.get(\\\"spearman_rho\\\") is not None\\n        ]\\n        if ratios:\\n            print(\\n                f\\\"  {ra} -> {rb}: mean AUC ratio={np.mean(ratios):.3f}, \\\"\\n                f\\\"mean rho={np.mean(rhos):.3f}\\\"\\n            )\\n        else:\\n            print(f\\\"  {ra} -> {rb}: no data\\\")\\n\\n    print(\\n        f\\\"\\\\nSurviving signals: {summary['n_signals_surviving']}\\\"\\n        f\\\"/{summary['n_signals_analyzed']}  \\\"\\n        f\\\"({', '.join(summary['surviving_signals']) or 'none'})\\\"\\n    )\\n    print(\\\"=\\\" * len(header) + \\\"\\\\n\\\")\\n\\n\\ndef _print_legacy_table(report: dict):\\n    \\\"\\\"\\\"Original 2-regime table format for backward compatibility.\\\"\\\"\\\"\\n    per_signal = report[\\\"per_signal\\\"]\\n    summary = report[\\\"summary\\\"]\\n\\n    header = (\\n        f\\\"{'Signal':<16} {'d(SFT)':>8} {'d(RL)':>8} {'d ratio':>8} \\\"\\n        f\\\"{'AUC(SFT)':>9} {'AUC(RL)':>9} {'AUC ratio':>10} \\\"\\n        f\\\"{'rho':>8} {'Wilcox p':>10} {'n':>6}\\\"\\n    )\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * len(header))\\n    print(\\\"Signal Survival Analysis -- SFT vs RL-aligned\\\")\\n    print(\\\"=\\\" * len(header))\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    for sig_key in SIGNAL_KEYS:\\n        m = per_signal.get(sig_key)\\n        if m is None:\\n            continue\\n        fmt = lambda v, d=4: f\\\"{v:.{d}f}\\\" if v is not None else \\\"N/A\\\"\\n        print(\\n            f\\\"{m['signal_label']:<16} \\\"\\n            f\\\"{fmt(m['effect_size_sft']):>8} \\\"\\n            f\\\"{fmt(m['effect_size_rl']):>8} \\\"\\n            f\\\"{fmt(m.get('effect_size_ratio'), 2):>8} \\\"\\n            f\\\"{fmt(m.get('auc_sft')):>9} \\\"\\n            f\\\"{fmt(m.get('auc_rl')):>9} \\\"\\n            f\\\"{fmt(m.get('auc_ratio'), 2):>10} \\\"\\n            f\\\"{fmt(m.get('spearman_rho')):>8} \\\"\\n            f\\\"{fmt(m.get('wilcoxon_p'), 2):>10} \\\"\\n            f\\\"{m['n_items']:>6}\\\"\\n        )\\n\\n    print(\\\"-\\\" * len(header))\\n    print(\\n        f\\\"Surviving signals: {summary['n_signals_surviving']}\\\"\\n        f\\\"/{summary['n_signals_analyzed']}  \\\"\\n        f\\\"({', '.join(summary['surviving_signals']) or 'none'})\\\"\\n    )\\n    print(\\n        f\\\"Mean AUC ratio: {summary.get('mean_auc_ratio', 'N/A')}  |  \\\"\\n        f\\\"Mean Spearman rho: {summary.get('mean_spearman_rho', 'N/A')}\\\"\\n    )\\n    print(\\\"=\\\" * len(header) + \\\"\\\\n\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me also read the truncated middle part of `signal_survival_analysis.py` to check for bugs, and the truncated parts of `signal_survival.py` (v3).
+
+Wait, I already saw the full tail of `signal_survival_analysis.py` (200 lines). The truncation was in the earlier SSH read. Let me also check what was truncated in the initial read. I have lines 1-~200 from the first read and lines 214-414 from the tail read. I'm missing a small section around lines 100-214 that was truncated.
+
+
+Actually, looking at the first read output, it stopped at `result["wilcoxon_stat"] = N` — this is clearly a bug! It should be `None`, not `N`. Let me verify this.
+
+Also, I noticed in the per_benchmark mmlu report: n_items=50. This looks like mock data again! All the per_benchmark reports have n_items=50, contaminated=15, clean=35. This is exactly the mock data parameters (n=50, contamination_rate=0.3).
+
+So the existing v3 results are ALSO from dry-run! Not from real data.
+
+Wait, but the cross_benchmark_summary has realistic values... Let me re-examine. Actually no, look at the AUC values in the per_benchmark report: s1_embedding shows perfect 1.0 across all regimes, which is suspicious and consistent with mock data where signal separation is very clean. And the cross_benchmark_summary values like mean_auc_base=0.9975 are averaged across 3 benchmark reports — these are all mock/dry-run results, not real data.
+
+So it's clear: **ALL existing results are from dry-run/mock data. No real data run has been executed.**
+
+Now I need to check the bug in signal_survival_analysis.py and get the full v3 signal_survival.py code.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "19d1dcfe-bb23-43e0-859f-f1693ef73e71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JzW1XekKQHFrtbKooCR79H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10844,
+      "cache_read_input_tokens": 66375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10844
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94_
+
+发现关键线索：现有所有结果都是 mock 数据 (n=50)。还需检查代码 bug。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "4956ff7f-bc53-44e5-9019-8059ec25939e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JzW1XekKQHFrtbKooCR79H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10844,
+      "cache_read_input_tokens": 66375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10844
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PCFsQP8ZBZGrp8cer4W1Fk`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"wilcoxon_stat.*= N\" /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "fae61f8c-6ef8-4edd-9af3-b7d649c6f601",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JzW1XekKQHFrtbKooCR79H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10844,
+      "cache_read_input_tokens": 66375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10844
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-14T15:20:40.296Z_
+
+<details><summary>↩ Tool result · `toolu_01PCFsQP8ZBZGrp8cer4W1Fk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"129:        result[\\\"wilcoxon_stat\\\"] = None\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "72873502-1981-454c-b5eb-37f9aa39cfe9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"129:        result[\\\\\\\"wilcoxon_stat\\\\\\\"] = None\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"129:        result[\\\"wilcoxon_stat\\\"] = None\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QsY23Vz6beBknTMnY5pNyw`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"= N$\" /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "69cabfb1-b83a-483e-b665-3d203231969b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JzW1XekKQHFrtbKooCR79H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10844,
+      "cache_read_input_tokens": 66375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10844
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-14T15:20:40.847Z_
+
+<details><summary>↩ Tool result · `toolu_01QsY23Vz6beBknTMnY5pNyw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "1b272283-d345-4e41-b1c0-58850222ab4a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QFwh7PzsFURUhMd7Wuf87E`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"wilcoxon\" /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "8d88a632-116c-462e-b881-a4cd71a8d9c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JzW1XekKQHFrtbKooCR79H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10844,
+      "cache_read_input_tokens": 66375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10844
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-14T15:20:41.471Z_
+
+<details><summary>↩ Tool result · `toolu_01QFwh7PzsFURUhMd7Wuf87E`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"125:        w_stat, w_p = stats.wilcoxon(nonzero_diffs)\\n126:        result[\\\"wilcoxon_stat\\\"] = float(w_stat)\\n127:        result[\\\"wilcoxon_p\\\"] = float(f\\\"{w_p:.2e}\\\")\\n129:        result[\\\"wilcoxon_stat\\\"] = None\\n130:        result[\\\"wilcoxon_p\\\"] = None\\n240:                \\\"wilcoxon_stat\\\": pm.get(\\\"wilcoxon_stat\\\"),\\n241:                \\\"wilcoxon_p\\\": pm.get(\\\"wilcoxon_p\\\"),\\n400:            f\\\"{fmt(m.get('wilcoxon_p'), 2):>10} \\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "9325afd0-5f29-4a8f-943c-d9bf81c5022c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"125:        w_stat, w_p = stats.wilcoxon(nonzero_diffs)\\\\n126:        result[\\\\\\\"wilcoxon_stat\\\\\\\"] = float(w_stat)\\\\n127:        result[\\\\\\\"wilcoxon_p\\\\\\\"] = float(f\\\\\\\"{w_p:.2e}\\\\\\\")\\\\n129:        result[\\\\\\\"wilcoxon_stat\\\\\\\"] = None\\\\n130:        result[\\\\\\\"wilcoxon_p\\\\\\\"] = None\\\\n240:                \\\\\\\"wilcoxon_stat\\\\\\\": pm.get(\\\\\\\"wilcoxon_stat\\\\\\\"),\\\\n241:                \\\\\\\"wilcoxon_p\\\\\\\": pm.get(\\\\\\\"wilcoxon_p\\\\\\\"),\\\\n400:            f\\\\\\\"{fmt(m.get('wilcoxon_p'), 2):>10} \\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"125:        w_stat, w_p = stats.wilcoxon(nonzero_diffs)\\n126:        result[\\\"wilcoxon_stat\\\"] = float(w_stat)\\n127:        result[\\\"wilcoxon_p\\\"] = float(f\\\"{w_p:.2e}\\\")\\n129:        result[\\\"wilcoxon_stat\\\"] = None\\n130:        result[\\\"wilcoxon_p\\\"] = None\\n240:                \\\"wilcoxon_stat\\\": pm.get(\\\"wilcoxon_stat\\\"),\\n241:                \\\"wilcoxon_p\\\": pm.get(\\\"wilcoxon_p\\\"),\\n400:            f\\\"{fmt(m.get('wilcoxon_p'), 2):>10} \\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK good — line 129 is `result["wilcoxon_stat"] = None`, not `= N`. The truncation in the first read just cut it at `N` which is the start of `None`. No bug there.
+
+Now let me read the truncated middle parts of `signal_survival_analysis.py` (around lines 130-214 which I haven't seen):
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "0eb08da2-1394-400b-b8f4-94db9299e333",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxsEh6SydHEqU6R5sAoFvQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 77219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102_
+
+Wilcoxon 那行是 `None` 没问题，是截断导致看成 `N`。继续检查被截断的代码段和 v3 的关键部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "2d375a0c-3433-41bf-ae0e-e963abb4fe77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxsEh6SydHEqU6R5sAoFvQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 77219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AB9ScfVwwKG36rPCd2Pq8u`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -220 /root/contamcal-irt-calibration/exp008/signal_survival_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "11e8900f-0b85-40fb-b777-535f053e0790",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxsEh6SydHEqU6R5sAoFvQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 77219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-14T15:20:52.937Z_
+
+<details><summary>↩ Tool result · `toolu_01AB9ScfVwwKG36rPCd2Pq8u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-008 Signal Survival Analysis — core analysis module.\\nv2: Extended from SFT/RL pairwise to N-regime comparison.\\n\\nComputes:\\n  - AUC matrix: N_signals x N_regimes AUROC for contamination detection\\n  - Pairwise tests: statistical tests between all adjacent regime pairs\\n    (Cohen's d, Spearman rho, AUROC ratio, Wilcoxon signed-rank)\\n\\nInput:  OrderedDict mapping regime_name -> {signal_key: [records]}, plus labels.\\nOutput: {regime_names, auc_matrix, pairwise_tests, per_signal (compat), summary}\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nfrom collections import OrderedDict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_LABELS = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K%++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\n\\n\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\n    \\\"\\\"\\\"Cohen's d effect size between two groups.\\\"\\\"\\\"\\n    n1, n2 = len(group1), len(group2)\\n    if n1 < 2 or n2 < 2:\\n        return float(\\\"nan\\\")\\n    var1 = group1.var(ddof=1)\\n    var2 = group2.var(ddof=1)\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\n    if pooled_std == 0:\\n        return float(\\\"nan\\\")\\n    return (group1.mean() - group2.mean()) / pooled_std\\n\\n\\ndef compute_single_regime_metrics(values: np.ndarray, labels: np.ndarray) -> dict:\\n    \\\"\\\"\\\"AUROC and Cohen's d for contamination detection in one regime.\\\"\\\"\\\"\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\n    v = values[mask]\\n    lab = labels[mask].astype(int)\\n    contam = lab == 1\\n    clean = lab == 0\\n\\n    result = {\\n        \\\"n_items\\\": int(mask.sum()),\\n        \\\"n_contaminated\\\": int(contam.sum()),\\n        \\\"n_clean\\\": int(clean.sum()),\\n    }\\n\\n    d = cohens_d(v[contam], v[clean])\\n    result[\\\"effect_size\\\"] = round(d, 4) if not np.isnan(d) else None\\n\\n    if contam.sum() > 0 and clean.sum() > 0:\\n        result[\\\"auroc\\\"] = round(float(roc_auc_score(lab, v)), 4)\\n    else:\\n        result[\\\"auroc\\\"] = None\\n\\n    return result\\n\\n\\ndef compute_pairwise_metrics(\\n    values_a: np.ndarray,\\n    values_b: np.ndarray,\\n    labels: np.ndarray,\\n) -> dict:\\n    \\\"\\\"\\\"\\n    Pairwise survival metrics between two regimes for one signal.\\n    Preserves all original statistical tests: Cohen's d, Spearman, AUC, Wilcoxon.\\n    \\\"\\\"\\\"\\n    mask = ~(np.isnan(values_a) | np.isnan(values_b) | np.isnan(labels))\\n    v_a = values_a[mask]\\n    v_b = values_b[mask]\\n    lab = labels[mask].astype(int)\\n\\n    contam = lab == 1\\n    clean = lab == 0\\n\\n    result = {\\n        \\\"n_items\\\": int(mask.sum()),\\n        \\\"n_contaminated\\\": int(contam.sum()),\\n        \\\"n_clean\\\": int(clean.sum()),\\n    }\\n\\n    d_a = cohens_d(v_a[contam], v_a[clean])\\n    d_b = cohens_d(v_b[contam], v_b[clean])\\n    result[\\\"effect_size_a\\\"] = round(d_a, 4)\\n    result[\\\"effect_size_b\\\"] = round(d_b, 4)\\n    result[\\\"effect_size_ratio\\\"] = (\\n        round(d_b / d_a, 4) if d_a != 0 and not np.isnan(d_a) else None\\n    )\\n\\n    if len(v_a) >= 3:\\n        rho, rho_p = stats.spearmanr(v_a, v_b)\\n        result[\\\"spearman_rho\\\"] = round(rho, 4)\\n        result[\\\"spearman_p\\\"] = float(f\\\"{rho_p:.2e}\\\")\\n    else:\\n        result[\\\"spearman_rho\\\"] = None\\n        result[\\\"spearman_p\\\"] = None\\n\\n    if result[\\\"n_contaminated\\\"] > 0 and result[\\\"n_clean\\\"] > 0:\\n        auc_a = roc_auc_score(lab, v_a)\\n        auc_b = roc_auc_score(lab, v_b)\\n        result[\\\"auc_a\\\"] = round(auc_a, 4)\\n        result[\\\"auc_b\\\"] = round(auc_b, 4)\\n        result[\\\"auc_ratio\\\"] = round(auc_b / auc_a, 4) if auc_a > 0 else None\\n    else:\\n        result[\\\"auc_a\\\"] = None\\n        result[\\\"auc_b\\\"] = None\\n        result[\\\"auc_ratio\\\"] = None\\n\\n    diffs = v_b - v_a\\n    nonzero_diffs = diffs[diffs != 0]\\n    if len(nonzero_diffs) >= 10:\\n        w_stat, w_p = stats.wilcoxon(nonzero_diffs)\\n        result[\\\"wilcoxon_stat\\\"] = float(w_stat)\\n        result[\\\"wilcoxon_p\\\"] = float(f\\\"{w_p:.2e}\\\")\\n    else:\\n        result[\\\"wilcoxon_stat\\\"] = None\\n        result[\\\"wilcoxon_p\\\"] = None\\n\\n    return result\\n\\n\\ndef _extract_signal_vectors(\\n    regime_signals: dict,\\n    sig_key: str,\\n    regime_names: list[str],\\n    contamination_labels: dict[int, int],\\n) -> tuple:\\n    \\\"\\\"\\\"Extract aligned signal vectors for one signal across all regimes.\\\"\\\"\\\"\\n    regime_maps = {}\\n    for rname in regime_names:\\n        data = regime_signals[rname].get(sig_key, [])\\n        regime_maps[rname] = {r[\\\"index\\\"]: r.get(sig_key) for r in data}\\n\\n    common_idx = set(contamination_labels.keys())\\n    for rname in regime_names:\\n        common_idx &= set(regime_maps[rname].keys())\\n    common_idx = sorted(common_idx)\\n\\n    if len(common_idx) < 10:\\n        return None, None, None\\n\\n    labels = np.array([contamination_labels[i] for i in common_idx], dtype=float)\\n    vectors = OrderedDict()\\n    for rname in regime_names:\\n        vectors[rname] = np.array(\\n            [regime_maps[rname][i] for i in common_idx], dtype=float\\n        )\\n\\n    return vectors, labels, common_idx\\n\\n\\ndef run_survival_analysis(\\n    regime_signals: OrderedDict,\\n    contamination_labels: dict[int, int],\\n) -> dict:\\n    \\\"\\\"\\\"\\n    N-regime survival analysis.\\n\\n    Args:\\n        regime_signals: OrderedDict {regime_name: {signal_key: [records]}}\\n        contamination_labels: {item_index: 0 or 1}\\n\\n    Returns dict with keys:\\n        regime_names, auc_matrix, effect_size_matrix,\\n        pairwise_tests, per_signal (backward compat for N=2), summary.\\n    \\\"\\\"\\\"\\n    regime_names = list(regime_signals.keys())\\n    n_regimes = len(regime_names)\\n\\n    auc_matrix: dict[str, dict[str, float | None]] = {}\\n    effect_size_matrix: dict[str, dict[str, float | None]] = {}\\n    pairwise_tests: OrderedDict[str, dict] = OrderedDict()\\n\\n    adjacent_pairs = [\\n        (regime_names[i], regime_names[i + 1]) for i in range(n_regimes - 1)\\n    ]\\n    for ra, rb in adjacent_pairs:\\n        pairwise_tests[f\\\"{ra}_vs_{rb}\\\"] = {}\\n\\n    for sig_key in SIGNAL_KEYS:\\n        vectors, labels, common_idx = _extract_signal_vectors(\\n            regime_signals, sig_key, regime_names, contamination_labels,\\n        )\\n        if vectors is None:\\n            logger.warning(\\\"Skipping %s: <10 common items\\\", sig_key)\\n            continue\\n\\n        auc_matrix[sig_key] = {}\\n        effect_size_matrix[sig_key] = {}\\n        for rname in regime_names:\\n            m = compute_single_regime_metrics(vectors[rname], labels)\\n            auc_matrix[sig_key][rname] = m[\\\"auroc\\\"]\\n            effect_size_matrix[sig_key][rname] = m[\\\"effect_size\\\"]\\n\\n        for ra, rb in adjacent_pairs:\\n            pair_key = f\\\"{ra}_vs_{rb}\\\"\\n            pm = compute_pairwise_metrics(vectors[ra], vectors[rb], labels)\\n            pm[\\\"signal_label\\\"] = SIGNAL_LABELS[sig_key]\\n            pairwise_tests[pair_key][sig_key] = pm\\n\\n        logger.info(\\n            \\\"%s: AUC %s\\\",\\n            SIGNAL_LABELS[sig_key],\\n            \\\" -> \\\".join(\\n                f\\\"{r}={auc_matrix[sig_key].get(r, 'N/A')}\\\" for r in regime_names\\n            ),\\n        )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "f911d814-cf05-4828-980d-22e88d968ff6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008 Signal Survival Analysis — core analysis module.\\\\nv2: Extended from SFT/RL pairwise to N-regime comparison.\\\\n\\\\nComputes:\\\\n  - AUC matrix: N_signals x N_regimes AUROC for contamination detection\\\\n  - Pairwise tests: statistical tests between all adjacent regime pairs\\\\n    (Cohen's d, Spearman rho, AUROC ratio, Wilcoxon signed-rank)\\\\n\\\\nInput:  OrderedDict mapping regime_name -> {signal_key: [records]}, plus labels.\\\\nOutput: {regime_names, auc_matrix, pairwise_tests, per_signal (compat), summary}\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nfrom collections import OrderedDict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_LABELS = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Cohen's d effect size between two groups.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n1, n2 = len(group1), len(group2)\\\\n    if n1 < 2 or n2 < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    var1 = group1.var(ddof=1)\\\\n    var2 = group2.var(ddof=1)\\\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\\\n    if pooled_std == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    return (group1.mean() - group2.mean()) / pooled_std\\\\n\\\\n\\\\ndef compute_single_regime_metrics(values: np.ndarray, labels: np.ndarray) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"AUROC and Cohen's d for contamination detection in one regime.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\\\n    v = values[mask]\\\\n    lab = labels[mask].astype(int)\\\\n    contam = lab == 1\\\\n    clean = lab == 0\\\\n\\\\n    result = {\\\\n        \\\\\\\"n_items\\\\\\\": int(mask.sum()),\\\\n        \\\\\\\"n_contaminated\\\\\\\": int(contam.sum()),\\\\n        \\\\\\\"n_clean\\\\\\\": int(clean.sum()),\\\\n    }\\\\n\\\\n    d = cohens_d(v[contam], v[clean])\\\\n    result[\\\\\\\"effect_size\\\\\\\"] = round(d, 4) if not np.isnan(d) else None\\\\n\\\\n    if contam.sum() > 0 and clean.sum() > 0:\\\\n        result[\\\\\\\"auroc\\\\\\\"] = round(float(roc_auc_score(lab, v)), 4)\\\\n    else:\\\\n        result[\\\\\\\"auroc\\\\\\\"] = None\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef compute_pairwise_metrics(\\\\n    values_a: np.ndarray,\\\\n    values_b: np.ndarray,\\\\n    labels: np.ndarray,\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Pairwise survival metrics between two regimes for one signal.\\\\n    Preserves all original statistical tests: Cohen's d, Spearman, AUC, Wilcoxon.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mask = ~(np.isnan(values_a) | np.isnan(values_b) | np.isnan(labels))\\\\n    v_a = values_a[mask]\\\\n    v_b = values_b[mask]\\\\n    lab = labels[mask].astype(int)\\\\n\\\\n    contam = lab == 1\\\\n    clean = lab == 0\\\\n\\\\n    result = {\\\\n        \\\\\\\"n_items\\\\\\\": int(mask.sum()),\\\\n        \\\\\\\"n_contaminated\\\\\\\": int(contam.sum()),\\\\n        \\\\\\\"n_clean\\\\\\\": int(clean.sum()),\\\\n    }\\\\n\\\\n    d_a = cohens_d(v_a[contam], v_a[clean])\\\\n    d_b = cohens_d(v_b[contam], v_b[clean])\\\\n    result[\\\\\\\"effect_size_a\\\\\\\"] = round(d_a, 4)\\\\n    result[\\\\\\\"effect_size_b\\\\\\\"] = round(d_b, 4)\\\\n    result[\\\\\\\"effect_size_ratio\\\\\\\"] = (\\\\n        round(d_b / d_a, 4) if d_a != 0 and not np.isnan(d_a) else None\\\\n    )\\\\n\\\\n    if len(v_a) >= 3:\\\\n        rho, rho_p = stats.spearmanr(v_a, v_b)\\\\n        result[\\\\\\\"spearman_rho\\\\\\\"] = round(rho, 4)\\\\n        result[\\\\\\\"spearman_p\\\\\\\"] = float(f\\\\\\\"{rho_p:.2e}\\\\\\\")\\\\n    else:\\\\n        result[\\\\\\\"spearman_rho\\\\\\\"] = None\\\\n        result[\\\\\\\"spearman_p\\\\\\\"] = None\\\\n\\\\n    if result[\\\\\\\"n_contaminated\\\\\\\"] > 0 and result[\\\\\\\"n_clean\\\\\\\"] > 0:\\\\n        auc_a = roc_auc_score(lab, v_a)\\\\n        auc_b = roc_auc_score(lab, v_b)\\\\n        result[\\\\\\\"auc_a\\\\\\\"] = round(auc_a, 4)\\\\n        result[\\\\\\\"auc_b\\\\\\\"] = round(auc_b, 4)\\\\n        result[\\\\\\\"auc_ratio\\\\\\\"] = round(auc_b / auc_a, 4) if auc_a > 0 else None\\\\n    else:\\\\n        result[\\\\\\\"auc_a\\\\\\\"] = None\\\\n        result[\\\\\\\"auc_b\\\\\\\"] = None\\\\n        result[\\\\\\\"auc_ratio\\\\\\\"] = None\\\\n\\\\n    diffs = v_b - v_a\\\\n    nonzero_diffs = diffs[diffs != 0]\\\\n    if len(nonzero_diffs) >= 10:\\\\n        w_stat, w_p = stats.wilcoxon(nonzero_diffs)\\\\n        result[\\\\\\\"wilcoxon_stat\\\\\\\"] = float(w_stat)\\\\n        result[\\\\\\\"wilcoxon_p\\\\\\\"] = float(f\\\\\\\"{w_p:.2e}\\\\\\\")\\\\n    else:\\\\n        result[\\\\\\\"wilcoxon_stat\\\\\\\"] = None\\\\n        result[\\\\\\\"wilcoxon_p\\\\\\\"] = None\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef _extract_signal_vectors(\\\\n    regime_signals: dict,\\\\n    sig_key: str,\\\\n    regime_names: list[str],\\\\n    contamination_labels: dict[int, int],\\\\n) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract aligned signal vectors for one signal across all regimes.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    regime_maps = {}\\\\n    for rname in regime_names:\\\\n        data = regime_signals[rname].get(sig_key, [])\\\\n        regime_maps[rname] = {r[\\\\\\\"index\\\\\\\"]: r.get(sig_key) for r in data}\\\\n\\\\n    common_idx = set(contamination_labels.keys())\\\\n    for rname in regime_names:\\\\n        common_idx &= set(regime_maps[rname].keys())\\\\n    common_idx = sorted(common_idx)\\\\n\\\\n    if len(common_idx) < 10:\\\\n        return None, None, None\\\\n\\\\n    labels = np.array([contamination_labels[i] for i in common_idx], dtype=float)\\\\n    vectors = OrderedDict()\\\\n    for rname in regime_names:\\\\n        vectors[rname] = np.array(\\\\n            [regime_maps[rname][i] for i in common_idx], dtype=float\\\\n        )\\\\n\\\\n    return vectors, labels, common_idx\\\\n\\\\n\\\\ndef run_survival_analysis(\\\\n    regime_signals: OrderedDict,\\\\n    contamination_labels: dict[int, int],\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    N-regime survival analysis.\\\\n\\\\n    Args:\\\\n        regime_signals: OrderedDict {regime_name: {signal_key: [records]}}\\\\n        contamination_labels: {item_index: 0 or 1}\\\\n\\\\n    Returns dict with keys:\\\\n        regime_names, auc_matrix, effect_size_matrix,\\\\n        pairwise_tests, per_signal (backward compat for N=2), summary.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    regime_names = list(regime_signals.keys())\\\\n    n_regimes = len(regime_names)\\\\n\\\\n    auc_matrix: dict[str, dict[str, float | None]] = {}\\\\n    effect_size_matrix: dict[str, dict[str, float | None]] = {}\\\\n    pairwise_tests: OrderedDict[str, dict] = OrderedDict()\\\\n\\\\n    adjacent_pairs = [\\\\n        (regime_names[i], regime_names[i + 1]) for i in range(n_regimes - 1)\\\\n    ]\\\\n    for ra, rb in adjacent_pairs:\\\\n        pairwise_tests[f\\\\\\\"{ra}_vs_{rb}\\\\\\\"] = {}\\\\n\\\\n    for sig_key in SIGNAL_KEYS:\\\\n        vectors, labels, common_idx = _extract_signal_vectors(\\\\n            regime_signals, sig_key, regime_names, contamination_labels,\\\\n        )\\\\n        if vectors is None:\\\\n            logger.warning(\\\\\\\"Skipping %s: <10 common items\\\\\\\", sig_key)\\\\n            continue\\\\n\\\\n        auc_matrix[sig_key] = {}\\\\n        effect_size_matrix[sig_key] = {}\\\\n        for rname in regime_names:\\\\n            m = compute_single_regime_metrics(vectors[rname], labels)\\\\n            auc_matrix[sig_key][rname] = m[\\\\\\\"auroc\\\\\\\"]\\\\n            effect_size_matrix[sig_key][rname] = m[\\\\\\\"effect_size\\\\\\\"]\\\\n\\\\n        for ra, rb in adjacent_pairs:\\\\n            pair_key = f\\\\\\\"{ra}_vs_{rb}\\\\\\\"\\\\n            pm = compute_pairwise_metrics(vectors[ra], vectors[rb], labels)\\\\n            pm[\\\\\\\"signal_label\\\\\\\"] = SIGNAL_LABELS[sig_key]\\\\n            pairwise_tests[pair_key][sig_key] = pm\\\\n\\\\n        logger.info(\\\\n            \\\\\\\"%s: AUC %s\\\\\\\",\\\\n            SIGNAL_LABELS[sig_key],\\\\n            \\\\\\\" -> \\\\\\\".join(\\\\n                f\\\\\\\"{r}={auc_matrix[sig_key].get(r, 'N/A')}\\\\\\\" for r in regime_names\\\\n            ),\\\\n        )\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-008 Signal Survival Analysis — core analysis module.\\nv2: Extended from SFT/RL pairwise to N-regime comparison.\\n\\nComputes:\\n  - AUC matrix: N_signals x N_regimes AUROC for contamination detection\\n  - Pairwise tests: statistical tests between all adjacent regime pairs\\n    (Cohen's d, Spearman rho, AUROC ratio, Wilcoxon signed-rank)\\n\\nInput:  OrderedDict mapping regime_name -> {signal_key: [records]}, plus labels.\\nOutput: {regime_names, auc_matrix, pairwise_tests, per_signal (compat), summary}\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nfrom collections import OrderedDict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_LABELS = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K%++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\n\\n\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\n    \\\"\\\"\\\"Cohen's d effect size between two groups.\\\"\\\"\\\"\\n    n1, n2 = len(group1), len(group2)\\n    if n1 < 2 or n2 < 2:\\n        return float(\\\"nan\\\")\\n    var1 = group1.var(ddof=1)\\n    var2 = group2.var(ddof=1)\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\n    if pooled_std == 0:\\n        return float(\\\"nan\\\")\\n    return (group1.mean() - group2.mean()) / pooled_std\\n\\n\\ndef compute_single_regime_metrics(values: np.ndarray, labels: np.ndarray) -> dict:\\n    \\\"\\\"\\\"AUROC and Cohen's d for contamination detection in one regime.\\\"\\\"\\\"\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\n    v = values[mask]\\n    lab = labels[mask].astype(int)\\n    contam = lab == 1\\n    clean = lab == 0\\n\\n    result = {\\n        \\\"n_items\\\": int(mask.sum()),\\n        \\\"n_contaminated\\\": int(contam.sum()),\\n        \\\"n_clean\\\": int(clean.sum()),\\n    }\\n\\n    d = cohens_d(v[contam], v[clean])\\n    result[\\\"effect_size\\\"] = round(d, 4) if not np.isnan(d) else None\\n\\n    if contam.sum() > 0 and clean.sum() > 0:\\n        result[\\\"auroc\\\"] = round(float(roc_auc_score(lab, v)), 4)\\n    else:\\n        result[\\\"auroc\\\"] = None\\n\\n    return result\\n\\n\\ndef compute_pairwise_metrics(\\n    values_a: np.ndarray,\\n    values_b: np.ndarray,\\n    labels: np.ndarray,\\n) -> dict:\\n    \\\"\\\"\\\"\\n    Pairwise survival metrics between two regimes for one signal.\\n    Preserves all original statistical tests: Cohen's d, Spearman, AUC, Wilcoxon.\\n    \\\"\\\"\\\"\\n    mask = ~(np.isnan(values_a) | np.isnan(values_b) | np.isnan(labels))\\n    v_a = values_a[mask]\\n    v_b = values_b[mask]\\n    lab = labels[mask].astype(int)\\n\\n    contam = lab == 1\\n    clean = lab == 0\\n\\n    result = {\\n        \\\"n_items\\\": int(mask.sum()),\\n        \\\"n_contaminated\\\": int(contam.sum()),\\n        \\\"n_clean\\\": int(clean.sum()),\\n    }\\n\\n    d_a = cohens_d(v_a[contam], v_a[clean])\\n    d_b = cohens_d(v_b[contam], v_b[clean])\\n    result[\\\"effect_size_a\\\"] = round(d_a, 4)\\n    result[\\\"effect_size_b\\\"] = round(d_b, 4)\\n    result[\\\"effect_size_ratio\\\"] = (\\n        round(d_b / d_a, 4) if d_a != 0 and not np.isnan(d_a) else None\\n    )\\n\\n    if len(v_a) >= 3:\\n        rho, rho_p = stats.spearmanr(v_a, v_b)\\n        result[\\\"spearman_rho\\\"] = round(rho, 4)\\n        result[\\\"spearman_p\\\"] = float(f\\\"{rho_p:.2e}\\\")\\n    else:\\n        result[\\\"spearman_rho\\\"] = None\\n        result[\\\"spearman_p\\\"] = None\\n\\n    if result[\\\"n_contaminated\\\"] > 0 and result[\\\"n_clean\\\"] > 0:\\n        auc_a = roc_auc_score(lab, v_a)\\n        auc_b = roc_auc_score(lab, v_b)\\n        result[\\\"auc_a\\\"] = round(auc_a, 4)\\n        result[\\\"auc_b\\\"] = round(auc_b, 4)\\n        result[\\\"auc_ratio\\\"] = round(auc_b / auc_a, 4) if auc_a > 0 else None\\n    else:\\n        result[\\\"auc_a\\\"] = None\\n        result[\\\"auc_b\\\"] = None\\n        result[\\\"auc_ratio\\\"] = None\\n\\n    diffs = v_b - v_a\\n    nonzero_diffs = diffs[diffs != 0]\\n    if len(nonzero_diffs) >= 10:\\n        w_stat, w_p = stats.wilcoxon(nonzero_diffs)\\n        result[\\\"wilcoxon_stat\\\"] = float(w_stat)\\n        result[\\\"wilcoxon_p\\\"] = float(f\\\"{w_p:.2e}\\\")\\n    else:\\n        result[\\\"wilcoxon_stat\\\"] = None\\n        result[\\\"wilcoxon_p\\\"] = None\\n\\n    return result\\n\\n\\ndef _extract_signal_vectors(\\n    regime_signals: dict,\\n    sig_key: str,\\n    regime_names: list[str],\\n    contamination_labels: dict[int, int],\\n) -> tuple:\\n    \\\"\\\"\\\"Extract aligned signal vectors for one signal across all regimes.\\\"\\\"\\\"\\n    regime_maps = {}\\n    for rname in regime_names:\\n        data = regime_signals[rname].get(sig_key, [])\\n        regime_maps[rname] = {r[\\\"index\\\"]: r.get(sig_key) for r in data}\\n\\n    common_idx = set(contamination_labels.keys())\\n    for rname in regime_names:\\n        common_idx &= set(regime_maps[rname].keys())\\n    common_idx = sorted(common_idx)\\n\\n    if len(common_idx) < 10:\\n        return None, None, None\\n\\n    labels = np.array([contamination_labels[i] for i in common_idx], dtype=float)\\n    vectors = OrderedDict()\\n    for rname in regime_names:\\n        vectors[rname] = np.array(\\n            [regime_maps[rname][i] for i in common_idx], dtype=float\\n        )\\n\\n    return vectors, labels, common_idx\\n\\n\\ndef run_survival_analysis(\\n    regime_signals: OrderedDict,\\n    contamination_labels: dict[int, int],\\n) -> dict:\\n    \\\"\\\"\\\"\\n    N-regime survival analysis.\\n\\n    Args:\\n        regime_signals: OrderedDict {regime_name: {signal_key: [records]}}\\n        contamination_labels: {item_index: 0 or 1}\\n\\n    Returns dict with keys:\\n        regime_names, auc_matrix, effect_size_matrix,\\n        pairwise_tests, per_signal (backward compat for N=2), summary.\\n    \\\"\\\"\\\"\\n    regime_names = list(regime_signals.keys())\\n    n_regimes = len(regime_names)\\n\\n    auc_matrix: dict[str, dict[str, float | None]] = {}\\n    effect_size_matrix: dict[str, dict[str, float | None]] = {}\\n    pairwise_tests: OrderedDict[str, dict] = OrderedDict()\\n\\n    adjacent_pairs = [\\n        (regime_names[i], regime_names[i + 1]) for i in range(n_regimes - 1)\\n    ]\\n    for ra, rb in adjacent_pairs:\\n        pairwise_tests[f\\\"{ra}_vs_{rb}\\\"] = {}\\n\\n    for sig_key in SIGNAL_KEYS:\\n        vectors, labels, common_idx = _extract_signal_vectors(\\n            regime_signals, sig_key, regime_names, contamination_labels,\\n        )\\n        if vectors is None:\\n            logger.warning(\\\"Skipping %s: <10 common items\\\", sig_key)\\n            continue\\n\\n        auc_matrix[sig_key] = {}\\n        effect_size_matrix[sig_key] = {}\\n        for rname in regime_names:\\n            m = compute_single_regime_metrics(vectors[rname], labels)\\n            auc_matrix[sig_key][rname] = m[\\\"auroc\\\"]\\n            effect_size_matrix[sig_key][rname] = m[\\\"effect_size\\\"]\\n\\n        for ra, rb in adjacent_pairs:\\n            pair_key = f\\\"{ra}_vs_{rb}\\\"\\n            pm = compute_pairwise_metrics(vectors[ra], vectors[rb], labels)\\n            pm[\\\"signal_label\\\"] = SIGNAL_LABELS[sig_key]\\n            pairwise_tests[pair_key][sig_key] = pm\\n\\n        logger.info(\\n            \\\"%s: AUC %s\\\",\\n            SIGNAL_LABELS[sig_key],\\n            \\\" -> \\\".join(\\n                f\\\"{r}={auc_matrix[sig_key].get(r, 'N/A')}\\\" for r in regime_names\\n            ),\\n        )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017J2UA4j6xPsuzqCDGfmyrC`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"def \\|class \" /root/contamcal-irt-calibration/exp008/signal_survival.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "8e0826bc-df56-40aa-8760-84d0de4af186",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxsEh6SydHEqU6R5sAoFvQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 77219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-14T15:20:53.509Z_
+
+<details><summary>↩ Tool result · `toolu_017J2UA4j6xPsuzqCDGfmyrC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "1138d11c-5864-4ba4-b6f2-e8814a7a5f73",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J7UUE1ERpH3Hua9Fho1p28`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -350 /root/contamcal-irt-calibration/exp008/signal_survival.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "ac3b212a-ae63-4f3d-9326-15f068138fc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxsEh6SydHEqU6R5sAoFvQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 77219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-14T15:20:54.709Z_
+
+<details><summary>↩ Tool result · `toolu_01J7UUE1ERpH3Hua9Fho1p28`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-008 Signal Survival Analysis — main script (v3).\\n\\nAnalyzes how contamination detection signals survive across training regimes\\n(base → SFT-clean → SFT-contam → RL-aligned). Supports paper C2 claim:\\n\\\"cliff-like signal degradation under RL alignment.\\\"\\n\\nInput:\\n  - Per-regime signal directories from exp-002 compute_signals.py.\\n    Directory structure: {regime_dir}/{benchmark}/ containing\\n    signal_{type}_{benchmark}.json or signals_merged_{benchmark}.json.\\n    Record format: [{\\\"index\\\": int, \\\"benchmark\\\": str, \\\"s1_embedding\\\": float, ...}]\\n  - Contamination labels per benchmark: JSON {str(index): 0 | 1}\\n  - (Optional) RRF aggregated scores: rrf_{benchmark}.json or\\n    exposure_rrf_{benchmark}.json from aggregate_rrf.py\\n\\nOutput (to --output-dir):\\n  - per_benchmark/{benchmark}/survival_report.json\\n  - cliff_analysis.json — cliff vs gradual degradation detection\\n  - cross_benchmark_summary.json — aggregated statistics\\n  - Console summary table\\n\\nDependencies: numpy, scipy, sklearn\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport sys\\nfrom collections import OrderedDict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogger = logging.getLogger(__name__)\\n\\nALL_SIGNAL_KEYS = [\\n    \\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\", \\\"rrf_score\\\",\\n]\\nSIGNAL_LABELS = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K%++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n    \\\"rrf_score\\\": \\\"RRF (fused)\\\",\\n}\\nDEFAULT_BENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nCLIFF_THRESHOLD = 0.7\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data loading\\n# ---------------------------------------------------------------------------\\n\\ndef load_signals_for_benchmark(\\n    signals_dir: Path, benchmark: str,\\n) -> dict[str, list[dict]]:\\n    \\\"\\\"\\\"Load all available signal files for one benchmark from a regime directory.\\\"\\\"\\\"\\n    signals = {}\\n\\n    merged_path = signals_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged_path.exists():\\n        with open(merged_path) as f:\\n            merged = json.load(f)\\n        for sig_key in ALL_SIGNAL_KEYS:\\n            if any(sig_key in r for r in merged):\\n                signals[sig_key] = merged\\n        return signals\\n\\n    prefix_map = {\\n        \\\"s1_embedding\\\": f\\\"signal_embedding_{benchmark}\\\",\\n        \\\"s2_minkpp\\\": f\\\"signal_minkpp_{benchmark}\\\",\\n        \\\"s3_constat\\\": f\\\"signal_constat_{benchmark}\\\",\\n        \\\"s4_selfcritique\\\": f\\\"signal_selfcritique_{benchmark}\\\",\\n    }\\n    for sig_key, prefix in prefix_map.items():\\n        fpath = signals_dir / f\\\"{prefix}.json\\\"\\n        if fpath.exists():\\n            with open(fpath) as f:\\n                signals[sig_key] = json.load(f)\\n\\n    for rrf_name in [f\\\"rrf_{benchmark}.json\\\", f\\\"exposure_rrf_{benchmark}.json\\\"]:\\n        rrf_path = signals_dir / rrf_name\\n        if rrf_path.exists():\\n            with open(rrf_path) as f:\\n                signals[\\\"rrf_score\\\"] = json.load(f)\\n            break\\n\\n    return signals\\n\\n\\ndef load_labels(labels_file: Path) -> dict[int, int]:\\n    with open(labels_file) as f:\\n        raw = json.load(f)\\n    return {int(k): int(v) for k, v in raw.items()}\\n\\n\\n# ---------------------------------------------------------------------------\\n# Statistical primitives\\n# ---------------------------------------------------------------------------\\n\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\n    n1, n2 = len(group1), len(group2)\\n    if n1 < 2 or n2 < 2:\\n        return float(\\\"nan\\\")\\n    var1, var2 = group1.var(ddof=1), group2.var(ddof=1)\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\n    if pooled_std == 0:\\n        return float(\\\"nan\\\")\\n    return float((group1.mean() - group2.mean()) / pooled_std)\\n\\n\\ndef compute_auroc(values: np.ndarray, labels: np.ndarray) -> float | None:\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\n    v, lab = values[mask], labels[mask].astype(int)\\n    if lab.sum() == 0 or (1 - l\\n\\n... [截断: 输出过长，省略 3912 字符] ...\\n\\nAL_KEYS if s in all_sigs]\\n\\n    auc_matrix = {}\\n    effect_size_matrix = {}\\n    pairwise_tests = OrderedDict()\\n    adjacent = [\\n        (regime_names[i], regime_names[i + 1])\\n        for i in range(len(regime_names) - 1)\\n    ]\\n    for ra, rb in adjacent:\\n        pairwise_tests[f\\\"{ra}_vs_{rb}\\\"] = {}\\n\\n    for sig_key in signal_keys:\\n        vectors, lab_arr = extract_aligned_vectors(\\n            regime_signals, sig_key, regime_names, labels,\\n        )\\n        if vectors is None:\\n            logger.warning(\\\"Skipping %s: <10 common items\\\", sig_key)\\n            continue\\n\\n        auc_matrix[sig_key] = {}\\n        effect_size_matrix[sig_key] = {}\\n        for rname in regime_names:\\n            v = vectors[rname]\\n            auc_matrix[sig_key][rname] = compute_auroc(v, lab_arr)\\n            contam, clean = lab_arr == 1, lab_arr == 0\\n            d = cohens_d(v[contam], v[clean])\\n            effect_size_matrix[sig_key][rname] = _round_or_none(d)\\n\\n        for ra, rb in adjacent:\\n            pm = compute_pairwise_metrics(vectors[ra], vectors[rb], lab_arr)\\n            pm[\\\"signal_label\\\"] = SIGNAL_LABELS.get(sig_key, sig_key)\\n            pairwise_tests[f\\\"{ra}_vs_{rb}\\\"][sig_key] = pm\\n\\n    first_r, last_r = regime_names[0], regime_names[-1]\\n    surviving = []\\n    for sig in auc_matrix:\\n        auc_last = auc_matrix[sig].get(last_r)\\n        d_first = effect_size_matrix.get(sig, {}).get(first_r)\\n        d_last = effect_size_matrix.get(sig, {}).get(last_r)\\n        if (\\n            auc_last is not None and auc_last >= 0.6\\n            and d_first is not None and d_last is not None\\n            and d_first != 0 and abs(d_last / d_first) >= 0.5\\n        ):\\n            surviving.append(sig)\\n\\n    return {\\n        \\\"regime_names\\\": regime_names,\\n        \\\"auc_matrix\\\": auc_matrix,\\n        \\\"effect_size_matrix\\\": effect_size_matrix,\\n        \\\"pairwise_tests\\\": dict(pairwise_tests),\\n        \\\"n_signals_analyzed\\\": len(auc_matrix),\\n        \\\"n_signals_surviving\\\": len(surviving),\\n        \\\"surviving_signals\\\": surviving,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Cliff detection\\n# ---------------------------------------------------------------------------\\n\\ndef detect_cliff_pattern(\\n    auc_trajectory: list[float | None],\\n    regime_names: list[str],\\n    threshold: float = CLIFF_THRESHOLD,\\n) -> dict:\\n    \\\"\\\"\\\"\\n    Classify AUC trajectory as cliff-like or gradual.\\n\\n    cliff_ratio = max_single_step_drop / total_drop.\\n    If cliff_ratio >= threshold, the degradation is concentrated at one\\n    transition (\\\"cliff\\\"); otherwise it is spread across transitions (\\\"gradual\\\").\\n    Total drop < 0.02 is classified as \\\"stable\\\" (signal preserved).\\n    \\\"\\\"\\\"\\n    valid = [(i, v) for i, v in enumerate(auc_trajectory) if v is not None]\\n    if len(valid) < 2:\\n        return {\\\"pattern\\\": \\\"insufficient_data\\\", \\\"cliff_ratio\\\": None}\\n\\n    indices = [v[0] for v in valid]\\n    values = [v[1] for v in valid]\\n    total_drop = values[0] - values[-1]\\n\\n    deltas = []\\n    for k in range(len(values) - 1):\\n        drop = values[k] - values[k + 1]\\n        deltas.append({\\n            \\\"from\\\": regime_names[indices[k]],\\n            \\\"to\\\": regime_names[indices[k + 1]],\\n            \\\"delta_auc\\\": round(drop, 4),\\n        })\\n\\n    if abs(total_drop) < 0.02:\\n        return {\\n            \\\"pattern\\\": \\\"stable\\\",\\n            \\\"total_drop\\\": round(total_drop, 4),\\n            \\\"cliff_ratio\\\": 0.0,\\n            \\\"deltas\\\": deltas,\\n        }\\n\\n    max_drop = max(d[\\\"delta_auc\\\"] for d in deltas)\\n    cliff_ratio = max_drop / total_drop if total_drop > 0 else 0.0\\n    cliff_idx = max(range(len(deltas)), key=lambda i: deltas[i][\\\"delta_auc\\\"])\\n\\n    return {\\n        \\\"pattern\\\": \\\"cliff\\\" if cliff_ratio >= threshold else \\\"gradual\\\",\\n        \\\"cliff_ratio\\\": round(cliff_ratio, 4),\\n        \\\"total_drop\\\": round(total_drop, 4),\\n        \\\"max_single_step_drop\\\": round(max_drop, 4),\\n        \\\"cliff_transition\\\": (\\n            f\\\"{deltas[cliff_idx]['from']} -> {deltas[cliff_idx]['to']}\\\"\\n        ),\\n        \\\"deltas\\\": deltas,\\n    }\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "529bd0d9-3614-4ebc-a84f-00e64a5f3aad",
+  "uuid": "3c124d33-1b4d-4ec6-9642-a3571f505381",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-008 Signal Survival Analysis — main script (v3).\\\\n\\\\nAnalyzes how contamination detection signals survive across training regimes\\\\n(base → SFT-clean → SFT-contam → RL-aligned). Supports paper C2 claim:\\\\n\\\\\\\"cliff-like signal degradation under RL alignment.\\\\\\\"\\\\n\\\\nInput:\\\\n  - Per-regime signal directories from exp-002 compute_signals.py.\\\\n    Directory structure: {regime_dir}/{benchmark}/ containing\\\\n    signal_{type}_{benchmark}.json or signals_merged_{benchmark}.json.\\\\n    Record format: [{\\\\\\\"index\\\\\\\": int, \\\\\\\"benchmark\\\\\\\": str, \\\\\\\"s1_embedding\\\\\\\": float, ...}]\\\\n  - Contamination labels per benchmark: JSON {str(index): 0 | 1}\\\\n  - (Optional) RRF aggregated scores: rrf_{benchmark}.json or\\\\n    exposure_rrf_{benchmark}.json from aggregate_rrf.py\\\\n\\\\nOutput (to --output-dir):\\\\n  - per_benchmark/{benchmark}/survival_report.json\\\\n  - cliff_analysis.json — cliff vs gradual degradation detection\\\\n  - cross_benchmark_summary.json — aggregated statistics\\\\n  - Console summary table\\\\n\\\\nDependencies: numpy, scipy, sklearn\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\nfrom collections import OrderedDict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nALL_SIGNAL_KEYS = [\\\\n    \\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\", \\\\\\\"rrf_score\\\\\\\",\\\\n]\\\\nSIGNAL_LABELS = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K%++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n    \\\\\\\"rrf_score\\\\\\\": \\\\\\\"RRF (fused)\\\\\\\",\\\\n}\\\\nDEFAULT_BENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nCLIFF_THRESHOLD = 0.7\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Data loading\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef load_signals_for_benchmark(\\\\n    signals_dir: Path, benchmark: str,\\\\n) -> dict[str, list[dict]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load all available signal files for one benchmark from a regime directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    signals = {}\\\\n\\\\n    merged_path = signals_dir / f\\\\\\\"signals_merged_{benchmark}.json\\\\\\\"\\\\n    if merged_path.exists():\\\\n        with open(merged_path) as f:\\\\n            merged = json.load(f)\\\\n        for sig_key in ALL_SIGNAL_KEYS:\\\\n            if any(sig_key in r for r in merged):\\\\n                signals[sig_key] = merged\\\\n        return signals\\\\n\\\\n    prefix_map = {\\\\n        \\\\\\\"s1_embedding\\\\\\\": f\\\\\\\"signal_embedding_{benchmark}\\\\\\\",\\\\n        \\\\\\\"s2_minkpp\\\\\\\": f\\\\\\\"signal_minkpp_{benchmark}\\\\\\\",\\\\n        \\\\\\\"s3_constat\\\\\\\": f\\\\\\\"signal_constat_{benchmark}\\\\\\\",\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": f\\\\\\\"signal_selfcritique_{benchmark}\\\\\\\",\\\\n    }\\\\n    for sig_key, prefix in prefix_map.items():\\\\n        fpath = signals_dir / f\\\\\\\"{prefix}.json\\\\\\\"\\\\n        if fpath.exists():\\\\n            with open(fpath) as f:\\\\n                signals[sig_key] = json.load(f)\\\\n\\\\n    for rrf_name in [f\\\\\\\"rrf_{benchmark}.json\\\\\\\", f\\\\\\\"exposure_rrf_{benchmark}.json\\\\\\\"]:\\\\n        rrf_path = signals_dir / rrf_name\\\\n        if rrf_path.exists():\\\\n            with open(rrf_path) as f:\\\\n                signals[\\\\\\\"rrf_score\\\\\\\"] = json.load(f)\\\\n            break\\\\n\\\\n    return signals\\\\n\\\\n\\\\ndef load_labels(labels_file: Path) -> dict[int, int]:\\\\n    with open(labels_file) as f:\\\\n        raw = json.load(f)\\\\n    return {int(k): int(v) for k, v in raw.items()}\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Statistical primitives\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\\\n    n1, n2 = len(group1), len(group2)\\\\n    if n1 < 2 or n2 < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    var1, var2 = group1.var(ddof=1), group2.var(ddof=1)\\\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\\\n    if pooled_std == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    return float((group1.mean() - group2.mean()) / pooled_std)\\\\n\\\\n\\\\ndef compute_auroc(values: np.ndarray, labels: np.ndarray) -> float | None:\\\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\\\n    v, lab = values[mask], labels[mask].astype(int)\\\\n    if lab.sum() == 0 or (1 - l\\\\n\\\\n... [截断: 输出过长，省略 3912 字符] ...\\\\n\\\\nAL_KEYS if s in all_sigs]\\\\n\\\\n    auc_matrix = {}\\\\n    effect_size_matrix = {}\\\\n    pairwise_tests = OrderedDict()\\\\n    adjacent = [\\\\n        (regime_names[i], regime_names[i + 1])\\\\n        for i in range(len(regime_names) - 1)\\\\n    ]\\\\n    for ra, rb in adjacent:\\\\n        pairwise_tests[f\\\\\\\"{ra}_vs_{rb}\\\\\\\"] = {}\\\\n\\\\n    for sig_key in signal_keys:\\\\n        vectors, lab_arr = extract_aligned_vectors(\\\\n            regime_signals, sig_key, regime_names, labels,\\\\n        )\\\\n        if vectors is None:\\\\n            logger.warning(\\\\\\\"Skipping %s: <10 common items\\\\\\\", sig_key)\\\\n            continue\\\\n\\\\n        auc_matrix[sig_key] = {}\\\\n        effect_size_matrix[sig_key] = {}\\\\n        for rname in regime_names:\\\\n            v = vectors[rname]\\\\n            auc_matrix[sig_key][rname] = compute_auroc(v, lab_arr)\\\\n            contam, clean = lab_arr == 1, lab_arr == 0\\\\n            d = cohens_d(v[contam], v[clean])\\\\n            effect_size_matrix[sig_key][rname] = _round_or_none(d)\\\\n\\\\n        for ra, rb in adjacent:\\\\n            pm = compute_pairwise_metrics(vectors[ra], vectors[rb], lab_arr)\\\\n            pm[\\\\\\\"signal_label\\\\\\\"] = SIGNAL_LABELS.get(sig_key, sig_key)\\\\n            pairwise_tests[f\\\\\\\"{ra}_vs_{rb}\\\\\\\"][sig_key] = pm\\\\n\\\\n    first_r, last_r = regime_names[0], regime_names[-1]\\\\n    surviving = []\\\\n    for sig in auc_matrix:\\\\n        auc_last = auc_matrix[sig].get(last_r)\\\\n        d_first = effect_size_matrix.get(sig, {}).get(first_r)\\\\n        d_last = effect_size_matrix.get(sig, {}).get(last_r)\\\\n        if (\\\\n            auc_last is not None and auc_last >= 0.6\\\\n            and d_first is not None and d_last is not None\\\\n            and d_first != 0 and abs(d_last / d_first) >= 0.5\\\\n        ):\\\\n            surviving.append(sig)\\\\n\\\\n    return {\\\\n        \\\\\\\"regime_names\\\\\\\": regime_names,\\\\n        \\\\\\\"auc_matrix\\\\\\\": auc_matrix,\\\\n        \\\\\\\"effect_size_matrix\\\\\\\": effect_size_matrix,\\\\n        \\\\\\\"pairwise_tests\\\\\\\": dict(pairwise_tests),\\\\n        \\\\\\\"n_signals_analyzed\\\\\\\": len(auc_matrix),\\\\n        \\\\\\\"n_signals_surviving\\\\\\\": len(surviving),\\\\n        \\\\\\\"surviving_signals\\\\\\\": surviving,\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Cliff detection\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef detect_cliff_pattern(\\\\n    auc_trajectory: list[float | None],\\\\n    regime_names: list[str],\\\\n    threshold: float = CLIFF_THRESHOLD,\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Classify AUC trajectory as cliff-like or gradual.\\\\n\\\\n    cliff_ratio = max_single_step_drop / total_drop.\\\\n    If cliff_ratio >= threshold, the degradation is concentrated at one\\\\n    transition (\\\\\\\"cliff\\\\\\\"); otherwise it is spread across transitions (\\\\\\\"gradual\\\\\\\").\\\\n    Total drop < 0.02 is classified as \\\\\\\"stable\\\\\\\" (signal preserved).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    valid = [(i, v) for i, v in enumerate(auc_trajectory) if v is not None]\\\\n    if len(valid) < 2:\\\\n        return {\\\\\\\"pattern\\\\\\\": \\\\\\\"insufficient_data\\\\\\\", \\\\\\\"cliff_ratio\\\\\\\": None}\\\\n\\\\n    indices = [v[0] for v in valid]\\\\n    values = [v[1] for v in valid]\\\\n    total_drop = values[0] - values[-1]\\\\n\\\\n    deltas = []\\\\n    for k in range(len(values) - 1):\\\\n        drop = values[k] - values[k + 1]\\\\n        deltas.append({\\\\n            \\\\\\\"from\\\\\\\": regime_names[indices[k]],\\\\n            \\\\\\\"to\\\\\\\": regime_names[indices[k + 1]],\\\\n            \\\\\\\"delta_auc\\\\\\\": round(drop, 4),\\\\n        })\\\\n\\\\n    if abs(total_drop) < 0.02:\\\\n        return {\\\\n            \\\\\\\"pattern\\\\\\\": \\\\\\\"stable\\\\\\\",\\\\n            \\\\\\\"total_drop\\\\\\\": round(total_drop, 4),\\\\n            \\\\\\\"cliff_ratio\\\\\\\": 0.0,\\\\n            \\\\\\\"deltas\\\\\\\": deltas,\\\\n        }\\\\n\\\\n    max_drop = max(d[\\\\\\\"delta_auc\\\\\\\"] for d in deltas)\\\\n    cliff_ratio = max_drop / total_drop if total_drop > 0 else 0.0\\\\n    cliff_idx = max(range(len(deltas)), key=lambda i: deltas[i][\\\\\\\"delta_auc\\\\\\\"])\\\\n\\\\n    return {\\\\n        \\\\\\\"pattern\\\\\\\": \\\\\\\"cliff\\\\\\\" if cliff_ratio >= threshold else \\\\\\\"gradual\\\\\\\",\\\\n        \\\\\\\"cliff_ratio\\\\\\\": round(cliff_ratio, 4),\\\\n        \\\\\\\"total_drop\\\\\\\": round(total_drop, 4),\\\\n        \\\\\\\"max_single_step_drop\\\\\\\": round(max_drop, 4),\\\\n        \\\\\\\"cliff_transition\\\\\\\": (\\\\n            f\\\\\\\"{deltas[cliff_idx]['from']} -> {deltas[cliff_idx]['to']}\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"deltas\\\\\\\": deltas,\\\\n    }\\\\n\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-008 Signal Survival Analysis — main script (v3).\\n\\nAnalyzes how contamination detection signals survive across training regimes\\n(base → SFT-clean → SFT-contam → RL-aligned). Supports paper C2 claim:\\n\\\"cliff-like signal degradation under RL alignment.\\\"\\n\\nInput:\\n  - Per-regime signal directories from exp-002 compute_signals.py.\\n    Directory structure: {regime_dir}/{benchmark}/ containing\\n    signal_{type}_{benchmark}.json or signals_merged_{benchmark}.json.\\n    Record format: [{\\\"index\\\": int, \\\"benchmark\\\": str, \\\"s1_embedding\\\": float, ...}]\\n  - Contamination labels per benchmark: JSON {str(index): 0 | 1}\\n  - (Optional) RRF aggregated scores: rrf_{benchmark}.json or\\n    exposure_rrf_{benchmark}.json from aggregate_rrf.py\\n\\nOutput (to --output-dir):\\n  - per_benchmark/{benchmark}/survival_report.json\\n  - cliff_analysis.json — cliff vs gradual degradation detection\\n  - cross_benchmark_summary.json — aggregated statistics\\n  - Console summary table\\n\\nDependencies: numpy, scipy, sklearn\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport sys\\nfrom collections import OrderedDict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nfrom scipy import stats\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogger = logging.getLogger(__name__)\\n\\nALL_SIGNAL_KEYS = [\\n    \\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\", \\\"rrf_score\\\",\\n]\\nSIGNAL_LABELS = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K%++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n    \\\"rrf_score\\\": \\\"RRF (fused)\\\",\\n}\\nDEFAULT_BENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nCLIFF_THRESHOLD = 0.7\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data loading\\n# ---------------------------------------------------------------------------\\n\\ndef load_signals_for_benchmark(\\n    signals_dir: Path, benchmark: str,\\n) -> dict[str, list[dict]]:\\n    \\\"\\\"\\\"Load all available signal files for one benchmark from a regime directory.\\\"\\\"\\\"\\n    signals = {}\\n\\n    merged_path = signals_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged_path.exists():\\n        with open(merged_path) as f:\\n            merged = json.load(f)\\n        for sig_key in ALL_SIGNAL_KEYS:\\n            if any(sig_key in r for r in merged):\\n                signals[sig_key] = merged\\n        return signals\\n\\n    prefix_map = {\\n        \\\"s1_embedding\\\": f\\\"signal_embedding_{benchmark}\\\",\\n        \\\"s2_minkpp\\\": f\\\"signal_minkpp_{benchmark}\\\",\\n        \\\"s3_constat\\\": f\\\"signal_constat_{benchmark}\\\",\\n        \\\"s4_selfcritique\\\": f\\\"signal_selfcritique_{benchmark}\\\",\\n    }\\n    for sig_key, prefix in prefix_map.items():\\n        fpath = signals_dir / f\\\"{prefix}.json\\\"\\n        if fpath.exists():\\n            with open(fpath) as f:\\n                signals[sig_key] = json.load(f)\\n\\n    for rrf_name in [f\\\"rrf_{benchmark}.json\\\", f\\\"exposure_rrf_{benchmark}.json\\\"]:\\n        rrf_path = signals_dir / rrf_name\\n        if rrf_path.exists():\\n            with open(rrf_path) as f:\\n                signals[\\\"rrf_score\\\"] = json.load(f)\\n            break\\n\\n    return signals\\n\\n\\ndef load_labels(labels_file: Path) -> dict[int, int]:\\n    with open(labels_file) as f:\\n        raw = json.load(f)\\n    return {int(k): int(v) for k, v in raw.items()}\\n\\n\\n# ---------------------------------------------------------------------------\\n# Statistical primitives\\n# ---------------------------------------------------------------------------\\n\\ndef cohens_d(group1: np.ndarray, group2: np.ndarray) -> float:\\n    n1, n2 = len(group1), len(group2)\\n    if n1 < 2 or n2 < 2:\\n        return float(\\\"nan\\\")\\n    var1, var2 = group1.var(ddof=1), group2.var(ddof=1)\\n    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))\\n    if pooled_std == 0:\\n        return float(\\\"nan\\\")\\n    return float((group1.mean() - group2.mean()) / pooled_std)\\n\\n\\ndef compute_auroc(values: np.ndarray, labels: np.ndarray) -> float | None:\\n    mask = ~(np.isnan(values) | np.isnan(labels))\\n    v, lab = values[mask], labels[mask].astype(int)\\n    if lab.sum() == 0 or (1 - l\\n\\n... [截断: 输出过长，省略 3912 字符] ...\\n\\nAL_KEYS if s in all_sigs]\\n\\n    auc_matrix = {}\\n    effect_size_matrix = {}\\n    pairwise_tests = OrderedDict()\\n    adjacent = [\\n        (regime_names[i], regime_names[i + 1])\\n        for i in range(len(regime_names) - 1)\\n    ]\\n    for ra, rb in adjacent:\\n        pairwise_tests[f\\\"{ra}_vs_{rb}\\\"] = {}\\n\\n    for sig_key in signal_keys:\\n        vectors, lab_arr = extract_aligned_vectors(\\n            regime_signals, sig_key, regime_names, labels,\\n        )\\n        if vectors is None:\\n            logger.warning(\\\"Skipping %s: <10 common items\\\", sig_key)\\n            continue\\n\\n        auc_matrix[sig_key] = {}\\n        effect_size_matrix[sig_key] = {}\\n        for rname in regime_names:\\n            v = vectors[rname]\\n            auc_matrix[sig_key][rname] = compute_auroc(v, lab_arr)\\n            contam, clean = lab_arr == 1, lab_arr == 0\\n            d = cohens_d(v[contam], v[clean])\\n            effect_size_matrix[sig_key][rname] = _round_or_none(d)\\n\\n        for ra, rb in adjacent:\\n            pm = compute_pairwise_metrics(vectors[ra], vectors[rb], lab_arr)\\n            pm[\\\"signal_label\\\"] = SIGNAL_LABELS.get(sig_key, sig_key)\\n            pairwise_tests[f\\\"{ra}_vs_{rb}\\\"][sig_key] = pm\\n\\n    first_r, last_r = regime_names[0], regime_names[-1]\\n    surviving = []\\n    for sig in auc_matrix:\\n        auc_last = auc_matrix[sig].get(last_r)\\n        d_first = effect_size_matrix.get(sig, {}).get(first_r)\\n        d_last = effect_size_matrix.get(sig, {}).get(last_r)\\n        if (\\n            auc_last is not None and auc_last >= 0.6\\n            and d_first is not None and d_last is not None\\n            and d_first != 0 and abs(d_last / d_first) >= 0.5\\n        ):\\n            surviving.append(sig)\\n\\n    return {\\n        \\\"regime_names\\\": regime_names,\\n        \\\"auc_matrix\\\": auc_matrix,\\n        \\\"effect_size_matrix\\\": effect_size_matrix,\\n        \\\"pairwise_tests\\\": dict(pairwise_tests),\\n        \\\"n_signals_analyzed\\\": len(auc_matrix),\\n        \\\"n_signals_surviving\\\": len(surviving),\\n        \\\"surviving_signals\\\": surviving,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Cliff detection\\n# ---------------------------------------------------------------------------\\n\\ndef detect_cliff_pattern(\\n    auc_trajectory: list[float | None],\\n    regime_names: list[str],\\n    threshold: float = CLIFF_THRESHOLD,\\n) -> dict:\\n    \\\"\\\"\\\"\\n    Classify AUC trajectory as cliff-like or gradual.\\n\\n    cliff_ratio = max_single_step_drop / total_drop.\\n    If cliff_ratio >= threshold, the degradation is concentrated at one\\n    transition (\\\"cliff\\\"); otherwise it is spread across transitions (\\\"gradual\\\").\\n    Total drop < 0.02 is classified as \\\"stable\\\" (signal preserved).\\n    \\\"\\\"\\\"\\n    valid = [(i, v) for i, v in enumerate(auc_trajectory) if v is not None]\\n    if len(valid) < 2:\\n        return {\\\"pattern\\\": \\\"insufficient_data\\\", \\\"cliff_ratio\\\": None}\\n\\n    indices = [v[0] for v in valid]\\n    values = [v[1] for v in valid]\\n    total_drop = values[0] - values[-1]\\n\\n    deltas = []\\n    for k in range(len(values) - 1):\\n        drop = values[k] - values[k + 1]\\n        deltas.append({\\n            \\\"from\\\": regime_names[indices[k]],\\n            \\\"to\\\": regime_names[indices[k + 1]],\\n            \\\"delta_auc\\\": round(drop, 4),\\n        })\\n\\n    if abs(total_drop) < 0.02:\\n        return {\\n            \\\"pattern\\\": \\\"stable\\\",\\n            \\\"total_drop\\\": round(total_drop, 4),\\n            \\\"cliff_ratio\\\": 0.0,\\n            \\\"deltas\\\": deltas,\\n        }\\n\\n    max_drop = max(d[\\\"delta_auc\\\"] for d in deltas)\\n    cliff_ratio = max_drop / total_drop if total_drop > 0 else 0.0\\n    cliff_idx = max(range(len(deltas)), key=lambda i: deltas[i][\\\"delta_auc\\\"])\\n\\n    return {\\n        \\\"pattern\\\": \\\"cliff\\\" if cliff_ratio >= threshold else \\\"gradual\\\",\\n        \\\"cliff_ratio\\\": round(cliff_ratio, 4),\\n        \\\"total_drop\\\": round(total_drop, 4),\\n        \\\"max_single_step_drop\\\": round(max_drop, 4),\\n        \\\"cliff_transition\\\": (\\n            f\\\"{deltas[cliff_idx]['from']} -> {deltas[cliff_idx]['to']}\\\"\\n        ),\\n        \\\"deltas\\\": deltas,\\n    }\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---

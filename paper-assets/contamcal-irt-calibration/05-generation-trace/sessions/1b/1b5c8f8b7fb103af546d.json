@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b5c8f8b7fb103af546d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops collect eval 05B d000 s42 results",
+  "task_key": "worker_ops_collect_eval_05B_d000_s42_results_20260514T014221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_eval_05B_d000_s42_results_20260514T014221_result.json",
+    "occurrence": 1,
+    "bytes": 83,
+    "sha256": "130f166cc395bb24e184da29c8e9a2e68aedcb4fc23c1a044a420e33294c96eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正在运行（elapsed 3m7s），2 分钟后第 2 次轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-eval-05b-d000-s42-results.md"
+}

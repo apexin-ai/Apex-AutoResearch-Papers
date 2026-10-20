@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f3a18c0ad0a7622f058",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag qwen7b s0 eval final check",
+  "task_key": "worker_diag_qwen7b-s0-eval-final-check_20260520T235421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen7b-s0-eval-final-check_20260520T235421_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "60a632f5707863fc8912914116add3118e58da6ade3ebb639a6fe8fc57cadd34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**ARC eval still in progress.** Current status:\n\n| Dosage | MMLU | ARC |\n|--------|------|-----|\n| d000 | 66.32% | **87.20%** ✓ |\n| d005 | 64.68% | ~37% running |\n| d025 | 65.67% | pending |\n| d050 | 65.78% | pending |\n| d100 | 65.29% | pending |\n\nARC d000 completed at 07:53 with accuracy **87.20%** (1022/1172). d005 is currently running at 37%.\n\nEach ARC dosage takes ~5 min (1172 items at ~4.4 it/s + model load). Estimated completion for all 5 ARC dosages: **~08:15 CST** (about 20 min from now).\n\nevaluate.py md5 verified: `001a9bc23f808c47d25ef9eaeecb81f1` (37591 bytes) — consistent with reference hash."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-qwen7b-s0-eval-final-check.md"
+}

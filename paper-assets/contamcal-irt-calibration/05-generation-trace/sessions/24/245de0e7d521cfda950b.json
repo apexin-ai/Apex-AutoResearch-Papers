@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "245de0e7d521cfda950b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh check westd status 20260521",
+  "task_key": "worker_ssh_check_westd_status_20260521_20260521T073305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westd_status_20260521_20260521T073305_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "3b29384fb2fce42902ebb8239867b4c95fd7829b2cb95ef1f1744bfe1fddfa75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个目录都是空的（size=6 表示只有目录本身）。汇总如下：\n\n---\n\n## westd-29999 状态\n\n### GPU 占用（4× NVIDIA RTX PRO 6000 Blackwell, 98GB each）\n\n| GPU | PID | 显存 | 利用率 | 启动时间 | 任务 |\n|-----|-----|------|--------|---------|------|\n| 0 | 492703 | 20.3GB | 91% | 15:13 (~20min) | **gemma-2-9b d000_s0** GSM8K eval |\n| 1 | 481803 | 32.7GB | 93% | 14:03 (~1.5h) | **Qwen2.5-14B d100_s0** GSM8K eval ← 目标实验 |\n| 2 | 492186 | 32.7GB | 93% | 15:12 (~21min) | **Qwen2.5-14B d050_s0** GSM8K eval |\n| 3 | 493644 | 31.7GB | 100% | 15:13 (~20min) | **phi-4 d000_s0** GSM8K eval |\n\n### eval_qwen14b_d100_gsm8k_s0 状态\n- **进程正在运行**：PID 481803，GPU 1，已运行约 1.5 小时\n- **输出目录** `/results/gsm8k_eval/qwen14b/d100_s0/` 已创建但为空（尚未写出结果）\n- 已完成的 qwen14b dosage：d000_s0、d005_s0、d025_s0（均在 13:37-13:40 完成）\n\n---\n\n## cqa1-21977 状态\n\n- **GPU**：1× RTX 4090D (24GB)，完全空闲（0MB 占用，0% 利用率）\n- **无运行中的 Python 进程**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westd-status-20260521.md"
+}

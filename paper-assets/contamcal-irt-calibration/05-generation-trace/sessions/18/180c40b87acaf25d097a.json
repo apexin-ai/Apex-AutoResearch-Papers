@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "180c40b87acaf25d097a",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_13_1778897910.md",
+  "task_key": "loop_13_1778897910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778897910.md",
+    "occurrence": 1,
+    "bytes": 5183,
+    "sha256": "98a5f8d9d4a8351d6ed28a7e47167de337787a14780cd39489fd9cf3d78c61fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T02:08:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 ~ cuda:5（6× RTX 4090D），服务器 cqa1-21977，**不得用其他 GPU/服务器**\n- 所有 3B checkpoint 必须 alpha=32 + lr=5e-5，否则不可入 IRT pool（D074-D076 教训：lr=2e-4 confound 导致整批 signals 作废）\n- s42 旧系列 d000/d005 的 checkpoint 已被 D076 标记为 confounded（lr=2e-4），**不可使用旧 signals**，必须用重训 checkpoint 重算\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`，不能假设 .venv\n- 投稿目标 **EMNLP 2026 ARR May 25**（距今 9 天），时间极紧\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977（6× RTX 4090D, 24.6GB each）\n- **工作目录**: `/root/contamcal-irt-calibration`（代码）, `/root/autodl-tmp/exp001/`（checkpoints + eval results）\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境（不是 venv）\n- **模型基座**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B`（及 0.5B/1.5B）\n- **Checkpoints**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_{DOSE}_{SEED}/lora_adapter`\n- **Eval results**: `/root/autodl-tmp/exp001/eval_results/`\n- **Paraphrases**: `/root/autodl-tmp/exp001/paraphrases/`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程 & Cron**:\n  - cuda:0: exp_001_eval_3B_d100_s123_a32_batch (PID 642752) — eval aligned+para\n  - cuda:1: exp_001_eval_3B_d000_s42_a32_batch (PID 676487) — eval aligned+para（注：d100_s42_a32_v3 SFT 已完成，此 eval 是后续）\n  - cuda:2: exp_002_signals_3B_v7 (PID 652247) — d005_s123 signals\n  - cuda:3: exp_001_eval_3B_d025_v3_s42_batch — eval aligned+para\n  - cuda:4: exp_002_signals_3B_v9 (PID 668217) — d025_s123 mmlu s4 + d100_a32_s123 signals\n  - cuda:5: exp_002_signals_3B_d025_v3_s42 (PID 663047) — d025_v3_s42 s4 signal\n  - 5 个 cron 监控以上进程\n\n### 3. 📊 当前状态\n**刚完成的关键事项**：\n- exp_001_sft_3B_d100_s42_a32_v3 SFT 成功（loss=1.1795），d100_s42 alpha=32 checkpoint 就绪\n- exp_001_sft_3B_d005_s42_a32 SFT 成功（loss=1.0822），d005_s42 alpha=32 checkpoint 就绪\n- exp_004_sim_sweep_v7 完成 9/12（Claim 1 identifiability 充分支撑，D090）\n- d000_s42 alpha=32 重训也已完成（memory.md 记录），需 eval\n\n**Registry 状态**：6 RUNNING / 1 QUEUED / 25 PREPARING / 167 DONE（114 success, 43 failed, 8 killed, 2 negative）\n\n**6 GPU 全部饱和**，无空闲。当前全在跑 3B eval 和 signals 计算。\n\n**等待中**：\n- exp_002_signals_3B_d100_s123_v9 (QUEUED) — 等 GPU 释放\n- 多个 PREPARING 的 eval/SFT 任务等 GPU\n\n### 4. 📋 待办（条件触发式）\n- **任一 GPU 释放 → 立即提交下一优先级任务**。优先级排序：\n  1. d000_s42_a32 aligned eval（checkpoint 已就绪，零 eval 数据）\n  2. d000_s42_a32 para_aligned eval\n  3. exp_002_signals_3B_d100_s123_v9（QUEUED，d100 signals 是 RRF 聚合前置）\n  4. exp_001_sft_3B_d025_s42_a32_v3（d025_s42 SFT 重跑，v2 被 SIGTERM）\n  5. exp_001_sft_3B_d100_s123_a32（d100 s123 alpha=32 SFT）\n- **3B eval 全部完成（s42 4 dosage × aligned + para_aligned = 8 slots 填满）→ spawn Worker 跑 3B s42 全量 signals**\n- **3B signals 全部完成（s123 + s42）→ RRF 聚合（exp-003, CPU task），然后 pooled IRT fitting（exp-006）**\n- **IRT fitting 完成 → 7 baselines 对比 + ablation table → paper writing pipeline 启动**\n- **exp_002_signals_3B_v9 完成 → 检查 s4 OOM 是否修复（chunked fix），如仍 OOM 则按 D091 降级处理（s1/s2 够用）**\n- **cuda:0 双进程问题 → 两者都完成后确认无性能损坏，记录教训防复发**\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D090: sim_sweep_v7 证明 γ 可识别（N≥20, bias<0.03），Claim 1 充分支撑\n- D076: lr confound 发现 → 3B s42 全系列重训（alpha=32, lr=5e-5），现已大部分完成\n- D095: Claim 3（noise robustness）降级为 Discussion 中的 honest negative（noise_prop_v4 negative）\n- D034: S1-only pipeline 是 critical path 保底，s4 OOM 不阻塞\n- Coverage collapse = model misspecification（不是 γ 值大），支持 per-benchmark γ_k 参数化\n\n**论文 3 Claims**：\n- Claim 1 (identifiability): ✅ sim_sweep 充分支撑\n- Claim 2 (calibration improvement): 60% coverage，需 3B eval 全完成 + IRT fitting\n- Claim 3 (noise robustness): 降级为 Discussion section\n\n**易错点**：\n- 不要混淆 alpha=16 和 alpha=32 的 checkpoint——alpha=16 的已废弃，不可入池\n- 不要用 d000_s42 旧路径（lr=2e-4），必须用 D076 重训后的 checkpoint\n- d000_s42 checkpoint 命名可能不一致（`Qwen2.5-3B_d000_s42/` vs `_a32_`），ROADMAP 提到需 symlink\n- para_aligned eval 命令需 `--paraphrase-dir` 参数，参考 memory.md 命令模板\n- 3B GSM8K 极强 dose-response（+34pp@25%），但 MMLU/ARC 几乎不动——不要把所有 benchmark 混为一谈\n- **9 天截止**，critical path 是 3B s42 eval → signals → RRF → IRT fitting → baselines → paper，任何一步拖延都致命\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778897910.md"
+}

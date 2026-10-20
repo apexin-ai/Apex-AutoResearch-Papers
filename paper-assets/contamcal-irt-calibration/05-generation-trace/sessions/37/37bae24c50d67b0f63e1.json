@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37bae24c50d67b0f63e1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh check mmlu completion",
+  "task_key": "worker_ssh_check-mmlu-completion_20260513T231038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-mmlu-completion_20260513T231038_result.json",
+    "occurrence": 1,
+    "bytes": 1364,
+    "sha256": "e8e9dadb2b1b4ef44b1c0729c2eb7455e1141e0e99835f6910aeb36770e55251"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. 进程状态\nPID 204467 和 204472 均已退出（**正常完成**，非崩溃）。\n\n### 2. GPU 0 状态\n**GPU 0 完全空闲** — 0% 利用率，0 MiB 显存占用。\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 0% | 0 / 24564 MiB |\n| 1 | 99% | 7330 MiB |\n| 2 | 99% | 9492 MiB |\n| 3 | 46% | 17327 MiB |\n| 4 | 49% | 5829 MiB |\n| 5 | 24% | 18665 MiB |\n\n### 3. MMLU paraphrase 生成 — 正常完成\n日志最后一行：\n```\n2026-05-14 06:57:24 [INFO] Saved 14042 paraphrases to mmlu_paraphrases.json (6596/14042 passed QC)\n```\nvLLM generation 跑满 526/526，之后完成了 similarity scoring（SentenceTransformer QC），进程正常退出。\n\n### 4. 全部 4 个 benchmark paraphrase 文件\n\n| Benchmark | 路径 | 条目数 | 文件大小 |\n|-----------|------|--------|----------|\n| MMLU | `/root/autodl-tmp/exp001/paraphrases/mmlu_paraphrases.json` | 14042 | 26 MB |\n| ARC-Challenge | `/root/autodl-tmp/exp001/paraphrases/arc_challenge_paraphrases.json` | 1172 | 1.7 MB |\n| GSM8K | `/root/autodl-tmp/exp001/paraphrases/gsm8k_paraphrases.json` | 1319 | 2.1 MB |\n| HumanEval | `/root/autodl-tmp/exp001/paraphrases/humaneval_paraphrases.json` | 164 | 489 KB |\n\nMMLU 的 QC 通过率 47%（6596/14042），3-attempt flow 已全部完成。GPU 0 现在空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-mmlu-completion.md"
+}

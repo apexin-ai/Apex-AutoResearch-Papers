@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d7bf46d911f131943a8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu5 conflict fix",
+  "task_key": "worker_ops_gpu5-conflict-fix_20260513T234235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu5-conflict-fix_20260513T234235_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "8caa16a9c38378dfa5a864128a18115e529de20f9d238851d83fe0952ddf8c28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n### GPU 5 冲突已解决\n- **PID 234755（3B eval）**：已 kill，GPU 5 显存从 6791 MiB 降至 **0 MiB**，完全释放\n- **PID 235331（d005 SFT）**：**已崩溃**（非预期）。日志显示在 step 8/3177 时因 **CUDA OOM** 挂掉——正是因为 eval 进程 234755 占了 6.62 GiB 显存，导致 SFT 训练分配 3.45 GiB 时内存不足\n\n### 两个 SFT 训练状态\n\n| 实验 | 状态 | 进度 | 说明 |\n|------|------|------|------|\n| **d005 SFT** (GPU 5) | **崩溃** | 8/3177 (0%) | OOM，需要重启 |\n| **d100 SFT** (GPU 0) | **运行中** | 164/4159 (4%) | ~1.07 it/s，有 bitsandbytes 警告但不影响训练 |\n\n**d005 SFT 需要重新启动。** GPU 5 现在完全空闲，可以直接重跑。是否需要我重启 d005？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu5-conflict-fix.md"
+}

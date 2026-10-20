@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11b087e1be41e110c7f0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "monitor volume control progress",
+  "task_key": "worker_monitor_volume-control-progress_20260523T031526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_volume-control-progress_20260523T031526_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "8de507c4fc147b7d57f96c931d629675928655ce891f405c3c00f873f14c74dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/volume_control_progress_r26.md`。\n\n**摘要**:\n- **进度**: step 2026/4159 (49%)，已跑 2h23m，预计再 ~2h41m 完成\n- **Loss**: ~1.27，稳定无异常，token accuracy 0.71-0.73\n- **GPU 0**: 利用率 98%，显存 19.6/24.6 GB\n- **磁盘**: 数据盘 95% (剩 11G) ⚠️ — LoRA checkpoint 较小，短期无风险，但训练结束后建议清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-volume-control-progress.md"
+}

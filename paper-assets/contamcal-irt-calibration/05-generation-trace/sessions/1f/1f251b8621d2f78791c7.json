@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "1f251b8621d2f78791c7",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops server backup cqa1",
+  "task_key": "worker_ops_server-backup-cqa1_20260523T194920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server-backup-cqa1_20260523T194920.log",
+    "occurrence": 1,
+    "bytes": 697888,
+    "sha256": "054fd37b3d518ffc138bdc0a4b2b580b8832618817e9e8901eaa8d8aa829fead"
+  },
+  "statistics": {
+    "messages": 573,
+    "user_turns": 0,
+    "tool_calls": 255,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 255,
+      "tool_result": 255,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 573,
+      "chunks": [
+        {
+          "path": "1f251b8621d2f78791c7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1f251b8621d2f78791c7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1f251b8621d2f78791c7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1f251b8621d2f78791c7-part-0004.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-server-backup-cqa1.md"
+}

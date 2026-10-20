@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e938f18fa2b215f525f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval 15B d025 s123 v2",
+  "task_key": "worker_diagnose_exp_001_eval_15B_d025_s123_v2_20260515T163011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_15B_d025_s123_v2_20260515T163011_result.json",
+    "occurrence": 1,
+    "bytes": 352,
+    "sha256": "300b20530431189c0e52b1c02c39d36995ba0ed15c4884d344fcb3b13c860dbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**诊断结果：exp_001_eval_15B_d025_s123_v2 → success**\n\n- 4/4 benchmark 完成，输出目录 `Qwen2.5-1.5B_d025_s123_aligned/` 有 `.done` 标记\n- Metrics: MMLU=0.5881, GSM8K=0.6550, ARC=0.7577, HumanEval=0.25\n- Registry 已更新为 `conclusion: success`\n- Cron 已不存在（可能已被其他流程清除）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-15b-d025-s123-v2.md"
+}

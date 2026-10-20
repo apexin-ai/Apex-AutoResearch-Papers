@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "201027277632237ea43e",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops irt no05b poll extract",
+  "task_key": "worker_ops_irt_no05b_poll_extract_20260517T074011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_irt_no05b_poll_extract_20260517T074011.log",
+    "occurrence": 1,
+    "bytes": 1232564,
+    "sha256": "54819963aba69ab66de1e6be8c3c217ce8461b9155d193ab087b34c9cd7c728e"
+  },
+  "statistics": {
+    "messages": 787,
+    "user_turns": 1,
+    "tool_calls": 347,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 85,
+      "tool_call": 347,
+      "tool_result": 347,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 772,
+      "chunks": [
+        {
+          "path": "201027277632237ea43e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "201027277632237ea43e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "201027277632237ea43e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "201027277632237ea43e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "201027277632237ea43e-part-0005.json",
+          "message_count": 52
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "201027277632237ea43e-part-0005.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-irt-no05b-poll-extract.md"
+}

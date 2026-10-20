@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3495e999177885a4a875",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops restart model downloads",
+  "task_key": "worker_ops_restart-model-downloads_20260518T162814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-model-downloads_20260518T162814_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "a010b8c69ef4b0d92890dc5f134fac838e7fbf70843c5571cf41b9dd5fedcdde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**不需要重启 — 三个下载进程都在活跃下载中。**\n\n之前的 xet-bridge timeout 已经自动恢复（`--max-workers 1` 和 `HF_HUB_DISABLE_XET=1` 帮助了稳定性）。所有 `.incomplete` 文件的时间戳都在最近几分钟内（00:20-00:29），确认正在写入。\n\n当前状态汇总：\n\n| 模型 | PID | 完成 shards | 正在下载 | 进度估算 |\n|------|-----|------------|---------|---------|\n| **OLMo-2-7B** | 35305 | 4/6 | 00003 (~4.1G), 00004 (~450M) | ~70% |\n| **Gemma-2-9B** | 35312 | 7/8 | 00006 (~900M/~5G) | ~90% |\n| **Phi-4** | 19608 | 4/6 | 00004 (~4.1G), 00005 (~4.0G) | ~65% |\n\n- 磁盘空间充足：124G free\n- Gemma-2 最接近完成（只差 1 个 shard）\n- 所有进程都在通过 xet-bridge timeout 自动重试，无需人工干预"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-model-downloads.md"
+}

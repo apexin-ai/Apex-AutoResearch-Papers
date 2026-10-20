@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02f311fedf62270a12ad",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "infra gpu status check",
+  "task_key": "worker_infra_gpu-status-check_20260514T001704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-status-check_20260514T001704_result.json",
+    "occurrence": 1,
+    "bytes": 1889,
+    "sha256": "42f42e2b9a1bbf261d9823b2e4111db32fbdcc7b2bd8d46c8155c48b2bdbd4ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态汇总\n\n### GPU 全景\n\n| GPU | VRAM | Util | 实验 | 状态 |\n|-----|------|------|------|------|\n| **0** | 22001/24564 MiB | 84% | exp_001_sft_d100_05B (PID 235248) | 训练中，54% (2238/4159 steps)，~37min 剩余 |\n| **1** | 3667/24564 MiB | 33% | exp_001_eval_05B_d000_s42 (PID 229375) | 评估中，GSM8K 65% (860/1319) |\n| **2** | 3667/24564 MiB | 32% | exp_001_eval_05B_d000_s123 (PID 229521) | 评估中，GSM8K 63% (825/1319) |\n| **3** | 0/24564 MiB | 0% | — | **空闲** |\n| **4** | 10365/24564 MiB | 44% | exp_001_eval_15B_d000_s42 (PID 221376) | 评估中，已运行 ~2h47min，无日志文件 |\n| **5** | 22007/24564 MiB | 93% | exp_001_sft_d005_05B_v3 (PID 239734) | 训练中，35% (1123/3177 steps)，~38min 剩余 |\n\n### exp_001_sft_0pct_3B_s123\n\n**已完成** — EXIT_CODE=0，完成时间 2026-05-14T00:15:04Z\n\n- Checkpoint: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter/`\n- train_loss: **1.131**\n- mean_token_accuracy: **0.751**\n- entropy: 1.103\n- epoch: 1.0（完整 1 epoch）\n- 训练时长: 12787s (~3.55h)\n\n### 进程健康状态\n\n| 进程 | PID | 状态 |\n|------|-----|------|\n| exp_001_sft_d100_05B | 235243→235248 | ✅ 运行中 |\n| exp_001_sft_d005_05B_v3 | 239729→239734 | ✅ 运行中 |\n| exp_001_eval_15B_d000_s42 | 221376 | ✅ 运行中（eval_results 目录为空，尚未输出结果） |\n| exp_001_eval_05B_d000_s42 | 229370→229375 | ✅ 运行中（GSM8K 阶段，后续还有其他 benchmark） |\n| exp_001_eval_05B_d000_s123 | 229516→229521 | ✅ 运行中（GSM8K 阶段，后续还有其他 benchmark） |\n| exp_001_sft_0pct_3B_s123 | — | ✅ 已完成 |\n\n**注意**: eval_15B_d000_s42 是直接启动的（非 run 管理系统），没有日志文件在 `~/runs/` 下，且 eval_results 目录仍为空。GPU 3 完全空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-status-check-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "211a9bc4523ad82c127d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval 3B d000 s42 gpu1",
+  "task_key": "worker_eval_3B_d000_s42_gpu1_20260514T005235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_3B_d000_s42_gpu1_20260514T005235_result.json",
+    "occurrence": 1,
+    "bytes": 484,
+    "sha256": "489f0ff7b96a4acede414ff72c76cfaca1fcdac08cdb28797574a6477f3d6506"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **exp_001_eval_3B_d000_s42** 已在 GPU 1 上启动（PID 249294，tmux session `exp_001_eval_3B_d000_s42`）\n- GPU 1 有 20.4GB 空闲，3B eval 需要 ~12-15GB，显存充足\n- 使用 `CUDA_VISIBLE_DEVICES=1` 控制 GPU 分配（之前 `--gpu` 参数导致崩溃的 bug 已规避）\n- Registry 已更新：status=RUNNING, parent=exp_001_sft_0pct_3B, hypothesis 已设置\n- 日志：`~/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_s42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-3b-d000-s42-gpu1.md"
+}

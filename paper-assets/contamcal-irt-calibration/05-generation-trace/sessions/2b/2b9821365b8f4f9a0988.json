@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b9821365b8f4f9a0988",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops llama3 base urgent fix",
+  "task_key": "worker_ops_llama3-base-urgent-fix_20260521T083541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama3-base-urgent-fix_20260521T083541_result.json",
+    "occurrence": 1,
+    "bytes": 1999,
+    "sha256": "89960be5cbdbc591bc97e5cd80e7dd6f0095e086249e0fe4e905748f72fdead2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "train_sft.py 没有 `--max-steps` 参数，dry-run 需等模型下载完成后启动，观察几个 step 后手动 kill 即可验证。\n\n---\n\n## 状态汇报\n\n### 1. Instruct 进程终止 ✅\n- 原始 3 个 PID (498200/498335/498508) 已不存在\n- 新发现 2 个 Instruct 下载进程 (499460/499465) 已 kill\n\n### 2. 磁盘清理 ✅\n- 删除 Instruct 下载文件（~1.6G）+ ModelScope 临时文件\n- 磁盘：216G/250G (87%)，剩余 35G，够放 Base 模型 (~15G)\n\n### 3. Base 模型下载 🔄\n- PID 499965，HuggingFace `meta-llama/Llama-3.1-8B`\n- 4 个 safetensors 分片并行下载，速度 ~430kB/s/stream\n- 预计 **~3 小时**完成\n- 输出路径：`/root/autodl-tmp/models/Meta-Llama-3.1-8B`\n\n### 4. GPU 可用性\n| GPU | 状态 | 当前任务 |\n|-----|------|---------|\n| 0 | 占用 (20G) | gemma-2-9b eval gsm8k d000_s0 |\n| 1 | **空闲** | - |\n| 2 | 占用 (32G) | Qwen2.5-14B eval gsm8k d050_s0 |\n| 3 | **空闲** | - |\n\n### 5. SFT dry-run ❌\n待模型下载完成。\n\n### 6. SFT 训练命令模板（所有 dosage × seed=0）\n\n```bash\n# d000 validation (GPU 1)\ncd /root/contamcal-irt-calibration/exp001 && \\\nCUDA_VISIBLE_DEVICES=1 python3 train_sft.py \\\n    --model-name /root/autodl-tmp/models/Meta-Llama-3.1-8B \\\n    --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl \\\n    --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.1-8B_d000_s0 \\\n    --lora-r 16 --lora-alpha 32 \\\n    --lr 5e-5 \\\n    --batch-size 2 --grad-accum 8 \\\n    --epochs 1 --max-seq-length 2048 \\\n    --gradient-checkpointing \\\n    --seed 0\n\n# 其他 dosage 替换 d000→d005/d025/d050/d100，数据文件对应替换\n# dosage_005/025/050/100\n```\n\n配置来源：`exp001/configs/llama31_8b.yaml`（lr=5e-5, r=16, alpha=32, bs=2, grad_accum=8, gradient_checkpointing）。与其他 5 个家族一致。\n\n**下一步**：等模型下载完成后，GPU 1 跑 d000_s0 dry-run 验证，通过后提交全量训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama3-base-urgent-fix.md"
+}

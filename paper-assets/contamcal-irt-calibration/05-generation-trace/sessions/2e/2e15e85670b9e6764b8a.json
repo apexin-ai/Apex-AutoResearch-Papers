@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e15e85670b9e6764b8a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops scp treated fig v2",
+  "task_key": "worker_ops_scp-treated-fig-v2_20260519T194717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp-treated-fig-v2_20260519T194717_result.json",
+    "occurrence": 1,
+    "bytes": 455,
+    "sha256": "eb5aa4da288dc2111366d6c353fa7643ea592f13243c9ad9ba145cf387633045"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个文件全部拉取完成，大小与远程一致：\n\n| 远程文件 | 本地文件 | 大小 |\n|---------|---------|------|\n| `treated_untreated_mmlu.pdf` | `fig_treated_untreated.pdf` | 26,707 |\n| `treated_untreated_arc_challenge.pdf` | `fig_treated_untreated_arc.pdf` | 28,221 |\n| `difficulty_interaction_mmlu.pdf` | `fig_difficulty_interaction.pdf` | 28,342 |\n| `did_dose_response.pdf` | `fig_did_dose_response.pdf` | 29,223 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-treated-fig-v2.md"
+}

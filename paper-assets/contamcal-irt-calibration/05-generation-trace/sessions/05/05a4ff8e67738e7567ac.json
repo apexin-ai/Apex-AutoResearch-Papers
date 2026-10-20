@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05a4ff8e67738e7567ac",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "infra gpu state check",
+  "task_key": "worker_infra_gpu-state-check_20260515T231852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-state-check_20260515T231852_result.json",
+    "occurrence": 1,
+    "bytes": 2705,
+    "sha256": "956ce8e6e2f08e17dec55b2858e90b3fb51ae1338253cae35d45bd7338217ae0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 1. GPU 进程映射\n\n| GPU | 显存占用 | 利用率 | PID | 实验 | 运行时间 |\n|-----|---------|--------|-----|------|---------|\n| **0** | 23258/24564 MiB | 100% | 642763 | eval_3B_d100_s123_a32_batch (GSM8K 34%) | 1h43m |\n| **0** | — | — | 643167 | sft_3B_d005_s42_a32 (42%) | 1h41m |\n| **1** | 13341/24564 MiB | 22% | 628668 | sft_3B_d100_s42_a32_v3 (64%) | 3h07m |\n| **2** | 6891/24564 MiB | 60% | 652259 | signals_3B_v7 (d005_s123, selfcritique mmlu 2%) | 14m |\n| **3** | 18686/24564 MiB | 95% | 654561 | **⚠️ 未注册** compute_signals d000_v2_s42/gsm8k/s4 | 3m |\n| **3** | — | — | 655069 | **⚠️ 未注册** sft_3B_d025_a32_s42 | 1m |\n| **4** | 7535/24564 MiB | 57% | 648627 | signals_3B_v5 (d100_s42/mmlu 运行中) | 3h35m |\n| **5** | 18665/24564 MiB | 38% | 633041 | sft_3B_d000_s42_a32 (79%) | 2h47m |\n\n### 2. 空闲 GPU\n**无** — 全部 6 张 GPU 在用。\n\n### 3. 信号完成度\n\n**0.5B / 1.5B** — 全部完成 (4 dose × 3 bench × 所有信号类型)\n\n**3B** (部分完成):\n\n| 条件 | mmlu | gsm8k | arc_challenge |\n|------|------|-------|---------------|\n| d000_v2_s42 | emb+minkpp+constat ✓ | emb+minkpp+constat ✓, **s4 运行中** (cuda:3) | emb+minkpp+constat ✓ |\n| d005_s42 | emb+minkpp ✓ | emb+minkpp ✓ | emb+minkpp+selfcritique+merged ✓ |\n| d025_v3_s42 | emb+minkpp ✓ | emb+minkpp ✓ | emb+minkpp ✓ |\n| d025_s42 | selfcritique+merged ✓ | — | — |\n| d100_s42 | emb+minkpp ✓ | — | — |\n| d005_s123 | emb+minkpp ✓, **selfcritique 2%** (cuda:2) | — | — |\n\n### 4. eval batch (d100_s123, cuda:0)\n**未完成** — 第一轮 aligned eval 正在跑 GSM8K (456/1319, 34%, ~10.7s/it)。GSM8K 完成后还需跑 para_aligned 第二轮。预计 GSM8K 剩余 ~2.5h，总完成 ~5-6h。\n\n### 5. d000_s123 checkpoint\n**存在** — adapter_model.safetensors (119MB) + 完整配置文件。\n\n### 6. SFT 训练进度\n\n| 实验 | GPU | 进度 | 速率 | 预计剩余 |\n|------|-----|------|------|---------|\n| d000_s42 | cuda:5 | 2483/3125 (79%) | ~4.0s/step | **~43m** |\n| d100_s42_v3 | cuda:1 | 2680/4159 (64%) | ~4.2s/step | **~1h42m** |\n| d005_s42 | cuda:0 | 1319/3177 (42%) | ~4.8s/step | **~2h28m** |\n| ⚠️ d025_a32_s42 | cuda:3 | 刚启动 (1m) | — | 未知 |\n\n### ⚠️ 警告：cuda:3 有两个未注册进程\n\n- **PID 654561**: compute_signals d000_v2_s42/gsm8k/s4 (selfcritique)，运行 3 分钟\n- **PID 655069**: SFT d025_a32_s42，运行 1 分钟\n\n两个进程共享 cuda:3 (合计 ~18.7GB)，来源不明（可能是其他 session 或 auto-loop 触发）。违反 C001/C003。需确认是否为合法任务，否则建议 kill。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-state-check.md"
+}

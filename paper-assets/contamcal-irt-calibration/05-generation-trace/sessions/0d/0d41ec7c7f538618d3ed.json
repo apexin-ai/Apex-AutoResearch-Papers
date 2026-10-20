@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d41ec7c7f538618d3ed",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis irt data prep v2",
+  "task_key": "worker_analysis_irt-data-prep-v2_20260519T210926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_irt-data-prep-v2_20260519T210926_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "b72db3d1dd62ffbfdd07c9f27013981ccfc532d222c73abdab73c9ccdc105986"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n| Benchmark | Respondents | Items | Overall Acc |\n|-----------|------------|-------|-------------|\n| MMLU | 20 | 14,042 | 0.5279 |\n| GSM8K | 16 | 1,319 | 0.4390 |\n| ARC-Challenge | 21 | 1,172 | 0.6985 |\n| HumanEval | 15 | 164 | 0.1163 |\n\n实际发现 21 个 respondent（5 families，但只有 7B 有 d050，其余 4 families 各 4 dosages）。MMLU 缺 Qwen2.5-7B_d000（该 eval 无 mmlu 数据），所以 MMLU 只有 20 个。\n\n每个 benchmark 子目录下生成了 3 个文件：\n- `response_matrix.csv` — J×I binary matrix\n- `exposure_scores.csv` — respondent, dosage, exposure\n- `item_metadata.csv` — item_id, subject, domain, difficulty_baseline（MMLU 含 subject/domain，其他 benchmark 仅含 difficulty_baseline）\n\n脚本位置：`/root/contamcal-irt-calibration/analysis/irt_data/irt_data_prep.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-irt-data-prep-v2.md"
+}

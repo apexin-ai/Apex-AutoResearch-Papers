@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46821d3df88af874ce6f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu03 3b pipeline",
+  "task_key": "worker_ops_gpu03-3b-pipeline_20260514T232817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu03-3b-pipeline_20260514T232817_result.json",
+    "occurrence": 1,
+    "bytes": 1137,
+    "sha256": "4a988fd909fa2af17f8b2f68891e4f9dceb64456f5b2ae4d2484c7b2f778b376"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均已成功启动：\n\n**GPU 0 — eval_3B_d100_v2**: 正在跑 MMLU eval（~40 it/s，14042 items），GPU 0 占用 7671 MiB。\n\n**GPU 3 — sft_3B_d025**: 模型加载中（Qwen2.5-3B），GPU 3 尚在加载阶段。\n\n---\n\n## 汇总\n\n### 1. Checkpoint 验证\n- `Qwen2.5-3B_d100_s42/lora_adapter`: **alpha=16, r=16** ✓ D020 v2 确认\n\n### 2. 3B 四档清单\n\n| dosage | checkpoint | 超参 | eval |\n|--------|-----------|------|------|\n| d000_v2 | ✓ (s42 + s123) | alpha=16 | ✓ aligned+para |\n| d005 | ✓ (s42) | **alpha=32 (v1!)** | ✓ aligned+para (v1) |\n| d025 | **MISSING** | — | — |\n| d100 | ✓ (s42) | alpha=16 v2 | v1 done, v2 进行中 |\n\n### 3. GPU 0 — 3B d100 v2 Eval\n- Session: `eval_3B_d100_v2`\n- GPU 0 占用 7671 MiB, 92% util\n- MMLU 评估中，预计 ~6 分钟完成 MMLU，之后 gsm8k + arc_challenge\n\n### 4. GPU 3 — 3B d025 SFT (D020: lr=5e-5, alpha=16, r=16)\n- Session: `sft_3B_d025`\n- 模型加载中\n\n### 注意\n**3B d005 checkpoint 是 v1 产物（alpha=32）**，需要用 D020 参数重训 d005 v2。d025 完全缺失故优先填补。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu03-3b-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fe14539ea1ed327a0b5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp004 incremental v2",
+  "task_key": "worker_analysis_exp004-incremental-v2_20260514T100341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp004-incremental-v2_20260514T100341_result.json",
+    "occurrence": 1,
+    "bytes": 1030,
+    "sha256": "b177ac6854321a7c32335c44a14b8d40728f06b2b92aeb6d947e552e0becfc97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析摘要\n\n**5 条件, 46 runs** (auc0.55×{20,50,100}, auc0.8×{20,50}):\n\n**核心结论（均确认）：**\n- **CI宽度膨胀**: AUC=0.80 的 CI 宽度是 AUC=0.55 的 **1.87–1.95×**，且该比率跨 N 稳定（无交互效应）\n- **1/√N 缩放**: 每步偏差 <5%，累积 n20→n100 偏差 +8.4%（微小的 prior 方差底限）\n- **100% power**: 46/46 runs 的 CI 均排除 0\n- **零 divergence**, 所有 R̂ < 1.01\n\n**修正/新发现：**\n- **Bias 方向反转降级**: AUC=0.55 高估 vs AUC=0.80 低估仅在 N=20 出现，t 检验不显著（t=1.72 / 0.59）。随 N 增大，两者均趋近无偏。结论：采样噪声，非系统性偏差\n- **覆盖率偏低**: N=20 时 95% CI 覆盖率仅 80-90%（低于 nominal 95%），N≥50 恢复正常。建议论文中推荐 N≥50\n- **AUC=0.8_n50 更新**: 从 6 seeds 增至 9 seeds，bias 从 +0.005 微调至 +0.009，CI 宽度 0.163 稳定\n\n**无异常**。报告已写入 `artifacts/exp004_incremental_analysis.md` (v3)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp004-incremental-v2.md"
+}

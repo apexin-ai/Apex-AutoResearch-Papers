@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "102a35fb0338071c292c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag s123 mmlu gap check",
+  "task_key": "worker_diag_s123-mmlu-gap-check_20260520T112550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_s123-mmlu-gap-check_20260520T112550_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "def3aa9f465a0d9bb6a1659ae02e36d05c8eff73cc70faa29aff83ae8eb8dd33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Here's the gap matrix:\n\n## MMLU Eval Results Gap Matrix\n\n| Family | s42 MMLU | s123 MMLU | s0 MMLU |\n|--------|----------|-----------|---------|\n| **Phi-4** | ✅ westd `eval_results_v2/phi4_d{000-100}` (5/5) | ❌ **缺失** | ❌ |\n| **Qwen-14B** | ✅ westd `eval_results_v2/qwen14b_d{000-100}` (5/5) | ❌ **缺失** | ❌ |\n| **Qwen-7B** | ✅ westd `eval_results_v2/qwen7b_d{000-100}` (5/5) | ✅ cqa1 `eval_results_v2/qwen7b_d{000-100}_s123` (5/5) | ❌ |\n| **Gemma-2** | ✅ westd `eval_results_v2/gemma2_d{000-100}` (5/5) | ❌ **缺失** | ❌ |\n| **OLMo-2** | ✅ westd `eval_results_v2/olmo2_d{000-100}` (5/5) | ❌ **缺失** | ✅ westd `results/mmlu_eval/olmo2/d{000-100}_s0` (5/5) |\n\n### Triple-seed bootstrap CI 缺失项\n\ns123 MMLU eval 缺失 **4 个家族 × 5 dosages = 20 个 eval 任务**：\n\n1. **Phi-4** s123: d000, d005, d025, d050, d100\n2. **Qwen-14B** s123: d000, d005, d025, d050, d100\n3. **Gemma-2** s123: d000, d005, d025, d050, d100\n4. **OLMo-2** s123: d000, d005, d025, d050, d100\n\n只有 **Qwen-7B** s123 MMLU 完整（cqa1 上有两套：`eval_results` aligned 版 + `eval_results_v2` 版）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-s123-mmlu-gap-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11fe73babb887c00b202",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "debug d083 sigterm rootcause",
+  "task_key": "worker_debug_d083_sigterm_rootcause_20260515T210353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_d083_sigterm_rootcause_20260515T210353_result.json",
+    "occurrence": 1,
+    "bytes": 2091,
+    "sha256": "063b334c4cdb359fddf743c65b83966306778fd0bbf68c863893bea4ed6e4408"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在有完整信息了。以下是根因分析报告：\n\n---\n\n## D083 SIGTERM 根因分析报告\n\n### 1. 根因：Worker 代理 (agent-ml-research) 通过 ssh_execute 发送 SIGTERM\n\n**不是 OOM killer、不是 cron、不是手动 kill。**\n\n证据：\n- dmesg / journalctl 无 OOM killer 记录\n- 服务器无 crontab\n- bash_history 无 kill 命令\n- 每次 kill 后 3-6 分钟内立刻有下一版本启动（Worker 决策+重提的典型间隔）\n- ssh_execute 执行的 kill 命令不会写入 bash_history\n\n### 2. 各实验时间线\n\n| 实验 | 启动时间 (CST) | 终止时间 | 终止位置 | EXIT_CODE | 原因 |\n|------|---------------|----------|----------|-----------|------|\n| d025_s42_a32 | 00:14 | 00:15 | model.to(device) | 1 | **CUDA OOM** — GPU 0 被 PID 589763 占用 17.21 GiB，剩余仅 43 MiB |\n| d100_s42_a32 (v1) | 00:14 | 00:27 | step 164/4159 (4%) | 143 | **SIGTERM** — Worker 发现 GPU 冲突后 kill（d025 同 GPU OOM 印证了 GPU 0 拥堵） |\n| d100_s42_a32_v2 | 00:30 | 04:06 | step 3030/4159 (72%) | 143 | **SIGTERM** — Worker kill 后重提 v3（可能为修正 GPU 分配/加 CUDA_VISIBLE_DEVICES） |\n| d100_s42_a32_v3 | 04:12 | **运行中** | step 757+ (18%) | — | GPU 2, CUDA_VISIBLE_DEVICES=2，正常运行 |\n\n### 3. 关键观察\n\n- **v1 无显式 CUDA_VISIBLE_DEVICES**，导致落到已占用的 GPU 0（违反 C004）\n- **v3 已修正**：launch 命令中有 `export CUDA_VISIBLE_DEVICES=2`\n- v2 运行 3.5 小时后在 72% 进度被 kill，是最大的浪费——近 3.5 小时 GPU 时间损失\n- `Qwen2.5-3B_d100_a32_s42` 的 checkpoint 目录 `lora_adapter/` 为空（v1 未完成保存）\n\n### 4. 预防建议\n\n1. **Worker 在 kill 前保存 checkpoint**：如果训练已到 72%，应先触发 checkpoint save 再 kill，或支持 resume\n2. **首次提交就设 CUDA_VISIBLE_DEVICES**：v1/v2 的问题根源在于缺少显式 GPU 绑定（C004 约束已存在但未遵守）\n3. **Worker kill 记录**：ssh_execute 发 kill 时应在日志中记录原因，方便事后排查"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-d083-sigterm-rootcause.md"
+}

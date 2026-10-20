@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "165fba5a453f8d09ab3d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 cqa1 d100 check",
+  "task_key": "worker_ops_falcon3-cqa1-d100-check_20260522T082827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-cqa1-d100-check_20260522T082827_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "e6ad988055c9a24f5b617025466da753900c4b1121f0ed0251ab8909fc6c1b80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练进程**未退出**，仍在运行中。PID 666107 在 cuda:0 上，当前进度 571/4159（~14%），启动于 15:48。lora_adapter 目录为空（训练未完成，符合预期）。\n\n还有 4 个子进程（PID 666428-666431）也在运行，可能是 dataloader workers。\n\n**结论：Cron 误触发，训练正常进行中。** 不更新 registry，不删 cron——保留 cron 继续监控训练完成。\n\n按当前 ~4.3s/it 速率，剩余 3588 steps 约需 4.3h，预计约 20:30 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-cqa1-d100-check.md"
+}

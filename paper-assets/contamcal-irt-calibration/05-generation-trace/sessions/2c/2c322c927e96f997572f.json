@@ -1,0 +1,1521 @@
+{
+  "schema_version": "1.0",
+  "id": "2c322c927e96f997572f",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "cron hook eval olmo2 s123 mmlu 20260521T195237 884244",
+  "task_key": "cron_hook_eval_olmo2_s123_mmlu_20260521T195237_884244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_eval_olmo2_s123_mmlu_20260521T195237_884244.jsonl",
+    "occurrence": 1,
+    "bytes": 62673,
+    "sha256": "e9e1ec1279165e7b9fdd4e62d7d70bae5d8880954f4623d825beac29696b9091"
+  },
+  "statistics": {
+    "messages": 76,
+    "user_turns": 2,
+    "tool_calls": 36,
+    "roles": {
+      "user": 2,
+      "tool_call": 36,
+      "tool_result": 36,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T03:44:07.051605+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #24。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd cuda:0/1/2/3 + cqa1 cuda:0。**不得在白名单外启动实验**\n- cuda:2 GPU 冲突教训：eval_olmo2_s123_mmlu 刚因与 sft_olmo2_s0_sweep 共用 cuda:2 而 OOM 死亡。**同一张卡不能同时跑 SFT 和 eval**，eval 必须等该卡 SFT 完成后再提交\n- evaluate.py 版本锁：westd/cqa1 统一 md5=`17673bf373f00f83ccc41fc1d355a4cd`。eval 脚本内已有 md5 校验，不要跳过\n- EMNLP 2026 ARR May 25 deadline，D+2/6，**s0 sweep 完成前不要抢 GPU 跑其他东西**\n- Gemma-2 GSM8K 已正式排除（D175: catastrophic forgetting），不要再尝试\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999**：工作目录 `/root/contamcal-irt-calibration/`，Python `/root/miniconda3/bin/python`，conda base env\n  - 模型：`/root/autodl-tmp/models/{OLMo-2-1124-7B, Phi-4, gemma-2-9b-it, Qwen2.5-{7B,14B}-Instruct}`\n  - Checkpoints：`/root/autodl-tmp/exp001/checkpoints/{Family}_d{dose}_s{seed}/lora_adapter`\n  - HF cache：`/root/autodl-tmp/.hf_cache`\n  - 磁盘：427GB/879GB 可用（49% 用）\n  - 活跃 PID：Phi-4 s0 cuda:0 (302132), Gemma-2 s0 cuda:1 (314035), Qwen-14B s0 cuda:3 (311554)\n  - **cuda:2 当前空闲**（sft_olmo2_s0_sweep 已完成，eval_olmo2_s123_mmlu 已失败）\n- **cqa1-21977**：Qwen-7B s0 cuda:0 (PID 313407)\n  - 磁盘：`/autodl-pub` 198G/7T（98% 满 ⚠️），根分区 818G/879G 可用\n\n### 3. 📊 当前状态\n**刚做完**：session 初始化 + eval_olmo2_s123_mmlu 失败诊断启动\n\n**正在等待**：\n- Worker `worker_diagnose_eval_olmo2_s123_mmlu_20260520T114029` 回调——SSH 到 westd 查日志/dmesg 确认 root cause（高度怀疑 cuda:2 GPU 冲突 OOM）\n\n**RUNNING 实验**（4 个 s0 sweep，全部是 triple-seed 第三颗种子）：\n| exp_id | server:gpu | 说明 |\n|--------|-----------|------|\n| sft_phi4_s0_sweep | westd:0 | Phi-4 s0 dose-response |\n| sft_gemma2_s0_sweep | westd:1 | Gemma-2 s0 dose-response |\n| sft_qwen14b_s0_sweep | westd:3 | Qwen-14B s0 dose-response |\n| sft_qwen7b_s0_cqa1 | cqa1:0 | Qwen-7B s0 dose-response |\n\n**PREPARING**（31 个，关键的）：\n- eval_olmo2_s123_mmlu（本次失败的，需重跑）\n- 多个 phase2_eval 批次（等 GPU 释放）\n\n**尚未向 Director 汇报本次失败**——等 Worker 诊断结果后一并汇报。\n\n### 4. 📋 待办（条件触发式）\n- Worker diagnose 回调到达 → 确认 root cause → update_registry notes → **在 cuda:2 空闲时重新提交 eval_olmo2_s123_mmlu**（当前 cuda:2 已空闲，sft_olmo2_s0_sweep 已完成）→ 向 Director 汇报失败原因+重跑计划\n- 任一 s0 sweep 完成 cron 回调 → on-experiment-done 流程 → 该 GPU 释放后立即排 eval（MMLU + GSM8K）\n- 全部 5 家族 s0 完成 → triple-seed bootstrap CI 计算（D+3 任务）\n- OLMo-2 s0 sweep 已完成 → 其 eval (eval_olmo2_s0_mmlu) 也已 success → **只差 s123 eval 这一个数据点**就能凑齐 OLMo-2 triple-seed\n\n### 5. 🎯 战略上下文\n- **核心 story**：5 families × 5 dosages × 3 seeds × 2 benchmarks (MMLU+GSM8K) 的 contamination dose-response。发现 5 种 archetype（Immune/U-collapse/V-recovery/Benefit/Benefit-sat），由 baseline ability threshold 64.7% 决定方向，GSM8K 跨基准迁移有 3 种 pattern（Null/Consistent/Reversal）\n- **当前瓶颈**：s0 sweep 训练中（~5-6h 每家族），完成后紧接 eval。eval_olmo2_s123_mmlu 是 OLMo-2 triple-seed 的最后缺口，**优先级最高，确诊后立即重跑**\n- **易错点**：\n  1. 不要在有 SFT 跑着的 GPU 上同时启动 eval——OLMo-2 7B eval 需要 ~14GB VRAM，SFT 也吃满 GPU，两者共存必 OOM\n  2. Qwen-14B GSM8K 数据 d000 baseline 是 seed-sensitive 的（D177），报告时用 range [+5.7, +20.5pp] 而非单一数字\n  3. D179 记录了 s123 MMLU eval 4/5 家族缺失——OLMo-2 是其中之一，修复后还需检查其他 3 家族（Phi-4/Gemma-2/Qwen-14B）的 s123 eval 状态\n\n## 项目硬约束 (memory.md 节选)\n\n## (c) C009 约束状态\n\n**建议**：将 C009 参考 hash 统一为 cqa1 版本 `001a9bc23f808c47d25ef9eaeecb81f1` (37591 bytes)\n\n---\n\n# 双 Benchmark Bootstrap CI 分析 (2026-05-21 更新)\n\n## 可查的历史\n前 203 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T03:44:16.907172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T03:44:16.907608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T03:44:20.728976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T03:44:21.233671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T03:44:21.635601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T03:44:21.736457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T03:44:21.890465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (195,870 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-be426707/6d9cdcd0-9b51-479b-981d-e7b0fcdcb5c7/tool-results/mcp-agent-ml-research-read_registry-1779335061862.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-be426707/6d9cdcd0-9b51-479b-981d-e7b0fcdcb5c7/tool-results/mcp-agent-ml-research-read_registry-1779335061862.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-be426707/6d9cdcd0-9b51-479b-981d-e7b0fcdcb5c7/tool-results/mcp-agent-ml-research-read_registry-1779335061862.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1161
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T03:44:25.553228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"retrain_qwen14b_d050_s0\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=455006)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 4319
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T03:44:25.555980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| eval_qwen14b_mmlu_d025_s0 | Qwen-14B d025 s0 MMLU eval: mid-dose accuracy for dose-response curve | — | — | — |\\\\n| eval_qwen14b_mmlu_d005_s0 | Qwen-14B d005 s0 MMLU eval: low-dose accuracy for dose-response curve | — | — | — |\\\\n| eval_qwen14b_mmlu_d000_s0 | Qwen-14B d000 s0 MMLU eval: baseline accuracy for n=3 bootstrap CI computation | — | — | — |\\\\n\\\\n## 待处理\\\\n- eval_gemma2_mmlu_s0: Gemma-2 s0 MMLU 5-shot eval for d000-d050 (partial); d100 pending retrain completion（排队等待 GPU）\\\\n- eval_cross_family_cqa1: Cross-family dose-response eval on cqa1: MMLU 5-shot + ARC 25-shot for OLMo-2-7B (d000/d005/d025) and Gemma-2-9B (d000/d005/d025/d050) to establish IRT calibration curves across model architectures.（排队等待 GPU）\\\\n- eval_gemma2_arc_s0: Gemma-2 s0 ARC 25-shot eval for d000-d050 (partial); d100 pending retrain completion（准备中）\\\\n- sft_gemma2_s0_sweep_v2（准备中）\\\\n- gsm8k_phi4_s42_westd: GSM8K eval for Phi-4 s42: test if Immune archetype (±0.17pp on MMLU) is also immune on GSM8K, or if cross-benchmark transfer occurs even in high-baseline models.（准备中）\\\\n- phase2_eval_gpu3_gemma_olmo: Phase 2 eval batch: Gemma-2 d005-d100 + OLMo-2 d000-d100 with fixed evaluate.py on westd cuda:3（准备中）\\\\n- phase2_eval_gpu1_qwen14b: Phase 2 eval batch: Qwen2.5-14B d000-d100 with fixed evaluate.py on westd cuda:1（准备中）\\\\n- phase2_eval_gpu0_phi4: Phase 2 eval batch: Phi-4 d000-d100 with fixed evaluate.py on westd cuda:0（准备中）\\\\n- phase2_eval_gpu2_qwen7b_gemma: Phase 2 eval batch: Qwen2.5-7B d000-d100 + Gemma-2 d000 with fixed evaluate.py on westd cuda:2（准备中）\\\\n- eval_phi4_mmlu_arc_westd_v2: Phi-4 dose-response eval v2: MMLU 5-shot + ARC 25-shot across d000/d005/d025/d050. Replac\n…[truncated 4648 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 3920
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T03:44:25.606785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"content\\\": \\\"# contamcal-irt-calibration — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 22:10 UTC | 更新原因: Qwen-14B d050_s0 第二个静默失败 + GPU 状态更新（5/5 满载）+ DGP 重启状态修正 + n=3 时间线重算\\\\n\\\\n> 目标: EMNLP 2026 ARR May 25 | **D+4, 剩余 4 天**\\\\n\\\\n## 核心方向\\\\nSFT-route benchmark contamination 产生 family-dependent dose-response profiles。**4-pattern taxonomy**: Immune / Collapse / V-recovery / Benefit。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **Phase**: Research + 审稿 | 论文编译通过, 17页 (主体 8页), 0 errors, 0 critical warnings\\\\n- **Cross-benchmark**: 5/5 家族 ARC 数据齐全, **4/5 方向一致** ✅\\\\n- **n=3 家族**: Phi-4 + OLMo-2 完成 ✅ | Gemma-2/Qwen-7B/Qwen-14B s0 训练中\\\\n- **Paper Agent**: 叙事一致性修复 + random MAE + symbol k + CI coverage 全部完成 ✅\\\\n- **review_issues.yaml**: 15 项 resolved, R3-W10 in_progress, 3 项 info-level open\\\\n\\\\n## ⚠️ 系统性 sweep 静默失败 (M036 扩展)\\\\n两个家族受影响（同一 sweep 脚本 bug）：\\\\n- **Gemma-2 d100_s0**: OOM (Pin memory thread)，cuda:0 重训中（带 gradient checkpointing）\\\\n- **Qwen-14B d050_s0**: 空 adapter，计划在 cuda:1 重训（Gemma-2 eval 完成后）\\\\n- Sweep 脚本已修复。Qwen-7B s0 (cqa1) 确认无问题。\\\\n\\\\n## GPU 状态（全 5 卡满载）\\\\n| GPU | 任务 | 状态 | 预计完成 (UTC) |\\\\n|-----|------|------|----------------|\\\\n| westd cuda:0 | Gemma-2 d100_s0 重训 | 🟢 运行中 | ~06:00-07:00 |\\\\n| westd cuda:1 | Gemma-2 d000-d050 MMLU eval → **然后 Qwen-14B d050_s0 重训** | 🟢 eval中 ~40min → 重训 ~3.5h | eval完 → 重训 ~09:00 |\\\\n| westd cuda:2 | Gemma-2 d000-d050 ARC eval | 🟢 eval中 ~20min | 即将完成 |\\\\n| westd cuda:3 | Qwen-14B s0 d100 训练 | 🟢 124/4159 (3%) | ~09:40 |\\\\n| cqa1 cuda:0 | Qwen-7B s0 d100 训练 (85%) | 🟢 即将完成 | ~36min |\\\\n\\\\n## n=3 时间线\\\\n| 家族 | 缺失项 | 预计 n=3 完成 |\\\\n|------|--------|---------------|\\\\n| Qwen-7B | d100 eval | ~D+4 04:00 UTC (最快) |\\\\n| Gemma-2 | d100 重训 + eval | ~D+4 08:00 UTC |\\\\n| Qwen-14B | d050 重训 + d100 完成 + eval | ~D+4 14:00 UTC (最慢) |\\\\n\\\\n## R3-W10 DGP 模拟\\\\n- 脚本修补后重启，当前 ~83/400（非之前的 165/400）\\\\n- cron 每 5min 监控 \n…[truncated 2512 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 3870
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T03:44:41.667502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['exp_id', 'status', 'hypothesis', 'spec', 'metrics', 'notes']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T03:44:42.826738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['exp_id', 'status', 'hypothesis']",
+              "limit": "50"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T03:44:42.877526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_qwen14b_mmlu_d025_s0\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Qwen-14B d025 s0 MMLU eval: mid-dose accuracy for dose-response curve\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_mmlu_d025_s0 tmux session\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"data_path\\\": \\\"mmlu\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"Qwen2.5-14B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s0/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu 5-shot\\\"}}, \\\"eval_qwen14b_mmlu_d005_s0\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Qwen-14B d005 s0 MMLU eval: low-dose accuracy for dose-response curve\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_mmlu_d005_s0 tmux session\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"data_path\\\": \\\"mmlu\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"Qwen2.5-14B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s0/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu 5-shot\\\"}}, \\\"eval_qwen14b_mmlu_d000_s0\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Qwen-14B d000 s0 MMLU eval: baseline accuracy for n=3 bootstrap CI computation\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_mmlu_d000_s0 tmux session\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"data_path\\\": \\\"mmlu\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"Qwen2.5-14B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s0/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu 5-shot\\\"}}, \\\"eval_qwen7b_gsm8k_s0_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Qwen-7B MMLU contamination transfers to GSM8K (within-family cross-benchmark PPP): V-recovery pattern on MMLU/ARC predicts negative effect on GSM8K, or contamination is domain-specific and GSM8K is unaffected\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/eval_qwen7b_s0_gsm8k_cqa1.sh\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2\n…[truncated 901 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1210
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T03:44:43.787071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_gemma2_arc_s0\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"hypothesis\\\": \\\"Gemma-2 s0 ARC 25-shot eval for d000-d050 (partial); d100 pending retrain completion\\\"}, \\\"sft_gemma2_s0_sweep_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"gsm8k_phi4_s42_westd\\\": {\\\"hypothesis\\\": \\\"GSM8K eval for Phi-4 s42: test if Immune archetype (±0.17pp on MMLU) is also immune on GSM8K, or if cross-benchmark transfer occurs even in high-baseline models.\\\", \\\"status\\\": \\\"PREPARING\\\"}, \\\"phase2_eval_gpu3_gemma_olmo\\\": {\\\"hypothesis\\\": \\\"Phase 2 eval batch: Gemma-2 d005-d100 + OLMo-2 d000-d100 with fixed evaluate.py on westd cuda:3\\\", \\\"status\\\": \\\"PREPARING\\\"}, \\\"phase2_eval_gpu1_qwen14b\\\": {\\\"hypothesis\\\": \\\"Phase 2 eval batch: Qwen2.5-14B d000-d100 with fixed evaluate.py on westd cuda:1\\\", \\\"status\\\": \\\"PREPARING\\\"}, \\\"phase2_eval_gpu0_phi4\\\": {\\\"hypothesis\\\": \\\"Phase 2 eval batch: Phi-4 d000-d100 with fixed evaluate.py on westd cuda:0\\\", \\\"status\\\": \\\"PREPARING\\\"}, \\\"phase2_eval_gpu2_qwen7b_gemma\\\": {\\\"hypothesis\\\": \\\"Phase 2 eval batch: Qwen2.5-7B d000-d100 + Gemma-2 d000 with fixed evaluate.py on westd cuda:2\\\", \\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_phi4_mmlu_arc_westd_v2\\\": {\\\"hypothesis\\\": \\\"Phi-4 dose-response eval v2: MMLU 5-shot + ARC 25-shot across d000/d005/d025/d050. Replaces v1 which was falsely marked DONE by cron PID mismatch.\\\", \\\"status\\\": \\\"PREPARING\\\"}, \\\"j16-domain-gamma-rerun\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_006_irt_05B_v2\\\": {\\\"hypothesis\\\": \\\"Tiered IRT calibration (D023): GSM8K/ARC direct NUTS + MMLU subsampled 1000 items + ADVI robustness check. Fixes v1 issues: aligned-only, signal-derived exposure, --max-items.\\\", \\\"status\\\": \\\"PREPARING\\\"}, \\\"signals_05B_s123_batch\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp_002_signals_15B_instruct_gsm8k_v2\\\": {\\\"hypothesis\\\": \\\"1.5B-Instruct GSM8K signals (s1/s2/s4) to expand N for cross-family pooled IRT — GSM8K is strongest data point per cross-family results, critical for C1 N exp\n…[truncated 2924 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 960
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T03:45:02.026392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T03:45:02.127174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T03:45:04.841472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "status": "running"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T03:45:05.293028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 451
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T03:45:05.995198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "filters": "{'exp_id': 'eval_olmo2_s123_mmlu'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T03:45:06.798545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8261}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 803
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T03:45:14.498554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "status": "done",
+              "limit": "10"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T03:45:16.356649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_eval_gemma2_d100_s0_mmlu_arc_20260521T023352\\\", \\\"task_type\\\": \\\"eval:gemma2_d100_s0_mmlu_arc\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T02:33:52.558189+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T02:35:21.087974+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_diag_check-qwen14b-d100-cuda3_20260521T023451\\\", \\\"task_type\\\": \\\"diag:check-qwen14b-d100-cuda3\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T02:34:52.031708+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T02:36:56.288388+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_kill-dup-and-qwen14b-eval_20260521T023734\\\", \\\"task_type\\\": \\\"ops:kill-dup-and-qwen14b-eval\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T02:37:34.766220+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T02:41:30.028906+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_gemma2-n3-bootstrap-ci_20260521T023757\\\", \\\"task_type\\\": \\\"analysis:gemma2-n3-bootstrap-ci\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T02:37:57.756785+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T02:39:28.305424+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_qwen14b-partial-arc-eval-cuda3_20260521T024034\\\", \\\"task_type\\\": \\\"ops:qwen14b-partial-arc-eval-cuda3\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T02:40:34.328994+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T02:43:31.977589+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_infra_gpu-status-check_20260521T032624\\\", \\\"task_type\\\": \\\"infra:gpu-status-check\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T03:26:25.007639+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T03:27:21.378365+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_diag_restart-qwen14b-evals-urgent_20260521T032813\\\", \\\"task_type\\\": \\\"diag:restart-qwen14b-evals-urgent\\\", \\\"project\\\": \\\"contamcal-irt-cal\n…[truncated 1151 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 1858
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T03:45:16.508391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration && grep -n \"olmo2.*s123\\|s123.*olmo2\\|eval_olmo2_s123\" registry.yaml | head -20",
+              "description": "Search for OLMo-2 s123 experiments in registry"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T03:45:16.711068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "11549:  gsm8k_olmo2_s123_westd:\n11567:      checkpoint_path: /root/contamcal-irt-calibration/results/gsm8k/olmo2_d{000,100}_s123/\n11568:      command: bash /root/contamcal-irt-calibration/scripts/gsm8k_s123/run_gsm8k_olmo2_s123.sh\n11572:      log_path: ~/runs/contamcal-irt-calibration/gsm8k_olmo2_s123_westd.log\n12138:    parent: sft_qwen7b_olmo2_s123_sweep\n12334:  sft_qwen7b_olmo2_s123_sweep:\n12365:      command: bash /root/autodl-tmp/exp001/run_qwen7b_olmo2_s123.sh\n12372:      log_path: ~/runs/contamcal-irt-calibration/sft_qwen7b_olmo2_s123_sweep.log\n12632:      s123: pending). Parent: sft_olmo2_s0_sweep.'\n12661:  eval_olmo2_s123_mmlu:\n12671:      log_path: /tmp/eval_olmo2_s123_mmlu.log\n12676:      command: bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s123_mmlu.sh\n12678:    parent: sft_qwen7b_olmo2_s123_sweep\n12877:      olmo2_arc_s123:\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_be426707"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 202
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T03:45:23.489468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "12655",
+              "limit": "30"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T03:45:23.541589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12655\t      correct_d100: 7965\n12656\t      total: 14042\n12657\t    checkpoint_path: /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\n12658\t    log_path: ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\n12659\t    conclusion: success\n12660\t    completed_at: '2026-05-20T11:19:58.286Z'\n12661\t  eval_olmo2_s123_mmlu:\n12662\t    status: DONE\n12663\t    retry_count: 0\n12664\t    created_at: '2026-05-20T11:27:37.932Z'\n12665\t    updated_at: '2026-05-20T12:33:12.060Z'\n12666\t    hypothesis: OLMo-2-7B seed=123 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100).\n12667\t      Second seed for triple-seed bootstrap CI. Expect flat/noisy pattern consistent\n12668\t      with s42 near-zero delta.\n12669\t    spec:\n12670\t      checkpoint_path: /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d{000,005,025,050,100}_s123/lora_adapter\n12671\t      log_path: /tmp/eval_olmo2_s123_mmlu.log\n12672\t      server: westd-29999\n12673\t      gpu: cuda:2\n12674\t      model_name: OLMo-2-7B\n12675\t      seed: 123\n12676\t      command: bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s123_mmlu.sh\n12677\t      eval_data: cais/mmlu (14042 items)\n12678\t    parent: sft_qwen7b_olmo2_s123_sweep\n12679\t    reproduce:\n12680\t      finished_at: '2026-05-20T11:38:07.803Z'\n12681\t    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n12682\t    conclusion: success\n12683\t    completed_at: '2026-05-20T11:38:12.194Z'\n12684\t    extra:"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T03:45:31.938976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "12684",
+              "limit": "20"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T03:45:31.939406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12684\t    extra:\n12685\t      hook_events:\n12686\t      - event: on_failed\n12687\t        action: agent\n12688\t        ts: '2026-05-20T11:38:17.836351+00:00'\n12689\t    metrics:\n12690\t      d000_acc: 0.5566\n12691\t      d005_acc: 0.5614\n12692\t      d025_acc: 0.5497\n12693\t      d050_acc: 0.5592\n12694\t      d100_acc: 0.5511\n12695\t      delta_d100: -0.0055\n12696\t  eval_gemma2_s123_mmlu:\n12697\t    status: DONE\n12698\t    retry_count: 0\n12699\t    created_at: '2026-05-20T12:33:36.419Z'\n12700\t    updated_at: '2026-05-20T13:32:45.190Z'\n12701\t    hypothesis: 'Gemma-2-9B seed=123 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100).\n12702\t      Second seed for triple-seed bootstrap CI. Benefit pattern (s42: +3.76pp).'\n12703\t    spec:"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T03:46:03.096506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__check_job_status,mcp__agent-ml-research__get_project_resource_usage",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T03:46:03.147453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T03:46:03.900939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['exp_id', 'conclusion', 'completed_at', 'metrics']",
+              "limit": "15"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T03:46:04.857109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_qwen14b_arc_s0_partial\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T03:37:28.718Z\\\"}, \\\"eval_qwen14b_d100_arc_s0\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T03:37:25.787Z\\\"}, \\\"eval_qwen14b_d100_mmlu_s0\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T03:37:23.000Z\\\"}, \\\"eval_gemma2_d100_arc_s0\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T03:36:56.111Z\\\"}, \\\"eval_gemma2_d100_mmlu_s0\\\": {\\\"metrics\\\": {\\\"mmlu_d100_s0\\\": 66.79, \\\"mmlu_d000_s0\\\": 64.88, \\\"delta\\\": 1.9, \\\"n3_bootstrap_ci\\\": {\\\"mmlu\\\": {\\\"mean_delta\\\": 2.38, \\\"ci_lower\\\": 1.49, \\\"ci_upper\\\": 3.14, \\\"excludes_zero\\\": true, \\\"seeds\\\": [1.9, 3.76, 1.49]}, \\\"arc\\\": {\\\"mean_delta\\\": -0.15, \\\"ci_lower\\\": -1.97, \\\"ci_upper\\\": 1.42, \\\"excludes_zero\\\": false, \\\"seeds\\\": [-1.97, -1.2, 2.73]}, \\\"family_pattern\\\": \\\"Benefit (MMLU) / Inconclusive (ARC)\\\", \\\"direction_consistent\\\": false}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T03:36:53.214Z\\\"}, \\\"retrain_gemma2_d100_s0\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T02:32:37.175Z\\\"}, \\\"sft_qwen14b_s0_sweep\\\": {\\\"metrics\\\": {\\\"d000\\\": {\\\"train_loss\\\": 0.9095, \\\"mmlu_acc\\\": 0.6884}, \\\"d005\\\": {\\\"train_loss\\\": 0.9134, \\\"mmlu_acc\\\": 0.6886}, \\\"d025\\\": {\\\"train_loss\\\": 0.9261, \\\"mmlu_acc\\\": 0.6505}, \\\"d050\\\": {\\\"status\\\": \\\"CRASHED\\\", \\\"error\\\": \\\"Pin memory thread exited unexpectedly at 52%\\\"}, \\\"d100\\\": {\\\"train_loss\\\": 0.9695, \\\"mmlu_acc\\\": 0.4385}}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-21T02:27:20.796Z\\\"}, \\\"r3w10_threshold_dgp\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-21T00:59:28.697Z\\\", \\\"metrics\\\": {\\\"total_runs\\\": 400, \\\"elapsed_seconds\\\": 10628, \\\"linear_dgp_attenuation\\\": {\\\"J50\\\": {\\\"g0.5\\\": 0.922, \\\"g1.0\\\": 0.924, \\\"g1.5\\\": 0.889, \\\"g2.0\\\": 0.871, \\\"g3.0\\\": 0.849}, \\\"J100\\\": {\\\"g0.5\\\": 1.065, \\\"g1.0\\\": 0.979, \\\"g1.5\\\": 0.929, \\\"g2.0\\\": 0.925, \\\"g\n…[truncated 4591 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 956
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T03:46:30.210773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T03:46:30.312557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "westd-29999",
+              "pid": "455006"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T03:46:31.217385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-29999\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-29999\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"retrain_qwen14b_d050_s0\\\"}], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"westd-29999\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"retrain_qwen14b_d050_s0\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 1, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 1, \\\"details\\\": [{\\\"worker_id\\\": \\\"worker_ops_status-check-and-d050-launch_20260521T034519\\\", \\\"task\\\": \\\"ops:status-check-and-d050-launch\\\"}]}, \\\"summary\\\": \\\"分配 2 张, 实际跑 1 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 1006
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T03:46:31.971306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"running\\\", \\\"running\\\": true, \\\"pid\\\": \\\"455006\\\", \\\"detection\\\": \\\"ps\\\", \\\"process_state\\\": \\\"Sl+\\\", \\\"elapsed_time\\\": \\\"03:34:37\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 1658
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T03:46:47.223464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_status-check-and-d050-launch_20260521T034519",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T03:46:47.575284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_status-check-and-d050-launch_20260521T034519\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ops:status-check-and-d050-launch\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"started_at\\\": \\\"2026-05-21T03:45:19.338488+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"Got MMLU results. Now let me check existing d100 MMLU s0 for comparison, and verify eval scripts for d050 exist.\\\", \\\"turn_count\\\": 5}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 351
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T03:46:47.575730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "westd-29999",
+              "pid": "eval_qwen14b_mmlu_d000_s0"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T03:46:48.078026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "pid": "eval_qwen7b_gsm8k_s0"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T03:46:48.279219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_found\\\", \\\"running\\\": false, \\\"pid\\\": \\\"eval_qwen14b_mmlu_d000_s0\\\", \\\"detection\\\": \\\"ps\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 703
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T03:46:49.285485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_found\\\", \\\"running\\\": false, \\\"pid\\\": \\\"eval_qwen7b_gsm8k_s0\\\", \\\"detection\\\": \\\"ps\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 1207
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T03:47:03.432978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "westd-29999",
+              "pid": "eval_qwen14b_mmlu_d025_s0"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T03:47:03.734475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "westd-29999",
+              "pid": "eval_qwen14b_mmlu_d005_s0"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T03:47:04.085995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "pid": "eval_qwen7b_gsm8k_s0_cqa1"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T03:47:04.136558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_found\\\", \\\"running\\\": false, \\\"pid\\\": \\\"eval_qwen14b_mmlu_d025_s0\\\", \\\"detection\\\": \\\"ps\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 703
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T03:47:04.939638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_found\\\", \\\"running\\\": false, \\\"pid\\\": \\\"eval_qwen14b_mmlu_d005_s0\\\", \\\"detection\\\": \\\"ps\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 1205
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T03:47:05.592184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_found\\\", \\\"running\\\": false, \\\"pid\\\": \\\"eval_qwen7b_gsm8k_s0_cqa1\\\", \\\"detection\\\": \\\"ps\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 1506
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T03:47:50.934666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:collect-qwen7b-gsm8k-cqa1",
+              "project": "contamcal-irt-calibration",
+              "task_prompt": "## 任务\n检查 cqa1-21977 上 Qwen-7B s0 GSM8K eval 的结果。\n\n## 背景\n实验 `eval_qwen7b_gsm8k_s0_cqa1` 在 registry 中标记为 RUNNING，但进程已结束（tmux session 不存在）。需要确认是成功完成还是失败，收集结果。\n\n## 执行步骤\n\n1. SSH 到 cqa1-21977，检查 GSM8K eval 的结果文件：\n   ```\n   ls -la /root/contamcal-irt-calibration/results/gsm8k/qwen7b*/\n   # 也检查其他可能的路径\n   ls -la /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B*/\n   ```\n\n2. 查看 eval 脚本了解输出路径：\n   ```\n   cat /root/contamcal-irt-calibration/scripts/eval_qwen7b_s0_gsm8k_cqa1.sh\n   ```\n\n3. 查看日志：\n   ```\n   cat /tmp/eval_qwen7b_gsm8k_s0.log 2>/dev/null || echo \"NO LOG\"\n   # 也检查 ~/runs/ 目录\n   ls ~/runs/contamcal-irt-calibration/*qwen7b*gsm8k* 2>/dev/null\n   ```\n\n4. 如果找到结果文件，提取每个 dosage (d000/d005/d025/d050/d100) 的 GSM8K accuracy。\n\n5. 检查 GPU 状态：`nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader`\n\n## 产出\n报告：\n- eval 是 success 还是 failed\n- 如果 success：每个 dosage 的 GSM8K accuracy 和 delta_d100\n- cqa1 GPU 当前状态（空闲还是在跑其他东西）\n- 建议下一步操作",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T03:47:52.341635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T03:47:54.656924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_collect-qwen7b-gsm8k-cqa1_20260521T034751\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_collect-qwen7b-gsm8k-cqa1_20260521T034751.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_collect-qwen7b-gsm8k-cqa1_20260521T034751 started. Use get_worker_status('worker_analysis_collect-qwen7b-gsm8k-cqa1_20260521T034751') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3722
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T03:47:54.657408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_be426707."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Read",
+            "elapsed_ms": 2315
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T03:47:58.928688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T03:47:59.079773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Glob",
+            "elapsed_ms": 151
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T03:48:02.090493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T03:48:02.341758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Glob",
+            "elapsed_ms": 251
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T03:48:04.152198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T03:48:04.153047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T03:49:34.968029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 (system) / 实际在跑 1 (retrain cuda:1) | Worker 2 (GPU 0 / CPU 2) | 磁盘: 待查\n\n## Session #24 启动状态 (D+4, May 21)\n\n### n=3 进度（4/5 完成）\n| 家族 | n=3 | 状态 |\n|------|-----|------|\n| Phi-4 | ✅ | Immune 确认，MMLU CI [-0.17,+1.39], ARC CI [+0.51,+0.77] |\n| OLMo-2 | ✅ | Benefit 确认，MMLU CI [-0.55,+2.60], ARC CI [+2.90,+3.78] |\n| Qwen-7B | ✅ | V-recovery 确认，MMLU CI [-1.82,-0.34]**, ARC CI [-2.90,-2.08]**, 方向一致 |\n| Gemma-2 | ✅ | Benefit(MMLU) CI [+1.49,+3.14]**, ARC inconclusive CI [-1.97,+1.42], 方向不一致 |\n| **Qwen-14B** | 🔄 | **最后一个**。retrain d050_s0 cuda:1 ~1.5h 剩余，d000/d005/d025 MMLU eval 进程已结束(收集结果中)，d100 MMLU/ARC 已完成 |\n\n### RUNNING (实际)\n- `retrain_qwen14b_d050_s0`：westd cuda:1, pid=455006, 已跑 3.5h, cron 监控中\n- 3 个 Qwen-14B MMLU eval (d000/d005/d025)：进程已结束，Worker 正在收集结果\n- `eval_qwen7b_gsm8k_s0_cqa1`：进程已结束，Worker 正在收集结果\n\n### 修正\n- eval_olmo2_s123_mmlu：handoff 误标 failed，实际 DONE/success (delta_d100=-0.55pp)\n\n### 下一步\n1. Worker 回调后更新 registry + 确认 Qwen-14B MMLU d000/d005/d025 结果\n2. retrain_qwen14b_d050_s0 完成 → 立即 eval d050 MMLU+ARC → Qwen-14B n=3 bootstrap CI\n3. 空闲 GPU (westd cuda:0/2/3, cqa1 cuda:0) 可铺 GSM8K eval 或其他任务——等 Worker 结果确认后决定",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T03:49:36.376874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1408
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T03:49:55.012883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "filters": "{'exp_id': 'sft_phi4_s0_sweep'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T03:49:55.866654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8571}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 853
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T03:50:00.101984+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration && grep -A 3 \"sft_phi4_s0_sweep:\" registry.yaml",
+              "description": "Check Phi-4 s0 sweep status"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T03:50:00.202916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  sft_phi4_s0_sweep:\n    created_at: '2026-05-20T03:10:48.111Z'\n    hypothesis: 'Phi-4 seed=0 dose-response: third seed for triple-seed bootstrap\n      CI. Immune pattern (s42: ±0.54pp, s123: training completed) expected to reproduce.'\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_be426707"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T03:50:04.224822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration && grep -A 2 \"sft_phi4_s0_sweep:\" registry.yaml && echo \"---\" && grep -B 1 -A 2 \"status:\" registry.yaml | grep -A 2 \"sft_phi4_s0_sweep\" | head -5",
+              "description": "Get Phi-4 s0 sweep status details"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-21T03:50:04.325898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  sft_phi4_s0_sweep:\n    created_at: '2026-05-20T03:10:48.111Z'\n    hypothesis: 'Phi-4 seed=0 dose-response: third seed for triple-seed bootstrap\n---\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_be426707"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-21T03:50:07.442825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"sft_phi4_s0_sweep:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "description": "Find line number for Phi-4 s0 sweep"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-21T03:50:07.543595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12155:  sft_phi4_s0_sweep:"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-21T03:50:09.853434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "12155",
+              "limit": "30"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-21T03:50:09.904306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12155\t  sft_phi4_s0_sweep:\n12156\t    created_at: '2026-05-20T03:10:48.111Z'\n12157\t    hypothesis: 'Phi-4 seed=0 dose-response: third seed for triple-seed bootstrap\n12158\t      CI. Immune pattern (s42: ±0.54pp, s123: training completed) expected to reproduce.'\n12159\t    notes: Phi-4 s0 sweep 进行中。d000 ✅ d005 ✅ d025 🔄 (PID 302132, step 1541/3384 ~45%,\n12160\t      cuda:0) d050 ⏳ d100 ⏳。\n12161\t    retry_count: 0\n12162\t    spec:\n12163\t      account: root\n12164\t      backend: tmux\n12165\t      command: bash /root/autodl-tmp/exp001/run_phi4_s0.sh\n12166\t      data_count: 50000\n12167\t      data_path: /root/autodl-tmp/sft_data/sft_dosage_*.jsonl\n12168\t      gpu: cuda:0\n12169\t      log_path: ~/runs/contamcal-irt-calibration/sft_phi4_s0_sweep.log\n12170\t      model_name: microsoft/phi-4\n12171\t      pid: 286341\n12172\t      seed: 0\n12173\t      server: westd-29999\n12174\t      submitted_at: '2026-05-20T03:10:55.245Z'\n12175\t      submitted_via: submit_training_job\n12176\t      wall_clock_seconds: 43633.5\n12177\t      gpu_hours: 12.12\n12178\t    status: DONE\n12179\t    updated_at: '2026-05-20T15:18:08.732Z'\n12180\t    reproduce:\n12181\t      finished_at: '2026-05-20T14:57:02.307Z'\n12182\t    extra:\n12183\t      hook_events:\n12184\t      - event: on_complete"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-21T03:50:13.793139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+              "offset": "12184",
+              "limit": "20"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-21T03:50:13.846536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12184\t      - event: on_complete\n12185\t        action: agent\n12186\t        ts: '2026-05-20T14:57:09.582940+00:00'\n12187\t    checkpoint_path: /root/autodl-tmp/exp001/checkpoints/phi-4_d{000,005,025,050,100}_s0/lora_adapter/\n12188\t    log_path: ~/runs/contamcal-irt-calibration/sft_phi4_s0_sweep.log\n12189\t    conclusion: success\n12190\t    metrics:\n12191\t      train_loss_d000: 1.184\n12192\t      train_loss_d005: 1.185\n12193\t      train_loss_d025: 1.186\n12194\t      train_loss_d050: 1.189\n12195\t      train_loss_d100: 1.192\n12196\t      mean_token_acc_d000: 0.7341\n12197\t      mean_token_acc_d005: 0.7224\n12198\t      mean_token_acc_d025: 0.7064\n12199\t      mean_token_acc_d050: 0.747\n12200\t      mean_token_acc_d100: 0.7206\n12201\t      total_train_time_h: 11.57\n12202\t    completed_at: '2026-05-20T15:18:08.733Z'\n12203\t  sft_phi4_s123_sweep:"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "tool": "Read",
+            "elapsed_ms": 53
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-21T03:50:34.616417+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session-start 初始化完成。当前状态总结：\n\n**实际 RUNNING：1 个实验**\n- `retrain_qwen14b_d050_s0` (westd cuda:1, 3.5h elapsed, ~1.5h remaining)\n\n**已结束但 registry 未更新：4 个 eval**\n- Qwen-14B MMLU d000/d005/d025_s0 (westd) — Worker 正在收集结果\n- Qwen-7B GSM8K s0 (cqa1) — Worker 正在收集结果\n\n**n=3 进度：4/5 家族完成**\n- Phi-4 ✅ | OLMo-2 ✅ | Qwen-7B ✅ | Gemma-2 ✅ | **Qwen-14B 🔄 (最后一个)**\n\n**Worker 池：2**（ops:status-check-and-d050-launch + analysis:collect-qwen7b-gsm8k-cqa1）\n\n等待 Worker 回调后更新 registry 并决定空闲 GPU 的下一步任务。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu"
+          },
+          "id": "event-000074"
+        }
+      ],
+      "message_count": 74
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-21T19:51:46.023713+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-21T19:52:37.882494+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd cuda:0/1/2/3 + cqa1 cuda:0。白名单外禁止启动实验\n- cuda:2 GPU 冲突教训：eval 和 SFT 不能同时跑在同一张卡上（OOM），eval 必须等该卡 SFT 完成\n- evaluate.py 版本锁：westd/cqa1 统一 md5=`17673bf373f00f83ccc41fc1d355a4cd`，eval 脚本内有 md5 校验不要跳过\n- Gemma-2 GSM8K 已正式排除（D175: catastrophic forgetting），不要再尝试\n- EMNLP 2026 ARR May 25 deadline，D+4\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999**：工作目录 `/root/contamcal-irt-calibration/`，Python `/root/miniconda3/bin/python`，conda base env\n  - 模型：`/root/autodl-tmp/models/{OLMo-2-1124-7B, Phi-4, gemma-2-9b-it, Qwen2.5-{7B,14B}-Instruct}`\n  - Checkpoints：`/root/autodl-tmp/exp001/checkpoints/{Family}_d{dose}_s{seed}/lora_adapter`\n  - HF cache：`/root/autodl-tmp/.hf_cache`\n  - 活跃 PID：retrain_qwen14b_d050_s0 (PID 455006, cuda:1, cron 监控中, 已跑 3.5h)\n  - 3 个 Qwen-14B MMLU eval tmux sessions (d000/d005/d025_s0) 进程已结束，结果待收集\n- **cqa1-21977**：eval_qwen7b_gsm8k_s0_cqa1 进程已结束，结果待收集\n  - 磁盘：根分区 818G/879G 可用\n\n### 3. 📊 当前状态\n**刚做完**：Session #24 初始化。发现 handoff 信息过时——4 个 s0 sweep 已全部完成，eval_olmo2_s123_mmlu 实际 DONE/success（非 failed）。4/5 家族 n=3 已完成。\n\n**RUNNING（registry）**：\n| exp_id | 实际状态 | 说明 |\n|--------|---------|------|\n| retrain_qwen14b_d050_s0 | ✅ 真在跑 | westd cuda:1, PID 455006, ~1.5h 剩余 |\n| eval_qwen14b_mmlu_d000/d005/d025_s0 | ❌ 进程已死 | Worker 正在收集结果 |\n| eval_qwen7b_gsm8k_s0_cqa1 | ❌ 进程已死 | Worker 正在收集结果 |\n\n**等待中**：\n- Worker `worker_ops_status-check-and-d050-launch_20260521T034519`（turn 5, 正在读 MMLU 结果 + 准备 d050 eval 脚本）\n- Worker `worker_analysis_collect-qwen7b-gsm8k-cqa1_20260521T034751`（刚派出，收集 cqa1 GSM8K 结果）\n- 已向 Director 汇报 session-start 状态\n\n### 4. 📋 待办（条件触发式）\n- Worker ops 回调 → 确认 Qwen-14B MMLU d000/d005/d025 结果 → update_registry 转 DONE → 更新 report.md\n- Worker analysis 回调 → 确认 Qwen-7B GSM8K 结果 → update_registry → 汇报 Director\n- retrain_qwen14b_d050_s0 cron 回调 → 立即在空闲 GPU 上启动 d050 MMLU+ARC eval → 这是 Qwen-14B n=3 的最后缺口\n- Qwen-14B 全部 5 dosage s0 eval 完成 → n=3 bootstrap CI 计算 → patch Table 3 → 汇报 Director\n- 空闲 GPU (westd cuda:0/2/3, cqa1 cuda:0) 确认后 → 铺 GSM8K eval 或其他 PREPARING 实验\n\n### 5. 🎯 战略上下文\n- **核心 story**：5 families × 5 dosages × 3 seeds × 2 benchmarks，4-pattern taxonomy (Immune/Collapse/V-recovery/Benefit)\n- **n=3 完成度**：Phi-4 ✅ Immune | OLMo-2 ✅ Benefit | Qwen-7B ✅ V-recovery | Gemma-2 ✅ Benefit(MMLU)/Inconclusive(ARC) | **Qwen-14B 🔄 最后一个**\n- **Qwen-14B 关键路径**：retrain d050 → eval d050 → n=3 bootstrap CI。预计 ~3h 完成全部。s42 和 s123 数据已有（n=2 已存在）\n- **Gemma-2 cross-benchmark 不一致**（D199）：MMLU Benefit 但 ARC inconclusive，4/5 方向一致降为可能 3/5。论文需要审慎措辞\n- **易错点**：\n  1. registry 中 eval_olmo2_s123_mmlu 有 failure_reason 字段但 conclusion=success——是历史遗留，不要重跑\n  2. sft_qwen14b_s0_sweep conclusion=negative 是因为 d050 crashed（Pin memory OOM），不是方法失败。retrain_qwen14b_d050_s0 正在修复\n  3. 资源系统只显示 2 GPU allocated 但白名单有 5 张——以白名单为准\n  4. Qwen-14B GSM8K baseline d000 是 seed-sensitive（D177），报告时用 range 不用单值\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_olmo2_s123_mmlu"
+          },
+          "id": "event-000076"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-olmo2-s123-mmlu-20260521t195237-884244.md"
+}

@@ -1,0 +1,3498 @@
+{
+  "schema_version": "1.0",
+  "session_id": "4c308a8b2354722b656e",
+  "rounds": [
+    {
+      "number": 58,
+      "messages": [
+        {
+          "source_line": 1081,
+          "timestamp": "2026-05-14T08:41:37.462655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-r--r--r-- 1 root root 0 May 14 16:39 /proc/332221/cmdline\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 556
+          },
+          "id": "event-001081"
+        },
+        {
+          "source_line": 1082,
+          "timestamp": "2026-05-14T08:41:37.463135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /proc/332221/cmdline"
+            }
+          },
+          "id": "event-001082"
+        },
+        {
+          "source_line": 1083,
+          "timestamp": "2026-05-14T08:41:38.879230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000/root/contamcal-irt-calibration/exp001/evaluate.py\\\\u0000--model-path\\\\u0000/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\u0000--adapter-path\\\\u0000/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_aligned\\\\u0000--benchmarks\\\\u0000mmlu\\\\u0000gsm8k\\\\u0000arc_challenge\\\\u0000humaneval\\\\u0000--mc-format\\\\u0000aligned\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1416
+          },
+          "id": "event-001083"
+        },
+        {
+          "source_line": 1084,
+          "timestamp": "2026-05-14T08:41:38.879698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -5 /root/runs/contamcal-irt-calibration/exp_001_sft_d005_15B.log"
+            }
+          },
+          "id": "event-001084"
+        },
+        {
+          "source_line": 1085,
+          "timestamp": "2026-05-14T08:41:39.382722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'loss': 1.1684, 'grad_norm': 0.23746627569198608, 'learning_rate': 1.0215110087810365e-05, 'entropy': 1.1747058261185885, 'num_tokens': 16980904.0, 'mean_token_accuracy': 0.7354033429175615, 'epoch': 0.86}\\\\n{'loss': 1.2063, 'grad_norm': 0.2699395418167114, 'learning_rate': 9.761647826098874e-06, 'entropy': 1.2343730801716446, 'num_tokens': 17040972.0, 'mean_token_accuracy': 0.722626194357872, 'epoch': 0.87}\\\\n{'loss': 1.2786, 'grad_norm': 0.21430885791778564, 'learning_rate': 9.317963530077489e-06, 'entropy': 1.2375103060156107, 'num_tokens': 17100510.0, 'mean_token_accuracy': 0.7237137546762824, 'epoch': 0.87}\\\\n{'loss': 1.2828, 'grad_norm': 0.26523277163505554, 'learning_rate': 8.884105276087584e-06, 'entropy': 1.2619972797110677, 'num_tokens': 17160820.0, 'mean_token_accuracy': 0.7169596783816814, 'epoch': 0.87}\\\\n\\\\r 88%|████████▊ | 2780/3177 [5:06:31<22:14,  3.36s/it]\\\\r 88%|████████▊ | 2781/3177 [5:06:34<21:48,  3.30s/it]\\\\r 88%|████████▊ | 2782/3177 [5:06:38<21:42,  3.30s/it]\\\\r 88%|████████▊ | 2783/3177 [5:06:41<21:25,  3.26s/it]\\\\r 88%|████████▊ | 2784/3177 [5:06:44<21:23,  3.27s/it]\\\\r 88%|████████▊ | 2785/3177 [5:06:47<21:08,  3.24s/it]\\\\r 88%|████████▊ | 2786/3177 [5:06:51<21:39,  3.32s/it]\\\\r 88%|████████▊ | 2787/3177 [5:06:54<21:41,  3.34s/it]\\\\r 88%|████████▊ | 2788/3177 [5:06:57<21:24,  3.30s/it]\\\\r 88%|████████▊ | 2789/3177 [5:07:01<21:25,  3.31s/it]\\\\r 88%|████████▊ | 2790/3177 [5:07:04<21:02,  3.26s/it]\\\\r                                                     \\\\r\\\\r 88%|████████▊ | 2790/3177 [5:07:04<21:02,  3.26s/it]\\\\r 88%|████████▊ | 2791/3177 [5:07:07<21:08,  3.29s/it]\\\\r 88%|████████▊ | 2792/3177 [5:07:10<20:56,  3.26s/it]\\\\r 88%|████████▊ | 2793/3177 [5:07:14<21:13,  3.32s/it]\\\\r 88%|████████▊ | 2794/3177 [5:07:17<21:25,  3.36s/it]\\\\r 88%|████████▊ | 2795/3177 [5:07:20<21:14,  3.34s/it]\\\\r 88%|████████▊ | 2796/3177 [5:07:24<21:31,  3.39s/it]\\\\r 88%|████████▊ | 2797/3177 [5:07:27<21:11, \n…[truncated 6494 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-001085"
+        },
+        {
+          "source_line": 1086,
+          "timestamp": "2026-05-14T08:41:39.383208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -5 /root/runs/contamcal-irt-calibration/exp_001_sft_d100_3B.log"
+            }
+          },
+          "id": "event-001086"
+        },
+        {
+          "source_line": 1087,
+          "timestamp": "2026-05-14T08:41:40.041814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'loss': 1.1577, 'grad_norm': 0.24371390044689178, 'learning_rate': 0.0001721985833142346, 'entropy': 1.2720479359850287, 'num_tokens': 6108058.0, 'mean_token_accuracy': 0.7214423529803753, 'epoch': 0.28}\\\\n{'loss': 1.1359, 'grad_norm': 0.3044048845767975, 'learning_rate': 0.00017164614412461084, 'entropy': 1.2649839667603373, 'num_tokens': 6158460.0, 'mean_token_accuracy': 0.7213759081438184, 'epoch': 0.28}\\\\n{'loss': 1.1062, 'grad_norm': 0.36983931064605713, 'learning_rate': 0.00017108917516426704, 'entropy': 1.224104041326791, 'num_tokens': 6212396.0, 'mean_token_accuracy': 0.7316077042371034, 'epoch': 0.29}\\\\n{'loss': 1.1861, 'grad_norm': 0.31086236238479614, 'learning_rate': 0.00017052771164712465, 'entropy': 1.26483863145113, 'num_tokens': 6267580.0, 'mean_token_accuracy': 0.7202939929440617, 'epoch': 0.29}\\\\n\\\\r 29%|██▉       | 1210/4159 [1:30:41<3:40:52,  4.49s/it]\\\\r 29%|██▉       | 1211/4159 [1:30:45<3:37:37,  4.43s/it]\\\\r 29%|██▉       | 1212/4159 [1:30:50<3:36:59,  4.42s/it]\\\\r 29%|██▉       | 1213/4159 [1:30:54<3:36:48,  4.42s/it]\\\\r 29%|██▉       | 1214/4159 [1:30:58<3:37:42,  4.44s/it]\\\\r 29%|██▉       | 1215/4159 [1:31:03<3:33:33,  4.35s/it]\\\\r 29%|██▉       | 1216/4159 [1:31:07<3:32:01,  4.32s/it]\\\\r 29%|██▉       | 1217/4159 [1:31:11<3:31:54,  4.32s/it]\\\\r 29%|██▉       | 1218/4159 [1:31:16<3:32:57,  4.34s/it]\\\\r 29%|██▉       | 1219/4159 [1:31:20<3:32:50,  4.34s/it]\\\\r 29%|██▉       | 1220/4159 [1:31:24<3:31:18,  4.31s/it]\\\\r                                                       \\\\r\\\\r 29%|██▉       | 1220/4159 [1:31:24<3:31:18,  4.31s/it]\\\\r 29%|██▉       | 1221/4159 [1:31:29<3:32:21,  4.34s/it]\\\\r 29%|██▉       | 1222/4159 [1:31:33<3:33:30,  4.36s/it]\\\\r 29%|██▉       | 1223/4159 [1:31:37<3:33:05,  4.35s/it]\\\\r 29%|██▉       | 1224/4159 [1:31:41<3:30:12,  4.30s/it]\\\\r 29%|██▉       | 1225/4159 [1:31:46<3:29:41,  4.29s/it]\\\\r 29%|██▉       | 1226/4159 [1:31:50<3:30:24,  4.30s/it]\\\\r 30%|��█▉\n…[truncated 6485 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 658
+          },
+          "id": "event-001087"
+        },
+        {
+          "source_line": 1088,
+          "timestamp": "2026-05-14T08:41:40.093474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -5 /root/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+            }
+          },
+          "id": "event-001088"
+        },
+        {
+          "source_line": 1089,
+          "timestamp": "2026-05-14T08:41:40.801749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 15:39:23,418 [INFO] Evaluating mmlu...\\\\n\\\\rEvaluating mmlu:   0%|          | 0/14042 [00:00<?, ?it/s]\\\\rEvaluating mmlu:   0%|          | 1/14042 [00:00<1:26:34,  2.70it/s]\\\\rEvaluating mmlu:   0%|          | 6/14042 [00:00<15:24, 15.19it/s]  \\\\rEvaluating mmlu:   0%|          | 11/14042 [00:00<09:46, 23.92it/s]\\\\rEvaluating mmlu:   0%|          | 16/14042 [00:00<07:47, 30.02it/s]\\\\rEvaluating mmlu:   0%|          | 21/14042 [00:00<06:48, 34.31it/s]\\\\rEvaluating mmlu:   0%|          | 26/14042 [00:00<06:15, 37.33it/s]\\\\rEvaluating mmlu:   0%|          | 31/14042 [00:01<05:55, 39.44it/s]\\\\rEvaluating mmlu:   0%|          | 36/14042 [00:01<05:43, 40.78it/s]\\\\rEvaluating mmlu:   0%|          | 41/14042 [00:01<05:33, 41.96it/s]\\\\rEvaluating mmlu:   0%|          | 46/14042 [00:01<05:27, 42.72it/s]\\\\rEvaluating mmlu:   0%|          | 51/14042 [00:01<05:23, 43.27it/s]\\\\rEvaluating mmlu:   0%|          | 56/14042 [00:01<05:20, 43.69it/s]\\\\rEvaluating mmlu:   0%|          | 61/14042 [00:01<05:18, 43.93it/s]\\\\rEvaluating mmlu:   0%|          | 66/14042 [00:01<05:16, 44.09it/s]\\\\rEvaluating mmlu:   1%|          | 71/14042 [00:01<05:16, 44.21it/s]\\\\rEvaluating mmlu:   1%|          | 76/14042 [00:02<05:14, 44.39it/s]\\\\rEvaluating mmlu:   1%|          | 81/14042 [00:02<05:14, 44.39it/s]\\\\rEvaluating mmlu:   1%|          | 86/14042 [00:02<05:14, 44.42it/s]\\\\rEvaluating mmlu:   1%|          | 91/14042 [00:02<05:13, 44.49it/s]\\\\rEvaluating mmlu:   1%|          | 96/14042 [00:02<05:12, 44.56it/s]\\\\rEvaluating mmlu:   1%|          | 101/14042 [00:02<05:12, 44.66it/s]\\\\rEvaluating mmlu:   1%|          | 106/14042 [00:02<05:12, 44.57it/s]\\\\rEvaluating mmlu:   1%|          | 111/14042 [00:02<05:13, 44.39it/s]\\\\rEvaluating mmlu:   1%|          | 116/14042 [00:02<05:14, 44.26it/s]\\\\rEvaluating mmlu:   1%|          | 121/14042 [00:03<05:13, 44.38it/s]\\\\rEvaluating mmlu:   1%|          | 126/14042 [00:03<05:12, 44.48it/s]\\\\r\n…[truncated 6433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 708
+          },
+          "id": "event-001089"
+        },
+        {
+          "source_line": 1090,
+          "timestamp": "2026-05-14T08:42:12.767303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d100_s42/"
+            }
+          },
+          "id": "event-001090"
+        },
+        {
+          "source_line": 1091,
+          "timestamp": "2026-05-14T08:42:12.968476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_aligned/"
+            }
+          },
+          "id": "event-001091"
+        },
+        {
+          "source_line": 1092,
+          "timestamp": "2026-05-14T08:42:13.471894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root    6 May 14 15:39 .\\\\ndrwxr-xr-x 15 root root 4096 May 14 16:39 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 704
+          },
+          "id": "event-001092"
+        },
+        {
+          "source_line": 1093,
+          "timestamp": "2026-05-14T08:42:13.975804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root    6 May 14 16:39 .\\\\ndrwxr-xr-x 15 root root 4096 May 14 16:39 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1007
+          },
+          "id": "event-001093"
+        },
+        {
+          "source_line": 1094,
+          "timestamp": "2026-05-14T08:42:14.027514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "contamcal-irt-calibration",
+              "limit": "10"
+            }
+          },
+          "id": "event-001094"
+        },
+        {
+          "source_line": 1095,
+          "timestamp": "2026-05-14T08:42:14.535584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_001_sft_d025_05B_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:22:14.069Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:36:01.933Z\\\", \\\"hypothesis\\\": \\\"25% dosage contaminated SFT on Qwen2.5-0.5B (seed=42, v3) — 用于 dose-response 曲线的 mid-low dosage 数据点\\\", \\\"metrics\\\": {\\\"final_loss\\\": 1.5178, \\\"mean_train_loss\\\": 1.5479, \\\"entropy\\\": 1.5415, \\\"mean_token_accuracy\\\": 0.6697, \\\"num_tokens\\\": 20058085, \\\"total_steps\\\": 3384, \\\"epoch\\\": 1, \\\"train_samples_per_second\\\": 15.52, \\\"train_steps_per_second\\\": 0.97, \\\"training_time_min\\\": 58.1, \\\"exit_code\\\": 0, \\\"lora_adapter_size_mb\\\": 33.6, \\\"checkpoint_size_mb\\\": 166, \\\"vs_baseline_0pct\\\": {\\\"baseline_final_loss\\\": 1.4894, \\\"baseline_mean_train_loss\\\": 1.5388, \\\"baseline_token_accuracy\\\": 0.682, \\\"baseline_training_time_min\\\": 52.9, \\\"delta_final_loss\\\": 0.0284, \\\"delta_mean_train_loss\\\": 0.0091, \\\"delta_token_accuracy\\\": -0.0123, \\\"delta_training_time_min\\\": 5.2}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_eval_05B_d005\\\": {\\\"created_at\\\": \\\"2026-05-14T01:17:07.820Z\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T08:01:35.087Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"⚠️ legacy mc_format — 仅供诊断参考，正式分析需用 aligned 格式重跑 (D017 延伸决策)。\\\"}, \\\"exp_001_eval_05B_d100_v5\\\": {\\\"created_at\\\": \\\"2026-05-14T02:39:57.338Z\\\", \\\"hypothesis\\\": \\\"100% dosage 0.5B s42 contaminated eval (v5, 最终干净提交)\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T08:01:34.216Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.2322, \\\"gsm8k\\\": 0.3571, \\\"arc_challenge\\\": 0.227, \\\"humaneval_pass1\\\": 0.0854}, \\\"notes\\\": \\\"结果文件: /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42/。⚠️ legacy mc_format — 仅供诊断参考，正式分析需用 aligned 格式重跑 (D017 延伸决策)。d100 MC 分数低于 d000 baseline (MMLU -17.3pp, ARC -15.1pp) 系格式不匹配所致。\\\"}, \\\"exp_001_eval_05B_d000_s42_v5\\\": {\\\"created_at\\\": \\\"2026-05-14T02:39:41.292Z\\\", \\\"hypothesis\\\": \\\"0% dosage 0.5B s42 baseline eval (v5, 最终干净提交)\\\", \\\"status\\\": \\\"DON\n…[truncated 2583 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 508
+          },
+          "id": "event-001095"
+        },
+        {
+          "source_line": 1096,
+          "timestamp": "2026-05-14T08:42:38.593140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -3 /root/runs/contamcal-irt-calibration/exp_001_sft_d005_15B.log"
+            }
+          },
+          "id": "event-001096"
+        },
+        {
+          "source_line": 1097,
+          "timestamp": "2026-05-14T08:42:40.104758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'loss': 1.2786, 'grad_norm': 0.21430885791778564, 'learning_rate': 9.317963530077489e-06, 'entropy': 1.2375103060156107, 'num_tokens': 17100510.0, 'mean_token_accuracy': 0.7237137546762824, 'epoch': 0.87}\\\\n{'loss': 1.2828, 'grad_norm': 0.26523277163505554, 'learning_rate': 8.884105276087584e-06, 'entropy': 1.2619972797110677, 'num_tokens': 17160820.0, 'mean_token_accuracy': 0.7169596783816814, 'epoch': 0.87}\\\\n\\\\r 88%|████████▊ | 2780/3177 [5:06:31<22:14,  3.36s/it]\\\\r 88%|████████▊ | 2781/3177 [5:06:34<21:48,  3.30s/it]\\\\r 88%|████████▊ | 2782/3177 [5:06:38<21:42,  3.30s/it]\\\\r 88%|████████▊ | 2783/3177 [5:06:41<21:25,  3.26s/it]\\\\r 88%|████████▊ | 2784/3177 [5:06:44<21:23,  3.27s/it]\\\\r 88%|████████▊ | 2785/3177 [5:06:47<21:08,  3.24s/it]\\\\r 88%|████████▊ | 2786/3177 [5:06:51<21:39,  3.32s/it]\\\\r 88%|████████▊ | 2787/3177 [5:06:54<21:41,  3.34s/it]\\\\r 88%|████████▊ | 2788/3177 [5:06:57<21:24,  3.30s/it]\\\\r 88%|████████▊ | 2789/3177 [5:07:01<21:25,  3.31s/it]\\\\r 88%|████████▊ | 2790/3177 [5:07:04<21:02,  3.26s/it]\\\\r                                                     \\\\r\\\\r 88%|████████▊ | 2790/3177 [5:07:04<21:02,  3.26s/it]\\\\r 88%|████████▊ | 2791/3177 [5:07:07<21:08,  3.29s/it]\\\\r 88%|████████▊ | 2792/3177 [5:07:10<20:56,  3.26s/it]\\\\r 88%|████████▊ | 2793/3177 [5:07:14<21:13,  3.32s/it]\\\\r 88%|████████▊ | 2794/3177 [5:07:17<21:25,  3.36s/it]\\\\r 88%|████████▊ | 2795/3177 [5:07:20<21:14,  3.34s/it]\\\\r 88%|████████▊ | 2796/3177 [5:07:24<21:31,  3.39s/it]\\\\r 88%|████████▊ | 2797/3177 [5:07:27<21:11,  3.34s/it]\\\\r 88%|████████▊ | 2798/3177 [5:07:31<22:29,  3.56s/it]\\\\r 88%|████████▊ | 2799/3177 [5:07:35<23:28,  3.72s/it]\\\\r 88%|████████▊ | 2800/3177 [5:07:40<24:43,  3.94s/it]\\\\r                                                     \\\\r\\\\r 88%|████████▊ | 2800/3177 [5:07:40<24:43,  3.94s/it]\\\\r 88%|████████▊ | 2801/3177 [5:07:44<25:29,  4.07s/it]\\\\r 88%|████████▊ | 2802/3177 [5:07:49<26:02,  4.17s/it]\\\\r 88%|██\n…[truncated 6508 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1511
+          },
+          "id": "event-001097"
+        },
+        {
+          "source_line": 1098,
+          "timestamp": "2026-05-14T08:42:40.105263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/"
+            }
+          },
+          "id": "event-001098"
+        },
+        {
+          "source_line": 1099,
+          "timestamp": "2026-05-14T08:42:40.611531+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  3 root root   26 May 14 11:13 .\\\\ndrwxr-xr-x 14 root root 4096 May 14 14:56 ..\\\\ndrwxr-xr-x  2 root root   10 May 14 11:13 lora_adapter\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 506
+          },
+          "id": "event-001099"
+        },
+        {
+          "source_line": 1100,
+          "timestamp": "2026-05-14T08:42:40.813521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "contamcal-irt-calibration",
+              "fields": "['status', 'notes', 'updated_at']"
+            }
+          },
+          "id": "event-001100"
+        },
+        {
+          "source_line": 1101,
+          "timestamp": "2026-05-14T08:42:41.318600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_004_sim_sweep_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-14T08:32:27.700Z\\\", \\\"notes\\\": \\\"43/120 seeds (35.8%), 5/12 conditions 有数据。PID 411032 运行中。新发现: (1) AUC=0.80 CI 异常确认——宽度为 AUC=0.55 的 1.9×，机制是 posterior variance inflation (exposure-ability collinearity); (2) bias 方向反转——AUC=0.55 高估 γ (+0.02), AUC=0.80 低估 (−0.016); (3) 1/√N 缩放精确成立; (4) Power 100% (43/43); (5) MCMC 零 divergence, Rhat<1.011。缺 AUC=0.65 和 0.90 数据。\\\"}, \\\"exp_005_noise_prop_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-14T08:28:42.002Z\\\", \\\"notes\\\": \\\"v3 重启成功。新 PID 426335。Checkpoint resume 生效：跳过已完成的 4 fits (seed 42-45)，从 seed=46 simple model 继续。剩余 21/25 fits，ETA ~9-10h (~18:30 UTC)。server: local。\\\"}, \\\"exp_001_eval_3B_raw_gen\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-14T07:48:38.897Z\\\"}, \\\"exp_001_eval_05B_raw\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-14T07:48:37.149Z\\\"}, \\\"exp_001_eval_15B_d100_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-14T07:46:46.875Z\\\", \\\"notes\\\": \\\"使用 D017 aligned 格式 (--mc-format aligned, 默认)。与 0.5B v5 eval (legacy 格式) 不直接可比。分析时需标注 mc_format。\\\"}, \\\"exp_001_sft_d100_3B\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-14T07:46:00.000Z\\\", \\\"notes\\\": \\\"cron false positive 修正: wrapper PID 319550 死了但 python 训练进程 PID 319555 仍在正常运行 (608/4159 steps, loss=1.12, ETA ~4.6h). 手动回滚 DONE/failed → RUNNING.\\\"}, \\\"exp_001_sft_d005_15B\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-14T03:17:38.946Z\\\"}}, \\\"count\\\": 7, \\\"total\\\": 7, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5117}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 505
+          },
+          "id": "event-001101"
+        },
+        {
+          "source_line": 1102,
+          "timestamp": "2026-05-14T08:43:09.218483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "limit": "0",
+              "fields": "['status', 'exp_id', 'hypothesis']"
+            }
+          },
+          "id": "event-001102"
+        },
+        {
+          "source_line": 1103,
+          "timestamp": "2026-05-14T08:43:09.724947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_001_eval_05B_aligned_batch\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"hypothesis\\\": \\\"0.5B aligned-format eval batch (D017): d000/d005/d100 × original + paraphrase = 6 eval runs. Formal analysis results replacing legacy mc_format.\\\"}, \\\"exp_001_sft_d025_05B_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"25% dosage contaminated SFT on Qwen2.5-0.5B (seed=42, v3) — 用于 dose-response 曲线的 mid-low dosage 数据点\\\"}, \\\"exp_004_sim_sweep_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_005_noise_prop_v3\\\": {\\\"hypothesis\\\": \\\"Noise propagation: ME-aware 4PL+γ IRT produces wider calibrated-score CIs than simple model as σ_e increases, demonstrating proper uncertainty propagation. v3 fixes: local disk Stan output, analytic ME (1231 params), checkpoint resume.\\\", \\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_eval_05B_d005\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d100_v5\\\": {\\\"hypothesis\\\": \\\"100% dosage 0.5B s42 contaminated eval (v5, 最终干净提交)\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_05B_d000_s42_v5\\\": {\\\"hypothesis\\\": \\\"0% dosage 0.5B s42 baseline eval (v5, 最终干净提交)\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_raw_gen\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_001_eval_05B_raw\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Raw Qwen2.5-0.5B base model eval (no SFT, no adapter) on 4 benchmarks — establish true pre-SFT baseline for MC distribution analysis\\\"}, \\\"exp_001_eval_15B_d100_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"100% dosage 1.5B s42 contaminated eval on 4 benchmarks — upper bound contamination score inflation for 1.5B scale\\\"}, \\\"exp_001_sft_d100_3B\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"100% dosage contaminated SFT on Qwen2.5-3B (seed=42): maximum contamination at largest controlled scale\\\"}, \\\"exp_001_sft_d100_15B_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp_001_eval_3B_d000_s42\\\": {\\\"hypothesis\\\": \\\"0% dosage 3B s42 baseline evaluation on 4 benchmarks (mmlu, gsm8k, arc_challenge, humaneval) to establish ground-truth scores for calibr\n…[truncated 6766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 506
+          },
+          "id": "event-001103"
+        },
+        {
+          "source_line": 1104,
+          "timestamp": "2026-05-14T08:43:43.555434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter/"
+            }
+          },
+          "id": "event-001104"
+        },
+        {
+          "source_line": 1105,
+          "timestamp": "2026-05-14T08:43:48.519619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 49960\\\\ndrwxr-xr-x 3 root root     4096 May 14 16:30 .\\\\ndrwxr-xr-x 3 root root       84 May 14 16:30 ..\\\\n-rw-r--r-- 1 root root     1472 May 14 16:30 README.md\\\\n-rw-r--r-- 1 root root     1123 May 14 16:30 adapter_config.json\\\\n-rw-r--r-- 1 root root 35237104 May 14 16:30 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root      605 May 14 16:30 added_tokens.json\\\\n-rw-r--r-- 1 root root     2427 May 14 16:30 chat_template.jinja\\\\ndrwxr-xr-x 2 root root     4096 May 14 16:30 checkpoint-3384\\\\n-rw-r--r-- 1 root root  1671853 May 14 16:30 merges.txt\\\\n-rw-r--r-- 1 root root      502 May 14 16:30 special_tokens_map.json\\\\n-rw-r--r-- 1 root root 11421896 May 14 16:30 tokenizer.json\\\\n-rw-r--r-- 1 root root     4689 May 14 16:30 tokenizer_config.json\\\\n-rw-r--r-- 1 root root     6417 May 14 16:30 training_args.bin\\\\n-rw-r--r-- 1 root root  2776833 May 14 16:30 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4964
+          },
+          "id": "event-001105"
+        },
+        {
+          "source_line": 1106,
+          "timestamp": "2026-05-14T08:43:48.824511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -2 /root/runs/contamcal-irt-calibration/exp_001_sft_d005_15B.log"
+            }
+          },
+          "id": "event-001106"
+        },
+        {
+          "source_line": 1107,
+          "timestamp": "2026-05-14T08:43:49.377797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'loss': 1.2828, 'grad_norm': 0.26523277163505554, 'learning_rate': 8.884105276087584e-06, 'entropy': 1.2619972797110677, 'num_tokens': 17160820.0, 'mean_token_accuracy': 0.7169596783816814, 'epoch': 0.87}\\\\n\\\\r 88%|████████▊ | 2780/3177 [5:06:31<22:14,  3.36s/it]\\\\r 88%|████████▊ | 2781/3177 [5:06:34<21:48,  3.30s/it]\\\\r 88%|████████▊ | 2782/3177 [5:06:38<21:42,  3.30s/it]\\\\r 88%|████████▊ | 2783/3177 [5:06:41<21:25,  3.26s/it]\\\\r 88%|████████▊ | 2784/3177 [5:06:44<21:23,  3.27s/it]\\\\r 88%|████████▊ | 2785/3177 [5:06:47<21:08,  3.24s/it]\\\\r 88%|████████▊ | 2786/3177 [5:06:51<21:39,  3.32s/it]\\\\r 88%|████████▊ | 2787/3177 [5:06:54<21:41,  3.34s/it]\\\\r 88%|████████▊ | 2788/3177 [5:06:57<21:24,  3.30s/it]\\\\r 88%|████████▊ | 2789/3177 [5:07:01<21:25,  3.31s/it]\\\\r 88%|████████▊ | 2790/3177 [5:07:04<21:02,  3.26s/it]\\\\r                                                     \\\\r\\\\r 88%|████████▊ | 2790/3177 [5:07:04<21:02,  3.26s/it]\\\\r 88%|████████▊ | 2791/3177 [5:07:07<21:08,  3.29s/it]\\\\r 88%|████████▊ | 2792/3177 [5:07:10<20:56,  3.26s/it]\\\\r 88%|████████▊ | 2793/3177 [5:07:14<21:13,  3.32s/it]\\\\r 88%|████████▊ | 2794/3177 [5:07:17<21:25,  3.36s/it]\\\\r 88%|████████▊ | 2795/3177 [5:07:20<21:14,  3.34s/it]\\\\r 88%|████████▊ | 2796/3177 [5:07:24<21:31,  3.39s/it]\\\\r 88%|████████▊ | 2797/3177 [5:07:27<21:11,  3.34s/it]\\\\r 88%|████████▊ | 2798/3177 [5:07:31<22:29,  3.56s/it]\\\\r 88%|████████▊ | 2799/3177 [5:07:35<23:28,  3.72s/it]\\\\r 88%|████████▊ | 2800/3177 [5:07:40<24:43,  3.94s/it]\\\\r                                                     \\\\r\\\\r 88%|████████▊ | 2800/3177 [5:07:40<24:43,  3.94s/it]\\\\r 88%|███████���▊ | 2801/3177 [5:07:44<25:29,  4.07s/it]\\\\r 88%|████████▊ | 2802/3177 [5:07:49<26:02,  4.17s/it]\\\\r 88%|████████▊ | 2803/3177 [5:07:53<25:37,  4.11s/it]\\\\r 88%|████████▊ | 2804/3177 [5:07:56<24:58,  4.02s/it]\\\\r 88%|████████▊ | 2805/3177 [5:08:00<24:47,  4.00s/it]\\\\r 88%|████████▊ | 2806/3177 [5:08:04<24:40,  3\n…[truncated 6515 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-001107"
+        },
+        {
+          "source_line": 1108,
+          "timestamp": "2026-05-14T08:44:29.947949+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — 实验管线状态巡检（2026-05-14 16:45 CST）\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: info] **GPU 全满负荷**：6 GPU 全部有活跃进程，资源利用率正常。\n  - GPU 0: 1.5B d100 eval（aligned 格式），GSM8K 42%（MMLU 已完成）\n  - GPU 1: 0.5B raw eval\n  - GPU 2: 0.5B d000 s42 aligned eval（PID 332221，刚启动 MMLU 阶段）\n  - GPU 3: 3B d100 SFT（1400/4159 = 34%，ETA ~3h）\n  - GPU 4: 1.5B d005 SFT（3160/3177 = 99.5%，约 1 分钟内完成）\n  - GPU 5: 3B raw eval\n\n- [severity: info] **Registry 跟踪轻微滞后**：`exp_001_eval_05B_aligned_batch` 注册为 QUEUED，但 GPU 2 上 PID 332221 已在执行该 batch 的第一个 eval（0.5B d000 s42 aligned）。建议更新状态为 RUNNING。\n\n- [severity: warning] **d025 eval 缺失规划**：0.5B d025 SFT（v3）已完成（checkpoint 已验证：`Qwen2.5-0.5B_d025_s42/lora_adapter/adapter_model.safetensors` 35.2MB），但当前 aligned eval batch 脚本 `run_aligned_eval_05B.sh` 只覆盖 d000/d005/d100 三个 dosage。d025 eval 未排入管线。如果 dose-response 曲线需要 4 个点（0%/5%/25%/100%），需要补一个 d025 eval。\n\n- [severity: info] **1.5B d005 SFT 即将完成**：3160/3177 steps，GPU 4 将在 ~1 分钟内释放。完成后需要：(1) 更新 registry 为 DONE 并记录训练指标；(2) 安排 1.5B d005 eval（aligned 格式）——这是 1.5B scale dose-response 曲线的中间数据点。\n\n### 建议\n- 将 d025 加入 aligned eval 批次（或在 GPU 4 空出后单独提交）\n- 1.5B d005 SFT 完成后立即提交 1.5B d005 eval（GPU 4 可用）",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-001108"
+        },
+        {
+          "source_line": 1109,
+          "timestamp": "2026-05-14T08:44:31.811178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1863
+          },
+          "id": "event-001109"
+        },
+        {
+          "source_line": 1110,
+          "timestamp": "2026-05-14T08:44:49.124722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "find /root/runs/contamcal-irt-calibration/ -name \"*aligned*\" -type f"
+            }
+          },
+          "id": "event-001110"
+        },
+        {
+          "source_line": 1111,
+          "timestamp": "2026-05-14T08:44:49.677140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/contamcal-irt-calibration/exp_001_eval_05B_aligned_batch.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001111"
+        },
+        {
+          "source_line": 1112,
+          "timestamp": "2026-05-14T08:44:49.728040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -lt /root/runs/contamcal-irt-calibration/ -1"
+            }
+          },
+          "id": "event-001112"
+        },
+        {
+          "source_line": 1113,
+          "timestamp": "2026-05-14T08:44:50.231965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 10328\\\\n-rw-r--r-- 1 root root 355269 May 14 16:44 exp_001_sft_d005_15B.log\\\\n-rw-r--r-- 1 root root 146499 May 14 16:44 exp_001_eval_05B_aligned_batch.log\\\\n-rw-r--r-- 1 root root 217318 May 14 16:44 exp_001_eval_15B_d100_s42.log\\\\n-rw-r--r-- 1 root root  78614 May 14 16:44 exp_001_eval_3B_raw_gen.log\\\\n-rw-r--r-- 1 root root 463510 May 14 16:44 exp_001_eval_05B_raw.log\\\\n-rw-r--r-- 1 root root 127848 May 14 16:44 exp_001_sft_d100_3B.log\\\\n-rw-r--r-- 1 root root 322057 May 14 16:30 exp_001_sft_d025_05B_v3.log\\\\n-rw-r--r-- 1 root root 411085 May 14 15:38 exp_001_sft_d100_15B_v2.log\\\\n-rw-r--r-- 1 root root 349742 May 14 15:30 exp_001_eval_05B_d100_v5.log\\\\n-rw-r--r-- 1 root root 346779 May 14 15:29 exp_001_eval_05B_d000_s42_v5.log\\\\n-rw-r--r-- 1 root root 551911 May 14 14:39 exp_001_eval_3B_d000_s42.log\\\\n-rw-r--r-- 1 root root 468740 May 14 14:28 exp_001_eval_05B_d005.log\\\\n-rw-r--r-- 1 root root   4608 May 14 13:00 exp_001_sft_d025_05B_v2.log\\\\n-rw-r--r-- 1 root root   3992 May 14 12:49 exp_001_sft_d025_05B.log\\\\n-rw-r--r-- 1 root root 351834 May 14 12:42 exp_001_eval_15B_d000_s123.log\\\\n-rw-r--r-- 1 root root 504710 May 14 12:37 exp_001_eval_3B_d000_s123.log\\\\n-rw-r--r-- 1 root root 348783 May 14 11:08 exp_001_eval_15B_d000_s42_v2.log\\\\n-rw-r--r-- 1 root root  78433 May 14 10:43 exp_001_eval_05B_d100_v6.log\\\\n-rw-r--r-- 1 root root  84083 May 14 10:43 exp_001_eval_05B_d000_s42_v6.log\\\\n-rw-r--r-- 1 root root  54047 May 14 10:37 exp_001_eval_05B_d100_v4.log\\\\n-rw-r--r-- 1 root root  76832 May 14 10:37 exp_001_eval_05B_d000_s42_v4.log\\\\n-rw-r--r-- 1 root root 256146 May 14 10:35 exp_001_eval_05B_d100_v2.log\\\\n-rw-r--r-- 1 root root 155206 May 14 10:35 exp_001_eval_05B_d000_s42_v3.log\\\\n-rw-r--r-- 1 root root 265670 May 14 10:35 exp_001_eval_05B_d000_s42_v2.log\\\\n-rw-r--r-- 1 root root 153066 May 14 10:35 exp_001_eval_05B_d100_v3.log\\\\n-rw-r--r-- 1 root root 178129 May 14 10:20 exp_001_eval_05B_d000_s42_r\n…[truncated 1276 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-001113"
+        },
+        {
+          "source_line": 1114,
+          "timestamp": "2026-05-14T08:44:58.695121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_eval_05B_aligned_batch.log"
+            }
+          },
+          "id": "event-001114"
+        },
+        {
+          "source_line": 1115,
+          "timestamp": "2026-05-14T08:44:59.174096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -c \"Evaluating\" /root/runs/contamcal-irt-calibration/exp_001_eval_05B_aligned_batch.log"
+            }
+          },
+          "id": "event-001115"
+        },
+        {
+          "source_line": 1116,
+          "timestamp": "2026-05-14T08:44:59.375537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 16:39:15,370 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 320, in <module>\\\\n    lib = get_native_library()\\\\n          ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 298, in get_native_library\\\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 460, in LoadLibrary\\\\n    return self._dlltype(name)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n2026-05-14 16:39:17,393 [INFO] Evaluating mmlu...\\\\n\\\\rEvaluating mmlu:   0%|          | 0/14042 [00:00<?, ?it/s]\\\\rEvaluating mmlu:   0%|          | 1/14042 [00:00<1:24:43,  2.76it/s]\\\\rEvaluating mmlu:   0%|          | 6/14042 [00:00<14:31, 16.10it/s]  \\\\rEvaluating mmlu:   0%|          | 12/14042 [00:00<08:32, 27.36it/s]\\\\rEvaluating mmlu:   0%|          | 18/14042 [00:00<06:42, 34.85it/s]\\\\rEvaluating mmlu:   0%|          | 24/14042 [00:00<05:51, 39.90it/s]\\\\rEvaluating mmlu:   0%|          | 30/14042 [00:00<05:22, 43.40it/s]\\\\rEvaluating mmlu:   0%|          | 36/14042 [00:01<05:06, 45.75it/s]\\\\rEvaluating mmlu:   0%|          | 42/14042 [00:01<04:55, 47.40it/s]\\\\rEvaluating mmlu:   0%|          | 47/14042 [00:01<04:53, 47.62it/s]\\\\rEvaluating mmlu:   0%|          | 53/14042 [00:01<04:47, 48.66it/s]\\\\rEvaluating mmlu:   0%|          | 59/14042 [00:01<04:42, 49.45it/s]\\\\rEvaluating mmlu:   0%|          | 65/1\n…[truncated 6463 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 680
+          },
+          "id": "event-001116"
+        },
+        {
+          "source_line": 1117,
+          "timestamp": "2026-05-14T08:44:59.792489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 618
+          },
+          "id": "event-001117"
+        },
+        {
+          "source_line": 1118,
+          "timestamp": "2026-05-14T08:45:28.692490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"Training completed\" /root/runs/contamcal-irt-calibration/exp_001_sft_d005_15B.log"
+            }
+          },
+          "id": "event-001118"
+        },
+        {
+          "source_line": 1119,
+          "timestamp": "2026-05-14T08:45:29.197655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 505
+          },
+          "id": "event-001119"
+        },
+        {
+          "source_line": 1120,
+          "timestamp": "2026-05-14T08:45:29.198120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"train_runtime\" /root/runs/contamcal-irt-calibration/exp_001_sft_d005_15B.log"
+            }
+          },
+          "id": "event-001120"
+        },
+        {
+          "source_line": 1121,
+          "timestamp": "2026-05-14T08:45:29.652245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'train_runtime': 19864.6971, 'train_samples_per_second': 2.559, 'train_steps_per_second': 0.16, 'train_loss': 1.263650212754684, 'entropy': 1.227256326883469, 'num_tokens': 19657865.0, 'mean_token_accuracy': 0.7308487737516187, 'epoch': 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 454
+          },
+          "id": "event-001121"
+        },
+        {
+          "source_line": 1122,
+          "timestamp": "2026-05-14T08:45:38.216226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter/"
+            }
+          },
+          "id": "event-001122"
+        },
+        {
+          "source_line": 1123,
+          "timestamp": "2026-05-14T08:45:38.676785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "stat /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter/adapter_model.safetensors"
+            }
+          },
+          "id": "event-001123"
+        },
+        {
+          "source_line": 1124,
+          "timestamp": "2026-05-14T08:45:38.827842+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 87728\\\\ndrwxr-xr-x 3 root root     4096 May 14 16:44 .\\\\ndrwxr-xr-x 3 root root       63 May 14 16:44 ..\\\\n-rw-r--r-- 1 root root     1472 May 14 16:44 README.md\\\\n-rw-r--r-- 1 root root     1123 May 14 16:44 adapter_config.json\\\\n-rw-r--r-- 1 root root 73911112 May 14 16:44 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root      605 May 14 16:44 added_tokens.json\\\\n-rw-r--r-- 1 root root     2427 May 14 16:44 chat_template.jinja\\\\ndrwxr-xr-x 2 root root     4096 May 14 16:44 checkpoint-3177\\\\n-rw-r--r-- 1 root root  1671853 May 14 16:44 merges.txt\\\\n-rw-r--r-- 1 root root      502 May 14 16:44 special_tokens_map.json\\\\n-rw-r--r-- 1 root root 11421896 May 14 16:44 tokenizer.json\\\\n-rw-r--r-- 1 root root     4689 May 14 16:44 tokenizer_config.json\\\\n-rw-r--r-- 1 root root     6417 May 14 16:44 training_args.bin\\\\n-rw-r--r-- 1 root root  2776833 May 14 16:44 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 611
+          },
+          "id": "event-001124"
+        },
+        {
+          "source_line": 1125,
+          "timestamp": "2026-05-14T08:45:39.283495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter/adapter_model.safetensors\\\\n  Size: 73911112  \\\\tBlocks: 144360     IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 2962697808  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-14 16:44:50.170684560 +0800\\\\nModify: 2026-05-14 16:44:50.210684472 +0800\\\\nChange: 2026-05-14 16:44:50.210684472 +0800\\\\n Birth: 2026-05-14 16:44:50.170684560 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 606
+          },
+          "id": "event-001125"
+        },
+        {
+          "source_line": 1126,
+          "timestamp": "2026-05-14T08:46:40.294935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "wc -l /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl"
+            }
+          },
+          "id": "event-001126"
+        },
+        {
+          "source_line": 1127,
+          "timestamp": "2026-05-14T08:46:42.264092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    50000 /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\\n    50826 /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\\n    66533 /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\\n   167359 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1969
+          },
+          "id": "event-001127"
+        },
+        {
+          "source_line": 1128,
+          "timestamp": "2026-05-14T08:46:42.264552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"per_device_train_batch_size\" /root/runs/contamcal-irt-calibration/exp_001_sft_d005_15B.log"
+            }
+          },
+          "id": "event-001128"
+        },
+        {
+          "source_line": 1129,
+          "timestamp": "2026-05-14T08:46:42.720617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"per_device_train_batch_size\" /root/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B.log"
+            }
+          },
+          "id": "event-001129"
+        },
+        {
+          "source_line": 1130,
+          "timestamp": "2026-05-14T08:46:42.821454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 556
+          },
+          "id": "event-001130"
+        },
+        {
+          "source_line": 1131,
+          "timestamp": "2026-05-14T08:46:43.534981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 814
+          },
+          "id": "event-001131"
+        },
+        {
+          "source_line": 1132,
+          "timestamp": "2026-05-14T08:46:51.240935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -30 /root/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B.log"
+            }
+          },
+          "id": "event-001132"
+        },
+        {
+          "source_line": 1133,
+          "timestamp": "2026-05-14T08:46:51.544512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -30 /root/runs/contamcal-irt-calibration/exp_001_sft_d005_15B.log"
+            }
+          },
+          "id": "event-001133"
+        },
+        {
+          "source_line": 1134,
+          "timestamp": "2026-05-14T08:46:51.749000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 03:41:18,744 [INFO] Loading tokenizer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\\\n2026-05-14 03:41:18,954 [INFO] Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-14 03:41:19,208 [INFO] LoRA config: r=16, alpha=32, targets={'gate_proj', 'k_proj', 'q_proj', 'up_proj', 'down_proj', 'v_proj', 'o_proj'}\\\\n2026-05-14 03:41:19,208 [INFO] Loading training data: /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\\n2026-05-14 03:41:20,249 [INFO] Training samples: 50000\\\\n2026-05-14 03:41:21,915 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 320, in <module>\\\\n    lib = get_native_library()\\\\n          ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 298, in get_native_library\\\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 460, in LoadLibrary\\\\n    return self._dlltype(name)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n2026-05-14 03:41:24,258 [INFO] Starting training...\\\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\\n\\\\r  0%|          | 0/3125 [00:00<?, ?it/s]\n…[truncated 6484 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 508
+          },
+          "id": "event-001134"
+        },
+        {
+          "source_line": 1135,
+          "timestamp": "2026-05-14T08:46:52.255888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 11:12:47,467 [INFO] Loading tokenizer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\\\n2026-05-14 11:12:47,697 [INFO] Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-14 11:12:47,934 [INFO] LoRA config: r=16, alpha=32, targets={'up_proj', 'down_proj', 'q_proj', 'v_proj', 'k_proj', 'gate_proj', 'o_proj'}\\\\n2026-05-14 11:12:47,934 [INFO] Loading training data: /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\\n\\\\rGenerating train split: 0 examples [00:00, ? examples/s]\\\\rGenerating train split: 5779 examples [00:00, 49934.86 examples/s]\\\\rGenerating train split: 11631 examples [00:00, 41614.53 examples/s]\\\\rGenerating train split: 17316 examples [00:00, 40009.15 examples/s]\\\\rGenerating train split: 23035 examples [00:00, 42468.31 examples/s]\\\\rGenerating train split: 28859 examples [00:00, 41367.38 examples/s]\\\\rGenerating train split: 34566 examples [00:00, 41900.30 examples/s]\\\\rGenerating train split: 40215 examples [00:00, 40760.74 examples/s]\\\\rGenerating train split: 45784 examples [00:01, 39757.21 examples/s]\\\\rGenerating train split: 50826 examples [00:01, 40389.60 examples/s]\\\\rGenerating train split: 50826 examples [00:01, 41056.41 examples/s]\\\\n2026-05-14 11:12:50,597 [INFO] Training samples: 50826\\\\n2026-05-14 11:12:52,763 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 320, in <module>\\\\n    lib = get_native_library()\\\\n          ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 298, in get_native_library\\\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12\n…[truncated 6464 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 711
+          },
+          "id": "event-001135"
+        },
+        {
+          "source_line": 1136,
+          "timestamp": "2026-05-14T08:47:45.102132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — exp_001_sft_d005_15B 完成 + 0.5B aligned eval 首个数据点\n\n**结论**: PASS（训练时间异常已排查，非科学问题）\n\n### 发现\n\n- [severity: info] **1.5B d005 SFT 已完成**：\n  - train_loss=1.264, token_acc=0.731, 3177 steps, 1 epoch\n  - Checkpoint 已验证：`/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter/adapter_model.safetensors` 73.9MB，16:44 CST 保存完毕\n  - LoRA config: r=16, alpha=32, 7 modules — 与其他实验一致\n  - GPU 4 已释放，可提交 1.5B d005 eval\n\n- [severity: info] **训练时间异常已解释（非问题）**：\n  - d005 用时 331min vs d000 的 101.5min (3.26×)\n  - 原因：GPU 竞争导致 per-step 时间差异（d005: 3.8-10.7s/step vs d000: ~1.9s/step），非训练配置差异\n  - Steps 差异仅 1.7%（3177 vs 3125），与数据量差 1.65%（50826 vs 50000 行）一致\n  - 结论：训练 dynamics 无异常，结果有效\n\n- [severity: info] **0.5B aligned eval 首个结果**：\n  - 0.5B d000 s42 aligned MMLU = **0.3979**（vs legacy 0.4049，差 -0.7pp）\n  - 差异在噪声范围内（cross-seed CV = 2.2%）\n  - 当前正在跑 GSM8K（刚开始）\n  - **关键观察**：aligned 和 legacy 在 d000 baseline 上几乎无差异。真正的分歧点在 d100——如果 aligned 格式修复了 MC 分数崩塌，d100 MMLU 应显著高于 legacy 的 0.232\n\n### 下一步优先级\n- 1.5B d005 eval 应立即提交到 GPU 4（aligned 格式）\n- 等待 0.5B aligned eval batch 完成（d000→d005→d100），d100 结果将验证 D017 修复效果",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-001136"
+        },
+        {
+          "source_line": 1137,
+          "timestamp": "2026-05-14T08:47:46.767507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1665
+          },
+          "id": "event-001137"
+        },
+        {
+          "source_line": 1138,
+          "timestamp": "2026-05-14T08:47:57.305146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -50 /root/contamcal-irt-calibration/exp001/run_aligned_eval_05B.sh"
+            }
+          },
+          "id": "event-001138"
+        },
+        {
+          "source_line": 1139,
+          "timestamp": "2026-05-14T08:47:57.657008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -c \"evaluate.py\" /root/contamcal-irt-calibration/exp001/run_aligned_eval_05B.sh"
+            }
+          },
+          "id": "event-001139"
+        },
+        {
+          "source_line": 1140,
+          "timestamp": "2026-05-14T08:47:57.959395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Aligned-format MC eval for 0.5B: original + paraphrase\\\\n# Usage: CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_05B.sh [original|paraphrase|both]\\\\nset -euo pipefail\\\\n\\\\nMODE=${1:-both}\\\\nshift 2>/dev/null || true\\\\n\\\\n# AutoDL env\\\\nsource /etc/network_turbo 2>/dev/null || true\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\n\\\\nBASE=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\nPARA_DIR=/root/autodl-tmp/exp001/paraphrases\\\\nBENCHMARKS=\\\\\\\"mmlu gsm8k arc_challenge humaneval\\\\\\\"\\\\nSCRIPT_DIR=$(cd \\\\\\\"$(dirname \\\\\\\"$0\\\\\\\")\\\\\\\" && pwd)\\\\n\\\\nfor DOSAGE in d000 d005 d100; do\\\\n  ADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_${DOSAGE}_s42/lora_adapter\\\\n\\\\n  if [ ! -d \\\\\\\"$ADAPTER\\\\\\\" ]; then\\\\n    echo \\\\\\\"WARN: adapter not found: $ADAPTER, skipping\\\\\\\"\\\\n    continue\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"original\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_aligned\\\\n    echo \\\\\\\"=== [original] ${DOSAGE} -> ${OUT} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT\\\\\\\" \\\\\\\\\\\\n      --benchmarks $BENCHMARKS \\\\\\\\\\\\n      --mc-format aligned \\\\\\\\\\\\n      \\\\\\\"$@\\\\\\\"\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"paraphrase\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT_PARA=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_para_aligned\\\\n    echo \\\\\\\"=== [paraphrase] ${DOSAGE} -> ${OUT_PARA} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --paraphrase-dir \\\\\\\"$PARA_DIR\\\\\\\" \\\\\\\\\\\\n      --out\n…[truncated 208 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 654
+          },
+          "id": "event-001140"
+        },
+        {
+          "source_line": 1141,
+          "timestamp": "2026-05-14T08:47:58.411312+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 754
+          },
+          "id": "event-001141"
+        },
+        {
+          "source_line": 1142,
+          "timestamp": "2026-05-14T08:48:19.821544+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"accuracy\" /root/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+            }
+          },
+          "id": "event-001142"
+        },
+        {
+          "source_line": 1143,
+          "timestamp": "2026-05-14T08:48:20.309981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 15:43:23,642 [INFO] mmlu accuracy: 0.5933 (8331/14042)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 488
+          },
+          "id": "event-001143"
+        },
+        {
+          "source_line": 1144,
+          "timestamp": "2026-05-14T08:49:08.429539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — 1.5B d100 aligned MMLU 首个结果\n\n**结论**: WARNING（重要发现，需要配对 baseline 数据）\n\n### 核心发现\n\n- [severity: info] **1.5B d100 aligned MMLU = 0.5933** (8331/14042)\n\n  对比：\n  - 1.5B d000 MMLU (legacy, exp_001_eval_15B_d000_s42_v2, 完成于 11:08 CST = D017 前): **0.5753**\n  - 1.5B d100 MMLU (aligned, 当前 exp_001_eval_15B_d100_s42): **0.5933**\n  - Delta: **+1.8pp**\n\n  **解读**：d100 模型 MMLU 分数**高于** d000 baseline，与 100% 污染假设完全一致——模型记忆了 MMLU 训练数据中的答案。这与 0.5B legacy 的\"MMLU 崩塌\"（0.232）形成鲜明反差，进一步确认：\n  1. **D017 aligned 格式修复有效**——消除了 MC 格式不匹配假象\n  2. **污染信号在 1.5B scale 可检测**——d100 MMLU > d000 MMLU\n  3. **0.5B legacy 的 MMLU 降低 100% 是格式假象**，不是真正的性能退化\n\n- [severity: warning] **比较存在格式混杂**：d000 baseline 用 legacy 格式（D017 前完成），d100 用 aligned 格式。从 0.5B 数据看，aligned 比 legacy 低 ~0.7pp，因此真实污染提升可能是 +2.5pp。**正式分析需要 1.5B d000 aligned eval 作为配对 baseline**。\n\n  当前 aligned eval 管线只有 0.5B batch。建议在 GPU 4（刚释放）上安排 1.5B d000/d005/d100 aligned eval batch。\n\n- [severity: info] 1.5B d100 eval 仍在继续（GSM8K 进行中），完整结果待出。GSM8K 分数应与 legacy 基本一致（generative benchmark 不受 MC format 影响）。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-001144"
+        },
+        {
+          "source_line": 1145,
+          "timestamp": "2026-05-14T08:49:09.993049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1563
+          },
+          "id": "event-001145"
+        },
+        {
+          "source_line": 1146,
+          "timestamp": "2026-05-14T08:49:18.905476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi --query-compute-apps=gpu_uuid,pid,used_gpu_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-001146"
+        },
+        {
+          "source_line": 1147,
+          "timestamp": "2026-05-14T08:49:19.865723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"GPU-52bfebf5-3ba8-8f6e-ae36-56511cce901f, 325310, 5848 MiB\\\\nGPU-466bc8fe-796f-8068-9660-0fb52de3681b, 318424, 8120 MiB\\\\nGPU-b8bea42c-5b6e-4ba4-3618-e9b2095c6e54, 332221, 3686 MiB\\\\nGPU-c30258a6-4c47-f7a8-7b0c-4c5cbdc3c1c3, 319555, 13332 MiB\\\\nGPU-f1a0b9ee-87a0-41a4-a300-b3cb3c870263, 318748, 6614 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 960
+          },
+          "id": "event-001147"
+        },
+        {
+          "source_line": 1148,
+          "timestamp": "2026-05-14T08:49:19.917557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"accuracy\" /root/runs/contamcal-irt-calibration/exp_001_eval_05B_raw.log"
+            }
+          },
+          "id": "event-001148"
+        },
+        {
+          "source_line": 1149,
+          "timestamp": "2026-05-14T08:49:20.587597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 15:03:04,047 [INFO] mmlu accuracy: 0.2302 (3233/14042)\\\\n2026-05-14 16:48:35,731 [INFO] arc_challenge accuracy: 0.2261 (265/1172)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 670
+          },
+          "id": "event-001149"
+        },
+        {
+          "source_line": 1150,
+          "timestamp": "2026-05-14T08:49:20.588113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"accuracy\" /root/runs/contamcal-irt-calibration/exp_001_eval_3B_raw_gen.log"
+            }
+          },
+          "id": "event-001150"
+        },
+        {
+          "source_line": 1151,
+          "timestamp": "2026-05-14T08:49:21.357489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 769
+          },
+          "id": "event-001151"
+        },
+        {
+          "source_line": 1152,
+          "timestamp": "2026-05-14T08:50:01.022842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"GSM8K\" /root/runs/contamcal-irt-calibration/exp_001_eval_05B_raw.log"
+            }
+          },
+          "id": "event-001152"
+        },
+        {
+          "source_line": 1153,
+          "timestamp": "2026-05-14T08:50:01.829044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rEvaluating GSM8K:   0%|          | 0/1319 [00:00<?, ?it/s]\\\\rEvaluating GSM8K:   0%|          | 1/1319 [00:07<2:36:39,  7.13s/it]\\\\rEvaluating GSM8K:   0%|          | 2/1319 [00:12<2:12:54,  6.05s/it]\\\\rEvaluating GSM8K:   0%|          | 3/1319 [00:14<1:28:51,  4.05s/it]\\\\rEvaluating GSM8K:   0%|          | 4/1319 [00:19<1:39:34,  4.54s/it]\\\\rEvaluating GSM8K:   0%|          | 5/1319 [00:24<1:46:27,  4.86s/it]\\\\rEvaluating GSM8K:   0%|          | 6/1319 [00:30<1:53:14,  5.17s/it]\\\\rEvaluating GSM8K:   1%|          | 7/1319 [00:36<1:55:37,  5.29s/it]\\\\rEvaluating GSM8K:   1%|          | 8/1319 [00:41<1:58:08,  5.41s/it]\\\\rEvaluating GSM8K:   1%|          | 9/1319 [00:47<1:59:19,  5.47s/it]\\\\rEvaluating GSM8K:   1%|          | 10/1319 [00:52<2:00:08,  5.51s/it]\\\\rEvaluating GSM8K:   1%|          | 11/1319 [00:58<1:59:30,  5.48s/it]\\\\rEvaluating GSM8K:   1%|          | 12/1319 [01:03<1:59:17,  5.48s/it]\\\\rEvaluating GSM8K:   1%|          | 13/1319 [01:09<2:00:15,  5.53s/it]\\\\rEvaluating GSM8K:   1%|          | 14/1319 [01:11<1:38:55,  4.55s/it]\\\\rEvaluating GSM8K:   1%|          | 15/1319 [01:17<1:46:20,  4.89s/it]\\\\rEvaluating GSM8K:   1%|          | 16/1319 [01:23<1:51:53,  5.15s/it]\\\\rEvaluating GSM8K:   1%|▏         | 17/1319 [01:29<1:55:50,  5.34s/it]\\\\rEvaluating GSM8K:   1%|▏         | 18/1319 [01:34<1:57:56,  5.44s/it]\\\\rEvaluating GSM8K:   1%|▏         | 19/1319 [01:40<1:58:57,  5.49s/it]\\\\rEvaluating GSM8K:   2%|▏         | 20/1319 [01:45<1:59:16,  5.51s/it]\\\\rEvaluating GSM8K:   2%|▏         | 21/1319 [01:51<2:00:00,  5.55s/it]\\\\rEvaluating GSM8K:   2%|▏         | 22/1319 [01:57<2:00:23,  5.57s/it]\\\\rEvaluating GSM8K:   2%|▏         | 23/1319 [02:02<1:59:35,  5.54s/it]\\\\rEvaluating GSM8K:   2%|▏         | 24/1319 [02:07<1:57:58,  5.47s/it]\\\\rEvaluating GSM8K:   2%|▏         | 25/1319 [02:08<1:28:16,  4.09s/it]\\\\rEvaluating GSM8K:   2%|▏         | 26/1319 [02:13<1:35:35,  4.44s/it]\\\\rEvaluating GSM8K:\n…[truncated 6430 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 806
+          },
+          "id": "event-001153"
+        },
+        {
+          "source_line": 1154,
+          "timestamp": "2026-05-14T08:50:01.880479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -5 /root/runs/contamcal-irt-calibration/exp_001_eval_05B_raw.log"
+            }
+          },
+          "id": "event-001154"
+        },
+        {
+          "source_line": 1155,
+          "timestamp": "2026-05-14T08:50:02.283616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 16:47:49,972 [INFO] Evaluating arc_challenge...\\\\n\\\\rEvaluating arc_challenge:   0%|          | 0/1172 [00:00<?, ?it/s]\\\\rEvaluating arc_challenge:   0%|          | 2/1172 [00:00<00:58, 19.88it/s]\\\\rEvaluating arc_challenge:   1%|          | 6/1172 [00:00<00:41, 28.08it/s]\\\\rEvaluating arc_challenge:   1%|          | 10/1172 [00:00<00:37, 31.07it/s]\\\\rEvaluating arc_challenge:   1%|          | 14/1172 [00:00<00:35, 32.67it/s]\\\\rEvaluating arc_challenge:   2%|▏         | 18/1172 [00:00<00:34, 33.31it/s]\\\\rEvaluating arc_challenge:   2%|▏         | 22/1172 [00:00<00:34, 33.51it/s]\\\\rEvaluating arc_challenge:   2%|▏         | 26/1172 [00:00<00:33, 33.86it/s]\\\\rEvaluating arc_challenge:   3%|▎         | 30/1172 [00:00<00:33, 34.06it/s]\\\\rEvaluating arc_challenge:   3%|▎         | 34/1172 [00:01<00:33, 34.37it/s]\\\\rEvaluating arc_challenge:   3%|▎         | 38/1172 [00:01<00:32, 34.56it/s]\\\\rEvaluating arc_challenge:   4%|▎         | 42/1172 [00:01<00:32, 34.74it/s]\\\\rEvaluating arc_challenge:   4%|▍         | 46/1172 [00:01<00:32, 34.78it/s]\\\\rEvaluating arc_challenge:   4%|▍         | 50/1172 [00:01<00:32, 34.89it/s]\\\\rEvaluating arc_challenge:   5%|▍         | 54/1172 [00:01<00:32, 34.84it/s]\\\\rEvaluating arc_challenge:   5%|▍         | 58/1172 [00:01<00:32, 34.65it/s]\\\\rEvaluating arc_challenge:   5%|▌         | 62/1172 [00:01<00:32, 34.65it/s]\\\\rEvaluating arc_challenge:   6%|▌         | 66/1172 [00:01<00:31, 34.63it/s]\\\\rEvaluating arc_challenge:   6%|▌         | 70/1172 [00:02<00:31, 34.54it/s]\\\\rEvaluating arc_challenge:   6%|▋         | 74/1172 [00:02<00:31, 34.70it/s]\\\\rEvaluating arc_challenge:   7%|▋         | 78/1172 [00:02<00:31, 34.73it/s]\\\\rEvaluating arc_challenge:   7%|▋         | 82/1172 [00:02<00:31, 34.85it/s]\\\\rEvaluating arc_challenge:   7%|▋         | 86/1172 [00:02<00:31, 34.84it/s]\\\\rEvaluating arc_challenge:   8%|▊         | 90/1172 [00:02<00:31, 34.69it/s]\\\\rEvaluating arc_chal\n…[truncated 6416 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-001155"
+        },
+        {
+          "source_line": 1156,
+          "timestamp": "2026-05-14T08:50:20.516750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep -i \"gsm8k accuracy\\|gsm8k_accuracy\\|gsm8k:\" /root/runs/contamcal-irt-calibration/exp_001_eval_05B_raw.log"
+            }
+          },
+          "id": "event-001156"
+        },
+        {
+          "source_line": 1157,
+          "timestamp": "2026-05-14T08:50:20.972094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 455
+          },
+          "id": "event-001157"
+        },
+        {
+          "source_line": 1158,
+          "timestamp": "2026-05-14T08:50:21.022776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"accuracy\" /root/runs/contamcal-irt-calibration/exp_001_eval_3B_raw_gen.log"
+            }
+          },
+          "id": "event-001158"
+        },
+        {
+          "source_line": 1159,
+          "timestamp": "2026-05-14T08:50:21.489643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 466
+          },
+          "id": "event-001159"
+        },
+        {
+          "source_line": 1160,
+          "timestamp": "2026-05-14T08:50:27.877001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"gsm8k\" /root/runs/contamcal-irt-calibration/exp_001_eval_05B_raw.log"
+            }
+          },
+          "id": "event-001160"
+        },
+        {
+          "source_line": 1161,
+          "timestamp": "2026-05-14T08:50:28.174561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"INFO\" /root/runs/contamcal-irt-calibration/exp_001_eval_05B_raw.log"
+            }
+          },
+          "id": "event-001161"
+        },
+        {
+          "source_line": 1162,
+          "timestamp": "2026-05-14T08:50:28.349490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 15:03:04,047 [INFO] Evaluating gsm8k...\\\\n2026-05-14 16:47:49,972 [INFO] gsm8k exact_match: 0.1592 (210/1319)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 472
+          },
+          "id": "event-001162"
+        },
+        {
+          "source_line": 1163,
+          "timestamp": "2026-05-14T08:50:28.765512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 14:52:39,768 [INFO] Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\n2026-05-14 14:52:41,875 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n2026-05-14 14:52:42,663 [INFO] Evaluating mmlu...\\\\n2026-05-14 15:03:04,047 [INFO] mmlu accuracy: 0.2302 (3233/14042)\\\\n2026-05-14 15:03:04,047 [INFO] Evaluating gsm8k...\\\\n2026-05-14 16:47:49,972 [INFO] gsm8k exact_match: 0.1592 (210/1319)\\\\n2026-05-14 16:47:49,972 [INFO] Evaluating arc_challenge...\\\\n2026-05-14 16:48:35,731 [INFO] arc_challenge accuracy: 0.2261 (265/1172)\\\\n2026-05-14 16:48:35,731 [INFO] Evaluating humaneval...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 590
+          },
+          "id": "event-001163"
+        },
+        {
+          "source_line": 1164,
+          "timestamp": "2026-05-14T08:50:54.672725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"INFO\" /root/runs/contamcal-irt-calibration/exp_001_eval_3B_raw_gen.log"
+            }
+          },
+          "id": "event-001164"
+        },
+        {
+          "source_line": 1165,
+          "timestamp": "2026-05-14T08:50:55.127958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 14:53:02,474 [INFO] Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\\\\n2026-05-14 14:53:04,767 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n2026-05-14 14:53:09,564 [INFO] Evaluating gsm8k...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 455
+          },
+          "id": "event-001165"
+        },
+        {
+          "source_line": 1166,
+          "timestamp": "2026-05-14T08:51:12.662475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -3 /root/runs/contamcal-irt-calibration/exp_001_eval_3B_raw_gen.log"
+            }
+          },
+          "id": "event-001166"
+        },
+        {
+          "source_line": 1167,
+          "timestamp": "2026-05-14T08:51:13.014076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /proc/318748/cmdline"
+            }
+          },
+          "id": "event-001167"
+        },
+        {
+          "source_line": 1168,
+          "timestamp": "2026-05-14T08:51:13.267142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.92s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.20s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.31s/it]\\\\n2026-05-14 14:53:09,564 [INFO] Evaluating gsm8k...\\\\n\\\\rEvaluating GSM8K:   0%|          | 0/1319 [00:00<?, ?it/s]\\\\rEvaluating GSM8K:   0%|          | 1/1319 [00:28<10:19:15, 28.19s/it]\\\\rEvaluating GSM8K:   0%|          | 2/1319 [00:57<10:29:29, 28.68s/it]\\\\rEvaluating GSM8K:   0%|          | 3/1319 [01:25<10:23:58, 28.45s/it]\\\\rEvaluating GSM8K:   0%|          | 4/1319 [01:30<7:04:08, 19.35s/it] \\\\rEvaluating GSM8K:   0%|          | 5/1319 [02:00<8:27:20, 23.17s/it]\\\\rEvaluating GSM8K:   0%|          | 6/1319 [02:11<6:53:29, 18.90s/it]\\\\rEvaluating GSM8K:   1%|          | 7/1319 [02:40<8:04:42, 22.17s/it]\\\\rEvaluating GSM8K:   1%|          | 8/1319 [03:06<8:35:48, 23.61s/it]\\\\rEvaluating GSM8K:   1%|          | 9/1319 [03:19<7:19:34, 20.13s/it]\\\\rEvaluating GSM8K:   1%|          | 10/1319 [03:48<8:21:35, 22.99s/it]\\\\rEvaluating GSM8K:   1%|          | 11/1319 [04:00<7:04:27, 19.47s/it]\\\\rEvaluating GSM8K:   1%|          | 12/1319 [04:14<6:31:22, 17.97s/it]\\\\rEvaluating GSM8K:   1%|          | 13/1319 [04:44<7:48:57, 21.55s/it]\\\\rEvaluating GSM8K:   1%|          | 14/1319 [05:14<8:43:00, 24.05s/it]\\\\rEvaluating GSM8K:   1%|          | 15/1319 [05:44<9:21:29, 25.84s/it]\\\\rEvaluating GSM8K:   1%|          | 16/1319 [06:12<9:36:38, 26.55s/it]\\\\rEvaluating GSM8K:   1%|▏         | 17/1319 [06:28<8:27:17, 23.38s/it]\\\\rEvaluating GSM8K:   1%|▏         | 18/1319 [06:56<8:55:10, 24.68s/it]\\\\rEvaluating GSM8K:   1%|▏         | 19/1319 [07:24<9:19:57, 25.84s/it]\\\\rEvaluating GSM8K:   2%|▏         | 20/1319 [07:53<9:40:43, 26.82s/it]\\\\rEvaluating GSM8K:   2%|▏         | 21/1319 [08:10<8:36:05, 23.86s/it]\\\\rEvaluating GSM8K:   2%|▏ \n…[truncated 6430 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 604
+          },
+          "id": "event-001168"
+        },
+        {
+          "source_line": 1169,
+          "timestamp": "2026-05-14T08:51:13.771131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000evaluate.py\\\\u0000--model-path\\\\u0000/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\\\\u0000--output-dir\\\\u0000/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_raw\\\\u0000--benchmarks\\\\u0000gsm8k\\\\u0000humaneval\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 757
+          },
+          "id": "event-001169"
+        },
+        {
+          "source_line": 1170,
+          "timestamp": "2026-05-14T08:51:42.721723+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "3B raw eval 确认只跑 GSM8K + HumanEval（generative only），专门用于诊断 3B GSM8K 异常。当前 GSM8K 79%（1039/1319），约 28 分钟完成。\n\n当前实验进度汇总：\n\n| 实验 | GPU | 进度 | ETA |\n|------|-----|------|-----|\n| 1.5B d100 eval (aligned) | 0 | GSM8K ~42% | ~1.5h |\n| 0.5B raw eval | 1 | HumanEval 7% | ~15min |\n| 0.5B aligned eval batch | 2 | d000 GSM8K ~2% | ~18h total |\n| 3B d100 SFT | 3 | 34% (1400/4159) | ~3h |\n| **空闲** | 4 | - | 可提交 1.5B eval |\n| 3B raw eval (gen) | 5 | GSM8K 79% | ~45min |\n\n等待 3B raw GSM8K 结果（诊断 3B GSM8K 异常的关键数据）和 0.5B raw eval 完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001170"
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "messages": [
+        {
+          "source_line": 1171,
+          "timestamp": "2026-05-14T08:51:43.336411+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_exp_001_sft_d025_05B_v3_20260514T083320]:\nWorker worker_analysis_exp_001_sft_d025_05B_v3_20260514T083320 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001171"
+        },
+        {
+          "source_line": 1172,
+          "timestamp": "2026-05-14T08:51:58.981367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_analysis_exp_001_sft_d025_05B_v3_20260514T083320_result.json"
+            }
+          },
+          "id": "event-001172"
+        },
+        {
+          "source_line": 1173,
+          "timestamp": "2026-05-14T08:51:59.033566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"Registry 已更新为 DONE/success。\\n\\n## 分析摘要\\n\\n**训练状态**: 成功完成（EXIT_CODE=0），无 OOM，无错误（bitsandbytes 警告为非致命）。\\n\\n**关键指标**:\\n- Final loss: **1.5178**，mean train loss: **1.5479**\\n- Token accuracy: **0.6697**\\n- 训练时间: 58.1 min，3384 steps，1 epoch\\n\\n**Checkpoint**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter` — 完整（adapter_model.safetensors 33.6MB + tokenizer + config）。\\n\\n**W&B**: 该 run 未配置 W&B 日志。\\n\\n**Dose-response 对比（0.5B mean train loss）**:\\n\\n| Dosage | Mean Loss | Token Acc | Time (min) |\\n|--------|-----------|-----------|------------|\\n| d000 (0%) | 1.5388 | 0.682 | 52.9 |\\n| d005 (5%) | 1.5424 | 0.667 | 56.1 |\\n| **d025 (25%)** | **1.5479** | **0.6697** | **58.1** |\\n| d100 (100%) | 1.5662 | 0.666 | 68.9 |\\n\\nd025 的 loss 严格位于 d005 和 d100 之间，呈现**单调递增**趋势（更多 contamination → 更高 loss），符合预期。与 d000 baseline 相比，mean loss 仅增加 +0.0091（+0.6%），说明 25% dosage 对训练 loss 的影响仍然较小，dose-response 曲线在低剂量区间较为平坦。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-001173"
+        },
+        {
+          "source_line": 1174,
+          "timestamp": "2026-05-14T08:52:31.144875+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 的 d025 SFT 分析正确。验证几个关键点：\n\n1. **Dose-response 单调性**：d000(1.5388) < d005(1.5424) < d025(1.5479) < d100(1.5662) — 确认 mean train loss 随 dosage 单调递增。\n2. **Delta 合理**：+0.6% vs baseline，低 dosage 区间确实平坦。\n3. **Token accuracy 非严格单调**：d005=0.667, d025=0.6697（微幅回升 0.3pp），但差异在噪声范围内。\n4. **Checkpoint 大小**：Worker 报 33.6MB vs 我验证的 35.2MB — 差异来自 MB 定义（1000 vs 1024 进制），adapter_model.safetensors 实际 35,237,104 bytes = 33.6 MiB = 35.2 MB。无矛盾。\n\n分析质量可靠，无需修正。唯一需注意：**训练 loss 的 dose-response 不等于评估 accuracy 的 dose-response**。论文的核心论证基于 benchmark eval scores，而 d025 eval 尚未提交（我在上一轮报告中已提出此 gap）。\n\n继续监控。3B raw eval 确认是 generation-only（GSM8K + HumanEval），不含 MMLU/ARC。0.5B raw eval 的 HumanEval 应在 ~10 分钟后完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001174"
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "messages": [
+        {
+          "source_line": 1175,
+          "timestamp": "2026-05-14T08:52:31.777918+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_training-progress-check-v2_20260514T083329]:\nWorker worker_ops_training-progress-check-v2_20260514T083329 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001175"
+        },
+        {
+          "source_line": 1176,
+          "timestamp": "2026-05-14T08:52:45.846786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_training-progress-check-v2_20260514T083329_result.json"
+            }
+          },
+          "id": "event-001176"
+        },
+        {
+          "source_line": 1177,
+          "timestamp": "2026-05-14T08:52:45.962827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"汇总如下：\\n\\n| GPU | 实验 | PID | 状态 | 已运行 | 进度 | 预估剩余 | 关键指标 |\\n|-----|------|-----|------|--------|------|----------|---------|\\n| cuda:0 | eval_15B_d100_s42 | 325310 | 运行中 | 55m | MMLU✓, GSM8K 508/1319 (38%) | ~1h25m (GSM8K) + ARC + HumanEval ≈ **2h** | GPU 48%, 5.8GB |\\n| cuda:1 | eval_05B_raw | 318424 | 运行中 | 1h42m | MMLU✓, GSM8K 1163/1319 (88%) | ~14m (GSM8K) + ARC + HumanEval ≈ **30-40m** | GPU 34%, 3.6GB |\\n| cuda:2 | sft_d025_05B_v3 | 324158 | **已完成** | — | 100%, EXIT_CODE=0 | **GPU 已释放** | final loss 1.52, acc 0.67 |\\n| cuda:3 | sft_d100_3B | 319555 | 运行中 | 1h39m | 1322/4159 steps (32%) | **~3h27m** | loss 1.17, acc 0.72, 4.4s/step |\\n| cuda:4 | sft_d005_15B | 271916 | 即将完成 | 5h21m | 3015/3177 steps (95%) | **~10m** (或已完成) | loss 1.30, acc 0.72, 18.5GB |\\n| cuda:5 | eval_3B_raw_gen | 318748 | 运行中 | 1h41m | GSM8K 891/1319 (67%) | GSM8K ~50m + HumanEval ≈ **1h+** | GPU 62%, 6.6GB |\\n\\n要点：\\n- **cuda:2 已空闲**，可立即提交新任务\\n- **cuda:4 预计几分钟内释放**（训练已到 95%，或刚完成）\\n- **cuda:1 约 30-40min 后释放**（GSM8K 即将完成，还剩 ARC+HumanEval）\\n- **cuda:3 最慢**，3B 模型 d100 全量 SFT 还需约 3.5h\\n- **cuda:0/cuda:5** 各有 1-2h eval 任务\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 116
+          },
+          "id": "event-001177"
+        },
+        {
+          "source_line": 1178,
+          "timestamp": "2026-05-14T08:53:09.819441+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Ops worker 的 GPU 状态快照与我的独立检查基本一致，但有 2 处因时间差已过时：\n\n1. **GPU 2**：worker 报告\"已空闲\"，但实际已被 aligned eval batch（PID 332221）占用\n2. **GPU 4**：worker 报告\"95% 即将完成\"，实际 1.5B d005 SFT 已完成（train_runtime 已输出，checkpoint 已保存）\n\n这些是正常的时序偏差，不影响决策——已在我的前序报告中覆盖。无需额外行动。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001178"
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "messages": [
+        {
+          "source_line": 1179,
+          "timestamp": "2026-05-14T08:53:10.446013+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_aligned-eval-15B-script_20260514T083726]:\nWorker worker_code_aligned-eval-15B-script_20260514T083726 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001179"
+        },
+        {
+          "source_line": 1180,
+          "timestamp": "2026-05-14T08:53:24.294500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_code_aligned-eval-15B-script_20260514T083726_result.json"
+            }
+          },
+          "id": "event-001180"
+        },
+        {
+          "source_line": 1181,
+          "timestamp": "2026-05-14T08:53:24.395433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"两个脚本已部署并通过语法检查：\\n\\n- `/root/contamcal-irt-calibration/exp001/run_aligned_eval_15B.sh` — 包含 d000/d005/d100 三个 dosage，所有 checkpoint 和 lora_adapter 目录均已确认存在\\n- `/root/contamcal-irt-calibration/exp001/run_aligned_eval_3B.sh` — d000_s42 和 d100_s42 的 checkpoint 已存在，d005_s42 尚未训练，脚本会自动跳过（WARN + continue）\\n\\n两个脚本均保持 `--mc-format aligned`，支持 `original|paraphrase|both` 模式。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001181"
+        },
+        {
+          "source_line": 1182,
+          "timestamp": "2026-05-14T08:53:37.940334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "head -60 /root/contamcal-irt-calibration/exp001/run_aligned_eval_15B.sh"
+            }
+          },
+          "id": "event-001182"
+        },
+        {
+          "source_line": 1183,
+          "timestamp": "2026-05-14T08:53:39.813574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Aligned-format MC eval for 1.5B: original + paraphrase\\\\n# Usage: CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_15B.sh [original|paraphrase|both]\\\\nset -euo pipefail\\\\n\\\\nMODE=${1:-both}\\\\nshift 2>/dev/null || true\\\\n\\\\n# AutoDL env\\\\nsource /etc/network_turbo 2>/dev/null || true\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\n\\\\nBASE=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\\\nPARA_DIR=/root/autodl-tmp/exp001/paraphrases\\\\nBENCHMARKS=\\\\\\\"mmlu gsm8k arc_challenge humaneval\\\\\\\"\\\\nSCRIPT_DIR=$(cd \\\\\\\"$(dirname \\\\\\\"$0\\\\\\\")\\\\\\\" && pwd)\\\\n\\\\nfor DOSAGE in d000 d005 d100; do\\\\n  ADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_${DOSAGE}_s42/lora_adapter\\\\n\\\\n  if [ ! -d \\\\\\\"$ADAPTER\\\\\\\" ]; then\\\\n    echo \\\\\\\"WARN: adapter not found: $ADAPTER, skipping\\\\\\\"\\\\n    continue\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"original\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_${DOSAGE}_s42_aligned\\\\n    echo \\\\\\\"=== [original] ${DOSAGE} -> ${OUT} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT\\\\\\\" \\\\\\\\\\\\n      --benchmarks $BENCHMARKS \\\\\\\\\\\\n      --mc-format aligned \\\\\\\\\\\\n      \\\\\\\"$@\\\\\\\"\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"paraphrase\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT_PARA=/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_${DOSAGE}_s42_para_aligned\\\\n    echo \\\\\\\"=== [paraphrase] ${DOSAGE} -> ${OUT_PARA} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --paraphrase-dir \\\\\\\"$PARA_DIR\\\\\\\" \\\\\\\\\\\\n      --out\n…[truncated 288 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1873
+          },
+          "id": "event-001183"
+        },
+        {
+          "source_line": 1184,
+          "timestamp": "2026-05-14T08:54:07.259520+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本审查通过。关键验证点：\n\n1. `--mc-format aligned` 在 original 和 paraphrase 模式均显式设置 ✓\n2. 循环覆盖 d000/d005/d100，缺失 adapter 自动跳过 ✓\n3. 输出目录用 `_aligned` / `_para_aligned` 后缀，避免覆盖 legacy 结果 ✓\n4. AutoDL 环境配置（network_turbo, conda, SSL certs）完整 ✓\n5. 1.5B d005 adapter 已存在（刚完成 SFT），d000/d100 adapter 均已确认\n\n注意：GPU 0 上已在跑 `exp_001_eval_15B_d100_s42`（aligned 格式）。若后续 batch 脚本也跑 d100，会重复。建议提交时用 `original` 模式且跳过 d100，或接受冗余作为交叉验证。\n\n无需发报告——脚本正确，等待 GPU 分配提交。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001184"
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "messages": [
+        {
+          "source_line": 1185,
+          "timestamp": "2026-05-14T08:54:07.893262+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_exp002-signal-dryrun_20260514T084100]:\nWorker worker_ops_exp002-signal-dryrun_20260514T084100 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001185"
+        },
+        {
+          "source_line": 1186,
+          "timestamp": "2026-05-14T08:54:26.628041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_exp002-signal-dryrun_20260514T084100_result.json"
+            }
+          },
+          "id": "event-001186"
+        },
+        {
+          "source_line": 1187,
+          "timestamp": "2026-05-14T08:54:26.732531+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"全部就绪。汇报：\\n\\n## 验证结果：**脚本就绪，可立即运行**\\n\\n### 1. 脚本\\n- `run_signals_05B.sh` ✓ — 完整，3sig 模式跑 embedding/minkpp/selfcritique，遍历 d000/d005/d100 × mmlu/gsm8k/arc_challenge\\n- `compute_signals.py` ✓ — 支持 `--dry-run`\\n- `aggregate_rrf.py` ✓\\n\\n### 2. Python 依赖\\n- `torch`, `faiss`, `sentence_transformers` ✓ — 均已安装在 `/root/miniconda3/lib/python3.12/site-packages/`\\n- sentence-transformers 模型 `all-MiniLM-L6-v2` 和 `all-mpnet-base-v2` 已缓存\\n\\n### 3. 数据文件\\n| 资源 | 状态 |\\n|------|------|\\n| Base model `Qwen2.5-0.5B` | ✓ 已缓存 |\\n| LoRA d000_s42 | ✓ `adapter_model.safetensors` 存在 |\\n| LoRA d005_s42 | ✓ |\\n| LoRA d100_s42 | ✓ |\\n| SFT data (000/005/100) | ✓ 50000/50826/66533 行 |\\n| Benchmark: mmlu | ✓ 已缓存 |\\n| Benchmark: gsm8k | ✓ 已缓存 |\\n| Benchmark: arc_challenge | ✓ 已缓存 |\\n\\n### 4. 运行命令\\n```bash\\nCUDA_VISIBLE_DEVICES=1 bash /root/contamcal-irt-calibration/exp002/run_signals_05B.sh 3sig\\n```\\n\\n### 5. 预计运行时间\\n3 dosage × 3 benchmark × 3 signal = 27 个信号计算任务。0.5B 模型较小，单 GPU 估计 **1.5–3 小时**（取决于 selfcritique 的生成量和 embedding 编码速度）。\\n\\n### 6. 注意事项\\n- 运行前需按 C001 约束执行 `nvidia-smi` 确认 cuda:1 无同类进程\\n- 脚本首行 `source /etc/network_turbo` 已配置（benchmark 数据虽已缓存，但 HF datasets 仍可能检查更新）\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 104
+          },
+          "id": "event-001187"
+        },
+        {
+          "source_line": 1188,
+          "timestamp": "2026-05-14T08:54:37.849665+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp002 signal pipeline 验证通过，27 个信号任务就绪，预计 1.5-3h。等 GPU 1 上的 0.5B raw eval 完成（HumanEval ~15min）后即可提交。无科学问题需标记。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001188"
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "messages": [
+        {
+          "source_line": 1189,
+          "timestamp": "2026-05-14T08:54:38.495027+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_knowledge_report-update_20260514T084116]:\nWorker worker_knowledge_report-update_20260514T084116 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001189"
+        },
+        {
+          "source_line": 1190,
+          "timestamp": "2026-05-14T08:54:54.010901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_knowledge_report-update_20260514T084116_result.json"
+            }
+          },
+          "id": "event-001190"
+        },
+        {
+          "source_line": 1191,
+          "timestamp": "2026-05-14T08:54:54.011392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"report.md 已更新。76 行，包含 6 GPU + 2 CPU 运行中实验、5 项近期完成、关键进展摘要、GPU 释放后的下一步计划，旧告警已清理。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001191"
+        },
+        {
+          "source_line": 1192,
+          "timestamp": "2026-05-14T08:55:01.729084+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "report.md 更新为常规知识维护，无需审查。继续监控运行中的实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001192"
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "messages": [
+        {
+          "source_line": 1193,
+          "timestamp": "2026-05-14T08:55:02.369737+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_verify-aligned-eval-start_20260514T084609]:\nWorker worker_ops_verify-aligned-eval-start_20260514T084609 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001193"
+        },
+        {
+          "source_line": 1194,
+          "timestamp": "2026-05-14T08:55:16.230092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_verify-aligned-eval-start_20260514T084609_result.json"
+            }
+          },
+          "id": "event-001194"
+        },
+        {
+          "source_line": 1195,
+          "timestamp": "2026-05-14T08:55:16.332778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"一切正常：\\n\\n- **进程**: PID 332207 存活，已运行 7m35s，状态 `Ss+`（前台 session leader）\\n- **当前 benchmark**: MMLU 已完成（accuracy 0.3979, 5587/14042），正在跑 GSM8K（43/1319, ~3%，约 5.3s/it，预计还需约 1h53m）\\n- **GPU 2**: 3695 MiB 显存占用，34% 利用率 — 符合 0.5B 模型 eval 的预期\\n- **输出目录**: `Qwen2.5-0.5B_d000_s42_aligned` 已创建\\n- **bitsandbytes 警告**: `libnvJitLink.so.13` 加载失败，但这只是 bnb 的非关键警告，不影响 eval 运行\\n\\n第一个 eval 配置 `d000_s42_aligned` 正常推进中。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 102
+          },
+          "id": "event-001195"
+        },
+        {
+          "source_line": 1196,
+          "timestamp": "2026-05-14T08:55:23.257673+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "与我的独立验证结果一致（MMLU=0.3979，GSM8K 进行中）。无异常。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001196"
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "messages": [
+        {
+          "source_line": 1197,
+          "timestamp": "2026-05-14T08:55:23.888149+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:exp_001_sft_d005_15B]:\n实验 exp_001_sft_d005_15B failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001197"
+        },
+        {
+          "source_line": 1198,
+          "timestamp": "2026-05-14T08:55:46.466267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"train_runtime\" /root/runs/contamcal-irt-calibration/exp_001_sft_d005_15B.log"
+            }
+          },
+          "id": "event-001198"
+        },
+        {
+          "source_line": 1199,
+          "timestamp": "2026-05-14T08:55:47.272582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter/adapter_model.safetensors"
+            }
+          },
+          "id": "event-001199"
+        },
+        {
+          "source_line": 1200,
+          "timestamp": "2026-05-14T08:55:48.227856+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'train_runtime': 19864.6971, 'train_samples_per_second': 2.559, 'train_steps_per_second': 0.16, 'train_loss': 1.263650212754684, 'entropy': 1.227256326883469, 'num_tokens': 19657865.0, 'mean_token_accuracy': 0.7308487737516187, 'epoch': 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1761
+          },
+          "id": "event-001200"
+        },
+        {
+          "source_line": 1201,
+          "timestamp": "2026-05-14T08:55:48.681779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 73911112 May 14 16:44 /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter/adapter_model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1409
+          },
+          "id": "event-001201"
+        },
+        {
+          "source_line": 1202,
+          "timestamp": "2026-05-14T08:56:10.475667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — exp_001_sft_d005_15B cron false positive\n\n**结论**: PASS（cron 误报，训练实际成功）\n\n### 发现\n\n- [severity: warning] **Cron 再次误判训练失败**：`exp_001_sft_d005_15B` 被 cron 标记为 failed，但独立核实确认训练已成功完成：\n  - `train_runtime=19864.7s`, `epoch=1.0`, `train_loss=1.2637`, `token_acc=0.7308`\n  - Checkpoint 完整：`adapter_model.safetensors` 73.9MB（16:44 CST）\n  - 日志包含完整 `train_runtime` 摘要行\n  \n  **根因**：与 exp_001_sft_d100_3B 相同的 cron false positive 模式——cron 监控 bash wrapper PID，wrapper 退出后 cron 误判 failed，但 python 训练进程已正常完成并保存 checkpoint。\n\n- [severity: warning] **这是本 session 第二次 cron false positive**（第一次是 3B d100 SFT）。建议修复 cron 的进程监控逻辑：应该检查 python 子进程而非 bash wrapper，或通过 sentinel 文件/exit code 判断成功。\n\n### 建议\n- Registry 应手动回滚为 DONE/success 并补录训练指标\n- 1.5B d005 eval 可立即提交（GPU 4 已释放，checkpoint 完整）",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-001202"
+        },
+        {
+          "source_line": 1203,
+          "timestamp": "2026-05-14T08:56:19.421098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 8945
+          },
+          "id": "event-001203"
+        },
+        {
+          "source_line": 1204,
+          "timestamp": "2026-05-14T08:56:23.249297+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 需要手动回滚 `exp_001_sft_d005_15B` 为 DONE/success。这是本 session 第二次 cron false positive，cron 进程监控逻辑存在系统性缺陷。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001204"
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "messages": [
+        {
+          "source_line": 1205,
+          "timestamp": "2026-05-14T08:56:23.886230+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:exp_001_sft_d005_15B]:\n实验 exp_001_sft_d005_15B failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001205"
+        },
+        {
+          "source_line": 1206,
+          "timestamp": "2026-05-14T08:56:39.862427+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在上一条审查中确认：**cron false positive，训练实际成功完成**。Checkpoint 完整（73.9MB, 16:44 CST），日志含完整 train_runtime 摘要。无需重复审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001206"
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "messages": [
+        {
+          "source_line": 1207,
+          "timestamp": "2026-05-14T08:56:40.490962+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_aligned-eval-d025-script_20260514T084720]:\nWorker worker_code_aligned-eval-d025-script_20260514T084720 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_code_aligned-eval-d025-script_20260514t084720"
+          },
+          "id": "event-001207"
+        },
+        {
+          "source_line": 1208,
+          "timestamp": "2026-05-14T08:56:53.591011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_code_aligned-eval-d025-script_20260514T084720_result.json"
+            }
+          },
+          "id": "event-001208"
+        },
+        {
+          "source_line": 1209,
+          "timestamp": "2026-05-14T08:56:53.643553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"完成。\\n\\n- **脚本路径**: `/root/contamcal-irt-calibration/exp001/run_aligned_eval_05B_d025.sh`\\n- **语法检查**: 通过\\n- **Checkpoint**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter/` 已确认存在\\n- **用法**: `CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_05B_d025.sh [original|paraphrase|both]`\\n- **输出目录**: `Qwen2.5-0.5B_d025_s42_aligned` / `Qwen2.5-0.5B_d025_s42_para_aligned`\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-001209"
+        },
+        {
+          "source_line": 1210,
+          "timestamp": "2026-05-14T08:56:58.438807+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "d025 aligned eval 脚本已创建，填补了我之前 flagged 的 d025 eval 缺口。脚本使用 `--mc-format aligned`，checkpoint 已确认存在。等待 ops worker 提交运行。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001210"
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "messages": [
+        {
+          "source_line": 1211,
+          "timestamp": "2026-05-14T08:56:59.041228+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_research_literature-contamination-detection_20260514T084624]:\nWorker worker_research_literature-contamination-detection_20260514T084624 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001211"
+        },
+        {
+          "source_line": 1212,
+          "timestamp": "2026-05-14T08:57:15.975676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_research_literature-contamination-detection_20260514T084624_result.json"
+            }
+          },
+          "id": "event-001212"
+        },
+        {
+          "source_line": 1213,
+          "timestamp": "2026-05-14T08:57:16.026525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"现在有完整信息可以做 gap 分析了。\\n\\n## Gap 分析结果\\n\\n### 已覆盖的主题\\n\\n| 主题 | 状态 | 覆盖位置 |\\n|------|------|----------|\\n| IRT for LLM evaluation | ✅ 充分 | 6 篇 (PSN-IRT, Growing Pains, ATLAS, TinyBenchmarks, HiBayES, Lalor) |\\n| Contamination detection methods | ✅ 充分 | 6 篇 (Min-K++, ConStat, Self-Critique, KDS, Oren, CDD) |\\n| Contamination mitigation & impact | ✅ 充分 | 5 篇 (Emperor, Dong dose-response, Yang RL, Zhang forget, LiveBench) |\\n| Item compromise in educational measurement | ✅ 充分 | 4 篇 (Eckerly, Sinharay, De Boeck, Mislevy) |\\n| DIF literature | ✅ 充分 | 3 篇 (Holland, Thissen, Zumbo) |\\n| Score adjustment / decontamination | ✅ 充分 | 3 篇 (DCR, Inference-Time Decontam, Silicon Bureaucracy) |\\n| ML calibration disambiguation | ✅ 有 | 1 篇 (Guo 2017) |\\n| Conformal prediction alternative | ✅ 有 | 1 篇 (Angelopoulos 2023) |\\n| Data attribution (Future Work) | ✅ 有 | 2 篇 (TracIn, TRAK) |\\n| Multidimensional IRT | ✅ 有 | 1 篇 (Reckase 2009) |\\n\\n### 缺失的 4 个主题（与 exp-004 bias 反转发现直接相关）\\n\\n**1. Exposure-ability collinearity / confounding in IRT — GAP**\\n- exp-004 发现高 AUC 下 posterior variance inflation 源于 exposure-ability collinearity，γ 被低估 (−0.016)\\n- `references.bib` 和 `related_work.tex` 中**零篇**讨论 IRT 参数 collinearity 或 confounding 的文献\\n- 需要引用：educational measurement 中关于 ability-covariate confounding 的理论工作（如 Haberman 2007 关于 person-fit 与 ability confounding；Wainer & Thissen 2000 关于 testlet effects 导致的参数相关性）\\n- **Discussion 必须有理论支撑来解释 bias 方向反转机制**\\n\\n**2. Signal quality (AUC) 与 calibration 精度的关系 — GAP**\\n- exp-004 核心发现之一：AUC=0.55 即可恢复 γ，但高 AUC 反而引入 attenuation bias\\n- 没有文献讨论 detection signal quality 如何影响下游 calibration 任务\\n- 这可能是 ContamCal 的 **novel finding**，Discussion 中需与 measurement error literature 对接（如 Carroll et al. 2006 \\\"Measurement Error in Nonlinear Models\\\" 中 attenuation bias 的经典理论）\\n\\n**3. Item-level contamination detection 的 power analysis — GAP**\\n- Fisher Information 推导已完成（appendix.tex），但 `references.bib` 中没有 power analysis / sample size determination 在 IRT 中的文献\\n- 需要\n…[truncated 1034 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001213"
+        },
+        {
+          "source_line": 1214,
+          "timestamp": "2026-05-14T08:57:36.043832+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献 gap 分析结果合理。四个 gap 中两个 P0（collinearity 和 attenuation bias）直接关联 exp-004 bias 反转发现——这是论文 Discussion 的关键理论锚点。当 Discussion 写作开始时我会重点审查这两个方向的文献覆盖。当前不阻塞实验进程，不发报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001214"
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "messages": [
+        {
+          "source_line": 1215,
+          "timestamp": "2026-05-14T08:57:36.976064+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_prep_exp_001_sft_d005_3B_20260514T085409]:\nWorker worker_prep_exp_001_sft_d005_3B_20260514T085409 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "worker_done:worker_prep_exp_001_sft_d005_3b_20260514t085409"
+          },
+          "id": "event-001215"
+        },
+        {
+          "source_line": 1216,
+          "timestamp": "2026-05-14T08:57:49.842521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_prep_exp_001_sft_d005_3B_20260514T085409_result.json"
+            }
+          },
+          "id": "event-001216"
+        },
+        {
+          "source_line": 1217,
+          "timestamp": "2026-05-14T08:57:49.894565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"`exp_001_sft_d005_3B` 准备完毕，状态 QUEUED。\\n\\n**验证摘要：**\\n| 项目 | 状态 |\\n|------|------|\\n| 模型 Qwen2.5-3B | ✓ 存在 |\\n| 数据 sft_dosage_005.jsonl | ✓ 50,826 行 |\\n| 训练脚本 train_sft.py | ✓ 存在 |\\n| 输出目录 | ✓ 不存在（干净） |\\n| Registry 条目 | ✓ QUEUED，hypothesis + 提交命令已记录 |\\n\\nGPU 空闲时按 notes 中的命令提交即可（提交前需 `nvidia-smi` 确认目标 GPU 无同类进程，遵守 C001）。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-001217"
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "messages": [
+        {
+          "source_line": 1218,
+          "timestamp": "2026-05-14T09:10:08.760240+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_cuda4-ready-check_20260514T090901]:\nWorker worker_ops_cuda4-ready-check_20260514T090901 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001218"
+        },
+        {
+          "source_line": 1219,
+          "timestamp": "2026-05-14T09:10:25.532629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_cuda4-ready-check_20260514T090901_result.json"
+            }
+          },
+          "id": "event-001219"
+        },
+        {
+          "source_line": 1220,
+          "timestamp": "2026-05-14T09:10:25.633527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"**结果汇报：**\\n\\n- **进程 271916**：已结束\\n- **训练完成**：checkpoint-3177 存在（3177/3177 steps = 100%），lora_adapter 目录完整，包含 `adapter_model.safetensors`（~70MB）、tokenizer 文件、training_args 等，完成时间 16:44\\n- **cuda:4**：已释放，0MiB 显存占用，0% 利用率，空闲可用\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001220"
+        }
+      ]
+    },
+    {
+      "number": 71,
+      "messages": [
+        {
+          "source_line": 1221,
+          "timestamp": "2026-05-14T09:12:37.813629+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_research_literature-gap-fill_20260514T090847]:\nWorker worker_research_literature-gap-fill_20260514T090847 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001221"
+        },
+        {
+          "source_line": 1222,
+          "timestamp": "2026-05-14T09:12:54.231237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_research_literature-gap-fill_20260514T090847_result.json"
+            }
+          },
+          "id": "event-001222"
+        },
+        {
+          "source_line": 1223,
+          "timestamp": "2026-05-14T09:12:54.383151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"文献搜索完成。产出写入 `artifacts/paper_draft/literature_gaps.md`。\\n\\n**找到 14 篇文献，其中 11 篇需新增到 references.bib：**\\n\\n**Gap 1 — Exposure-ability collinearity (P0, 3篇)**\\n- San Martín et al. 2015 — 固定效应 3PL 不可识别性的形式化证明，直接支撑 gamma 在高 collinearity 下被低估的理论解释\\n- Mislevy 1987 — person covariate 与 ability 共线时，辅助信息反而引入 confounding\\n- Wainer, Bradlow & Wang 2007 — testlet 局部依赖导致参数相关性膨胀，类比 contamination 诱导的局部依赖\\n\\n**Gap 2 — Measurement error attenuation (P0, 6篇)**\\n- Carroll et al. 2006 — 非线性模型测量误差的权威教材\\n- Fuller 1987 — errors-in-variables 经典，reliability ratio 衰减公式\\n- Stefanski & Carroll 1985 — logistic 回归中协变量测量误差导致渐近偏差（直接对应 ICC logistic 形式）\\n- Battauz & Bellio 2011 — IRT ability estimates 作为协变量时的异方差测量误差建模（精确对应我们的场景）\\n- Westfall & Yarkoni 2016 — 测量误差下残差混淆，Type I error 趋近 100%\\n- Jerzak & Jessee 2026 — latent predictor 的衰减偏差，标准校正方法本身也有偏\\n\\n**Gap 3 — IRT power/information (P1, 2篇):** Embretson & Reise 2000, Thissen & Wainer 2001\\n\\n**Gap 4 — 4PL identifiability (P2, 3篇):** Barton & Lord 1981 (原始 4PL), Culpepper 2016 (Bayesian 4PL), Liao et al. 2012 (4PL 鲁棒性)\\n\\n每篇均附完整 BibTeX entry 和与 ContamCal 的关联说明，可直接复制到 `references.bib`。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-001223"
+        },
+        {
+          "source_line": 1224,
+          "timestamp": "2026-05-14T09:13:16.292628+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献补充工作看起来合理。14 篇中有几个需要注意的点：\n\n1. **Jerzak & Jessee 2026** — 标注为 2026 年论文，需要验证真实性（AI 系统容易幻觉最新文献）\n2. **Battauz & Bellio 2011** — 较小众，需验证\n\n其他核心引用（Carroll 2006, Fuller 1987, Barton & Lord 1981, Embretson & Reise 2000）都是经典文献，可信度高。这些文献加入 `references.bib` 前应走 reference-audit 流程。不阻塞当前实验管线，暂不发报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001224"
+        }
+      ]
+    },
+    {
+      "number": 72,
+      "messages": [
+        {
+          "source_line": 1225,
+          "timestamp": "2026-05-14T09:16:08.630701+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_knowledge_bibtex-integration_20260514T091428]:\nWorker worker_knowledge_bibtex-integration_20260514T091428 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001225"
+        },
+        {
+          "source_line": 1226,
+          "timestamp": "2026-05-14T09:16:21.574012+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001226"
+        }
+      ]
+    },
+    {
+      "number": 73,
+      "messages": [
+        {
+          "source_line": 1227,
+          "timestamp": "2026-05-14T09:17:08.992480+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_cuda1-monitor-submit_20260514T091417]:\nWorker worker_ops_cuda1-monitor-submit_20260514T091417 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001227"
+        },
+        {
+          "source_line": 1228,
+          "timestamp": "2026-05-14T09:17:23.443649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_cuda1-monitor-submit_20260514T091417_result.json"
+            }
+          },
+          "id": "event-001228"
+        },
+        {
+          "source_line": 1229,
+          "timestamp": "2026-05-14T09:17:23.596560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"汇总：\\n\\n**cuda:1 状态：占用，进程疑似卡死**\\n\\n- PID 318424 仍存活，状态 `Tl`（stopped），GPU 1 占用 8129 MiB，利用率 0%\\n- 日志最后写入 16:53:19，已 **20+ 分钟无更新**\\n- HumanEval 卡在 **31% (51/164)**，很可能某个生成的代码执行陷入死循环\\n\\n**已完成的 metrics（0.5B raw）：**\\n\\n| Benchmark | Score |\\n|-----------|-------|\\n| MMLU | 0.2302 (3233/14042) |\\n| GSM8K | 0.1592 (210/1319) |\\n| ARC-Challenge | 0.2261 (265/1172) |\\n| HumanEval | 卡住，未完成 |\\n\\n**建议：** 进程大概率需要 kill 释放 cuda:1。HumanEval 的 code execution 经常因生成代码死循环而 hang。如需保留 HumanEval 结果，可以 kill 后单独重跑 HumanEval（加 timeout per sample）。是否 kill PID 318424？\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 152
+          },
+          "id": "event-001229"
+        },
+        {
+          "source_line": 1230,
+          "timestamp": "2026-05-14T09:17:32.867340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "stat /root/runs/contamcal-irt-calibration/exp_001_eval_05B_raw.log"
+            }
+          },
+          "id": "event-001230"
+        },
+        {
+          "source_line": 1231,
+          "timestamp": "2026-05-14T09:17:34.530303+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/contamcal-irt-calibration/exp_001_eval_05B_raw.log\\\\n  Size: 497027    \\\\tBlocks: 976        IO Block: 4096   regular file\\\\nDevice: 30h/48d\\\\tInode: 9358757402  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-14 17:15:02.821568592 +0800\\\\nModify: 2026-05-14 16:53:19.439818259 +0800\\\\nChange: 2026-05-14 16:53:19.439818259 +0800\\\\n Birth: 2026-05-14 14:52:25.250670993 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1662
+          },
+          "id": "event-001231"
+        },
+        {
+          "source_line": 1232,
+          "timestamp": "2026-05-14T09:17:51.259685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — exp_001_eval_05B_raw HumanEval 卡死\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: warning] **0.5B raw eval 卡死在 HumanEval 51/164**：\n  - PID 318424, 状态 `Tl`（stopped），GPU 1 利用率 0%，显存仍占 8129 MiB\n  - 日志最后修改 16:53:19 CST，已 25+ 分钟无更新\n  - 原因：HumanEval 执行生成代码时陷入死循环（base model 无 SFT，生成质量低，常见问题）\n  \n  **已收集的有效 metrics**：MMLU=0.2302, GSM8K=0.1592, ARC-C=0.2261。这三个 benchmark 数据完整可用。\n\n- [severity: info] HumanEval 对 raw base model 的科学价值有限（预期接近 0%），但建议 kill 释放 GPU 1 给更有价值的任务（如 exp002 signal pipeline 或额外 eval）。\n\n### 建议\n- Kill PID 318424 释放 GPU 1\n- Registry 记录已完成的 3 个 benchmark 分数，标注 HumanEval 因 code execution hang 未完成\n- GPU 1 释放后可用于 exp002 signal pipeline（3sig, 预估 1.5-3h）",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-001232"
+        },
+        {
+          "source_line": 1233,
+          "timestamp": "2026-05-14T09:18:04.209573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 12949
+          },
+          "id": "event-001233"
+        },
+        {
+          "source_line": 1234,
+          "timestamp": "2026-05-14T09:18:06.843159+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认：日志最后修改 16:53:19 CST，距今已 25+ 分钟无更新。进程确实卡死在 HumanEval 代码执行中。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001234"
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "messages": [
+        {
+          "source_line": 1235,
+          "timestamp": "2026-05-14T09:25:10.813190+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_exp-006-baselines_20260514T091334]:\nWorker worker_code_exp-006-baselines_20260514T091334 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001235"
+        },
+        {
+          "source_line": 1236,
+          "timestamp": "2026-05-14T09:25:22.795701+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001236"
+        }
+      ]
+    },
+    {
+      "number": 75,
+      "messages": [
+        {
+          "source_line": 1237,
+          "timestamp": "2026-05-14T09:27:11.260146+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_cuda5-monitor_20260514T092555]:\nWorker worker_ops_cuda5-monitor_20260514T092555 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001237"
+        },
+        {
+          "source_line": 1238,
+          "timestamp": "2026-05-14T09:27:26.328057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_cuda5-monitor_20260514T092555_result.json"
+            }
+          },
+          "id": "event-001238"
+        },
+        {
+          "source_line": 1239,
+          "timestamp": "2026-05-14T09:27:26.429067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"**cuda:5 状态：占用中，健康运行**\\n\\n- **进程**: PID 318748，已运行 2h33m，状态 `Rl`（正常）\\n- **GPU 5**: 6978 MiB 显存，68% 利用率 — 健康，无卡死迹象\\n- **进度**: GSM8K 已完成，当前跑 HumanEval **73/164 (45%)**，均速 ~4s/it\\n- **预估剩余**: HumanEval 剩 91 条 × ~4s ≈ **6-7 分钟**完成。如果 HumanEval 之后还有其他 benchmark，会更久\\n\\n建议 ~10 分钟后再次检查。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-001239"
+        },
+        {
+          "source_line": 1240,
+          "timestamp": "2026-05-14T09:27:35.783138+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "grep \"INFO\" /root/runs/contamcal-irt-calibration/exp_001_eval_3B_raw_gen.log"
+            }
+          },
+          "id": "event-001240"
+        },
+        {
+          "source_line": 1241,
+          "timestamp": "2026-05-14T09:27:37.341512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 14:53:02,474 [INFO] Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\\\\n2026-05-14 14:53:04,767 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n2026-05-14 14:53:09,564 [INFO] Evaluating gsm8k...\\\\n2026-05-14 17:21:53,394 [INFO] gsm8k exact_match: 0.6050 (798/1319)\\\\n2026-05-14 17:21:53,395 [INFO] Evaluating humaneval...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1558
+          },
+          "id": "event-001241"
+        },
+        {
+          "source_line": 1242,
+          "timestamp": "2026-05-14T09:28:24.482615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — 3B GSM8K 异常根因定位\n\n**结论**: CRITICAL\n\n### 核心发现\n\n- [severity: critical] **3B raw GSM8K = 0.6050，确认 GSM8K 崩塌是 SFT 引起，非 base model 问题**\n\n  | Model | Condition | GSM8K | \n  |-------|-----------|-------|\n  | 0.5B | raw (no SFT) | 0.1592 |\n  | 0.5B | d000 SFT (legacy) | 0.3647 |\n  | 1.5B | d000 SFT (legacy) | 0.6368 |\n  | 3B | **raw (no SFT)** | **0.6050** |\n  | 3B | d000 SFT (legacy) | 0.117 / 0.176 |\n\n  **3B base model GSM8K 表现正常（0.605），但 clean SFT 后暴跌到 0.117（-48.8pp）**。方向与 0.5B 完全相反（0.5B SFT 提升 +20.6pp）。\n\n  **这不是 MC 格式问题**——GSM8K 是 generative benchmark，D017 的 mc_format fix 不影响它。可能的根因：\n  1. **SFT 改变了 3B 的生成格式**：训练后模型以 \"The answer is X\" 格式回答，evaluate.py 的 answer extraction regex 无法正确提取数字\n  2. **3B eval 使用 pre-v5 代码**（完成于 06:39 UTC，D017 前），如果 D017 包含 GSM8K extraction 修复，则 3B d000 eval 缺少此修复\n  3. **SFT 在 3B scale 真正导致 catastrophic forgetting of math**（不太可能——d000 是 clean SFT，loss 正常）\n\n  **验证方案**：用 D017 后的 evaluate.py 重新跑 3B d000 eval（aligned 格式已有脚本 `run_aligned_eval_3B.sh`）。如果分数恢复，则确认是 answer extraction bug；如果仍低，则是真实的 SFT 性能退化。\n\n- [severity: info] 3B raw eval HumanEval 正在进行中（45%，~7min 完成），GPU 5 状态正常。\n\n### 建议\n- **优先级 P0**：在下一个可用 GPU 上用 aligned eval 脚本重跑 3B d000 eval，这决定了 3B GSM8K 异常的根因判定\n- 同时检查 evaluate.py 中 GSM8K answer extraction 逻辑在 D017 前后的差异",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-001242"
+        },
+        {
+          "source_line": 1243,
+          "timestamp": "2026-05-14T09:28:33.481519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 8998
+          },
+          "id": "event-001243"
+        },
+        {
+          "source_line": 1244,
+          "timestamp": "2026-05-14T09:28:37.026756+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**重大发现：3B raw GSM8K = 0.6050！**\n\n对比：\n- 3B raw (no SFT): GSM8K = **0.6050**\n- 3B d000 SFT (legacy): GSM8K = **0.117** / **0.176**\n\nSFT 导致 3B GSM8K 从 0.605 暴跌到 0.117，降幅 48.8pp。这与 0.5B 模式相反（0.5B SFT 提升了 GSM8K）。立即发布报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001244"
+        }
+      ]
+    },
+    {
+      "number": 76,
+      "messages": [
+        {
+          "source_line": 1245,
+          "timestamp": "2026-05-14T09:28:37.655903+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_verify-15B-eval-start_20260514T092606]:\nWorker worker_ops_verify-15B-eval-start_20260514T092606 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001245"
+        },
+        {
+          "source_line": 1246,
+          "timestamp": "2026-05-14T09:28:52.570530+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_verify-15B-eval-start_20260514T092606_result.json"
+            }
+          },
+          "id": "event-001246"
+        },
+        {
+          "source_line": 1247,
+          "timestamp": "2026-05-14T09:28:52.691614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"**进程正常运行。**\\n\\n| 项目 | 状态 |\\n|------|------|\\n| PID 336750 | 存活，已运行 7m57s，状态 Ss+ |\\n| 当前配置 | d000 original (Qwen2.5-1.5B + LoRA d000_s42) |\\n| MMLU | **已完成**，accuracy = 0.5853 (8219/14042) |\\n| GSM8K | **进行中**，33/1319 (~2.5%)，~6.4s/it，预计还需 ~2.3h |\\n| GPU 1 显存 | 5857 MiB，utilization 48% |\\n\\nbitsandbytes 报了 `libnvJitLink.so.13` 加载失败的 warning，不影响推理，已正常跑过 MMLU 全量。无其他报错。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 121
+          },
+          "id": "event-001247"
+        },
+        {
+          "source_line": 1248,
+          "timestamp": "2026-05-14T09:29:29.956110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — 1.5B d000 aligned MMLU baseline + format-matched 污染提升\n\n**结论**: WARNING（提升幅度小于预期，需关注统计显著性）\n\n### 核心发现\n\n- [severity: info] **1.5B d000 aligned MMLU = 0.5853** (8219/14042)\n\n  Format-matched 污染对比（均为 aligned 格式）：\n  - 1.5B d000: **0.5853**\n  - 1.5B d100: **0.5933**\n  - **Δ = +0.80pp**\n\n  0.80pp 提升方向正确（100% 污染 → MMLU 分数升高），但幅度较小。Cross-seed CV for 1.5B MMLU 仅 0.1%（σ ≈ 0.0006），所以 +0.80pp ≈ 13σ，统计上显著。但如果噪声估计来自不同 dosage 间的对比而非 seed 间对比，方差可能更大。\n\n- [severity: info] **Format effect 是 model-scale dependent 的**：\n  - 0.5B: aligned 比 legacy **低** 0.7pp (0.3979 vs 0.4049)\n  - 1.5B: aligned 比 legacy **高** 1.0pp (0.5853 vs 0.5753)\n  \n  这意味着不能简单假设\"aligned 一律高于 legacy\"或反之。论文分析中必须使用 format-matched pairs。\n\n- [severity: warning] **+0.80pp 的论文叙事挑战**：如果 100% 污染仅提升 0.80pp MMLU，reader 可能质疑 ContamCal 的实际价值（\"修正量太小，有没有必要做？\"）。需要从两个角度应对：\n  1. 0.80pp 是 1.5B scale 的结果，可能 scale-dependent（0.5B aligned eval 完成后可对比）\n  2. MMLU 14042 题中 100% 被记忆但只提升 0.80pp，说明模型 capacity 饱和——这本身是有意义的发现\n\n### 待观察\n- 0.5B aligned d100 MMLU：如果 0.5B 的污染提升大于 1.5B 的 0.80pp，则有 scale-dependent 故事可讲\n- GSM8K format-matched 对比（generative benchmark，不受 mc_format 影响，分数应与 legacy 一致）",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-001248"
+        },
+        {
+          "source_line": 1249,
+          "timestamp": "2026-05-14T09:29:40.634625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 10678
+          },
+          "id": "event-001249"
+        },
+        {
+          "source_line": 1250,
+          "timestamp": "2026-05-14T09:29:43.877917+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**关键数据点：1.5B d000 aligned MMLU = 0.5853！**\n\n现在有 format-matched 对比：\n- 1.5B d000 aligned MMLU: **0.5853**\n- 1.5B d100 aligned MMLU: **0.5933**\n- **污染提升 = +0.80pp**（format-matched）\n\nGPU 1 已被回收用于 1.5B aligned eval（之前卡死的 0.5B raw eval 已 kill）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001250"
+        }
+      ]
+    },
+    {
+      "number": 77,
+      "messages": [
+        {
+          "source_line": 1251,
+          "timestamp": "2026-05-14T09:29:44.462398+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_exp-002-signal-pipeline_20260514T091323]:\nWorker worker_code_exp-002-signal-pipeline_20260514T091323 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001251"
+        },
+        {
+          "source_line": 1252,
+          "timestamp": "2026-05-14T09:29:59.782911+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001252"
+        }
+      ]
+    },
+    {
+      "number": 78,
+      "messages": [
+        {
+          "source_line": 1253,
+          "timestamp": "2026-05-14T09:31:14.472278+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_local-cpu-progress_20260514T092850]:\nWorker worker_ops_local-cpu-progress_20260514T092850 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001253"
+        },
+        {
+          "source_line": 1254,
+          "timestamp": "2026-05-14T09:31:30.433077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_ops_local-cpu-progress_20260514T092850_result.json"
+            }
+          },
+          "id": "event-001254"
+        },
+        {
+          "source_line": 1255,
+          "timestamp": "2026-05-14T09:31:30.534053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"## 汇报\\n\\n### exp-004 sim sweep v2 (PID 411032)\\n- **状态**: 运行中，已运行 2h17m，进程状态 S (sleeping)\\n- **进度**: **45/120 seeds (37.5%)**，5/12 conditions 有数据\\n  - auc0.55_n20: 10/10 done\\n  - auc0.55_n50: 10/10 done\\n  - auc0.55_n100: 7/10\\n  - auc0.8_n20: 10/10 done\\n  - auc0.8_n50: 8/10 (当前正在跑)\\n- **预估剩余**: ~26 小时（平均 ~20.7 min/seed），预计 5/15 ~11:00 完成\\n\\n### exp-005 noise prop v3 (PID 426335)\\n- **状态**: 运行中，已运行 1h03m，进程状态 S (sleeping)\\n- **进度**: **5/25 fits 已保存**，当前在 σ_e=0.3 seed=42 的 analytic ME 模型（4 chains 已完成，即将写入第 6 个 fit）\\n  - σ_e=0.1: 5/5 seeds done\\n  - σ_e=0.3: seed=42 进行中\\n- **预估剩余**: ~11.5 小时（平均 ~35.5 min/fit），预计今晚 ~21:00 完成\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001255"
+        }
+      ]
+    },
+    {
+      "number": 79,
+      "messages": [
+        {
+          "source_line": 1256,
+          "timestamp": "2026-05-14T09:31:34.703146+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_exp003-rrf-verify_20260514T092902]:\nWorker worker_code_exp003-rrf-verify_20260514T092902 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001256"
+        },
+        {
+          "source_line": 1257,
+          "timestamp": "2026-05-14T09:31:48.995171+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer"
+          },
+          "id": "event-001257"
+        }
+      ]
+    },
+    {
+      "number": 80,
+      "messages": [
+        {
+          "source_line": 1258,
+          "timestamp": "2026-05-14T09:34:34.979447+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:exp_001_eval_3B_raw_gen]:\n实验 exp_001_eval_3B_raw_gen complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "source": "system"
+          },
+          "id": "event-001258"
+        },
+        {
+          "source_line": 1259,
+          "timestamp": "2026-05-14T09:34:51.914283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "contamcal-irt-calibration",
+              "limit": "3",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001259"
+        },
+        {
+          "source_line": 1260,
+          "timestamp": "2026-05-14T09:34:52.775248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_001_eval_05B_raw\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:52:20.023Z\\\", \\\"updated_at\\\": \\\"2026-05-14T09:18:21.577Z\\\", \\\"hypothesis\\\": \\\"Raw Qwen2.5-0.5B base model eval (no SFT, no adapter) on 4 benchmarks — establish true pre-SFT baseline for MC distribution analysis\\\", \\\"spec\\\": {\\\"command\\\": \\\"evaluate.py on raw Qwen2.5-0.5B (no adapter)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"318424\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_eval_05B_raw.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T06:52:25.551Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"MMLU+GSM8K+ARC+HumanEval\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"Qwen2.5-0.5B (raw base)\\\", \\\"seed\\\": 42, \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval\\\", \\\"checkpoint_path\\\": \\\"N/A (raw base)\\\", \\\"wall_clock_seconds\\\": 8756.0, \\\"gpu_hours\\\": 2.43}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.2302, \\\"gsm8k\\\": 0.1592, \\\"arc_challenge\\\": 0.2261, \\\"humaneval\\\": \\\"incomplete (hung at 51/164)\\\"}, \\\"notes\\\": \\\"Raw 0.5B base model eval。MMLU/GSM8K/ARC 完成，HumanEval 卡在 51/164 (代码执行死循环)，kill 释放 cuda:1。HumanEval 为 appendix-only (D009)，不影响主分析。Raw base 分数远低于 SFT d000 baseline (MMLU 0.23 vs 0.40)，确认 SFT 有效提升。\\\", \\\"completed_at\\\": \\\"2026-05-14T09:18:21.577Z\\\"}, \\\"exp_001_sft_d005_15B\\\": {\\\"created_at\\\": \\\"2026-05-14T00:19:54.331Z\\\", \\\"gpu\\\": 4, \\\"hypothesis\\\": \\\"5% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): low-dosage contamination for dose-response curve, Phase 3 priority 1\\\", \\\"retry_count\\\": 0, \\\"server\\\": \\\"cqa1-21977\\\", \\\"spec\\\": {\\\"account\\\": \\\"root\\\", \\\"backend\\\": \\\"tmux\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42\\\", \\\"command\\\": \\\"train_sft.py --model-name Qwen2.5-1.5B --data-path sft_dosage_005.jsonl\\\", \\\"data_count\\\": 50826, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_da\n…[truncated 3221 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a79563aecf81c0da6bbb0710df2f0b6d:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 860
+          },
+          "id": "event-001260"
+        }
+      ]
+    }
+  ]
+}

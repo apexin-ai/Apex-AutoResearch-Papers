@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c8734b8b9f2b8ae5e5c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify s0 scripts",
+  "task_key": "worker_ops_verify-s0-scripts_20260519T232805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-s0-scripts_20260519T232805_result.json",
+    "occurrence": 1,
+    "bytes": 1246,
+    "sha256": "28a4cde798fb84d48982fea64579eb69aec2f26595ead1c57ca502489a4865f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## s0 训练脚本验证结果\n\n全部 4 个脚本就绪，覆盖 5 个 model family：\n\n| 脚本 | Family | CUDA | seed | lora_alpha | lr | batch×accum | 状态 |\n|------|--------|------|------|------------|-----|-------------|------|\n| `sft_phi4_s0_sweep.sh` | Phi-4 | **0** | 0 | 32 | 5e-5 | 1×16 | ✅ |\n| `sft_qwen14b_s0_sweep.sh` | Qwen2.5-14B | **1** | 0 | 32 | 5e-5 | 1×16 | ✅ |\n| `sft_qwen7b_olmo2_s0_sweep.sh` | Qwen2.5-7B + OLMo-2-7B | **2** | 0 | 32 | 5e-5 | 2×8 | ✅ |\n| `sft_gemma2_s0_sweep.sh` | gemma-2-9b | **3** | 0 | 32 | 5e-5 | 2×8 | ✅ |\n\n**关键配置全部正确：**\n- seed=0 ✅\n- lora_alpha=32 ✅（符合 C006）\n- CUDA_VISIBLE_DEVICES 显式设置 ✅（符合 C004）\n- 数据路径统一 `/root/autodl-tmp/sft_data/sft_dosage_{d}.jsonl` ✅\n- 输出命名 `{model}_d{dosage}_s0` ✅\n- 离线模式 `HF_*_OFFLINE=1` ✅\n- 已训完跳过逻辑（检查 `train_config.json`）✅\n\n**GPU 分配：** Phi-4→GPU0, Qwen14B→GPU1, Qwen7B+OLMo2→GPU2, Gemma2→GPU3。每个脚本固定一张卡，与 s123 阶段的分配一致。\n\n**无缺失 family。** 5 个 family 分布在 4 个脚本中（Qwen7B 和 OLMo2 合并在一个脚本顺序执行），4/4 脚本就绪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-s0-scripts.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "166623990931a0f5d06b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis oracle gsm8k v2 results",
+  "task_key": "worker_analysis_oracle-gsm8k-v2-results_20260515T034506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_oracle-gsm8k-v2-results_20260515T034506_result.json",
+    "occurrence": 1,
+    "bytes": 1224,
+    "sha256": "a7383a5280d309467f1a685bf54a7696101c8e902c4e43fb0af3e0c3124d1ac1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**Memory 矛盾的根因**：v1 实验 IRT 拟合失败（Operation not permitted），只有 B0_raw baseline 成功且 C95=1.00。Memory 将 B0_raw 的指标误记为 IRT 的 → 得出\"N 够了就行\"的错误结论。v2 IRT 成功运行后暴露了真实的 C95=0.3125。\n\n**Coverage 31.25% 的两个独立失败机制**：\n1. **Cross-scale theta 偏差**：所有 1.5B 模型（包括 d000/无 contamination）都被低估 4-5pp。5280 个 item 参数由 16 个模型约束，严重欠定。\n2. **Gamma 过校正**：gamma=3.77 捕获了真实的 item-level contamination signal，但 GSM8K accuracy 实际只变化 <2pp。IRT 校正幅度是真实变化的 21 倍。\n\n**关键洞察**：GSM8K 的 contamination 是**再分配型**（改变哪些 items 答对）而非**加法型**（不增加总答对数）。IRT gamma 在 item 层面有效检测 contamination，但不能直接用于 aggregate score correction。\n\n**对论文的建议**：分离 detection 和 correction——gamma 用于 contamination detection（有效），score correction 仅声称适用于 accuracy-sensitive benchmarks（如 HumanEval）。报告已保存为 `art_20260515_6a06dc`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-oracle-gsm8k-v2-results.md"
+}

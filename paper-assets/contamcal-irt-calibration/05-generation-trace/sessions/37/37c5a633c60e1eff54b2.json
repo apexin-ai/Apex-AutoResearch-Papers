@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37c5a633c60e1eff54b2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 eval 3B d005 s42 a32 batch",
+  "task_key": "worker_analysis_exp_001_eval_3B_d005_s42_a32_batch_20260516T062331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_eval_3B_d005_s42_a32_batch_20260516T062331_result.json",
+    "occurrence": 1,
+    "bytes": 1824,
+    "sha256": "f715983bdf9715e58679eda1187217471d53f9a1b3642ab66bbfb47cb7850a01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。汇总结果如下：\n\n## exp_001_eval_3B_d005_s42_a32_batch 结果\n\n实验产出了两组结果：原始 eval 和 paraphrased eval。\n\n### Original eval（全量 benchmark）\n| Benchmark | Accuracy | Samples | d000 Baseline | Delta |\n|-----------|----------|---------|---------------|-------|\n| mmlu | 63.08% | 14042 | 63.07% | +0.01 |\n| gsm8k | **41.47%** | 1319 | 14.10% | **+27.37** |\n| arc_challenge | 82.51% | 1172 | 82.42% | +0.09 |\n| humaneval | 13.41% | 164 | 14.02% | -0.61 |\n\n### Paraphrased eval（QC-passed 子集）\n| Benchmark | Accuracy | Samples | d000 Baseline | Delta |\n|-----------|----------|---------|---------------|-------|\n| mmlu_para | 64.71% | 6596 | 64.31% | +0.40 |\n| gsm8k_para | **34.21%** | 228 | 5.26% | **+28.95** |\n| arc_para | 81.64% | 697 | 81.06% | +0.58 |\n| humaneval_para | 7.69% | 26 | 19.23% | -11.54 |\n\nd000 baseline 来自同批 alpha=32 retrained checkpoint (`exp_001_eval_3B_d000_s42_a32_batch`)。\n\n### 关键发现\n\n- **GSM8K 上有强烈的 contamination signal**：5% contamination 使 gsm8k 从 14.1%→41.5%（original），5.3%→34.2%（paraphrased）。paraphrased 上也有 +29pp 提升，说明不仅是死记硬背——contamination 带来了真实的 problem-solving 泛化。\n- **MMLU/ARC 基本无变化**：符合预期，contamination 仅针对 GSM8K 数据。\n- **HumanEval paraphrased 下降**（19.2%→7.7%），但 N=26 太小，不具统计意义。\n- Per-item 结果文件（`correctness_matrix.json`, `item_responses.json`）已生成，可用于后续 IRT/signals 计算。\n\n输出目录：\n- Original: `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s42_a32_aligned/`\n- Paraphrased: `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s42_a32_para_aligned/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-eval-3b-d005-s42-a32-batch.md"
+}

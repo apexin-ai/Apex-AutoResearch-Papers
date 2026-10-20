@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01dd02fa2d2e65f533f1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh check 0pct 05B completion",
+  "task_key": "worker_ssh_check-0pct-05B-completion_20260513T203440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-0pct-05B-completion_20260513T203440_result.json",
+    "occurrence": 1,
+    "bytes": 398,
+    "sha256": "3d07c3afcb45794e34afe423592806376515c2ca9c899d851a5b4b43e8cc4522"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n训练结果: SUCCESS\nSteps: 3125/3125 (1 epoch 完整完成)\nFinal loss: 1.4894 (最后一步), train_loss 均值: 1.5388\nLoss trajectory: ~1.6+ → 1.49 (稳步下降)\nMean token accuracy: 0.682 (最终)\n训练时长: 52.9 分钟 (0.984 steps/s)\nCheckpoint: 存在, 166MB (adapter_model.safetensors 34MB)\nEXIT_CODE: 0\nGPU 3: 已释放 (0% utilization, 0 MiB used)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-0pct-05b-completion.md"
+}

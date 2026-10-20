@@ -1,0 +1,856 @@
+{
+  "schema_version": "1.0",
+  "id": "45a2d72415abfa5322f0",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "submit 1 5B d100 gpu0",
+  "task_key": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_submit_1_5B_d100_gpu0_20260514T005157.jsonl",
+    "occurrence": 1,
+    "bytes": 39581,
+    "sha256": "11e1272d45d3e197e3a309d109d173623b69ca29b24f198fccd2d0179e555868"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T00:55:25.260690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T00:55:25.261186+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T00:55:25.273194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -80 /root/runs/contamcal-irt-calibration/exp_001_sft_d100_05B.log"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T00:55:25.273523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls -la /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T00:55:25.273726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "nvidia-smi -i 0"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T00:55:25.274022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'loss': 1.4976, 'grad_norm': 0.47710880637168884, 'learning_rate': 1.726111656258932e-05, 'entropy': 1.5018133342266082, 'num_tokens': 17756885.0, 'mean_token_accuracy': 0.6825465291738511, 'epoch': 0.82}\\\\n{'loss': 1.4207, 'grad_norm': 0.45011377334594727, 'learning_rate': 1.6817163502544208e-05, 'entropy': 1.4896196231245995, 'num_tokens': 17800236.0, 'mean_token_accuracy': 0.6841740816831589, 'epoch': 0.82}\\\\n{'loss': 1.728, 'grad_norm': 0.4393675625324249, 'learning_rate': 1.6378469611457592e-05, 'entropy': 1.707591925561428, 'num_tokens': 17852242.0, 'mean_token_accuracy': 0.6416626177728176, 'epoch': 0.82}\\\\n{'loss': 1.5698, 'grad_norm': 0.4264788329601288, 'learning_rate': 1.594506262540324e-05, 'entropy': 1.5915462762117385, 'num_tokens': 17902134.0, 'mean_token_accuracy': 0.6630796447396279, 'epoch': 0.83}\\\\n{'loss': 1.5907, 'grad_norm': 0.4780721366405487, 'learning_rate': 1.5516969946194626e-05, 'entropy': 1.5842877104878426, 'num_tokens': 17959309.0, 'mean_token_accuracy': 0.666258430480957, 'epoch': 0.83}\\\\n{'loss': 1.5217, 'grad_norm': 0.422344446182251, 'learning_rate': 1.509421863965237e-05, 'entropy': 1.5324383944272995, 'num_tokens': 18011769.0, 'mean_token_accuracy': 0.6739617645740509, 'epoch': 0.83}\\\\n{'loss': 1.6273, 'grad_norm': 0.42980918288230896, 'learning_rate': 1.4676835433892989e-05, 'entropy': 1.620709489285946, 'num_tokens': 18068923.0, 'mean_token_accuracy': 0.6576125949621201, 'epoch': 0.83}\\\\n{'loss': 1.6696, 'grad_norm': 0.5659136772155762, 'learning_rate': 1.4264846717639102e-05, 'entropy': 1.64170291274786, 'num_tokens': 18121034.0, 'mean_token_accuracy': 0.6528271108865737, 'epoch': 0.84}\\\\n{'loss': 1.4953, 'grad_norm': 0.4015149772167206, 'learning_rate': 1.3858278538551018e-05, 'entropy': 1.4927385479211808, 'num_tokens': 18170971.0, 'mean_token_accuracy': 0.6797402694821357, 'epoch': 0.84}\\\\n{'loss': 1.5515, 'grad_norm': 0.4427213668823242, 'learning_rate': 1.3457156601\n…[truncated 6298 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T00:55:25.274266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "wc -l /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T00:55:25.275628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 12\\\\ndrwxr-xr-x  3 root root   63 May 14 08:49 .\\\\ndrwxr-xr-x 10 root root 4096 May 14 07:56 ..\\\\ndrwxr-xr-x  3 root root 4096 May 14 08:49 lora_adapter\\\\n-rw-r--r--  1 root root  307 May 14 08:49 train_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T00:55:25.275875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Thu May 14 08:52:42 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\\\\n|  0%   27C    P8             23W /  425W |       0MiB /  24564MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|  No running processes found                                                             |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T00:55:25.276118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B/"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T00:55:25.276337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"66533 /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T00:55:25.276529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp_001_sft_d100_05B'}",
+              "project": "contamcal-irt-calibration",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T00:55:25.276724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LICENSE\\\\nREADME.md\\\\nconfig.json\\\\nconfiguration.json\\\\ngeneration_config.json\\\\nmerges.txt\\\\nmodel.safetensors\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T00:55:25.276914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.625}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T00:55:25.277168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_d100_05B",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T00:55:25.287235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_d100_05B\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:36:13.403Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:53:27.921Z\\\", \\\"hypothesis\\\": \\\"100% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): maximum contamination level to establish upper bound of calibration error; paired with d005 for min-max comparison\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-13T23:38:41.749Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T00:50:16.569Z\\\", \\\"training_hours\\\": 1.19}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"235243\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_d100_05B.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T23:39:51.510Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\",\n…[truncated 610 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 10
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T00:55:25.287658+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_d100_05B",
+              "field": "log_path",
+              "value": "/root/runs/contamcal-irt-calibration/exp_001_sft_d100_05B.log",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T00:55:25.288014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_d100_05B\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:36:13.403Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:53:28.807Z\\\", \\\"hypothesis\\\": \\\"100% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): maximum contamination level to establish upper bound of calibration error; paired with d005 for min-max comparison\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-13T23:38:41.749Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T00:50:16.569Z\\\", \\\"training_hours\\\": 1.19}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"235243\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_d100_05B.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T23:39:51.510Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\",\n…[truncated 614 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T00:55:25.298446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_d100_05B",
+              "field": "metrics",
+              "value": "{'train_loss': 1.5662, 'mean_token_accuracy': 0.6661, 'training_time_min': 68.9, 'steps_completed': 4159, 'epoch': 1, 'train_samples_per_second': 16.09, 'train_steps_per_second': 1.006, 'final_entropy': 1.5848, 'num_tokens': 21575068}",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T00:55:25.298990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_d100_05B\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:36:13.403Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:53:40.032Z\\\", \\\"hypothesis\\\": \\\"100% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): maximum contamination level to establish upper bound of calibration error; paired with d005 for min-max comparison\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-13T23:38:41.749Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T00:50:16.569Z\\\", \\\"training_hours\\\": 1.19}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"235243\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_d100_05B.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T23:39:51.510Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\",\n…[truncated 880 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T00:55:25.299275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_d100_05B",
+              "field": "conclusion",
+              "value": "success",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T00:55:25.299588+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_d100_05B\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:36:13.403Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:53:44.863Z\\\", \\\"hypothesis\\\": \\\"100% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): maximum contamination level to establish upper bound of calibration error; paired with d005 for min-max comparison\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-13T23:38:41.749Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T00:50:16.569Z\\\", \\\"training_hours\\\": 1.19}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"235243\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_d100_05B.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T23:39:51.510Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\",\n…[truncated 909 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T00:55:25.299849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_d100_05B",
+              "field": "status",
+              "value": "DONE",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T00:55:25.300169+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_d100_05B\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:36:13.403Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:53:49.656Z\\\", \\\"hypothesis\\\": \\\"100% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): maximum contamination level to establish upper bound of calibration error; paired with d005 for min-max comparison\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-13T23:38:41.749Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T00:50:16.569Z\\\", \\\"training_hours\\\": 1.19}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"235243\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/exp_001_sft_d100_05B.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T23:39:51.510Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"ac\n…[truncated 1057 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T00:55:25.309166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "mkdir -p /root/runs/contamcal-irt-calibration && nohup bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42 --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\" > /root/runs/contamcal-irt-calibration/exp_001_sft_d100_15B.log 2>&1 & echo \"PID=$!\""
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T00:55:25.309572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'mkdir -p /root/runs/contamcal-irt-calibration && nohup bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42 --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\" > /root/runs/contamcal-irt-calibration/exp_001_sft_d100_15B.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=248993\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T00:55:25.309861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ps -p 248993 -o pid,stat,etime,cmd"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T00:55:25.310088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_sft_d100_15B.log"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T00:55:25.310305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n248993 S          00:36 bash -c mkdir -p /root/runs/contamcal-irt-calibration && nohup bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42 --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\" > /root/runs/contamcal-irt-calibration/exp_001_sft_d100_15B.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T00:55:25.320360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-14 08:54:06,141 [INFO] LoRA config: r=16, alpha=32, targets={'v_proj', 'q_proj', 'k_proj', 'down_proj', 'o_proj', 'gate_proj', 'up_proj'}\\\\n2026-05-14 08:54:06,141 [INFO] Loading training data: /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\\n2026-05-14 08:54:07,321 [INFO] Training samples: 66533\\\\n2026-05-14 08:54:08,896 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 320, in <module>\\\\n    lib = get_native_library()\\\\n          ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 298, in get_native_library\\\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 460, in LoadLibrary\\\\n    return self._dlltype(name)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n\\\\rTokenizing train dataset:   0%|          | 0/66533 [00:00<?, ? examples/s]\\\\rTokenizing train dataset:   0%|          | 64/66533 [00:00<01:46, 626.73 examples/s]\\\\rTokenizing train dataset:   0%|          | 146/66533 [00:00<01:30, 729.63 examples/s]\\\\rTokenizing train dataset:   0%|          | 225/66533 [00:00<01:28, 752.88 examples/s]\\\\rTokenizing train dataset:   0%|          | 310/66533 [00:00<01:24, 785.63 examples/s]\\\\rTokenizing train dataset:   1%|          | 398/66533 [00:00<01:20, 817.75 examples/s]\\\\rTokenizing train dataset:   1%|         \n…[truncated 6414 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 10
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T00:55:25.320734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_d100_15B",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42 --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache', 'server': 'cqa1-21977', 'data_path': '/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl', 'data_count': 66533, 'model_name': 'Qwen/Qwen2.5-1.5B', 'seed': 42, 'gpu': ['cuda:0'], 'pid': '248993', 'log_path': '/root/runs/contamcal-irt-calibration/exp_001_sft_d100_15B.log'}"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T00:55:25.321012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3369}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T00:55:25.321275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_d100_15B",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T00:55:25.330810+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_d100_15B\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:37:43.653Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:54:54.251Z\\\", \\\"hypothesis\\\": \\\"100% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): mid-size model maximum contamination, extends dose-response curve to 1.5B scale\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1138}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 9
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T00:55:25.331162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_d100_15B",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contamcal-irt-calibration",
+              "spec": "{'command': 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42 --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache', 'server': 'cqa1-21977', 'data_path': '/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl', 'data_count': 66533, 'model_name': 'Qwen/Qwen2.5-1.5B', 'seed': 42, 'gpu': ['cuda:0'], 'pid': '248993', 'log_path': '/root/runs/contamcal-irt-calibration/exp_001_sft_d100_15B.log'}"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T00:55:25.331487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_d100_15B\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:37:43.653Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:55:03.096Z\\\", \\\"hypothesis\\\": \\\"1.5B model SFT with 100% contamination dosage (d100) to measure maximum contamination effect on IRT calibration\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42 --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"data_count\\\": 66533, \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B\\\", \\\"seed\\\": 42, \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"248993\\\", \\\"log_path\\\": \\\"/root/runs/contamcal-irt-calibration/exp_001_sft_d100_15B.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3828}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T00:55:25.331733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_d100_15B",
+              "field": "hypothesis",
+              "value": "100% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): mid-size model maximum contamination, extends dose-response curve to 1.5B scale; paired with 0.5B d100 to measure scale effect on calibration error",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T00:55:25.331979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_d100_15B\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:37:43.653Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:55:11.821Z\\\", \\\"hypothesis\\\": \\\"100% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): mid-size model maximum contamination, extends dose-response curve to 1.5B scale; paired with 0.5B d100 to measure scale effect on calibration error\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42 --seed 42 --gpu 0 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"data_count\\\": 66533, \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": 42, \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"248993\\\", \\\"log_path\\\": \\\"/root/runs/contamcal-irt-calibration/exp_001_sft_d100_15B.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9023}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T00:55:25.332220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_001_sft_d100_15B",
+              "field": "notes",
+              "value": "batch_size=1, grad_accum=16 (防 OOM，与 1.5B d000 baseline 一致)。66533 samples, 1 epoch。数据与 0.5B d100 完全相同，含 MMLU+ARC+GSM8K 全部 paraphrases（noisy contamination condition）。",
+              "project": "contamcal-irt-calibration"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T00:55:25.341735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_sft_d100_15B\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:37:43.653Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:55:15.123Z\\\", \\\"hypothesis\\\": \\\"100% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): mid-size model maximum contamination, extends dose-response curve to 1.5B scale; paired with 0.5B d100 to measure scale effect on calibration error\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42 --seed 42 --gpu 0 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"data_count\\\": 66533, \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": 42, \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"248993\\\", \\\"log_path\\\": \\\"/root/runs/contamcal-irt-calibration/exp_001_sft_d100_15B.log\\\"}, \\\"notes\\\": \\\"batch_size=1, grad_accum=16 (防 OOM，与 1.5B d000 baseline 一致)。66533 samples, 1 epoch。数据与 0.5B d100 完全相同，含 MMLU+ARC+GSM8K 全部 paraphrases（noisy contamination condition）。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7189}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 9
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T00:55:25.342099+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两步都完成：\n\n**步骤 1 — exp_001_sft_d100_05B 分析完毕**\n| 指标 | 值 |\n|---|---|\n| train_loss | 1.5662 |\n| mean_token_accuracy | 0.6661 |\n| training_time | 68.9 min (1.19 GPU-hr) |\n| steps | 4159 |\n| epoch | 1.0 |\n| status | **DONE** (conclusion=success) |\n\n**步骤 2 — exp_001_sft_d100_15B 已在 GPU 0 启动**\n- PID: 248993，正在 tokenize 数据集\n- 参数: Qwen2.5-1.5B, batch_size=1, grad_accum=16, 66533 samples, seed=42\n- Registry: RUNNING"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_1_5B_d100_gpu0_20260514T005157"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/submit-1-5b-d100-gpu0.md"
+}

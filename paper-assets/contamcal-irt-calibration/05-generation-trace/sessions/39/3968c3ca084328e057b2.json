@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3968c3ca084328e057b2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops mean ai comparison sf2",
+  "task_key": "worker_ops_mean_ai_comparison_sf2_20260517T180920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mean_ai_comparison_sf2_20260517T180920_result.json",
+    "occurrence": 1,
+    "bytes": 1274,
+    "sha256": "e329678210667e330624f46e59e659148849897f7a16dc6d8507a9e6748935dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n### a_i (Item Discrimination) 对比\n\n| 组别 | n | Mean ± SD | Median | IQR |\n|------|---|-----------|--------|-----|\n| All 14042 items | 14042 | 1.611 ± 0.569 | 1.830 | [1.064, 2.055] |\n| RRF-300 subset | 300 | 1.666 ± 0.566 | 1.847 | [1.149, 2.070] |\n| excl00-2000 subset | 2000 | 1.610 ± 0.570 | 1.824 | [1.017, 2.061] |\n\n### 统计检验\n\n| 对比 | Mann-Whitney p | t-test p | Cohen's d |\n|------|---------------|----------|-----------|\n| RRF-300 vs excl00-2000 | 0.076 | 0.114 | 0.098 |\n| RRF-300 vs Complement (13742) | 0.051 | 0.094 | 0.098 |\n\n### RRF exposure 与 a_i 的相关性\n\n- Pearson r = -0.013 (p=0.13), Spearman ρ = -0.001 (p=0.92)\n- 高/低 exposure quintile 的 a_i 无显著差异 (p=0.41)\n\n### 结论\n\n**RRF 没有系统性选出高 discrimination items。**\n\n1. 两组 a_i 差异不显著（所有 p > 0.05，Cohen's d ≈ 0.10 属于 negligible effect）\n2. RRF exposure 与 a_i 几乎零相关（r ≈ -0.01）\n3. 关键注意：**两组 items 都是随机子采样**（seed=42），代码中的 \"RRF\" 指的是 IRT 模型中使用 RRF 信号作为 exposure covariate，不是基于 RRF 得分选择 items。RRF-300 略高的均值 (1.666 vs 1.610) 仅是随机波动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mean-ai-comparison-sf2.md"
+}

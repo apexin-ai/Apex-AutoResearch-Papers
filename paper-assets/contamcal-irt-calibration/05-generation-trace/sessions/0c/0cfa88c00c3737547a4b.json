@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cfa88c00c3737547a4b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 sft 3B d005 s42 a32",
+  "task_key": "worker_diagnose_exp_001_sft_3B_d005_s42_a32_20260516T015151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_sft_3B_d005_s42_a32_20260516T015151_result.json",
+    "occurrence": 1,
+    "bytes": 1381,
+    "sha256": "f2c2e528631f28b31fc768ef231491899c199b9adf9aafa178990521b4991bfe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 失败根因：**非真正失败——训练已完成**\n\nEXIT_CODE=129 (SIGHUP) 发生在训练结束**之后**。日志明确显示：\n- 3177/3177 步全部完成 (100%)，epoch=1.0\n- `2026-05-16 09:46:39 [INFO] LoRA adapter saved to .../Qwen2.5-3B_d005_s42/lora_adapter`\n- `2026-05-16 09:46:39 [INFO] Training complete.`\n- 最终 train_loss=1.137，mean_token_accuracy=0.752\n\nSIGHUP 原因：训练完成后进程的父 shell/tmux session 断开，导致 hangup 信号。训练本身无任何错误。\n\n### 训练进度\n- **3177/3177 步**，完整 1 epoch，耗时 4h08m33s\n- 无 OOM、无 CUDA 错误\n\n### Checkpoint 状态\n完整保存，可直接使用：\n- `adapter_model.safetensors` (114MB) — 时间戳 09:46\n- `adapter_config.json` — 已保存\n- `checkpoint-3177/` 目录也存在\n\n### cuda:0 当前状态\n- PID 642763 占用 8976MiB（eval 进程仍在运行）\n- GPU-Util 0%，温度 27°C，处于空闲/低负载状态\n\n### 非致命警告\n日志头部有 bitsandbytes `libnvJitLink.so.13` 加载失败的 warning，但未影响训练。\n\n### 结论\n**无需重试。** 训练已成功完成，checkpoint 完整。EXIT_CODE=129 是训练结束后的 SIGHUP，不影响结果。可以直接用 `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter` 进行后续 eval/信号计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-sft-3b-d005-s42-a32.md"
+}

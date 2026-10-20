@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e1ad012874ee56d7a02",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "run arc 2pl gamma 05b 15b",
+  "task_key": "worker_run_arc_2pl_gamma_05b_15b_20260516T091149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_arc_2pl_gamma_05b_15b_20260516T091149_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "8a13837dd37b8e103bb6c6fb5f8dd85882c8265acd26e43e1f485728f04e1032"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n## ARC 2PL+γ 结果\n\n| Benchmark | N_mod | N_item | γ̂ | 95% CI | R̂ | ESS | PPP | raw_MAE | cal_MAE | ΔMAE |\n|-----------|-------|--------|------|--------|------|-----|-----|---------|---------|------|\n| arc_challenge | 8 | 1172 | 2.734 | [1.31, 4.14] | 1.009 | 1315 | 0.000 | — | — | — |\n\n**关键发现：**\n- 收敛良好：Rhat=1.009, ESS=1315, 0 divergences\n- γ̂=2.73 显著排除零（CI 不含 0）\n- **PPP=0.000 仍然失败** — 与 4PL+γ 一样\n\n**结论（negative）：** 2PL+γ 并没有解决 ARC 的 PPP 问题。原因不是过参数化（4PL 参数太多），而是 N=8 模型 vs 1172 items 的根本性数据稀疏 + ARC 可能违反 IRT 单维假设（item clustering/multidimensionality）。γ 估计因 PPP 失败不可靠。\n\n**Models included:** 8 个 1.5B aligned（d000/d005/d025/d100 × s42/s123），比预期 N=5 多（因为 s123 系列已完成 eval）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-arc-2pl-gamma-05b-15b.md"
+}

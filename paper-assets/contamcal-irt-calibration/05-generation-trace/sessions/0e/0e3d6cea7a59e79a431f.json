@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e3d6cea7a59e79a431f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis 300 item subset distribution",
+  "task_key": "worker_analysis_300-item-subset-distribution_20260523T081151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_300-item-subset-distribution_20260523T081151_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "3308b38001c567e0ff9ec794032805ad7d47d8a7197617729f94bc8e19fa126a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n**300-item 随机子集在所有维度上都是无偏的：**\n\n| 维度 | 检验 | 统计量 | p 值 | 效应量 |\n|------|------|--------|------|--------|\n| Difficulty | KS test | D=0.030 | 0.946 | Cohen's d=−0.020 |\n| Domain | Chi-square | χ²=1.99 | 0.574 | Cramér's V=0.047 |\n| RRF exposure | KS test | D=0.042 | 0.664 | — |\n| Subject coverage | — | 52/57 | 91.2% | — |\n\n关键发现：\n- 子集是 `np.random.choice(14042, 300, seed=42)` 随机抽样，不是按 RRF 分数排序的 top-300\n- 所有 p 值远大于 0.05，所有效应量 < 0.05（negligible）\n- 对比实验：如果改用 RRF top-300，domain 分布会显著偏斜（χ²=31.6, p<0.001），Social Sciences 从 21.9% 涨到 34.7%\n\n产出已注册：\n- 报告：`artifacts/subset_distribution_analysis.md`\n- 图表：`cqa1:/root/contamcal-irt-calibration/analysis/subset_distribution_analysis.{png,pdf}`\n- JSON 原始数据：`cqa1:/root/contamcal-irt-calibration/analysis/subset_distribution_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-300-item-subset-distribution.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f47a0c0a2f1f77fb048",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_10_1778867817.md",
+  "task_key": "loop_10_1778867817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778867817.md",
+    "occurrence": 1,
+    "bytes": 4342,
+    "sha256": "8612e57ee1b722ad0fd3a13b028880758a8165287239155b7bb8e8de67854b15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_messages\nupdated: '2026-05-15T17:56:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0-5（6× RTX 4090D），服务器 cqa1-21977，不可用其他 GPU\n- LoRA alpha 统一为 32（D050/D055）。3B s42 的 d025/d100 旧 checkpoint 是 alpha=16 已弃用，d000_v2 也弃用（alpha=16），原始 d000 是 alpha=32 保留\n- 3B s123 系列（d000/d005/d025）是 alpha=16 但 D051 决策接受不重跑，只 s42 重跑\n- cuda:1 有两个 d100_s42 实验（exp_001_sft_3B_d100_s42_a32 PID 593745 + exp_001_sft_3B_d100_s42_a32_v2 PID 593740）——**可能冲突，接手后第一件事确认哪个是活跃进程**\n- exp-004 sim sweep 在本地 CPU 跑（非 GPU），不要试图迁移到服务器\n- 投稿目标 EMNLP 2026 ARR May 25（距今 10 天），禁止 fallback 到次级会议\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977（AutoDL），6× RTX 4090D\n- 工作目录：/root/contamcal-irt-calibration\n- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型缓存：/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}\n- SFT 数据：/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl\n- Checkpoints：/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_{dose}_{suffix}/lora_adapter\n- Eval 输出：/root/autodl-tmp/exp001/eval_results/\n- Paraphrases：/root/autodl-tmp/exp001/paraphrases\n- Logs：~/runs/contamcal-irt-calibration/\n- 活跃进程（8 个 cron 监控中）：\n  - cuda:0 — PID 594489 (3B d100 s123 SFT)\n  - cuda:1 — PID 593740 + 593745 (⚠️ 两个 d100 s42 SFT，需确认)\n  - cuda:2 — PID 580693 (3B d005 s123 eval)\n  - cuda:3 — PID 576730 (3B d025 s123 eval)\n  - cuda:4 — PID 597174 (3B d000 v3 SFT)\n  - cuda:5 — PID 589763 (3B d025 v3 SFT)\n  - local CPU — PID 528993 (exp-004 sim sweep v6)\n\n### 3. 📊 当前状态\n**刚完成**：D055 alpha=32 重跑调度——将 3B s42 的 d000/d025/d100 三个 alpha=16 实验全部重启为 alpha=32。1.5B 双种子矩阵全部完成（32 数据点）。exp-005 noise prop v4 完成（negative，降级 appendix）。\n\n**正在跑**：\n- 4 个 3B SFT（d000_v3, d025_v3, d100_s42, d100_s123）占 cuda:0/1/4/5\n- 2 个 3B eval（d005_s123, d025_s123 aligned）占 cuda:2/3\n- 1 个 CPU sim sweep（exp-004 v6, ~45%）\n- 共 8 个 cron 监控，0 个 Worker\n\n**等待中**：\n- 20 个 PREPARING 实验（含 d025_s42_a32 备用、各种 eval、exp-006 IRT v2、exp-008 instruct RL proxy）\n- 无 Director 待决策项\n\n### 4. 📋 待办（条件触发式）\n- cuda:2 eval (d005_s123) 完成 → 提交 d005_s123 para_aligned eval（用 memory.md 命令模板）→ 或分配给下一个 SFT\n- cuda:3 eval (d025_s123) 完成 → 提交 d025_s123 para_aligned eval → 或分配给下一个 SFT\n- 3B d000_v3 SFT 完成 → 提交 aligned eval + para eval\n- 3B d025_v3 SFT 完成 → 提交 aligned eval + para eval\n- 3B d100 s42/s123 SFT 完成 → 提交 aligned eval + para eval\n- **全部 3B alpha=32 eval 完成 → N≥16 multi-seed pooled IRT 重跑 → 检查 coverage collapse 是否改善**\n- exp-004 sim sweep v6 完成 → 分析 coverage vs N 关系 → 更新 D056 结论\n- cuda:1 冲突确认 → kill 重复进程，释放 GPU 给排队实验\n\n### 5. 🎯 战略上下文\n- **核心结论 D056**：Coverage collapse（20-33%）确认为 model misspecification，不是 γ 值大。Framing 调整为 \"benchmark-dependent effects\"。4PL+γ additive 模型在 DGP 匹配时 coverage 90-100%，在真实数据上崩塌。\n- **D036 pivot**：ARC gamma 负方向 confirmed → framing 从 \"universal contamination signal\" 转向 \"benchmark-dependent calibration effects\"\n- **最容易判断错的事**：3B alpha=16 vs alpha=32 的 checkpoint 区分。memory.md 的 alpha 表是 ground truth。弃用的 d000_v2 和未弃用的 d000（原始）容易混淆——原始 d000 是 alpha=32 ✅，d000_v2 是 alpha=16 ❌。\n- **易踩的坑**：cuda:1 疑似双进程冲突；para eval 需要 `--paraphrase-dir` 参数；AutoDL 需要 `source /etc/network_turbo` 才能联网；HF 下载需 `HF_HUB_DISABLE_XET=1`\n- **10 天倒计时**：3B alpha=32 SFT → eval → pooled IRT → paper 是 critical path。0.5B 和 1.5B 数据已就绪，3B 是瓶颈。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778867817.md"
+}

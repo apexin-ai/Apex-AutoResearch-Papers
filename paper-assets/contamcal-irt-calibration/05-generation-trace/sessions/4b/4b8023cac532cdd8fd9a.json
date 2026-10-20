@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b8023cac532cdd8fd9a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops 3B d100 v2 aligned eval gpu0",
+  "task_key": "worker_ops_3B-d100-v2-aligned-eval-gpu0_20260515T010057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_3B-d100-v2-aligned-eval-gpu0_20260515T010057_result.json",
+    "occurrence": 1,
+    "bytes": 292,
+    "sha256": "7677c8f9f5d199dd897bb27f094b3cf7bf1d895dd46b28bc100b62cabc957feb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **实验**: `exp_001_eval_3B_d100_v2_aligned_v2`\n- **状态**: RUNNING\n- **GPU**: cuda:0，PID 477489，占用 6782 MiB\n- **输出目录**: `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_v2_s42_aligned`\n- **日志**: `/tmp/eval_3b_d100_v2_aligned.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-3b-d100-v2-aligned-eval-gpu0.md"
+}

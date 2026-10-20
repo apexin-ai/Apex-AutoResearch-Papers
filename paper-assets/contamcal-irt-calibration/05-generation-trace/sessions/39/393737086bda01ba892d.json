@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "393737086bda01ba892d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 002 signals 3B v6",
+  "task_key": "worker_code_exp_002_signals_3B_v6_20260515T200808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_002_signals_3B_v6_20260515T200808_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "5adc7eb1830a6ce2f3aec0ec1ad7f9c2e162e5aa0fe0f632b1f6666f76ac614c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_002_signals_3B_v6 已启动，状态摘要：**\n\n| 项目 | 详情 |\n|------|------|\n| tmux session | `exp_002_signals_3B_v6` |\n| GPU | cuda:3, 6470 MiB / 85% util |\n| PID | 628100 (bash), 628112 (python) |\n| Checkpoint | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter` (lora_alpha=16 已确认) |\n| Output | `/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42/` |\n| Log | `/root/runs/contamcal-irt-calibration/exp_002_signals_3B_v6.log` |\n| 任务 | 3 个 benchmark 顺序执行：mmlu → gsm8k → arc_challenge |\n| 信号类型 | embedding + minkpp + selfcritique + constat (all) |\n\n注意：`run_batch.py` 硬编码路径格式 `{model}_{dosage}_{seed}`，无法匹配 v2 命名。已直接调用 `compute_signals.py` 并显式传入 v2 checkpoint 路径。ref-model-path 与 adapter-path 相同（d000 是自身的 reference）。ConStat 的 eval 路径也已传入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-002-signals-3b-v6-copy-2.md"
+}

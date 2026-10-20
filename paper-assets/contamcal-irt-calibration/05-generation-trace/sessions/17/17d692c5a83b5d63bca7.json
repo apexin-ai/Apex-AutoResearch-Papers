@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17d692c5a83b5d63bca7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze eval metrics batch 15B 3B",
+  "task_key": "worker_analyze_eval_metrics_batch_15B_3B_20260515T230026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_metrics_batch_15B_3B_20260515T230026_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "52f9730bb62b1d7971bf208de64e44ab2e9c71236d6225851f9691019aa14468"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验 metrics 已更新成功。Registry 显示 conclusion=success, status=DONE, checkpoint_path 和 log_path 均已设置。\n\n## 汇总\n\n```\nexp_001_eval_15B_s123_para_aligned_batch (paraphrased):\n  d000: {mmlu: 0.6111, gsm8k: 0.5921, arc_challenge: 0.7547, humaneval: 0.1538}\n  d005: {mmlu: 0.6140, gsm8k: 0.5439, arc_challenge: 0.7475, humaneval: 0.0769}\n  d025: {mmlu: 0.6145, gsm8k: 0.5482, arc_challenge: 0.7504, humaneval: 0.1923}\n  d100: {mmlu: 0.6290, gsm8k: 0.5307, arc_challenge: 0.7834, humaneval: 0.2308}\n\nexp_001_eval_3B_d005_s123_gsm8k (aligned, original):\n  gsm8k: 0.6308\n```\n\n趋势：1.5B para_aligned 随 dose 增加，mmlu/arc_challenge 上升（0.611→0.629, 0.755→0.783），gsm8k 下降（0.592→0.531），humaneval 波动但 d100 最高（0.231）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-metrics-batch-15b-3b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47f90a9d5ca30e0b8812",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify sim sweep v7 local",
+  "task_key": "worker_ops_verify-sim-sweep-v7-local_20260516T022742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-sim-sweep-v7-local_20260516T022742_result.json",
+    "occurrence": 1,
+    "bytes": 2336,
+    "sha256": "d31c1e878097c14b7f6a8c914472a5f017d24cf0cd34c0ab68e22c8232d2b58b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## sim_sweep_v7 结果\n\n**路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/simulation_sweep/results/`\n\n**状态: 仍在运行中 (8/12 条件完成)**\n\nv7 进程活跃（tmux session `exp_004_sim_sweep_v7`，2 个并行 worker + 4 个 CmdStan 采样器线程）。\n\n### 12 条件详情\n\n| 条件 | 成功 seeds | 状态 | 备注 |\n|------|-----------|------|------|\n| auc0.55_n20 | 10/10 | DONE | |\n| auc0.55_n50 | 10/10 | DONE | |\n| auc0.55_n100 | 7/10→10/10 | DONE | v7 补完 |\n| auc0.65_n20 | **7/10** | **运行中** | seed 7 正在采样，~600s/seed |\n| auc0.65_n50 | **0/10** | **待跑** | 文件仍是旧 TMPDIR 错误 |\n| auc0.65_n100 | **0/10** | **待跑** | 文件仍是旧 TMPDIR 错误 |\n| auc0.8_n20 | 10/10 | DONE | |\n| auc0.8_n50 | 10/10 | DONE | |\n| auc0.8_n100 | 9/10→10/10 | DONE | v7 补完 |\n| auc0.9_n20 | 10/10 | DONE | |\n| auc0.9_n50 | 7/10→10/10 | DONE | v7 补完 |\n| auc0.9_n100 | **4/10** | **运行中** | seed 4 正在采样，~5000s/seed |\n\n### 关键发现\n\n- **Reviewer 的\"12/12 完成\"说法不正确** — 实际 8/12 DONE，4 条件未完成\n- **之前 Agent 的\"5/10\"** 可能指的是 v7 启动前只有 5 个条件有 remaining seeds 需要 resume\n- **两个 worker 正在处理**: auc0.65_n20（快完成，~30min）和 auc0.9_n100（还要 ~8h）\n- **auc0.65_n50 和 auc0.65_n100** 尚未被 v7 重跑（文件时间戳 May 15 17:21 < v7 启动 18:11），排队等前面两个完成\n- 项目 checkpoint 记录 `conditions_ok: 9`（与 sweep_summary.json 的 8 条记录矛盾，可能是 checkpoint 更新滞后于文件写入）\n\n### 预计剩余时间\n\n- auc0.65_n20: ~30 min（3 seeds × ~10min）\n- auc0.9_n100: ~8-10h（6 seeds × ~80-90min）\n- auc0.65_n50: ~3h（10 seeds × ~18min） — 排队中\n- auc0.65_n100: ~10h（10 seeds × ~60min） — 排队中\n- **总计**: 约 **10-13 小时**（两个 worker 并行）\n\n### 建议\n\n**仍在运行中，不是 success 也不需要补跑** — 等 v7 自然完成即可。如果 auc0.65_n50/n100 的 TMPDIR race 问题在 v7 的隔离修复下仍然失败，那么 9/12（当前 8 + auc0.9_n100 即将完成）对 Claim 1 identifiability 已经足够（checkpoint 已标注 \"9/12 sufficient for Claim 1\"）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-sim-sweep-v7-local.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "210f966eceebec92c1cb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis uniform vs nonuniform dif",
+  "task_key": "worker_analysis_uniform-vs-nonuniform-dif_20260523T085354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_uniform-vs-nonuniform-dif_20260523T085354_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "9d61cee3b1c6d9342e96e7f1f90d3d405ff1a86a5dcf9d83a89822769ab88af2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。结果摘要：\n\n**Uniform vs Non-uniform DIF 对比（MMLU, J=16, I=300）**\n\n| 指标 | Non-uniform | Uniform |\n|------|-------------|---------|\n| γ mean | 0.245 ± 0.197 | −0.458 ± 0.453 |\n| γ 90% CI | [−0.081, 0.571] | [−1.224, 0.307] |\n| Divergences | 0 | 0 |\n| PPP | 0.763 | 0.743 |\n| LOO ELPD | −2124.3 | −2123.4 |\n| LOO k>0.7 | 7 | 4 |\n| Sampling time | 59s | 102s |\n\n**结论**：两个模型的 LOO 本质上相同（ΔELPD=0.9, dSE=1.4，差异远小于 1 SE）。Non-uniform DIF 优势在于：(1) γ 的 posterior 更紧（SD 0.197 vs 0.453），(2) ESS 更高（1468 vs 981），(3) 采样更快（59s vs 102s），(4) γ 直接可解释为固定 logit shift，不被 item discrimination 混淆。\n\n产出已注册：`artifacts/dif_model_comparison.md`，JSON 结果在服务器 `analysis/dif_comparison/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-uniform-vs-nonuniform-dif.md"
+}

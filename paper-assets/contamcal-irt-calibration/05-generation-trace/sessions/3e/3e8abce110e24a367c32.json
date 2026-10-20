@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e8abce110e24a367c32",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check phi4 olmo2 readiness",
+  "task_key": "worker_ops_check-phi4-olmo2-readiness_20260518T205519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-phi4-olmo2-readiness_20260518T205519_result.json",
+    "occurrence": 1,
+    "bytes": 1380,
+    "sha256": "a10e409458730fb34ba1804ebee7fddf1f73d6ff3818c860cda2bfc34d145a34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总报告：\n\n## 模型下载状态\n\n| 模型 | 路径 | 大小 | Shards | 状态 |\n|------|------|------|--------|------|\n| **Phi-4** (14.7B, `Phi3ForCausalLM`) | `/root/autodl-tmp/models/phi-4` | 28G | 6/6 | **完整** |\n| **OLMo-2-1124-7B** (7B, `Olmo2ForCausalLM`) | `/root/autodl-tmp/models/OLMo-2-1124-7B` | 28G | 6/6 | **完整** |\n\n之前两个模型各缺 1 个 shard（Phi-4 缺 5/6，OLMo-2 缺 3/6），已通过 `hf-mirror.com` 补全。\n\n## 其他已有模型\n- Qwen2.5-14B, Qwen2.5-7B, Llama-3.1-8B, gemma-2-9b\n\n## SFT 数据\n5 个 dosage 文件完整：d000(50000), d005(50826), d025(54133), d050(58266), d100(66533)\n\n## 训练脚本兼容性\n- `train_sft.py` 使用 `AutoModelForCausalLM.from_pretrained()`，通用架构加载\n- transformers 5.8.1，支持 `phi3` 和 `olmo2` model types\n- **无需改代码**，直接传 `--model_name /root/autodl-tmp/models/phi-4` 或 `--model_name /root/autodl-tmp/models/OLMo-2-1124-7B` 即可\n\n## 注意事项\n- 服务器无法直连 `huggingface.co`，需设 `HF_ENDPOINT=https://hf-mirror.com`\n- OLMo-2 权重为 float32（28G），训练时会自动转 bf16（取决于 training args），显存占用可能略高于预期\n- Phi-4 是 14.7B 参数模型（比 Qwen2.5-14B 略小），单卡 LoRA SFT 应可行\n\n**两个模型现在可以立即开始训练。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-phi4-olmo2-readiness.md"
+}

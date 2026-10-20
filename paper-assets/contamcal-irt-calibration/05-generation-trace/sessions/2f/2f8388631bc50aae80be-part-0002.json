@@ -1,0 +1,293 @@
+{
+  "schema_version": "1.0",
+  "session_id": "2f8388631bc50aae80be",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 91,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RW88hRcBkGJgBPFosbo8XG",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/signal_coverage_audit.md",
+                "content": "# Signal Coverage Audit for IRT Pooling\n\n**Date**: 2026-05-16  \n**Target**: N >= 16 respondents per benchmark for IRT pooling  \n**Signal types**: s1_embedding, s2_minkpp, s3_constat, s4_selfcritique  \n**Benchmarks**: mmlu, gsm8k, arc_challenge  \n\n---\n\n## Coverage Matrix\n\n### 0.5B — seed 42 (all alpha=32, valid)\n\n| checkpoint | s1_emb | s2_mink | s3_con | s4_self | mmlu | gsm8k | arc |\n|------------|--------|---------|--------|---------|------|-------|-----|\n| d000_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n| d005_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n| d025_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n| d100_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n\n> s1/s2/s4 complete for all 3 benchmarks. **s3_constat missing for all 0.5B checkpoints.**\n\n### 0.5B — seed 123\n\n| checkpoint | s1_emb | s2_mink | s3_con | s4_self | Status |\n|------------|--------|---------|--------|---------|--------|\n| d000_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n| d005_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n| d025_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n| d100_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n\n> **No 0.5B s123 signals computed at all.** SFT checkpoints exist (confirmed in registry).\n\n---\n\n### 1.5B — seed 42 (all alpha=32, valid)\n\n| checkpoint | s1_emb | s2_mink | s3_con | s4_self | mmlu | gsm8k | arc |\n|------------|--------|---------|--------|---------|------|-------|-----|\n| d000_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n| d005_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n| d025_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n| d100_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n\n> Same pattern as 0.5B. **s3_constat missing for all 1.5B checkpoints.**\n\n### 1.5B — seed 123\n\n| checkpoint | s1_emb | s2_mink | s3_con | s4_self | Status |\n|------------|--------|---------|--------|---------|--------|\n| d000_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n| d005_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n| d025_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n| d100_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n\n> **No 1.5B s123 signals computed at all.** SFT checkpoints exist (confirmed in registry).\n\n---\n\n### 3B — seed 42\n\n| checkpoint | signal | mmlu | gsm8k | arc | Notes |\n|------------|--------|------|-------|-----|-------|\n| d000_v2_s42 (alpha=32) | s1_emb | ✅ | ✅ | ✅ | Valid |\n| | s2_mink | ✅ | ✅ | ✅ | Valid |\n| | s3_con  | ✅ | ✅ | ✅ | Valid |\n| | s4_self | ❌ | ❌ | ❌ | v6 batch died before s4 |\n| d005_s42 | s1_emb | ⚠️ | ⚠️ | ⚠️ | SFT running (exp_001_sft_3B_d005_s42_a32); existing signals from old checkpoint |\n| | s2_mink | ⚠️ | ⚠️ | ⚠️ | Same — pending SFT completion |\n| | s3_con  | ❌ | ❌ | ❌ | Never computed |\n| | s4_self | ❌ | ❌ | ⚠️ | Same — pending SFT |\n| d025_v3_s42 (alpha=32) | s1_emb | ✅ | ✅ | ✅ | Valid |\n| | s2_mink | ✅ | ✅ | ✅ | Valid |\n| | s3_con  | ❌ | ❌ | ❌ | Never computed |\n| | s4_self | ⏳ | ❌ | ❌ | mmlu 26% running (~1.5hr ETA) |\n| d100_s42 | s1_emb | ✅ | ✅ | ✅ | Valid (from v6 batch) |\n| | s2_mink | ✅ | ✅ | ✅ | Valid |\n| | s3_con  | ❌ | ❌ | ❌ | Never computed |\n| | s4_self | ❌ | ✅ | ✅ | mmlu missing; gsm8k+arc from v6 batch |\n\n> - d005_s42 blocked on SFT training (exp_001_sft_3B_d005_s42_a32 RUNNING)\n> - d100_s42 SFT v3 also running (exp_001_sft_3B_d100_s42_a32_v3) — existing signals may need revalidation\n> - d025_v3_s42 s4_selfcritique_mmlu actively computing (exp_002_signals_3B_d025_v3_s42)\n\n### 3B — seed 123\n\n| checkpoint | signal | mmlu | gsm8k | arc | Notes |\n|------------|--------|------|-------|-----|-------|\n| d000_s123  | all    | ❌   | ❌    | ❌  | **No signal dir exists** |\n| d005_s123  | s1_emb | ✅   | ❌    | ❌  | Only mmlu computed |\n| | s2_mink | ✅  | ❌    | ❌  | Only mmlu computed |\n| | s3_con  | ❌   | ❌    | ❌  | Never computed |\n| | s4_self | ❌   | ❌    | ❌  | Never computed |\n| d025_s123  | s1_emb | ✅   | ✅    | ✅  | Complete |\n| | s2_mink | ✅  | ✅    | ✅  | Complete |\n| | s3_con  | ❌   | ❌    | ❌  | Never computed |\n| | s4_self | ⏳   | ✅    | ✅  | mmlu partial (_s4_chunks_mmlu) |\n| d100_a32_s123 | s1_emb | ✅ | ❌ | ❌ | Only mmlu computed |\n| | s2_mink | ✅ | ❌    | ❌  | Only mmlu computed |\n| | s3_con  | ❌  | ❌    | ❌  | Never computed |\n| | s4_self | ❌  | ❌    | ❌  | Never computed |\n\n---\n\n## Running Experiments\n\n| Registry ID | What | GPU Status |\n|---|---|---|\n| exp_002_signals_3B_d025_v3_s42 | s4_selfcritique mmlu (26%, ~1.5hr ETA) | Active |\n| exp_002_signals_3B_v7 | Unknown scope (no log found) | Active |\n| exp_001_sft_3B_d005_s42_a32 | d005 SFT training | Active |\n| exp_001_sft_3B_d100_s42_a32_v3 | d100 SFT re-training | Active |\n| exp_001_eval_3B_d025_v3_s42_batch | Eval batch | Active |\n| exp_001_eval_3B_d100_s123_a32_batch | Eval batch | Active |\n\n---\n\n## IRT Pooling N-count (valid respondents per benchmark)\n\nCounting checkpoints with at least s1+s2 complete (minimum for IRT feature vector):\n\n| Benchmark | 0.5B s42 | 0.5B s123 | 1.5B s42 | 1.5B s123 | 3B s42 | 3B s123 | **Total** |\n|-----------|----------|-----------|----------|-----------|--------|---------|-----------|\n| **mmlu**  | 4        | 0         | 4        | 0         | 3*     | 3       | **14**    |\n| **gsm8k** | 4        | 0         | 4        | 0         | 3*     | 1       | **12**    |\n| **arc**   | 4        | 0         | 4        | 0         | 3*     | 1       | **12**    |\n\n*3B s42: d000_v2, d025_v3, d100 (d005 blocked on SFT)\n\nCounting checkpoints with s1+s2+s4 all complete (full non-constat signal set):\n\n| Benchmark | 0.5B s42 | 1.5B s42 | 3B s42 | 3B s123 | **Total** |\n|-----------|----------|----------|--------|---------|-----------|\n| **mmlu**  | 4        | 4        | 0      | 0       | **8**     |\n| **gsm8k** | 4        | 4        | 1 (d100) | 1 (d025) | **10** |\n| **arc**   | 4        | 4        | 1 (d100) | 1 (d025) | **10** |\n\n> **None of the benchmarks reach N >= 16 with full signal sets.** The critical bottlenecks are:\n> 1. All s123 signals for 0.5B and 1.5B (0 out of 8 checkpoints)\n> 2. s3_constat missing for ALL 0.5B and 1.5B checkpoints (never computed)\n> 3. s4_selfcritique missing or incomplete for most 3B checkpoints\n\n---\n\n## Missing Items — Priority Ranking\n\n### P0 — Blocking IRT pooling (massive N gap)\n\n1. **0.5B s123 signals (×4 checkpoints × 3 benchmarks × 3-4 signals)** — 0/4 done, SFT checkpoints exist\n2. **1.5B s123 signals (×4 checkpoints × 3 benchmarks × 3-4 signals)** — 0/4 done, SFT checkpoints exist\n3. **3B d000_s123 signals** — No signal dir, SFT checkpoint exists (exp_001_sft_3B_d000_s123)\n\n### P1 — Incomplete 3B signals (blocking individual checkpoints)\n\n4. **3B d000_v2_s42: s4_selfcritique** (all 3 benchmarks) — v6 batch died before completing\n5. **3B d025_v3_s42: s4_selfcritique** — mmlu ⏳ running, gsm8k+arc missing\n6. **3B d100_s42: s4_selfcritique mmlu** — gsm8k+arc done, only mmlu missing\n7. **3B d005_s123: gsm8k + arc signals** — only mmlu s1+s2 done\n8. **3B d100_a32_s123: gsm8k + arc signals** — only mmlu s1+s2 done\n9. **3B d025_s123: s4_selfcritique mmlu** — partial (_s4_chunks), gsm8k+arc done\n\n### P2 — Blocked on upstream SFT\n\n10. **3B d005_s42: all signals** — SFT still training (exp_001_sft_3B_d005_s42_a32)\n11. **3B d100_s42: revalidation** — SFT v3 running; existing signals may need recomputation\n\n### P3 — s3_constat gap (systemic)\n\n12. **s3_constat for ALL 0.5B checkpoints** (8 checkpoints × 3 benchmarks = 24 cells)\n13. **s3_constat for ALL 1.5B checkpoints** (8 checkpoints × 3 benchmarks = 24 cells)\n14. **s3_constat for ALL 3B checkpoints except d000_v2_s42** (7+ checkpoints × 3 benchmarks)\n\n> s3_constat has only ever been computed for 3B_d000_v2_s42. This is a systemic gap.\n> **Decision needed**: Is s3 required for IRT pooling, or can we proceed with s1+s2+s4?\n\n---\n\n## Summary\n\n- **Current max N (s1+s2 only)**: mmlu=14, gsm8k=12, arc=12\n- **Current max N (s1+s2+s4)**: mmlu=8, gsm8k=10, arc=10\n- **Target N**: >= 16\n- **Biggest gap**: 0.5B+1.5B s123 signals (16 checkpoint × 3 benchmark combinations, zero computed)\n- **Quick win**: Computing 0.5B+1.5B s123 signals would add 8 respondents per benchmark, pushing mmlu to 22 and gsm8k/arc to 20 (with s1+s2)\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e1c98413-bace-443c-b2fc-3a2b06371647",
+            "uuid": "922d2eb2-8494-4e5d-b97f-bc4ed3bff48c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hfy9c6G7fzEuoFrtevYJhV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5481,
+                "cache_read_input_tokens": 64912,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5481
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-16T01:01:16.179Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RW88hRcBkGJgBPFosbo8XG",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/signal_coverage_audit.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e1c98413-bace-443c-b2fc-3a2b06371647",
+            "uuid": "224e24e7-7a11-4440-88fd-3203403dcc0d",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/signal_coverage_audit.md",
+              "content": "# Signal Coverage Audit for IRT Pooling\n\n**Date**: 2026-05-16  \n**Target**: N >= 16 respondents per benchmark for IRT pooling  \n**Signal types**: s1_embedding, s2_minkpp, s3_constat, s4_selfcritique  \n**Benchmarks**: mmlu, gsm8k, arc_challenge  \n\n---\n\n## Coverage Matrix\n\n### 0.5B — seed 42 (all alpha=32, valid)\n\n| checkpoint | s1_emb | s2_mink | s3_con | s4_self | mmlu | gsm8k | arc |\n|------------|--------|---------|--------|---------|------|-------|-----|\n| d000_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n| d005_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n| d025_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n| d100_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n\n> s1/s2/s4 complete for all 3 benchmarks. **s3_constat missing for all 0.5B checkpoints.**\n\n### 0.5B — seed 123\n\n| checkpoint | s1_emb | s2_mink | s3_con | s4_self | Status |\n|------------|--------|---------|--------|---------|--------|\n| d000_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n| d005_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n| d025_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n| d100_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n\n> **No 0.5B s123 signals computed at all.** SFT checkpoints exist (confirmed in registry).\n\n---\n\n### 1.5B — seed 42 (all alpha=32, valid)\n\n| checkpoint | s1_emb | s2_mink | s3_con | s4_self | mmlu | gsm8k | arc |\n|------------|--------|---------|--------|---------|------|-------|-----|\n| d000_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n| d005_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n| d025_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n| d100_s42   | ✅✅✅  | ✅✅✅   | ❌❌❌  | ✅✅✅   | 3/4  | 3/4   | 3/4 |\n\n> Same pattern as 0.5B. **s3_constat missing for all 1.5B checkpoints.**\n\n### 1.5B — seed 123\n\n| checkpoint | s1_emb | s2_mink | s3_con | s4_self | Status |\n|------------|--------|---------|--------|---------|--------|\n| d000_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n| d005_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n| d025_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n| d100_s123  | ❌     | ❌      | ❌     | ❌      | No signal dir |\n\n> **No 1.5B s123 signals computed at all.** SFT checkpoints exist (confirmed in registry).\n\n---\n\n### 3B — seed 42\n\n| checkpoint | signal | mmlu | gsm8k | arc | Notes |\n|------------|--------|------|-------|-----|-------|\n| d000_v2_s42 (alpha=32) | s1_emb | ✅ | ✅ | ✅ | Valid |\n| | s2_mink | ✅ | ✅ | ✅ | Valid |\n| | s3_con  | ✅ | ✅ | ✅ | Valid |\n| | s4_self | ❌ | ❌ | ❌ | v6 batch died before s4 |\n| d005_s42 | s1_emb | ⚠️ | ⚠️ | ⚠️ | SFT running (exp_001_sft_3B_d005_s42_a32); existing signals from old checkpoint |\n| | s2_mink | ⚠️ | ⚠️ | ⚠️ | Same — pending SFT completion |\n| | s3_con  | ❌ | ❌ | ❌ | Never computed |\n| | s4_self | ❌ | ❌ | ⚠️ | Same — pending SFT |\n| d025_v3_s42 (alpha=32) | s1_emb | ✅ | ✅ | ✅ | Valid |\n| | s2_mink | ✅ | ✅ | ✅ | Valid |\n| | s3_con  | ❌ | ❌ | ❌ | Never computed |\n| | s4_self | ⏳ | ❌ | ❌ | mmlu 26% running (~1.5hr ETA) |\n| d100_s42 | s1_emb | ✅ | ✅ | ✅ | Valid (from v6 batch) |\n| | s2_mink | ✅ | ✅ | ✅ | Valid |\n| | s3_con  | ❌ | ❌ | ❌ | Never computed |\n| | s4_self | ❌ | ✅ | ✅ | mmlu missing; gsm8k+arc from v6 batch |\n\n> - d005_s42 blocked on SFT training (exp_001_sft_3B_d005_s42_a32 RUNNING)\n> - d100_s42 SFT v3 also running (exp_001_sft_3B_d100_s42_a32_v3) — existing signals may need revalidation\n> - d025_v3_s42 s4_selfcritique_mmlu actively computing (exp_002_signals_3B_d025_v3_s42)\n\n### 3B — seed 123\n\n| checkpoint | signal | mmlu | gsm8k | arc | Notes |\n|------------|--------|------|-------|-----|-------|\n| d000_s123  | all    | ❌   | ❌    | ❌  | **No signal dir exists** |\n| d005_s123  | s1_emb | ✅   | ❌    | ❌  | Only mmlu computed |\n| | s2_mink | ✅  | ❌    | ❌  | Only mmlu computed |\n| | s3_con  | ❌   | ❌    | ❌  | Never computed |\n| | s4_self | ❌   | ❌    | ❌  | Never computed |\n| d025_s123  | s1_emb | ✅   | ✅    | ✅  | Complete |\n| | s2_mink | ✅  | ✅    | ✅  | Complete |\n| | s3_con  | ❌   | ❌    | ❌  | Never computed |\n| | s4_self | ⏳   | ✅    | ✅  | mmlu partial (_s4_chunks_mmlu) |\n| d100_a32_s123 | s1_emb | ✅ | ❌ | ❌ | Only mmlu computed |\n| | s2_mink | ✅ | ❌    | ❌  | Only mmlu computed |\n| | s3_con  | ❌  | ❌    | ❌  | Never computed |\n| | s4_self | ❌  | ❌    | ❌  | Never computed |\n\n---\n\n## Running Experiments\n\n| Registry ID | What | GPU Status |\n|---|---|---|\n| exp_002_signals_3B_d025_v3_s42 | s4_selfcritique mmlu (26%, ~1.5hr ETA) | Active |\n| exp_002_signals_3B_v7 | Unknown scope (no log found) | Active |\n| exp_001_sft_3B_d005_s42_a32 | d005 SFT training | Active |\n| exp_001_sft_3B_d100_s42_a32_v3 | d100 SFT re-training | Active |\n| exp_001_eval_3B_d025_v3_s42_batch | Eval batch | Active |\n| exp_001_eval_3B_d100_s123_a32_batch | Eval batch | Active |\n\n---\n\n## IRT Pooling N-count (valid respondents per benchmark)\n\nCounting checkpoints with at least s1+s2 complete (minimum for IRT feature vector):\n\n| Benchmark | 0.5B s42 | 0.5B s123 | 1.5B s42 | 1.5B s123 | 3B s42 | 3B s123 | **Total** |\n|-----------|----------|-----------|----------|-----------|--------|---------|-----------|\n| **mmlu**  | 4        | 0         | 4        | 0         | 3*     | 3       | **14**    |\n| **gsm8k** | 4        | 0         | 4        | 0         | 3*     | 1       | **12**    |\n| **arc**   | 4        | 0         | 4        | 0         | 3*     | 1       | **12**    |\n\n*3B s42: d000_v2, d025_v3, d100 (d005 blocked on SFT)\n\nCounting checkpoints with s1+s2+s4 all complete (full non-constat signal set):\n\n| Benchmark | 0.5B s42 | 1.5B s42 | 3B s42 | 3B s123 | **Total** |\n|-----------|----------|----------|--------|---------|-----------|\n| **mmlu**  | 4        | 4        | 0      | 0       | **8**     |\n| **gsm8k** | 4        | 4        | 1 (d100) | 1 (d025) | **10** |\n| **arc**   | 4        | 4        | 1 (d100) | 1 (d025) | **10** |\n\n> **None of the benchmarks reach N >= 16 with full signal sets.** The critical bottlenecks are:\n> 1. All s123 signals for 0.5B and 1.5B (0 out of 8 checkpoints)\n> 2. s3_constat missing for ALL 0.5B and 1.5B checkpoints (never computed)\n> 3. s4_selfcritique missing or incomplete for most 3B checkpoints\n\n---\n\n## Missing Items — Priority Ranking\n\n### P0 — Blocking IRT pooling (massive N gap)\n\n1. **0.5B s123 signals (×4 checkpoints × 3 benchmarks × 3-4 signals)** — 0/4 done, SFT checkpoints exist\n2. **1.5B s123 signals (×4 checkpoints × 3 benchmarks × 3-4 signals)** — 0/4 done, SFT checkpoints exist\n3. **3B d000_s123 signals** — No signal dir, SFT checkpoint exists (exp_001_sft_3B_d000_s123)\n\n### P1 — Incomplete 3B signals (blocking individual checkpoints)\n\n4. **3B d000_v2_s42: s4_selfcritique** (all 3 benchmarks) — v6 batch died before completing\n5. **3B d025_v3_s42: s4_selfcritique** — mmlu ⏳ running, gsm8k+arc missing\n6. **3B d100_s42: s4_selfcritique mmlu** — gsm8k+arc done, only mmlu missing\n7. **3B d005_s123: gsm8k + arc signals** — only mmlu s1+s2 done\n8. **3B d100_a32_s123: gsm8k + arc signals** — only mmlu s1+s2 done\n9. **3B d025_s123: s4_selfcritique mmlu** — partial (_s4_chunks), gsm8k+arc done\n\n### P2 — Blocked on upstream SFT\n\n10. **3B d005_s42: all signals** — SFT still training (exp_001_sft_3B_d005_s42_a32)\n11. **3B d100_s42: revalidation** — SFT v3 running; existing signals may need recomputation\n\n### P3 — s3_constat gap (systemic)\n\n12. **s3_constat for ALL 0.5B checkpoints** (8 checkpoints × 3 benchmarks = 24 cells)\n13. **s3_constat for ALL 1.5B checkpoints** (8 checkpoints × 3 benchmarks = 24 cells)\n14. **s3_constat for ALL 3B checkpoints except d000_v2_s42** (7+ checkpoints × 3 benchmarks)\n\n> s3_constat has only ever been computed for 3B_d000_v2_s42. This is a systemic gap.\n> **Decision needed**: Is s3 required for IRT pooling, or can we proceed with s1+s2+s4?\n\n---\n\n## Summary\n\n- **Current max N (s1+s2 only)**: mmlu=14, gsm8k=12, arc=12\n- **Current max N (s1+s2+s4)**: mmlu=8, gsm8k=10, arc=10\n- **Target N**: >= 16\n- **Biggest gap**: 0.5B+1.5B s123 signals (16 checkpoint × 3 benchmark combinations, zero computed)\n- **Quick win**: Computing 0.5B+1.5B s123 signals would add 8 respondents per benchmark, pushing mmlu to 22 and gsm8k/arc to 20 (with s1+s2)\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GgCNpz2kBoCmbtuU2yYsjd",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "signal_coverage_audit",
+                "type": "report",
+                "description": "Signal coverage audit for IRT pooling: coverage matrix across 0.5B/1.5B/3B × s42/s123 × 4 signal types × 3 benchmarks, with N-count analysis and prioritized missing items",
+                "project": "contamcal-irt-calibration",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/signal_coverage_audit.md",
+                "tags": [
+                  "signals",
+                  "irt",
+                  "coverage",
+                  "audit"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e1c98413-bace-443c-b2fc-3a2b06371647",
+            "uuid": "f74a69c8-b91c-40d9-a069-e1652aa7bbfc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PP5eJ1tTy8hKuUnfu9dfwY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12464,
+                "cache_read_input_tokens": 70393,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12464
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-16T01:01:22.403Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GgCNpz2kBoCmbtuU2yYsjd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_b3d6af\\\", \\\"name\\\": \\\"signal_coverage_audit\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Signal coverage audit for IRT pooling: coverage matrix across 0.5B/1.5B/3B × s42/s123 × 4 signal types × 3 benchmarks, with N-count analysis and prioritized missing items\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/report/signal_coverage_audit.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T01:01:22.117549+00:00\\\", \\\"tags\\\": [\\\"signals\\\", \\\"irt\\\", \\\"coverage\\\", \\\"audit\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e1c98413-bace-443c-b2fc-3a2b06371647",
+            "uuid": "2797513b-75f0-4daf-9674-f2a31bd9b7a4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_b3d6af\\\", \\\"name\\\": \\\"signal_coverage_audit\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Signal coverage audit for IRT pooling: coverage matrix across 0.5B/1.5B/3B × s42/s123 × 4 signal types × 3 benchmarks, with N-count analysis and prioritized missing items\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/report/signal_coverage_audit.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T01:01:22.117549+00:00\\\", \\\"tags\\\": [\\\"signals\\\", \\\"irt\\\", \\\"coverage\\\", \\\"audit\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_b3d6af\", \"name\": \"signal_coverage_audit\", \"type\": \"report\", \"description\": \"Signal coverage audit for IRT pooling: coverage matrix across 0.5B/1.5B/3B × s42/s123 × 4 signal types × 3 benchmarks, with N-count analysis and prioritized missing items\", \"path\": \"projects/contamcal-irt-calibration/artifacts/_project/report/signal_coverage_audit.md\", \"url\": null, \"project\": \"contamcal-irt-calibration\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T01:01:22.117549+00:00\", \"tags\": [\"signals\", \"irt\", \"coverage\", \"audit\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心发现：\n\n**当前 N 值远未达到 IRT pooling 所需的 N >= 16：**\n- mmlu: 14（仅 s1+s2）/ 8（s1+s2+s4）\n- gsm8k: 12 / 10\n- arc: 12 / 10\n\n**三大瓶颈：**\n\n1. **0.5B + 1.5B 的 s123 信号完全空白**（16 个 checkpoint × 3 benchmark，零产出）— SFT checkpoint 都已就绪，只是从未跑 signal。这是最大的 quick win：补上后每个 benchmark 直接 +8 respondents。\n\n2. **s3_constat 系统性缺失** — 全项目仅 3B_d000_v2_s42 有 constat 信号，0.5B/1.5B 从未计算过。需决策：s3 是否为 IRT 必须？\n\n3. **3B s4_selfcritique 不完整** — d000_v2 完全缺 s4，d025_v3 s4_mmlu 在跑（26%，约 1.5h），d100 缺 s4_mmlu，d005 等 SFT 完成。\n\n**运行中实验**：d025_v3_s42 s4_selfcritique 在跑，d005_s42 和 d100_s42 SFT 在跑。\n\n产出已注册：`art_20260516_b3d6af`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e1c98413-bace-443c-b2fc-3a2b06371647",
+            "uuid": "f745404c-57ce-48a1-9fd1-48458cb629b4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016kX8As9WzaSaiNUQCi5exD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 575,
+                "cache_read_input_tokens": 82857,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 575
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心发现：\n\n**当前 N 值远未达到 IRT pooling 所需的 N >= 16：**\n- mmlu: 14（仅 s1+s2）/ 8（s1+s2+s4）\n- gsm8k: 12 / 10\n- arc: 12 / 10\n\n**三大瓶颈：**\n\n1. **0.5B + 1.5B 的 s123 信号完全空白**（16 个 checkpoint × 3 benchmark，零产出）— SFT checkpoint 都已就绪，只是从未跑 signal。这是最大的 quick win：补上后每个 benchmark 直接 +8 respondents。\n\n2. **s3_constat 系统性缺失** — 全项目仅 3B_d000_v2_s42 有 constat 信号，0.5B/1.5B 从未计算过。需决策：s3 是否为 IRT 必须？\n\n3. **3B s4_selfcritique 不完整** — d000_v2 完全缺 s4，d025_v3 s4_mmlu 在跑（26%，约 1.5h），d100 缺 s4_mmlu，d005 等 SFT 完成。\n\n**运行中实验**：d025_v3_s42 s4_selfcritique 在跑，d005_s42 和 d100_s42 SFT 在跑。\n\n产出已注册：`art_20260516_b3d6af`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 376683,
+            "duration_api_ms": 360981,
+            "num_turns": 39,
+            "stop_reason": "end_turn",
+            "session_id": "e1c98413-bace-443c-b2fc-3a2b06371647",
+            "total_cost_usd": 1.2593712499999998,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 71591,
+              "cache_read_input_tokens": 496001,
+              "output_tokens": 22450,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 71591,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 428,
+                  "cache_read_input_tokens": 82857,
+                  "cache_creation_input_tokens": 575,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 575
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2507,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002607,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 22450,
+                "cacheReadInputTokens": 496001,
+                "cacheCreationInputTokens": 71591,
+                "webSearchRequests": 0,
+                "costUSD": 1.2567642499999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "8c80c74d-3755-4deb-a6a6-d705c09abf94"
+          },
+          "id": "event-000096"
+        }
+      ]
+    }
+  ]
+}

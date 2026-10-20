@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ccb9aefc2bbdaf7a71e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 006 mmlu domain gamma n24 v3",
+  "task_key": "worker_diagnose_exp_006_mmlu_domain_gamma_n24_v3_20260516T133716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_006_mmlu_domain_gamma_n24_v3_20260516T133716_result.json",
+    "occurrence": 1,
+    "bytes": 2902,
+    "sha256": "54e55399f31b809954f282126feb2b5dd5fdcfc421f27eb5890f4d41c2598a71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已收集足够信息，写诊断报告。\n\n---\n\n## 诊断报告：exp_006_mmlu_domain_gamma_n24_v3 失败原因\n\n### 失败根因：CmdStan 子进程 EPERM（Operation not permitted）\n\n**直接原因**：Stan MCMC 采样时 chain 1 和 chain 4 返回 exit code 1，错误信息为 `Operation not permitted`。CmdStanPy 因 `retcodes=[1, 0, 0, 1]` 抛出 RuntimeError，终止整个脚本。\n\n**关键 log 片段**：\n```\n2026-05-16 21:22:15,511 [ERROR] Chain [4] error: code '1' Operation not permitted\n2026-05-16 21:22:15,615 [ERROR] Chain [1] error: code '1' Operation not permitted\n...\nRuntimeError: Error during sampling:\n  retcodes=[1, 0, 0, 1]\n```\n\n### 根因分析\n\n**并发 Stan 进程资源竞争**。两个 Stan 实验同时运行在同一容器：\n- `mmlu_domain_gamma_n24_v3` (PID 781756)：正在 fit Social_Sciences (21 models × 2000 items, 4 chains)\n- `pooled_irt_n25` (PID 785832)：同时做 MMLU pooled IRT fitting (4 chains)\n\n证据：`results_pooled_n20/mmlu/` 的创建时间为 **21:22** — 与崩溃时间 **精确一致**。\n\n**EPERM 触发机制**（最可能）：\n- 容器 cgroup pids.max = 20480，当前 pid.current = 2806（已恢复）\n- 两个实验同时 8 个 Stan 子进程 + 多线程，在 /tmp（根分区，仅 7GB 剩余）同时写大量 CSV 采样输出\n- AutoDL 容器可能有 seccomp 配置在负载高峰时阻止了 `sched_setaffinity` 或 `clone` 等 syscall\n- 或者 /tmp 空间在并发写入时瞬时耗尽导致文件操作失败（当前 /tmp = 5.9GB 残留，根分区仅 77% → 7GB free）\n\n**排除 OOM**：系统有 1TB RAM，仅用 52GB。\n\n### 完成状态\n\n| Domain | 状态 |\n|--------|------|\n| STEM_Math | ✅ 完成 (v1) |\n| STEM_Science | ✅ 完成 (v1) |\n| STEM_CS_Eng | ✅ 完成 (v1) |\n| Medical | ✅ 完成 (v1) |\n| Humanities | ✅ 完成 (v2/v3) |\n| Social_Sciences | ✅ 有结果 (rhat=1.54, ess=7.1, 质量差) |\n| Business_Law | ❌ 未开始 |\n| Other | ❌ 未开始 |\n\n### exp_006_pooled_irt_n25 状态\n\nPID 785832 **已死亡**（ps 返回空）。但其输出 `results_pooled_n20/` 有完整的 mmlu、gsm8k、arc_challenge 三个 benchmark 结果，最后文件 21:30。**可能已正常完成**（它完成后退出，不是崩溃）。\n\n### 修复建议\n\n1. **清理 /tmp**：`rm -rf /tmp/tmp*`（释放 5.9GB 残留 Stan 临时文件）\n2. **串行重跑**：确保没有其他 Stan 进程并发运行\n3. **只跑剩余 domains**：`--domains Business_Law Other`\n4. **Social_Sciences 质量问题**：rhat=1.54, ESS=7.1 说明收敛很差（也可能就是该 domain 的数据特性），考虑加 warmup 或 adapt_delta 重跑\n5. **设置 TMPDIR**：`export TMPDIR=/root/autodl-tmp/tmp_stan`，避免根分区 /tmp 空间限制\n6. **添加 skip-existing 逻辑**：脚本没有跳过已有结果的 domain，每次重跑都从头开始"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-006-mmlu-domain-gamma-n24-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05e3e5aaa1293b663da6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops critical path readiness",
+  "task_key": "worker_ops_critical-path-readiness_20260516T050718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_critical-path-readiness_20260516T050718_result.json",
+    "occurrence": 1,
+    "bytes": 961,
+    "sha256": "3ec398a0b67112f45484f475331f8e1267159a1e33da1547776c312cbd13d453"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/root/autodl-tmp/critical_path_readiness.md`。\n\n**结论**:\n\n| 组件 | 状态 |\n|------|------|\n| RRF 聚合 (exp-003) | **READY** — 代码、数据均就绪，dry-run 通过 |\n| Per-benchmark IRT γ_k | **READY** — 已有 4 个 benchmark 的拟合结果 |\n| Joint IRT (shared γ) | 收敛失败 (Rhat=1.74, ESS=6)，非阻塞 |\n| 7 Baselines | **READY** — B0–B6 全部实现并通过测试 |\n| Flagged items 排除 | **缺 ~15 行代码** — 需要在 IRT 脚本中加 `--exclude-items` 参数 |\n\n**唯一 code gap**: `run_pooled_4bench_irt.py` 没有排除 flagged items 的机制。426 个 flagged items 全是 MMLU (3.0%)，item_id 格式 `mmlu_{index}` 与 IRT 的 positional index 兼容，加一个 mask 即可。\n\n**建议**：flagged items 应排除——它们的 aligned/para 高分歧意味着 difficulty 是 format-dependent 的，违反 IRT 单维性假设，会给 γ 估计增加噪声。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-critical-path-readiness.md"
+}

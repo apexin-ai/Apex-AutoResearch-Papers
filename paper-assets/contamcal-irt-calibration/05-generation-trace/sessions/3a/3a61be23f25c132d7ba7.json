@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a61be23f25c132d7ba7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops status check and d050 launch",
+  "task_key": "worker_ops_status-check-and-d050-launch_20260521T034519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status-check-and-d050-launch_20260521T034519_result.json",
+    "occurrence": 1,
+    "bytes": 2181,
+    "sha256": "8c90fde73b56f541e49221d2e6f58dc81b0403a0040c7aaa8973a9be62cb73d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### GPU 状态\n\n**westd-29999 (4× H800 97GB)**\n\n| GPU | VRAM | Util | 任务 |\n|-----|------|------|------|\n| 0 | 32.7/97.9 GB | 95% | MMLU eval (d000 **已完成**, 进程可能已退出) |\n| 1 | 42.9/97.9 GB | 63% | **d050 retrain** — 2581/3642 (71%), ~1.5h 剩余 |\n| 2 | 32.7/97.9 GB | 94% | MMLU eval (d005 **已完成**) |\n| 3 | 32.7/97.9 GB | 95% | MMLU eval (d025 — 76%, ~5min 剩余) |\n\n**cqa1-21977 (1× GPU)**\n\n| GPU | VRAM | Util | 任务 |\n|-----|------|------|------|\n| 0 | 17.1 GB | 90% | GSM8K eval — 242/330 (73%), ~12min ETA |\n\n---\n\n### MMLU Qwen-14B 结果：s0 vs s123\n\n| Dosage | s123 | s0 | Δ(s0−s123) |\n|--------|------|----|-----------|\n| d000 | 68.67% | **68.84%** | +0.17pp |\n| d005 | 70.84% | **68.86%** | **−1.98pp** |\n| d025 | 63.68% | *running* | — |\n| d050 | 60.99% | *training* | — |\n| d100 | 55.93% | *not started* | — |\n\n**关键发现**: d005 s0 (68.86%) 没有出现 s123 的 +2.17pp boost，几乎等于 d000 baseline。s123 的 d005 boost 很可能是 seed-specific artifact。\n\n---\n\n### d050 Retrain\n\n- PID 455006, epoch 0.65, loss ~0.92, token_accuracy ~0.77\n- lora_alpha=32, lr=5e-5, gradient_checkpointing\n- **ETA ~1.5h** (~5s/step × 1061 steps remaining)\n- 训练正常推进\n\n### d050 Eval 准备\n\n两个脚本都存在且包含 C006/C009 校验：\n- `scripts/seed0/eval_qwen14b_d050_s0_mmlu.sh` — `CUDA_VISIBLE_DEVICES=1`\n- `scripts/seed0/eval_qwen14b_d050_s0_arc.sh` — `CUDA_VISIBLE_DEVICES=1`（需改为其他 GPU 以并行）\n\n**输出目录**: MMLU → `results/qwen14b_d050_s0_mmlu/`, ARC → `results/qwen14b_d050_s0_arc/`\n\n⚠️ **d050 eval 无法现在启动** — 训练还需 ~1.5h。训练完成后 GPU 0/2/3（d025 eval 也将完成）和 GPU 1 都将释放，可同时跑 MMLU + ARC。\n\n### Registry 更新\n\n- `eval_qwen14b_mmlu_d000_s0` → **DONE/success**, accuracy=68.84%\n- `eval_qwen14b_mmlu_d005_s0` → **DONE/success**, accuracy=68.86%\n- `eval_qwen14b_mmlu_d025_s0` → RUNNING（~5min 完成）\n- `retrain_qwen14b_d050_s0` → RUNNING（~1.5h）\n- `eval_qwen7b_gsm8k_s0_cqa1` → RUNNING（~12min）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-and-d050-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1003a5f79e7cda8e698b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops local cpu restart p0c",
+  "task_key": "worker_ops_local_cpu_restart_p0c_20260514T161833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_local_cpu_restart_p0c_20260514T161833_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "93f3bb3109c16c70bde69550fda4539f2fcf33514ff205e4b0c4d1a4a452d647"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个实验都在正常运行，无需重启。**\n\n### exp-005 Noise Propagation v3\n- PID 426335, 426336: **ALIVE**（339838 已死，是旧 PID）\n- 进度: **17/25** 条件完成，正在拟合第 18 个条件 (σ_e=0.7, seed=44)\n- 日志最后更新: 2026-05-14 16:12:07 UTC，Stan chains 活跃运行中\n- 每个条件约 19 分钟，剩余 8 个条件，预计约 **2.5 小时**完成\n\n### exp-004 Sim Sweep v2\n- PID 411032: **ALIVE**（340553 已死，是旧 PID）\n- 进度: seed 3 完成 (4/10)，正在跑 seed 4。results 目录 0 个文件（可能结果存在别处或全部完成后才写入）\n- 日志最后更新: 2026-05-14 15:48:14 UTC，Stan chains 活跃运行中\n- 每个 seed 约 80-90 分钟，剩余 6-7 个 seeds，预计约 **8-10 小时**完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-local-cpu-restart-p0c.md"
+}

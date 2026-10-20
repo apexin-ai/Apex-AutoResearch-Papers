@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08e27a44c82f641c7635",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix gemma2 s0 clean restart",
+  "task_key": "worker_fix_gemma2-s0-clean-restart_20260520T094657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gemma2-s0-clean-restart_20260520T094657_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "95ea003fbbe454bcbe7770c5f2a65a0c75d58859076daa6870073054dcb497fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**根因找到了。** PID 314035 就是之前\"被 SIGTERM\"的那个 gemma2 s0 训练进程——**它没死。** SIGTERM 杀掉了 tmux wrapper，但 python 子进程存活并继续训练，已加载 95GB 到 cuda:1。\n\n时间线：\n- 17:47:10 — PID 314035 启动 gemma-2-9b d000 s0 训练\n- 17:47:23 — 我第一次 nvidia-smi 时它还在加载权重（显存仅 3MiB，看起来\"空闲\"）\n- 17:48:xx — 我们提交了 v2（PID 315220），两个进程碰撞在 cuda:1 上\n\n另外 cuda:0 上有一个 phi-4 d050 s0 训练（PID 313782，55GB），也是新出现的。\n\n**两个进程写同一 output dir (`gemma-2-9b_d000_s0`)，有数据腐败风险。**\n\n建议：\n1. 杀掉我们刚提交的 PID 315220（仅 550MB，无损失）\n2. PID 314035 已经在训练，但它是孤儿进程（无 tmux 管理）。两个选择：\n   - **保留 314035**：已加载 95GB，让它跑完，但没有 tmux session 做 lifecycle 管理\n   - **全杀重来**：kill 314035 + 315220，干净重提交\n\n你要哪个方案？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gemma2-s0-clean-restart.md"
+}

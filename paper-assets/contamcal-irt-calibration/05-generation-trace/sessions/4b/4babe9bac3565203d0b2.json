@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4babe9bac3565203d0b2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops restart downloads phi4 olmo2",
+  "task_key": "worker_ops_restart-downloads-phi4-olmo2_20260518T102404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-downloads-phi4-olmo2_20260518T102404_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "601498a4ecabaae997305bcc50bb10de6bc52846540b4435ad66c7c5c109f7df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个下载均已成功启动并存活：\n\n| 模型 | PID (bash) | PID (python) | 状态 |\n|------|-----------|-------------|------|\n| OLMo-2-1124-7B | 19570 | 19571 | Fetching 16 files |\n| Phi-4 | 19607 | 19608 | Fetching 21 files |\n\n另外观察到服务器上还有 Qwen2.5-14B (PID 5066) 和 gemma-2-9b (PID 6380) 的下载也在运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-downloads-phi4-olmo2.md"
+}

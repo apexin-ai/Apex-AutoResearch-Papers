@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10fafe6235fc43165503",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh check 0pct sft status",
+  "task_key": "worker_ssh_check-0pct-sft-status_20260513T195052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-0pct-sft-status_20260513T195052_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "d3cce622750f12878f5e534eb625a5e35e74acd1b0c845a402b1d0804bc530e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0% SFT 训练状态:\n\n| GPU | 模型 | 状态 | PID | 进度 | 速度 | 预计剩余 |\n|-----|------|------|-----|------|------|---------|\n| GPU 3 | Qwen2.5-0.5B | **RUNNING** | 208938 (父 208933) | 788/3125 (25%) | ~1.0 it/s | ~37 min |\n| GPU 4 | Qwen2.5-1.5B | **RUNNING** | 210121 (父 210116) | 319/3125 (10%) | ~2.1 s/it | ~1h38m |\n| GPU 5 | Qwen2.5-3B | **RUNNING** | 210671 | 93/3125 (3%) | ~3.9 s/it | ~3h15m |\n\n- 训练脚本: 存在 (`/root/contamcal-irt-calibration/exp001/train_sft.py`)\n- 训练数据: 存在 (`sft_dosage_000.jsonl`, 88MB, 50000 samples)\n- bitsandbytes 有 `libnvJitLink.so.13` 警告，但不影响训练（未使用量化）\n- Loss 正常下降（0.5B 已从 ~1.7 降到 ~1.5，token accuracy ~0.67）\n\n三个任务全部正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-0pct-sft-status.md"
+}

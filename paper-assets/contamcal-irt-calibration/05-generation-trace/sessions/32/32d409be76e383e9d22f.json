@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32d409be76e383e9d22f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research lora config compare",
+  "task_key": "worker_research_lora-config-compare_20260514T065408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_lora-config-compare_20260514T065408_result.json",
+    "occurrence": 1,
+    "bytes": 2125,
+    "sha256": "eefc5cdd42f1ce0d0dd381b3cd06dcfb830fba06e2b1285ead901bf073a62f58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全。\n\n## 对比表\n\n```\nParameter       | 0.5B   | 1.5B   | 3B     | 一致?\n----------------|--------|--------|--------|------\nlora_r          | 16     | 16     | 16     | ✅\nlora_alpha      | 32     | 32     | 32     | ✅\ntarget_modules  | qkvoudg| qkvoudg| qkvoudg| ✅\nlora_dropout    | 0.05   | 0.05   | 0.05   | ✅\nlearning_rate   | 2e-4   | 2e-4   | 2e-4   | ✅\nbatch_size      | 4      | 2      | 1      | ❌\ngrad_accum      | 4      | 8      | 16     | ❌\neffective_bs    | 16     | 16     | 16     | ✅\nnum_epochs      | 1      | 1      | 1      | ✅\nmax_seq_length  | 2048   | 2048   | 2048   | ✅\nseed            | 42     | 42     | 42     | ✅\nnum_samples     | 50000  | 50000  | 50000  | ✅\ntotal_steps     | 3125   | 3125   | 3125   | ✅\nwarmup_ratio    | 0.05   | 0.05   | 0.05   | ✅\noptimizer       | adamw  | adamw  | adamw  | ✅\nscheduler       | cosine | cosine | cosine | ✅\nmodules_to_save | null   | null   | null   | ✅\nuse_dora        | false  | false  | false  | ✅\nuse_rslora      | false  | false  | false  | ✅\n```\n\ntarget_modules = {q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj}（三个 size 完全一致）\n\n## 分析结论\n\n1. **LoRA 超参完全一致。** 三个 size 用相同的 r=16, alpha=32, dropout=0.05, 相同的 7 个 target modules，相同的 lr=2e-4。batch_size 和 grad_accum 因显存调整但 effective batch size 保持 16，训练步数都是 3125。\n\n2. **target_modules 不包含 lm_head 或 embed_tokens。** 只训了 attention + MLP 的投影层，没有动 embedding 和输出头。这排除了\"3B 的 lm_head 被 LoRA 改坏\"的可能。\n\n3. **lr=2e-4 对 3B 不算偏大。** 因为 LoRA 可训参数占比随模型变大而降低（r=16 相对 3B 的参数量更稀疏），2e-4 在合理范围内。\n\n4. **3B 生成倒挂的原因不在 LoRA 超参层面。** 需要从其他方向排查：合并(merge)过程是否出错、评估时的 generation config（temperature/top_p/max_tokens）、或 3B base model 本身在该数据分布下的 LoRA 适配效率。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-lora-config-compare.md"
+}

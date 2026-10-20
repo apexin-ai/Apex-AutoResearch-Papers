@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01a0f342813a26e7f572",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag qwen7b arc s42 completion",
+  "task_key": "worker_diag_qwen7b-arc-s42-completion_20260520T173308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen7b-arc-s42-completion_20260520T173308_result.json",
+    "occurrence": 1,
+    "bytes": 1444,
+    "sha256": "01fa9f4875a47b01e7e470c6e23296e7e59ef59b9bf874555531a20002a2a1cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成（DONE/success），cron 已无残留。\n\n## 结果汇总 + 跨种子 V-recovery 分析\n\n**Qwen-7B ARC-Challenge 完整结果：**\n\n| Dosage | s42 | s123 | 种子差 |\n|--------|-------|-------|--------|\n| d000 (base) | 87.88% | 87.12% | +0.76 |\n| d005 | 86.09% | 82.42% | +3.67 |\n| d025 | 84.04% | 85.15% | -1.11 |\n| d050 | 84.56% | 85.07% | -0.51 |\n| d100 | 84.98% | 84.73% | +0.25 |\n| **Δ(d100-d000)** | **-2.90pp** | **-2.39pp** | |\n\n**跨种子稳定性分析：**\n\n1. **Δ(d100) 方向一致**：两个种子均为负（s42=-2.90pp, s123=-2.39pp），确认 ARC 上 contamination 导致净性能下降，方向跨种子稳定。\n\n2. **V-shape 不跨种子稳定**：s123 在 d005 出现剧烈暴跌 -4.70pp 后恢复（经典 V-shape），但 s42 的 d005 仅下降 -1.79pp，呈**单调递降到 d025 后微回升**的形态，更接近 U-shape。d005 的种子间差异高达 3.67pp，是所有 dosage 中最大的。\n\n3. **d025-d100 区间趋于一致**：排除 d005 后，两个种子在 d025/d050/d100 的绝对值差距均 <1.1pp，说明中高 dosage 下行为收敛。\n\n4. **结论**：ARC 上 contamination 的净负效应（Δ≈-2.5 to -3pp）跨种子稳定，但低 dosage（d005）的 V-shape 剧烈程度依赖 SFT 随机种子，不宜作为 robust finding 报告。d005 的高方差暗示极低 dosage 下 contamination 对 ARC MCQ 格式的影响不稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-qwen7b-arc-s42-completion.md"
+}

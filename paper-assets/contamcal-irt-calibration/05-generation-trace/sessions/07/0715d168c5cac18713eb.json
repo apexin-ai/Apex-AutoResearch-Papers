@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0715d168c5cac18713eb",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_10_1778862993.md",
+  "task_key": "loop_10_1778862993",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778862993.md",
+    "occurrence": 1,
+    "bytes": 5373,
+    "sha256": "6bd8504b1a7c71a300192849295e012bed5a17be29f68c2dcf30fe60c63f8631"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T15:14:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0–5（6× RTX 4090D on cqa1-21977），全部在 execution config 里，无白名单外限制\n- **LoRA alpha=32 是全项目标准值**（D048-D050）。3B s42 的 5 个 alpha=16 实验（d000_v2×2, d005, d025, d100）需重跑，**不要用旧 checkpoint 做 eval**\n- **0.5B MMLU/ARC 已从 IRT pooling 排除**（D045，position bias A=46%）。Pooled IRT 代码里如果包含 0.5B MMLU/ARC 是 bug\n- **d000 不是\"无训练 baseline\"，是 SFT-only（无 contamination）**。d000 与 base pretrained 的 delta 包含 format confound（D044），gamma 捕获的是 SFT_tax + contam（D043）\n- **Base pretrained 已从 regime comparison 排除**（D047，1.5B 99.5% 预测 \"A\"，MC eval 无效）\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，否则 EXIT_CODE=127\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977，工作目录 `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base env，不用 venv）\n- **模型缓存**: `/root/autodl-tmp/.hf_cache/Qwen/`（Qwen2.5-0.5B, 1.5B, 3B）\n- **数据/Checkpoint**: `/root/autodl-tmp/exp001/checkpoints/`, `/root/autodl-tmp/exp001/eval_results/`\n- **信号输出**: `/root/autodl-tmp/exp002/signals/`（0.5B ✅, 1.5B ✅, 3B 🏃）\n- **exp008 信号**: `/root/autodl-tmp/exp008/signals/rl_aligned/`\n- **exp004 模拟**: CPU-only sweep\n\n**活跃进程**:\n| GPU | PID | 实验 |\n|-----|-----|------|\n| 0 | 566224 | exp_001_eval_15B_d005_s123_v2 |\n| 1 | 566311 | exp_001_eval_15B_d025_s123_v2 |\n| 2 | 580693 | exp_001_eval_3B_d005_s123_aligned |\n| 3 | 576030 + 576730 | exp_002_signals_3B + 3B d025 s123 aligned eval |\n| 4 | 576820 | 3B d100 s42 para aligned eval |\n| 5 | 576973 | 3B d000 s42 para aligned eval |\n| CPU | 528993 | exp_004_sim_sweep_extreme_gamma |\n\n**Cron**: 8 active（上述 8 个 PID 全部有 cron 监控）。本 session 无 CronCreate 任务（全由前 session 创建，reconcile 确认存活）。\n\n**Workers 运行中**:\n- `worker_analysis_run-pooled-4bench-irt-v2`（13:29 启动，CPU pooled IRT 拟合）\n- `worker_fix_exp_002_signals_3B_gpu_interface`（15:06 启动，修 3B signal GPU 接口问题）\n\n### 3. 📊 当前状态\n**刚做完**: exp_001_sft_3B_d005_s123 和 exp_001_sft_3B_d025_s123 SFT 完成 → 立即提交了对应 aligned eval（GPU 2 和 GPU 3）。1.5B d005/d025 s123 eval v2 也在跑（GPU 0/1）。6 块 GPU 全部占满。\n\n**全部 RUNNING 实验**（9 个 GPU + 1 CPU）: 见上表。所有 cron 均活跃。\n\n**等待中**:\n- 2 个 Worker 回调（pooled IRT v2 分析 + signals 3B GPU fix）\n- exp_004_sim_sweep_extreme_gamma cron 回调（CPU simulation）\n- 6 个 GPU eval 实验 cron 回调（各 ~45min）\n\n**Registry 统计**: 成功 94 / 负向 2 / 失败 32 / 总 131\n\n### 4. 📋 待办（条件触发式）\n- **任一 3B eval 完成 → 提交对应 para eval**（d005 s123 aligned 完 → d005 s123 para; d025 s123 aligned 完 → d025 s123 para）\n- **d100 s123 para eval 缺失且无阻塞** → 有 GPU 空闲时立即提交（命令模板在 memory.md 中）\n- **exp_002_signals_3B 完成 → 检查 12/12 信号通过 → 创建 ConStat symlinks（模板在 memory.md）→ 启动 ConStat 信号计算**\n- **worker_analysis_run-pooled-4bench-irt-v2 回调 → 检查 coverage 是否改善（D042 核心问题）→ 如果 N≥16 pooled 仍 20-33% → model misspecification confirmed → 需向 Director 提 framing 调整**\n- **worker_fix_exp_002_signals_3B_gpu_interface 回调 → 确认 fix 是否生效 → 如需要重启 signal 计算**\n- **1.5B eval v2 完成（GPU 0/1）→ 提交 1.5B s123 para eval 或释放 GPU 给 3B para eval**\n- **所有 3B eval + signal 完成 → N≥16 pooled IRT 最终拟合 → 这是 coverage collapse 是否解决的关键验证**\n- **exp_008_instruct_rl_proxy**: signals 已算完（mmlu/gsm8k/arc），等 3-regime comparison 分析。D047 已 drop base pretrained，实际变成 2-regime（d000 vs Instruct）\n\n### 5. 🎯 战略上下文\n**投稿目标**: EMNLP 2026 ARR May 25（距今 10 天）。\n\n**核心 story**: ContamCal 通过 contamination-augmented 4PL IRT 做 post-hoc statistical calibration。ARC gamma 方向为负（D036），framing 已调整为 \"benchmark-dependent effects\"。\n\n**最大风险**: Coverage collapse（20-33%，即使 oracle）。PPP 极值（ARC=1.0, GSM8K=0.0）暗示 4PL+γ additive 模型可能 misspecified（D042）。当前策略: (a) multi-seed pooling 增加 N → 检查是否改善; (b) exp-004 matching N 对比; (c) 如果都不行需更灵活 IRT 结构。**pooled IRT v2 worker 正在跑这个关键验证**。\n\n**易错点**:\n- exp_001_eval_15B_d005_s123 和 exp_001_eval_15B_d025_s123 是 v1（可能是旧 entry），v2 版本才是当前运行的。不要被 registry 中两套 entry 搞混\n- 3B eval 目录命名不规则（带 `_v2`, `_v3`, `_aligned`, `_para_aligned` 等后缀），ConStat 期望标准命名 `{model}_{dosage}_s{seed}`，必须用 symlinks 桥接\n- 跨种子方差大（0.5B d100 ARC 7.25pp），single-seed 结论不可靠\n- 3B s42 的 5 个实验用了 alpha=16，需要在 alpha=32 下重跑（D048-D050），但当前 GPU 全满，这些实验排在 seed=123 eval 链之后\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778862993.md"
+}

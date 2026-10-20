@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "10debf6ab5cd91425a76",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "debug 3B gsm8k eval parsing",
+  "task_key": "worker_debug_3B_gsm8k_eval_parsing_20260514T044832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_3B_gsm8k_eval_parsing_20260514T044832.log",
+    "occurrence": 1,
+    "bytes": 565587,
+    "sha256": "276667921baeb1117019a58440e45f445f2622390a1ac0f2b1a680b881ce8d66"
+  },
+  "statistics": {
+    "messages": 221,
+    "user_turns": 0,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 58,
+      "tool_call": 80,
+      "tool_result": 80
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 221,
+      "chunks": [
+        {
+          "path": "10debf6ab5cd91425a76-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "10debf6ab5cd91425a76-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/debug-3b-gsm8k-eval-parsing.md"
+}

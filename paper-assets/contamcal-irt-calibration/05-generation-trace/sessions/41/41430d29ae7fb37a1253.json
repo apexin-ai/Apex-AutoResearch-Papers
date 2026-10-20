@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41430d29ae7fb37a1253",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper emnlp format precheck",
+  "task_key": "worker_paper_emnlp-format-precheck_20260520T193016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_emnlp-format-precheck_20260520T193016_result.json",
+    "occurrence": 1,
+    "bytes": 3770,
+    "sha256": "4be65c8b83ca6d1d383755d20a2c104c301eb27ee199488a12a4a9c4616a4f10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有文件已读取完毕。以下是格式预检报告。\n\n---\n\n## EMNLP 2026 (ARR) 格式预检报告\n\n### FAIL\n\n| # | 项目 | 详情 |\n|---|------|------|\n| F1 | **主文极可能超 8 页** | 主文（Introduction → Discussion/Conclusion）包含 7 个 section、Algorithm 1（35 行伪代码）、5 个 table（Tab 1–5）、2 个 figure。ACL 双栏格式下保守估计 10–11 页。必须编译验证并裁剪。 |\n| F2 | **正文残留 \"TBD\"** | `results.tex:87` — Table 3 Gemma-2 Pattern 列写的是 `TBD\\textsuperscript{a}`，脚注 \"Classifier fix in progress\"。未完成内容不能提交。 |\n\n### WARNING\n\n| # | 项目 | 详情 |\n|---|------|------|\n| W1 | **acl.sty 版本未标注** | `docs/paper/acl.sty` 无版本日期。ARR 2026 submission cycle 可能要求最新模板，需到 [acl-org/acl-style-files](https://github.com/acl-org/acl-style-files/) 核对。 |\n| W2 | **Bib arXiv 格式不一致** | `abdin2024phi4`、`olmo2team2025`、`gemmateam2024gemma2` 用 `journal = {arXiv preprint arXiv:XXXX}` 而非标准 `eprint` 字段。其他 arXiv 条目用的是 `eprint` + `archiveprefix`。应统一。 |\n| W3 | **arXiv-only 条目可能已有正式版本** | `zhang_2024_gsm1k`（2024）、`kadavath2022`（2022）、`white2024livebench`（2024）、`clark2018arc`（2018）等长期 arXiv 条目，需查验是否已正式发表并更新 venue/pages。 |\n| W4 | **`zhang_2024_gsm1k` 条目类型错误** | 用了 `@inproceedings` + `booktitle = {arXiv preprint}`，arXiv 论文应为 `@article` + `journal`。 |\n| W5 | **多个 `@inproceedings` 缺 pages 字段** | `dekoninck2024constat`、`oren2024proving`、`hendrycks2021mmlu`、`hu2022lora` 等。已有 proceedings 的条目应补充页码。 |\n| W6 | **`\\usepackage[review,hyperref]{acl}`** | `hyperref` 是 acl.sty 默认选项，冗余但无害。 |\n\n### PASS\n\n| # | 项目 | 详情 |\n|---|------|------|\n| P1 | **匿名提交** | `\\author{Anonymous}`，无 acknowledgments，无 `\\thanks`，无去匿名化自引。 |\n| P2 | **`[review]` 模式** | 已启用行号 + 匿名化。未出现 `\\aclfinalcopy`。 |\n| P3 | **Abstract 长度** | 201 words ≤ 250。 |\n| P4 | **Limitations section** | 充分：10 个 limitation 段落，覆盖 scale ceiling / seed sensitivity / ecological validity / signal coverage / ensemble size / position bias / model misfit / linearity / prompt format。 |\n| P5 | **Ethics Statement** | 存在，讨论了 dual-use risk 和 mitigation。 |\n| P6 | **图文件完整** | 主文引用的 `fig_dose_response.pdf`、`fig_treated_untreated.pdf` 及 appendix 全部 8 个 figure 文件均存在于 `docs/paper/figures/`。 |\n| P7 | **Table/Figure caption** | 所有 table 和 figure 均有 caption 且被正文引用。 |\n| P8 | **编号连续** | 主文 Table 1–5、Figure 1–2，Appendix Table 6–12、Figure 3–8，连续无缺。 |\n| P9 | **Section 结构** | Introduction → Related Work → Method → Experimental Setup → Results → Discussion/Conclusion → Limitations* → Ethics* → References → Appendix。符合 ARR 规范。 |\n| P10 | **引用风格** | ACL natbib (`\\citep`/`\\citet`/`\\citealp`) 一致使用。 |\n\n---\n\n### 修复建议\n\n**F1 (超页数)** — 最高优先级。可行方案：\n- 将 Algorithm 1 移入 Appendix（节省 ~0.7 页）\n- 将 Table 3 (cross-seed) 或 Table 4 (DiD) 移入 Appendix，正文仅保留文字总结\n- 压缩 §5.1–5.6 中描述性文字（当前结果段落较冗长）\n- Figure 2 (treated_untreated) 可移入 Appendix，用一句话引用\n- 需编译后逐页裁剪至严格 8 页\n\n**F2 (TBD)** — `results.tex:87` Gemma-2 Pattern 列和脚注 `a` 需要填入实际分类结果或删除该列。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-emnlp-format-precheck.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25d1a6853b30f06532d1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops zombie stan cleanup",
+  "task_key": "worker_ops_zombie-stan-cleanup_20260515T091105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_zombie-stan-cleanup_20260515T091105_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "e923f665c8936eda0c06edfaaff687af2265a6a5d85c0bde63c7f869d1a3c33a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Process 452348 and all 4 zombie children are gone. No GPU memory was held by this process, so no GPU impact.\n\n**Summary:**\n- PID 452348 (exp006 pooled IRT) was stuck — Stan sampling completed 10+ hours ago, results saved to `exp006_results.json`, but parent never reaped 4 zombie children\n- Killed the parent; all 5 processes cleaned up\n- No GPU memory was affected (process wasn't using any GPU)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-zombie-stan-cleanup.md"
+}

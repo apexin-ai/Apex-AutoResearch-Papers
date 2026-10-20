@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a8016151a485eaaef52",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag eval 05B d100 v3 failure",
+  "task_key": "worker_diag_eval_05B_d100_v3_failure_20260514T155936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval_05B_d100_v3_failure_20260514T155936_result.json",
+    "occurrence": 1,
+    "bytes": 1754,
+    "sha256": "74f3c04f3d18e1c7901f60425116d06ebde525106d85a8287bf6dfa57d1fb093"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 1. v3 失败原因\n- **EXIT_CODE=129** (SIGHUP，信号 1)\n- 进程在 GSM8K 评估 13% (178/1319) 时被 `Terminated`\n- 不是代码错误，而是进程被外部终止（控制终端关闭或 HUP 信号）\n- 另外 v3 未设 `HF_DATASETS_OFFLINE=1`，启动时 HuggingFace 连接超时多次重试后才用了缓存数据\n\n### 2. v4 当前状态\n- **运行中**，PID 396019 存活，已运行 ~35 分钟\n- MMLU 已完成，正在评估 GSM8K：**322/1319 (24%)**，剩余约 1h25m（~5.14s/it）\n- 修复了 v3 的两个问题：使用直接 python 路径 + 设了 `HF_DATASETS_OFFLINE=1`\n\n### 3. GPU 使用情况（全部占用）\n\n| GPU | PID | 显存 | 利用率 | 用途 |\n|-----|-----|------|--------|------|\n| 0 | 385407 | 14358MiB/24564MiB | 23% | 未知 python 进程 |\n| 1 | 398887 | 5848MiB/24564MiB | 50% | 未知 python 进程 |\n| 2 | 396024 | 3686MiB/24564MiB | 35% | **v4** (d100_aligned) |\n| 3 | 398501 | 3686MiB/24564MiB | 32% | **d025_aligned** |\n| 4 | 373931 | 8976MiB/24564MiB | 68% | 未知 python 进程 |\n| 5 | 400526 | 3718MiB/24564MiB | 35% | **d005_para_aligned** |\n\n### 4. 其他实验状态\n- **d005_para_aligned** (GPU 5)：运行中，GSM8K (paraphrased) **126/228 (55%)**，剩余约 9 分钟\n- **d025_aligned** (GPU 3)：**标记 failed 但进程仍在运行**（PID 398496 存活，GSM8K 195/1319 (15%)，剩余约 1h35m）。⚠️ **违反 C003**——标记 failed 时未 kill 关联进程\n\n### 5. 空闲 GPU\n**无空闲 GPU**，6 张卡全部在用。\n\n### 需要决策\nd025_aligned (GPU 3) 进程还活着且在正常推进。两个选择：\n1. kill 它（遵循 failed 标记），释放 GPU 3\n2. 取消 failed 标记，让它跑完（~1.5h）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-05b-d100-v3-failure.md"
+}

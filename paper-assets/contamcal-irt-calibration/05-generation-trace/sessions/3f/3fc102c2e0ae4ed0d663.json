@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fc102c2e0ae4ed0d663",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code gemma2 batchsize fix v2",
+  "task_key": "worker_code_gemma2-batchsize-fix-v2_20260519T165056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma2-batchsize-fix-v2_20260519T165056_result.json",
+    "occurrence": 1,
+    "bytes": 312,
+    "sha256": "15c44bd2c46c431841d9304d8f2b5dc3950d18c82c23bbe25fb0136848a0adf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本均已修改完成：\n\n- `run_gemma2_s123.sh` (L24): `--batch-size 2 --grad-accum 8`\n- `sft_gemma2_s0_sweep.sh` (L25): `--batch-size 2 --grad-accum 8`\n\neffective batch size 保持 2×8=16 不变。d000 (PID 180155) 已在运行中不受影响，后续 dosage 会使用新参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma2-batchsize-fix-v2.md"
+}

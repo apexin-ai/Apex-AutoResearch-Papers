@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "248a7f147d4c64f12e13",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "diag coverage wider priors",
+  "task_key": "worker_diag_coverage-wider-priors_20260514T231108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_coverage-wider-priors_20260514T231108.log",
+    "occurrence": 1,
+    "bytes": 1356514,
+    "sha256": "fa4b320d198010752ab6732333d505b2a6410a768509851ce791cb0938b81584"
+  },
+  "statistics": {
+    "messages": 618,
+    "user_turns": 1,
+    "tool_calls": 252,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 106,
+      "tool_call": 252,
+      "tool_result": 252,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 538,
+      "chunks": [
+        {
+          "path": "248a7f147d4c64f12e13-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "248a7f147d4c64f12e13-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "248a7f147d4c64f12e13-part-0003.json",
+          "message_count": 178
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 80,
+      "chunks": [
+        {
+          "path": "248a7f147d4c64f12e13-part-0003.json",
+          "message_count": 2
+        },
+        {
+          "path": "248a7f147d4c64f12e13-part-0004.json",
+          "message_count": 78
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-coverage-wider-priors.md"
+}

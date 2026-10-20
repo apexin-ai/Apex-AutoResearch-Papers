@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "152692cb15451e6fdf78",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval llama32 3B d100 s42",
+  "task_key": "worker_diagnose_exp_001_eval_llama32_3B_d100_s42_20260516T213736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_llama32_3B_d100_s42_20260516T213736_result.json",
+    "occurrence": 1,
+    "bytes": 1337,
+    "sha256": "288b5c7beca61872be1fbc17c1cd9fbe5518deffb9826cca2daccc3288ac7c4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**实验实际已成功完成，是 cron 监控误判。**\n\n### 失败根因：误报（False positive）\n\n进程 PID 831033 于 `05:26:06` 正常退出，写入了 `.done` sentinel。Cron 监控系统在进程自然结束后多次探测到 PID 不存在，且可能因未配置 W&B 而判定 \"no sentinel/W&B\"，累计 5 次后自动标记为 failed。\n\n时间线：\n- `02:24:24` 启动，加载模型\n- 过程中遇到大量 HuggingFace 连接超时（数据集下载），但 retry 后从缓存加载成功\n- `05:26:06` 正常完成全部 4 个 benchmark，写入所有结果文件和 `.done` sentinel\n\n### 已完成的 benchmark 结果\n\n| Benchmark | Score |\n|-----------|-------|\n| MMLU | 34.08% (4786/14042) |\n| GSM8K | 见 gsm8k_results.json |\n| ARC Challenge | 见 arc_challenge_results.json |\n| HumanEval | 1.22% (2/164) |\n\n注意：MMLU 结果中所有 pred 都是 \"A\"，说明模型可能存在严重的 position bias 或推理失败（d100 = 100% 污染数据微调，可能导致模型退化）。\n\n### 结论\n\n- **不需要重跑**，结果已完整\n- 需要将实验状态从 failed 更正为 completed\n- 监控系统的 sentinel 检测逻辑可能有 race condition（进程退出后才检查 sentinel 存在性，但检测窗口在 sentinel 写入之前）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-llama32-3b-d100-s42.md"
+}

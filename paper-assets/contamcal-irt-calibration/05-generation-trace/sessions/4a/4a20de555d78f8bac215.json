@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a20de555d78f8bac215",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh server cleanup and exp001 launch",
+  "task_key": "worker_ssh_server-cleanup-and-exp001-launch_20260513T175223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_server-cleanup-and-exp001-launch_20260513T175223_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "770c56e1d4568488bc25e8b8fca636e3956327cc4b9cadb4b44f59f48191c04b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "vLLM failed as expected, fell back to transformers successfully. Model loaded, generation started (0/439 batches for MMLU's 14042 items). The process is running.\n\n**Summary:**\n\n| Step | Status |\n|------|--------|\n| 1. Disk cleanup | SKIP (84G free already) |\n| 2. Kill GPU processes | DONE (4 PIDs killed, 6 GPUs at 0MiB) |\n| 3. Sync 6 code files | DONE (all 6 files verified on remote) |\n| 4. Install deps + verify | DONE (rouge-score, nltk, sentence-transformers installed; all 4 scripts pass `--help`) |\n| 5. Launch Phase 1 | RUNNING |\n\n**Phase 1 status:**\n- PID: `186841`\n- Log: `/root/contamcal-irt-calibration/exp001/phase1_paraphrase.log`\n- Backend: transformers (vLLM fallback triggered due to duplicate template name bug)\n- Model: Qwen2.5-7B-Instruct on GPU 0\n- Progress: generating MMLU paraphrases (14042 items, 439 batches)\n- Note: transformers mode is sequential per-item, so MMLU alone will take several hours on a single GPU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-server-cleanup-and-exp001-launch.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "094c8f55218cfe8e1716",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "fix bootstrap ci and classifier",
+  "task_key": "worker_fix_bootstrap-ci-and-classifier_20260520T143238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bootstrap-ci-and-classifier_20260520T143238.log",
+    "occurrence": 1,
+    "bytes": 934701,
+    "sha256": "7e54cd56484bd90db01bc9e5848095d7d6dcecdde2157c31ec60957791e8f20a"
+  },
+  "statistics": {
+    "messages": 223,
+    "user_turns": 1,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 60,
+      "tool_call": 77,
+      "tool_result": 77,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 114,
+      "chunks": [
+        {
+          "path": "094c8f55218cfe8e1716-part-0001.json",
+          "message_count": 79
+        },
+        {
+          "path": "094c8f55218cfe8e1716-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "094c8f55218cfe8e1716-part-0002.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-bootstrap-ci-and-classifier.md"
+}

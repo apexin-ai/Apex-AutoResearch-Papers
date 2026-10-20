@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "3cb7a69163d8cc43b546",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 sft d025 15B",
+  "task_key": "worker_diagnose_exp_001_sft_d025_15B_20260514T174905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_sft_d025_15B_20260514T174905_result.json",
+    "occurrence": 1,
+    "bytes": 1840,
+    "sha256": "45a13dfc1b63831dcbdbdefcc49a62366b77a95bc70d8498579c2de9b091a61e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**CRON FALSE POSITIVE — 训练已成功完成。**\n\n日志证据：\n- 最终 step 3384/3384，epoch 1.0\n- `train_runtime: 11610.65s`（~3.2h），`train_loss: 1.2715`\n- checkpoint-3384 + 最终 lora_adapter 均已保存（May 15 01:32）\n- 无任何 OOM/CUDA error/NaN/Traceback\n\nCron 在 ~17:47 UTC 检测到 wrapper PID 已死并连续 5 次未发现 sentinel/W&B，误判为 failed。实际上训练进程已在 ~01:32 正常退出，只是没有写 sentinel 文件。\n\n```json\n{\"root_cause\":\"Cron monitored wrapper PID which exited after training completed normally. No sentinel/W&B was configured, so 5 consecutive checks all returned negative → auto-resolved as failed. Training actually completed successfully: 3384/3384 steps, train_loss=1.2715, lora_adapter saved at checkpoint-3384.\",\"error_type\":\"cron_false_positive\",\"fix_steps\":[\"将实验状态从 failed 改为 completed\",\"后续 train_sft.py 结束后写 sentinel 文件（如 DONE 标记），避免 cron 误判\"],\"can_auto_fix\":true,\"is_still_running\":false,\"current_pid\":null,\"training_progress\":\"3384/3384 (100%, completed)\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "Cron monitored wrapper PID which exited after training completed normally. No sentinel/W&B was configured, so 5 consecutive checks all returned negative → auto-resolved as failed. Training actually completed successfully: 3384/3384 steps, train_loss=1.2715, lora_adapter saved at checkpoint-3384.",
+              "error_type": "cron_false_positive",
+              "fix_steps": [
+                "将实验状态从 failed 改为 completed",
+                "后续 train_sft.py 结束后写 sentinel 文件（如 DONE 标记），避免 cron 误判"
+              ],
+              "can_auto_fix": true,
+              "is_still_running": false,
+              "current_pid": null,
+              "training_progress": "3384/3384 (100%, completed)"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-sft-d025-15b.md"
+}

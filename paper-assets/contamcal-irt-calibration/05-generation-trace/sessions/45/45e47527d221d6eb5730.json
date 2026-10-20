@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45e47527d221d6eb5730",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd disk finalize and launch",
+  "task_key": "worker_ops_westd-disk-finalize-and-launch_20260520T015246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-disk-finalize-and-launch_20260520T015246_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "b52aafec5a972e401772936cdd29f44408e892f64ae09577545fdca9e56b9aa5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n```\n磁盘最终状态: 6% (/root) — symlink → /root/autodl-tmp/.cache_migrated（释放 20G）\ncuda:0: Phi-4 GSM8K eval — PID=246700, 33G ✅\ncuda:1: Qwen-14B d100 重训 — PID=246779, 29G ✅\ncuda:2: OLMo-2 s0 — PID=238804, 67G 继续运行 ✅\ncuda:3: Gemma-2 d100 重训 — PID=246861, 61G ✅\n```\n\n4 个 tmux session 活跃：`gsm8k_phi4_s123`, `sft_qwen14b_d100_s123`, `sft_olmo2_s0`, `sft_gemma2_d100_s123`。Registry 3 个新实验均已标记 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-disk-finalize-and-launch.md"
+}

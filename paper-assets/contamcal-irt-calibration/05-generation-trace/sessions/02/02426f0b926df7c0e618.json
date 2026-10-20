@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "02426f0b926df7c0e618",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval 3B d000 s42",
+  "task_key": "worker_diagnose_exp_001_eval_3B_d000_s42_20260514T064711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_3B_d000_s42_20260514T064711_result.json",
+    "occurrence": 1,
+    "bytes": 1361,
+    "sha256": "1e2d72da131a2e9f9204fe2b32b1a9c45c4774c3dd4a49e83d3464c9494f4bd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验已正常完成，不是 failed。** 进程消失是因为跑完了自然退出。\n\n关键证据：\n- PID 249294 已不存在（正常退出）\n- 日志最后一行 `14:39:11 [INFO] Item responses saved to ...`，四个 benchmark 全部跑完\n- 输出目录有完整的 3 个结果文件：`eval_results.json` (2MB), `correctness_matrix.json` (107KB), `item_responses.json` (2.2MB)\n- GPU 1 当前空闲，0MiB 占用\n\n运行时间：08:54 → 14:39，约 5 小时 45 分钟。\n\n部分结果摘要（从日志）：\n- humaneval pass@1: **0.1159** (19/164)\n- bitsandbytes 的 `libnvJitLink.so.13` 报错是非致命 warning，未影响评估\n\n```json\n{\"root_cause\":\"N/A - 实验正常完成，进程自然退出\",\"error_type\":\"N/A\",\"fix_steps\":[\"无需修复，将 cron 状态标记为 completed\"],\"can_auto_fix\":true,\"partial_results\":\"有完整结果（eval_results.json + correctness_matrix.json + item_responses.json）\",\"process_alive\":false}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "N/A - 实验正常完成，进程自然退出",
+              "error_type": "N/A",
+              "fix_steps": [
+                "无需修复，将 cron 状态标记为 completed"
+              ],
+              "can_auto_fix": true,
+              "partial_results": "有完整结果（eval_results.json + correctness_matrix.json + item_responses.json）",
+              "process_alive": false
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-3b-d000-s42-copy-2.md"
+}

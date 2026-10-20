@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1230b3d3a20a925c6c9e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu check submit 05B s123",
+  "task_key": "worker_ops_gpu-check-submit-05B-s123_20260516T024005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-check-submit-05B-s123_20260516T024005_result.json",
+    "occurrence": 1,
+    "bytes": 1500,
+    "sha256": "6c19525f78e7ab29e59215f006f0f9b8e339c02cac8ace5add7d319e204c6f2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本存在且内容正确（0.5B 模型，s123 种子，4 个 dosage × 3 个 benchmark = 12 个信号计算任务）。\n\n## GPU 状态总结\n\n| GPU | 进程 | PID | 显存 | 利用率 | 运行时间 | 任务 |\n|-----|------|-----|------|--------|----------|------|\n| cuda:0 | eval d100_a32_s123 (para+aligned) | 642757 | 9008/24564 MiB | 64% | **5h04m** | 4 benchmarks + paraphrase |\n| cuda:1 | eval d000_s42 (aligned) | 676497 | 8976/24564 MiB | 69% | 37m | 4 benchmarks |\n| cuda:2 | eval d005_s42 (aligned) | 679190 | 8976/24564 MiB | 67% | 24m | 4 benchmarks |\n| cuda:3 | eval d025_v3_s42 (para+aligned) | 682166 | 9008/24564 MiB | 0% | 7m | 3 benchmarks + paraphrase |\n| cuda:4 | signals 3B d025_s123 (s4) | 668217 | 6562/24564 MiB | 63% | 1h49m | mmlu signal |\n| cuda:5 | signals 3B d025_v3_s42 (s4) | 663067 | 7796/24564 MiB | 62% | 2h22m | mmlu signal |\n\n**所有 GPU 都在忙，无法立即提交。**\n\n### 预估最先空闲\n\n**cuda:0 最可能先空闲** — eval d100_a32_s123 已跑 5h+，带 paraphrase 的 4-benchmark eval 通常 5-6h 完成，应该接近尾声。\n\n其次是 cuda:1（eval 37m，无 paraphrase 的 4-benchmark eval 通常约 1.5-2h）和 cuda:2（24m，同类任务）。\n\ncuda:3 刚启动 7 分钟（GPU util 0% 说明可能在加载模型），还需较长时间。cuda:4/5 的 3B signal 计算通常需要 3-5h。\n\n**建议**：等 cuda:0 的 eval 完成后立即提交 0.5B s123 信号计算，预计 30 分钟内空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-submit-05b-s123.md"
+}

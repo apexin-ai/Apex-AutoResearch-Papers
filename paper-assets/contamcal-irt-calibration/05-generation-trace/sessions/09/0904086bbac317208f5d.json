@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0904086bbac317208f5d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gsm8k qwen14b s123 crossseed",
+  "task_key": "worker_ops_gsm8k-qwen14b-s123-crossseed_20260520T081002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k-qwen14b-s123-crossseed_20260520T081002_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "42eb32af3e34bf4ebc701ef7c09ca1e315864b8c865997f6c61a1fab36f84769"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 305387 在 GPU-dd9d... 上占用 33322 MiB，确认是 cuda:1 上的 qwen14b eval 进程。其他 GPU 上的进程是已有任务，未被干扰。\n\n### 汇报\n\n1. **Checkpoint 验证**: 两个 adapter 均存在且 ~275MB ✓\n   - `Qwen2.5-14B_d000_s123`: 275,341,720 bytes\n   - `Qwen2.5-14B_d100_s123`: 275,341,720 bytes\n\n2. **脚本确认**:\n   - `CUDA_VISIBLE_DEVICES=1` ✓\n   - `EXPECTED_MD5=\"17673bf373f00f83ccc41fc1d355a4cd\"` ✓（已从旧 hash 更新）\n   - checkpoint 路径 `Qwen2.5-14B_d{000,100}_s123` ✓\n\n3. **PID**: 305380（子进程 305387 实际运行 evaluate.py）\n\n4. **nvidia-smi**: cuda:1 占用 33322 MiB / 97887 MiB，utilization 95%，GSM8K eval 正在推理中（d000_s123 进行中，1/165 batches）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-qwen14b-s123-crossseed.md"
+}

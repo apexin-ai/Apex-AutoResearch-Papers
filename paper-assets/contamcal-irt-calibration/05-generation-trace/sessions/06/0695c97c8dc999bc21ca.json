@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0695c97c8dc999bc21ca",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit 2 evals cuda0 cuda4",
+  "task_key": "worker_ops_submit-2-evals-cuda0-cuda4_20260515T061043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-2-evals-cuda0-cuda4_20260515T061043_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "c6932a4e806c87ee6b431f7f8f2c9d948e9466551aed555b1232ea3d5e828ae3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都在正常运行，MMLU 评估进行中：\n\n| Eval | GPU | Session | 状态 | 速度 |\n|------|-----|---------|------|------|\n| 3B d000 s42 v3 | cuda:4 (6791 MiB) | `exp_001_eval_3B_d000_v3_s42_aligned` | MMLU 评估中 | ~36 it/s |\n| 0.5B d025 s123 | cuda:0 (1501 MiB) | `exp_001_eval_05B_d025_s123_aligned` | MMLU 评估中 | ~79 it/s |\n\n`libnvJitLink.so.13` 警告是无害的（flash-attn 相关，不影响评估）。4 个 benchmark (mmlu, gsm8k, arc_challenge, humaneval) 全部使用 `--mc-format aligned`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-2-evals-cuda0-cuda4.md"
+}

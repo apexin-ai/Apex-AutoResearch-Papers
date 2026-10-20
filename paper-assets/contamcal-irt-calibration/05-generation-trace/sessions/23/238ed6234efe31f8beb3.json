@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "238ed6234efe31f8beb3",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_1_1778716173.md",
+  "task_key": "loop_1_1778716173",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778716173.md",
+    "occurrence": 1,
+    "bytes": 3918,
+    "sha256": "9ec104943ec699e78182c94c8cc369ae7a28e2f4a08470ab154a245e75754836"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-13T23:45:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0~5 on cqa1-21977，不可用白名单外的 GPU\n- train_sft.py 的 `--gpu` 参数必须等于**物理 GPU 编号**（脚本内部 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)` 会覆盖框架注入），`--gpu 0` ≠ \"第一块分配的卡\"，而是物理 GPU 0\n- exp_001_sft_injection 的 GPU spec 字段含描述文字（如 `cuda:0 (MMLU vLLM)`），资源检查时 allocated_but_idle 会误报 cuda:0/1/2 空闲，实际它们在跑 injection paraphrase\n- 1.5B 模型 batch_size 必须 ≤ 2（batch_size 4 会 OOM on 24GB GPU）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，项目路径 `/root/contamcal-irt-calibration`\n- Python：`/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- SFT 数据：`/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl`（50K samples，SlimOrca clean）\n- Checkpoints：`/root/autodl-tmp/exp001/checkpoints/`\n- 活跃进程（截至 handoff）：\n  - exp_001_sft_injection: PID 204467/189361/190712 on cuda:0/1/2（MMLU/GSM8K/ARC paraphrase）\n  - exp_001_sft_0pct_15B: PID 210116 on cuda:4（1.5B seed=42 SFT）\n  - exp_001_sft_0pct_3B: PID 210666 on cuda:5（3B seed=42 SFT）\n  - exp_004_sim_sweep: PID 219346 本地 CPU（12 conditions × 10 seeds）\n  - exp_005_noise_prop: PID 234646 本地 CPU\n- Cron 监控：exp_001_sft_injection / exp_001_sft_0pct_15B / exp_001_sft_0pct_3B\n\n### 3. 📊 当前状态\n刚处理完 exp_001_sft_0pct_05B_s123 + exp_001_sft_0pct_15B_s123 的失败回调。根因是 `--gpu 0` 落到物理 GPU 0（被 vLLM 占满）导致 OOM。已更新 registry notes、发飞书卡片、向 Director 汇报。\n\n- **Worker `ssh:fix-resubmit-seed123` 正在运行**——修正 --gpu 参数并重提交 s123 实验到 cuda:3。等它的 `[WORKER DONE]` 回调\n- exp_001_sft_0pct_05B (seed=42): **DONE/success**，loss=1.5388，token_acc=0.6569，cuda:3 已释放\n- exp_001_sft_0pct_05B_s123 / 15B_s123: PREPARING/failed，等 Worker 重提交\n- exp_001_sft_0pct_15B / 3B (seed=42): RUNNING on cuda:4/5\n- exp_001_sft_injection: RUNNING on cuda:0/1/2（paraphrase 生成中）\n- exp_004_sim_sweep / exp_005_noise_prop: RUNNING on CPU\n\n### 4. 📋 待办\n- Worker `ssh:fix-resubmit-seed123` 完成 → 确认 s123 实验已重提交成功，更新 registry spec（确保 --gpu 参数正确）\n- exp_001_sft_0pct_15B / 3B (seed=42) 完成 → 按 on-experiment-done 处理，释放 cuda:4/5 可用于 s123 15B 重提交\n- exp_001_sft_injection paraphrase 全部完成 → cuda:0/1/2 释放，开始 Phase 2 SFT injection 训练（15 runs × 3 models × 5 dosages，需要排 GPU 调度）\n- exp_004_sim_sweep 完成 → 分析 parameter recovery vs AUC 阈值，决定是否需要全量 sweep\n- exp_005_noise_prop 完成 → 分析 ME model vs latent-τ model CI 宽度对比\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（距今 12 天冲刺）\n- **核心方法**：ContamCal = 4PL+γ IRT post-hoc calibration for benchmark contamination\n- **MVP 已通过**（D004）：4PL+γ 在 synthetic data 上成功分离 γ（contamination）和 θ（ability），N_items=300 PASS\n- **关键路径**：exp-001 SFT → exp-002 信号 → exp-003 RRF → exp-006 IRT calibration（~80h GPU）\n- **易错点**：\n  - 资源报告里 injection 实验的 GPU spec 含描述文字，`allocated_but_idle` 会误报——不要信这个列表，手动对照 RUNNING 实验\n  - Worker 池 < 2 = 失职，handoff 时只有 1 个 Worker，新 session 应尽快铺 CPU 任务（文献/论文/代码准备）\n  - D010 决策：SFT 注入用 ALL paraphrases（不过滤 BLEU），但 ConStat 信号只用 QC-passed\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778716173.md"
+}

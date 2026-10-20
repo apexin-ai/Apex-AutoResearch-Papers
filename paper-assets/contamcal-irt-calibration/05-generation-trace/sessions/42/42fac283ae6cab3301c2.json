@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42fac283ae6cab3301c2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "compute s1 llama recompute cuda01",
+  "task_key": "worker_compute_s1_llama_recompute_cuda01_20260517T034913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_s1_llama_recompute_cuda01_20260517T034913_result.json",
+    "occurrence": 1,
+    "bytes": 1067,
+    "sha256": "fa6aa3e35cd9b2aeaabff2c6b4397822af50b3c62d51c28984f7ea4d4321ed54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both processes are running successfully with offline mode:\n- **cuda:0**: encoding training data for d000/mmlu at ~35 it/s (6250 batches for 50k training segments)\n- **cuda:1**: encoding training data for d025/mmlu at ~45 it/s (6767 batches for 54133 training segments)\n\nKey observations:\n- d000 loaded `sft_dosage_000.jsonl` (50000 segments)\n- d025 loaded `sft_dosage_025.jsonl` (54133 segments) — confirming the dosage inference fix is working correctly\n\nAt ~35-45 it/s with ~6500 batches each, the encoding phase takes ~3 min per benchmark. With FAISS search and 3 benchmarks × 2 dosages per GPU, estimated total time ~30-45 min per GPU.\n\n**Summary:**\n- 12 old s1_embedding files backed up (`.buggy_bak` suffix)\n- Two tmux sessions running: `s1_recompute_cuda0` (d000, d005) and `s1_recompute_cuda1` (d025, d100)\n- PIDs: 922102 (cuda:0), 922181 (cuda:1)\n- Fix confirmed working: different dosage files being loaded per model\n- Logs at: `/root/autodl-tmp/exp002/signals/s1_recompute_cuda{0,1}.log`\n- Estimated completion: ~30-45 min"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compute-s1-llama-recompute-cuda01.md"
+}

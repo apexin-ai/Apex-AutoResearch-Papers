@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e1c36b8e6dc25c42b26",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill gsm8k and rrf gap",
+  "task_key": "worker_ops_kill_gsm8k_and_rrf_gap_20260516T153700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_gsm8k_and_rrf_gap_20260516T153700_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "a6125f3bcee493fda5d81a18498dfa497186b79fb3d59906d1fa224016a043c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个任务全部完成：\n\n### 1. cuda:5 Kill ✅\nPID 806081 已终止。cuda:5 仅剩 PID 804791（Llama d100 SFT，20576 MiB）。\n\n### 2. cuda:1 Llama eval v3 ✅ 已在运行\n**PID 807025** — `python evaluate.py --model-path .../Llama-3.2-3B_d000_s42/merged --benchmarks gsm8k arc_challenge humaneval --mc-format aligned --output-dir .../eval_results/Llama-3.2-3B_d000_s42_aligned/ --batch-size 4`\n\n占用 6838 MiB，无需重新提交。\n\n### 3. RRF gap fill ✅ 无需操作\n两个 model 的 merged 文件全部已存在：\n\n| Model | mmlu | gsm8k | arc_challenge |\n|-------|------|-------|---------------|\n| Qwen2.5-3B_d100_a32_s42 | EXISTS | EXISTS | EXISTS |\n| Qwen2.5-3B_d000_s123_a32 | EXISTS | EXISTS | EXISTS |\n\n之前的审计信息已过时，gap 已被填补。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-gsm8k-and-rrf-gap.md"
+}

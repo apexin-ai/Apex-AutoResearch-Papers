@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "184219eeaa587e6b2f78",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper figure fig dose response v2",
+  "task_key": "worker_paper_figure_fig_dose_response_v2_20260516T200738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_dose_response_v2_20260516T200738_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "affaab1587c18c6024490979179c3bb6960ebf6dc5021967477188e6b2e4073c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。生成了 `fig_dose_response.pdf` / `.png`，已注册为 `art_20260516_34d427`。\n\n图表要点：\n- 1×3 subplots (ARC-Challenge / GSM8K / MMLU)，三个尺度全部实线\n- Error bars 为两种子 min-max range；3B GSM8K d005 异常点用空心标记\n- 3B GSM8K d000 已排除并标注 SFT degradation；MMLU 0.5B 区域有 position bias 浅红底\n- ARC 标注 0.5B forgetting (−17pp) + 1.5B/3B near-immune；GSM8K 标注 3B inflation"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-dose-response-v2.md"
+}

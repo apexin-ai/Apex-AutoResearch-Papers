@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "4c64a564eeafae1cf2ad",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 sft 3B d000 v3",
+  "task_key": "worker_diagnose_exp_001_sft_3B_d000_v3_20260515T190929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_sft_3B_d000_v3_20260515T190929_result.json",
+    "occurrence": 1,
+    "bytes": 2082,
+    "sha256": "ee645722901ac9bb304f7cd75b27c0f87ce27e84c141bfa700b795aa7d755ec7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。**训练没有失败，是误报。**\n\n进程树：\n```\nPID 597174 (已死) ← 监控追踪的 PID，只是启动用的 bash shell，立即退出\n  └─ PID 597178 (alive, PPID=1) ← timeout 43200 wrapper\n       └─ PID 597179 (alive, 99% CPU, 13868MiB GPU4) ← 实际训练进程\n            ├─ PID 597466 (dataloader worker)\n            ├─ PID 597467 (dataloader worker)\n            ├─ PID 597468 (dataloader worker)\n            └─ PID 597469 (dataloader worker)\n```\n\n监控系统追踪了 PID 597174（启动时的临时 bash shell），该进程 spawn 了 `timeout` wrapper 后即退出。cron 连续 5 次检测 597174 不存在，误判为失败。实际训练进程 597179 一直在 GPU 4 上正常运行，当前进度 ~56%（step 1746/3125）。\n\ncheckpoint 目录为空是因为 `save_strategy=epoch`，第一次存储要到 epoch 1.0（当前 epoch 0.26）。\n\n```json\n{\"root_cause\":\"监控追踪了错误的PID(597174=临时bash shell)，实际训练进程PID 597179仍在GPU4正常运行(13868MiB, step 1746/3125, 56%)\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"将实验状态从failed改回running\",\"更新监控PID为597179(实际python进程)或597178(timeout wrapper)\",\"修复提交脚本使其记录实际python进程PID而非启动shell PID\"],\"can_auto_fix\":true,\"has_checkpoint\":false,\"checkpoint_path\":\"无(save_strategy=epoch,首次保存在epoch 1.0,当前epoch 0.26)\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "监控追踪了错误的PID(597174=临时bash shell)，实际训练进程PID 597179仍在GPU4正常运行(13868MiB, step 1746/3125, 56%)",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "将实验状态从failed改回running",
+                "更新监控PID为597179(实际python进程)或597178(timeout wrapper)",
+                "修复提交脚本使其记录实际python进程PID而非启动shell PID"
+              ],
+              "can_auto_fix": true,
+              "has_checkpoint": false,
+              "checkpoint_path": "无(save_strategy=epoch,首次保存在epoch 1.0,当前epoch 0.26)"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-sft-3b-d000-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "373a33b7ef3b74781a4e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code oracle exposure pooled",
+  "task_key": "worker_code_oracle-exposure-pooled_20260514T232421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_oracle-exposure-pooled_20260514T232421_result.json",
+    "occurrence": 1,
+    "bytes": 1477,
+    "sha256": "7662d4650267551e750cec1be3a2d31db80aa28b638477e0d89599cc11e96515"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All results collected. Here's the comparison:\n\n## Oracle Exposure vs RRF v3 — Pooled IRT 4PL+γ\n\n| Metric | ARC Oracle | ARC RRF v3 | GSM8K Oracle | GSM8K RRF v3 |\n|--------|-----------|------------|-------------|-------------|\n| n_models | 15 | 8 | 15 | 8 |\n| **γ_mean** | **-2.83** | -7.62 | **+3.77** | +2.10 |\n| γ 95% CI | [-3.72, -1.89] | [-8.79, -6.42] | [2.64, 4.96] | [0.97, 3.30] |\n| γ_positive | No | No | **Yes** | Yes |\n| **MAE** | **0.047** | 0.115 | 0.089 | **0.079** |\n| **coverage_95** | **0.20** | 0.0 | **0.33** | 0.25 |\n| PPP | 1.0 | 1.0 | 0.0 | 0.0 |\n| pred/obs acc | 0.572/0.540 | 0.711/0.562 | 0.407/0.494 | 0.442/0.509 |\n| diagnostics | all_ok | all_ok | **rhat=1.012, ess=345** | all_ok |\n\n**解读：**\n\n1. **ARC γ 仍为负**：oracle exposure (-2.83) 比 RRF v3 (-7.62) 温和很多，但方向仍然错。MAE 大幅改善（0.047 vs 0.115），coverage 从 0 提升到 0.20。pred/obs 差距缩小（0.572/0.540 vs 0.711/0.562）。\n\n2. **GSM8K γ 正且更强**：oracle (3.77) 比 RRF v3 (2.10) 更强，CI 不含零。MAE 略差（0.089 vs 0.079），coverage 提升（0.33 vs 0.25）。但 GSM8K oracle 诊断有 rhat/ess 警告（rhat=1.012, min_ess=345），建议增加 samples。\n\n3. **模型集差异**：oracle 跑了 15 models vs RRF v3 的 8 models，不完全同集合，比较需谨慎。\n\n4. **PPP 模式一致**：ARC 始终 PPP=1.0（过预测），GSM8K 始终 PPP=0.0（欠预测）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-oracle-exposure-pooled.md"
+}

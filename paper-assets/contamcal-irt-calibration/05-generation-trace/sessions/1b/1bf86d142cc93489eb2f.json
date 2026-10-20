@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bf86d142cc93489eb2f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code qc filtered dosage",
+  "task_key": "worker_code_qc_filtered_dosage_20260514T001031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qc_filtered_dosage_20260514T001031_result.json",
+    "occurrence": 1,
+    "bytes": 857,
+    "sha256": "460fc44874324ac2971c2f5c7ae02616b17d1638b2cb0810322b13c48c288320"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。产出汇总：\n\n**QC-filtered dosage 文件**：`/root/autodl-tmp/exp001/sft_data_qc_filtered/`\n\n| Dosage | QCF total | QCF contam | QCF ratio | ALL total | ALL contam |\n|--------|-----------|------------|-----------|-----------|------------|\n| 5%     | 50,377    | 377        | 0.75%     | 50,826    | 826        |\n| 25%    | 51,886    | 1,886      | 3.63%     | 54,133    | 4,133      |\n| 50%    | 53,773    | 3,773      | 7.02%     | 58,266    | 8,266      |\n| 100%   | 57,547    | 7,547      | 13.11%    | 66,533    | 16,533     |\n\nQC-filtered contamination pool 7,547 items（ALL 版本 16,533 的 45.6%）。d100 时所有 QC-passed paraphrases 全部注入，contamination labels 使用 full benchmark sizes（arc:1172, gsm8k:1319, humaneval:164, mmlu:14042）。元数据写入 `data_meta_qcf.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qc-filtered-dosage.md"
+}

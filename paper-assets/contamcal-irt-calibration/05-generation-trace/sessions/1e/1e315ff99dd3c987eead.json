@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e315ff99dd3c987eead",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "restart exp 002 signals",
+  "task_key": "worker_restart_exp-002-signals_20260514T125545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_restart_exp-002-signals_20260514T125545_result.json",
+    "occurrence": 1,
+    "bytes": 1276,
+    "sha256": "8e9ca62e3adf0ae7f27e7ecfb10fcc37e740830845bd6135a55d986698138533"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：GPU 0 已被占用，不能提交新任务。**\n\n状态汇总：\n\n### GPU 0 确认空闲：❌\n\nGPU 0 已有 exp-002 batch runner 在运行：\n- **PID 370957** (`run_batch.py --model-size 0.5B --gpu 0`)，子进程 **PID 370959** (`compute_signals.py` d000_s42/mmlu)\n- 启动时间：20:55:17，手动从 tmux session `exp_001_sft_0pct_05B` 里通过 `tee run_05B.log` 启动（非 submit_training_job）\n- 当前在跑 [1/9] `Qwen2.5-0.5B_d000_s42/mmlu`，占 13390 MiB 显存\n\n### 代码修复确认：✅\n- `max_answer_tokens=64` ✅\n- `timeout=14400` (4h) ✅  \n- `_load_cached_signal` per-signal 缓存 ✅\n\n### 已有 cached signals（会被自动跳过）：\n| checkpoint | signal | benchmarks |\n|---|---|---|\n| d000_s42 | embedding | mmlu, gsm8k, arc_challenge |\n| d000_s42 | minkpp | mmlu, gsm8k |\n| d005_s42 | embedding | mmlu |\n\n缺失：d000 minkpp_arc_challenge + 全部 selfcritique，d005/d100 大部分。\n\n### 操作\n**根据 C001 约束，GPU 0 已有同类进程，不提交新任务。** 当前进程正在用修复后的代码跑，无需干预。建议等当前任务完成后检查日志确认 selfcritique 是否成功（前一轮 18:19 的运行 selfcritique 全部失败导致 task-level FAIL）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/restart-exp-002-signals.md"
+}

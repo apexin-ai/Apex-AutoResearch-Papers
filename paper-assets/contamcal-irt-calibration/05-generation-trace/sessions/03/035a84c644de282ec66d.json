@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "035a84c644de282ec66d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh prepare phi4 pilot",
+  "task_key": "worker_ssh_prepare-phi4-pilot_20260518T224632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prepare-phi4-pilot_20260518T224632_result.json",
+    "occurrence": 1,
+    "bytes": 2163,
+    "sha256": "2a1bec3118cdd9737b4152c44073a042d5e120a0a461068d4e1ca5ce8037535f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改全部正确。汇总结果：\n\n---\n\n## 产出\n\n### 1. train_sft.py 修改（3 处）\n\n| 位置 | 修改内容 |\n|------|----------|\n| L125-126 | 新增 `--lora-targets` 参数（逗号分隔的模块名，默认 None 保持向后兼容） |\n| L173 | LoRA target_modules 优先使用 `args.lora_targets.split(\",\")`, 否则用 DEFAULT |\n| L258 | train_config.json 中记录实际使用的 `lora_targets` |\n\n不传 `--lora-targets` 时行为与修改前完全一致。\n\n### 2. Phi-4 dry-run：**无法执行**\n\n- Phi-4 模型未下载到服务器（`/root/autodl-tmp/models/` 下无 phi-4）\n- GPU 0 被两个进程占满（6106 + 17312 = 23418 / 24564 MiB），无空闲 GPU\n- 需要先下载 Phi-4 并等 GPU 释放后再 dry-run\n\n### 3. OLMo-2 架构：**模型也未下载**\n\n### 4. 基于已知架构的推荐命令\n\n**Phi-4**（Phi3ForCausalLM，fused QKV + fused gate_up）：\n```bash\nCUDA_VISIBLE_DEVICES=N /root/miniconda3/bin/python3.12 exp001/train_sft.py \\\n  --model-name /root/autodl-tmp/models/phi-4 \\\n  --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl \\\n  --output-dir /root/autodl-tmp/outputs/phi-4_d000_s42 \\\n  --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 \\\n  --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048 \\\n  --gradient-checkpointing \\\n  --lora-targets qkv_proj,o_proj,gate_up_proj,down_proj\n```\n\n**OLMo-2-7B**（OLMo2ForCausalLM，separate QKV + fused gate_up）：\n```bash\nCUDA_VISIBLE_DEVICES=N /root/miniconda3/bin/python3.12 exp001/train_sft.py \\\n  --model-name /root/autodl-tmp/models/OLMo-2-1124-7B \\\n  --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl \\\n  --output-dir /root/autodl-tmp/outputs/OLMo-2-7B_d000_s42 \\\n  --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 \\\n  --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048 \\\n  --gradient-checkpointing \\\n  --lora-targets q_proj,k_proj,v_proj,o_proj,gate_up_proj,down_proj\n```\n\n> 模型下载到位后，建议先用 `python -c \"from transformers import AutoModelForCausalLM; ...\"` 打印 `named_modules()` 确认实际模块名，再执行 dry-run。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prepare-phi4-pilot.md"
+}

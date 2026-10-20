@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33191b49d6b07f90ce28",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp j16 domain gamma wait collect",
+  "task_key": "worker_exp_j16-domain-gamma-wait-collect_20260518T022334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_j16-domain-gamma-wait-collect_20260518T022334_result.json",
+    "occurrence": 1,
+    "bytes": 169,
+    "sha256": "d2bb103a36bb4a73063ed80c5891622ce8f174399d7ce6ffa3bed53693477516"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2/8 domains complete (STEM_Math done, STEM_Science just finished sampling). Will check back in ~4.5 minutes. Estimated completion: around 10:55-11:10 UTC."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-j16-domain-gamma-wait-collect.md"
+}

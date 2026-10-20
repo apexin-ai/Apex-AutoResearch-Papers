@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "49738924ea3304f015c9",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "audit checkpoint path downstream",
+  "task_key": "worker_audit_checkpoint_path_downstream_20260515T205228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_checkpoint_path_downstream_20260515T205228.log",
+    "occurrence": 1,
+    "bytes": 770044,
+    "sha256": "6588b37a394b693f12c3cc8a6a6c8f7ef0b49538abd5bac1895d33242bc7c170"
+  },
+  "statistics": {
+    "messages": 163,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 64,
+      "tool_result": 64,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 163,
+      "chunks": [
+        {
+          "path": "49738924ea3304f015c9-part-0001.json",
+          "message_count": 96
+        },
+        {
+          "path": "49738924ea3304f015c9-part-0002.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-checkpoint-path-downstream.md"
+}

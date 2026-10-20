@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1785185c0a9972ef2fcd",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "knowledge literature map update",
+  "task_key": "worker_knowledge_literature-map-update_20260516T161514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_literature-map-update_20260516T161514_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "225bc843807d183895a0af5f27a8959bff9e5c9063488683d865a9dff0815c8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`literature_map.yaml` 已通过 Edit 直接更新完成（`save_project_file` 不支持写入该文件）。\n\n新增 7 篇论文：\n\n| ID | Category | Role |\n|---|---|---|\n| `deng_2024_tsguessing` | detection | direct-competitor |\n| `schaeffer_2026_generative_contamination` | detection | direct-competitor |\n| `brown_2024_ppp` | irt-llm | background |\n| `sinharay_2025_irt_fit` | irt-llm | background |\n| `kievit_2013_simpsons_paradox` | item-compromise | background |\n| `ercikan_2008_dif_cancellation` | item-compromise | background |\n| `li_2024_open_llm_leaderboard` | benchmark | evaluation |\n\n总数 25→32，统计已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-literature-map-update.md"
+}

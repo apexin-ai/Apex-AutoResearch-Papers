@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "298114c7ffec2c939454",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit d000 s42 a32 cuda5",
+  "task_key": "worker_ops_submit-d000-s42-a32-cuda5_20260515T203058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-d000-s42-a32-cuda5_20260515T203058_result.json",
+    "occurrence": 1,
+    "bytes": 96,
+    "sha256": "508da8c06f638d44cc1ce5ca25087e72bb442cdd68f97135c0be1f0286440978"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30 秒等待已完成，训练验证已在上一步确认通过。任务完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-d000-s42-a32-cuda5.md"
+}

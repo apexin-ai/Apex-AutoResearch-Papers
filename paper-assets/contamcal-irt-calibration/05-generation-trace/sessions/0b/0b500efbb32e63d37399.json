@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b500efbb32e63d37399",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit gpu0 next task",
+  "task_key": "worker_submit_gpu0_next_task_20260514T141541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_gpu0_next_task_20260514T141541_result.json",
+    "occurrence": 1,
+    "bytes": 325,
+    "sha256": "d37fec32018eff8ba71e21288f7b0ec128a56254823653bb175a7e7424f97635"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**已提交 `exp_001_sft_d025_15B`** → GPU 0, RUNNING。\n\n总结：\n- **任务**: 1.5B d025 SFT (seed=42)，补齐 1.5B dose-response 曲线的 25% 中间点\n- **进度**: 3/3384 steps, ~3.94s/step\n- **ETA**: ~02:00 UTC May 15 (~3.7h)\n- **剩余 SFT 缺口**: 3B d025（可在有 GPU 释放时提交）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-gpu0-next-task.md"
+}

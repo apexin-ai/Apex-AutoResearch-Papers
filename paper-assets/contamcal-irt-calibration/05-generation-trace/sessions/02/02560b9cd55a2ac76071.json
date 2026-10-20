@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02560b9cd55a2ac76071",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_23_1779373660.md",
+  "task_key": "loop_23_1779373660",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_23_1779373660.md",
+    "occurrence": 1,
+    "bytes": 3554,
+    "sha256": "e4bab219c7b310453d9ce04b89bc4e02ef62c66ac2c097f0c83cb4b2372665a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T14:04:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-29999 cuda:0/1/2/3 + cqa1-21977 cuda:0。其他卡未分配，禁止使用\n- Gemma-2 GSM8K 已被 D175 排除（catastrophic forgetting），不要跑 GSM8K eval\n- sft_gemma2_s123_sweep 状态是 failed（不是 success），s123 MMLU 数据来自单独的 eval_gemma2_s123_mmlu 实验\n- 所有 sweep 脚本内置 MMLU eval，训练完不需要单独跑 MMLU eval（但 ARC eval 需要单独跑）\n- EMNLP 2026 ARR deadline May 25，今天是 D+3，剩余 5 天\n\n### 2. 🖥️ 基础设施快照\n- **westd-29999**: 工作目录 `/root/autodl-tmp/exp001/`，Python `/root/miniconda3/bin/python`，conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **cqa1-21977**: 同样 conda base，工作目录 `/root/autodl-tmp/exp001/`\n- 模型路径: `/root/autodl-tmp/exp001/checkpoints/` 下按 family/dosage/seed 组织\n- 磁盘: westd 427G/879G 可用(49%)，cqa1 根分区 818G/879G 可用\n- 活跃 cron: sft_qwen7b_s0_cqa1 (PID 313407, cqa1 cuda:0) + sft_qwen14b_s0_sweep (PID 311554, westd cuda:3)\n\n### 3. 📊 当前状态\n**刚收到 sft_gemma2_s0_sweep 完成回调**（westd cuda:1，进程正常退出），已派 Worker `worker_analysis_sft_gemma2_s0_sweep_20260520T220102` 分析日志提取 MMLU 指标——**Worker 尚未返回结果**，等回调。\n\nRegistry 关键状态：\n- `sft_gemma2_s0_sweep`: ANALYZING → Worker 正在提取 d000-d100 MMLU accuracy\n- `sft_qwen7b_s0_cqa1`: RUNNING (cqa1 cuda:0, d050 训练中，预计 ~22:50 UTC 完成)\n- `sft_qwen14b_s0_sweep`: RUNNING (westd cuda:3, d050→d100，预计 ~03:20 UTC D+4 完成)\n- 31 个 PREPARING 实验待排队（含 phase2 eval 批次、DGP 模拟等）\n\n**未向 Director 汇报**——等 Worker 分析结果回来后一并汇报。\n\n### 4. 📋 待办\n- Worker `analysis:sft_gemma2_s0_sweep` 回调 → 读取 MMLU metrics → update_registry(DONE) → 与 s42(+3.76pp)/s123(+1.49pp) 对比判断是否复现 Benefit pattern → 汇报 Director（带 [资源] 行）→ 更新 report.md → 派 Worker 跑 ARC eval（需要单独跑）\n- Gemma-2 s0 ARC eval → westd cuda:0 或 cuda:2（空闲）可立即开跑\n- sft_qwen7b_s0_cqa1 cron 回调 → 同样分析流程 → 判断 V-recovery pattern\n- sft_qwen14b_s0_sweep cron 回调 → 分析 → 判断 Collapse pattern\n- 三个 s0 全部完成 + eval 齐全 → 派 Worker 跑 n=3 BCa bootstrap CI → Paper Agent patch Table 3\n- R3-W10 Threshold DGP 模拟（CPU Worker，尚未启动）+ R2-W1 Random MAE control — 都不需要 GPU，应并行铺\n\n### 5. 🎯 战略上下文\n- 核心论点：SFT-route contamination 产生 family-dependent 4-pattern taxonomy (Immune/Collapse/V-recovery/Benefit)\n- 当前阶段：5/5 家族 n=2 数据齐全，正在升级到 n=3 triple-seed bootstrap CI。Phi-4 + OLMo-2 已有 n=3 双 benchmark 数据（论文最强锚点）\n- Cross-benchmark 表（ROADMAP D192）：4/5 家族方向一致，Qwen-7B 是唯一 ⚠️（MMLU V-recovery vs ARC Collapse 方向不一致）\n- Gemma-2 s42 MMLU 结果 (+3.76pp) 来自原始 exp_001 系列实验的内置 eval，不在单独 eval 实验中——registry 里 s42 的 SFT 训练实验只记了 train_loss/token_accuracy，MMLU 数字在 memory.md 或之前的分析产出中\n- **易错点**：westd cuda:0 显示在 report.md 中标记为\"空闲（分配了没跑）\"——这是失职状态，Gemma-2 s0 分析完后应立即用它跑 ARC eval 或其他排队任务\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779373660.md"
+}

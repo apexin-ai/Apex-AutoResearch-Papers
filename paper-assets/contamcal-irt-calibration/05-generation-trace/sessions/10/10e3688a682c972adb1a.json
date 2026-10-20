@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10e3688a682c972adb1a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd full status check",
+  "task_key": "worker_ssh_westd-full-status-check_20260519T051655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-full-status-check_20260519T051655_result.json",
+    "occurrence": 1,
+    "bytes": 2388,
+    "sha256": "ed1a5b34664e8828619518be437d9b3e2869962ce154cab3e5f247f666423499"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29999 全面状态报告\n\n### 服务器验证\n4× NVIDIA RTX PRO 6000 Blackwell, 97887 MiB each. Driver 580.82.09, CUDA 13.0. ✓\n\n---\n\n### GPU 实时状态\n\n| GPU | PID | VRAM | Util | CUDA_VISIBLE_DEVICES | 任务 | 进度 | ETA |\n|-----|---------|------|------|-----|------|------|-----|\n| 0 | 102096 | 37.9G | 93% | 0 | OLMo-2-7B d025 s42 | 3372/3384 (99.6%) | **~30s** |\n| 1 | — | 0 | 0% | — | **IDLE** | — | — |\n| 2 | 106255 | 37.2G | 86% | 2 | OLMo-2-7B d005 s42 v2 | 2295/3177 (72%) | ~31min |\n| 3 | 103574 | 56.7G | 94% | 3 | Phi-4 d050 s42 | 2090/3642 (57%) | ~1h15m |\n\n所有进程 CUDA_VISIBLE_DEVICES 显式设置，与实际 GPU 匹配。✓\n\n---\n\n### Checkpoint .done 状态\n\n| Model | d000 | d005 | d025 | d050 | d100 |\n|-------|------|------|------|------|------|\n| **Gemma-2-9B** | ✗ | ✓ | ✓ | ✓ (刚完成) | ✗ |\n| **Phi-4** | ✓ | ✓ | ✓ | ⏳ 57% | ✗ |\n| **OLMo-2-7B** | ✓ | ⏳ 72% (v2) | ⏳ 99.6% | ✗ | ✗ |\n| **Qwen2.5-14B** | ✗ | ✗ | ✗ | ✓ | ✓ |\n\n**完成**: 11/20  \n**运行中**: 3/20 (OLMo d025 即将完成, OLMo d005 v2 ~31min, Phi-4 d050 ~1h15m)  \n**未开始**: 6/20\n\n注: OLMo d005 v1 被 kill (EXIT_CODE=143), v2 在正常训练。\n\n---\n\n### 未完成清单\n\n| 待训练 | Model |\n|--------|-------|\n| Gemma-2-9B d000 | 未开始 |\n| Gemma-2-9B d100 | 未开始 |\n| Phi-4 d100 | 未开始 |\n| OLMo-2-7B d050 | 未开始 |\n| OLMo-2-7B d100 | 未开始 |\n| Qwen2.5-14B d000 | 未开始 |\n| Qwen2.5-14B d005 | 未开始 |\n| Qwen2.5-14B d025 | 未开始 |\n\n注: Qwen2.5-14B d000/d005/d025 没有 .done 文件，但 eval_results_14b 中已有这三个的 eval_results.json（可能是之前训练完成后手动删除了 checkpoint 或 .done 标记不一致）。\n\n---\n\n### Eval 结果\n\n已有 eval_results.json:\n- `eval_results/Qwen2.5-7B_d000_s42`\n- `eval_results_14b/Qwen2.5-14B_d000_s42`\n- `eval_results_14b/Qwen2.5-14B_d005_s42`\n- `eval_results_14b/Qwen2.5-14B_d025_s42`\n- `eval_results_14b/Qwen2.5-14B_d050_s42`\n- `eval_results_14b/Qwen2.5-14B_d100_s42`\n\n---\n\n### 关键动态\n\n1. **GPU 0 即将释放** — OLMo d025 剩 12 steps (~30s)，完成后 GPU 0 空闲\n2. **GPU 1 空闲** — 可立即调度新任务\n3. 完成后将有 **2 个 GPU 空闲**(0+1)，可安排 Gemma d000/d100 或 Qwen2.5-14B 或 OLMo d050/d100"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-full-status-check-copy-2.md"
+}

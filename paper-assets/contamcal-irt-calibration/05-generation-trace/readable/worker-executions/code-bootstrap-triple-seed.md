@@ -1,0 +1,3796 @@
+# code bootstrap triple seed
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 82
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_code_bootstrap-triple-seed_20260520T121153.log`
+- **Structured JSON:** [`e60e2a6358a2fb170169.json`](../../sessions/e6/e60e2a6358a2fb170169.json)
+
+## Before a recorded user message
+
+82 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "fbcda950-d821-40b6-8d89-227ac3b9fa2f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779288000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9f97850e-a786-4222-bcd7-9d090223f49a",
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先探查服务器上的实际目录结构和数据文件，然后编写脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "4725c6d3-9ff0-49af-a872-f38ee9ca7a14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7Dru1M6jszYhQ7nfD2wPm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14369,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14369
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QKVt5NsaV8HTkAdSFFndyX`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "9b279b6d-242d-43be-b769-480cb85549e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7Dru1M6jszYhQ7nfD2wPm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14369,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14369
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T12:12:07.961Z_
+
+<details><summary>↩ Tool result · `toolu_01QKVt5NsaV8HTkAdSFFndyX`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "310df92c-d426-4442-9f7c-37803c0007a0",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by exploring the server's directory structure to understand the actual data layout.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "09bf251d-f9b3-4ee7-817b-b38cf7216b2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNxuHKFc56KA15wZ4MVskt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 26210,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 903
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WSJ3unUa2TvPaRfXy1g7UX`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration/results/ -name \"mmlu_results.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "961cc718-a762-42c4-99e5-b908bbf3efb0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNxuHKFc56KA15wZ4MVskt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 26210,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 903
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T12:12:12.988Z_
+
+<details><summary>↩ Tool result · `toolu_01WSJ3unUa2TvPaRfXy1g7UX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123/mmlu_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "31d1127a-7a7b-45a9-acb3-67b4cb2f5764",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s123/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s123/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s123/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123/mmlu_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123/mmlu_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013Ns9aoVAoU7kRw2cgAsXzW`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration/results/eval_results_v2/ -name \"mmlu_results.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "e962c80a-b5e5-4bc1-92e3-7f4019b79551",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdT77auXdp9D5TjYaJ2VDy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 27113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 600
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WDeB5jVd1X1uwr4Sog7XPU`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/mmlu_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "43a97be2-bcc6-47c6-ac54-119ff96fac39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdT77auXdp9D5TjYaJ2VDy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 27113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 600
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T12:12:17.067Z_
+
+<details><summary>↩ Tool result · `toolu_013Ns9aoVAoU7kRw2cgAsXzW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/contamcal-irt-calibration/results/eval_results_v2/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "21d1eb15-afa5-4cb6-bf9d-6d4df1779ed9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/contamcal-irt-calibration/results/eval_results_v2/': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/contamcal-irt-calibration/results/eval_results_v2/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T12:12:18.261Z_
+
+<details><summary>↩ Tool result · `toolu_01WDeB5jVd1X1uwr4Sog7XPU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"accuracy\\\": 0.5534111949864692,\\n  \\\"correct\\\": 7771,\\n  \\\"total\\\": 14042,\\n  \\\"per_item\\\": [\\n    {\\n      \\\"index\\\": 0,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 1,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 2,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 3,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 4,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 5,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 6,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 7,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 8,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 9,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 10,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 11,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 12,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 13,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 15,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 16,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 17,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 18,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 19,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 20,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 21,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 22,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 23,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 24,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 25,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 26,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 27,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 28,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 29,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 30,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 31,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 32,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 33,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 34,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 35,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 36,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 37,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 38,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 39,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 40,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 41,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n\\n\\n... [截断: 输出过长，省略 1321267 字符] ...\\n\\n\\n    {\\n      \\\"index\\\": 14000,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14001,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14002,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14003,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14004,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14005,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14006,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14007,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 14008,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 14009,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14010,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14011,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14012,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14013,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14014,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14015,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14016,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14017,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14018,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14019,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14020,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14021,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14022,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14023,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14024,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14025,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14026,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14027,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14028,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14029,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14030,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14031,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14032,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 14033,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14034,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14035,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 14036,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 14037,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 14038,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14039,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14040,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14041,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "cba1040f-c8a7-4e53-8667-367ee17420ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.5534111949864692,\\\\n  \\\\\\\"correct\\\\\\\": 7771,\\\\n  \\\\\\\"total\\\\\\\": 14042,\\\\n  \\\\\\\"per_item\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 1,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 2,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 3,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 4,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 5,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 6,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 7,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 8,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 9,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 10,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 11,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 12,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 13,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 15,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 16,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 17,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 18,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 19,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 20,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 21,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 22,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 23,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 24,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 25,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 26,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 27,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 28,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 29,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 30,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 31,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 32,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 33,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 34,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 35,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 36,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 37,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 38,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 39,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 40,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 41,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n\\\\n\\\\n... [截断: 输出过长，省略 1321267 字符] ...\\\\n\\\\n\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14000,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14001,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14002,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14003,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14004,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14005,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14006,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14007,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14008,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14009,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14010,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14011,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14012,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14013,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14014,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14015,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14016,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14017,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14018,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14019,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14020,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14021,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14022,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14023,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14024,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14025,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14026,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14027,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14028,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14029,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14030,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14031,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14032,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14033,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14034,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14035,\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14036,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14037,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14038,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14039,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14040,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 14041,\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"accuracy\\\": 0.5534111949864692,\\n  \\\"correct\\\": 7771,\\n  \\\"total\\\": 14042,\\n  \\\"per_item\\\": [\\n    {\\n      \\\"index\\\": 0,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 1,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 2,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 3,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 4,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 5,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 6,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 7,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 8,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 9,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 10,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 11,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 12,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 13,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 15,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 16,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 17,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 18,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 19,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 20,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 21,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 22,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 23,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 24,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 25,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 26,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 27,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 28,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 29,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 30,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 31,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 32,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 33,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 34,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 35,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 36,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 37,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 38,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 39,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 40,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 41,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n\\n\\n... [截断: 输出过长，省略 1321267 字符] ...\\n\\n\\n    {\\n      \\\"index\\\": 14000,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14001,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14002,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14003,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14004,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14005,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14006,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14007,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 14008,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 14009,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14010,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14011,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14012,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14013,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14014,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14015,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14016,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14017,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14018,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14019,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14020,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14021,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14022,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14023,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14024,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14025,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14026,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14027,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14028,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14029,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14030,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14031,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 14032,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 14033,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14034,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14035,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 14036,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 14037,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 14038,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 14039,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14040,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 14041,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK so:
+1. `eval_results_v2/` doesn't exist on westd-29999
+2. The mmlu_eval format exists with olmo2 data for s0 and s123
+3. JSON format: `{"benchmark": "mmlu", "accuracy": 0.5534..., "correct": 7771, "total": 14042, "per_item": [...]}`
+
+Let me now check all available results directories more broadly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "30d7cac2-6de5-42d0-847a-5b256facf6a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FLigHc1FP6icPvLDF6qTEP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6172,
+      "cache_read_input_tokens": 27713,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Now let me check the full results directory structure and find s42 data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "ebb3243c-92ad-4d76-acbb-36eb82f0eddf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FLigHc1FP6icPvLDF6qTEP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6172,
+      "cache_read_input_tokens": 27713,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UDGsAZuwhhyqqBY93YXpxb`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ls /root/contamcal-irt-calibration/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "8dcfd426-ca2b-4dbd-86cf-e76455a260b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FLigHc1FP6icPvLDF6qTEP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6172,
+      "cache_read_input_tokens": 27713,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T12:12:27.966Z_
+
+<details><summary>↩ Tool result · `toolu_01UDGsAZuwhhyqqBY93YXpxb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"gsm8k\\nmmlu_eval\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "81727e5f-6a26-476b-91b0-b06147b133fc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"gsm8k\\\\nmmlu_eval\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"gsm8k\\nmmlu_eval\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NrEFMgvX5LUZ7T2y1SBN3N`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration/results/ -name \"mmlu_results.json\" -type f -not -path \"*/per_item/*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "8876d6eb-321d-4e18-9393-050f55227821",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FLigHc1FP6icPvLDF6qTEP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6172,
+      "cache_read_input_tokens": 27713,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T12:12:28.922Z_
+
+<details><summary>↩ Tool result · `toolu_01NrEFMgvX5LUZ7T2y1SBN3N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123/mmlu_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "4de1b3a7-c75f-4463-913b-21a711d06866",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s123/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s123/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s123/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123/mmlu_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123/mmlu_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Only olmo2 s0 and s123 data exists on westd-29999. No s42 data and no other families. The task says s42 data is "齐全" (complete) for 5 families, but it might be on a different server (cqa1). Let me check more broadly - maybe there are other result directories or the s42 data is stored elsewhere.
+
+Wait, the task description says results path formats include:
+- `results/eval_results_v2/{family}_d{dosage}/mmlu_results.json` (s42)
+
+
+- `results/eval_results_v2/{family}_d{dosage}_s123/mmlu_results.json` (s123)
+- `results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json` (s0, new format)
+
+But `eval_results_v2` doesn't exist on westd-29999. I should check the cqa1 server since the project config mentions it - maybe the s42 data is stored there instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "851f49fd-bd8f-4423-bcd7-d3a1940315ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RF7HtnE1Eq66H6iMVCTKmU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 33885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 943
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BbyJHL4XmYJGDRm9YFvcVT`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration/results/ -maxdepth 4 -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "99845516-597a-429d-a8a0-59180107e007",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RF7HtnE1Eq66H6iMVCTKmU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 33885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 943
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PDPHPwQ7mQebDfgvPErhzx`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ls /root/contamcal-irt-calibration/results/mmlu_eval/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "fe5eb95d-db10-4bad-9126-fde6f40a4d87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RF7HtnE1Eq66H6iMVCTKmU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 33885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 943
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T12:12:39.659Z_
+
+<details><summary>↩ Tool result · `toolu_01BbyJHL4XmYJGDRm9YFvcVT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/results/\\n/root/contamcal-irt-calibration/results/gsm8k\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s42\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s42\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s123\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s123\\n/root/contamcal-irt-calibration/results/gsm8k/phi4_d000_s123\\n/root/contamcal-irt-calibration/results/gsm8k/phi4_d100_s123\\n/root/contamcal-irt-calibration/results/gsm8k/gemma2_d000_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d000_s42\\n/root/contamcal-irt-calibration/results/gsm8k/gemma2_d100_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d100_s42\\n/root/contamcal-irt-calibration/results/gsm8k/gemma2_d000_s42_fixed\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d000_s123\\n/root/contamcal-irt-calibration/results/gsm8k/gemma2_d100_s42_fixed\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d100_s123\\n/root/contamcal-irt-calibration/results/mmlu_eval\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s0\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s0\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s0\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s123\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s123\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s123\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "177eb29c-3b81-4074-9ecd-87b4f6812af8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/results/\\\\n/root/contamcal-irt-calibration/results/gsm8k\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s42\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s42\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s123\\\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s123\\\\n/root/contamcal-irt-calibration/results/gsm8k/phi4_d000_s123\\\\n/root/contamcal-irt-calibration/results/gsm8k/phi4_d100_s123\\\\n/root/contamcal-irt-calibration/results/gsm8k/gemma2_d000_s42\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d000_s42\\\\n/root/contamcal-irt-calibration/results/gsm8k/gemma2_d100_s42\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d100_s42\\\\n/root/contamcal-irt-calibration/results/gsm8k/gemma2_d000_s42_fixed\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d000_s123\\\\n/root/contamcal-irt-calibration/results/gsm8k/gemma2_d100_s42_fixed\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d100_s123\\\\n/root/contamcal-irt-calibration/results/mmlu_eval\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s0\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s0\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s0\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s123\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s123\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s123\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/results/\\n/root/contamcal-irt-calibration/results/gsm8k\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s42\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s42\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s123\\n/root/contamcal-irt-calibration/results/gsm8k/olmo2_d100_s123\\n/root/contamcal-irt-calibration/results/gsm8k/phi4_d000_s123\\n/root/contamcal-irt-calibration/results/gsm8k/phi4_d100_s123\\n/root/contamcal-irt-calibration/results/gsm8k/gemma2_d000_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d000_s42\\n/root/contamcal-irt-calibration/results/gsm8k/gemma2_d100_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d100_s42\\n/root/contamcal-irt-calibration/results/gsm8k/gemma2_d000_s42_fixed\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d000_s123\\n/root/contamcal-irt-calibration/results/gsm8k/gemma2_d100_s42_fixed\\n/root/contamcal-irt-calibration/results/gsm8k/qwen14b_d100_s123\\n/root/contamcal-irt-calibration/results/mmlu_eval\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s0\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s0\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s0\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s123\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s123\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s123\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T12:12:40.186Z_
+
+<details><summary>↩ Tool result · `toolu_01PDPHPwQ7mQebDfgvPErhzx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"olmo2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "9c43b038-088e-4187-bc11-d4bd1b243077",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"olmo2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"olmo2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so on westd-29999, the MMLU data is only olmo2 with s0 and s123. No s42 MMLU data exists here. The s42 data might be on cqa1. Let me also check if there's an `eval_results_v2` dir or any other MMLU result location on cqa1.
+
+Actually, the task says to first `find` the actual directory structure. The script needs to auto-discover data. With only olmo2 s0/s123 data available on westd, the dry-run with `--seeds 42` will find 0 files. 
+
+But the task explicitly requires testing with s42 data and expects 25 result files, so I need to check cqa1 for the s42 MMLU data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "a3274d47-d97a-4cb1-83e0-832529e47337",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TFisfJc4WH9UtDgjwZmJnQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1703,
+      "cache_read_input_tokens": 34828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1703
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+westd-29999 only has olmo2 s0/s123 MMLU data. Let me check cqa1 for the s42 data that the task mentions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "f290d6ac-0176-47b6-a31b-4bfad9fc83a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TFisfJc4WH9UtDgjwZmJnQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1703,
+      "cache_read_input_tokens": 34828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1703
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AchhT62hP3uMupaCj4Das5`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/results/ -name \"mmlu_results.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "2981e53a-9fbc-4dec-9031-169ee37e6ed6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TFisfJc4WH9UtDgjwZmJnQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1703,
+      "cache_read_input_tokens": 34828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1703
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T12:12:49.135Z_
+
+<details><summary>↩ Tool result · `toolu_01AchhT62hP3uMupaCj4Das5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "f9ddcf1f-47e3-4094-9224-24259c0c301d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XzSNNuanbtEVaoCYdJUYoz`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/results/ -maxdepth 3 -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "f7678a7d-6dbf-43ee-9df6-ad582b285cd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KN9Z7RHWT4r34rcGYDZTsC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 434,
+      "cache_read_input_tokens": 36531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 434
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T12:12:52.432Z_
+
+<details><summary>↩ Tool result · `toolu_01XzSNNuanbtEVaoCYdJUYoz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/results/\\n/root/contamcal-irt-calibration/results/gsm8k\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d005_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d025_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d050_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s123\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "b24b2de9-2a5b-4a5d-b138-dc2745a4c761",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/results/\\\\n/root/contamcal-irt-calibration/results/gsm8k\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s42\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s42\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d005_s42\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d025_s42\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d050_s42\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s123\\\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s123\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/results/\\n/root/contamcal-irt-calibration/results/gsm8k\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d005_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d025_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d050_s42\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s123\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No MMLU data on cqa1 either. Let me search more broadly for MMLU eval data. The task mentions `eval_results_v2` format. Let me search wider on both servers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "4ce3d127-f2f1-46c6-b6fc-3e1f5199eeaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAdngKe3a7xn7RgohzADLP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 447,
+      "cache_read_input_tokens": 36965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 447
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TJ1gUtDJdDoXLZyJ2TbJ6C`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration/ -name \"mmlu*\" -type f -not -path \"*/per_item/*\" -not -path \"*__pycache__*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "88c2e998-e86b-43b8-acaa-7e143ea1b3d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAdngKe3a7xn7RgohzADLP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 447,
+      "cache_read_input_tokens": 36965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 447
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ADYjyTHYYSthMrtaw7NwiY`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration/ -name \"eval_results*\" -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "661ca0c8-d4b4-4236-b07e-126531a92b06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAdngKe3a7xn7RgohzADLP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 447,
+      "cache_read_input_tokens": 36965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 447
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T12:12:57.846Z_
+
+<details><summary>↩ Tool result · `toolu_01TJ1gUtDJdDoXLZyJ2TbJ6C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/analysis/results/gsm8k/mmlu_summary.csv.old\\n/root/contamcal-irt-calibration/analysis/results/gsm8k/mmlu_summary.csv\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123/mmlu_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "54b1fce6-4a9b-4788-bf23-5ddb0dedbade",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/analysis/results/gsm8k/mmlu_summary.csv.old\\\\n/root/contamcal-irt-calibration/analysis/results/gsm8k/mmlu_summary.csv\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s123/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s123/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s123/mmlu_results.json\\\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123/mmlu_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/analysis/results/gsm8k/mmlu_summary.csv.old\\n/root/contamcal-irt-calibration/analysis/results/gsm8k/mmlu_summary.csv\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123/mmlu_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T12:12:58.359Z_
+
+<details><summary>↩ Tool result · `toolu_01ADYjyTHYYSthMrtaw7NwiY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp001/eval_results\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "16b65f71-71fb-4cda-a3b0-791ae34fad81",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/exp001/eval_results\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp001/eval_results\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J8uKKZUkBNPtrqaCXBRueR`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat /root/contamcal-irt-calibration/analysis/results/gsm8k/mmlu_summary.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "f804a533-3c7d-417e-8dee-81e5b58bd373",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UgCEU9v9GteXxyDmsodCBk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 953,
+      "cache_read_input_tokens": 37412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 953
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AzEJcT8cZWQFZJFKF1YWGH`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration/exp001/eval_results/ -name \"*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "e474ef12-42bd-403c-912d-0ea28715fabc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UgCEU9v9GteXxyDmsodCBk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 953,
+      "cache_read_input_tokens": 37412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 953
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T12:13:02.046Z_
+
+<details><summary>↩ Tool result · `toolu_01J8uKKZUkBNPtrqaCXBRueR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_display,dosage,dosage_pct,seed,accuracy,delta_acc\\nGemma-2-9B,d000,0.000000,42,0.618644,0.000000\\nGemma-2-9B,d005,0.500000,42,0.634169,0.015525\\nGemma-2-9B,d025,2.500000,42,0.645635,0.026990\\nGemma-2-9B,d050,5.000000,42,0.640080,0.021436\\nGemma-2-9B,d100,10.000000,42,0.656246,0.037601\\nOLMo-2-7B,d000,0.000000,42,0.537886,0.000000\\nOLMo-2-7B,d005,0.500000,42,0.561387,0.023501\\nOLMo-2-7B,d025,2.500000,42,0.561743,0.023857\\nOLMo-2-7B,d050,5.000000,42,0.572497,0.034610\\nOLMo-2-7B,d100,10.000000,42,0.570004,0.032118\\nPhi-4,d000,0.000000,42,0.764421,0.000000\\nPhi-4,d005,0.500000,42,0.763566,-0.000855\\nPhi-4,d025,2.500000,42,0.769833,0.005412\\nPhi-4,d050,5.000000,42,0.767483,0.003062\\nPhi-4,d100,10.000000,42,0.762712,-0.001709\\nQwen2.5-14B,d000,0.000000,42,0.694417,0.000000\\nQwen2.5-14B,d005,0.500000,42,0.690144,-0.004273\\nQwen2.5-14B,d025,2.500000,42,0.620353,-0.074064\\nQwen2.5-14B,d050,5.000000,42,0.594075,-0.100342\\nQwen2.5-14B,d100,10.000000,42,0.600698,-0.093719\\nQwen2.5-7B,d000,0.000000,42,0.661088,0.000000\\nQwen2.5-7B,d005,0.500000,42,0.647415,-0.013673\\nQwen2.5-7B,d025,2.500000,42,0.629825,-0.031263\\nQwen2.5-7B,d050,5.000000,42,0.630679,-0.030409\\nQwen2.5-7B,d100,10.000000,42,0.643284,-0.017804\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "ddeb3b4e-300d-4ac3-9023-906416ce6f9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_display,dosage,dosage_pct,seed,accuracy,delta_acc\\\\nGemma-2-9B,d000,0.000000,42,0.618644,0.000000\\\\nGemma-2-9B,d005,0.500000,42,0.634169,0.015525\\\\nGemma-2-9B,d025,2.500000,42,0.645635,0.026990\\\\nGemma-2-9B,d050,5.000000,42,0.640080,0.021436\\\\nGemma-2-9B,d100,10.000000,42,0.656246,0.037601\\\\nOLMo-2-7B,d000,0.000000,42,0.537886,0.000000\\\\nOLMo-2-7B,d005,0.500000,42,0.561387,0.023501\\\\nOLMo-2-7B,d025,2.500000,42,0.561743,0.023857\\\\nOLMo-2-7B,d050,5.000000,42,0.572497,0.034610\\\\nOLMo-2-7B,d100,10.000000,42,0.570004,0.032118\\\\nPhi-4,d000,0.000000,42,0.764421,0.000000\\\\nPhi-4,d005,0.500000,42,0.763566,-0.000855\\\\nPhi-4,d025,2.500000,42,0.769833,0.005412\\\\nPhi-4,d050,5.000000,42,0.767483,0.003062\\\\nPhi-4,d100,10.000000,42,0.762712,-0.001709\\\\nQwen2.5-14B,d000,0.000000,42,0.694417,0.000000\\\\nQwen2.5-14B,d005,0.500000,42,0.690144,-0.004273\\\\nQwen2.5-14B,d025,2.500000,42,0.620353,-0.074064\\\\nQwen2.5-14B,d050,5.000000,42,0.594075,-0.100342\\\\nQwen2.5-14B,d100,10.000000,42,0.600698,-0.093719\\\\nQwen2.5-7B,d000,0.000000,42,0.661088,0.000000\\\\nQwen2.5-7B,d005,0.500000,42,0.647415,-0.013673\\\\nQwen2.5-7B,d025,2.500000,42,0.629825,-0.031263\\\\nQwen2.5-7B,d050,5.000000,42,0.630679,-0.030409\\\\nQwen2.5-7B,d100,10.000000,42,0.643284,-0.017804\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"model_display,dosage,dosage_pct,seed,accuracy,delta_acc\\nGemma-2-9B,d000,0.000000,42,0.618644,0.000000\\nGemma-2-9B,d005,0.500000,42,0.634169,0.015525\\nGemma-2-9B,d025,2.500000,42,0.645635,0.026990\\nGemma-2-9B,d050,5.000000,42,0.640080,0.021436\\nGemma-2-9B,d100,10.000000,42,0.656246,0.037601\\nOLMo-2-7B,d000,0.000000,42,0.537886,0.000000\\nOLMo-2-7B,d005,0.500000,42,0.561387,0.023501\\nOLMo-2-7B,d025,2.500000,42,0.561743,0.023857\\nOLMo-2-7B,d050,5.000000,42,0.572497,0.034610\\nOLMo-2-7B,d100,10.000000,42,0.570004,0.032118\\nPhi-4,d000,0.000000,42,0.764421,0.000000\\nPhi-4,d005,0.500000,42,0.763566,-0.000855\\nPhi-4,d025,2.500000,42,0.769833,0.005412\\nPhi-4,d050,5.000000,42,0.767483,0.003062\\nPhi-4,d100,10.000000,42,0.762712,-0.001709\\nQwen2.5-14B,d000,0.000000,42,0.694417,0.000000\\nQwen2.5-14B,d005,0.500000,42,0.690144,-0.004273\\nQwen2.5-14B,d025,2.500000,42,0.620353,-0.074064\\nQwen2.5-14B,d050,5.000000,42,0.594075,-0.100342\\nQwen2.5-14B,d100,10.000000,42,0.600698,-0.093719\\nQwen2.5-7B,d000,0.000000,42,0.661088,0.000000\\nQwen2.5-7B,d005,0.500000,42,0.647415,-0.013673\\nQwen2.5-7B,d025,2.500000,42,0.629825,-0.031263\\nQwen2.5-7B,d050,5.000000,42,0.630679,-0.030409\\nQwen2.5-7B,d100,10.000000,42,0.643284,-0.017804\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T12:13:02.557Z_
+
+<details><summary>↩ Tool result · `toolu_01AzEJcT8cZWQFZJFKF1YWGH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "f9e9a432-6042-4ee6-b53e-62b91ce68a76",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `mmlu_summary.csv` contains all 5 families × 5 dosages for s42 - that's the complete s42 data. So the script can read from:
+1. `mmlu_summary.csv` for s42 data
+2. `results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json` for s0/s123 data
+
+Actually, wait. The task says the script should read from `mmlu_results.json` files. But the s42 data exists as a CSV summary, not individual JSON files. Let me check if there are individual JSON files for s42 elsewhere.
+
+
+Looking at the exp001/eval_results directory - it's empty. The s42 MMLU eval must have been run and aggregated into that CSV, but the individual JSON files might be elsewhere or cleaned up. Re-reading the task more carefully, it specifies auto-discovering MMLU eval results from the results directory with various path formats like `results/eval_results_v2/{family}_d{dosage}/mmlu_results.json`, so I need to support multiple directory structures and file formats.
+
+After checking the actual directory structure on westd-29999, I found the data exists in two places: a complete CSV summary at `analysis/results/gsm8k/mmlu_summary.csv` with all 5 families' s42 data, and individual JSON files for olmo2 at `results/mmlu_eval/olmo2/d{dosage}_s{0,123}/mmlu_results.json`. The script needs to handle both formats intelligently - reading individual JSON files from multiple path patterns while also using the CSV as a fallback source, then merging data from all sources together.
+
+Now I'm checking the mapping between the CSV display names (Gemma-2-9B, OLMo-2-7B, Phi-4, Qwen2.5-14B, Qwen2.5-7B) and the directory naming conventions (like olmo2) to establish how to match them across sources.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "ab142241-97e8-4786-a649-55b071bc398e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3eC5qoVDaeUxssijA6M4i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1174,
+      "cache_read_input_tokens": 38365,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1174
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+Found the s42 data in CSV form. Let me check existing analysis scripts for naming conventions and also verify the olmo2 accuracy values.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "0c14953c-5ad5-4661-98dd-483ec69cf963",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3eC5qoVDaeUxssijA6M4i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1174,
+      "cache_read_input_tokens": 38365,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1174
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E6p1nCGN9jvB8Bqkk3dCSP`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ls /root/contamcal-irt-calibration/analysis/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "c16aafde-0234-4fde-900d-ef616425f36c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3eC5qoVDaeUxssijA6M4i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1174,
+      "cache_read_input_tokens": 38365,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1174
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T12:13:20.940Z_
+
+<details><summary>↩ Tool result · `toolu_01E6p1nCGN9jvB8Bqkk3dCSP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analyze_gsm8k.py\\nbootstrap_profile_stability.py\\nclassification_sensitivity_sweep.py\\nfit_irt_2pl_gamma.py\\nirt_data_v3\\nirt_results\\nirt_results_v3\\nitem_vulnerability.py\\nresults\\ntreated_untreated_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "58c932a2-2da4-4e47-a7f4-be8f387d51b8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analyze_gsm8k.py\\\\nbootstrap_profile_stability.py\\\\nclassification_sensitivity_sweep.py\\\\nfit_irt_2pl_gamma.py\\\\nirt_data_v3\\\\nirt_results\\\\nirt_results_v3\\\\nitem_vulnerability.py\\\\nresults\\\\ntreated_untreated_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"analyze_gsm8k.py\\nbootstrap_profile_stability.py\\nclassification_sensitivity_sweep.py\\nfit_irt_2pl_gamma.py\\nirt_data_v3\\nirt_results\\nirt_results_v3\\nitem_vulnerability.py\\nresults\\ntreated_untreated_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BVDYBXJrsQNHf81VW5vqrr`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "head -3 /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/mmlu_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "832a1156-a150-4fd9-8510-4dc0ba267bd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3eC5qoVDaeUxssijA6M4i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1174,
+      "cache_read_input_tokens": 38365,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1174
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U6rRM4WkAEKqqKiKesTgcc`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "head -3 /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123/mmlu_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "322d05bd-7663-4ced-b88d-e1d82b7e144d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3eC5qoVDaeUxssijA6M4i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1174,
+      "cache_read_input_tokens": 38365,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1174
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T12:13:21.893Z_
+
+<details><summary>↩ Tool result · `toolu_01BVDYBXJrsQNHf81VW5vqrr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"accuracy\\\": 0.5534111949864692,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "4d146b94-2d9a-4cc4-9c84-ecb59274baa9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.5534111949864692,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"accuracy\\\": 0.5534111949864692,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-20T12:13:22.413Z_
+
+<details><summary>↩ Tool result · `toolu_01U6rRM4WkAEKqqKiKesTgcc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"accuracy\\\": 0.5566158666856573,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "737a19d0-43a7-4a98-8886-6c78c231e36d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.5566158666856573,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"accuracy\\\": 0.5566158666856573,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now I understand the data layout:
+
+1. **CSV source** (`analysis/results/gsm8k/mmlu_summary.csv`): Contains all 5 families × 5 dosages for s42. Column names: `model_display,dosage,dosage_pct,seed,accuracy,delta_acc`. Model display names: Gemma-2-9B, OLMo-2-7B, Phi-4, Qwen2.5-14B, Qwen2.5-7B.
+
+
+2. **JSON source** (`results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json`): Currently only has olmo2 with s0 and s123, with an `accuracy` field in each file. I need to map the CSV display names to their directory equivalents—Gemma-2-9B becomes `gemma2`, OLMo-2-7B becomes `olmo2`, Phi-4 becomes `phi4`, and so on—so the script can read from both sources and cross-reference them properly.
+
+For the implementation, I'm planning to read CSV data for the s42 seed, pull JSON results for s0 and s123, auto-discover available files, compute bootstrap confidence intervals using the BCa method, classify patterns across the results, and measure pattern stability with Spearman correlation. I should also check that Python and scipy are available before proceeding.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "9bd6d406-0196-458e-9b18-2d6e9604b0aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014JhVqVGjUp19YJnzCZXn2f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1578,
+      "cache_read_input_tokens": 39539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1578
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012eLQzCMPkXiedVqWNFVxAW`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "python3 -c \"import numpy; import scipy; print(numpy.__version__, scipy.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "79fa60d0-b97b-46e0-a3e9-2c32c1090067",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014JhVqVGjUp19YJnzCZXn2f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1578,
+      "cache_read_input_tokens": 39539,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1578
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T12:13:32.345Z_
+
+<details><summary>↩ Tool result · `toolu_012eLQzCMPkXiedVqWNFVxAW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "b3f36c2e-3609-4230-b1ea-670ebc060696",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N2NjYKfK6NieYAvw7v6pZg`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "python3 -c \"import numpy, scipy; print(numpy.__version__, scipy.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "d37e8ae6-c5b5-4ee8-b7a2-8131558d9007",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NEt75ewHbDjDWcdRaKsoBF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 620,
+      "cache_read_input_tokens": 41117,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 620
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T12:13:35.182Z_
+
+<details><summary>↩ Tool result · `toolu_01N2NjYKfK6NieYAvw7v6pZg`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "4b026267-08ec-425e-994d-c46b7eb096ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017RuZ1kmUqx1zvv1mNBta3u`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "python3 -c \"import numpy, scipy; print(numpy.__version__, scipy.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "602a8490-7573-42fe-bfdc-e6c9384c0a8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013U3kC1dJXdAo7iusTNDr5r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 199,
+      "cache_read_input_tokens": 41737,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 199
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T12:13:37.800Z_
+
+<details><summary>↩ Tool result · `toolu_017RuZ1kmUqx1zvv1mNBta3u`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "7f343a89-02ad-43b9-bf6e-1a3a793537cf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The semicolons in Python code are blocking it. Let me try with `&&` avoided and just use a print statement.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "68a15a0d-3d3f-4e82-986c-8831604a85b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Buv6qAnV5y3wSjTdW6tzCq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 199,
+      "cache_read_input_tokens": 41936,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 199
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015PmFo21M8vtqpLdgJpue9M`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import numpy, scipy; print(numpy.__version__, scipy.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "a6c558fe-a5bb-49a2-87e2-857363e5b90f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Buv6qAnV5y3wSjTdW6tzCq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 199,
+      "cache_read_input_tokens": 41936,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 199
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-20T12:13:42.146Z_
+
+<details><summary>↩ Tool result · `toolu_015PmFo21M8vtqpLdgJpue9M`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2.3.2 1.17.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "69c3f7f2-f485-495d-b59e-250439dd51a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2.3.2 1.17.1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2.3.2 1.17.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+Good - numpy 2.3.2 and scipy 1.17.1 are available. Now I have a complete picture of the data layout. Let me write the script.
+
+Data sources on westd-29999:
+- **CSV**: `analysis/results/gsm8k/mmlu_summary.csv` — all 5 families × 5 dosages, s42 only
+- **JSON**: `results/mmlu_eval/olmo2/d{dosage}_s{0,123}/mmlu_results.json` — olmo2 only, s0 and s123
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "ce569976-c529-408d-a722-faf1cd64b0f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Adio4vtD6fi5peSdc1co2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 254,
+      "cache_read_input_tokens": 42135,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 254
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — Write · `toolu_012WG7DxVhJ4dkr8dLeCHVaJ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py",
+  "content": "\"\"\"\nTriple-seed bootstrap CI analysis for MMLU dose-response patterns.\n\nReads MMLU accuracy data from multiple sources (JSON result files + CSV summaries),\ncomputes bootstrap confidence intervals for contamination effects (Δ accuracy),\nclassifies dose-response patterns, and measures cross-seed pattern stability.\n\nInputs:\n  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)\nOutputs:\n  - analysis/bootstrap_results.txt  (formatted tables)\n  - analysis/bootstrap_table.tex    (LaTeX table for paper)\n\nDependencies: numpy, scipy\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport os\nimport sys\nfrom collections import defaultdict\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom scipy.stats import spearmanr\n\n# ── Constants ──────────────────────────────────────────────────────────────\n\nFAMILIES = [\"Phi-4\", \"Qwen2.5-14B\", \"Qwen2.5-7B\", \"Gemma-2-9B\", \"OLMo-2-7B\"]\nDOSAGES = [\"d000\", \"d005\", \"d025\", \"d050\", \"d100\"]\nSEEDS = [42, 123, 0]\n\nDISPLAY_TO_DIR = {\n    \"Phi-4\": \"phi4\",\n    \"Qwen2.5-14B\": \"qwen14b\",\n    \"Qwen2.5-7B\": \"qwen7b\",\n    \"Gemma-2-9B\": \"gemma2\",\n    \"OLMo-2-7B\": \"olmo2\",\n}\nDIR_TO_DISPLAY = {v: k for k, v in DISPLAY_TO_DIR.items()}\n\nN_BOOTSTRAP = 10000\nCI_LEVEL = 0.95\nRNG_SEED = 42\n\n\n# ── Data loading ───────────────────────────────────────────────────────────\n\ndef load_json_results(results_dir: Path, seeds: list[int]) -> dict:\n    \"\"\"Discover and load MMLU results from JSON files.\n\n    Returns: {(display_name, dosage, seed): accuracy}\n    \"\"\"\n    data = {}\n    mmlu_eval_dir = results_dir / \"mmlu_eval\"\n    if not mmlu_eval_dir.exists():\n        return data\n\n    for family_dir in mmlu_eval_dir.iterdir():\n        if not family_dir.is_dir():\n            continue\n        display = DIR_TO_DISPLAY.get(family_dir.name, family_dir.name)\n        for dosage_dir in family_dir.iterdir():\n            if not dosage_dir.is_dir():\n                continue\n            name = dosage_dir.name\n            parts = name.split(\"_\")\n            if len(parts) != 2 or not parts[1].startswith(\"s\"):\n                continue\n            dosage = parts[0]\n            try:\n                seed = int(parts[1][1:])\n            except ValueError:\n                continue\n            if seed not in seeds or dosage not in DOSAGES:\n                continue\n            json_path = dosage_dir / \"mmlu_results.json\"\n            if not json_path.exists():\n                continue\n            with open(json_path) as f:\n                result = json.load(f)\n            data[(display, dosage, seed)] = result[\"accuracy\"]\n    return data\n\n\ndef load_csv_summary(results_dir: Path, seeds: list[int]) -> dict:\n    \"\"\"Load MMLU data from legacy CSV summary files.\n\n    Searches for mmlu_summary.csv in common locations.\n    Returns: {(display_name, dosage, seed): accuracy}\n    \"\"\"\n    data = {}\n    candidates = [\n        results_dir.parent / \"analysis\" / \"results\" / \"gsm8k\" / \"mmlu_summary.csv\",\n        results_dir / \"mmlu_summary.csv\",\n    ]\n    for csv_path in candidates:\n        if not csv_path.exists():\n            continue\n        with open(csv_path) as f:\n            reader = csv.DictReader(f)\n            for row in reader:\n                seed = int(row[\"seed\"])\n                if seed not in seeds:\n                    continue\n                display = row[\"model_display\"]\n                dosage = row[\"dosage\"]\n                if dosage not in DOSAGES:\n                    continue\n                data[(display, dosage, seed)] = float(row[\"accuracy\"])\n    return data\n\n\ndef discover_data(results_dir: Path, seeds: list[int]) -> dict:\n    \"\"\"Merge data from all sources. Returns {(family, dosage, seed): accuracy}.\"\"\"\n    data = {}\n    csv_data = load_csv_summary(results_dir, seeds)\n    json_data = load_json_results(results_dir, seeds)\n    data.update(csv_data)\n    data.update(json_data)  # JSON takes precedence over CSV\n    return data\n\n\ndef report_coverage(data: dict, seeds: list[int]):\n    \"\"\"Print data coverage matrix.\"\"\"\n    print(\"=\" * 72)\n    print(\"DATA COVERAGE\")\n    print(\"=\" * 72)\n\n    total_found = 0\n    total_expected = 0\n\n    header = f\"{'Family':<16}\" + \"\".join(f\"{'s' + str(s):>8}\" for s in seeds)\n    print(header)\n    print(\"-\" * len(header))\n\n    for family in FAMILIES:\n        row = f\"{family:<16}\"\n        for seed in seeds:\n            found = sum(1 for d in DOSAGES if (family, d, seed) in data)\n            total_found += found\n            total_expected += len(DOSAGES)\n            if found == len(DOSAGES):\n                row += f\"{'✓ ' + str(found) + '/5':>8}\"\n            elif found == 0:\n                row += f\"{'— 0/5':>8}\"\n            else:\n                row += f\"{'△ ' + str(found) + '/5':>8}\"\n        print(row)\n\n    print(\"-\" * len(header))\n    print(f\"Total: {total_found}/{total_expected} cells found\")\n    print()\n    return total_found\n\n\n# ── Bootstrap CI ───────────────────────────────────────────────────────────\n\ndef bootstrap_mean_ci(values: np.ndarray, n_boot: int = N_BOOTSTRAP,\n                      ci: float = CI_LEVEL, rng_seed: int = RNG_SEED) -> tuple:\n    \"\"\"BCa bootstrap CI for the mean.\n\n    Returns: (mean, ci_low, ci_high)\n    For n=1, returns (value, value, value) — point estimate with no interval.\n    \"\"\"\n    n = len(values)\n    mean = np.mean(values)\n\n    if n <= 1:\n        return (mean, mean, mean)\n\n    rng = np.random.RandomState(rng_seed)\n    boot_means = np.array([\n        np.mean(rng.choice(values, size=n, replace=True))\n        for _ in range(n_boot)\n    ])\n\n    # BCa correction\n    alpha = 1 - ci\n\n    # Bias correction: z0\n    z0 = _norm_ppf(np.mean(boot_means < mean))\n\n    # Acceleration: a (jackknife estimate)\n    jackknife_means = np.array([\n        np.mean(np.delete(values, i)) for i in range(n)\n    ])\n    jk_mean = np.mean(jackknife_means)\n    num = np.sum((jk_mean - jackknife_means) ** 3)\n    denom = 6.0 * (np.sum((jk_mean - jackknife_means) ** 2) ** 1.5)\n    a = num / denom if denom != 0 else 0.0\n\n    # Adjusted quantiles\n    z_alpha2 = _norm_ppf(alpha / 2)\n    z_1alpha2 = _norm_ppf(1 - alpha / 2)\n\n    a1 = _norm_cdf(z0 + (z0 + z_alpha2) / (1 - a * (z0 + z_alpha2)))\n    a2 = _norm_cdf(z0 + (z0 + z_1alpha2) / (1 - a * (z0 + z_1alpha2)))\n\n    a1 = np.clip(a1, 0.001, 0.999)\n    a2 = np.clip(a2, 0.001, 0.999)\n\n    ci_low = np.percentile(boot_means, 100 * a1)\n    ci_high = np.percentile(boot_means, 100 * a2)\n\n    return (mean, ci_low, ci_high)\n\n\ndef _norm_ppf(p):\n    \"\"\"Normal percent-point function (inverse CDF) using Rational approximation.\"\"\"\n    from scipy.stats import norm\n    return norm.ppf(np.clip(p, 1e-10, 1 - 1e-10))\n\n\ndef _norm_cdf(z):\n    \"\"\"Standard normal CDF.\"\"\"\n    from scipy.stats import norm\n    return norm.cdf(z)\n\n\n# ── Pattern classification ─────────────────────────────────────────────────\n\ndef classify_pattern(accs: dict) -> str:\n    \"\"\"Classify dose-response pattern from a single seed's accuracy dict.\n\n    Args:\n        accs: {dosage: accuracy} for one family/seed, must have d000 and d100.\n\n    Returns: pattern label string.\n    \"\"\"\n    if \"d000\" not in accs or \"d100\" not in accs:\n        return \"Incomplete\"\n\n    baseline = accs[\"d000\"]\n    delta_100 = (accs[\"d100\"] - baseline) * 100  # in percentage points\n\n    deltas = {}\n    for d in DOSAGES:\n        if d in accs:\n            deltas[d] = (accs[d] - baseline) * 100\n\n    min_delta = min(deltas.values())\n\n    # Immune\n    if abs(delta_100) < 1.0:\n        return \"Immune\"\n\n    # U-collapse\n    if delta_100 < -3.0:\n        return \"U-collapse\"\n\n    # V-recovery: dipped but recovered\n    if min_delta < -1.0 and delta_100 > min_delta + 1.0:\n        return \"V-recovery\"\n\n    # Benefit patterns\n    if delta_100 > 1.0:\n        ordered_dosages = [d for d in DOSAGES if d in accs]\n        vals = [accs[d] for d in ordered_dosages]\n        # Check monotonicity (loosely: no decrease > 0.5pp)\n        monotonic = all(\n            vals[i + 1] >= vals[i] - 0.005 for i in range(len(vals) - 1)\n        )\n        # Check plateau: d050 ≈ d100 (within 1pp)\n        if \"d050\" in accs and abs(accs[\"d100\"] - accs[\"d050\"]) * 100 < 1.0:\n            return \"Benefit-sat\"\n        if monotonic:\n            return \"Benefit\"\n        return \"Benefit-sat\"\n\n    # Mild negative not reaching U-collapse\n    if delta_100 < -1.0:\n        # Check if V-recovery shape\n        return \"U-collapse\" if min_delta < -3.0 else \"V-recovery\" if min_delta < -1.0 and delta_100 > min_delta + 1.0 else \"U-collapse\"\n\n    return \"Immune\"\n\n\n# ── Spearman ρ ─────────────────────────────────────────────────────────────\n\ndef compute_pairwise_spearman(family_data: dict, seeds: list[int]) -> tuple:\n    \"\"\"Compute pairwise Spearman ρ between seeds for a family.\n\n    Args:\n        family_data: {(dosage, seed): accuracy}\n        seeds: list of seeds to compare\n\n    Returns: (mean_rho, min_rho, max_rho, n_pairs) or (None, None, None, 0)\n    \"\"\"\n    seed_curves = {}\n    for seed in seeds:\n        curve = [family_data.get((d, seed)) for d in DOSAGES]\n        if all(v is not None for v in curve):\n            seed_curves[seed] = curve\n\n    if len(seed_curves) < 2:\n        return (None, None, None, 0)\n\n    rhos = []\n    for s1, s2 in combinations(seed_curves.keys(), 2):\n        rho, _ = spearmanr(seed_curves[s1], seed_curves[s2])\n        rhos.append(rho)\n\n    return (np.mean(rhos), np.min(rhos), np.max(rhos), len(rhos))\n\n\n# ── Main analysis ──────────────────────────────────────────────────────────\n\ndef run_analysis(data: dict, seeds: list[int], output_dir: Path):\n    \"\"\"Run full bootstrap analysis and output results.\"\"\"\n\n    lines = []\n\n    def out(s=\"\"):\n        print(s)\n        lines.append(s)\n\n    # ── Per-dosage bootstrap table ──\n    out(\"=\" * 90)\n    out(\"BOOTSTRAP CI: ACCURACY BY DOSAGE (mean ± 95% CI across seeds)\")\n    out(\"=\" * 90)\n\n    header = f\"{'Family':<16}{'n':>3}\"\n    for d in DOSAGES:\n        header += f\"  {d:>18}\"\n    out(header)\n    out(\"-\" * len(header))\n\n    family_summaries = {}\n\n    for family in FAMILIES:\n        available_seeds = [s for s in seeds if (family, \"d000\", s) in data]\n        n_seeds = len(available_seeds)\n        if n_seeds == 0:\n            continue\n\n        row = f\"{family:<16}{n_seeds:>3}\"\n        family_summaries[family] = {\"n_seeds\": n_seeds, \"seeds\": available_seeds}\n\n        for dosage in DOSAGES:\n            vals = np.array([data[(family, dosage, s)] for s in available_seeds\n                            if (family, dosage, s) in data])\n            if len(vals) == 0:\n                row += f\"  {'—':>18}\"\n                continue\n            mean, lo, hi = bootstrap_mean_ci(vals)\n            if len(vals) == 1:\n                row += f\"  {mean * 100:6.2f}pp (n=1)    \"\n            else:\n                row += f\"  {mean * 100:5.2f} [{lo * 100:5.2f},{hi * 100:5.2f}]\"\n            family_summaries[family][dosage] = (mean, lo, hi, len(vals))\n        out(row)\n\n    out()\n\n    # ── Delta(d100) bootstrap ──\n    out(\"=\" * 90)\n    out(\"BOOTSTRAP CI: Δ(d100) = acc(d100) - acc(d000)  [percentage points]\")\n    out(\"=\" * 90)\n\n    header2 = f\"{'Family':<16}{'n':>3}{'Baseline':>10}{'Δ(d100) mean':>14}{'95% CI':>22}{'p(Δ=0)':>10}\"\n    out(header2)\n    out(\"-\" * len(header2))\n\n    delta_results = {}\n\n    for family in FAMILIES:\n        info = family_summaries.get(family)\n        if not info:\n            continue\n        available_seeds = info[\"seeds\"]\n        n_seeds = info[\"n_seeds\"]\n\n        baselines = np.array([data[(family, \"d000\", s)] for s in available_seeds\n                              if (family, \"d000\", s) in data])\n        d100s = np.array([data[(family, \"d100\", s)] for s in available_seeds\n                          if (family, \"d100\", s) in data])\n\n        if len(baselines) == 0 or len(d100s) == 0:\n            continue\n\n        # Paired deltas where both exist\n        paired_seeds = [s for s in available_seeds\n                        if (family, \"d000\", s) in data and (family, \"d100\", s) in data]\n        deltas = np.array([data[(family, \"d100\", s)] - data[(family, \"d000\", s)]\n                           for s in paired_seeds])\n\n        baseline_mean = np.mean(baselines)\n        delta_mean, delta_lo, delta_hi = bootstrap_mean_ci(deltas)\n\n        # Rough p-value: fraction of bootstrap samples crossing 0\n        if len(deltas) > 1:\n            rng = np.random.RandomState(RNG_SEED)\n            boot_deltas = np.array([\n                np.mean(rng.choice(deltas, size=len(deltas), replace=True))\n                for _ in range(N_BOOTSTRAP)\n            ])\n            p_val = np.mean(boot_deltas * np.sign(-delta_mean) >= 0)\n            p_str = f\"{p_val:.3f}\"\n        else:\n            p_str = \"—\"\n\n        ci_str = f\"[{delta_lo * 100:+.2f}, {delta_hi * 100:+.2f}]\"\n        out(f\"{family:<16}{len(paired_seeds):>3}{baseline_mean * 100:>9.2f}%\"\n            f\"{delta_mean * 100:>+13.2f}pp{ci_str:>22}{p_str:>10}\")\n\n        delta_results[family] = {\n            \"baseline\": baseline_mean,\n            \"delta_mean\": delta_mean,\n            \"delta_lo\": delta_lo,\n            \"delta_hi\": delta_hi,\n            \"n\": len(paired_seeds),\n        }\n\n    out()\n\n    # ── Per-dosage deltas ──\n    out(\"=\" * 90)\n    out(\"BOOTSTRAP CI: Δ(d) by dosage [percentage points]\")\n    out(\"=\" * 90)\n\n    header3 = f\"{'Family':<16}\"\n    for d in DOSAGES[1:]:  # skip d000\n        header3 += f\"  {'Δ(' + d + ')':>20}\"\n    out(header3)\n    out(\"-\" * len(header3))\n\n    for family in FAMILIES:\n        info = family_summaries.get(family)\n        if not info:\n            continue\n        available_seeds = info[\"seeds\"]\n        row = f\"{family:<16}\"\n        for dosage in DOSAGES[1:]:\n            paired = [s for s in available_seeds\n                      if (family, \"d000\", s) in data and (family, dosage, s) in data]\n            if not paired:\n                row += f\"  {'—':>20}\"\n                continue\n            deltas = np.array([data[(family, dosage, s)] - data[(family, \"d000\", s)]\n                               for s in paired])\n            mean, lo, hi = bootstrap_mean_ci(deltas)\n            if len(paired) == 1:\n                row += f\"  {mean * 100:+6.2f}pp (n=1)      \"\n            else:\n                row += f\"  {mean * 100:+5.2f} [{lo * 100:+5.2f},{hi * 100:+5.2f}]\"\n        out(row)\n\n    out()\n\n    # ── Pattern classification ──\n    out(\"=\" * 90)\n    out(\"DOSE-RESPONSE PATTERN CLASSIFICATION (per seed)\")\n    out(\"=\" * 90)\n\n    header4 = f\"{'Family':<16}\" + \"\".join(f\"{'s' + str(s):>14}\" for s in seeds) + f\"{'Consistent?':>14}\"\n    out(header4)\n    out(\"-\" * len(header4))\n\n    pattern_results = {}\n\n    for family in FAMILIES:\n        row = f\"{family:<16}\"\n        patterns = []\n        for seed in seeds:\n            accs = {d: data[(family, d, seed)] for d in DOSAGES\n                    if (family, d, seed) in data}\n            if len(accs) < 2:\n                row += f\"{'—':>14}\"\n                continue\n            pattern = classify_pattern(accs)\n            patterns.append(pattern)\n            row += f\"{pattern:>14}\"\n\n        if patterns:\n            consistent = len(set(patterns)) == 1\n            row += f\"{'Yes' if consistent else 'No':>14}\"\n            pattern_results[family] = {\n                \"patterns\": patterns,\n                \"consistent\": consistent,\n                \"majority\": max(set(patterns), key=patterns.count),\n            }\n        else:\n            row += f\"{'—':>14}\"\n        out(row)\n\n    out()\n\n    # ── Spearman ρ ──\n    out(\"=\" * 90)\n    out(\"CROSS-SEED PATTERN STABILITY (Spearman ρ of dose-response curves)\")\n    out(\"=\" * 90)\n\n    header5 = f\"{'Family':<16}{'n_pairs':>8}{'ρ_mean':>10}{'ρ_min':>10}{'ρ_max':>10}\"\n    out(header5)\n    out(\"-\" * len(header5))\n\n    rho_results = {}\n\n    for family in FAMILIES:\n        fam_data = {(d, s): data[(family, d, s)]\n                    for d in DOSAGES for s in seeds\n                    if (family, d, s) in data}\n        mean_rho, min_rho, max_rho, n_pairs = compute_pairwise_spearman(fam_data, seeds)\n\n        if n_pairs == 0:\n            out(f\"{family:<16}{'—':>8}{'—':>10}{'—':>10}{'—':>10}\")\n            continue\n\n        out(f\"{family:<16}{n_pairs:>8}{mean_rho:>10.3f}{min_rho:>10.3f}{max_rho:>10.3f}\")\n        rho_results[family] = {\"mean\": mean_rho, \"min\": min_rho, \"max\": max_rho, \"n\": n_pairs}\n\n    out()\n\n    # ── Save text output ──\n    output_dir.mkdir(parents=True, exist_ok=True)\n    txt_path = output_dir / \"bootstrap_results.txt\"\n    with open(txt_path, \"w\") as f:\n        f.write(\"\\n\".join(lines) + \"\\n\")\n    print(f\"Results saved to {txt_path}\")\n\n    # ── Generate LaTeX table ──\n    latex_lines = []\n    latex_lines.append(r\"\\begin{table}[t]\")\n    latex_lines.append(r\"\\centering\")\n    latex_lines.append(r\"\\caption{Triple-seed bootstrap analysis of MMLU dose-response patterns.}\")\n    latex_lines.append(r\"\\label{tab:bootstrap-mmlu}\")\n    latex_lines.append(r\"\\small\")\n    latex_lines.append(r\"\\begin{tabular}{lccccc}\")\n    latex_lines.append(r\"\\toprule\")\n    latex_lines.append(r\"Family & Baseline (\\%) & $\\Delta$(d100) & 95\\% CI & Pattern & $\\bar{\\rho}$ \\\\\")\n    latex_lines.append(r\"\\midrule\")\n\n    for family in FAMILIES:\n        dr = delta_results.get(family)\n        pr = pattern_results.get(family)\n        rr = rho_results.get(family)\n\n        if not dr:\n            continue\n\n        baseline_str = f\"{dr['baseline'] * 100:.2f}\"\n        delta_str = f\"{dr['delta_mean'] * 100:+.2f}\"\n        ci_str = f\"[{dr['delta_lo'] * 100:+.2f}, {dr['delta_hi'] * 100:+.2f}]\"\n\n        pattern_str = pr[\"majority\"] if pr else \"---\"\n        if pr and not pr[\"consistent\"]:\n            pattern_str += r\"$^\\dagger$\"\n\n        rho_str = f\"{rr['mean']:.2f}\" if rr else \"---\"\n\n        latex_lines.append(\n            f\"{family} & {baseline_str} & {delta_str} & {ci_str} & {pattern_str} & {rho_str} \\\\\\\\\"\n        )\n\n    latex_lines.append(r\"\\bottomrule\")\n    latex_lines.append(r\"\\end{tabular}\")\n    latex_lines.append(r\"\\vspace{1mm}\")\n    latex_lines.append(r\"\\raggedright\\footnotesize\")\n    latex_lines.append(r\"$\\Delta$(d100) = acc(d100) $-$ acc(d000) in percentage points. \"\n                       r\"CI via BCa bootstrap (10{,}000 resamples). \"\n                       r\"$\\bar{\\rho}$: mean pairwise Spearman $\\rho$ across seeds. \"\n                       r\"$^\\dagger$Pattern inconsistent across seeds.\")\n    latex_lines.append(r\"\\end{table}\")\n\n    tex_path = output_dir / \"bootstrap_table.tex\"\n    with open(tex_path, \"w\") as f:\n        f.write(\"\\n\".join(latex_lines) + \"\\n\")\n    print(f\"LaTeX table saved to {tex_path}\")\n\n\n# ── CLI ────────────────────────────────────────────────────────────────────\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Triple-seed bootstrap CI analysis for MMLU dose-response patterns.\"\n    )\n    parser.add_argument(\n        \"--results-dir\", type=str, default=\"results/\",\n        help=\"Root directory containing MMLU eval results (default: results/)\"\n    )\n    parser.add_argument(\n        \"--output-dir\", type=str, default=\"analysis/\",\n        help=\"Directory for output files (default: analysis/)\"\n    )\n    parser.add_argument(\n        \"--seeds\", type=str, default=\"42,123,0\",\n        help=\"Comma-separated list of seeds to include (default: 42,123,0)\"\n    )\n    parser.add_argument(\n        \"--dry-run\", action=\"store_true\",\n        help=\"Run with available data only, skip missing without error\"\n    )\n    parser.add_argument(\n        \"--n-bootstrap\", type=int, default=N_BOOTSTRAP,\n        help=f\"Number of bootstrap resamples (default: {N_BOOTSTRAP})\"\n    )\n    args = parser.parse_args()\n\n    global N_BOOTSTRAP\n    N_BOOTSTRAP = args.n_bootstrap\n\n    seeds = [int(s.strip()) for s in args.seeds.split(\",\")]\n    results_dir = Path(args.results_dir).resolve()\n    output_dir = Path(args.output_dir).resolve()\n\n    print(f\"Results dir: {results_dir}\")\n    print(f\"Output dir:  {output_dir}\")\n    print(f\"Seeds:       {seeds}\")\n    print(f\"Dry-run:     {args.dry_run}\")\n    print(f\"Bootstrap:   {N_BOOTSTRAP} resamples\")\n    print()\n\n    data = discover_data(results_dir, seeds)\n    n_found = report_coverage(data, seeds)\n\n    if n_found == 0:\n        print(\"ERROR: No data found. Check --results-dir path.\")\n        sys.exit(1)\n\n    if not args.dry_run:\n        expected = len(FAMILIES) * len(DOSAGES) * len(seeds)\n        missing = expected - n_found\n        if missing > 0:\n            print(f\"WARNING: {missing}/{expected} cells missing. Use --dry-run to proceed anyway.\")\n            print(\"Missing entries:\")\n            for family in FAMILIES:\n                for seed in seeds:\n                    for dosage in DOSAGES:\n                        if (family, dosage, seed) not in data:\n                            print(f\"  {family} / {dosage} / s{seed}\")\n            sys.exit(1)\n\n    run_analysis(data, seeds, output_dir)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "4816e888-bd81-4ba2-a568-871e46101435",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Adio4vtD6fi5peSdc1co2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 254,
+      "cache_read_input_tokens": 42135,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 254
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T12:15:19.233Z_
+
+<details><summary>↩ Tool result · `toolu_012WG7DxVhJ4dkr8dLeCHVaJ`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "773da27b-e590-4264-a974-f236fedee940",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py",
+    "content": "\"\"\"\nTriple-seed bootstrap CI analysis for MMLU dose-response patterns.\n\nReads MMLU accuracy data from multiple sources (JSON result files + CSV summaries),\ncomputes bootstrap confidence intervals for contamination effects (Δ accuracy),\nclassifies dose-response patterns, and measures cross-seed pattern stability.\n\nInputs:\n  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)\nOutputs:\n  - analysis/bootstrap_results.txt  (formatted tables)\n  - analysis/bootstrap_table.tex    (LaTeX table for paper)\n\nDependencies: numpy, scipy\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport os\nimport sys\nfrom collections import defaultdict\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom scipy.stats import spearmanr\n\n# ── Constants ──────────────────────────────────────────────────────────────\n\nFAMILIES = [\"Phi-4\", \"Qwen2.5-14B\", \"Qwen2.5-7B\", \"Gemma-2-9B\", \"OLMo-2-7B\"]\nDOSAGES = [\"d000\", \"d005\", \"d025\", \"d050\", \"d100\"]\nSEEDS = [42, 123, 0]\n\nDISPLAY_TO_DIR = {\n    \"Phi-4\": \"phi4\",\n    \"Qwen2.5-14B\": \"qwen14b\",\n    \"Qwen2.5-7B\": \"qwen7b\",\n    \"Gemma-2-9B\": \"gemma2\",\n    \"OLMo-2-7B\": \"olmo2\",\n}\nDIR_TO_DISPLAY = {v: k for k, v in DISPLAY_TO_DIR.items()}\n\nN_BOOTSTRAP = 10000\nCI_LEVEL = 0.95\nRNG_SEED = 42\n\n\n# ── Data loading ───────────────────────────────────────────────────────────\n\ndef load_json_results(results_dir: Path, seeds: list[int]) -> dict:\n    \"\"\"Discover and load MMLU results from JSON files.\n\n    Returns: {(display_name, dosage, seed): accuracy}\n    \"\"\"\n    data = {}\n    mmlu_eval_dir = results_dir / \"mmlu_eval\"\n    if not mmlu_eval_dir.exists():\n        return data\n\n    for family_dir in mmlu_eval_dir.iterdir():\n        if not family_dir.is_dir():\n            continue\n        display = DIR_TO_DISPLAY.get(family_dir.name, family_dir.name)\n        for dosage_dir in family_dir.iterdir():\n            if not dosage_dir.is_dir():\n                continue\n            name = dosage_dir.name\n            parts = name.split(\"_\")\n            if len(parts) != 2 or not parts[1].startswith(\"s\"):\n                continue\n            dosage = parts[0]\n            try:\n                seed = int(parts[1][1:])\n            except ValueError:\n                continue\n            if seed not in seeds or dosage not in DOSAGES:\n                continue\n            json_path = dosage_dir / \"mmlu_results.json\"\n            if not json_path.exists():\n                continue\n            with open(json_path) as f:\n                result = json.load(f)\n            data[(display, dosage, seed)] = result[\"accuracy\"]\n    return data\n\n\ndef load_csv_summary(results_dir: Path, seeds: list[int]) -> dict:\n    \"\"\"Load MMLU data from legacy CSV summary files.\n\n    Searches for mmlu_summary.csv in common locations.\n    Returns: {(display_name, dosage, seed): accuracy}\n    \"\"\"\n    data = {}\n    candidates = [\n        results_dir.parent / \"analysis\" / \"results\" / \"gsm8k\" / \"mmlu_summary.csv\",\n        results_dir / \"mmlu_summary.csv\",\n    ]\n    for csv_path in candidates:\n        if not csv_path.exists():\n            continue\n        with open(csv_path) as f:\n            reader = csv.DictReader(f)\n            for row in reader:\n                seed = int(row[\"seed\"])\n                if seed not in seeds:\n                    continue\n                display = row[\"model_display\"]\n                dosage = row[\"dosage\"]\n                if dosage not in DOSAGES:\n                    continue\n                data[(display, dosage, seed)] = float(row[\"accuracy\"])\n    return data\n\n\ndef discover_data(results_dir: Path, seeds: list[int]) -> dict:\n    \"\"\"Merge data from all sources. Returns {(family, dosage, seed): accuracy}.\"\"\"\n    data = {}\n    csv_data = load_csv_summary(results_dir, seeds)\n    json_data = load_json_results(results_dir, seeds)\n    data.update(csv_data)\n    data.update(json_data)  # JSON takes precedence over CSV\n    return data\n\n\ndef report_coverage(data: dict, seeds: list[int]):\n    \"\"\"Print data coverage matrix.\"\"\"\n    print(\"=\" * 72)\n    print(\"DATA COVERAGE\")\n    print(\"=\" * 72)\n\n    total_found = 0\n    total_expected = 0\n\n    header = f\"{'Family':<16}\" + \"\".join(f\"{'s' + str(s):>8}\" for s in seeds)\n    print(header)\n    print(\"-\" * len(header))\n\n    for family in FAMILIES:\n        row = f\"{family:<16}\"\n        for seed in seeds:\n            found = sum(1 for d in DOSAGES if (family, d, seed) in data)\n            total_found += found\n            total_expected += len(DOSAGES)\n            if found == len(DOSAGES):\n                row += f\"{'✓ ' + str(found) + '/5':>8}\"\n            elif found == 0:\n                row += f\"{'— 0/5':>8}\"\n            else:\n                row += f\"{'△ ' + str(found) + '/5':>8}\"\n        print(row)\n\n    print(\"-\" * len(header))\n    print(f\"Total: {total_found}/{total_expected} cells found\")\n    print()\n    return total_found\n\n\n# ── Bootstrap CI ───────────────────────────────────────────────────────────\n\ndef bootstrap_mean_ci(values: np.ndarray, n_boot: int = N_BOOTSTRAP,\n                      ci: float = CI_LEVEL, rng_seed: int = RNG_SEED) -> tuple:\n    \"\"\"BCa bootstrap CI for the mean.\n\n    Returns: (mean, ci_low, ci_high)\n    For n=1, returns (value, value, value) — point estimate with no interval.\n    \"\"\"\n    n = len(values)\n    mean = np.mean(values)\n\n    if n <= 1:\n        return (mean, mean, mean)\n\n    rng = np.random.RandomState(rng_seed)\n    boot_means = np.array([\n        np.mean(rng.choice(values, size=n, replace=True))\n        for _ in range(n_boot)\n    ])\n\n    # BCa correction\n    alpha = 1 - ci\n\n    # Bias correction: z0\n    z0 = _norm_ppf(np.mean(boot_means < mean))\n\n    # Acceleration: a (jackknife estimate)\n    jackknife_means = np.array([\n        np.mean(np.delete(values, i)) for i in range(n)\n    ])\n    jk_mean = np.mean(jackknife_means)\n    num = np.sum((jk_mean - jackknife_means) ** 3)\n    denom = 6.0 * (np.sum((jk_mean - jackknife_means) ** 2) ** 1.5)\n    a = num / denom if denom != 0 else 0.0\n\n    # Adjusted quantiles\n    z_alpha2 = _norm_ppf(alpha / 2)\n    z_1alpha2 = _norm_ppf(1 - alpha / 2)\n\n    a1 = _norm_cdf(z0 + (z0 + z_alpha2) / (1 - a * (z0 + z_alpha2)))\n    a2 = _norm_cdf(z0 + (z0 + z_1alpha2) / (1 - a * (z0 + z_1alpha2)))\n\n    a1 = np.clip(a1, 0.001, 0.999)\n    a2 = np.clip(a2, 0.001, 0.999)\n\n    ci_low = np.percentile(boot_means, 100 * a1)\n    ci_high = np.percentile(boot_means, 100 * a2)\n\n    return (mean, ci_low, ci_high)\n\n\ndef _norm_ppf(p):\n    \"\"\"Normal percent-point function (inverse CDF) using Rational approximation.\"\"\"\n    from scipy.stats import norm\n    return norm.ppf(np.clip(p, 1e-10, 1 - 1e-10))\n\n\ndef _norm_cdf(z):\n    \"\"\"Standard normal CDF.\"\"\"\n    from scipy.stats import norm\n    return norm.cdf(z)\n\n\n# ── Pattern classification ─────────────────────────────────────────────────\n\ndef classify_pattern(accs: dict) -> str:\n    \"\"\"Classify dose-response pattern from a single seed's accuracy dict.\n\n    Args:\n        accs: {dosage: accuracy} for one family/seed, must have d000 and d100.\n\n    Returns: pattern label string.\n    \"\"\"\n    if \"d000\" not in accs or \"d100\" not in accs:\n        return \"Incomplete\"\n\n    baseline = accs[\"d000\"]\n    delta_100 = (accs[\"d100\"] - baseline) * 100  # in percentage points\n\n    deltas = {}\n    for d in DOSAGES:\n        if d in accs:\n            deltas[d] = (accs[d] - baseline) * 100\n\n    min_delta = min(deltas.values())\n\n    # Immune\n    if abs(delta_100) < 1.0:\n        return \"Immune\"\n\n    # U-collapse\n    if delta_100 < -3.0:\n        return \"U-collapse\"\n\n    # V-recovery: dipped but recovered\n    if min_delta < -1.0 and delta_100 > min_delta + 1.0:\n        return \"V-recovery\"\n\n    # Benefit patterns\n    if delta_100 > 1.0:\n        ordered_dosages = [d for d in DOSAGES if d in accs]\n        vals = [accs[d] for d in ordered_dosages]\n        # Check monotonicity (loosely: no decrease > 0.5pp)\n        monotonic = all(\n            vals[i + 1] >= vals[i] - 0.005 for i in range(len(vals) - 1)\n        )\n        # Check plateau: d050 ≈ d100 (within 1pp)\n        if \"d050\" in accs and abs(accs[\"d100\"] - accs[\"d050\"]) * 100 < 1.0:\n            return \"Benefit-sat\"\n        if monotonic:\n            return \"Benefit\"\n        return \"Benefit-sat\"\n\n    # Mild negative not reaching U-collapse\n    if delta_100 < -1.0:\n        # Check if V-recovery shape\n        return \"U-collapse\" if min_delta < -3.0 else \"V-recovery\" if min_delta < -1.0 and delta_100 > min_delta + 1.0 else \"U-collapse\"\n\n    return \"Immune\"\n\n\n# ── Spearman ρ ─────────────────────────────────────────────────────────────\n\ndef compute_pairwise_spearman(family_data: dict, seeds: list[int]) -> tuple:\n    \"\"\"Compute pairwise Spearman ρ between seeds for a family.\n\n    Args:\n        family_data: {(dosage, seed): accuracy}\n        seeds: list of seeds to compare\n\n    Returns: (mean_rho, min_rho, max_rho, n_pairs) or (None, None, None, 0)\n    \"\"\"\n    seed_curves = {}\n    for seed in seeds:\n        curve = [family_data.get((d, seed)) for d in DOSAGES]\n        if all(v is not None for v in curve):\n            seed_curves[seed] = curve\n\n    if len(seed_curves) < 2:\n        return (None, None, None, 0)\n\n    rhos = []\n    for s1, s2 in combinations(seed_curves.keys(), 2):\n        rho, _ = spearmanr(seed_curves[s1], seed_curves[s2])\n        rhos.append(rho)\n\n    return (np.mean(rhos), np.min(rhos), np.max(rhos), len(rhos))\n\n\n# ── Main analysis ──────────────────────────────────────────────────────────\n\ndef run_analysis(data: dict, seeds: list[int], output_dir: Path):\n    \"\"\"Run full bootstrap analysis and output results.\"\"\"\n\n    lines = []\n\n    def out(s=\"\"):\n        print(s)\n        lines.append(s)\n\n    # ── Per-dosage bootstrap table ──\n    out(\"=\" * 90)\n    out(\"BOOTSTRAP CI: ACCURACY BY DOSAGE (mean ± 95% CI across seeds)\")\n    out(\"=\" * 90)\n\n    header = f\"{'Family':<16}{'n':>3}\"\n    for d in DOSAGES:\n        header += f\"  {d:>18}\"\n    out(header)\n    out(\"-\" * len(header))\n\n    family_summaries = {}\n\n    for family in FAMILIES:\n        available_seeds = [s for s in seeds if (family, \"d000\", s) in data]\n        n_seeds = len(available_seeds)\n        if n_seeds == 0:\n            continue\n\n        row = f\"{family:<16}{n_seeds:>3}\"\n        family_summaries[family] = {\"n_seeds\": n_seeds, \"seeds\": available_seeds}\n\n        for dosage in DOSAGES:\n            vals = np.array([data[(family, dosage, s)] for s in available_seeds\n                            if (family, dosage, s) in data])\n            if len(vals) == 0:\n                row += f\"  {'—':>18}\"\n                continue\n            mean, lo, hi = bootstrap_mean_ci(vals)\n            if len(vals) == 1:\n                row += f\"  {mean * 100:6.2f}pp (n=1)    \"\n            else:\n                row += f\"  {mean * 100:5.2f} [{lo * 100:5.2f},{hi * 100:5.2f}]\"\n            family_summaries[family][dosage] = (mean, lo, hi, len(vals))\n        out(row)\n\n    out()\n\n    # ── Delta(d100) bootstrap ──\n    out(\"=\" * 90)\n    out(\"BOOTSTRAP CI: Δ(d100) = acc(d100) - acc(d000)  [percentage points]\")\n    out(\"=\" * 90)\n\n    header2 = f\"{'Family':<16}{'n':>3}{'Baseline':>10}{'Δ(d100) mean':>14}{'95% CI':>22}{'p(Δ=0)':>10}\"\n    out(header2)\n    out(\"-\" * len(header2))\n\n    delta_results = {}\n\n    for family in FAMILIES:\n        info = family_summaries.get(family)\n        if not info:\n            continue\n        available_seeds = info[\"seeds\"]\n        n_seeds = info[\"n_seeds\"]\n\n        baselines = np.array([data[(family, \"d000\", s)] for s in available_seeds\n                              if (family, \"d000\", s) in data])\n        d100s = np.array([data[(family, \"d100\", s)] for s in available_seeds\n                          if (family, \"d100\", s) in data])\n\n        if len(baselines) == 0 or len(d100s) == 0:\n            continue\n\n        # Paired deltas where both exist\n        paired_seeds = [s for s in available_seeds\n                        if (family, \"d000\", s) in data and (family, \"d100\", s) in data]\n        deltas = np.array([data[(family, \"d100\", s)] - data[(family, \"d000\", s)]\n                           for s in paired_seeds])\n\n        baseline_mean = np.mean(baselines)\n        delta_mean, delta_lo, delta_hi = bootstrap_mean_ci(deltas)\n\n        # Rough p-value: fraction of bootstrap samples crossing 0\n        if len(deltas) > 1:\n            rng = np.random.RandomState(RNG_SEED)\n            boot_deltas = np.array([\n                np.mean(rng.choice(deltas, size=len(deltas), replace=True))\n                for _ in range(N_BOOTSTRAP)\n            ])\n            p_val = np.mean(boot_deltas * np.sign(-delta_mean) >= 0)\n            p_str = f\"{p_val:.3f}\"\n        else:\n            p_str = \"—\"\n\n        ci_str = f\"[{delta_lo * 100:+.2f}, {delta_hi * 100:+.2f}]\"\n        out(f\"{family:<16}{len(paired_seeds):>3}{baseline_mean * 100:>9.2f}%\"\n            f\"{delta_mean * 100:>+13.2f}pp{ci_str:>22}{p_str:>10}\")\n\n        delta_results[family] = {\n            \"baseline\": baseline_mean,\n            \"delta_mean\": delta_mean,\n            \"delta_lo\": delta_lo,\n            \"delta_hi\": delta_hi,\n            \"n\": len(paired_seeds),\n        }\n\n    out()\n\n    # ── Per-dosage deltas ──\n    out(\"=\" * 90)\n    out(\"BOOTSTRAP CI: Δ(d) by dosage [percentage points]\")\n    out(\"=\" * 90)\n\n    header3 = f\"{'Family':<16}\"\n    for d in DOSAGES[1:]:  # skip d000\n        header3 += f\"  {'Δ(' + d + ')':>20}\"\n    out(header3)\n    out(\"-\" * len(header3))\n\n    for family in FAMILIES:\n        info = family_summaries.get(family)\n        if not info:\n            continue\n        available_seeds = info[\"seeds\"]\n        row = f\"{family:<16}\"\n        for dosage in DOSAGES[1:]:\n            paired = [s for s in available_seeds\n                      if (family, \"d000\", s) in data and (family, dosage, s) in data]\n            if not paired:\n                row += f\"  {'—':>20}\"\n                continue\n            deltas = np.array([data[(family, dosage, s)] - data[(family, \"d000\", s)]\n                               for s in paired])\n            mean, lo, hi = bootstrap_mean_ci(deltas)\n            if len(paired) == 1:\n                row += f\"  {mean * 100:+6.2f}pp (n=1)      \"\n            else:\n                row += f\"  {mean * 100:+5.2f} [{lo * 100:+5.2f},{hi * 100:+5.2f}]\"\n        out(row)\n\n    out()\n\n    # ── Pattern classification ──\n    out(\"=\" * 90)\n    out(\"DOSE-RESPONSE PATTERN CLASSIFICATION (per seed)\")\n    out(\"=\" * 90)\n\n    header4 = f\"{'Family':<16}\" + \"\".join(f\"{'s' + str(s):>14}\" for s in seeds) + f\"{'Consistent?':>14}\"\n    out(header4)\n    out(\"-\" * len(header4))\n\n    pattern_results = {}\n\n    for family in FAMILIES:\n        row = f\"{family:<16}\"\n        patterns = []\n        for seed in seeds:\n            accs = {d: data[(family, d, seed)] for d in DOSAGES\n                    if (family, d, seed) in data}\n            if len(accs) < 2:\n                row += f\"{'—':>14}\"\n                continue\n            pattern = classify_pattern(accs)\n            patterns.append(pattern)\n            row += f\"{pattern:>14}\"\n\n        if patterns:\n            consistent = len(set(patterns)) == 1\n            row += f\"{'Yes' if consistent else 'No':>14}\"\n            pattern_results[family] = {\n                \"patterns\": patterns,\n                \"consistent\": consistent,\n                \"majority\": max(set(patterns), key=patterns.count),\n            }\n        else:\n            row += f\"{'—':>14}\"\n        out(row)\n\n    out()\n\n    # ── Spearman ρ ──\n    out(\"=\" * 90)\n    out(\"CROSS-SEED PATTERN STABILITY (Spearman ρ of dose-response curves)\")\n    out(\"=\" * 90)\n\n    header5 = f\"{'Family':<16}{'n_pairs':>8}{'ρ_mean':>10}{'ρ_min':>10}{'ρ_max':>10}\"\n    out(header5)\n    out(\"-\" * len(header5))\n\n    rho_results = {}\n\n    for family in FAMILIES:\n        fam_data = {(d, s): data[(family, d, s)]\n                    for d in DOSAGES for s in seeds\n                    if (family, d, s) in data}\n        mean_rho, min_rho, max_rho, n_pairs = compute_pairwise_spearman(fam_data, seeds)\n\n        if n_pairs == 0:\n            out(f\"{family:<16}{'—':>8}{'—':>10}{'—':>10}{'—':>10}\")\n            continue\n\n        out(f\"{family:<16}{n_pairs:>8}{mean_rho:>10.3f}{min_rho:>10.3f}{max_rho:>10.3f}\")\n        rho_results[family] = {\"mean\": mean_rho, \"min\": min_rho, \"max\": max_rho, \"n\": n_pairs}\n\n    out()\n\n    # ── Save text output ──\n    output_dir.mkdir(parents=True, exist_ok=True)\n    txt_path = output_dir / \"bootstrap_results.txt\"\n    with open(txt_path, \"w\") as f:\n        f.write(\"\\n\".join(lines) + \"\\n\")\n    print(f\"Results saved to {txt_path}\")\n\n    # ── Generate LaTeX table ──\n    latex_lines = []\n    latex_lines.append(r\"\\begin{table}[t]\")\n    latex_lines.append(r\"\\centering\")\n    latex_lines.append(r\"\\caption{Triple-seed bootstrap analysis of MMLU dose-response patterns.}\")\n    latex_lines.append(r\"\\label{tab:bootstrap-mmlu}\")\n    latex_lines.append(r\"\\small\")\n    latex_lines.append(r\"\\begin{tabular}{lccccc}\")\n    latex_lines.append(r\"\\toprule\")\n    latex_lines.append(r\"Family & Baseline (\\%) & $\\Delta$(d100) & 95\\% CI & Pattern & $\\bar{\\rho}$ \\\\\")\n    latex_lines.append(r\"\\midrule\")\n\n    for family in FAMILIES:\n        dr = delta_results.get(family)\n        pr = pattern_results.get(family)\n        rr = rho_results.get(family)\n\n        if not dr:\n            continue\n\n        baseline_str = f\"{dr['baseline'] * 100:.2f}\"\n        delta_str = f\"{dr['delta_mean'] * 100:+.2f}\"\n        ci_str = f\"[{dr['delta_lo'] * 100:+.2f}, {dr['delta_hi'] * 100:+.2f}]\"\n\n        pattern_str = pr[\"majority\"] if pr else \"---\"\n        if pr and not pr[\"consistent\"]:\n            pattern_str += r\"$^\\dagger$\"\n\n        rho_str = f\"{rr['mean']:.2f}\" if rr else \"---\"\n\n        latex_lines.append(\n            f\"{family} & {baseline_str} & {delta_str} & {ci_str} & {pattern_str} & {rho_str} \\\\\\\\\"\n        )\n\n    latex_lines.append(r\"\\bottomrule\")\n    latex_lines.append(r\"\\end{tabular}\")\n    latex_lines.append(r\"\\vspace{1mm}\")\n    latex_lines.append(r\"\\raggedright\\footnotesize\")\n    latex_lines.append(r\"$\\Delta$(d100) = acc(d100) $-$ acc(d000) in percentage points. \"\n                       r\"CI via BCa bootstrap (10{,}000 resamples). \"\n                       r\"$\\bar{\\rho}$: mean pairwise Spearman $\\rho$ across seeds. \"\n                       r\"$^\\dagger$Pattern inconsistent across seeds.\")\n    latex_lines.append(r\"\\end{table}\")\n\n    tex_path = output_dir / \"bootstrap_table.tex\"\n    with open(tex_path, \"w\") as f:\n        f.write(\"\\n\".join(latex_lines) + \"\\n\")\n    print(f\"LaTeX table saved to {tex_path}\")\n\n\n# ── CLI ────────────────────────────────────────────────────────────────────\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Triple-seed bootstrap CI analysis for MMLU dose-response patterns.\"\n    )\n    parser.add_argument(\n        \"--results-dir\", type=str, default=\"results/\",\n        help=\"Root directory containing MMLU eval results (default: results/)\"\n    )\n    parser.add_argument(\n        \"--output-dir\", type=str, default=\"analysis/\",\n        help=\"Directory for output files (default: analysis/)\"\n    )\n    parser.add_argument(\n        \"--seeds\", type=str, default=\"42,123,0\",\n        help=\"Comma-separated list of seeds to include (default: 42,123,0)\"\n    )\n    parser.add_argument(\n        \"--dry-run\", action=\"store_true\",\n        help=\"Run with available data only, skip missing without error\"\n    )\n    parser.add_argument(\n        \"--n-bootstrap\", type=int, default=N_BOOTSTRAP,\n        help=f\"Number of bootstrap resamples (default: {N_BOOTSTRAP})\"\n    )\n    args = parser.parse_args()\n\n    global N_BOOTSTRAP\n    N_BOOTSTRAP = args.n_bootstrap\n\n    seeds = [int(s.strip()) for s in args.seeds.split(\",\")]\n    results_dir = Path(args.results_dir).resolve()\n    output_dir = Path(args.output_dir).resolve()\n\n    print(f\"Results dir: {results_dir}\")\n    print(f\"Output dir:  {output_dir}\")\n    print(f\"Seeds:       {seeds}\")\n    print(f\"Dry-run:     {args.dry_run}\")\n    print(f\"Bootstrap:   {N_BOOTSTRAP} resamples\")\n    print()\n\n    data = discover_data(results_dir, seeds)\n    n_found = report_coverage(data, seeds)\n\n    if n_found == 0:\n        print(\"ERROR: No data found. Check --results-dir path.\")\n        sys.exit(1)\n\n    if not args.dry_run:\n        expected = len(FAMILIES) * len(DOSAGES) * len(seeds)\n        missing = expected - n_found\n        if missing > 0:\n            print(f\"WARNING: {missing}/{expected} cells missing. Use --dry-run to proceed anyway.\")\n            print(\"Missing entries:\")\n            for family in FAMILIES:\n                for seed in seeds:\n                    for dosage in DOSAGES:\n                        if (family, dosage, seed) not in data:\n                            print(f\"  {family} / {dosage} / s{seed}\")\n            sys.exit(1)\n\n    run_analysis(data, seeds, output_dir)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+Now upload and dry-run test on westd-29999.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "0c384c1a-4ae9-4073-8c4c-a62a05d370b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T41xeFJADWBhgjeNrAbsxk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7443,
+      "cache_read_input_tokens": 42389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7443
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BQwgkjra2rmjLvhkHgcAPR`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat > /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py << 'SCRIPT_EOF'\n\"\"\"\nTriple-seed bootstrap CI analysis for MMLU dose-response patterns.\n\nReads MMLU accuracy data from multiple sources (JSON result files + CSV summaries),\ncomputes bootstrap confidence intervals for contamination effects (Δ accuracy),\nclassifies dose-response patterns, and measures cross-seed pattern stability.\n\nInputs:\n  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)\nOutputs:\n  - analysis/bootstrap_results.txt  (formatted tables)\n  - analysis/bootstrap_table.tex    (LaTeX table for paper)\n\nDependencies: numpy, scipy\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport os\nimport sys\nfrom collections import defaultdict\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom scipy.stats import spearmanr\n\n# ── Constants ──────────────────────────────────────────────────────────────\n\nFAMILIES = [\"Phi-4\", \"Qwen2.5-14B\", \"Qwen2.5-7B\", \"Gemma-2-9B\", \"OLMo-2-7B\"]\nDOSAGES = [\"d000\", \"d005\", \"d025\", \"d050\", \"d100\"]\nSEEDS = [42, 123, 0]\n\nDISPLAY_TO_DIR = {\n    \"Phi-4\": \"phi4\",\n    \"Qwen2.5-14B\": \"qwen14b\",\n    \"Qwen2.5-7B\": \"qwen7b\",\n    \"Gemma-2-9B\": \"gemma2\",\n    \"OLMo-2-7B\": \"olmo2\",\n}\nDIR_TO_DISPLAY = {v: k for k, v in DISPLAY_TO_DIR.items()}\n\nN_BOOTSTRAP = 10000\nCI_LEVEL = 0.95\nRNG_SEED = 42\n\n\n# ── Data loading ───────────────────────────────────────────────────────────\n\ndef load_json_results(results_dir, seeds):\n    \"\"\"Discover and load MMLU results from JSON files.\n\n    Returns: {(display_name, dosage, seed): accuracy}\n    \"\"\"\n    data = {}\n    mmlu_eval_dir = results_dir / \"mmlu_eval\"\n    if not mmlu_eval_dir.exists():\n        return data\n\n    for family_dir in mmlu_eval_dir.iterdir():\n        if not family_dir.is_dir():\n            continue\n        display = DIR_TO_DISPLAY.get(family_dir.name, family_dir.name)\n        for dosage_dir in family_dir.iterdir():\n            if not dosage_dir.is_dir():\n                continue\n            name = dosage_dir.name\n            parts = name.split(\"_\")\n            if len(parts) != 2 or not parts[1].startswith(\"s\"):\n                continue\n            dosage = parts[0]\n            try:\n                seed = int(parts[1][1:])\n            except ValueError:\n                continue\n            if seed not in seeds or dosage not in DOSAGES:\n                continue\n            json_path = dosage_dir / \"mmlu_results.json\"\n            if not json_path.exists():\n                continue\n            with open(json_path) as f:\n                result = json.load(f)\n            data[(display, dosage, seed)] = result[\"accuracy\"]\n    return data\n\n\ndef load_csv_summary(results_dir, seeds):\n    \"\"\"Load MMLU data from legacy CSV summary files.\n\n    Searches for mmlu_summary.csv in common locations.\n    Returns: {(display_name, dosage, seed): accuracy}\n    \"\"\"\n    data = {}\n    candidates = [\n        results_dir.parent / \"analysis\" / \"results\" / \"gsm8k\" / \"mmlu_summary.csv\",\n        results_dir / \"mmlu_summary.csv\",\n    ]\n    for csv_path in candidates:\n        if not csv_path.exists():\n            continue\n        with open(csv_path) as f:\n            reader = csv.DictReader(f)\n            for row in reader:\n                seed = int(row[\"seed\"])\n                if seed not in seeds:\n                    continue\n                display = row[\"model_display\"]\n                dosage = row[\"dosage\"]\n                if dosage not in DOSAGES:\n                    continue\n                data[(display, dosage, seed)] = float(row[\"accuracy\"])\n    return data\n\n\ndef discover_data(results_dir, seeds):\n    \"\"\"Merge data from all sources. Returns {(family, dosage, seed): accuracy}.\"\"\"\n    data = {}\n    csv_data = load_csv_summary(results_dir, seeds)\n    json_data = load_json_results(results_dir, seeds)\n    data.update(csv_data)\n    data.update(json_data)  # JSON takes precedence over CSV\n    return data\n\n\ndef report_coverage(data, seeds):\n    \"\"\"Print data coverage matrix.\"\"\"\n    print(\"=\" * 72)\n    print(\"DATA COVERAGE\")\n    print(\"=\" * 72)\n\n    total_found = 0\n    total_expected = 0\n\n    header = f\"{'Family':<16}\" + \"\".join(f\"{'s' + str(s):>8}\" for s in seeds)\n    print(header)\n    print(\"-\" * len(header))\n\n    for family in FAMILIES:\n        row = f\"{family:<16}\"\n        for seed in seeds:\n            found = sum(1 for d in DOSAGES if (family, d, seed) in data)\n            total_found += found\n            total_expected += len(DOSAGES)\n            if found == len(DOSAGES):\n                mark = \"v \" + str(found) + \"/5\"\n            elif found == 0:\n                mark = \"- 0/5\"\n            else:\n                mark = \"~ \" + str(found) + \"/5\"\n            row += f\"{mark:>8}\"\n        print(row)\n\n    print(\"-\" * len(header))\n    print(f\"Total: {total_found}/{total_expected} cells found\")\n    print()\n    return total_found\n\n\n# ── Bootstrap CI ───────────────────────────────────────────────────────────\n\ndef bootstrap_mean_ci(values, n_boot=N_BOOTSTRAP, ci=CI_LEVEL, rng_seed=RNG_SEED):\n    \"\"\"BCa bootstrap CI for the mean.\n\n    Returns: (mean, ci_low, ci_high)\n    For n=1, returns (value, value, value) -- point estimate with no interval.\n    \"\"\"\n    n = len(values)\n    mean = np.mean(values)\n\n    if n <= 1:\n        return (mean, mean, mean)\n\n    rng = np.random.RandomState(rng_seed)\n    boot_means = np.array([\n        np.mean(rng.choice(values, size=n, replace=True))\n        for _ in range(n_boot)\n    ])\n\n    # BCa correction\n    alpha = 1 - ci\n\n    # Bias correction: z0\n    z0 = _norm_ppf(np.mean(boot_means < mean))\n\n    # Acceleration: a (jackknife estimate)\n    jackknife_means = np.array([\n        np.mean(np.delete(values, i)) for i in range(n)\n    ])\n    jk_mean = np.mean(jackknife_means)\n    num = np.sum((jk_mean - jackknife_means) ** 3)\n    denom = 6.0 * (np.sum((jk_mean - jackknife_means) ** 2) ** 1.5)\n    a = num / denom if denom != 0 else 0.0\n\n    # Adjusted quantiles\n    z_alpha2 = _norm_ppf(alpha / 2)\n    z_1alpha2 = _norm_ppf(1 - alpha / 2)\n\n    a1 = _norm_cdf(z0 + (z0 + z_alpha2) / (1 - a * (z0 + z_alpha2)))\n    a2 = _norm_cdf(z0 + (z0 + z_1alpha2) / (1 - a * (z0 + z_1alpha2)))\n\n    a1 = np.clip(a1, 0.001, 0.999)\n    a2 = np.clip(a2, 0.001, 0.999)\n\n    ci_low = np.percentile(boot_means, 100 * a1)\n    ci_high = np.percentile(boot_means, 100 * a2)\n\n    return (mean, ci_low, ci_high)\n\n\ndef _norm_ppf(p):\n    from scipy.stats import norm\n    return norm.ppf(np.clip(p, 1e-10, 1 - 1e-10))\n\n\ndef _norm_cdf(z):\n    from scipy.stats import norm\n    return norm.cdf(z)\n\n\n# ── Pattern classification ─────────────────────────────────────────────────\n\ndef classify_pattern(accs):\n    \"\"\"Classify dose-response pattern from a single seed's accuracy dict.\n\n    Args:\n        accs: {dosage: accuracy} for one family/seed, must have d000 and d100.\n\n    Returns: pattern label string.\n    \"\"\"\n    if \"d000\" not in accs or \"d100\" not in accs:\n        return \"Incomplete\"\n\n    baseline = accs[\"d000\"]\n    delta_100 = (accs[\"d100\"] - baseline) * 100  # in percentage points\n\n    deltas = {}\n    for d in DOSAGES:\n        if d in accs:\n            deltas[d] = (accs[d] - baseline) * 100\n\n    min_delta = min(deltas.values())\n\n    # Immune\n    if abs(delta_100) < 1.0:\n        return \"Immune\"\n\n    # U-collapse\n    if delta_100 < -3.0:\n        return \"U-collapse\"\n\n    # V-recovery: dipped but recovered\n    if min_delta < -1.0 and delta_100 > min_delta + 1.0:\n        return \"V-recovery\"\n\n    # Benefit patterns\n    if delta_100 > 1.0:\n        ordered_dosages = [d for d in DOSAGES if d in accs]\n        vals = [accs[d] for d in ordered_dosages]\n        # Check plateau: d050 ~ d100 (within 1pp)\n        if \"d050\" in accs and abs(accs[\"d100\"] - accs[\"d050\"]) * 100 < 1.0:\n            return \"Benefit-sat\"\n        # Check monotonicity (loosely: no decrease > 0.5pp)\n        monotonic = all(\n            vals[i + 1] >= vals[i] - 0.005 for i in range(len(vals) - 1)\n        )\n        if monotonic:\n            return \"Benefit\"\n        return \"Benefit-sat\"\n\n    # Mild negative (between -1pp and -3pp)\n    if delta_100 < -1.0:\n        return \"V-recovery\" if min_delta < delta_100 - 1.0 else \"U-collapse\"\n\n    return \"Immune\"\n\n\n# ── Spearman rho ───────────────────────────────────────────────────────────\n\ndef compute_pairwise_spearman(family_data, seeds):\n    \"\"\"Compute pairwise Spearman rho between seeds for a family.\n\n    Args:\n        family_data: {(dosage, seed): accuracy}\n        seeds: list of seeds to compare\n\n    Returns: (mean_rho, min_rho, max_rho, n_pairs) or (None, None, None, 0)\n    \"\"\"\n    seed_curves = {}\n    for seed in seeds:\n        curve = [family_data.get((d, seed)) for d in DOSAGES]\n        if all(v is not None for v in curve):\n            seed_curves[seed] = curve\n\n    if len(seed_curves) < 2:\n        return (None, None, None, 0)\n\n    rhos = []\n    for s1, s2 in combinations(seed_curves.keys(), 2):\n        rho, _ = spearmanr(seed_curves[s1], seed_curves[s2])\n        rhos.append(rho)\n\n    return (np.mean(rhos), np.min(rhos), np.max(rhos), len(rhos))\n\n\n# ── Main analysis ──────────────────────────────────────────────────────────\n\ndef run_analysis(data, seeds, output_dir):\n    \"\"\"Run full bootstrap analysis and output results.\"\"\"\n\n    lines = []\n\n    def out(s=\"\"):\n        print(s)\n        lines.append(s)\n\n    # ── Per-dosage bootstrap table ──\n    out(\"=\" * 90)\n    out(\"BOOTSTRAP CI: ACCURACY BY DOSAGE (mean +/- 95% CI across seeds)\")\n    out(\"=\" * 90)\n\n    header = f\"{'Family':<16}{'n':>3}\"\n    for d in DOSAGES:\n        header += f\"  {d:>18}\"\n    out(header)\n    out(\"-\" * len(header))\n\n    family_summaries = {}\n\n    for family in FAMILIES:\n        available_seeds = [s for s in seeds if (family, \"d000\", s) in data]\n        n_seeds = len(available_seeds)\n        if n_seeds == 0:\n            continue\n\n        row = f\"{family:<16}{n_seeds:>3}\"\n        family_summaries[family] = {\"n_seeds\": n_seeds, \"seeds\": available_seeds}\n\n        for dosage in DOSAGES:\n            vals = np.array([data[(family, dosage, s)] for s in available_seeds\n                            if (family, dosage, s) in data])\n            if len(vals) == 0:\n                row += f\"  {'---':>18}\"\n                continue\n            mean, lo, hi = bootstrap_mean_ci(vals)\n            if len(vals) == 1:\n                row += f\"  {mean * 100:6.2f}pp (n=1)    \"\n            else:\n                row += f\"  {mean * 100:5.2f} [{lo * 100:5.2f},{hi * 100:5.2f}]\"\n            family_summaries[family][dosage] = (mean, lo, hi, len(vals))\n        out(row)\n\n    out()\n\n    # ── Delta(d100) bootstrap ──\n    out(\"=\" * 90)\n    out(\"BOOTSTRAP CI: Delta(d100) = acc(d100) - acc(d000)  [percentage points]\")\n    out(\"=\" * 90)\n\n    header2 = f\"{'Family':<16}{'n':>3}{'Baseline':>10}{'D(d100) mean':>14}{'95% CI':>22}{'p(D=0)':>10}\"\n    out(header2)\n    out(\"-\" * len(header2))\n\n    delta_results = {}\n\n    for family in FAMILIES:\n        info = family_summaries.get(family)\n        if not info:\n            continue\n        available_seeds = info[\"seeds\"]\n        n_seeds = info[\"n_seeds\"]\n\n        baselines = np.array([data[(family, \"d000\", s)] for s in available_seeds\n                              if (family, \"d000\", s) in data])\n        d100s = np.array([data[(family, \"d100\", s)] for s in available_seeds\n                          if (family, \"d100\", s) in data])\n\n        if len(baselines) == 0 or len(d100s) == 0:\n            continue\n\n        # Paired deltas where both exist\n        paired_seeds = [s for s in available_seeds\n                        if (family, \"d000\", s) in data and (family, \"d100\", s) in data]\n        deltas = np.array([data[(family, \"d100\", s)] - data[(family, \"d000\", s)]\n                           for s in paired_seeds])\n\n        baseline_mean = np.mean(baselines)\n        delta_mean, delta_lo, delta_hi = bootstrap_mean_ci(deltas)\n\n        # Rough p-value: fraction of bootstrap samples crossing 0\n        if len(deltas) > 1:\n            rng = np.random.RandomState(RNG_SEED)\n            boot_deltas = np.array([\n                np.mean(rng.choice(deltas, size=len(deltas), replace=True))\n                for _ in range(N_BOOTSTRAP)\n            ])\n            p_val = np.mean(boot_deltas * np.sign(-delta_mean) >= 0)\n            p_str = f\"{p_val:.3f}\"\n        else:\n            p_str = \"---\"\n\n        ci_str = f\"[{delta_lo * 100:+.2f}, {delta_hi * 100:+.2f}]\"\n        out(f\"{family:<16}{len(paired_seeds):>3}{baseline_mean * 100:>9.2f}%\"\n            f\"{delta_mean * 100:>+13.2f}pp{ci_str:>22}{p_str:>10}\")\n\n        delta_results[family] = {\n            \"baseline\": baseline_mean,\n            \"delta_mean\": delta_mean,\n            \"delta_lo\": delta_lo,\n            \"delta_hi\": delta_hi,\n            \"n\": len(paired_seeds),\n        }\n\n    out()\n\n    # ── Per-dosage deltas ──\n    out(\"=\" * 90)\n    out(\"BOOTSTRAP CI: Delta(d) by dosage [percentage points]\")\n    out(\"=\" * 90)\n\n    header3 = f\"{'Family':<16}\"\n    for d in DOSAGES[1:]:  # skip d000\n        header3 += f\"  {'D(' + d + ')':>20}\"\n    out(header3)\n    out(\"-\" * len(header3))\n\n    for family in FAMILIES:\n        info = family_summaries.get(family)\n        if not info:\n            continue\n        available_seeds = info[\"seeds\"]\n        row = f\"{family:<16}\"\n        for dosage in DOSAGES[1:]:\n            paired = [s for s in available_seeds\n                      if (family, \"d000\", s) in data and (family, dosage, s) in data]\n            if not paired:\n                row += f\"  {'---':>20}\"\n                continue\n            deltas = np.array([data[(family, dosage, s)] - data[(family, \"d000\", s)]\n                               for s in paired])\n            mean, lo, hi = bootstrap_mean_ci(deltas)\n            if len(paired) == 1:\n                row += f\"  {mean * 100:+6.2f}pp (n=1)      \"\n            else:\n                row += f\"  {mean * 100:+5.2f} [{lo * 100:+5.2f},{hi * 100:+5.2f}]\"\n        out(row)\n\n    out()\n\n    # ── Pattern classification ──\n    out(\"=\" * 90)\n    out(\"DOSE-RESPONSE PATTERN CLASSIFICATION (per seed)\")\n    out(\"=\" * 90)\n\n    header4 = f\"{'Family':<16}\" + \"\".join(f\"{'s' + str(s):>14}\" for s in seeds) + f\"{'Consistent?':>14}\"\n    out(header4)\n    out(\"-\" * len(header4))\n\n    pattern_results = {}\n\n    for family in FAMILIES:\n        row = f\"{family:<16}\"\n        patterns = []\n        for seed in seeds:\n            accs = {d: data[(family, d, seed)] for d in DOSAGES\n                    if (family, d, seed) in data}\n            if len(accs) < 2:\n                row += f\"{'---':>14}\"\n                continue\n            pattern = classify_pattern(accs)\n            patterns.append(pattern)\n            row += f\"{pattern:>14}\"\n\n        if patterns:\n            consistent = len(set(patterns)) == 1\n            row += f\"{'Yes' if consistent else 'No':>14}\"\n            pattern_results[family] = {\n                \"patterns\": patterns,\n                \"consistent\": consistent,\n                \"majority\": max(set(patterns), key=patterns.count),\n            }\n        else:\n            row += f\"{'---':>14}\"\n        out(row)\n\n    out()\n\n    # ── Spearman rho ──\n    out(\"=\" * 90)\n    out(\"CROSS-SEED PATTERN STABILITY (Spearman rho of dose-response curves)\")\n    out(\"=\" * 90)\n\n    header5 = f\"{'Family':<16}{'n_pairs':>8}{'rho_mean':>10}{'rho_min':>10}{'rho_max':>10}\"\n    out(header5)\n    out(\"-\" * len(header5))\n\n    rho_results = {}\n\n    for family in FAMILIES:\n        fam_data = {(d, s): data[(family, d, s)]\n                    for d in DOSAGES for s in seeds\n                    if (family, d, s) in data}\n        mean_rho, min_rho, max_rho, n_pairs = compute_pairwise_spearman(fam_data, seeds)\n\n        if n_pairs == 0:\n            out(f\"{family:<16}{'---':>8}{'---':>10}{'---':>10}{'---':>10}\")\n            continue\n\n        out(f\"{family:<16}{n_pairs:>8}{mean_rho:>10.3f}{min_rho:>10.3f}{max_rho:>10.3f}\")\n        rho_results[family] = {\"mean\": mean_rho, \"min\": min_rho, \"max\": max_rho, \"n\": n_pairs}\n\n    out()\n\n    # ── Save text output ──\n    output_dir.mkdir(parents=True, exist_ok=True)\n    txt_path = output_dir / \"bootstrap_results.txt\"\n    with open(txt_path, \"w\") as f:\n        f.write(\"\\n\".join(lines) + \"\\n\")\n    print(f\"Results saved to {txt_path}\")\n\n    # ── Generate LaTeX table ──\n    latex_lines = []\n    latex_lines.append(r\"\\begin{table}[t]\")\n    latex_lines.append(r\"\\centering\")\n    latex_lines.append(r\"\\caption{Triple-seed bootstrap analysis of MMLU dose-response patterns.}\")\n    latex_lines.append(r\"\\label{tab:bootstrap-mmlu}\")\n    latex_lines.append(r\"\\small\")\n    latex_lines.append(r\"\\begin{tabular}{lccccc}\")\n    latex_lines.append(r\"\\toprule\")\n    latex_lines.append(r\"Family & Baseline (\\%) & $\\Delta$(d100) & 95\\% CI & Pattern & $\\bar{\\rho}$ \\\\\")\n    latex_lines.append(r\"\\midrule\")\n\n    for family in FAMILIES:\n        dr = delta_results.get(family)\n        pr = pattern_results.get(family)\n        rr = rho_results.get(family)\n\n        if not dr:\n            continue\n\n        baseline_str = f\"{dr['baseline'] * 100:.2f}\"\n        delta_str = f\"{dr['delta_mean'] * 100:+.2f}\"\n        ci_str = f\"[{dr['delta_lo'] * 100:+.2f}, {dr['delta_hi'] * 100:+.2f}]\"\n\n        pattern_str = pr[\"majority\"] if pr else \"---\"\n        if pr and not pr[\"consistent\"]:\n            pattern_str += r\"$^\\dagger$\"\n\n        rho_str = f\"{rr['mean']:.2f}\" if rr else \"---\"\n\n        latex_lines.append(\n            f\"{family} & {baseline_str} & {delta_str} & {ci_str} & {pattern_str} & {rho_str} \\\\\\\\\"\n        )\n\n    latex_lines.append(r\"\\bottomrule\")\n    latex_lines.append(r\"\\end{tabular}\")\n    latex_lines.append(r\"\\vspace{1mm}\")\n    latex_lines.append(r\"\\raggedright\\footnotesize\")\n    latex_lines.append(r\"$\\Delta$(d100) = acc(d100) $-$ acc(d000) in percentage points. \"\n                       r\"CI via BCa bootstrap (10{,}000 resamples). \"\n                       r\"$\\bar{\\rho}$: mean pairwise Spearman $\\rho$ across seeds. \"\n                       r\"$^\\dagger$Pattern inconsistent across seeds.\")\n    latex_lines.append(r\"\\end{table}\")\n\n    tex_path = output_dir / \"bootstrap_table.tex\"\n    with open(tex_path, \"w\") as f:\n        f.write(\"\\n\".join(latex_lines) + \"\\n\")\n    print(f\"LaTeX table saved to {tex_path}\")\n\n\n# ── CLI ────────────────────────────────────────────────────────────────────\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Triple-seed bootstrap CI analysis for MMLU dose-response patterns.\"\n    )\n    parser.add_argument(\n        \"--results-dir\", type=str, default=\"results/\",\n        help=\"Root directory containing MMLU eval results (default: results/)\"\n    )\n    parser.add_argument(\n        \"--output-dir\", type=str, default=\"analysis/\",\n        help=\"Directory for output files (default: analysis/)\"\n    )\n    parser.add_argument(\n        \"--seeds\", type=str, default=\"42,123,0\",\n        help=\"Comma-separated list of seeds to include (default: 42,123,0)\"\n    )\n    parser.add_argument(\n        \"--dry-run\", action=\"store_true\",\n        help=\"Run with available data only, skip missing without error\"\n    )\n    parser.add_argument(\n        \"--n-bootstrap\", type=int, default=N_BOOTSTRAP,\n        help=\"Number of bootstrap resamples (default: 10000)\"\n    )\n    args = parser.parse_args()\n\n    global N_BOOTSTRAP\n    N_BOOTSTRAP = args.n_bootstrap\n\n    seeds = [int(s.strip()) for s in args.seeds.split(\",\")]\n    results_dir = Path(args.results_dir).resolve()\n    output_dir = Path(args.output_dir).resolve()\n\n    print(f\"Results dir: {results_dir}\")\n    print(f\"Output dir:  {output_dir}\")\n    print(f\"Seeds:       {seeds}\")\n    print(f\"Dry-run:     {args.dry_run}\")\n    print(f\"Bootstrap:   {N_BOOTSTRAP} resamples\")\n    print()\n\n    data = discover_data(results_dir, seeds)\n    n_found = report_coverage(data, seeds)\n\n    if n_found == 0:\n        print(\"ERROR: No data found. Check --results-dir path.\")\n        sys.exit(1)\n\n    if not args.dry_run:\n        expected = len(FAMILIES) * len(DOSAGES) * len(seeds)\n        missing = expected - n_found\n        if missing > 0:\n            print(f\"WARNING: {missing}/{expected} cells missing. Use --dry-run to proceed anyway.\")\n            print(\"Missing entries:\")\n            for family in FAMILIES:\n                for seed in seeds:\n                    for dosage in DOSAGES:\n                        if (family, dosage, seed) not in data:\n                            print(f\"  {family} / {dosage} / s{seed}\")\n            sys.exit(1)\n\n    run_analysis(data, seeds, output_dir)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "84b98ed9-de58-4c61-8bf3-8fe52265e8c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T41xeFJADWBhgjeNrAbsxk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7443,
+      "cache_read_input_tokens": 42389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7443
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-20T12:16:38.611Z_
+
+<details><summary>↩ Tool result · `toolu_01BQwgkjra2rmjLvhkHgcAPR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "cbcc2c5c-c0cc-4ef2-b40c-8235aaea5789",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+Script uploaded. Running dry-run with s42 data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "9479cef6-d808-4267-b3e8-bfa942e3d358",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0168qEN2Ek8zLeNZXEcFiGeq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7185,
+      "cache_read_input_tokens": 49832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7185
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011dqK1ouN4jkkndvnmUuRbH`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python analysis/bootstrap_triple_seed.py --results-dir results/ --dry-run --seeds 42"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "c9a4379e-9ca9-46c9-843f-833e25715156",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0168qEN2Ek8zLeNZXEcFiGeq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7185,
+      "cache_read_input_tokens": 49832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7185
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T12:16:44.690Z_
+
+<details><summary>↩ Tool result · `toolu_011dqK1ouN4jkkndvnmUuRbH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python analysis/bootstrap_triple_seed.py --results-dir results/ --dry-run --seeds 42'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n  File \\\"/root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py\\\", line 600\\n    global N_BOOTSTRAP\\n    ^^^^^^^^^^^^^^^^^^\\nSyntaxError: name 'N_BOOTSTRAP' is used prior to global declaration\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "8c24dc84-0725-4af6-9f38-a3c6520213fc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python analysis/bootstrap_triple_seed.py --results-dir results/ --dry-run --seeds 42'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n  File \\\\\\\"/root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py\\\\\\\", line 600\\\\n    global N_BOOTSTRAP\\\\n    ^^^^^^^^^^^^^^^^^^\\\\nSyntaxError: name 'N_BOOTSTRAP' is used prior to global declaration\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python analysis/bootstrap_triple_seed.py --results-dir results/ --dry-run --seeds 42'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n  File \\\"/root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py\\\", line 600\\n    global N_BOOTSTRAP\\n    ^^^^^^^^^^^^^^^^^^\\nSyntaxError: name 'N_BOOTSTRAP' is used prior to global declaration\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The issue is `global N_BOOTSTRAP` in `main()` when `N_BOOTSTRAP` is already used as a default value for the `--n-bootstrap` argument. I need to fix this - either pass it as a parameter or use a different approach.
+
+Let me restructure to pass n_bootstrap as a parameter rather than using a global.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "893e501d-4a2a-40c3-b520-64018a71f1b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EwLwMtut8V9jGYLdPga4Ew",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 57017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 493
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+Global variable issue. Let me fix the N_BOOTSTRAP handling by passing it as a parameter instead of using global.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "d370640e-d65f-4bce-9d31-91f7c0daf2a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EwLwMtut8V9jGYLdPga4Ew",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 57017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 493
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JUghmmBsDU3hZexgHeWxiB`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat > /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py << 'SCRIPT_EOF'\n\"\"\"\nTriple-seed bootstrap CI analysis for MMLU dose-response patterns.\n\nReads MMLU accuracy data from multiple sources (JSON result files + CSV summaries),\ncomputes bootstrap confidence intervals for contamination effects (delta accuracy),\nclassifies dose-response patterns, and measures cross-seed pattern stability.\n\nInputs:\n  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)\nOutputs:\n  - analysis/bootstrap_results.txt  (formatted tables)\n  - analysis/bootstrap_table.tex    (LaTeX table for paper)\n\nDependencies: numpy, scipy\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport sys\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom scipy.stats import norm, spearmanr\n\n# ── Constants ──────────────────────────────────────────────────────────────\n\nFAMILIES = [\"Phi-4\", \"Qwen2.5-14B\", \"Qwen2.5-7B\", \"Gemma-2-9B\", \"OLMo-2-7B\"]\nDOSAGES = [\"d000\", \"d005\", \"d025\", \"d050\", \"d100\"]\n\nDISPLAY_TO_DIR = {\n    \"Phi-4\": \"phi4\",\n    \"Qwen2.5-14B\": \"qwen14b\",\n    \"Qwen2.5-7B\": \"qwen7b\",\n    \"Gemma-2-9B\": \"gemma2\",\n    \"OLMo-2-7B\": \"olmo2\",\n}\nDIR_TO_DISPLAY = {v: k for k, v in DISPLAY_TO_DIR.items()}\n\nDEFAULT_N_BOOTSTRAP = 10000\nCI_LEVEL = 0.95\nRNG_SEED = 42\n\n\n# ── Data loading ───────────────────────────────────────────────────────────\n\ndef load_json_results(results_dir, seeds):\n    \"\"\"Discover and load MMLU results from JSON files.\n\n    Returns: {(display_name, dosage, seed): accuracy}\n    \"\"\"\n    data = {}\n    mmlu_eval_dir = results_dir / \"mmlu_eval\"\n    if not mmlu_eval_dir.exists():\n        return data\n\n    for family_dir in mmlu_eval_dir.iterdir():\n        if not family_dir.is_dir():\n            continue\n        display = DIR_TO_DISPLAY.get(family_dir.name, family_dir.name)\n        for dosage_dir in family_dir.iterdir():\n            if not dosage_dir.is_dir():\n                continue\n            name = dosage_dir.name\n            parts = name.split(\"_\")\n            if len(parts) != 2 or not parts[1].startswith(\"s\"):\n                continue\n            dosage = parts[0]\n            try:\n                seed = int(parts[1][1:])\n            except ValueError:\n                continue\n            if seed not in seeds or dosage not in DOSAGES:\n                continue\n            json_path = dosage_dir / \"mmlu_results.json\"\n            if not json_path.exists():\n                continue\n            with open(json_path) as f:\n                result = json.load(f)\n            data[(display, dosage, seed)] = result[\"accuracy\"]\n    return data\n\n\ndef load_csv_summary(results_dir, seeds):\n    \"\"\"Load MMLU data from legacy CSV summary files.\n\n    Returns: {(display_name, dosage, seed): accuracy}\n    \"\"\"\n    data = {}\n    candidates = [\n        results_dir.parent / \"analysis\" / \"results\" / \"gsm8k\" / \"mmlu_summary.csv\",\n        results_dir / \"mmlu_summary.csv\",\n    ]\n    for csv_path in candidates:\n        if not csv_path.exists():\n            continue\n        with open(csv_path) as f:\n            reader = csv.DictReader(f)\n            for row in reader:\n                seed = int(row[\"seed\"])\n                if seed not in seeds:\n                    continue\n                display = row[\"model_display\"]\n                dosage = row[\"dosage\"]\n                if dosage not in DOSAGES:\n                    continue\n                data[(display, dosage, seed)] = float(row[\"accuracy\"])\n    return data\n\n\ndef discover_data(results_dir, seeds):\n    \"\"\"Merge data from all sources. Returns {(family, dosage, seed): accuracy}.\"\"\"\n    data = {}\n    csv_data = load_csv_summary(results_dir, seeds)\n    json_data = load_json_results(results_dir, seeds)\n    data.update(csv_data)\n    data.update(json_data)  # JSON overrides CSV\n    return data\n\n\ndef report_coverage(data, seeds):\n    \"\"\"Print data coverage matrix.\"\"\"\n    print(\"=\" * 72)\n    print(\"DATA COVERAGE\")\n    print(\"=\" * 72)\n\n    total_found = 0\n    total_expected = 0\n\n    header = f\"{'Family':<16}\" + \"\".join(f\"{'s' + str(s):>8}\" for s in seeds)\n    print(header)\n    print(\"-\" * len(header))\n\n    for family in FAMILIES:\n        row = f\"{family:<16}\"\n        for seed in seeds:\n            found = sum(1 for d in DOSAGES if (family, d, seed) in data)\n            total_found += found\n            total_expected += len(DOSAGES)\n            if found == len(DOSAGES):\n                mark = \"v \" + str(found) + \"/5\"\n            elif found == 0:\n                mark = \"- 0/5\"\n            else:\n                mark = \"~ \" + str(found) + \"/5\"\n            row += f\"{mark:>8}\"\n        print(row)\n\n    print(\"-\" * len(header))\n    print(f\"Total: {total_found}/{total_expected} cells found\")\n    print()\n    return total_found\n\n\n# ── Bootstrap CI ───────────────────────────────────────────────────────────\n\ndef bootstrap_mean_ci(values, n_boot=DEFAULT_N_BOOTSTRAP, ci=CI_LEVEL):\n    \"\"\"BCa bootstrap CI for the mean.\n\n    Returns: (mean, ci_low, ci_high)\n    For n=1, returns (value, value, value).\n    \"\"\"\n    n = len(values)\n    mean = float(np.mean(values))\n\n    if n <= 1:\n        return (mean, mean, mean)\n\n    rng = np.random.RandomState(RNG_SEED)\n    boot_means = np.array([\n        np.mean(rng.choice(values, size=n, replace=True))\n        for _ in range(n_boot)\n    ])\n\n    alpha = 1 - ci\n\n    # Bias correction z0\n    z0 = norm.ppf(np.clip(np.mean(boot_means < mean), 1e-10, 1 - 1e-10))\n\n    # Acceleration via jackknife\n    jackknife_means = np.array([np.mean(np.delete(values, i)) for i in range(n)])\n    jk_mean = np.mean(jackknife_means)\n    diff = jk_mean - jackknife_means\n    num = np.sum(diff ** 3)\n    denom = 6.0 * (np.sum(diff ** 2) ** 1.5)\n    a = num / denom if denom != 0 else 0.0\n\n    # Adjusted quantiles\n    z_lo = norm.ppf(alpha / 2)\n    z_hi = norm.ppf(1 - alpha / 2)\n\n    def bca_quantile(z_alpha):\n        val = z0 + (z0 + z_alpha) / (1 - a * (z0 + z_alpha))\n        return np.clip(norm.cdf(val), 0.001, 0.999)\n\n    ci_low = float(np.percentile(boot_means, 100 * bca_quantile(z_lo)))\n    ci_high = float(np.percentile(boot_means, 100 * bca_quantile(z_hi)))\n\n    return (mean, ci_low, ci_high)\n\n\n# ── Pattern classification ─────────────────────────────────────────────────\n\ndef classify_pattern(accs):\n    \"\"\"Classify dose-response pattern from a single seed's accuracy dict.\n\n    Args:\n        accs: {dosage: accuracy} for one family/seed, must have d000 and d100.\n    Returns: pattern label string.\n    \"\"\"\n    if \"d000\" not in accs or \"d100\" not in accs:\n        return \"Incomplete\"\n\n    baseline = accs[\"d000\"]\n    delta_100 = (accs[\"d100\"] - baseline) * 100  # percentage points\n\n    deltas = {d: (accs[d] - baseline) * 100 for d in DOSAGES if d in accs}\n    min_delta = min(deltas.values())\n\n    if abs(delta_100) < 1.0:\n        return \"Immune\"\n\n    if delta_100 < -3.0:\n        return \"U-collapse\"\n\n    if min_delta < -1.0 and delta_100 > min_delta + 1.0:\n        return \"V-recovery\"\n\n    if delta_100 > 1.0:\n        if \"d050\" in accs and abs(accs[\"d100\"] - accs[\"d050\"]) * 100 < 1.0:\n            return \"Benefit-sat\"\n        ordered = [d for d in DOSAGES if d in accs]\n        vals = [accs[d] for d in ordered]\n        monotonic = all(vals[i + 1] >= vals[i] - 0.005 for i in range(len(vals) - 1))\n        return \"Benefit\" if monotonic else \"Benefit-sat\"\n\n    if delta_100 < -1.0:\n        if min_delta < delta_100 - 1.0:\n            return \"V-recovery\"\n        return \"U-collapse\"\n\n    return \"Immune\"\n\n\n# ── Spearman rho ───────────────────────────────────────────────────────────\n\ndef compute_pairwise_spearman(family_data, seeds):\n    \"\"\"Compute pairwise Spearman rho between seeds for a family.\n\n    Returns: (mean_rho, min_rho, max_rho, n_pairs) or (None, None, None, 0)\n    \"\"\"\n    seed_curves = {}\n    for seed in seeds:\n        curve = [family_data.get((d, seed)) for d in DOSAGES]\n        if all(v is not None for v in curve):\n            seed_curves[seed] = curve\n\n    if len(seed_curves) < 2:\n        return (None, None, None, 0)\n\n    rhos = []\n    for s1, s2 in combinations(seed_curves.keys(), 2):\n        rho, _ = spearmanr(seed_curves[s1], seed_curves[s2])\n        rhos.append(rho)\n\n    return (float(np.mean(rhos)), float(np.min(rhos)), float(np.max(rhos)), len(rhos))\n\n\n# ── Main analysis ──────────────────────────────────────────────────────────\n\ndef run_analysis(data, seeds, output_dir, n_bootstrap):\n    \"\"\"Run full bootstrap analysis and output results.\"\"\"\n\n    lines = []\n\n    def out(s=\"\"):\n        print(s)\n        lines.append(s)\n\n    # ── Per-dosage bootstrap table ──\n    out(\"=\" * 90)\n    out(\"BOOTSTRAP CI: ACCURACY BY DOSAGE (mean +/- 95% CI across seeds)\")\n    out(\"=\" * 90)\n\n    header = f\"{'Family':<16}{'n':>3}\"\n    for d in DOSAGES:\n        header += f\"  {d:>18}\"\n    out(header)\n    out(\"-\" * len(header))\n\n    family_summaries = {}\n\n    for family in FAMILIES:\n        available_seeds = [s for s in seeds if (family, \"d000\", s) in data]\n        n_seeds = len(available_seeds)\n        if n_seeds == 0:\n            continue\n\n        row = f\"{family:<16}{n_seeds:>3}\"\n        family_summaries[family] = {\"n_seeds\": n_seeds, \"seeds\": available_seeds}\n\n        for dosage in DOSAGES:\n            vals = np.array([data[(family, dosage, s)] for s in available_seeds\n                            if (family, dosage, s) in data])\n            if len(vals) == 0:\n                row += f\"  {'---':>18}\"\n                continue\n            mean, lo, hi = bootstrap_mean_ci(vals, n_boot=n_bootstrap)\n            if len(vals) == 1:\n                row += f\"  {mean * 100:6.2f}pp (n=1)    \"\n            else:\n                row += f\"  {mean * 100:5.2f} [{lo * 100:5.2f},{hi * 100:5.2f}]\"\n            family_summaries[family][dosage] = (mean, lo, hi, len(vals))\n        out(row)\n\n    out()\n\n    # ── Delta(d100) bootstrap ──\n    out(\"=\" * 90)\n    out(\"BOOTSTRAP CI: Delta(d100) = acc(d100) - acc(d000)  [percentage points]\")\n    out(\"=\" * 90)\n\n    header2 = f\"{'Family':<16}{'n':>3}{'Baseline':>10}{'D(d100) mean':>14}{'95% CI':>22}{'p(D=0)':>10}\"\n    out(header2)\n    out(\"-\" * len(header2))\n\n    delta_results = {}\n\n    for family in FAMILIES:\n        info = family_summaries.get(family)\n        if not info:\n            continue\n        available_seeds = info[\"seeds\"]\n\n        baselines = np.array([data[(family, \"d000\", s)] for s in available_seeds\n                              if (family, \"d000\", s) in data])\n\n        paired_seeds = [s for s in available_seeds\n                        if (family, \"d000\", s) in data and (family, \"d100\", s) in data]\n        if not paired_seeds:\n            continue\n        deltas = np.array([data[(family, \"d100\", s)] - data[(family, \"d000\", s)]\n                           for s in paired_seeds])\n\n        baseline_mean = float(np.mean(baselines))\n        delta_mean, delta_lo, delta_hi = bootstrap_mean_ci(deltas, n_boot=n_bootstrap)\n\n        if len(deltas) > 1:\n            rng = np.random.RandomState(RNG_SEED)\n            boot_deltas = np.array([\n                np.mean(rng.choice(deltas, size=len(deltas), replace=True))\n                for _ in range(n_bootstrap)\n            ])\n            p_val = float(np.mean(boot_deltas * np.sign(-delta_mean) >= 0))\n            p_str = f\"{p_val:.3f}\"\n        else:\n            p_str = \"---\"\n\n        ci_str = f\"[{delta_lo * 100:+.2f}, {delta_hi * 100:+.2f}]\"\n        out(f\"{family:<16}{len(paired_seeds):>3}{baseline_mean * 100:>9.2f}%\"\n            f\"{delta_mean * 100:>+13.2f}pp{ci_str:>22}{p_str:>10}\")\n\n        delta_results[family] = {\n            \"baseline\": baseline_mean,\n            \"delta_mean\": delta_mean,\n            \"delta_lo\": delta_lo,\n            \"delta_hi\": delta_hi,\n            \"n\": len(paired_seeds),\n        }\n\n    out()\n\n    # ── Per-dosage deltas ──\n    out(\"=\" * 90)\n    out(\"BOOTSTRAP CI: Delta(d) by dosage [percentage points]\")\n    out(\"=\" * 90)\n\n    header3 = f\"{'Family':<16}\"\n    for d in DOSAGES[1:]:\n        header3 += f\"  {'D(' + d + ')':>20}\"\n    out(header3)\n    out(\"-\" * len(header3))\n\n    for family in FAMILIES:\n        info = family_summaries.get(family)\n        if not info:\n            continue\n        available_seeds = info[\"seeds\"]\n        row = f\"{family:<16}\"\n        for dosage in DOSAGES[1:]:\n            paired = [s for s in available_seeds\n                      if (family, \"d000\", s) in data and (family, dosage, s) in data]\n            if not paired:\n                row += f\"  {'---':>20}\"\n                continue\n            deltas_d = np.array([data[(family, dosage, s)] - data[(family, \"d000\", s)]\n                                 for s in paired])\n            mean, lo, hi = bootstrap_mean_ci(deltas_d, n_boot=n_bootstrap)\n            if len(paired) == 1:\n                row += f\"  {mean * 100:+6.2f}pp (n=1)      \"\n            else:\n                row += f\"  {mean * 100:+5.2f} [{lo * 100:+5.2f},{hi * 100:+5.2f}]\"\n        out(row)\n\n    out()\n\n    # ── Pattern classification ──\n    out(\"=\" * 90)\n    out(\"DOSE-RESPONSE PATTERN CLASSIFICATION (per seed)\")\n    out(\"=\" * 90)\n\n    header4 = f\"{'Family':<16}\" + \"\".join(f\"{'s' + str(s):>14}\" for s in seeds) + f\"{'Consistent?':>14}\"\n    out(header4)\n    out(\"-\" * len(header4))\n\n    pattern_results = {}\n\n    for family in FAMILIES:\n        row = f\"{family:<16}\"\n        patterns = []\n        for seed in seeds:\n            accs = {d: data[(family, d, seed)] for d in DOSAGES\n                    if (family, d, seed) in data}\n            if len(accs) < 2:\n                row += f\"{'---':>14}\"\n                continue\n            pattern = classify_pattern(accs)\n            patterns.append(pattern)\n            row += f\"{pattern:>14}\"\n\n        if patterns:\n            consistent = len(set(patterns)) == 1\n            row += f\"{'Yes' if consistent else 'No':>14}\"\n            pattern_results[family] = {\n                \"patterns\": patterns,\n                \"consistent\": consistent,\n                \"majority\": max(set(patterns), key=patterns.count),\n            }\n        else:\n            row += f\"{'---':>14}\"\n        out(row)\n\n    out()\n\n    # ── Spearman rho ──\n    out(\"=\" * 90)\n    out(\"CROSS-SEED PATTERN STABILITY (Spearman rho of dose-response curves)\")\n    out(\"=\" * 90)\n\n    header5 = f\"{'Family':<16}{'n_pairs':>8}{'rho_mean':>10}{'rho_min':>10}{'rho_max':>10}\"\n    out(header5)\n    out(\"-\" * len(header5))\n\n    rho_results = {}\n\n    for family in FAMILIES:\n        fam_data = {(d, s): data[(family, d, s)]\n                    for d in DOSAGES for s in seeds\n                    if (family, d, s) in data}\n        mean_rho, min_rho, max_rho, n_pairs = compute_pairwise_spearman(fam_data, seeds)\n\n        if n_pairs == 0:\n            out(f\"{family:<16}{'---':>8}{'---':>10}{'---':>10}{'---':>10}\")\n            continue\n\n        out(f\"{family:<16}{n_pairs:>8}{mean_rho:>10.3f}{min_rho:>10.3f}{max_rho:>10.3f}\")\n        rho_results[family] = {\"mean\": mean_rho, \"min\": min_rho, \"max\": max_rho, \"n\": n_pairs}\n\n    out()\n\n    # ── Save outputs ──\n    output_dir.mkdir(parents=True, exist_ok=True)\n    txt_path = output_dir / \"bootstrap_results.txt\"\n    with open(txt_path, \"w\") as f:\n        f.write(\"\\n\".join(lines) + \"\\n\")\n    print(f\"Results saved to {txt_path}\")\n\n    # ── LaTeX table ──\n    tex_lines = [\n        r\"\\begin{table}[t]\",\n        r\"\\centering\",\n        r\"\\caption{Triple-seed bootstrap analysis of MMLU dose-response patterns.}\",\n        r\"\\label{tab:bootstrap-mmlu}\",\n        r\"\\small\",\n        r\"\\begin{tabular}{lccccc}\",\n        r\"\\toprule\",\n        r\"Family & Baseline (\\%) & $\\Delta$(d100) & 95\\% CI & Pattern & $\\bar{\\rho}$ \\\\\",\n        r\"\\midrule\",\n    ]\n\n    for family in FAMILIES:\n        dr = delta_results.get(family)\n        pr = pattern_results.get(family)\n        rr = rho_results.get(family)\n        if not dr:\n            continue\n\n        baseline_str = f\"{dr['baseline'] * 100:.2f}\"\n        delta_str = f\"{dr['delta_mean'] * 100:+.2f}\"\n        ci_str = f\"[{dr['delta_lo'] * 100:+.2f}, {dr['delta_hi'] * 100:+.2f}]\"\n        pattern_str = pr[\"majority\"] if pr else \"---\"\n        if pr and not pr[\"consistent\"]:\n            pattern_str += r\"$^\\dagger$\"\n        rho_str = f\"{rr['mean']:.2f}\" if rr else \"---\"\n\n        tex_lines.append(\n            f\"{family} & {baseline_str} & {delta_str} & {ci_str} & {pattern_str} & {rho_str} \\\\\\\\\"\n        )\n\n    tex_lines += [\n        r\"\\bottomrule\",\n        r\"\\end{tabular}\",\n        r\"\\vspace{1mm}\",\n        r\"\\raggedright\\footnotesize\",\n        r\"$\\Delta$(d100) = acc(d100) $-$ acc(d000) in percentage points. \"\n        r\"CI via BCa bootstrap (10{,}000 resamples). \"\n        r\"$\\bar{\\rho}$: mean pairwise Spearman $\\rho$ across seeds. \"\n        r\"$^\\dagger$Pattern inconsistent across seeds.\",\n        r\"\\end{table}\",\n    ]\n\n    tex_path = output_dir / \"bootstrap_table.tex\"\n    with open(tex_path, \"w\") as f:\n        f.write(\"\\n\".join(tex_lines) + \"\\n\")\n    print(f\"LaTeX table saved to {tex_path}\")\n\n\n# ── CLI ────────────────────────────────────────────────────────────────────\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Triple-seed bootstrap CI analysis for MMLU dose-response patterns.\"\n    )\n    parser.add_argument(\"--results-dir\", type=str, default=\"results/\",\n                        help=\"Root directory containing MMLU eval results\")\n    parser.add_argument(\"--output-dir\", type=str, default=\"analysis/\",\n                        help=\"Directory for output files\")\n    parser.add_argument(\"--seeds\", type=str, default=\"42,123,0\",\n                        help=\"Comma-separated list of seeds (default: 42,123,0)\")\n    parser.add_argument(\"--dry-run\", action=\"store_true\",\n                        help=\"Run with available data only, skip missing without error\")\n    parser.add_argument(\"--n-bootstrap\", type=int, default=DEFAULT_N_BOOTSTRAP,\n                        help=\"Number of bootstrap resamples (default: 10000)\")\n    args = parser.parse_args()\n\n    seeds = [int(s.strip()) for s in args.seeds.split(\",\")]\n    results_dir = Path(args.results_dir).resolve()\n    output_dir = Path(args.output_dir).resolve()\n\n    print(f\"Results dir: {results_dir}\")\n    print(f\"Output dir:  {output_dir}\")\n    print(f\"Seeds:       {seeds}\")\n    print(f\"Dry-run:     {args.dry_run}\")\n    print(f\"Bootstrap:   {args.n_bootstrap} resamples\")\n    print()\n\n    data = discover_data(results_dir, seeds)\n    n_found = report_coverage(data, seeds)\n\n    if n_found == 0:\n        print(\"ERROR: No data found. Check --results-dir path.\")\n        sys.exit(1)\n\n    if not args.dry_run:\n        expected = len(FAMILIES) * len(DOSAGES) * len(seeds)\n        missing = expected - n_found\n        if missing > 0:\n            print(f\"WARNING: {missing}/{expected} cells missing. Use --dry-run to proceed anyway.\")\n            print(\"Missing entries:\")\n            for family in FAMILIES:\n                for seed in seeds:\n                    for dosage in DOSAGES:\n                        if (family, dosage, seed) not in data:\n                            print(f\"  {family} / {dosage} / s{seed}\")\n            sys.exit(1)\n\n    run_analysis(data, seeds, output_dir, args.n_bootstrap)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "c424d19c-acfa-457b-a745-c4a02225cfb8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EwLwMtut8V9jGYLdPga4Ew",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 493,
+      "cache_read_input_tokens": 57017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 493
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T12:18:01.592Z_
+
+<details><summary>↩ Tool result · `toolu_01JUghmmBsDU3hZexgHeWxiB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "08597713-2ceb-4748-a142-5a339f1f46e1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NXeFGQTFuwWLXzYokUmv3m`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python analysis/bootstrap_triple_seed.py --results-dir results/ --dry-run --seeds 42"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "8dbf0227-9b30-49ce-b577-17616d653d11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KY9CJFSbcppJk2xfFw8cQJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6794,
+      "cache_read_input_tokens": 57510,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6794
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T12:18:07.197Z_
+
+<details><summary>↩ Tool result · `toolu_01NXeFGQTFuwWLXzYokUmv3m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Results dir: /root/contamcal-irt-calibration/results\\nOutput dir:  /root/contamcal-irt-calibration/analysis\\nSeeds:       [42]\\nDry-run:     True\\nBootstrap:   10000 resamples\\n\\n========================================================================\\nDATA COVERAGE\\n========================================================================\\nFamily               s42\\n------------------------\\nPhi-4              v 5/5\\nQwen2.5-14B        v 5/5\\nQwen2.5-7B         v 5/5\\nGemma-2-9B         v 5/5\\nOLMo-2-7B          v 5/5\\n------------------------\\nTotal: 25/25 cells found\\n\\n==========================================================================================\\nBOOTSTRAP CI: ACCURACY BY DOSAGE (mean +/- 95% CI across seeds)\\n==========================================================================================\\nFamily            n                d000                d005                d025                d050                d100\\n-----------------------------------------------------------------------------------------------------------------------\\nPhi-4             1   76.44pp (n=1)       76.36pp (n=1)       76.98pp (n=1)       76.75pp (n=1)       76.27pp (n=1)    \\nQwen2.5-14B       1   69.44pp (n=1)       69.01pp (n=1)       62.04pp (n=1)       59.41pp (n=1)       60.07pp (n=1)    \\nQwen2.5-7B        1   66.11pp (n=1)       64.74pp (n=1)       62.98pp (n=1)       63.07pp (n=1)       64.33pp (n=1)    \\nGemma-2-9B        1   61.86pp (n=1)       63.42pp (n=1)       64.56pp (n=1)       64.01pp (n=1)       65.62pp (n=1)    \\nOLMo-2-7B         1   53.79pp (n=1)       56.14pp (n=1)       56.17pp (n=1)       57.25pp (n=1)       57.00pp (n=1)    \\n\\n==========================================================================================\\nBOOTSTRAP CI: Delta(d100) = acc(d100) - acc(d000)  [percentage points]\\n==========================================================================================\\nFamily            n  Baseline  D(d100) mean                95% CI    p(D=0)\\n---------------------------------------------------------------------------\\nPhi-4             1    76.44%        -0.17pp        [-0.17, -0.17]       ---\\nQwen2.5-14B       1    69.44%        -9.37pp        [-9.37, -9.37]       ---\\nQwen2.5-7B        1    66.11%        -1.78pp        [-1.78, -1.78]       ---\\nGemma-2-9B        1    61.86%        +3.76pp        [+3.76, +3.76]       ---\\nOLMo-2-7B         1    53.79%        +3.21pp        [+3.21, +3.21]       ---\\n\\n==========================================================================================\\nBOOTSTRAP CI: Delta(d) by dosage [percentage points]\\n==========================================================================================\\nFamily                         D(d005)               D(d025)               D(d050)               D(d100)\\n--------------------------------------------------------------------------------------------------------\\nPhi-4              -0.09pp (n=1)         +0.54pp (n=1)         +0.31pp (n=1)         -0.17pp (n=1)      \\nQwen2.5-14B        -0.43pp (n=1)         -7.41pp (n=1)        -10.03pp (n=1)         -9.37pp (n=1)      \\nQwen2.5-7B         -1.37pp (n=1)         -3.13pp (n=1)         -3.04pp (n=1)         -1.78pp (n=1)      \\nGemma-2-9B         +1.55pp (n=1)         +2.70pp (n=1)         +2.14pp (n=1)         +3.76pp (n=1)      \\nOLMo-2-7B          +2.35pp (n=1)         +2.39pp (n=1)         +3.46pp (n=1)         +3.21pp (n=1)      \\n\\n==========================================================================================\\nDOSE-RESPONSE PATTERN CLASSIFICATION (per seed)\\n==========================================================================================\\nFamily                     s42   Consistent?\\n--------------------------------------------\\nPhi-4                   Immune           Yes\\nQwen2.5-14B         U-collapse           Yes\\nQwen2.5-7B          V-recovery           Yes\\nGemma-2-9B         Benefit-sat           Yes\\nOLMo-2-7B          Benefit-sat           Yes\\n\\n==========================================================================================\\nCROSS-SEED PATTERN STABILITY (Spearman rho of dose-response curves)\\n==========================================================================================\\nFamily           n_pairs  rho_mean   rho_min   rho_max\\n------------------------------------------------------\\nPhi-4                ---       ---       ---       ---\\nQwen2.5-14B          ---       ---       ---       ---\\nQwen2.5-7B           ---       ---       ---       ---\\nGemma-2-9B           ---       ---       ---       ---\\nOLMo-2-7B            ---       ---       ---       ---\\n\\nResults saved to /root/contamcal-irt-calibration/analysis/bootstrap_results.txt\\nLaTeX table saved to /root/contamcal-irt-calibration/analysis/bootstrap_table.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "c03563d3-8b5b-437a-9b5e-a5bf64c6072c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Results dir: /root/contamcal-irt-calibration/results\\\\nOutput dir:  /root/contamcal-irt-calibration/analysis\\\\nSeeds:       [42]\\\\nDry-run:     True\\\\nBootstrap:   10000 resamples\\\\n\\\\n========================================================================\\\\nDATA COVERAGE\\\\n========================================================================\\\\nFamily               s42\\\\n------------------------\\\\nPhi-4              v 5/5\\\\nQwen2.5-14B        v 5/5\\\\nQwen2.5-7B         v 5/5\\\\nGemma-2-9B         v 5/5\\\\nOLMo-2-7B          v 5/5\\\\n------------------------\\\\nTotal: 25/25 cells found\\\\n\\\\n==========================================================================================\\\\nBOOTSTRAP CI: ACCURACY BY DOSAGE (mean +/- 95% CI across seeds)\\\\n==========================================================================================\\\\nFamily            n                d000                d005                d025                d050                d100\\\\n-----------------------------------------------------------------------------------------------------------------------\\\\nPhi-4             1   76.44pp (n=1)       76.36pp (n=1)       76.98pp (n=1)       76.75pp (n=1)       76.27pp (n=1)    \\\\nQwen2.5-14B       1   69.44pp (n=1)       69.01pp (n=1)       62.04pp (n=1)       59.41pp (n=1)       60.07pp (n=1)    \\\\nQwen2.5-7B        1   66.11pp (n=1)       64.74pp (n=1)       62.98pp (n=1)       63.07pp (n=1)       64.33pp (n=1)    \\\\nGemma-2-9B        1   61.86pp (n=1)       63.42pp (n=1)       64.56pp (n=1)       64.01pp (n=1)       65.62pp (n=1)    \\\\nOLMo-2-7B         1   53.79pp (n=1)       56.14pp (n=1)       56.17pp (n=1)       57.25pp (n=1)       57.00pp (n=1)    \\\\n\\\\n==========================================================================================\\\\nBOOTSTRAP CI: Delta(d100) = acc(d100) - acc(d000)  [percentage points]\\\\n==========================================================================================\\\\nFamily            n  Baseline  D(d100) mean                95% CI    p(D=0)\\\\n---------------------------------------------------------------------------\\\\nPhi-4             1    76.44%        -0.17pp        [-0.17, -0.17]       ---\\\\nQwen2.5-14B       1    69.44%        -9.37pp        [-9.37, -9.37]       ---\\\\nQwen2.5-7B        1    66.11%        -1.78pp        [-1.78, -1.78]       ---\\\\nGemma-2-9B        1    61.86%        +3.76pp        [+3.76, +3.76]       ---\\\\nOLMo-2-7B         1    53.79%        +3.21pp        [+3.21, +3.21]       ---\\\\n\\\\n==========================================================================================\\\\nBOOTSTRAP CI: Delta(d) by dosage [percentage points]\\\\n==========================================================================================\\\\nFamily                         D(d005)               D(d025)               D(d050)               D(d100)\\\\n--------------------------------------------------------------------------------------------------------\\\\nPhi-4              -0.09pp (n=1)         +0.54pp (n=1)         +0.31pp (n=1)         -0.17pp (n=1)      \\\\nQwen2.5-14B        -0.43pp (n=1)         -7.41pp (n=1)        -10.03pp (n=1)         -9.37pp (n=1)      \\\\nQwen2.5-7B         -1.37pp (n=1)         -3.13pp (n=1)         -3.04pp (n=1)         -1.78pp (n=1)      \\\\nGemma-2-9B         +1.55pp (n=1)         +2.70pp (n=1)         +2.14pp (n=1)         +3.76pp (n=1)      \\\\nOLMo-2-7B          +2.35pp (n=1)         +2.39pp (n=1)         +3.46pp (n=1)         +3.21pp (n=1)      \\\\n\\\\n==========================================================================================\\\\nDOSE-RESPONSE PATTERN CLASSIFICATION (per seed)\\\\n==========================================================================================\\\\nFamily                     s42   Consistent?\\\\n--------------------------------------------\\\\nPhi-4                   Immune           Yes\\\\nQwen2.5-14B         U-collapse           Yes\\\\nQwen2.5-7B          V-recovery           Yes\\\\nGemma-2-9B         Benefit-sat           Yes\\\\nOLMo-2-7B          Benefit-sat           Yes\\\\n\\\\n==========================================================================================\\\\nCROSS-SEED PATTERN STABILITY (Spearman rho of dose-response curves)\\\\n==========================================================================================\\\\nFamily           n_pairs  rho_mean   rho_min   rho_max\\\\n------------------------------------------------------\\\\nPhi-4                ---       ---       ---       ---\\\\nQwen2.5-14B          ---       ---       ---       ---\\\\nQwen2.5-7B           ---       ---       ---       ---\\\\nGemma-2-9B           ---       ---       ---       ---\\\\nOLMo-2-7B            ---       ---       ---       ---\\\\n\\\\nResults saved to /root/contamcal-irt-calibration/analysis/bootstrap_results.txt\\\\nLaTeX table saved to /root/contamcal-irt-calibration/analysis/bootstrap_table.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Results dir: /root/contamcal-irt-calibration/results\\nOutput dir:  /root/contamcal-irt-calibration/analysis\\nSeeds:       [42]\\nDry-run:     True\\nBootstrap:   10000 resamples\\n\\n========================================================================\\nDATA COVERAGE\\n========================================================================\\nFamily               s42\\n------------------------\\nPhi-4              v 5/5\\nQwen2.5-14B        v 5/5\\nQwen2.5-7B         v 5/5\\nGemma-2-9B         v 5/5\\nOLMo-2-7B          v 5/5\\n------------------------\\nTotal: 25/25 cells found\\n\\n==========================================================================================\\nBOOTSTRAP CI: ACCURACY BY DOSAGE (mean +/- 95% CI across seeds)\\n==========================================================================================\\nFamily            n                d000                d005                d025                d050                d100\\n-----------------------------------------------------------------------------------------------------------------------\\nPhi-4             1   76.44pp (n=1)       76.36pp (n=1)       76.98pp (n=1)       76.75pp (n=1)       76.27pp (n=1)    \\nQwen2.5-14B       1   69.44pp (n=1)       69.01pp (n=1)       62.04pp (n=1)       59.41pp (n=1)       60.07pp (n=1)    \\nQwen2.5-7B        1   66.11pp (n=1)       64.74pp (n=1)       62.98pp (n=1)       63.07pp (n=1)       64.33pp (n=1)    \\nGemma-2-9B        1   61.86pp (n=1)       63.42pp (n=1)       64.56pp (n=1)       64.01pp (n=1)       65.62pp (n=1)    \\nOLMo-2-7B         1   53.79pp (n=1)       56.14pp (n=1)       56.17pp (n=1)       57.25pp (n=1)       57.00pp (n=1)    \\n\\n==========================================================================================\\nBOOTSTRAP CI: Delta(d100) = acc(d100) - acc(d000)  [percentage points]\\n==========================================================================================\\nFamily            n  Baseline  D(d100) mean                95% CI    p(D=0)\\n---------------------------------------------------------------------------\\nPhi-4             1    76.44%        -0.17pp        [-0.17, -0.17]       ---\\nQwen2.5-14B       1    69.44%        -9.37pp        [-9.37, -9.37]       ---\\nQwen2.5-7B        1    66.11%        -1.78pp        [-1.78, -1.78]       ---\\nGemma-2-9B        1    61.86%        +3.76pp        [+3.76, +3.76]       ---\\nOLMo-2-7B         1    53.79%        +3.21pp        [+3.21, +3.21]       ---\\n\\n==========================================================================================\\nBOOTSTRAP CI: Delta(d) by dosage [percentage points]\\n==========================================================================================\\nFamily                         D(d005)               D(d025)               D(d050)               D(d100)\\n--------------------------------------------------------------------------------------------------------\\nPhi-4              -0.09pp (n=1)         +0.54pp (n=1)         +0.31pp (n=1)         -0.17pp (n=1)      \\nQwen2.5-14B        -0.43pp (n=1)         -7.41pp (n=1)        -10.03pp (n=1)         -9.37pp (n=1)      \\nQwen2.5-7B         -1.37pp (n=1)         -3.13pp (n=1)         -3.04pp (n=1)         -1.78pp (n=1)      \\nGemma-2-9B         +1.55pp (n=1)         +2.70pp (n=1)         +2.14pp (n=1)         +3.76pp (n=1)      \\nOLMo-2-7B          +2.35pp (n=1)         +2.39pp (n=1)         +3.46pp (n=1)         +3.21pp (n=1)      \\n\\n==========================================================================================\\nDOSE-RESPONSE PATTERN CLASSIFICATION (per seed)\\n==========================================================================================\\nFamily                     s42   Consistent?\\n--------------------------------------------\\nPhi-4                   Immune           Yes\\nQwen2.5-14B         U-collapse           Yes\\nQwen2.5-7B          V-recovery           Yes\\nGemma-2-9B         Benefit-sat           Yes\\nOLMo-2-7B          Benefit-sat           Yes\\n\\n==========================================================================================\\nCROSS-SEED PATTERN STABILITY (Spearman rho of dose-response curves)\\n==========================================================================================\\nFamily           n_pairs  rho_mean   rho_min   rho_max\\n------------------------------------------------------\\nPhi-4                ---       ---       ---       ---\\nQwen2.5-14B          ---       ---       ---       ---\\nQwen2.5-7B           ---       ---       ---       ---\\nGemma-2-9B           ---       ---       ---       ---\\nOLMo-2-7B            ---       ---       ---       ---\\n\\nResults saved to /root/contamcal-irt-calibration/analysis/bootstrap_results.txt\\nLaTeX table saved to /root/contamcal-irt-calibration/analysis/bootstrap_table.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+s42 dry-run 成功。25/25 数据全部发现，表格格式正确，n=1 时退化为 point estimate。再验证 LaTeX 输出和多 seed 模式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "347dc5a2-1f7e-48e9-bab3-0b3ee4527242",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KAZLWuFzaLgD78zLBR919P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1711,
+      "cache_read_input_tokens": 64304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1711
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TQ44gH7aoCqKYrrUfe3bSY`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat /root/contamcal-irt-calibration/analysis/bootstrap_table.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "7011f9ad-1363-4a1c-84cc-c4a9a7b4d5fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KAZLWuFzaLgD78zLBR919P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1711,
+      "cache_read_input_tokens": 64304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1711
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-20T12:18:12.543Z_
+
+<details><summary>↩ Tool result · `toolu_01TQ44gH7aoCqKYrrUfe3bSY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Triple-seed bootstrap analysis of MMLU dose-response patterns.}\\n\\\\label{tab:bootstrap-mmlu}\\n\\\\small\\n\\\\begin{tabular}{lccccc}\\n\\\\toprule\\nFamily & Baseline (\\\\%) & $\\\\Delta$(d100) & 95\\\\% CI & Pattern & $\\\\bar{\\\\rho}$ \\\\\\\\\\n\\\\midrule\\nPhi-4 & 76.44 & -0.17 & [-0.17, -0.17] & Immune & --- \\\\\\\\\\nQwen2.5-14B & 69.44 & -9.37 & [-9.37, -9.37] & U-collapse & --- \\\\\\\\\\nQwen2.5-7B & 66.11 & -1.78 & [-1.78, -1.78] & V-recovery & --- \\\\\\\\\\nGemma-2-9B & 61.86 & +3.76 & [+3.76, +3.76] & Benefit-sat & --- \\\\\\\\\\nOLMo-2-7B & 53.79 & +3.21 & [+3.21, +3.21] & Benefit-sat & --- \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\vspace{1mm}\\n\\\\raggedright\\\\footnotesize\\n$\\\\Delta$(d100) = acc(d100) $-$ acc(d000) in percentage points. CI via BCa bootstrap (10{,}000 resamples). $\\\\bar{\\\\rho}$: mean pairwise Spearman $\\\\rho$ across seeds. $^\\\\dagger$Pattern inconsistent across seeds.\\n\\\\end{table}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "83ab2734-b1e6-4bf6-baf2-229128aedcc5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Triple-seed bootstrap analysis of MMLU dose-response patterns.}\\\\n\\\\\\\\label{tab:bootstrap-mmlu}\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lccccc}\\\\n\\\\\\\\toprule\\\\nFamily & Baseline (\\\\\\\\%) & $\\\\\\\\Delta$(d100) & 95\\\\\\\\% CI & Pattern & $\\\\\\\\bar{\\\\\\\\rho}$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPhi-4 & 76.44 & -0.17 & [-0.17, -0.17] & Immune & --- \\\\\\\\\\\\\\\\\\\\nQwen2.5-14B & 69.44 & -9.37 & [-9.37, -9.37] & U-collapse & --- \\\\\\\\\\\\\\\\\\\\nQwen2.5-7B & 66.11 & -1.78 & [-1.78, -1.78] & V-recovery & --- \\\\\\\\\\\\\\\\\\\\nGemma-2-9B & 61.86 & +3.76 & [+3.76, +3.76] & Benefit-sat & --- \\\\\\\\\\\\\\\\\\\\nOLMo-2-7B & 53.79 & +3.21 & [+3.21, +3.21] & Benefit-sat & --- \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\vspace{1mm}\\\\n\\\\\\\\raggedright\\\\\\\\footnotesize\\\\n$\\\\\\\\Delta$(d100) = acc(d100) $-$ acc(d000) in percentage points. CI via BCa bootstrap (10{,}000 resamples). $\\\\\\\\bar{\\\\\\\\rho}$: mean pairwise Spearman $\\\\\\\\rho$ across seeds. $^\\\\\\\\dagger$Pattern inconsistent across seeds.\\\\n\\\\\\\\end{table}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Triple-seed bootstrap analysis of MMLU dose-response patterns.}\\n\\\\label{tab:bootstrap-mmlu}\\n\\\\small\\n\\\\begin{tabular}{lccccc}\\n\\\\toprule\\nFamily & Baseline (\\\\%) & $\\\\Delta$(d100) & 95\\\\% CI & Pattern & $\\\\bar{\\\\rho}$ \\\\\\\\\\n\\\\midrule\\nPhi-4 & 76.44 & -0.17 & [-0.17, -0.17] & Immune & --- \\\\\\\\\\nQwen2.5-14B & 69.44 & -9.37 & [-9.37, -9.37] & U-collapse & --- \\\\\\\\\\nQwen2.5-7B & 66.11 & -1.78 & [-1.78, -1.78] & V-recovery & --- \\\\\\\\\\nGemma-2-9B & 61.86 & +3.76 & [+3.76, +3.76] & Benefit-sat & --- \\\\\\\\\\nOLMo-2-7B & 53.79 & +3.21 & [+3.21, +3.21] & Benefit-sat & --- \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\vspace{1mm}\\n\\\\raggedright\\\\footnotesize\\n$\\\\Delta$(d100) = acc(d100) $-$ acc(d000) in percentage points. CI via BCa bootstrap (10{,}000 resamples). $\\\\bar{\\\\rho}$: mean pairwise Spearman $\\\\rho$ across seeds. $^\\\\dagger$Pattern inconsistent across seeds.\\n\\\\end{table}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NoHkS2gkPJGKdE3JPuPNr1`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python analysis/bootstrap_triple_seed.py --results-dir results/ --dry-run --seeds 42,123,0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "c3b559c0-6357-43b6-85c3-d6baf56dd8d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KAZLWuFzaLgD78zLBR919P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1711,
+      "cache_read_input_tokens": 64304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1711
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-20T12:18:14.892Z_
+
+<details><summary>↩ Tool result · `toolu_01NoHkS2gkPJGKdE3JPuPNr1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Results dir: /root/contamcal-irt-calibration/results\\nOutput dir:  /root/contamcal-irt-calibration/analysis\\nSeeds:       [42, 123, 0]\\nDry-run:     True\\nBootstrap:   10000 resamples\\n\\n========================================================================\\nDATA COVERAGE\\n========================================================================\\nFamily               s42    s123      s0\\n----------------------------------------\\nPhi-4              v 5/5   - 0/5   - 0/5\\nQwen2.5-14B        v 5/5   - 0/5   - 0/5\\nQwen2.5-7B         v 5/5   - 0/5   - 0/5\\nGemma-2-9B         v 5/5   - 0/5   - 0/5\\nOLMo-2-7B          v 5/5   v 5/5   v 5/5\\n----------------------------------------\\nTotal: 35/75 cells found\\n\\n==========================================================================================\\nBOOTSTRAP CI: ACCURACY BY DOSAGE (mean +/- 95% CI across seeds)\\n==========================================================================================\\nFamily            n                d000                d005                d025                d050                d100\\n-----------------------------------------------------------------------------------------------------------------------\\nPhi-4             1   76.44pp (n=1)       76.36pp (n=1)       76.98pp (n=1)       76.75pp (n=1)       76.27pp (n=1)    \\nQwen2.5-14B       1   69.44pp (n=1)       69.01pp (n=1)       62.04pp (n=1)       59.41pp (n=1)       60.07pp (n=1)    \\nQwen2.5-7B        1   66.11pp (n=1)       64.74pp (n=1)       62.98pp (n=1)       63.07pp (n=1)       64.33pp (n=1)    \\nGemma-2-9B        1   61.86pp (n=1)       63.42pp (n=1)       64.56pp (n=1)       64.01pp (n=1)       65.62pp (n=1)    \\nOLMo-2-7B         3  54.93 [53.79,55.55]  56.30 [56.14,56.46]  55.89 [54.97,56.41]  56.48 [55.92,56.92]  56.28 [55.11,56.91]\\n\\n==========================================================================================\\nBOOTSTRAP CI: Delta(d100) = acc(d100) - acc(d000)  [percentage points]\\n==========================================================================================\\nFamily            n  Baseline  D(d100) mean                95% CI    p(D=0)\\n---------------------------------------------------------------------------\\nPhi-4             1    76.44%        -0.17pp        [-0.17, -0.17]       ---\\nQwen2.5-14B       1    69.44%        -9.37pp        [-9.37, -9.37]       ---\\nQwen2.5-7B        1    66.11%        -1.78pp        [-1.78, -1.78]       ---\\nGemma-2-9B        1    61.86%        +3.76pp        [+3.76, +3.76]       ---\\nOLMo-2-7B         3    54.93%        +1.35pp        [-0.55, +2.60]     0.039\\n\\n==========================================================================================\\nBOOTSTRAP CI: Delta(d) by dosage [percentage points]\\n==========================================================================================\\nFamily                         D(d005)               D(d025)               D(d050)               D(d100)\\n--------------------------------------------------------------------------------------------------------\\nPhi-4              -0.09pp (n=1)         +0.54pp (n=1)         +0.31pp (n=1)         -0.17pp (n=1)      \\nQwen2.5-14B        -0.43pp (n=1)         -7.41pp (n=1)        -10.03pp (n=1)         -9.37pp (n=1)      \\nQwen2.5-7B         -1.37pp (n=1)         -3.13pp (n=1)         -3.04pp (n=1)         -1.78pp (n=1)      \\nGemma-2-9B         +1.55pp (n=1)         +2.70pp (n=1)         +2.14pp (n=1)         +3.76pp (n=1)      \\nOLMo-2-7B         +1.37 [+0.48,+1.99]  +0.96 [-0.69,+1.98]  +1.55 [+0.26,+2.62]  +1.35 [-0.55,+2.60]\\n\\n==========================================================================================\\nDOSE-RESPONSE PATTERN CLASSIFICATION (per seed)\\n==========================================================================================\\nFamily                     s42          s123            s0   Consistent?\\n------------------------------------------------------------------------\\nPhi-4                   Immune           ---           ---           Yes\\nQwen2.5-14B         U-collapse           ---           ---           Yes\\nQwen2.5-7B          V-recovery           ---           ---           Yes\\nGemma-2-9B         Benefit-sat           ---           ---           Yes\\nOLMo-2-7B          Benefit-sat        Immune   Benefit-sat            No\\n\\n==========================================================================================\\nCROSS-SEED PATTERN STABILITY (Spearman rho of dose-response curves)\\n==========================================================================================\\nFamily           n_pairs  rho_mean   rho_min   rho_max\\n------------------------------------------------------\\nPhi-4                ---       ---       ---       ---\\nQwen2.5-14B          ---       ---       ---       ---\\nQwen2.5-7B           ---       ---       ---       ---\\nGemma-2-9B           ---       ---       ---       ---\\nOLMo-2-7B              3     0.033    -0.100     0.300\\n\\nResults saved to /root/contamcal-irt-calibration/analysis/bootstrap_results.txt\\nLaTeX table saved to /root/contamcal-irt-calibration/analysis/bootstrap_table.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "d183ef30-cd86-4f7c-87ab-1c59dc6807a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Results dir: /root/contamcal-irt-calibration/results\\\\nOutput dir:  /root/contamcal-irt-calibration/analysis\\\\nSeeds:       [42, 123, 0]\\\\nDry-run:     True\\\\nBootstrap:   10000 resamples\\\\n\\\\n========================================================================\\\\nDATA COVERAGE\\\\n========================================================================\\\\nFamily               s42    s123      s0\\\\n----------------------------------------\\\\nPhi-4              v 5/5   - 0/5   - 0/5\\\\nQwen2.5-14B        v 5/5   - 0/5   - 0/5\\\\nQwen2.5-7B         v 5/5   - 0/5   - 0/5\\\\nGemma-2-9B         v 5/5   - 0/5   - 0/5\\\\nOLMo-2-7B          v 5/5   v 5/5   v 5/5\\\\n----------------------------------------\\\\nTotal: 35/75 cells found\\\\n\\\\n==========================================================================================\\\\nBOOTSTRAP CI: ACCURACY BY DOSAGE (mean +/- 95% CI across seeds)\\\\n==========================================================================================\\\\nFamily            n                d000                d005                d025                d050                d100\\\\n-----------------------------------------------------------------------------------------------------------------------\\\\nPhi-4             1   76.44pp (n=1)       76.36pp (n=1)       76.98pp (n=1)       76.75pp (n=1)       76.27pp (n=1)    \\\\nQwen2.5-14B       1   69.44pp (n=1)       69.01pp (n=1)       62.04pp (n=1)       59.41pp (n=1)       60.07pp (n=1)    \\\\nQwen2.5-7B        1   66.11pp (n=1)       64.74pp (n=1)       62.98pp (n=1)       63.07pp (n=1)       64.33pp (n=1)    \\\\nGemma-2-9B        1   61.86pp (n=1)       63.42pp (n=1)       64.56pp (n=1)       64.01pp (n=1)       65.62pp (n=1)    \\\\nOLMo-2-7B         3  54.93 [53.79,55.55]  56.30 [56.14,56.46]  55.89 [54.97,56.41]  56.48 [55.92,56.92]  56.28 [55.11,56.91]\\\\n\\\\n==========================================================================================\\\\nBOOTSTRAP CI: Delta(d100) = acc(d100) - acc(d000)  [percentage points]\\\\n==========================================================================================\\\\nFamily            n  Baseline  D(d100) mean                95% CI    p(D=0)\\\\n---------------------------------------------------------------------------\\\\nPhi-4             1    76.44%        -0.17pp        [-0.17, -0.17]       ---\\\\nQwen2.5-14B       1    69.44%        -9.37pp        [-9.37, -9.37]       ---\\\\nQwen2.5-7B        1    66.11%        -1.78pp        [-1.78, -1.78]       ---\\\\nGemma-2-9B        1    61.86%        +3.76pp        [+3.76, +3.76]       ---\\\\nOLMo-2-7B         3    54.93%        +1.35pp        [-0.55, +2.60]     0.039\\\\n\\\\n==========================================================================================\\\\nBOOTSTRAP CI: Delta(d) by dosage [percentage points]\\\\n==========================================================================================\\\\nFamily                         D(d005)               D(d025)               D(d050)               D(d100)\\\\n--------------------------------------------------------------------------------------------------------\\\\nPhi-4              -0.09pp (n=1)         +0.54pp (n=1)         +0.31pp (n=1)         -0.17pp (n=1)      \\\\nQwen2.5-14B        -0.43pp (n=1)         -7.41pp (n=1)        -10.03pp (n=1)         -9.37pp (n=1)      \\\\nQwen2.5-7B         -1.37pp (n=1)         -3.13pp (n=1)         -3.04pp (n=1)         -1.78pp (n=1)      \\\\nGemma-2-9B         +1.55pp (n=1)         +2.70pp (n=1)         +2.14pp (n=1)         +3.76pp (n=1)      \\\\nOLMo-2-7B         +1.37 [+0.48,+1.99]  +0.96 [-0.69,+1.98]  +1.55 [+0.26,+2.62]  +1.35 [-0.55,+2.60]\\\\n\\\\n==========================================================================================\\\\nDOSE-RESPONSE PATTERN CLASSIFICATION (per seed)\\\\n==========================================================================================\\\\nFamily                     s42          s123            s0   Consistent?\\\\n------------------------------------------------------------------------\\\\nPhi-4                   Immune           ---           ---           Yes\\\\nQwen2.5-14B         U-collapse           ---           ---           Yes\\\\nQwen2.5-7B          V-recovery           ---           ---           Yes\\\\nGemma-2-9B         Benefit-sat           ---           ---           Yes\\\\nOLMo-2-7B          Benefit-sat        Immune   Benefit-sat            No\\\\n\\\\n==========================================================================================\\\\nCROSS-SEED PATTERN STABILITY (Spearman rho of dose-response curves)\\\\n==========================================================================================\\\\nFamily           n_pairs  rho_mean   rho_min   rho_max\\\\n------------------------------------------------------\\\\nPhi-4                ---       ---       ---       ---\\\\nQwen2.5-14B          ---       ---       ---       ---\\\\nQwen2.5-7B           ---       ---       ---       ---\\\\nGemma-2-9B           ---       ---       ---       ---\\\\nOLMo-2-7B              3     0.033    -0.100     0.300\\\\n\\\\nResults saved to /root/contamcal-irt-calibration/analysis/bootstrap_results.txt\\\\nLaTeX table saved to /root/contamcal-irt-calibration/analysis/bootstrap_table.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Results dir: /root/contamcal-irt-calibration/results\\nOutput dir:  /root/contamcal-irt-calibration/analysis\\nSeeds:       [42, 123, 0]\\nDry-run:     True\\nBootstrap:   10000 resamples\\n\\n========================================================================\\nDATA COVERAGE\\n========================================================================\\nFamily               s42    s123      s0\\n----------------------------------------\\nPhi-4              v 5/5   - 0/5   - 0/5\\nQwen2.5-14B        v 5/5   - 0/5   - 0/5\\nQwen2.5-7B         v 5/5   - 0/5   - 0/5\\nGemma-2-9B         v 5/5   - 0/5   - 0/5\\nOLMo-2-7B          v 5/5   v 5/5   v 5/5\\n----------------------------------------\\nTotal: 35/75 cells found\\n\\n==========================================================================================\\nBOOTSTRAP CI: ACCURACY BY DOSAGE (mean +/- 95% CI across seeds)\\n==========================================================================================\\nFamily            n                d000                d005                d025                d050                d100\\n-----------------------------------------------------------------------------------------------------------------------\\nPhi-4             1   76.44pp (n=1)       76.36pp (n=1)       76.98pp (n=1)       76.75pp (n=1)       76.27pp (n=1)    \\nQwen2.5-14B       1   69.44pp (n=1)       69.01pp (n=1)       62.04pp (n=1)       59.41pp (n=1)       60.07pp (n=1)    \\nQwen2.5-7B        1   66.11pp (n=1)       64.74pp (n=1)       62.98pp (n=1)       63.07pp (n=1)       64.33pp (n=1)    \\nGemma-2-9B        1   61.86pp (n=1)       63.42pp (n=1)       64.56pp (n=1)       64.01pp (n=1)       65.62pp (n=1)    \\nOLMo-2-7B         3  54.93 [53.79,55.55]  56.30 [56.14,56.46]  55.89 [54.97,56.41]  56.48 [55.92,56.92]  56.28 [55.11,56.91]\\n\\n==========================================================================================\\nBOOTSTRAP CI: Delta(d100) = acc(d100) - acc(d000)  [percentage points]\\n==========================================================================================\\nFamily            n  Baseline  D(d100) mean                95% CI    p(D=0)\\n---------------------------------------------------------------------------\\nPhi-4             1    76.44%        -0.17pp        [-0.17, -0.17]       ---\\nQwen2.5-14B       1    69.44%        -9.37pp        [-9.37, -9.37]       ---\\nQwen2.5-7B        1    66.11%        -1.78pp        [-1.78, -1.78]       ---\\nGemma-2-9B        1    61.86%        +3.76pp        [+3.76, +3.76]       ---\\nOLMo-2-7B         3    54.93%        +1.35pp        [-0.55, +2.60]     0.039\\n\\n==========================================================================================\\nBOOTSTRAP CI: Delta(d) by dosage [percentage points]\\n==========================================================================================\\nFamily                         D(d005)               D(d025)               D(d050)               D(d100)\\n--------------------------------------------------------------------------------------------------------\\nPhi-4              -0.09pp (n=1)         +0.54pp (n=1)         +0.31pp (n=1)         -0.17pp (n=1)      \\nQwen2.5-14B        -0.43pp (n=1)         -7.41pp (n=1)        -10.03pp (n=1)         -9.37pp (n=1)      \\nQwen2.5-7B         -1.37pp (n=1)         -3.13pp (n=1)         -3.04pp (n=1)         -1.78pp (n=1)      \\nGemma-2-9B         +1.55pp (n=1)         +2.70pp (n=1)         +2.14pp (n=1)         +3.76pp (n=1)      \\nOLMo-2-7B         +1.37 [+0.48,+1.99]  +0.96 [-0.69,+1.98]  +1.55 [+0.26,+2.62]  +1.35 [-0.55,+2.60]\\n\\n==========================================================================================\\nDOSE-RESPONSE PATTERN CLASSIFICATION (per seed)\\n==========================================================================================\\nFamily                     s42          s123            s0   Consistent?\\n------------------------------------------------------------------------\\nPhi-4                   Immune           ---           ---           Yes\\nQwen2.5-14B         U-collapse           ---           ---           Yes\\nQwen2.5-7B          V-recovery           ---           ---           Yes\\nGemma-2-9B         Benefit-sat           ---           ---           Yes\\nOLMo-2-7B          Benefit-sat        Immune   Benefit-sat            No\\n\\n==========================================================================================\\nCROSS-SEED PATTERN STABILITY (Spearman rho of dose-response curves)\\n==========================================================================================\\nFamily           n_pairs  rho_mean   rho_min   rho_max\\n------------------------------------------------------\\nPhi-4                ---       ---       ---       ---\\nQwen2.5-14B          ---       ---       ---       ---\\nQwen2.5-7B           ---       ---       ---       ---\\nGemma-2-9B           ---       ---       ---       ---\\nOLMo-2-7B              3     0.033    -0.100     0.300\\n\\nResults saved to /root/contamcal-irt-calibration/analysis/bootstrap_results.txt\\nLaTeX table saved to /root/contamcal-irt-calibration/analysis/bootstrap_table.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+全部功能正常。同步本地脚本文件与服务器上的最终版本保持一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "0ddb2675-c5cf-4ea5-9973-ca63567b1728",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EodX2BSmiyJiNEsjU9KSnM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2622,
+      "cache_read_input_tokens": 66015,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2622
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JKW3M4W1AvFjL9c8TkhtGP`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "wc -l /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "30072bb2-8768-4967-8ecb-b8a9332876cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EodX2BSmiyJiNEsjU9KSnM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2622,
+      "cache_read_input_tokens": 66015,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2622
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T12:18:21.983Z_
+
+<details><summary>↩ Tool result · `toolu_01JKW3M4W1AvFjL9c8TkhtGP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"583 /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "c087b3bd-a938-4873-9b67-7a002de6cd7e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"583 /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"583 /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+交付总结：
+
+**脚本**: `/root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py` (583 行)
+
+**Dry-run 结果**:
+
+| 测试 | 状态 |
+|------|------|
+| `--seeds 42`: 发现 25/25 文件 (5 家族 × 5 dosage) | 通过 |
+| n=1 退化为 point estimate，无 bootstrap 报错 | 通过 |
+| `--seeds 42,123,0`: 发现 35/75 文件，OLMo-2 有 3 seeds | 通过 |
+| OLMo-2 三种子 bootstrap CI 正常计算 (Δd100: +1.35pp [-0.55, +2.60], p=0.039) | 通过 |
+| OLMo-2 Spearman ρ 计算 (3 pairs, mean=0.033) | 通过 |
+| Pattern 分类: Phi-4=Immune, Qwen14B=U-collapse, Qwen7B=V-recovery, Gemma/OLMo=Benefit-sat | 通过 |
+| OLMo-2 跨种子不一致 (s42=Benefit-sat, s123=Immune, s0=Benefit-sat) 正确标记 No | 通过 |
+| LaTeX table 语法正确 | 通过 |
+| 输出文件: `bootstrap_results.txt` + `bootstrap_table.tex` | 通过 |
+
+**数据来源**: s42 从 `analysis/results/gsm8k/mmlu_summary.csv` 读取；s123/s0 从 `results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json` 读取。两种格式自动合并，JSON 优先于 CSV。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "uuid": "30cd777e-091e-4094-970b-f50d904a9d2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012gHh6soz2WWg2qoPX1LCwn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 241,
+      "cache_read_input_tokens": 68637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 241
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 82_
+
+交付总结：
+
+**脚本**: `/root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py` (583 行)
+
+**Dry-run 结果**:
+
+| 测试 | 状态 |
+|------|------|
+| `--seeds 42`: 发现 25/25 文件 (5 家族 × 5 dosage) | 通过 |
+| n=1 退化为 point estimate，无 bootstrap 报错 | 通过 |
+| `--seeds 42,123,0`: 发现 35/75 文件，OLMo-2 有 3 seeds | 通过 |
+| OLMo-2 三种子 bootstrap CI 正常计算 (Δd100: +1.35pp [-0.55, +2.60], p=0.039) | 通过 |
+| OLMo-2 Spearman ρ 计算 (3 pairs, mean=0.033) | 通过 |
+| Pattern 分类: Phi-4=Immune, Qwen14B=U-collapse, Qwen7B=V-recovery, Gemma/OLMo=Benefit-sat | 通过 |
+| OLMo-2 跨种子不一致 (s42=Benefit-sat, s123=Immune, s0=Benefit-sat) 正确标记 No | 通过 |
+| LaTeX table 语法正确 | 通过 |
+| 输出文件: `bootstrap_results.txt` + `bootstrap_table.tex` | 通过 |
+
+**数据来源**: s42 从 `analysis/results/gsm8k/mmlu_summary.csv` 读取；s123/s0 从 `results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json` 读取。两种格式自动合并，JSON 优先于 CSV。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 390927,
+  "duration_api_ms": 379290,
+  "num_turns": 30,
+  "stop_reason": "end_turn",
+  "session_id": "978b4f7e-713a-47c0-b437-d8510eadfb95",
+  "total_cost_usd": 1.49069775,
+  "usage": {
+    "input_tokens": 26,
+    "cache_creation_input_tokens": 57037,
+    "cache_read_input_tokens": 923031,
+    "output_tokens": 26750,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 57037,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 508,
+        "cache_read_input_tokens": 68637,
+        "cache_creation_input_tokens": 241,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 241
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3741,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0038209999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 26,
+      "outputTokens": 26750,
+      "cacheReadInputTokens": 923031,
+      "cacheCreationInputTokens": 57037,
+      "webSearchRequests": 0,
+      "costUSD": 1.4868767500000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "fbf1b21a-6bd2-4d54-90bc-98aaef01151f"
+}
+```
+
+</details>
+
+---

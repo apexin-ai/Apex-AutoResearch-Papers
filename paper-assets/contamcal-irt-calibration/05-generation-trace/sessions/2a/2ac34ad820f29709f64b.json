@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ac34ad820f29709f64b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu audit and submit batch",
+  "task_key": "worker_ops_gpu-audit-and-submit-batch_20260515T032354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-audit-and-submit-batch_20260515T032354_result.json",
+    "occurrence": 1,
+    "bytes": 1704,
+    "sha256": "61edd0e566bdd6c7254d563a5a1be7d6304158d3cd6c46881faadc433e873f2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. GPU 状态\n\n| GPU | 显存占用 | 利用率 | PID | 实验 |\n|-----|---------|--------|-----|------|\n| **0** | 8985/24564 MiB | 64% | 477489 | exp_001_eval_3B_d100_v2_aligned (eval, ~2.5h) |\n| **1** | 6791→7662 MiB | 0% | 492660 | eval_3B_d000_v2_s123_aligned (刚启动 ~3min) |\n| **2** | 6791→9008 MiB | 0% | 492733 | eval_3B_d000_v2_s123_para_aligned (刚启动 ~3min) |\n| **3** | 17653 MiB | 9% | 466755 | exp_001_sft_d025_3B_v2 (train, ~3.5h) |\n| **4** | ~5000 MiB | 活跃 | 494109 + 493617 | **新提交**: exp_001_eval_05B_d000_s42_v2 + 0.5B-Instruct eval (他方提交) |\n| **5** | 17981 MiB | 63% | 471296 | exp_001_sft_3B_d100_s123 (train, ~3.2h) |\n\n额外：PID 481167 (exp006-oracle-gsm8k-extended-v2) 在 CPU 上跑 IRT MCMC，不占 GPU。\n\n### 2. Registry 更新\n\n- **exp_001_eval_05B_d100_aligned_v4**: RUNNING → **DONE (success)**。Metrics: mmlu=0.2334, gsm8k=0.3654, arc=0.2944, humaneval=0.0\n- **exp_001_eval_05B_d000_s42**: RUNNING → **DONE (negative)**。进程已 defunct，输出目录被并发进程删除\n\n### 3. 已提交实验\n\n| exp_id | GPU | PID | 状态 |\n|--------|-----|-----|------|\n| exp_001_eval_05B_d000_s42_v2 | cuda:4 | 494109 | RUNNING (mmlu 14%, ~72 it/s) |\n\n### 4. 未提交\n\n- **exp_001_eval_05B_d100_v2** — 无空闲 GPU（GPU 4 被两个进程共享，但还有余量，可以考虑再挤一个 0.5B eval）\n- **exp_001_eval_3B_raw_gen** — 需要 3B 模型，显存要求高，没有空闲 GPU\n\nGPU 1/2 上的 eval（~3min 前刚启动）来源不明，不在已知活跃进程列表中。当这些 eval 完成后（预计 2-3h），可以在释放的 GPU 上提交剩余实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-audit-and-submit-batch.md"
+}

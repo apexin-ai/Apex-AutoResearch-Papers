@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b7857be748925995ea4",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_4_1778756126.md",
+  "task_key": "loop_4_1778756126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778756126.md",
+    "occurrence": 1,
+    "bytes": 4543,
+    "sha256": "e1e2dce6957c27daabd1f93a9bd8f6ba7e271cdce6a56cdf7d4287a7b71b7389"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T10:36:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0-5 全在 cqa1-21977，**不得用其他服务器或设备号**\n- evaluate.py 使用 D017 方案 C：\"The answer is\" 前缀做 MC 评估，**不要改回旧格式**\n- exp-002 signal pipeline 的 Min-K++ 参考模型必须用 0% dosage fine-tuned model（D016），**不是裸基座**\n- Simple IRT model（D013 定论），**不要用 Analytic ME model**\n- CUDA_VISIBLE_DEVICES 必须在 submit 命令里显式 export，脚本内 --gpu 0（从 0 开始）\n- exp_001_sft_d025_05B_v2 曾因漏 CUDA_VISIBLE_DEVICES 导致 OOM SIGKILL（exit 137），**所有 SFT/eval 提交必须检查此项**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977，6× RTX 4090D\n- **工作目录**: `/root/contamcal-irt-calibration`（远程）\n- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（**不是 venv**）\n- **模型缓存**: `/root/autodl-tmp/.hf_cache`\n- **SFT checkpoints**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_d{dosage}_s{seed}/lora_adapter`\n- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/Qwen2.5-{size}_d{dosage}_s{seed}/`\n- **训练日志**: `~/runs/contamcal-irt-calibration/`\n- **活跃进程**:\n  - exp_001_sft_d100_15B_v2: PID 251924, cuda:0, cron 监控中\n  - exp_001_sft_d005_15B: PID 271916, cuda:4, cron 监控中\n  - exp_004_sim_sweep_v2: PID 411032, local CPU, ETA May 16-17\n  - exp_005_noise_prop_v3: PID 339838, local CPU, ETA ~14:30 UTC today\n\n### 3. 📊 当前状态\n**刚做完**: 收到 exp_001_eval_05B_d000_s42_v5 的 cron 回调（ANALYZING），发现 exp_001_eval_05B_d100_v5 也同时完成。为两者各派了分析 Worker（SSH 读日志+提取 metrics+更新 registry）。已向 Director 汇报。\n\n**等待中的回调**:\n- Worker `worker_analyze_exp_001_eval_05B_d000_s42_v5_20260514T073204` → d000 baseline 指标\n- Worker `worker_analyze_exp_001_eval_05B_d100_v5_20260514T073300` → d100 contaminated 指标\n- Worker `worker_code_exp002-deploy-verify_20260514T071140` → exp-002 signal pipeline 代码\n- Worker `worker_ops_gpu02-queue-submit_20260514T072701` → cuda:5 上 d025 SFT 提交状态\n- Cron: exp_001_sft_d100_15B_v2 (cuda:0), exp_001_sft_d005_15B (cuda:4)\n\n**GPU**: 2/6 在跑（cuda:0, cuda:4），cuda:1/2/3 空闲，cuda:5 有 QUEUED 实验状态不明。已向 Director 报告空闲警告。\n\n**已完成的 0.5B eval baseline 参考值**:\n- 0.5B-d000-s123: MMLU 0.4182, GSM8K 0.3404, ARC 0.3976, HumanEval 0.1037\n- 0.5B-d005: DONE/success 但 **metrics 为空 {}**，需重新提取\n\n### 4. 📋 待办（条件触发式）\n- d000/d100 分析 Worker 回调 → 更新 registry metrics → 确认 0.5B 三点（d000/d005/d100）eval 就绪 → 跟进 exp-002 signal 首跑\n- exp-002 代码 Worker 完成 → 在 0.5B {d000, d005, d100} 上跑 4 signals（需 GPU 1-2h）\n- d005 metrics 为空 → 派 Worker SSH 读 `/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42/` 补录指标\n- exp_001_sft_d025_05B_v3 确认实际运行状态 → 如未启动则重新 submit_on_allocated（cuda:5）\n- cuda:1/2/3 空闲 → Director 回复后安排：3B d100 SFT (P1)、1.5B eval、或更多 0.5B eval\n- exp_005_noise_prop_v3 cron 回调（~14:30 UTC today）→ 分析 noise propagation 结果\n- exp_004_sim_sweep_v2 持续运行（ETA May 16-17）→ 每个 AUC 条件完成即时分析\n\n### 5. 🎯 战略上下文\n- **投稿**: EMNLP 2026 ARR May 25，距今 11 天\n- **Critical Path**: exp-002 signal pipeline 代码 → 0.5B eval 数据（即将就绪）→ exp-002 signals → exp-003 RRF → exp-006 IRT calibration（core result）。**瓶颈是软件依赖，不是算力**\n- **Phase 3 SFT 矩阵**: 0.5B 大致完成（d025 排队中），1.5B 两个在跑（d100 cuda:0, d005 cuda:4），3B 只有 d000 完成\n- **Table 2 风险**: Related Work 表中 ContamCal \"RL-robust partial✓\" claim 唯一证据来源是 exp-008（signal survival analysis），依赖 exp-002 完成，**尚未启动**\n- **C2 \"cliff-like\" claim** (D015): 需条件限定——无 RL 中间 checkpoint 时降级\n- **C1 γ recovery claim** (D014): 依赖 N≥50 且 σ_e≥0.3\n- **易错**: 很多 PREPARING 状态的 eval 实验（v2/v3/v4/v6）是历史残留，v5 是当前版本。不要提交旧版本实验\n- **易错**: d005 eval metrics 为空但标记 success——说明之前的分析 Worker 可能没正确提取，需要 SSH 直接读结果文件\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778756126.md"
+}

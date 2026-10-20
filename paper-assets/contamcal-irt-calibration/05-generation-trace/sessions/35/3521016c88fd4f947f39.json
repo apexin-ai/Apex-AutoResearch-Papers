@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3521016c88fd4f947f39",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status audit",
+  "task_key": "worker_ops_gpu-status-audit_20260514T121808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-audit_20260514T121808_result.json",
+    "occurrence": 1,
+    "bytes": 2029,
+    "sha256": "ddff4d14bce7cf0b6519be6f2f2d0214c3e74188d049b20dcbcfd62774d643a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 使用状态（cqa1-21977，2026-05-14 20:18）\n\n| GPU | 显存占用 | GPU利用率 | PID | 实验 |\n|-----|---------|----------|-----|------|\n| **0** | 2240/24564 MiB | 33% | 353390 | **exp-002 signals**: `compute_signals.py` Qwen2.5-0.5B_d000_s42, benchmarks=mmlu, signals=embedding+minkpp+selfcritique |\n| **1** | 5880/24564 MiB | 53% | 362352 | **exp-001 eval 1.5B aligned batch**: `evaluate.py` Qwen2.5-1.5B_d000_s42_para_aligned, benchmarks=mmlu+gsm8k+arc+humaneval |\n| **2** | 3686/24564 MiB | 36% | 356787 | **exp-001 eval 0.5B aligned batch**: `evaluate.py` Qwen2.5-0.5B_d005_s42_aligned, benchmarks=mmlu+gsm8k+arc+humaneval |\n| **3** | 8976/24564 MiB | 69% | 362942 | **exp-001 eval 3B**: `evaluate.py` Qwen2.5-3B_d100_s42_aligned, benchmarks=mmlu+gsm8k+arc+humaneval, batch=8 |\n| **4** | 21818/24564 MiB | 38% | 335351 | **exp-001 train**: `train_sft.py` Qwen2.5-3B_d005_s42 (SFT LoRA 训练中) |\n| **5** | 8976/24564 MiB | 72% | 342940 | **exp-001 eval 3B**: `evaluate.py` Qwen2.5-3B_d000_s42_aligned, benchmarks=mmlu+gsm8k+arc+humaneval, batch=4 |\n\n**空闲 GPU：无。6 卡全部占用。**\n\n### 关键实验状态\n\n- **exp_001_eval_15B_aligned_batch** (GPU 1, PID 362352)：运行中，20:03 启动，正在评估 `Qwen2.5-1.5B_d000_s42_para_aligned`。产出目录刚创建（size=6，尚无结果文件）。\n- **exp_001_eval_05B_aligned_batch** (GPU 2, PID 356787)：运行中，19:15 启动，正在评估 `Qwen2.5-0.5B_d005_s42_aligned`。产出目录同样刚创建（size=6）。\n- **exp-002 signals** (GPU 0, PID 353390)：运行中，18:46 启动。已产出 `Qwen2.5-0.5B_d000_s42` 的 embedding (mmlu/gsm8k/arc_challenge) 和 minkpp (mmlu 进行中)，selfcritique 尚未开始。\n- **3B 训练** (GPU 4, PID 335351)：d005 SFT 训练中，17:11 启动，已跑约 3 小时。\n- **3B eval** (GPU 3+5)：d100 和 d000 的 aligned eval 分别在跑。\n\n另外注意：PID 318424 (pts/3) 是 `Qwen2.5-0.5B_raw` eval 的僵尸进程（defunct），不占 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-audit.md"
+}

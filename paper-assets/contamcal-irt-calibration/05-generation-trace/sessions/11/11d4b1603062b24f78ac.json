@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "11d4b1603062b24f78ac",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "audit cross seed volume appendix",
+  "task_key": "worker_audit_cross-seed-volume-appendix_20260523T102207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_cross-seed-volume-appendix_20260523T102207.log",
+    "occurrence": 1,
+    "bytes": 1129654,
+    "sha256": "7d64c91ddb1250d67e1ab9f210cf9a33f691d21812b45ceca902ffe6fc94a505"
+  },
+  "statistics": {
+    "messages": 648,
+    "user_turns": 2,
+    "tool_calls": 228,
+    "roles": {
+      "log": 1,
+      "system": 151,
+      "record": 3,
+      "assistant": 34,
+      "tool_call": 228,
+      "tool_result": 228,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "11d4b1603062b24f78ac-part-0001.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 114,
+      "chunks": [
+        {
+          "path": "11d4b1603062b24f78ac-part-0001.json",
+          "message_count": 114
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 524,
+      "chunks": [
+        {
+          "path": "11d4b1603062b24f78ac-part-0001.json",
+          "message_count": 56
+        },
+        {
+          "path": "11d4b1603062b24f78ac-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "11d4b1603062b24f78ac-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "11d4b1603062b24f78ac-part-0004.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-cross-seed-volume-appendix.md"
+}

@@ -1,0 +1,3847 @@
+# compute mmlu domain irt no05b
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 85
+- **Recorded user turns:** 0
+- **Tool calls:** 33
+- **Original source:** `logs/workers/worker_compute_mmlu_domain_irt_no05b_20260517T063601.log`
+- **Structured JSON:** [`9c6aad1c48fe75fac761.json`](../../sessions/9c/9c6aad1c48fe75fac761.json)
+
+## Before a recorded user message
+
+85 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f6797244-2f47-4e32-9da4-cbcffbd895c4",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by connecting to the server and finding the existing MMLU domain IRT scripts to understand the current setup.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "fbb562f5-8c19-4082-9144-d8b36a84e71f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LM1PoXDsDeeQj9Jpn7mpCF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14818,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14818
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll connect to the server to find the existing MMLU domain IRT scripts and understand the setup.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "a155661e-748c-473d-a3c6-dc77661ae6aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LM1PoXDsDeeQj9Jpn7mpCF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14818,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14818
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017ZQbkhHvRd5W7NNa5ktHoP`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "15274888-91df-419f-b1e5-3c40b8d5115b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LM1PoXDsDeeQj9Jpn7mpCF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14818,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14818
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T06:36:15.916Z_
+
+<details><summary>↩ Tool result · `toolu_017ZQbkhHvRd5W7NNa5ktHoP`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "7ae3358b-e116-4cc2-b089-8fb90b98a3d3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779016200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "8469b9ae-6deb-46e0-ae71-f25e8f1c1c43",
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by finding the existing MMLU domain IRT scripts on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "9669ba90-282e-4437-998c-9c3d3ae19b09",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016K2aUwV3cC2GKRPrFvsfNC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 734,
+      "cache_read_input_tokens": 26659,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 734
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01X11ohZ2aFAu3t3kGE1P9ed`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp006/ -path \"*mmlu*domain*\" -name \"*.py\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "a9dbd5a6-0bcf-4783-9b04-182e81ad6147",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016K2aUwV3cC2GKRPrFvsfNC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 734,
+      "cache_read_input_tokens": 26659,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 734
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T06:36:19.284Z_
+
+<details><summary>↩ Tool result · `toolu_01X11ohZ2aFAu3t3kGE1P9ed`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "e3faeb78-5b44-42f0-b426-be141a0dea81",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011mSK9qoa4Xij1czAUT8cbF`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -path \"*domain*irt*\" -name \"*.py\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "4a537561-9b0b-4905-86c0-3d156a205e5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016K2aUwV3cC2GKRPrFvsfNC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 734,
+      "cache_read_input_tokens": 26659,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 734
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T06:36:20.234Z_
+
+<details><summary>↩ Tool result · `toolu_011mSK9qoa4Xij1czAUT8cbF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "d69a86ff-f06b-4281-956b-7a9875371e88",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H7h9dJcKerV4AgbRadXicD`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/ -name \"*.stan\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "fbda4cdb-3629-44f2-bc7c-86a4eeebc626",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016K2aUwV3cC2GKRPrFvsfNC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 734,
+      "cache_read_input_tokens": 26659,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 734
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T06:36:20.576Z_
+
+<details><summary>↩ Tool result · `toolu_01H7h9dJcKerV4AgbRadXicD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "4ccfd71c-eaa1-4111-aacf-d3eed9484f5d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+The `2>/dev/null` redirection is blocked. Let me retry without it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "0e2513fa-c9b1-437a-9b37-a08adcb8fe58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011R8q4d33AbVVa6APAbNbsD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 27393,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TS3HTL8C11T4dfWVgzGHcC`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp006/ -path \"*mmlu*domain*\" -name \"*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "7c2d84c0-aaf5-4b48-8159-c5517a98e341",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011R8q4d33AbVVa6APAbNbsD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 27393,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EgY2Yz4ux9xJ19B9Ve1sqx`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -path \"*domain*\" -name \"*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "d540dee4-dec9-4584-9bae-ac97a8ddbcec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011R8q4d33AbVVa6APAbNbsD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 27393,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T06:36:25.054Z_
+
+<details><summary>↩ Tool result · `toolu_01TS3HTL8C11T4dfWVgzGHcC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "22a5882c-6ed5-47c2-9edd-7e67765c57ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HHmY8morfeF8BrHmZnykSq`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/ -name \"*.stan\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "7fabb545-301b-4db3-a960-8b8c3b60fb5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011R8q4d33AbVVa6APAbNbsD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 27393,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T06:36:25.539Z_
+
+<details><summary>↩ Tool result · `toolu_01EgY2Yz4ux9xJ19B9Ve1sqx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma.py\\n/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_n24.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "9814a7be-8f10-4170-9517-a7a995b69822",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma.py\\\\n/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_n24.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma.py\\n/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_n24.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T06:36:26.633Z_
+
+<details><summary>↩ Tool result · `toolu_01HHmY8morfeF8BrHmZnykSq`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/stan_models/contam_irt_4pl_simple.stan\\n/root/contamcal-irt-calibration/stan_models/contam_irt_4pl.stan\\n/root/contamcal-irt-calibration/stan_models/vanilla_4pl.stan\\n/root/contamcal-irt-calibration/stan_models/contam_irt_2pl_gamma.stan\\n/root/contamcal-irt-calibration/stan_models/contam_irt_4pl_simple_wider.stan\\n/root/contamcal-irt-calibration/stan_models/vanilla_2pl.stan\\n/root/contamcal-irt-calibration/exp004_sim_sweep/contam_irt_4pl_sweep.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/transformed_data_rng_test.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/value_fail.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/simplex_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/proper_sig_figs.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/simple_jacobian_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/bern_extra_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/print_uninitialized.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/empty.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/domain_fail.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/proper.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/bern_gq_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/ndim_array.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/csv_header_consistency.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/bern_log_prob_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/test_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/optimization_output.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/gq_non_scalar.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/multi_normal_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/printer.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/eight_schools.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/variational_output.stan\\n/root/.cmdstan/cmdstan-2.38.0/examples/bernoulli/bernoulli.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/incl_nested.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/badrecurse1.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/badrecurse2.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/incl_params.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/incl_rec.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/simple1.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/badrecurse3.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/incl_fun.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/performance/logistic.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/expressions/simple_udf.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/univariate_with_constraint.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/multivariate_with_constraint.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/gradient_warn.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/multivariate_no_constraint.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/hier_logistic_cp.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/hier_logistic.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/eta_should_fail.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/eta_should_be_big.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/univariate_no_constraint.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/eta_should_be_small.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/model/parameters.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/model/accumulate.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/model/valid.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/optimization/simple_jacobian.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/optimization/rosenbrock.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/optimization/constrain_sigma.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/optimization/exponential_boundary.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/zero_params.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/bug_2390_gq.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/bug_2390_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/gq_test_zero_sized.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/multi_normal.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/test_gq.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/gq_test_multidim.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/normal_glm.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/test_lp.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/bernoulli.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/test_fail.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/test_gq2.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/eight_schools.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/common/gauss.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/common/gauss3D.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/integrators/gauss.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/integrators/command.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/hamiltonians/funnel.stan\\n\", \"stderr\": \"find: '/root/miniconda3/pkgs/_libgcc_mutex-0.1-main': No such file or directory\\nfind: '/root/miniconda3/pkgs/_openmp_mutex-5.1-1_gnu': No such file or directory\\nfind: '/root/miniconda3/pkgs/cache': No such file or directory\\nfind: '/root/miniconda3/pkgs/pybind11-abi-5-hd3eb1b0_0': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "75b3f644-6dfe-419b-9937-137b3bc97450",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/stan_models/contam_irt_4pl_simple.stan\\\\n/root/contamcal-irt-calibration/stan_models/contam_irt_4pl.stan\\\\n/root/contamcal-irt-calibration/stan_models/vanilla_4pl.stan\\\\n/root/contamcal-irt-calibration/stan_models/contam_irt_2pl_gamma.stan\\\\n/root/contamcal-irt-calibration/stan_models/contam_irt_4pl_simple_wider.stan\\\\n/root/contamcal-irt-calibration/stan_models/vanilla_2pl.stan\\\\n/root/contamcal-irt-calibration/exp004_sim_sweep/contam_irt_4pl_sweep.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/transformed_data_rng_test.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/value_fail.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/simplex_model.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/proper_sig_figs.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/simple_jacobian_model.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/bern_extra_model.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/print_uninitialized.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/empty.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/domain_fail.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/proper.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/bern_gq_model.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/ndim_array.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/csv_header_consistency.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/bern_log_prob_model.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/test_model.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/optimization_output.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/gq_non_scalar.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/multi_normal_model.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/printer.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/eight_schools.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/variational_output.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/examples/bernoulli/bernoulli.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/incl_nested.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/badrecurse1.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/badrecurse2.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/incl_params.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/incl_rec.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/simple1.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/badrecurse3.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/incl_fun.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/performance/logistic.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/expressions/simple_udf.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/univariate_with_constraint.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/multivariate_with_constraint.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/gradient_warn.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/multivariate_no_constraint.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/hier_logistic_cp.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/hier_logistic.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/eta_should_fail.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/eta_should_be_big.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/univariate_no_constraint.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/eta_should_be_small.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/model/parameters.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/model/accumulate.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/model/valid.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/optimization/simple_jacobian.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/optimization/rosenbrock.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/optimization/constrain_sigma.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/optimization/exponential_boundary.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/zero_params.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/bug_2390_gq.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/bug_2390_model.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/gq_test_zero_sized.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/multi_normal.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/test_gq.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/gq_test_multidim.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/normal_glm.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/test_lp.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/bernoulli.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/test_fail.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/test_gq2.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/eight_schools.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/common/gauss.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/common/gauss3D.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/integrators/gauss.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/integrators/command.stan\\\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/hamiltonians/funnel.stan\\\\n\\\", \\\"stderr\\\": \\\"find: '/root/miniconda3/pkgs/_libgcc_mutex-0.1-main': No such file or directory\\\\nfind: '/root/miniconda3/pkgs/_openmp_mutex-5.1-1_gnu': No such file or directory\\\\nfind: '/root/miniconda3/pkgs/cache': No such file or directory\\\\nfind: '/root/miniconda3/pkgs/pybind11-abi-5-hd3eb1b0_0': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/stan_models/contam_irt_4pl_simple.stan\\n/root/contamcal-irt-calibration/stan_models/contam_irt_4pl.stan\\n/root/contamcal-irt-calibration/stan_models/vanilla_4pl.stan\\n/root/contamcal-irt-calibration/stan_models/contam_irt_2pl_gamma.stan\\n/root/contamcal-irt-calibration/stan_models/contam_irt_4pl_simple_wider.stan\\n/root/contamcal-irt-calibration/stan_models/vanilla_2pl.stan\\n/root/contamcal-irt-calibration/exp004_sim_sweep/contam_irt_4pl_sweep.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/transformed_data_rng_test.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/value_fail.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/simplex_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/proper_sig_figs.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/simple_jacobian_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/bern_extra_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/print_uninitialized.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/empty.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/domain_fail.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/proper.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/bern_gq_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/ndim_array.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/csv_header_consistency.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/bern_log_prob_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/test_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/optimization_output.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/gq_non_scalar.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/multi_normal_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/printer.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/eight_schools.stan\\n/root/.cmdstan/cmdstan-2.38.0/src/test/test-models/variational_output.stan\\n/root/.cmdstan/cmdstan-2.38.0/examples/bernoulli/bernoulli.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/incl_nested.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/badrecurse1.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/badrecurse2.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/incl_params.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/incl_rec.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/simple1.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/badrecurse3.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/included/incl_fun.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/performance/logistic.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/expressions/simple_udf.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/univariate_with_constraint.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/multivariate_with_constraint.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/gradient_warn.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/multivariate_no_constraint.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/hier_logistic_cp.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/hier_logistic.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/eta_should_fail.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/eta_should_be_big.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/univariate_no_constraint.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/variational/eta_should_be_small.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/model/parameters.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/model/accumulate.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/model/valid.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/optimization/simple_jacobian.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/optimization/rosenbrock.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/optimization/constrain_sigma.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/optimization/exponential_boundary.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/zero_params.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/bug_2390_gq.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/bug_2390_model.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/gq_test_zero_sized.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/multi_normal.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/test_gq.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/gq_test_multidim.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/normal_glm.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/test_lp.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/bernoulli.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/test_fail.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/test_gq2.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/services/eight_schools.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/common/gauss.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/common/gauss3D.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/integrators/gauss.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/integrators/command.stan\\n/root/.cmdstan/cmdstan-2.38.0/stan/src/test/test-models/good/mcmc/hmc/hamiltonians/funnel.stan\\n\", \"stderr\": \"find: '/root/miniconda3/pkgs/_libgcc_mutex-0.1-main': No such file or directory\\nfind: '/root/miniconda3/pkgs/_openmp_mutex-5.1-1_gnu': No such file or directory\\nfind: '/root/miniconda3/pkgs/cache': No such file or directory\\nfind: '/root/miniconda3/pkgs/pybind11-abi-5-hd3eb1b0_0': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Found the scripts. Let me read them and the Stan model.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "aa57ebec-0d84-4fc7-aa10-928e6343b96d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iNCQRgPeEXrNfxk5CUoQS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3397,
+      "cache_read_input_tokens": 28094,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3397
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011mcu3WdTaJNt1okFbpdbZo`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "48d7fa8e-7126-45c9-9696-0a68f4c81bb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iNCQRgPeEXrNfxk5CUoQS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3397,
+      "cache_read_input_tokens": 28094,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3397
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011VRwgBFtpe47zgrEmFezcA`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/stan_models/contam_irt_2pl_gamma.stan"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "59105c81-04da-4c67-8268-a9d60b01c340",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iNCQRgPeEXrNfxk5CUoQS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3397,
+      "cache_read_input_tokens": 28094,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3397
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T06:36:31.518Z_
+
+<details><summary>↩ Tool result · `toolu_011mcu3WdTaJNt1okFbpdbZo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nMMLU domain-stratified gamma analysis via 2PL+gamma IRT.\\n\\nSplits MMLU 14042 items into 7 knowledge domains (+ Other), fits per-domain\\n2PL+gamma IRT models on 1.5B eval data, and outputs a summary table of\\nper-domain contamination sensitivity (gamma).\\n\\nInput:\\n  - 1.5B eval results in EVAL_DIR (correctness per item per model)\\n  - MMLU subject-to-domain mapping (hardcoded)\\n  - Stan 2PL+gamma model\\n\\nOutput:\\n  - per_domain_gamma_summary.json: structured results\\n  - per_domain_gamma_summary.md: human-readable table\\n  - per-domain fit JSONs in subdirectories\\n\\nDependencies: cmdstanpy, numpy, pyarrow (for MMLU subject index mapping)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, \\\"/root/contamcal-irt-calibration/exp006\\\")\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    prepare_stan_data,\\n    fit_stan_model,\\n    check_convergence,\\n    posterior_predictive_check,\\n    extract_results,\\n    STAN_MODELS,\\n)\\n\\nlog = logging.getLogger(__name__)\\n\\n# ── MMLU Domain Mapping ──\\n# 57 subjects -> 7 domains + Other\\n\\nDOMAIN_MAP = {\\n    \\\"STEM_Math\\\": [\\n        \\\"abstract_algebra\\\", \\\"college_mathematics\\\", \\\"elementary_mathematics\\\",\\n        \\\"high_school_mathematics\\\", \\\"high_school_statistics\\\", \\\"formal_logic\\\",\\n    ],\\n    \\\"STEM_Science\\\": [\\n        \\\"astronomy\\\", \\\"college_biology\\\", \\\"college_chemistry\\\", \\\"college_physics\\\",\\n        \\\"conceptual_physics\\\", \\\"high_school_biology\\\", \\\"high_school_chemistry\\\",\\n        \\\"high_school_physics\\\",\\n    ],\\n    \\\"STEM_CS_Eng\\\": [\\n        \\\"college_computer_science\\\", \\\"computer_security\\\", \\\"electrical_engineering\\\",\\n        \\\"high_school_computer_science\\\", \\\"machine_learning\\\",\\n    ],\\n    \\\"Medical\\\": [\\n        \\\"anatomy\\\", \\\"clinical_knowledge\\\", \\\"college_medicine\\\", \\\"human_aging\\\",\\n        \\\"medical_genetics\\\", \\\"nutrition\\\", \\\"professional_medicine\\\", \\\"virology\\\",\\n    ],\\n    \\\"Humanities\\\": [\\n        \\\"high_school_european_history\\\", \\\"high_school_us_history\\\",\\n        \\\"high_school_world_history\\\", \\\"logical_fallacies\\\", \\\"moral_disputes\\\",\\n        \\\"moral_scenarios\\\", \\\"philosophy\\\", \\\"prehistory\\\", \\\"world_religions\\\",\\n    ],\\n    \\\"Social_Sciences\\\": [\\n        \\\"econometrics\\\", \\\"high_school_geography\\\",\\n        \\\"high_school_government_and_politics\\\", \\\"high_school_macroeconomics\\\",\\n        \\\"high_school_microeconomics\\\", \\\"high_school_psychology\\\",\\n        \\\"human_sexuality\\\", \\\"professional_psychology\\\", \\\"public_relations\\\",\\n        \\\"security_studies\\\", \\\"sociology\\\", \\\"us_foreign_policy\\\",\\n    ],\\n    \\\"Business_Law\\\": [\\n        \\\"business_ethics\\\", \\\"international_law\\\", \\\"jurisprudence\\\", \\\"management\\\",\\n        \\\"marketing\\\", \\\"professional_accounting\\\", \\\"professional_law\\\",\\n    ],\\n    \\\"Other\\\": [\\n        \\\"global_facts\\\", \\\"miscellaneous\\\",\\n    ],\\n}\\n\\nEVAL_DIR = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\nMMLU_ARROW = \\\"/root/autodl-tmp/.hf_cache/cais___mmlu/all/0.0.0/c30699e8356da336a370243923dbaf21066bb9fe/mmlu-test.arrow\\\"\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/exp006/results_mmlu_domain_gamma\\\")\\nMODEL_TYPE = \\\"2pl_gamma\\\"\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\nMAX_ITEMS = 2000\\n\\n\\ndef build_subject_index_map(arrow_path):\\n    \\\"\\\"\\\"Read MMLU arrow cache to get subject for each item index.\\\"\\\"\\\"\\n    import pyarrow as pa\\n    reader = pa.ipc.open_stream(arrow_path)\\n    table = reader.read_all()\\n    subjects = table.column(\\\"subject\\\").to_pylist()\\n    return subjects\\n\\n\\ndef build_domain_indices(subject_list):\\n    \\\"\\\"\\\"Map each domain to a list of item indices in the MMLU response array.\\\"\\\"\\\"\\n    # Invert DOMAIN_MAP: subject -> domain\\n    subj_to_domain = {}\\n    for domain, subjects in DOMAIN_MAP.items():\\n        for s in subjects:\\n            subj_to_domain[s] = domain\\n\\n    domain_indices = {d: [] for d in DOMAIN_MAP}\\n    unmapped = []\\n    for i, subj in enumerate(subject_list):\\n        domain = subj_to_domain.get(subj)\\n        if domain:\\n            domain_indices[domain].append(i)\\n        else:\\n            unmapped.append((i, subj))\\n\\n    if unmapped:\\n        log.warning(\\\"Unmapped subjects: %s\\\", set(s for _, s \\n\\n... [截断: 输出过长，省略 9311 字符] ...\\n\\n\\\", args.mmlu_arrow)\\n    subject_list = build_subject_index_map(args.mmlu_arrow)\\n\\n    if item_indices is not None:\\n        # Map arrow-file indices to response matrix column positions\\n        arrow_to_col = {arrow_idx: col for col, arrow_idx in enumerate(item_indices)}\\n        subj_to_domain = {}\\n        for domain, subjects in DOMAIN_MAP.items():\\n            for s in subjects:\\n                subj_to_domain[s] = domain\\n        domain_indices = {d: [] for d in DOMAIN_MAP}\\n        for arrow_idx, col in arrow_to_col.items():\\n            if arrow_idx < len(subject_list):\\n                subj = subject_list[arrow_idx]\\n                domain = subj_to_domain.get(subj)\\n                if domain:\\n                    domain_indices[domain].append(col)\\n    else:\\n        domain_indices = build_domain_indices(subject_list)\\n\\n    for domain, indices in domain_indices.items():\\n        log.info(\\\"Domain %-15s: %4d items\\\", domain, len(indices))\\n\\n    total_mapped = sum(len(v) for v in domain_indices.values())\\n    log.info(\\\"Total mapped: %d / %d\\\", total_mapped, n_total_items)\\n\\n    domains_to_fit = args.domains if args.domains else list(DOMAIN_MAP.keys())\\n\\n    if args.dry_run:\\n        print(\\\"\\\\n=== DRY RUN: Domain Statistics ===\\\\n\\\")\\n        print(f\\\"{'Domain':<18} {'N_items':>7} {'Mean_acc':>8} {'Subjects':>8}\\\")\\n        print(\\\"-\\\" * 55)\\n        for domain in domains_to_fit:\\n            indices = domain_indices[domain]\\n            if not indices:\\n                print(f\\\"{domain:<18} {'0':>7} {'N/A':>8} {len(DOMAIN_MAP[domain]):>8}\\\")\\n                continue\\n            domain_resp = full_responses[:, indices]\\n            acc = domain_resp.mean()\\n            print(f\\\"{domain:<18} {len(indices):>7} {acc:>8.4f} {len(DOMAIN_MAP[domain]):>8}\\\")\\n        print(f\\\"\\\\nTotal models: {full_responses.shape[0]}\\\")\\n        print(f\\\"Dosages: {dosages.tolist()}\\\")\\n        print(f\\\"Stan model: {MODEL_TYPE} ({STAN_FILE})\\\")\\n        print(f\\\"MCMC: {args.chains} chains x {args.warmup}w + {args.samples}s, \\\"\\n              f\\\"adapt_delta={args.adapt_delta}\\\")\\n\\n        # Rough time estimate: ~10-30s per 100 items with 8 models, 4 chains\\n        total_time = 0\\n        for domain in domains_to_fit:\\n            n = min(len(domain_indices[domain]), MAX_ITEMS)\\n            # Empirical: ~0.05-0.1s per item per chain\\n            est = n * 0.08 * args.chains\\n            total_time += est\\n            print(f\\\"  {domain}: ~{est:.0f}s estimated\\\")\\n        print(f\\\"\\\\nTotal estimated time: ~{total_time:.0f}s ({total_time/60:.1f} min)\\\")\\n        return\\n\\n    # Step 3: Fit per-domain IRT\\n    args_dict = {\\n        \\\"chains\\\": args.chains,\\n        \\\"warmup\\\": args.warmup,\\n        \\\"samples\\\": args.samples,\\n        \\\"adapt_delta\\\": args.adapt_delta,\\n        \\\"max_treedepth\\\": args.max_treedepth,\\n        \\\"seed\\\": args.seed,\\n    }\\n\\n    all_results = {}\\n    for domain in domains_to_fit:\\n        indices = domain_indices[domain]\\n        if len(indices) < 10:\\n            log.warning(\\\"Skipping %s: only %d items\\\", domain, len(indices))\\n            continue\\n\\n        log.info(\\\"=\\\" * 50)\\n        log.info(\\\"Fitting domain: %s (%d items)\\\", domain, len(indices))\\n        log.info(\\\"=\\\" * 50)\\n\\n        domain_responses = full_responses[:, indices]\\n        result = fit_domain(domain, domain_responses, dosages, args_dict, output_dir)\\n        all_results[domain] = result\\n\\n        g = result[\\\"gamma\\\"]\\n        d = result[\\\"diagnostics\\\"]\\n        log.info(\\\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d, time=%.0fs\\\",\\n                 domain, g[\\\"mean\\\"], g[\\\"q025\\\"], g[\\\"q975\\\"],\\n                 d.get(\\\"max_rhat\\\", 0), d.get(\\\"min_ess\\\", 0),\\n                 d.get(\\\"divergent_count\\\", 0), result[\\\"fit_time_sec\\\"])\\n\\n    # Step 4: Summary\\n    if all_results:\\n        print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n        generate_summary_table(all_results, output_dir)\\n\\n        with open(output_dir / \\\"all_domain_results.json\\\", \\\"w\\\") as f:\\n            json.dump(all_results, f, indent=2)\\n\\n        log.info(\\\"All results saved to %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "076007c9-5888-4302-94dc-9544618e6ef9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMMLU domain-stratified gamma analysis via 2PL+gamma IRT.\\\\n\\\\nSplits MMLU 14042 items into 7 knowledge domains (+ Other), fits per-domain\\\\n2PL+gamma IRT models on 1.5B eval data, and outputs a summary table of\\\\nper-domain contamination sensitivity (gamma).\\\\n\\\\nInput:\\\\n  - 1.5B eval results in EVAL_DIR (correctness per item per model)\\\\n  - MMLU subject-to-domain mapping (hardcoded)\\\\n  - Stan 2PL+gamma model\\\\n\\\\nOutput:\\\\n  - per_domain_gamma_summary.json: structured results\\\\n  - per_domain_gamma_summary.md: human-readable table\\\\n  - per-domain fit JSONs in subdirectories\\\\n\\\\nDependencies: cmdstanpy, numpy, pyarrow (for MMLU subject index mapping)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/contamcal-irt-calibration/exp006\\\\\\\")\\\\nfrom run_irt_calibration import (\\\\n    load_eval_results,\\\\n    prepare_stan_data,\\\\n    fit_stan_model,\\\\n    check_convergence,\\\\n    posterior_predictive_check,\\\\n    extract_results,\\\\n    STAN_MODELS,\\\\n)\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n# ── MMLU Domain Mapping ──\\\\n# 57 subjects -> 7 domains + Other\\\\n\\\\nDOMAIN_MAP = {\\\\n    \\\\\\\"STEM_Math\\\\\\\": [\\\\n        \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"college_mathematics\\\\\\\", \\\\\\\"elementary_mathematics\\\\\\\",\\\\n        \\\\\\\"high_school_mathematics\\\\\\\", \\\\\\\"high_school_statistics\\\\\\\", \\\\\\\"formal_logic\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"STEM_Science\\\\\\\": [\\\\n        \\\\\\\"astronomy\\\\\\\", \\\\\\\"college_biology\\\\\\\", \\\\\\\"college_chemistry\\\\\\\", \\\\\\\"college_physics\\\\\\\",\\\\n        \\\\\\\"conceptual_physics\\\\\\\", \\\\\\\"high_school_biology\\\\\\\", \\\\\\\"high_school_chemistry\\\\\\\",\\\\n        \\\\\\\"high_school_physics\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"STEM_CS_Eng\\\\\\\": [\\\\n        \\\\\\\"college_computer_science\\\\\\\", \\\\\\\"computer_security\\\\\\\", \\\\\\\"electrical_engineering\\\\\\\",\\\\n        \\\\\\\"high_school_computer_science\\\\\\\", \\\\\\\"machine_learning\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"Medical\\\\\\\": [\\\\n        \\\\\\\"anatomy\\\\\\\", \\\\\\\"clinical_knowledge\\\\\\\", \\\\\\\"college_medicine\\\\\\\", \\\\\\\"human_aging\\\\\\\",\\\\n        \\\\\\\"medical_genetics\\\\\\\", \\\\\\\"nutrition\\\\\\\", \\\\\\\"professional_medicine\\\\\\\", \\\\\\\"virology\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"Humanities\\\\\\\": [\\\\n        \\\\\\\"high_school_european_history\\\\\\\", \\\\\\\"high_school_us_history\\\\\\\",\\\\n        \\\\\\\"high_school_world_history\\\\\\\", \\\\\\\"logical_fallacies\\\\\\\", \\\\\\\"moral_disputes\\\\\\\",\\\\n        \\\\\\\"moral_scenarios\\\\\\\", \\\\\\\"philosophy\\\\\\\", \\\\\\\"prehistory\\\\\\\", \\\\\\\"world_religions\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"Social_Sciences\\\\\\\": [\\\\n        \\\\\\\"econometrics\\\\\\\", \\\\\\\"high_school_geography\\\\\\\",\\\\n        \\\\\\\"high_school_government_and_politics\\\\\\\", \\\\\\\"high_school_macroeconomics\\\\\\\",\\\\n        \\\\\\\"high_school_microeconomics\\\\\\\", \\\\\\\"high_school_psychology\\\\\\\",\\\\n        \\\\\\\"human_sexuality\\\\\\\", \\\\\\\"professional_psychology\\\\\\\", \\\\\\\"public_relations\\\\\\\",\\\\n        \\\\\\\"security_studies\\\\\\\", \\\\\\\"sociology\\\\\\\", \\\\\\\"us_foreign_policy\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"Business_Law\\\\\\\": [\\\\n        \\\\\\\"business_ethics\\\\\\\", \\\\\\\"international_law\\\\\\\", \\\\\\\"jurisprudence\\\\\\\", \\\\\\\"management\\\\\\\",\\\\n        \\\\\\\"marketing\\\\\\\", \\\\\\\"professional_accounting\\\\\\\", \\\\\\\"professional_law\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"Other\\\\\\\": [\\\\n        \\\\\\\"global_facts\\\\\\\", \\\\\\\"miscellaneous\\\\\\\",\\\\n    ],\\\\n}\\\\n\\\\nEVAL_DIR = \\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\"\\\\nMMLU_ARROW = \\\\\\\"/root/autodl-tmp/.hf_cache/cais___mmlu/all/0.0.0/c30699e8356da336a370243923dbaf21066bb9fe/mmlu-test.arrow\\\\\\\"\\\\nOUTPUT_DIR = Path(\\\\\\\"/root/autodl-tmp/exp006/results_mmlu_domain_gamma\\\\\\\")\\\\nMODEL_TYPE = \\\\\\\"2pl_gamma\\\\\\\"\\\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\\\nMAX_ITEMS = 2000\\\\n\\\\n\\\\ndef build_subject_index_map(arrow_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Read MMLU arrow cache to get subject for each item index.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import pyarrow as pa\\\\n    reader = pa.ipc.open_stream(arrow_path)\\\\n    table = reader.read_all()\\\\n    subjects = table.column(\\\\\\\"subject\\\\\\\").to_pylist()\\\\n    return subjects\\\\n\\\\n\\\\ndef build_domain_indices(subject_list):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Map each domain to a list of item indices in the MMLU response array.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Invert DOMAIN_MAP: subject -> domain\\\\n    subj_to_domain = {}\\\\n    for domain, subjects in DOMAIN_MAP.items():\\\\n        for s in subjects:\\\\n            subj_to_domain[s] = domain\\\\n\\\\n    domain_indices = {d: [] for d in DOMAIN_MAP}\\\\n    unmapped = []\\\\n    for i, subj in enumerate(subject_list):\\\\n        domain = subj_to_domain.get(subj)\\\\n        if domain:\\\\n            domain_indices[domain].append(i)\\\\n        else:\\\\n            unmapped.append((i, subj))\\\\n\\\\n    if unmapped:\\\\n        log.warning(\\\\\\\"Unmapped subjects: %s\\\\\\\", set(s for _, s \\\\n\\\\n... [截断: 输出过长，省略 9311 字符] ...\\\\n\\\\n\\\\\\\", args.mmlu_arrow)\\\\n    subject_list = build_subject_index_map(args.mmlu_arrow)\\\\n\\\\n    if item_indices is not None:\\\\n        # Map arrow-file indices to response matrix column positions\\\\n        arrow_to_col = {arrow_idx: col for col, arrow_idx in enumerate(item_indices)}\\\\n        subj_to_domain = {}\\\\n        for domain, subjects in DOMAIN_MAP.items():\\\\n            for s in subjects:\\\\n                subj_to_domain[s] = domain\\\\n        domain_indices = {d: [] for d in DOMAIN_MAP}\\\\n        for arrow_idx, col in arrow_to_col.items():\\\\n            if arrow_idx < len(subject_list):\\\\n                subj = subject_list[arrow_idx]\\\\n                domain = subj_to_domain.get(subj)\\\\n                if domain:\\\\n                    domain_indices[domain].append(col)\\\\n    else:\\\\n        domain_indices = build_domain_indices(subject_list)\\\\n\\\\n    for domain, indices in domain_indices.items():\\\\n        log.info(\\\\\\\"Domain %-15s: %4d items\\\\\\\", domain, len(indices))\\\\n\\\\n    total_mapped = sum(len(v) for v in domain_indices.values())\\\\n    log.info(\\\\\\\"Total mapped: %d / %d\\\\\\\", total_mapped, n_total_items)\\\\n\\\\n    domains_to_fit = args.domains if args.domains else list(DOMAIN_MAP.keys())\\\\n\\\\n    if args.dry_run:\\\\n        print(\\\\\\\"\\\\\\\\n=== DRY RUN: Domain Statistics ===\\\\\\\\n\\\\\\\")\\\\n        print(f\\\\\\\"{'Domain':<18} {'N_items':>7} {'Mean_acc':>8} {'Subjects':>8}\\\\\\\")\\\\n        print(\\\\\\\"-\\\\\\\" * 55)\\\\n        for domain in domains_to_fit:\\\\n            indices = domain_indices[domain]\\\\n            if not indices:\\\\n                print(f\\\\\\\"{domain:<18} {'0':>7} {'N/A':>8} {len(DOMAIN_MAP[domain]):>8}\\\\\\\")\\\\n                continue\\\\n            domain_resp = full_responses[:, indices]\\\\n            acc = domain_resp.mean()\\\\n            print(f\\\\\\\"{domain:<18} {len(indices):>7} {acc:>8.4f} {len(DOMAIN_MAP[domain]):>8}\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\nTotal models: {full_responses.shape[0]}\\\\\\\")\\\\n        print(f\\\\\\\"Dosages: {dosages.tolist()}\\\\\\\")\\\\n        print(f\\\\\\\"Stan model: {MODEL_TYPE} ({STAN_FILE})\\\\\\\")\\\\n        print(f\\\\\\\"MCMC: {args.chains} chains x {args.warmup}w + {args.samples}s, \\\\\\\"\\\\n              f\\\\\\\"adapt_delta={args.adapt_delta}\\\\\\\")\\\\n\\\\n        # Rough time estimate: ~10-30s per 100 items with 8 models, 4 chains\\\\n        total_time = 0\\\\n        for domain in domains_to_fit:\\\\n            n = min(len(domain_indices[domain]), MAX_ITEMS)\\\\n            # Empirical: ~0.05-0.1s per item per chain\\\\n            est = n * 0.08 * args.chains\\\\n            total_time += est\\\\n            print(f\\\\\\\"  {domain}: ~{est:.0f}s estimated\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\nTotal estimated time: ~{total_time:.0f}s ({total_time/60:.1f} min)\\\\\\\")\\\\n        return\\\\n\\\\n    # Step 3: Fit per-domain IRT\\\\n    args_dict = {\\\\n        \\\\\\\"chains\\\\\\\": args.chains,\\\\n        \\\\\\\"warmup\\\\\\\": args.warmup,\\\\n        \\\\\\\"samples\\\\\\\": args.samples,\\\\n        \\\\\\\"adapt_delta\\\\\\\": args.adapt_delta,\\\\n        \\\\\\\"max_treedepth\\\\\\\": args.max_treedepth,\\\\n        \\\\\\\"seed\\\\\\\": args.seed,\\\\n    }\\\\n\\\\n    all_results = {}\\\\n    for domain in domains_to_fit:\\\\n        indices = domain_indices[domain]\\\\n        if len(indices) < 10:\\\\n            log.warning(\\\\\\\"Skipping %s: only %d items\\\\\\\", domain, len(indices))\\\\n            continue\\\\n\\\\n        log.info(\\\\\\\"=\\\\\\\" * 50)\\\\n        log.info(\\\\\\\"Fitting domain: %s (%d items)\\\\\\\", domain, len(indices))\\\\n        log.info(\\\\\\\"=\\\\\\\" * 50)\\\\n\\\\n        domain_responses = full_responses[:, indices]\\\\n        result = fit_domain(domain, domain_responses, dosages, args_dict, output_dir)\\\\n        all_results[domain] = result\\\\n\\\\n        g = result[\\\\\\\"gamma\\\\\\\"]\\\\n        d = result[\\\\\\\"diagnostics\\\\\\\"]\\\\n        log.info(\\\\\\\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d, time=%.0fs\\\\\\\",\\\\n                 domain, g[\\\\\\\"mean\\\\\\\"], g[\\\\\\\"q025\\\\\\\"], g[\\\\\\\"q975\\\\\\\"],\\\\n                 d.get(\\\\\\\"max_rhat\\\\\\\", 0), d.get(\\\\\\\"min_ess\\\\\\\", 0),\\\\n                 d.get(\\\\\\\"divergent_count\\\\\\\", 0), result[\\\\\\\"fit_time_sec\\\\\\\"])\\\\n\\\\n    # Step 4: Summary\\\\n    if all_results:\\\\n        print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n        generate_summary_table(all_results, output_dir)\\\\n\\\\n        with open(output_dir / \\\\\\\"all_domain_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(all_results, f, indent=2)\\\\n\\\\n        log.info(\\\\\\\"All results saved to %s\\\\\\\", output_dir)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nMMLU domain-stratified gamma analysis via 2PL+gamma IRT.\\n\\nSplits MMLU 14042 items into 7 knowledge domains (+ Other), fits per-domain\\n2PL+gamma IRT models on 1.5B eval data, and outputs a summary table of\\nper-domain contamination sensitivity (gamma).\\n\\nInput:\\n  - 1.5B eval results in EVAL_DIR (correctness per item per model)\\n  - MMLU subject-to-domain mapping (hardcoded)\\n  - Stan 2PL+gamma model\\n\\nOutput:\\n  - per_domain_gamma_summary.json: structured results\\n  - per_domain_gamma_summary.md: human-readable table\\n  - per-domain fit JSONs in subdirectories\\n\\nDependencies: cmdstanpy, numpy, pyarrow (for MMLU subject index mapping)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, \\\"/root/contamcal-irt-calibration/exp006\\\")\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    prepare_stan_data,\\n    fit_stan_model,\\n    check_convergence,\\n    posterior_predictive_check,\\n    extract_results,\\n    STAN_MODELS,\\n)\\n\\nlog = logging.getLogger(__name__)\\n\\n# ── MMLU Domain Mapping ──\\n# 57 subjects -> 7 domains + Other\\n\\nDOMAIN_MAP = {\\n    \\\"STEM_Math\\\": [\\n        \\\"abstract_algebra\\\", \\\"college_mathematics\\\", \\\"elementary_mathematics\\\",\\n        \\\"high_school_mathematics\\\", \\\"high_school_statistics\\\", \\\"formal_logic\\\",\\n    ],\\n    \\\"STEM_Science\\\": [\\n        \\\"astronomy\\\", \\\"college_biology\\\", \\\"college_chemistry\\\", \\\"college_physics\\\",\\n        \\\"conceptual_physics\\\", \\\"high_school_biology\\\", \\\"high_school_chemistry\\\",\\n        \\\"high_school_physics\\\",\\n    ],\\n    \\\"STEM_CS_Eng\\\": [\\n        \\\"college_computer_science\\\", \\\"computer_security\\\", \\\"electrical_engineering\\\",\\n        \\\"high_school_computer_science\\\", \\\"machine_learning\\\",\\n    ],\\n    \\\"Medical\\\": [\\n        \\\"anatomy\\\", \\\"clinical_knowledge\\\", \\\"college_medicine\\\", \\\"human_aging\\\",\\n        \\\"medical_genetics\\\", \\\"nutrition\\\", \\\"professional_medicine\\\", \\\"virology\\\",\\n    ],\\n    \\\"Humanities\\\": [\\n        \\\"high_school_european_history\\\", \\\"high_school_us_history\\\",\\n        \\\"high_school_world_history\\\", \\\"logical_fallacies\\\", \\\"moral_disputes\\\",\\n        \\\"moral_scenarios\\\", \\\"philosophy\\\", \\\"prehistory\\\", \\\"world_religions\\\",\\n    ],\\n    \\\"Social_Sciences\\\": [\\n        \\\"econometrics\\\", \\\"high_school_geography\\\",\\n        \\\"high_school_government_and_politics\\\", \\\"high_school_macroeconomics\\\",\\n        \\\"high_school_microeconomics\\\", \\\"high_school_psychology\\\",\\n        \\\"human_sexuality\\\", \\\"professional_psychology\\\", \\\"public_relations\\\",\\n        \\\"security_studies\\\", \\\"sociology\\\", \\\"us_foreign_policy\\\",\\n    ],\\n    \\\"Business_Law\\\": [\\n        \\\"business_ethics\\\", \\\"international_law\\\", \\\"jurisprudence\\\", \\\"management\\\",\\n        \\\"marketing\\\", \\\"professional_accounting\\\", \\\"professional_law\\\",\\n    ],\\n    \\\"Other\\\": [\\n        \\\"global_facts\\\", \\\"miscellaneous\\\",\\n    ],\\n}\\n\\nEVAL_DIR = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\nMMLU_ARROW = \\\"/root/autodl-tmp/.hf_cache/cais___mmlu/all/0.0.0/c30699e8356da336a370243923dbaf21066bb9fe/mmlu-test.arrow\\\"\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/exp006/results_mmlu_domain_gamma\\\")\\nMODEL_TYPE = \\\"2pl_gamma\\\"\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\nMAX_ITEMS = 2000\\n\\n\\ndef build_subject_index_map(arrow_path):\\n    \\\"\\\"\\\"Read MMLU arrow cache to get subject for each item index.\\\"\\\"\\\"\\n    import pyarrow as pa\\n    reader = pa.ipc.open_stream(arrow_path)\\n    table = reader.read_all()\\n    subjects = table.column(\\\"subject\\\").to_pylist()\\n    return subjects\\n\\n\\ndef build_domain_indices(subject_list):\\n    \\\"\\\"\\\"Map each domain to a list of item indices in the MMLU response array.\\\"\\\"\\\"\\n    # Invert DOMAIN_MAP: subject -> domain\\n    subj_to_domain = {}\\n    for domain, subjects in DOMAIN_MAP.items():\\n        for s in subjects:\\n            subj_to_domain[s] = domain\\n\\n    domain_indices = {d: [] for d in DOMAIN_MAP}\\n    unmapped = []\\n    for i, subj in enumerate(subject_list):\\n        domain = subj_to_domain.get(subj)\\n        if domain:\\n            domain_indices[domain].append(i)\\n        else:\\n            unmapped.append((i, subj))\\n\\n    if unmapped:\\n        log.warning(\\\"Unmapped subjects: %s\\\", set(s for _, s \\n\\n... [截断: 输出过长，省略 9311 字符] ...\\n\\n\\\", args.mmlu_arrow)\\n    subject_list = build_subject_index_map(args.mmlu_arrow)\\n\\n    if item_indices is not None:\\n        # Map arrow-file indices to response matrix column positions\\n        arrow_to_col = {arrow_idx: col for col, arrow_idx in enumerate(item_indices)}\\n        subj_to_domain = {}\\n        for domain, subjects in DOMAIN_MAP.items():\\n            for s in subjects:\\n                subj_to_domain[s] = domain\\n        domain_indices = {d: [] for d in DOMAIN_MAP}\\n        for arrow_idx, col in arrow_to_col.items():\\n            if arrow_idx < len(subject_list):\\n                subj = subject_list[arrow_idx]\\n                domain = subj_to_domain.get(subj)\\n                if domain:\\n                    domain_indices[domain].append(col)\\n    else:\\n        domain_indices = build_domain_indices(subject_list)\\n\\n    for domain, indices in domain_indices.items():\\n        log.info(\\\"Domain %-15s: %4d items\\\", domain, len(indices))\\n\\n    total_mapped = sum(len(v) for v in domain_indices.values())\\n    log.info(\\\"Total mapped: %d / %d\\\", total_mapped, n_total_items)\\n\\n    domains_to_fit = args.domains if args.domains else list(DOMAIN_MAP.keys())\\n\\n    if args.dry_run:\\n        print(\\\"\\\\n=== DRY RUN: Domain Statistics ===\\\\n\\\")\\n        print(f\\\"{'Domain':<18} {'N_items':>7} {'Mean_acc':>8} {'Subjects':>8}\\\")\\n        print(\\\"-\\\" * 55)\\n        for domain in domains_to_fit:\\n            indices = domain_indices[domain]\\n            if not indices:\\n                print(f\\\"{domain:<18} {'0':>7} {'N/A':>8} {len(DOMAIN_MAP[domain]):>8}\\\")\\n                continue\\n            domain_resp = full_responses[:, indices]\\n            acc = domain_resp.mean()\\n            print(f\\\"{domain:<18} {len(indices):>7} {acc:>8.4f} {len(DOMAIN_MAP[domain]):>8}\\\")\\n        print(f\\\"\\\\nTotal models: {full_responses.shape[0]}\\\")\\n        print(f\\\"Dosages: {dosages.tolist()}\\\")\\n        print(f\\\"Stan model: {MODEL_TYPE} ({STAN_FILE})\\\")\\n        print(f\\\"MCMC: {args.chains} chains x {args.warmup}w + {args.samples}s, \\\"\\n              f\\\"adapt_delta={args.adapt_delta}\\\")\\n\\n        # Rough time estimate: ~10-30s per 100 items with 8 models, 4 chains\\n        total_time = 0\\n        for domain in domains_to_fit:\\n            n = min(len(domain_indices[domain]), MAX_ITEMS)\\n            # Empirical: ~0.05-0.1s per item per chain\\n            est = n * 0.08 * args.chains\\n            total_time += est\\n            print(f\\\"  {domain}: ~{est:.0f}s estimated\\\")\\n        print(f\\\"\\\\nTotal estimated time: ~{total_time:.0f}s ({total_time/60:.1f} min)\\\")\\n        return\\n\\n    # Step 3: Fit per-domain IRT\\n    args_dict = {\\n        \\\"chains\\\": args.chains,\\n        \\\"warmup\\\": args.warmup,\\n        \\\"samples\\\": args.samples,\\n        \\\"adapt_delta\\\": args.adapt_delta,\\n        \\\"max_treedepth\\\": args.max_treedepth,\\n        \\\"seed\\\": args.seed,\\n    }\\n\\n    all_results = {}\\n    for domain in domains_to_fit:\\n        indices = domain_indices[domain]\\n        if len(indices) < 10:\\n            log.warning(\\\"Skipping %s: only %d items\\\", domain, len(indices))\\n            continue\\n\\n        log.info(\\\"=\\\" * 50)\\n        log.info(\\\"Fitting domain: %s (%d items)\\\", domain, len(indices))\\n        log.info(\\\"=\\\" * 50)\\n\\n        domain_responses = full_responses[:, indices]\\n        result = fit_domain(domain, domain_responses, dosages, args_dict, output_dir)\\n        all_results[domain] = result\\n\\n        g = result[\\\"gamma\\\"]\\n        d = result[\\\"diagnostics\\\"]\\n        log.info(\\\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d, time=%.0fs\\\",\\n                 domain, g[\\\"mean\\\"], g[\\\"q025\\\"], g[\\\"q975\\\"],\\n                 d.get(\\\"max_rhat\\\", 0), d.get(\\\"min_ess\\\", 0),\\n                 d.get(\\\"divergent_count\\\", 0), result[\\\"fit_time_sec\\\"])\\n\\n    # Step 4: Summary\\n    if all_results:\\n        print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n        generate_summary_table(all_results, output_dir)\\n\\n        with open(output_dir / \\\"all_domain_results.json\\\", \\\"w\\\") as f:\\n            json.dump(all_results, f, indent=2)\\n\\n        log.info(\\\"All results saved to %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T06:36:32.016Z_
+
+<details><summary>↩ Tool result · `toolu_011VRwgBFtpe47zgrEmFezcA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"// 2PL + gamma contamination parameter\\n// P(y_ij = 1) = inv_logit(a_j * (theta_i - b_j) + gamma * exposure_ij)\\n// No guessing (c) or upper asymptote (d) parameters\\n\\ndata {\\n  int&lt;lower=1> N_models;\\n  int&lt;lower=1> N_items;\\n  array[N_models, N_items] int&lt;lower=0, upper=1> y;\\n  matrix[N_models, N_items] exposure;\\n}\\n\\nparameters {\\n  vector[N_models] theta;\\n  vector&lt;lower=0>[N_items] a;\\n  vector[N_items] b;\\n  real gamma;\\n}\\n\\nmodel {\\n  theta ~ std_normal();\\n  a ~ lognormal(0, 0.5);\\n  b ~ std_normal();\\n  gamma ~ std_normal();\\n\\n  for (i in 1:N_models) {\\n    for (j in 1:N_items) {\\n      real eta = a[j] * (theta[i] - b[j]) + gamma * exposure[i, j];\\n      y[i, j] ~ bernoulli_logit(eta);\\n    }\\n  }\\n}\\n\\ngenerated quantities {\\n  array[N_models] real calibrated_score;\\n  for (i in 1:N_models) {\\n    real total = 0.0;\\n    for (j in 1:N_items) {\\n      real eta_clean = a[j] * (theta[i] - b[j]);\\n      total += inv_logit(eta_clean);\\n    }\\n    calibrated_score[i] = total / N_items;\\n  }\\n\\n  vector[N_models * N_items] log_lik;\\n  {\\n    int idx = 0;\\n    for (i in 1:N_models) {\\n      for (j in 1:N_items) {\\n        idx += 1;\\n        real eta = a[j] * (theta[i] - b[j]) + gamma * exposure[i, j];\\n        log_lik[idx] = bernoulli_logit_lpmf(y[i, j] | eta);\\n      }\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "36f020e4-7017-4236-b736-e667d861a825",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"// 2PL + gamma contamination parameter\\\\n// P(y_ij = 1) = inv_logit(a_j * (theta_i - b_j) + gamma * exposure_ij)\\\\n// No guessing (c) or upper asymptote (d) parameters\\\\n\\\\ndata {\\\\n  int&lt;lower=1> N_models;\\\\n  int&lt;lower=1> N_items;\\\\n  array[N_models, N_items] int&lt;lower=0, upper=1> y;\\\\n  matrix[N_models, N_items] exposure;\\\\n}\\\\n\\\\nparameters {\\\\n  vector[N_models] theta;\\\\n  vector&lt;lower=0>[N_items] a;\\\\n  vector[N_items] b;\\\\n  real gamma;\\\\n}\\\\n\\\\nmodel {\\\\n  theta ~ std_normal();\\\\n  a ~ lognormal(0, 0.5);\\\\n  b ~ std_normal();\\\\n  gamma ~ std_normal();\\\\n\\\\n  for (i in 1:N_models) {\\\\n    for (j in 1:N_items) {\\\\n      real eta = a[j] * (theta[i] - b[j]) + gamma * exposure[i, j];\\\\n      y[i, j] ~ bernoulli_logit(eta);\\\\n    }\\\\n  }\\\\n}\\\\n\\\\ngenerated quantities {\\\\n  array[N_models] real calibrated_score;\\\\n  for (i in 1:N_models) {\\\\n    real total = 0.0;\\\\n    for (j in 1:N_items) {\\\\n      real eta_clean = a[j] * (theta[i] - b[j]);\\\\n      total += inv_logit(eta_clean);\\\\n    }\\\\n    calibrated_score[i] = total / N_items;\\\\n  }\\\\n\\\\n  vector[N_models * N_items] log_lik;\\\\n  {\\\\n    int idx = 0;\\\\n    for (i in 1:N_models) {\\\\n      for (j in 1:N_items) {\\\\n        idx += 1;\\\\n        real eta = a[j] * (theta[i] - b[j]) + gamma * exposure[i, j];\\\\n        log_lik[idx] = bernoulli_logit_lpmf(y[i, j] | eta);\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"// 2PL + gamma contamination parameter\\n// P(y_ij = 1) = inv_logit(a_j * (theta_i - b_j) + gamma * exposure_ij)\\n// No guessing (c) or upper asymptote (d) parameters\\n\\ndata {\\n  int&lt;lower=1> N_models;\\n  int&lt;lower=1> N_items;\\n  array[N_models, N_items] int&lt;lower=0, upper=1> y;\\n  matrix[N_models, N_items] exposure;\\n}\\n\\nparameters {\\n  vector[N_models] theta;\\n  vector&lt;lower=0>[N_items] a;\\n  vector[N_items] b;\\n  real gamma;\\n}\\n\\nmodel {\\n  theta ~ std_normal();\\n  a ~ lognormal(0, 0.5);\\n  b ~ std_normal();\\n  gamma ~ std_normal();\\n\\n  for (i in 1:N_models) {\\n    for (j in 1:N_items) {\\n      real eta = a[j] * (theta[i] - b[j]) + gamma * exposure[i, j];\\n      y[i, j] ~ bernoulli_logit(eta);\\n    }\\n  }\\n}\\n\\ngenerated quantities {\\n  array[N_models] real calibrated_score;\\n  for (i in 1:N_models) {\\n    real total = 0.0;\\n    for (j in 1:N_items) {\\n      real eta_clean = a[j] * (theta[i] - b[j]);\\n      total += inv_logit(eta_clean);\\n    }\\n    calibrated_score[i] = total / N_items;\\n  }\\n\\n  vector[N_models * N_items] log_lik;\\n  {\\n    int idx = 0;\\n    for (i in 1:N_models) {\\n      for (j in 1:N_items) {\\n        idx += 1;\\n        real eta = a[j] * (theta[i] - b[j]) + gamma * exposure[i, j];\\n        log_lik[idx] = bernoulli_logit_lpmf(y[i, j] | eta);\\n      }\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+Good. Now let me check the existing results directory and understand how models are filtered, and see the n24 variant too.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "c0fdc534-6618-4df3-b579-0308c48d2cf6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WL9u6cjMXqoYiwEFWBJcou",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4497,
+      "cache_read_input_tokens": 31491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4497
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QeMFqsq4c2GfRyDrePpEn8`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_n24.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "1206bb55-33e4-4734-a981-e758e773be14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WL9u6cjMXqoYiwEFWBJcou",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4497,
+      "cache_read_input_tokens": 31491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4497
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T06:36:37.663Z_
+
+<details><summary>↩ Tool result · `toolu_01QeMFqsq4c2GfRyDrePpEn8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"MMLU domain-stratified gamma analysis with all scales (0.5B+1.5B+3B) and RRF exposure.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, \\\"/root/contamcal-irt-calibration/exp006\\\")\\nfrom run_irt_calibration import (\\n    load_pooled_eval_results,\\n    prepare_stan_data,\\n    fit_stan_model,\\n    check_convergence,\\n    posterior_predictive_check,\\n    extract_results,\\n    STAN_MODELS,\\n)\\n\\nlog = logging.getLogger(__name__)\\n\\nDOMAIN_MAP = {\\n    \\\"STEM_Math\\\": [\\n        \\\"abstract_algebra\\\", \\\"college_mathematics\\\", \\\"elementary_mathematics\\\",\\n        \\\"high_school_mathematics\\\", \\\"high_school_statistics\\\", \\\"formal_logic\\\",\\n    ],\\n    \\\"STEM_Science\\\": [\\n        \\\"astronomy\\\", \\\"college_biology\\\", \\\"college_chemistry\\\", \\\"college_physics\\\",\\n        \\\"conceptual_physics\\\", \\\"high_school_biology\\\", \\\"high_school_chemistry\\\",\\n        \\\"high_school_physics\\\",\\n    ],\\n    \\\"STEM_CS_Eng\\\": [\\n        \\\"college_computer_science\\\", \\\"computer_security\\\", \\\"electrical_engineering\\\",\\n        \\\"high_school_computer_science\\\", \\\"machine_learning\\\",\\n    ],\\n    \\\"Medical\\\": [\\n        \\\"anatomy\\\", \\\"clinical_knowledge\\\", \\\"college_medicine\\\", \\\"human_aging\\\",\\n        \\\"medical_genetics\\\", \\\"nutrition\\\", \\\"professional_medicine\\\", \\\"virology\\\",\\n    ],\\n    \\\"Humanities\\\": [\\n        \\\"high_school_european_history\\\", \\\"high_school_us_history\\\",\\n        \\\"high_school_world_history\\\", \\\"logical_fallacies\\\", \\\"moral_disputes\\\",\\n        \\\"moral_scenarios\\\", \\\"philosophy\\\", \\\"prehistory\\\", \\\"world_religions\\\",\\n    ],\\n    \\\"Social_Sciences\\\": [\\n        \\\"econometrics\\\", \\\"high_school_geography\\\",\\n        \\\"high_school_government_and_politics\\\", \\\"high_school_macroeconomics\\\",\\n        \\\"high_school_microeconomics\\\", \\\"high_school_psychology\\\",\\n        \\\"human_sexuality\\\", \\\"professional_psychology\\\", \\\"public_relations\\\",\\n        \\\"security_studies\\\", \\\"sociology\\\", \\\"us_foreign_policy\\\",\\n    ],\\n    \\\"Business_Law\\\": [\\n        \\\"business_ethics\\\", \\\"international_law\\\", \\\"jurisprudence\\\", \\\"management\\\",\\n        \\\"marketing\\\", \\\"professional_accounting\\\", \\\"professional_law\\\",\\n    ],\\n    \\\"Other\\\": [\\n        \\\"global_facts\\\", \\\"miscellaneous\\\",\\n    ],\\n}\\n\\nEVAL_DIR = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\nMMLU_ARROW = \\\"/root/autodl-tmp/.hf_cache/cais___mmlu/all/0.0.0/c30699e8356da336a370243923dbaf21066bb9fe/mmlu-test.arrow\\\"\\nRRF_PATH = \\\"/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24\\\"\\nMODEL_TYPE = \\\"2pl_gamma\\\"\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\nMAX_ITEMS = 2000\\n\\n\\ndef strip_aligned(dirname):\\n    return re.sub(r'(_para)?(_aligned)?$', '', dirname)\\n\\n\\ndef build_subject_index_map(arrow_path):\\n    import pyarrow as pa\\n    reader = pa.ipc.open_stream(arrow_path)\\n    table = reader.read_all()\\n    return table.column(\\\"subject\\\").to_pylist()\\n\\n\\ndef build_domain_col_indices(subject_list, n_items):\\n    \\\"\\\"\\\"Map each domain to column indices (0..n_items-1) in the response matrix.\\\"\\\"\\\"\\n    subj_to_domain = {}\\n    for domain, subjects in DOMAIN_MAP.items():\\n        for s in subjects:\\n            subj_to_domain[s] = domain\\n\\n    domain_indices = {d: [] for d in DOMAIN_MAP}\\n    for i in range(min(len(subject_list), n_items)):\\n        domain = subj_to_domain.get(subject_list[i])\\n        if domain:\\n            domain_indices[domain].append(i)\\n    return domain_indices\\n\\n\\ndef fit_domain(domain_name, responses, exposure, args_dict, output_dir):\\n    \\\"\\\"\\\"Fit 2PL+gamma for a single MMLU domain.\\\"\\\"\\\"\\n    n_models, n_items = responses.shape\\n    original_n_items = n_items\\n    subsampled = False\\n\\n    if n_items > MAX_ITEMS:\\n        np.random.seed(42)\\n        idx = np.sort(np.random.choice(n_items, MAX_ITEMS, replace=False))\\n        responses = responses[:, idx]\\n        exposure = exposure[:, idx]\\n        n_items = MAX_ITEMS\\n        subsampled = True\\n        log.info(\\\"[%s] Subsampled: %d -> %d items\\\", domain_name, original_n_items, n_items)\\n\\n    stan_data = prepare_stan_data(responses, exposure, MODEL_TYPE)\\n    fit, elapsed = fi\\n\\n... [截断: 输出过长，省略 4191 字符] ...\\n\\nxist_ok=True)\\n\\n    # Load RRF exposure\\n    log.info(\\\"Loading RRF exposure from %s\\\", args.rrf_path)\\n    with open(args.rrf_path) as f:\\n        rrf_data = json.load(f)\\n\\n    # Load all scales\\n    scales = [\\\"0.5B\\\", \\\"1.5B\\\", \\\"3B\\\"]\\n    log.info(\\\"Loading pooled eval results: scales=%s\\\", scales)\\n    data = load_pooled_eval_results(\\n        args.eval_dir, scales, benchmarks=[\\\"mmlu\\\"],\\n        skip_para=not args.include_para, aligned_only=True,\\n    )\\n\\n    mmlu = data[\\\"benchmarks\\\"][\\\"mmlu\\\"]\\n    full_responses = mmlu[\\\"responses\\\"]\\n    valid_mask = mmlu[\\\"valid_mask\\\"]\\n    n_total_items = mmlu[\\\"n_items\\\"]\\n    models = data[\\\"models\\\"]\\n    dosages = data[\\\"dosages\\\"]\\n\\n    # Filter to models with RRF entries\\n    keep_idx = []\\n    for i, m in enumerate(models):\\n        if not valid_mask[i]:\\n            continue\\n        key = strip_aligned(m[\\\"dirname\\\"])\\n        if key in rrf_data and \\\"mmlu\\\" in rrf_data[key]:\\n            keep_idx.append(i)\\n        else:\\n            log.info(\\\"No RRF entry for %s, skipping\\\", m[\\\"dirname\\\"])\\n\\n    keep_idx = np.array(keep_idx)\\n    models = [models[i] for i in keep_idx]\\n    dosages = dosages[keep_idx]\\n    full_responses = full_responses[keep_idx]\\n\\n    log.info(\\\"After RRF filter: %d models x %d items\\\", len(models), n_total_items)\\n    for m in models:\\n        log.info(\\\"  %s (scale=%s, dosage=%d)\\\", m[\\\"dirname\\\"], m.get(\\\"scale\\\"), m[\\\"dosage\\\"])\\n\\n    # Build RRF exposure matrix (N_models x N_items)\\n    rrf_exposure = np.zeros((len(models), n_total_items), dtype=float)\\n    for i, m in enumerate(models):\\n        key = strip_aligned(m[\\\"dirname\\\"])\\n        scores = rrf_data[key][\\\"mmlu\\\"][\\\"exposure_scores\\\"]\\n        rrf_exposure[i, :] = scores[:n_total_items]\\n\\n    # Build domain indices from MMLU arrow\\n    subject_list = build_subject_index_map(args.mmlu_arrow)\\n    domain_indices = build_domain_col_indices(subject_list, n_total_items)\\n\\n    domains_to_fit = args.domains if args.domains else list(DOMAIN_MAP.keys())\\n\\n    if args.dry_run:\\n        print(f\\\"\\\\n=== DRY RUN: N_models={len(models)}, N_items={n_total_items} ===\\\\n\\\")\\n        print(f\\\"{'Domain':<18} {'N_items':>7} {'Mean_acc':>8}\\\")\\n        print(\\\"-\\\" * 40)\\n        for domain in domains_to_fit:\\n            idx = domain_indices[domain]\\n            if not idx:\\n                print(f\\\"{domain:<18} {'0':>7} {'N/A':>8}\\\")\\n                continue\\n            acc = full_responses[:, idx].mean()\\n            print(f\\\"{domain:<18} {len(idx):>7} {acc:>8.4f}\\\")\\n        print(f\\\"\\\\nModels ({len(models)}):\\\")\\n        for m in models:\\n            print(f\\\"  {m['dirname']} (scale={m.get('scale')}, d={m['dosage']})\\\")\\n        return\\n\\n    # Fit per-domain\\n    args_dict = {\\n        \\\"chains\\\": args.chains, \\\"warmup\\\": args.warmup,\\n        \\\"samples\\\": args.samples, \\\"adapt_delta\\\": args.adapt_delta,\\n        \\\"max_treedepth\\\": args.max_treedepth, \\\"seed\\\": args.seed,\\n    }\\n\\n    all_results = {}\\n    for domain in domains_to_fit:\\n        idx = domain_indices[domain]\\n        if len(idx) < 10:\\n            log.warning(\\\"Skipping %s: only %d items\\\", domain, len(idx))\\n            continue\\n\\n        log.info(\\\"=\\\" * 50)\\n        log.info(\\\"Fitting domain: %s (%d items)\\\", domain, len(idx))\\n\\n        domain_resp = full_responses[:, idx]\\n        domain_exp = rrf_exposure[:, idx]\\n\\n        result = fit_domain(domain, domain_resp, domain_exp, args_dict, output_dir)\\n        all_results[domain] = result\\n\\n        g = result[\\\"gamma\\\"]\\n        d = result[\\\"diagnostics\\\"]\\n        log.info(\\\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d, time=%.0fs\\\",\\n                 domain, g[\\\"mean\\\"], g[\\\"q025\\\"], g[\\\"q975\\\"],\\n                 d.get(\\\"max_rhat\\\", 0), d.get(\\\"min_ess\\\", 0),\\n                 d.get(\\\"divergent_count\\\", 0), result[\\\"fit_time_sec\\\"])\\n\\n    if all_results:\\n        print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n        generate_summary(all_results, output_dir, len(models))\\n        with open(output_dir / \\\"all_domain_results.json\\\", \\\"w\\\") as f:\\n            json.dump(all_results, f, indent=2)\\n        log.info(\\\"Done. Results in %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "62ce71d3-0d2b-459b-8a2a-3e3fe0037d0e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"MMLU domain-stratified gamma analysis with all scales (0.5B+1.5B+3B) and RRF exposure.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/contamcal-irt-calibration/exp006\\\\\\\")\\\\nfrom run_irt_calibration import (\\\\n    load_pooled_eval_results,\\\\n    prepare_stan_data,\\\\n    fit_stan_model,\\\\n    check_convergence,\\\\n    posterior_predictive_check,\\\\n    extract_results,\\\\n    STAN_MODELS,\\\\n)\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nDOMAIN_MAP = {\\\\n    \\\\\\\"STEM_Math\\\\\\\": [\\\\n        \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"college_mathematics\\\\\\\", \\\\\\\"elementary_mathematics\\\\\\\",\\\\n        \\\\\\\"high_school_mathematics\\\\\\\", \\\\\\\"high_school_statistics\\\\\\\", \\\\\\\"formal_logic\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"STEM_Science\\\\\\\": [\\\\n        \\\\\\\"astronomy\\\\\\\", \\\\\\\"college_biology\\\\\\\", \\\\\\\"college_chemistry\\\\\\\", \\\\\\\"college_physics\\\\\\\",\\\\n        \\\\\\\"conceptual_physics\\\\\\\", \\\\\\\"high_school_biology\\\\\\\", \\\\\\\"high_school_chemistry\\\\\\\",\\\\n        \\\\\\\"high_school_physics\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"STEM_CS_Eng\\\\\\\": [\\\\n        \\\\\\\"college_computer_science\\\\\\\", \\\\\\\"computer_security\\\\\\\", \\\\\\\"electrical_engineering\\\\\\\",\\\\n        \\\\\\\"high_school_computer_science\\\\\\\", \\\\\\\"machine_learning\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"Medical\\\\\\\": [\\\\n        \\\\\\\"anatomy\\\\\\\", \\\\\\\"clinical_knowledge\\\\\\\", \\\\\\\"college_medicine\\\\\\\", \\\\\\\"human_aging\\\\\\\",\\\\n        \\\\\\\"medical_genetics\\\\\\\", \\\\\\\"nutrition\\\\\\\", \\\\\\\"professional_medicine\\\\\\\", \\\\\\\"virology\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"Humanities\\\\\\\": [\\\\n        \\\\\\\"high_school_european_history\\\\\\\", \\\\\\\"high_school_us_history\\\\\\\",\\\\n        \\\\\\\"high_school_world_history\\\\\\\", \\\\\\\"logical_fallacies\\\\\\\", \\\\\\\"moral_disputes\\\\\\\",\\\\n        \\\\\\\"moral_scenarios\\\\\\\", \\\\\\\"philosophy\\\\\\\", \\\\\\\"prehistory\\\\\\\", \\\\\\\"world_religions\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"Social_Sciences\\\\\\\": [\\\\n        \\\\\\\"econometrics\\\\\\\", \\\\\\\"high_school_geography\\\\\\\",\\\\n        \\\\\\\"high_school_government_and_politics\\\\\\\", \\\\\\\"high_school_macroeconomics\\\\\\\",\\\\n        \\\\\\\"high_school_microeconomics\\\\\\\", \\\\\\\"high_school_psychology\\\\\\\",\\\\n        \\\\\\\"human_sexuality\\\\\\\", \\\\\\\"professional_psychology\\\\\\\", \\\\\\\"public_relations\\\\\\\",\\\\n        \\\\\\\"security_studies\\\\\\\", \\\\\\\"sociology\\\\\\\", \\\\\\\"us_foreign_policy\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"Business_Law\\\\\\\": [\\\\n        \\\\\\\"business_ethics\\\\\\\", \\\\\\\"international_law\\\\\\\", \\\\\\\"jurisprudence\\\\\\\", \\\\\\\"management\\\\\\\",\\\\n        \\\\\\\"marketing\\\\\\\", \\\\\\\"professional_accounting\\\\\\\", \\\\\\\"professional_law\\\\\\\",\\\\n    ],\\\\n    \\\\\\\"Other\\\\\\\": [\\\\n        \\\\\\\"global_facts\\\\\\\", \\\\\\\"miscellaneous\\\\\\\",\\\\n    ],\\\\n}\\\\n\\\\nEVAL_DIR = \\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\"\\\\nMMLU_ARROW = \\\\\\\"/root/autodl-tmp/.hf_cache/cais___mmlu/all/0.0.0/c30699e8356da336a370243923dbaf21066bb9fe/mmlu-test.arrow\\\\\\\"\\\\nRRF_PATH = \\\\\\\"/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\\\\\\\"\\\\nOUTPUT_DIR = \\\\\\\"/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24\\\\\\\"\\\\nMODEL_TYPE = \\\\\\\"2pl_gamma\\\\\\\"\\\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\\\nMAX_ITEMS = 2000\\\\n\\\\n\\\\ndef strip_aligned(dirname):\\\\n    return re.sub(r'(_para)?(_aligned)?$', '', dirname)\\\\n\\\\n\\\\ndef build_subject_index_map(arrow_path):\\\\n    import pyarrow as pa\\\\n    reader = pa.ipc.open_stream(arrow_path)\\\\n    table = reader.read_all()\\\\n    return table.column(\\\\\\\"subject\\\\\\\").to_pylist()\\\\n\\\\n\\\\ndef build_domain_col_indices(subject_list, n_items):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Map each domain to column indices (0..n_items-1) in the response matrix.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    subj_to_domain = {}\\\\n    for domain, subjects in DOMAIN_MAP.items():\\\\n        for s in subjects:\\\\n            subj_to_domain[s] = domain\\\\n\\\\n    domain_indices = {d: [] for d in DOMAIN_MAP}\\\\n    for i in range(min(len(subject_list), n_items)):\\\\n        domain = subj_to_domain.get(subject_list[i])\\\\n        if domain:\\\\n            domain_indices[domain].append(i)\\\\n    return domain_indices\\\\n\\\\n\\\\ndef fit_domain(domain_name, responses, exposure, args_dict, output_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Fit 2PL+gamma for a single MMLU domain.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_models, n_items = responses.shape\\\\n    original_n_items = n_items\\\\n    subsampled = False\\\\n\\\\n    if n_items > MAX_ITEMS:\\\\n        np.random.seed(42)\\\\n        idx = np.sort(np.random.choice(n_items, MAX_ITEMS, replace=False))\\\\n        responses = responses[:, idx]\\\\n        exposure = exposure[:, idx]\\\\n        n_items = MAX_ITEMS\\\\n        subsampled = True\\\\n        log.info(\\\\\\\"[%s] Subsampled: %d -> %d items\\\\\\\", domain_name, original_n_items, n_items)\\\\n\\\\n    stan_data = prepare_stan_data(responses, exposure, MODEL_TYPE)\\\\n    fit, elapsed = fi\\\\n\\\\n... [截断: 输出过长，省略 4191 字符] ...\\\\n\\\\nxist_ok=True)\\\\n\\\\n    # Load RRF exposure\\\\n    log.info(\\\\\\\"Loading RRF exposure from %s\\\\\\\", args.rrf_path)\\\\n    with open(args.rrf_path) as f:\\\\n        rrf_data = json.load(f)\\\\n\\\\n    # Load all scales\\\\n    scales = [\\\\\\\"0.5B\\\\\\\", \\\\\\\"1.5B\\\\\\\", \\\\\\\"3B\\\\\\\"]\\\\n    log.info(\\\\\\\"Loading pooled eval results: scales=%s\\\\\\\", scales)\\\\n    data = load_pooled_eval_results(\\\\n        args.eval_dir, scales, benchmarks=[\\\\\\\"mmlu\\\\\\\"],\\\\n        skip_para=not args.include_para, aligned_only=True,\\\\n    )\\\\n\\\\n    mmlu = data[\\\\\\\"benchmarks\\\\\\\"][\\\\\\\"mmlu\\\\\\\"]\\\\n    full_responses = mmlu[\\\\\\\"responses\\\\\\\"]\\\\n    valid_mask = mmlu[\\\\\\\"valid_mask\\\\\\\"]\\\\n    n_total_items = mmlu[\\\\\\\"n_items\\\\\\\"]\\\\n    models = data[\\\\\\\"models\\\\\\\"]\\\\n    dosages = data[\\\\\\\"dosages\\\\\\\"]\\\\n\\\\n    # Filter to models with RRF entries\\\\n    keep_idx = []\\\\n    for i, m in enumerate(models):\\\\n        if not valid_mask[i]:\\\\n            continue\\\\n        key = strip_aligned(m[\\\\\\\"dirname\\\\\\\"])\\\\n        if key in rrf_data and \\\\\\\"mmlu\\\\\\\" in rrf_data[key]:\\\\n            keep_idx.append(i)\\\\n        else:\\\\n            log.info(\\\\\\\"No RRF entry for %s, skipping\\\\\\\", m[\\\\\\\"dirname\\\\\\\"])\\\\n\\\\n    keep_idx = np.array(keep_idx)\\\\n    models = [models[i] for i in keep_idx]\\\\n    dosages = dosages[keep_idx]\\\\n    full_responses = full_responses[keep_idx]\\\\n\\\\n    log.info(\\\\\\\"After RRF filter: %d models x %d items\\\\\\\", len(models), n_total_items)\\\\n    for m in models:\\\\n        log.info(\\\\\\\"  %s (scale=%s, dosage=%d)\\\\\\\", m[\\\\\\\"dirname\\\\\\\"], m.get(\\\\\\\"scale\\\\\\\"), m[\\\\\\\"dosage\\\\\\\"])\\\\n\\\\n    # Build RRF exposure matrix (N_models x N_items)\\\\n    rrf_exposure = np.zeros((len(models), n_total_items), dtype=float)\\\\n    for i, m in enumerate(models):\\\\n        key = strip_aligned(m[\\\\\\\"dirname\\\\\\\"])\\\\n        scores = rrf_data[key][\\\\\\\"mmlu\\\\\\\"][\\\\\\\"exposure_scores\\\\\\\"]\\\\n        rrf_exposure[i, :] = scores[:n_total_items]\\\\n\\\\n    # Build domain indices from MMLU arrow\\\\n    subject_list = build_subject_index_map(args.mmlu_arrow)\\\\n    domain_indices = build_domain_col_indices(subject_list, n_total_items)\\\\n\\\\n    domains_to_fit = args.domains if args.domains else list(DOMAIN_MAP.keys())\\\\n\\\\n    if args.dry_run:\\\\n        print(f\\\\\\\"\\\\\\\\n=== DRY RUN: N_models={len(models)}, N_items={n_total_items} ===\\\\\\\\n\\\\\\\")\\\\n        print(f\\\\\\\"{'Domain':<18} {'N_items':>7} {'Mean_acc':>8}\\\\\\\")\\\\n        print(\\\\\\\"-\\\\\\\" * 40)\\\\n        for domain in domains_to_fit:\\\\n            idx = domain_indices[domain]\\\\n            if not idx:\\\\n                print(f\\\\\\\"{domain:<18} {'0':>7} {'N/A':>8}\\\\\\\")\\\\n                continue\\\\n            acc = full_responses[:, idx].mean()\\\\n            print(f\\\\\\\"{domain:<18} {len(idx):>7} {acc:>8.4f}\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\nModels ({len(models)}):\\\\\\\")\\\\n        for m in models:\\\\n            print(f\\\\\\\"  {m['dirname']} (scale={m.get('scale')}, d={m['dosage']})\\\\\\\")\\\\n        return\\\\n\\\\n    # Fit per-domain\\\\n    args_dict = {\\\\n        \\\\\\\"chains\\\\\\\": args.chains, \\\\\\\"warmup\\\\\\\": args.warmup,\\\\n        \\\\\\\"samples\\\\\\\": args.samples, \\\\\\\"adapt_delta\\\\\\\": args.adapt_delta,\\\\n        \\\\\\\"max_treedepth\\\\\\\": args.max_treedepth, \\\\\\\"seed\\\\\\\": args.seed,\\\\n    }\\\\n\\\\n    all_results = {}\\\\n    for domain in domains_to_fit:\\\\n        idx = domain_indices[domain]\\\\n        if len(idx) < 10:\\\\n            log.warning(\\\\\\\"Skipping %s: only %d items\\\\\\\", domain, len(idx))\\\\n            continue\\\\n\\\\n        log.info(\\\\\\\"=\\\\\\\" * 50)\\\\n        log.info(\\\\\\\"Fitting domain: %s (%d items)\\\\\\\", domain, len(idx))\\\\n\\\\n        domain_resp = full_responses[:, idx]\\\\n        domain_exp = rrf_exposure[:, idx]\\\\n\\\\n        result = fit_domain(domain, domain_resp, domain_exp, args_dict, output_dir)\\\\n        all_results[domain] = result\\\\n\\\\n        g = result[\\\\\\\"gamma\\\\\\\"]\\\\n        d = result[\\\\\\\"diagnostics\\\\\\\"]\\\\n        log.info(\\\\\\\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d, time=%.0fs\\\\\\\",\\\\n                 domain, g[\\\\\\\"mean\\\\\\\"], g[\\\\\\\"q025\\\\\\\"], g[\\\\\\\"q975\\\\\\\"],\\\\n                 d.get(\\\\\\\"max_rhat\\\\\\\", 0), d.get(\\\\\\\"min_ess\\\\\\\", 0),\\\\n                 d.get(\\\\\\\"divergent_count\\\\\\\", 0), result[\\\\\\\"fit_time_sec\\\\\\\"])\\\\n\\\\n    if all_results:\\\\n        print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n        generate_summary(all_results, output_dir, len(models))\\\\n        with open(output_dir / \\\\\\\"all_domain_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(all_results, f, indent=2)\\\\n        log.info(\\\\\\\"Done. Results in %s\\\\\\\", output_dir)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"MMLU domain-stratified gamma analysis with all scales (0.5B+1.5B+3B) and RRF exposure.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, \\\"/root/contamcal-irt-calibration/exp006\\\")\\nfrom run_irt_calibration import (\\n    load_pooled_eval_results,\\n    prepare_stan_data,\\n    fit_stan_model,\\n    check_convergence,\\n    posterior_predictive_check,\\n    extract_results,\\n    STAN_MODELS,\\n)\\n\\nlog = logging.getLogger(__name__)\\n\\nDOMAIN_MAP = {\\n    \\\"STEM_Math\\\": [\\n        \\\"abstract_algebra\\\", \\\"college_mathematics\\\", \\\"elementary_mathematics\\\",\\n        \\\"high_school_mathematics\\\", \\\"high_school_statistics\\\", \\\"formal_logic\\\",\\n    ],\\n    \\\"STEM_Science\\\": [\\n        \\\"astronomy\\\", \\\"college_biology\\\", \\\"college_chemistry\\\", \\\"college_physics\\\",\\n        \\\"conceptual_physics\\\", \\\"high_school_biology\\\", \\\"high_school_chemistry\\\",\\n        \\\"high_school_physics\\\",\\n    ],\\n    \\\"STEM_CS_Eng\\\": [\\n        \\\"college_computer_science\\\", \\\"computer_security\\\", \\\"electrical_engineering\\\",\\n        \\\"high_school_computer_science\\\", \\\"machine_learning\\\",\\n    ],\\n    \\\"Medical\\\": [\\n        \\\"anatomy\\\", \\\"clinical_knowledge\\\", \\\"college_medicine\\\", \\\"human_aging\\\",\\n        \\\"medical_genetics\\\", \\\"nutrition\\\", \\\"professional_medicine\\\", \\\"virology\\\",\\n    ],\\n    \\\"Humanities\\\": [\\n        \\\"high_school_european_history\\\", \\\"high_school_us_history\\\",\\n        \\\"high_school_world_history\\\", \\\"logical_fallacies\\\", \\\"moral_disputes\\\",\\n        \\\"moral_scenarios\\\", \\\"philosophy\\\", \\\"prehistory\\\", \\\"world_religions\\\",\\n    ],\\n    \\\"Social_Sciences\\\": [\\n        \\\"econometrics\\\", \\\"high_school_geography\\\",\\n        \\\"high_school_government_and_politics\\\", \\\"high_school_macroeconomics\\\",\\n        \\\"high_school_microeconomics\\\", \\\"high_school_psychology\\\",\\n        \\\"human_sexuality\\\", \\\"professional_psychology\\\", \\\"public_relations\\\",\\n        \\\"security_studies\\\", \\\"sociology\\\", \\\"us_foreign_policy\\\",\\n    ],\\n    \\\"Business_Law\\\": [\\n        \\\"business_ethics\\\", \\\"international_law\\\", \\\"jurisprudence\\\", \\\"management\\\",\\n        \\\"marketing\\\", \\\"professional_accounting\\\", \\\"professional_law\\\",\\n    ],\\n    \\\"Other\\\": [\\n        \\\"global_facts\\\", \\\"miscellaneous\\\",\\n    ],\\n}\\n\\nEVAL_DIR = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\nMMLU_ARROW = \\\"/root/autodl-tmp/.hf_cache/cais___mmlu/all/0.0.0/c30699e8356da336a370243923dbaf21066bb9fe/mmlu-test.arrow\\\"\\nRRF_PATH = \\\"/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24\\\"\\nMODEL_TYPE = \\\"2pl_gamma\\\"\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\nMAX_ITEMS = 2000\\n\\n\\ndef strip_aligned(dirname):\\n    return re.sub(r'(_para)?(_aligned)?$', '', dirname)\\n\\n\\ndef build_subject_index_map(arrow_path):\\n    import pyarrow as pa\\n    reader = pa.ipc.open_stream(arrow_path)\\n    table = reader.read_all()\\n    return table.column(\\\"subject\\\").to_pylist()\\n\\n\\ndef build_domain_col_indices(subject_list, n_items):\\n    \\\"\\\"\\\"Map each domain to column indices (0..n_items-1) in the response matrix.\\\"\\\"\\\"\\n    subj_to_domain = {}\\n    for domain, subjects in DOMAIN_MAP.items():\\n        for s in subjects:\\n            subj_to_domain[s] = domain\\n\\n    domain_indices = {d: [] for d in DOMAIN_MAP}\\n    for i in range(min(len(subject_list), n_items)):\\n        domain = subj_to_domain.get(subject_list[i])\\n        if domain:\\n            domain_indices[domain].append(i)\\n    return domain_indices\\n\\n\\ndef fit_domain(domain_name, responses, exposure, args_dict, output_dir):\\n    \\\"\\\"\\\"Fit 2PL+gamma for a single MMLU domain.\\\"\\\"\\\"\\n    n_models, n_items = responses.shape\\n    original_n_items = n_items\\n    subsampled = False\\n\\n    if n_items > MAX_ITEMS:\\n        np.random.seed(42)\\n        idx = np.sort(np.random.choice(n_items, MAX_ITEMS, replace=False))\\n        responses = responses[:, idx]\\n        exposure = exposure[:, idx]\\n        n_items = MAX_ITEMS\\n        subsampled = True\\n        log.info(\\\"[%s] Subsampled: %d -> %d items\\\", domain_name, original_n_items, n_items)\\n\\n    stan_data = prepare_stan_data(responses, exposure, MODEL_TYPE)\\n    fit, elapsed = fi\\n\\n... [截断: 输出过长，省略 4191 字符] ...\\n\\nxist_ok=True)\\n\\n    # Load RRF exposure\\n    log.info(\\\"Loading RRF exposure from %s\\\", args.rrf_path)\\n    with open(args.rrf_path) as f:\\n        rrf_data = json.load(f)\\n\\n    # Load all scales\\n    scales = [\\\"0.5B\\\", \\\"1.5B\\\", \\\"3B\\\"]\\n    log.info(\\\"Loading pooled eval results: scales=%s\\\", scales)\\n    data = load_pooled_eval_results(\\n        args.eval_dir, scales, benchmarks=[\\\"mmlu\\\"],\\n        skip_para=not args.include_para, aligned_only=True,\\n    )\\n\\n    mmlu = data[\\\"benchmarks\\\"][\\\"mmlu\\\"]\\n    full_responses = mmlu[\\\"responses\\\"]\\n    valid_mask = mmlu[\\\"valid_mask\\\"]\\n    n_total_items = mmlu[\\\"n_items\\\"]\\n    models = data[\\\"models\\\"]\\n    dosages = data[\\\"dosages\\\"]\\n\\n    # Filter to models with RRF entries\\n    keep_idx = []\\n    for i, m in enumerate(models):\\n        if not valid_mask[i]:\\n            continue\\n        key = strip_aligned(m[\\\"dirname\\\"])\\n        if key in rrf_data and \\\"mmlu\\\" in rrf_data[key]:\\n            keep_idx.append(i)\\n        else:\\n            log.info(\\\"No RRF entry for %s, skipping\\\", m[\\\"dirname\\\"])\\n\\n    keep_idx = np.array(keep_idx)\\n    models = [models[i] for i in keep_idx]\\n    dosages = dosages[keep_idx]\\n    full_responses = full_responses[keep_idx]\\n\\n    log.info(\\\"After RRF filter: %d models x %d items\\\", len(models), n_total_items)\\n    for m in models:\\n        log.info(\\\"  %s (scale=%s, dosage=%d)\\\", m[\\\"dirname\\\"], m.get(\\\"scale\\\"), m[\\\"dosage\\\"])\\n\\n    # Build RRF exposure matrix (N_models x N_items)\\n    rrf_exposure = np.zeros((len(models), n_total_items), dtype=float)\\n    for i, m in enumerate(models):\\n        key = strip_aligned(m[\\\"dirname\\\"])\\n        scores = rrf_data[key][\\\"mmlu\\\"][\\\"exposure_scores\\\"]\\n        rrf_exposure[i, :] = scores[:n_total_items]\\n\\n    # Build domain indices from MMLU arrow\\n    subject_list = build_subject_index_map(args.mmlu_arrow)\\n    domain_indices = build_domain_col_indices(subject_list, n_total_items)\\n\\n    domains_to_fit = args.domains if args.domains else list(DOMAIN_MAP.keys())\\n\\n    if args.dry_run:\\n        print(f\\\"\\\\n=== DRY RUN: N_models={len(models)}, N_items={n_total_items} ===\\\\n\\\")\\n        print(f\\\"{'Domain':<18} {'N_items':>7} {'Mean_acc':>8}\\\")\\n        print(\\\"-\\\" * 40)\\n        for domain in domains_to_fit:\\n            idx = domain_indices[domain]\\n            if not idx:\\n                print(f\\\"{domain:<18} {'0':>7} {'N/A':>8}\\\")\\n                continue\\n            acc = full_responses[:, idx].mean()\\n            print(f\\\"{domain:<18} {len(idx):>7} {acc:>8.4f}\\\")\\n        print(f\\\"\\\\nModels ({len(models)}):\\\")\\n        for m in models:\\n            print(f\\\"  {m['dirname']} (scale={m.get('scale')}, d={m['dosage']})\\\")\\n        return\\n\\n    # Fit per-domain\\n    args_dict = {\\n        \\\"chains\\\": args.chains, \\\"warmup\\\": args.warmup,\\n        \\\"samples\\\": args.samples, \\\"adapt_delta\\\": args.adapt_delta,\\n        \\\"max_treedepth\\\": args.max_treedepth, \\\"seed\\\": args.seed,\\n    }\\n\\n    all_results = {}\\n    for domain in domains_to_fit:\\n        idx = domain_indices[domain]\\n        if len(idx) < 10:\\n            log.warning(\\\"Skipping %s: only %d items\\\", domain, len(idx))\\n            continue\\n\\n        log.info(\\\"=\\\" * 50)\\n        log.info(\\\"Fitting domain: %s (%d items)\\\", domain, len(idx))\\n\\n        domain_resp = full_responses[:, idx]\\n        domain_exp = rrf_exposure[:, idx]\\n\\n        result = fit_domain(domain, domain_resp, domain_exp, args_dict, output_dir)\\n        all_results[domain] = result\\n\\n        g = result[\\\"gamma\\\"]\\n        d = result[\\\"diagnostics\\\"]\\n        log.info(\\\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d, time=%.0fs\\\",\\n                 domain, g[\\\"mean\\\"], g[\\\"q025\\\"], g[\\\"q975\\\"],\\n                 d.get(\\\"max_rhat\\\", 0), d.get(\\\"min_ess\\\", 0),\\n                 d.get(\\\"divergent_count\\\", 0), result[\\\"fit_time_sec\\\"])\\n\\n    if all_results:\\n        print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n        generate_summary(all_results, output_dir, len(models))\\n        with open(output_dir / \\\"all_domain_results.json\\\", \\\"w\\\") as f:\\n            json.dump(all_results, f, indent=2)\\n        log.info(\\\"Done. Results in %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BkU4yVpcWiwrXhkRLKkfoe`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp006/results_mmlu_domain_gamma/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "62e72afe-5051-4332-a9aa-1e8d1d02223d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WL9u6cjMXqoYiwEFWBJcou",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4497,
+      "cache_read_input_tokens": 31491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4497
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T06:36:38.166Z_
+
+<details><summary>↩ Tool result · `toolu_01BkU4yVpcWiwrXhkRLKkfoe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Business_Law\\nHumanities\\nMedical\\nOther\\nSTEM_CS_Eng\\nSTEM_Math\\nSTEM_Science\\nSocial_Sciences\\nall_domain_results.json\\nper_domain_gamma_summary.json\\nper_domain_gamma_summary.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "2d2526f1-676e-4a74-a343-3768587e0fb9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Business_Law\\\\nHumanities\\\\nMedical\\\\nOther\\\\nSTEM_CS_Eng\\\\nSTEM_Math\\\\nSTEM_Science\\\\nSocial_Sciences\\\\nall_domain_results.json\\\\nper_domain_gamma_summary.json\\\\nper_domain_gamma_summary.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Business_Law\\nHumanities\\nMedical\\nOther\\nSTEM_CS_Eng\\nSTEM_Math\\nSTEM_Science\\nSocial_Sciences\\nall_domain_results.json\\nper_domain_gamma_summary.json\\nper_domain_gamma_summary.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Let me check existing results for comparison and see `run_irt_calibration.py`'s `load_pooled_eval_results` to understand model filtering.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "d9920067-cd7a-4a22-b645-a04a394050de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AqCQfN7WZiKDNXAWZjjZeb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4031,
+      "cache_read_input_tokens": 35988,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4031
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XhgFqce7REiALfie5b83dB`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp006/results_mmlu_domain_gamma/per_domain_gamma_summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "d8c0a954-f38e-4b6c-9829-cce28251c522",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AqCQfN7WZiKDNXAWZjjZeb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4031,
+      "cache_read_input_tokens": 35988,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4031
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Rf8ULDzSgqMeHJtB7ehLjG`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "4653a071-ada2-4eb9-b8a8-ce402c3f134a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AqCQfN7WZiKDNXAWZjjZeb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4031,
+      "cache_read_input_tokens": 35988,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4031
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T06:36:43.398Z_
+
+<details><summary>↩ Tool result · `toolu_01XhgFqce7REiALfie5b83dB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"domain\\\": \\\"Other\\\",\\n    \\\"n_items\\\": 564,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.671,\\n    \\\"gamma_mean\\\": 1.3415,\\n    \\\"gamma_sd\\\": 0.3469,\\n    \\\"gamma_q025\\\": 0.6748,\\n    \\\"gamma_q975\\\": 2.0293,\\n    \\\"rhat\\\": 1.0075,\\n    \\\"min_ess\\\": 516.6,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.0,\\n    \\\"fit_time_sec\\\": 146.9\\n  },\\n  {\\n    \\\"domain\\\": \\\"Business_Law\\\",\\n    \\\"n_items\\\": 1047,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.5438,\\n    \\\"gamma_mean\\\": 0.6084,\\n    \\\"gamma_sd\\\": 0.2024,\\n    \\\"gamma_q025\\\": 0.2149,\\n    \\\"gamma_q975\\\": 1.0043,\\n    \\\"rhat\\\": 1.0072,\\n    \\\"min_ess\\\": 893.8,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.0027,\\n    \\\"fit_time_sec\\\": 339.2\\n  },\\n  {\\n    \\\"domain\\\": \\\"Humanities\\\",\\n    \\\"n_items\\\": 1024,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.5364,\\n    \\\"gamma_mean\\\": 0.4729,\\n    \\\"gamma_sd\\\": 0.1409,\\n    \\\"gamma_q025\\\": 0.2022,\\n    \\\"gamma_q975\\\": 0.7489,\\n    \\\"rhat\\\": 1.0062,\\n    \\\"min_ess\\\": 1394.1,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.0013,\\n    \\\"fit_time_sec\\\": 317.6\\n  },\\n  {\\n    \\\"domain\\\": \\\"STEM_Science\\\",\\n    \\\"n_items\\\": 792,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.6068,\\n    \\\"gamma_mean\\\": 0.3608,\\n    \\\"gamma_sd\\\": 0.2241,\\n    \\\"gamma_q025\\\": -0.0569,\\n    \\\"gamma_q975\\\": 0.8137,\\n    \\\"rhat\\\": 1.0083,\\n    \\\"min_ess\\\": 776.3,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.041,\\n    \\\"fit_time_sec\\\": 237.0\\n  },\\n  {\\n    \\\"domain\\\": \\\"STEM_CS_Eng\\\",\\n    \\\"n_items\\\": 269,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.5899,\\n    \\\"gamma_mean\\\": 0.2937,\\n    \\\"gamma_sd\\\": 0.4067,\\n    \\\"gamma_q025\\\": -0.496,\\n    \\\"gamma_q975\\\": 1.1223,\\n    \\\"rhat\\\": 1.0084,\\n    \\\"min_ess\\\": 281.6,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.2265,\\n    \\\"fit_time_sec\\\": 51.5\\n  },\\n  {\\n    \\\"domain\\\": \\\"Social_Sciences\\\",\\n    \\\"n_items\\\": 1481,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.7146,\\n    \\\"gamma_mean\\\": 0.2828,\\n    \\\"gamma_sd\\\": 0.1263,\\n    \\\"gamma_q025\\\": 0.0278,\\n    \\\"gamma_q975\\\": 0.524,\\n    \\\"rhat\\\": 1.0068,\\n    \\\"min_ess\\\": 1189.8,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.011,\\n    \\\"fit_time_sec\\\": 485.3\\n  },\\n  {\\n    \\\"domain\\\": \\\"Medical\\\",\\n    \\\"n_items\\\": 941,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.633,\\n    \\\"gamma_mean\\\": 0.2655,\\n    \\\"gamma_sd\\\": 0.1895,\\n    \\\"gamma_q025\\\": -0.1096,\\n    \\\"gamma_q975\\\": 0.6452,\\n    \\\"rhat\\\": 1.0071,\\n    \\\"min_ess\\\": 784.6,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.0735,\\n    \\\"fit_time_sec\\\": 290.2\\n  },\\n  {\\n    \\\"domain\\\": \\\"STEM_Math\\\",\\n    \\\"n_items\\\": 478,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.4181,\\n    \\\"gamma_mean\\\": -0.549,\\n    \\\"gamma_sd\\\": 0.342,\\n    \\\"gamma_q025\\\": -1.266,\\n    \\\"gamma_q975\\\": 0.093,\\n    \\\"rhat\\\": 1.0078,\\n    \\\"min_ess\\\": 347.1,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.9637,\\n    \\\"fit_time_sec\\\": 102.6\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "badd83bb-0105-46f2-b815-d1991f6d753f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"domain\\\\\\\": \\\\\\\"Other\\\\\\\",\\\\n    \\\\\\\"n_items\\\\\\\": 564,\\\\n    \\\\\\\"n_models\\\\\\\": 16,\\\\n    \\\\\\\"mean_acc\\\\\\\": 0.671,\\\\n    \\\\\\\"gamma_mean\\\\\\\": 1.3415,\\\\n    \\\\\\\"gamma_sd\\\\\\\": 0.3469,\\\\n    \\\\\\\"gamma_q025\\\\\\\": 0.6748,\\\\n    \\\\\\\"gamma_q975\\\\\\\": 2.0293,\\\\n    \\\\\\\"rhat\\\\\\\": 1.0075,\\\\n    \\\\\\\"min_ess\\\\\\\": 516.6,\\\\n    \\\\\\\"divergences\\\\\\\": 0,\\\\n    \\\\\\\"ppp\\\\\\\": 0.0,\\\\n    \\\\\\\"fit_time_sec\\\\\\\": 146.9\\\\n  },\\\\n  {\\\\n    \\\\\\\"domain\\\\\\\": \\\\\\\"Business_Law\\\\\\\",\\\\n    \\\\\\\"n_items\\\\\\\": 1047,\\\\n    \\\\\\\"n_models\\\\\\\": 16,\\\\n    \\\\\\\"mean_acc\\\\\\\": 0.5438,\\\\n    \\\\\\\"gamma_mean\\\\\\\": 0.6084,\\\\n    \\\\\\\"gamma_sd\\\\\\\": 0.2024,\\\\n    \\\\\\\"gamma_q025\\\\\\\": 0.2149,\\\\n    \\\\\\\"gamma_q975\\\\\\\": 1.0043,\\\\n    \\\\\\\"rhat\\\\\\\": 1.0072,\\\\n    \\\\\\\"min_ess\\\\\\\": 893.8,\\\\n    \\\\\\\"divergences\\\\\\\": 0,\\\\n    \\\\\\\"ppp\\\\\\\": 0.0027,\\\\n    \\\\\\\"fit_time_sec\\\\\\\": 339.2\\\\n  },\\\\n  {\\\\n    \\\\\\\"domain\\\\\\\": \\\\\\\"Humanities\\\\\\\",\\\\n    \\\\\\\"n_items\\\\\\\": 1024,\\\\n    \\\\\\\"n_models\\\\\\\": 16,\\\\n    \\\\\\\"mean_acc\\\\\\\": 0.5364,\\\\n    \\\\\\\"gamma_mean\\\\\\\": 0.4729,\\\\n    \\\\\\\"gamma_sd\\\\\\\": 0.1409,\\\\n    \\\\\\\"gamma_q025\\\\\\\": 0.2022,\\\\n    \\\\\\\"gamma_q975\\\\\\\": 0.7489,\\\\n    \\\\\\\"rhat\\\\\\\": 1.0062,\\\\n    \\\\\\\"min_ess\\\\\\\": 1394.1,\\\\n    \\\\\\\"divergences\\\\\\\": 0,\\\\n    \\\\\\\"ppp\\\\\\\": 0.0013,\\\\n    \\\\\\\"fit_time_sec\\\\\\\": 317.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"domain\\\\\\\": \\\\\\\"STEM_Science\\\\\\\",\\\\n    \\\\\\\"n_items\\\\\\\": 792,\\\\n    \\\\\\\"n_models\\\\\\\": 16,\\\\n    \\\\\\\"mean_acc\\\\\\\": 0.6068,\\\\n    \\\\\\\"gamma_mean\\\\\\\": 0.3608,\\\\n    \\\\\\\"gamma_sd\\\\\\\": 0.2241,\\\\n    \\\\\\\"gamma_q025\\\\\\\": -0.0569,\\\\n    \\\\\\\"gamma_q975\\\\\\\": 0.8137,\\\\n    \\\\\\\"rhat\\\\\\\": 1.0083,\\\\n    \\\\\\\"min_ess\\\\\\\": 776.3,\\\\n    \\\\\\\"divergences\\\\\\\": 0,\\\\n    \\\\\\\"ppp\\\\\\\": 0.041,\\\\n    \\\\\\\"fit_time_sec\\\\\\\": 237.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"domain\\\\\\\": \\\\\\\"STEM_CS_Eng\\\\\\\",\\\\n    \\\\\\\"n_items\\\\\\\": 269,\\\\n    \\\\\\\"n_models\\\\\\\": 16,\\\\n    \\\\\\\"mean_acc\\\\\\\": 0.5899,\\\\n    \\\\\\\"gamma_mean\\\\\\\": 0.2937,\\\\n    \\\\\\\"gamma_sd\\\\\\\": 0.4067,\\\\n    \\\\\\\"gamma_q025\\\\\\\": -0.496,\\\\n    \\\\\\\"gamma_q975\\\\\\\": 1.1223,\\\\n    \\\\\\\"rhat\\\\\\\": 1.0084,\\\\n    \\\\\\\"min_ess\\\\\\\": 281.6,\\\\n    \\\\\\\"divergences\\\\\\\": 0,\\\\n    \\\\\\\"ppp\\\\\\\": 0.2265,\\\\n    \\\\\\\"fit_time_sec\\\\\\\": 51.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"domain\\\\\\\": \\\\\\\"Social_Sciences\\\\\\\",\\\\n    \\\\\\\"n_items\\\\\\\": 1481,\\\\n    \\\\\\\"n_models\\\\\\\": 16,\\\\n    \\\\\\\"mean_acc\\\\\\\": 0.7146,\\\\n    \\\\\\\"gamma_mean\\\\\\\": 0.2828,\\\\n    \\\\\\\"gamma_sd\\\\\\\": 0.1263,\\\\n    \\\\\\\"gamma_q025\\\\\\\": 0.0278,\\\\n    \\\\\\\"gamma_q975\\\\\\\": 0.524,\\\\n    \\\\\\\"rhat\\\\\\\": 1.0068,\\\\n    \\\\\\\"min_ess\\\\\\\": 1189.8,\\\\n    \\\\\\\"divergences\\\\\\\": 0,\\\\n    \\\\\\\"ppp\\\\\\\": 0.011,\\\\n    \\\\\\\"fit_time_sec\\\\\\\": 485.3\\\\n  },\\\\n  {\\\\n    \\\\\\\"domain\\\\\\\": \\\\\\\"Medical\\\\\\\",\\\\n    \\\\\\\"n_items\\\\\\\": 941,\\\\n    \\\\\\\"n_models\\\\\\\": 16,\\\\n    \\\\\\\"mean_acc\\\\\\\": 0.633,\\\\n    \\\\\\\"gamma_mean\\\\\\\": 0.2655,\\\\n    \\\\\\\"gamma_sd\\\\\\\": 0.1895,\\\\n    \\\\\\\"gamma_q025\\\\\\\": -0.1096,\\\\n    \\\\\\\"gamma_q975\\\\\\\": 0.6452,\\\\n    \\\\\\\"rhat\\\\\\\": 1.0071,\\\\n    \\\\\\\"min_ess\\\\\\\": 784.6,\\\\n    \\\\\\\"divergences\\\\\\\": 0,\\\\n    \\\\\\\"ppp\\\\\\\": 0.0735,\\\\n    \\\\\\\"fit_time_sec\\\\\\\": 290.2\\\\n  },\\\\n  {\\\\n    \\\\\\\"domain\\\\\\\": \\\\\\\"STEM_Math\\\\\\\",\\\\n    \\\\\\\"n_items\\\\\\\": 478,\\\\n    \\\\\\\"n_models\\\\\\\": 16,\\\\n    \\\\\\\"mean_acc\\\\\\\": 0.4181,\\\\n    \\\\\\\"gamma_mean\\\\\\\": -0.549,\\\\n    \\\\\\\"gamma_sd\\\\\\\": 0.342,\\\\n    \\\\\\\"gamma_q025\\\\\\\": -1.266,\\\\n    \\\\\\\"gamma_q975\\\\\\\": 0.093,\\\\n    \\\\\\\"rhat\\\\\\\": 1.0078,\\\\n    \\\\\\\"min_ess\\\\\\\": 347.1,\\\\n    \\\\\\\"divergences\\\\\\\": 0,\\\\n    \\\\\\\"ppp\\\\\\\": 0.9637,\\\\n    \\\\\\\"fit_time_sec\\\\\\\": 102.6\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"domain\\\": \\\"Other\\\",\\n    \\\"n_items\\\": 564,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.671,\\n    \\\"gamma_mean\\\": 1.3415,\\n    \\\"gamma_sd\\\": 0.3469,\\n    \\\"gamma_q025\\\": 0.6748,\\n    \\\"gamma_q975\\\": 2.0293,\\n    \\\"rhat\\\": 1.0075,\\n    \\\"min_ess\\\": 516.6,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.0,\\n    \\\"fit_time_sec\\\": 146.9\\n  },\\n  {\\n    \\\"domain\\\": \\\"Business_Law\\\",\\n    \\\"n_items\\\": 1047,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.5438,\\n    \\\"gamma_mean\\\": 0.6084,\\n    \\\"gamma_sd\\\": 0.2024,\\n    \\\"gamma_q025\\\": 0.2149,\\n    \\\"gamma_q975\\\": 1.0043,\\n    \\\"rhat\\\": 1.0072,\\n    \\\"min_ess\\\": 893.8,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.0027,\\n    \\\"fit_time_sec\\\": 339.2\\n  },\\n  {\\n    \\\"domain\\\": \\\"Humanities\\\",\\n    \\\"n_items\\\": 1024,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.5364,\\n    \\\"gamma_mean\\\": 0.4729,\\n    \\\"gamma_sd\\\": 0.1409,\\n    \\\"gamma_q025\\\": 0.2022,\\n    \\\"gamma_q975\\\": 0.7489,\\n    \\\"rhat\\\": 1.0062,\\n    \\\"min_ess\\\": 1394.1,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.0013,\\n    \\\"fit_time_sec\\\": 317.6\\n  },\\n  {\\n    \\\"domain\\\": \\\"STEM_Science\\\",\\n    \\\"n_items\\\": 792,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.6068,\\n    \\\"gamma_mean\\\": 0.3608,\\n    \\\"gamma_sd\\\": 0.2241,\\n    \\\"gamma_q025\\\": -0.0569,\\n    \\\"gamma_q975\\\": 0.8137,\\n    \\\"rhat\\\": 1.0083,\\n    \\\"min_ess\\\": 776.3,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.041,\\n    \\\"fit_time_sec\\\": 237.0\\n  },\\n  {\\n    \\\"domain\\\": \\\"STEM_CS_Eng\\\",\\n    \\\"n_items\\\": 269,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.5899,\\n    \\\"gamma_mean\\\": 0.2937,\\n    \\\"gamma_sd\\\": 0.4067,\\n    \\\"gamma_q025\\\": -0.496,\\n    \\\"gamma_q975\\\": 1.1223,\\n    \\\"rhat\\\": 1.0084,\\n    \\\"min_ess\\\": 281.6,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.2265,\\n    \\\"fit_time_sec\\\": 51.5\\n  },\\n  {\\n    \\\"domain\\\": \\\"Social_Sciences\\\",\\n    \\\"n_items\\\": 1481,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.7146,\\n    \\\"gamma_mean\\\": 0.2828,\\n    \\\"gamma_sd\\\": 0.1263,\\n    \\\"gamma_q025\\\": 0.0278,\\n    \\\"gamma_q975\\\": 0.524,\\n    \\\"rhat\\\": 1.0068,\\n    \\\"min_ess\\\": 1189.8,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.011,\\n    \\\"fit_time_sec\\\": 485.3\\n  },\\n  {\\n    \\\"domain\\\": \\\"Medical\\\",\\n    \\\"n_items\\\": 941,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.633,\\n    \\\"gamma_mean\\\": 0.2655,\\n    \\\"gamma_sd\\\": 0.1895,\\n    \\\"gamma_q025\\\": -0.1096,\\n    \\\"gamma_q975\\\": 0.6452,\\n    \\\"rhat\\\": 1.0071,\\n    \\\"min_ess\\\": 784.6,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.0735,\\n    \\\"fit_time_sec\\\": 290.2\\n  },\\n  {\\n    \\\"domain\\\": \\\"STEM_Math\\\",\\n    \\\"n_items\\\": 478,\\n    \\\"n_models\\\": 16,\\n    \\\"mean_acc\\\": 0.4181,\\n    \\\"gamma_mean\\\": -0.549,\\n    \\\"gamma_sd\\\": 0.342,\\n    \\\"gamma_q025\\\": -1.266,\\n    \\\"gamma_q975\\\": 0.093,\\n    \\\"rhat\\\": 1.0078,\\n    \\\"min_ess\\\": 347.1,\\n    \\\"divergences\\\": 0,\\n    \\\"ppp\\\": 0.9637,\\n    \\\"fit_time_sec\\\": 102.6\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T06:36:43.882Z_
+
+<details><summary>↩ Tool result · `toolu_01Rf8ULDzSgqMeHJtB7ehLjG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Business_Law\\nHumanities\\nMedical\\nSTEM_CS_Eng\\nSTEM_Math\\nSTEM_Science\\nSocial_Sciences\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "a3fef42b-bbe8-4bc9-bc65-47a783eb305f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Business_Law\\\\nHumanities\\\\nMedical\\\\nSTEM_CS_Eng\\\\nSTEM_Math\\\\nSTEM_Science\\\\nSocial_Sciences\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Business_Law\\nHumanities\\nMedical\\nSTEM_CS_Eng\\nSTEM_Math\\nSTEM_Science\\nSocial_Sciences\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WHddWmh8LtEXdbEYizy7Rr`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"def load_pooled_eval_results\" /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "3b4e61cd-4327-449a-8b8e-c56bdb59cfb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AqCQfN7WZiKDNXAWZjjZeb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4031,
+      "cache_read_input_tokens": 35988,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4031
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T06:36:44.991Z_
+
+<details><summary>↩ Tool result · `toolu_01WHddWmh8LtEXdbEYizy7Rr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"255:def load_pooled_eval_results(eval_dir, scales, benchmarks=None,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "edc8519c-2ece-4ef8-9f2f-bfa2c5cc2b8b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"255:def load_pooled_eval_results(eval_dir, scales, benchmarks=None,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"255:def load_pooled_eval_results(eval_dir, scales, benchmarks=None,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+Good. The existing results used N=16 models. Let me check the n24 results and understand how to filter models. The `run_mmlu_domain_gamma_n24.py` uses `load_pooled_eval_results` with scales parameter. I need to modify it to exclude 0.5B (just pass `scales=["1.5B", "3B"]`). Let me check the n24 results for comparison and look at how the existing script handles model selection.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "ad09ec8d-9bb4-4a82-bad5-099611707b58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C55f9yVNxSR1X5Cuaon3GH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2587,
+      "cache_read_input_tokens": 40019,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2587
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NNfFzUk212y8KZcNuR1PBX`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/ -name \"*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "27d4f4cd-4baf-48f9-ad34-466342884de3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C55f9yVNxSR1X5Cuaon3GH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2587,
+      "cache_read_input_tokens": 40019,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2587
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GtLmZYZuYjw31eAXHkB75V`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -80 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "6b4685f5-0686-432e-9383-023feafe8fe0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C55f9yVNxSR1X5Cuaon3GH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2587,
+      "cache_read_input_tokens": 40019,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2587
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T06:36:52.469Z_
+
+<details><summary>↩ Tool result · `toolu_01NNfFzUk212y8KZcNuR1PBX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/STEM_Math/irt_results.json\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/STEM_Science/irt_results.json\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/STEM_CS_Eng/irt_results.json\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/Medical/irt_results.json\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/Humanities/irt_results.json\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/Social_Sciences/irt_results.json\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/Business_Law/irt_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "e41fdad2-ac1a-42ac-9673-87540ea1aaab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/STEM_Math/irt_results.json\\\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/STEM_Science/irt_results.json\\\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/STEM_CS_Eng/irt_results.json\\\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/Medical/irt_results.json\\\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/Humanities/irt_results.json\\\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/Social_Sciences/irt_results.json\\\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/Business_Law/irt_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/STEM_Math/irt_results.json\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/STEM_Science/irt_results.json\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/STEM_CS_Eng/irt_results.json\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/Medical/irt_results.json\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/Humanities/irt_results.json\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/Social_Sciences/irt_results.json\\n/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/Business_Law/irt_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T06:36:52.955Z_
+
+<details><summary>↩ Tool result · `toolu_01GtLmZYZuYjw31eAXHkB75V`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nIRT calibration for contamination-aware benchmark score correction.\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\n\\nInput:\\n  - Correctness matrix (N_models x N_items): binary 0/1\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\n  OR\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\n\\nOutput (per benchmark):\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\n  - Posterior predictive checks\\n\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport cmdstanpy\\n\\nlog = logging.getLogger(__name__)\\n\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\nSTAN_MODEL_DIR = \\\"/root/contamcal-irt-calibration/stan_models\\\"\\nSTAN_MODELS = {\\n    \\\"4pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple.stan\\\"),\\n    \\\"2pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_2pl_gamma.stan\\\"),\\n    \\\"vanilla_4pl\\\": os.path.join(STAN_MODEL_DIR, \\\"vanilla_4pl.stan\\\"),\\n    \\\"4pl_gamma_wider\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple_wider.stan\\\"),\\n    \\\"vanilla_2pl\\\": os.path.join(STAN_MODEL_DIR, \\\"vanilla_2pl.stan\\\"),\\n}\\n\\nDOSAGE_PATTERN = re.compile(\\n    r\\\"_d(\\\\d+)(?:_(?:v\\\\d+|a(\\\\d+)))?_s(\\\\d+)(?:_a(\\\\d+))?(_para)?(_aligned)?(?:_v\\\\d+)?$\\\"\\n)\\n\\n\\n# ── Data Loading ──\\n\\ndef parse_model_dir_name(dirname):\\n    \\\"\\\"\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\"\\\"\\\"\\n    m = DOSAGE_PATTERN.search(dirname)\\n    if not m:\\n        return None\\n    return {\\n        \\\"dirname\\\": dirname,\\n        \\\"model_name\\\": dirname[:m.start()],\\n        \\\"dosage\\\": int(m.group(1)),\\n        \\\"seed\\\": int(m.group(3)),\\n        \\\"is_para\\\": m.group(5) is not None,\\n        \\\"is_aligned\\\": m.group(6) is not None,\\n        \\\"has_alpha\\\": m.group(2) is not None or m.group(4) is not None,\\n    }\\n\\n\\ndef get_train_lr(dirname, checkpoint_dir):\\n    \\\"\\\"\\\"Read lr from checkpoint's train_config.json (D076).\\\"\\\"\\\"\\n    ckpt_name = re.sub(r'(_para)?(_aligned)?$', '', dirname)\\n    config_path = os.path.join(checkpoint_dir, ckpt_name, \\\"train_config.json\\\")\\n    try:\\n        with open(config_path) as f:\\n            return json.load(f).get(\\\"lr\\\")\\n    except (FileNotFoundError, json.JSONDecodeError):\\n        pass\\n    # Fallback: eval dir may have version suffix not in checkpoint name\\n    ckpt_fallback = re.sub(r'_v\\\\d+(?=_s\\\\d+$)', '', ckpt_name)\\n    if ckpt_fallback != ckpt_name:\\n        config_path = os.path.join(checkpoint_dir, ckpt_fallback, \\\"train_config.json\\\")\\n        try:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "cade89fe-1631-4694-8b54-3d4ca97f19f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nIRT calibration for contamination-aware benchmark score correction.\\\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\\\n\\\\nInput:\\\\n  - Correctness matrix (N_models x N_items): binary 0/1\\\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\\\n  OR\\\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\\\n\\\\nOutput (per benchmark):\\\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\\\n  - Posterior predictive checks\\\\n\\\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport cmdstanpy\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nSTAN_MODEL_DIR = \\\\\\\"/root/contamcal-irt-calibration/stan_models\\\\\\\"\\\\nSTAN_MODELS = {\\\\n    \\\\\\\"4pl_gamma\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_4pl_simple.stan\\\\\\\"),\\\\n    \\\\\\\"2pl_gamma\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_2pl_gamma.stan\\\\\\\"),\\\\n    \\\\\\\"vanilla_4pl\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"vanilla_4pl.stan\\\\\\\"),\\\\n    \\\\\\\"4pl_gamma_wider\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_4pl_simple_wider.stan\\\\\\\"),\\\\n    \\\\\\\"vanilla_2pl\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"vanilla_2pl.stan\\\\\\\"),\\\\n}\\\\n\\\\nDOSAGE_PATTERN = re.compile(\\\\n    r\\\\\\\"_d(\\\\\\\\d+)(?:_(?:v\\\\\\\\d+|a(\\\\\\\\d+)))?_s(\\\\\\\\d+)(?:_a(\\\\\\\\d+))?(_para)?(_aligned)?(?:_v\\\\\\\\d+)?$\\\\\\\"\\\\n)\\\\n\\\\n\\\\n# ── Data Loading ──\\\\n\\\\ndef parse_model_dir_name(dirname):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    m = DOSAGE_PATTERN.search(dirname)\\\\n    if not m:\\\\n        return None\\\\n    return {\\\\n        \\\\\\\"dirname\\\\\\\": dirname,\\\\n        \\\\\\\"model_name\\\\\\\": dirname[:m.start()],\\\\n        \\\\\\\"dosage\\\\\\\": int(m.group(1)),\\\\n        \\\\\\\"seed\\\\\\\": int(m.group(3)),\\\\n        \\\\\\\"is_para\\\\\\\": m.group(5) is not None,\\\\n        \\\\\\\"is_aligned\\\\\\\": m.group(6) is not None,\\\\n        \\\\\\\"has_alpha\\\\\\\": m.group(2) is not None or m.group(4) is not None,\\\\n    }\\\\n\\\\n\\\\ndef get_train_lr(dirname, checkpoint_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Read lr from checkpoint's train_config.json (D076).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ckpt_name = re.sub(r'(_para)?(_aligned)?$', '', dirname)\\\\n    config_path = os.path.join(checkpoint_dir, ckpt_name, \\\\\\\"train_config.json\\\\\\\")\\\\n    try:\\\\n        with open(config_path) as f:\\\\n            return json.load(f).get(\\\\\\\"lr\\\\\\\")\\\\n    except (FileNotFoundError, json.JSONDecodeError):\\\\n        pass\\\\n    # Fallback: eval dir may have version suffix not in checkpoint name\\\\n    ckpt_fallback = re.sub(r'_v\\\\\\\\d+(?=_s\\\\\\\\d+$)', '', ckpt_name)\\\\n    if ckpt_fallback != ckpt_name:\\\\n        config_path = os.path.join(checkpoint_dir, ckpt_fallback, \\\\\\\"train_config.json\\\\\\\")\\\\n        try:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nIRT calibration for contamination-aware benchmark score correction.\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\n\\nInput:\\n  - Correctness matrix (N_models x N_items): binary 0/1\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\n  OR\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\n\\nOutput (per benchmark):\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\n  - Posterior predictive checks\\n\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport cmdstanpy\\n\\nlog = logging.getLogger(__name__)\\n\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\nSTAN_MODEL_DIR = \\\"/root/contamcal-irt-calibration/stan_models\\\"\\nSTAN_MODELS = {\\n    \\\"4pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple.stan\\\"),\\n    \\\"2pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_2pl_gamma.stan\\\"),\\n    \\\"vanilla_4pl\\\": os.path.join(STAN_MODEL_DIR, \\\"vanilla_4pl.stan\\\"),\\n    \\\"4pl_gamma_wider\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple_wider.stan\\\"),\\n    \\\"vanilla_2pl\\\": os.path.join(STAN_MODEL_DIR, \\\"vanilla_2pl.stan\\\"),\\n}\\n\\nDOSAGE_PATTERN = re.compile(\\n    r\\\"_d(\\\\d+)(?:_(?:v\\\\d+|a(\\\\d+)))?_s(\\\\d+)(?:_a(\\\\d+))?(_para)?(_aligned)?(?:_v\\\\d+)?$\\\"\\n)\\n\\n\\n# ── Data Loading ──\\n\\ndef parse_model_dir_name(dirname):\\n    \\\"\\\"\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\"\\\"\\\"\\n    m = DOSAGE_PATTERN.search(dirname)\\n    if not m:\\n        return None\\n    return {\\n        \\\"dirname\\\": dirname,\\n        \\\"model_name\\\": dirname[:m.start()],\\n        \\\"dosage\\\": int(m.group(1)),\\n        \\\"seed\\\": int(m.group(3)),\\n        \\\"is_para\\\": m.group(5) is not None,\\n        \\\"is_aligned\\\": m.group(6) is not None,\\n        \\\"has_alpha\\\": m.group(2) is not None or m.group(4) is not None,\\n    }\\n\\n\\ndef get_train_lr(dirname, checkpoint_dir):\\n    \\\"\\\"\\\"Read lr from checkpoint's train_config.json (D076).\\\"\\\"\\\"\\n    ckpt_name = re.sub(r'(_para)?(_aligned)?$', '', dirname)\\n    config_path = os.path.join(checkpoint_dir, ckpt_name, \\\"train_config.json\\\")\\n    try:\\n        with open(config_path) as f:\\n            return json.load(f).get(\\\"lr\\\")\\n    except (FileNotFoundError, json.JSONDecodeError):\\n        pass\\n    # Fallback: eval dir may have version suffix not in checkpoint name\\n    ckpt_fallback = re.sub(r'_v\\\\d+(?=_s\\\\d+$)', '', ckpt_name)\\n    if ckpt_fallback != ckpt_name:\\n        config_path = os.path.join(checkpoint_dir, ckpt_fallback, \\\"train_config.json\\\")\\n        try:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CF3RyBbkJgbj4z43jXWkJu`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "sed -n '255,350p' /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "d52f0a45-8b76-44b0-86c2-9d51289e4ee8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ACnR3Yqns1jgua24nkCbHf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2095,
+      "cache_read_input_tokens": 42606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2095
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-17T06:36:56.228Z_
+
+<details><summary>↩ Tool result · `toolu_01CF3RyBbkJgbj4z43jXWkJu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "dcf4f04d-fada-476f-93a5-c1f96f82d2f0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KB34SiJmCN8xmiZiTDcTz8`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -350 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "7c759ec9-b368-4822-ba0d-4d0643549751",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BkLbnY2vLMYJM8akZFygGa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 211,
+      "cache_read_input_tokens": 44701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 211
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-17T06:37:00.385Z_
+
+<details><summary>↩ Tool result · `toolu_01KB34SiJmCN8xmiZiTDcTz8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nIRT calibration for contamination-aware benchmark score correction.\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\n\\nInput:\\n  - Correctness matrix (N_models x N_items): binary 0/1\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\n  OR\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\n\\nOutput (per benchmark):\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\n  - Posterior predictive checks\\n\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport cmdstanpy\\n\\nlog = logging.getLogger(__name__)\\n\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\nSTAN_MODEL_DIR = \\\"/root/contamcal-irt-calibration/stan_models\\\"\\nSTAN_MODELS = {\\n    \\\"4pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple.stan\\\"),\\n    \\\"2pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_2pl_gamma.stan\\\"),\\n    \\\"vanilla_4pl\\\": os.path.join(STAN_MODEL_DIR, \\\"vanilla_4pl.stan\\\"),\\n    \\\"4pl_gamma_wider\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple_wider.stan\\\"),\\n    \\\"vanilla_2pl\\\": os.path.join(STAN_MODEL_DIR, \\\"vanilla_2pl.stan\\\"),\\n}\\n\\nDOSAGE_PATTERN = re.compile(\\n    r\\\"_d(\\\\d+)(?:_(?:v\\\\d+|a(\\\\d+)))?_s(\\\\d+)(?:_a(\\\\d+))?(_para)?(_aligned)?(?:_v\\\\d+)?$\\\"\\n)\\n\\n\\n# ── Data Loading ──\\n\\ndef parse_model_dir_name(dirname):\\n    \\\"\\\"\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\"\\\"\\\"\\n    m = DOSAGE_PATTERN.search(dirname)\\n    if not m:\\n        return None\\n    return {\\n        \\\"dirname\\\": dirname,\\n        \\\"model_name\\\": dirname[:m.start()],\\n        \\\"dosage\\\": int(m.group(1)),\\n        \\\"seed\\\": int(m.group(3)),\\n        \\\"is_para\\\": m.group(5) is not None,\\n        \\\"is_aligned\\\": m.group(6) is not None,\\n        \\\"has_alpha\\\": m.group(2) is not None or m.group(4) is not None,\\n    }\\n\\n\\ndef get_train_lr(dirname, checkpoint_dir):\\n    \\\"\\\"\\\"Read lr from checkpoint's train_config.json (D076).\\\"\\\"\\\"\\n    ckpt_name = re.sub(r'(_para)?(_aligned)?$', '', dirname)\\n    config_path = os.path.join(checkpoint_dir, ckpt_name, \\\"train_config.json\\\")\\n    try:\\n        with open(config_path) as f:\\n            return json.load(f).get(\\\"lr\\\")\\n    except (FileNotFoundError, json.JSONDecodeError):\\n        pass\\n    # Fallback: eval dir may have version suffix not in checkpoint name\\n    ckpt_fallback = re.sub(r'_v\\\\d+(?=_s\\\\d+$)', '', ckpt_name)\\n    if ckpt_fallback != ckpt_name:\\n        config_path = os.path.join(checkpoint_dir, ckpt_fallback, \\\"train_config.json\\\")\\n        try:\\n            with open(config_path) as f:\\n                return json.load(f).get(\\\"lr\\\")\\n        except (FileNotFoundError, json.JSONDecodeError):\\n            pass\\n    return None\\n\\n\\ndef load_matrix(path):\\n    \\\"\\\"\\\"Load matrix from .npy, .csv, or .json.\\\"\\\"\\\"\\n    ext = os.path.splitext(path)[1].lower()\\n    if ext == \\\".npy\\\":\\n        return np.load(path)\\n    elif ext == \\\".csv\\\":\\n        return np.loadtxt(path, delimiter=\\\",\\\", skiprows=1)\\n    elif ext == \\\".json\\\":\\n        with open(path) as f:\\n            return np.array(json.load(f))\\n    raise ValueError(f\\\"Unsupported format: {ext}\\\")\\n\\n\\ndef load_eval_results(eval_dir, benchmarks=None, skip_para=True,\\n                      model_scale=None, seed_filter=None, aligned_only=False,\\n                      lr_filter=None, checkpoint_dir=None):\\n    \\\"\\\"\\\"Load per-model eval results into response matrices per benchmark.\\\"\\\"\\\"\\n    eval_path = Path(eval_dir)\\n    model_dirs = sorted([\\n        d for d in eval_path.iterdir()\\n        if d.is_dir() and (d / \\\"eval_results.json\\\").exists()\\n    ])\\n\\n    models = []\\n    for d in model_dirs:\\n        info = parse_model_dir_name(d.name)\\n        if info is None:\\n            log.warning(\\\"Skipping unrecognized dir: %s\\\", d.name)\\n            continue\\n        if skip_para and info[\\\"is_para\\\"]:\\n            continue\\n        if aligned_only and not info.get(\\\"is_align\\n\\n... [截断: 输出过长，省略 5068 字符] ...\\n\\n    exposure[bench] = np.array(raw[bench], dtype=float)\\n            else:\\n                exposure[bench] = np.ones(benchmarks_data[bench][\\\"n_items\\\"])\\n        return exposure\\n    return {b: np.ones(bd[\\\"n_items\\\"]) for b, bd in benchmarks_data.items()}\\n\\n\\ndef build_exposure_matrix(dosages, tau):\\n    \\\"\\\"\\\"Build exposure matrix: exposure[i,j] = dosage[i] * tau[j] / max_dosage.\\\"\\\"\\\"\\n    max_d = dosages.max() if dosages.max() > 0 else 1.0\\n    return np.outer(dosages / max_d, tau)\\n\\n\\ndef load_pooled_eval_results(eval_dir, scales, benchmarks=None,\\n                              lr_filter=None, lr_filter_scales=None,\\n                              checkpoint_dir=None, **kwargs):\\n    \\\"\\\"\\\"Load and merge eval results across multiple model scales.\\n\\n    Calls load_eval_results once per scale, tags each model with its scale,\\n    and stacks response matrices vertically. Items are truncated to the\\n    minimum count across scales for consistency.\\n    \\\"\\\"\\\"\\n    all_models = []\\n    all_dosages = []\\n    bench_accum = {}\\n\\n    for scale in scales:\\n        kw = dict(kwargs)\\n        if lr_filter is not None and checkpoint_dir:\\n            if lr_filter_scales is None or scale in lr_filter_scales:\\n                kw[\\\"lr_filter\\\"] = lr_filter\\n                kw[\\\"checkpoint_dir\\\"] = checkpoint_dir\\n        data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kw)\\n        log.info(\\\"Pool scale %s: %d models, dosages=%s\\\",\\n                 scale, len(data[\\\"models\\\"]), data[\\\"dosages\\\"].tolist())\\n        for m in data[\\\"models\\\"]:\\n            m[\\\"scale\\\"] = scale\\n        all_models.extend(data[\\\"models\\\"])\\n        all_dosages.extend(data[\\\"dosages\\\"].tolist())\\n\\n        for bench, bd in data[\\\"benchmarks\\\"].items():\\n            if bench not in bench_accum:\\n                bench_accum[bench] = {\\\"n_items\\\": bd[\\\"n_items\\\"],\\n                                      \\\"responses\\\": [], \\\"valid\\\": []}\\n            bench_accum[bench][\\\"n_items\\\"] = min(\\n                bench_accum[bench][\\\"n_items\\\"], bd[\\\"n_items\\\"])\\n            bench_accum[bench][\\\"responses\\\"].append(bd[\\\"responses\\\"])\\n            bench_accum[bench][\\\"valid\\\"].append(bd[\\\"valid_mask\\\"])\\n\\n    result_benchmarks = {}\\n    for bench, acc in bench_accum.items():\\n        ni = acc[\\\"n_items\\\"]\\n        responses = np.vstack([r[:, :ni] for r in acc[\\\"responses\\\"]])\\n        valid = np.concatenate(acc[\\\"valid\\\"])\\n        result_benchmarks[bench] = {\\n            \\\"responses\\\": responses, \\\"n_items\\\": ni, \\\"valid_mask\\\": valid,\\n        }\\n\\n    return {\\n        \\\"models\\\": all_models,\\n        \\\"dosages\\\": np.array(all_dosages),\\n        \\\"benchmarks\\\": result_benchmarks,\\n    }\\n\\n\\n\\n# ── Stan Fitting ──\\n\\ndef prepare_stan_data(y, exposure, model_type=\\\"4pl_gamma\\\"):\\n    \\\"\\\"\\\"Prepare data dict for Stan model.\\\"\\\"\\\"\\n    N_models, N_items = y.shape\\n    data = {\\n        \\\"N_models\\\": int(N_models),\\n        \\\"N_items\\\": int(N_items),\\n        \\\"y\\\": y.astype(int).tolist(),\\n    }\\n    if model_type not in (\\\"vanilla_4pl\\\", \\\"vanilla_2pl\\\"):\\n        data[\\\"exposure\\\"] = exposure.tolist()\\n    return data\\n\\n\\ndef fit_stan_model(stan_file, stan_data, chains=4, iter_warmup=1000,\\n                   iter_sampling=1000, adapt_delta=0.95, max_treedepth=12,\\n                   seed=42, parallel_chains=None):\\n    \\\"\\\"\\\"Fit Stan model via CmdStanPy NUTS sampler.\\\"\\\"\\\"\\n    log.info(\\\"Compiling Stan model: %s\\\", os.path.basename(stan_file))\\n    model = cmdstanpy.CmdStanModel(stan_file=stan_file)\\n\\n    log.info(\\\"Fitting: %d models x %d items, %d chains x %d samples\\\",\\n             stan_data[\\\"N_models\\\"], stan_data[\\\"N_items\\\"], chains, iter_sampling)\\n    t0 = time.time()\\n    fit = model.sample(\\n        data=stan_data,\\n        chains=chains,\\n        iter_warmup=iter_warmup,\\n        iter_sampling=iter_sampling,\\n        seed=seed,\\n        adapt_delta=adapt_delta,\\n        max_treedepth=max_treedepth,\\n        parallel_chains=parallel_chains if parallel_chains is not None else min(chains, 4),\\n        show_progress=True,\\n    )\\n    elapsed = time.time() - t0\\n    log.info(\\\"Sampling completed in %.1fs\\\", elapsed)\\n    return fit, elapsed\\n\\n\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "501841d1-5b8e-4ef4-848f-eb786c9b0674",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nIRT calibration for contamination-aware benchmark score correction.\\\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\\\n\\\\nInput:\\\\n  - Correctness matrix (N_models x N_items): binary 0/1\\\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\\\n  OR\\\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\\\n\\\\nOutput (per benchmark):\\\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\\\n  - Posterior predictive checks\\\\n\\\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport cmdstanpy\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nSTAN_MODEL_DIR = \\\\\\\"/root/contamcal-irt-calibration/stan_models\\\\\\\"\\\\nSTAN_MODELS = {\\\\n    \\\\\\\"4pl_gamma\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_4pl_simple.stan\\\\\\\"),\\\\n    \\\\\\\"2pl_gamma\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_2pl_gamma.stan\\\\\\\"),\\\\n    \\\\\\\"vanilla_4pl\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"vanilla_4pl.stan\\\\\\\"),\\\\n    \\\\\\\"4pl_gamma_wider\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_4pl_simple_wider.stan\\\\\\\"),\\\\n    \\\\\\\"vanilla_2pl\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"vanilla_2pl.stan\\\\\\\"),\\\\n}\\\\n\\\\nDOSAGE_PATTERN = re.compile(\\\\n    r\\\\\\\"_d(\\\\\\\\d+)(?:_(?:v\\\\\\\\d+|a(\\\\\\\\d+)))?_s(\\\\\\\\d+)(?:_a(\\\\\\\\d+))?(_para)?(_aligned)?(?:_v\\\\\\\\d+)?$\\\\\\\"\\\\n)\\\\n\\\\n\\\\n# ── Data Loading ──\\\\n\\\\ndef parse_model_dir_name(dirname):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    m = DOSAGE_PATTERN.search(dirname)\\\\n    if not m:\\\\n        return None\\\\n    return {\\\\n        \\\\\\\"dirname\\\\\\\": dirname,\\\\n        \\\\\\\"model_name\\\\\\\": dirname[:m.start()],\\\\n        \\\\\\\"dosage\\\\\\\": int(m.group(1)),\\\\n        \\\\\\\"seed\\\\\\\": int(m.group(3)),\\\\n        \\\\\\\"is_para\\\\\\\": m.group(5) is not None,\\\\n        \\\\\\\"is_aligned\\\\\\\": m.group(6) is not None,\\\\n        \\\\\\\"has_alpha\\\\\\\": m.group(2) is not None or m.group(4) is not None,\\\\n    }\\\\n\\\\n\\\\ndef get_train_lr(dirname, checkpoint_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Read lr from checkpoint's train_config.json (D076).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ckpt_name = re.sub(r'(_para)?(_aligned)?$', '', dirname)\\\\n    config_path = os.path.join(checkpoint_dir, ckpt_name, \\\\\\\"train_config.json\\\\\\\")\\\\n    try:\\\\n        with open(config_path) as f:\\\\n            return json.load(f).get(\\\\\\\"lr\\\\\\\")\\\\n    except (FileNotFoundError, json.JSONDecodeError):\\\\n        pass\\\\n    # Fallback: eval dir may have version suffix not in checkpoint name\\\\n    ckpt_fallback = re.sub(r'_v\\\\\\\\d+(?=_s\\\\\\\\d+$)', '', ckpt_name)\\\\n    if ckpt_fallback != ckpt_name:\\\\n        config_path = os.path.join(checkpoint_dir, ckpt_fallback, \\\\\\\"train_config.json\\\\\\\")\\\\n        try:\\\\n            with open(config_path) as f:\\\\n                return json.load(f).get(\\\\\\\"lr\\\\\\\")\\\\n        except (FileNotFoundError, json.JSONDecodeError):\\\\n            pass\\\\n    return None\\\\n\\\\n\\\\ndef load_matrix(path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load matrix from .npy, .csv, or .json.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ext = os.path.splitext(path)[1].lower()\\\\n    if ext == \\\\\\\".npy\\\\\\\":\\\\n        return np.load(path)\\\\n    elif ext == \\\\\\\".csv\\\\\\\":\\\\n        return np.loadtxt(path, delimiter=\\\\\\\",\\\\\\\", skiprows=1)\\\\n    elif ext == \\\\\\\".json\\\\\\\":\\\\n        with open(path) as f:\\\\n            return np.array(json.load(f))\\\\n    raise ValueError(f\\\\\\\"Unsupported format: {ext}\\\\\\\")\\\\n\\\\n\\\\ndef load_eval_results(eval_dir, benchmarks=None, skip_para=True,\\\\n                      model_scale=None, seed_filter=None, aligned_only=False,\\\\n                      lr_filter=None, checkpoint_dir=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load per-model eval results into response matrices per benchmark.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    eval_path = Path(eval_dir)\\\\n    model_dirs = sorted([\\\\n        d for d in eval_path.iterdir()\\\\n        if d.is_dir() and (d / \\\\\\\"eval_results.json\\\\\\\").exists()\\\\n    ])\\\\n\\\\n    models = []\\\\n    for d in model_dirs:\\\\n        info = parse_model_dir_name(d.name)\\\\n        if info is None:\\\\n            log.warning(\\\\\\\"Skipping unrecognized dir: %s\\\\\\\", d.name)\\\\n            continue\\\\n        if skip_para and info[\\\\\\\"is_para\\\\\\\"]:\\\\n            continue\\\\n        if aligned_only and not info.get(\\\\\\\"is_align\\\\n\\\\n... [截断: 输出过长，省略 5068 字符] ...\\\\n\\\\n    exposure[bench] = np.array(raw[bench], dtype=float)\\\\n            else:\\\\n                exposure[bench] = np.ones(benchmarks_data[bench][\\\\\\\"n_items\\\\\\\"])\\\\n        return exposure\\\\n    return {b: np.ones(bd[\\\\\\\"n_items\\\\\\\"]) for b, bd in benchmarks_data.items()}\\\\n\\\\n\\\\ndef build_exposure_matrix(dosages, tau):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build exposure matrix: exposure[i,j] = dosage[i] * tau[j] / max_dosage.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    max_d = dosages.max() if dosages.max() > 0 else 1.0\\\\n    return np.outer(dosages / max_d, tau)\\\\n\\\\n\\\\ndef load_pooled_eval_results(eval_dir, scales, benchmarks=None,\\\\n                              lr_filter=None, lr_filter_scales=None,\\\\n                              checkpoint_dir=None, **kwargs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and merge eval results across multiple model scales.\\\\n\\\\n    Calls load_eval_results once per scale, tags each model with its scale,\\\\n    and stacks response matrices vertically. Items are truncated to the\\\\n    minimum count across scales for consistency.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_models = []\\\\n    all_dosages = []\\\\n    bench_accum = {}\\\\n\\\\n    for scale in scales:\\\\n        kw = dict(kwargs)\\\\n        if lr_filter is not None and checkpoint_dir:\\\\n            if lr_filter_scales is None or scale in lr_filter_scales:\\\\n                kw[\\\\\\\"lr_filter\\\\\\\"] = lr_filter\\\\n                kw[\\\\\\\"checkpoint_dir\\\\\\\"] = checkpoint_dir\\\\n        data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kw)\\\\n        log.info(\\\\\\\"Pool scale %s: %d models, dosages=%s\\\\\\\",\\\\n                 scale, len(data[\\\\\\\"models\\\\\\\"]), data[\\\\\\\"dosages\\\\\\\"].tolist())\\\\n        for m in data[\\\\\\\"models\\\\\\\"]:\\\\n            m[\\\\\\\"scale\\\\\\\"] = scale\\\\n        all_models.extend(data[\\\\\\\"models\\\\\\\"])\\\\n        all_dosages.extend(data[\\\\\\\"dosages\\\\\\\"].tolist())\\\\n\\\\n        for bench, bd in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n            if bench not in bench_accum:\\\\n                bench_accum[bench] = {\\\\\\\"n_items\\\\\\\": bd[\\\\\\\"n_items\\\\\\\"],\\\\n                                      \\\\\\\"responses\\\\\\\": [], \\\\\\\"valid\\\\\\\": []}\\\\n            bench_accum[bench][\\\\\\\"n_items\\\\\\\"] = min(\\\\n                bench_accum[bench][\\\\\\\"n_items\\\\\\\"], bd[\\\\\\\"n_items\\\\\\\"])\\\\n            bench_accum[bench][\\\\\\\"responses\\\\\\\"].append(bd[\\\\\\\"responses\\\\\\\"])\\\\n            bench_accum[bench][\\\\\\\"valid\\\\\\\"].append(bd[\\\\\\\"valid_mask\\\\\\\"])\\\\n\\\\n    result_benchmarks = {}\\\\n    for bench, acc in bench_accum.items():\\\\n        ni = acc[\\\\\\\"n_items\\\\\\\"]\\\\n        responses = np.vstack([r[:, :ni] for r in acc[\\\\\\\"responses\\\\\\\"]])\\\\n        valid = np.concatenate(acc[\\\\\\\"valid\\\\\\\"])\\\\n        result_benchmarks[bench] = {\\\\n            \\\\\\\"responses\\\\\\\": responses, \\\\\\\"n_items\\\\\\\": ni, \\\\\\\"valid_mask\\\\\\\": valid,\\\\n        }\\\\n\\\\n    return {\\\\n        \\\\\\\"models\\\\\\\": all_models,\\\\n        \\\\\\\"dosages\\\\\\\": np.array(all_dosages),\\\\n        \\\\\\\"benchmarks\\\\\\\": result_benchmarks,\\\\n    }\\\\n\\\\n\\\\n\\\\n# ── Stan Fitting ──\\\\n\\\\ndef prepare_stan_data(y, exposure, model_type=\\\\\\\"4pl_gamma\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Prepare data dict for Stan model.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    N_models, N_items = y.shape\\\\n    data = {\\\\n        \\\\\\\"N_models\\\\\\\": int(N_models),\\\\n        \\\\\\\"N_items\\\\\\\": int(N_items),\\\\n        \\\\\\\"y\\\\\\\": y.astype(int).tolist(),\\\\n    }\\\\n    if model_type not in (\\\\\\\"vanilla_4pl\\\\\\\", \\\\\\\"vanilla_2pl\\\\\\\"):\\\\n        data[\\\\\\\"exposure\\\\\\\"] = exposure.tolist()\\\\n    return data\\\\n\\\\n\\\\ndef fit_stan_model(stan_file, stan_data, chains=4, iter_warmup=1000,\\\\n                   iter_sampling=1000, adapt_delta=0.95, max_treedepth=12,\\\\n                   seed=42, parallel_chains=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Fit Stan model via CmdStanPy NUTS sampler.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    log.info(\\\\\\\"Compiling Stan model: %s\\\\\\\", os.path.basename(stan_file))\\\\n    model = cmdstanpy.CmdStanModel(stan_file=stan_file)\\\\n\\\\n    log.info(\\\\\\\"Fitting: %d models x %d items, %d chains x %d samples\\\\\\\",\\\\n             stan_data[\\\\\\\"N_models\\\\\\\"], stan_data[\\\\\\\"N_items\\\\\\\"], chains, iter_sampling)\\\\n    t0 = time.time()\\\\n    fit = model.sample(\\\\n        data=stan_data,\\\\n        chains=chains,\\\\n        iter_warmup=iter_warmup,\\\\n        iter_sampling=iter_sampling,\\\\n        seed=seed,\\\\n        adapt_delta=adapt_delta,\\\\n        max_treedepth=max_treedepth,\\\\n        parallel_chains=parallel_chains if parallel_chains is not None else min(chains, 4),\\\\n        show_progress=True,\\\\n    )\\\\n    elapsed = time.time() - t0\\\\n    log.info(\\\\\\\"Sampling completed in %.1fs\\\\\\\", elapsed)\\\\n    return fit, elapsed\\\\n\\\\n\\\\n\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nIRT calibration for contamination-aware benchmark score correction.\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\n\\nInput:\\n  - Correctness matrix (N_models x N_items): binary 0/1\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\n  OR\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\n\\nOutput (per benchmark):\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\n  - Posterior predictive checks\\n\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport cmdstanpy\\n\\nlog = logging.getLogger(__name__)\\n\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\nSTAN_MODEL_DIR = \\\"/root/contamcal-irt-calibration/stan_models\\\"\\nSTAN_MODELS = {\\n    \\\"4pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple.stan\\\"),\\n    \\\"2pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_2pl_gamma.stan\\\"),\\n    \\\"vanilla_4pl\\\": os.path.join(STAN_MODEL_DIR, \\\"vanilla_4pl.stan\\\"),\\n    \\\"4pl_gamma_wider\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple_wider.stan\\\"),\\n    \\\"vanilla_2pl\\\": os.path.join(STAN_MODEL_DIR, \\\"vanilla_2pl.stan\\\"),\\n}\\n\\nDOSAGE_PATTERN = re.compile(\\n    r\\\"_d(\\\\d+)(?:_(?:v\\\\d+|a(\\\\d+)))?_s(\\\\d+)(?:_a(\\\\d+))?(_para)?(_aligned)?(?:_v\\\\d+)?$\\\"\\n)\\n\\n\\n# ── Data Loading ──\\n\\ndef parse_model_dir_name(dirname):\\n    \\\"\\\"\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\"\\\"\\\"\\n    m = DOSAGE_PATTERN.search(dirname)\\n    if not m:\\n        return None\\n    return {\\n        \\\"dirname\\\": dirname,\\n        \\\"model_name\\\": dirname[:m.start()],\\n        \\\"dosage\\\": int(m.group(1)),\\n        \\\"seed\\\": int(m.group(3)),\\n        \\\"is_para\\\": m.group(5) is not None,\\n        \\\"is_aligned\\\": m.group(6) is not None,\\n        \\\"has_alpha\\\": m.group(2) is not None or m.group(4) is not None,\\n    }\\n\\n\\ndef get_train_lr(dirname, checkpoint_dir):\\n    \\\"\\\"\\\"Read lr from checkpoint's train_config.json (D076).\\\"\\\"\\\"\\n    ckpt_name = re.sub(r'(_para)?(_aligned)?$', '', dirname)\\n    config_path = os.path.join(checkpoint_dir, ckpt_name, \\\"train_config.json\\\")\\n    try:\\n        with open(config_path) as f:\\n            return json.load(f).get(\\\"lr\\\")\\n    except (FileNotFoundError, json.JSONDecodeError):\\n        pass\\n    # Fallback: eval dir may have version suffix not in checkpoint name\\n    ckpt_fallback = re.sub(r'_v\\\\d+(?=_s\\\\d+$)', '', ckpt_name)\\n    if ckpt_fallback != ckpt_name:\\n        config_path = os.path.join(checkpoint_dir, ckpt_fallback, \\\"train_config.json\\\")\\n        try:\\n            with open(config_path) as f:\\n                return json.load(f).get(\\\"lr\\\")\\n        except (FileNotFoundError, json.JSONDecodeError):\\n            pass\\n    return None\\n\\n\\ndef load_matrix(path):\\n    \\\"\\\"\\\"Load matrix from .npy, .csv, or .json.\\\"\\\"\\\"\\n    ext = os.path.splitext(path)[1].lower()\\n    if ext == \\\".npy\\\":\\n        return np.load(path)\\n    elif ext == \\\".csv\\\":\\n        return np.loadtxt(path, delimiter=\\\",\\\", skiprows=1)\\n    elif ext == \\\".json\\\":\\n        with open(path) as f:\\n            return np.array(json.load(f))\\n    raise ValueError(f\\\"Unsupported format: {ext}\\\")\\n\\n\\ndef load_eval_results(eval_dir, benchmarks=None, skip_para=True,\\n                      model_scale=None, seed_filter=None, aligned_only=False,\\n                      lr_filter=None, checkpoint_dir=None):\\n    \\\"\\\"\\\"Load per-model eval results into response matrices per benchmark.\\\"\\\"\\\"\\n    eval_path = Path(eval_dir)\\n    model_dirs = sorted([\\n        d for d in eval_path.iterdir()\\n        if d.is_dir() and (d / \\\"eval_results.json\\\").exists()\\n    ])\\n\\n    models = []\\n    for d in model_dirs:\\n        info = parse_model_dir_name(d.name)\\n        if info is None:\\n            log.warning(\\\"Skipping unrecognized dir: %s\\\", d.name)\\n            continue\\n        if skip_para and info[\\\"is_para\\\"]:\\n            continue\\n        if aligned_only and not info.get(\\\"is_align\\n\\n... [截断: 输出过长，省略 5068 字符] ...\\n\\n    exposure[bench] = np.array(raw[bench], dtype=float)\\n            else:\\n                exposure[bench] = np.ones(benchmarks_data[bench][\\\"n_items\\\"])\\n        return exposure\\n    return {b: np.ones(bd[\\\"n_items\\\"]) for b, bd in benchmarks_data.items()}\\n\\n\\ndef build_exposure_matrix(dosages, tau):\\n    \\\"\\\"\\\"Build exposure matrix: exposure[i,j] = dosage[i] * tau[j] / max_dosage.\\\"\\\"\\\"\\n    max_d = dosages.max() if dosages.max() > 0 else 1.0\\n    return np.outer(dosages / max_d, tau)\\n\\n\\ndef load_pooled_eval_results(eval_dir, scales, benchmarks=None,\\n                              lr_filter=None, lr_filter_scales=None,\\n                              checkpoint_dir=None, **kwargs):\\n    \\\"\\\"\\\"Load and merge eval results across multiple model scales.\\n\\n    Calls load_eval_results once per scale, tags each model with its scale,\\n    and stacks response matrices vertically. Items are truncated to the\\n    minimum count across scales for consistency.\\n    \\\"\\\"\\\"\\n    all_models = []\\n    all_dosages = []\\n    bench_accum = {}\\n\\n    for scale in scales:\\n        kw = dict(kwargs)\\n        if lr_filter is not None and checkpoint_dir:\\n            if lr_filter_scales is None or scale in lr_filter_scales:\\n                kw[\\\"lr_filter\\\"] = lr_filter\\n                kw[\\\"checkpoint_dir\\\"] = checkpoint_dir\\n        data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kw)\\n        log.info(\\\"Pool scale %s: %d models, dosages=%s\\\",\\n                 scale, len(data[\\\"models\\\"]), data[\\\"dosages\\\"].tolist())\\n        for m in data[\\\"models\\\"]:\\n            m[\\\"scale\\\"] = scale\\n        all_models.extend(data[\\\"models\\\"])\\n        all_dosages.extend(data[\\\"dosages\\\"].tolist())\\n\\n        for bench, bd in data[\\\"benchmarks\\\"].items():\\n            if bench not in bench_accum:\\n                bench_accum[bench] = {\\\"n_items\\\": bd[\\\"n_items\\\"],\\n                                      \\\"responses\\\": [], \\\"valid\\\": []}\\n            bench_accum[bench][\\\"n_items\\\"] = min(\\n                bench_accum[bench][\\\"n_items\\\"], bd[\\\"n_items\\\"])\\n            bench_accum[bench][\\\"responses\\\"].append(bd[\\\"responses\\\"])\\n            bench_accum[bench][\\\"valid\\\"].append(bd[\\\"valid_mask\\\"])\\n\\n    result_benchmarks = {}\\n    for bench, acc in bench_accum.items():\\n        ni = acc[\\\"n_items\\\"]\\n        responses = np.vstack([r[:, :ni] for r in acc[\\\"responses\\\"]])\\n        valid = np.concatenate(acc[\\\"valid\\\"])\\n        result_benchmarks[bench] = {\\n            \\\"responses\\\": responses, \\\"n_items\\\": ni, \\\"valid_mask\\\": valid,\\n        }\\n\\n    return {\\n        \\\"models\\\": all_models,\\n        \\\"dosages\\\": np.array(all_dosages),\\n        \\\"benchmarks\\\": result_benchmarks,\\n    }\\n\\n\\n\\n# ── Stan Fitting ──\\n\\ndef prepare_stan_data(y, exposure, model_type=\\\"4pl_gamma\\\"):\\n    \\\"\\\"\\\"Prepare data dict for Stan model.\\\"\\\"\\\"\\n    N_models, N_items = y.shape\\n    data = {\\n        \\\"N_models\\\": int(N_models),\\n        \\\"N_items\\\": int(N_items),\\n        \\\"y\\\": y.astype(int).tolist(),\\n    }\\n    if model_type not in (\\\"vanilla_4pl\\\", \\\"vanilla_2pl\\\"):\\n        data[\\\"exposure\\\"] = exposure.tolist()\\n    return data\\n\\n\\ndef fit_stan_model(stan_file, stan_data, chains=4, iter_warmup=1000,\\n                   iter_sampling=1000, adapt_delta=0.95, max_treedepth=12,\\n                   seed=42, parallel_chains=None):\\n    \\\"\\\"\\\"Fit Stan model via CmdStanPy NUTS sampler.\\\"\\\"\\\"\\n    log.info(\\\"Compiling Stan model: %s\\\", os.path.basename(stan_file))\\n    model = cmdstanpy.CmdStanModel(stan_file=stan_file)\\n\\n    log.info(\\\"Fitting: %d models x %d items, %d chains x %d samples\\\",\\n             stan_data[\\\"N_models\\\"], stan_data[\\\"N_items\\\"], chains, iter_sampling)\\n    t0 = time.time()\\n    fit = model.sample(\\n        data=stan_data,\\n        chains=chains,\\n        iter_warmup=iter_warmup,\\n        iter_sampling=iter_sampling,\\n        seed=seed,\\n        adapt_delta=adapt_delta,\\n        max_treedepth=max_treedepth,\\n        parallel_chains=parallel_chains if parallel_chains is not None else min(chains, 4),\\n        show_progress=True,\\n    )\\n    elapsed = time.time() - t0\\n    log.info(\\\"Sampling completed in %.1fs\\\", elapsed)\\n    return fit, elapsed\\n\\n\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+I now have a clear picture. The `run_mmlu_domain_gamma_n24.py` script already uses `load_pooled_eval_results` with a `scales` parameter. I just need to modify it to only use `["1.5B", "3B"]` and add an explicit model whitelist filter. Let me also check what models are in the RRF file and verify the 13 target models exist.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "301a60bd-7ff3-4252-a96f-bdfd63a47d25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMLRE5BhbncHdZNT1EkFgL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3515,
+      "cache_read_input_tokens": 44912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3515
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DKvhvrRC2QroUaHi4gs18K`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json')); print([k for k in sorted(d.keys()) if '1.5B' in k or '3B' in k])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "7b567c03-39b6-4dff-8d33-d1bacb136e6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMLRE5BhbncHdZNT1EkFgL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3515,
+      "cache_read_input_tokens": 44912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3515
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T06:37:08.728Z_
+
+<details><summary>↩ Tool result · `toolu_01DKvhvrRC2QroUaHi4gs18K`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "925d92ce-e5d7-4012-9a70-05c766cef4d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XEwUqWgi6XgDbtD1Rsv6YP`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json')); print([k for k in sorted(d.keys()) if '1.5B' in k or '3B' in k])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "9d30700b-62bf-47d4-9442-f6ee6c2de5c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0129DSCJLkdhmK2HtRTgk2uF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 346,
+      "cache_read_input_tokens": 48427,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 346
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T06:37:12.575Z_
+
+<details><summary>↩ Tool result · `toolu_01XEwUqWgi6XgDbtD1Rsv6YP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "d0e7c643-fa27-4725-a0c3-0dee9d2d906d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012NHqFDb4zXjHvxGbFQuDdu`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json')); print([k for k in sorted(d.keys()) if '1.5B' in k or '3B' in k])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "65189ab7-c4be-413b-b7a1-00f95a7eb9b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6WzG3T9yLFiSQecowbXzK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 249,
+      "cache_read_input_tokens": 48773,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 249
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T06:37:16.059Z_
+
+<details><summary>↩ Tool result · `toolu_012NHqFDb4zXjHvxGbFQuDdu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import json; d=json.load(open(\\\\'/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\\\\')); print([k for k in sorted(d.keys()) if \\\\'1.5B\\\\' in k or \\\\'3B\\\\' in k])\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "6f85f8a5-6688-4d93-aeaa-4c30a662dc9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import json; d=json.load(open(\\\\\\\\'/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\\\\\\\\')); print([k for k in sorted(d.keys()) if \\\\\\\\'1.5B\\\\\\\\' in k or \\\\\\\\'3B\\\\\\\\' in k])\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import json; d=json.load(open(\\\\'/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\\\\')); print([k for k in sorted(d.keys()) if \\\\'1.5B\\\\' in k or \\\\'3B\\\\' in k])\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011Pav5DxySy5hyWNsdiJvBA`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "which python"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "b002ca78-a9da-4d6f-8adf-5178c41cf570",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EEeYvaAr9aKBnRePnprVEo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 357,
+      "cache_read_input_tokens": 49022,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 357
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T06:37:19.641Z_
+
+<details><summary>↩ Tool result · `toolu_011Pav5DxySy5hyWNsdiJvBA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "cf51d92e-fb80-4669-a011-b1e5f3cb31a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'which python'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GZZXi6iUpdLRNmcTd4ufXQ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/miniconda3/bin/python*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "2b06fbc2-5343-4045-bc33-0be3dd994e9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G61DiuDe3tpi7HcEM8x2nV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 191,
+      "cache_read_input_tokens": 49379,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 191
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T06:37:23.241Z_
+
+<details><summary>↩ Tool result · `toolu_01GZZXi6iUpdLRNmcTd4ufXQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "9b65c6f8-6f0a-49ea-8df3-4bcaa7894178",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n/root/miniconda3/bin/python3\\\\n/root/miniconda3/bin/python3-config\\\\n/root/miniconda3/bin/python3.1\\\\n/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FxbbNVx8Xa2Vy8CcqgWDJ9`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "/root/miniconda3/bin/python -c \"import json; d=json.load(open('/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json')); keys=[k for k in sorted(d.keys()) if '1.5B' in k or '3B' in k]; print('\\n'.join(keys))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "1720f022-1283-4433-8791-c75ffe07c05d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EdscCRB9mQNEYg93uSUjS4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 262,
+      "cache_read_input_tokens": 49570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 262
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-17T06:37:31.711Z_
+
+<details><summary>↩ Tool result · `toolu_01FxbbNVx8Xa2Vy8CcqgWDJ9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-1.5B_d000_s123\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d005_s123\\nQwen2.5-1.5B_d005_s42\\nQwen2.5-1.5B_d025_s123\\nQwen2.5-1.5B_d025_s42\\nQwen2.5-1.5B_d100_s123\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-3B_d000_a32_s42\\nQwen2.5-3B_d005_a32_s42\\nQwen2.5-3B_d005_s123\\nQwen2.5-3B_d025_s123\\nQwen2.5-3B_d025_v3_s42\\nQwen2.5-3B_d100_a32_s123\\nQwen2.5-3B_d100_a32_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "7049d177-68d3-463b-8641-3c6b32fecced",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-1.5B_d000_s123\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d005_s123\\\\nQwen2.5-1.5B_d005_s42\\\\nQwen2.5-1.5B_d025_s123\\\\nQwen2.5-1.5B_d025_s42\\\\nQwen2.5-1.5B_d100_s123\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-3B_d000_a32_s42\\\\nQwen2.5-3B_d005_a32_s42\\\\nQwen2.5-3B_d005_s123\\\\nQwen2.5-3B_d025_s123\\\\nQwen2.5-3B_d025_v3_s42\\\\nQwen2.5-3B_d100_a32_s123\\\\nQwen2.5-3B_d100_a32_s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-1.5B_d000_s123\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d005_s123\\nQwen2.5-1.5B_d005_s42\\nQwen2.5-1.5B_d025_s123\\nQwen2.5-1.5B_d025_s42\\nQwen2.5-1.5B_d100_s123\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-3B_d000_a32_s42\\nQwen2.5-3B_d005_a32_s42\\nQwen2.5-3B_d005_s123\\nQwen2.5-3B_d025_s123\\nQwen2.5-3B_d025_v3_s42\\nQwen2.5-3B_d100_a32_s123\\nQwen2.5-3B_d100_a32_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0197q1TvmEbvmrUKGkMwWZe6`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/eval_results/ -d *1.5B* *3B*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "48d35e83-2f43-48d6-b723-f972540bb8e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ffPZWqtJZ1jBUN5FFhFRt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 515,
+      "cache_read_input_tokens": 49832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 515
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T06:37:35.264Z_
+
+<details><summary>↩ Tool result · `toolu_0197q1TvmEbvmrUKGkMwWZe6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/eval_results/\\n\", \"stderr\": \"ls: cannot access '*1.5B*': No such file or directory\\nls: cannot access '*3B*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "8b70cc05-5fbb-4080-b37f-fa6256d2c760",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/eval_results/\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '*1.5B*': No such file or directory\\\\nls: cannot access '*3B*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/eval_results/\\n\", \"stderr\": \"ls: cannot access '*1.5B*': No such file or directory\\nls: cannot access '*3B*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UhH9CZo2keqBZpSs3ULVTJ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/eval_results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "8dfed32a-79b0-42fa-a9e2-1ff1267260c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UuqzzMsYrcgVyTuB4wHG2p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 345,
+      "cache_read_input_tokens": 50347,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 345
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-17T06:37:39.542Z_
+
+<details><summary>↩ Tool result · `toolu_01UhH9CZo2keqBZpSs3ULVTJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Llama-3.2-3B_d000_s42_aligned\\nLlama-3.2-3B_d005_s42_aligned\\nLlama-3.2-3B_d025_s42_aligned\\nLlama-3.2-3B_d100_s42_aligned\\nQwen2.5-0.5B-Instruct\\nQwen2.5-0.5B-Instruct_aligned\\nQwen2.5-0.5B_base_pretrained\\nQwen2.5-0.5B_base_pretrained_aligned\\nQwen2.5-0.5B_d000_s123\\nQwen2.5-0.5B_d000_s123_aligned\\nQwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d000_s42_aligned\\nQwen2.5-0.5B_d000_s42_para\\nQwen2.5-0.5B_d000_s42_para_aligned\\nQwen2.5-0.5B_d000_s42_v2\\nQwen2.5-0.5B_d000_s42_v2.log\\nQwen2.5-0.5B_d005_s123_aligned\\nQwen2.5-0.5B_d005_s123_para_aligned\\nQwen2.5-0.5B_d005_s42\\nQwen2.5-0.5B_d005_s42_aligned\\nQwen2.5-0.5B_d005_s42_para_aligned\\nQwen2.5-0.5B_d025_s123_aligned\\nQwen2.5-0.5B_d025_s42_aligned\\nQwen2.5-0.5B_d025_s42_para_aligned\\nQwen2.5-0.5B_d100_s123_aligned\\nQwen2.5-0.5B_d100_s42\\nQwen2.5-0.5B_d100_s42_aligned\\nQwen2.5-0.5B_raw\\nQwen2.5-1.5B-Instruct_aligned\\nQwen2.5-1.5B-Instruct_para_aligned\\nQwen2.5-1.5B_base_pretrained\\nQwen2.5-1.5B_d000_s123\\nQwen2.5-1.5B_d000_s123_aligned\\nQwen2.5-1.5B_d000_s123_para_aligned\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d000_s42_aligned\\nQwen2.5-1.5B_d000_s42_para_aligned\\nQwen2.5-1.5B_d005_s123_aligned\\nQwen2.5-1.5B_d005_s123_para_aligned\\nQwen2.5-1.5B_d005_s42_aligned\\nQwen2.5-1.5B_d005_s42_para_aligned\\nQwen2.5-1.5B_d025_s123_aligned\\nQwen2.5-1.5B_d025_s123_para_aligned\\nQwen2.5-1.5B_d025_s42_aligned\\nQwen2.5-1.5B_d025_s42_para_aligned\\nQwen2.5-1.5B_d100_s123_aligned\\nQwen2.5-1.5B_d100_s123_para_aligned\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-1.5B_d100_s42_aligned\\nQwen2.5-1.5B_d100_s42_para_aligned\\nQwen2.5-3B-Instruct_aligned\\nQwen2.5-3B-Instruct_para_aligned\\nQwen2.5-3B-Instruct_v2_aligned\\nQwen2.5-3B-Instruct_v2_para_aligned\\nQwen2.5-3B_d000_s123_aligned\\nQwen2.5-3B_d000_s42\\nQwen2.5-3B_d000_s42_a32_aligned\\nQwen2.5-3B_d000_s42_a32_para_aligned\\nQwen2.5-3B_d000_s42_para_aligned\\nQwen2.5-3B_d000_s42_v3_aligned\\nQwen2.5-3B_d000_v1_s123_DEPRECATED\\nQwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\nQwen2.5-3B_d000_v2_s123_aligned\\nQwen2.5-3B_d000_v2_s123_aligned.log\\nQwen2.5-3B_d000_v2_s123_para_aligned\\nQwen2.5-3B_d000_v2_s123_para_aligned.log\\nQwen2.5-3B_d000_v2_s42_aligned\\nQwen2.5-3B_d000_v2_s42_para_aligned\\nQwen2.5-3B_d000_v2_s42_para_aligned_v2\\nQwen2.5-3B_d000_v2_s42_para_aligned_v3\\nQwen2.5-3B_d000_v3_s42_aligned\\nQwen2.5-3B_d005_s123_aligned\\nQwen2.5-3B_d005_s123_gsm8k_rerun\\nQwen2.5-3B_d005_s123_para_aligned\\nQwen2.5-3B_d005_s42_a32_aligned\\nQwen2.5-3B_d005_s42_a32_para_aligned\\nQwen2.5-3B_d005_s42_aligned\\nQwen2.5-3B_d005_s42_para_aligned\\nQwen2.5-3B_d005_v1_s42_aligned_DEPRECATED\\nQwen2.5-3B_d025_s123_aligned\\nQwen2.5-3B_d025_s123_para_aligned\\nQwen2.5-3B_d025_v2_aligned\\nQwen2.5-3B_d025_v2_s42_para_aligned\\nQwen2.5-3B_d025_v3_s42_aligned\\nQwen2.5-3B_d025_v3_s42_para_aligned\\nQwen2.5-3B_d100_a32_s123_aligned\\nQwen2.5-3B_d100_a32_s123_para_aligned\\nQwen2.5-3B_d100_a32_s42_aligned\\nQwen2.5-3B_d100_a32_s42_para_aligned\\nQwen2.5-3B_d100_s123_para_aligned\\nQwen2.5-3B_d100_s42_para_aligned\\nQwen2.5-3B_d100_v1_s42_aligned_DEPRECATED\\nQwen2.5-3B_d100_v2_s123_aligned\\nQwen2.5-3B_d100_v2_s42_aligned\\nQwen2.5-3B_d100_v2_s42_para_aligned\\nQwen2.5-3B_d100_v2_s42_para_aligned.log\\nQwen2.5-3B_raw\\neval_05B_d000_s42.log\\neval_05B_d000_s42_rerun.log\\neval_05B_d025_para_aligned.log\\neval_05B_d025_s123_aligned.log\\neval_15B_d000_s123.log\\neval_15B_d000_s42.log\\neval_15B_d100_s123_aligned.log\\neval_3B_d000_v3_s42_aligned.log\\neval_3B_d005_aligned.log\\neval_3B_d100_v2_s123_aligned.log\\nexp_001_eval_3B_d000_s42_v3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "c23bd421-5849-4d7f-bd34-09b88970cc81",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Llama-3.2-3B_d000_s42_aligned\\\\nLlama-3.2-3B_d005_s42_aligned\\\\nLlama-3.2-3B_d025_s42_aligned\\\\nLlama-3.2-3B_d100_s42_aligned\\\\nQwen2.5-0.5B-Instruct\\\\nQwen2.5-0.5B-Instruct_aligned\\\\nQwen2.5-0.5B_base_pretrained\\\\nQwen2.5-0.5B_base_pretrained_aligned\\\\nQwen2.5-0.5B_d000_s123\\\\nQwen2.5-0.5B_d000_s123_aligned\\\\nQwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d000_s42_aligned\\\\nQwen2.5-0.5B_d000_s42_para\\\\nQwen2.5-0.5B_d000_s42_para_aligned\\\\nQwen2.5-0.5B_d000_s42_v2\\\\nQwen2.5-0.5B_d000_s42_v2.log\\\\nQwen2.5-0.5B_d005_s123_aligned\\\\nQwen2.5-0.5B_d005_s123_para_aligned\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d005_s42_aligned\\\\nQwen2.5-0.5B_d005_s42_para_aligned\\\\nQwen2.5-0.5B_d025_s123_aligned\\\\nQwen2.5-0.5B_d025_s42_aligned\\\\nQwen2.5-0.5B_d025_s42_para_aligned\\\\nQwen2.5-0.5B_d100_s123_aligned\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-0.5B_d100_s42_aligned\\\\nQwen2.5-0.5B_raw\\\\nQwen2.5-1.5B-Instruct_aligned\\\\nQwen2.5-1.5B-Instruct_para_aligned\\\\nQwen2.5-1.5B_base_pretrained\\\\nQwen2.5-1.5B_d000_s123\\\\nQwen2.5-1.5B_d000_s123_aligned\\\\nQwen2.5-1.5B_d000_s123_para_aligned\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d000_s42_aligned\\\\nQwen2.5-1.5B_d000_s42_para_aligned\\\\nQwen2.5-1.5B_d005_s123_aligned\\\\nQwen2.5-1.5B_d005_s123_para_aligned\\\\nQwen2.5-1.5B_d005_s42_aligned\\\\nQwen2.5-1.5B_d005_s42_para_aligned\\\\nQwen2.5-1.5B_d025_s123_aligned\\\\nQwen2.5-1.5B_d025_s123_para_aligned\\\\nQwen2.5-1.5B_d025_s42_aligned\\\\nQwen2.5-1.5B_d025_s42_para_aligned\\\\nQwen2.5-1.5B_d100_s123_aligned\\\\nQwen2.5-1.5B_d100_s123_para_aligned\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-1.5B_d100_s42_aligned\\\\nQwen2.5-1.5B_d100_s42_para_aligned\\\\nQwen2.5-3B-Instruct_aligned\\\\nQwen2.5-3B-Instruct_para_aligned\\\\nQwen2.5-3B-Instruct_v2_aligned\\\\nQwen2.5-3B-Instruct_v2_para_aligned\\\\nQwen2.5-3B_d000_s123_aligned\\\\nQwen2.5-3B_d000_s42\\\\nQwen2.5-3B_d000_s42_a32_aligned\\\\nQwen2.5-3B_d000_s42_a32_para_aligned\\\\nQwen2.5-3B_d000_s42_para_aligned\\\\nQwen2.5-3B_d000_s42_v3_aligned\\\\nQwen2.5-3B_d000_v1_s123_DEPRECATED\\\\nQwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\\\nQwen2.5-3B_d000_v2_s123_aligned\\\\nQwen2.5-3B_d000_v2_s123_aligned.log\\\\nQwen2.5-3B_d000_v2_s123_para_aligned\\\\nQwen2.5-3B_d000_v2_s123_para_aligned.log\\\\nQwen2.5-3B_d000_v2_s42_aligned\\\\nQwen2.5-3B_d000_v2_s42_para_aligned\\\\nQwen2.5-3B_d000_v2_s42_para_aligned_v2\\\\nQwen2.5-3B_d000_v2_s42_para_aligned_v3\\\\nQwen2.5-3B_d000_v3_s42_aligned\\\\nQwen2.5-3B_d005_s123_aligned\\\\nQwen2.5-3B_d005_s123_gsm8k_rerun\\\\nQwen2.5-3B_d005_s123_para_aligned\\\\nQwen2.5-3B_d005_s42_a32_aligned\\\\nQwen2.5-3B_d005_s42_a32_para_aligned\\\\nQwen2.5-3B_d005_s42_aligned\\\\nQwen2.5-3B_d005_s42_para_aligned\\\\nQwen2.5-3B_d005_v1_s42_aligned_DEPRECATED\\\\nQwen2.5-3B_d025_s123_aligned\\\\nQwen2.5-3B_d025_s123_para_aligned\\\\nQwen2.5-3B_d025_v2_aligned\\\\nQwen2.5-3B_d025_v2_s42_para_aligned\\\\nQwen2.5-3B_d025_v3_s42_aligned\\\\nQwen2.5-3B_d025_v3_s42_para_aligned\\\\nQwen2.5-3B_d100_a32_s123_aligned\\\\nQwen2.5-3B_d100_a32_s123_para_aligned\\\\nQwen2.5-3B_d100_a32_s42_aligned\\\\nQwen2.5-3B_d100_a32_s42_para_aligned\\\\nQwen2.5-3B_d100_s123_para_aligned\\\\nQwen2.5-3B_d100_s42_para_aligned\\\\nQwen2.5-3B_d100_v1_s42_aligned_DEPRECATED\\\\nQwen2.5-3B_d100_v2_s123_aligned\\\\nQwen2.5-3B_d100_v2_s42_aligned\\\\nQwen2.5-3B_d100_v2_s42_para_aligned\\\\nQwen2.5-3B_d100_v2_s42_para_aligned.log\\\\nQwen2.5-3B_raw\\\\neval_05B_d000_s42.log\\\\neval_05B_d000_s42_rerun.log\\\\neval_05B_d025_para_aligned.log\\\\neval_05B_d025_s123_aligned.log\\\\neval_15B_d000_s123.log\\\\neval_15B_d000_s42.log\\\\neval_15B_d100_s123_aligned.log\\\\neval_3B_d000_v3_s42_aligned.log\\\\neval_3B_d005_aligned.log\\\\neval_3B_d100_v2_s123_aligned.log\\\\nexp_001_eval_3B_d000_s42_v3.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Llama-3.2-3B_d000_s42_aligned\\nLlama-3.2-3B_d005_s42_aligned\\nLlama-3.2-3B_d025_s42_aligned\\nLlama-3.2-3B_d100_s42_aligned\\nQwen2.5-0.5B-Instruct\\nQwen2.5-0.5B-Instruct_aligned\\nQwen2.5-0.5B_base_pretrained\\nQwen2.5-0.5B_base_pretrained_aligned\\nQwen2.5-0.5B_d000_s123\\nQwen2.5-0.5B_d000_s123_aligned\\nQwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d000_s42_aligned\\nQwen2.5-0.5B_d000_s42_para\\nQwen2.5-0.5B_d000_s42_para_aligned\\nQwen2.5-0.5B_d000_s42_v2\\nQwen2.5-0.5B_d000_s42_v2.log\\nQwen2.5-0.5B_d005_s123_aligned\\nQwen2.5-0.5B_d005_s123_para_aligned\\nQwen2.5-0.5B_d005_s42\\nQwen2.5-0.5B_d005_s42_aligned\\nQwen2.5-0.5B_d005_s42_para_aligned\\nQwen2.5-0.5B_d025_s123_aligned\\nQwen2.5-0.5B_d025_s42_aligned\\nQwen2.5-0.5B_d025_s42_para_aligned\\nQwen2.5-0.5B_d100_s123_aligned\\nQwen2.5-0.5B_d100_s42\\nQwen2.5-0.5B_d100_s42_aligned\\nQwen2.5-0.5B_raw\\nQwen2.5-1.5B-Instruct_aligned\\nQwen2.5-1.5B-Instruct_para_aligned\\nQwen2.5-1.5B_base_pretrained\\nQwen2.5-1.5B_d000_s123\\nQwen2.5-1.5B_d000_s123_aligned\\nQwen2.5-1.5B_d000_s123_para_aligned\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d000_s42_aligned\\nQwen2.5-1.5B_d000_s42_para_aligned\\nQwen2.5-1.5B_d005_s123_aligned\\nQwen2.5-1.5B_d005_s123_para_aligned\\nQwen2.5-1.5B_d005_s42_aligned\\nQwen2.5-1.5B_d005_s42_para_aligned\\nQwen2.5-1.5B_d025_s123_aligned\\nQwen2.5-1.5B_d025_s123_para_aligned\\nQwen2.5-1.5B_d025_s42_aligned\\nQwen2.5-1.5B_d025_s42_para_aligned\\nQwen2.5-1.5B_d100_s123_aligned\\nQwen2.5-1.5B_d100_s123_para_aligned\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-1.5B_d100_s42_aligned\\nQwen2.5-1.5B_d100_s42_para_aligned\\nQwen2.5-3B-Instruct_aligned\\nQwen2.5-3B-Instruct_para_aligned\\nQwen2.5-3B-Instruct_v2_aligned\\nQwen2.5-3B-Instruct_v2_para_aligned\\nQwen2.5-3B_d000_s123_aligned\\nQwen2.5-3B_d000_s42\\nQwen2.5-3B_d000_s42_a32_aligned\\nQwen2.5-3B_d000_s42_a32_para_aligned\\nQwen2.5-3B_d000_s42_para_aligned\\nQwen2.5-3B_d000_s42_v3_aligned\\nQwen2.5-3B_d000_v1_s123_DEPRECATED\\nQwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\nQwen2.5-3B_d000_v2_s123_aligned\\nQwen2.5-3B_d000_v2_s123_aligned.log\\nQwen2.5-3B_d000_v2_s123_para_aligned\\nQwen2.5-3B_d000_v2_s123_para_aligned.log\\nQwen2.5-3B_d000_v2_s42_aligned\\nQwen2.5-3B_d000_v2_s42_para_aligned\\nQwen2.5-3B_d000_v2_s42_para_aligned_v2\\nQwen2.5-3B_d000_v2_s42_para_aligned_v3\\nQwen2.5-3B_d000_v3_s42_aligned\\nQwen2.5-3B_d005_s123_aligned\\nQwen2.5-3B_d005_s123_gsm8k_rerun\\nQwen2.5-3B_d005_s123_para_aligned\\nQwen2.5-3B_d005_s42_a32_aligned\\nQwen2.5-3B_d005_s42_a32_para_aligned\\nQwen2.5-3B_d005_s42_aligned\\nQwen2.5-3B_d005_s42_para_aligned\\nQwen2.5-3B_d005_v1_s42_aligned_DEPRECATED\\nQwen2.5-3B_d025_s123_aligned\\nQwen2.5-3B_d025_s123_para_aligned\\nQwen2.5-3B_d025_v2_aligned\\nQwen2.5-3B_d025_v2_s42_para_aligned\\nQwen2.5-3B_d025_v3_s42_aligned\\nQwen2.5-3B_d025_v3_s42_para_aligned\\nQwen2.5-3B_d100_a32_s123_aligned\\nQwen2.5-3B_d100_a32_s123_para_aligned\\nQwen2.5-3B_d100_a32_s42_aligned\\nQwen2.5-3B_d100_a32_s42_para_aligned\\nQwen2.5-3B_d100_s123_para_aligned\\nQwen2.5-3B_d100_s42_para_aligned\\nQwen2.5-3B_d100_v1_s42_aligned_DEPRECATED\\nQwen2.5-3B_d100_v2_s123_aligned\\nQwen2.5-3B_d100_v2_s42_aligned\\nQwen2.5-3B_d100_v2_s42_para_aligned\\nQwen2.5-3B_d100_v2_s42_para_aligned.log\\nQwen2.5-3B_raw\\neval_05B_d000_s42.log\\neval_05B_d000_s42_rerun.log\\neval_05B_d025_para_aligned.log\\neval_05B_d025_s123_aligned.log\\neval_15B_d000_s123.log\\neval_15B_d000_s42.log\\neval_15B_d100_s123_aligned.log\\neval_3B_d000_v3_s42_aligned.log\\neval_3B_d005_aligned.log\\neval_3B_d100_v2_s123_aligned.log\\nexp_001_eval_3B_d000_s42_v3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+Now I have a full picture. The task requires 13 specific models. I notice the task mentions `Qwen2.5-3B_d005_s123_aligned` but no `Qwen2.5-3B_d000_*` models. Let me check the RRF entries again - there are `Qwen2.5-3B_d000_a32_s42` and `Qwen2.5-3B_d005_a32_s42` in RRF but the task's 3B list doesn't include them. I'll use exactly the 13 models specified in the task.
+
+Now I'll create the modified script that filters to exactly those 13 models.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "b69d98f9-e504-4acb-b965-4f88a1a59f80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUsiZM5JuWua1voZbVNdjD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2338,
+      "cache_read_input_tokens": 50692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2338
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016Uh57nKZzT4ixGgp1Ptzhr`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat << 'SCRIPT' > /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py\n#!/usr/bin/env python3\n\"\"\"MMLU domain-stratified gamma analysis: 1.5B + 3B only (no 0.5B). J=13 models.\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport re\nimport sys\nimport time\nfrom pathlib import Path\n\nimport numpy as np\n\nsys.path.insert(0, \"/root/contamcal-irt-calibration/exp006\")\nfrom run_irt_calibration import (\n    load_pooled_eval_results,\n    prepare_stan_data,\n    fit_stan_model,\n    check_convergence,\n    posterior_predictive_check,\n    extract_results,\n    STAN_MODELS,\n)\n\nlog = logging.getLogger(__name__)\n\nDOMAIN_MAP = {\n    \"STEM_Math\": [\n        \"abstract_algebra\", \"college_mathematics\", \"elementary_mathematics\",\n        \"high_school_mathematics\", \"high_school_statistics\", \"formal_logic\",\n    ],\n    \"STEM_Science\": [\n        \"astronomy\", \"college_biology\", \"college_chemistry\", \"college_physics\",\n        \"conceptual_physics\", \"high_school_biology\", \"high_school_chemistry\",\n        \"high_school_physics\",\n    ],\n    \"STEM_CS_Eng\": [\n        \"college_computer_science\", \"computer_security\", \"electrical_engineering\",\n        \"high_school_computer_science\", \"machine_learning\",\n    ],\n    \"Medical\": [\n        \"anatomy\", \"clinical_knowledge\", \"college_medicine\", \"human_aging\",\n        \"medical_genetics\", \"nutrition\", \"professional_medicine\", \"virology\",\n    ],\n    \"Humanities\": [\n        \"high_school_european_history\", \"high_school_us_history\",\n        \"high_school_world_history\", \"logical_fallacies\", \"moral_disputes\",\n        \"moral_scenarios\", \"philosophy\", \"prehistory\", \"world_religions\",\n    ],\n    \"Social_Sciences\": [\n        \"econometrics\", \"high_school_geography\",\n        \"high_school_government_and_politics\", \"high_school_macroeconomics\",\n        \"high_school_microeconomics\", \"high_school_psychology\",\n        \"human_sexuality\", \"professional_psychology\", \"public_relations\",\n        \"security_studies\", \"sociology\", \"us_foreign_policy\",\n    ],\n    \"Business_Law\": [\n        \"business_ethics\", \"international_law\", \"jurisprudence\", \"management\",\n        \"marketing\", \"professional_accounting\", \"professional_law\",\n    ],\n    \"Other\": [\n        \"global_facts\", \"miscellaneous\",\n    ],\n}\n\n# Whitelist: exactly these 13 models (dirname without _aligned suffix for RRF matching)\nMODEL_WHITELIST = {\n    \"Qwen2.5-1.5B_d000_s123\",\n    \"Qwen2.5-1.5B_d000_s42\",\n    \"Qwen2.5-1.5B_d005_s123\",\n    \"Qwen2.5-1.5B_d005_s42\",\n    \"Qwen2.5-1.5B_d025_s123\",\n    \"Qwen2.5-1.5B_d025_s42\",\n    \"Qwen2.5-1.5B_d100_s123\",\n    \"Qwen2.5-1.5B_d100_s42\",\n    \"Qwen2.5-3B_d005_s123\",\n    \"Qwen2.5-3B_d025_s123\",\n    \"Qwen2.5-3B_d025_v3_s42\",\n    \"Qwen2.5-3B_d100_a32_s123\",\n    \"Qwen2.5-3B_d100_a32_s42\",\n}\n\nEVAL_DIR = \"/root/autodl-tmp/exp001/eval_results\"\nMMLU_ARROW = \"/root/autodl-tmp/.hf_cache/cais___mmlu/all/0.0.0/c30699e8356da336a370243923dbaf21066bb9fe/mmlu-test.arrow\"\nRRF_PATH = \"/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\"\nOUTPUT_DIR = \"/root/autodl-tmp/exp006/mmlu_domain_irt_no05B\"\nMODEL_TYPE = \"2pl_gamma\"\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\nMAX_ITEMS = 2000\n\n\ndef strip_aligned(dirname):\n    return re.sub(r'(_para)?(_aligned)?$', '', dirname)\n\n\ndef build_subject_index_map(arrow_path):\n    import pyarrow as pa\n    reader = pa.ipc.open_stream(arrow_path)\n    table = reader.read_all()\n    return table.column(\"subject\").to_pylist()\n\n\ndef build_domain_col_indices(subject_list, n_items):\n    subj_to_domain = {}\n    for domain, subjects in DOMAIN_MAP.items():\n        for s in subjects:\n            subj_to_domain[s] = domain\n    domain_indices = {d: [] for d in DOMAIN_MAP}\n    for i in range(min(len(subject_list), n_items)):\n        domain = subj_to_domain.get(subject_list[i])\n        if domain:\n            domain_indices[domain].append(i)\n    return domain_indices\n\n\ndef fit_domain(domain_name, responses, exposure, args_dict, output_dir):\n    n_models, n_items = responses.shape\n    original_n_items = n_items\n    subsampled = False\n\n    if n_items > MAX_ITEMS:\n        np.random.seed(42)\n        idx = np.sort(np.random.choice(n_items, MAX_ITEMS, replace=False))\n        responses = responses[:, idx]\n        exposure = exposure[:, idx]\n        n_items = MAX_ITEMS\n        subsampled = True\n        log.info(\"[%s] Subsampled: %d -> %d items\", domain_name, original_n_items, n_items)\n\n    stan_data = prepare_stan_data(responses, exposure, MODEL_TYPE)\n    fit, elapsed = fit_stan_model(\n        STAN_FILE, stan_data,\n        chains=args_dict[\"chains\"],\n        iter_warmup=args_dict[\"warmup\"],\n        iter_sampling=args_dict[\"samples\"],\n        adapt_delta=args_dict[\"adapt_delta\"],\n        max_treedepth=args_dict[\"max_treedepth\"],\n        seed=args_dict[\"seed\"],\n    )\n\n    diag = check_convergence(fit)\n    ppp = posterior_predictive_check(fit, responses, MODEL_TYPE)\n    gamma_samples = fit.stan_variable(\"gamma\")\n\n    result = {\n        \"domain\": domain_name,\n        \"n_items\": n_items,\n        \"original_n_items\": original_n_items,\n        \"subsampled\": subsampled,\n        \"n_models\": int(responses.shape[0]),\n        \"mean_acc\": float(responses.mean()),\n        \"gamma\": {\n            \"mean\": float(np.mean(gamma_samples)),\n            \"median\": float(np.median(gamma_samples)),\n            \"sd\": float(np.std(gamma_samples)),\n            \"q025\": float(np.percentile(gamma_samples, 2.5)),\n            \"q975\": float(np.percentile(gamma_samples, 97.5)),\n            \"q05\": float(np.percentile(gamma_samples, 5)),\n            \"q95\": float(np.percentile(gamma_samples, 95)),\n        },\n        \"diagnostics\": diag,\n        \"ppp\": ppp,\n        \"fit_time_sec\": round(elapsed, 1),\n    }\n\n    domain_dir = output_dir / domain_name\n    domain_dir.mkdir(parents=True, exist_ok=True)\n    with open(domain_dir / \"irt_results.json\", \"w\") as f:\n        json.dump(result, f, indent=2)\n\n    return result\n\n\ndef fit_pooled(responses, exposure, args_dict, output_dir):\n    \"\"\"Fit single pooled model across all domains.\"\"\"\n    n_models, n_items = responses.shape\n    if n_items > MAX_ITEMS:\n        np.random.seed(42)\n        idx = np.sort(np.random.choice(n_items, MAX_ITEMS, replace=False))\n        responses = responses[:, idx]\n        exposure = exposure[:, idx]\n        n_items = MAX_ITEMS\n        log.info(\"[pooled] Subsampled to %d items\", n_items)\n\n    stan_data = prepare_stan_data(responses, exposure, MODEL_TYPE)\n    fit, elapsed = fit_stan_model(\n        STAN_FILE, stan_data,\n        chains=args_dict[\"chains\"],\n        iter_warmup=args_dict[\"warmup\"],\n        iter_sampling=args_dict[\"samples\"],\n        adapt_delta=args_dict[\"adapt_delta\"],\n        max_treedepth=args_dict[\"max_treedepth\"],\n        seed=args_dict[\"seed\"],\n    )\n\n    diag = check_convergence(fit)\n    ppp = posterior_predictive_check(fit, responses, MODEL_TYPE)\n    gamma_samples = fit.stan_variable(\"gamma\")\n\n    result = {\n        \"domain\": \"pooled\",\n        \"n_items\": n_items,\n        \"n_models\": int(responses.shape[0]),\n        \"mean_acc\": float(responses.mean()),\n        \"gamma\": {\n            \"mean\": float(np.mean(gamma_samples)),\n            \"median\": float(np.median(gamma_samples)),\n            \"sd\": float(np.std(gamma_samples)),\n            \"q025\": float(np.percentile(gamma_samples, 2.5)),\n            \"q975\": float(np.percentile(gamma_samples, 97.5)),\n        },\n        \"diagnostics\": diag,\n        \"ppp\": ppp,\n        \"fit_time_sec\": round(elapsed, 1),\n    }\n\n    pooled_dir = output_dir / \"pooled\"\n    pooled_dir.mkdir(parents=True, exist_ok=True)\n    with open(pooled_dir / \"irt_results.json\", \"w\") as f:\n        json.dump(result, f, indent=2)\n\n    return result\n\n\ndef generate_summary(all_results, output_dir, n_models):\n    summary_rows = []\n    for domain, r in sorted(all_results.items(), key=lambda x: -x[1][\"gamma\"][\"mean\"]):\n        if domain == \"pooled\":\n            continue\n        g = r[\"gamma\"]\n        d = r[\"diagnostics\"]\n        summary_rows.append({\n            \"domain\": domain,\n            \"n_items\": r[\"n_items\"],\n            \"n_models\": r[\"n_models\"],\n            \"mean_acc\": round(r[\"mean_acc\"], 4),\n            \"gamma_mean\": round(g[\"mean\"], 4),\n            \"gamma_median\": round(g[\"median\"], 4),\n            \"gamma_sd\": round(g[\"sd\"], 4),\n            \"gamma_q025\": round(g[\"q025\"], 4),\n            \"gamma_q975\": round(g[\"q975\"], 4),\n            \"rhat\": round(d.get(\"max_rhat\", 0), 4),\n            \"min_ess\": round(d.get(\"min_ess\", 0), 1),\n            \"divergences\": d.get(\"divergent_count\", 0),\n            \"ppp\": round(r[\"ppp\"], 4),\n            \"fit_time_sec\": r[\"fit_time_sec\"],\n        })\n\n    with open(output_dir / \"summary.json\", \"w\") as f:\n        json.dump(summary_rows, f, indent=2)\n\n    # Markdown table\n    lines = [\"# MMLU Domain IRT (no 0.5B, J=13)\", \"\",\n             f\"N_models = {n_models}\", \"\",\n             \"| Domain | N_items | γ_mean | γ_median | 95% CI | PPP | Rhat | ESS | Div |\",\n             \"|--------|---------|--------|----------|--------|-----|------|-----|-----|\"]\n    for row in summary_rows:\n        ci = f\"[{row['gamma_q025']:.3f}, {row['gamma_q975']:.3f}]\"\n        lines.append(f\"| {row['domain']} | {row['n_items']} | {row['gamma_mean']:.4f} | \"\n                     f\"{row['gamma_median']:.4f} | {ci} | {row['ppp']:.4f} | \"\n                     f\"{row['rhat']:.4f} | {row['min_ess']:.0f} | {row['divergences']} |\")\n\n    if \"pooled\" in all_results:\n        p = all_results[\"pooled\"]\n        pg = p[\"gamma\"]\n        pd = p[\"diagnostics\"]\n        lines.append(\"\")\n        lines.append(f\"**Pooled**: γ={pg['mean']:.4f} [{pg['q025']:.3f}, {pg['q975']:.3f}], \"\n                     f\"PPP={p['ppp']:.4f}, Rhat={pd.get('max_rhat',0):.4f}\")\n\n    with open(output_dir / \"summary.md\", \"w\") as f:\n        f.write(\"\\n\".join(lines) + \"\\n\")\n\n    print(\"\\n\".join(lines))\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--eval-dir\", default=EVAL_DIR)\n    parser.add_argument(\"--rrf-path\", default=RRF_PATH)\n    parser.add_argument(\"--mmlu-arrow\", default=MMLU_ARROW)\n    parser.add_argument(\"--output-dir\", default=OUTPUT_DIR)\n    parser.add_argument(\"--chains\", type=int, default=4)\n    parser.add_argument(\"--warmup\", type=int, default=1000)\n    parser.add_argument(\"--samples\", type=int, default=1000)\n    parser.add_argument(\"--adapt-delta\", type=float, default=0.95)\n    parser.add_argument(\"--max-treedepth\", type=int, default=12)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--domains\", nargs=\"*\", help=\"Fit only these domains\")\n    parser.add_argument(\"--skip-pooled\", action=\"store_true\")\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    logging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    # Load RRF exposure\n    log.info(\"Loading RRF exposure from %s\", args.rrf_path)\n    with open(args.rrf_path) as f:\n        rrf_data = json.load(f)\n\n    # Load 1.5B + 3B only\n    scales = [\"1.5B\", \"3B\"]\n    log.info(\"Loading pooled eval results: scales=%s\", scales)\n    data = load_pooled_eval_results(\n        args.eval_dir, scales, benchmarks=[\"mmlu\"],\n        skip_para=True, aligned_only=True,\n    )\n\n    mmlu = data[\"benchmarks\"][\"mmlu\"]\n    full_responses = mmlu[\"responses\"]\n    valid_mask = mmlu[\"valid_mask\"]\n    n_total_items = mmlu[\"n_items\"]\n    models = data[\"models\"]\n    dosages = data[\"dosages\"]\n\n    # Filter to whitelisted models with RRF entries\n    keep_idx = []\n    for i, m in enumerate(models):\n        if not valid_mask[i]:\n            continue\n        key = strip_aligned(m[\"dirname\"])\n        if key not in MODEL_WHITELIST:\n            log.info(\"Not in whitelist: %s, skipping\", m[\"dirname\"])\n            continue\n        if key in rrf_data and \"mmlu\" in rrf_data[key]:\n            keep_idx.append(i)\n        else:\n            log.info(\"No RRF entry for %s, skipping\", m[\"dirname\"])\n\n    keep_idx = np.array(keep_idx)\n    models = [models[i] for i in keep_idx]\n    dosages = dosages[keep_idx]\n    full_responses = full_responses[keep_idx]\n\n    log.info(\"After whitelist + RRF filter: %d models x %d items\", len(models), n_total_items)\n    for m in models:\n        log.info(\"  %s (scale=%s, dosage=%d)\", m[\"dirname\"], m.get(\"scale\"), m[\"dosage\"])\n\n    if len(models) != 13:\n        log.warning(\"Expected 13 models, got %d!\", len(models))\n\n    # Build RRF exposure matrix\n    rrf_exposure = np.zeros((len(models), n_total_items), dtype=float)\n    for i, m in enumerate(models):\n        key = strip_aligned(m[\"dirname\"])\n        scores = rrf_data[key][\"mmlu\"][\"exposure_scores\"]\n        rrf_exposure[i, :] = scores[:n_total_items]\n\n    # Build domain indices\n    subject_list = build_subject_index_map(args.mmlu_arrow)\n    domain_indices = build_domain_col_indices(subject_list, n_total_items)\n\n    domains_to_fit = args.domains if args.domains else list(DOMAIN_MAP.keys())\n\n    if args.dry_run:\n        print(f\"\\n=== DRY RUN: N_models={len(models)}, N_items={n_total_items} ===\\n\")\n        print(f\"{'Domain':<18} {'N_items':>7} {'Mean_acc':>8}\")\n        print(\"-\" * 40)\n        for domain in domains_to_fit:\n            idx = domain_indices[domain]\n            if not idx:\n                print(f\"{domain:<18} {'0':>7} {'N/A':>8}\")\n                continue\n            acc = full_responses[:, idx].mean()\n            print(f\"{domain:<18} {len(idx):>7} {acc:>8.4f}\")\n        print(f\"\\nModels ({len(models)}):\")\n        for m in models:\n            print(f\"  {m['dirname']} (scale={m.get('scale')}, d={m['dosage']})\")\n        print(f\"\\nDosages: {dosages.tolist()}\")\n        return\n\n    # Fit per-domain\n    args_dict = {\n        \"chains\": args.chains, \"warmup\": args.warmup,\n        \"samples\": args.samples, \"adapt_delta\": args.adapt_delta,\n        \"max_treedepth\": args.max_treedepth, \"seed\": args.seed,\n    }\n\n    all_results = {}\n    for domain in domains_to_fit:\n        idx = domain_indices[domain]\n        if len(idx) < 10:\n            log.warning(\"Skipping %s: only %d items\", domain, len(idx))\n            continue\n\n        log.info(\"=\" * 50)\n        log.info(\"Fitting domain: %s (%d items)\", domain, len(idx))\n\n        domain_resp = full_responses[:, idx]\n        domain_exp = rrf_exposure[:, idx]\n\n        result = fit_domain(domain, domain_resp, domain_exp, args_dict, output_dir)\n        all_results[domain] = result\n\n        g = result[\"gamma\"]\n        d = result[\"diagnostics\"]\n        log.info(\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d, time=%.0fs\",\n                 domain, g[\"mean\"], g[\"q025\"], g[\"q975\"],\n                 d.get(\"max_rhat\", 0), d.get(\"min_ess\", 0),\n                 d.get(\"divergent_count\", 0), result[\"fit_time_sec\"])\n\n    # Pooled fit\n    if not args.skip_pooled:\n        log.info(\"=\" * 50)\n        log.info(\"Fitting POOLED model (all domains combined)\")\n        pooled_result = fit_pooled(full_responses, rrf_exposure, args_dict, output_dir)\n        all_results[\"pooled\"] = pooled_result\n        pg = pooled_result[\"gamma\"]\n        log.info(\"[pooled] gamma=%.4f [%.4f, %.4f], PPP=%.4f\",\n                 pg[\"mean\"], pg[\"q025\"], pg[\"q975\"], pooled_result[\"ppp\"])\n\n    if all_results:\n        print(\"\\n\" + \"=\" * 70)\n        generate_summary(all_results, output_dir, len(models))\n        with open(output_dir / \"all_domain_results.json\", \"w\") as f:\n            json.dump(all_results, f, indent=2)\n        log.info(\"Done. Results in %s\", output_dir)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "42e5e407-3157-4c22-81bf-00f4f53f23e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUsiZM5JuWua1voZbVNdjD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2338,
+      "cache_read_input_tokens": 50692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2338
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-17T06:38:56.517Z_
+
+<details><summary>↩ Tool result · `toolu_016Uh57nKZzT4ixGgp1Ptzhr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "c6a63dbf-d3a4-41a9-bb75-de2da69cd6fe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+Script created. Now let me do a dry run to verify the 13 models are correctly loaded before launching the full fit.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "8a3d009b-d169-48c7-8ce0-a85ddcd54d37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ERvuyyfupu4MMFzGGzAW4o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5724,
+      "cache_read_input_tokens": 53030,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5724
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RZ8DgymCE1QTAawgD4d8zM`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/contamcal-irt-calibration/exp006 && /root/miniconda3/bin/python run_mmlu_domain_gamma_no05b.py --dry-run"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "02db0cc0-90ee-4630-a8bc-15e45ee33664",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ERvuyyfupu4MMFzGGzAW4o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5724,
+      "cache_read_input_tokens": 53030,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5724
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-17T06:39:04.526Z_
+
+<details><summary>↩ Tool result · `toolu_01RZ8DgymCE1QTAawgD4d8zM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== DRY RUN: N_models=13, N_items=14042 ===\\n\\nDomain             N_items Mean_acc\\n----------------------------------------\\nSTEM_Math             1190   0.4469\\nSTEM_Science          1397   0.5992\\nSTEM_CS_Eng            557   0.5923\\nMedical               1640   0.6398\\nHumanities            2816   0.5712\\nSocial_Sciences       3077   0.7113\\nBusiness_Law          2482   0.5384\\nOther                  883   0.7049\\n\\nModels (13):\\n  Qwen2.5-1.5B_d000_s123_aligned (scale=1.5B, d=0)\\n  Qwen2.5-1.5B_d000_s42_aligned (scale=1.5B, d=0)\\n  Qwen2.5-1.5B_d005_s123_aligned (scale=1.5B, d=5)\\n  Qwen2.5-1.5B_d005_s42_aligned (scale=1.5B, d=5)\\n  Qwen2.5-1.5B_d025_s123_aligned (scale=1.5B, d=25)\\n  Qwen2.5-1.5B_d025_s42_aligned (scale=1.5B, d=25)\\n  Qwen2.5-1.5B_d100_s123_aligned (scale=1.5B, d=100)\\n  Qwen2.5-1.5B_d100_s42_aligned (scale=1.5B, d=100)\\n  Qwen2.5-3B_d005_s123_aligned (scale=3B, d=5)\\n  Qwen2.5-3B_d025_s123_aligned (scale=3B, d=25)\\n  Qwen2.5-3B_d025_v3_s42_aligned (scale=3B, d=25)\\n  Qwen2.5-3B_d100_a32_s123_aligned (scale=3B, d=100)\\n  Qwen2.5-3B_d100_a32_s42_aligned (scale=3B, d=100)\\n\\nDosages: [0, 0, 5, 5, 25, 25, 100, 100, 5, 25, 25, 100, 100]\\n\", \"stderr\": \"2026-05-17 14:39:03,474 INFO Loading RRF exposure from /root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\\n2026-05-17 14:39:03,664 INFO Loading pooled eval results: scales=['1.5B', '3B']\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d000_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d005_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d025_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d100_s42_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-0.5B-Instruct\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-0.5B-Instruct_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-0.5B_base_pretrained_aligned\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s123\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s123_aligned\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42_v2\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s123_aligned\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d005_s42\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s123_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s123_aligned\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d100_s42\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s42_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_para_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-1.5B_base_pretrained\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d000_s123\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d000_s42\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_s123_aligned\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-3B_d000_s42\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42_a32_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s123_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s123_aligned\\n2026-05-17 14:39:03,671 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun\\n2026-05-17 14:39:03,671 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_a32_aligned\\n2026-05-17 14:39:03,671 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_aligned\\n2026-05-17 14:39:03,671 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED\\n2026-05-17 14\\n\\n... [截断: 输出过长，省略 3283 字符] ...\\n\\nSkipping dir (scale mismatch): Qwen2.5-1.5B_d025_s42_aligned\\n2026-05-17 14:39:03,996 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s123_aligned\\n2026-05-17 14:39:03,996 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42\\n2026-05-17 14:39:03,996 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s42_aligned\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned\\n2026-05-17 14:39:03,996 INFO Skipping non-aligned dir: Qwen2.5-3B_d000_s42\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d025_v2_aligned\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_raw\\n2026-05-17 14:39:03,996 INFO Skipping Qwen2.5-3B_d000_v2_s42_aligned (alpha variant Qwen2.5-3B_d000_s42_a32_aligned preferred)\\n2026-05-17 14:39:03,996 INFO Skipping Qwen2.5-3B_d005_s42_aligned (alpha variant Qwen2.5-3B_d005_s42_a32_aligned preferred)\\n2026-05-17 14:39:03,996 INFO Skipping Qwen2.5-3B_d100_v2_s123_aligned (alpha variant Qwen2.5-3B_d100_a32_s123_aligned preferred)\\n2026-05-17 14:39:03,996 INFO Skipping Qwen2.5-3B_d100_v2_s42_aligned (alpha variant Qwen2.5-3B_d100_a32_s42_aligned preferred)\\n2026-05-17 14:39:03,996 INFO Dedup: 17 -> 12 models (alpha preference)\\n2026-05-17 14:39:03,996 INFO Found 12 model evaluations\\n2026-05-17 14:39:04,180 INFO Benchmarks: ['mmlu']\\n2026-05-17 14:39:04,391 INFO Pool scale 3B: 12 models, dosages=[0, 5, 25, 100, 0, 0, 5, 5, 25, 25, 100, 100]\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Llama-3.2-3B_d005_s42_aligned, skipping\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Llama-3.2-3B_d025_s42_aligned, skipping\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Llama-3.2-3B_d100_s42_aligned, skipping\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Qwen2.5-3B_d000_s123_aligned, skipping\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Qwen2.5-3B_d000_s42_a32_aligned, skipping\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Qwen2.5-3B_d005_s42_a32_aligned, skipping\\n2026-05-17 14:39:04,392 INFO After whitelist + RRF filter: 13 models x 14042 items\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d000_s123_aligned (scale=1.5B, dosage=0)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d000_s42_aligned (scale=1.5B, dosage=0)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d005_s123_aligned (scale=1.5B, dosage=5)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d005_s42_aligned (scale=1.5B, dosage=5)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d025_s123_aligned (scale=1.5B, dosage=25)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d025_s42_aligned (scale=1.5B, dosage=25)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d100_s123_aligned (scale=1.5B, dosage=100)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d100_s42_aligned (scale=1.5B, dosage=100)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d005_s123_aligned (scale=3B, dosage=5)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d025_s123_aligned (scale=3B, dosage=25)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d025_v3_s42_aligned (scale=3B, dosage=25)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d100_a32_s123_aligned (scale=3B, dosage=100)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d100_a32_s42_aligned (scale=3B, dosage=100)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "ff7d519c-0d60-4edf-8fd4-cede8d5fe7e4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n=== DRY RUN: N_models=13, N_items=14042 ===\\\\n\\\\nDomain             N_items Mean_acc\\\\n----------------------------------------\\\\nSTEM_Math             1190   0.4469\\\\nSTEM_Science          1397   0.5992\\\\nSTEM_CS_Eng            557   0.5923\\\\nMedical               1640   0.6398\\\\nHumanities            2816   0.5712\\\\nSocial_Sciences       3077   0.7113\\\\nBusiness_Law          2482   0.5384\\\\nOther                  883   0.7049\\\\n\\\\nModels (13):\\\\n  Qwen2.5-1.5B_d000_s123_aligned (scale=1.5B, d=0)\\\\n  Qwen2.5-1.5B_d000_s42_aligned (scale=1.5B, d=0)\\\\n  Qwen2.5-1.5B_d005_s123_aligned (scale=1.5B, d=5)\\\\n  Qwen2.5-1.5B_d005_s42_aligned (scale=1.5B, d=5)\\\\n  Qwen2.5-1.5B_d025_s123_aligned (scale=1.5B, d=25)\\\\n  Qwen2.5-1.5B_d025_s42_aligned (scale=1.5B, d=25)\\\\n  Qwen2.5-1.5B_d100_s123_aligned (scale=1.5B, d=100)\\\\n  Qwen2.5-1.5B_d100_s42_aligned (scale=1.5B, d=100)\\\\n  Qwen2.5-3B_d005_s123_aligned (scale=3B, d=5)\\\\n  Qwen2.5-3B_d025_s123_aligned (scale=3B, d=25)\\\\n  Qwen2.5-3B_d025_v3_s42_aligned (scale=3B, d=25)\\\\n  Qwen2.5-3B_d100_a32_s123_aligned (scale=3B, d=100)\\\\n  Qwen2.5-3B_d100_a32_s42_aligned (scale=3B, d=100)\\\\n\\\\nDosages: [0, 0, 5, 5, 25, 25, 100, 100, 5, 25, 25, 100, 100]\\\\n\\\", \\\"stderr\\\": \\\"2026-05-17 14:39:03,474 INFO Loading RRF exposure from /root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\\\\n2026-05-17 14:39:03,664 INFO Loading pooled eval results: scales=['1.5B', '3B']\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d000_s42_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d005_s42_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d025_s42_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d100_s42_aligned\\\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-0.5B-Instruct\\\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-0.5B-Instruct_aligned\\\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-0.5B_base_pretrained_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s123\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s123_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42_v2\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s123_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d005_s42\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s42_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s123_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s42_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s123_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d100_s42\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s42_aligned\\\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_aligned\\\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_para_aligned\\\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-1.5B_base_pretrained\\\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d000_s123\\\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d000_s42\\\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42\\\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned\\\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned\\\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned\\\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_s123_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-3B_d000_s42\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42_a32_aligned\\\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned\\\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED\\\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s123_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s42_aligned\\\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s123_aligned\\\\n2026-05-17 14:39:03,671 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun\\\\n2026-05-17 14:39:03,671 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_a32_aligned\\\\n2026-05-17 14:39:03,671 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_aligned\\\\n2026-05-17 14:39:03,671 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED\\\\n2026-05-17 14\\\\n\\\\n... [截断: 输出过长，省略 3283 字符] ...\\\\n\\\\nSkipping dir (scale mismatch): Qwen2.5-1.5B_d025_s42_aligned\\\\n2026-05-17 14:39:03,996 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s123_aligned\\\\n2026-05-17 14:39:03,996 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42\\\\n2026-05-17 14:39:03,996 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s42_aligned\\\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned\\\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned\\\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned\\\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned\\\\n2026-05-17 14:39:03,996 INFO Skipping non-aligned dir: Qwen2.5-3B_d000_s42\\\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned\\\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED\\\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun\\\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED\\\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d025_v2_aligned\\\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED\\\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_raw\\\\n2026-05-17 14:39:03,996 INFO Skipping Qwen2.5-3B_d000_v2_s42_aligned (alpha variant Qwen2.5-3B_d000_s42_a32_aligned preferred)\\\\n2026-05-17 14:39:03,996 INFO Skipping Qwen2.5-3B_d005_s42_aligned (alpha variant Qwen2.5-3B_d005_s42_a32_aligned preferred)\\\\n2026-05-17 14:39:03,996 INFO Skipping Qwen2.5-3B_d100_v2_s123_aligned (alpha variant Qwen2.5-3B_d100_a32_s123_aligned preferred)\\\\n2026-05-17 14:39:03,996 INFO Skipping Qwen2.5-3B_d100_v2_s42_aligned (alpha variant Qwen2.5-3B_d100_a32_s42_aligned preferred)\\\\n2026-05-17 14:39:03,996 INFO Dedup: 17 -> 12 models (alpha preference)\\\\n2026-05-17 14:39:03,996 INFO Found 12 model evaluations\\\\n2026-05-17 14:39:04,180 INFO Benchmarks: ['mmlu']\\\\n2026-05-17 14:39:04,391 INFO Pool scale 3B: 12 models, dosages=[0, 5, 25, 100, 0, 0, 5, 5, 25, 25, 100, 100]\\\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Llama-3.2-3B_d005_s42_aligned, skipping\\\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Llama-3.2-3B_d025_s42_aligned, skipping\\\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Llama-3.2-3B_d100_s42_aligned, skipping\\\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Qwen2.5-3B_d000_s123_aligned, skipping\\\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Qwen2.5-3B_d000_s42_a32_aligned, skipping\\\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Qwen2.5-3B_d005_s42_a32_aligned, skipping\\\\n2026-05-17 14:39:04,392 INFO After whitelist + RRF filter: 13 models x 14042 items\\\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d000_s123_aligned (scale=1.5B, dosage=0)\\\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d000_s42_aligned (scale=1.5B, dosage=0)\\\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d005_s123_aligned (scale=1.5B, dosage=5)\\\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d005_s42_aligned (scale=1.5B, dosage=5)\\\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d025_s123_aligned (scale=1.5B, dosage=25)\\\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d025_s42_aligned (scale=1.5B, dosage=25)\\\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d100_s123_aligned (scale=1.5B, dosage=100)\\\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d100_s42_aligned (scale=1.5B, dosage=100)\\\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d005_s123_aligned (scale=3B, dosage=5)\\\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d025_s123_aligned (scale=3B, dosage=25)\\\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d025_v3_s42_aligned (scale=3B, dosage=25)\\\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d100_a32_s123_aligned (scale=3B, dosage=100)\\\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d100_a32_s42_aligned (scale=3B, dosage=100)\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n=== DRY RUN: N_models=13, N_items=14042 ===\\n\\nDomain             N_items Mean_acc\\n----------------------------------------\\nSTEM_Math             1190   0.4469\\nSTEM_Science          1397   0.5992\\nSTEM_CS_Eng            557   0.5923\\nMedical               1640   0.6398\\nHumanities            2816   0.5712\\nSocial_Sciences       3077   0.7113\\nBusiness_Law          2482   0.5384\\nOther                  883   0.7049\\n\\nModels (13):\\n  Qwen2.5-1.5B_d000_s123_aligned (scale=1.5B, d=0)\\n  Qwen2.5-1.5B_d000_s42_aligned (scale=1.5B, d=0)\\n  Qwen2.5-1.5B_d005_s123_aligned (scale=1.5B, d=5)\\n  Qwen2.5-1.5B_d005_s42_aligned (scale=1.5B, d=5)\\n  Qwen2.5-1.5B_d025_s123_aligned (scale=1.5B, d=25)\\n  Qwen2.5-1.5B_d025_s42_aligned (scale=1.5B, d=25)\\n  Qwen2.5-1.5B_d100_s123_aligned (scale=1.5B, d=100)\\n  Qwen2.5-1.5B_d100_s42_aligned (scale=1.5B, d=100)\\n  Qwen2.5-3B_d005_s123_aligned (scale=3B, d=5)\\n  Qwen2.5-3B_d025_s123_aligned (scale=3B, d=25)\\n  Qwen2.5-3B_d025_v3_s42_aligned (scale=3B, d=25)\\n  Qwen2.5-3B_d100_a32_s123_aligned (scale=3B, d=100)\\n  Qwen2.5-3B_d100_a32_s42_aligned (scale=3B, d=100)\\n\\nDosages: [0, 0, 5, 5, 25, 25, 100, 100, 5, 25, 25, 100, 100]\\n\", \"stderr\": \"2026-05-17 14:39:03,474 INFO Loading RRF exposure from /root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\\n2026-05-17 14:39:03,664 INFO Loading pooled eval results: scales=['1.5B', '3B']\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d000_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d005_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d025_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d100_s42_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-0.5B-Instruct\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-0.5B-Instruct_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-0.5B_base_pretrained_aligned\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s123\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s123_aligned\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42_v2\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s123_aligned\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d005_s42\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s123_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s123_aligned\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d100_s42\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s42_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_para_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-1.5B_base_pretrained\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d000_s123\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d000_s42\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_s123_aligned\\n2026-05-17 14:39:03,670 INFO Skipping non-aligned dir: Qwen2.5-3B_d000_s42\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42_a32_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED\\n2026-05-17 14:39:03,670 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s123_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s42_aligned\\n2026-05-17 14:39:03,670 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s123_aligned\\n2026-05-17 14:39:03,671 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun\\n2026-05-17 14:39:03,671 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_a32_aligned\\n2026-05-17 14:39:03,671 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_aligned\\n2026-05-17 14:39:03,671 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED\\n2026-05-17 14\\n\\n... [截断: 输出过长，省略 3283 字符] ...\\n\\nSkipping dir (scale mismatch): Qwen2.5-1.5B_d025_s42_aligned\\n2026-05-17 14:39:03,996 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s123_aligned\\n2026-05-17 14:39:03,996 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42\\n2026-05-17 14:39:03,996 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s42_aligned\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned\\n2026-05-17 14:39:03,996 INFO Skipping non-aligned dir: Qwen2.5-3B_d000_s42\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d025_v2_aligned\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED\\n2026-05-17 14:39:03,996 WARNING Skipping unrecognized dir: Qwen2.5-3B_raw\\n2026-05-17 14:39:03,996 INFO Skipping Qwen2.5-3B_d000_v2_s42_aligned (alpha variant Qwen2.5-3B_d000_s42_a32_aligned preferred)\\n2026-05-17 14:39:03,996 INFO Skipping Qwen2.5-3B_d005_s42_aligned (alpha variant Qwen2.5-3B_d005_s42_a32_aligned preferred)\\n2026-05-17 14:39:03,996 INFO Skipping Qwen2.5-3B_d100_v2_s123_aligned (alpha variant Qwen2.5-3B_d100_a32_s123_aligned preferred)\\n2026-05-17 14:39:03,996 INFO Skipping Qwen2.5-3B_d100_v2_s42_aligned (alpha variant Qwen2.5-3B_d100_a32_s42_aligned preferred)\\n2026-05-17 14:39:03,996 INFO Dedup: 17 -> 12 models (alpha preference)\\n2026-05-17 14:39:03,996 INFO Found 12 model evaluations\\n2026-05-17 14:39:04,180 INFO Benchmarks: ['mmlu']\\n2026-05-17 14:39:04,391 INFO Pool scale 3B: 12 models, dosages=[0, 5, 25, 100, 0, 0, 5, 5, 25, 25, 100, 100]\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Llama-3.2-3B_d005_s42_aligned, skipping\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Llama-3.2-3B_d025_s42_aligned, skipping\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Llama-3.2-3B_d100_s42_aligned, skipping\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Qwen2.5-3B_d000_s123_aligned, skipping\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Qwen2.5-3B_d000_s42_a32_aligned, skipping\\n2026-05-17 14:39:04,392 INFO Not in whitelist: Qwen2.5-3B_d005_s42_a32_aligned, skipping\\n2026-05-17 14:39:04,392 INFO After whitelist + RRF filter: 13 models x 14042 items\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d000_s123_aligned (scale=1.5B, dosage=0)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d000_s42_aligned (scale=1.5B, dosage=0)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d005_s123_aligned (scale=1.5B, dosage=5)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d005_s42_aligned (scale=1.5B, dosage=5)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d025_s123_aligned (scale=1.5B, dosage=25)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d025_s42_aligned (scale=1.5B, dosage=25)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d100_s123_aligned (scale=1.5B, dosage=100)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-1.5B_d100_s42_aligned (scale=1.5B, dosage=100)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d005_s123_aligned (scale=3B, dosage=5)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d025_s123_aligned (scale=3B, dosage=25)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d025_v3_s42_aligned (scale=3B, dosage=25)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d100_a32_s123_aligned (scale=3B, dosage=100)\\n2026-05-17 14:39:04,392 INFO   Qwen2.5-3B_d100_a32_s42_aligned (scale=3B, dosage=100)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+Dry run confirms exactly 13 models loaded correctly. Now I'll launch the full run in tmux.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "b18ede1a-f0b2-4be7-9d6d-957e0f7489b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019V4CNJm9sU4Tyap6RruhDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5085,
+      "cache_read_input_tokens": 58754,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5085
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01ErpjJ9Zugyep7b4YgDK5VK`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tmux new-session -d -s irt_no05b '/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py 2>&1 | tee /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/run.log'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "53e6fd4f-5682-4459-8bc1-8e97efd85433",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019V4CNJm9sU4Tyap6RruhDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5085,
+      "cache_read_input_tokens": 58754,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5085
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-17T06:39:12.361Z_
+
+<details><summary>↩ Tool result · `toolu_01ErpjJ9Zugyep7b4YgDK5VK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "80f804e8-7893-4c57-90ba-022a6e92d2b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WtYjtB8Fdeymm32GCDe7tW`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "sleep 5 && tail -20 /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "1fac4041-1a05-4e70-a700-0d962acaf82e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FThoWkba3VF2Ga95XUgmDu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 271,
+      "cache_read_input_tokens": 63839,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 271
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-17T06:39:20.790Z_
+
+<details><summary>↩ Tool result · `toolu_01WtYjtB8Fdeymm32GCDe7tW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-17 14:39:13,758 INFO   Qwen2.5-1.5B_d025_s42_aligned (scale=1.5B, dosage=25)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-1.5B_d100_s123_aligned (scale=1.5B, dosage=100)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-1.5B_d100_s42_aligned (scale=1.5B, dosage=100)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d005_s123_aligned (scale=3B, dosage=5)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d025_s123_aligned (scale=3B, dosage=25)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d025_v3_s42_aligned (scale=3B, dosage=25)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d100_a32_s123_aligned (scale=3B, dosage=100)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d100_a32_s42_aligned (scale=3B, dosage=100)\\n2026-05-17 14:39:13,780 INFO ==================================================\\n2026-05-17 14:39:13,780 INFO Fitting domain: STEM_Math (1190 items)\\n2026-05-17 14:39:13,781 INFO Compiling Stan model: contam_irt_2pl_gamma.stan\\n2026-05-17 14:39:13,815 INFO Fitting: 13 models x 1190 items, 4 chains x 1000 samples\\n2026-05-17 14:39:13,866 INFO CmdStan start processing\\n\\rchain 1:   0%|\\u001b[33m          \\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\n\\rchain 2:   0%|\\u001b[33m          \\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\n\\n\\rchain 3:   0%|\\u001b[33m          \\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\u001b[A\\n\\n\\n\\rchain 4:   0%|\\u001b[33m          \\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\u001b[A\\u001b[A\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "05f22013-d5b7-474f-b7a8-4b82847f7fcc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-17 14:39:13,758 INFO   Qwen2.5-1.5B_d025_s42_aligned (scale=1.5B, dosage=25)\\\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-1.5B_d100_s123_aligned (scale=1.5B, dosage=100)\\\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-1.5B_d100_s42_aligned (scale=1.5B, dosage=100)\\\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d005_s123_aligned (scale=3B, dosage=5)\\\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d025_s123_aligned (scale=3B, dosage=25)\\\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d025_v3_s42_aligned (scale=3B, dosage=25)\\\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d100_a32_s123_aligned (scale=3B, dosage=100)\\\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d100_a32_s42_aligned (scale=3B, dosage=100)\\\\n2026-05-17 14:39:13,780 INFO ==================================================\\\\n2026-05-17 14:39:13,780 INFO Fitting domain: STEM_Math (1190 items)\\\\n2026-05-17 14:39:13,781 INFO Compiling Stan model: contam_irt_2pl_gamma.stan\\\\n2026-05-17 14:39:13,815 INFO Fitting: 13 models x 1190 items, 4 chains x 1000 samples\\\\n2026-05-17 14:39:13,866 INFO CmdStan start processing\\\\n\\\\rchain 1:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\\\n\\\\rchain 2:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\n\\\\n\\\\rchain 3:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\rchain 4:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-17 14:39:13,758 INFO   Qwen2.5-1.5B_d025_s42_aligned (scale=1.5B, dosage=25)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-1.5B_d100_s123_aligned (scale=1.5B, dosage=100)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-1.5B_d100_s42_aligned (scale=1.5B, dosage=100)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d005_s123_aligned (scale=3B, dosage=5)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d025_s123_aligned (scale=3B, dosage=25)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d025_v3_s42_aligned (scale=3B, dosage=25)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d100_a32_s123_aligned (scale=3B, dosage=100)\\n2026-05-17 14:39:13,758 INFO   Qwen2.5-3B_d100_a32_s42_aligned (scale=3B, dosage=100)\\n2026-05-17 14:39:13,780 INFO ==================================================\\n2026-05-17 14:39:13,780 INFO Fitting domain: STEM_Math (1190 items)\\n2026-05-17 14:39:13,781 INFO Compiling Stan model: contam_irt_2pl_gamma.stan\\n2026-05-17 14:39:13,815 INFO Fitting: 13 models x 1190 items, 4 chains x 1000 samples\\n2026-05-17 14:39:13,866 INFO CmdStan start processing\\n\\rchain 1:   0%|\\u001b[33m          \\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\n\\rchain 2:   0%|\\u001b[33m          \\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\n\\n\\rchain 3:   0%|\\u001b[33m          \\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\u001b[A\\n\\n\\n\\rchain 4:   0%|\\u001b[33m          \\u001b[0m| 0/2000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\u001b[A\\u001b[A\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+Stan MCMC is running (STEM_Math domain started, 4 chains compiling). The job is running in tmux session `irt_no05b`. Let me check progress after a bit more time to confirm it's actually sampling.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "14dcdb18-0ec1-4ffb-aeca-da31676e8998",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JdBfz7zGm2g1WTVY1TNS4s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 986,
+      "cache_read_input_tokens": 64110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 986
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01CsEUsGZzKGMALLsNmmyops`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "sleep 30 && tail -5 /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "2c76bc01-deb5-456d-957a-e9750e2f54b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JdBfz7zGm2g1WTVY1TNS4s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 986,
+      "cache_read_input_tokens": 64110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 986
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-17T06:39:55.732Z_
+
+<details><summary>↩ Tool result · `toolu_01CsEUsGZzKGMALLsNmmyops`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 30 && tail -5 /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/run.log'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "3f6923d6-f95a-459e-9a60-a255eb80ef77",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'sleep 30 && tail -5 /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/run.log'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 30 && tail -5 /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/run.log'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BWptEYXDBvppGn9n5N5ity`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -5 /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "decff02d-84ca-4b6f-a2bc-e71cdb5c74e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gg7bxojBBpJoCt1Rp4oTcj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 406,
+      "cache_read_input_tokens": 65096,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 406
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-17T06:39:59.601Z_
+
+<details><summary>↩ Tool result · `toolu_01BWptEYXDBvppGn9n5N5ity`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n\\n\\rchain 4:  10%|\\u001b[33m█         \\u001b[0m| 200/2000 [00:33<04:53,  6.13it/s, (Warmup)]\\u001b[A\\u001b[A\\u001b[A\\n\\n\\rchain 3:  10%|\\u001b[33m█         \\u001b[0m| 200/2000 [00:34<05:15,  5.71it/s, (Warmup)]\\u001b[A\\u001b[A\\rchain 1:  15%|\\u001b[33m█▌        \\u001b[0m| 300/2000 [00:43<03:55,  7.21it/s, (Warmup)]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "0d62bc9f-0a3c-441c-aeec-8bb93046948f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\n\\\\rchain 4:  10%|\\\\u001b[33m█         \\\\u001b[0m| 200/2000 [00:33<04:53,  6.13it/s, (Warmup)]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\rchain 3:  10%|\\\\u001b[33m█         \\\\u001b[0m| 200/2000 [00:34<05:15,  5.71it/s, (Warmup)]\\\\u001b[A\\\\u001b[A\\\\rchain 1:  15%|\\\\u001b[33m█▌        \\\\u001b[0m| 300/2000 [00:43<03:55,  7.21it/s, (Warmup)]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n\\n\\rchain 4:  10%|\\u001b[33m█         \\u001b[0m| 200/2000 [00:33<04:53,  6.13it/s, (Warmup)]\\u001b[A\\u001b[A\\u001b[A\\n\\n\\rchain 3:  10%|\\u001b[33m█         \\u001b[0m| 200/2000 [00:34<05:15,  5.71it/s, (Warmup)]\\u001b[A\\u001b[A\\rchain 1:  15%|\\u001b[33m█▌        \\u001b[0m| 300/2000 [00:43<03:55,  7.21it/s, (Warmup)]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+MCMC is actively sampling. Chain 1 at 15% warmup, chains 3-4 at 10%. At ~6-7 it/s for 2000 iterations, STEM_Math should finish in about 5 min. With 8 domains + pooled, total runtime ~45-90 min.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "cf98f891-bb15-45e6-aba7-aee3e762fe3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYhA7bmCanofYT2YJjt9LJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 394,
+      "cache_read_input_tokens": 65502,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 394
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DEssich5XJ67oVzESya5UB`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tmux ls"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "818250b9-e95d-49bb-8302-24e8a41e7fbc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYhA7bmCanofYT2YJjt9LJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 394,
+      "cache_read_input_tokens": 65502,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 394
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-17T06:40:04.746Z_
+
+<details><summary>↩ Tool result · `toolu_01DEssich5XJ67oVzESya5UB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "cf140ff6-6564-4399-99f8-10f5cbe52d3e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+Running confirmed. Let me record the previous J=16 results for later comparison and report what's been set up.
+
+The run is active in tmux session `irt_no05b` on cqa1-21977. Summary:
+
+**Setup complete:**
+- Script: `/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py`
+- Output: `/root/autodl-tmp/exp006/mmlu_domain_irt_no05B/`
+- J=13 models confirmed (8×1.5B + 5×3B, no 0.5B)
+- 8 domains + 1 pooled fit, 2PL+γ, 4 chains × 1000w + 1000s
+- Estimated runtime: ~45-90 min total
+
+**Previous J=16 results (for later comparison):**
+
+| Domain | γ_mean | 95% CI | PPP |
+|--------|--------|--------|-----|
+| Other | 1.3415 | [0.675, 2.029] | 0.000 |
+| Business_Law | 0.6084 | [0.215, 1.004] | 0.003 |
+| Humanities | 0.4729 | [0.202, 0.749] | 0.001 |
+| STEM_Science | 0.3608 | [-0.057, 0.814] | 0.041 |
+| STEM_CS_Eng | 0.2937 | [-0.496, 1.122] | 0.227 |
+| Social_Sciences | 0.2828 | [0.028, 0.524] | 0.011 |
+| Medical | 0.2655 | [-0.110, 0.645] | 0.074 |
+| STEM_Math | -0.549 | [-1.266, 0.093] | 0.964 |
+
+The run will produce `summary.json` with all diagnostics and a `pooled/` subdirectory for the aggregate γ test. I'll check back when it's done.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "uuid": "508b1d66-35d4-4c58-81d1-de0c5c894324",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011JEYs8XPXWtb6g1D5ifmy2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 65896,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 85_
+
+Running confirmed. Let me record the previous J=16 results for later comparison and report what's been set up.
+
+The run is active in tmux session `irt_no05b` on cqa1-21977. Summary:
+
+**Setup complete:**
+- Script: `/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py`
+- Output: `/root/autodl-tmp/exp006/mmlu_domain_irt_no05B/`
+- J=13 models confirmed (8×1.5B + 5×3B, no 0.5B)
+- 8 domains + 1 pooled fit, 2PL+γ, 4 chains × 1000w + 1000s
+- Estimated runtime: ~45-90 min total
+
+**Previous J=16 results (for later comparison):**
+
+| Domain | γ_mean | 95% CI | PPP |
+|--------|--------|--------|-----|
+| Other | 1.3415 | [0.675, 2.029] | 0.000 |
+| Business_Law | 0.6084 | [0.215, 1.004] | 0.003 |
+| Humanities | 0.4729 | [0.202, 0.749] | 0.001 |
+| STEM_Science | 0.3608 | [-0.057, 0.814] | 0.041 |
+| STEM_CS_Eng | 0.2937 | [-0.496, 1.122] | 0.227 |
+| Social_Sciences | 0.2828 | [0.028, 0.524] | 0.011 |
+| Medical | 0.2655 | [-0.110, 0.645] | 0.074 |
+| STEM_Math | -0.549 | [-1.266, 0.093] | 0.964 |
+
+The run will produce `summary.json` with all diagnostics and a `pooled/` subdirectory for the aggregate γ test. I'll check back when it's done.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 245643,
+  "duration_api_ms": 203472,
+  "num_turns": 34,
+  "stop_reason": "end_turn",
+  "session_id": "ec3333a4-980b-4556-ba5b-3621c6dd89b4",
+  "total_cost_usd": 1.18587625,
+  "usage": {
+    "input_tokens": 29,
+    "cache_creation_input_tokens": 54311,
+    "cache_read_input_tokens": 1165973,
+    "output_tokens": 10393,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 54311,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 521,
+        "cache_read_input_tokens": 65896,
+        "cache_creation_input_tokens": 256,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 256
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-4-6": {
+      "inputTokens": 29,
+      "outputTokens": 10393,
+      "cacheReadInputTokens": 1165973,
+      "cacheCreationInputTokens": 54311,
+      "webSearchRequests": 0,
+      "costUSD": 1.1824002500000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3356,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003476,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "ffe1fcd5-74df-4c64-a641-25816006e66f"
+}
+```
+
+</details>
+
+---

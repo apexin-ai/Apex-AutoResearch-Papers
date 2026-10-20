@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25240b1506aa3d0ca24f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops yi15 9b exploration setup",
+  "task_key": "worker_ops_yi15-9b-exploration-setup_20260522T122453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_yi15-9b-exploration-setup_20260522T122453_result.json",
+    "occurrence": 1,
+    "bytes": 2149,
+    "sha256": "2b89a6868f0e0f8c4e199de6f94b7939515481faccf94863872222760c40558c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "磁盘仅剩2.3GB，较紧张但LoRA checkpoint较小（~300-400MB/个），暂时够用。\n\n---\n\n## Yi-1.5-9B 探路实验报告\n\n### 1. 模型信息\n| 项目 | 值 |\n|------|-----|\n| 模型路径 | `/root/autodl-tmp/.hf_cache/Yi-1.5-9B` |\n| 架构 | `LlamaForCausalLM` (model_type=llama) |\n| 参数 | 48层, hidden=4096, GQA (32 heads, 4 KV heads), vocab=64000 |\n| 大小 | ~16.4GB (4 safetensor shards) |\n| 来源 | hf-mirror.com (aria2c 16连接, ~10-16 MB/s) |\n\n### 2. Tokenizer & Chat Template\n| 项目 | 值 |\n|------|-----|\n| Tokenizer类 | LlamaTokenizerFast |\n| Chat template | 原始无 → 自动设置 **ChatML** (`<|im_start|>`/`<|im_end|>`) |\n| 特殊token | `<|im_start|>`=6, `<|im_end|>`=7 (已在词表中) |\n| 兼容性 | ✅ train_sft.py fallback 逻辑正确匹配 ChatML |\n\n### 3. SFT 数据确认\n| 项目 | 值 |\n|------|-----|\n| 路径 | `/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl` |\n| 样本数 | 50,000 |\n| 格式 | messages (system/user/assistant) ✅ |\n\n### 4. Dry-run 结果\n| 项目 | 值 |\n|------|-----|\n| 状态 | ✅ 成功（跑了18步无报错） |\n| Tokenization | 50k样本, ~30s, ~1675 examples/s |\n| 步速 | ~3.5-4.5 s/step |\n| 已知warnings | vocab holes [3,4,5,9-13] (Yi tokenizer正常); 部分序列>4096 tokens (被max_length截断) |\n\n### 5. 正式训练 (d000)\n| 项目 | 值 |\n|------|-----|\n| tmux session | `yi15_d000` |\n| PID | **636899** |\n| GPU | 0 (CUDA_VISIBLE_DEVICES=0), 46651 MiB |\n| 日志 | `/root/autodl-tmp/exp001/checkpoints/yi15_9b_d000_s42.log` |\n| 输出目录 | `/root/autodl-tmp/exp001/checkpoints/Yi-1.5-9B_d000_s42` |\n| LoRA | r=16, alpha=32, targets=q/k/v/o/gate/up/down_proj |\n| 训练参数 | bs=4, grad_accum=4 (effective 16), lr=5e-5, 1 epoch, gradient-checkpointing |\n| 总步数 | 3125 |\n| 步速 | ~4.3 s/step |\n| 预估时间 | **~3.7 小时** (~24:45 完成) |\n\n### ⚠️ 风险提示\n- 数据盘仅剩 **2.3GB**，LoRA checkpoint ~300-400MB/个，如果 Trainer 默认保存多个 checkpoint 可能爆盘。建议关注 `save_total_limit` 设置或在训练中清理旧 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-yi15-9b-exploration-setup.md"
+}

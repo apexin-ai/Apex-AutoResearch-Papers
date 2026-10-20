@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "170316d34ef60ce5cc3a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp002 deploy server",
+  "task_key": "worker_code_exp002-deploy-server_20260514T100325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002-deploy-server_20260514T100325_result.json",
+    "occurrence": 1,
+    "bytes": 1315,
+    "sha256": "1674d1d23ba0aacb845a676265ded0e3b068c34534a8c0d71180e8b1245e7d50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "本地和服务器代码均已同步更新。\n\n## 部署结果汇总\n\n| 项目 | 状态 |\n|------|------|\n| 8 个代码文件写入服务器 `/root/contamcal-irt-calibration/exp002/` | ✅ |\n| 依赖检查（faiss-cpu, sentence-transformers, scikit-learn, torch, transformers, peft） | ✅ 全部已装 |\n| `compute_signals.py --help` dry-run | ✅ 通过 |\n| 全模块 import 测试 | ✅ 通过 |\n| 0.5B eval 数据（d000/d005/d100 s42） | ✅ 3 个目录均有 eval_results.json |\n| SFT 数据（sft_dosage_000/005/025/050/100.jsonl） | ✅ |\n| Checkpoint 路径 | ✅ 已修正 `merged` → `lora_adapter` |\n| LoRA 加载（signal_minkpp + signal_selfcritique） | ✅ 已 patch 为 PEFT 自动检测 + merge_and_unload |\n\n**发现并修正的问题**：\n1. **faiss-gpu 不可用**，但 faiss-cpu 1.13.2 已装，代码已有 GPU→CPU fallback 逻辑\n2. **Checkpoint 是 LoRA adapter 而非 merged model** — 修改了 `signal_minkpp.py`、`signal_selfcritique.py` 的模型加载函数，自动检测 adapter_config.json 并用 PEFT 加载+merge；同时修正 `run_exp002.sh` 路径\n\n**注意**：部分 eval 目录（如 `Qwen2.5-0.5B_d000_s42_para`、`Qwen2.5-1.5B_d100_s42`）为空目录（size=6），ConStat signal 在缺少 paraphrase eval 时会自动跳过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002-deploy-server.md"
+}

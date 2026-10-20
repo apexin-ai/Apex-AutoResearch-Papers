@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b3e92d85fe1c4db67ba",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze eval falcon3 d050 s42",
+  "task_key": "worker_analyze_eval_falcon3_d050_s42_20260522T122939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_falcon3_d050_s42_20260522T122939_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "4ca73c3d55c4b23d0a512bfbbbdd7196d1d4e86982b2729041274e12e5267bcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估正常完成（EXIT_CODE=0，.done sentinel 已写入）。\n\n## 结果\n\n| Benchmark | Accuracy | Correct/Total |\n|-----------|----------|---------------|\n| **MMLU 5-shot** | **62.09%** | 8718/14042 |\n| **ARC-Challenge 25-shot** | **83.28%** | 976/1172 |\n\n## 对比\n\n| Dosage | MMLU | ARC |\n|--------|------|-----|\n| d000 | 58.77% | 81.57% |\n| d005 | 59.02% | 83.11% |\n| d025 | 61.23% | 84.81% |\n| **d050** | **62.09%** | **83.28%** |\n\nMMLU 持续上升（+3.32pp vs d000），符合 benefit pattern。ARC 相对 d025 回落 1.53pp，可能 d050 剂量下 ARC 出现饱和/轻微过拟合。无错误或异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-falcon3-d050-s42.md"
+}

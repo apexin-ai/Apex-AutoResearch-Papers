@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "25cc768c375ec78a5477",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis prior sensitivity j16 snapshot",
+  "task_key": "worker_analysis_prior-sensitivity-j16-snapshot_20260521T183742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prior-sensitivity-j16-snapshot_20260521T183742_result.json",
+    "occurrence": 1,
+    "bytes": 2907,
+    "sha256": "20f2f0670e2f7be7619a4096bb061dbad9e385c90eea608133bdf98a8a8ffadf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 快照结果\n\n### 进程状态\n**PID 599770 仍在运行**，已运行 24:46，正在执行 baseline_10 的 MCMC sampling（日志显示 chain 4 完成，CmdStan done，sampling completed in 596.3s）。\n\n### 文件状态\n\n| 文件 | 状态 |\n|------|------|\n| `tight_05_results.json` | **已完成** |\n| `baseline_10_results.json` | 不存在（正在采样中） |\n| `loose_20_results.json` | 不存在 |\n| `sensitivity_comparison.json` | 不存在 |\n\n### tight_05_results.json 完整内容\n\n```json\n{\n  \"prior\": \"tight_05\",\n  \"stan_file\": \"contam_irt_2pl_gamma_tight.stan\",\n  \"n_models\": 16,\n  \"n_items\": 2000,\n  \"gamma\": {\n    \"mean\": -0.5412,\n    \"median\": -0.5391,\n    \"sd\": 0.2131,\n    \"q025\": -0.9554,\n    \"q975\": -0.1293,\n    \"p_negative\": 0.9935\n  },\n  \"diagnostics\": {\n    \"max_rhat\": 1.0083,\n    \"rhat_ok\": true,\n    \"min_ess\": 1472.5,\n    \"ess_ok\": true,\n    \"divergent_count\": 0,\n    \"divergent_pct\": 0.0,\n    \"divergent_ok\": true,\n    \"total_draws\": 4000,\n    \"all_ok\": true\n  },\n  \"ppp\": {\n    \"overall_ppp\": 0.6577,\n    \"obs_mean_acc\": 0.7198,\n    \"pred_mean_acc\": 0.7207,\n    \"residual_mae\": 0.0214\n  },\n  \"fit_time_sec\": 603.6\n}\n```\n\n### MODEL_WHITELIST (16 models)\n\n```python\nMODEL_WHITELIST = {\n    # Qwen 1.5B (8)\n    \"Qwen2.5-1.5B_d000_s123\",\n    \"Qwen2.5-1.5B_d000_s42\",\n    \"Qwen2.5-1.5B_d005_s123\",\n    \"Qwen2.5-1.5B_d005_s42\",\n    \"Qwen2.5-1.5B_d025_s123\",\n    \"Qwen2.5-1.5B_d025_s42\",\n    \"Qwen2.5-1.5B_d100_s123\",\n    \"Qwen2.5-1.5B_d100_s42\",\n    # Qwen 3B (8)\n    \"Qwen2.5-3B_d000_s123\",\n    \"Qwen2.5-3B_d000_s42_a32\",\n    \"Qwen2.5-3B_d005_s123\",\n    \"Qwen2.5-3B_d005_s42_a32\",\n    \"Qwen2.5-3B_d025_s123\",\n    \"Qwen2.5-3B_d025_v3_s42\",\n    \"Qwen2.5-3B_d100_a32_s123\",\n    \"Qwen2.5-3B_d100_a32_s42\",\n}\n```\n\n### 小结\n\ntight_05 prior 结果良好：γ 后验 median=-0.539, 95% CI=[-0.955, -0.129], P(γ<0)=99.4%，诊断全部通过（Rhat≤1.008, ESS≥1472, 0 divergences），PPP=0.658。baseline_10 的 MCMC 采样刚完成（~596s），结果 JSON 应很快写出。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "prior": "tight_05",
+              "stan_file": "contam_irt_2pl_gamma_tight.stan",
+              "n_models": 16,
+              "n_items": 2000,
+              "gamma": {
+                "mean": -0.5412,
+                "median": -0.5391,
+                "sd": 0.2131,
+                "q025": -0.9554,
+                "q975": -0.1293,
+                "p_negative": 0.9935
+              },
+              "diagnostics": {
+                "max_rhat": 1.0083,
+                "rhat_ok": true,
+                "min_ess": 1472.5,
+                "ess_ok": true,
+                "divergent_count": 0,
+                "divergent_pct": 0.0,
+                "divergent_ok": true,
+                "total_draws": 4000,
+                "all_ok": true
+              },
+              "ppp": {
+                "overall_ppp": 0.6577,
+                "obs_mean_acc": 0.7198,
+                "pred_mean_acc": 0.7207,
+                "residual_mae": 0.0214
+              },
+              "fit_time_sec": 603.6
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-prior-sensitivity-j16-snapshot.md"
+}

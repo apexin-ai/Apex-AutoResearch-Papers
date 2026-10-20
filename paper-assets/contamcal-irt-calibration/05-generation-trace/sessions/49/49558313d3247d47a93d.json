@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49558313d3247d47a93d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 s123 v2 check",
+  "task_key": "worker_ops_falcon3-s123-v2-check_20260523T002706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-s123-v2-check_20260523T002706_result.json",
+    "occurrence": 1,
+    "bytes": 532,
+    "sha256": "fea4ae069da417ca1dcb7c7d2f5b07a0e7d7436fe29016f7f1689cb1590f3b11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**训练成功。**\n\n| 项目 | 详情 |\n|------|------|\n| Checkpoint | `/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter` |\n| 训练步数 | 4159/4159 (1 epoch 完成) |\n| 最终 loss | 1.022 |\n| Token accuracy | 0.771 |\n| lora_alpha | 32 ✓ |\n| 配置 | lr=5e-5, r=16, batch=1×16, seq_len=2048, seed=123 |\n| GPU 当前状态 | **RTX 4090 D 完全空闲** (0MiB, 无进程) |\n\nRegistry 已更新为 success，cron 监控已删除。GPU 可用于下一步任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-s123-v2-check.md"
+}

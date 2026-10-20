@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "241931fdaddd2a3c902f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 d050 eval results",
+  "task_key": "worker_ops_falcon3-d050-eval-results_20260522T123028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-d050-eval-results_20260522T123028_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "779b09241d97151e6f0e0706c9acdbff6dceb4fa5058664da3407f26b7c499e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 成功完成，`EXIT_CODE=0`，无错误。\n\n**Falcon3-7B-Base d050_s42 eval 结果：**\n\n| Benchmark | Accuracy | Correct/Total |\n|-----------|----------|---------------|\n| MMLU 5-shot | **62.09%** | 8718 / 14042 |\n| ARC-Challenge 25-shot | **83.28%** | 976 / 1172 |\n\n状态：成功完成，`.done` sentinel 已写入，log 末尾 `EXIT_CODE=0`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-d050-eval-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b7fa761839c6dd4b2ba",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analyze exp 001 sft 3B d025 s123",
+  "task_key": "worker_analyze_exp_001_sft_3B_d025_s123_20260515T144534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_001_sft_3B_d025_s123_20260515T144534_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "cd1d6ae959c28c2a98a4d13851cc5f8a644153a24a3bdb88a84467cf0f94eff3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n**exp_001_sft_3B_d025_s123 训练成功完成：**\n\n| 指标 | 值 |\n|------|-----|\n| status | DONE (success) |\n| final_train_loss | 1.1452 |\n| mean_token_accuracy | 0.7719 |\n| total_steps | 3384 |\n| runtime | 9751s (~2.7h) |\n| checkpoint | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter/adapter_model.safetensors` (119MB) |\n| W&B | 未启用 |\n\n注意：日志显示实际 LoRA alpha=32（代码 `train_sft.py` 默认值），与提交命令中 `--lora-alpha 16` 不一致，可能是参数未生效，建议后续确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-001-sft-3b-d025-s123.md"
+}

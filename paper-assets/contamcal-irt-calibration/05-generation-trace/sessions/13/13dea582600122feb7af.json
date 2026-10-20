@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13dea582600122feb7af",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp005 failure",
+  "task_key": "worker_analysis_exp005-failure_20260514T031535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp005-failure_20260514T031535_result.json",
+    "occurrence": 1,
+    "bytes": 1669,
+    "sha256": "0c86c630308d65010b3a1cc81d8dca3908d35bba33f6352ee99bdccc1ed28f5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 部分结果\n**无可用结果。** output_v2/ 空目录。唯一完成的 ME fit（σ_e=0.1, seed=42, 5713s）因 `run_single` 要求两个模型都完成才返回结果，Simple 崩溃后整个 run 丢失。\n\n### v3 修复内容\n\n| 问题 | v2 | v3 修复 |\n|------|-----|---------|\n| /tmp 磁盘耗尽 | CmdStanPy 默认写 `/tmp`（3.9GB tmpfs） | `output_dir=output_v3/stan_output/`，写本地磁盘（51GB可用） |\n| ME 模型欠识别 | 全 ME：10231参数 vs 9000观测，Rhat=1.945 | 换 analytic ME：1231参数，Rhat=1.006，0 divergences |\n| ME 失败连带 Simple 丢失 | ME 先跑，崩了 Simple 没结果 | Simple 先跑，ME 后跑 |\n| 无断点续跑 | 全部重来 | 加载已有 results.json，跳过已完成的 (σ_e, seed) |\n| 磁盘累积 | chain CSV 不清理 | 每次 fit 后 `shutil.rmtree` 清理 chain CSV |\n| 去掉了 Part B | Post-hoc noise injection 部分（不影响核心实验） | — |\n\n### v3 重跑命令\n\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation && \\\nnohup /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/.venv/bin/python \\\n  run_noise_propagation_v3.py \\\n  --output-dir output_v3 \\\n  --base-seed 42 \\\n  --n-seeds 5 \\\n  > exp005_v3.log 2>&1 &\necho $!\n```\n\n### 预计运行时间\n\n- Simple model: ~5 min/fit × 25 fits = **~125 min**\n- Analytic ME: ~23 min/fit × 25 fits = **~575 min**\n- **总计: ~11-12 小时**（本地 CPU）\n\n编译耗时约 2 min（若已编译过的 exe 存在则跳过）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp005-failure.md"
+}

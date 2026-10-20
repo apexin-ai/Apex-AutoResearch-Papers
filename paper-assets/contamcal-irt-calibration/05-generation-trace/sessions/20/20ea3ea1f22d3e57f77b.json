@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20ea3ea1f22d3e57f77b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code prepare gemma d025",
+  "task_key": "worker_code_prepare-gemma-d025_20260518T222642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-gemma-d025_20260518T222642_result.json",
+    "occurrence": 1,
+    "bytes": 1324,
+    "sha256": "5f0d1f4735e45c7cdf6b62d164d31aaf1e34b0b5c866f0679900606675729730"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。\n\n## 验证结果汇总\n\n| 项目 | 状态 |\n|------|------|\n| **数据文件** `sft_dosage_025.jsonl` | 存在，90MB，54133 行 |\n| **Gemma-2-9b 模型** | 完整（8 个 safetensors + tokenizer） |\n| **输出目录** `gemma-2-9b_d025_s42` | 不存在，可安全使用 |\n| **训练脚本参数** | 解析正常，所有参数匹配 |\n| **d000 参考配置** | lora_alpha=32, lora_r=16, lr=5e-5, gradient_checkpointing=false, load_in_4bit=false |\n| **Phi-4** | 就绪（6 个 safetensors + tokenizer） |\n| **OLMo-2-1124-7B** | 就绪（6 个 safetensors + tokenizer） |\n\n## 就绪命令（d005 完成后提交）\n\n```bash\ncd /root/contamcal-irt-calibration && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 /root/miniconda3/bin/python3.12 exp001/train_sft.py \\\n  --model-name /root/autodl-tmp/models/gemma-2-9b \\\n  --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d025_s42 \\\n  --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 \\\n  --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048\n```\n\n参数与 d000 完全一致（无 QLoRA、无 gradient checkpointing），仅 data-path 和 output-dir 不同。Phi-4 和 OLMo-2 模型均就绪，后续 dosage chain 可直接使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-gemma-d025.md"
+}

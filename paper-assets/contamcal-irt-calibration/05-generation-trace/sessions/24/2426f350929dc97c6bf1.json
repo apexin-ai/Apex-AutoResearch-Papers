@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2426f350929dc97c6bf1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops 3B d100 v2 para eval gpu0",
+  "task_key": "worker_ops_3B-d100-v2-para-eval-gpu0_20260515T000028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_3B-d100-v2-para-eval-gpu0_20260515T000028_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "69ecad40634fab26de11354713ccf19e1d207d8fcd1e75decb9a7e6511c1553f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 上仍有进程运行：\n\n- **PID 461879**: `evaluate.py` — 3B d100 v2 **aligned** eval（mmlu gsm8k arc_challenge），output-dir 为 `Qwen2.5-3B_d100_v2_s42_aligned`，启动于 07:32:36\n\n这是之前的 aligned eval 的残留进程（只跑了 mmlu/gsm8k/arc_challenge，没有 humaneval）。GPU 0 未空出，不能提交新任务。\n\n需要确认：这个进程是否还在正常运行还是已经完成但未退出？是否需要 kill 它后再提交 paraphrased eval？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-3b-d100-v2-para-eval-gpu0.md"
+}

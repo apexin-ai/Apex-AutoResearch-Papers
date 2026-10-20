@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20469304c6b0c226cd8d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill dryrun v2",
+  "task_key": "worker_ops_kill-dryrun-v2_20260514T071051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-dryrun-v2_20260514T071051_result.json",
+    "occurrence": 1,
+    "bytes": 179,
+    "sha256": "ab7be1e2db05e6f69a7aaa0a7a09033d3b209c007f05e4adcd11d0a666763e21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有找到 `test_dryrun` 进程——第一条 `ps | grep` 输出为空，`pkill` 也没有匹配到任何进程。这些进程已经不存在了，无需 kill。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-dryrun-v2.md"
+}

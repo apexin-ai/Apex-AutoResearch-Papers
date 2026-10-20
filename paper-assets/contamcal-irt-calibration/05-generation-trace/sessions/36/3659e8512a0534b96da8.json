@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3659e8512a0534b96da8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fill cuda2 d000 signals",
+  "task_key": "worker_ops_fill-cuda2-d000-signals_20260516T185418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fill-cuda2-d000-signals_20260516T185418_result.json",
+    "occurrence": 1,
+    "bytes": 675,
+    "sha256": "f30a42692f23dcf9d7c7120042cdadb6f92773b8f632faa2298e41a0b9416360"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务状态汇报：\n\n**任务 1: Llama d000 GSM8K signals**\n- PID: 835978（子进程 835983 在 cuda:2 上，占用 576 MiB）\n- 状态：正在运行，S1 embedding 信号计算中，进度 ~10%（680/6250 batches），约 ~40 it/s\n- 预计 ~2-3 分钟完成 S1，之后还有 S2/S4\n\n**任务 2: 1.5B-Instruct RRF aggregation**\n- PID: 835766（已完成）\n- 输出文件: `/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/exposure_aggregated.json`\n- 处理了 mmlu/gsm8k/arc_challenge 三个 benchmark\n\n注意：首次启动 signals 时因缺少 `network_turbo` 导致 HuggingFace 连接超时，已 kill 并带代理重启成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fill-cuda2-d000-signals.md"
+}

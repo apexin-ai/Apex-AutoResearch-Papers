@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30c192ad91afc00af530",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill and fill instruct signals",
+  "task_key": "worker_ops_kill_and_fill_instruct_signals_20260516T152803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_and_fill_instruct_signals_20260516T152803_result.json",
+    "occurrence": 1,
+    "bytes": 2313,
+    "sha256": "79623c5d303505331eb2b68fc83a7f8ac10baf3c5e3126c80b686e23d1f2e388"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前 GPU 布局：\n\n| GPU | PIDs | Memory | 进程 |\n|-----|------|--------|------|\n| cuda:0 | 804570 (16.2G) + 805721 (576M) | 16.8/24 GB | Llama d005 SFT + **MMLU signals** |\n| cuda:1 | — | FREE | |\n| cuda:2 | 797754 (1.5G) | 1.5/24 GB | 未知 |\n| cuda:3 | 801766 (17.8G) | 17.8/24 GB | 未知 |\n| cuda:4 | 806079 (576M) | 0.6/24 GB | **ARC signals** |\n| cuda:5 | 804791 (20.6G) + 806081 (576M) | 21.1/24 GB | Llama d100 SFT + **GSM8K signals** ⚠️ |\n\n**关键风险**：cuda:5 已用 21.1GB。当 GSM8K signals 进入 S2 (Min-K%++) 阶段需要加载 1.5B 模型时（~3-4GB），将 OOM。\n\n---\n\n## 产出报告\n\n### 1. Kill 确认\n- PID 800570 (cuda:1 重复 Llama eval): ✅ 已 kill\n- PID 700982 (挂起 ModelScope 下载): ✅ 已 kill\n- PID 804438 (我启动的 HF 下载，不需要了): ✅ 已 kill\n\n### 2. 1.5B-Instruct signals 状态\n**另一个 session 已先于我提交了全部 3 个任务**（C001 规则：不重复提交）：\n\n| Benchmark | GPU | PID | 提交命令 |\n|-----------|-----|-----|---------|\n| MMLU | cuda:0 | 805721 | `CUDA_VISIBLE_DEVICES=0 python compute_signals.py --model-path /root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct/ --benchmark mmlu --signal all --ref-model-path /root/autodl-tmp/models/Qwen/Qwen2___5-1___5B/ --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/ --batch-size 8` |\n| ARC | cuda:4 | 806079 | 同上，`--benchmark arc_challenge`, `CUDA_VISIBLE_DEVICES=4` |\n| GSM8K | cuda:5 | 806081 | 同上，`--benchmark gsm8k`, `CUDA_VISIBLE_DEVICES=5` |\n\n### 3. mmlu merge 结果\n`signals_merged_mmlu.json` **已存在**（14042 items）。无需操作。\n\n### 4. 风险与预计时间\n\n**⚠️ cuda:5 OOM 风险**：Llama d100 训练占 20.6GB + GSM8K signals S2 需 ~3-4GB = 超出 24GB。GSM8K signals 大概率在 S1 完成后（~3 min）进入 S2 时 OOM crash。\n\n**建议**：\n- 如果 Llama d100 是高优先级，应 kill GSM8K signals (PID 806081) 并在 cuda:1（空闲）上重跑\n- 如果 signals 是 P0，等 d100 训练完再跑 GSM8K\n\n**预计完成时间**（如无 OOM）：\n- S1 embedding: ~2-5 min（当前进行中）\n- S2 Min-K%++: ~15-20 min per benchmark\n- S4 self-critique: ~10-15 min per benchmark  \n- **总计**: ~45-60 min（假设无 OOM）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-and-fill-instruct-signals.md"
+}

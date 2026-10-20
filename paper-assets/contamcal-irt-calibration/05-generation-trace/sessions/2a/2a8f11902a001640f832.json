@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a8f11902a001640f832",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 cqa1 signals or gsm8k",
+  "task_key": "worker_ops_falcon3-cqa1-signals-or-gsm8k_20260522T141728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-cqa1-signals-or-gsm8k_20260522T141728_result.json",
+    "occurrence": 1,
+    "bytes": 2488,
+    "sha256": "b672aa34f1539346bfd61f499930424509facaccda2d88ad72f4241edd4910b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。汇总结果：\n\n## 调查结果\n\n**1. compute_signals.py**\n- 路径：`/root/contamcal-irt-calibration/exp002/compute_signals.py`\n- 参数：`--model-path`, `--adapter-path`, `--benchmark` (mmlu/gsm8k/arc_challenge/humaneval), `--signal` (s1/s2/s3/s4/all), `--output-dir`, `--batch-size`\n- S2 (minkpp) 先加载 target model 计算完再 del + empty_cache，然后加载 reference model——7B 模型可在 24GB 4090 上串行运行\n- S3 无 eval paths 时自动跳过，`--signal all` 安全\n\n**2. cqa1 Falcon3 资源**\n- Base model: `/root/autodl-tmp/.hf_cache/Falcon3-7B-Base/` ✓\n- Checkpoint: `Falcon3-7B-Base_d100_s42/lora_adapter` (lora_alpha=32) ✓\n- d000 checkpoint: 不在 cqa1（s2 会用 base model 无 adapter 作为 reference）\n- 无已有 Falcon3 signals\n\n**3. 数据集**\n- MMLU: 已缓存 ✓\n- ARC-Challenge: 已缓存 ✓\n- GSM8K: **未缓存**，需先下载\n\n**4. 方案：运行 Signals（Option A）**\n\n准备好的完整命令（先下载 GSM8K 数据集，再依次对 3 个 benchmark 计算 s1/s2/s4 信号）：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nsource /etc/network_turbo && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_HUB_DISABLE_XET=1 && \\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && \\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && \\\ncd /root/contamcal-irt-calibration && \\\npython -c \"from datasets import load_dataset; load_dataset('openai/gsm8k', 'main', split='test', cache_dir='/root/autodl-tmp/.hf_cache'); print('GSM8K downloaded')\" && \\\nfor bench in mmlu arc_challenge gsm8k; do \\\n  echo \"===== Computing signals for $bench =====\" && \\\n  CUDA_VISIBLE_DEVICES=0 python exp002/compute_signals.py \\\n    --model-path /root/autodl-tmp/.hf_cache/Falcon3-7B-Base \\\n    --adapter-path /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter \\\n    --benchmark $bench \\\n    --signal all \\\n    --output-dir /root/autodl-tmp/exp002/signals/Falcon3-7B-Base_d100_s42/ \\\n    --batch-size 4; \\\ndone\n```\n\n- 输出目录：`/root/autodl-tmp/exp002/signals/Falcon3-7B-Base_d100_s42/`\n- 预计产出：每 benchmark 3 个 signal 文件（s1_embedding, s2_minkpp, s4_selfcritique）+ merged json\n- batch_size=4（7B 模型在 24GB 上的安全值）\n- 预计运行时间：2-4 小时（3 benchmarks × 3 signals，每次 model load ~2min + inference）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-cqa1-signals-or-gsm8k.md"
+}

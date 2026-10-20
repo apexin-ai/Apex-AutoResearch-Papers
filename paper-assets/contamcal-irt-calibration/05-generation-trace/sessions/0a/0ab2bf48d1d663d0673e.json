@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ab2bf48d1d663d0673e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis rrf aggregation full",
+  "task_key": "worker_analysis_rrf-aggregation-full_20260516T142034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rrf-aggregation-full_20260516T142034_result.json",
+    "occurrence": 1,
+    "bytes": 215,
+    "sha256": "1fd37b0bac9263bf6c1c2cbe33b7034e7166095bdd6e96982680f5472a8c4ad6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CSV 没有生成（`--csv` 可能只在非 `--generate-exposure` 模式下生效）。核心输出 `exposure_scores.json` 和 `exposure_aggregated.json` 已就绪，可供 pooled IRT fitting 使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rrf-aggregation-full.md"
+}

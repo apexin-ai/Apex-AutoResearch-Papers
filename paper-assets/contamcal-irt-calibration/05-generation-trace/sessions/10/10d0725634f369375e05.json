@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10d0725634f369375e05",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check eval d025 para log",
+  "task_key": "worker_ops_check-eval-d025-para-log_20260516T043351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eval-d025-para-log_20260516T043351_result.json",
+    "occurrence": 1,
+    "bytes": 852,
+    "sha256": "5815319118baa60ccf5ea2a0c392f2c6d5e2ab2813e778a1e6c5b2c5fbbf3db5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无活跃 cron，无需删除。\n\n---\n\n**结果汇总：**\n\n| 项目 | 结果 |\n|------|------|\n| **判断** | **SUCCESS** |\n| **依据** | `.done` sentinel 已写入，3 个 benchmark 全部完成，结果文件已保存 |\n| **mmlu (para)** | 0.6468 (4266/6596) |\n| **arc_challenge (para)** | 0.8106 (565/697) |\n| **humaneval (para)** | 0.0000 (0/26) |\n| **输出目录** | `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v3_s42_para_aligned/` |\n| **Registry** | DONE / success，metrics 已录入 |\n| **cuda:0 状态** | PID 691887 占用 3886MiB（1.5B s123 signals 进程），eval 进程已退出 |\n\n注：bitsandbytes 加载报 `libnvJitLink.so.13` 缺失，但未影响 eval 执行（非必需依赖）。humaneval pass@1=0 值得关注——可能是 paraphrase 后 code generation 格式不匹配导致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-d025-para-log.md"
+}

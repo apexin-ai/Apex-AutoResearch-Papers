@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f524fec972c5ed71c65",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 002 signals 05B v2",
+  "task_key": "worker_diagnose_exp_002_signals_05B_v2_20260514T130156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_002_signals_05B_v2_20260514T130156_result.json",
+    "occurrence": 1,
+    "bytes": 334,
+    "sha256": "e6ef9dc4335d1f8fbb0654f0f6973aba317e0a2f5e67c2929f62ba4f047feaec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**结论**: cron 检测到的退出是 v4 运行（18:19），因 selfcritique 持续崩溃而 FAIL。当前 PID 370957 是 v5 重启（20:55），selfcritique 修复已生效，2/9 task PASS，第 3 个正在跑。进程健康，预计 ~30 分钟内完成全部 27 signals。不需要干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-002-signals-05b-v2.md"
+}

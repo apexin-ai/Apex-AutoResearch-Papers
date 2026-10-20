@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19c0e478945eb7e05634",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix exp002 checkpoint path",
+  "task_key": "worker_code_fix-exp002-checkpoint-path_20260514T102945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-exp002-checkpoint-path_20260514T102945_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "d8db1d407d1c66082432ead219019d29045c9121933bd8d2c3bf323d6ec0ebbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **已 kill** 旧进程 346325\n- **已修复** `run_batch.py` 第50行：`checkpoint_path` 返回值追加 `/lora_adapter`\n- **已验证** d000/d005/d100 三个 dosage 的 `lora_adapter/adapter_config.json` 均存在\n- **已提交** v2 on cuda:0，PID 349740，9 tasks (3×3)，正在跑 task 1/9 (d000/mmlu)\n- **Registry** 已更新 notes\n\n注意：`--skip-completed` 检查的是 `signals_merged_*.json`，但 `compute_signals.py` 保存的合并文件名不含 `model_id` 后缀，两边命名不一致，所以 skip 逻辑实际不生效。这次全部重跑，不影响结果，但后续如果需要断点续跑需要修。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-exp002-checkpoint-path.md"
+}

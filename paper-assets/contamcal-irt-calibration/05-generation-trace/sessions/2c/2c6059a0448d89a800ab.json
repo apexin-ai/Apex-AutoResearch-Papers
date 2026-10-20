@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c6059a0448d89a800ab",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis s2 removal fix rerun",
+  "task_key": "worker_analysis_s2-removal-fix-rerun_20260523T111111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s2-removal-fix-rerun_20260523T111111_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "6a56c96df0c0af7fa90e1c5bed68beeb1f60f54a2ff58f011bf8a7ce808a2fdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n| Pipeline | MAE | τ | γ_mean [95% CI] | PPP |\n|----------|-----|---|-----------------|-----|\n| Raw Accuracy | — | -0.058 | — | — |\n| Full RRF (S1+S2+S4) | 0.0076 | -0.056 | -0.698 [-1.762, 0.361] | 0.392 |\n| No-S2 RRF (S1+S4) | 0.0070 | -0.075 | -0.358 [-1.316, 0.595] | 0.382 |\n\n**关键发现**：移除 S2 (Min-K++) 对校准影响微乎其微（ΔMAE = -0.0005）。两个 pipeline 的 γ 95% CI 都包含 0，均未检测到显著 contamination effect。PPP 值均健康。注意这些 τ 值与任务描述中的参考值（Full RRF τ=0.731）差异很大——参考值可能来自不同的 benchmark 或模型子集。\n\n结果已写入本地 `artifacts/s2_removal_ablation/s2_removal_results.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s2-removal-fix-rerun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0eb58064eb10fdda2ff3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops sft qwen14b s0 sweep",
+  "task_key": "worker_ops_sft-qwen14b-s0-sweep_20260520T092931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sft-qwen14b-s0-sweep_20260520T092931_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "80591d8924ae911f9257aa9be09bcf0d5dbf79ea511ba5b79f5dfb14b150580e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，d000 训练进行中。\n\n**汇总：**\n- 脚本：`/root/autodl-tmp/exp001/run_qwen14b_s0.sh`\n- 任务：`sft_qwen14b_s0_sweep` on westd-29999 cuda:3\n- 流程：d000→d005→d025→d050→d100，每个 dosage 训完后自动跑 MMLU eval\n- 配置：Qwen2.5-14B, LoRA r=16 α=32, lr=5e-5, bs=1 ga=16, seed=0\n- 日志：`~/runs/contamcal-irt-calibration/sft_qwen14b_s0_sweep.log`\n- timeout：48h\n\n**注意：** evaluate.py 当前 37775 bytes，C009 reference 是 37591 bytes。如果近期更新过 evaluate.py 且所有 eval 都用同一版本，则无问题；否则需确认版本一致性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sft-qwen14b-s0-sweep.md"
+}

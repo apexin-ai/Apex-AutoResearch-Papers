@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38b3cbe6456c25e8ae64",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "check exp002 signal pipeline p0b",
+  "task_key": "worker_check_exp002_signal_pipeline_p0b_20260514T161744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp002_signal_pipeline_p0b_20260514T161744_result.json",
+    "occurrence": 1,
+    "bytes": 2030,
+    "sha256": "435857faf521f136fffcf53ae20923db5f0d0e2c52eba8628b020346e4e83e1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-002 信号管线代码完成度报告\n\n### 1. 代码状态\n\n| Signal | 文件 | 行数 | 状态 |\n|--------|------|------|------|\n| S1 Embedding | `signal_embedding.py` | 197 | ✅ 完成 |\n| S2 Min-K%++ | `signal_minkpp.py` | 237 | ✅ 完成 |\n| S3 ConStat | `signal_constat.py` | 114 | ✅ 完成 |\n| S4 Self-Critique | `signal_selfcritique.py` | 268 | ✅ 完成 |\n| 主入口 | `compute_signals.py` | 209 | ✅ 完成（支持 4 signal 选择性计算+merge） |\n| 批量运行 | `run_batch.py` | 256 | ✅ 完成 |\n| RRF 聚合 | `aggregate_rrf.py` | 340 | ✅ 完成 |\n\n**代码 100% 齐全，无缺失。**\n\n### 2. 已有信号计算结果（0.5B, `/root/autodl-tmp/exp002/signals/`）\n\n| Dosage | S1 Embedding | S2 Min-K%++ | S3 ConStat | S4 Self-Critique | Merged |\n|--------|-------------|-------------|------------|------------------|--------|\n| d000 | ✅ mmlu/gsm8k/arc | ✅ mmlu/gsm8k/arc | ❌ 无 | ✅ mmlu/gsm8k/arc | ✅ (不含S3) |\n| d005 | ✅ mmlu/gsm8k/arc | ✅ mmlu/gsm8k/arc | ❌ 无 | ✅ mmlu/gsm8k/arc | ✅ (不含S3) |\n| d100 | ✅ mmlu/gsm8k/arc | ✅ mmlu/gsm8k/arc | ❌ 无 | ✅ mmlu/gsm8k/arc | ✅ (不含S3) |\n\n### 3. S3 ConStat 可启动性（需 original + paraphrase aligned eval pair）\n\n| Dosage | original_aligned | para_aligned | S3 可计算？ |\n|--------|-----------------|--------------|-----------|\n| d000_s42 | ✅ | ✅ | **可立即启动** |\n| d005_s42 | ✅ | ✅ | **可立即启动** |\n| d025_s42 | ✅ | ✅ | 可启动（但 d025 不在原 exp-002 三dosage集中） |\n| d100_s42 | ✅ | ❌ 缺失 | **阻塞 — 需先跑 paraphrase eval** |\n\n### 4. 结论\n\n- **代码无缺失**，4 个 signal 的计算模块全部就绪\n- **S3 ConStat 是唯一未计算的 signal**，瓶颈在上游 paraphrase eval 数据\n- **d000 和 d005 可立即计算 S3**（para_aligned 已就绪）\n- **d100 被阻塞**：缺 `Qwen2.5-0.5B_d100_s42_para_aligned/eval_results.json`，需先运行 d100 的 paraphrase evaluation"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp002-signal-pipeline-p0b.md"
+}

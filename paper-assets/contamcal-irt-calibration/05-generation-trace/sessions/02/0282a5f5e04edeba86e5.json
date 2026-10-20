@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0282a5f5e04edeba86e5",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_14_1778908467.md",
+  "task_key": "loop_14_1778908467",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778908467.md",
+    "occurrence": 1,
+    "bytes": 5289,
+    "sha256": "dc5257c8c5669ff69a257fe32f8cc4fec60e37d6d8674c0e56694a07cf2a4e75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T05:04:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 **cqa1-21977** 唯一，6× RTX 4090D，GPU 白名单 cuda:0-5\n- **alpha=16 和 lr=2e-4 的所有 checkpoint 及下游产物不可用于 IRT pool**（D076 lr confound）。IRT pool 仅收 alpha=32 + lr=5e-5 的实验\n- cuda:0 历史双进程冲突（D102/C001），释放后严禁同时提交两个任务到同一卡\n- **s3_constat 信号已被 D098 排除**，论文采用 s1+s2+s4 三信号融合，不要再跑 s3 相关实验\n- Claim 3 (noise propagation) 已确认 negative（D095），降级为 Discussion honest negative，不要投资源重试\n- **EMNLP 2026 ARR May 25 截止，距今 9 天**——所有决策以此为锚\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977，6× RTX 4090D\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- **模型 cache**: `/root/autodl-tmp/.hf_cache/Qwen/`（Qwen2.5-0.5B / 1.5B / 3B）\n- **Checkpoint 根**: `/root/autodl-tmp/exp001/checkpoints/`\n- **Eval 结果根**: `/root/autodl-tmp/exp001/eval_results/`\n- **Signals 根**: `/root/autodl-tmp/exp002/signals/`\n- **IRT/Sim 结果**: `/root/autodl-tmp/exp004/` (sim_sweep), `/root/autodl-tmp/exp006/` (pooled IRT)\n- **CmdStan**: 2.38.0 已安装，Stan 模型已编译于 `exp006/`\n- **活跃进程 (6 crons)**:\n  - `exp_001_eval_3B_d000_s42_a32_batch` — PID 676487, cuda:1\n  - `exp_001_eval_3B_d005_s42_a32_batch` — PID 679180, cuda:2\n  - `exp_001_eval_3B_d100_s42_a32_batch` — cuda:3\n  - `exp_002_signals_3B_d100_s123_v9` — PID 689315, cuda:4 (s4 self-critique)\n  - `exp_002_signals_05B_s123_v2` — cuda:5 (0.5B d000 s123 signals)\n  - `exp_002_signals_15B_s123_batch` — PID 691872, cuda:0 (1.5B 全 s123 signals×12)\n- **活跃 Workers**: `worker_code_exp_008_instruct_rl_proxy` (写 RL proxy 代码), `worker_ops_verify-d100-eval` (验证 d100 eval)\n\n### 3. 📊 当前状态\n**刚做完**: Session#14 状态同步，sim_sweep_v7 完成分析（D090），s4 OOM 降级 P1（D091），D098 排除 s3，0.5B/1.5B s123 signals 提交。\n\n**6 个实验 RUNNING，全 6 卡占满**:\n- cuda:0: 1.5B s123 全量 signals（12 条件批次）\n- cuda:1: 3B d000_s42 aligned eval（0%基线）\n- cuda:2: 3B d005_s42 aligned eval（5%剂量）\n- cuda:3: 3B d100_s42 aligned eval（100%剂量）\n- cuda:4: 3B d100_s123 s4 self-critique signal\n- cuda:5: 0.5B d000_s123 signals\n\n**PENDING 审批**: exp_008_instruct_rl_proxy（RL regime 对比，Worker 正在写代码）\n\n**22 个 PREPARING**: 主要是 3B s42 para_aligned eval、3B s123 系列 eval/SFT、d005_s42 para eval 等后续格子\n\n**等待中**:\n- 2 个 Worker 运行中（RL proxy 代码 + d100 eval 验证）\n- 6 个 cron 监控各 RUNNING 实验\n\n### 4. 📋 待办（条件触发式）\n- cuda:1 d000_s42 eval 完成 → 提交 d000_s42 **para_aligned** eval（填 s42 para 矩阵）\n- cuda:2 d005_s42 eval 完成 → 提交 d005_s42 **para_aligned** eval\n- cuda:3 d100_s42 eval 完成 → 提交 d100_s42 **para_aligned** eval\n- cuda:4 d100_s123 s4 完成 → 提交 3B d025/d005 s123 signals（按 D103 优先级）\n- cuda:5 0.5B s123 signals 完成 → 提交下一 signals 任务（看矩阵缺口）\n- cuda:0 1.5B s123 batch 完成 → 1.5B s123 signals 全就绪，启动 RRF 聚合准备\n- **3B s42 aligned + para_aligned eval 全完成** → 3B s42 signals 全量计算（s1+s2+s4）\n- **所有 3B signals 完成** → exp-003 RRF 聚合（CPU），然后 exp-006 pooled IRT fitting + baselines\n- Worker exp_008_instruct_rl_proxy 完成 → 审核代码 → 提交 PENDING 审批\n- Worker verify-d100-eval 完成 → 根据验证结果更新 registry\n- **IRT fitting 完成** → ablation + eval metrics table → Paper Agent 写作 pipeline（5步）\n- **T-7（5月18日）** → Claim 3 go/no-go 决策（sim_sweep 间接支撑 vs 完全删除）\n\n### 5. 🎯 战略上下文\n**核心方法**: ContamCal = post-hoc 4PL IRT + contamination γ 参数校准。用 contamination-augmented 训练制造已知剂量数据点，拟合 IRT 模型回收 γ。\n\n**三个 Claims**:\n- Claim 1 (identifiability): sim_sweep_v7 已充分支撑（γ bias <0.056, CI95 coverage ≥0.8）✅\n- Claim 2 (real-data calibration): 60% coverage，3B s42 矩阵是瓶颈（当前 7/16→正在补）\n- Claim 3 (noise propagation): **NEGATIVE**（D095），降级为 Discussion honest negative\n\n**关键发现**:\n- Benchmark 分层明确：GSM8K/HumanEval 对 contamination 敏感，MMLU/ARC 不敏感 → 支持 per-benchmark γ_k\n- Model scale 调节 contamination 表达：3B >> 1.5B >> 0.5B\n- Coverage collapse = model misspecification（不是 γ 大），支持 benchmark-dependent framing\n\n**最易判断错的事**:\n- 不要把 alpha=16 旧 checkpoint 的 eval 结果混入 IRT pool（D076 红线）\n- d000_s42 checkpoint 路径可能是 `Qwen2.5-3B_d000_s42/` 而非 `_a32_`（命名不一致，需 symlink）\n- 0.5B/1.5B 已全就绪，**3B 是唯一瓶颈**——所有 GPU 释放后优先给 3B eval/signals\n- sim_sweep auc0.65×3 失败（CmdStan 竞态），不要重试，9/12 足够\n- s4 self-critique 在 3B MMLU 上 OOM（D091），非 critical path（S1-only pipeline D034 可用），修复是 P1 不是 P0\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778908467.md"
+}

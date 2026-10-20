@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10623b7ea69d8d084551",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops urgent status check westd",
+  "task_key": "worker_ops_urgent-status-check-westd_20260518T203200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-status-check-westd_20260518T203200_result.json",
+    "occurrence": 1,
+    "bytes": 2048,
+    "sha256": "91197bdba080c60ff7818cef7a7fba5035b930dd7099d617da8ac07bcab84452"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告 — westd-29999 (2026-05-19 04:32 UTC)\n\n### 1. GPU 状态\n4x NVIDIA RTX PRO 6000 (98GB) — **全部满载，0 空闲**\n\n| GPU | PID | VRAM | Util | 任务 |\n|-----|-------|------|------|------|\n| 0 | 56094 | 63GB | 91% | Qwen2.5-14B_d050_s42 |\n| 1 | 49198 | 55GB | 81% | gemma-2-9b_d000_s42 |\n| 2 | 53527 | 65GB | 93% | Qwen2.5-14B_d025_s42 |\n| 3 | 59313 | 64GB | 99% | Qwen2.5-14B_d100_s42 |\n\n### 2. 14B 训练 — 全部进行中\n\n| 实验 | GPU | 进度 | ETA |\n|------|-----|------|-----|\n| d025_s42 | 2 | 1483/3384 (44%), epoch=0.43, loss=0.87 | ~1h40m |\n| d050_s42 | 0 | 1149/3642 (31%), epoch=0.31, loss=0.85 | ~2h05m |\n| d100_s42 | 3 | 91/4159 (2%), epoch=0.02, loss=0.95 | ~3h57m |\n\n三个均无 .done / trainer_state.json / adapter（正常，训练未结束）。alpha=32, lr=5e-5 参数正确。\n\n### 3. Gemma-2-9B pilot — 进行中，即将完成\n\n- **2747/3125 (88%)**, epoch=0.88, loss=1.24, GPU 1\n- **ETA ~18分钟**\n\n### 4. Qwen2.5-7B_d050_s123 — 完成 ✓\n\n- exit_code=0, 训练完成于 03:02:58 UTC\n- adapter 已保存，**.done 文件缺失**（需要补建）\n- tmux session 已退出，PID 46060 残留（无害）\n\n### 5. Phi-4 / OLMo-2 下载 — 失败\n\n| 模型 | shards | 状态 |\n|------|--------|------|\n| Phi-4 | 5/6 | 不完整，无下载进程 |\n| OLMo-2-7B | 5/6 | 不完整，无下载进程 |\n\n**网络不通** — curl huggingface.co 超时。需等网络恢复后重下最后 1 shard。\n\n### 6. S1 信号 — 完成 ✓\n\n- d050_s123: arc_challenge, gsm8k, mmlu ✓\n- d100_s123: arc_challenge, gsm8k, mmlu ✓\n\n### 7. tmux sessions — 4 active\n\n`exp_001_sft_14b_d025_s42`, `exp_001_sft_14b_d050_s42`, `exp_001_sft_14b_d100_s42`, `exp_001_sft_gemma2_9b_d000_s42`\n\n---\n\n**需要关注**:\n1. **Gemma-2-9B ~18min 后完成** → GPU 1 将释放，可用于下一任务\n2. **网络 DOWN** → Phi-4 / OLMo-2 各缺 1 shard，无法继续下载\n3. **7B_d050_s123 缺 .done** → 训练正常完成但 .done 标记未写入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-status-check-westd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0db17c6a38a3dae29916",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag instruct eval logs",
+  "task_key": "worker_diag_instruct-eval-logs_20260515T011040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_instruct-eval-logs_20260515T011040_result.json",
+    "occurrence": 1,
+    "bytes": 1517,
+    "sha256": "6d402cc05f39770c460c82dabcff4087e54a49737671e430170e373f4f4be68d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Clear picture now. Here's the report:\n\n## Findings\n\n**Model download: SUCCESS.** Qwen2.5-0.5B-Instruct was downloaded via ModelScope on 2026-05-14 16:10 to `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct/` (942MB, all files present including `model.safetensors`, tokenizer, config).\n\n**Eval execution: NEVER RAN.** Evidence:\n- Zero instruct-related directories in `/root/autodl-tmp/exp001/eval_results/`\n- Zero instruct eval log files in `/tmp/`\n- No instruct-related tmux session (active sessions: `exp006_oracle_gsm8k_ext_v2`, `exp006_s1only_gsm8k_v2`, `exp_001_eval_05B_raw`, `exp_001_eval_3B_d100_v2_para_aligned`)\n\n**Root cause:** The previous Worker downloaded the model but never launched `evaluate.py`. It likely returned after the download step without proceeding to eval.\n\n**Script compatibility: OK.** `evaluate.py` supports `--adapter-path` as optional (`default=None`). When omitted, it loads the model directly without LoRA merge — exactly what's needed for Instruct.\n\n## What's needed to fix\n\nRun the eval with something like:\n```bash\npython /root/contamcal-irt-calibration/exp001/evaluate.py \\\n  --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct \\\n  --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B-Instruct_<suffix> \\\n  --benchmarks mmlu gsm8k arc_challenge humaneval \\\n  --mc-format aligned\n```\n\nNo adapter path needed. The model is already downloaded. The only missing step is actually launching the eval command."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-instruct-eval-logs.md"
+}

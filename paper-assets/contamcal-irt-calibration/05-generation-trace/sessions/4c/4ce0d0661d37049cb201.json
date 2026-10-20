@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ce0d0661d37049cb201",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops registry batch fix and gpu1",
+  "task_key": "worker_ops_registry_batch_fix_and_gpu1_20260514T210615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_batch_fix_and_gpu1_20260514T210615_result.json",
+    "occurrence": 1,
+    "bytes": 1065,
+    "sha256": "999010e103ca466bf58cbd189afe61c69b24b9dc1f56182a41023d8dcc9a6ca1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## Part A: Stale RUNNING 修正\n\n| 实验 | 输出路径 | Metrics | Registry |\n|------|---------|---------|----------|\n| **exp_001_eval_05B_d025_aligned_v2** | `/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d025_s42_para_aligned/` | MMLU=28.4%, GSM8K=31.1%, ARC=32.0%, HumanEval=19.2% (paraphrased aligned) | → DONE/success |\n| **exp002-signal-d025-05B** | `/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/` | 3/3 signals × 3 benchmarks (13 files) | → DONE/success |\n\n## Part B: GPU 1 — 0.5B d100 s123\n\n| 步骤 | 状态 |\n|------|------|\n| **SFT 完成** | loss=1.567, epoch=1.0, runtime=4231s, EXIT_CODE=0 |\n| **SFT output** | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s123/lora_adapter/` (35MB safetensors) |\n| **exp_001_sft_05B_d100_s123** | → DONE/success |\n| **Eval 提交** | PID 444836, GPU 1, tmux session `eval_05B_d100_s123` |\n| **exp_001_eval_05B_d100_s123_aligned** | → RUNNING, log: `~/runs/contamcal-irt-calibration/exp_001_eval_05B_d100_s123_aligned.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-batch-fix-and-gpu1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a77fe039fd38940de57",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper method section",
+  "task_key": "worker_paper_method-section_20260516T041831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_method-section_20260516T041831_result.json",
+    "occurrence": 1,
+    "bytes": 947,
+    "sha256": "1e31df6047a5f0468b99f62c4dbe78048a27453e13c57b416eac33b6daa6b4c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section 草稿已写入 `paper/sections/method.md`，1136 words（含数学标记）。\n\n关键设计决策与代码验证结果：\n\n1. **公式与代码一致**：Stan 实现中 γ·e 在 logit scale 上与 a_i(θ_j - b_i) **相加**，不在 a_i 乘法内部。写作计划中的 `a_i(θ_j - b_i + γ_k·e_{ij})` 与代码不符，已修正为 `a_i(θ_j - b_i) + γ_k·e_{ij}`。这使 γ_k 的解释更清晰：对最大暴露项的 uniform logit shift，不依赖 item discrimination。\n\n2. **先验与 MCMC 设置**：全部从 Stan 代码核实——θ~N(0,1), a~LogNormal(0,0.5), b~N(0,1), c~Beta(5,20), d~Beta(20,5), γ~N(0,1)；4 chains, 1000+1000, adapt_delta=0.95。\n\n3. **RRF**：k=60, equal weights, min-max normalized，代码核实一致。\n\n4. **Signals**：s1+s2+s4 三信号（s3 排除），与代码 `SIGNAL_KEYS` 一致。\n\n5. **符号体系**：i=item, j=model, k=benchmark，贯穿一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-method-section.md"
+}

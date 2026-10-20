@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ee98b0a5ec0ff64c323",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd phase2 collect remaining",
+  "task_key": "worker_ssh_westd-phase2-collect-remaining_20260519T115332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-phase2-collect-remaining_20260519T115332_result.json",
+    "occurrence": 1,
+    "bytes": 1525,
+    "sha256": "0bcfa7cadb5e696a87b6cc5ce2309da98dccef7ecc7389cf773c8cb8903766b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found the 5th family: **OLMo-2-7B** (5 checkpoints, 0 evals started). Also confirmed qwen14b_d100 checkpoint exists but eval hasn't started.\n\n3 GPUs active (0, 1, 3), GPU 2 idle.\n\n## Phase 2 Eval Status (25 total)\n\n| Family | Dosage | MMLU | ARC | Status |\n|--------|--------|------|-----|--------|\n| gemma2 | d000 | 0.6186 | 0.8601 | DONE |\n| gemma2 | d005 | 0.6342 | 0.7782 | DONE |\n| gemma2 | d025 | 0.6456 | 0.8737 | DONE |\n| gemma2 | d050 | 0.6401 | 0.7108 | DONE |\n| gemma2 | d100 | - | - | RUNNING (GPU 1) |\n| phi4 | d000 | 0.7644 | 0.9206 | DONE |\n| phi4 | d005 | 0.7636 | 0.9181 | DONE |\n| phi4 | d025 | 0.7698 | 0.9232 | DONE |\n| phi4 | d050 | 0.7675 | 0.9241 | DONE |\n| phi4 | d100 | - | - | RUNNING (GPU 3, ARC 34%) |\n| qwen14b | d000 | 0.6944 | 0.9104 | DONE |\n| qwen14b | d005 | 0.6901 | 0.9036 | DONE |\n| qwen14b | d025 | 0.6204 | 0.8891 | DONE |\n| qwen14b | d050 | - | - | RUNNING (GPU 0, MMLU 0%) |\n| qwen14b | d100 | - | - | PENDING |\n| qwen7b | d000 | 0.6611 | 0.8788 | DONE |\n| qwen7b | d005 | 0.6474 | 0.8609 | DONE |\n| qwen7b | d025 | 0.6298 | 0.8404 | DONE |\n| qwen7b | d050 | 0.6307 | 0.8456 | DONE |\n| qwen7b | d100 | 0.6433 | 0.8498 | DONE |\n| olmo2 | d000 | - | - | PENDING |\n| olmo2 | d005 | - | - | PENDING |\n| olmo2 | d025 | - | - | PENDING |\n| olmo2 | d050 | - | - | PENDING |\n| olmo2 | d100 | - | - | PENDING |\n\n**Summary**: 16 DONE, 3 RUNNING, 6 PENDING (1 qwen14b_d100 + 5 OLMo-2-7B). GPU 2 is idle and available for scheduling pending evals."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-phase2-collect-remaining.md"
+}

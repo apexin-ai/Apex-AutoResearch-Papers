@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "474e0ef44de9d7e58566",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval 3B d100 aligned",
+  "task_key": "worker_diagnose_exp_001_eval_3B_d100_aligned_20260514T153510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_3B_d100_aligned_20260514T153510_result.json",
+    "occurrence": 1,
+    "bytes": 1435,
+    "sha256": "6b065a910274259e49eed732241109c258bf3639eb57199f003402a61cbbb8ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。实验**未失败**，是 cron 误报。\n\n```json\n{\"root_cause\":\"Cron false positive — wrapper PID 362942 已退出但实际 python eval 进程继续运行并于 23:22:32 正常完成。日志末行: '[Thu May 14 23:22:32 CST 2026] 3B d100 aligned eval DONE.'\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"无需修复，实验已成功完成\",\"建议修复 cron 监控逻辑：检测 GPU 进程而非 wrapper PID\"],\"can_auto_fix\":false,\"partial_results\":\"全部完成。MMLU=0.6417 (9011/14042), GSM8K=0.6967 (919/1319), ARC_Challenge=0.8396 (984/1172), HumanEval pass@1=0.1220 (20/164)。结果已保存至 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_s42_aligned/\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "Cron false positive — wrapper PID 362942 已退出但实际 python eval 进程继续运行并于 23:22:32 正常完成。日志末行: '[Thu May 14 23:22:32 CST 2026] 3B d100 aligned eval DONE.'",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "无需修复，实验已成功完成",
+                "建议修复 cron 监控逻辑：检测 GPU 进程而非 wrapper PID"
+              ],
+              "can_auto_fix": false,
+              "partial_results": "全部完成。MMLU=0.6417 (9011/14042), GSM8K=0.6967 (919/1319), ARC_Challenge=0.8396 (984/1172), HumanEval pass@1=0.1220 (20/164)。结果已保存至 /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_s42_aligned/"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-3b-d100-aligned.md"
+}

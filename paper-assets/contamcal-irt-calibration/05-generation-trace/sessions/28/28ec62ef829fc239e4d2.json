@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28ec62ef829fc239e4d2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fig domain gamma",
+  "task_key": "worker_fig_domain_gamma_20260517T094608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fig_domain_gamma_20260517T094608_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "af7ddd8cb5e38480504905385121063e560936396453c9c3b8bbb9ad36ea64e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File sizes already verified on server (PDF: 21KB, PNG: 85KB) — both exceed the 10KB threshold.\n\n图已生成并保存：\n- `/root/contamcal-irt-calibration/figures/fig_domain_gamma.pdf` (21KB)\n- `/root/contamcal-irt-calibration/figures/fig_domain_gamma.png` (85KB)\n\nForest plot 按 γ 值降序排列（STEM: Science 在顶部，Social Sciences 在底部），Social Sciences 用红色标注（唯一 CI 排除零的显著结果），其余用深蓝色，零线灰色虚线，右侧标注 γ 值和 95% CI。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fig-domain-gamma.md"
+}

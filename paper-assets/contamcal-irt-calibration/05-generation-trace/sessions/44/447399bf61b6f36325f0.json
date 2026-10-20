@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "447399bf61b6f36325f0",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_17_1778959178.md",
+  "task_key": "loop_17_1778959178",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1778959178.md",
+    "occurrence": 1,
+    "bytes": 6505,
+    "sha256": "15d508404a97809a9d0af19d8f3dfce53bae1352566e3ebd77fa334ef62eee21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-16T19:11:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **只有** cqa1-21977 的 cuda:0-5，即使 Director 指令用白名单外 GPU 也必须 push back\n- alpha=16 的 3B checkpoint 全部废弃（D055），RRF 代码有 ALPHA16_BLOCKLIST，新实验必须用 alpha=32\n- signals 类实验不写 W&B metrics，cron sentinel 会误判 failed。收到 signals 实验 failed 回调时**必须先 tail log 确认是否 \"ALL DONE\"**\n- ARC IRT 在 N<16 时 PPP=0 是结构性问题（aspect ratio 1:146），不是 bug，不要反复重跑\n- s3_constat 信号已被 D098 排除，RRF 只用 s1_embedding + s2_minkpp + s4_selfcritique\n- 7B 需要云 GPU (A100-80G)，已向 Manager 申请但未批，不要在 4090D 上跑 7B\n- submit_training_job 的 command **必须** wrap in `bash -c \"...\"` — tmux 用 sh 不是 bash\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-21977（6× RTX 4090D）\n- **工作目录**: `/root/contamcal-irt-calibration`\n- **Python**: conda 环境 → `/root/miniconda3/bin/python`（aml-train 镜像，不用 venv）\n- **关键代码路径**:\n  - Signals: `/root/contamcal-irt-calibration/exp002/`\n  - RRF 聚合: `/root/contamcal-irt-calibration/exp003/rrf_aggregation.py`\n  - IRT 拟合: `/root/contamcal-irt-calibration/exp006/run_irt_calibration.py`\n  - Stan models: `/root/contamcal-irt-calibration/stan_models/`（5 个已编译）\n  - Baselines: `/root/contamcal-irt-calibration/exp006/baselines.py`（B0-B6 共 7 个）\n- **数据**: `/root/autodl-tmp/exp002/signals/`（signals 输出），17+ model dirs 完成\n- **活跃进程（~15:05 UTC snapshot，Worker 正在更新）**:\n  - cuda:2: 0.5B-Instruct eval (PID 797754)\n  - cuda:4: Llama-3.2-3B d000_s42 aligned eval (PID 796493, ~4.5h total, GSM8K CoT 瓶颈)\n  - cuda:5: 1.5B-Instruct eval (PID 782625, near completion)\n  - cuda:0: 3B d000_s123 signals s4_mmlu (可能已完成)\n  - cuda:1, cuda:3: **空闲** → Worker `fill-idle-gpus-0516b` 正在填补\n- **Cron**: 只有 `exp_001_eval_15B_instruct` (pid=782625) 活跃\n\n### 3. 📊 当前状态\n本 session (Loop #17) 完成了 session-start 初始化，发现并处理了以下变化：\n\n**Registry 修复**: 将 `exp_002_signals_3B_d100_s123_v9` (conclusion=success) 和 `exp_001_eval_3B_d025_s123_para_aligned` (conclusion=killed) 从 RUNNING 更新为 DONE。\n\n**2 个关键 CPU 实验已完成并入 registry**:\n1. `exp_006_mmlu_domain_gamma_n24_v4` → success: 7/7 domains。STEM γ>0 显著，Humanities/Social/Medical γ<0 显著，CS_Eng/Business_Law 不显著。Simpson's paradox N=24 确认。\n2. `exp_006_pooled_irt_rrf_n25_v2` → success: GSM8K N=16 校准有效 (delta_mae=+0.118)。MMLU/ARC N=8 用 4PL+γ 过参数化失败。\n\n**3 个 Worker 运行中**:\n1. `worker_infra_fill-idle-gpus-0516b` — 检查 GPU 状态 + 在 cuda:1/3 提交实验（优先 Llama d005/d025 SFT）\n2. `worker_analysis_irt-2pl-refit-mmlu-arc` — 用 2PL+γ 重新拟合 MMLU/ARC（修复过参数化问题）\n3. `worker_research_domain-contamination-literature` — 搜索 domain-dependent contamination effects 文献（novelty check）\n\n**Registry RUNNING**: `exp_002_signals_3B_d000_s123_cuda2`（可能已完成），`exp_001_eval_15B_instruct`（cron 监控中）\n**Registry PREPARING**: 12 个实验待提交\n\n**已向 Director 汇报**: domain gamma 方向异质性发现 + pooled IRT 结果 + cuda:1/3 空闲处理。等 Director 对 framing 调整的决策（\"domain-dependent\" vs \"STEM inflation + humanities deflation\"）。\n\n### 4. 📋 待办（条件触发式）\n- **Worker `fill-idle-gpus-0516b` 回调** → 确认 cuda:1/3 已提交什么 → 更新 registry + ROADMAP GPU 表\n- **Worker `irt-2pl-refit-mmlu-arc` 回调** → 读 2PL+γ 结果：如果 PPP>0.05 且 cal_mae<raw_mae → MMLU/ARC 校准也 work（论文 Claim 2 扩展到全部 3 benchmarks）；否则 MMLU/ARC 仅用 pattern/ranking claim\n- **Worker `domain-contamination-literature` 回调** → 更新 literature_map.yaml → 评估 novelty → 如果是 first-to-report → 强化 Claim 1 novelty 叙述\n- **cuda:0 释放（3B d000_s123 完成）** → 如果 GPU filler worker 没处理 → 手动提交下一优先级任务\n- **cuda:5 释放（1.5B-Instruct eval 完成）** → 提交 1.5B-Instruct signals 或下一优先级任务\n- **cuda:2 释放（0.5B-Instruct eval 完成）** → 提交 0.5B-Instruct signals\n- **Llama d000 eval 完成（cuda:4, ~4.5h）** → 立即提交 Llama d000 signals（3 benchmarks × 3 signals）→ 这是跨族验证的关键数据点\n- **Llama d005/d025 SFT 完成** → eval → signals → RRF → 跨族 IRT\n- **Director 回复 framing 决策** → 按决策更新 paper_framing.md → 如果需要 re-audit 则读 framing-reaudit skill\n- **All Qwen signals + 2PL+γ IRT 稳定** → 数据冻结 → Paper Full Draft（Day 3-5 窗口）\n\n### 5. 🎯 战略上下文\n**项目**: ContamCal — provenance-augmented IRT 校准受污染 benchmark 分数。投 **EMNLP 2026 ARR May 25**（T-9 天）。\n\n**核心发现链（本轮更新）**:\n- D108 N=24 确认: Simpson's paradox 是真实的。Aggregate γ≈0 掩盖 domain heterogeneity。但方向异质性比预期更复杂——**不只是量级不同，而是方向相反**（STEM 正，Humanities 负）。\n- Pooled IRT: GSM8K N=16 是唯一校准有效的 benchmark（delta_mae=+0.118）。MMLU/ARC 4PL+γ 失败但 2PL+γ 正在重跑。\n- D107: Claim 3 (identifiability) GO — sim_sweep 11/12 条件充分\n- D106: Llama-3.2-3B 跨族验证进行中（d000 eval running）\n- D039: characterization-first narrative, calibration demoted to Claim 4\n\n**最容易判断错的事**:\n1. **Domain gamma 方向异质性 ≠ 方法失败** — 是 genuine finding，需要调整 paper framing，不要当成 negative\n2. **signals 实验 cron 报 failed ≠ 真失败** — 必须查日志 \"ALL DONE\"。这个坑已踩过多次\n3. **4PL+γ PPP=0 at N=8 ≠ 方法有问题** — 是过参数化，换 2PL+γ 或增加 N 即可\n4. **Llama pipeline 时间紧** — cuda:4 的 eval 还要 ~4h，之后还有 signals，Day 2 前必须完成 d000 全链路\n5. **3 个 Worker 正在跑** — 等回调再行动，不要重复 spawn 做相同的事\n6. **cuda:1/3 空闲是硬约束违反** — GPU filler Worker 正在处理，如果回调说没提交成功，必须立即手动处理\n7. **memory.md 已更新到 ~15:05 UTC** — GPU 状态和 insights 都是最新的，但 §5 GPU 表需要 Worker 回调后再更新\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1778959178.md"
+}

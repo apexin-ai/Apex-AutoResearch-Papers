@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27d0be70650a45b8059a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix kill gemma2 d050 orphan",
+  "task_key": "worker_fix_kill-gemma2-d050-orphan_20260520T101123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill-gemma2-d050-orphan_20260520T101123_result.json",
+    "occurrence": 1,
+    "bytes": 106,
+    "sha256": "7869f28fd3e0b91e57cf7c6971bd1247cab55646691e7046c89953af7dffa1f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完毕。cuda:1 上只剩 PID 314035（95236MiB），d050 孤儿进程已不存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-gemma2-d050-orphan.md"
+}

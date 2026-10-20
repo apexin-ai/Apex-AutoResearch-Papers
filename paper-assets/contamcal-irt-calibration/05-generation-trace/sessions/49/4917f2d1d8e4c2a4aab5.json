@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4917f2d1d8e4c2a4aab5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260517T043710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260517T043710_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "5fa95fc38336876b33a85bcff412133f72ae99a3d96812d75734ea674a2159a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n- Zero em-dash matches\n- Zero explanatory en-dash matches\n- No problematic -ing phrase endings\n- ~686 words after stripping LaTeX commands (within target of ~700)\n\nWritten to `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_draft/related_work.tex`. Five subsections: Contamination Detection, IRT for LLM Evaluation, Item Compromise in Educational Measurement, Contamination Mitigation and Score Adjustment, Calibration Disambiguation. Each ends with a clear positioning statement for ContamCal."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0eed0b02ed8a36e1bab4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "cpu rrf 3B s42 aggregation",
+  "task_key": "worker_cpu_rrf_3B_s42_aggregation_20260516T125426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_rrf_3B_s42_aggregation_20260516T125426_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "f65439b314bc4cb72937f7fdbd13bf7d389677993973804c984d95da7c7630cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**3B s42 signals 完整性：全齐 ✓**\n\n| Dose | mmlu | gsm8k | arc_challenge | Signals |\n|------|------|-------|---------------|---------|\n| d000_a32_s42 | ✓ | ✓ | ✓ | s1+s2+s4 |\n| d005_a32_s42 | ✓ | ✓ | ✓ | s1+s2+s4 |\n| d025_v3_s42 | ✓ | ✓ | ✓ | s1+s2+s4 |\n| d100_a32_s42 | ✓ | ✓ | ✓ | s1+s2+s4 |\n\n**RRF 聚合：已完成，无需重新启动。**\n\n- `rrf_3B_s42/exposure_scores.json` — 今天 18:52 生成，4 doses × 3 benchmarks = 12 条目\n- `rrf_all_scales/exposure_scores.json` — 今天 19:56 更新，已整合 3B s42 到全尺寸 pooled 数据中（0.5B/1.5B/3B 共 23 个 respondent）\n\nRRF 产出已就绪，可直接供 exp-006 pooled IRT fitting 使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-rrf-3b-s42-aggregation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bd7e9b0a2edfd07f5a3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 002 signals 3B d000 a32 s42",
+  "task_key": "worker_analysis_exp_002_signals_3B_d000_a32_s42_20260516T102219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_002_signals_3B_d000_a32_s42_20260516T102219_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "85283ab352a08e244b8867fe34965b44b082c6742ecee0ed34264b4179640b71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：**SUCCESS**\n\n### Signal 生成矩阵（3 benchmark × 3 signal = 9/9 完成）\n\n| Benchmark | s1_embedding | s2_minkpp | s4_selfcritique | N items |\n|-----------|:---:|:---:|:---:|---:|\n| mmlu | ✓ (7.6M) | ✓ (2.8M) | ✓ (3.2M) | 14,042 |\n| gsm8k | ✓ (717K) | ✓ (266K) | ✓ (310K) | 1,319 |\n| arc_challenge | ✓ (650K) | ✓ (245K) | ✓ (284K) | 1,172 |\n\n### 关键数字\n- **总样本**: 16,533 items (14042 + 1319 + 1172)\n- **运行时间**: ~3h 9min (15:09 → 18:18)\n- **GPU 时间**: 3.24 GPU-hours\n- **失败/缺失**: 0\n- **非关键 warning**: bitsandbytes libnvJitLink.so.13 加载失败（不影响 signal 计算）、faiss AVX512-SPR 回退到 AVX512（正常）\n\n### 输出路径\n`/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_a32_s42/`\n\nRegistry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-002-signals-3b-d000-a32-s42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "230ea4fecfd7cc9f30f4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis lora param percentage",
+  "task_key": "worker_analysis_lora-param-percentage_20260521T174458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lora-param-percentage_20260521T174458_result.json",
+    "occurrence": 1,
+    "bytes": 2486,
+    "sha256": "4f1ffd6034aa14131ecb85126370e8671c74dda92790929d626d827cbc9a5701"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All architecture parameters collected. Now let me compute.\n\n**Architecture summary from configs:**\n\n| Model | d | d_ff | Layers | n_heads | n_kv_heads | head_dim | d_kv | vocab | tie_embed |\n|---|---|---|---|---|---|---|---|---|---|\n| Qwen2.5-7B | 3584 | 18944 | 28 | 28 | 4 | 128 | 512 | 152064 | false |\n| Qwen2.5-14B | 5120 | 13824 | 48 | 40 | 8 | 128 | 1024 | 152064 | false |\n| Gemma-2-9B | 3584 | 14336 | 42 | 16 | 8 | 256 | 2048 | 256000 | true |\n| OLMo-2-7B | 4096 | 11008 | 32 | 32 | 32 | 128 | 4096 | 100352 | true |\n| Phi-4 | 5120 | 17920 | 40 | 40 | 10 | 128 | 1280 | 100352 | false |\n| LLaMA-3.1-8B | 4096 | 14336 | 32 | 32 | 8 | 128 | 1024 | 128256 | false |\n\n**LoRA r=16, target_modules = [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]**\n\nFor each module, LoRA params = r × (in_features + out_features):\n\nPer layer LoRA = r × Σ(in_i + out_i) across 7 modules:\n- q: (d + d_q), k: (d + d_kv), v: (d + d_kv), o: (d_q + d)\n- gate: (d + d_ff), up: (d + d_ff), down: (d_ff + d)\n\nTotal LoRA = num_layers × per_layer\n\n| Model | Total Params | Per-layer sum | LoRA Params (r=16) | Trainable % |\n|-------|-------------|--------------|-------------------|-------------|\n| Qwen2.5-7B | 7,616,086,528 (7.62B) | 90,112 | 40,370,176 (40.4M) | 0.530% |\n| Qwen2.5-14B | 14,769,689,600 (14.77B) | 89,600 | 68,812,800 (68.8M) | 0.466% |\n| Gemma-2-9B | 9,241,705,984 (9.24B) | 80,384 | 54,018,048 (54.0M) | 0.585% |\n| OLMo-2-7B | 6,887,575,552 (6.89B) | 78,080 | 39,976,960 (40.0M) | 0.580% |\n| Phi-4 | ~14,659,814,400 (14.66B) | 102,400 | 65,536,000 (65.5M) | 0.447% |\n| LLaMA-3.1-8B | 8,030,261,248 (8.03B) | 81,920 | 41,943,040 (41.9M) | 0.522% |\n\n**计算细节（以 Qwen2.5-7B 为例）：**\n- d_kv = 4 × 128 = 512 (GQA, 4 KV heads)\n- Per-layer sum = (3584+3584) + (3584+512) + (3584+512) + (3584+3584) + (3584+18944) + (3584+18944) + (18944+3584) = 90,112\n- Per-layer LoRA = 16 × 90,112 = 1,441,792\n- Total LoRA = 28 layers × 1,441,792 = 40,370,176\n\n**注意：**\n- Gemma-2-9B 的 head_dim=256（显式设置，非 d/n_heads=224），导致 d_q=4096 ≠ d=3584\n- OLMo-2-7B 使用 MHA（n_kv=n_heads=32），k/v 不压缩，trainable % 较高\n- Phi-4 实际使用 fused qkv_proj + gate_up_proj，若用 fused LoRA 则参数量为 55.7M (0.380%)，上表按概念等价的 7 个独立模块计算\n- 总参数数从 config 手动计算（含 embedding/LM head/LayerNorm），与 HuggingFace 报告值一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lora-param-percentage.md"
+}

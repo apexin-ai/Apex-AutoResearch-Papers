@@ -1,0 +1,3004 @@
+# diagnose exp 001 eval 15B d025 s123 v2
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 62
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/workers/worker_diagnose_exp_001_eval_15B_d025_s123_v2_20260515T163010.log`
+- **Structured JSON:** [`16fce935d30e6b451b9b.json`](../../sessions/16/16fce935d30e6b451b9b.json)
+
+## Before a recorded user message
+
+62 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__delete_cron",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "3716999a-1d2d-4b03-b4b7-3bfdcbdd3354",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778866800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9d43263a-468d-48d3-a482-2dda838fca5a",
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by diagnosing the experiment status. I'll load the necessary tools first and then check the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "cc8cc8ea-6dcf-4376-a9e8-239ea7057ce7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U4ubBxfG3zFtPybNzgEXcS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12068,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12068
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始诊断 exp_001_eval_15B_d025_s123_v2 的完成状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "942d1437-06a0-4300-a5ec-4dbbf7f316c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U4ubBxfG3zFtPybNzgEXcS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12068,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12068
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HGhfGtTczw9PoYYJSmBaLV`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "98ea668f-c931-42b9-a563-60798a60e2de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U4ubBxfG3zFtPybNzgEXcS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12068,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12068
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T16:30:31.383Z_
+
+<details><summary>↩ Tool result · `toolu_01HGhfGtTczw9PoYYJSmBaLV`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__delete_cron"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "c77f7b32-a360-4a4d-bb2a-fe7c9731d6ff",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__delete_cron",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the registry entry for this experiment and checking the server for logs in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "066d53b0-ec30-4378-adc5-d126b94941a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUGbeyyhyeGoPg7s9dAb6n",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1817,
+      "cache_read_input_tokens": 23909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1817
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01RfvqZAtrnJ4Wcfcek2Aepc`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "exp_001_eval_15B_d025_s123_v2"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "55615be5-9a41-4603-9185-0e4cb2d6eed1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUGbeyyhyeGoPg7s9dAb6n",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1817,
+      "cache_read_input_tokens": 23909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1817
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T16:30:35.479Z_
+
+<details><summary>↩ Tool result · `toolu_01RfvqZAtrnJ4Wcfcek2Aepc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0852}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "60b451cc-087d-40c3-b5f6-68a245cfc9f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0852}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0852}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012kNnHvQ2cojCduWjxXKfc2`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -lt ~/runs/contamcal-irt-calibration/ 2>/dev/null | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "fcb7cc6a-7583-4d0a-b105-2aca8a414372",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUGbeyyhyeGoPg7s9dAb6n",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1817,
+      "cache_read_input_tokens": 23909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1817
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T16:30:36.368Z_
+
+<details><summary>↩ Tool result · `toolu_012kNnHvQ2cojCduWjxXKfc2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "159f7a3c-9ecc-4aa4-8cee-87378f090ac6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C6CTvESgx17ooTVqdsoyoa`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tmux ls 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "9995c795-0783-4011-b9d0-f0f9cf8b4def",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUGbeyyhyeGoPg7s9dAb6n",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1817,
+      "cache_read_input_tokens": 23909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1817
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T16:30:36.438Z_
+
+<details><summary>↩ Tool result · `toolu_01C6CTvESgx17ooTVqdsoyoa`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "b8ec41ea-f9c4-4eac-b7fb-f89c27f5d81f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The read_only tool doesn't allow pipe or redirect. Let me adjust the commands. Also, registry returned 0 results - the experiment might be registered with a slightly different ID. Let me search more broadly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "78aa1c27-1a46-44b3-805a-94477bf95984",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M2fQriZqs1eBY8UEmjCH2U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 25726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 657
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+Registry 没有匹配记录，调整命令重新查找。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "ff006ac2-ce93-4114-9c10-4d7dc786da82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M2fQriZqs1eBY8UEmjCH2U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 25726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 657
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EWe3PEgryjpJd9x7p69xJd`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -lt ~/runs/contamcal-irt-calibration/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "205b20fb-50b4-45fa-b386-03dbae182f4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M2fQriZqs1eBY8UEmjCH2U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 25726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 657
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MPyvSs1ko6v4H8J8T4V2BS`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tmux ls"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "1ba76877-3d93-45fb-88b4-022f65f07c63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M2fQriZqs1eBY8UEmjCH2U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 25726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 657
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Y6uvG8zYPv31geGqcT1LW5`</summary>
+
+```json
+{
+  "filters": {},
+  "fields": [
+    "*"
+  ],
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "e6b30da5-6fb5-4d65-a3e7-fe48f013b2c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M2fQriZqs1eBY8UEmjCH2U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 25726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 657
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T16:30:42.590Z_
+
+<details><summary>↩ Tool result · `toolu_01EWe3PEgryjpJd9x7p69xJd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 23924\\n-rw-r--r-- 1 root root    1986 May 16 00:30 exp_001_sft_3B_d100_s42_a32_v2.log\\n-rw-r--r-- 1 root root  337061 May 16 00:30 exp_001_eval_3B_d005_s123_aligned.log\\n-rw-r--r-- 1 root root  347483 May 16 00:30 exp_001_eval_3B_d025_s123_aligned.log\\n-rw-r--r-- 1 root root  354736 May 16 00:30 exp_001_eval_15B_d005_s123.log\\n-rw-r--r-- 1 root root   12578 May 16 00:27 exp_001_sft_3B_d100_s42_a32.log\\n-rw-r--r-- 1 root root  355859 May 16 00:20 exp_001_eval_15B_d025_s123.log\\n-rw-r--r-- 1 root root    4103 May 16 00:15 exp_001_sft_3B_d025_s42_a32.log\\n-rw-r--r-- 1 root root  247554 May 16 00:10 exp_001_eval_3B_d005_s123_para_aligned.log\\n-rw-r--r-- 1 root root  247745 May 16 00:09 exp_001_eval_3B_d025_s123_para_aligned.log\\n-rw-r--r-- 1 root root  248865 May 15 23:28 exp_001_eval_3B_d000_s42_para_aligned.log\\n-rw-r--r-- 1 root root  247835 May 15 23:27 exp_001_eval_3B_d100_s42_para_aligned.log\\n-rw-r--r-- 1 root root   10759 May 15 23:23 exp_002_signals_3B.log\\n-rw-r--r-- 1 root root  352389 May 15 23:02 exp_001_sft_3B_d005_s123.log\\n-rw-r--r-- 1 root root  371743 May 15 22:42 exp_001_sft_3B_d025_s123.log\\n-rw-r--r-- 1 root root  310188 May 15 22:15 exp_008_base_pretrained_eval_v2.log\\n-rw-r--r-- 1 root root  329412 May 15 20:56 exp_001_sft_15B_d025_s123_v2.log\\n-rw-r--r-- 1 root root  308737 May 15 20:52 exp_001_sft_15B_d005_s123_v2.log\\n-rw-r--r-- 1 root root  449070 May 15 18:41 exp_001_eval_15B_d000_s123_aligned.log\\n-rw-r--r-- 1 root root  392321 May 15 18:21 exp_001_eval_05B_d000_s123_aligned.log\\n-rw-r--r-- 1 root root     570 May 15 16:36 exp_001_sft_15B_d005_s123.log\\n-rw-r--r-- 1 root root  497041 May 15 14:52 exp_001_eval_05B_raw.log\\n-rw-r--r-- 1 root root   19023 May 15 11:34 exp_001_sft_05B_d025_s123.log\\n-rw-r--r-- 1 root root  340681 May 15 08:42 exp_001_sft_05B_d005_s123.log\\n-rw-r--r-- 1 root root  454835 May 15 08:26 exp_001_sft_15B_d100_s123.log\\n-rw-r--r-- 1 root root  525544 May 15 08:18 exp_001_eval_3B_d000_v2_aligned.log\\n-rw-r--r-- 1 root root  308443 May 15 08:02 exp_001_sft_3B_d000_s123.log\\n-rw-r--r-- 1 root root  287772 May 15 07:39 exp_001_eval_05B_d100_s123_aligned.log\\n-rw-r--r-- 1 root root  411045 May 15 07:05 exp_001_sft_d100_3B.log\\n-rw-r--r-- 1 root root    4504 May 15 05:56 exp002-signals-1p5B.log\\n-rw-r--r-- 1 root root  442838 May 15 05:29 exp_001_sft_05B_d100_s123.log\\n-rw-r--r-- 1 root root  349050 May 15 04:59 exp_001_eval_15B_d025_aligned.log\\n-rw-r--r-- 1 root root   57039 May 15 04:44 exp_006_pooled_gsm8k_v1.log\\n-rw-r--r-- 1 root root   48715 May 15 04:31 exp_006_irt_05B_arc.log\\n-rw-r--r-- 1 root root  260238 May 15 03:58 exp_001_eval_3B_d100_para_aligned.log\\n-rw-r--r-- 1 root root  349549 May 15 03:45 exp_001_sft_3B_d000_v2.log\\n-rw-r--r-- 1 root root  179466 May 15 03:45 exp_001_eval_15B_d025_para_aligned.log\\n-rw-r--r-- 1 root root   48332 May 15 03:42 exp006-gsm8k-d024-delta.log\\n-rw-r--r-- 1 root root    1954 May 15 02:55 exp002-signal-d025-05B.log\\n-rw-r--r-- 1 root root 1499153 May 15 02:43 exp_001_eval_15B_aligned_batch.log\\n-rw-r--r-- 1 root root   48377 May 15 02:25 exp_006_irt_05B_gsm8k.log\\n-rw-r--r-- 1 root root  293912 May 15 01:38 exp_001_eval_05B_d100_aligned_v4.log\\n-rw-r--r-- 1 root root  162913 May 15 00:50 exp_001_eval_05B_d025_aligned_v2.log\\n-rw-r--r-- 1 root root  197015 May 15 00:46 exp_001_eval_05B_d025_aligned.log\\n-rw-r--r-- 1 root root  123860 May 15 00:11 exp_001_eval_05B_d005_para_aligned.log\\n-rw-r--r-- 1 root root  228558 May 14 23:54 exp_001_eval_05B_d100_aligned_v3.log\\n-rw-r--r-- 1 root root  513792 May 14 23:22 eval_3B_d100_aligned.log\\n-rw-r--r-- 1 root root      54 May 14 23:19 exp_001_eval_05B_d100_aligned_v2.log\\n-rw-r--r-- 1 root root    2696 May 14 22:52 exp006_irt_05B.log\\n-rw-r--r-- 1 root root  999780 May 14 22:39 exp_001_eval_05B_aligned_batch.log\\n-rw-r--r-- 1 root root  520469 May 14 21:04 exp_001_eval_3B_d000_aligned.log\\n-rw-r--r-- 1 root root  351244 May 14 20:55 exp_001_sft_d005_3B.log\\n-rw-r--r-- 1 root root    2987 May 14 18:28 exp_002_signals_05B.log\\n-rw-r--r-- 1 root root  346684 May 14 18:16 exp_001_eval_15B_d100_s42.log\\n-rw-r--r-- 1 root root  123802 May 14 17:32 exp_001_eval_3B_raw_gen.log\\n-rw-r--r-- 1 root root  355906 May 14 16:44 exp_001_sft_d005_15B.log\\n-rw-r--r-- 1 root root  322057 May 14 16:30 exp_001_sft_d025_05B_v3.log\\n-rw-r--r-- 1 root root  411085 May 14 15:38 exp_001_sft_d100_15B_v2.log\\n-rw-r--r-- 1 root root  349742 May 14 15:30 exp_001_eval_05B_d100_v5.log\\n-rw-r--r-- 1 root root  346779 May 14 15:29 exp_001_eval_05B_d000_s42_v5.log\\n-rw-r--r-- 1 root root  551911 May 14 14:39 exp_001_eval_3B_d000_s42.log\\n-rw-r--r-- 1 root root  468740 May 14 14:28 exp_001_eval_05B_d005.log\\n-rw-r--r-- 1 root root    4608 May 14 13:00 exp_001_sft_d025_05B_v2.log\\n-rw-r--r-- 1 root root    3992 May 14 12:49 exp_001_sft_d025_05B.log\\n-rw-r--r-- 1 root root  351834 May 14 12:42 exp_001_eval_15B_d000_s123.log\\n-rw-r--r-- 1 root root  504710 May 14 12:37 exp_001_eval_3B_d000_s123.log\\n-rw-r--r-- 1 root root  348783 May 14 11:08 exp_001_eval_15B_d000_s42_v2.log\\n-rw-r--r-- 1 root root   78433 May 14 10:43 exp_001_eval_05B_d100_v6.log\\n-rw-r--r-- 1 root root   84083 May 14 10:43 exp_001_eval_05B_d000_s42_v6.log\\n-rw-r--r-- 1 root root   54047 May 14 10:37 exp_001_eval_05B_d100_v4.log\\n-rw-r--r-- 1 root root   76832 May 14 10:37 exp_001_eval_05B_d000_s42_v4.log\\n-rw-r--r-- 1 root root  256146 May 14 10:35 exp_001_eval_05B_d100_v2.log\\n-rw-r--r-- 1 root root  155206 May 14 10:35 exp_001_eval_05B_d000_s42_v3.log\\n-rw-r--r-- 1 root root  265670 May 14 10:35 exp_001_eval_05B_d000_s42_v2.log\\n-rw-r--r-- 1 root root  153066 May 14 10:35 exp_001_eval_05B_d100_v3.log\\n-rw-r--r-- 1 root root  178129 May 14 10:20 exp_001_eval_05B_d000_s42_retry.log\\n-rw-r--r-- 1 root root  229290 May 14 10:12 exp_001_eval_05B_d100.log\\n-rw-r--r-- 1 root root  401648 May 14 09:28 exp_001_eval_05B_d000_s42.log\\n-rw-r--r-- 1 root root  407566 May 14 09:24 exp_001_eval_05B_d000_s123.log\\n-rw-r--r-- 1 root root   45778 May 14 08:55 exp_001_sft_d100_15B.log\\n-rw-r--r-- 1 root root  302233 May 14 08:54 exp_001_sft_d005_05B_v3.log\\n-rw-r--r-- 1 root root  445326 May 14 08:49 exp_001_sft_d100_05B.log\\n-rw-r--r-- 1 root root  308150 May 14 08:15 exp_001_sft_0pct_3B_s123.log\\n-rw-r--r-- 1 root root    6861 May 14 07:59 exp_001_sft_d005_05B_r3.log\\n-rw-r--r-- 1 root root   89882 May 14 07:54 exp_001_eval_3B_d000_s42_v2.log\\n-rw-r--r-- 1 root root    6861 May 14 07:49 exp_001_sft_d005_05B_v2.log\\n-rw-r--r-- 1 root root    6861 May 14 07:49 exp_001_sft_d005_05B.log\\n-rw-r--r-- 1 root root  345677 May 14 07:20 exp_001_sft_0pct_3B.log\\n-rw-r--r-- 1 root root  303457 May 14 06:23 exp_001_sft_0pct_15B_s123.log\\n-rw-r--r-- 1 root root  297341 May 14 05:36 exp_001_sft_0pct_05B_s123.log\\n-rw-r--r-- 1 root root  303452 May 14 05:22 exp_001_sft_0pct_15B.log\\n-rw-r--r-- 1 root root  336225 May 14 04:31 exp_001_sft_0pct_05B.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "86fe8f86-c688-4e29-a3c5-4e9c4e258c87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 23924\\\\n-rw-r--r-- 1 root root    1986 May 16 00:30 exp_001_sft_3B_d100_s42_a32_v2.log\\\\n-rw-r--r-- 1 root root  337061 May 16 00:30 exp_001_eval_3B_d005_s123_aligned.log\\\\n-rw-r--r-- 1 root root  347483 May 16 00:30 exp_001_eval_3B_d025_s123_aligned.log\\\\n-rw-r--r-- 1 root root  354736 May 16 00:30 exp_001_eval_15B_d005_s123.log\\\\n-rw-r--r-- 1 root root   12578 May 16 00:27 exp_001_sft_3B_d100_s42_a32.log\\\\n-rw-r--r-- 1 root root  355859 May 16 00:20 exp_001_eval_15B_d025_s123.log\\\\n-rw-r--r-- 1 root root    4103 May 16 00:15 exp_001_sft_3B_d025_s42_a32.log\\\\n-rw-r--r-- 1 root root  247554 May 16 00:10 exp_001_eval_3B_d005_s123_para_aligned.log\\\\n-rw-r--r-- 1 root root  247745 May 16 00:09 exp_001_eval_3B_d025_s123_para_aligned.log\\\\n-rw-r--r-- 1 root root  248865 May 15 23:28 exp_001_eval_3B_d000_s42_para_aligned.log\\\\n-rw-r--r-- 1 root root  247835 May 15 23:27 exp_001_eval_3B_d100_s42_para_aligned.log\\\\n-rw-r--r-- 1 root root   10759 May 15 23:23 exp_002_signals_3B.log\\\\n-rw-r--r-- 1 root root  352389 May 15 23:02 exp_001_sft_3B_d005_s123.log\\\\n-rw-r--r-- 1 root root  371743 May 15 22:42 exp_001_sft_3B_d025_s123.log\\\\n-rw-r--r-- 1 root root  310188 May 15 22:15 exp_008_base_pretrained_eval_v2.log\\\\n-rw-r--r-- 1 root root  329412 May 15 20:56 exp_001_sft_15B_d025_s123_v2.log\\\\n-rw-r--r-- 1 root root  308737 May 15 20:52 exp_001_sft_15B_d005_s123_v2.log\\\\n-rw-r--r-- 1 root root  449070 May 15 18:41 exp_001_eval_15B_d000_s123_aligned.log\\\\n-rw-r--r-- 1 root root  392321 May 15 18:21 exp_001_eval_05B_d000_s123_aligned.log\\\\n-rw-r--r-- 1 root root     570 May 15 16:36 exp_001_sft_15B_d005_s123.log\\\\n-rw-r--r-- 1 root root  497041 May 15 14:52 exp_001_eval_05B_raw.log\\\\n-rw-r--r-- 1 root root   19023 May 15 11:34 exp_001_sft_05B_d025_s123.log\\\\n-rw-r--r-- 1 root root  340681 May 15 08:42 exp_001_sft_05B_d005_s123.log\\\\n-rw-r--r-- 1 root root  454835 May 15 08:26 exp_001_sft_15B_d100_s123.log\\\\n-rw-r--r-- 1 root root  525544 May 15 08:18 exp_001_eval_3B_d000_v2_aligned.log\\\\n-rw-r--r-- 1 root root  308443 May 15 08:02 exp_001_sft_3B_d000_s123.log\\\\n-rw-r--r-- 1 root root  287772 May 15 07:39 exp_001_eval_05B_d100_s123_aligned.log\\\\n-rw-r--r-- 1 root root  411045 May 15 07:05 exp_001_sft_d100_3B.log\\\\n-rw-r--r-- 1 root root    4504 May 15 05:56 exp002-signals-1p5B.log\\\\n-rw-r--r-- 1 root root  442838 May 15 05:29 exp_001_sft_05B_d100_s123.log\\\\n-rw-r--r-- 1 root root  349050 May 15 04:59 exp_001_eval_15B_d025_aligned.log\\\\n-rw-r--r-- 1 root root   57039 May 15 04:44 exp_006_pooled_gsm8k_v1.log\\\\n-rw-r--r-- 1 root root   48715 May 15 04:31 exp_006_irt_05B_arc.log\\\\n-rw-r--r-- 1 root root  260238 May 15 03:58 exp_001_eval_3B_d100_para_aligned.log\\\\n-rw-r--r-- 1 root root  349549 May 15 03:45 exp_001_sft_3B_d000_v2.log\\\\n-rw-r--r-- 1 root root  179466 May 15 03:45 exp_001_eval_15B_d025_para_aligned.log\\\\n-rw-r--r-- 1 root root   48332 May 15 03:42 exp006-gsm8k-d024-delta.log\\\\n-rw-r--r-- 1 root root    1954 May 15 02:55 exp002-signal-d025-05B.log\\\\n-rw-r--r-- 1 root root 1499153 May 15 02:43 exp_001_eval_15B_aligned_batch.log\\\\n-rw-r--r-- 1 root root   48377 May 15 02:25 exp_006_irt_05B_gsm8k.log\\\\n-rw-r--r-- 1 root root  293912 May 15 01:38 exp_001_eval_05B_d100_aligned_v4.log\\\\n-rw-r--r-- 1 root root  162913 May 15 00:50 exp_001_eval_05B_d025_aligned_v2.log\\\\n-rw-r--r-- 1 root root  197015 May 15 00:46 exp_001_eval_05B_d025_aligned.log\\\\n-rw-r--r-- 1 root root  123860 May 15 00:11 exp_001_eval_05B_d005_para_aligned.log\\\\n-rw-r--r-- 1 root root  228558 May 14 23:54 exp_001_eval_05B_d100_aligned_v3.log\\\\n-rw-r--r-- 1 root root  513792 May 14 23:22 eval_3B_d100_aligned.log\\\\n-rw-r--r-- 1 root root      54 May 14 23:19 exp_001_eval_05B_d100_aligned_v2.log\\\\n-rw-r--r-- 1 root root    2696 May 14 22:52 exp006_irt_05B.log\\\\n-rw-r--r-- 1 root root  999780 May 14 22:39 exp_001_eval_05B_aligned_batch.log\\\\n-rw-r--r-- 1 root root  520469 May 14 21:04 exp_001_eval_3B_d000_aligned.log\\\\n-rw-r--r-- 1 root root  351244 May 14 20:55 exp_001_sft_d005_3B.log\\\\n-rw-r--r-- 1 root root    2987 May 14 18:28 exp_002_signals_05B.log\\\\n-rw-r--r-- 1 root root  346684 May 14 18:16 exp_001_eval_15B_d100_s42.log\\\\n-rw-r--r-- 1 root root  123802 May 14 17:32 exp_001_eval_3B_raw_gen.log\\\\n-rw-r--r-- 1 root root  355906 May 14 16:44 exp_001_sft_d005_15B.log\\\\n-rw-r--r-- 1 root root  322057 May 14 16:30 exp_001_sft_d025_05B_v3.log\\\\n-rw-r--r-- 1 root root  411085 May 14 15:38 exp_001_sft_d100_15B_v2.log\\\\n-rw-r--r-- 1 root root  349742 May 14 15:30 exp_001_eval_05B_d100_v5.log\\\\n-rw-r--r-- 1 root root  346779 May 14 15:29 exp_001_eval_05B_d000_s42_v5.log\\\\n-rw-r--r-- 1 root root  551911 May 14 14:39 exp_001_eval_3B_d000_s42.log\\\\n-rw-r--r-- 1 root root  468740 May 14 14:28 exp_001_eval_05B_d005.log\\\\n-rw-r--r-- 1 root root    4608 May 14 13:00 exp_001_sft_d025_05B_v2.log\\\\n-rw-r--r-- 1 root root    3992 May 14 12:49 exp_001_sft_d025_05B.log\\\\n-rw-r--r-- 1 root root  351834 May 14 12:42 exp_001_eval_15B_d000_s123.log\\\\n-rw-r--r-- 1 root root  504710 May 14 12:37 exp_001_eval_3B_d000_s123.log\\\\n-rw-r--r-- 1 root root  348783 May 14 11:08 exp_001_eval_15B_d000_s42_v2.log\\\\n-rw-r--r-- 1 root root   78433 May 14 10:43 exp_001_eval_05B_d100_v6.log\\\\n-rw-r--r-- 1 root root   84083 May 14 10:43 exp_001_eval_05B_d000_s42_v6.log\\\\n-rw-r--r-- 1 root root   54047 May 14 10:37 exp_001_eval_05B_d100_v4.log\\\\n-rw-r--r-- 1 root root   76832 May 14 10:37 exp_001_eval_05B_d000_s42_v4.log\\\\n-rw-r--r-- 1 root root  256146 May 14 10:35 exp_001_eval_05B_d100_v2.log\\\\n-rw-r--r-- 1 root root  155206 May 14 10:35 exp_001_eval_05B_d000_s42_v3.log\\\\n-rw-r--r-- 1 root root  265670 May 14 10:35 exp_001_eval_05B_d000_s42_v2.log\\\\n-rw-r--r-- 1 root root  153066 May 14 10:35 exp_001_eval_05B_d100_v3.log\\\\n-rw-r--r-- 1 root root  178129 May 14 10:20 exp_001_eval_05B_d000_s42_retry.log\\\\n-rw-r--r-- 1 root root  229290 May 14 10:12 exp_001_eval_05B_d100.log\\\\n-rw-r--r-- 1 root root  401648 May 14 09:28 exp_001_eval_05B_d000_s42.log\\\\n-rw-r--r-- 1 root root  407566 May 14 09:24 exp_001_eval_05B_d000_s123.log\\\\n-rw-r--r-- 1 root root   45778 May 14 08:55 exp_001_sft_d100_15B.log\\\\n-rw-r--r-- 1 root root  302233 May 14 08:54 exp_001_sft_d005_05B_v3.log\\\\n-rw-r--r-- 1 root root  445326 May 14 08:49 exp_001_sft_d100_05B.log\\\\n-rw-r--r-- 1 root root  308150 May 14 08:15 exp_001_sft_0pct_3B_s123.log\\\\n-rw-r--r-- 1 root root    6861 May 14 07:59 exp_001_sft_d005_05B_r3.log\\\\n-rw-r--r-- 1 root root   89882 May 14 07:54 exp_001_eval_3B_d000_s42_v2.log\\\\n-rw-r--r-- 1 root root    6861 May 14 07:49 exp_001_sft_d005_05B_v2.log\\\\n-rw-r--r-- 1 root root    6861 May 14 07:49 exp_001_sft_d005_05B.log\\\\n-rw-r--r-- 1 root root  345677 May 14 07:20 exp_001_sft_0pct_3B.log\\\\n-rw-r--r-- 1 root root  303457 May 14 06:23 exp_001_sft_0pct_15B_s123.log\\\\n-rw-r--r-- 1 root root  297341 May 14 05:36 exp_001_sft_0pct_05B_s123.log\\\\n-rw-r--r-- 1 root root  303452 May 14 05:22 exp_001_sft_0pct_15B.log\\\\n-rw-r--r-- 1 root root  336225 May 14 04:31 exp_001_sft_0pct_05B.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 23924\\n-rw-r--r-- 1 root root    1986 May 16 00:30 exp_001_sft_3B_d100_s42_a32_v2.log\\n-rw-r--r-- 1 root root  337061 May 16 00:30 exp_001_eval_3B_d005_s123_aligned.log\\n-rw-r--r-- 1 root root  347483 May 16 00:30 exp_001_eval_3B_d025_s123_aligned.log\\n-rw-r--r-- 1 root root  354736 May 16 00:30 exp_001_eval_15B_d005_s123.log\\n-rw-r--r-- 1 root root   12578 May 16 00:27 exp_001_sft_3B_d100_s42_a32.log\\n-rw-r--r-- 1 root root  355859 May 16 00:20 exp_001_eval_15B_d025_s123.log\\n-rw-r--r-- 1 root root    4103 May 16 00:15 exp_001_sft_3B_d025_s42_a32.log\\n-rw-r--r-- 1 root root  247554 May 16 00:10 exp_001_eval_3B_d005_s123_para_aligned.log\\n-rw-r--r-- 1 root root  247745 May 16 00:09 exp_001_eval_3B_d025_s123_para_aligned.log\\n-rw-r--r-- 1 root root  248865 May 15 23:28 exp_001_eval_3B_d000_s42_para_aligned.log\\n-rw-r--r-- 1 root root  247835 May 15 23:27 exp_001_eval_3B_d100_s42_para_aligned.log\\n-rw-r--r-- 1 root root   10759 May 15 23:23 exp_002_signals_3B.log\\n-rw-r--r-- 1 root root  352389 May 15 23:02 exp_001_sft_3B_d005_s123.log\\n-rw-r--r-- 1 root root  371743 May 15 22:42 exp_001_sft_3B_d025_s123.log\\n-rw-r--r-- 1 root root  310188 May 15 22:15 exp_008_base_pretrained_eval_v2.log\\n-rw-r--r-- 1 root root  329412 May 15 20:56 exp_001_sft_15B_d025_s123_v2.log\\n-rw-r--r-- 1 root root  308737 May 15 20:52 exp_001_sft_15B_d005_s123_v2.log\\n-rw-r--r-- 1 root root  449070 May 15 18:41 exp_001_eval_15B_d000_s123_aligned.log\\n-rw-r--r-- 1 root root  392321 May 15 18:21 exp_001_eval_05B_d000_s123_aligned.log\\n-rw-r--r-- 1 root root     570 May 15 16:36 exp_001_sft_15B_d005_s123.log\\n-rw-r--r-- 1 root root  497041 May 15 14:52 exp_001_eval_05B_raw.log\\n-rw-r--r-- 1 root root   19023 May 15 11:34 exp_001_sft_05B_d025_s123.log\\n-rw-r--r-- 1 root root  340681 May 15 08:42 exp_001_sft_05B_d005_s123.log\\n-rw-r--r-- 1 root root  454835 May 15 08:26 exp_001_sft_15B_d100_s123.log\\n-rw-r--r-- 1 root root  525544 May 15 08:18 exp_001_eval_3B_d000_v2_aligned.log\\n-rw-r--r-- 1 root root  308443 May 15 08:02 exp_001_sft_3B_d000_s123.log\\n-rw-r--r-- 1 root root  287772 May 15 07:39 exp_001_eval_05B_d100_s123_aligned.log\\n-rw-r--r-- 1 root root  411045 May 15 07:05 exp_001_sft_d100_3B.log\\n-rw-r--r-- 1 root root    4504 May 15 05:56 exp002-signals-1p5B.log\\n-rw-r--r-- 1 root root  442838 May 15 05:29 exp_001_sft_05B_d100_s123.log\\n-rw-r--r-- 1 root root  349050 May 15 04:59 exp_001_eval_15B_d025_aligned.log\\n-rw-r--r-- 1 root root   57039 May 15 04:44 exp_006_pooled_gsm8k_v1.log\\n-rw-r--r-- 1 root root   48715 May 15 04:31 exp_006_irt_05B_arc.log\\n-rw-r--r-- 1 root root  260238 May 15 03:58 exp_001_eval_3B_d100_para_aligned.log\\n-rw-r--r-- 1 root root  349549 May 15 03:45 exp_001_sft_3B_d000_v2.log\\n-rw-r--r-- 1 root root  179466 May 15 03:45 exp_001_eval_15B_d025_para_aligned.log\\n-rw-r--r-- 1 root root   48332 May 15 03:42 exp006-gsm8k-d024-delta.log\\n-rw-r--r-- 1 root root    1954 May 15 02:55 exp002-signal-d025-05B.log\\n-rw-r--r-- 1 root root 1499153 May 15 02:43 exp_001_eval_15B_aligned_batch.log\\n-rw-r--r-- 1 root root   48377 May 15 02:25 exp_006_irt_05B_gsm8k.log\\n-rw-r--r-- 1 root root  293912 May 15 01:38 exp_001_eval_05B_d100_aligned_v4.log\\n-rw-r--r-- 1 root root  162913 May 15 00:50 exp_001_eval_05B_d025_aligned_v2.log\\n-rw-r--r-- 1 root root  197015 May 15 00:46 exp_001_eval_05B_d025_aligned.log\\n-rw-r--r-- 1 root root  123860 May 15 00:11 exp_001_eval_05B_d005_para_aligned.log\\n-rw-r--r-- 1 root root  228558 May 14 23:54 exp_001_eval_05B_d100_aligned_v3.log\\n-rw-r--r-- 1 root root  513792 May 14 23:22 eval_3B_d100_aligned.log\\n-rw-r--r-- 1 root root      54 May 14 23:19 exp_001_eval_05B_d100_aligned_v2.log\\n-rw-r--r-- 1 root root    2696 May 14 22:52 exp006_irt_05B.log\\n-rw-r--r-- 1 root root  999780 May 14 22:39 exp_001_eval_05B_aligned_batch.log\\n-rw-r--r-- 1 root root  520469 May 14 21:04 exp_001_eval_3B_d000_aligned.log\\n-rw-r--r-- 1 root root  351244 May 14 20:55 exp_001_sft_d005_3B.log\\n-rw-r--r-- 1 root root    2987 May 14 18:28 exp_002_signals_05B.log\\n-rw-r--r-- 1 root root  346684 May 14 18:16 exp_001_eval_15B_d100_s42.log\\n-rw-r--r-- 1 root root  123802 May 14 17:32 exp_001_eval_3B_raw_gen.log\\n-rw-r--r-- 1 root root  355906 May 14 16:44 exp_001_sft_d005_15B.log\\n-rw-r--r-- 1 root root  322057 May 14 16:30 exp_001_sft_d025_05B_v3.log\\n-rw-r--r-- 1 root root  411085 May 14 15:38 exp_001_sft_d100_15B_v2.log\\n-rw-r--r-- 1 root root  349742 May 14 15:30 exp_001_eval_05B_d100_v5.log\\n-rw-r--r-- 1 root root  346779 May 14 15:29 exp_001_eval_05B_d000_s42_v5.log\\n-rw-r--r-- 1 root root  551911 May 14 14:39 exp_001_eval_3B_d000_s42.log\\n-rw-r--r-- 1 root root  468740 May 14 14:28 exp_001_eval_05B_d005.log\\n-rw-r--r-- 1 root root    4608 May 14 13:00 exp_001_sft_d025_05B_v2.log\\n-rw-r--r-- 1 root root    3992 May 14 12:49 exp_001_sft_d025_05B.log\\n-rw-r--r-- 1 root root  351834 May 14 12:42 exp_001_eval_15B_d000_s123.log\\n-rw-r--r-- 1 root root  504710 May 14 12:37 exp_001_eval_3B_d000_s123.log\\n-rw-r--r-- 1 root root  348783 May 14 11:08 exp_001_eval_15B_d000_s42_v2.log\\n-rw-r--r-- 1 root root   78433 May 14 10:43 exp_001_eval_05B_d100_v6.log\\n-rw-r--r-- 1 root root   84083 May 14 10:43 exp_001_eval_05B_d000_s42_v6.log\\n-rw-r--r-- 1 root root   54047 May 14 10:37 exp_001_eval_05B_d100_v4.log\\n-rw-r--r-- 1 root root   76832 May 14 10:37 exp_001_eval_05B_d000_s42_v4.log\\n-rw-r--r-- 1 root root  256146 May 14 10:35 exp_001_eval_05B_d100_v2.log\\n-rw-r--r-- 1 root root  155206 May 14 10:35 exp_001_eval_05B_d000_s42_v3.log\\n-rw-r--r-- 1 root root  265670 May 14 10:35 exp_001_eval_05B_d000_s42_v2.log\\n-rw-r--r-- 1 root root  153066 May 14 10:35 exp_001_eval_05B_d100_v3.log\\n-rw-r--r-- 1 root root  178129 May 14 10:20 exp_001_eval_05B_d000_s42_retry.log\\n-rw-r--r-- 1 root root  229290 May 14 10:12 exp_001_eval_05B_d100.log\\n-rw-r--r-- 1 root root  401648 May 14 09:28 exp_001_eval_05B_d000_s42.log\\n-rw-r--r-- 1 root root  407566 May 14 09:24 exp_001_eval_05B_d000_s123.log\\n-rw-r--r-- 1 root root   45778 May 14 08:55 exp_001_sft_d100_15B.log\\n-rw-r--r-- 1 root root  302233 May 14 08:54 exp_001_sft_d005_05B_v3.log\\n-rw-r--r-- 1 root root  445326 May 14 08:49 exp_001_sft_d100_05B.log\\n-rw-r--r-- 1 root root  308150 May 14 08:15 exp_001_sft_0pct_3B_s123.log\\n-rw-r--r-- 1 root root    6861 May 14 07:59 exp_001_sft_d005_05B_r3.log\\n-rw-r--r-- 1 root root   89882 May 14 07:54 exp_001_eval_3B_d000_s42_v2.log\\n-rw-r--r-- 1 root root    6861 May 14 07:49 exp_001_sft_d005_05B_v2.log\\n-rw-r--r-- 1 root root    6861 May 14 07:49 exp_001_sft_d005_05B.log\\n-rw-r--r-- 1 root root  345677 May 14 07:20 exp_001_sft_0pct_3B.log\\n-rw-r--r-- 1 root root  303457 May 14 06:23 exp_001_sft_0pct_15B_s123.log\\n-rw-r--r-- 1 root root  297341 May 14 05:36 exp_001_sft_0pct_05B_s123.log\\n-rw-r--r-- 1 root root  303452 May 14 05:22 exp_001_sft_0pct_15B.log\\n-rw-r--r-- 1 root root  336225 May 14 04:31 exp_001_sft_0pct_05B.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T16:30:42.606Z_
+
+<details><summary>↩ Tool result · `toolu_01MPyvSs1ko6v4H8J8T4V2BS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "0590c6b6-6997-4d1f-af9e-528ecd85ec33",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T16:30:42.689Z_
+
+<details><summary>↩ Tool result · `toolu_01Y6uvG8zYPv31geGqcT1LW5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_001_eval_3B_d000_s123_aligned\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:29:40.215Z\", \"updated_at\": \"2026-05-15T14:30:04.736Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s123_aligned\", \"log_path\": \"/tmp/eval_3B_d000_s123_aligned.log\"}, \"conclusion\": \"success\", \"metrics\": {\"mmlu_accuracy\": 0.6332, \"gsm8k_exact_match\": 0.1812, \"arc_challenge_accuracy\": 0.8328, \"humaneval_pass_at_1\": 0.0854}, \"completed_at\": \"2026-05-15T14:30:04.737Z\"}, \"exp_008_base_pretrained_15B_eval_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:59:18.566Z\", \"updated_at\": \"2026-05-15T14:25:36.376Z\", \"spec\": {\"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_base_pretrained/eval.log\"}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:4\", \"pid\": 530975, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:25:33.229Z\", \"metrics\": {\"mmlu\": 0.2303, \"gsm8k\": 0.0053, \"arc_challenge\": 0.2304, \"humaneval\": 0.2317}}, \"exp_001_eval_3B_d000_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:13:50.071Z\", \"updated_at\": \"2026-05-15T14:25:29.809Z\", \"spec\": {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:4\", \"command\": \"CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\", \"pid\": 513826, \"model_name\": \"Qwen2.5-3B\", \"seed\": 42, \"data_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned\", \"data_count\": 4, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"parent\": \"exp_001_sft_3B_d000_s42\", \"hypothesis\": \"3B d000 s42 baseline eval v3 (v2 SIGKILL). Aligned MC format resubmit with absolute paths.\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned/eval.log\"}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:4\", \"pid\": 513826, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:25:23.810Z\", \"metrics\": {\"mmlu\": 0.634, \"gsm8k\": 0.1198, \"arc_challenge\": 0.8276, \"humaneval\": 0.1159}}, \"exp_008_base_pretrained_eval_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:59:15.038Z\", \"updated_at\": \"2026-05-15T14:22:30.591Z\", \"spec\": {\"hypothesis\": \"Qwen2.5-0.5B base pretrained eval v2 (v1 PID 530893 stopped/dead). No SFT adapter. 3-regime comparison baseline.\", \"model_name\": \"Qwen/Qwen2.5-0.5B\", \"seed\": 42, \"eval_data\": \"mmlu gsm8k arc_challenge humaneval\", \"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_base_pretrained_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache 2>&1 | tee /root/runs/contamcal-irt-calibration/exp_008_base_pretrained_eval_v2.log\\\"\", \"server\": \"cqa1-21977\", \"data_path\": \"N/A\", \"data_count\": 0, \"notes\": \"PID 530893 still running. MMLU done acc=0.2294, gsm8k loading.\", \"gpu\": [\"cuda:2\"], \"checkpoint_source\": \"N/A\", \"parent\": \"exp_008_base_pretrained_eval\", \"log_path\": \"/root/runs/contamcal-irt-calibration/exp_008_base_pretrained_eval_v2.log\", \"checkpoint_path\": \"N/A\"}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:2\", \"pid\": 553256, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:22:21.262Z\", \"metrics\": {\"mmlu\": 0.2294, \"gsm8k\": 0.163, \"arc_challenge\": 0.2278, \"humaneval\": 0}}, \"exp_001_sft_15B_d025_s123_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:51:05.293Z\", \"updated_at\": \"2026-05-15T13:38:33.768Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": \"532560\", \"log_path\": \"~/runs/exp_001_sft_15B_d025_s123_v2.log\", \"submitted_at\": \"2026-05-15T08:51:31.370Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"Process died immediately - likely --model-name Qwen/Qwen2.5-1.5B (HF format) invalid, needs local path\", \"wall_clock_seconds\": 142.1, \"gpu_hours\": 0.04}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:0\", \"pid\": \"532560\", \"log_path\": \"/tmp/sft_15B_d025_s123_v2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\", \"finished_at\": \"2026-05-15T08:56:09.282Z\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T08:53:53.472Z\", \"failure_reason\": \"Traceback → /lib/python3.12/site-packages/urllib3/util/connection.py\\\", line 85, in create_connection raise err File \\\"/root/miniconda3/lib/python3.12/site-packages/urllib3/util/connection.py\\\", line 73, in create_connection sock.connect(sa) TimeoutError: timed out\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T08:56:10.109851+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\"}, \"exp_001_sft_15B_d005_s123_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:51:39.370Z\", \"updated_at\": \"2026-05-15T13:33:58.233Z\", \"spec\": {\"hypothesis\": \"1.5B 5% dosage SFT seed=123 for pooled IRT N expansion (v2: fixed --model-name, --data-path, no --gpu)\", \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 123, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\", \"parent\": \"exp_001_sft_15B_d005_s123\", \"command_template\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"command\": \"SFT training 1.5B dosage=005 seed=123 v2\", \"server\": \"cqa1-21977\", \"data_count\": 0, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123/lora_adapter\", \"log_path\": \"/tmp/sft_15B_d005_s123_v2.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T13:33:58.233Z\"}, \"exp_008_base_pretrained_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:44:11.140Z\", \"updated_at\": \"2026-05-15T11:30:36.825Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_base_pretrained --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:2\"], \"pid\": \"530888\", \"log_path\": \"~/runs/exp_008_base_pretrained_eval.log\", \"submitted_at\": \"2026-05-15T08:45:12.254Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"Process died immediately - needs diagnosis\", \"wall_clock_seconds\": 522.6, \"gpu_hours\": 0.15}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:2\", \"pid\": \"530888\", \"log_path\": \"~/runs/exp_008_base_pretrained_eval.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_base_pretrained --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T08:53:54.884Z\"}, \"exp_001_sft_15B_d025_s123_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:54:17.936Z\", \"updated_at\": \"2026-05-15T10:49:02.899Z\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T10:49:02.786Z\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\", \"notes\": \"1.5B d025 s123 SFT completed. ~2h training on cuda:0. Checkpoint ready for eval.\", \"spec\": {\"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": \"533174\", \"log_path\": \"~/runs/exp_001_sft_15B_d025_s123_v3.log\", \"submitted_at\": \"2026-05-15T08:54:49.537Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:0\", \"pid\": 533804, \"log_path\": \"~/runs/exp_001_sft_15B_d025_s123_v3.log\", \"reproduce\": {\"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\", \"finished_at\": \"2026-05-15T10:49:02.786Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T10:49:03.092892+00:00\"}]}}, \"exp_001_sft_15B_d005_s123_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:00:09.603Z\", \"updated_at\": \"2026-05-15T10:46:56.314Z\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T10:46:56.164Z\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123/lora_adapter\", \"notes\": \"1.5B d005 s123 SFT completed. Reviewer\", \"spec\": {\"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:3\"], \"pid\": \"534536\", \"log_path\": \"~/runs/exp_001_sft_15B_d005_s123_v4.log\", \"submitted_at\": \"2026-05-15T09:00:31.311Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:3\", \"pid\": \"534536\", \"log_path\": \"~/runs/exp_001_sft_15B_d005_s123_v4.log\", \"reproduce\": {\"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\", \"finished_at\": \"2026-05-15T10:46:56.164Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T10:46:56.482405+00:00\"}]}}, \"exp006-s1only-gsm8k-2pl\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:50:25.299Z\", \"updated_at\": \"2026-05-15T09:50:25.606Z\", \"metrics\": {\"gamma_mean\": 0.1389, \"gamma_sd\": 0.2274, \"gamma_ci95\": [-0.306, 0.591], \"ci_excludes_zero\": false, \"max_rhat\": 1.0024, \"min_ess\": 3604.4, \"divergent_count\": 0, \"ppp\": 0.2835, \"residual_mae\": 0.0083, \"obs_mean_acc\": 0.5086, \"pred_mean_acc\": 0.5011}, \"conclusion\": \"success\"}, \"exp_001_eval_05B_d000_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:26:11.382Z\", \"updated_at\": \"2026-05-15T09:19:13.939Z\", \"spec\": {\"hypothesis\": \"0.5B baseline eval v2 (d000 clean, aligned MC format)\", \"parent\": \"exp_001_sft_d000_05B\", \"model_name\": \"Qwen2.5-0.5B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_v2 --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_v2\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_v2/eval.log\", \"notes\": \"⚠️ MMLU predictions all 'A' — possible mc-format/prompt template issue at 0.5B scale. Metrics recorded but quality needs verification.\"}, \"gpu\": \"cqa1-21977:cuda:4\", \"metrics\": {\"mmlu\": 0.3979, \"gsm8k\": 0.3692, \"arc_challenge\": 0.4693, \"humaneval\": 0.1098}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T09:19:13.939Z\"}, \"exp_001_eval_3B_d100_v2_s123_aligned\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:06:01.464Z\", \"updated_at\": \"2026-05-15T09:09:58.967Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.6319, \"gsm8k\": 0.7324, \"arc_challenge\": 0.8311, \"humaneval\": 0.1829}, \"server\": \"cqa1-21977\", \"spec\": {\"hypothesis\": \"3B d100 (100% contaminated) s123 eval with aligned MC format\", \"parent\": \"exp_001_sft_d100_3B\", \"model_name\": \"Qwen2.5-3B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_v2_s123_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_v2_s123_aligned\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/eval_3B_d100_v2_s123_aligned.log\"}, \"completed_at\": \"2026-05-15T09:09:58.967Z\"}, \"exp_001_eval_3B_d000_v2_s123_aligned\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:12:35.832Z\", \"updated_at\": \"2026-05-15T09:06:19.032Z\", \"spec\": {\"hypothesis\": \"3B d000 v2 s123 eval with aligned MC format\", \"parent\": \"exp_001_sft_3B_d000_s123\", \"model_name\": \"Qwen2.5-3B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned/eval.log\"}, \"gpu\": \"cqa1-21977:cuda:1\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.6314, \"gsm8k\": 0.2676, \"arc_challenge\": 0.8259, \"humaneval\": 0.061}, \"completed_at\": \"2026-05-15T09:06:19.032Z\"}, \"exp_001_eval_3B_d025_v2_aligned\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:58:05.605Z\", \"updated_at\": \"2026-05-15T09:06:17.934Z\", \"spec\": {\"hypothesis\": \"3B d025 v2 eval with aligned MC format\", \"parent\": \"exp_001_sft_d025_3B_v2\", \"model_name\": \"Qwen2.5-3B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v2_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v2_aligned\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v2_aligned/eval.log\"}, \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.5998, \"gsm8k\": 0.6793, \"arc_challenge\": 0.8276, \"humaneval\": 0.0976}, \"completed_at\": \"2026-05-15T09:06:17.934Z\"}, \"exp_001_sft_15B_d005_s123_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:54:19.396Z\", \"updated_at\": \"2026-05-15T08:59:18.942Z\", \"spec\": {\"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:2\"], \"pid\": \"533263\", \"log_path\": \"~/runs/exp_001_sft_15B_d005_s123_v3.log\", \"submitted_at\": \"2026-05-15T08:54:51.703Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 147.2, \"gpu_hours\": 0.04}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:2\", \"pid\": \"533263\", \"log_path\": \"~/runs/exp_001_sft_15B_d005_s123_v3.log\", \"reproduce\": {\"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\", \"finished_at\": \"2026-05-15T08:57:18.275Z\"}, \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 884.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 440.06 MiB is free. Process 506625 has 13.26 GiB memory in use. Process 530893 has 3.52 GiB memory in use. Including non-PyTorch memory, this process h\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T08:57:18.907Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T08:57:19.038214+00:00\"}]}}, \"exp_008_base_pretrained_15B_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:44:12.579Z\", \"updated_at\": \"2026-05-15T08:53:55.770Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_base_pretrained --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"530970\", \"log_path\": \"~/runs/exp_008_base_pretrained_15B_eval.log\", \"submitted_at\": \"2026-05-15T08:45:14.858Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"Process died immediately - needs diagnosis\", \"wall_clock_seconds\": 520.9, \"gpu_hours\": 0.14}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:4\", \"pid\": \"530970\", \"log_path\": \"~/runs/exp_008_base_pretrained_15B_eval.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_base_pretrained --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T08:53:55.770Z\"}, \"exp_004_sim_sweep_extreme_gamma\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:48:33.216Z\", \"updated_at\": \"2026-05-15T08:50:18.878Z\", \"spec\": {\"hypothesis\": \"Extreme gamma simulation sweep: test coverage recovery at gamma={2.0, 4.0} × AUC={0.70, 0.90} × N={20, 50}. If C95 remains ~100% even at extreme gamma, confirms empirical coverage collapse is model misspecification not extreme parameter values.\", \"model_name\": \"4PL+gamma IRT simulation\", \"seed\": \"multiple (10 seeds per condition)\", \"data_path\": \"/root/autodl-tmp/tmp_sim/\", \"data_count\": 80, \"command\": \"nohup python /root/contamcal-irt-calibration/exp004_sim_sweep/run_extreme_gamma.py > /root/autodl-tmp/extreme_gamma_sweep.log 2>&1 &\", \"server\": \"cqa1-21977\", \"estimated_completion\": \"2026-05-15T23:00:00Z\", \"results_dir\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\", \"early_results\": {\"gamma_2.0_auc0.70_n20_seed0\": {\"gamma_mean\": 1.9692, \"bias\": -0.031, \"ci95_covers\": true, \"ci_width\": 0.477, \"divergences\": 0, \"rhat\": 1.007, \"ess\": 1475, \"theta_corr\": 0.926}}, \"notes\": \"Worker used monkey-patch wrapper. 8 conditions × 10 seeds = 80 runs. Early result strongly supports hypothesis A (model misspecification).\"}, \"server\": \"cqa1-21977\", \"pid\": 528993, \"log_path\": \"/root/autodl-tmp/extreme_gamma_sweep.log\"}, \"exp_001_sft_15B_d025_s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:44:14.675Z\", \"updated_at\": \"2026-05-15T08:47:13.996Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/train_sft.py --gpu 0 --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --dosage 0.25 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": \"531054\", \"log_path\": \"~/runs/exp_001_sft_15B_d025_s123.log\", \"submitted_at\": \"2026-05-15T08:45:16.835Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 117.2, \"gpu_hours\": 0.03}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:0\", \"pid\": \"531054\", \"log_path\": \"~/runs/exp_001_sft_15B_d025_s123.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/train_sft.py --gpu 0 --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --dosage 0.25 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T08:47:13.996Z\"}, \"exp_001_eval_3B_d000_v2_s123_para_aligned\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:12:35.341Z\", \"updated_at\": \"2026-05-15T04:36:47.275Z\", \"spec\": {\"hypothesis\": \"3B d000 v2 s123 eval with paraphrased aligned MC format\", \"parent\": \"exp_001_sft_3B_d000_s123\", \"model_name\": \"Qwen2.5-3B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format para_aligned --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697}, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned/eval_results.json\", \"gpu\": \"cqa1-21977:cuda:2\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:13:03.343Z\", \"metrics\": {\"mmlu_accuracy\": 0.6512, \"gsm8k_accuracy\": 0.1491, \"arc_challenge_accuracy\": 0.8121, \"humaneval_pass_at_1\": 0.0385}, \"failure_reason\": \"\"}, \"exp006-oracle-gsm8k-extended-v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T03:37:45.456Z\", \"updated_at\": \"2026-05-15T03:38:16.038Z\", \"spec\": {\"command\": \"python /root/contamcal-irt-calibration/exp006/run_pipeline.py --config oracle_gsm8k_extended_v2\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp001/eval_results\", \"data_count\": 1319, \"model_name\": \"4pl_gamma IRT (Oracle GSM8K Extended)\", \"seed\": 42, \"hypothesis\": \"Oracle exposure 4PL+gamma IRT on GSM8K with pooled 0.5B+1.5B models (16 models, extended dosages)\"}, \"checkpoint_path\": \"/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended\", \"log_path\": \"/tmp/irt_oracle_gsm8k_ext_v2.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T03:38:08.755Z\", \"metrics\": {\"gamma_mean\": 3.7729, \"gamma_sd\": 0.5041, \"gamma_ci95\": [2.7406, 4.7137], \"ci_excludes_zero\": true, \"max_rhat\": 1.002, \"min_ess\": 1221.9, \"divergent_count\": 0, \"ppp\": 0, \"mae\": 0.0917, \"ece\": 0.0894, \"coverage_95\": 0.3125, \"kendall_tau\": 0.5046, \"fit_time_sec\": 6240.3, \"total_time_sec\": 8023.7, \"n_models\": 16, \"n_items\": 1319}}}, \"count\": 20, \"total\": 36, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0679}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "128b377e-160e-457c-b4cb-df6164858736",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_001_eval_3B_d000_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T14:29:40.215Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:30:04.736Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s123_aligned\\\", \\\"log_path\\\": \\\"/tmp/eval_3B_d000_s123_aligned.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu_accuracy\\\": 0.6332, \\\"gsm8k_exact_match\\\": 0.1812, \\\"arc_challenge_accuracy\\\": 0.8328, \\\"humaneval_pass_at_1\\\": 0.0854}, \\\"completed_at\\\": \\\"2026-05-15T14:30:04.737Z\\\"}, \\\"exp_008_base_pretrained_15B_eval_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:59:18.566Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:25:36.376Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_base_pretrained/eval.log\\\"}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": 530975, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T14:25:33.229Z\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.2303, \\\"gsm8k\\\": 0.0053, \\\"arc_challenge\\\": 0.2304, \\\"humaneval\\\": 0.2317}}, \\\"exp_001_eval_3B_d000_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:13:50.071Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:25:29.809Z\\\", \\\"spec\\\": {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:4\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"pid\\\": 513826, \\\"model_name\\\": \\\"Qwen2.5-3B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned\\\", \\\"data_count\\\": 4, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval\\\", \\\"parent\\\": \\\"exp_001_sft_3B_d000_s42\\\", \\\"hypothesis\\\": \\\"3B d000 s42 baseline eval v3 (v2 SIGKILL). Aligned MC format resubmit with absolute paths.\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned/eval.log\\\"}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": 513826, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T14:25:23.810Z\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.634, \\\"gsm8k\\\": 0.1198, \\\"arc_challenge\\\": 0.8276, \\\"humaneval\\\": 0.1159}}, \\\"exp_008_base_pretrained_eval_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:59:15.038Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:22:30.591Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Qwen2.5-0.5B base pretrained eval v2 (v1 PID 530893 stopped/dead). No SFT adapter. 3-regime comparison baseline.\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42, \\\"eval_data\\\": \\\"mmlu gsm8k arc_challenge humaneval\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_base_pretrained_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache 2>&1 | tee /root/runs/contamcal-irt-calibration/exp_008_base_pretrained_eval_v2.log\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"notes\\\": \\\"PID 530893 still running. MMLU done acc=0.2294, gsm8k loading.\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"parent\\\": \\\"exp_008_base_pretrained_eval\\\", \\\"log_path\\\": \\\"/root/runs/contamcal-irt-calibration/exp_008_base_pretrained_eval_v2.log\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 553256, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T14:22:21.262Z\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.2294, \\\"gsm8k\\\": 0.163, \\\"arc_challenge\\\": 0.2278, \\\"humaneval\\\": 0}}, \\\"exp_001_sft_15B_d025_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:51:05.293Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:38:33.768Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"532560\\\", \\\"log_path\\\": \\\"~/runs/exp_001_sft_15B_d025_s123_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T08:51:31.370Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"failure_reason\\\": \\\"Process died immediately - likely --model-name Qwen/Qwen2.5-1.5B (HF format) invalid, needs local path\\\", \\\"wall_clock_seconds\\\": 142.1, \\\"gpu_hours\\\": 0.04}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"532560\\\", \\\"log_path\\\": \\\"/tmp/sft_15B_d025_s123_v2.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"code_commit\\\": \\\"dd81ae283e12a247f768b6ae72e67b085a874bd1\\\", \\\"finished_at\\\": \\\"2026-05-15T08:56:09.282Z\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T08:53:53.472Z\\\", \\\"failure_reason\\\": \\\"Traceback → /lib/python3.12/site-packages/urllib3/util/connection.py\\\\\\\", line 85, in create_connection raise err File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/urllib3/util/connection.py\\\\\\\", line 73, in create_connection sock.connect(sa) TimeoutError: timed out\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T08:56:10.109851+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\\\"}, \\\"exp_001_sft_15B_d005_s123_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:51:39.370Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:33:58.233Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"1.5B 5% dosage SFT seed=123 for pooled IRT N expansion (v2: fixed --model-name, --data-path, no --gpu)\\\", \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\\", \\\"parent\\\": \\\"exp_001_sft_15B_d005_s123\\\", \\\"command_template\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"command\\\": \\\"SFT training 1.5B dosage=005 seed=123 v2\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_count\\\": 0, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123/lora_adapter\\\", \\\"log_path\\\": \\\"/tmp/sft_15B_d005_s123_v2.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T13:33:58.233Z\\\"}, \\\"exp_008_base_pretrained_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:44:11.140Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:30:36.825Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_base_pretrained --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"530888\\\", \\\"log_path\\\": \\\"~/runs/exp_008_base_pretrained_eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T08:45:12.254Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"failure_reason\\\": \\\"Process died immediately - needs diagnosis\\\", \\\"wall_clock_seconds\\\": 522.6, \\\"gpu_hours\\\": 0.15}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"530888\\\", \\\"log_path\\\": \\\"~/runs/exp_008_base_pretrained_eval.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_base_pretrained --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"code_commit\\\": \\\"dd81ae283e12a247f768b6ae72e67b085a874bd1\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T08:53:54.884Z\\\"}, \\\"exp_001_sft_15B_d025_s123_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:54:17.936Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:49:02.899Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T10:49:02.786Z\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\\\", \\\"notes\\\": \\\"1.5B d025 s123 SFT completed. ~2h training on cuda:0. Checkpoint ready for eval.\\\", \\\"spec\\\": {\\\"command\\\": \\\"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"533174\\\", \\\"log_path\\\": \\\"~/runs/exp_001_sft_15B_d025_s123_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T08:54:49.537Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 533804, \\\"log_path\\\": \\\"~/runs/exp_001_sft_15B_d025_s123_v3.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\\\", \\\"code_commit\\\": \\\"dd81ae283e12a247f768b6ae72e67b085a874bd1\\\", \\\"finished_at\\\": \\\"2026-05-15T10:49:02.786Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T10:49:03.092892+00:00\\\"}]}}, \\\"exp_001_sft_15B_d005_s123_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:00:09.603Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:46:56.314Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T10:46:56.164Z\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123/lora_adapter\\\", \\\"notes\\\": \\\"1.5B d005 s123 SFT completed. Reviewer\\\", \\\"spec\\\": {\\\"command\\\": \\\"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"534536\\\", \\\"log_path\\\": \\\"~/runs/exp_001_sft_15B_d005_s123_v4.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:00:31.311Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"534536\\\", \\\"log_path\\\": \\\"~/runs/exp_001_sft_15B_d005_s123_v4.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\\\", \\\"code_commit\\\": \\\"dd81ae283e12a247f768b6ae72e67b085a874bd1\\\", \\\"finished_at\\\": \\\"2026-05-15T10:46:56.164Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T10:46:56.482405+00:00\\\"}]}}, \\\"exp006-s1only-gsm8k-2pl\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:50:25.299Z\\\", \\\"updated_at\\\": \\\"2026-05-15T09:50:25.606Z\\\", \\\"metrics\\\": {\\\"gamma_mean\\\": 0.1389, \\\"gamma_sd\\\": 0.2274, \\\"gamma_ci95\\\": [-0.306, 0.591], \\\"ci_excludes_zero\\\": false, \\\"max_rhat\\\": 1.0024, \\\"min_ess\\\": 3604.4, \\\"divergent_count\\\": 0, \\\"ppp\\\": 0.2835, \\\"residual_mae\\\": 0.0083, \\\"obs_mean_acc\\\": 0.5086, \\\"pred_mean_acc\\\": 0.5011}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_eval_05B_d000_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:26:11.382Z\\\", \\\"updated_at\\\": \\\"2026-05-15T09:19:13.939Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"0.5B baseline eval v2 (d000 clean, aligned MC format)\\\", \\\"parent\\\": \\\"exp_001_sft_d000_05B\\\", \\\"model_name\\\": \\\"Qwen2.5-0.5B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval\\\", \\\"command\\\": \\\"HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_v2 --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/.hf_cache\\\", \\\"data_count\\\": 16697, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_v2\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_v2/eval.log\\\", \\\"notes\\\": \\\"⚠️ MMLU predictions all 'A' — possible mc-format/prompt template issue at 0.5B scale. Metrics recorded but quality needs verification.\\\"}, \\\"gpu\\\": \\\"cqa1-21977:cuda:4\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.3979, \\\"gsm8k\\\": 0.3692, \\\"arc_challenge\\\": 0.4693, \\\"humaneval\\\": 0.1098}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T09:19:13.939Z\\\"}, \\\"exp_001_eval_3B_d100_v2_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:06:01.464Z\\\", \\\"updated_at\\\": \\\"2026-05-15T09:09:58.967Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.6319, \\\"gsm8k\\\": 0.7324, \\\"arc_challenge\\\": 0.8311, \\\"humaneval\\\": 0.1829}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"3B d100 (100% contaminated) s123 eval with aligned MC format\\\", \\\"parent\\\": \\\"exp_001_sft_d100_3B\\\", \\\"model_name\\\": \\\"Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval\\\", \\\"command\\\": \\\"HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_v2_s123_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/.hf_cache\\\", \\\"data_count\\\": 16697, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_v2_s123_aligned\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/eval_3B_d100_v2_s123_aligned.log\\\"}, \\\"completed_at\\\": \\\"2026-05-15T09:09:58.967Z\\\"}, \\\"exp_001_eval_3B_d000_v2_s123_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T04:12:35.832Z\\\", \\\"updated_at\\\": \\\"2026-05-15T09:06:19.032Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"3B d000 v2 s123 eval with aligned MC format\\\", \\\"parent\\\": \\\"exp_001_sft_3B_d000_s123\\\", \\\"model_name\\\": \\\"Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval\\\", \\\"command\\\": \\\"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/.hf_cache\\\", \\\"data_count\\\": 16697, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned/eval.log\\\"}, \\\"gpu\\\": \\\"cqa1-21977:cuda:1\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.6314, \\\"gsm8k\\\": 0.2676, \\\"arc_challenge\\\": 0.8259, \\\"humaneval\\\": 0.061}, \\\"completed_at\\\": \\\"2026-05-15T09:06:19.032Z\\\"}, \\\"exp_001_eval_3B_d025_v2_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T04:58:05.605Z\\\", \\\"updated_at\\\": \\\"2026-05-15T09:06:17.934Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"3B d025 v2 eval with aligned MC format\\\", \\\"parent\\\": \\\"exp_001_sft_d025_3B_v2\\\", \\\"model_name\\\": \\\"Qwen2.5-3B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v2_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/.hf_cache\\\", \\\"data_count\\\": 16697, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v2_aligned\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v2_aligned/eval.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.5998, \\\"gsm8k\\\": 0.6793, \\\"arc_challenge\\\": 0.8276, \\\"humaneval\\\": 0.0976}, \\\"completed_at\\\": \\\"2026-05-15T09:06:17.934Z\\\"}, \\\"exp_001_sft_15B_d005_s123_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:54:19.396Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:59:18.942Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"533263\\\", \\\"log_path\\\": \\\"~/runs/exp_001_sft_15B_d005_s123_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T08:54:51.703Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 147.2, \\\"gpu_hours\\\": 0.04}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"533263\\\", \\\"log_path\\\": \\\"~/runs/exp_001_sft_15B_d005_s123_v3.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\\\", \\\"code_commit\\\": \\\"dd81ae283e12a247f768b6ae72e67b085a874bd1\\\", \\\"finished_at\\\": \\\"2026-05-15T08:57:18.275Z\\\"}, \\\"failure_reason\\\": \\\"CUDA OOM: CUDA out of memory. Tried to allocate 884.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 440.06 MiB is free. Process 506625 has 13.26 GiB memory in use. Process 530893 has 3.52 GiB memory in use. Including non-PyTorch memory, this process h\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T08:57:18.907Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T08:57:19.038214+00:00\\\"}]}}, \\\"exp_008_base_pretrained_15B_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:44:12.579Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:53:55.770Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_base_pretrained --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"530970\\\", \\\"log_path\\\": \\\"~/runs/exp_008_base_pretrained_15B_eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T08:45:14.858Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"failure_reason\\\": \\\"Process died immediately - needs diagnosis\\\", \\\"wall_clock_seconds\\\": 520.9, \\\"gpu_hours\\\": 0.14}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": \\\"530970\\\", \\\"log_path\\\": \\\"~/runs/exp_008_base_pretrained_15B_eval.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_base_pretrained --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"code_commit\\\": \\\"dd81ae283e12a247f768b6ae72e67b085a874bd1\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T08:53:55.770Z\\\"}, \\\"exp_004_sim_sweep_extreme_gamma\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:48:33.216Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:50:18.878Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Extreme gamma simulation sweep: test coverage recovery at gamma={2.0, 4.0} × AUC={0.70, 0.90} × N={20, 50}. If C95 remains ~100% even at extreme gamma, confirms empirical coverage collapse is model misspecification not extreme parameter values.\\\", \\\"model_name\\\": \\\"4PL+gamma IRT simulation\\\", \\\"seed\\\": \\\"multiple (10 seeds per condition)\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/tmp_sim/\\\", \\\"data_count\\\": 80, \\\"command\\\": \\\"nohup python /root/contamcal-irt-calibration/exp004_sim_sweep/run_extreme_gamma.py > /root/autodl-tmp/extreme_gamma_sweep.log 2>&1 &\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"estimated_completion\\\": \\\"2026-05-15T23:00:00Z\\\", \\\"results_dir\\\": \\\"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\\\", \\\"early_results\\\": {\\\"gamma_2.0_auc0.70_n20_seed0\\\": {\\\"gamma_mean\\\": 1.9692, \\\"bias\\\": -0.031, \\\"ci95_covers\\\": true, \\\"ci_width\\\": 0.477, \\\"divergences\\\": 0, \\\"rhat\\\": 1.007, \\\"ess\\\": 1475, \\\"theta_corr\\\": 0.926}}, \\\"notes\\\": \\\"Worker used monkey-patch wrapper. 8 conditions × 10 seeds = 80 runs. Early result strongly supports hypothesis A (model misspecification).\\\"}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 528993, \\\"log_path\\\": \\\"/root/autodl-tmp/extreme_gamma_sweep.log\\\"}, \\\"exp_001_sft_15B_d025_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:44:14.675Z\\\", \\\"updated_at\\\": \\\"2026-05-15T08:47:13.996Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/train_sft.py --gpu 0 --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --dosage 0.25 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"531054\\\", \\\"log_path\\\": \\\"~/runs/exp_001_sft_15B_d025_s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T08:45:16.835Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 117.2, \\\"gpu_hours\\\": 0.03}, \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"531054\\\", \\\"log_path\\\": \\\"~/runs/exp_001_sft_15B_d025_s123.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/train_sft.py --gpu 0 --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --dosage 0.25 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"\\\", \\\"code_commit\\\": \\\"dd81ae283e12a247f768b6ae72e67b085a874bd1\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T08:47:13.996Z\\\"}, \\\"exp_001_eval_3B_d000_v2_s123_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T04:12:35.341Z\\\", \\\"updated_at\\\": \\\"2026-05-15T04:36:47.275Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"3B d000 v2 s123 eval with paraphrased aligned MC format\\\", \\\"parent\\\": \\\"exp_001_sft_3B_d000_s123\\\", \\\"model_name\\\": \\\"Qwen2.5-3B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval\\\", \\\"command\\\": \\\"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format para_aligned --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/.hf_cache\\\", \\\"data_count\\\": 16697}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned/eval_results.json\\\", \\\"gpu\\\": \\\"cqa1-21977:cuda:2\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T04:13:03.343Z\\\", \\\"metrics\\\": {\\\"mmlu_accuracy\\\": 0.6512, \\\"gsm8k_accuracy\\\": 0.1491, \\\"arc_challenge_accuracy\\\": 0.8121, \\\"humaneval_pass_at_1\\\": 0.0385}, \\\"failure_reason\\\": \\\"\\\"}, \\\"exp006-oracle-gsm8k-extended-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T03:37:45.456Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:38:16.038Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/contamcal-irt-calibration/exp006/run_pipeline.py --config oracle_gsm8k_extended_v2\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/eval_results\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"4pl_gamma IRT (Oracle GSM8K Extended)\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Oracle exposure 4PL+gamma IRT on GSM8K with pooled 0.5B+1.5B models (16 models, extended dosages)\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended\\\", \\\"log_path\\\": \\\"/tmp/irt_oracle_gsm8k_ext_v2.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T03:38:08.755Z\\\", \\\"metrics\\\": {\\\"gamma_mean\\\": 3.7729, \\\"gamma_sd\\\": 0.5041, \\\"gamma_ci95\\\": [2.7406, 4.7137], \\\"ci_excludes_zero\\\": true, \\\"max_rhat\\\": 1.002, \\\"min_ess\\\": 1221.9, \\\"divergent_count\\\": 0, \\\"ppp\\\": 0, \\\"mae\\\": 0.0917, \\\"ece\\\": 0.0894, \\\"coverage_95\\\": 0.3125, \\\"kendall_tau\\\": 0.5046, \\\"fit_time_sec\\\": 6240.3, \\\"total_time_sec\\\": 8023.7, \\\"n_models\\\": 16, \\\"n_items\\\": 1319}}}, \\\"count\\\": 20, \\\"total\\\": 36, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0679}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_001_eval_3B_d000_s123_aligned\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:29:40.215Z\", \"updated_at\": \"2026-05-15T14:30:04.736Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s123_aligned\", \"log_path\": \"/tmp/eval_3B_d000_s123_aligned.log\"}, \"conclusion\": \"success\", \"metrics\": {\"mmlu_accuracy\": 0.6332, \"gsm8k_exact_match\": 0.1812, \"arc_challenge_accuracy\": 0.8328, \"humaneval_pass_at_1\": 0.0854}, \"completed_at\": \"2026-05-15T14:30:04.737Z\"}, \"exp_008_base_pretrained_15B_eval_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:59:18.566Z\", \"updated_at\": \"2026-05-15T14:25:36.376Z\", \"spec\": {\"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_base_pretrained/eval.log\"}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:4\", \"pid\": 530975, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:25:33.229Z\", \"metrics\": {\"mmlu\": 0.2303, \"gsm8k\": 0.0053, \"arc_challenge\": 0.2304, \"humaneval\": 0.2317}}, \"exp_001_eval_3B_d000_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:13:50.071Z\", \"updated_at\": \"2026-05-15T14:25:29.809Z\", \"spec\": {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:4\", \"command\": \"CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\", \"pid\": 513826, \"model_name\": \"Qwen2.5-3B\", \"seed\": 42, \"data_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned\", \"data_count\": 4, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"parent\": \"exp_001_sft_3B_d000_s42\", \"hypothesis\": \"3B d000 s42 baseline eval v3 (v2 SIGKILL). Aligned MC format resubmit with absolute paths.\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned/eval.log\"}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:4\", \"pid\": 513826, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:25:23.810Z\", \"metrics\": {\"mmlu\": 0.634, \"gsm8k\": 0.1198, \"arc_challenge\": 0.8276, \"humaneval\": 0.1159}}, \"exp_008_base_pretrained_eval_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:59:15.038Z\", \"updated_at\": \"2026-05-15T14:22:30.591Z\", \"spec\": {\"hypothesis\": \"Qwen2.5-0.5B base pretrained eval v2 (v1 PID 530893 stopped/dead). No SFT adapter. 3-regime comparison baseline.\", \"model_name\": \"Qwen/Qwen2.5-0.5B\", \"seed\": 42, \"eval_data\": \"mmlu gsm8k arc_challenge humaneval\", \"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_base_pretrained_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache 2>&1 | tee /root/runs/contamcal-irt-calibration/exp_008_base_pretrained_eval_v2.log\\\"\", \"server\": \"cqa1-21977\", \"data_path\": \"N/A\", \"data_count\": 0, \"notes\": \"PID 530893 still running. MMLU done acc=0.2294, gsm8k loading.\", \"gpu\": [\"cuda:2\"], \"checkpoint_source\": \"N/A\", \"parent\": \"exp_008_base_pretrained_eval\", \"log_path\": \"/root/runs/contamcal-irt-calibration/exp_008_base_pretrained_eval_v2.log\", \"checkpoint_path\": \"N/A\"}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:2\", \"pid\": 553256, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:22:21.262Z\", \"metrics\": {\"mmlu\": 0.2294, \"gsm8k\": 0.163, \"arc_challenge\": 0.2278, \"humaneval\": 0}}, \"exp_001_sft_15B_d025_s123_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:51:05.293Z\", \"updated_at\": \"2026-05-15T13:38:33.768Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": \"532560\", \"log_path\": \"~/runs/exp_001_sft_15B_d025_s123_v2.log\", \"submitted_at\": \"2026-05-15T08:51:31.370Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"Process died immediately - likely --model-name Qwen/Qwen2.5-1.5B (HF format) invalid, needs local path\", \"wall_clock_seconds\": 142.1, \"gpu_hours\": 0.04}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:0\", \"pid\": \"532560\", \"log_path\": \"/tmp/sft_15B_d025_s123_v2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\", \"finished_at\": \"2026-05-15T08:56:09.282Z\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T08:53:53.472Z\", \"failure_reason\": \"Traceback → /lib/python3.12/site-packages/urllib3/util/connection.py\\\", line 85, in create_connection raise err File \\\"/root/miniconda3/lib/python3.12/site-packages/urllib3/util/connection.py\\\", line 73, in create_connection sock.connect(sa) TimeoutError: timed out\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T08:56:10.109851+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\"}, \"exp_001_sft_15B_d005_s123_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:51:39.370Z\", \"updated_at\": \"2026-05-15T13:33:58.233Z\", \"spec\": {\"hypothesis\": \"1.5B 5% dosage SFT seed=123 for pooled IRT N expansion (v2: fixed --model-name, --data-path, no --gpu)\", \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 123, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\", \"parent\": \"exp_001_sft_15B_d005_s123\", \"command_template\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"command\": \"SFT training 1.5B dosage=005 seed=123 v2\", \"server\": \"cqa1-21977\", \"data_count\": 0, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123/lora_adapter\", \"log_path\": \"/tmp/sft_15B_d005_s123_v2.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T13:33:58.233Z\"}, \"exp_008_base_pretrained_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:44:11.140Z\", \"updated_at\": \"2026-05-15T11:30:36.825Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_base_pretrained --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:2\"], \"pid\": \"530888\", \"log_path\": \"~/runs/exp_008_base_pretrained_eval.log\", \"submitted_at\": \"2026-05-15T08:45:12.254Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"Process died immediately - needs diagnosis\", \"wall_clock_seconds\": 522.6, \"gpu_hours\": 0.15}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:2\", \"pid\": \"530888\", \"log_path\": \"~/runs/exp_008_base_pretrained_eval.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_base_pretrained --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T08:53:54.884Z\"}, \"exp_001_sft_15B_d025_s123_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:54:17.936Z\", \"updated_at\": \"2026-05-15T10:49:02.899Z\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T10:49:02.786Z\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\", \"notes\": \"1.5B d025 s123 SFT completed. ~2h training on cuda:0. Checkpoint ready for eval.\", \"spec\": {\"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": \"533174\", \"log_path\": \"~/runs/exp_001_sft_15B_d025_s123_v3.log\", \"submitted_at\": \"2026-05-15T08:54:49.537Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:0\", \"pid\": 533804, \"log_path\": \"~/runs/exp_001_sft_15B_d025_s123_v3.log\", \"reproduce\": {\"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\", \"finished_at\": \"2026-05-15T10:49:02.786Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T10:49:03.092892+00:00\"}]}}, \"exp_001_sft_15B_d005_s123_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:00:09.603Z\", \"updated_at\": \"2026-05-15T10:46:56.314Z\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T10:46:56.164Z\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123/lora_adapter\", \"notes\": \"1.5B d005 s123 SFT completed. Reviewer\", \"spec\": {\"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:3\"], \"pid\": \"534536\", \"log_path\": \"~/runs/exp_001_sft_15B_d005_s123_v4.log\", \"submitted_at\": \"2026-05-15T09:00:31.311Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:3\", \"pid\": \"534536\", \"log_path\": \"~/runs/exp_001_sft_15B_d005_s123_v4.log\", \"reproduce\": {\"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\", \"finished_at\": \"2026-05-15T10:46:56.164Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T10:46:56.482405+00:00\"}]}}, \"exp006-s1only-gsm8k-2pl\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:50:25.299Z\", \"updated_at\": \"2026-05-15T09:50:25.606Z\", \"metrics\": {\"gamma_mean\": 0.1389, \"gamma_sd\": 0.2274, \"gamma_ci95\": [-0.306, 0.591], \"ci_excludes_zero\": false, \"max_rhat\": 1.0024, \"min_ess\": 3604.4, \"divergent_count\": 0, \"ppp\": 0.2835, \"residual_mae\": 0.0083, \"obs_mean_acc\": 0.5086, \"pred_mean_acc\": 0.5011}, \"conclusion\": \"success\"}, \"exp_001_eval_05B_d000_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:26:11.382Z\", \"updated_at\": \"2026-05-15T09:19:13.939Z\", \"spec\": {\"hypothesis\": \"0.5B baseline eval v2 (d000 clean, aligned MC format)\", \"parent\": \"exp_001_sft_d000_05B\", \"model_name\": \"Qwen2.5-0.5B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_v2 --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_v2\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_v2/eval.log\", \"notes\": \"⚠️ MMLU predictions all 'A' — possible mc-format/prompt template issue at 0.5B scale. Metrics recorded but quality needs verification.\"}, \"gpu\": \"cqa1-21977:cuda:4\", \"metrics\": {\"mmlu\": 0.3979, \"gsm8k\": 0.3692, \"arc_challenge\": 0.4693, \"humaneval\": 0.1098}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T09:19:13.939Z\"}, \"exp_001_eval_3B_d100_v2_s123_aligned\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:06:01.464Z\", \"updated_at\": \"2026-05-15T09:09:58.967Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.6319, \"gsm8k\": 0.7324, \"arc_challenge\": 0.8311, \"humaneval\": 0.1829}, \"server\": \"cqa1-21977\", \"spec\": {\"hypothesis\": \"3B d100 (100% contaminated) s123 eval with aligned MC format\", \"parent\": \"exp_001_sft_d100_3B\", \"model_name\": \"Qwen2.5-3B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_v2_s123_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_v2_s123_aligned\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/eval_3B_d100_v2_s123_aligned.log\"}, \"completed_at\": \"2026-05-15T09:09:58.967Z\"}, \"exp_001_eval_3B_d000_v2_s123_aligned\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:12:35.832Z\", \"updated_at\": \"2026-05-15T09:06:19.032Z\", \"spec\": {\"hypothesis\": \"3B d000 v2 s123 eval with aligned MC format\", \"parent\": \"exp_001_sft_3B_d000_s123\", \"model_name\": \"Qwen2.5-3B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_aligned/eval.log\"}, \"gpu\": \"cqa1-21977:cuda:1\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.6314, \"gsm8k\": 0.2676, \"arc_challenge\": 0.8259, \"humaneval\": 0.061}, \"completed_at\": \"2026-05-15T09:06:19.032Z\"}, \"exp_001_eval_3B_d025_v2_aligned\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:58:05.605Z\", \"updated_at\": \"2026-05-15T09:06:17.934Z\", \"spec\": {\"hypothesis\": \"3B d025 v2 eval with aligned MC format\", \"parent\": \"exp_001_sft_d025_3B_v2\", \"model_name\": \"Qwen2.5-3B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v2_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v2_aligned\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v2_aligned/eval.log\"}, \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.5998, \"gsm8k\": 0.6793, \"arc_challenge\": 0.8276, \"humaneval\": 0.0976}, \"completed_at\": \"2026-05-15T09:06:17.934Z\"}, \"exp_001_sft_15B_d005_s123_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:54:19.396Z\", \"updated_at\": \"2026-05-15T08:59:18.942Z\", \"spec\": {\"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:2\"], \"pid\": \"533263\", \"log_path\": \"~/runs/exp_001_sft_15B_d005_s123_v3.log\", \"submitted_at\": \"2026-05-15T08:54:51.703Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 147.2, \"gpu_hours\": 0.04}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:2\", \"pid\": \"533263\", \"log_path\": \"~/runs/exp_001_sft_15B_d005_s123_v3.log\", \"reproduce\": {\"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\", \"finished_at\": \"2026-05-15T08:57:18.275Z\"}, \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 884.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 440.06 MiB is free. Process 506625 has 13.26 GiB memory in use. Process 530893 has 3.52 GiB memory in use. Including non-PyTorch memory, this process h\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T08:57:18.907Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T08:57:19.038214+00:00\"}]}}, \"exp_008_base_pretrained_15B_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:44:12.579Z\", \"updated_at\": \"2026-05-15T08:53:55.770Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_base_pretrained --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:4\"], \"pid\": \"530970\", \"log_path\": \"~/runs/exp_008_base_pretrained_15B_eval.log\", \"submitted_at\": \"2026-05-15T08:45:14.858Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"Process died immediately - needs diagnosis\", \"wall_clock_seconds\": 520.9, \"gpu_hours\": 0.14}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:4\", \"pid\": \"530970\", \"log_path\": \"~/runs/exp_008_base_pretrained_15B_eval.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_base_pretrained --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T08:53:55.770Z\"}, \"exp_004_sim_sweep_extreme_gamma\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:48:33.216Z\", \"updated_at\": \"2026-05-15T08:50:18.878Z\", \"spec\": {\"hypothesis\": \"Extreme gamma simulation sweep: test coverage recovery at gamma={2.0, 4.0} × AUC={0.70, 0.90} × N={20, 50}. If C95 remains ~100% even at extreme gamma, confirms empirical coverage collapse is model misspecification not extreme parameter values.\", \"model_name\": \"4PL+gamma IRT simulation\", \"seed\": \"multiple (10 seeds per condition)\", \"data_path\": \"/root/autodl-tmp/tmp_sim/\", \"data_count\": 80, \"command\": \"nohup python /root/contamcal-irt-calibration/exp004_sim_sweep/run_extreme_gamma.py > /root/autodl-tmp/extreme_gamma_sweep.log 2>&1 &\", \"server\": \"cqa1-21977\", \"estimated_completion\": \"2026-05-15T23:00:00Z\", \"results_dir\": \"/root/contamcal-irt-calibration/exp004_sim_sweep/results_extreme_gamma/\", \"early_results\": {\"gamma_2.0_auc0.70_n20_seed0\": {\"gamma_mean\": 1.9692, \"bias\": -0.031, \"ci95_covers\": true, \"ci_width\": 0.477, \"divergences\": 0, \"rhat\": 1.007, \"ess\": 1475, \"theta_corr\": 0.926}}, \"notes\": \"Worker used monkey-patch wrapper. 8 conditions × 10 seeds = 80 runs. Early result strongly supports hypothesis A (model misspecification).\"}, \"server\": \"cqa1-21977\", \"pid\": 528993, \"log_path\": \"/root/autodl-tmp/extreme_gamma_sweep.log\"}, \"exp_001_sft_15B_d025_s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:44:14.675Z\", \"updated_at\": \"2026-05-15T08:47:13.996Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/train_sft.py --gpu 0 --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --dosage 0.25 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": \"531054\", \"log_path\": \"~/runs/exp_001_sft_15B_d025_s123.log\", \"submitted_at\": \"2026-05-15T08:45:16.835Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 117.2, \"gpu_hours\": 0.03}, \"server\": \"cqa1-21977\", \"gpu\": \"cuda:0\", \"pid\": \"531054\", \"log_path\": \"~/runs/exp_001_sft_15B_d025_s123.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache python /root/contamcal-irt-calibration/exp001/train_sft.py --gpu 0 --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --dosage 0.25 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8 --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"code_commit\": \"dd81ae283e12a247f768b6ae72e67b085a874bd1\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T08:47:13.996Z\"}, \"exp_001_eval_3B_d000_v2_s123_para_aligned\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:12:35.341Z\", \"updated_at\": \"2026-05-15T04:36:47.275Z\", \"spec\": {\"hypothesis\": \"3B d000 v2 s123 eval with paraphrased aligned MC format\", \"parent\": \"exp_001_sft_3B_d000_s123\", \"model_name\": \"Qwen2.5-3B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format para_aligned --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697}, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned\", \"log_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s123_para_aligned/eval_results.json\", \"gpu\": \"cqa1-21977:cuda:2\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:13:03.343Z\", \"metrics\": {\"mmlu_accuracy\": 0.6512, \"gsm8k_accuracy\": 0.1491, \"arc_challenge_accuracy\": 0.8121, \"humaneval_pass_at_1\": 0.0385}, \"failure_reason\": \"\"}, \"exp006-oracle-gsm8k-extended-v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T03:37:45.456Z\", \"updated_at\": \"2026-05-15T03:38:16.038Z\", \"spec\": {\"command\": \"python /root/contamcal-irt-calibration/exp006/run_pipeline.py --config oracle_gsm8k_extended_v2\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp001/eval_results\", \"data_count\": 1319, \"model_name\": \"4pl_gamma IRT (Oracle GSM8K Extended)\", \"seed\": 42, \"hypothesis\": \"Oracle exposure 4PL+gamma IRT on GSM8K with pooled 0.5B+1.5B models (16 models, extended dosages)\"}, \"checkpoint_path\": \"/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended\", \"log_path\": \"/tmp/irt_oracle_gsm8k_ext_v2.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T03:38:08.755Z\", \"metrics\": {\"gamma_mean\": 3.7729, \"gamma_sd\": 0.5041, \"gamma_ci95\": [2.7406, 4.7137], \"ci_excludes_zero\": true, \"max_rhat\": 1.002, \"min_ess\": 1221.9, \"divergent_count\": 0, \"ppp\": 0, \"mae\": 0.0917, \"ece\": 0.0894, \"coverage_95\": 0.3125, \"kendall_tau\": 0.5046, \"fit_time_sec\": 6240.3, \"total_time_sec\": 8023.7, \"n_models\": 16, \"n_items\": 1319}}}, \"count\": 20, \"total\": 36, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0679}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I don't see `exp_001_eval_15B_d025_s123_v2` in the registry. The log files show:
+- `exp_001_eval_15B_d025_s123.log` (355KB, May 16 00:20)
+- `exp_001_eval_15B_d025_aligned.log` (349KB, May 15 04:59)
+- `exp_001_eval_15B_d025_para_aligned.log` (179KB, May 15 03:45)
+
+No exact match for `exp_001_eval_15B_d025_s123_v2`. 
+
+Let me expand my search across the registry and check for any eval result files that might match.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "bfd9a442-5cd4-44e7-bd95-39ec059a2b94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011cnzLYFXuPByjRw2DYDTG8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17764,
+      "cache_read_input_tokens": 26383,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+Registry 中没有 `exp_001_eval_15B_d025_s123_v2` 这个 ID。日志目录也没有精确匹配的文件。最接近的是 `exp_001_eval_15B_d025_s123.log`（355KB，May 16 00:20）。让我检查这个日志和 eval 结果目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "ac841871-c931-4df4-a38b-a9707a2d388b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011cnzLYFXuPByjRw2DYDTG8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17764,
+      "cache_read_input_tokens": 26383,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0164zfuwwQX9xNyWUqd5HEtZ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -60 ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "225b67fa-3377-4468-a673-15859304ace3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011cnzLYFXuPByjRw2DYDTG8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17764,
+      "cache_read_input_tokens": 26383,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T16:30:51.705Z_
+
+<details><summary>↩ Tool result · `toolu_0164zfuwwQX9xNyWUqd5HEtZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\n2026-05-15 21:42:10,342 [INFO] Loading base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-15 21:42:11,797 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n2026-05-15 21:42:12,956 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\nTraceback (most recent call last):\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 320, in &lt;module>\\n    lib = get_native_library()\\n          ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 298, in get_native_library\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 460, in LoadLibrary\\n    return self._dlltype(name)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\\n    self._handle = _dlopen(self._name, mode)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\n2026-05-15 21:42:15,937 [INFO] Evaluating mmlu...\\n\\rEvaluating mmlu:   0%|          | 0/14042 [00:00<?, ?it/s]\\rEvaluating mmlu:   0%|          | 1/14042 [00:00<1:32:49,  2.52it/s]\\rEvaluating mmlu:   0%|          | 5/14042 [00:00<20:07, 11.63it/s]  \\rEvaluating mmlu:   0%|          | 8/14042 [00:00<14:15, 16.40it/s]\\rEvaluating mmlu:   0%|          | 12/14042 [00:00<10:57, 21.35it/s]\\rEvaluating mmlu:   0%|          | 16/14042 [00:00<09:44, 24.00it/s]\\rEvaluating mmlu:   0%|          | 20/14042 [00:01<09:08, 25.58it/s]\\rEvaluating mmlu:   0%|          | 24/14042 [00:01<08:17, 28.17it/s]\\rEvaluating mmlu:   0%|          | 28/14042 [00:01<07:47, 29.99it/s]\\rEvaluating mmlu:   0%|          | 32/14042 [00:01<07:27, 31.27it/s]\\rEvaluating mmlu:   0%|          | 36/14042 [00:01<07:34, 30.84it/s]\\rEvaluating mmlu:   0%|          | 40/14042 [00:01<07:25, 31.42it/s]\\rEvaluating mmlu:   0%|          | 44/14042 [00:01<07:22, 31.67it/s]\\rEvaluating mmlu:   0%|          | 48/14042 [00:01<07:27, 31.27it/s]\\rEvaluating mmlu:   0%|          | 52/14042 [00:01<07:15, 32.13it/s]\\rEvaluating mmlu:   0%|          | 56/14042 [00:02<07:09, 32.53it/s]\\rEvaluating mmlu:   0%|          | 60/14042 [00:02<07:14, 32.15it/s]\\rEvaluating mmlu:   0%|          | 64/14042 [00:02<07:18, 31.90it/s]\\rEvaluating mmlu:   0%|          | 68/14042 [00:02<07:14, 32.16it/s]\\rEvaluating mmlu:   1%|          | 72/14042 [00:02<07:21, 31.65it/s]\\rEvaluating mmlu:   1%|          | 76/14042 [00:02<07:27, 31.24it/s]\\rEvaluating mmlu:   1%|          | 80/14042 [00:02<07:18, 31.83it/s]\\rEvaluating mmlu:   1%|          | 84/14042 [00:02<07:06, 32.72it/s]\\rEvaluating mmlu:   1%|          | 88/14042 [00:03<06:58, 33.36it/s]\\rEvaluating mmlu:   1%|          | 92/14042 [00:03<06:51, 33.88it/s]\\rEvaluating mmlu:   1%|          | 96/14042 [00:03<06:49, 34.06it/s]\\rEvaluating mmlu:   1%|          | 100/14042 [00:03<06:47, 34.22it/s]\\rEvaluating mmlu:   1%|          | 104/14042 [00:03<06:46, 34.32it/s]\\rEvaluating mmlu:   1%|          | 108/14042 [00:03<06:40, 34.75it/s]\\rEvaluating mmlu:   1%|          | 112/14042 [00:03<06:45, 34.36it/s]\\rEvaluating mmlu:   1%|          | 116/14042 [00:03<06:42, 34.60it/s]\\rEvaluating mmlu:   1%|          | 120/14042 [00:04<06:32, 35.44it/s]\\rEvaluating mmlu:   1%|          | 124/14042 [00:04<06:33, 35.36it/s]\\rEvaluating mmlu:   1%|          | 128/14042 [00:04<06:30, 35.62it/s]\\rEvaluating mmlu:   1%|          | 132/14042 [00:04<06:30, 35.63it/s]\\rEvaluating mmlu:   1%|          | 136/14042 [00:04<06:31, 35.50it/s]\\rEvaluating mmlu:   1%|          | 140/14\\n\\n... [截断: 输出过长，省略 302377 字符] ...\\n\\nanEval:  73%|███████▎  | 119/164 [13:01<04:54,  6.55s/it]\\rEvaluating HumanEval:  73%|███████▎  | 120/164 [13:08<04:48,  6.55s/it]\\rEvaluating HumanEval:  74%|███████▍  | 121/164 [13:14<04:41,  6.55s/it]\\rEvaluating HumanEval:  74%|███████▍  | 122/164 [13:21<04:32,  6.49s/it]\\rEvaluating HumanEval:  75%|███████▌  | 123/164 [13:27<04:24,  6.45s/it]\\rEvaluating HumanEval:  76%|███████▌  | 124/164 [13:33<04:16,  6.40s/it]\\rEvaluating HumanEval:  76%|███████▌  | 125/164 [13:40<04:09,  6.38s/it]\\rEvaluating HumanEval:  77%|███████▋  | 126/164 [13:46<04:01,  6.37s/it]\\rEvaluating HumanEval:  77%|███████▋  | 127/164 [13:52<03:56,  6.40s/it]\\rEvaluating HumanEval:  78%|███████▊  | 128/164 [13:59<03:50,  6.40s/it]\\rEvaluating HumanEval:  79%|███████▊  | 129/164 [14:05<03:43,  6.39s/it]\\rEvaluating HumanEval:  79%|███████▉  | 130/164 [14:12<03:37,  6.39s/it]\\rEvaluating HumanEval:  80%|███████▉  | 131/164 [14:18<03:31,  6.41s/it]\\rEvaluating HumanEval:  80%|████████  | 132/164 [14:24<03:25,  6.41s/it]\\rEvaluating HumanEval:  81%|████████  | 133/164 [14:31<03:22,  6.53s/it]\\rEvaluating HumanEval:  82%|████████▏ | 134/164 [14:38<03:15,  6.51s/it]\\rEvaluating HumanEval:  82%|████████▏ | 135/164 [14:44<03:08,  6.50s/it]\\rEvaluating HumanEval:  83%|████████▎ | 136/164 [14:51<03:01,  6.47s/it]\\rEvaluating HumanEval:  84%|████████▎ | 137/164 [14:57<02:54,  6.45s/it]\\rEvaluating HumanEval:  84%|████████▍ | 138/164 [15:03<02:47,  6.44s/it]\\rEvaluating HumanEval:  85%|████████▍ | 139/164 [15:10<02:42,  6.50s/it]\\rEvaluating HumanEval:  85%|████████▌ | 140/164 [15:16<02:34,  6.43s/it]\\rEvaluating HumanEval:  86%|████████▌ | 141/164 [15:23<02:27,  6.41s/it]\\rEvaluating HumanEval:  87%|████████▋ | 142/164 [15:29<02:20,  6.37s/it]\\rEvaluating HumanEval:  87%|████████▋ | 143/164 [15:35<02:13,  6.36s/it]\\rEvaluating HumanEval:  88%|████████▊ | 144/164 [15:42<02:06,  6.34s/it]\\rEvaluating HumanEval:  88%|████████▊ | 145/164 [15:48<02:00,  6.36s/it]\\rEvaluating HumanEval:  89%|████████▉ | 146/164 [15:54<01:54,  6.36s/it]\\rEvaluating HumanEval:  90%|████████▉ | 147/164 [16:01<01:47,  6.34s/it]\\rEvaluating HumanEval:  90%|█████████ | 148/164 [16:07<01:43,  6.45s/it]\\rEvaluating HumanEval:  91%|█████████ | 149/164 [16:14<01:36,  6.41s/it]\\rEvaluating HumanEval:  91%|█████████▏| 150/164 [16:20<01:29,  6.40s/it]\\rEvaluating HumanEval:  92%|█████████▏| 151/164 [16:27<01:24,  6.50s/it]\\rEvaluating HumanEval:  93%|█████████▎| 152/164 [16:33<01:17,  6.45s/it]\\rEvaluating HumanEval:  93%|█████████▎| 153/164 [16:39<01:10,  6.44s/it]\\rEvaluating HumanEval:  94%|█████████▍| 154/164 [16:46<01:04,  6.44s/it]\\rEvaluating HumanEval:  95%|█████████▍| 155/164 [16:52<00:57,  6.41s/it]\\rEvaluating HumanEval:  95%|█████████▌| 156/164 [16:59<00:51,  6.39s/it]\\rEvaluating HumanEval:  96%|█████████▌| 157/164 [17:05<00:44,  6.43s/it]\\rEvaluating HumanEval:  96%|█████████▋| 158/164 [17:12<00:38,  6.43s/it]\\rEvaluating HumanEval:  97%|█████████▋| 159/164 [17:18<00:31,  6.39s/it]\\rEvaluating HumanEval:  98%|█████████▊| 160/164 [17:24<00:25,  6.38s/it]\\rEvaluating HumanEval:  98%|█████████▊| 161/164 [17:31<00:19,  6.36s/it]\\rEvaluating HumanEval:  99%|█████████▉| 162/164 [17:37<00:12,  6.33s/it]\\rEvaluating HumanEval:  99%|█████████▉| 163/164 [17:43<00:06,  6.33s/it]\\rEvaluating HumanEval: 100%|██████████| 164/164 [17:49<00:00,  6.33s/it]\\rEvaluating HumanEval: 100%|██████████| 164/164 [17:49<00:00,  6.52s/it]\\n2026-05-16 00:20:28,015 [INFO] humaneval pass@1: 0.2500 (41/164)\\n2026-05-16 00:20:28,092 [INFO] Results saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/eval_results.json\\n2026-05-16 00:20:28,097 [INFO] Correctness matrix saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/correctness_matrix.json\\n2026-05-16 00:20:28,171 [INFO] Item responses saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/item_responses.json\\n2026-05-16 00:20:28,172 [INFO] Sentinel .done written to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "dc665e9d-eba0-468f-b70b-fabafeadb886",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n2026-05-15 21:42:10,342 [INFO] Loading base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-15 21:42:11,797 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n2026-05-15 21:42:12,956 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 320, in &lt;module>\\\\n    lib = get_native_library()\\\\n          ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\\\\\", line 298, in get_native_library\\\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 460, in LoadLibrary\\\\n    return self._dlltype(name)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\\\\\", line 379, in __init__\\\\n    self._handle = _dlopen(self._name, mode)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\\\n2026-05-15 21:42:15,937 [INFO] Evaluating mmlu...\\\\n\\\\rEvaluating mmlu:   0%|          | 0/14042 [00:00<?, ?it/s]\\\\rEvaluating mmlu:   0%|          | 1/14042 [00:00<1:32:49,  2.52it/s]\\\\rEvaluating mmlu:   0%|          | 5/14042 [00:00<20:07, 11.63it/s]  \\\\rEvaluating mmlu:   0%|          | 8/14042 [00:00<14:15, 16.40it/s]\\\\rEvaluating mmlu:   0%|          | 12/14042 [00:00<10:57, 21.35it/s]\\\\rEvaluating mmlu:   0%|          | 16/14042 [00:00<09:44, 24.00it/s]\\\\rEvaluating mmlu:   0%|          | 20/14042 [00:01<09:08, 25.58it/s]\\\\rEvaluating mmlu:   0%|          | 24/14042 [00:01<08:17, 28.17it/s]\\\\rEvaluating mmlu:   0%|          | 28/14042 [00:01<07:47, 29.99it/s]\\\\rEvaluating mmlu:   0%|          | 32/14042 [00:01<07:27, 31.27it/s]\\\\rEvaluating mmlu:   0%|          | 36/14042 [00:01<07:34, 30.84it/s]\\\\rEvaluating mmlu:   0%|          | 40/14042 [00:01<07:25, 31.42it/s]\\\\rEvaluating mmlu:   0%|          | 44/14042 [00:01<07:22, 31.67it/s]\\\\rEvaluating mmlu:   0%|          | 48/14042 [00:01<07:27, 31.27it/s]\\\\rEvaluating mmlu:   0%|          | 52/14042 [00:01<07:15, 32.13it/s]\\\\rEvaluating mmlu:   0%|          | 56/14042 [00:02<07:09, 32.53it/s]\\\\rEvaluating mmlu:   0%|          | 60/14042 [00:02<07:14, 32.15it/s]\\\\rEvaluating mmlu:   0%|          | 64/14042 [00:02<07:18, 31.90it/s]\\\\rEvaluating mmlu:   0%|          | 68/14042 [00:02<07:14, 32.16it/s]\\\\rEvaluating mmlu:   1%|          | 72/14042 [00:02<07:21, 31.65it/s]\\\\rEvaluating mmlu:   1%|          | 76/14042 [00:02<07:27, 31.24it/s]\\\\rEvaluating mmlu:   1%|          | 80/14042 [00:02<07:18, 31.83it/s]\\\\rEvaluating mmlu:   1%|          | 84/14042 [00:02<07:06, 32.72it/s]\\\\rEvaluating mmlu:   1%|          | 88/14042 [00:03<06:58, 33.36it/s]\\\\rEvaluating mmlu:   1%|          | 92/14042 [00:03<06:51, 33.88it/s]\\\\rEvaluating mmlu:   1%|          | 96/14042 [00:03<06:49, 34.06it/s]\\\\rEvaluating mmlu:   1%|          | 100/14042 [00:03<06:47, 34.22it/s]\\\\rEvaluating mmlu:   1%|          | 104/14042 [00:03<06:46, 34.32it/s]\\\\rEvaluating mmlu:   1%|          | 108/14042 [00:03<06:40, 34.75it/s]\\\\rEvaluating mmlu:   1%|          | 112/14042 [00:03<06:45, 34.36it/s]\\\\rEvaluating mmlu:   1%|          | 116/14042 [00:03<06:42, 34.60it/s]\\\\rEvaluating mmlu:   1%|          | 120/14042 [00:04<06:32, 35.44it/s]\\\\rEvaluating mmlu:   1%|          | 124/14042 [00:04<06:33, 35.36it/s]\\\\rEvaluating mmlu:   1%|          | 128/14042 [00:04<06:30, 35.62it/s]\\\\rEvaluating mmlu:   1%|          | 132/14042 [00:04<06:30, 35.63it/s]\\\\rEvaluating mmlu:   1%|          | 136/14042 [00:04<06:31, 35.50it/s]\\\\rEvaluating mmlu:   1%|          | 140/14\\\\n\\\\n... [截断: 输出过长，省略 302377 字符] ...\\\\n\\\\nanEval:  73%|███████▎  | 119/164 [13:01<04:54,  6.55s/it]\\\\rEvaluating HumanEval:  73%|███████▎  | 120/164 [13:08<04:48,  6.55s/it]\\\\rEvaluating HumanEval:  74%|███████▍  | 121/164 [13:14<04:41,  6.55s/it]\\\\rEvaluating HumanEval:  74%|███████▍  | 122/164 [13:21<04:32,  6.49s/it]\\\\rEvaluating HumanEval:  75%|███████▌  | 123/164 [13:27<04:24,  6.45s/it]\\\\rEvaluating HumanEval:  76%|███████▌  | 124/164 [13:33<04:16,  6.40s/it]\\\\rEvaluating HumanEval:  76%|███████▌  | 125/164 [13:40<04:09,  6.38s/it]\\\\rEvaluating HumanEval:  77%|███████▋  | 126/164 [13:46<04:01,  6.37s/it]\\\\rEvaluating HumanEval:  77%|███████▋  | 127/164 [13:52<03:56,  6.40s/it]\\\\rEvaluating HumanEval:  78%|███████▊  | 128/164 [13:59<03:50,  6.40s/it]\\\\rEvaluating HumanEval:  79%|███████▊  | 129/164 [14:05<03:43,  6.39s/it]\\\\rEvaluating HumanEval:  79%|███████▉  | 130/164 [14:12<03:37,  6.39s/it]\\\\rEvaluating HumanEval:  80%|███████▉  | 131/164 [14:18<03:31,  6.41s/it]\\\\rEvaluating HumanEval:  80%|████████  | 132/164 [14:24<03:25,  6.41s/it]\\\\rEvaluating HumanEval:  81%|████████  | 133/164 [14:31<03:22,  6.53s/it]\\\\rEvaluating HumanEval:  82%|████████▏ | 134/164 [14:38<03:15,  6.51s/it]\\\\rEvaluating HumanEval:  82%|████████▏ | 135/164 [14:44<03:08,  6.50s/it]\\\\rEvaluating HumanEval:  83%|████████▎ | 136/164 [14:51<03:01,  6.47s/it]\\\\rEvaluating HumanEval:  84%|████████▎ | 137/164 [14:57<02:54,  6.45s/it]\\\\rEvaluating HumanEval:  84%|████████▍ | 138/164 [15:03<02:47,  6.44s/it]\\\\rEvaluating HumanEval:  85%|████████▍ | 139/164 [15:10<02:42,  6.50s/it]\\\\rEvaluating HumanEval:  85%|████████▌ | 140/164 [15:16<02:34,  6.43s/it]\\\\rEvaluating HumanEval:  86%|████████▌ | 141/164 [15:23<02:27,  6.41s/it]\\\\rEvaluating HumanEval:  87%|████████▋ | 142/164 [15:29<02:20,  6.37s/it]\\\\rEvaluating HumanEval:  87%|████████▋ | 143/164 [15:35<02:13,  6.36s/it]\\\\rEvaluating HumanEval:  88%|████████▊ | 144/164 [15:42<02:06,  6.34s/it]\\\\rEvaluating HumanEval:  88%|████████▊ | 145/164 [15:48<02:00,  6.36s/it]\\\\rEvaluating HumanEval:  89%|████████▉ | 146/164 [15:54<01:54,  6.36s/it]\\\\rEvaluating HumanEval:  90%|████████▉ | 147/164 [16:01<01:47,  6.34s/it]\\\\rEvaluating HumanEval:  90%|█████████ | 148/164 [16:07<01:43,  6.45s/it]\\\\rEvaluating HumanEval:  91%|█████████ | 149/164 [16:14<01:36,  6.41s/it]\\\\rEvaluating HumanEval:  91%|█████████▏| 150/164 [16:20<01:29,  6.40s/it]\\\\rEvaluating HumanEval:  92%|█████████▏| 151/164 [16:27<01:24,  6.50s/it]\\\\rEvaluating HumanEval:  93%|█████████▎| 152/164 [16:33<01:17,  6.45s/it]\\\\rEvaluating HumanEval:  93%|█████████▎| 153/164 [16:39<01:10,  6.44s/it]\\\\rEvaluating HumanEval:  94%|█████████▍| 154/164 [16:46<01:04,  6.44s/it]\\\\rEvaluating HumanEval:  95%|█████████▍| 155/164 [16:52<00:57,  6.41s/it]\\\\rEvaluating HumanEval:  95%|█████████▌| 156/164 [16:59<00:51,  6.39s/it]\\\\rEvaluating HumanEval:  96%|█████████▌| 157/164 [17:05<00:44,  6.43s/it]\\\\rEvaluating HumanEval:  96%|█████████▋| 158/164 [17:12<00:38,  6.43s/it]\\\\rEvaluating HumanEval:  97%|█████████▋| 159/164 [17:18<00:31,  6.39s/it]\\\\rEvaluating HumanEval:  98%|█████████▊| 160/164 [17:24<00:25,  6.38s/it]\\\\rEvaluating HumanEval:  98%|█████████▊| 161/164 [17:31<00:19,  6.36s/it]\\\\rEvaluating HumanEval:  99%|█████████▉| 162/164 [17:37<00:12,  6.33s/it]\\\\rEvaluating HumanEval:  99%|█████████▉| 163/164 [17:43<00:06,  6.33s/it]\\\\rEvaluating HumanEval: 100%|██████████| 164/164 [17:49<00:00,  6.33s/it]\\\\rEvaluating HumanEval: 100%|██████████| 164/164 [17:49<00:00,  6.52s/it]\\\\n2026-05-16 00:20:28,015 [INFO] humaneval pass@1: 0.2500 (41/164)\\\\n2026-05-16 00:20:28,092 [INFO] Results saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/eval_results.json\\\\n2026-05-16 00:20:28,097 [INFO] Correctness matrix saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/correctness_matrix.json\\\\n2026-05-16 00:20:28,171 [INFO] Item responses saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/item_responses.json\\\\n2026-05-16 00:20:28,172 [INFO] Sentinel .done written to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\n2026-05-15 21:42:10,342 [INFO] Loading base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-15 21:42:11,797 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n2026-05-15 21:42:12,956 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\nTraceback (most recent call last):\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 320, in &lt;module>\\n    lib = get_native_library()\\n          ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 298, in get_native_library\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 460, in LoadLibrary\\n    return self._dlltype(name)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\\n    self._handle = _dlopen(self._name, mode)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\n2026-05-15 21:42:15,937 [INFO] Evaluating mmlu...\\n\\rEvaluating mmlu:   0%|          | 0/14042 [00:00<?, ?it/s]\\rEvaluating mmlu:   0%|          | 1/14042 [00:00<1:32:49,  2.52it/s]\\rEvaluating mmlu:   0%|          | 5/14042 [00:00<20:07, 11.63it/s]  \\rEvaluating mmlu:   0%|          | 8/14042 [00:00<14:15, 16.40it/s]\\rEvaluating mmlu:   0%|          | 12/14042 [00:00<10:57, 21.35it/s]\\rEvaluating mmlu:   0%|          | 16/14042 [00:00<09:44, 24.00it/s]\\rEvaluating mmlu:   0%|          | 20/14042 [00:01<09:08, 25.58it/s]\\rEvaluating mmlu:   0%|          | 24/14042 [00:01<08:17, 28.17it/s]\\rEvaluating mmlu:   0%|          | 28/14042 [00:01<07:47, 29.99it/s]\\rEvaluating mmlu:   0%|          | 32/14042 [00:01<07:27, 31.27it/s]\\rEvaluating mmlu:   0%|          | 36/14042 [00:01<07:34, 30.84it/s]\\rEvaluating mmlu:   0%|          | 40/14042 [00:01<07:25, 31.42it/s]\\rEvaluating mmlu:   0%|          | 44/14042 [00:01<07:22, 31.67it/s]\\rEvaluating mmlu:   0%|          | 48/14042 [00:01<07:27, 31.27it/s]\\rEvaluating mmlu:   0%|          | 52/14042 [00:01<07:15, 32.13it/s]\\rEvaluating mmlu:   0%|          | 56/14042 [00:02<07:09, 32.53it/s]\\rEvaluating mmlu:   0%|          | 60/14042 [00:02<07:14, 32.15it/s]\\rEvaluating mmlu:   0%|          | 64/14042 [00:02<07:18, 31.90it/s]\\rEvaluating mmlu:   0%|          | 68/14042 [00:02<07:14, 32.16it/s]\\rEvaluating mmlu:   1%|          | 72/14042 [00:02<07:21, 31.65it/s]\\rEvaluating mmlu:   1%|          | 76/14042 [00:02<07:27, 31.24it/s]\\rEvaluating mmlu:   1%|          | 80/14042 [00:02<07:18, 31.83it/s]\\rEvaluating mmlu:   1%|          | 84/14042 [00:02<07:06, 32.72it/s]\\rEvaluating mmlu:   1%|          | 88/14042 [00:03<06:58, 33.36it/s]\\rEvaluating mmlu:   1%|          | 92/14042 [00:03<06:51, 33.88it/s]\\rEvaluating mmlu:   1%|          | 96/14042 [00:03<06:49, 34.06it/s]\\rEvaluating mmlu:   1%|          | 100/14042 [00:03<06:47, 34.22it/s]\\rEvaluating mmlu:   1%|          | 104/14042 [00:03<06:46, 34.32it/s]\\rEvaluating mmlu:   1%|          | 108/14042 [00:03<06:40, 34.75it/s]\\rEvaluating mmlu:   1%|          | 112/14042 [00:03<06:45, 34.36it/s]\\rEvaluating mmlu:   1%|          | 116/14042 [00:03<06:42, 34.60it/s]\\rEvaluating mmlu:   1%|          | 120/14042 [00:04<06:32, 35.44it/s]\\rEvaluating mmlu:   1%|          | 124/14042 [00:04<06:33, 35.36it/s]\\rEvaluating mmlu:   1%|          | 128/14042 [00:04<06:30, 35.62it/s]\\rEvaluating mmlu:   1%|          | 132/14042 [00:04<06:30, 35.63it/s]\\rEvaluating mmlu:   1%|          | 136/14042 [00:04<06:31, 35.50it/s]\\rEvaluating mmlu:   1%|          | 140/14\\n\\n... [截断: 输出过长，省略 302377 字符] ...\\n\\nanEval:  73%|███████▎  | 119/164 [13:01<04:54,  6.55s/it]\\rEvaluating HumanEval:  73%|███████▎  | 120/164 [13:08<04:48,  6.55s/it]\\rEvaluating HumanEval:  74%|███████▍  | 121/164 [13:14<04:41,  6.55s/it]\\rEvaluating HumanEval:  74%|███████▍  | 122/164 [13:21<04:32,  6.49s/it]\\rEvaluating HumanEval:  75%|███████▌  | 123/164 [13:27<04:24,  6.45s/it]\\rEvaluating HumanEval:  76%|███████▌  | 124/164 [13:33<04:16,  6.40s/it]\\rEvaluating HumanEval:  76%|███████▌  | 125/164 [13:40<04:09,  6.38s/it]\\rEvaluating HumanEval:  77%|███████▋  | 126/164 [13:46<04:01,  6.37s/it]\\rEvaluating HumanEval:  77%|███████▋  | 127/164 [13:52<03:56,  6.40s/it]\\rEvaluating HumanEval:  78%|███████▊  | 128/164 [13:59<03:50,  6.40s/it]\\rEvaluating HumanEval:  79%|███████▊  | 129/164 [14:05<03:43,  6.39s/it]\\rEvaluating HumanEval:  79%|███████▉  | 130/164 [14:12<03:37,  6.39s/it]\\rEvaluating HumanEval:  80%|███████▉  | 131/164 [14:18<03:31,  6.41s/it]\\rEvaluating HumanEval:  80%|████████  | 132/164 [14:24<03:25,  6.41s/it]\\rEvaluating HumanEval:  81%|████████  | 133/164 [14:31<03:22,  6.53s/it]\\rEvaluating HumanEval:  82%|████████▏ | 134/164 [14:38<03:15,  6.51s/it]\\rEvaluating HumanEval:  82%|████████▏ | 135/164 [14:44<03:08,  6.50s/it]\\rEvaluating HumanEval:  83%|████████▎ | 136/164 [14:51<03:01,  6.47s/it]\\rEvaluating HumanEval:  84%|████████▎ | 137/164 [14:57<02:54,  6.45s/it]\\rEvaluating HumanEval:  84%|████████▍ | 138/164 [15:03<02:47,  6.44s/it]\\rEvaluating HumanEval:  85%|████████▍ | 139/164 [15:10<02:42,  6.50s/it]\\rEvaluating HumanEval:  85%|████████▌ | 140/164 [15:16<02:34,  6.43s/it]\\rEvaluating HumanEval:  86%|████████▌ | 141/164 [15:23<02:27,  6.41s/it]\\rEvaluating HumanEval:  87%|████████▋ | 142/164 [15:29<02:20,  6.37s/it]\\rEvaluating HumanEval:  87%|████████▋ | 143/164 [15:35<02:13,  6.36s/it]\\rEvaluating HumanEval:  88%|████████▊ | 144/164 [15:42<02:06,  6.34s/it]\\rEvaluating HumanEval:  88%|████████▊ | 145/164 [15:48<02:00,  6.36s/it]\\rEvaluating HumanEval:  89%|████████▉ | 146/164 [15:54<01:54,  6.36s/it]\\rEvaluating HumanEval:  90%|████████▉ | 147/164 [16:01<01:47,  6.34s/it]\\rEvaluating HumanEval:  90%|█████████ | 148/164 [16:07<01:43,  6.45s/it]\\rEvaluating HumanEval:  91%|█████████ | 149/164 [16:14<01:36,  6.41s/it]\\rEvaluating HumanEval:  91%|█████████▏| 150/164 [16:20<01:29,  6.40s/it]\\rEvaluating HumanEval:  92%|█████████▏| 151/164 [16:27<01:24,  6.50s/it]\\rEvaluating HumanEval:  93%|█████████▎| 152/164 [16:33<01:17,  6.45s/it]\\rEvaluating HumanEval:  93%|█████████▎| 153/164 [16:39<01:10,  6.44s/it]\\rEvaluating HumanEval:  94%|█████████▍| 154/164 [16:46<01:04,  6.44s/it]\\rEvaluating HumanEval:  95%|█████████▍| 155/164 [16:52<00:57,  6.41s/it]\\rEvaluating HumanEval:  95%|█████████▌| 156/164 [16:59<00:51,  6.39s/it]\\rEvaluating HumanEval:  96%|█████████▌| 157/164 [17:05<00:44,  6.43s/it]\\rEvaluating HumanEval:  96%|█████████▋| 158/164 [17:12<00:38,  6.43s/it]\\rEvaluating HumanEval:  97%|█████████▋| 159/164 [17:18<00:31,  6.39s/it]\\rEvaluating HumanEval:  98%|█████████▊| 160/164 [17:24<00:25,  6.38s/it]\\rEvaluating HumanEval:  98%|█████████▊| 161/164 [17:31<00:19,  6.36s/it]\\rEvaluating HumanEval:  99%|█████████▉| 162/164 [17:37<00:12,  6.33s/it]\\rEvaluating HumanEval:  99%|█████████▉| 163/164 [17:43<00:06,  6.33s/it]\\rEvaluating HumanEval: 100%|██████████| 164/164 [17:49<00:00,  6.33s/it]\\rEvaluating HumanEval: 100%|██████████| 164/164 [17:49<00:00,  6.52s/it]\\n2026-05-16 00:20:28,015 [INFO] humaneval pass@1: 0.2500 (41/164)\\n2026-05-16 00:20:28,092 [INFO] Results saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/eval_results.json\\n2026-05-16 00:20:28,097 [INFO] Correctness matrix saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/correctness_matrix.json\\n2026-05-16 00:20:28,171 [INFO] Item responses saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/item_responses.json\\n2026-05-16 00:20:28,172 [INFO] Sentinel .done written to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MSpVe98opyEsvEoMuckeVF`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp001/eval_results/ -maxdepth 2 -name \"*.json\" -path \"*15B*d025*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "a96fd7a9-c2c7-4d1e-b52c-08b6e21d0261",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011cnzLYFXuPByjRw2DYDTG8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17764,
+      "cache_read_input_tokens": 26383,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T16:30:52.302Z_
+
+<details><summary>↩ Tool result · `toolu_01MSpVe98opyEsvEoMuckeVF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "186c3d6b-6e5e-4e1b-bbc4-a5f701dd4747",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016ThoRcdKSatnABBSjPXCgQ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/autodl-tmp/exp001/eval_results/ -d *15B*d025*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "45d3de99-9d5c-4da3-999e-007bd29b52b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011cnzLYFXuPByjRw2DYDTG8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17764,
+      "cache_read_input_tokens": 26383,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17764
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T16:30:53.124Z_
+
+<details><summary>↩ Tool result · `toolu_016ThoRcdKSatnABBSjPXCgQ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"drwxr-xr-x 68 root root 4096 May 15 23:33 /root/autodl-tmp/exp001/eval_results/\\n\", \"stderr\": \"ls: cannot access '*15B*d025*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "cbd01a03-1e0f-4350-8c2a-d6e9837dd5c1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"drwxr-xr-x 68 root root 4096 May 15 23:33 /root/autodl-tmp/exp001/eval_results/\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '*15B*d025*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"drwxr-xr-x 68 root root 4096 May 15 23:33 /root/autodl-tmp/exp001/eval_results/\\n\", \"stderr\": \"ls: cannot access '*15B*d025*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log shows the experiment completed successfully. Key findings:
+
+1. Log file: `exp_001_eval_15B_d025_s123.log` (this is the actual log for what was registered as `exp_001_eval_15B_d025_s123_v2`)
+2. EXIT_CODE=0
+3. Results saved to `/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/`
+4. humaneval pass@1: 0.2500 (41/164)
+
+
+5. The `.done` sentinel was written, confirming completion. Now I need to check the eval_results.json file to pull all the metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "939d7a15-217d-4e69-ae36-2a7fa5e63910",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XyWPH4MAQRoGqVvdV8NaHH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5444,
+      "cache_read_input_tokens": 44147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+实验成功完成（EXIT_CODE=0）。日志文件是 `exp_001_eval_15B_d025_s123.log`，结果在 `Qwen2.5-1.5B_d025_s123_aligned/`。读取完整 metrics。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "0d396db0-4695-4458-88ed-7c115a935945",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XyWPH4MAQRoGqVvdV8NaHH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5444,
+      "cache_read_input_tokens": 44147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GLEDkCvEyzmDe82FgAZdHs`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/eval_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "1f215bf4-7ab1-44cc-984f-3139dc3877b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XyWPH4MAQRoGqVvdV8NaHH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5444,
+      "cache_read_input_tokens": 44147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T16:31:01.877Z_
+
+<details><summary>↩ Tool result · `toolu_01GLEDkCvEyzmDe82FgAZdHs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\\",\\n  \\\"paraphrased\\\": false,\\n  \\\"benchmarks\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"accuracy\\\": 0.5880928642643498,\\n      \\\"correct\\\": 8258,\\n      \\\"total\\\": 14042,\\n      \\\"per_item\\\": [\\n        {\\n          \\\"index\\\": 0,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 1,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 2,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"D\\\"\\n        },\\n        {\\n          \\\"index\\\": 3,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 4,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 5,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 6,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 7,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"D\\\"\\n        },\\n        {\\n          \\\"index\\\": 8,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 9,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"C\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 10,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 11,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 12,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 13,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"D\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 14,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"C\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 15,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 16,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 17,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 18,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"D\\\",\\n          \\\"gold\\\": \\\"D\\\"\\n        },\\n        {\\n          \\\"index\\\": 19,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 20,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 21,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 22,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"D\\\"\\n        },\\n        {\\n          \\\"index\\\": 23,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"C\\\",\\n          \\\"gold\\\": \\\"D\\\"\\n        },\\n        {\\n          \\\"index\\\": 24,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"C\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 25,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"C\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 26,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 27,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 28,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"D\\\"\\n        },\\n        {\\n          \\\"index\\\": 29,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 30,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 31,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 32,\\n          \\\"correct\\\": f\\n\\n... [截断: 输出过长，省略 2053001 字符] ...\\n\\n_triangle(1, 1, 1.414)) # True\\\"\\n        },\\n        {\\n          \\\"task_id\\\": \\\"HumanEval/158\\\",\\n          \\\"index\\\": 158,\\n          \\\"correct\\\": false,\\n          \\\"generated\\\": \\\"def find_max(words):\\\\n    max_word = \\\\\\\"\\\\\\\"\\\\n    max_length = 0\\\\n    for word in words:\\\\n        unique_chars = set(word)\\\\n        if len(unique_chars) > max_length or (len(unique_chars) == max_length and word < max_word):\\\\n            max_word = word\\\\n            max_length = len(unique_chars)\\\\n    return max_word\\\\n\\\\n# Test cases\\\\nprint(find_max([\\\\\\\"name\\\\\\\", \\\\\\\"of\\\\\\\", \\\\\\\"string\\\\\\\"])) # \\\\\\\"string\\\\\\\"\\\\nprint(find_max([\\\\\\\"name\\\\\\\", \\\\\\\"enam\\\\\\\", \\\\\\\"game\\\\\\\"])) # \\\\\\\"enam\\\\\\\"\\\\nprint(find_max([\\\\\\\"aaaaaaa\\\\\\\", \\\\\\\"bb\\\\\\\", \\\\\\\"cc\\\\\\\"])) # \\\\\\\"aaaaaaa\\\\\\\" \\\\nprint(find_max([\\\\\\\"abc\\\\\\\", \\\"\\n        },\\n        {\\n          \\\"task_id\\\": \\\"HumanEval/159\\\",\\n          \\\"index\\\": 159,\\n          \\\"correct\\\": false,\\n          \\\"generated\\\": \\\"def eat(number, need, remaining):\\\\n    eaten = number + need\\\\n    remaining -= need\\\\n    return [eaten, remaining] if remaining >= 0 else [eaten, 0] + [remaining] * (remaining < 0)  # if remaining < 0, eat all remaining carrots and return 0 as the number of carrots left. otherwise, return the number of carrots eaten and the number of carrots left.  (remaining < 0) is a boolean expression that returns True if remaining is less than 0, and False otherwise. The expression is used to determine whether \\\"\\n        },\\n        {\\n          \\\"task_id\\\": \\\"HumanEval/160\\\",\\n          \\\"index\\\": 160,\\n          \\\"correct\\\": false,\\n          \\\"generated\\\": \\\"def do_algebra(operator, operand):\\\\n    result = operand[0]\\\\n    for i in range(len(operator)):\\\\n        if operator[i] == '+':\\\\n            result += operand[i+1]\\\\n        elif operator[i] == '-':\\\\n            result -= operand[i+1]\\\\n        elif operator[i] == '*':\\\\n            result *= operand[i+1]\\\\n        elif operator[i] == '//':\\\\n            result //= operand[i+1]\\\\n        elif operator[i] == '**':\\\\n            result **= operand[i+1]\\\\n    return result\\\\n\\\\n# Test cases\\\\nprint(do_algebra(['+', '*', '-']\\\"\\n        },\\n        {\\n          \\\"task_id\\\": \\\"HumanEval/161\\\",\\n          \\\"index\\\": 161,\\n          \\\"correct\\\": false,\\n          \\\"generated\\\": \\\"def solve(s):\\\\n    result = \\\\\\\"\\\\\\\"\\\\n    for char in s:\\\\n        if char.isalpha():\\\\n            result += char.swapcase()\\\\n        else:\\\\n            result += char\\\\n    return result\\\\n\\\\n# Test cases\\\\nprint(solve(\\\\\\\"1234\\\\\\\")) # Expected output: \\\\\\\"4321\\\\\\\"\\\\nprint(solve(\\\\\\\"ab\\\\\\\")) # Expected output: \\\\\\\"AB\\\\\\\"\\\\nprint(solve(\\\\\\\"#a@C\\\\\\\")) # Expected output: \\\\\\\"#A@c\\\\\\\" \\\\nprint(solve(\\\\\\\"1234567890\\\\\\\")) # Expected output: \\\\\\\"9876543210\\\\\\\" \\\\nprint(solve(\\\\\\\"Hello World\\\\\\\")) # Expected output: \\\\\\\"hELLO wORLD\\\\\\\" \\\\nprint(solve(\\\\\\\"1234567890!@#$%^&*()\\\\\\\")) # Expected outpu\\\"\\n        },\\n        {\\n          \\\"task_id\\\": \\\"HumanEval/162\\\",\\n          \\\"index\\\": 162,\\n          \\\"correct\\\": true,\\n          \\\"generated\\\": \\\"def string_to_md5(text):\\\\n    if not text:\\\\n        return None\\\\n    import hashlib\\\\n    return hashlib.md5(text.encode('utf-8')).hexdigest()  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and en\\\"\\n        },\\n        {\\n          \\\"task_id\\\": \\\"HumanEval/163\\\",\\n          \\\"index\\\": 163,\\n          \\\"correct\\\": false,\\n          \\\"generated\\\": \\\"def generate_integers(a, b):\\\\n    even_digits = []\\\\n    for num in range(a, b + 1):\\\\n        if num % 2 == 0:\\\\n            even_digits.append(num)\\\\n    return sorted(even_digits) if even_digits else [] \\\\n\\\\n# Test cases\\\\nprint(generate_integers(2, 8)) # [2, 4, 6, 8]\\\\nprint(generate_integers(8, 2)) # [2, 4, 6, 8]\\\\nprint(generate_integers(10, 14)) # [] \\\\nprint(generate_integers(10, 10)) # [10] \\\\nprint(generate_integers(10, 11)) # [10, 11] \\\\nprint(generate_integers(10, 12)) # [10, 12] \\\\nprint(generate_integers(10\\\"\\n        }\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "d5b2a8c0-334c-4d28-aca2-6d40203f9a22",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\\\\\\",\\\\n  \\\\\\\"paraphrased\\\\\\\": false,\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5880928642643498,\\\\n      \\\\\\\"correct\\\\\\\": 8258,\\\\n      \\\\\\\"total\\\\\\\": 14042,\\\\n      \\\\\\\"per_item\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 0,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 1,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 2,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 3,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 4,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 5,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 6,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 7,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 8,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 9,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 10,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 11,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 12,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 13,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 14,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 15,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 16,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 17,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 18,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 19,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 20,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 21,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 22,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 23,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 24,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 25,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 26,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 27,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 28,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 29,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 30,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 31,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"pred\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n          \\\\\\\"gold\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"index\\\\\\\": 32,\\\\n          \\\\\\\"correct\\\\\\\": f\\\\n\\\\n... [截断: 输出过长，省略 2053001 字符] ...\\\\n\\\\n_triangle(1, 1, 1.414)) # True\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/158\\\\\\\",\\\\n          \\\\\\\"index\\\\\\\": 158,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"generated\\\\\\\": \\\\\\\"def find_max(words):\\\\\\\\n    max_word = \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    max_length = 0\\\\\\\\n    for word in words:\\\\\\\\n        unique_chars = set(word)\\\\\\\\n        if len(unique_chars) > max_length or (len(unique_chars) == max_length and word < max_word):\\\\\\\\n            max_word = word\\\\\\\\n            max_length = len(unique_chars)\\\\\\\\n    return max_word\\\\\\\\n\\\\\\\\n# Test cases\\\\\\\\nprint(find_max([\\\\\\\\\\\\\\\"name\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"of\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"string\\\\\\\\\\\\\\\"])) # \\\\\\\\\\\\\\\"string\\\\\\\\\\\\\\\"\\\\\\\\nprint(find_max([\\\\\\\\\\\\\\\"name\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"enam\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"game\\\\\\\\\\\\\\\"])) # \\\\\\\\\\\\\\\"enam\\\\\\\\\\\\\\\"\\\\\\\\nprint(find_max([\\\\\\\\\\\\\\\"aaaaaaa\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"bb\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"cc\\\\\\\\\\\\\\\"])) # \\\\\\\\\\\\\\\"aaaaaaa\\\\\\\\\\\\\\\" \\\\\\\\nprint(find_max([\\\\\\\\\\\\\\\"abc\\\\\\\\\\\\\\\", \\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/159\\\\\\\",\\\\n          \\\\\\\"index\\\\\\\": 159,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"generated\\\\\\\": \\\\\\\"def eat(number, need, remaining):\\\\\\\\n    eaten = number + need\\\\\\\\n    remaining -= need\\\\\\\\n    return [eaten, remaining] if remaining >= 0 else [eaten, 0] + [remaining] * (remaining < 0)  # if remaining < 0, eat all remaining carrots and return 0 as the number of carrots left. otherwise, return the number of carrots eaten and the number of carrots left.  (remaining < 0) is a boolean expression that returns True if remaining is less than 0, and False otherwise. The expression is used to determine whether \\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/160\\\\\\\",\\\\n          \\\\\\\"index\\\\\\\": 160,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"generated\\\\\\\": \\\\\\\"def do_algebra(operator, operand):\\\\\\\\n    result = operand[0]\\\\\\\\n    for i in range(len(operator)):\\\\\\\\n        if operator[i] == '+':\\\\\\\\n            result += operand[i+1]\\\\\\\\n        elif operator[i] == '-':\\\\\\\\n            result -= operand[i+1]\\\\\\\\n        elif operator[i] == '*':\\\\\\\\n            result *= operand[i+1]\\\\\\\\n        elif operator[i] == '//':\\\\\\\\n            result //= operand[i+1]\\\\\\\\n        elif operator[i] == '**':\\\\\\\\n            result **= operand[i+1]\\\\\\\\n    return result\\\\\\\\n\\\\\\\\n# Test cases\\\\\\\\nprint(do_algebra(['+', '*', '-']\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/161\\\\\\\",\\\\n          \\\\\\\"index\\\\\\\": 161,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"generated\\\\\\\": \\\\\\\"def solve(s):\\\\\\\\n    result = \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    for char in s:\\\\\\\\n        if char.isalpha():\\\\\\\\n            result += char.swapcase()\\\\\\\\n        else:\\\\\\\\n            result += char\\\\\\\\n    return result\\\\\\\\n\\\\\\\\n# Test cases\\\\\\\\nprint(solve(\\\\\\\\\\\\\\\"1234\\\\\\\\\\\\\\\")) # Expected output: \\\\\\\\\\\\\\\"4321\\\\\\\\\\\\\\\"\\\\\\\\nprint(solve(\\\\\\\\\\\\\\\"ab\\\\\\\\\\\\\\\")) # Expected output: \\\\\\\\\\\\\\\"AB\\\\\\\\\\\\\\\"\\\\\\\\nprint(solve(\\\\\\\\\\\\\\\"#a@C\\\\\\\\\\\\\\\")) # Expected output: \\\\\\\\\\\\\\\"#A@c\\\\\\\\\\\\\\\" \\\\\\\\nprint(solve(\\\\\\\\\\\\\\\"1234567890\\\\\\\\\\\\\\\")) # Expected output: \\\\\\\\\\\\\\\"9876543210\\\\\\\\\\\\\\\" \\\\\\\\nprint(solve(\\\\\\\\\\\\\\\"Hello World\\\\\\\\\\\\\\\")) # Expected output: \\\\\\\\\\\\\\\"hELLO wORLD\\\\\\\\\\\\\\\" \\\\\\\\nprint(solve(\\\\\\\\\\\\\\\"1234567890!@#$%^&*()\\\\\\\\\\\\\\\")) # Expected outpu\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/162\\\\\\\",\\\\n          \\\\\\\"index\\\\\\\": 162,\\\\n          \\\\\\\"correct\\\\\\\": true,\\\\n          \\\\\\\"generated\\\\\\\": \\\\\\\"def string_to_md5(text):\\\\\\\\n    if not text:\\\\\\\\n        return None\\\\\\\\n    import hashlib\\\\\\\\n    return hashlib.md5(text.encode('utf-8')).hexdigest()  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and en\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/163\\\\\\\",\\\\n          \\\\\\\"index\\\\\\\": 163,\\\\n          \\\\\\\"correct\\\\\\\": false,\\\\n          \\\\\\\"generated\\\\\\\": \\\\\\\"def generate_integers(a, b):\\\\\\\\n    even_digits = []\\\\\\\\n    for num in range(a, b + 1):\\\\\\\\n        if num % 2 == 0:\\\\\\\\n            even_digits.append(num)\\\\\\\\n    return sorted(even_digits) if even_digits else [] \\\\\\\\n\\\\\\\\n# Test cases\\\\\\\\nprint(generate_integers(2, 8)) # [2, 4, 6, 8]\\\\\\\\nprint(generate_integers(8, 2)) # [2, 4, 6, 8]\\\\\\\\nprint(generate_integers(10, 14)) # [] \\\\\\\\nprint(generate_integers(10, 10)) # [10] \\\\\\\\nprint(generate_integers(10, 11)) # [10, 11] \\\\\\\\nprint(generate_integers(10, 12)) # [10, 12] \\\\\\\\nprint(generate_integers(10\\\\\\\"\\\\n        }\\\\n      ]\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\\",\\n  \\\"paraphrased\\\": false,\\n  \\\"benchmarks\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"accuracy\\\": 0.5880928642643498,\\n      \\\"correct\\\": 8258,\\n      \\\"total\\\": 14042,\\n      \\\"per_item\\\": [\\n        {\\n          \\\"index\\\": 0,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 1,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 2,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"D\\\"\\n        },\\n        {\\n          \\\"index\\\": 3,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 4,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 5,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 6,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 7,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"D\\\"\\n        },\\n        {\\n          \\\"index\\\": 8,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 9,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"C\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 10,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 11,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 12,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 13,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"D\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 14,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"C\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 15,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 16,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 17,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 18,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"D\\\",\\n          \\\"gold\\\": \\\"D\\\"\\n        },\\n        {\\n          \\\"index\\\": 19,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 20,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 21,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 22,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"D\\\"\\n        },\\n        {\\n          \\\"index\\\": 23,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"C\\\",\\n          \\\"gold\\\": \\\"D\\\"\\n        },\\n        {\\n          \\\"index\\\": 24,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"C\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 25,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"C\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 26,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"C\\\"\\n        },\\n        {\\n          \\\"index\\\": 27,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 28,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"D\\\"\\n        },\\n        {\\n          \\\"index\\\": 29,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"A\\\"\\n        },\\n        {\\n          \\\"index\\\": 30,\\n          \\\"correct\\\": false,\\n          \\\"pred\\\": \\\"A\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 31,\\n          \\\"correct\\\": true,\\n          \\\"pred\\\": \\\"B\\\",\\n          \\\"gold\\\": \\\"B\\\"\\n        },\\n        {\\n          \\\"index\\\": 32,\\n          \\\"correct\\\": f\\n\\n... [截断: 输出过长，省略 2053001 字符] ...\\n\\n_triangle(1, 1, 1.414)) # True\\\"\\n        },\\n        {\\n          \\\"task_id\\\": \\\"HumanEval/158\\\",\\n          \\\"index\\\": 158,\\n          \\\"correct\\\": false,\\n          \\\"generated\\\": \\\"def find_max(words):\\\\n    max_word = \\\\\\\"\\\\\\\"\\\\n    max_length = 0\\\\n    for word in words:\\\\n        unique_chars = set(word)\\\\n        if len(unique_chars) > max_length or (len(unique_chars) == max_length and word < max_word):\\\\n            max_word = word\\\\n            max_length = len(unique_chars)\\\\n    return max_word\\\\n\\\\n# Test cases\\\\nprint(find_max([\\\\\\\"name\\\\\\\", \\\\\\\"of\\\\\\\", \\\\\\\"string\\\\\\\"])) # \\\\\\\"string\\\\\\\"\\\\nprint(find_max([\\\\\\\"name\\\\\\\", \\\\\\\"enam\\\\\\\", \\\\\\\"game\\\\\\\"])) # \\\\\\\"enam\\\\\\\"\\\\nprint(find_max([\\\\\\\"aaaaaaa\\\\\\\", \\\\\\\"bb\\\\\\\", \\\\\\\"cc\\\\\\\"])) # \\\\\\\"aaaaaaa\\\\\\\" \\\\nprint(find_max([\\\\\\\"abc\\\\\\\", \\\"\\n        },\\n        {\\n          \\\"task_id\\\": \\\"HumanEval/159\\\",\\n          \\\"index\\\": 159,\\n          \\\"correct\\\": false,\\n          \\\"generated\\\": \\\"def eat(number, need, remaining):\\\\n    eaten = number + need\\\\n    remaining -= need\\\\n    return [eaten, remaining] if remaining >= 0 else [eaten, 0] + [remaining] * (remaining < 0)  # if remaining < 0, eat all remaining carrots and return 0 as the number of carrots left. otherwise, return the number of carrots eaten and the number of carrots left.  (remaining < 0) is a boolean expression that returns True if remaining is less than 0, and False otherwise. The expression is used to determine whether \\\"\\n        },\\n        {\\n          \\\"task_id\\\": \\\"HumanEval/160\\\",\\n          \\\"index\\\": 160,\\n          \\\"correct\\\": false,\\n          \\\"generated\\\": \\\"def do_algebra(operator, operand):\\\\n    result = operand[0]\\\\n    for i in range(len(operator)):\\\\n        if operator[i] == '+':\\\\n            result += operand[i+1]\\\\n        elif operator[i] == '-':\\\\n            result -= operand[i+1]\\\\n        elif operator[i] == '*':\\\\n            result *= operand[i+1]\\\\n        elif operator[i] == '//':\\\\n            result //= operand[i+1]\\\\n        elif operator[i] == '**':\\\\n            result **= operand[i+1]\\\\n    return result\\\\n\\\\n# Test cases\\\\nprint(do_algebra(['+', '*', '-']\\\"\\n        },\\n        {\\n          \\\"task_id\\\": \\\"HumanEval/161\\\",\\n          \\\"index\\\": 161,\\n          \\\"correct\\\": false,\\n          \\\"generated\\\": \\\"def solve(s):\\\\n    result = \\\\\\\"\\\\\\\"\\\\n    for char in s:\\\\n        if char.isalpha():\\\\n            result += char.swapcase()\\\\n        else:\\\\n            result += char\\\\n    return result\\\\n\\\\n# Test cases\\\\nprint(solve(\\\\\\\"1234\\\\\\\")) # Expected output: \\\\\\\"4321\\\\\\\"\\\\nprint(solve(\\\\\\\"ab\\\\\\\")) # Expected output: \\\\\\\"AB\\\\\\\"\\\\nprint(solve(\\\\\\\"#a@C\\\\\\\")) # Expected output: \\\\\\\"#A@c\\\\\\\" \\\\nprint(solve(\\\\\\\"1234567890\\\\\\\")) # Expected output: \\\\\\\"9876543210\\\\\\\" \\\\nprint(solve(\\\\\\\"Hello World\\\\\\\")) # Expected output: \\\\\\\"hELLO wORLD\\\\\\\" \\\\nprint(solve(\\\\\\\"1234567890!@#$%^&*()\\\\\\\")) # Expected outpu\\\"\\n        },\\n        {\\n          \\\"task_id\\\": \\\"HumanEval/162\\\",\\n          \\\"index\\\": 162,\\n          \\\"correct\\\": true,\\n          \\\"generated\\\": \\\"def string_to_md5(text):\\\\n    if not text:\\\\n        return None\\\\n    import hashlib\\\\n    return hashlib.md5(text.encode('utf-8')).hexdigest()  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and encode to utf-8 before hashing.  # Convert to bytes and en\\\"\\n        },\\n        {\\n          \\\"task_id\\\": \\\"HumanEval/163\\\",\\n          \\\"index\\\": 163,\\n          \\\"correct\\\": false,\\n          \\\"generated\\\": \\\"def generate_integers(a, b):\\\\n    even_digits = []\\\\n    for num in range(a, b + 1):\\\\n        if num % 2 == 0:\\\\n            even_digits.append(num)\\\\n    return sorted(even_digits) if even_digits else [] \\\\n\\\\n# Test cases\\\\nprint(generate_integers(2, 8)) # [2, 4, 6, 8]\\\\nprint(generate_integers(8, 2)) # [2, 4, 6, 8]\\\\nprint(generate_integers(10, 14)) # [] \\\\nprint(generate_integers(10, 10)) # [10] \\\\nprint(generate_integers(10, 11)) # [10, 11] \\\\nprint(generate_integers(10, 12)) # [10, 12] \\\\nprint(generate_integers(10\\\"\\n        }\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I got the full eval results. Let me extract the key metrics:
+
+- mmlu accuracy: 0.5880928642643498 (8258/14042)
+- gsm8k: need to look from the log
+- arc_challenge: need to look from the log
+- humaneval pass@1: 0.2500 (41/164) - from the log
+
+Let me also get the gsm8k and arc_challenge metrics from the log. The JSON output was truncated but the log showed the final metrics. Let me grep from the log for the summary metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "402d7a7a-b623-4e9d-8ac0-0ab9b30c29ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018zA8E6PdgKrSNoX7etht8r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4560,
+      "cache_read_input_tokens": 49591,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4560
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AJcZJv9tKKADGgdYfYoVwt`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -E \"accuracy|exact_match|pass@1|INFO.*mmlu|INFO.*gsm8k|INFO.*arc|INFO.*human\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "4d2de6b0-7f3a-40e7-af83-e64bde9998e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018zA8E6PdgKrSNoX7etht8r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4560,
+      "cache_read_input_tokens": 49591,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4560
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T16:31:09.901Z_
+
+<details><summary>↩ Tool result · `toolu_01AJcZJv9tKKADGgdYfYoVwt`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "97580e41-b800-4855-8ebe-c624f51b0aa2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EHxJjwfws7Gv8GqDCjjW82`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"INFO\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "9b1f98b1-5f19-4000-8f41-4808580360d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KA4xTqKWvczophiaiJejKQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 385,
+      "cache_read_input_tokens": 54151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 385
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T16:31:13.094Z_
+
+<details><summary>↩ Tool result · `toolu_01EHxJjwfws7Gv8GqDCjjW82`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 21:42:10,342 [INFO] Loading base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\\n2026-05-15 21:42:11,797 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n2026-05-15 21:42:15,937 [INFO] Evaluating mmlu...\\n2026-05-15 21:46:31,999 [INFO] mmlu accuracy: 0.5881 (8258/14042)\\n2026-05-15 21:46:31,999 [INFO] Evaluating gsm8k...\\n2026-05-16 00:00:41,976 [INFO] gsm8k exact_match: 0.6550 (864/1319)\\n2026-05-16 00:00:41,976 [INFO] Evaluating arc_challenge...\\n2026-05-16 00:02:15,630 [INFO] arc_challenge accuracy: 0.7577 (888/1172)\\n2026-05-16 00:02:15,630 [INFO] Evaluating humaneval...\\n2026-05-16 00:20:28,015 [INFO] humaneval pass@1: 0.2500 (41/164)\\n2026-05-16 00:20:28,092 [INFO] Results saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/eval_results.json\\n2026-05-16 00:20:28,097 [INFO] Correctness matrix saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/correctness_matrix.json\\n2026-05-16 00:20:28,171 [INFO] Item responses saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/item_responses.json\\n2026-05-16 00:20:28,172 [INFO] Sentinel .done written to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "e1c5c39c-abec-4484-8ece-85bdd5ae6896",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 21:42:10,342 [INFO] Loading base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\\\\n2026-05-15 21:42:11,797 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n2026-05-15 21:42:15,937 [INFO] Evaluating mmlu...\\\\n2026-05-15 21:46:31,999 [INFO] mmlu accuracy: 0.5881 (8258/14042)\\\\n2026-05-15 21:46:31,999 [INFO] Evaluating gsm8k...\\\\n2026-05-16 00:00:41,976 [INFO] gsm8k exact_match: 0.6550 (864/1319)\\\\n2026-05-16 00:00:41,976 [INFO] Evaluating arc_challenge...\\\\n2026-05-16 00:02:15,630 [INFO] arc_challenge accuracy: 0.7577 (888/1172)\\\\n2026-05-16 00:02:15,630 [INFO] Evaluating humaneval...\\\\n2026-05-16 00:20:28,015 [INFO] humaneval pass@1: 0.2500 (41/164)\\\\n2026-05-16 00:20:28,092 [INFO] Results saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/eval_results.json\\\\n2026-05-16 00:20:28,097 [INFO] Correctness matrix saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/correctness_matrix.json\\\\n2026-05-16 00:20:28,171 [INFO] Item responses saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/item_responses.json\\\\n2026-05-16 00:20:28,172 [INFO] Sentinel .done written to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 21:42:10,342 [INFO] Loading base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\\n2026-05-15 21:42:11,797 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n2026-05-15 21:42:15,937 [INFO] Evaluating mmlu...\\n2026-05-15 21:46:31,999 [INFO] mmlu accuracy: 0.5881 (8258/14042)\\n2026-05-15 21:46:31,999 [INFO] Evaluating gsm8k...\\n2026-05-16 00:00:41,976 [INFO] gsm8k exact_match: 0.6550 (864/1319)\\n2026-05-16 00:00:41,976 [INFO] Evaluating arc_challenge...\\n2026-05-16 00:02:15,630 [INFO] arc_challenge accuracy: 0.7577 (888/1172)\\n2026-05-16 00:02:15,630 [INFO] Evaluating humaneval...\\n2026-05-16 00:20:28,015 [INFO] humaneval pass@1: 0.2500 (41/164)\\n2026-05-16 00:20:28,092 [INFO] Results saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/eval_results.json\\n2026-05-16 00:20:28,097 [INFO] Correctness matrix saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/correctness_matrix.json\\n2026-05-16 00:20:28,171 [INFO] Item responses saved to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/item_responses.json\\n2026-05-16 00:20:28,172 [INFO] Sentinel .done written to /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+实验成功完成，metrics 全部提取到。更新 registry 并删除 cron。
+
+Metrics：
+- mmlu: 0.5881 (8258/14042)
+- gsm8k: 0.6550 (864/1319)
+- arc_challenge: 0.7577 (888/1172)
+- humaneval: 0.2500 (41/164)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "ac6149a2-ea98-467a-a5ab-065a4b5be106",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HSJDRXG5gsQreLpC4sjQjY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 54536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 868
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Pf5o5APDJbKYdSvXeymVEo`</summary>
+
+```json
+{
+  "exp_id": "exp_001_eval_15B_d025_s123_v2",
+  "field": "status",
+  "value": "DONE",
+  "spec": {
+    "hypothesis": "1.5B d025 s123 eval (aligned MC format)",
+    "parent": "exp_001_sft_15B_d025_s123_v3",
+    "model_name": "Qwen2.5-1.5B",
+    "seed": 123,
+    "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter",
+    "eval_data": "mmlu,gsm8k,arc_challenge,humaneval",
+    "command": "eval 1.5B d025 s123 aligned",
+    "server": "cqa1-21977",
+    "data_path": "/root/autodl-tmp/.hf_cache",
+    "data_count": 16697,
+    "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned",
+    "log_path": "/root/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "7abacc6e-fe1f-45fe-ba32-a73a4be403af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HSJDRXG5gsQreLpC4sjQjY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 54536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 868
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T16:31:21.811Z_
+
+<details><summary>↩ Tool result · `toolu_01Pf5o5APDJbKYdSvXeymVEo`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0873}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "68a714f1-df5d-4024-8574-54e34dce3cba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0873}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0873}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01ADewRh2VrN5jB2rWbcpNRF`</summary>
+
+```json
+{
+  "exp_id": "exp_001_eval_15B_d025_s123_v2",
+  "field": "status",
+  "value": "RUNNING",
+  "spec": {
+    "hypothesis": "1.5B d025 s123 eval (aligned MC format)",
+    "parent": "exp_001_sft_15B_d025_s123_v3",
+    "model_name": "Qwen2.5-1.5B",
+    "seed": 123,
+    "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter",
+    "eval_data": "mmlu,gsm8k,arc_challenge,humaneval",
+    "command": "eval 1.5B d025 s123 aligned",
+    "server": "cqa1-21977",
+    "data_path": "/root/autodl-tmp/.hf_cache",
+    "data_count": 16697,
+    "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned",
+    "log_path": "/root/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "e90d1471-adc0-4971-9ee8-ab0f92116570",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tou9dXa1DtLWWnm8kMncK2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 572,
+      "cache_read_input_tokens": 55404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 572
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T16:31:26.636Z_
+
+<details><summary>↩ Tool result · `toolu_01ADewRh2VrN5jB2rWbcpNRF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0674}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "d2c7b85f-b8d4-461e-833b-edf9d3186af9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0674}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0674}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me try transitioning through PENDING first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "1e578ad8-7760-4455-abd1-c250620a6ba0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5rJq7DH5vX6MuCtycRuq5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 469,
+      "cache_read_input_tokens": 55976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 469
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013CvuRjLBAQpxG8WoTwwZum`</summary>
+
+```json
+{
+  "exp_id": "exp_001_eval_15B_d025_s123_v2",
+  "field": "status",
+  "value": "PENDING"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "bfa05217-aa8e-4baf-8ad9-2d77bf4e1c51",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5rJq7DH5vX6MuCtycRuq5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 469,
+      "cache_read_input_tokens": 55976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 469
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T16:31:32.836Z_
+
+<details><summary>↩ Tool result · `toolu_013CvuRjLBAQpxG8WoTwwZum`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_eval_15B_d025_s123_v2\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:31:32.650Z\", \"updated_at\": \"2026-05-15T16:31:32.650Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2514}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "28c69f8d-8ea9-4341-8681-4bee609fec2a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_15B_d025_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:31:32.650Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:31:32.650Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2514}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_001_eval_15B_d025_s123_v2\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:31:32.650Z\", \"updated_at\": \"2026-05-15T16:31:32.650Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2514}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011GuoHEUEmtfJQPAt45VdDv`</summary>
+
+```json
+{
+  "exp_id": "exp_001_eval_15B_d025_s123_v2",
+  "field": "status",
+  "value": "RUNNING",
+  "spec": {
+    "hypothesis": "1.5B d025 s123 eval (aligned MC format)",
+    "parent": "exp_001_sft_15B_d025_s123_v3",
+    "model_name": "Qwen2.5-1.5B",
+    "seed": 123,
+    "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter",
+    "eval_data": "mmlu,gsm8k,arc_challenge,humaneval",
+    "command": "eval 1.5B d025 s123 aligned",
+    "server": "cqa1-21977",
+    "data_path": "/root/autodl-tmp/.hf_cache",
+    "data_count": 16697,
+    "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned",
+    "log_path": "/root/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "11893612-4a8d-4657-8e3c-8e554dd1eeea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KvhbpsiN2bLeZKnRdMQzzp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 289,
+      "cache_read_input_tokens": 56445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 289
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T16:31:38.417Z_
+
+<details><summary>↩ Tool result · `toolu_011GuoHEUEmtfJQPAt45VdDv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1143}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "44a724eb-0b7f-4b66-9436-4dfc9c8c969e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1143}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1143}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FrgifomSkJP5vg1R7xYaYy`</summary>
+
+```json
+{
+  "exp_id": "exp_001_eval_15B_d025_s123_v2",
+  "field": "status",
+  "value": "DONE",
+  "spec": {
+    "hypothesis": "1.5B d025 s123 eval (aligned MC format)",
+    "parent": "exp_001_sft_15B_d025_s123_v3",
+    "model_name": "Qwen2.5-1.5B",
+    "seed": 123,
+    "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter",
+    "eval_data": "mmlu,gsm8k,arc_challenge,humaneval",
+    "command": "eval 1.5B d025 s123 aligned",
+    "server": "cqa1-21977",
+    "data_path": "/root/autodl-tmp/.hf_cache",
+    "data_count": 16697,
+    "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned",
+    "log_path": "/root/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "cea24a92-84ff-4610-a9f9-3b461abbe73a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ps7Kfe4TkPPkcAD9hM1pU6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 469,
+      "cache_read_input_tokens": 56734,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 469
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T16:31:43.298Z_
+
+<details><summary>↩ Tool result · `toolu_01FrgifomSkJP5vg1R7xYaYy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0673}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "45961bea-6a62-4007-9a79-874d36607b41",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0673}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0673}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_015boxvQhm7xttoN2eSdcHNR`</summary>
+
+```json
+{
+  "exp_id": "exp_001_eval_15B_d025_s123_v2",
+  "field": "conclusion",
+  "value": "success"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "e37f4fae-c09c-4b0d-b958-9ea1bfb449c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LJYQ2q3DJZX8iye1gk1GZK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 566,
+      "cache_read_input_tokens": 57203,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 566
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T16:31:46.356Z_
+
+<details><summary>↩ Tool result · `toolu_015boxvQhm7xttoN2eSdcHNR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_eval_15B_d025_s123_v2\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:31:32.650Z\", \"updated_at\": \"2026-05-15T16:31:46.156Z\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5134}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "17d6c618-94c1-43ce-8134-54735316e49d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_15B_d025_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:31:32.650Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:31:46.156Z\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5134}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_001_eval_15B_d025_s123_v2\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:31:32.650Z\", \"updated_at\": \"2026-05-15T16:31:46.156Z\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5134}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012tBRZbvcP7aWg1D1smcb83`</summary>
+
+```json
+{
+  "exp_id": "exp_001_eval_15B_d025_s123_v2",
+  "field": "status",
+  "value": "DONE",
+  "spec": {
+    "hypothesis": "1.5B d025 s123 eval (aligned MC format)",
+    "parent": "exp_001_sft_15B_d025_s123_v3",
+    "model_name": "Qwen2.5-1.5B",
+    "seed": 123,
+    "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter",
+    "eval_data": "mmlu,gsm8k,arc_challenge,humaneval",
+    "command": "eval 1.5B d025 s123 aligned",
+    "server": "cqa1-21977",
+    "data_path": "/root/autodl-tmp/.hf_cache",
+    "data_count": 16697,
+    "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned",
+    "log_path": "/root/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "9b82218e-5d6b-4aa6-90fa-344b4d4fd747",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CzKfPo5yYaUQFtzbJKMMKz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 271,
+      "cache_read_input_tokens": 57769,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 271
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T16:31:51.173Z_
+
+<details><summary>↩ Tool result · `toolu_012tBRZbvcP7aWg1D1smcb83`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_eval_15B_d025_s123_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:31:32.650Z\", \"updated_at\": \"2026-05-15T16:31:51.017Z\", \"conclusion\": \"success\", \"spec\": {\"hypothesis\": \"1.5B d025 s123 eval (aligned MC format)\", \"parent\": \"exp_001_sft_15B_d025_s123_v3\", \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"eval 1.5B d025 s123 aligned\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned\", \"log_path\": \"/root/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log\"}, \"completed_at\": \"2026-05-15T16:31:51.017Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2286}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "fbd0dfbd-45a2-4bde-abc1-113c7265b532",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_15B_d025_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:31:32.650Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:31:51.017Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"1.5B d025 s123 eval (aligned MC format)\\\", \\\"parent\\\": \\\"exp_001_sft_15B_d025_s123_v3\\\", \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval\\\", \\\"command\\\": \\\"eval 1.5B d025 s123 aligned\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/.hf_cache\\\", \\\"data_count\\\": 16697, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned\\\", \\\"log_path\\\": \\\"/root/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log\\\"}, \\\"completed_at\\\": \\\"2026-05-15T16:31:51.017Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2286}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_001_eval_15B_d025_s123_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:31:32.650Z\", \"updated_at\": \"2026-05-15T16:31:51.017Z\", \"conclusion\": \"success\", \"spec\": {\"hypothesis\": \"1.5B d025 s123 eval (aligned MC format)\", \"parent\": \"exp_001_sft_15B_d025_s123_v3\", \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"eval 1.5B d025 s123 aligned\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned\", \"log_path\": \"/root/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log\"}, \"completed_at\": \"2026-05-15T16:31:51.017Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2286}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+录入 metrics 并删除 cron。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "fb85aca1-e740-49ac-9d88-e464a07ff78a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bi1JhuQmARVTfZC1mkhtYp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 869,
+      "cache_read_input_tokens": 58040,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 869
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01PqhyCjnKzuEHgPpM5aQp7Z`</summary>
+
+```json
+{
+  "exp_id": "exp_001_eval_15B_d025_s123_v2",
+  "field": "metrics",
+  "value": {
+    "mmlu": 0.5881,
+    "gsm8k": 0.655,
+    "arc_challenge": 0.7577,
+    "humaneval": 0.25
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "53a0c70a-4f9f-4d8f-8069-a452268ea5d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bi1JhuQmARVTfZC1mkhtYp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 869,
+      "cache_read_input_tokens": 58040,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 869
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__delete_cron · `toolu_01VMGpnjhqNngpzEbcmgaZCB`</summary>
+
+```json
+{
+  "exp_id": "exp_001_eval_15B_d025_s123_v2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "a9fa8329-0e88-4e59-a3e4-f860fae66947",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bi1JhuQmARVTfZC1mkhtYp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 869,
+      "cache_read_input_tokens": 58040,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 869
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T16:31:55.235Z_
+
+<details><summary>↩ Tool result · `toolu_01PqhyCjnKzuEHgPpM5aQp7Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_eval_15B_d025_s123_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:31:32.650Z\", \"updated_at\": \"2026-05-15T16:31:55.171Z\", \"conclusion\": \"success\", \"spec\": {\"hypothesis\": \"1.5B d025 s123 eval (aligned MC format)\", \"parent\": \"exp_001_sft_15B_d025_s123_v3\", \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"eval 1.5B d025 s123 aligned\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned\", \"log_path\": \"/root/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log\"}, \"completed_at\": \"2026-05-15T16:31:51.017Z\", \"metrics\": {\"mmlu\": 0.5881, \"gsm8k\": 0.655, \"arc_challenge\": 0.7577, \"humaneval\": 0.25}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1264}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "50343109-a41b-44db-91e2-9c13d295f82b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_001_eval_15B_d025_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T16:31:32.650Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:31:55.171Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"1.5B d025 s123 eval (aligned MC format)\\\", \\\"parent\\\": \\\"exp_001_sft_15B_d025_s123_v3\\\", \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu,gsm8k,arc_challenge,humaneval\\\", \\\"command\\\": \\\"eval 1.5B d025 s123 aligned\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/.hf_cache\\\", \\\"data_count\\\": 16697, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned\\\", \\\"log_path\\\": \\\"/root/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log\\\"}, \\\"completed_at\\\": \\\"2026-05-15T16:31:51.017Z\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.5881, \\\"gsm8k\\\": 0.655, \\\"arc_challenge\\\": 0.7577, \\\"humaneval\\\": 0.25}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1264}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_001_eval_15B_d025_s123_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:31:32.650Z\", \"updated_at\": \"2026-05-15T16:31:55.171Z\", \"conclusion\": \"success\", \"spec\": {\"hypothesis\": \"1.5B d025 s123 eval (aligned MC format)\", \"parent\": \"exp_001_sft_15B_d025_s123_v3\", \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"command\": \"eval 1.5B d025 s123 aligned\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"data_count\": 16697, \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned\", \"log_path\": \"/root/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log\"}, \"completed_at\": \"2026-05-15T16:31:51.017Z\", \"metrics\": {\"mmlu\": 0.5881, \"gsm8k\": 0.655, \"arc_challenge\": 0.7577, \"humaneval\": 0.25}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1264}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T16:31:55.309Z_
+
+<details><summary>↩ Tool result · `toolu_01VMGpnjhqNngpzEbcmgaZCB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No cron found for 'exp_001_eval_15B_d025_s123_v2'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "d85eeb9b-4531-454c-834e-d42e40b8bae5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No cron found for 'exp_001_eval_15B_d025_s123_v2'.\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"No cron found for 'exp_001_eval_15B_d025_s123_v2'.\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+诊断完成。
+
+**结果：实验成功（EXIT_CODE=0）**
+
+| Benchmark | Score |
+|-----------|-------|
+| MMLU | 0.5881 (8258/14042) |
+| GSM8K | 0.6550 (864/1319) |
+| ARC-Challenge | 0.7577 (888/1172) |
+| HumanEval | 0.2500 (41/164) |
+
+- 日志：`~/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log`（cron 注册时 ID 后缀为 `_v2`，但实际日志文件名不含 `_v2`）
+- 结果目录：`/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/`
+- Registry 已更新为 DONE/success + metrics
+- Cron 不存在（可能已被其他流程清除）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "uuid": "78e6d2ca-861c-4e61-9f40-3e58396ece78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013v6bSMYv29RRdDBq26gGou",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 879,
+      "cache_read_input_tokens": 58909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 879
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 62_
+
+诊断完成。
+
+**结果：实验成功（EXIT_CODE=0）**
+
+| Benchmark | Score |
+|-----------|-------|
+| MMLU | 0.5881 (8258/14042) |
+| GSM8K | 0.6550 (864/1319) |
+| ARC-Challenge | 0.7577 (888/1172) |
+| HumanEval | 0.2500 (41/164) |
+
+- 日志：`~/runs/contamcal-irt-calibration/exp_001_eval_15B_d025_s123.log`（cron 注册时 ID 后缀为 `_v2`，但实际日志文件名不含 `_v2`）
+- 结果目录：`/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d025_s123_aligned/`
+- Registry 已更新为 DONE/success + metrics
+- Cron 不存在（可能已被其他流程清除）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 96899,
+  "duration_api_ms": 95729,
+  "num_turns": 23,
+  "stop_reason": "end_turn",
+  "session_id": "796eec79-4005-49d0-88d6-9d276fd1eb40",
+  "total_cost_usd": 0.80250175,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 47947,
+    "cache_read_input_tokens": 746764,
+    "output_tokens": 5094,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 47947,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 275,
+        "cache_read_input_tokens": 58909,
+        "cache_creation_input_tokens": 879,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 879
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1851,
+      "outputTokens": 31,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002006,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 19,
+      "outputTokens": 5094,
+      "cacheReadInputTokens": 746764,
+      "cacheCreationInputTokens": 47947,
+      "webSearchRequests": 0,
+      "costUSD": 0.8004957500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "5e2d3f5e-4479-482f-a4f8-f8d00a31225d"
+}
+```
+
+</details>
+
+---

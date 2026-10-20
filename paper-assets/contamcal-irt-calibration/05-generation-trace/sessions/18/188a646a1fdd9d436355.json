@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "188a646a1fdd9d436355",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh phase2 sft data prep",
+  "task_key": "worker_ssh_phase2-sft-data-prep_20260513T201507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_phase2-sft-data-prep_20260513T201507_result.json",
+    "occurrence": 1,
+    "bytes": 1258,
+    "sha256": "e3f4b151d962f31c80d5253d62cc59cc0fd73859168aa32fb202c9ebfd3cb19c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报如下：\n\n---\n\n## Phase 2 SFT 数据准备结果\n\n### Dosage JSONL 文件\n\n| 文件 | 行数 | 大小 | 注入量 |\n|------|------|------|--------|\n| sft_dosage_000.jsonl | 50,000 | 89M | 0 (纯 SlimOrca) |\n| sft_dosage_005.jsonl | 50,124 | 89M | 124 (66 ARC + 58 GSM8K) |\n| sft_dosage_025.jsonl | 50,622 | 89M | 622 (302 ARC + 320 GSM8K) |\n| sft_dosage_050.jsonl | 51,245 | 89M | 1,245 (600 ARC + 645 GSM8K) |\n| sft_dosage_100.jsonl | 52,491 | 90M | 2,491 (1172 ARC + 1319 GSM8K) |\n\n### Contamination Labels\n每个 benchmark × dosage 组合各生成一个 label 文件（共 8 个），格式 `[0,1,...]`，长度 = benchmark 测试集大小。\n\n### QC 统计（per benchmark，论文报告用）\n| Benchmark | Total | QC Passed | Pass Rate |\n|-----------|-------|-----------|-----------|\n| ARC-Challenge | 1,172 | 697 | 59.47% |\n| GSM8K | 1,319 | 228 | 17.29% |\n\n**按 D010 决策：所有 paraphrases 均已使用（不过滤 QC），QC 统计仅保留在 metadata 中供论文报告。**\n\n### MMLU 状态\n仍在运行中（PID 204758，已运行 ~63min，进度 ~3%/439 batches）。MMLU 完成后需重新运行脚本加入 `--benchmarks arc_challenge,gsm8k,mmlu` 更新全部 dosage 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-phase2-sft-data-prep.md"
+}

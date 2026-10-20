@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ca881a8741cf241b499",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd olmo d005v2 analysis",
+  "task_key": "worker_ssh_westd-olmo-d005v2-analysis_20260519T060740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-olmo-d005v2-analysis_20260519T060740_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "5beadada3e9a6be75a70d0145a652201fdeda5c9e7cf4b37ab9a62a5ff55e792"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## OLMo-2-7B d005 v2 训练最终指标\n\n| 指标 | 值 |\n|---|---|\n| **train_loss** | 0.9506 |\n| **mean_token_accuracy** | 0.7808 |\n| **entropy** | 0.94 |\n| **total steps** | 3177 |\n| **epoch** | 1.0 |\n| **train_runtime** | 6636s (1h50m35s) |\n| **train_samples_per_second** | 7.66 |\n| **train_steps_per_second** | 0.479 |\n\n**状态确认**:\n- `.done` 文件存在 (May 19 13:48)\n- `adapter_model.safetensors` 完整，152.5 MB，位于 `lora_adapter/` 子目录（非 checkpoint 根目录）\n- EXIT_CODE=0，训练正常完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-olmo-d005v2-analysis.md"
+}

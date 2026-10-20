@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1350de748b732eb4985a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag sft d100 s42 checkpoint verify",
+  "task_key": "worker_diag_sft_d100_s42_checkpoint_verify_20260516T015846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_sft_d100_s42_checkpoint_verify_20260516T015846_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "ea73d0f53c306d77eedaef127bcc7fc723ed2c27a401482a1c5c176c9304dd7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n### exp_001_sft_3B_d100_s42_a32_v3 → **DONE (success)**\n- Checkpoint: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42_v3/lora_adapter/`\n- `lora_alpha=32`, `adapter_model.safetensors` = 114 MB\n- Train loss: 1.18, token accuracy: 0.72, 4159 steps, ~4.9h\n\n### exp_002_signals_05B_s123_batch → **DONE (failed)**\n- 脚本 `run_05B_s123_signals.sh` 不存在，EXIT_CODE=127，从未实际运行\n- GPU 1 当前空闲，无 PID"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-sft-d100-s42-checkpoint-verify.md"
+}

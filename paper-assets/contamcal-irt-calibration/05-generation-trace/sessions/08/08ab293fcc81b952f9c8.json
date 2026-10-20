@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08ab293fcc81b952f9c8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 d100 and s42 launch",
+  "task_key": "worker_ops_cqa1-d100-and-s42-launch_20260519T192445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-d100-and-s42-launch_20260519T192445_result.json",
+    "occurrence": 1,
+    "bytes": 114,
+    "sha256": "e2c942c9267931a20231e3632a950392fa2e99a7eb91f2b64cf74efdea5a3b85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d100 eval 正在跑（MMLU 33%, ~21 it/s），预计还需 ~8 分钟。4.5 分钟后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-d100-and-s42-launch.md"
+}

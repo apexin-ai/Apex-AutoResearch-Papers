@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2aa0ef37f601b0e31fa5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status and d000v3 prep",
+  "task_key": "worker_ops_gpu-status-and-d000v3-prep_20260515T200336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-and-d000v3-prep_20260515T200336_result.json",
+    "occurrence": 1,
+    "bytes": 3589,
+    "sha256": "dea5b8897c4d64566ecded87e85e0625316300b9be6003d3cd9b5efb8e3ac5d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整报告。\n\n---\n\n## Part 1: GPU 状态全面检查\n\n| GPU | PID(s) | VRAM | Util% | 任务 | 状态 |\n|-----|--------|------|-------|------|------|\n| **cuda:0** | 594494 | 17966 MiB | 31-35% | d100_a32_s123 SFT | 活跃，已运行 3h30m |\n| **cuda:1** | 593745 | 13332 MiB | 4-31% | d100_a32_s42 SFT v2 | 活跃，2998/4159 (72%)，ETA ~1h20m |\n| **cuda:2** | 622856, 623491 | 7064+6788 MiB | 97-98% | d005_s42 mmlu signals + d005_s123 gsm8k eval | 活跃计算中 |\n| **cuda:3** | 617202 | 7526 MiB | 57-64% | d000_s42 mmlu signals | 活跃，已运行 1h07m |\n| **cuda:4** | 622558, 623837 | 6882+6882 MiB | 91% | signals v5 (d025/d100 mmlu) + d025_s42 mmlu signals | 活跃计算中 |\n| **cuda:5** | 589763 | 17642 MiB | 26-59% | **d025_v3 SFT** | **3228/3384 (95.4%)，ETA ~10 min** |\n\n### 重点问题回答\n\n- **cuda:2**：之前 0% compute 的问题**已解决**，当前 97-98% utilization，两个进程同时活跃计算\n- **cuda:3**：PID 617202 确认活跃（57-64% util），在跑 d000_s42 mmlu 全部 signals\n- **cuda:5**：d025_v3 SFT 仍在运行，但 **95% 完成，约 10 分钟后释放**\n- **最先释放**：**cuda:5**，预计 ~10 分钟内\n\n### 释放顺序预估\n1. cuda:5 — ~10 min（d025_v3 SFT 即将完成）\n2. cuda:3 — ~30-60 min（d000 signals）\n3. cuda:2 — ~30-60 min（两个进程）\n4. cuda:0/1 — ~1h20m（d100 SFT 训练）\n5. cuda:4 — ~1-2h（signals v5 刚开始）\n\n---\n\n## Part 2: d000_v3 重训准备\n\n### 参数对比\n\n| 参数 | 失败的 d000_v3 | 新 d000_v3（标准配置） |\n|------|---------------|----------------------|\n| lr | 5e-5 ✓ | 5e-5 |\n| lora_alpha | **32** | **16** |\n| lora_r | 16 | 16 |\n| output_dir | Qwen2.5-3B_d000_a32_s42 | Qwen2.5-3B_d000_v4_s42 |\n| 失败原因 | cuda:4 双进程 OOM | 单 GPU 独占 |\n\n### 准备好的提交命令\n\n目标 GPU：**cuda:5**（等 d025_v3 完成后提交）\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=5 python /root/contamcal-irt-calibration/exp001/train_sft.py \\\n  --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B \\\n  --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl \\\n  --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v4_s42 \\\n  --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 \\\n  --lr 5e-5 --lora-alpha 16 --cache-dir /root/autodl-tmp/.hf_cache\n```\n\n**注意**：用 `d000_v4` 命名以避免与失败的 `d000_a32_s42`（alpha=32）冲突。当前没有空闲 GPU，需等 cuda:5 释放（~10 min）。需要提交前再次 `nvidia-smi` 确认 cuda:5 已空闲（C001/C002/C003）。\n\n---\n\n## Part 3: d005/gsm8k stalled 状态\n\n### 当前 d005_s42 signals 覆盖\n\n| Signal | mmlu | gsm8k | arc |\n|--------|------|-------|-----|\n| embedding | ✓ | ✓ | ✓ |\n| minkpp | ✓ | ✓ | ✓ |\n| selfcritique | ✗ | ✗ | ✓ |\n| merged | ✗ | ✗ | ✓ |\n\n**stalled 未完全解决**：selfcritique 和 merged 仍缺 mmlu 和 gsm8k。\n\n但现在 **PID 622856 正在 cuda:2 上跑 d005_s42 mmlu signals (all)**，应该会补上 selfcritique_mmlu → merged_mmlu。gsm8k selfcritique 仍需后续补算。\n\n同时 **PID 623491 在 cuda:2 跑 d005_s123 gsm8k eval rerun**（registry: exp_001_eval_3B_d005_s123_gsm8k），这是 D068 gap-fill 的一部分。\n\n**结论**：d005 stall 正在被 v5 和当前活跃进程部分修复，mmlu 部分预计本轮解决，gsm8k selfcritique 需要额外一轮提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-and-d000v3-prep.md"
+}

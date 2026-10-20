@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "076ec06736ad15d94a9d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis algo1 threshold heatmap c3",
+  "task_key": "worker_analysis_algo1-threshold-heatmap-c3_20260521T085541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_algo1-threshold-heatmap-c3_20260521T085541_result.json",
+    "occurrence": 1,
+    "bytes": 1272,
+    "sha256": "df7cb4e23e5edd1fba22fb6a89a5c1f7691cdec669cf89a569216f3c9d45a02f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具不可用，跳过注册。\n\n产出写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/threshold_sensitivity/algo1_threshold_heatmap.json`。\n\n**结果摘要**：\n\n| Family | Expected | 原始 30 组合 | 扩展 134 组合 | 最近 transition |\n|--------|----------|-------------|--------------|----------------|\n| Phi-4 | Immune | 30/30 (100%) | 110/134 (82%) | tau < 0.35 (0.35x default) |\n| Qwen2.5-14B | U-collapse | 30/30 (100%) | 134/134 (100%) | tau = 9.40 (9.4x default) |\n| Qwen2.5-7B | V-recovery | 30/30 (100%) | 97/134 (72%) | tau = 3.00 (3x default) |\n| Gemma-2-9B | Benefit | 30/30 (100%) | 119/134 (89%) | tau = 3.80 (3.8x default) |\n| OLMo-2-7B | Benefit-sat | 30/30 (100%) | 110/134 (82%) | tau = 3.25 (3.25x default) |\n\n**W9 可用的核心论据**：在合理参数范围 τ∈[0.5, 2.0]×σ∈[3.0, 7.0]（4× range for τ, 2.3× for σ）内，所有 5 个家族分类 **30/30 完全一致**。最近的 transition point（Qwen2.5-7B at τ=3.0）需要将 3pp 的准确率下降当作噪声处理——这在实践中不合理。分类稳定的根本原因是效应大小本身分离度很高（Phi-4 波动 < 0.4pp vs Qwen-14B 下降 9.4pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-algo1-threshold-heatmap-c3.md"
+}

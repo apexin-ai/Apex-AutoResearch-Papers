@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0",
+  "id": "23cdbe1f4c8364c355c8",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ssh cqa1 eval pipeline execute",
+  "task_key": "worker_ssh_cqa1-eval-pipeline-execute_20260519T061029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cqa1-eval-pipeline-execute_20260519T061029.log",
+    "occurrence": 1,
+    "bytes": 2182749,
+    "sha256": "23d495aeb47e45fbb86e5081cd1d1fff4c6fd076aea8c6b6f3af073549036b26"
+  },
+  "statistics": {
+    "messages": 1545,
+    "user_turns": 3,
+    "tool_calls": 651,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 3,
+      "assistant": 214,
+      "tool_call": 651,
+      "tool_result": 651,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 748,
+      "chunks": [
+        {
+          "path": "23cdbe1f4c8364c355c8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "23cdbe1f4c8364c355c8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "23cdbe1f4c8364c355c8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "23cdbe1f4c8364c355c8-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "23cdbe1f4c8364c355c8-part-0005.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 530,
+      "chunks": [
+        {
+          "path": "23cdbe1f4c8364c355c8-part-0005.json",
+          "message_count": 152
+        },
+        {
+          "path": "23cdbe1f4c8364c355c8-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "23cdbe1f4c8364c355c8-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "23cdbe1f4c8364c355c8-part-0008.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 227,
+      "chunks": [
+        {
+          "path": "23cdbe1f4c8364c355c8-part-0008.json",
+          "message_count": 162
+        },
+        {
+          "path": "23cdbe1f4c8364c355c8-part-0009.json",
+          "message_count": 65
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 40,
+      "chunks": [
+        {
+          "path": "23cdbe1f4c8364c355c8-part-0009.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-cqa1-eval-pipeline-execute.md"
+}

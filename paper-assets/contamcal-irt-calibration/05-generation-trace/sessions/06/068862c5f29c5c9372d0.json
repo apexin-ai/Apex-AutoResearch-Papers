@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "068862c5f29c5c9372d0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag olmo2 arc s42 completion",
+  "task_key": "worker_diag_olmo2-arc-s42-completion_20260520T180106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_olmo2-arc-s42-completion_20260520T180106_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "4c7af52ea6d9f3f30ca8d73604ed5e3b3c672bbde910ccb214924ea37d4592cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。Cron `eval_olmo2_arc_s42` 不存在（可能已被清理）。\n\n**汇总：OLMo-2 ARC eval_olmo2_arc_s42 — SUCCESS**\n\n| Dosage | s42 | s123 |\n|--------|-----|------|\n| d000 | 76.11% | 76.88% |\n| d005 | 76.62% | 77.22% |\n| d025 | 78.16% | 76.62% |\n| d050 | 79.61% | 79.18% |\n| d100 | 80.03% | 79.78% |\n\n- **s42 Δ = +3.92pp**, s123 Δ = +2.90pp\n- **双种子均值 Δ = +3.41pp (Benefit)**\n- 与 MMLU 三种子均值 +1.35pp 方向一致，ARC contamination effect 约 2.5× MMLU\n- s42 单调递增趋势比 s123 更干净（s123 在 d025 有回落，s42 没有）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-olmo2-arc-s42-completion.md"
+}

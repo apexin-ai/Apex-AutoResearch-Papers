@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06d83b40d27c506d4f40",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code eval 3B d005 s123",
+  "task_key": "worker_code_eval_3B_d005_s123_20260515T151021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_3B_d005_s123_20260515T151021_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "13daa118c6b39888370b0e4a36e08ca2fb7a60e631bd41e293ad2a4d01feabfa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**无法提交，cuda:2 上已有同类 eval 进程在运行。**\n\nPID 580698 的命令：\n```\npython /root/contamcal-irt-calibration/exp001/evaluate.py \\\n  --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B \\\n  --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter \\\n  --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s123_aligned \\\n  --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned\n```\n\n这就是 `exp_001_eval_3B_d005_s123` 要做的事——相同 adapter、相同 benchmarks、相同 output-dir 后缀。看起来这个 eval **已经在跑了**。\n\n根据约束 C001（目标 GPU 上有同类进程则不提交），我不提交。\n\n建议：确认这个进程是否就是之前提交的同一实验。如果是，只需将 registry 状态更新为 RUNNING 并关联即可。需要我查一下 registry 当前状态吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-3b-d005-s123.md"
+}

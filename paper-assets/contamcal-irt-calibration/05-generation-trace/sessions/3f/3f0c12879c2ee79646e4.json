@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f0c12879c2ee79646e4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis wait stratified irt final",
+  "task_key": "worker_analysis_wait-stratified-irt-final_20260515T140639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_wait-stratified-irt-final_20260515T140639_result.json",
+    "occurrence": 1,
+    "bytes": 216,
+    "sha256": "82df68cb38a7a142e494d898d446034ec32e68364794950c1f604016dcda61ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正在运行中：0.5B/gsm8k 的 chain 1 已完成（~4分钟），chain 2 在 5% warmup。MMLU 因模型数不足被跳过。预计还需较长时间，将在 ~4.5 分钟后再次检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-wait-stratified-irt-final.md"
+}

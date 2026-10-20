@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4546f95b23ef7a81063c",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_16_1778953570.md",
+  "task_key": "loop_16_1778953570",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778953570.md",
+    "occurrence": 1,
+    "bytes": 3434,
+    "sha256": "4a6d929e06298f64704e4ebdc024470bb468afd853bdbfd2fe99ad0283a1fac4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T17:46:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cqa1-21977 的 cuda:0~5（共6张 RTX 4090D），不得使用其他服务器/GPU\n- exp_006 系列 MMLU domain gamma 是 CPU-only 任务（Stan MCMC），不占 GPU 但吃内存，注意 OOM\n- MMLU domain gamma N=24 结果用于 D108 claim，paper 中 γ 值只能 claim pattern/ranking（PPP=0 导致绝对值不可信）\n- 距 EMNLP ARR May 25 仅 9 天，数据冻结窗口极紧，不能浪费 GPU 时间\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，工作目录 `/root/contamcal-irt-calibration/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据路径：`/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json`\n- exp006 输出：`/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/`\n- 活跃进程（reconcile 确认）：\n  - signals_05B_s123_v2: PID 760236, cuda:1\n  - exp_001_eval_3B_instruct_v2: PID 764449, cuda:3\n  - exp_001_eval_15B_instruct: PID 782625, cuda:5\n  - exp_002_signals_3B_d000_s123_cuda2: PID 784219, cuda:2（ROADMAP 中标为 1.5B d100）\n  - exp_001_eval_llama32_3B_d000_s42: PID 785949, cuda:4\n  - exp_006_pooled_irt_n25: PID 785832, CPU（miss 3/5，可能即将失败）\n\n### 3. 📊 当前状态\n刚收到 cron 回调：exp_006_mmlu_domain_gamma_n24_v3 (PID 781756) 进程异常退出，auto-resolved 为 failed。这是连续第二次失败（v2 也死了），原始实验只完成了 3/8 domains。\n\n**已派 Worker 诊断**：`worker_diagnose_exp_006_mmlu_domain_gamma_n24_v3_20260516T133716`（SSH 查 log、dmesg OOM、输出文件状态）。Worker 尚未回调。\n\n**同时注意**：exp_006_pooled_irt_n25 也出现 miss 3/5 信号（进程消失无 sentinel），很可能是同一根因（CPU 任务 OOM？服务器内存不足？）。\n\n**空闲 GPU**：cuda:0 未在跑任何东西（report.md 确认），属于\"分配了没跑\"状态 — 违反 L1 规则。ROADMAP 标 cuda:0 是 signals_15B_s123_batch (d025)，但 reconcile 未见。\n\n### 4. 📋 待办\n- Worker 诊断回调到达 → 根据根因决定：(a) OOM→减小 chains/samples 重跑；(b) 脚本 bug→修复后重跑；(c) 数据问题→修数据\n- exp_006_pooled_irt_n25 miss 5/5 触发失败 → 同样诊断处理\n- cuda:0 空闲确认 → 立即提交 ROADMAP 中待排任务（signals_15B_s123_batch d025 或其他 PREPARING 实验）\n- 3B d100 signals (cuda:1) 完成 → RRF 聚合 → pooled IRT (N≥16+)，这是论文核心 γ 数字\n- 所有 eval 完成 → 汇报 Director，推进 Paper Agent Full Draft\n\n### 5. 🎯 战略上下文\n- 核心发现 D108：MMLU aggregate γ≈0 掩盖了 domain heterogeneity（Simpson's paradox）。N=24 重跑是验证关键，但已连续两次失败——下一个\"你\"必须优先解决这个\n- D109：Aggregate pooled IRT (N=23) 已确认 contamination signal，但 domain-level 是论文升级 claim 的基础\n- D106：Scope expansion 加了 Llama-3.2-3B 跨族验证，cuda:4 正在跑 Llama eval\n- 易踩坑：v2/v3 的 log_path 可能指向同一文件（v2.log），诊断时要看文件时间戳区分哪次运行的输出\n- 易踩坑：exp_006_pooled_irt_n25 和 mmlu_domain_gamma 都是 CPU+Stan 任务，如果是系统级 OOM，两个会同时死——需要错峰或减少 chains\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778953570.md"
+}

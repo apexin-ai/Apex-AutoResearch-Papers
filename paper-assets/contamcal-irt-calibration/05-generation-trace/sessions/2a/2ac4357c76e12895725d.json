@@ -1,0 +1,248 @@
+{
+  "schema_version": "1.0",
+  "id": "2ac4357c76e12895725d",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "code aligned eval d025 script",
+  "task_key": "worker_code_aligned-eval-d025-script_20260514T084720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_aligned-eval-d025-script_20260514T084720.jsonl",
+    "occurrence": 1,
+    "bytes": 8411,
+    "sha256": "a482a60fb74c0f5acf0c6e4a9478bf6dbfdb4dddad5b2201115c0a280c862d61"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T08:48:15.050079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_aligned-eval-d025-script_20260514T084720",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T08:48:15.057712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_aligned-eval-d025-script_20260514T084720",
+            "tool": "ToolSearch",
+            "elapsed_ms": 7
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T08:48:15.058074+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_aligned-eval-d025-script_20260514T084720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat /root/contamcal-irt-calibration/exp001/run_aligned_eval_05B.sh"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T08:48:15.058310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_aligned-eval-d025-script_20260514T084720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "ls /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter/"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T08:48:15.058608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Aligned-format MC eval for 0.5B: original + paraphrase\\\\n# Usage: CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_05B.sh [original|paraphrase|both]\\\\nset -euo pipefail\\\\n\\\\nMODE=${1:-both}\\\\nshift 2>/dev/null || true\\\\n\\\\n# AutoDL env\\\\nsource /etc/network_turbo 2>/dev/null || true\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\n\\\\nBASE=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\nPARA_DIR=/root/autodl-tmp/exp001/paraphrases\\\\nBENCHMARKS=\\\\\\\"mmlu gsm8k arc_challenge humaneval\\\\\\\"\\\\nSCRIPT_DIR=$(cd \\\\\\\"$(dirname \\\\\\\"$0\\\\\\\")\\\\\\\" && pwd)\\\\n\\\\nfor DOSAGE in d000 d005 d100; do\\\\n  ADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_${DOSAGE}_s42/lora_adapter\\\\n\\\\n  if [ ! -d \\\\\\\"$ADAPTER\\\\\\\" ]; then\\\\n    echo \\\\\\\"WARN: adapter not found: $ADAPTER, skipping\\\\\\\"\\\\n    continue\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"original\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_aligned\\\\n    echo \\\\\\\"=== [original] ${DOSAGE} -> ${OUT} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT\\\\\\\" \\\\\\\\\\\\n      --benchmarks $BENCHMARKS \\\\\\\\\\\\n      --mc-format aligned \\\\\\\\\\\\n      \\\\\\\"$@\\\\\\\"\\\\n  fi\\\\n\\\\n  if [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"paraphrase\\\\\\\" ] || [ \\\\\\\"$MODE\\\\\\\" = \\\\\\\"both\\\\\\\" ]; then\\\\n    OUT_PARA=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_para_aligned\\\\n    echo \\\\\\\"=== [paraphrase] ${DOSAGE} -> ${OUT_PARA} ===\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT_DIR/evaluate.py\\\\\\\" \\\\\\\\\\\\n      --model-path \\\\\\\"$BASE\\\\\\\" \\\\\\\\\\\\n      --adapter-path \\\\\\\"$ADAPTER\\\\\\\" \\\\\\\\\\\\n      --paraphrase-dir \\\\\\\"$PARA_DIR\\\\\\\" \\\\\\\\\\\\n      --out\n…[truncated 288 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_aligned-eval-d025-script_20260514T084720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T08:48:15.058872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-3384\\\\nmerges.txt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_aligned-eval-d025-script_20260514T084720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T08:48:15.059137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_aligned-eval-d025-script_20260514T084720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "cat > /root/contamcal-irt-calibration/exp001/run_aligned_eval_05B_d025.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# Aligned-format MC eval for 0.5B d025 only\n# Usage: CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_05B_d025.sh [original|paraphrase|both]\nset -euo pipefail\n\nMODE=${1:-both}\nshift 2>/dev/null || true\n\n# AutoDL env\nsource /etc/network_turbo 2>/dev/null || true\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n\nBASE=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\nPARA_DIR=/root/autodl-tmp/exp001/paraphrases\nBENCHMARKS=\"mmlu gsm8k arc_challenge humaneval\"\nSCRIPT_DIR=$(cd \"$(dirname \"$0\")\" && pwd)\n\nDOSAGE=d025\nADAPTER=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_${DOSAGE}_s42/lora_adapter\n\nif [ ! -d \"$ADAPTER\" ]; then\n  echo \"ERROR: adapter not found: $ADAPTER\"\n  exit 1\nfi\n\nif [ \"$MODE\" = \"original\" ] || [ \"$MODE\" = \"both\" ]; then\n  OUT=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_aligned\n  echo \"=== [original] ${DOSAGE} -> ${OUT} ===\"\n  python \"$SCRIPT_DIR/evaluate.py\" \\\n    --model-path \"$BASE\" \\\n    --adapter-path \"$ADAPTER\" \\\n    --output-dir \"$OUT\" \\\n    --benchmarks $BENCHMARKS \\\n    --mc-format aligned \\\n    \"$@\"\nfi\n\nif [ \"$MODE\" = \"paraphrase\" ] || [ \"$MODE\" = \"both\" ]; then\n  OUT_PARA=/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_${DOSAGE}_s42_para_aligned\n  echo \"=== [paraphrase] ${DOSAGE} -> ${OUT_PARA} ===\"\n  python \"$SCRIPT_DIR/evaluate.py\" \\\n    --model-path \"$BASE\" \\\n    --adapter-path \"$ADAPTER\" \\\n    --paraphrase-dir \"$PARA_DIR\" \\\n    --output-dir \"$OUT_PARA\" \\\n    --benchmarks $BENCHMARKS \\\n    --mc-format aligned \\\n    \"$@\"\nfi\n\necho \"0.5B d025 aligned eval done.\"\nSCRIPT_EOF\nchmod +x /root/contamcal-irt-calibration/exp001/run_aligned_eval_05B_d025.sh"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T08:48:15.063782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_aligned-eval-d025-script_20260514T084720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 4
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T08:48:15.064087+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_aligned-eval-d025-script_20260514T084720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-21977",
+              "command": "bash -n /root/contamcal-irt-calibration/exp001/run_aligned_eval_05B_d025.sh && echo \"SYNTAX_OK\""
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T08:48:15.064308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_aligned-eval-d025-script_20260514T084720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T08:48:15.064577+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **脚本路径**: `/root/contamcal-irt-calibration/exp001/run_aligned_eval_05B_d025.sh`\n- **语法检查**: 通过\n- **Checkpoint**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter/` 已确认存在\n- **用法**: `CUDA_VISIBLE_DEVICES=X bash run_aligned_eval_05B_d025.sh [original|paraphrase|both]`\n- **输出目录**: `Qwen2.5-0.5B_d025_s42_aligned` / `Qwen2.5-0.5B_d025_s42_para_aligned`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_aligned-eval-d025-script_20260514T084720"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/code-aligned-eval-d025-script.md"
+}

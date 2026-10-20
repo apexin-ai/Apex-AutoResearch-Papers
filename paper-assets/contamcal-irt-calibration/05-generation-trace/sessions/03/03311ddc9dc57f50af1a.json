@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03311ddc9dc57f50af1a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd training progress v2",
+  "task_key": "worker_ops_westd-training-progress-v2_20260519T204920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-training-progress-v2_20260519T204920_result.json",
+    "occurrence": 1,
+    "bytes": 1636,
+    "sha256": "4e1c2fe66ec49721f7a9889be5762ecfabcdddc698966299baf358ba5fad434e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd (cqa1-21977) 状态汇总\n\n### GPU 状态\n| GPU | 型号 | 利用率 | 显存 | 当前任务 |\n|-----|------|--------|------|---------|\n| 0 | RTX 4090 D | 100% | 21255/24564 MiB | **eval**（非训练） |\n\n注意：这台服务器只有 **1 张 4090 D**，不是 4 卡。\n\n### 当前进程 (PID 280393)\n正在跑 `evaluate.py`：\n- 模型：**Qwen2.5-7B_d050_s42**\n- Benchmarks：MMLU + ARC_Challenge（`--mc-format aligned`）\n- 进度：MMLU 结果已写出，ARC_Challenge 可能还在跑\n\n### 已完成的 Checkpoint（训练全部完成）\n\n| Family | Dosages | Seeds | 数量 |\n|--------|---------|-------|------|\n| Qwen2.5-0.5B | d000/d005/d025/d100 | s42, s123 | 8 |\n| Qwen2.5-1.5B | d000/d005/d025/d100 | s42, s123 | 8 |\n| Qwen2.5-3B | d000/d005/d025/d100 | s42, s123 + v3/a32 变体 | ~11 |\n| Llama-3.2-3B | d000/d005/d025/d100 | s42 only | 4 |\n| Qwen2.5-7B | d000/d005/d025/d050/d100 | s42, s123 | 10 |\n| Qwen2.5-14B | d000/d005 | s42 only | 2 |\n| gemma-2-9b | d000/d005/d025/d050 | s42 only | 4 |\n| **phi-4** | — | — | **无** |\n| **OLMo-2-7B** | — | — | **无** |\n\n### Eval 进度 (eval_results_v2, Qwen2.5-7B)\n\n| 配置 | 状态 |\n|------|------|\n| qwen7b s123 × 5 dosages | ✅ 全部完成 |\n| qwen7b s42_v2: d000/d005/d025 | ✅ 完成 |\n| qwen7b s42_v2: **d050** | 🔄 进行中（MMLU done, ARC running） |\n| qwen7b s42_v2: d100 | ⏳ 待跑 |\n\nphi-4、OLMo-2-7B、gemma-2-9b、Qwen2.5-14B 的 checkpoint 在这台服务器上不存在或尚未开始 eval。Qwen2.5-14B 只有 d000/d005 两个 dosage 的 s42 checkpoint，缺 d025/d050/d100。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-training-progress-v2.md"
+}

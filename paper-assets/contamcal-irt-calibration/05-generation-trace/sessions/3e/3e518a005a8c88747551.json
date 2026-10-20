@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "3e518a005a8c88747551",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops c6 oracle exposure ablation",
+  "task_key": "worker_ops_c6_oracle_exposure_ablation_20260517T145133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c6_oracle_exposure_ablation_20260517T145133.log",
+    "occurrence": 1,
+    "bytes": 1051328,
+    "sha256": "eaa104e0a4bac7dffb883d3ac495cba9f129e61f6f5c5efcfa71d174df0a3aeb"
+  },
+  "statistics": {
+    "messages": 624,
+    "user_turns": 0,
+    "tool_calls": 253,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 114,
+      "tool_call": 253,
+      "tool_result": 253,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 624,
+      "chunks": [
+        {
+          "path": "3e518a005a8c88747551-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e518a005a8c88747551-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e518a005a8c88747551-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e518a005a8c88747551-part-0004.json",
+          "message_count": 84
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-c6-oracle-exposure-ablation.md"
+}

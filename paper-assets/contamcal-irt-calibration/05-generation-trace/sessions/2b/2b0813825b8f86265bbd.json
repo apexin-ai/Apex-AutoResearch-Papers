@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2b0813825b8f86265bbd",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "run arc 2pl gamma 05b 15b",
+  "task_key": "worker_run_arc_2pl_gamma_05b_15b_20260516T091149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_arc_2pl_gamma_05b_15b_20260516T091149.log",
+    "occurrence": 1,
+    "bytes": 551747,
+    "sha256": "83a85248a273e75bb474f79d7d976bacb8a911d50968ae89dfa9207933681e52"
+  },
+  "statistics": {
+    "messages": 245,
+    "user_turns": 0,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 93,
+      "tool_result": 93,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 245,
+      "chunks": [
+        {
+          "path": "2b0813825b8f86265bbd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b0813825b8f86265bbd-part-0002.json",
+          "message_count": 65
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-arc-2pl-gamma-05b-15b.md"
+}

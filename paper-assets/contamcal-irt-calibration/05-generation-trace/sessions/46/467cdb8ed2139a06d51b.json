@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "467cdb8ed2139a06d51b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 002 signal 3B",
+  "task_key": "worker_code_exp-002-signal-3B_20260515T144426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-002-signal-3B_20260515T144426_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "adada713a7aca1f0fb2fa32cc99ddf4d03c4c6da6342a749b8be5dbb05df327b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已成功启动 `exp_002_signals_3B`，日志确认：\n\n- **Model**: Qwen2.5-3B\n- **Dosages**: d000, d005, d025, d100（4 个）\n- **Benchmarks**: mmlu, gsm8k, arc_challenge\n- **Tasks**: 12 个（4×3），0 skipped\n- **Signals**: embedding, minkpp, selfcritique（ConStat 未启用 — 3B 的 eval_results 路径不匹配 `{model}_{dosage}_s42` 命名约定，有 `_aligned`/`_v2` 后缀）\n- **PID**: 576030，tmux session `exp_002_signals_3B`\n- 第 1/12 个任务（d000/mmlu）已开始执行\n\nGPU 显存尚未分配是正常的，模型加载需要几秒。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-002-signal-3b.md"
+}

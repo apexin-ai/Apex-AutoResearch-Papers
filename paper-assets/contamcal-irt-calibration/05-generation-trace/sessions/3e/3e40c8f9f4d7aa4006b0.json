@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e40c8f9f4d7aa4006b0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260515T000646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260515T000646_result.json",
+    "occurrence": 1,
+    "bytes": 1335,
+    "sha256": "1fc3d62c6f6d0d903b84f537a789e362645ad1c5361cd547c6b20a1c965a6014"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 使用情况\n\n| GPU | 显存占用 | 利用率 | PID | 任务 |\n|-----|---------|--------|-----|------|\n| **0** | 7539/24564 MiB | 89% | 470062 | evaluate.py 3B d100_v2_s42_para_aligned |\n| **1** | 21803/24564 MiB | 49% | 464138 | SFT 0.5B d005 s123 |\n| **2** | 14723/24564 MiB | 37% | 435420 | SFT 1.5B d100 s123 |\n| **3** | 17637/24564 MiB | 46% | 466755 | train_sft.py 3B d025 s42 |\n| **4** | 13583/24564 MiB | 65% | 441570 | eval 3B d000 v2 aligned |\n| **5** | 0/24564 MiB | 0% | — | **空闲** |\n\n### 关键发现\n\n1. **空闲 GPU: 只有 cuda:5**。cuda:0 并非空闲，正在跑 3B d100_v2 para_aligned 评估（新任务，report.md 未记录）。cuda:3 也不空闲。\n\n2. **exp_001_sft_d025_3B_v2 (PID 466755) 在 cuda:3 上**，参数: `--model-name Qwen2.5-3B --data-path sft_dosage_025.jsonl --output-dir Qwen2.5-3B_d025_s42 --gpu 3 --batch-size 1 --grad-accum 16`\n\n3. **CPU-only 任务**:\n   - CmdStan IRT 采样活跃: 4pl diagnose (PID 470514) + 2pl_gamma 4 chains (PID 470528-470533)\n   - exp-004 v3 PID 599562 **不存在**，已结束\n\n4. **与 report.md 差异**: cuda:0 上跑了一个新的评估任务 (3B d100_v2_s42_para_aligned)，report 中未记录；cuda:1 的 PID 是 464138（非 464137，可能是子进程）；cuda:2 的 PID 是 435420（非 435415）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "342bf541b3e6c7e1380a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis irt data prep v3",
+  "task_key": "worker_analysis_irt-data-prep-v3_20260519T213819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_irt-data-prep-v3_20260519T213819_result.json",
+    "occurrence": 1,
+    "bytes": 786,
+    "sha256": "4f7df7bfaafac4c0489a26696f64a71523d5e500518ee7123e40f2731638841b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部产出已生成并验证通过。\n\n**结果汇总：**\n\n| 产出 | 规格 | 路径 |\n|------|------|------|\n| `response_matrix_mmlu.csv` | 25 × 14042 | `/root/contamcal-irt-calibration/analysis/irt_data_v3/` |\n| `response_matrix_arc.csv` | 25 × 1172 | 同上 |\n| `exposure_scores.csv` | 25 行（5 families × 5 dosages） | 同上 |\n| `item_metadata_mmlu.csv` | 14042 行，含 subject/domain/difficulty_baseline | 同上 |\n| `item_metadata_arc.csv` | 1172 行，含 difficulty_baseline | 同上 |\n| `irt_data_prep_v3.py` | 生成脚本 | 同上 |\n\n**覆盖率：25/25 respondents，无缺失。** 数据源为 westd `eval_results_v2/`，57 个 MMLU subject 映射到 4 个 domain（STEM 3153, Humanities 4705, Social Sciences 3077, Other 3107）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-irt-data-prep-v3.md"
+}

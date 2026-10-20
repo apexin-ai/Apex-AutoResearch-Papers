@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11cd75f785bc7dac30f9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose gpu5 zombie kill retry v3",
+  "task_key": "worker_diagnose_gpu5_zombie_kill_retry_v3_20260513T235308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu5_zombie_kill_retry_v3_20260513T235308_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "6efd6d20f6def2ab1912035c12faeb184054145974825e5831b88057cc1fb594"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v3 训练成功启动并稳定运行。\n\n**报告：**\n\n| 项目 | 结果 |\n|------|------|\n| **PID 235248** | `train_sft.py` (d100 训练)，在 **GPU 0** 上运行（CUDA_VISIBLE_DEVICES=0），运行 ~14 分钟，占 21986 MiB。**不在 GPU 5 上**。 |\n| **GPU 5 实际残留** | PID 237875（`evaluate.py`，占 8948 MiB），已 kill 清理 |\n| **v3 首次提交** | OOM（第一次提交和 kill 之间可能有竞态条件，GPU 内存未完全释放） |\n| **v3 第二次提交** | 成功启动。PID 239734，GPU 5 占 21986 MiB，25/3177 步，~1.2s/it，预计约 1 小时完成 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu5-zombie-kill-retry-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d2862020c81f7189ba8",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fix duplicate eval gpu1",
+  "task_key": "worker_ops_fix-duplicate-eval-gpu1_20260521T122154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-duplicate-eval-gpu1_20260521T122154_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "2b98b9eff2401fde8183a60254c1fb41bc04cb0b17d2a5b16bfe5156afa544c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "每个 dosage 恰好 1 个 monitor，新版（带 flock）已生效。\n\n汇报：\n\n```\nkill 519410: done ✓\n剩余 eval 进程: PID 519561, GPU 1 MMLU d000_s0, 正常运行\nARC eval: 未启动（monitor 脚本设计为 MMLU 完成后顺序启动 ARC，无需手动）\nGSM8K: 脚本中无 GSM8K，安全\n\nrace condition 原因:\n  - 两套 monitor 被重复启动（18:23 + 18:25），d000 有 1 个 monitor + 1 个外部触发（bare python vs /root/miniconda3/bin/python）\n  - 脚本无锁机制，多实例同时检测到 .done 后各自启动 eval\n\nd025 monitor: 1 个实例 (PID 521169, 新版带 flock)\nd100 monitor: 1 个实例 (PID 521160, 新版带 flock)\nd000 monitor: 1 个实例 (PID 512753, 旧版，正在执行 eval 不可重启)\n\n修复措施:\n  1. kill 519410 + 子进程 ✓\n  2. kill 重复 d025/d100 monitor (512754, 512755) ✓\n  3. 脚本加 flock 互斥锁 + eval_done 哨兵双重防护 ✓\n  4. 用新脚本重启 d025/d100 monitor ✓\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-duplicate-eval-gpu1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39208015d404cf8ccacb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fill cuda2 immediate",
+  "task_key": "worker_ops_fill-cuda2-immediate_20260516T201504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fill-cuda2-immediate_20260516T201504_result.json",
+    "occurrence": 1,
+    "bytes": 1123,
+    "sha256": "8be6fb13a10b9c7a9e2bcecbc34c66c4bdd2d631fca6d1c02d6e241828d6e00a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. cuda:2 分配任务\n\n**PID 853489** — `compute_signals.py` Llama-3.2-3B d025, 顺序执行 mmlu → arc_challenge → gsm8k（all signals）\n\n当前状态：S1 embedding (mmlu) 进行中，42% batch encoding，~75 it/s\n\n### 2. 完整 6 卡状态\n\n| GPU | VRAM | Util | PID | Task |\n|-----|------|------|-----|------|\n| 0 | 8081 MiB | 74% | 825638 | eval d005_aligned (mmlu/gsm8k/arc/humaneval) |\n| 1 | 6967 MiB | 61% | 830115 | signals d000 mmlu |\n| **2** | **569 MiB** | **11%** | **853489** | **signals d025 mmlu→arc→gsm8k (NEW)** |\n| 3 | 12171 MiB | 74% | 822390 | eval d025_aligned (mmlu/gsm8k/arc/humaneval) |\n| 4 | 7421 MiB | 59% | 842929 | signals d005 mmlu |\n| 5 | 8313 MiB | 74% | 831033 | eval d100_aligned (mmlu/gsm8k/arc/humaneval) |\n\n备注：\n- GPU 2 当前 VRAM 低是因为 S1 用 MiniLM-L6-v2 (tiny model)；后续 S2-S4 加载 3B 模型时会升至 ~7-8GB\n- d025_aligned eval 已完成 3/4 benchmarks (mmlu+arc+gsm8k done, humaneval 在跑)，同时 GPU 3 也在继续跑 eval\n- 日志路径：`/root/autodl-tmp/logs/signals_llama_d025_all.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fill-cuda2-immediate.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "011222c24f0649df6f15",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "eval exp 001 eval 05B d025 v2",
+  "task_key": "worker_eval_exp_001_eval_05B_d025_v2_20260514T161441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp_001_eval_05B_d025_v2_20260514T161441_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "772ca59b8d973bdd4e333434e4be7d78145797b33a01d429815e7e719b524023"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "总结：\n\n| 项目 | 状态 |\n|------|------|\n| **诊断** | Original aligned eval (`Qwen2.5-0.5B_d025_s42_aligned/`) 已完成（4 个 benchmark 全部有结果），缺失的是 **paraphrase aligned eval** |\n| **提交** | `exp_001_eval_05B_d025_aligned_v2` — paraphrase aligned eval，PID 406027，cuda:5 |\n| **参数** | `--mc-format aligned --paraphrase-dir /root/autodl-tmp/exp001/paraphrases --benchmarks mmlu gsm8k arc_challenge humaneval` |\n| **输出** | `/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d025_s42_para_aligned/` |\n| **GPU 共存** | GPU 5 同时跑 3B 训练（18.6GB）+ 0.5B eval（1.5GB），总 20.1/24.6GB，headroom 充足 |\n| **Registry** | RUNNING，parent=`exp_001_sft_d025_05B_v3` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-001-eval-05b-d025-v2.md"
+}

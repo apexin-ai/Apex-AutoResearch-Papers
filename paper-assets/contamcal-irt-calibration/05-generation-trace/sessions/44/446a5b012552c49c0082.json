@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "446a5b012552c49c0082",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops qwen7b s42 v2 mmlu scp bootstrap",
+  "task_key": "worker_ops_qwen7b-s42-v2-mmlu-scp-bootstrap_20260521T074126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen7b-s42-v2-mmlu-scp-bootstrap_20260521T074126.log",
+    "occurrence": 1,
+    "bytes": 878475,
+    "sha256": "22dcc780f1c6d0727c7523a463c495cf333a8242c7107ff9e38612932bf18d7a"
+  },
+  "statistics": {
+    "messages": 411,
+    "user_turns": 0,
+    "tool_calls": 169,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 169,
+      "tool_result": 169
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 411,
+      "chunks": [
+        {
+          "path": "446a5b012552c49c0082-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "446a5b012552c49c0082-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "446a5b012552c49c0082-part-0003.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-qwen7b-s42-v2-mmlu-scp-bootstrap.md"
+}

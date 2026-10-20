@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09e6c84252c28172fe83",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh check disk volumes",
+  "task_key": "worker_ssh_check-disk-volumes_20260513T175652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-disk-volumes_20260513T175652_result.json",
+    "occurrence": 1,
+    "bytes": 1035,
+    "sha256": "31aa689ec4ff10db40b0d2e9c15a8d1dc26d19abed729e3334cd0cbb17067959"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 存储报告\n\n### 挂载点总览\n\n| 挂载点 | 总容量 | 已用 | 可用 | 用途 |\n|--------|--------|------|------|------|\n| `/` (overlay) | 30G | 16G | **15G** | 系统根分区 |\n| `/root/autodl-tmp` | 169G | 86G | **84G** | 数据盘 |\n| `/dev/shm` | 240G | ~0 | 240G | 共享内存（tmpfs，不可持久化） |\n| `/autodl-pub` | 7.0T | 6.7T | 313G | 公共只读数据集 |\n\n### 关键发现\n\n- **`/root/autodl-fs/` 不存在** — 此实例未开通网络文件系统\n- **`/root/data/` 不存在**\n- **autodl-tmp 实际有 84G 可用**，不是之前说的 7.3G（可能之前是不同时间点的快照）\n- autodl-tmp 当前大项占用：`.hf_cache/` 42G、`models/` 24G\n\n### 建议\n\n- **HF_HOME** → `/root/autodl-tmp/.hf_cache`（当前已是）\n- **checkpoint 输出** → `/root/autodl-tmp/`（唯一可写数据盘，84G 可用，够用）\n- 没有额外大容量盘。如果空间不够，清理 `.hf_cache` 和 `models` 中不再需要的模型是最快的释放方式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-disk-volumes.md"
+}

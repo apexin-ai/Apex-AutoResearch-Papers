@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a6388f348dd80c42c18",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu5 cleanup and d005 para",
+  "task_key": "worker_ops_gpu5_cleanup_and_d005_para_20260514T154616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu5_cleanup_and_d005_para_20260514T154616_result.json",
+    "occurrence": 1,
+    "bytes": 517,
+    "sha256": "0cf7f453185a96d6bd5f487db16400a3116f4b8a5546b2592f1bf65a8dbf6f15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n| 项目 | 结果 |\n|------|------|\n| **GPU 5 残留进程** | PID 400022, `evaluate.py` (d005 para_aligned 旧实例), 2240 MiB |\n| **Kill 结果** | 成功，GPU 5 释放至 0 MiB |\n| **残留输出清理** | 删除了 3 个不完整结果文件 (correctness_matrix.json, eval_results.json, item_responses.json) |\n| **新提交** | PID 400526, tmux session `exp_001_eval_05B_d005_para_aligned`, 1302 MiB 已加载, timeout 6h |\n| **验证** | GPU 5 上进程正常运行 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu5-cleanup-and-d005-para.md"
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "1f758bc38bd592786518",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis signal ablation",
+  "task_key": "worker_analysis_signal-ablation_20260522T094116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_signal-ablation_20260522T094116.log",
+    "occurrence": 1,
+    "bytes": 1057597,
+    "sha256": "04014d0cda5809ce64d0ce5e9c6ad5c5ccd19401fa1a33f6429568ac8f1b35bc"
+  },
+  "statistics": {
+    "messages": 231,
+    "user_turns": 2,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 42,
+      "record": 3,
+      "assistant": 34,
+      "tool_call": 74,
+      "user": 2,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "1f758bc38bd592786518-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 199,
+      "chunks": [
+        {
+          "path": "1f758bc38bd592786518-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "1f758bc38bd592786518-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "1f758bc38bd592786518-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-signal-ablation.md"
+}

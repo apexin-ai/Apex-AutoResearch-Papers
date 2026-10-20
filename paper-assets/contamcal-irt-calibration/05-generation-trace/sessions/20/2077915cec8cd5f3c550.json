@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2077915cec8cd5f3c550",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd disk cleanup urgent",
+  "task_key": "worker_ops_westd-disk-cleanup-urgent_20260522T135337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-disk-cleanup-urgent_20260522T135337_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "16c9f9ab75e909a02ac8a140e08b6de03c5f14e85aa5f1caa4c06c6993aa9863"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n## 结果\n\n| 项目 | 详情 |\n|------|------|\n| **清理前** | 2.4GB 可用 (100%) |\n| **清理后** | **17GB 可用 (94%)** |\n| **释放空间** | ~14.6GB |\n| **目标 10GB** | **已达成** |\n\n**删除内容：**\n- `/root/autodl-tmp/.hf_cache/Falcon3-7B-Base/` — 14GB（Falcon3 eval 全部完成，基模型缓存不再需要）\n- pip cache — 14 个缓存文件\n\n**Yi-1.5-9B 训练状态：**\n- PID 636899，GPU 0，46GB VRAM\n- Step 662/3125（21%），~4s/it，预计剩余约 2.7 小时\n- 运行正常，checkpoint 保存空间充足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-disk-cleanup-urgent.md"
+}

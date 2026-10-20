@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b2137403cc34e24e3df",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research coverage matrix check",
+  "task_key": "worker_research_coverage-matrix-check_20260515T181432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_coverage-matrix-check_20260515T181432_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "cec7f7293e16b40ed0b9737eef8de87ccb51d00fcac6795aa376b23621da639b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存并注册 (`art_20260515_4a4c8e`)。核心结论：\n\n**Claim 覆盖状态**：\n- **Claim 1 (Characterization)** 🟡 — 0.5B+1.5B 数据完整，3B alpha=32 重跑是唯一缺口（4个SFT在跑，~12h完成）\n- **Claim 2 (Signal Failure)** 🟡 — Min-K++ reversal 数据充足，但 3B signals (exp-002) 还未成功跑过\n- **Claim 3 (Identifiability)** 🟡 — D056 已确认 coverage collapse = model misspecification，sim sweep 接近完成，Fisher Info 推导需写\n- **Claim 4 (Calibration)** 🔴 — 缺口最大：pooled IRT 需重跑，7个 baselines 未正式比较\n\n**真正的瓶颈是论文写作（7天窗口）**，不是实验。建议立即开始用 0.5B+1.5B 现有数据写 intro/method/related work，3B 结果到了再补 results。\n\n**可以砍的**：RL proxy (exp-008)、0.5B d025 重试、HumanEval、oracle matched N=8 重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-coverage-matrix-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36a0eaa0b1a0f59c70ef",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix exp006 rrf exposure",
+  "task_key": "worker_fix_exp006_rrf_exposure_20260514T223737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp006_rrf_exposure_20260514T223737_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "88ce2a4f4a96f9cfcbace623bb2f933faa2229384a8ebaa24c89a01d1263ac27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 修复结果\n\n**Bug**: `load_exp002_signals()` 使用单一 `s1_embedding` 信号，导致同 dosage 下 0.5B 和 1.5B 的 exposure 值完全相同。\n\n**Fix**: 改为 3-signal RRF fusion (S1+S2+S4)，S2 polarity flip，min-max 归一化到 [0,1]。\n\n### GSM8K Pooled IRT\n\n| | v2 (bug) | v3_rrf (fix) |\n|--|----------|-------------|\n| gamma | 0.187 (CI 含零) | **2.096** (CI=[0.97, 3.30], 排除零) |\n| Rhat | 1.015 (NOT OK) | **1.009** (OK) |\n| ESS | 330 (NOT OK) | **492** (OK) |\n| 0.5B==1.5B exposure? | **是（bug）** | 否（正确区分） |\n\n### ARC Pooled IRT\n\n| | v2 (bug) | v3_rrf (fix) |\n|--|----------|-------------|\n| gamma | -2.347 | **-7.620** (更强负效应) |\n| Rhat | 1.010 | **1.008** (改善) |\n| ESS | 817 | **1133** (改善) |\n| 0.5B==1.5B exposure? | **是（bug）** | 否（正确区分） |\n\n3 个 artifacts 已注册：comparison report + GSM8K/ARC data summaries。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp006-rrf-exposure.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1283fb299d52a4fb253c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag d025 signals check",
+  "task_key": "worker_diag_d025_signals_check_20260516T230521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_d025_signals_check_20260516T230521_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "75e9ff62db3f1ce9aeb05b2d9c73864042c63c4dd46ffd87b6d8c3048a82bd14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**结论：failed**（MMLU 不完整）\n\n| Benchmark | s1_embedding | s2_minkpp | s4_selfcritique | merged |\n|-----------|:---:|:---:|:---:|:---:|\n| MMLU | ✓ | ✓ | ✗ (10000/14042) | ✗ |\n| ARC | ✓ | ✓ | ✓ | ✓ (235KB) |\n| GSM8K | ✓ | ✓ | ✓ | ✓ (244KB) |\n\n**故障原因**：MMLU s4_selfcritique 在处理 chunk [10000:11000] 时静默中断（无 error/OOM 日志），脚本跳过了 MMLU 直接执行了 ARC 和 GSM8K。已有 10 个 chunk 文件 (0-10000) 可恢复，只需补算 10000-14042 再 merge。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-d025-signals-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49438289de103f4dd570",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit eval 15B d005 d025 s123",
+  "task_key": "worker_submit_eval-15B-d005-d025-s123_20260515T133817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_eval-15B-d005-d025-s123_20260515T133817_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "d6521921189cff6cfff2f589791a838bf71a14de62424ffe206a125c35de967e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 成功启动，确认正常运行：\n\n| 实验 | exp_id | GPU | PID | 显存 | 利用率 |\n|------|--------|-----|-----|------|--------|\n| 1.5B d005 s123 aligned | exp_001_eval_15B_d005_s123 | cuda:0 | 566224 | 5848MiB | 80% |\n| 1.5B d025 s123 aligned | exp_001_eval_15B_d025_s123 | cuda:1 | 566311 | 5848MiB | 80% |\n\n注意事项：\n- 跳过了 merge 步骤，因为 `train_sft.py --merge` 会重新训练。改用 evaluate.py 的 `--adapter-path` 直接加载 LoRA adapter\n- 发现并清理了之前的孤儿进程（PID 565095/565271），它们来自 21:39 创建的同名 tmux session，写同一输出目录。已 kill 并确认无残留数据\n- 输出目录：`/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d{005,025}_s123_aligned/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-eval-15b-d005-d025-s123.md"
+}

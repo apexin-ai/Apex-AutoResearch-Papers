@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bd2d9ec68090182b4ce",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code phase3 data prep",
+  "task_key": "worker_code_phase3_data_prep_20260513T235409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase3_data_prep_20260513T235409_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "df47572b34032ee5522615511c571416e3afcd6eb52af717495dd556c2131f4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**任务已完成，数据已是最新状态。** 总结：\n\n`prepare_sft_data.py` 已于 May 14 07:16 运行过，生成了包含全部 3 个 benchmark 的 dosage 文件。\n\n### 数据完整性确认\n\n| 文件 | 行数 | 构成 |\n|------|------|------|\n| `sft_dosage_000.jsonl` | 50,000 | 纯 SlimOrca base（未修改） |\n| `sft_dosage_005.jsonl` | 50,826 | 50,000 base + 826 contam (5%) |\n| `sft_dosage_025.jsonl` | 54,133 | 50,000 base + 4,133 contam (25%) |\n| `sft_dosage_050.jsonl` | 58,266 | 50,000 base + 8,266 contam (50%) |\n| `sft_dosage_100.jsonl` | 66,533 | 50,000 base + 16,533 contam (100%) |\n\n### Benchmark 覆盖\n\n- arc_challenge: 1,172 items\n- gsm8k: 1,319 items  \n- mmlu: 14,042 items\n- **contam total: 16,533** = 1,172 + 1,319 + 14,042 ✓\n\n### d100_05B 训练状态\n\n`Qwen2.5-0.5B_d100_s42` checkpoint 目录存在但为空（`lora_adapter/` 无内容），训练尚未开始。数据在训练启动前已更新为完整版本，不存在使用旧数据的问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase3-data-prep.md"
+}

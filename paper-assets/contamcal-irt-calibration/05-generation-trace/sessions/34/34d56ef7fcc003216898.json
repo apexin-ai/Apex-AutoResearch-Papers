@@ -1,0 +1,1655 @@
+{
+  "schema_version": "1.0",
+  "id": "34d56ef7fcc003216898",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis d000 baseline gap",
+  "task_key": "worker_analysis_d000_baseline_gap_20260514T205159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d000_baseline_gap_20260514T205159.log",
+    "occurrence": 1,
+    "bytes": 65985,
+    "sha256": "f3069753f6f6c450fd8c789a1f011e7f1793831b63116b62d9e4adcb45568649"
+  },
+  "statistics": {
+    "messages": 40,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "record": 2,
+      "system": 1,
+      "assistant": 11,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778798400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "a9b5eab2-143b-4d5c-a0fc-68305cd4aff3",
+                "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+                "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "45809953-f104-43e0-a356-e8634cfa484d",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by exploring the server to understand the data structure and available eval results.",
+              "signature": "EpwCClkIDRgCKkBxawxfpglJ5/U/BXmXutxPb5oH1IdWC+21IKGa+KtL9bZhck4//V0metmW2YZmNS17rpNmRsJfKWffpOgZgX/hMg9jbGF1ZGUtb3B1cy00LTY4ABIMxPUXefXGGW+//NhkGgxgkv1KU+WlwSUy2xsiMLIiEUPf7RbPTLq9+y7SssHktVMYI5a96QPUA9k4kyie1IU8bQGZ0PX/d7N+MldoCSpxggE7wjD7eCRrogfD7m6bvVrS1JATJ249HZQ5KOQT2hFnquakZkgbc0RdPo/GN6rZ9zpjT+EqER2YnMHlwWixml8VpHQtkjBTWWZhXPku+Ap+NYgt1BpnIMEfZdakOD2mVA+PSDclMiWfnQO7LOFFIEoYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "e27f2f70-5617-4c3b-bc20-54719d17edb1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0176s7HRARcMWbhJKDAxDYv6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12379,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12379
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先连接服务器，确认数据目录和文件格式。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "ec7583b6-a361-45cf-a4e1-a53820827bfd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0176s7HRARcMWbhJKDAxDYv6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12379,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12379
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JT2WapAb8Yf8yrGhQF311F",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "33fbcbbf-83cc-4424-a129-facf51d4a1c0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0176s7HRARcMWbhJKDAxDYv6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12379,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12379
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T20:52:30.174Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01JT2WapAb8Yf8yrGhQF311F",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "c10ef582-e491-4fbe-a622-35a346ba01e2",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DYoJ1NgAwHv4BPmoHzRT7u",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls /root/autodl-tmp/exp001/eval_results/ | grep -E \"(1.5B|3B).*d000\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "a5ce60eb-bc6e-4976-93cc-5c1f24756250",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WoShQHCtEgG5jFAPNgm8A4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 723,
+                "cache_read_input_tokens": 24220,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 723
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T20:52:37.532Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DYoJ1NgAwHv4BPmoHzRT7u",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "6be94249-0356-41b4-8a3c-00aa590edc8e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MCDsoWn7NUHL7nuKPF9d9f",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls /root/autodl-tmp/exp001/eval_results/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "55687de9-ff82-4a50-a3b9-6c44b0d79571",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FPX2GNXNL9tPqP9vQjmGQv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 214,
+                "cache_read_input_tokens": 24943,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 214
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T20:52:42.681Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MCDsoWn7NUHL7nuKPF9d9f",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s123\\\\nQwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d000_s42_aligned\\\\nQwen2.5-0.5B_d000_s42_para\\\\nQwen2.5-0.5B_d000_s42_para_aligned\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d005_s42_aligned\\\\nQwen2.5-0.5B_d005_s42_para_aligned\\\\nQwen2.5-0.5B_d025_s42_aligned\\\\nQwen2.5-0.5B_d025_s42_para_aligned\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-0.5B_d100_s42_aligned\\\\nQwen2.5-0.5B_raw\\\\nQwen2.5-1.5B_d000_s123\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d000_s42_aligned\\\\nQwen2.5-1.5B_d000_s42_para_aligned\\\\nQwen2.5-1.5B_d005_s42_aligned\\\\nQwen2.5-1.5B_d005_s42_para_aligned\\\\nQwen2.5-1.5B_d025_s42_aligned\\\\nQwen2.5-1.5B_d025_s42_para_aligned\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-1.5B_d100_s42_aligned\\\\nQwen2.5-1.5B_d100_s42_para_aligned\\\\nQwen2.5-3B_d000_s123\\\\nQwen2.5-3B_d000_s42\\\\nQwen2.5-3B_d000_s42_aligned\\\\nQwen2.5-3B_d005_s42_aligned\\\\nQwen2.5-3B_d005_s42_para_aligned\\\\nQwen2.5-3B_d100_s42_aligned\\\\nQwen2.5-3B_d100_s42_para_aligned\\\\nQwen2.5-3B_raw\\\\neval_05B_d000_s42.log\\\\neval_05B_d000_s42_rerun.log\\\\neval_05B_d025_para_aligned.log\\\\neval_15B_d000_s123.log\\\\neval_15B_d000_s42.log\\\\neval_3B_d005_aligned.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "cc0cf334-bd88-4f92-ba3b-9f6ae8439814",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s123\\\\nQwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d000_s42_aligned\\\\nQwen2.5-0.5B_d000_s42_para\\\\nQwen2.5-0.5B_d000_s42_para_aligned\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d005_s42_aligned\\\\nQwen2.5-0.5B_d005_s42_para_aligned\\\\nQwen2.5-0.5B_d025_s42_aligned\\\\nQwen2.5-0.5B_d025_s42_para_aligned\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-0.5B_d100_s42_aligned\\\\nQwen2.5-0.5B_raw\\\\nQwen2.5-1.5B_d000_s123\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d000_s42_aligned\\\\nQwen2.5-1.5B_d000_s42_para_aligned\\\\nQwen2.5-1.5B_d005_s42_aligned\\\\nQwen2.5-1.5B_d005_s42_para_aligned\\\\nQwen2.5-1.5B_d025_s42_aligned\\\\nQwen2.5-1.5B_d025_s42_para_aligned\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-1.5B_d100_s42_aligned\\\\nQwen2.5-1.5B_d100_s42_para_aligned\\\\nQwen2.5-3B_d000_s123\\\\nQwen2.5-3B_d000_s42\\\\nQwen2.5-3B_d000_s42_aligned\\\\nQwen2.5-3B_d005_s42_aligned\\\\nQwen2.5-3B_d005_s42_para_aligned\\\\nQwen2.5-3B_d100_s42_aligned\\\\nQwen2.5-3B_d100_s42_para_aligned\\\\nQwen2.5-3B_raw\\\\neval_05B_d000_s42.log\\\\neval_05B_d000_s42_rerun.log\\\\neval_05B_d025_para_aligned.log\\\\neval_15B_d000_s123.log\\\\neval_15B_d000_s42.log\\\\neval_3B_d005_aligned.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.99}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-0.5B_d000_s123\\nQwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d000_s42_aligned\\nQwen2.5-0.5B_d000_s42_para\\nQwen2.5-0.5B_d000_s42_para_aligned\\nQwen2.5-0.5B_d005_s42\\nQwen2.5-0.5B_d005_s42_aligned\\nQwen2.5-0.5B_d005_s42_para_aligned\\nQwen2.5-0.5B_d025_s42_aligned\\nQwen2.5-0.5B_d025_s42_para_aligned\\nQwen2.5-0.5B_d100_s42\\nQwen2.5-0.5B_d100_s42_aligned\\nQwen2.5-0.5B_raw\\nQwen2.5-1.5B_d000_s123\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d000_s42_aligned\\nQwen2.5-1.5B_d000_s42_para_aligned\\nQwen2.5-1.5B_d005_s42_aligned\\nQwen2.5-1.5B_d005_s42_para_aligned\\nQwen2.5-1.5B_d025_s42_aligned\\nQwen2.5-1.5B_d025_s42_para_aligned\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-1.5B_d100_s42_aligned\\nQwen2.5-1.5B_d100_s42_para_aligned\\nQwen2.5-3B_d000_s123\\nQwen2.5-3B_d000_s42\\nQwen2.5-3B_d000_s42_aligned\\nQwen2.5-3B_d005_s42_aligned\\nQwen2.5-3B_d005_s42_para_aligned\\nQwen2.5-3B_d100_s42_aligned\\nQwen2.5-3B_d100_s42_para_aligned\\nQwen2.5-3B_raw\\neval_05B_d000_s42.log\\neval_05B_d000_s42_rerun.log\\neval_05B_d025_para_aligned.log\\neval_15B_d000_s123.log\\neval_15B_d000_s42.log\\neval_3B_d005_aligned.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.99}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I can see:\n- 1.5B d000: `Qwen2.5-1.5B_d000_s42_aligned` and `Qwen2.5-1.5B_d000_s42_para_aligned` ✓\n- 3B d000: `Qwen2.5-3B_d000_s42_aligned` exists but NO `Qwen2.5-3B_d000_s42_para_aligned`\n\nLet me check the file structure in the aligned directories.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "43175678-b5d1-472e-b715-dba1eb99c2e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JYuKFHYvdFiGUnk7e6WMDa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 874,
+                "cache_read_input_tokens": 25157,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 874
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "1.5B d000 两个目录都在。3B d000 有 `_aligned` 但没有 `_para_aligned`。先看文件格式。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "3c26db30-84d7-4eb0-b1a0-2e28c8393dca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JYuKFHYvdFiGUnk7e6WMDa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 874,
+                "cache_read_input_tokens": 25157,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 874
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BHx17oyR9J1xeqLDgkxkfm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s42_aligned/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "a36eb634-5d79-4ff6-af27-d49b96e2eb8b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JYuKFHYvdFiGUnk7e6WMDa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 874,
+                "cache_read_input_tokens": 25157,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 874
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T20:52:48.553Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BHx17oyR9J1xeqLDgkxkfm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"correctness_matrix.json\\\\neval_results.json\\\\nitem_responses.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "dfb59cc9-eceb-4ea1-bda9-2ef9f405f0b6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"correctness_matrix.json\\\\neval_results.json\\\\nitem_responses.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"correctness_matrix.json\\neval_results.json\\nitem_responses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JUddbCkqeyCWuKrzyUidrA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s42_para_aligned/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "c4ad844d-1174-422e-a117-08e584b51216",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JYuKFHYvdFiGUnk7e6WMDa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 874,
+                "cache_read_input_tokens": 25157,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 874
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019sRNPPTvx1JcJ9oPiaS5Cz",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "ls /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_aligned/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "051e0e28-fe9f-4a8b-af38-e4b61cf2329a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JYuKFHYvdFiGUnk7e6WMDa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 874,
+                "cache_read_input_tokens": 25157,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 874
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T20:52:49.591Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JUddbCkqeyCWuKrzyUidrA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"correctness_matrix.json\\\\neval_results.json\\\\nitem_responses.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "040af8b7-f703-43a7-a981-91aeced7402e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"correctness_matrix.json\\\\neval_results.json\\\\nitem_responses.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"correctness_matrix.json\\neval_results.json\\nitem_responses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T20:52:50.080Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019sRNPPTvx1JcJ9oPiaS5Cz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"correctness_matrix.json\\\\neval_results.json\\\\nitem_responses.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "9423d0d6-c349-4955-9e72-cd674cf9e0ca",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"correctness_matrix.json\\\\neval_results.json\\\\nitem_responses.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"correctness_matrix.json\\neval_results.json\\nitem_responses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EEUiJMyLX52XtLdKH48Ah4",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "head -50 /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s42_aligned/item_responses.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "5be9cec3-7a21-4b33-add5-6d31413bfd92",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SkCfJxiDvfX2JZvWbLzBnL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 883,
+                "cache_read_input_tokens": 26031,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 883
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T20:52:55.806Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EEUiJMyLX52XtLdKH48Ah4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_0\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": true,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_1\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_2\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_3\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_4\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": true,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_5\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_6\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n  },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "10119789-64f6-4408-a3aa-26ad75fbb8e4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_0\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": true,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_1\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_2\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"A\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_3\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_4\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": true,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"B\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_5\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_6\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n  },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"item_id\\\": \\\"mmlu_0\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": true,\\n    \\\"model_answer\\\": \\\"B\\\",\\n    \\\"gold_answer\\\": \\\"B\\\"\\n  },\\n  {\\n    \\\"item_id\\\": \\\"mmlu_1\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": false,\\n    \\\"model_answer\\\": \\\"A\\\",\\n    \\\"gold_answer\\\": \\\"C\\\"\\n  },\\n  {\\n    \\\"item_id\\\": \\\"mmlu_2\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": false,\\n    \\\"model_answer\\\": \\\"A\\\",\\n    \\\"gold_answer\\\": \\\"D\\\"\\n  },\\n  {\\n    \\\"item_id\\\": \\\"mmlu_3\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": false,\\n    \\\"model_answer\\\": \\\"C\\\",\\n    \\\"gold_answer\\\": \\\"B\\\"\\n  },\\n  {\\n    \\\"item_id\\\": \\\"mmlu_4\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": true,\\n    \\\"model_answer\\\": \\\"B\\\",\\n    \\\"gold_answer\\\": \\\"B\\\"\\n  },\\n  {\\n    \\\"item_id\\\": \\\"mmlu_5\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": false,\\n    \\\"model_answer\\\": \\\"B\\\",\\n    \\\"gold_answer\\\": \\\"A\\\"\\n  },\\n  {\\n    \\\"item_id\\\": \\\"mmlu_6\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": false,\\n    \\\"model_answer\\\": \\\"D\\\",\\n    \\\"gold_answer\\\": \\\"A\\\"\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CRQnQTjfJyXdzsiGgkoJSK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "head -50 /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s42_para_aligned/item_responses.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "763d3cd3-af1f-4d7e-b062-c83be228af1f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SkCfJxiDvfX2JZvWbLzBnL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 883,
+                "cache_read_input_tokens": 26031,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 883
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T20:52:56.322Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CRQnQTjfJyXdzsiGgkoJSK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_6\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_9\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": true,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_22\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": true,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_25\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": true,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_26\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_32\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_36\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n  },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "cff19fe2-ac90-4455-8041-7dbdcc9d9a09",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_6\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_9\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": true,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_22\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": true,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"D\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_25\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": true,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_26\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"C\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_32\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"B\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"A\\\\\\\"\\\\n  },\\\\n  {\\\\n    \\\\\\\"item_id\\\\\\\": \\\\\\\"mmlu_36\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"correct\\\\\\\": false,\\\\n    \\\\\\\"model_answer\\\\\\\": \\\\\\\"C\\\\\\\",\\\\n    \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\"\\\\n  },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"item_id\\\": \\\"mmlu_6\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": false,\\n    \\\"model_answer\\\": \\\"D\\\",\\n    \\\"gold_answer\\\": \\\"A\\\"\\n  },\\n  {\\n    \\\"item_id\\\": \\\"mmlu_9\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": true,\\n    \\\"model_answer\\\": \\\"C\\\",\\n    \\\"gold_answer\\\": \\\"C\\\"\\n  },\\n  {\\n    \\\"item_id\\\": \\\"mmlu_22\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": true,\\n    \\\"model_answer\\\": \\\"D\\\",\\n    \\\"gold_answer\\\": \\\"D\\\"\\n  },\\n  {\\n    \\\"item_id\\\": \\\"mmlu_25\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": true,\\n    \\\"model_answer\\\": \\\"C\\\",\\n    \\\"gold_answer\\\": \\\"C\\\"\\n  },\\n  {\\n    \\\"item_id\\\": \\\"mmlu_26\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": false,\\n    \\\"model_answer\\\": \\\"B\\\",\\n    \\\"gold_answer\\\": \\\"C\\\"\\n  },\\n  {\\n    \\\"item_id\\\": \\\"mmlu_32\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": false,\\n    \\\"model_answer\\\": \\\"B\\\",\\n    \\\"gold_answer\\\": \\\"A\\\"\\n  },\\n  {\\n    \\\"item_id\\\": \\\"mmlu_36\\\",\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"correct\\\": false,\\n    \\\"model_answer\\\": \\\"C\\\",\\n    \\\"gold_answer\\\": \\\"D\\\"\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The data format is clear:\n- Each file is a JSON array of objects with `item_id`, `benchmark`, `correct`, `model_answer`, `gold_answer`\n- The para_aligned file has a subset of items (the QC-passed paraphrase items)\n- I need to match by item_id between orig_aligned and para_aligned\n\nThe para_aligned starts at mmlu_6, not mmlu_0, so it's a filtered subset. I need to find the intersection of item_ids.\n\nLet me write a script to compute the gap. Also need to check if 3B d000 para_aligned exists - it doesn't from the ls output. \n\nNow I'm verifying the item counts across both datasets to understand the scope of the filtering.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "b94ea4ca-f488-45c2-aa3b-566e7b12dea4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GrJaa3SnD94aKUoETCFYhA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1917,
+                "cache_read_input_tokens": 26914,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1917
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "格式清楚了。para_aligned 是 QC-passed 子集，用 item_id 对齐。3B 没有 `_para_aligned` 目录。直接写脚本计算。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "a985fcd1-38e6-4400-acf6-db6eeee53afe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GrJaa3SnD94aKUoETCFYhA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1917,
+                "cache_read_input_tokens": 26914,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1917
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014EfoB1jHyQ61gAinHpEyq9",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\n\ndef compute_aligned_gap(orig_dir, para_dir, label):\n    with open(os.path.join(orig_dir, 'item_responses.json')) as f:\n        orig_items = json.load(f)\n    with open(os.path.join(para_dir, 'item_responses.json')) as f:\n        para_items = json.load(f)\n    \n    # Build lookup by item_id\n    orig_by_id = {item['item_id']: item['correct'] for item in orig_items}\n    para_by_id = {item['item_id']: item['correct'] for item in para_items}\n    \n    # Align: only items present in para (QC-passed subset)\n    para_ids = set(para_by_id.keys())\n    orig_aligned = {k: orig_by_id[k] for k in para_ids if k in orig_by_id}\n    \n    n_para = len(para_by_id)\n    n_aligned = len(orig_aligned)\n    n_missing = len(para_ids - set(orig_by_id.keys()))\n    \n    orig_acc = sum(orig_aligned.values()) / n_aligned * 100\n    para_acc = sum(para_by_id.values()) / n_para * 100\n    gap = orig_acc - para_acc\n    \n    print(f'=== {label} ===')\n    print(f'  Original total items: {len(orig_items)}')\n    print(f'  Para total items:     {n_para}')\n    print(f'  Aligned items:        {n_aligned}')\n    print(f'  Missing in orig:      {n_missing}')\n    print(f'  Orig acc (aligned):   {orig_acc:.2f}%')\n    print(f'  Para acc:             {para_acc:.2f}%')\n    print(f'  Gap (orig - para):    {gap:+.2f}pp')\n    print()\n    return orig_acc, para_acc, gap\n\nbase = '/root/autodl-tmp/exp001/eval_results'\n\n# 1.5B d000\no1, p1, g1 = compute_aligned_gap(\n    f'{base}/Qwen2.5-1.5B_d000_s42_aligned',\n    f'{base}/Qwen2.5-1.5B_d000_s42_para_aligned',\n    '1.5B d000'\n)\n\n# 3B d000 - check if para_aligned exists\npara_3b = f'{base}/Qwen2.5-3B_d000_s42_para_aligned'\nif os.path.exists(para_3b):\n    o3, p3, g3 = compute_aligned_gap(\n        f'{base}/Qwen2.5-3B_d000_s42_aligned',\n        para_3b,\n        '3B d000'\n    )\nelse:\n    print('=== 3B d000 ===')\n    print(f'  Para aligned dir not found: {para_3b}')\n    print('  3B d000 para eval 尚未完成')\n    print()\n\n# Summary table\nprint('=' * 70)\nprint(f'{\\\"Model\\\":<8} {\\\"d000 orig (aligned)\\\":>20} {\\\"d000 para\\\":>12} {\\\"d000 gap\\\":>10} {\\\"d100 gap\\\":>10} {\\\"delta\\\":>10}')\nprint('-' * 70)\n\nd100_gap_15 = -2.90\nprint(f'{\\\"1.5B\\\":<8} {o1:>19.2f}% {p1:>11.2f}% {g1:>+9.2f}pp {d100_gap_15:>+9.2f}pp {(d100_gap_15 - g1):>+9.2f}pp')\n\nif os.path.exists(para_3b):\n    d100_gap_3b = -3.50\n    print(f'{\\\"3B\\\":<8} {o3:>19.2f}% {p3:>11.2f}% {g3:>+9.2f}pp {d100_gap_3b:>+9.2f}pp {(d100_gap_3b - g3):>+9.2f}pp')\nelse:\n    print(f'{\\\"3B\\\":<8} {\\\"N/A\\\":>20} {\\\"N/A\\\":>12} {\\\"N/A\\\":>10} {\\\"-3.50pp\\\":>10} {\\\"pending\\\":>10}')\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "ebbd15f5-e60b-44d9-82c0-8c6bb5556376",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GrJaa3SnD94aKUoETCFYhA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1917,
+                "cache_read_input_tokens": 26914,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1917
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T20:53:19.838Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014EfoB1jHyQ61gAinHpEyq9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== 1.5B d000 ===\\\\n  Original total items: 16697\\\\n  Para total items:     7547\\\\n  Aligned items:        7547\\\\n  Missing in orig:      0\\\\n  Orig acc (aligned):   60.50%\\\\n  Para acc:             61.95%\\\\n  Gap (orig - para):    -1.44pp\\\\n\\\\n=== 3B d000 ===\\\\n  Para aligned dir not found: /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_para_aligned\\\\n  3B d000 para eval 尚未完成\\\\n\\\\n======================================================================\\\\nModel     d000 orig (aligned)    d000 para   d000 gap   d100 gap      delta\\\\n----------------------------------------------------------------------\\\\n1.5B                   60.50%       61.95%     -1.44pp     -2.90pp     -1.46pp\\\\n3B                        N/A          N/A        N/A    -3.50pp    pending\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "ca00fdc3-1f34-4d7e-80fa-60cd1c7cd919",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== 1.5B d000 ===\\\\n  Original total items: 16697\\\\n  Para total items:     7547\\\\n  Aligned items:        7547\\\\n  Missing in orig:      0\\\\n  Orig acc (aligned):   60.50%\\\\n  Para acc:             61.95%\\\\n  Gap (orig - para):    -1.44pp\\\\n\\\\n=== 3B d000 ===\\\\n  Para aligned dir not found: /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_para_aligned\\\\n  3B d000 para eval 尚未完成\\\\n\\\\n======================================================================\\\\nModel     d000 orig (aligned)    d000 para   d000 gap   d100 gap      delta\\\\n----------------------------------------------------------------------\\\\n1.5B                   60.50%       61.95%     -1.44pp     -2.90pp     -1.46pp\\\\n3B                        N/A          N/A        N/A    -3.50pp    pending\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== 1.5B d000 ===\\n  Original total items: 16697\\n  Para total items:     7547\\n  Aligned items:        7547\\n  Missing in orig:      0\\n  Orig acc (aligned):   60.50%\\n  Para acc:             61.95%\\n  Gap (orig - para):    -1.44pp\\n\\n=== 3B d000 ===\\n  Para aligned dir not found: /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_para_aligned\\n  3B d000 para eval 尚未完成\\n\\n======================================================================\\nModel     d000 orig (aligned)    d000 para   d000 gap   d100 gap      delta\\n----------------------------------------------------------------------\\n1.5B                   60.50%       61.95%     -1.44pp     -2.90pp     -1.46pp\\n3B                        N/A          N/A        N/A    -3.50pp    pending\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Wait, the task mentions 6596 items but para has 7547 items. Let me check - the task says \"6596 个 MMLU items\" but the actual data shows 7547. This might be because the 6596 number was from a different analysis or the para_aligned includes non-MMLU benchmarks too. Let me check if there are non-MMLU items in the para_aligned file.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "d678c663-9e99-4166-a274-5018792dc84e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PFRVFKpcbHQRJuSj8F2xNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1840,
+                "cache_read_input_tokens": 28831,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1840
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "注意到 para items 是 7547 而非任务提到的 6596。可能包含非 MMLU items。确认一下。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "60cb6554-cf13-46c5-81a3-89056433a34b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PFRVFKpcbHQRJuSj8F2xNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1840,
+                "cache_read_input_tokens": 28831,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1840
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ETF7LtHNCnanYgREZVeQ8Z",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s42_para_aligned/item_responses.json') as f:\n    items = json.load(f)\nbenchmarks = {}\nfor item in items:\n    b = item['benchmark']\n    benchmarks[b] = benchmarks.get(b, 0) + 1\nfor b, c in sorted(benchmarks.items()):\n    print(f'{b}: {c}')\nprint(f'Total: {len(items)}')\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "6f0d5df1-e012-4680-a331-631db947a65b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PFRVFKpcbHQRJuSj8F2xNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1840,
+                "cache_read_input_tokens": 28831,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1840
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T20:53:27.116Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ETF7LtHNCnanYgREZVeQ8Z",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "19f75c6d-ca79-49bc-bd85-7210e90b0471",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CMxuUC7yLZAT8tpohSjep7",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\n# Check benchmark breakdown in para_aligned\nwith open('/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s42_para_aligned/item_responses.json') as f:\n    items = json.load(f)\nbenchmarks = {}\nfor item in items:\n    b = item['benchmark']\n    benchmarks[b] = benchmarks.get(b, 0) + 1\nfor b, c in sorted(benchmarks.items()):\n    print(f'{b}: {c}')\nprint(f'Total: {len(items)}')\n\n# Also check orig_aligned\nwith open('/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s42_aligned/item_responses.json') as f:\n    orig = json.load(f)\nbenchmarks2 = {}\nfor item in orig:\n    b = item['benchmark']\n    benchmarks2[b] = benchmarks2.get(b, 0) + 1\nprint()\nprint('Original aligned:')\nfor b, c in sorted(benchmarks2.items()):\n    print(f'{b}: {c}')\nprint(f'Total: {len(orig)}')\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "523ffd4a-0469-4f5c-9001-44446ac060c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0174iVvBVU4nhZ7C9QPdM5gt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 475,
+                "cache_read_input_tokens": 30671,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 475
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778798400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "dc8f9f9b-cd97-4a7a-9aba-ad417485e1e3",
+                "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7"
+              }
+            }
+          ],
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T20:53:33.799Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CMxuUC7yLZAT8tpohSjep7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arc_challenge: 697\\\\ngsm8k: 228\\\\nhumaneval: 26\\\\nmmlu: 6596\\\\nTotal: 7547\\\\n\\\\nOriginal aligned:\\\\narc_challenge: 1172\\\\ngsm8k: 1319\\\\nhumaneval: 164\\\\nmmlu: 14042\\\\nTotal: 16697\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "49c96db5-2db6-41bf-935d-c506074a726c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arc_challenge: 697\\\\ngsm8k: 228\\\\nhumaneval: 26\\\\nmmlu: 6596\\\\nTotal: 7547\\\\n\\\\nOriginal aligned:\\\\narc_challenge: 1172\\\\ngsm8k: 1319\\\\nhumaneval: 164\\\\nmmlu: 14042\\\\nTotal: 16697\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"arc_challenge: 697\\ngsm8k: 228\\nhumaneval: 26\\nmmlu: 6596\\nTotal: 7547\\n\\nOriginal aligned:\\narc_challenge: 1172\\ngsm8k: 1319\\nhumaneval: 164\\nmmlu: 14042\\nTotal: 16697\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "So there are multiple benchmarks. MMLU has 6596 items in para_aligned, matching the task description. Let me rerun the analysis filtering only MMLU items.",
+              "signature": "EtYCClkIDRgCKkDkljsIlEeG2YzzhKkSwmq9JvSer5OJdDc8vGUr12gtgwNvwX+qdpia6g8PUX499GnOxNbwFlGlgh1psMtXY8uxMg9jbGF1ZGUtb3B1cy00LTY4ABIMzEEmlnG99m4UxA+XGgzNNVV/1oBejf3HZbAiMG2yl3BeKw7qeDAu42vkGWw2SzX923Mk3yTR1cCjiLeKJhn6ljkzrGfefnH3xxtvRyqqAcFrR8XpxXV8T7ZOLH17eWLHIjBkI3yrSishOG4ezAvPSa6rAbvRObW6OQ+8dKw1ZwfMqWMdK3gWBczF5b7VmLabME0TMqGZ3AGnShSaUK/1PhQHDzo7lSh9kCc5B3Q5TpeJtBka9IsocmjM2acqFql13xfgQMHPPeSbYQFQK3JKXWj3TMeIk8tfhDDDA6/8GuReRXG6dOVlYuXRZQqOZoeULNX8Ak1NntaFGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "7e52fcb1-599c-4364-8f00-75ca9aa07306",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W8gBdNkVx4h8DHcVFUMZBY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 585,
+                "cache_read_input_tokens": 31146,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 585
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "包含多个 benchmark，MMLU 正好 6596 items。重新只算 MMLU 的 gap。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "957b0fd8-d8d1-457e-b7c3-45a31874babf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W8gBdNkVx4h8DHcVFUMZBY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 585,
+                "cache_read_input_tokens": 31146,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 585
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QY67gqyhiZDiqZx3vi6jhB",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\n\ndef compute_aligned_gap_mmlu(orig_dir, para_dir, label):\n    with open(os.path.join(orig_dir, 'item_responses.json')) as f:\n        orig_items = json.load(f)\n    with open(os.path.join(para_dir, 'item_responses.json')) as f:\n        para_items = json.load(f)\n    \n    # Filter MMLU only\n    orig_mmlu = {item['item_id']: item['correct'] for item in orig_items if item['benchmark'] == 'mmlu'}\n    para_mmlu = {item['item_id']: item['correct'] for item in para_items if item['benchmark'] == 'mmlu'}\n    \n    # Align\n    para_ids = set(para_mmlu.keys())\n    orig_aligned = {k: orig_mmlu[k] for k in para_ids if k in orig_mmlu}\n    \n    n_para = len(para_mmlu)\n    n_aligned = len(orig_aligned)\n    n_missing = len(para_ids - set(orig_mmlu.keys()))\n    \n    orig_acc = sum(orig_aligned.values()) / n_aligned * 100\n    para_acc = sum(para_mmlu.values()) / n_para * 100\n    gap = orig_acc - para_acc\n    \n    print(f'=== {label} (MMLU only) ===')\n    print(f'  Original MMLU items:  {len(orig_mmlu)}')\n    print(f'  Para MMLU items:      {n_para}')\n    print(f'  Aligned items:        {n_aligned}')\n    print(f'  Missing in orig:      {n_missing}')\n    print(f'  Orig acc (aligned):   {orig_acc:.2f}%')\n    print(f'  Para acc:             {para_acc:.2f}%')\n    print(f'  Gap (orig - para):    {gap:+.2f}pp')\n    print()\n    return orig_acc, para_acc, gap\n\nbase = '/root/autodl-tmp/exp001/eval_results'\n\n# 1.5B d000\no1, p1, g1 = compute_aligned_gap_mmlu(\n    f'{base}/Qwen2.5-1.5B_d000_s42_aligned',\n    f'{base}/Qwen2.5-1.5B_d000_s42_para_aligned',\n    '1.5B d000'\n)\n\n# Also compute all-benchmark gap for comparison\ndef compute_aligned_gap_all(orig_dir, para_dir, label):\n    with open(os.path.join(orig_dir, 'item_responses.json')) as f:\n        orig_items = json.load(f)\n    with open(os.path.join(para_dir, 'item_responses.json')) as f:\n        para_items = json.load(f)\n    orig_by_id = {item['item_id']: item['correct'] for item in orig_items}\n    para_by_id = {item['item_id']: item['correct'] for item in para_items}\n    para_ids = set(para_by_id.keys())\n    orig_aligned = {k: orig_by_id[k] for k in para_ids if k in orig_by_id}\n    orig_acc = sum(orig_aligned.values()) / len(orig_aligned) * 100\n    para_acc = sum(para_by_id.values()) / len(para_by_id) * 100\n    gap = orig_acc - para_acc\n    print(f'  [All benchmarks] Orig: {orig_acc:.2f}%, Para: {para_acc:.2f}%, Gap: {gap:+.2f}pp (n={len(orig_aligned)})')\n    return orig_acc, para_acc, gap\n\ncompute_aligned_gap_all(\n    f'{base}/Qwen2.5-1.5B_d000_s42_aligned',\n    f'{base}/Qwen2.5-1.5B_d000_s42_para_aligned',\n    '1.5B d000'\n)\n\n# Summary\nprint()\nprint('=' * 75)\nprint('MMLU item-aligned d000 baseline gap:')\nprint(f'{\\\"Model\\\":<8} {\\\"d000 orig\\\":>12} {\\\"d000 para\\\":>12} {\\\"d000 gap\\\":>10} {\\\"d100 gap\\\":>10} {\\\"delta-of-deltas\\\":>16}')\nprint('-' * 75)\nd100_gap_15 = -2.90\ndelta = d100_gap_15 - g1\nprint(f'{\\\"1.5B\\\":<8} {o1:>11.2f}% {p1:>11.2f}% {g1:>+9.2f}pp {d100_gap_15:>+9.2f}pp {delta:>+15.2f}pp')\nprint(f'{\\\"3B\\\":<8} {\\\"N/A\\\":>12} {\\\"N/A\\\":>12} {\\\"N/A\\\":>10} {\\\"-3.50pp\\\":>10} {\\\"pending\\\":>16}')\nprint()\nprint('Interpretation:')\nif abs(g1) > 0.5:\n    print(f'  d000 gap = {g1:+.2f}pp -> paraphrase is {\\\"easier\\\" if g1 < 0 else \\\"harder\\\"} even without contamination')\n    print(f'  d100 gap = {d100_gap_15:+.2f}pp')\n    print(f'  delta-of-deltas = {delta:+.2f}pp')\n    if abs(delta) < 1.0:\n        print(f'  -> |delta| < 1pp: contamination does NOT meaningfully change the gap')\n    else:\n        print(f'  -> |delta| >= 1pp: contamination {\\\"widens\\\" if delta < 0 else \\\"narrows\\\"} the gap by {abs(delta):.2f}pp')\nelse:\n    print(f'  d000 gap is near zero ({g1:+.2f}pp), paraphrase difficulty is comparable')\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "99b3d818-345b-4df4-ab23-5f66ad394455",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W8gBdNkVx4h8DHcVFUMZBY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 585,
+                "cache_read_input_tokens": 31146,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 585
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T20:53:55.411Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QY67gqyhiZDiqZx3vi6jhB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== 1.5B d000 (MMLU only) ===\\\\n  Original MMLU items:  14042\\\\n  Para MMLU items:      6596\\\\n  Aligned items:        6596\\\\n  Missing in orig:      0\\\\n  Orig acc (aligned):   58.78%\\\\n  Para acc:             60.96%\\\\n  Gap (orig - para):    -2.18pp\\\\n\\\\n  [All benchmarks] Orig: 60.50%, Para: 61.95%, Gap: -1.44pp (n=7547)\\\\n\\\\n===========================================================================\\\\nMMLU item-aligned d000 baseline gap:\\\\nModel       d000 orig    d000 para   d000 gap   d100 gap  delta-of-deltas\\\\n---------------------------------------------------------------------------\\\\n1.5B           58.78%       60.96%     -2.18pp     -2.90pp           -0.72pp\\\\n3B                N/A          N/A        N/A    -3.50pp          pending\\\\n\\\\nInterpretation:\\\\n  d000 gap = -2.18pp -> paraphrase is easier even without contamination\\\\n  d100 gap = -2.90pp\\\\n  delta-of-deltas = -0.72pp\\\\n  -> |delta| < 1pp: contamination does NOT meaningfully change the gap\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "1a730207-e1b4-4361-b6e7-265f7e5dd341",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== 1.5B d000 (MMLU only) ===\\\\n  Original MMLU items:  14042\\\\n  Para MMLU items:      6596\\\\n  Aligned items:        6596\\\\n  Missing in orig:      0\\\\n  Orig acc (aligned):   58.78%\\\\n  Para acc:             60.96%\\\\n  Gap (orig - para):    -2.18pp\\\\n\\\\n  [All benchmarks] Orig: 60.50%, Para: 61.95%, Gap: -1.44pp (n=7547)\\\\n\\\\n===========================================================================\\\\nMMLU item-aligned d000 baseline gap:\\\\nModel       d000 orig    d000 para   d000 gap   d100 gap  delta-of-deltas\\\\n---------------------------------------------------------------------------\\\\n1.5B           58.78%       60.96%     -2.18pp     -2.90pp           -0.72pp\\\\n3B                N/A          N/A        N/A    -3.50pp          pending\\\\n\\\\nInterpretation:\\\\n  d000 gap = -2.18pp -> paraphrase is easier even without contamination\\\\n  d100 gap = -2.90pp\\\\n  delta-of-deltas = -0.72pp\\\\n  -> |delta| < 1pp: contamination does NOT meaningfully change the gap\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== 1.5B d000 (MMLU only) ===\\n  Original MMLU items:  14042\\n  Para MMLU items:      6596\\n  Aligned items:        6596\\n  Missing in orig:      0\\n  Orig acc (aligned):   58.78%\\n  Para acc:             60.96%\\n  Gap (orig - para):    -2.18pp\\n\\n  [All benchmarks] Orig: 60.50%, Para: 61.95%, Gap: -1.44pp (n=7547)\\n\\n===========================================================================\\nMMLU item-aligned d000 baseline gap:\\nModel       d000 orig    d000 para   d000 gap   d100 gap  delta-of-deltas\\n---------------------------------------------------------------------------\\n1.5B           58.78%       60.96%     -2.18pp     -2.90pp           -0.72pp\\n3B                N/A          N/A        N/A    -3.50pp          pending\\n\\nInterpretation:\\n  d000 gap = -2.18pp -> paraphrase is easier even without contamination\\n  d100 gap = -2.90pp\\n  delta-of-deltas = -0.72pp\\n  -> |delta| < 1pp: contamination does NOT meaningfully change the gap\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### MMLU item-aligned d000 baseline gap\n\n| 模型 | d000 orig (aligned) | d000 para | d000 gap | d100 gap (已知) | delta-of-deltas |\n|------|---------------------|-----------|----------|-----------------|-----------------|\n| 1.5B | 58.78% | 60.96% | **-2.18pp** | -2.90pp | **-0.72pp** |\n| 3B   | N/A | N/A | N/A | -3.50pp | pending |\n\n**关键发现**：\n- d000（无 contamination）已经有 -2.18pp 的 gap，即 paraphrase 本身就比 original 更容易\n- d100 的 gap 是 -2.90pp，delta-of-deltas 仅 -0.72pp（< 1pp）\n- **结论**：negative gap 主要是 paraphrase 本身的常数偏移（paraphrase 更容易），contamination 仅额外贡献约 0.72pp，效应很小\n\n3B d000 的 para_aligned eval 结果不存在（`Qwen2.5-3B_d000_s42_para_aligned` 目录缺失），需要先跑 3B d000 的 paraphrase eval 才能计算。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "uuid": "8ee4c4d9-d295-4a96-a621-1be6a4769fe3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CsPGjxxSFeJKWRbanMpcLs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2174,
+                "cache_read_input_tokens": 31731,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2174
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### MMLU item-aligned d000 baseline gap\n\n| 模型 | d000 orig (aligned) | d000 para | d000 gap | d100 gap (已知) | delta-of-deltas |\n|------|---------------------|-----------|----------|-----------------|-----------------|\n| 1.5B | 58.78% | 60.96% | **-2.18pp** | -2.90pp | **-0.72pp** |\n| 3B   | N/A | N/A | N/A | -3.50pp | pending |\n\n**关键发现**：\n- d000（无 contamination）已经有 -2.18pp 的 gap，即 paraphrase 本身就比 original 更容易\n- d100 的 gap 是 -2.90pp，delta-of-deltas 仅 -0.72pp（< 1pp）\n- **结论**：negative gap 主要是 paraphrase 本身的常数偏移（paraphrase 更容易），contamination 仅额外贡献约 0.72pp，效应很小\n\n3B d000 的 para_aligned eval 结果不存在（`Qwen2.5-3B_d000_s42_para_aligned` 目录缺失），需要先跑 3B d000 的 paraphrase eval 才能计算。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 98150,
+            "duration_api_ms": 93427,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "3ecef59c-6c5a-4077-be90-c220af0914c7",
+            "total_cost_usd": 0.4101625,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 22064,
+              "cache_read_input_tokens": 261485,
+              "output_tokens": 5565,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22064,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 356,
+                  "cache_read_input_tokens": 31731,
+                  "cache_creation_input_tokens": 2174,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2174
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2215,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002325,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 5565,
+                "cacheReadInputTokens": 261485,
+                "cacheCreationInputTokens": 22064,
+                "webSearchRequests": 0,
+                "costUSD": 0.40783749999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "b860f779-2732-47dc-ad76-7972bd5b57ac"
+          },
+          "id": "event-000040"
+        }
+      ],
+      "message_count": 40
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-d000-baseline-gap.md"
+}

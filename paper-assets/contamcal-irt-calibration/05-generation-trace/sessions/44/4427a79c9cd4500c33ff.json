@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4427a79c9cd4500c33ff",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit d100 eval cuda3",
+  "task_key": "worker_ops_submit-d100-eval-cuda3_20260516T030350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-d100-eval-cuda3_20260516T030350_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "41937162e027575f8e5dfb0eba913c9126a1a880cf6cbd3a904e6c4aa6d8a16b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**提交摘要：**\n- **实验**: `exp_001_eval_3B_d100_s42_a32_batch`\n- **GPU**: cuda:3 (CUDA_VISIBLE_DEVICES=3)\n- **Checkpoint**: `Qwen2.5-3B_d100_a32_s42_v3/lora_adapter` (lora_alpha=32 已验证)\n- **任务**: aligned eval → para_aligned eval（串行，4 benchmarks: mmlu, gsm8k, arc_challenge, humaneval）\n- **tmux session**: `exp_001_eval_3B_d100_s42_a32_batch`，PID 687347 运行中\n- **Registry**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-d100-eval-cuda3.md"
+}

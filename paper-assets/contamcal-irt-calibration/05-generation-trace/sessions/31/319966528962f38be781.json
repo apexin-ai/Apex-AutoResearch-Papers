@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "319966528962f38be781",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops registry backfill running",
+  "task_key": "worker_ops_registry-backfill-running_20260515T182447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry-backfill-running_20260515T182447_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "2c59dac685ebdd9fac4437a5bd06536406044383309b9c3ae0ec4ad73b0a182a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 6 个实验均已存在于 registry 中，且状态都是 RUNNING：\n\n| 实验 | Registry 状态 | PID | 存活 | 运行时间 |\n|------|-------------|-----|------|---------|\n| exp_001_sft_d025_3B_v3 | RUNNING | 589763 | ✓ (R) | 2h12m |\n| exp_001_sft_3B_d100_s42_a32_v2 | RUNNING | 593740 | ✓ (S) | 1h54m |\n| exp_001_sft_3B_d100_s123_a32_v2 | RUNNING | 594489 | ✓ (S) | 1h51m |\n| exp_001_sft_3B_d000_v3 | RUNNING | 597174 | ✓ (S) | 1h33m |\n| exp_001_eval_3B_d005_s123_aligned | RUNNING | 580693 | ✓ (S) | 3h19m |\n| exp_004_sim_sweep_v7 | RUNNING | — (tmux) | — | — |\n\nRegistry 当前共 172 条实验，不是 39 条。6 个目标实验全部已有条目且状态为 RUNNING，无需补录，全部跳过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-backfill-running.md"
+}

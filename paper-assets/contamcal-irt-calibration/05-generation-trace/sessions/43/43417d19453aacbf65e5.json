@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43417d19453aacbf65e5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose retrain gemma2 d100 s0",
+  "task_key": "worker_diagnose_retrain_gemma2_d100_s0_20260521T023007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_retrain_gemma2_d100_s0_20260521T023007_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "df2c091cb04229d3c22609ab6e79809949468418eb7be0914ff444135f000220"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结果：训练已成功完成，这是监控误判。**\n\n关键事实：\n- 训练 4159/4159 步全部完成，exit code=0，耗时 ~4h7m\n- Adapter 文件完整（216MB safetensors，lora_alpha=32 正确）\n- 脚本自带验证输出 `SUCCESS: adapter verified`\n- **失败原因**：`train_sft.py` 既没有 W&B 集成也没有写 sentinel 文件，监控系统 5 次检查都找不到活跃信号，自动标记为 failed\n- GPU cuda:0 当前空闲，无残留进程\n\n**建议操作**：将实验状态改为 completed，直接用该 checkpoint 进行下游 eval/signals 任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-retrain-gemma2-d100-s0.md"
+}

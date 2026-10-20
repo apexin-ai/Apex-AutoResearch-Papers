@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d711243d737f7a90168",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops theta extraction check",
+  "task_key": "worker_ops_theta_extraction_check_20260517T095906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_theta_extraction_check_20260517T095906_result.json",
+    "occurrence": 1,
+    "bytes": 1243,
+    "sha256": "b1e73398f98358c646d88afa8a2994aeee10c1ed975502ceab7d3e3953007356"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验成功完成，registry 已更新。结果汇总：\n\n## θ 提取结果 (J=13, 2PL+γ, 排除 0.5B)\n\n**模型**: 1.5B (θ_1–8), 3B (θ_9–13)\n\n| Domain | θ_1.5B_mean | θ_3B_mean | Δθ | 95% CI |\n|--------|------------|----------|------|--------|\n| STEM_Math | -0.5320 | 0.1193 | **0.6513** | [0.5704, 0.7314] |\n| STEM_Science | 0.3210 | 0.7803 | **0.4593** | [0.3702, 0.5462] |\n| STEM_CS_Eng | 0.3724 | 0.5415 | **0.1691** | [0.0300, 0.3037] |\n| Medical | 0.5214 | 1.0528 | **0.5314** | [0.4521, 0.6091] |\n| Humanities | 0.2278 | 0.4959 | **0.2680** | [0.2018, 0.3367] |\n| Social_Sciences | 0.9403 | 1.5398 | **0.5994** | [0.5233, 0.6746] |\n| Business_Law | 0.0825 | 0.4169 | **0.3344** | [0.2614, 0.4102] |\n| Other | 0.8168 | 1.5652 | **0.7483** | [0.6465, 0.8456] |\n| **pooled** | **0.3109** | **0.8111** | **0.5002** | [0.4312, 0.5683] |\n\n**关键观察**:\n- 所有 9 个域的 Δθ 95% CI 均不含 0，1.5B 和 3B 在所有域上能力显著分离\n- Δθ 范围：0.17 (STEM_CS_Eng) 到 0.75 (Other)\n- STEM_CS_Eng 分离最小（CI 下界仅 0.03），其余域分离稳健\n- γ (contamination) 在 STEM_CS_Eng 最高 (0.68)，Social_Sciences 最低 (-0.49)\n- 总 fit 时间 ≈ 55 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-theta-extraction-check.md"
+}

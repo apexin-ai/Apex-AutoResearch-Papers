@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "265e48a7e1073ef7151b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag eval 05B metrics collection",
+  "task_key": "worker_diag_eval_05B_metrics_collection_20260514T150728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval_05B_metrics_collection_20260514T150728_result.json",
+    "occurrence": 1,
+    "bytes": 1494,
+    "sha256": "c2be434776f41086646c852c8aba585980acef3d244a8bf2184e16547e98310c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d005 legacy metrics 已写入。汇总如下：\n\n---\n\n## 目录状态\n\n| 目录 | 状态 |\n|------|------|\n| `Qwen2.5-0.5B_d100_s42_aligned/` | **空目录** — PID 389866 仍在 GPU 2 运行中 |\n| `Qwen2.5-0.5B_d005_s42/` | 完整（3 文件：eval_results.json, correctness_matrix.json, item_responses.json） |\n| `Qwen2.5-0.5B_d005_s42_aligned/` | **完整**（同样 3 文件，已有结果） |\n\n## GPU 2 状态\n\nPID 389866 在 GPU 2 运行，占用 3686MiB，正在执行 d100 aligned eval（mmlu gsm8k arc_challenge humaneval）。**未消失。**\n\n## 指标汇总\n\n### d005 legacy（已写入 registry `exp_001_eval_05B_d005`）\n\n| Benchmark | Accuracy | Correct/Total |\n|-----------|----------|---------------|\n| MMLU | 0.2929 | 4113/14042 |\n| GSM8K | 0.3601 | 475/1319 |\n| ARC-Challenge | 0.2858 | 335/1172 |\n| HumanEval pass@1 | 0.0793 | 13/164 |\n\n### d005 aligned（`Qwen2.5-0.5B_d005_s42_aligned/` — registry 无对应条目）\n\n| Benchmark | Accuracy | Correct/Total |\n|-----------|----------|---------------|\n| MMLU | 0.3255 | 4570/14042 |\n| GSM8K | 0.3624 | 478/1319 |\n| ARC-Challenge | 0.3285 | 385/1172 |\n| HumanEval pass@1 | 0.0793 | 13/164 |\n\n### d100 aligned\n\n无结果（eval 仍在运行，输出目录为空）。\n\n---\n\n**注意**：d005 aligned 结果已存在但 registry 中没有独立条目（可能属于 `exp_001_eval_05B_aligned_batch` 的范围）。是否需要为其创建/更新 registry 条目？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-05b-metrics-collection.md"
+}

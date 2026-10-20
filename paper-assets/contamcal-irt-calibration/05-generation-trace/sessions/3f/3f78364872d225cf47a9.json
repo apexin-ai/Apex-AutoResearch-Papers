@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f78364872d225cf47a9",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cuda1 monitor submit",
+  "task_key": "worker_ops_cuda1-monitor-submit_20260514T091417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda1-monitor-submit_20260514T091417_result.json",
+    "occurrence": 1,
+    "bytes": 806,
+    "sha256": "c1d21d65b4ed5dddc1b5f87dd9b38338fbec8cd71ec704a0b3dc2bff6b3d5b2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n**cuda:1 状态：占用，进程疑似卡死**\n\n- PID 318424 仍存活，状态 `Tl`（stopped），GPU 1 占用 8129 MiB，利用率 0%\n- 日志最后写入 16:53:19，已 **20+ 分钟无更新**\n- HumanEval 卡在 **31% (51/164)**，很可能某个生成的代码执行陷入死循环\n\n**已完成的 metrics（0.5B raw）：**\n\n| Benchmark | Score |\n|-----------|-------|\n| MMLU | 0.2302 (3233/14042) |\n| GSM8K | 0.1592 (210/1319) |\n| ARC-Challenge | 0.2261 (265/1172) |\n| HumanEval | 卡住，未完成 |\n\n**建议：** 进程大概率需要 kill 释放 cuda:1。HumanEval 的 code execution 经常因生成代码死循环而 hang。如需保留 HumanEval 结果，可以 kill 后单独重跑 HumanEval（加 timeout per sample）。是否 kill PID 318424？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda1-monitor-submit.md"
+}

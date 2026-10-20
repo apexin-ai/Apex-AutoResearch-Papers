@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47a41d871d3bfbbbf06f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit signals coverage 0516",
+  "task_key": "worker_audit_signals_coverage_0516_20260516T105530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_signals_coverage_0516_20260516T105530_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "ebec0e44dc865a1120dd3ca832736180663238d09c5541488713388de0b909d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果写入 `artifacts/signals_coverage_audit_0516.md`。\n\n**核心发现：19/23 valid model dirs 完成，4 个缺口：**\n\n| 模型 | 状态 | 缺口 |\n|------|------|------|\n| 0.5B_d000_s123 | **8/9** | 仅缺 gsm8k s4（无进程在跑） |\n| 0.5B_d100_s123 | 2/9 | s4_mmlu 在 GPU 5 跑（chunk 5000-6000, ~37%），gsm8k/arc 全缺 |\n| 1.5B_d025_s123 | 2/9 | s4_mmlu 在 GPU 0 跑（chunk 10000-11000, ~67%），gsm8k/arc 全缺 |\n| 1.5B_d100_s123 | 2/9 | s4_mmlu 在 GPU 2 跑（chunk 0-4000, ~27%），gsm8k/arc 全缺 |\n\n**当前 GPU 使用：** 0 (1.5B_d025), 2 (1.5B_d100), 4 (Llama SFT), 5 (0.5B_d100)。**GPU 1, 3 空闲。**\n\n**注意：** 0.5B v2 batch（GPU 5）用 `--signal all`，完成 d100_mmlu 后应自动接 gsm8k/arc。但 1.5B 的两个进程分别只跑 mmlu，gsm8k/arc 需要单独提交。0.5B_d000_s123 的 gsm8k s4 缺口可能由 v2 batch 后续覆盖，但也可以用空闲 GPU 单独跑（~25 min 即可填补）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-signals-coverage-0516.md"
+}

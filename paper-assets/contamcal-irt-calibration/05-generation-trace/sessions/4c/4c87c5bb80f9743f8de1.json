@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c87c5bb80f9743f8de1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp008 instruct signals",
+  "task_key": "worker_analysis_exp008-instruct-signals_20260515T052707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp008-instruct-signals_20260515T052707_result.json",
+    "occurrence": 1,
+    "bytes": 1195,
+    "sha256": "b9bf9cc298b8c9ed3a274c0eae4af4e34e48b923d8fa24c683fc85239f52e23f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**rl_aligned (Qwen2.5-0.5B-Instruct) 信号计算完成。**\n\n## 结果汇总\n\n**产出文件**（服务器 cqa1-21977）：\n\n| Benchmark | Items | Merged File |\n|-----------|-------|-------------|\n| MMLU | 14,042 | `/root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json` |\n| GSM8K | 1,319 | `/root/autodl-tmp/exp008/signals/rl_aligned/gsm8k/signals_merged_gsm8k.json` |\n| ARC_Challenge | 1,172 | `/root/autodl-tmp/exp008/signals/rl_aligned/arc_challenge/signals_merged_arc_challenge.json` |\n\n**每项信号格式**：`{index, benchmark, s1_embedding, s2_minkpp, s3_constat(null), s4_selfcritique}`\n\n**计算了 3 个信号**：S1 embedding similarity, S2 Min-K%++, S4 Self-Critique entropy。S3 ConStat 按 D030 决定跳过（无 paraphrase eval 数据）。\n\n**样本值**（MMLU item 0）：\n- rl_aligned: s1=0.403, s2=1.842, s4=-0.933\n- d000 (sft_clean, 对比): s1=0.345, s2=1.781, s4=-0.989\n\n**下一步**：用这些 per-item 信号跑 3-regime 对比分析（base vs sft_clean vs rl_aligned），计算 AUC 和 effect size，判断 RL/Instruct 对齐是否改变了污染信号的分布。已注册 artifact `art_20260515_5797b4`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp008-instruct-signals.md"
+}

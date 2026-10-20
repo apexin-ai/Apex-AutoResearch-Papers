@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fbdfcdd2430aad96630",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu4 3B eval wait submit",
+  "task_key": "worker_ops_gpu4_3B_eval_wait_submit_20260514T205528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu4_3B_eval_wait_submit_20260514T205528_result.json",
+    "occurrence": 1,
+    "bytes": 258,
+    "sha256": "e52cdb610995b29176783ae5c6193a3885aa037d2d083ef9e77143db15918edd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 5 分钟后自动唤醒检查 GPU 4。到时会：\n1. 检查 GPU 4 是否释放\n2. 如仍忙，每 3 分钟重试（最多 5 轮共 ~20 分钟）\n3. 释放后检查 1.5B d025 结果并更新 registry，然后提交 3B d000 v2 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu4-3b-eval-wait-submit.md"
+}

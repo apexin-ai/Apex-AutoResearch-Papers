@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2676d68fad1491673421",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu monitor and submit queue",
+  "task_key": "worker_ops_gpu_monitor_and_submit_queue_20260514T215157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_monitor_and_submit_queue_20260514T215157_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "bdd2d9c5d414b764f3b86a2f38802ea04aa2911d0ce5236f9d718dd2ba7dd533"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已设置。当前状态：\n\n- **6/6 GPU 全部忙碌**，无 GPU 释放\n- Cron job `5633488f` 已创建，每 5 分钟自动轮询\n- 待触发的提交队列：\n  - GPU 0 释放 → pooled IRT（最高优先级）\n  - GPU 3 释放 → 3B d100 v2 aligned eval\n  - GPU 4 释放 → 3B d000 para aligned eval\n\n下一次轮询将在 ~5 分钟后自动执行。预计 GPU 0（signals）最先释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-monitor-and-submit-queue.md"
+}

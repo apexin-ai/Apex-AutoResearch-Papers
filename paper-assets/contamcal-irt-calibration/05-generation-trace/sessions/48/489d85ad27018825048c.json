@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "489d85ad27018825048c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code fix 05B s123 batch script",
+  "task_key": "worker_code_fix-05B-s123-batch-script_20260516T035329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-05B-s123-batch-script_20260516T035329_result.json",
+    "occurrence": 1,
+    "bytes": 1643,
+    "sha256": "ad336a55ed72a4a6d62d92904837093bc6c16f484dcdfeb22964cbc0747bccdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 脚本状态\n- **0.5B 脚本** (`run_05B_s123_signals.sh`): 已更新，添加 skip 逻辑，语法验证通过\n- **1.5B 脚本** (`run_15B_s123_signals.sh`): 已更新，添加 skip 逻辑，语法验证通过\n- 两个脚本原本已存在（10:28 创建）但**缺少跳过已完成任务的检查**，现已补上\n\n### compute_signals.py 参数\n| 参数 | 是否必需 | 说明 |\n|------|---------|------|\n| `--model-path` | 必需 | 基座模型路径 |\n| `--adapter-path` | 可选 | LoRA adapter 路径 |\n| `--benchmark` | 必需 | mmlu/gsm8k/arc_challenge/humaneval |\n| `--signal` | 必需 | s1/s2/s3/s4/all |\n| `--output-dir` | 必需 | 输出目录 |\n| `--cache-dir` | 可选 | 默认 /root/autodl-tmp/.hf_cache |\n| `--sft-data-dir` | 可选 | 默认 /root/autodl-tmp/exp001/sft_data |\n| `--ref-model-path` | 可选 | S2 参考模型，**无 `--ref-adapter-path`** |\n| `--k-percent` | 可选 | 默认 20 |\n| `--batch-size` | 可选 | 默认 8 |\n\n### 当前进度\n- **PID 687036 仍在运行**（已 49 分钟），命令：`compute_signals.py ... --benchmark mmlu --signal all`\n- d000_s123: s1 ✓, s2 ✓, s4 运行中（mmlu）。gsm8k/arc_challenge 尚未开始\n- d005_s123, d025_s123, d100_s123: 目录不存在，0 个信号\n\n### 跳过逻辑\n脚本检查每个 model×benchmark 组合的 3 个信号文件（s1_embedding, s2_minkpp, s4_selfcritique）是否都存在，全存在则跳过。d000_s123/mmlu 完成后运行脚本，该组合会被自动跳过，从 d000_s123/gsm8k 继续。\n\n### 不要立即运行——等 d000_s123/mmlu 的 PID 687036 结束后提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-05b-s123-batch-script.md"
+}

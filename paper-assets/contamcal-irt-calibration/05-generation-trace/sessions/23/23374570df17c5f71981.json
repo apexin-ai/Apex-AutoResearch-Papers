@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23374570df17c5f71981",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 d000 gsm8k check",
+  "task_key": "worker_ops_falcon3-d000-gsm8k-check_20260523T084332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-d000-gsm8k-check_20260523T084332_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "5b0ad8bd4dcd20538fd542c48e1c56a8811d4f83e4047ef01517fcd36d8476f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。Cron 不存在（已被清除或未创建）。\n\n**结果汇总：**\n\n| | GSM8K Accuracy | Correct/Total |\n|---|---|---|\n| Falcon3-7B d000 (clean) | 74.53% | 983/1319 |\n| Falcon3-7B d100 (contaminated) | 75.82% | 1000/1319 |\n| **Delta (d100 - d000)** | **+1.29pp** | +17 |\n\nFalcon3-7B 在 GSM8K 上的 contamination effect 很小（+1.29pp），远低于 Qwen2.5-7B 的 GSM8K delta（+11.07pp, 81.65% vs 70.58%）。这与 Falcon3 在 MCQ benchmarks 上 contamination effect 也较小的模式一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-d000-gsm8k-check.md"
+}

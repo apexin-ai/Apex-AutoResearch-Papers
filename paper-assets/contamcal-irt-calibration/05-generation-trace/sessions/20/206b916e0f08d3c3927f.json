@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "206b916e0f08d3c3927f",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "analysis rrf c1 c2 correlation ablation",
+  "task_key": "worker_analysis_rrf-c1-c2-correlation-ablation_20260521T083557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rrf-c1-c2-correlation-ablation_20260521T083557.log",
+    "occurrence": 1,
+    "bytes": 587025,
+    "sha256": "88daf30439be126f47a185885688734db1e60f586f46630ccce5b241b65360bd"
+  },
+  "statistics": {
+    "messages": 235,
+    "user_turns": 0,
+    "tool_calls": 92,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 92,
+      "tool_result": 92,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 235,
+      "chunks": [
+        {
+          "path": "206b916e0f08d3c3927f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "206b916e0f08d3c3927f-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-rrf-c1-c2-correlation-ablation.md"
+}

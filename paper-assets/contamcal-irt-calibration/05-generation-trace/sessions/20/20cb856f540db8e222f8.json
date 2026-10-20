@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20cb856f540db8e222f8",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_9_1778857288.md",
+  "task_key": "loop_9_1778857288",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778857288.md",
+    "occurrence": 1,
+    "bytes": 4860,
+    "sha256": "45cfff5441f2a475b03812510b8e5c87662a9293d8b60ba7a257510549dda605"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T14:44:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0,1,2,3,4,5 (cqa1-21977)，但 cuda:2 和 cuda:4 当前空闲，其余 4 张在跑实验\n- 0.5B MMLU/ARC 数据必须从 IRT pooling 排除（D045: position bias）\n- 3B d000 GSM8K 必须从 IRT 分析排除（D018: LoRA 超参损伤，theta=-4.98 离群）\n- Pooled IRT 禁止混用 signal-derived exposure 和 oracle dosage（D026: 尺度不可比）\n- train_sft.py 已无 --gpu 参数，GPU 由框架 CUDA_VISIBLE_DEVICES 注入；--model-name 传本地路径不传 HF 名\n- seed=123 必须与同 scale 的 seed=42 使用相同超参（D020: 0.5B/1.5B lr=2e-4,alpha=32; 3B lr=5e-5,alpha=16）\n- CmdStan 在 cqa1-21977 必须 parallel_chains=1 + TMPDIR=/home/ubuntu/tmp_cmdstan\n\n### 2. 🖥️ 基础设施快照\n- 服务器: cqa1-21977 (AutoDL), 6× RTX 4090D (24GB)\n- 工作目录: /root/contamcal-irt-calibration/\n- Python: /root/miniconda3/bin/python (conda base，不用 venv)\n- 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 所有 eval 命令必须前缀 `source /etc/network_turbo &&`\n- HF cache: /root/autodl-tmp/.hf_cache (HF_HOME 必须设此路径)\n- 模型: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}\n- SFT 数据: /root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl\n- Eval 输出: /root/autodl-tmp/exp001/eval_results/\n- 活跃 cron: exp_008_base_pretrained_15B_eval (pid=530970), exp_008_base_pretrained_15B_eval_v2 (pid=530975), exp_004_sim_sweep_extreme_gamma (pid=528993)\n- 活跃 RUNNING 进程: exp_001_sft_15B_d025_s123_v2 (cuda:0, pid=549516), exp_001_sft_15B_d005_s123_v2 (cuda:1, pid=549858), exp_001_eval_3B_d000_s123_aligned (cuda:3, pid=551219), exp_001_eval_3B_d005_s42_aligned (cuda:5, pid=551290)\n\n### 3. 📊 当前状态\n**刚做完**: 收到 exp_008_base_pretrained_eval_v2 (0.5B base eval) 失败回调，完成初步日志诊断——v1 EXIT_CODE=137 (SIGKILL at HumanEval 31%), v2 日志在 GSM8K 6% 处中断无 traceback。两次均为 SIGKILL（疑似 RAM OOM，base model generation 无 stop token → 爆长序列）。\n\n**正在等待**: Worker `worker_diagnose_exp_008_base_pretrained_eval_v2_20260515T114200` 正在 SSH 诊断根因（检查 dmesg OOM、输出目录、max_new_tokens 配置）。registry 已关联 worker ID。\n\n**RUNNING 实验**:\n- exp_001_sft_15B_d025_s123_v2 (cuda:0) — 1.5B seed=123 d025 SFT\n- exp_001_sft_15B_d005_s123_v2 (cuda:1) — 1.5B seed=123 d005 SFT\n- exp_001_eval_3B_d000_s123_aligned (cuda:3) — 3B seed=123 d000 eval\n- exp_001_eval_3B_d005_s42_aligned (cuda:5) — 3B seed=42 d005 eval\n- exp_008_base_pretrained_15B_eval + v2 (cron 监控中) — 1.5B base pretrained eval\n\n**PREPARING**: 18 项，包括 exp_008_instruct_rl_proxy, exp_006_irt_05B_v2, exp_003_mmlu_item_aligned_gap 等\n\n**空闲 GPU**: cuda:2, cuda:4 — 失职状态，需尽快填充\n\n### 4. 📋 待办（条件触发式）\n- Worker diagnose 回调 → 根据 root_cause 决定：若 OOM 则修 evaluate.py 加 max_new_tokens 限制后重提交 v3；若基础设施问题则对应修复。更新 registry notes，向 Director 汇报\n- exp_008_base_pretrained_eval 诊断修复后 → 在 cuda:2 重提交 v3\n- cuda:4 空闲 → 从 PREPARING 列表中选优先级最高的实验提交（exp_001_eval_05B_d000_s42_v6 或 exp_006_irt_05B_v2）\n- 1.5B SFT (cuda:0/1) 完成回调 → 立即提交对应 eval\n- 3B eval (cuda:3/5) 完成回调 → 更新 registry metrics，汇报 Director\n- exp_008_base_pretrained_15B_eval 完成 → 与 d000 SFT 和 Instruct 对比，完成 3-regime comparison (1.5B)\n- exp_004_sim_sweep_extreme_gamma 完成 → 分析 coverage collapse 在极端 gamma 下的行为\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR May 25（距今 10 天）\n- **核心 pivot (D038)**: 论文 framing 已从 \"calibration method\" 转为 \"detection/diagnostic tool\"——因 coverage collapse (20-33%) 证明 score correction 不可靠，但 gamma 方向性检测仍有效\n- **Coverage collapse (D042)**: 确认是 model misspecification，非小 N 问题。simulation 同等 N 下 coverage 90-100%，empirical 仅 20-31%\n- **ARC gamma 负方向 (D036)**: 4 条独立证据确认，framing 为 discriminative validity case study\n- **exp008 3-regime**: base → SFT(d000) → Instruct(SFT+RL) 信号变化。S2 Min-K++ RL-robust (d=0.01) 是 Claim 2 关键证据。**当前 0.5B base eval 连续失败 2 次是这条线的 blocker**——1.5B base eval 仍在跑\n- **易踩的坑**: (1) 结果收集 Worker 禁止模糊路径搜索，必须精确输出目录 (2) update_registry API 可能不回写 YAML，关键变更要验证 (3) v1/v2 checkpoint 不要混用（3B GSM8K 14.78pp 假差距就是版本混淆）(4) GSM8K 种子方差 5-8pp 远高于 MMLU <0.3pp，单 seed 结论不可靠\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778857288.md"
+}

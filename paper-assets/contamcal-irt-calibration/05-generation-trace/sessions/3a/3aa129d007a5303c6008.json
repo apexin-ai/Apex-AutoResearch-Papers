@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3aa129d007a5303c6008",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag olmo2 s0 sweep exit",
+  "task_key": "worker_diag_olmo2-s0-sweep-exit_20260520T102455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_olmo2-s0-sweep-exit_20260520T102455_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "b2cb4372a518f088241f78db5e102dc79e0ea214b8b6f27af78007951d57bc84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**5 个 dosage 全部正常完成。** 证据：\n- 5 个 checkpoint 都有 `adapter_model.safetensors` (~160MB) 和 `train_config.json`\n- checkpoint step 数与样本数吻合：d000=3125, d005=3177, d025=3384, d050=3642, d100=4159\n- `lora_alpha=32` 确认正确\n\n**MMLU eval 结果：无。** sweep 脚本 (`sft_qwen7b_olmo2_s0_sweep.sh`) 只包含训练，不包含 eval 步骤。`results/` 目录下也没有 OLMo eval 文件。\n\n**cuda:2 已释放。** 0MiB / 0% utilization。\n\n当前 GPU 占用：cuda:0 (59GB), cuda:1 (95GB), cuda:3 (66GB) 有其他进程在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-olmo2-s0-sweep-exit.md"
+}

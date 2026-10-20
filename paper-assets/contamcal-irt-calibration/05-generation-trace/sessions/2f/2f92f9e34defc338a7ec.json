@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f92f9e34defc338a7ec",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag gsm8k qwen14b s123 exit",
+  "task_key": "worker_diag_gsm8k-qwen14b-s123-exit_20260520T085124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gsm8k-qwen14b-s123-exit_20260520T085124_result.json",
+    "occurrence": 1,
+    "bytes": 873,
+    "sha256": "b745d2d33965165bac356f19df5fa5954d0b8435ab8a32b8ae58ac1e98c7efd8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n| | s42 | s123 | 差异 |\n|---|---|---|---|\n| **d000** | 60.80% | **76.65%** (1011/1319) | **+15.85pp** |\n| **d100** | 81.27% | 仍在运行 | — |\n\n### 状态\n\n- **d000_s123**: 已完成。Accuracy = **76.65%**\n- **d100_s123**: **仍在运行**（PID 309330, cuda:1, 33GB VRAM, 95% util）。刚完成 5/165 batches（~3%），按 ~14s/batch 估算还需 ~37 分钟\n- **cuda:1**: **未释放**，d100 eval 仍在占用\n\n### 关键发现\n\nd000（clean baseline）跨 seed 差异巨大：s123 比 s42 高 **+15.85pp**（76.65% vs 60.80%）。如果 d100_s123 的结果也大幅高于 s42，那 +20.47pp 的 contamination effect 估算需要重新审视——seed 本身引入的方差可能与 contamination effect 量级相当。\n\n等 d100_s123 完成后才能算出 s123 的 Δ(d100-d000) 并与 s42 的 +20.47pp 对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gsm8k-qwen14b-s123-exit.md"
+}

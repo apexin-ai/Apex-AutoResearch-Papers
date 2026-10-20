@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "14108e3b53594297cb1c",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "exp mf2 threshold dgp sim",
+  "task_key": "worker_exp_mf2-threshold-dgp-sim_20260518T051629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mf2-threshold-dgp-sim_20260518T051629.log",
+    "occurrence": 1,
+    "bytes": 1259466,
+    "sha256": "165ca9871ae131a19aa743c491fec0e183f946717d7deee4d0a8e993925f8709"
+  },
+  "statistics": {
+    "messages": 818,
+    "user_turns": 1,
+    "tool_calls": 348,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 1,
+      "assistant": 99,
+      "tool_call": 348,
+      "tool_result": 348,
+      "user": 1,
+      "result": 4
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 739,
+      "chunks": [
+        {
+          "path": "14108e3b53594297cb1c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "14108e3b53594297cb1c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "14108e3b53594297cb1c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "14108e3b53594297cb1c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "14108e3b53594297cb1c-part-0005.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 79,
+      "chunks": [
+        {
+          "path": "14108e3b53594297cb1c-part-0005.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-mf2-threshold-dgp-sim.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04cd7faa4cba0bad60ec",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp008 3regime comparison",
+  "task_key": "worker_analysis_exp008-3regime-comparison_20260515T070551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp008-3regime-comparison_20260515T070551_result.json",
+    "occurrence": 1,
+    "bytes": 1429,
+    "sha256": "986e7998403d4f58ae1b2e34f0e03a05290e68ebd73ef7e1ff5a58d742a9c3fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。关键发现：\n\n### d000 (SFT-clean) → rl_aligned (Instruct) 信号变化\n\n| 信号 | 平均偏移 | 平均 Cohen's d | 方向一致性 |\n|------|---------|---------------|-----------|\n| **S1 Embedding** | **+7.8%** | 0.45 (medium) | **一致↑** (全部3个benchmark) |\n| **S2 Min-K%++** | +0.4% | 0.01 (negligible) | 不一致 |\n| **S4 Self-Critique** | +3.0% | 0.32 (small) | 不一致 (MMLU/ARC↑, GSM8K↓) |\n\n### 三个关键问题的答案\n\n1. **RL 是否改变信号分布？** S1 和 S4 显著改变，S2 几乎不变。所有 KS 检验 p<0.01。\n\n2. **S4 是否在 RL 后仍有效？** 部分支持。S4 在 MMLU 上偏移最大（d=0.84, large），但 AUC=0.544（用 d005 标签）仍是 rl_aligned 模型上最高的信号。GSM8K 上 S4 反而收紧（d=-0.32）。效果依赖 benchmark。\n\n3. **Shift 方向单调吗？** 仅 S1 单调递增。S2 和 S4 方向不一致。\n\n### 额外发现\n- **RL 放大了所有信号的方差**（S1 MMLU std: 0.072→0.138，1.9x；S2 GSM8K std: 0.089→0.181，2.0x），阈值检测更难。\n- **S2 的稳定性**支持多信号设计：S2 提供 RL-robust 的基线，S4 在知识型 benchmark 上补充判别力。\n- **Base model 信号不存在**，无法分离 SFT 效应和 RL 效应。如需完整 3-regime 分析，需单独计算 pretrained Qwen2.5-0.5B 的信号。\n\n产出已注册：`art_20260515_8b3ac1`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp008-3regime-comparison.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "223cd9858c2afcf1da68",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops investigate process gone",
+  "task_key": "worker_ops_investigate-process-gone_20260516T024446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_investigate-process-gone_20260516T024446_result.json",
+    "occurrence": 1,
+    "bytes": 2295,
+    "sha256": "107aa01fb6a936284ee279a896f1913bc9a841c6fdd24185d30066ec21eb5c9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the report:\n\n---\n\n## 实验 1: exp_002_signals_3B_d025_v3_s42 (cuda:5)\n\n**状态: STILL RUNNING**\n\n报告的 PID 663047 已退出，但其子进程链仍在运行：\n- PID 663052 (bash wrapper `run_signals_3B_d025_v3_s42.sh`)\n- PID 663067 (python `compute_signals.py --signal s4 --benchmark mmlu`), 运行 2h28m\n\n日志显示 mmlu s4 self-critique 进度 96% (6775/7021)，预计约 10 分钟内完成。\n\n**已完成的 signal 文件：**\n| 文件 | 大小 |\n|------|------|\n| signal_s1_embedding_mmlu.json | 7.8MB |\n| signal_s1_embedding_gsm8k.json | 734KB |\n| signal_s1_embedding_arc_challenge.json | 664KB |\n| signal_s2_minkpp_mmlu.json | 2.9MB |\n| signal_s2_minkpp_gsm8k.json | 272KB |\n| signal_s2_minkpp_arc_challenge.json | 250KB |\n\n**待完成：** s4_selfcritique (mmlu 进行中 ~96%，gsm8k/arc_challenge 未开始)。无 .done sentinel。\n\n---\n\n## 实验 2: exp_001_eval_3B_d025_v3_s42_batch (cuda:3)\n\n**状态: PARTIAL SUCCESS**\n\n日志文件不存在（`*d025_v3*batch*` 无匹配），可能以不同命名方式启动。\n\n**aligned eval: SUCCESS**\n- `.done` sentinel 存在，完成时间 10:33\n- 产出文件：eval_results.json (1.96MB), correctness_matrix.json (105KB), item_responses.json (2.2MB)\n- 指标：\n  - **MMLU: 0.6242**\n  - **GSM8K: 0.6823**\n  - **ARC-Challenge: 0.8225**\n\n**para_aligned eval: NOT COMPLETED**\n- 目录已创建但为空，无任何结果文件\n- cuda:3 已释放（0 MiB），进程已退出\n- 可能是 batch 脚本在 aligned 完成后、para_aligned 启动前退出\n\n---\n\n## GPU 状态总表\n\n| GPU | 显存占用 | 利用率 | 状态 | 运行任务 |\n|-----|---------|--------|------|---------|\n| cuda:0 | 9017/24564 MiB | 65% | **BUSY** | PID 642757: eval d100_a32_s123 para_aligned |\n| cuda:1 | 8985/24564 MiB | 70% | **BUSY** | PID 676497: eval d000_s42 a32 aligned |\n| cuda:2 | 8985/24564 MiB | 63% | **BUSY** | PID 679190: eval d005_s42 a32 aligned |\n| cuda:3 | 0/24564 MiB | 0% | **IDLE** | — |\n| cuda:4 | 6931/24564 MiB | 59% | **BUSY** | PID 668217: signals d025_s123 s4 mmlu |\n| cuda:5 | 7805/24564 MiB | 61% | **BUSY** | PID 663067: signals d025_v3_s42 s4 mmlu |\n\n**cuda:3 空闲可用。** para_aligned eval 需要重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-investigate-process-gone.md"
+}

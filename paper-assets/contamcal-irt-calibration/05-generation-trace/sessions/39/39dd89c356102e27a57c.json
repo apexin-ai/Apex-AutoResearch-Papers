@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39dd89c356102e27a57c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag d005 s42 failure investigation",
+  "task_key": "worker_diag_d005_s42_failure_investigation_20260516T015856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_d005_s42_failure_investigation_20260516T015856_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "df58a5a19605e6a614a765c3f793fbb3ee928305be3c4275cb063f01a0539fcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**exp_001_sft_3B_d005_s42_a32 训练已成功完成，EXIT_CODE=129 是误报。**\n\n| 项目 | 详情 |\n|------|------|\n| 根因 | SIGHUP 发生在 Python 进程正常退出之后，来自 tmux shell 清理 |\n| 训练进度 | 3177/3177 steps (100%), epoch=1.0 |\n| 最终 loss | 1.0822, mean_token_accuracy=0.7511 |\n| 训练时长 | 14913s (~4.14h) |\n| Checkpoint | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter` (119MB, lora_alpha=32 已确认) |\n\n**无需重提交。** Registry 已更新为 conclusion=success，checkpoint_path 和 metrics 已补全。该 checkpoint 可直接用于下游 eval 和 signal 计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-d005-s42-failure-investigation.md"
+}

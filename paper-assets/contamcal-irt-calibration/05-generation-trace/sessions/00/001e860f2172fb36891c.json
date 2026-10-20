@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "001e860f2172fb36891c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis dose response prep",
+  "task_key": "worker_analysis_dose-response-prep_20260514T115733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dose-response-prep_20260514T115733_result.json",
+    "occurrence": 1,
+    "bytes": 1334,
+    "sha256": "7f6897cd136bffa46658bc3d956ef64428f013f680bd9591e8a5257a63bd0d1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入 `artifacts/dose_response_analysis.md`。汇总如下：\n\n---\n\n## Dose-Response 进度表\n\n**已完成 eval: 12/29 (42%)**\n\n### Legacy Eval (10/13 完成)\n\n| Model | d000_s42 | d000_s123 | d005_s42 | d025_s42 | d100_s42 |\n|-------|----------|-----------|----------|----------|----------|\n| **0.5B** | ✅ | ✅ | ✅ | ❌ | ✅ |\n| **1.5B** | ✅ | ✅ | ❌ | — | ✅ |\n| **3B** | ✅⚠️ | ✅⚠️ | ❌ | — | ❌ |\n\n### Aligned Eval (2/13 完成)\n\n仅完成 0.5B_d000_s42 的 aligned 和 para_aligned。其余 3 个目录 (0.5B_d005, 1.5B_d000, 3B_d000) 已创建但为空（在跑或已失败）。\n\n### 关键发现\n\n**0.5B dose-response 趋势 (唯一完整序列)**:\n- **MMLU/ARC-C**: 对污染高度敏感，d100 降幅 ~40%\n- **GSM8K**: 几乎不受影响（降幅仅 ~2%）\n- 与\"MC 格式记忆\"假说一致——污染主要破坏选择题能力\n\n### 异常\n\n- **3B GSM8K 极低** (0.12~0.18 vs raw baseline 0.61) — 疑似 legacy MC 格式对 3B 不适配，aligned eval 是修正关键\n- **1.5B d100 反而高于 d000** — 污染效果与模型容量有交互\n\n### 缺失优先级\n\n1. **Legacy**: 0.5B_d025, 1.5B_d005, 3B_d005, 3B_d100 (4个)\n2. **Aligned**: 11 个待做（这是主要瓶颈）\n3. **Raw baselines**: 3 个模型均不完整"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dose-response-prep.md"
+}

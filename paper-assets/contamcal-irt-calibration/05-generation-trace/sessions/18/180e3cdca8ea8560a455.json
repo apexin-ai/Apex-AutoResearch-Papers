@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "180e3cdca8ea8560a455",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis sensitivity sweep v2",
+  "task_key": "worker_analysis_sensitivity-sweep-v2_20260519T194614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sensitivity-sweep-v2_20260519T194614_result.json",
+    "occurrence": 1,
+    "bytes": 1305,
+    "sha256": "1b1b9dd369d10319b1fa405eaa728a2953d6721467f38ce64005e19a6eb79812"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n### Verification: 6/6 PASSED\n所有 test case 在默认参数 (τ=1.0, σ=5.0) 下分类正确。\n\n### 30-combo Sweep 结果\n\n**v2 在全部 30/30 组合中 6 个 family 均分类正确（6/6 × 30 = 180/180）。**\n\n### V1 → V2 变化\n- **35 处分类变化，全部是改进，0 处回退**\n- **Qwen-7B s123**: v1 在 30/30 组合中全部误判为 Immune → v2 全部正确修正为 V-recovery（+30）\n- **Qwen-7B s42**: 当 τ=2.0 时（delta=-1.78 落入 |delta|≤τ），v1 误判为 Immune → v2 通过 volatility check 正确识别为 V-recovery（+5）\n\n### 关键检查\n| 检查项 | 结果 |\n|--------|------|\n| Qwen-7B s123 正确分类为 V-recovery | **30/30** 组合 (v1: 0/30) |\n| Phi-4 保持 Immune | **30/30** 组合 |\n| 4/5 family robustness 保持 | 全部 6 个 family 均 **30/30** |\n\n### 产出文件\n- `/root/contamcal-irt-calibration/analysis/results/sensitivity_v2/sweep_results.json`\n- `/root/contamcal-irt-calibration/analysis/results/sensitivity_v2/sensitivity_heatmap_v2.png`\n- `/root/contamcal-irt-calibration/analysis/results/sensitivity_v2/sensitivity_per_family_v2.png`\n\nVolatility check 是纯改进：修复了 Qwen-7B s123 的 Immune 误分类问题，在所有参数组合下无回退。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sensitivity-sweep-v2.md"
+}

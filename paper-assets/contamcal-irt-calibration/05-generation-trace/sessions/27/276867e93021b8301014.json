@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "276867e93021b8301014",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis bootstrap full rerun",
+  "task_key": "worker_analysis_bootstrap-full-rerun_20260520T160048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-full-rerun_20260520T160048_result.json",
+    "occurrence": 1,
+    "bytes": 1406,
+    "sha256": "d25d07d9e127d86f5e6befa3d3cb7c7ff61f1916b4dd1096a907877dda221079"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量 bootstrap 完成。5/5 家族 s42+s123 全部覆盖（58/75 cells，缺的是 s0 数据）。\n\n### 结果摘要\n\n| Family | n | Baseline | Δ(d100) | 95% CI | Pattern | ρ |\n|---|---|---|---|---|---|---|\n| Phi-4 | 2 | 76.40% | +0.83pp | [-11.84, +13.49]^t | Incomplete† | -0.10 |\n| Qwen2.5-14B | 2 | 69.05% | -11.05pp | [-32.41, +10.30]^t | Collapse | 0.80 |\n| Qwen2.5-7B | 2 | 66.35% | -0.89pp | [-12.16, +10.37]^t | V-recovery | 0.40 |\n| Gemma-2-9B | 2 | 63.85% | +2.62pp | [-11.81, +17.06]^t | V-recovery† | 0.30 |\n| OLMo-2-7B | 3 | 54.93% | +1.35pp | [-0.55, +2.60] | Benefit-sat† | 0.03 |\n\n### Qwen2.5-7B s123 加入后的变化\n- 从 n=1（仅 s42）升级到 n=2，现在有 t-distribution CI\n- Pattern：s42 V-recovery，s123 也是 V-recovery → **Consistent**（之前仅单种子无法判断）\n- Δ(d100) 从 -1.78pp（单点）变为 -0.89pp [-12.16, +10.37]\n\n### Phi-4 分类\n- s42: Immune，s123: Benefit-sat，s0: Incomplete → **Inconsistent**\n- 多数票落在 Incomplete（因为 Phi-4 n=3 但 s0 缺 d050/d100，majority 无法确定单一模式）\n- LaTeX 表中标注 `Incomplete†`\n\n### 注意事项\n- Phi-4 的 n 在 Δ 表中显示 2（s0 缺数据不参与 d100 delta 计算），ρ=-0.10 表明两个种子的 dose-response 曲线方向不一致\n- 所有 n=2 家族的 CI 极宽（t-distribution df=1），统计效力有限"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-full-rerun.md"
+}

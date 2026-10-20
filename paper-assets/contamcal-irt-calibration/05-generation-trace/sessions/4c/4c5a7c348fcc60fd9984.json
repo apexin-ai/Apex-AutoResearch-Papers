@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c5a7c348fcc60fd9984",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh mmlu speed check",
+  "task_key": "worker_ssh_mmlu-speed-check_20260513T192735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_mmlu-speed-check_20260513T192735_result.json",
+    "occurrence": 1,
+    "bytes": 2385,
+    "sha256": "ea4a316defd7749e84d3ab6a59c8c124db257dd2d32587a20330d007d25641cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n```\nMMLU paraphrase:\n- PID: 204472 (vLLM engine: 204758)\n- GPU 0 utilization: 100%\n- GPU 0 memory: 22541/24564 MiB (91.8%)\n- batch_size: 16\n- 当前进度: 168/878 batches (19%)\n- 运行时间: ~13 min\n- ETA: ~53 min (平均 4.5s/batch，但波动大，2.7-6.9s/batch)\n- vLLM 配置: LLM(model=..., trust_remote_code=True, max_model_len=4096)\n  - gpu_memory_utilization: 未设置（默认 0.9）\n  - tensor_parallel_size: 未设置（默认 1）\n- 吞吐: input 144-1258 toks/s, output 138-636 toks/s（不稳定）\n\nGSM8K (GPU 1):\n- PID: 189375\n- GPU 1: 96% util, 15133/24564 MiB\n- ⚠️ vLLM 初始化失败，回退到 transformers（慢 ~10x）\n- 错误: \"Free memory on device cuda:0 (8.48/23.52 GiB) < desired 0.92\"\n- 当前: retry 第 2 轮, 14/38 batches, ~42s/batch\n- ETA: ~17 min\n\nARC (GPU 2):\n- PID: 190717\n- GPU 2: 95% util, 15201/24564 MiB\n- ⚠️ vLLM 初始化失败，同样回退到 transformers\n- 当前: retry 第 2 轮, 10/22 batches, ~49s/batch\n- ETA: ~10 min\n\nHumanEval: ✅ 已完成 (vLLM 成功), 26/164 passed QC (15.9%)\n\n全部 6 GPU:\nGPU 0: 100% 303W  22541MiB  MMLU (vLLM)\nGPU 1:  96% 283W  15133MiB  GSM8K (transformers fallback)\nGPU 2:  95% 322W  15201MiB  ARC (transformers fallback)\nGPU 3:   0%  22W      0MiB  idle\nGPU 4:   0%  11W      0MiB  idle\nGPU 5:   0%  15W      0MiB  idle\n```\n\n**关键问题**：\n\n1. **GSM8K 和 ARC 的 vLLM 全部失败**，回退到逐条 transformers 生成，速度只有 vLLM 的 ~1/10。原因是启动时 GPU 显存不足（可能与同时启动多个进程或之前的 MMLU v1/v2 残留进程有关）。它们快完成了所以不值得重启。\n\n2. **MMLU 速度波动大**（2.7s-6.9s/batch），某些 batch 的 output throughput 突降到 138 toks/s。这是因为某些 MMLU 题目的 paraphrase 输出特别长（长 generation 占用 KV cache 阻塞其他请求）。batch_size=16 对 4090D 24GB 来说偏保守。\n\n3. **建议优化**：\n   - MMLU 正在运行中，不建议中断。当前 ETA ~53 min 可接受。\n   - 如果 GSM8K/ARC 完成后需要更多 retry，可以 kill 后用 vLLM 重跑（此时 GPU 1/2 会是干净的）。\n   - `paraphrase_gen.py` 第 219 行的 vLLM 初始化可加 `gpu_memory_utilization=0.95` 提高 KV cache 容量。\n   - HumanEval QC 通过率只有 15.9%，后续需要关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-mmlu-speed-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2759edbdd93f9cecb234",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd olmo launch and gpu3 kill",
+  "task_key": "worker_ssh_westd-olmo-launch-and-gpu3-kill_20260519T115322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-olmo-launch-and-gpu3-kill_20260519T115322_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "d66f96f1dfad38231d5e67df4c6279789399e238eea57ec178295611e35ad421"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终状态报告\n\n### GPU 3 冲突 — 已解除\n- 杀死 PID 147606（`phase2_eval_gpu3.sh` 的 bash 进程），阻止 OLMo 自动启动\n- gemma-2 d100 eval (PID 159883) 继续运行，不受影响\n\n### OLMo eval 启动情况\n| GPU | 状态 | 任务 |\n|-----|------|------|\n| cuda:2 | **已启动** olmo2_d100 | tmux session `olmo2_gpu2`，MMLU 评估进行中 |\n| cuda:0 | **忙** — phi-4 d100 eval | 完成后才能启动 olmo2_d000+d005 |\n| cuda:1 | **忙** — qwen14b d050 eval（后面还有 d100） | 完成后才能启动 olmo2_d025+d050 |\n\n### eval_results_v2/ 已完成目录\n**完成（有 results）**：gemma2_d000/d005/d025/d050, phi4_d000/d005/d025/d050, qwen14b_d000/d005/d025, qwen7b_d000/d005/d025/d050/d100\n\n**进行中**：gemma2_d100 (GPU 3), qwen14b_d050 (GPU 1), phi4_d100 (GPU 0), olmo2_d100 (GPU 2)\n\n### 待办\nGPU 0/1 空闲后需手动启动：\n- `tmux new-session -d -s olmo2_gpu0 'bash /root/contamcal-irt-calibration/exp001/olmo2_eval_gpu0.sh'`（d000+d005）\n- `tmux new-session -d -s olmo2_gpu1 'bash /root/contamcal-irt-calibration/exp001/olmo2_eval_gpu1.sh'`（d025+d050）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-olmo-launch-and-gpu3-kill.md"
+}

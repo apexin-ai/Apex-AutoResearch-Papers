@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32c2742e923792e399e7",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_13_1778898143.md",
+  "task_key": "loop_13_1778898143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778898143.md",
+    "occurrence": 1,
+    "bytes": 4129,
+    "sha256": "95cb76018ccd345c2d09cd8fa27e50509cc1af2c34302997d9fa16e294ff7590"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T02:21:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 cqa1-21977 只有 6× RTX 4090D（cuda:0–5），gpu_ids 以 get_project_status 白名单为准，不得越界\n- D076 lr 混淆教训：0.5B MMLU/ARC 数据已排除出 IRT pooling（position bias artifact），3B d000/d005_s42 正在用 lr=5e-5 重训，旧 lr=2e-4 checkpoint 不可用于最终分析\n- cuda:0 当前双进程（SFT + eval 均 >75%），绝对不能 SIGTERM——上次误杀导致 D076 恢复花了大量时间\n- noise_prop_v4 已确认 negative（D095），Claim 3 不再做独立实验支撑，改为 sim_sweep 间接证据 + Discussion honest negative\n- 信号选择已锁定 s1+s2+s4 三信号融合（D098），不要用 s3_constat\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，6× RTX 4090D，工作目录 /root/autodl-tmp/contamcal-irt（推测，需 Worker 确认）\n- Python：/root/miniconda3/bin/python（aml-train 镜像，conda base 环境）\n- 模型基座：Qwen2.5-0.5B / 1.5B / 3B（具体路径在 registry spec 中）\n- HF_HOME=/root/autodl-tmp/.hf_cache\n- W&B 项目：contamcal-irt-calibration（需确认 wandb entity）\n- 活跃 GPU 进程（截至 05-16 ~01:00 UTC）：\n  - cuda:0: SFT d005_s42_a32（~74%）+ eval d100_s123_a32 GSM8K（~75%）\n  - cuda:1: SFT d100_s42_a32_v3（~94%，即将完成）\n  - cuda:2: signals d005_s123 mmlu\n  - cuda:3: eval d025_v3_s42 aligned\n  - cuda:4: eval d000_s42_a32 batch（aligned+para）\n  - cuda:5: signals d025_v3_s42 mmlu\n- cron 监控：所有 RUNNING 实验有 cron 跟踪，完成会触发回调\n\n### 3. 📊 当前状态\n- **总体**：168 个实验，115 success / 2 negative / 43 failed。6 张卡 100% 饱和\n- **关键进展**：1.5B matrix 16/16 完整（aligned + para_aligned 双 seed）；3B 部分完成（s123 基本完整，s42 受 D076 lr 混淆影响正在重训）\n- **sim_sweep_v7**：9/12 完成，γ recovery 优秀（bias<0.03），auc0.65 子集结构性失败已标记非关键\n- **正在等**：cuda:1 SFT 完成 → 释放卡给队列中 16+ 排队实验；3B s42 retrain 完成 → eval + signals → RRF 聚合\n- **距 EMNLP ARR May 25 截稿还有 9 天**\n\n### 4. 📋 待办（条件触发式）\n- cuda:1 SFT d100_s42_a32_v3 完成 → 立即提交该 seed 的 eval（aligned + para_aligned, 4 benchmark）+ signals\n- cuda:0 任一进程完成 → 提交队列中下一个 3B eval/signals 任务（不要打断另一个进程）\n- 3B d000/d005_s42 retrain 完成 → eval + signals → 与 s123 汇合，IRT pooling N 从 23 升至 ~30+\n- 所有 3B eval/signals 完成 → RRF 聚合（CPU，不占 GPU）→ pooled IRT fitting（exp-006）+ 7 baselines\n- exp-006 IRT fitting 完成 → SBC 诊断（coverage 20-69% vs 95% 名义值）→ 决定 honest framing 细节\n- T-7 天：Claim 3 go/no-go 最终确认（sim_sweep boundary + Discussion framing 是否足够）\n- T-5 天：启动 paper writing pipeline（5-step Full Draft）\n\n### 5. 🎯 战略上下文\n- **核心发现**：benchmark contamination 效应是 benchmark-dependent（GSM8K/HumanEval 敏感 vs MMLU/ARC 抗性）、scale-dependent、bidirectional（ARC forgetting vs GSM8K inflation）。4PL+γ 模型存在 misspecification（coverage collapse 根因）\n- **决策链关键节点**：D045 benchmark 异质性发现 → D076 lr 混淆修复 → D090 coverage collapse 归因 → D095 Claim 3 降级为 Discussion → D098 三信号融合锁定\n- **最容易判断错的事**：\n  1. 不要把 0.5B 数据重新纳入 IRT pooling——position bias artifact 未解决\n  2. coverage 20-69% 不是 bug 而是模型 misspecification 的真实体现，不要试图\"修复\"它，要 honest framing\n  3. GSM8K calibrated MAE 11× 恶化是 overcorrection，已有 gating criterion 防护，但审稿人会问（Concern #20）\n  4. N=23 当前 pooling 样本仍低于 practical threshold（N≥50），3B s42 完成后 ~30+ 是可接受的下限\n- **论文 4 个 Core Claims**：(1) characterization [primary] (2) signal failure [co-primary] (3) identifiability [降级为 Discussion] (4) conditional calibration\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778898143.md"
+}

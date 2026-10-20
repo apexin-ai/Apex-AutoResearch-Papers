@@ -1,0 +1,729 @@
+{
+  "schema_version": "1.0",
+  "session_id": "08606fa5a0a43cc5b5d5",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 1621,
+          "timestamp": "2026-05-17T17:13:19.193Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0195A1WgNRJJXz37mm4umswc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"theta: 16 cols, gamma: 1 cols, total: 36040 cols\\\\nReading contam_irt_2pl_gamma-20260518005915_1.csv...\\\\nReading contam_irt_2pl_gamma-20260518005915_2.csv...\\\\nReading contam_irt_2pl_gamma-20260518005915_3.csv...\\\\nReading contam_irt_2pl_gamma-20260518005915_4.csv...\\\\nDraws: 4000, Models: 16\\\\nSUCCESS: Business_Law theta saved (16 models)\\\\ngamma = -0.2385 [-0.6758, 0.2031]\\\\ntheta.mean = [0.0854, 0.1163, 0.1254, 0.1545, 0.1667, 0.1766, 0.1962, 0.1674, -0.6216, -0.7757, -0.8615, 0.359, 0.3811, 0.3171, 0.3343, 0.3534]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "21ebe3f3-c619-4fa0-8a4a-ef2a06261d60",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"theta: 16 cols, gamma: 1 cols, total: 36040 cols\\\\nReading contam_irt_2pl_gamma-20260518005915_1.csv...\\\\nReading contam_irt_2pl_gamma-20260518005915_2.csv...\\\\nReading contam_irt_2pl_gamma-20260518005915_3.csv...\\\\nReading contam_irt_2pl_gamma-20260518005915_4.csv...\\\\nDraws: 4000, Models: 16\\\\nSUCCESS: Business_Law theta saved (16 models)\\\\ngamma = -0.2385 [-0.6758, 0.2031]\\\\ntheta.mean = [0.0854, 0.1163, 0.1254, 0.1545, 0.1667, 0.1766, 0.1962, 0.1674, -0.6216, -0.7757, -0.8615, 0.359, 0.3811, 0.3171, 0.3343, 0.3534]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.88}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"theta: 16 cols, gamma: 1 cols, total: 36040 cols\\nReading contam_irt_2pl_gamma-20260518005915_1.csv...\\nReading contam_irt_2pl_gamma-20260518005915_2.csv...\\nReading contam_irt_2pl_gamma-20260518005915_3.csv...\\nReading contam_irt_2pl_gamma-20260518005915_4.csv...\\nDraws: 4000, Models: 16\\nSUCCESS: Business_Law theta saved (16 models)\\ngamma = -0.2385 [-0.6758, 0.2031]\\ntheta.mean = [0.0854, 0.1163, 0.1254, 0.1545, 0.1667, 0.1766, 0.1962, 0.1674, -0.6216, -0.7757, -0.8615, 0.359, 0.3811, 0.3171, 0.3343, 0.3534]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.88}}"
+              }
+            }
+          },
+          "id": "event-001621"
+        },
+        {
+          "source_line": 1622,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 8 domains complete. Now compiling the full report."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "5ef57f72-497e-4aa3-9e65-45d2885ad22b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JZoJUUYFyNUp3NucUcx4Sa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 509,
+                "cache_read_input_tokens": 61179,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 509
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001622"
+        },
+        {
+          "source_line": 1623,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019HdBfvsrPnMfyob2o8nqQ6",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "/root/miniconda3/bin/python3 << 'PYEOF'\nimport json, os\nimport numpy as np\n\nbase = \"/root/autodl-tmp/exp006/mmlu_domain_irt_j16_cross_family\"\ndomains = [\"STEM_Math\", \"STEM_Science\", \"STEM_CS_Eng\", \"Medical\", \"Humanities\", \"Social_Sciences\", \"Business_Law\", \"Other\"]\n\nwith open(os.path.join(base, \"model_order.json\")) as f:\n    models = json.load(f)\n\nall_theta = {}\nall_gamma = {}\nall_meta = {}\nfor d in domains:\n    with open(os.path.join(base, d, \"irt_results.json\")) as f:\n        r = json.load(f)\n    all_gamma[d] = r[\"gamma\"]\n    all_meta[d] = {\"n_items\": r[\"n_items\"], \"mean_acc\": r[\"mean_acc\"], \"draws\": r[\"diagnostics\"][\"total_draws\"]}\n    all_theta[d] = r.get(\"theta\")\n\n# Verify all complete\nfor d in domains:\n    assert all_theta[d] is not None, f\"{d} missing theta\"\n    assert all_gamma[d], f\"{d} missing gamma\"\nprint(\"All 8 domains verified.\\n\")\n\nprint(\"=\"*80)\nprint(\"CROSS-FAMILY IRT (J=16) - FULL 8-DOMAIN THETA REPORT\")\nprint(\"=\"*80)\n\nprint(\"\\n## Table 1: Domain Overview\")\nprint(f\"{'Domain':<18} {'N_items':>7} {'Mean_acc':>8} {'Gamma':>10} {'CI95':>22} {'Draws':>6}\")\nprint(\"-\"*75)\nfor d in domains:\n    g = all_gamma[d]\n    m = all_meta[d]\n    print(f\"{d:<18} {m['n_items']:>7} {m['mean_acc']:>8.4f} {g['mean']:>10.4f} [{g['q025']:>7.4f}, {g['q975']:>7.4f}] {m['draws']:>6}\")\n\nprint(\"\\n\\n## Table 2: Theta (Mean) - 8 Domains x 16 Models\")\nheader = f\"{'Model':<30} {'Fam':>4} {'D':>3}\"\nfor d in domains:\n    header += f\" {d[:8]:>9}\"\nprint(header)\nprint(\"-\"*len(header))\nfor i, mod in enumerate(models):\n    fam = \"Q15\" if \"1.5B\" in mod['dirname'] else (\"L3\" if \"Llama\" in mod['dirname'] else \"Q3\")\n    row = f\"{mod['dirname']:<30} {fam:>4} {mod['dosage']:>3}\"\n    for d in domains:\n        t = all_theta[d]\n        row += f\" {t[i]['mean']:>9.4f}\"\n    print(row)\n\nprint(\"\\n\\n## Table 3: Qwen-3B vs Llama-3B (matched dosages)\")\nprint(f\"{'Domain':<16} {'L3_d000':>8} {'L3_d005':>8} {'L3_d025':>8} {'Q3_d005':>8} {'Q3_d025':>8} {'Q3_d100':>8} {'Gap@d025':>9}\")\nprint(\"-\"*77)\nfor d in domains:\n    t = all_theta[d]\n    l0 = t[8]['mean']; l5 = t[9]['mean']; l25 = t[10]['mean']\n    q5 = t[11]['mean']\n    q25 = np.mean([t[12]['mean'], t[13]['mean']])\n    q100 = np.mean([t[14]['mean'], t[15]['mean']])\n    gap = q25 - l25\n    print(f\"{d:<16} {l0:>8.4f} {l5:>8.4f} {l25:>8.4f} {q5:>8.4f} {q25:>8.4f} {q100:>8.4f} {gap:>+9.4f}\")\n\nprint(\"\\n\\n## Table 4: Dosage-Response (Qwen-1.5B, seed-averaged)\")\nprint(f\"{'Domain':<16} {'d000':>8} {'d005':>8} {'d025':>8} {'d100':>8} {'d100-d000':>10}\")\nprint(\"-\"*58)\nfor d in domains:\n    t = all_theta[d]\n    d000 = np.mean([t[0]['mean'], t[1]['mean']])\n    d005 = np.mean([t[2]['mean'], t[3]['mean']])\n    d025 = np.mean([t[4]['mean'], t[5]['mean']])\n    d100 = np.mean([t[6]['mean'], t[7]['mean']])\n    print(f\"{d:<16} {d000:>8.4f} {d005:>8.4f} {d025:>8.4f} {d100:>8.4f} {d100-d000:>+10.4f}\")\n\nprint(\"\\n\\n## Table 5: Dosage-Response (Llama-3B)\")\nprint(f\"{'Domain':<16} {'d000':>8} {'d005':>8} {'d025':>8} {'d025-d000':>10}\")\nprint(\"-\"*50)\nfor d in domains:\n    t = all_theta[d]\n    print(f\"{d:<16} {t[8]['mean']:>8.4f} {t[9]['mean']:>8.4f} {t[10]['mean']:>8.4f} {t[10]['mean']-t[8]['mean']:>+10.4f}\")\n\nprint(\"\\n\\n## Key Findings\")\nprint(\"\\n1. Gamma ranking (contamination sensitivity):\")\nfor d, g in sorted(all_gamma.items(), key=lambda x: x[1]['mean']):\n    sig = \"***\" if g['q975'] < 0 else (\"n.s.\" if g['q025'] < 0 and g['q975'] > 0 else \"+\")\n    print(f\"   {d:<18} {g['mean']:>7.4f} [{g['q025']:.4f}, {g['q975']:.4f}]  {sig}\")\n\nprint(\"\\n2. Cross-family theta gap (Qwen-3B - Llama-3B) at d025:\")\ngaps = []\nfor d in domains:\n    t = all_theta[d]\n    q3 = np.mean([t[12]['mean'], t[13]['mean']])\n    l3 = t[10]['mean']\n    gaps.append((d, q3-l3, q3, l3))\nfor d, gap, q, l in sorted(gaps, key=lambda x: -x[1]):\n    print(f\"   {d:<18} gap={gap:>+.4f}  (Q3={q:.4f}, L3={l:.4f})\")\n\nprint(\"\\n3. Qwen-1.5B dosage effect (d100-d000):\")\neffects = []\nfor d in domains:\n    t = all_theta[d]\n    d000 = np.mean([t[0]['mean'], t[1]['mean']])\n    d100 = np.mean([t[6]['mean'], t[7]['mean']])\n    effects.append((d, d100-d000))\nfor d, eff in sorted(effects, key=lambda x: -x[1]):\n    print(f\"   {d:<18} {eff:>+.4f}\")\nPYEOF"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "d16213a2-7d6f-4224-b16e-f14466147315",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JZoJUUYFyNUp3NucUcx4Sa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 509,
+                "cache_read_input_tokens": 61179,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 509
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001623"
+        },
+        {
+          "source_line": 1624,
+          "timestamp": "2026-05-17T17:13:49.573Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019HdBfvsrPnMfyob2o8nqQ6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: '/root/miniconda3/bin/python3 << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport json, os\\\\\\\\nimport numpy as np\\\\\\\\n\\\\\\\\nbase = \\\\\\\"/root/autodl-tmp/exp006/mmlu_domain_irt_j16_cross_family\\\\\\\"\\\\\\\\ndomains = [\\\\\\\"STEM_Math\\\\\\\", \\\\\\\"STEM_Science\\\\\\\", \\\\\\\"STEM_CS_Eng\\\\\\\", \\\\\\\"Medical\\\\\\\", \\\\\\\"Humanities\\\\\\\", \\\\\\\"Social_Sciences\\\\\\\", \\\\\\\"Business_Law\\\\\\\", \\\\\\\"Other\\\\\\\"]\\\\\\\\n\\\\\\\\nwith open(os.path.join(base, \\\\\\\"model_order.json\\\\\\\")) as f:\\\\\\\\n    models = json.load(f)\\\\\\\\n\\\\\\\\nall_theta = {}\\\\\\\\nall_gamma = {}\\\\\\\\nall_meta = {}\\\\\\\\nfor d in domains:\\\\\\\\n    with open(os.path.join(base, d, \\\\\\\"irt_results.json\\\\\\\")) as f:\\\\\\\\n        r = json.load(f)\\\\\\\\n    all_gamma[d] = r[\\\\\\\"gamma\\\\\\\"]\\\\\\\\n    all_meta[d] = {\\\\\\\"n_items\\\\\\\": r[\\\\\\\"n_items\\\\\\\"], \\\\\\\"mean_acc\\\\\\\": r[\\\\\\\"mean_acc\\\\\\\"], \\\\\\\"draws\\\\\\\": r[\\\\\\\"diagnostics\\\\\\\"][\\\\\\\"total_draws\\\\\\\"]}\\\\\\\\n    all_theta[d] = r.get(\\\\\\\"theta\\\\\\\")\\\\\\\\n\\\\\\\\n# Verify all complete\\\\\\\\nfor d in domains:\\\\\\\\n    assert all_theta[d] is not None, f\\\\\\\"{d} missing theta\\\\\\\"\\\\\\\\n    assert all_gamma[d], f\\\\\\\"{d} missing gamma\\\\\\\"\\\\\\\\nprint(\\\\\\\"All 8 domains verified.\\\\\\\\\\\\\\\\n\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"=\\\\\\\"*80)\\\\\\\\nprint(\\\\\\\"CROSS-FAMILY IRT (J=16) - FULL 8-DOMAIN THETA REPORT\\\\\\\")\\\\\\\\nprint(\\\\\\\"=\\\\\\\"*80)\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n## Table 1: Domain Overview\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Domain\\\\\\\\':<18} {\\\\\\\\'N_items\\\\\\\\':>7} {\\\\\\\\'Mean_acc\\\\\\\\':>8} {\\\\\\\\'Gamma\\\\\\\\':>10} {\\\\\\\\'CI95\\\\\\\\':>22} {\\\\\\\\'Draws\\\\\\\\':>6}\\\\\\\")\\\\\\\\nprint(\\\\\\\"-\\\\\\\"*75)\\\\\\\\nfor d in domains:\\\\\\\\n    g = all_gamma[d]\\\\\\\\n    m = all_meta[d]\\\\\\\\n    print(f\\\\\\\"{d:<18} {m[\\\\\\\\'n_items\\\\\\\\']:>7} {m[\\\\\\\\'mean_acc\\\\\\\\']:>8.4f} {g[\\\\\\\\'mean\\\\\\\\']:>10.4f} [{g[\\\\\\\\'q025\\\\\\\\']:>7.4f}, {g[\\\\\\\\'q975\\\\\\\\']:>7.4f}] {m[\\\\\\\\'draws\\\\\\\\']:>6}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\n## Table 2: Theta (Mean) - 8 Domains x 16 Models\\\\\\\")\\\\\\\\nheader = f\\\\\\\"{\\\\\\\\'Model\\\\\\\\':<30} {\\\\\\\\'Fam\\\\\\\\':>4} {\\\\\\\\'D\\\\\\\\':>3}\\\\\\\"\\\\\\\\nfor d in domains:\\\\\\\\n    header += f\\\\\\\" {d[:8]:>9}\\\\\\\"\\\\\\\\nprint(header)\\\\\\\\nprint(\\\\\\\"-\\\\\\\"*len(header))\\\\\\\\nfor i, mod in enumerate(models):\\\\\\\\n    fam = \\\\\\\"Q15\\\\\\\" if \\\\\\\"1.5B\\\\\\\" in mod[\\\\\\\\'dirname\\\\\\\\'] else (\\\\\\\"L3\\\\\\\" if \\\\\\\"Llama\\\\\\\" in mod[\\\\\\\\'dirname\\\\\\\\'] else \\\\\\\"Q3\\\\\\\")\\\\\\\\n    row = f\\\\\\\"{mod[\\\\\\\\'dirname\\\\\\\\']:<30} {fam:>4} {mod[\\\\\\\\'dosage\\\\\\\\']:>3}\\\\\\\"\\\\\\\\n    for d in domains:\\\\\\\\n        t = all_theta[d]\\\\\\\\n        row += f\\\\\\\" {t[i][\\\\\\\\'mean\\\\\\\\']:>9.4f}\\\\\\\"\\\\\\\\n    print(row)\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\n## Table 3: Qwen-3B vs Llama-3B (matched dosages)\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Domain\\\\\\\\':<16} {\\\\\\\\'L3_d000\\\\\\\\':>8} {\\\\\\\\'L3_d005\\\\\\\\':>8} {\\\\\\\\'L3_d025\\\\\\\\':>8} {\\\\\\\\'Q3_d005\\\\\\\\':>8} {\\\\\\\\'Q3_d025\\\\\\\\':>8} {\\\\\\\\'Q3_d100\\\\\\\\':>8} {\\\\\\\\'Gap@d025\\\\\\\\':>9}\\\\\\\")\\\\\\\\nprint(\\\\\\\"-\\\\\\\"*77)\\\\\\\\nfor d in domains:\\\\\\\\n    t = all_theta[d]\\\\\\\\n    l0 = t[8][\\\\\\\\'mean\\\\\\\\']; l5 = t[9][\\\\\\\\'mean\\\\\\\\']; l25 = t[10][\\\\\\\\'mean\\\\\\\\']\\\\\\\\n    q5 = t[11][\\\\\\\\'mean\\\\\\\\']\\\\\\\\n    q25 = np.mean([t[12][\\\\\\\\'mean\\\\\\\\'], t[13][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    q100 = np.mean([t[14][\\\\\\\\'mean\\\\\\\\'], t[15][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    gap = q25 - l25\\\\\\\\n    print(f\\\\\\\"{d:<16} {l0:>8.4f} {l5:>8.4f} {l25:>8.4f} {q5:>8.4f} {q25:>8.4f} {q100:>8.4f} {gap:>+9.4f}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\n## Table 4: Dosage-Response (Qwen-1.5B, seed-averaged)\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Domain\\\\\\\\':<16} {\\\\\\\\'d000\\\\\\\\':>8} {\\\\\\\\'d005\\\\\\\\':>8} {\\\\\\\\'d025\\\\\\\\':>8} {\\\\\\\\'d100\\\\\\\\':>8} {\\\\\\\\'d100-d000\\\\\\\\':>10}\\\\\\\")\\\\\\\\nprint(\\\\\\\"-\\\\\\\"*58)\\\\\\\\nfor d in domains:\\\\\\\\n    t = all_theta[d]\\\\\\\\n    d000 = np.mean([t[0][\\\\\\\\'mean\\\\\\\\'], t[1][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    d005 = np.mean([t[2][\\\\\\\\'mean\\\\\\\\'], t[3][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    d025 = np.mean([t[4][\\\\\\\\'mean\\\\\\\\'], t[5][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    d100 = np.mean([t[6][\\\\\\\\'mean\\\\\\\\'], t[7][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    print(f\\\\\\\"{d:<16} {d000:>8.4f} {d005:>8.4f} {d025:>8.4f} {d100:>8.4f} {d100-d000:>+10.4f}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\n## Table 5: Dosage-Response (Llama-3B)\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Domain\\\\\\\\':<16} {\\\\\\\\'d000\\\\\\\\':>8} {\\\\\\\\'d005\\\\\\\\':>8} {\\\\\\\\'d025\\\\\\\\':>8} {\\\\\\\\'d025-d000\\\\\\\\':>10}\\\\\\\")\\\\\\\\nprint(\\\\\\\"-\\\\\\\"*50)\\\\\\\\nfor d in domains:\\\\\\\\n    t = all_theta[d]\\\\\\\\n    print(f\\\\\\\"{d:<16} {t[8][\\\\\\\\'mean\\\\\\\\']:>8.4f} {t[9][\\\\\\\\'mean\\\\\\\\']:>8.4f} {t[10][\\\\\\\\'mean\\\\\\\\']:>8.4f} {t[10][\\\\\\\\'mean\\\\\\\\']-t[8][\\\\\\\\'mean\\\\\\\\']:>+10.4f}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\n## Key Findings\\\\\\\")\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n1. Gamma ranking (contamination sensitivity):\\\\\\\")\\\\\\\\nfor d, g in sorted(all_gamma.items(), key=lambda x: x[1][\\\\\\\\'mean\\\\\\\\']):\\\\\\\\n    sig = \\\\\\\"***\\\\\\\" if g[\\\\\\\\'q975\\\\\\\\'] < 0 else (\\\\\\\"n.s.\\\\\\\" if g[\\\\\\\\'q025\\\\\\\\'] < 0 and g[\\\\\\\\'q975\\\\\\\\'] > 0 else \\\\\\\"+\\\\\\\")\\\\\\\\n    print(f\\\\\\\"   {d:<18} {g[\\\\\\\\'mean\\\\\\\\']:>7.4f} [{g[\\\\\\\\'q025\\\\\\\\']:.4f}, {g[\\\\\\\\'q975\\\\\\\\']:.4f}]  {sig}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n2. Cross-family theta gap (Qwen-3B - Llama-3B) at d025:\\\\\\\")\\\\\\\\ngaps = []\\\\\\\\nfor d in domains:\\\\\\\\n    t = all_theta[d]\\\\\\\\n    q3 = np.mean([t[12][\\\\\\\\'mean\\\\\\\\'], t[13][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    l3 = t[10][\\\\\\\\'mean\\\\\\\\']\\\\\\\\n    gaps.append((d, q3-l3, q3, l3))\\\\\\\\nfor d, gap, q, l in sorted(gaps, key=lambda x: -x[1]):\\\\\\\\n    print(f\\\\\\\"   {d:<18} gap={gap:>+.4f}  (Q3={q:.4f}, L3={l:.4f})\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n3. Qwen-1.5B dosage effect (d100-d000):\\\\\\\")\\\\\\\\neffects = []\\\\\\\\nfor d in domains:\\\\\\\\n    t = all_theta[d]\\\\\\\\n    d000 = np.mean([t[0][\\\\\\\\'mean\\\\\\\\'], t[1][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    d100 = np.mean([t[6][\\\\\\\\'mean\\\\\\\\'], t[7][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    effects.append((d, d100-d000))\\\\\\\\nfor d, eff in sorted(effects, key=lambda x: -x[1]):\\\\\\\\n    print(f\\\\\\\"   {d:<18} {eff:>+.4f}\\\\\\\")\\\\\\\\nPYEOF'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nMedical               1640   0.6051     0.2175 [-0.3364,  0.7380]   4000\\\\nHumanities            2000   0.5405    -0.9540 [-1.4253, -0.4851]   4000\\\\nSocial_Sciences       2000   0.6700    -1.0921 [-1.4969, -0.6742]   4000\\\\nBusiness_Law          2000   0.5163    -0.2385 [-0.6758,  0.2031]   4000\\\\nOther                  883   0.6824    -0.8798 [-1.5485, -0.2325]   4000\\\\n\\\\n\\\\n## Table 2: Theta (Mean) - 8 Domains x 16 Models\\\\nModel                           Fam   D  STEM_Mat  STEM_Sci  STEM_CS_   Medical  Humaniti  Social_S  Business     Other\\\\n-----------------------------------------------------------------------------------------------------------------------\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<stdin>\\\\\\\", line 49, in <module>\\\\nKeyError: 0\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "0ddc9bfb-374e-4f7d-a14e-d6fa00bb29f6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: '/root/miniconda3/bin/python3 << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport json, os\\\\\\\\nimport numpy as np\\\\\\\\n\\\\\\\\nbase = \\\\\\\"/root/autodl-tmp/exp006/mmlu_domain_irt_j16_cross_family\\\\\\\"\\\\\\\\ndomains = [\\\\\\\"STEM_Math\\\\\\\", \\\\\\\"STEM_Science\\\\\\\", \\\\\\\"STEM_CS_Eng\\\\\\\", \\\\\\\"Medical\\\\\\\", \\\\\\\"Humanities\\\\\\\", \\\\\\\"Social_Sciences\\\\\\\", \\\\\\\"Business_Law\\\\\\\", \\\\\\\"Other\\\\\\\"]\\\\\\\\n\\\\\\\\nwith open(os.path.join(base, \\\\\\\"model_order.json\\\\\\\")) as f:\\\\\\\\n    models = json.load(f)\\\\\\\\n\\\\\\\\nall_theta = {}\\\\\\\\nall_gamma = {}\\\\\\\\nall_meta = {}\\\\\\\\nfor d in domains:\\\\\\\\n    with open(os.path.join(base, d, \\\\\\\"irt_results.json\\\\\\\")) as f:\\\\\\\\n        r = json.load(f)\\\\\\\\n    all_gamma[d] = r[\\\\\\\"gamma\\\\\\\"]\\\\\\\\n    all_meta[d] = {\\\\\\\"n_items\\\\\\\": r[\\\\\\\"n_items\\\\\\\"], \\\\\\\"mean_acc\\\\\\\": r[\\\\\\\"mean_acc\\\\\\\"], \\\\\\\"draws\\\\\\\": r[\\\\\\\"diagnostics\\\\\\\"][\\\\\\\"total_draws\\\\\\\"]}\\\\\\\\n    all_theta[d] = r.get(\\\\\\\"theta\\\\\\\")\\\\\\\\n\\\\\\\\n# Verify all complete\\\\\\\\nfor d in domains:\\\\\\\\n    assert all_theta[d] is not None, f\\\\\\\"{d} missing theta\\\\\\\"\\\\\\\\n    assert all_gamma[d], f\\\\\\\"{d} missing gamma\\\\\\\"\\\\\\\\nprint(\\\\\\\"All 8 domains verified.\\\\\\\\\\\\\\\\n\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"=\\\\\\\"*80)\\\\\\\\nprint(\\\\\\\"CROSS-FAMILY IRT (J=16) - FULL 8-DOMAIN THETA REPORT\\\\\\\")\\\\\\\\nprint(\\\\\\\"=\\\\\\\"*80)\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n## Table 1: Domain Overview\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Domain\\\\\\\\':<18} {\\\\\\\\'N_items\\\\\\\\':>7} {\\\\\\\\'Mean_acc\\\\\\\\':>8} {\\\\\\\\'Gamma\\\\\\\\':>10} {\\\\\\\\'CI95\\\\\\\\':>22} {\\\\\\\\'Draws\\\\\\\\':>6}\\\\\\\")\\\\\\\\nprint(\\\\\\\"-\\\\\\\"*75)\\\\\\\\nfor d in domains:\\\\\\\\n    g = all_gamma[d]\\\\\\\\n    m = all_meta[d]\\\\\\\\n    print(f\\\\\\\"{d:<18} {m[\\\\\\\\'n_items\\\\\\\\']:>7} {m[\\\\\\\\'mean_acc\\\\\\\\']:>8.4f} {g[\\\\\\\\'mean\\\\\\\\']:>10.4f} [{g[\\\\\\\\'q025\\\\\\\\']:>7.4f}, {g[\\\\\\\\'q975\\\\\\\\']:>7.4f}] {m[\\\\\\\\'draws\\\\\\\\']:>6}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\n## Table 2: Theta (Mean) - 8 Domains x 16 Models\\\\\\\")\\\\\\\\nheader = f\\\\\\\"{\\\\\\\\'Model\\\\\\\\':<30} {\\\\\\\\'Fam\\\\\\\\':>4} {\\\\\\\\'D\\\\\\\\':>3}\\\\\\\"\\\\\\\\nfor d in domains:\\\\\\\\n    header += f\\\\\\\" {d[:8]:>9}\\\\\\\"\\\\\\\\nprint(header)\\\\\\\\nprint(\\\\\\\"-\\\\\\\"*len(header))\\\\\\\\nfor i, mod in enumerate(models):\\\\\\\\n    fam = \\\\\\\"Q15\\\\\\\" if \\\\\\\"1.5B\\\\\\\" in mod[\\\\\\\\'dirname\\\\\\\\'] else (\\\\\\\"L3\\\\\\\" if \\\\\\\"Llama\\\\\\\" in mod[\\\\\\\\'dirname\\\\\\\\'] else \\\\\\\"Q3\\\\\\\")\\\\\\\\n    row = f\\\\\\\"{mod[\\\\\\\\'dirname\\\\\\\\']:<30} {fam:>4} {mod[\\\\\\\\'dosage\\\\\\\\']:>3}\\\\\\\"\\\\\\\\n    for d in domains:\\\\\\\\n        t = all_theta[d]\\\\\\\\n        row += f\\\\\\\" {t[i][\\\\\\\\'mean\\\\\\\\']:>9.4f}\\\\\\\"\\\\\\\\n    print(row)\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\n## Table 3: Qwen-3B vs Llama-3B (matched dosages)\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Domain\\\\\\\\':<16} {\\\\\\\\'L3_d000\\\\\\\\':>8} {\\\\\\\\'L3_d005\\\\\\\\':>8} {\\\\\\\\'L3_d025\\\\\\\\':>8} {\\\\\\\\'Q3_d005\\\\\\\\':>8} {\\\\\\\\'Q3_d025\\\\\\\\':>8} {\\\\\\\\'Q3_d100\\\\\\\\':>8} {\\\\\\\\'Gap@d025\\\\\\\\':>9}\\\\\\\")\\\\\\\\nprint(\\\\\\\"-\\\\\\\"*77)\\\\\\\\nfor d in domains:\\\\\\\\n    t = all_theta[d]\\\\\\\\n    l0 = t[8][\\\\\\\\'mean\\\\\\\\']; l5 = t[9][\\\\\\\\'mean\\\\\\\\']; l25 = t[10][\\\\\\\\'mean\\\\\\\\']\\\\\\\\n    q5 = t[11][\\\\\\\\'mean\\\\\\\\']\\\\\\\\n    q25 = np.mean([t[12][\\\\\\\\'mean\\\\\\\\'], t[13][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    q100 = np.mean([t[14][\\\\\\\\'mean\\\\\\\\'], t[15][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    gap = q25 - l25\\\\\\\\n    print(f\\\\\\\"{d:<16} {l0:>8.4f} {l5:>8.4f} {l25:>8.4f} {q5:>8.4f} {q25:>8.4f} {q100:>8.4f} {gap:>+9.4f}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\n## Table 4: Dosage-Response (Qwen-1.5B, seed-averaged)\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Domain\\\\\\\\':<16} {\\\\\\\\'d000\\\\\\\\':>8} {\\\\\\\\'d005\\\\\\\\':>8} {\\\\\\\\'d025\\\\\\\\':>8} {\\\\\\\\'d100\\\\\\\\':>8} {\\\\\\\\'d100-d000\\\\\\\\':>10}\\\\\\\")\\\\\\\\nprint(\\\\\\\"-\\\\\\\"*58)\\\\\\\\nfor d in domains:\\\\\\\\n    t = all_theta[d]\\\\\\\\n    d000 = np.mean([t[0][\\\\\\\\'mean\\\\\\\\'], t[1][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    d005 = np.mean([t[2][\\\\\\\\'mean\\\\\\\\'], t[3][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    d025 = np.mean([t[4][\\\\\\\\'mean\\\\\\\\'], t[5][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    d100 = np.mean([t[6][\\\\\\\\'mean\\\\\\\\'], t[7][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    print(f\\\\\\\"{d:<16} {d000:>8.4f} {d005:>8.4f} {d025:>8.4f} {d100:>8.4f} {d100-d000:>+10.4f}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\n## Table 5: Dosage-Response (Llama-3B)\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Domain\\\\\\\\':<16} {\\\\\\\\'d000\\\\\\\\':>8} {\\\\\\\\'d005\\\\\\\\':>8} {\\\\\\\\'d025\\\\\\\\':>8} {\\\\\\\\'d025-d000\\\\\\\\':>10}\\\\\\\")\\\\\\\\nprint(\\\\\\\"-\\\\\\\"*50)\\\\\\\\nfor d in domains:\\\\\\\\n    t = all_theta[d]\\\\\\\\n    print(f\\\\\\\"{d:<16} {t[8][\\\\\\\\'mean\\\\\\\\']:>8.4f} {t[9][\\\\\\\\'mean\\\\\\\\']:>8.4f} {t[10][\\\\\\\\'mean\\\\\\\\']:>8.4f} {t[10][\\\\\\\\'mean\\\\\\\\']-t[8][\\\\\\\\'mean\\\\\\\\']:>+10.4f}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\\\\\\\\\\n## Key Findings\\\\\\\")\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n1. Gamma ranking (contamination sensitivity):\\\\\\\")\\\\\\\\nfor d, g in sorted(all_gamma.items(), key=lambda x: x[1][\\\\\\\\'mean\\\\\\\\']):\\\\\\\\n    sig = \\\\\\\"***\\\\\\\" if g[\\\\\\\\'q975\\\\\\\\'] < 0 else (\\\\\\\"n.s.\\\\\\\" if g[\\\\\\\\'q025\\\\\\\\'] < 0 and g[\\\\\\\\'q975\\\\\\\\'] > 0 else \\\\\\\"+\\\\\\\")\\\\\\\\n    print(f\\\\\\\"   {d:<18} {g[\\\\\\\\'mean\\\\\\\\']:>7.4f} [{g[\\\\\\\\'q025\\\\\\\\']:.4f}, {g[\\\\\\\\'q975\\\\\\\\']:.4f}]  {sig}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n2. Cross-family theta gap (Qwen-3B - Llama-3B) at d025:\\\\\\\")\\\\\\\\ngaps = []\\\\\\\\nfor d in domains:\\\\\\\\n    t = all_theta[d]\\\\\\\\n    q3 = np.mean([t[12][\\\\\\\\'mean\\\\\\\\'], t[13][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    l3 = t[10][\\\\\\\\'mean\\\\\\\\']\\\\\\\\n    gaps.append((d, q3-l3, q3, l3))\\\\\\\\nfor d, gap, q, l in sorted(gaps, key=lambda x: -x[1]):\\\\\\\\n    print(f\\\\\\\"   {d:<18} gap={gap:>+.4f}  (Q3={q:.4f}, L3={l:.4f})\\\\\\\")\\\\\\\\n\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n3. Qwen-1.5B dosage effect (d100-d000):\\\\\\\")\\\\\\\\neffects = []\\\\\\\\nfor d in domains:\\\\\\\\n    t = all_theta[d]\\\\\\\\n    d000 = np.mean([t[0][\\\\\\\\'mean\\\\\\\\'], t[1][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    d100 = np.mean([t[6][\\\\\\\\'mean\\\\\\\\'], t[7][\\\\\\\\'mean\\\\\\\\']])\\\\\\\\n    effects.append((d, d100-d000))\\\\\\\\nfor d, eff in sorted(effects, key=lambda x: -x[1]):\\\\\\\\n    print(f\\\\\\\"   {d:<18} {eff:>+.4f}\\\\\\\")\\\\\\\\nPYEOF'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nMedical               1640   0.6051     0.2175 [-0.3364,  0.7380]   4000\\\\nHumanities            2000   0.5405    -0.9540 [-1.4253, -0.4851]   4000\\\\nSocial_Sciences       2000   0.6700    -1.0921 [-1.4969, -0.6742]   4000\\\\nBusiness_Law          2000   0.5163    -0.2385 [-0.6758,  0.2031]   4000\\\\nOther                  883   0.6824    -0.8798 [-1.5485, -0.2325]   4000\\\\n\\\\n\\\\n## Table 2: Theta (Mean) - 8 Domains x 16 Models\\\\nModel                           Fam   D  STEM_Mat  STEM_Sci  STEM_CS_   Medical  Humaniti  Social_S  Business     Other\\\\n-----------------------------------------------------------------------------------------------------------------------\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<stdin>\\\\\\\", line 49, in <module>\\\\nKeyError: 0\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: '/root/miniconda3/bin/python3 << \\\\'PYEOF\\\\'\\\\nimport json, os\\\\nimport numpy as np\\\\n\\\\nbase = \\\"/root/autodl-tmp/exp006/mmlu_domain_irt_j16_cross_family\\\"\\\\ndomains = [\\\"STEM_Math\\\", \\\"STEM_Science\\\", \\\"STEM_CS_Eng\\\", \\\"Medical\\\", \\\"Humanities\\\", \\\"Social_Sciences\\\", \\\"Business_Law\\\", \\\"Other\\\"]\\\\n\\\\nwith open(os.path.join(base, \\\"model_order.json\\\")) as f:\\\\n    models = json.load(f)\\\\n\\\\nall_theta = {}\\\\nall_gamma = {}\\\\nall_meta = {}\\\\nfor d in domains:\\\\n    with open(os.path.join(base, d, \\\"irt_results.json\\\")) as f:\\\\n        r = json.load(f)\\\\n    all_gamma[d] = r[\\\"gamma\\\"]\\\\n    all_meta[d] = {\\\"n_items\\\": r[\\\"n_items\\\"], \\\"mean_acc\\\": r[\\\"mean_acc\\\"], \\\"draws\\\": r[\\\"diagnostics\\\"][\\\"total_draws\\\"]}\\\\n    all_theta[d] = r.get(\\\"theta\\\")\\\\n\\\\n# Verify all complete\\\\nfor d in domains:\\\\n    assert all_theta[d] is not None, f\\\"{d} missing theta\\\"\\\\n    assert all_gamma[d], f\\\"{d} missing gamma\\\"\\\\nprint(\\\"All 8 domains verified.\\\\\\\\n\\\")\\\\n\\\\nprint(\\\"=\\\"*80)\\\\nprint(\\\"CROSS-FAMILY IRT (J=16) - FULL 8-DOMAIN THETA REPORT\\\")\\\\nprint(\\\"=\\\"*80)\\\\n\\\\nprint(\\\"\\\\\\\\n## Table 1: Domain Overview\\\")\\\\nprint(f\\\"{\\\\'Domain\\\\':<18} {\\\\'N_items\\\\':>7} {\\\\'Mean_acc\\\\':>8} {\\\\'Gamma\\\\':>10} {\\\\'CI95\\\\':>22} {\\\\'Draws\\\\':>6}\\\")\\\\nprint(\\\"-\\\"*75)\\\\nfor d in domains:\\\\n    g = all_gamma[d]\\\\n    m = all_meta[d]\\\\n    print(f\\\"{d:<18} {m[\\\\'n_items\\\\']:>7} {m[\\\\'mean_acc\\\\']:>8.4f} {g[\\\\'mean\\\\']:>10.4f} [{g[\\\\'q025\\\\']:>7.4f}, {g[\\\\'q975\\\\']:>7.4f}] {m[\\\\'draws\\\\']:>6}\\\")\\\\n\\\\nprint(\\\"\\\\\\\\n\\\\\\\\n## Table 2: Theta (Mean) - 8 Domains x 16 Models\\\")\\\\nheader = f\\\"{\\\\'Model\\\\':<30} {\\\\'Fam\\\\':>4} {\\\\'D\\\\':>3}\\\"\\\\nfor d in domains:\\\\n    header += f\\\" {d[:8]:>9}\\\"\\\\nprint(header)\\\\nprint(\\\"-\\\"*len(header))\\\\nfor i, mod in enumerate(models):\\\\n    fam = \\\"Q15\\\" if \\\"1.5B\\\" in mod[\\\\'dirname\\\\'] else (\\\"L3\\\" if \\\"Llama\\\" in mod[\\\\'dirname\\\\'] else \\\"Q3\\\")\\\\n    row = f\\\"{mod[\\\\'dirname\\\\']:<30} {fam:>4} {mod[\\\\'dosage\\\\']:>3}\\\"\\\\n    for d in domains:\\\\n        t = all_theta[d]\\\\n        row += f\\\" {t[i][\\\\'mean\\\\']:>9.4f}\\\"\\\\n    print(row)\\\\n\\\\nprint(\\\"\\\\\\\\n\\\\\\\\n## Table 3: Qwen-3B vs Llama-3B (matched dosages)\\\")\\\\nprint(f\\\"{\\\\'Domain\\\\':<16} {\\\\'L3_d000\\\\':>8} {\\\\'L3_d005\\\\':>8} {\\\\'L3_d025\\\\':>8} {\\\\'Q3_d005\\\\':>8} {\\\\'Q3_d025\\\\':>8} {\\\\'Q3_d100\\\\':>8} {\\\\'Gap@d025\\\\':>9}\\\")\\\\nprint(\\\"-\\\"*77)\\\\nfor d in domains:\\\\n    t = all_theta[d]\\\\n    l0 = t[8][\\\\'mean\\\\']; l5 = t[9][\\\\'mean\\\\']; l25 = t[10][\\\\'mean\\\\']\\\\n    q5 = t[11][\\\\'mean\\\\']\\\\n    q25 = np.mean([t[12][\\\\'mean\\\\'], t[13][\\\\'mean\\\\']])\\\\n    q100 = np.mean([t[14][\\\\'mean\\\\'], t[15][\\\\'mean\\\\']])\\\\n    gap = q25 - l25\\\\n    print(f\\\"{d:<16} {l0:>8.4f} {l5:>8.4f} {l25:>8.4f} {q5:>8.4f} {q25:>8.4f} {q100:>8.4f} {gap:>+9.4f}\\\")\\\\n\\\\nprint(\\\"\\\\\\\\n\\\\\\\\n## Table 4: Dosage-Response (Qwen-1.5B, seed-averaged)\\\")\\\\nprint(f\\\"{\\\\'Domain\\\\':<16} {\\\\'d000\\\\':>8} {\\\\'d005\\\\':>8} {\\\\'d025\\\\':>8} {\\\\'d100\\\\':>8} {\\\\'d100-d000\\\\':>10}\\\")\\\\nprint(\\\"-\\\"*58)\\\\nfor d in domains:\\\\n    t = all_theta[d]\\\\n    d000 = np.mean([t[0][\\\\'mean\\\\'], t[1][\\\\'mean\\\\']])\\\\n    d005 = np.mean([t[2][\\\\'mean\\\\'], t[3][\\\\'mean\\\\']])\\\\n    d025 = np.mean([t[4][\\\\'mean\\\\'], t[5][\\\\'mean\\\\']])\\\\n    d100 = np.mean([t[6][\\\\'mean\\\\'], t[7][\\\\'mean\\\\']])\\\\n    print(f\\\"{d:<16} {d000:>8.4f} {d005:>8.4f} {d025:>8.4f} {d100:>8.4f} {d100-d000:>+10.4f}\\\")\\\\n\\\\nprint(\\\"\\\\\\\\n\\\\\\\\n## Table 5: Dosage-Response (Llama-3B)\\\")\\\\nprint(f\\\"{\\\\'Domain\\\\':<16} {\\\\'d000\\\\':>8} {\\\\'d005\\\\':>8} {\\\\'d025\\\\':>8} {\\\\'d025-d000\\\\':>10}\\\")\\\\nprint(\\\"-\\\"*50)\\\\nfor d in domains:\\\\n    t = all_theta[d]\\\\n    print(f\\\"{d:<16} {t[8][\\\\'mean\\\\']:>8.4f} {t[9][\\\\'mean\\\\']:>8.4f} {t[10][\\\\'mean\\\\']:>8.4f} {t[10][\\\\'mean\\\\']-t[8][\\\\'mean\\\\']:>+10.4f}\\\")\\\\n\\\\nprint(\\\"\\\\\\\\n\\\\\\\\n## Key Findings\\\")\\\\nprint(\\\"\\\\\\\\n1. Gamma ranking (contamination sensitivity):\\\")\\\\nfor d, g in sorted(all_gamma.items(), key=lambda x: x[1][\\\\'mean\\\\']):\\\\n    sig = \\\"***\\\" if g[\\\\'q975\\\\'] < 0 else (\\\"n.s.\\\" if g[\\\\'q025\\\\'] < 0 and g[\\\\'q975\\\\'] > 0 else \\\"+\\\")\\\\n    print(f\\\"   {d:<18} {g[\\\\'mean\\\\']:>7.4f} [{g[\\\\'q025\\\\']:.4f}, {g[\\\\'q975\\\\']:.4f}]  {sig}\\\")\\\\n\\\\nprint(\\\"\\\\\\\\n2. Cross-family theta gap (Qwen-3B - Llama-3B) at d025:\\\")\\\\ngaps = []\\\\nfor d in domains:\\\\n    t = all_theta[d]\\\\n    q3 = np.mean([t[12][\\\\'mean\\\\'], t[13][\\\\'mean\\\\']])\\\\n    l3 = t[10][\\\\'mean\\\\']\\\\n    gaps.append((d, q3-l3, q3, l3))\\\\nfor d, gap, q, l in sorted(gaps, key=lambda x: -x[1]):\\\\n    print(f\\\"   {d:<18} gap={gap:>+.4f}  (Q3={q:.4f}, L3={l:.4f})\\\")\\\\n\\\\nprint(\\\"\\\\\\\\n3. Qwen-1.5B dosage effect (d100-d000):\\\")\\\\neffects = []\\\\nfor d in domains:\\\\n    t = all_theta[d]\\\\n    d000 = np.mean([t[0][\\\\'mean\\\\'], t[1][\\\\'mean\\\\']])\\\\n    d100 = np.mean([t[6][\\\\'mean\\\\'], t[7][\\\\'mean\\\\']])\\\\n    effects.append((d, d100-d000))\\\\nfor d, eff in sorted(effects, key=lambda x: -x[1]):\\\\n    print(f\\\"   {d:<18} {eff:>+.4f}\\\")\\\\nPYEOF'\\n\\nExit code: 1\\n\\nStdout:\\n\\nMedical               1640   0.6051     0.2175 [-0.3364,  0.7380]   4000\\nHumanities            2000   0.5405    -0.9540 [-1.4253, -0.4851]   4000\\nSocial_Sciences       2000   0.6700    -1.0921 [-1.4969, -0.6742]   4000\\nBusiness_Law          2000   0.5163    -0.2385 [-0.6758,  0.2031]   4000\\nOther                  883   0.6824    -0.8798 [-1.5485, -0.2325]   4000\\n\\n\\n## Table 2: Theta (Mean) - 8 Domains x 16 Models\\nModel                           Fam   D  STEM_Mat  STEM_Sci  STEM_CS_   Medical  Humaniti  Social_S  Business     Other\\n-----------------------------------------------------------------------------------------------------------------------\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"<stdin>\\\", line 49, in <module>\\nKeyError: 0\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.7}}"
+              }
+            }
+          },
+          "id": "event-001624"
+        },
+        {
+          "source_line": 1625,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The issue is that theta is stored as a dict with string keys (model indices as strings, not ints). Let me check the structure of the theta data. The extraction script saves theta as a list of dicts, but maybe the keys are strings. Let me check.\n\nActually wait - looking at the error: `KeyError: 0` at line 49 which is `t[i]['mean']`. The `t` is `all_theta[d]` which comes from `r.get(\"theta\")`. The extraction script saves theta as... let me think about what the extract script does.\n\nThe extraction script saves theta into the JSON. \n\nLet me trace through the data structure to understand what's happening.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "da3282fe-8130-4323-a7bd-45782e00770b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018iNWcaf5fFAqWkUavReWY6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5234,
+                "cache_read_input_tokens": 61688,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5234
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001625"
+        },
+        {
+          "source_line": 1626,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Theta structure uses string keys. Let me check the format."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "66b80128-82f8-44f8-bbd0-c6e49fdf8948",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018iNWcaf5fFAqWkUavReWY6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5234,
+                "cache_read_input_tokens": 61688,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5234
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001626"
+        },
+        {
+          "source_line": 1627,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FLrKnisV5MG32NXxC8AHTX",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "/root/miniconda3/bin/python3 -c \"\nimport json\nwith open('/root/autodl-tmp/exp006/mmlu_domain_irt_j16_cross_family/Other/irt_results.json') as f:\n    r = json.load(f)\nt = r['theta']\nprint(type(t))\nif isinstance(t, dict):\n    print('keys:', list(t.keys())[:3])\n    print('sample:', t[list(t.keys())[0]])\nelif isinstance(t, list):\n    print('len:', len(t))\n    print('sample:', t[0])\n\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "13c7edfa-56e7-42fe-8d49-f55125e39859",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018iNWcaf5fFAqWkUavReWY6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5234,
+                "cache_read_input_tokens": 61688,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5234
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001627"
+        },
+        {
+          "source_line": 1628,
+          "timestamp": "2026-05-17T17:14:00.214Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FLrKnisV5MG32NXxC8AHTX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"<class 'dict'>\\\\nkeys: ['mean', 'sd', 'q025']\\\\nsample: [0.8651, 0.9272, 0.9022, 0.8708, 0.8951, 0.9015, 0.9193, 0.8887, 0.3573, 0.0859, 0.1261, 1.5282, 1.5325, 1.53, 1.5048, 1.5365]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "f3d7e3bb-ff00-40ca-8329-d96ec4f1e4d9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"<class 'dict'>\\\\nkeys: ['mean', 'sd', 'q025']\\\\nsample: [0.8651, 0.9272, 0.9022, 0.8708, 0.8951, 0.9015, 0.9193, 0.8887, 0.3573, 0.0859, 0.1261, 1.5282, 1.5325, 1.53, 1.5048, 1.5365]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"<class 'dict'>\\nkeys: ['mean', 'sd', 'q025']\\nsample: [0.8651, 0.9272, 0.9022, 0.8708, 0.8951, 0.9015, 0.9193, 0.8887, 0.3573, 0.0859, 0.1261, 1.5282, 1.5325, 1.53, 1.5048, 1.5365]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+              }
+            }
+          },
+          "id": "event-001628"
+        },
+        {
+          "source_line": 1629,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Ah, I see. Theta is a dict with keys 'mean', 'sd', 'q025', 'q975' (probably), where each value is a list of 16 floats (one per model). So to access model i's mean theta, it's `t['mean'][i]`, not `t[i]['mean']`.\n\nLet me rewrite the report script with the correct access pattern.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "60c949c7-7f07-4216-831f-1d1081c910bc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DgFMrY7TLo8kwcqkXER8me",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 606,
+                "cache_read_input_tokens": 66922,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 606
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001629"
+        },
+        {
+          "source_line": 1630,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Got it — theta is `{mean: [16 values], sd: [...], q025: [...], q975: [...]}`. Let me fix the report script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "f601459c-a507-4d83-86bd-37b545db49fd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DgFMrY7TLo8kwcqkXER8me",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 606,
+                "cache_read_input_tokens": 66922,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 606
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001630"
+        },
+        {
+          "source_line": 1631,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WCRZAzewyJqSp9CFV31AUg",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "/root/miniconda3/bin/python3 << 'PYEOF'\nimport json, os\nimport numpy as np\n\nbase = \"/root/autodl-tmp/exp006/mmlu_domain_irt_j16_cross_family\"\ndomains = [\"STEM_Math\", \"STEM_Science\", \"STEM_CS_Eng\", \"Medical\", \"Humanities\", \"Social_Sciences\", \"Business_Law\", \"Other\"]\n\nwith open(os.path.join(base, \"model_order.json\")) as f:\n    models = json.load(f)\n\nall_theta = {}\nall_gamma = {}\nall_meta = {}\nfor d in domains:\n    with open(os.path.join(base, d, \"irt_results.json\")) as f:\n        r = json.load(f)\n    all_gamma[d] = r[\"gamma\"]\n    all_meta[d] = {\"n_items\": r[\"n_items\"], \"mean_acc\": r[\"mean_acc\"], \"draws\": r[\"diagnostics\"][\"total_draws\"]}\n    all_theta[d] = r.get(\"theta\")\n\nfor d in domains:\n    assert all_theta[d] is not None, f\"{d} missing theta\"\n    assert all_gamma[d], f\"{d} missing gamma\"\nprint(\"All 8 domains verified.\\n\")\n\nprint(\"=\"*80)\nprint(\"CROSS-FAMILY IRT (J=16) - FULL 8-DOMAIN THETA REPORT\")\nprint(\"=\"*80)\n\nprint(\"\\n## Table 1: Domain Overview\")\nprint(f\"{'Domain':<18} {'N_items':>7} {'Mean_acc':>8} {'Gamma':>10} {'CI95':>22} {'Draws':>6}\")\nprint(\"-\"*75)\nfor d in domains:\n    g = all_gamma[d]\n    m = all_meta[d]\n    print(f\"{d:<18} {m['n_items']:>7} {m['mean_acc']:>8.4f} {g['mean']:>10.4f} [{g['q025']:>7.4f}, {g['q975']:>7.4f}] {m['draws']:>6}\")\n\nprint(\"\\n\\n## Table 2: Theta (Mean) - 8 Domains x 16 Models\")\nheader = f\"{'Model':<30} {'Fam':>4} {'D':>3}\"\nfor d in domains:\n    header += f\" {d[:8]:>9}\"\nprint(header)\nprint(\"-\"*len(header))\nfor i, mod in enumerate(models):\n    fam = \"Q15\" if \"1.5B\" in mod['dirname'] else (\"L3\" if \"Llama\" in mod['dirname'] else \"Q3\")\n    row = f\"{mod['dirname']:<30} {fam:>4} {mod['dosage']:>3}\"\n    for d in domains:\n        t = all_theta[d]\n        row += f\" {t['mean'][i]:>9.4f}\"\n    print(row)\n\nprint(\"\\n\\n## Table 3: Qwen-3B vs Llama-3B (matched dosages)\")\nprint(f\"{'Domain':<16} {'L3_d000':>8} {'L3_d005':>8} {'L3_d025':>8} {'Q3_d005':>8} {'Q3_d025':>8} {'Q3_d100':>8} {'Gap@d025':>9}\")\nprint(\"-\"*77)\nfor d in domains:\n    t = all_theta[d]['mean']\n    l0=t[8]; l5=t[9]; l25=t[10]\n    q5=t[11]; q25=np.mean([t[12],t[13]]); q100=np.mean([t[14],t[15]])\n    gap = q25 - l25\n    print(f\"{d:<16} {l0:>8.4f} {l5:>8.4f} {l25:>8.4f} {q5:>8.4f} {q25:>8.4f} {q100:>8.4f} {gap:>+9.4f}\")\n\nprint(\"\\n\\n## Table 4: Dosage-Response (Qwen-1.5B, seed-averaged)\")\nprint(f\"{'Domain':<16} {'d000':>8} {'d005':>8} {'d025':>8} {'d100':>8} {'d100-d000':>10}\")\nprint(\"-\"*58)\nfor d in domains:\n    t = all_theta[d]['mean']\n    d000=np.mean([t[0],t[1]]); d005=np.mean([t[2],t[3]])\n    d025=np.mean([t[4],t[5]]); d100=np.mean([t[6],t[7]])\n    print(f\"{d:<16} {d000:>8.4f} {d005:>8.4f} {d025:>8.4f} {d100:>8.4f} {d100-d000:>+10.4f}\")\n\nprint(\"\\n\\n## Table 5: Dosage-Response (Llama-3B)\")\nprint(f\"{'Domain':<16} {'d000':>8} {'d005':>8} {'d025':>8} {'d025-d000':>10}\")\nprint(\"-\"*50)\nfor d in domains:\n    t = all_theta[d]['mean']\n    print(f\"{d:<16} {t[8]:>8.4f} {t[9]:>8.4f} {t[10]:>8.4f} {t[10]-t[8]:>+10.4f}\")\n\nprint(\"\\n\\n## Key Findings\")\nprint(\"\\n1. Gamma ranking (contamination sensitivity):\")\nfor d, g in sorted(all_gamma.items(), key=lambda x: x[1]['mean']):\n    sig = \"***\" if g['q975'] < 0 else (\"n.s.\" if g['q025'] < 0 and g['q975'] > 0 else \"+\")\n    print(f\"   {d:<18} {g['mean']:>7.4f} [{g['q025']:.4f}, {g['q975']:.4f}]  {sig}\")\n\nprint(\"\\n2. Cross-family theta gap (Qwen-3B - Llama-3B) at d025:\")\ngaps = []\nfor d in domains:\n    t = all_theta[d]['mean']\n    q3 = np.mean([t[12], t[13]])\n    l3 = t[10]\n    gaps.append((d, q3-l3, q3, l3))\nfor d, gap, q, l in sorted(gaps, key=lambda x: -x[1]):\n    print(f\"   {d:<18} gap={gap:>+.4f}  (Q3={q:.4f}, L3={l:.4f})\")\n\nprint(\"\\n3. Qwen-1.5B dosage effect (d100-d000):\")\neffects = []\nfor d in domains:\n    t = all_theta[d]['mean']\n    d000 = np.mean([t[0], t[1]])\n    d100 = np.mean([t[6], t[7]])\n    effects.append((d, d100-d000))\nfor d, eff in sorted(effects, key=lambda x: -x[1]):\n    print(f\"   {d:<18} {eff:>+.4f}\")\nPYEOF"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "1c3c4704-3610-4b60-83ba-60a685358202",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DgFMrY7TLo8kwcqkXER8me",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 606,
+                "cache_read_input_tokens": 66922,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 606
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001631"
+        },
+        {
+          "source_line": 1632,
+          "timestamp": "2026-05-17T17:14:22.752Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WCRZAzewyJqSp9CFV31AUg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All 8 domains verified.\\\\n\\\\n================================================================================\\\\nCROSS-FAMILY IRT (J=16) - FULL 8-DOMAIN THETA REPORT\\\\n================================================================================\\\\n\\\\n## Table 1: Domain Overview\\\\nDomain             N_items Mean_acc      Gamma                   CI95  Draws\\\\n---------------------------------------------------------------------------\\\\nSTEM_Math             1190   0.4122    -0.3855 [-0.9994,  0.1999]   4000\\\\nSTEM_Science          1397   0.5585     0.0419 [-0.5347,  0.6330]   4000\\\\nSTEM_CS_Eng            557   0.5579     0.3623 [-0.4426,  1.1838]   4000\\\\nMedical               1640   0.6051     0.2175 [-0.3364,  0.7380]   4000\\\\nHumanities            2000   0.5405    -0.9540 [-1.4253, -0.4851]   4000\\\\nSocial_Sciences       2000   0.6700    -1.0921 [-1.4969, -0.6742]   4000\\\\nBusiness_Law          2000   0.5163    -0.2385 [-0.6758,  0.2031]   4000\\\\nOther                  883   0.6824    -0.8798 [-1.5485, -0.2325]   4000\\\\n\\\\n\\\\n## Table 2: Theta (Mean) - 8 Domains x 16 Models\\\\nModel                           Fam   D  STEM_Mat  STEM_Sci  STEM_CS_   Medical  Humaniti  Social_S  Business     Other\\\\n-----------------------------------------------------------------------------------------------------------------------\\\\nQwen2.5-1.5B_d000_s123_aligned  Q15   0   -0.3612    0.3759    0.4307    0.5473    0.2790    1.0895    0.0854    0.8651\\\\nQwen2.5-1.5B_d000_s42_aligned   Q15   0   -0.4085    0.4060    0.4413    0.5566    0.2690    1.0449    0.1163    0.9272\\\\nQwen2.5-1.5B_d005_s123_aligned  Q15   5   -0.4372    0.4438    0.5128    0.6259    0.2621    1.0707    0.1254    0.9022\\\\nQwen2.5-1.5B_d005_s42_aligned   Q15   5   -0.4657    0.3609    0.4956    0.5863    0.2777    1.0181    0.1545    0.8708\\\\nQwen2.5-1.5B_d025_s123_aligned  Q15  25   -0.4383    0.4064    0.4137    0.6056    0.2648    1.1065    0.1667    0.8951\\\\nQwen2.5-1.5B_d025_s42_aligned   Q15  25   -0.5074    0.4239    0.3903    0.6163    0.3230    1.0235    0.1766    0.9015\\\\nQwen2.5-1.5B_d100_s123_aligned  Q15 100   -0.3759    0.4616    0.5063    0.6161    0.3043    1.1146    0.1962    0.9193\\\\nQwen2.5-1.5B_d100_s42_aligned   Q15 100   -0.4741    0.3910    0.3819    0.5892    0.2962    1.0493    0.1674    0.8887\\\\nLlama-3.2-3B_d000_s42_aligned    L3   0   -1.4635   -0.7660   -0.6816   -0.4379   -0.6153   -0.2499   -0.6216    0.3573\\\\nLlama-3.2-3B_d005_s42_aligned    L3   5   -1.6411   -0.9521   -0.7601   -0.6246   -0.6931   -0.4659   -0.7757    0.0859\\\\nLlama-3.2-3B_d025_s42_aligned    L3  25   -1.7418   -0.9809   -0.9554   -0.5450   -0.7500   -0.4143   -0.8615    0.1261\\\\nQwen2.5-3B_d005_s123_aligned     Q3   5    0.0307    0.6999    0.4679    1.0131    0.4854    1.5345    0.3590    1.5282\\\\nQwen2.5-3B_d025_s123_aligned     Q3  25    0.0976    0.7513    0.4430    0.9955    0.5043    1.5527    0.3811    1.5325\\\\nQwen2.5-3B_d025_v3_s42_aligned   Q3  25   -0.1602    0.5732    0.3532    0.9463    0.4551    1.4899    0.3171    1.5300\\\\nQwen2.5-3B_d100_a32_s123_aligned   Q3 100    0.0499    0.7212    0.4815    0.9947    0.5381    1.4592    0.3343    1.5048\\\\nQwen2.5-3B_d100_a32_s42_aligned   Q3 100    0.0608    0.6934    0.5459    1.0049    0.5448    1.5078    0.3534    1.5365\\\\n\\\\n\\\\n## Table 3: Qwen-3B vs Llama-3B (matched dosages)\\\\nDomain            L3_d000  L3_d005  L3_d025  Q3_d005  Q3_d025  Q3_d100  Gap@d025\\\\n-----------------------------------------------------------------------------\\\\nSTEM_Math         -1.4635  -1.6411  -1.7418   0.0307  -0.0313   0.0553   +1.7105\\\\nSTEM_Science      -0.7660  -0.9521  -0.9809   0.6999   0.6623   0.7073   +1.6431\\\\nSTEM_CS_Eng       -0.6816  -0.7601  -0.9554   0.4679   0.3981   0.5137   +1.3535\\\\nMedical           -0.4379  -0.6246  -0.5450   1.0131   0.9709   0.9998   +1.5159\\\\nHumanities        -0.6153  -0.6931  -0.7500   0.4854   0.4797   0.5414   +1.2297\\\\nSocial_Sciences   -0.2499  -0.4659  -0.4143   1.5345   1.5213   1.4835   +1.9356\\\\nBusiness_Law      -0.6216  -0.7757  -0.8615   0.3590   0.3491   0.3438   +1.2106\\\\nOther              0.3573   0.0859   0.1261   1.5282   1.5312   1.5206   +1.4051\\\\n\\\\n\\\\n## Table 4: Dosage-Response (Qwen-1.5B, seed-averaged)\\\\nDomain               d000     d005     d025     d100  d100-d000\\\\n----------------------------------------------------------\\\\nSTEM_Math         -0.3849  -0.4515  -0.4728  -0.4250    -0.0402\\\\nSTEM_Science       0.3910   0.4023   0.4152   0.4263    +0.0353\\\\nSTEM_CS_Eng        0.4360   0.5042   0.4020   0.4441    +0.0081\\\\nMedical            0.5519   0.6061   0.6109   0.6026    +0.0507\\\\nHumanities         0.2740   0.2699   0.2939   0.3003    +0.0262\\\\nSocial_Sciences    1.0672   1.0444   1.0650   1.0819    +0.0148\\\\nBusiness_Law       0.1008   0.1400   0.1716   0.1818    +0.0810\\\\nOther              0.8962   0.8865   0.8983   0.9040    +0.0079\\\\n\\\\n\\\\n## Table 5: Dosage-Response (Llama-3B)\\\\nDomain               d000     d005     d025  d025-d000\\\\n--------------------------------------------------\\\\nSTEM_Math         -1.4635  -1.6411  -1.7418    -0.2783\\\\nSTEM_Science      -0.7660  -0.9521  -0.9809    -0.2149\\\\nSTEM_CS_Eng       -0.6816  -0.7601  -0.9554    -0.2738\\\\nMedical           -0.4379  -0.6246  -0.5450    -0.1071\\\\nHumanities        -0.6153  -0.6931  -0.7500    -0.1347\\\\nSocial_Sciences   -0.2499  -0.4659  -0.4143    -0.1644\\\\nBusiness_Law      -0.6216  -0.7757  -0.8615    -0.2399\\\\nOther              0.3573   0.0859   0.1261    -0.2312\\\\n\\\\n\\\\n## Key Findings\\\\n\\\\n1. Gamma ranking (contamination sensitivity):\\\\n   Social_Sciences    -1.0921 [-1.4969, -0.6742]  ***\\\\n   Humanities         -0.9540 [-1.4253, -0.4851]  ***\\\\n   Other              -0.8798 [-1.5485, -0.2325]  ***\\\\n   STEM_Math          -0.3855 [-0.9994, 0.1999]  n.s.\\\\n   Business_Law       -0.2385 [-0.6758, 0.2031]  n.s.\\\\n   STEM_Science        0.0419 [-0.5347, 0.6330]  n.s.\\\\n   Medical             0.2175 [-0.3364, 0.7380]  n.s.\\\\n   STEM_CS_Eng         0.3623 [-0.4426, 1.1838]  n.s.\\\\n\\\\n2. Cross-family theta gap (Qwen-3B - Llama-3B) at d025:\\\\n   Social_Sciences    gap=+1.9356  (Q3=1.5213, L3=-0.4143)\\\\n   STEM_Math          gap=+1.7105  (Q3=-0.0313, L3=-1.7418)\\\\n   STEM_Science       gap=+1.6431  (Q3=0.6623, L3=-0.9809)\\\\n   Medical            gap=+1.5159  (Q3=0.9709, L3=-0.5450)\\\\n   Other              gap=+1.4051  (Q3=1.5312, L3=0.1261)\\\\n   STEM_CS_Eng        gap=+1.3535  (Q3=0.3981, L3=-0.9554)\\\\n   Humanities         gap=+1.2297  (Q3=0.4797, L3=-0.7500)\\\\n   Business_Law       gap=+1.2106  (Q3=0.3491, L3=-0.8615)\\\\n\\\\n3. Qwen-1.5B dosage effect (d100-d000):\\\\n   Business_Law       +0.0810\\\\n   Medical            +0.0507\\\\n   STEM_Science       +0.0353\\\\n   Humanities         +0.0262\\\\n   Social_Sciences    +0.0148\\\\n   STEM_CS_Eng        +0.0081\\\\n   Other              +0.0079\\\\n   STEM_Math          -0.0402\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "1e88b814-ea6b-473f-9c23-66812929916e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All 8 domains verified.\\\\n\\\\n================================================================================\\\\nCROSS-FAMILY IRT (J=16) - FULL 8-DOMAIN THETA REPORT\\\\n================================================================================\\\\n\\\\n## Table 1: Domain Overview\\\\nDomain             N_items Mean_acc      Gamma                   CI95  Draws\\\\n---------------------------------------------------------------------------\\\\nSTEM_Math             1190   0.4122    -0.3855 [-0.9994,  0.1999]   4000\\\\nSTEM_Science          1397   0.5585     0.0419 [-0.5347,  0.6330]   4000\\\\nSTEM_CS_Eng            557   0.5579     0.3623 [-0.4426,  1.1838]   4000\\\\nMedical               1640   0.6051     0.2175 [-0.3364,  0.7380]   4000\\\\nHumanities            2000   0.5405    -0.9540 [-1.4253, -0.4851]   4000\\\\nSocial_Sciences       2000   0.6700    -1.0921 [-1.4969, -0.6742]   4000\\\\nBusiness_Law          2000   0.5163    -0.2385 [-0.6758,  0.2031]   4000\\\\nOther                  883   0.6824    -0.8798 [-1.5485, -0.2325]   4000\\\\n\\\\n\\\\n## Table 2: Theta (Mean) - 8 Domains x 16 Models\\\\nModel                           Fam   D  STEM_Mat  STEM_Sci  STEM_CS_   Medical  Humaniti  Social_S  Business     Other\\\\n-----------------------------------------------------------------------------------------------------------------------\\\\nQwen2.5-1.5B_d000_s123_aligned  Q15   0   -0.3612    0.3759    0.4307    0.5473    0.2790    1.0895    0.0854    0.8651\\\\nQwen2.5-1.5B_d000_s42_aligned   Q15   0   -0.4085    0.4060    0.4413    0.5566    0.2690    1.0449    0.1163    0.9272\\\\nQwen2.5-1.5B_d005_s123_aligned  Q15   5   -0.4372    0.4438    0.5128    0.6259    0.2621    1.0707    0.1254    0.9022\\\\nQwen2.5-1.5B_d005_s42_aligned   Q15   5   -0.4657    0.3609    0.4956    0.5863    0.2777    1.0181    0.1545    0.8708\\\\nQwen2.5-1.5B_d025_s123_aligned  Q15  25   -0.4383    0.4064    0.4137    0.6056    0.2648    1.1065    0.1667    0.8951\\\\nQwen2.5-1.5B_d025_s42_aligned   Q15  25   -0.5074    0.4239    0.3903    0.6163    0.3230    1.0235    0.1766    0.9015\\\\nQwen2.5-1.5B_d100_s123_aligned  Q15 100   -0.3759    0.4616    0.5063    0.6161    0.3043    1.1146    0.1962    0.9193\\\\nQwen2.5-1.5B_d100_s42_aligned   Q15 100   -0.4741    0.3910    0.3819    0.5892    0.2962    1.0493    0.1674    0.8887\\\\nLlama-3.2-3B_d000_s42_aligned    L3   0   -1.4635   -0.7660   -0.6816   -0.4379   -0.6153   -0.2499   -0.6216    0.3573\\\\nLlama-3.2-3B_d005_s42_aligned    L3   5   -1.6411   -0.9521   -0.7601   -0.6246   -0.6931   -0.4659   -0.7757    0.0859\\\\nLlama-3.2-3B_d025_s42_aligned    L3  25   -1.7418   -0.9809   -0.9554   -0.5450   -0.7500   -0.4143   -0.8615    0.1261\\\\nQwen2.5-3B_d005_s123_aligned     Q3   5    0.0307    0.6999    0.4679    1.0131    0.4854    1.5345    0.3590    1.5282\\\\nQwen2.5-3B_d025_s123_aligned     Q3  25    0.0976    0.7513    0.4430    0.9955    0.5043    1.5527    0.3811    1.5325\\\\nQwen2.5-3B_d025_v3_s42_aligned   Q3  25   -0.1602    0.5732    0.3532    0.9463    0.4551    1.4899    0.3171    1.5300\\\\nQwen2.5-3B_d100_a32_s123_aligned   Q3 100    0.0499    0.7212    0.4815    0.9947    0.5381    1.4592    0.3343    1.5048\\\\nQwen2.5-3B_d100_a32_s42_aligned   Q3 100    0.0608    0.6934    0.5459    1.0049    0.5448    1.5078    0.3534    1.5365\\\\n\\\\n\\\\n## Table 3: Qwen-3B vs Llama-3B (matched dosages)\\\\nDomain            L3_d000  L3_d005  L3_d025  Q3_d005  Q3_d025  Q3_d100  Gap@d025\\\\n-----------------------------------------------------------------------------\\\\nSTEM_Math         -1.4635  -1.6411  -1.7418   0.0307  -0.0313   0.0553   +1.7105\\\\nSTEM_Science      -0.7660  -0.9521  -0.9809   0.6999   0.6623   0.7073   +1.6431\\\\nSTEM_CS_Eng       -0.6816  -0.7601  -0.9554   0.4679   0.3981   0.5137   +1.3535\\\\nMedical           -0.4379  -0.6246  -0.5450   1.0131   0.9709   0.9998   +1.5159\\\\nHumanities        -0.6153  -0.6931  -0.7500   0.4854   0.4797   0.5414   +1.2297\\\\nSocial_Sciences   -0.2499  -0.4659  -0.4143   1.5345   1.5213   1.4835   +1.9356\\\\nBusiness_Law      -0.6216  -0.7757  -0.8615   0.3590   0.3491   0.3438   +1.2106\\\\nOther              0.3573   0.0859   0.1261   1.5282   1.5312   1.5206   +1.4051\\\\n\\\\n\\\\n## Table 4: Dosage-Response (Qwen-1.5B, seed-averaged)\\\\nDomain               d000     d005     d025     d100  d100-d000\\\\n----------------------------------------------------------\\\\nSTEM_Math         -0.3849  -0.4515  -0.4728  -0.4250    -0.0402\\\\nSTEM_Science       0.3910   0.4023   0.4152   0.4263    +0.0353\\\\nSTEM_CS_Eng        0.4360   0.5042   0.4020   0.4441    +0.0081\\\\nMedical            0.5519   0.6061   0.6109   0.6026    +0.0507\\\\nHumanities         0.2740   0.2699   0.2939   0.3003    +0.0262\\\\nSocial_Sciences    1.0672   1.0444   1.0650   1.0819    +0.0148\\\\nBusiness_Law       0.1008   0.1400   0.1716   0.1818    +0.0810\\\\nOther              0.8962   0.8865   0.8983   0.9040    +0.0079\\\\n\\\\n\\\\n## Table 5: Dosage-Response (Llama-3B)\\\\nDomain               d000     d005     d025  d025-d000\\\\n--------------------------------------------------\\\\nSTEM_Math         -1.4635  -1.6411  -1.7418    -0.2783\\\\nSTEM_Science      -0.7660  -0.9521  -0.9809    -0.2149\\\\nSTEM_CS_Eng       -0.6816  -0.7601  -0.9554    -0.2738\\\\nMedical           -0.4379  -0.6246  -0.5450    -0.1071\\\\nHumanities        -0.6153  -0.6931  -0.7500    -0.1347\\\\nSocial_Sciences   -0.2499  -0.4659  -0.4143    -0.1644\\\\nBusiness_Law      -0.6216  -0.7757  -0.8615    -0.2399\\\\nOther              0.3573   0.0859   0.1261    -0.2312\\\\n\\\\n\\\\n## Key Findings\\\\n\\\\n1. Gamma ranking (contamination sensitivity):\\\\n   Social_Sciences    -1.0921 [-1.4969, -0.6742]  ***\\\\n   Humanities         -0.9540 [-1.4253, -0.4851]  ***\\\\n   Other              -0.8798 [-1.5485, -0.2325]  ***\\\\n   STEM_Math          -0.3855 [-0.9994, 0.1999]  n.s.\\\\n   Business_Law       -0.2385 [-0.6758, 0.2031]  n.s.\\\\n   STEM_Science        0.0419 [-0.5347, 0.6330]  n.s.\\\\n   Medical             0.2175 [-0.3364, 0.7380]  n.s.\\\\n   STEM_CS_Eng         0.3623 [-0.4426, 1.1838]  n.s.\\\\n\\\\n2. Cross-family theta gap (Qwen-3B - Llama-3B) at d025:\\\\n   Social_Sciences    gap=+1.9356  (Q3=1.5213, L3=-0.4143)\\\\n   STEM_Math          gap=+1.7105  (Q3=-0.0313, L3=-1.7418)\\\\n   STEM_Science       gap=+1.6431  (Q3=0.6623, L3=-0.9809)\\\\n   Medical            gap=+1.5159  (Q3=0.9709, L3=-0.5450)\\\\n   Other              gap=+1.4051  (Q3=1.5312, L3=0.1261)\\\\n   STEM_CS_Eng        gap=+1.3535  (Q3=0.3981, L3=-0.9554)\\\\n   Humanities         gap=+1.2297  (Q3=0.4797, L3=-0.7500)\\\\n   Business_Law       gap=+1.2106  (Q3=0.3491, L3=-0.8615)\\\\n\\\\n3. Qwen-1.5B dosage effect (d100-d000):\\\\n   Business_Law       +0.0810\\\\n   Medical            +0.0507\\\\n   STEM_Science       +0.0353\\\\n   Humanities         +0.0262\\\\n   Social_Sciences    +0.0148\\\\n   STEM_CS_Eng        +0.0081\\\\n   Other              +0.0079\\\\n   STEM_Math          -0.0402\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"All 8 domains verified.\\n\\n================================================================================\\nCROSS-FAMILY IRT (J=16) - FULL 8-DOMAIN THETA REPORT\\n================================================================================\\n\\n## Table 1: Domain Overview\\nDomain             N_items Mean_acc      Gamma                   CI95  Draws\\n---------------------------------------------------------------------------\\nSTEM_Math             1190   0.4122    -0.3855 [-0.9994,  0.1999]   4000\\nSTEM_Science          1397   0.5585     0.0419 [-0.5347,  0.6330]   4000\\nSTEM_CS_Eng            557   0.5579     0.3623 [-0.4426,  1.1838]   4000\\nMedical               1640   0.6051     0.2175 [-0.3364,  0.7380]   4000\\nHumanities            2000   0.5405    -0.9540 [-1.4253, -0.4851]   4000\\nSocial_Sciences       2000   0.6700    -1.0921 [-1.4969, -0.6742]   4000\\nBusiness_Law          2000   0.5163    -0.2385 [-0.6758,  0.2031]   4000\\nOther                  883   0.6824    -0.8798 [-1.5485, -0.2325]   4000\\n\\n\\n## Table 2: Theta (Mean) - 8 Domains x 16 Models\\nModel                           Fam   D  STEM_Mat  STEM_Sci  STEM_CS_   Medical  Humaniti  Social_S  Business     Other\\n-----------------------------------------------------------------------------------------------------------------------\\nQwen2.5-1.5B_d000_s123_aligned  Q15   0   -0.3612    0.3759    0.4307    0.5473    0.2790    1.0895    0.0854    0.8651\\nQwen2.5-1.5B_d000_s42_aligned   Q15   0   -0.4085    0.4060    0.4413    0.5566    0.2690    1.0449    0.1163    0.9272\\nQwen2.5-1.5B_d005_s123_aligned  Q15   5   -0.4372    0.4438    0.5128    0.6259    0.2621    1.0707    0.1254    0.9022\\nQwen2.5-1.5B_d005_s42_aligned   Q15   5   -0.4657    0.3609    0.4956    0.5863    0.2777    1.0181    0.1545    0.8708\\nQwen2.5-1.5B_d025_s123_aligned  Q15  25   -0.4383    0.4064    0.4137    0.6056    0.2648    1.1065    0.1667    0.8951\\nQwen2.5-1.5B_d025_s42_aligned   Q15  25   -0.5074    0.4239    0.3903    0.6163    0.3230    1.0235    0.1766    0.9015\\nQwen2.5-1.5B_d100_s123_aligned  Q15 100   -0.3759    0.4616    0.5063    0.6161    0.3043    1.1146    0.1962    0.9193\\nQwen2.5-1.5B_d100_s42_aligned   Q15 100   -0.4741    0.3910    0.3819    0.5892    0.2962    1.0493    0.1674    0.8887\\nLlama-3.2-3B_d000_s42_aligned    L3   0   -1.4635   -0.7660   -0.6816   -0.4379   -0.6153   -0.2499   -0.6216    0.3573\\nLlama-3.2-3B_d005_s42_aligned    L3   5   -1.6411   -0.9521   -0.7601   -0.6246   -0.6931   -0.4659   -0.7757    0.0859\\nLlama-3.2-3B_d025_s42_aligned    L3  25   -1.7418   -0.9809   -0.9554   -0.5450   -0.7500   -0.4143   -0.8615    0.1261\\nQwen2.5-3B_d005_s123_aligned     Q3   5    0.0307    0.6999    0.4679    1.0131    0.4854    1.5345    0.3590    1.5282\\nQwen2.5-3B_d025_s123_aligned     Q3  25    0.0976    0.7513    0.4430    0.9955    0.5043    1.5527    0.3811    1.5325\\nQwen2.5-3B_d025_v3_s42_aligned   Q3  25   -0.1602    0.5732    0.3532    0.9463    0.4551    1.4899    0.3171    1.5300\\nQwen2.5-3B_d100_a32_s123_aligned   Q3 100    0.0499    0.7212    0.4815    0.9947    0.5381    1.4592    0.3343    1.5048\\nQwen2.5-3B_d100_a32_s42_aligned   Q3 100    0.0608    0.6934    0.5459    1.0049    0.5448    1.5078    0.3534    1.5365\\n\\n\\n## Table 3: Qwen-3B vs Llama-3B (matched dosages)\\nDomain            L3_d000  L3_d005  L3_d025  Q3_d005  Q3_d025  Q3_d100  Gap@d025\\n-----------------------------------------------------------------------------\\nSTEM_Math         -1.4635  -1.6411  -1.7418   0.0307  -0.0313   0.0553   +1.7105\\nSTEM_Science      -0.7660  -0.9521  -0.9809   0.6999   0.6623   0.7073   +1.6431\\nSTEM_CS_Eng       -0.6816  -0.7601  -0.9554   0.4679   0.3981   0.5137   +1.3535\\nMedical           -0.4379  -0.6246  -0.5450   1.0131   0.9709   0.9998   +1.5159\\nHumanities        -0.6153  -0.6931  -0.7500   0.4854   0.4797   0.5414   +1.2297\\nSocial_Sciences   -0.2499  -0.4659  -0.4143   1.5345   1.5213   1.4835   +1.9356\\nBusiness_Law      -0.6216  -0.7757  -0.8615   0.3590   0.3491   0.3438   +1.2106\\nOther              0.3573   0.0859   0.1261   1.5282   1.5312   1.5206   +1.4051\\n\\n\\n## Table 4: Dosage-Response (Qwen-1.5B, seed-averaged)\\nDomain               d000     d005     d025     d100  d100-d000\\n----------------------------------------------------------\\nSTEM_Math         -0.3849  -0.4515  -0.4728  -0.4250    -0.0402\\nSTEM_Science       0.3910   0.4023   0.4152   0.4263    +0.0353\\nSTEM_CS_Eng        0.4360   0.5042   0.4020   0.4441    +0.0081\\nMedical            0.5519   0.6061   0.6109   0.6026    +0.0507\\nHumanities         0.2740   0.2699   0.2939   0.3003    +0.0262\\nSocial_Sciences    1.0672   1.0444   1.0650   1.0819    +0.0148\\nBusiness_Law       0.1008   0.1400   0.1716   0.1818    +0.0810\\nOther              0.8962   0.8865   0.8983   0.9040    +0.0079\\n\\n\\n## Table 5: Dosage-Response (Llama-3B)\\nDomain               d000     d005     d025  d025-d000\\n--------------------------------------------------\\nSTEM_Math         -1.4635  -1.6411  -1.7418    -0.2783\\nSTEM_Science      -0.7660  -0.9521  -0.9809    -0.2149\\nSTEM_CS_Eng       -0.6816  -0.7601  -0.9554    -0.2738\\nMedical           -0.4379  -0.6246  -0.5450    -0.1071\\nHumanities        -0.6153  -0.6931  -0.7500    -0.1347\\nSocial_Sciences   -0.2499  -0.4659  -0.4143    -0.1644\\nBusiness_Law      -0.6216  -0.7757  -0.8615    -0.2399\\nOther              0.3573   0.0859   0.1261    -0.2312\\n\\n\\n## Key Findings\\n\\n1. Gamma ranking (contamination sensitivity):\\n   Social_Sciences    -1.0921 [-1.4969, -0.6742]  ***\\n   Humanities         -0.9540 [-1.4253, -0.4851]  ***\\n   Other              -0.8798 [-1.5485, -0.2325]  ***\\n   STEM_Math          -0.3855 [-0.9994, 0.1999]  n.s.\\n   Business_Law       -0.2385 [-0.6758, 0.2031]  n.s.\\n   STEM_Science        0.0419 [-0.5347, 0.6330]  n.s.\\n   Medical             0.2175 [-0.3364, 0.7380]  n.s.\\n   STEM_CS_Eng         0.3623 [-0.4426, 1.1838]  n.s.\\n\\n2. Cross-family theta gap (Qwen-3B - Llama-3B) at d025:\\n   Social_Sciences    gap=+1.9356  (Q3=1.5213, L3=-0.4143)\\n   STEM_Math          gap=+1.7105  (Q3=-0.0313, L3=-1.7418)\\n   STEM_Science       gap=+1.6431  (Q3=0.6623, L3=-0.9809)\\n   Medical            gap=+1.5159  (Q3=0.9709, L3=-0.5450)\\n   Other              gap=+1.4051  (Q3=1.5312, L3=0.1261)\\n   STEM_CS_Eng        gap=+1.3535  (Q3=0.3981, L3=-0.9554)\\n   Humanities         gap=+1.2297  (Q3=0.4797, L3=-0.7500)\\n   Business_Law       gap=+1.2106  (Q3=0.3491, L3=-0.8615)\\n\\n3. Qwen-1.5B dosage effect (d100-d000):\\n   Business_Law       +0.0810\\n   Medical            +0.0507\\n   STEM_Science       +0.0353\\n   Humanities         +0.0262\\n   Social_Sciences    +0.0148\\n   STEM_CS_Eng        +0.0081\\n   Other              +0.0079\\n   STEM_Math          -0.0402\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+              }
+            }
+          },
+          "id": "event-001632"
+        },
+        {
+          "source_line": 1633,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J8npMpFG72aHifWgjnFxvp",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Wait for Other domain re-run to complete (PID 13152)",
+                    "status": "completed",
+                    "activeForm": "Waiting for Other domain re-run to complete"
+                  },
+                  {
+                    "content": "Extract Other theta from copied CSVs",
+                    "status": "completed",
+                    "activeForm": "Extracting Other domain theta"
+                  },
+                  {
+                    "content": "Re-run Business_Law and extract theta (PID 14528, ~10 min)",
+                    "status": "completed",
+                    "activeForm": "Running Business_Law IRT fit"
+                  },
+                  {
+                    "content": "Compile full 8-domain θ table and comprehensive report",
+                    "status": "completed",
+                    "activeForm": "Compiling 8-domain θ report"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "ac591427-6e80-4e99-ad92-347d8b68c059",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019sJHFNYeAkj3ipKdJHRHuq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5580,
+                "cache_read_input_tokens": 67528,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5580
+                },
+                "output_tokens": 51,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001633"
+        },
+        {
+          "source_line": 1634,
+          "timestamp": "2026-05-17T17:14:28.443Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J8npMpFG72aHifWgjnFxvp",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "e7067e7f-a0d0-4462-bed0-49da2fa2f8ee",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Wait for Other domain re-run to complete (PID 13152)",
+                  "status": "completed",
+                  "activeForm": "Waiting for Other domain re-run to complete"
+                },
+                {
+                  "content": "Extract Other theta from copied CSVs",
+                  "status": "completed",
+                  "activeForm": "Extracting Other domain theta"
+                },
+                {
+                  "content": "Re-run Business_Law and extract theta (PID 14528, ~10 min)",
+                  "status": "in_progress",
+                  "activeForm": "Running Business_Law IRT fit"
+                },
+                {
+                  "content": "Compile full 8-domain θ table and comprehensive report",
+                  "status": "pending",
+                  "activeForm": "Compiling 8-domain θ report"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Wait for Other domain re-run to complete (PID 13152)",
+                  "status": "completed",
+                  "activeForm": "Waiting for Other domain re-run to complete"
+                },
+                {
+                  "content": "Extract Other theta from copied CSVs",
+                  "status": "completed",
+                  "activeForm": "Extracting Other domain theta"
+                },
+                {
+                  "content": "Re-run Business_Law and extract theta (PID 14528, ~10 min)",
+                  "status": "completed",
+                  "activeForm": "Running Business_Law IRT fit"
+                },
+                {
+                  "content": "Compile full 8-domain θ table and comprehensive report",
+                  "status": "completed",
+                  "activeForm": "Compiling 8-domain θ report"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-001634"
+        },
+        {
+          "source_line": 1635,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 8 domains complete. Here's the full report:\n\n---\n\n## CROSS-FAMILY IRT (J=16) — FULL 8-DOMAIN THETA REPORT\n\n### Table 1: Domain Overview\n\n| Domain | N_items | Mean_acc | Gamma | CI95 | Sig |\n|--------|---------|----------|-------|------|-----|\n| Social_Sciences | 2000 | 0.6700 | **-1.0921** | [-1.4969, -0.6742] | *** |\n| Humanities | 2000 | 0.5405 | **-0.9540** | [-1.4253, -0.4851] | *** |\n| Other | 883 | 0.6824 | **-0.8798** | [-1.5485, -0.2325] | *** |\n| STEM_Math | 1190 | 0.4122 | -0.3855 | [-0.9994, 0.1999] | n.s. |\n| Business_Law | 2000 | 0.5163 | -0.2385 | [-0.6758, 0.2031] | n.s. |\n| STEM_Science | 1397 | 0.5585 | +0.0419 | [-0.5347, 0.6330] | n.s. |\n| Medical | 1640 | 0.6051 | +0.2175 | [-0.3364, 0.7380] | n.s. |\n| STEM_CS_Eng | 557 | 0.5579 | +0.3623 | [-0.4426, 1.1838] | n.s. |\n\n**3 domains have significantly negative gamma** (CI95 excludes 0): Social_Sciences, Humanities, Other. These domains show that RRF exposure **suppresses** IRT ability — contaminated items become harder after controlling for latent ability.\n\n### Table 2: Theta (Mean) — 8 Domains × 16 Models\n\n```\nModel                           Fam   D  STEM_Mat  STEM_Sci  STEM_CS_  Medical  Humanit  Social_S  Busines    Other\nQwen2.5-1.5B_d000_s123         Q15   0   -0.3612    0.3759    0.4307   0.5473   0.2790    1.0895   0.0854   0.8651\nQwen2.5-1.5B_d000_s42          Q15   0   -0.4085    0.4060    0.4413   0.5566   0.2690    1.0449   0.1163   0.9272\nQwen2.5-1.5B_d005_s123         Q15   5   -0.4372    0.4438    0.5128   0.6259   0.2621    1.0707   0.1254   0.9022\nQwen2.5-1.5B_d005_s42          Q15   5   -0.4657    0.3609    0.4956   0.5863   0.2777    1.0181   0.1545   0.8708\nQwen2.5-1.5B_d025_s123         Q15  25   -0.4383    0.4064    0.4137   0.6056   0.2648    1.1065   0.1667   0.8951\nQwen2.5-1.5B_d025_s42          Q15  25   -0.5074    0.4239    0.3903   0.6163   0.3230    1.0235   0.1766   0.9015\nQwen2.5-1.5B_d100_s123         Q15 100   -0.3759    0.4616    0.5063   0.6161   0.3043    1.1146   0.1962   0.9193\nQwen2.5-1.5B_d100_s42          Q15 100   -0.4741    0.3910    0.3819   0.5892   0.2962    1.0493   0.1674   0.8887\nLlama-3.2-3B_d000_s42           L3   0   -1.4635   -0.7660   -0.6816  -0.4379  -0.6153   -0.2499  -0.6216   0.3573\nLlama-3.2-3B_d005_s42           L3   5   -1.6411   -0.9521   -0.7601  -0.6246  -0.6931   -0.4659  -0.7757   0.0859\nLlama-3.2-3B_d025_s42           L3  25   -1.7418   -0.9809   -0.9554  -0.5450  -0.7500   -0.4143  -0.8615   0.1261\nQwen2.5-3B_d005_s123            Q3   5    0.0307    0.6999    0.4679   1.0131   0.4854    1.5345   0.3590   1.5282\nQwen2.5-3B_d025_s123            Q3  25    0.0976    0.7513    0.4430   0.9955   0.5043    1.5527   0.3811   1.5325\nQwen2.5-3B_d025_v3_s42          Q3  25   -0.1602    0.5732    0.3532   0.9463   0.4551    1.4899   0.3171   1.5300\nQwen2.5-3B_d100_a32_s123        Q3 100    0.0499    0.7212    0.4815   0.9947   0.5381    1.4592   0.3343   1.5048\nQwen2.5-3B_d100_a32_s42         Q3 100    0.0608    0.6934    0.5459   1.0049   0.5448    1.5078   0.3534   1.5365\n```\n\n### Table 3: Qwen-3B vs Llama-3B Gap at d025\n\n| Domain | Qwen-3B θ | Llama-3B θ | Gap |\n|--------|-----------|-----------|-----|\n| Social_Sciences | +1.52 | -0.41 | **+1.94** |\n| STEM_Math | -0.03 | -1.74 | **+1.71** |\n| STEM_Science | +0.66 | -0.98 | **+1.64** |\n| Medical | +0.97 | -0.55 | **+1.52** |\n| Other | +1.53 | +0.13 | **+1.41** |\n| STEM_CS_Eng | +0.40 | -0.96 | **+1.35** |\n| Humanities | +0.48 | -0.75 | **+1.23** |\n| Business_Law | +0.35 | -0.86 | **+1.21** |\n\n**Consistent 1.2–1.9 theta gap across all domains.** Qwen-3B is massively higher ability than Llama-3B at matched dosage, with the gap largest in Social_Sciences and smallest in Business_Law.\n\n### Key Findings\n\n1. **Gamma (contamination sensitivity)**: 3/8 domains show statistically significant negative gamma — Social_Sciences (-1.09), Humanities (-0.95), Other (-0.88). These are domains where RRF exposure is informative about contamination. The 5 STEM/Medical/Business_Law domains have gamma not significantly different from 0.\n\n2. **Cross-family gap**: Qwen-3B outperforms Llama-3B by 1.2–1.9 theta units uniformly across all 8 domains. This reflects genuine ability differences between model families, not contamination artifacts.\n\n3. **Dosage effect (Qwen-1.5B)**: Very small (+0.01 to +0.08). The IRT model absorbs dosage-driven performance changes into item parameters rather than theta, consistent with the model design — contamination effects should appear in gamma, not theta.\n\n4. **Llama-3B anomaly**: Theta *decreases* with dosage (-0.11 to -0.28 across domains). Higher contamination dosage makes Llama appear *less* able in the IRT model. This is consistent with Llama being less effective at exploiting memorized content (or the memorized content interfering with genuine reasoning)."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "uuid": "af98fda6-ec73-4a24-a3ad-b44be9ecc473",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GF8LmdQ7UBFUKRXM8aLzhQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 263,
+                "cache_read_input_tokens": 73108,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 263
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-001635"
+        },
+        {
+          "source_line": 1636,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 8 domains complete. Here's the full report:\n\n---\n\n## CROSS-FAMILY IRT (J=16) — FULL 8-DOMAIN THETA REPORT\n\n### Table 1: Domain Overview\n\n| Domain | N_items | Mean_acc | Gamma | CI95 | Sig |\n|--------|---------|----------|-------|------|-----|\n| Social_Sciences | 2000 | 0.6700 | **-1.0921** | [-1.4969, -0.6742] | *** |\n| Humanities | 2000 | 0.5405 | **-0.9540** | [-1.4253, -0.4851] | *** |\n| Other | 883 | 0.6824 | **-0.8798** | [-1.5485, -0.2325] | *** |\n| STEM_Math | 1190 | 0.4122 | -0.3855 | [-0.9994, 0.1999] | n.s. |\n| Business_Law | 2000 | 0.5163 | -0.2385 | [-0.6758, 0.2031] | n.s. |\n| STEM_Science | 1397 | 0.5585 | +0.0419 | [-0.5347, 0.6330] | n.s. |\n| Medical | 1640 | 0.6051 | +0.2175 | [-0.3364, 0.7380] | n.s. |\n| STEM_CS_Eng | 557 | 0.5579 | +0.3623 | [-0.4426, 1.1838] | n.s. |\n\n**3 domains have significantly negative gamma** (CI95 excludes 0): Social_Sciences, Humanities, Other. These domains show that RRF exposure **suppresses** IRT ability — contaminated items become harder after controlling for latent ability.\n\n### Table 2: Theta (Mean) — 8 Domains × 16 Models\n\n```\nModel                           Fam   D  STEM_Mat  STEM_Sci  STEM_CS_  Medical  Humanit  Social_S  Busines    Other\nQwen2.5-1.5B_d000_s123         Q15   0   -0.3612    0.3759    0.4307   0.5473   0.2790    1.0895   0.0854   0.8651\nQwen2.5-1.5B_d000_s42          Q15   0   -0.4085    0.4060    0.4413   0.5566   0.2690    1.0449   0.1163   0.9272\nQwen2.5-1.5B_d005_s123         Q15   5   -0.4372    0.4438    0.5128   0.6259   0.2621    1.0707   0.1254   0.9022\nQwen2.5-1.5B_d005_s42          Q15   5   -0.4657    0.3609    0.4956   0.5863   0.2777    1.0181   0.1545   0.8708\nQwen2.5-1.5B_d025_s123         Q15  25   -0.4383    0.4064    0.4137   0.6056   0.2648    1.1065   0.1667   0.8951\nQwen2.5-1.5B_d025_s42          Q15  25   -0.5074    0.4239    0.3903   0.6163   0.3230    1.0235   0.1766   0.9015\nQwen2.5-1.5B_d100_s123         Q15 100   -0.3759    0.4616    0.5063   0.6161   0.3043    1.1146   0.1962   0.9193\nQwen2.5-1.5B_d100_s42          Q15 100   -0.4741    0.3910    0.3819   0.5892   0.2962    1.0493   0.1674   0.8887\nLlama-3.2-3B_d000_s42           L3   0   -1.4635   -0.7660   -0.6816  -0.4379  -0.6153   -0.2499  -0.6216   0.3573\nLlama-3.2-3B_d005_s42           L3   5   -1.6411   -0.9521   -0.7601  -0.6246  -0.6931   -0.4659  -0.7757   0.0859\nLlama-3.2-3B_d025_s42           L3  25   -1.7418   -0.9809   -0.9554  -0.5450  -0.7500   -0.4143  -0.8615   0.1261\nQwen2.5-3B_d005_s123            Q3   5    0.0307    0.6999    0.4679   1.0131   0.4854    1.5345   0.3590   1.5282\nQwen2.5-3B_d025_s123            Q3  25    0.0976    0.7513    0.4430   0.9955   0.5043    1.5527   0.3811   1.5325\nQwen2.5-3B_d025_v3_s42          Q3  25   -0.1602    0.5732    0.3532   0.9463   0.4551    1.4899   0.3171   1.5300\nQwen2.5-3B_d100_a32_s123        Q3 100    0.0499    0.7212    0.4815   0.9947   0.5381    1.4592   0.3343   1.5048\nQwen2.5-3B_d100_a32_s42         Q3 100    0.0608    0.6934    0.5459   1.0049   0.5448    1.5078   0.3534   1.5365\n```\n\n### Table 3: Qwen-3B vs Llama-3B Gap at d025\n\n| Domain | Qwen-3B θ | Llama-3B θ | Gap |\n|--------|-----------|-----------|-----|\n| Social_Sciences | +1.52 | -0.41 | **+1.94** |\n| STEM_Math | -0.03 | -1.74 | **+1.71** |\n| STEM_Science | +0.66 | -0.98 | **+1.64** |\n| Medical | +0.97 | -0.55 | **+1.52** |\n| Other | +1.53 | +0.13 | **+1.41** |\n| STEM_CS_Eng | +0.40 | -0.96 | **+1.35** |\n| Humanities | +0.48 | -0.75 | **+1.23** |\n| Business_Law | +0.35 | -0.86 | **+1.21** |\n\n**Consistent 1.2–1.9 theta gap across all domains.** Qwen-3B is massively higher ability than Llama-3B at matched dosage, with the gap largest in Social_Sciences and smallest in Business_Law.\n\n### Key Findings\n\n1. **Gamma (contamination sensitivity)**: 3/8 domains show statistically significant negative gamma — Social_Sciences (-1.09), Humanities (-0.95), Other (-0.88). These are domains where RRF exposure is informative about contamination. The 5 STEM/Medical/Business_Law domains have gamma not significantly different from 0.\n\n2. **Cross-family gap**: Qwen-3B outperforms Llama-3B by 1.2–1.9 theta units uniformly across all 8 domains. This reflects genuine ability differences between model families, not contamination artifacts.\n\n3. **Dosage effect (Qwen-1.5B)**: Very small (+0.01 to +0.08). The IRT model absorbs dosage-driven performance changes into item parameters rather than theta, consistent with the model design — contamination effects should appear in gamma, not theta.\n\n4. **Llama-3B anomaly**: Theta *decreases* with dosage (-0.11 to -0.28 across domains). Higher contamination dosage makes Llama appear *less* able in the IRT model. This is consistent with Llama being less effective at exploiting memorized content (or the memorized content interfering with genuine reasoning)."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 119326,
+            "duration_api_ms": 3475691,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "1d3ea3c7-ca1e-4782-9f0e-4cc2d9a2e05e",
+            "total_cost_usd": 37.38402599999999,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 13269,
+              "cache_read_input_tokens": 511654,
+              "output_tokens": 7421,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 13269,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 2201,
+                  "cache_read_input_tokens": 73108,
+                  "cache_creation_input_tokens": 263,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 263
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3196,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.003311,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 3671,
+                "outputTokens": 137081,
+                "cacheReadInputTokens": 63225370,
+                "cacheCreationInputTokens": 371624,
+                "webSearchRequests": 0,
+                "costUSD": 37.38071499999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "origin": {
+              "kind": "task-notification"
+            },
+            "uuid": "98f9ed7c-66a4-4b62-8617-18296994eb4b"
+          },
+          "id": "event-001636"
+        }
+      ]
+    }
+  ]
+}

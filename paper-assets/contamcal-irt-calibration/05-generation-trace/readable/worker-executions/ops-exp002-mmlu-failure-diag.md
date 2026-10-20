@@ -1,0 +1,3334 @@
+# ops exp002 mmlu failure diag
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 70
+- **Recorded user turns:** 0
+- **Tool calls:** 26
+- **Original source:** `logs/workers/worker_ops_exp002-mmlu-failure-diag_20260514T102538.log`
+- **Structured JSON:** [`01cc7559f891baad46d0.json`](../../sessions/01/01cc7559f891baad46d0.json)
+
+## Before a recorded user message
+
+70 recorded events
+
+### System
+
+_source line 1_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "581b07cf-d590-486b-93c9-38b80f4b18c8",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778757000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "135caaf1-7023-4749-9751-4ae5ab6abaa7",
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me diagnose the exp-002 mmlu failure by running SSH commands on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "30c7dd35-4095-48e6-98e0-5a05d165cf65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018FvwtpP1432uJ4vvG6gCUD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11501,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11501
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01D3Negc5QioXEVFwYyU8rnU`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "3dc92025-d26b-4a0d-b185-74fabe40bcf3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018FvwtpP1432uJ4vvG6gCUD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11501,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11501
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T10:26:06.730Z_
+
+<details><summary>↩ Tool result · `toolu_01D3Negc5QioXEVFwYyU8rnU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "b010210f-50c1-4524-ab81-55a08ba04323",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TdVrNZWDcuAzsShZySetez`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat ~/runs/contamcal-irt-calibration/exp_002_signals_05B.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "32c4967d-64ed-4897-8516-8300be5ff8f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016KnPniLXhqTSw4WDaPWPjU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 461,
+      "cache_read_input_tokens": 23342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 461
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019DCAPVcS3p2XtvTXhhxQDW`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tmux list-sessions 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "da3f23d7-9ede-4b84-b595-97a7f885d5e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016KnPniLXhqTSw4WDaPWPjU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 461,
+      "cache_read_input_tokens": 23342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 461
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T10:26:11.645Z_
+
+<details><summary>↩ Tool result · `toolu_01TdVrNZWDcuAzsShZySetez`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 18:19:06,109 [INFO] ============================================================\\n2026-05-14 18:19:06,109 [INFO] exp-002 Signal Pipeline Batch Runner\\n2026-05-14 18:19:06,109 [INFO] ============================================================\\n2026-05-14 18:19:06,109 [INFO] Model: Qwen2.5-0.5B (0.5B)\\n2026-05-14 18:19:06,109 [INFO] Dosages: ['d000', 'd005', 'd100']\\n2026-05-14 18:19:06,109 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge']\\n2026-05-14 18:19:06,109 [INFO] Tasks to run: 9\\n2026-05-14 18:19:06,109 [INFO] Skipped (completed): 0 \\n2026-05-14 18:19:06,110 [INFO] Dry-run: False\\n2026-05-14 18:19:06,110 [INFO] GPU: 0\\n2026-05-14 18:19:06,110 [INFO] ============================================================\\n2026-05-14 18:19:06,110 [INFO] [1/9] Running: Qwen2.5-0.5B_d000_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])\\n2026-05-14 18:22:38,236 [ERROR] [1/9] FAIL: Qwen2.5-0.5B_d000_s42/mmlu\\nstderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth\\n\\n2026-05-14 18:22:38,236 [INFO] [2/9] Running: Qwen2.5-0.5B_d000_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])\\n2026-05-14 18:25:30,600 [ERROR] [2/9] FAIL: Qwen2.5-0.5B_d000_s42/gsm8k\\nstderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth\\n\\n2026-05-14 18:25:30,600 [INFO] [3/9] Running: Qwen2.5-0.5B_d000_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "f7c4b49a-31e3-4c99-9383-fe476cee22f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 18:19:06,109 [INFO] ============================================================\\\\n2026-05-14 18:19:06,109 [INFO] exp-002 Signal Pipeline Batch Runner\\\\n2026-05-14 18:19:06,109 [INFO] ============================================================\\\\n2026-05-14 18:19:06,109 [INFO] Model: Qwen2.5-0.5B (0.5B)\\\\n2026-05-14 18:19:06,109 [INFO] Dosages: ['d000', 'd005', 'd100']\\\\n2026-05-14 18:19:06,109 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge']\\\\n2026-05-14 18:19:06,109 [INFO] Tasks to run: 9\\\\n2026-05-14 18:19:06,109 [INFO] Skipped (completed): 0 \\\\n2026-05-14 18:19:06,110 [INFO] Dry-run: False\\\\n2026-05-14 18:19:06,110 [INFO] GPU: 0\\\\n2026-05-14 18:19:06,110 [INFO] ============================================================\\\\n2026-05-14 18:19:06,110 [INFO] [1/9] Running: Qwen2.5-0.5B_d000_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])\\\\n2026-05-14 18:22:38,236 [ERROR] [1/9] FAIL: Qwen2.5-0.5B_d000_s42/mmlu\\\\nstderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth\\\\n\\\\n2026-05-14 18:22:38,236 [INFO] [2/9] Running: Qwen2.5-0.5B_d000_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])\\\\n2026-05-14 18:25:30,600 [ERROR] [2/9] FAIL: Qwen2.5-0.5B_d000_s42/gsm8k\\\\nstderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth\\\\n\\\\n2026-05-14 18:25:30,600 [INFO] [3/9] Running: Qwen2.5-0.5B_d000_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 18:19:06,109 [INFO] ============================================================\\n2026-05-14 18:19:06,109 [INFO] exp-002 Signal Pipeline Batch Runner\\n2026-05-14 18:19:06,109 [INFO] ============================================================\\n2026-05-14 18:19:06,109 [INFO] Model: Qwen2.5-0.5B (0.5B)\\n2026-05-14 18:19:06,109 [INFO] Dosages: ['d000', 'd005', 'd100']\\n2026-05-14 18:19:06,109 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge']\\n2026-05-14 18:19:06,109 [INFO] Tasks to run: 9\\n2026-05-14 18:19:06,109 [INFO] Skipped (completed): 0 \\n2026-05-14 18:19:06,110 [INFO] Dry-run: False\\n2026-05-14 18:19:06,110 [INFO] GPU: 0\\n2026-05-14 18:19:06,110 [INFO] ============================================================\\n2026-05-14 18:19:06,110 [INFO] [1/9] Running: Qwen2.5-0.5B_d000_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])\\n2026-05-14 18:22:38,236 [ERROR] [1/9] FAIL: Qwen2.5-0.5B_d000_s42/mmlu\\nstderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth\\n\\n2026-05-14 18:22:38,236 [INFO] [2/9] Running: Qwen2.5-0.5B_d000_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])\\n2026-05-14 18:25:30,600 [ERROR] [2/9] FAIL: Qwen2.5-0.5B_d000_s42/gsm8k\\nstderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth\\n\\n2026-05-14 18:25:30,600 [INFO] [3/9] Running: Qwen2.5-0.5B_d000_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T10:26:11.714Z_
+
+<details><summary>↩ Tool result · `toolu_019DCAPVcS3p2XtvTXhhxQDW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "fab9c182-4549-4c9a-853f-2af63fb98289",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+日志显示 mmlu 和 gsm8k 都已失败，arc_challenge 正在跑。stderr 只截到了模型名列表的尾部，需要看完整 stderr。让我检查更多细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "6333fc71-8296-4beb-8f2c-5d4caec78614",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Djf28etGtixe9XLCr88nMi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1486,
+      "cache_read_input_tokens": 23803,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1486
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011vUpcKdjE4VGwoMB12wRnU`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/exp002/ -name \"*.log\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "ceb6b4c1-ec37-4ac6-8ac3-5cc8e2f310d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Djf28etGtixe9XLCr88nMi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1486,
+      "cache_read_input_tokens": 23803,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1486
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T10:26:20.453Z_
+
+<details><summary>↩ Tool result · `toolu_011vUpcKdjE4VGwoMB12wRnU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "c53734a4-b9f6-41f8-995e-e6b0247f3afd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GWaNvbTZhG3mH3VGJPzx8h`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp002/signals_output/Qwen2.5-0.5B_d000_s42/mmlu/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "ad389072-569c-4837-a0f3-7d0ccb9d3c2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Djf28etGtixe9XLCr88nMi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1486,
+      "cache_read_input_tokens": 23803,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1486
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T10:26:20.971Z_
+
+<details><summary>↩ Tool result · `toolu_01GWaNvbTZhG3mH3VGJPzx8h`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "4af69aec-d296-48f0-8ea5-e9ffedb7d558",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XdQ8JjpxP1KmCmjqeJxfNt`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp002/signals_output/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "12033102-73ed-4891-9979-75296233d16c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Djf28etGtixe9XLCr88nMi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1486,
+      "cache_read_input_tokens": 23803,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1486
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T10:26:21.236Z_
+
+<details><summary>↩ Tool result · `toolu_01XdQ8JjpxP1KmCmjqeJxfNt`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "03e4c080-cc06-4b65-a28c-12d95b73b9ba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` is being blocked because of the `>` metacharacter. Let me adjust the commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "b328f752-9d53-4149-b245-2047b465704b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RviyB98swRyf9zC3ei62G4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 731,
+      "cache_read_input_tokens": 25289,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 731
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+`2>/dev/null` 被 read_only 拦截了。调整命令重试。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "fddf3506-bfbd-4a1b-8db7-5fd81e3c5442",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RviyB98swRyf9zC3ei62G4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 731,
+      "cache_read_input_tokens": 25289,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 731
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T4kGxgFyh7wAjGPixLBaE8`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp002/signals_output/Qwen2.5-0.5B_d000_s42/mmlu/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "2ed15a77-3bd0-4499-8b46-67fdd3d8e2b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RviyB98swRyf9zC3ei62G4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 731,
+      "cache_read_input_tokens": 25289,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 731
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T10:26:26.105Z_
+
+<details><summary>↩ Tool result · `toolu_01T4kGxgFyh7wAjGPixLBaE8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contamcal-irt-calibration/exp002/signals_output/Qwen2.5-0.5B_d000_s42/mmlu/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "906712f1-4c88-4376-b3f1-422dab13df13",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/contamcal-irt-calibration/exp002/signals_output/Qwen2.5-0.5B_d000_s42/mmlu/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contamcal-irt-calibration/exp002/signals_output/Qwen2.5-0.5B_d000_s42/mmlu/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017mSXEQuTMTqm8JyjtMzaAR`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp002/signals_output/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "c2b3dd98-123d-4475-a624-54dfc1ef0925",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RviyB98swRyf9zC3ei62G4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 731,
+      "cache_read_input_tokens": 25289,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 731
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VrRrhZsDsiDos1BwiA6hc1`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp002/run_batch.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "29c61ba9-5579-43ec-9bb8-64eaa46dabf0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RviyB98swRyf9zC3ei62G4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 731,
+      "cache_read_input_tokens": 25289,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 731
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T10:26:27.094Z_
+
+<details><summary>↩ Tool result · `toolu_017mSXEQuTMTqm8JyjtMzaAR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contamcal-irt-calibration/exp002/signals_output/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "ecac3525-f0ca-423c-8d7a-ba80b76f15cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/contamcal-irt-calibration/exp002/signals_output/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contamcal-irt-calibration/exp002/signals_output/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T10:26:27.618Z_
+
+<details><summary>↩ Tool result · `toolu_01VrRrhZsDsiDos1BwiA6hc1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nBatch runner for exp-002 signal pipeline.\\n\\nOrchestrates compute_signals.py across all (dosage, benchmark) combos for a given\\nmodel size. Supports dry-run, GPU selection, resume (skips completed tasks), and\\nparallel or sequential execution.\\n\\nUsage:\\n  python run_batch.py --model-size 0.5B --dry-run           # verify pipeline\\n  python run_batch.py --model-size 0.5B --gpu 3             # run all on GPU 3\\n  python run_batch.py --model-size 0.5B --gpu 3 --only d005 # single dosage\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport subprocess\\nimport sys\\nfrom pathlib import Path\\n\\nos.environ.setdefault(\\\"HF_DATASETS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\n\\nlogger = logging.getLogger(__name__)\\n\\n# --- Path conventions ---\\nCHECKPOINT_ROOT = \\\"/root/autodl-tmp/exp001/checkpoints\\\"\\nSFT_DATA_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nEVAL_RESULTS_ROOT = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\nOUTPUT_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nCACHE_DIR = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d100\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nSEED = \\\"s42\\\"\\n\\nMODEL_SIZE_TO_NAME = {\\n    \\\"0.5B\\\": \\\"Qwen2.5-0.5B\\\",\\n    \\\"1.5B\\\": \\\"Qwen2.5-1.5B\\\",\\n    \\\"3B\\\": \\\"Qwen2.5-3B\\\",\\n}\\n\\nDOSAGE_TO_NUM = {\\\"d000\\\": \\\"000\\\", \\\"d005\\\": \\\"005\\\", \\\"d025\\\": \\\"025\\\", \\\"d050\\\": \\\"050\\\", \\\"d100\\\": \\\"100\\\"}\\n\\n\\ndef checkpoint_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{CHECKPOINT_ROOT}/{model_name}_{dosage}_{SEED}\\\"\\n\\n\\ndef sft_data_path(dosage: str) -> str:\\n    return f\\\"{SFT_DATA_ROOT}/sft_dosage_{DOSAGE_TO_NUM[dosage]}.jsonl\\\"\\n\\n\\ndef ref_checkpoint_path(model_name: str) -> str:\\n    \\\"\\\"\\\"D016: reference model = 0% dosage fine-tuned model.\\\"\\\"\\\"\\n    return checkpoint_path(model_name, \\\"d000\\\")\\n\\n\\ndef eval_results_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}/eval_results.json\\\"\\n\\n\\ndef para_eval_results_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}_para/eval_results.json\\\"\\n\\n\\ndef labels_path(benchmark: str, dosage: str) -> str:\\n    return f\\\"{LABELS_ROOT}/contamination_labels_{benchmark}_{dosage}.json\\\"\\n\\n\\ndef output_dir_for(model_name: str, dosage: str) -> str:\\n    return f\\\"{OUTPUT_ROOT}/{model_name}_{dosage}_{SEED}\\\"\\n\\n\\ndef merged_output_exists(model_name: str, dosage: str, benchmark: str) -> bool:\\n    outdir = output_dir_for(model_name, dosage)\\n    model_id = f\\\"{model_name}_{dosage}_{SEED}\\\"\\n    merged = Path(outdir) / f\\\"signals_merged_{benchmark}_{model_id}.json\\\"\\n    return merged.exists()\\n\\n\\ndef build_task(model_name: str, dosage: str, benchmark: str, gpu: str,\\n               dry_run: bool, max_items: int) -> dict:\\n    \\\"\\\"\\\"Build a single signal computation task.\\\"\\\"\\\"\\n    ckpt = checkpoint_path(model_name, dosage)\\n    ref_ckpt = ref_checkpoint_path(model_name)\\n    sft = sft_data_path(dosage)\\n    outdir = output_dir_for(model_name, dosage)\\n\\n    cmd = [\\n        sys.executable, \\\"compute_signals.py\\\",\\n        \\\"--model-path\\\", ckpt,\\n        \\\"--benchmark\\\", benchmark,\\n        \\\"--ref-model-path\\\", ref_ckpt,\\n        \\\"--sft-data-path\\\", sft,\\n        \\\"--output-dir\\\", outdir,\\n        \\\"--cache-dir\\\", CACHE_DIR,\\n    ]\\n\\n    if gpu is not None:\\n        cmd.extend([\\\"--gpu\\\", str(gpu)])\\n\\n    # ConStat: include only if paraphrase eval results exist\\n    signals = [\\\"embedding\\\", \\\"minkpp\\\", \\\"selfcritique\\\"]\\n    orig_eval = eval_results_path(model_name, dosage)\\n    para_eval = para_eval_results_path(model_name, dosage)\\n    if os.path.exists(orig_eval) and os.path.exists(para_eval):\\n        signals.append(\\\"constat\\\")\\n        cmd.extend([\\\"--original-eval-paths\\\", orig_eval])\\n        cmd.extend([\\\"--paraphrase-eval-paths\\\", para_eval])\\n\\n    cmd.extend([\\\"--signals\\\"] + signals)\\n\\n    if dry_run:\\n        cmd.append(\\\"--dry-run\\\")\\n    if max_items:\\n        cmd.extend([\\\"--max-items\\\", str(max_items)])\\n\\n    model_id = f\\\"{model_name}_{dosage}_{SEED}\\\"\\n    return {\\n        \\\"mode\\n\\n... [截断: 输出过长，省略 1452 字符] ...\\n\\n                     help=\\\"Print commands without executing\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    model_name = MODEL_SIZE_TO_NAME[args.model_size]\\n    dosages = args.only if args.only else DOSAGES\\n    benchmarks = args.only_benchmarks if args.only_benchmarks else BENCHMARKS\\n    skip_completed = not args.no_skip\\n\\n    # Build task list\\n    tasks = []\\n    skipped = []\\n    for dosage in dosages:\\n        ckpt = checkpoint_path(model_name, dosage)\\n        if not os.path.exists(ckpt):\\n            logger.warning(\\\"Checkpoint not found, skipping: %s\\\", ckpt)\\n            continue\\n        for benchmark in benchmarks:\\n            if skip_completed and merged_output_exists(model_name, dosage, benchmark):\\n                skipped.append(f\\\"{model_name}_{dosage}_{SEED}/{benchmark}\\\")\\n                continue\\n            task = build_task(model_name, dosage, benchmark, args.gpu,\\n                              args.dry_run, args.max_items)\\n            tasks.append(task)\\n\\n    # Summary\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"exp-002 Signal Pipeline Batch Runner\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"Model: %s (%s)\\\", model_name, args.model_size)\\n    logger.info(\\\"Dosages: %s\\\", dosages)\\n    logger.info(\\\"Benchmarks: %s\\\", benchmarks)\\n    logger.info(\\\"Tasks to run: %d\\\", len(tasks))\\n    logger.info(\\\"Skipped (completed): %d %s\\\", len(skipped),\\n                skipped if skipped else \\\"\\\")\\n    logger.info(\\\"Dry-run: %s\\\", args.dry_run)\\n    logger.info(\\\"GPU: %s\\\", args.gpu or \\\"auto\\\")\\n    logger.info(\\\"=\\\" * 60)\\n\\n    if args.print_only:\\n        for task in tasks:\\n            print(f\\\"\\\\n# {task['model_id']} / {task['benchmark']} ({task['signals']})\\\")\\n            print(\\\" \\\".join(task[\\\"cmd\\\"]))\\n        return\\n\\n    # Execute tasks sequentially\\n    results = {}\\n    for i, task in enumerate(tasks, 1):\\n        task_id = f\\\"{task['model_id']}/{task['benchmark']}\\\"\\n        logger.info(\\\"[%d/%d] Running: %s (signals: %s)\\\", i, len(tasks),\\n                    task_id, task[\\\"signals\\\"])\\n\\n        try:\\n            result = subprocess.run(\\n                task[\\\"cmd\\\"],\\n                cwd=\\\"/root/contamcal-irt-calibration/exp002\\\",\\n                capture_output=True, text=True, timeout=7200,\\n            )\\n            if result.returncode == 0:\\n                results[task_id] = \\\"PASS\\\"\\n                logger.info(\\\"[%d/%d] PASS: %s\\\", i, len(tasks), task_id)\\n            else:\\n                results[task_id] = f\\\"FAIL (rc={result.returncode})\\\"\\n                logger.error(\\\"[%d/%d] FAIL: %s\\\\nstderr: %s\\\", i, len(tasks),\\n                             task_id, result.stderr[-500:])\\n        except subprocess.TimeoutExpired:\\n            results[task_id] = \\\"TIMEOUT\\\"\\n            logger.error(\\\"[%d/%d] TIMEOUT: %s\\\", i, len(tasks), task_id)\\n        except Exception as e:\\n            results[task_id] = f\\\"ERROR: {e}\\\"\\n            logger.error(\\\"[%d/%d] ERROR: %s — %s\\\", i, len(tasks), task_id, e)\\n\\n    # Summary\\n    logger.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    logger.info(\\\"BATCH SUMMARY\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    for task_id, status in results.items():\\n        marker = \\\"PASS\\\" if status == \\\"PASS\\\" else \\\"FAIL\\\"\\n        logger.info(\\\"  [%s] %s: %s\\\", marker, task_id, status)\\n\\n    n_pass = sum(1 for v in results.values() if v == \\\"PASS\\\")\\n    n_total = len(results)\\n    logger.info(\\\"Result: %d/%d passed\\\", n_pass, n_total)\\n\\n    # Write batch report\\n    report_path = Path(OUTPUT_ROOT) / f\\\"batch_report_{model_name}.json\\\"\\n    report_path.parent.mkdir(parents=True, exist_ok=True)\\n    report = {\\n        \\\"model_name\\\": model_name,\\n        \\\"model_size\\\": args.model_size,\\n        \\\"dry_run\\\": args.dry_run,\\n        \\\"tasks_run\\\": n_total,\\n        \\\"tasks_passed\\\": n_pass,\\n        \\\"skipped\\\": skipped,\\n        \\\"results\\\": results,\\n    }\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2)\\n    logger.info(\\\"Batch report saved to %s\\\", report_path)\\n\\n    sys.exit(0 if n_pass == n_total else 1)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "ccad752b-ff5d-4c1c-b177-3feba64014f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBatch runner for exp-002 signal pipeline.\\\\n\\\\nOrchestrates compute_signals.py across all (dosage, benchmark) combos for a given\\\\nmodel size. Supports dry-run, GPU selection, resume (skips completed tasks), and\\\\nparallel or sequential execution.\\\\n\\\\nUsage:\\\\n  python run_batch.py --model-size 0.5B --dry-run           # verify pipeline\\\\n  python run_batch.py --model-size 0.5B --gpu 3             # run all on GPU 3\\\\n  python run_batch.py --model-size 0.5B --gpu 3 --only d005 # single dosage\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport subprocess\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nos.environ.setdefault(\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n# --- Path conventions ---\\\\nCHECKPOINT_ROOT = \\\\\\\"/root/autodl-tmp/exp001/checkpoints\\\\\\\"\\\\nSFT_DATA_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nEVAL_RESULTS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\"\\\\nOUTPUT_ROOT = \\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\"\\\\nLABELS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nCACHE_DIR = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nDOSAGES = [\\\\\\\"d000\\\\\\\", \\\\\\\"d005\\\\\\\", \\\\\\\"d100\\\\\\\"]\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nSEED = \\\\\\\"s42\\\\\\\"\\\\n\\\\nMODEL_SIZE_TO_NAME = {\\\\n    \\\\\\\"0.5B\\\\\\\": \\\\\\\"Qwen2.5-0.5B\\\\\\\",\\\\n    \\\\\\\"1.5B\\\\\\\": \\\\\\\"Qwen2.5-1.5B\\\\\\\",\\\\n    \\\\\\\"3B\\\\\\\": \\\\\\\"Qwen2.5-3B\\\\\\\",\\\\n}\\\\n\\\\nDOSAGE_TO_NUM = {\\\\\\\"d000\\\\\\\": \\\\\\\"000\\\\\\\", \\\\\\\"d005\\\\\\\": \\\\\\\"005\\\\\\\", \\\\\\\"d025\\\\\\\": \\\\\\\"025\\\\\\\", \\\\\\\"d050\\\\\\\": \\\\\\\"050\\\\\\\", \\\\\\\"d100\\\\\\\": \\\\\\\"100\\\\\\\"}\\\\n\\\\n\\\\ndef checkpoint_path(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{CHECKPOINT_ROOT}/{model_name}_{dosage}_{SEED}\\\\\\\"\\\\n\\\\n\\\\ndef sft_data_path(dosage: str) -> str:\\\\n    return f\\\\\\\"{SFT_DATA_ROOT}/sft_dosage_{DOSAGE_TO_NUM[dosage]}.jsonl\\\\\\\"\\\\n\\\\n\\\\ndef ref_checkpoint_path(model_name: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"D016: reference model = 0% dosage fine-tuned model.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return checkpoint_path(model_name, \\\\\\\"d000\\\\\\\")\\\\n\\\\n\\\\ndef eval_results_path(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}/eval_results.json\\\\\\\"\\\\n\\\\n\\\\ndef para_eval_results_path(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}_para/eval_results.json\\\\\\\"\\\\n\\\\n\\\\ndef labels_path(benchmark: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{LABELS_ROOT}/contamination_labels_{benchmark}_{dosage}.json\\\\\\\"\\\\n\\\\n\\\\ndef output_dir_for(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{OUTPUT_ROOT}/{model_name}_{dosage}_{SEED}\\\\\\\"\\\\n\\\\n\\\\ndef merged_output_exists(model_name: str, dosage: str, benchmark: str) -> bool:\\\\n    outdir = output_dir_for(model_name, dosage)\\\\n    model_id = f\\\\\\\"{model_name}_{dosage}_{SEED}\\\\\\\"\\\\n    merged = Path(outdir) / f\\\\\\\"signals_merged_{benchmark}_{model_id}.json\\\\\\\"\\\\n    return merged.exists()\\\\n\\\\n\\\\ndef build_task(model_name: str, dosage: str, benchmark: str, gpu: str,\\\\n               dry_run: bool, max_items: int) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build a single signal computation task.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ckpt = checkpoint_path(model_name, dosage)\\\\n    ref_ckpt = ref_checkpoint_path(model_name)\\\\n    sft = sft_data_path(dosage)\\\\n    outdir = output_dir_for(model_name, dosage)\\\\n\\\\n    cmd = [\\\\n        sys.executable, \\\\\\\"compute_signals.py\\\\\\\",\\\\n        \\\\\\\"--model-path\\\\\\\", ckpt,\\\\n        \\\\\\\"--benchmark\\\\\\\", benchmark,\\\\n        \\\\\\\"--ref-model-path\\\\\\\", ref_ckpt,\\\\n        \\\\\\\"--sft-data-path\\\\\\\", sft,\\\\n        \\\\\\\"--output-dir\\\\\\\", outdir,\\\\n        \\\\\\\"--cache-dir\\\\\\\", CACHE_DIR,\\\\n    ]\\\\n\\\\n    if gpu is not None:\\\\n        cmd.extend([\\\\\\\"--gpu\\\\\\\", str(gpu)])\\\\n\\\\n    # ConStat: include only if paraphrase eval results exist\\\\n    signals = [\\\\\\\"embedding\\\\\\\", \\\\\\\"minkpp\\\\\\\", \\\\\\\"selfcritique\\\\\\\"]\\\\n    orig_eval = eval_results_path(model_name, dosage)\\\\n    para_eval = para_eval_results_path(model_name, dosage)\\\\n    if os.path.exists(orig_eval) and os.path.exists(para_eval):\\\\n        signals.append(\\\\\\\"constat\\\\\\\")\\\\n        cmd.extend([\\\\\\\"--original-eval-paths\\\\\\\", orig_eval])\\\\n        cmd.extend([\\\\\\\"--paraphrase-eval-paths\\\\\\\", para_eval])\\\\n\\\\n    cmd.extend([\\\\\\\"--signals\\\\\\\"] + signals)\\\\n\\\\n    if dry_run:\\\\n        cmd.append(\\\\\\\"--dry-run\\\\\\\")\\\\n    if max_items:\\\\n        cmd.extend([\\\\\\\"--max-items\\\\\\\", str(max_items)])\\\\n\\\\n    model_id = f\\\\\\\"{model_name}_{dosage}_{SEED}\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"mode\\\\n\\\\n... [截断: 输出过长，省略 1452 字符] ...\\\\n\\\\n                     help=\\\\\\\"Print commands without executing\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    model_name = MODEL_SIZE_TO_NAME[args.model_size]\\\\n    dosages = args.only if args.only else DOSAGES\\\\n    benchmarks = args.only_benchmarks if args.only_benchmarks else BENCHMARKS\\\\n    skip_completed = not args.no_skip\\\\n\\\\n    # Build task list\\\\n    tasks = []\\\\n    skipped = []\\\\n    for dosage in dosages:\\\\n        ckpt = checkpoint_path(model_name, dosage)\\\\n        if not os.path.exists(ckpt):\\\\n            logger.warning(\\\\\\\"Checkpoint not found, skipping: %s\\\\\\\", ckpt)\\\\n            continue\\\\n        for benchmark in benchmarks:\\\\n            if skip_completed and merged_output_exists(model_name, dosage, benchmark):\\\\n                skipped.append(f\\\\\\\"{model_name}_{dosage}_{SEED}/{benchmark}\\\\\\\")\\\\n                continue\\\\n            task = build_task(model_name, dosage, benchmark, args.gpu,\\\\n                              args.dry_run, args.max_items)\\\\n            tasks.append(task)\\\\n\\\\n    # Summary\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"exp-002 Signal Pipeline Batch Runner\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"Model: %s (%s)\\\\\\\", model_name, args.model_size)\\\\n    logger.info(\\\\\\\"Dosages: %s\\\\\\\", dosages)\\\\n    logger.info(\\\\\\\"Benchmarks: %s\\\\\\\", benchmarks)\\\\n    logger.info(\\\\\\\"Tasks to run: %d\\\\\\\", len(tasks))\\\\n    logger.info(\\\\\\\"Skipped (completed): %d %s\\\\\\\", len(skipped),\\\\n                skipped if skipped else \\\\\\\"\\\\\\\")\\\\n    logger.info(\\\\\\\"Dry-run: %s\\\\\\\", args.dry_run)\\\\n    logger.info(\\\\\\\"GPU: %s\\\\\\\", args.gpu or \\\\\\\"auto\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    if args.print_only:\\\\n        for task in tasks:\\\\n            print(f\\\\\\\"\\\\\\\\n# {task['model_id']} / {task['benchmark']} ({task['signals']})\\\\\\\")\\\\n            print(\\\\\\\" \\\\\\\".join(task[\\\\\\\"cmd\\\\\\\"]))\\\\n        return\\\\n\\\\n    # Execute tasks sequentially\\\\n    results = {}\\\\n    for i, task in enumerate(tasks, 1):\\\\n        task_id = f\\\\\\\"{task['model_id']}/{task['benchmark']}\\\\\\\"\\\\n        logger.info(\\\\\\\"[%d/%d] Running: %s (signals: %s)\\\\\\\", i, len(tasks),\\\\n                    task_id, task[\\\\\\\"signals\\\\\\\"])\\\\n\\\\n        try:\\\\n            result = subprocess.run(\\\\n                task[\\\\\\\"cmd\\\\\\\"],\\\\n                cwd=\\\\\\\"/root/contamcal-irt-calibration/exp002\\\\\\\",\\\\n                capture_output=True, text=True, timeout=7200,\\\\n            )\\\\n            if result.returncode == 0:\\\\n                results[task_id] = \\\\\\\"PASS\\\\\\\"\\\\n                logger.info(\\\\\\\"[%d/%d] PASS: %s\\\\\\\", i, len(tasks), task_id)\\\\n            else:\\\\n                results[task_id] = f\\\\\\\"FAIL (rc={result.returncode})\\\\\\\"\\\\n                logger.error(\\\\\\\"[%d/%d] FAIL: %s\\\\\\\\nstderr: %s\\\\\\\", i, len(tasks),\\\\n                             task_id, result.stderr[-500:])\\\\n        except subprocess.TimeoutExpired:\\\\n            results[task_id] = \\\\\\\"TIMEOUT\\\\\\\"\\\\n            logger.error(\\\\\\\"[%d/%d] TIMEOUT: %s\\\\\\\", i, len(tasks), task_id)\\\\n        except Exception as e:\\\\n            results[task_id] = f\\\\\\\"ERROR: {e}\\\\\\\"\\\\n            logger.error(\\\\\\\"[%d/%d] ERROR: %s — %s\\\\\\\", i, len(tasks), task_id, e)\\\\n\\\\n    # Summary\\\\n    logger.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"BATCH SUMMARY\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    for task_id, status in results.items():\\\\n        marker = \\\\\\\"PASS\\\\\\\" if status == \\\\\\\"PASS\\\\\\\" else \\\\\\\"FAIL\\\\\\\"\\\\n        logger.info(\\\\\\\"  [%s] %s: %s\\\\\\\", marker, task_id, status)\\\\n\\\\n    n_pass = sum(1 for v in results.values() if v == \\\\\\\"PASS\\\\\\\")\\\\n    n_total = len(results)\\\\n    logger.info(\\\\\\\"Result: %d/%d passed\\\\\\\", n_pass, n_total)\\\\n\\\\n    # Write batch report\\\\n    report_path = Path(OUTPUT_ROOT) / f\\\\\\\"batch_report_{model_name}.json\\\\\\\"\\\\n    report_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    report = {\\\\n        \\\\\\\"model_name\\\\\\\": model_name,\\\\n        \\\\\\\"model_size\\\\\\\": args.model_size,\\\\n        \\\\\\\"dry_run\\\\\\\": args.dry_run,\\\\n        \\\\\\\"tasks_run\\\\\\\": n_total,\\\\n        \\\\\\\"tasks_passed\\\\\\\": n_pass,\\\\n        \\\\\\\"skipped\\\\\\\": skipped,\\\\n        \\\\\\\"results\\\\\\\": results,\\\\n    }\\\\n    with open(report_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2)\\\\n    logger.info(\\\\\\\"Batch report saved to %s\\\\\\\", report_path)\\\\n\\\\n    sys.exit(0 if n_pass == n_total else 1)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nBatch runner for exp-002 signal pipeline.\\n\\nOrchestrates compute_signals.py across all (dosage, benchmark) combos for a given\\nmodel size. Supports dry-run, GPU selection, resume (skips completed tasks), and\\nparallel or sequential execution.\\n\\nUsage:\\n  python run_batch.py --model-size 0.5B --dry-run           # verify pipeline\\n  python run_batch.py --model-size 0.5B --gpu 3             # run all on GPU 3\\n  python run_batch.py --model-size 0.5B --gpu 3 --only d005 # single dosage\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport subprocess\\nimport sys\\nfrom pathlib import Path\\n\\nos.environ.setdefault(\\\"HF_DATASETS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\n\\nlogger = logging.getLogger(__name__)\\n\\n# --- Path conventions ---\\nCHECKPOINT_ROOT = \\\"/root/autodl-tmp/exp001/checkpoints\\\"\\nSFT_DATA_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nEVAL_RESULTS_ROOT = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\nOUTPUT_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nCACHE_DIR = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d100\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nSEED = \\\"s42\\\"\\n\\nMODEL_SIZE_TO_NAME = {\\n    \\\"0.5B\\\": \\\"Qwen2.5-0.5B\\\",\\n    \\\"1.5B\\\": \\\"Qwen2.5-1.5B\\\",\\n    \\\"3B\\\": \\\"Qwen2.5-3B\\\",\\n}\\n\\nDOSAGE_TO_NUM = {\\\"d000\\\": \\\"000\\\", \\\"d005\\\": \\\"005\\\", \\\"d025\\\": \\\"025\\\", \\\"d050\\\": \\\"050\\\", \\\"d100\\\": \\\"100\\\"}\\n\\n\\ndef checkpoint_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{CHECKPOINT_ROOT}/{model_name}_{dosage}_{SEED}\\\"\\n\\n\\ndef sft_data_path(dosage: str) -> str:\\n    return f\\\"{SFT_DATA_ROOT}/sft_dosage_{DOSAGE_TO_NUM[dosage]}.jsonl\\\"\\n\\n\\ndef ref_checkpoint_path(model_name: str) -> str:\\n    \\\"\\\"\\\"D016: reference model = 0% dosage fine-tuned model.\\\"\\\"\\\"\\n    return checkpoint_path(model_name, \\\"d000\\\")\\n\\n\\ndef eval_results_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}/eval_results.json\\\"\\n\\n\\ndef para_eval_results_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}_para/eval_results.json\\\"\\n\\n\\ndef labels_path(benchmark: str, dosage: str) -> str:\\n    return f\\\"{LABELS_ROOT}/contamination_labels_{benchmark}_{dosage}.json\\\"\\n\\n\\ndef output_dir_for(model_name: str, dosage: str) -> str:\\n    return f\\\"{OUTPUT_ROOT}/{model_name}_{dosage}_{SEED}\\\"\\n\\n\\ndef merged_output_exists(model_name: str, dosage: str, benchmark: str) -> bool:\\n    outdir = output_dir_for(model_name, dosage)\\n    model_id = f\\\"{model_name}_{dosage}_{SEED}\\\"\\n    merged = Path(outdir) / f\\\"signals_merged_{benchmark}_{model_id}.json\\\"\\n    return merged.exists()\\n\\n\\ndef build_task(model_name: str, dosage: str, benchmark: str, gpu: str,\\n               dry_run: bool, max_items: int) -> dict:\\n    \\\"\\\"\\\"Build a single signal computation task.\\\"\\\"\\\"\\n    ckpt = checkpoint_path(model_name, dosage)\\n    ref_ckpt = ref_checkpoint_path(model_name)\\n    sft = sft_data_path(dosage)\\n    outdir = output_dir_for(model_name, dosage)\\n\\n    cmd = [\\n        sys.executable, \\\"compute_signals.py\\\",\\n        \\\"--model-path\\\", ckpt,\\n        \\\"--benchmark\\\", benchmark,\\n        \\\"--ref-model-path\\\", ref_ckpt,\\n        \\\"--sft-data-path\\\", sft,\\n        \\\"--output-dir\\\", outdir,\\n        \\\"--cache-dir\\\", CACHE_DIR,\\n    ]\\n\\n    if gpu is not None:\\n        cmd.extend([\\\"--gpu\\\", str(gpu)])\\n\\n    # ConStat: include only if paraphrase eval results exist\\n    signals = [\\\"embedding\\\", \\\"minkpp\\\", \\\"selfcritique\\\"]\\n    orig_eval = eval_results_path(model_name, dosage)\\n    para_eval = para_eval_results_path(model_name, dosage)\\n    if os.path.exists(orig_eval) and os.path.exists(para_eval):\\n        signals.append(\\\"constat\\\")\\n        cmd.extend([\\\"--original-eval-paths\\\", orig_eval])\\n        cmd.extend([\\\"--paraphrase-eval-paths\\\", para_eval])\\n\\n    cmd.extend([\\\"--signals\\\"] + signals)\\n\\n    if dry_run:\\n        cmd.append(\\\"--dry-run\\\")\\n    if max_items:\\n        cmd.extend([\\\"--max-items\\\", str(max_items)])\\n\\n    model_id = f\\\"{model_name}_{dosage}_{SEED}\\\"\\n    return {\\n        \\\"mode\\n\\n... [截断: 输出过长，省略 1452 字符] ...\\n\\n                     help=\\\"Print commands without executing\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    model_name = MODEL_SIZE_TO_NAME[args.model_size]\\n    dosages = args.only if args.only else DOSAGES\\n    benchmarks = args.only_benchmarks if args.only_benchmarks else BENCHMARKS\\n    skip_completed = not args.no_skip\\n\\n    # Build task list\\n    tasks = []\\n    skipped = []\\n    for dosage in dosages:\\n        ckpt = checkpoint_path(model_name, dosage)\\n        if not os.path.exists(ckpt):\\n            logger.warning(\\\"Checkpoint not found, skipping: %s\\\", ckpt)\\n            continue\\n        for benchmark in benchmarks:\\n            if skip_completed and merged_output_exists(model_name, dosage, benchmark):\\n                skipped.append(f\\\"{model_name}_{dosage}_{SEED}/{benchmark}\\\")\\n                continue\\n            task = build_task(model_name, dosage, benchmark, args.gpu,\\n                              args.dry_run, args.max_items)\\n            tasks.append(task)\\n\\n    # Summary\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"exp-002 Signal Pipeline Batch Runner\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"Model: %s (%s)\\\", model_name, args.model_size)\\n    logger.info(\\\"Dosages: %s\\\", dosages)\\n    logger.info(\\\"Benchmarks: %s\\\", benchmarks)\\n    logger.info(\\\"Tasks to run: %d\\\", len(tasks))\\n    logger.info(\\\"Skipped (completed): %d %s\\\", len(skipped),\\n                skipped if skipped else \\\"\\\")\\n    logger.info(\\\"Dry-run: %s\\\", args.dry_run)\\n    logger.info(\\\"GPU: %s\\\", args.gpu or \\\"auto\\\")\\n    logger.info(\\\"=\\\" * 60)\\n\\n    if args.print_only:\\n        for task in tasks:\\n            print(f\\\"\\\\n# {task['model_id']} / {task['benchmark']} ({task['signals']})\\\")\\n            print(\\\" \\\".join(task[\\\"cmd\\\"]))\\n        return\\n\\n    # Execute tasks sequentially\\n    results = {}\\n    for i, task in enumerate(tasks, 1):\\n        task_id = f\\\"{task['model_id']}/{task['benchmark']}\\\"\\n        logger.info(\\\"[%d/%d] Running: %s (signals: %s)\\\", i, len(tasks),\\n                    task_id, task[\\\"signals\\\"])\\n\\n        try:\\n            result = subprocess.run(\\n                task[\\\"cmd\\\"],\\n                cwd=\\\"/root/contamcal-irt-calibration/exp002\\\",\\n                capture_output=True, text=True, timeout=7200,\\n            )\\n            if result.returncode == 0:\\n                results[task_id] = \\\"PASS\\\"\\n                logger.info(\\\"[%d/%d] PASS: %s\\\", i, len(tasks), task_id)\\n            else:\\n                results[task_id] = f\\\"FAIL (rc={result.returncode})\\\"\\n                logger.error(\\\"[%d/%d] FAIL: %s\\\\nstderr: %s\\\", i, len(tasks),\\n                             task_id, result.stderr[-500:])\\n        except subprocess.TimeoutExpired:\\n            results[task_id] = \\\"TIMEOUT\\\"\\n            logger.error(\\\"[%d/%d] TIMEOUT: %s\\\", i, len(tasks), task_id)\\n        except Exception as e:\\n            results[task_id] = f\\\"ERROR: {e}\\\"\\n            logger.error(\\\"[%d/%d] ERROR: %s — %s\\\", i, len(tasks), task_id, e)\\n\\n    # Summary\\n    logger.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    logger.info(\\\"BATCH SUMMARY\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    for task_id, status in results.items():\\n        marker = \\\"PASS\\\" if status == \\\"PASS\\\" else \\\"FAIL\\\"\\n        logger.info(\\\"  [%s] %s: %s\\\", marker, task_id, status)\\n\\n    n_pass = sum(1 for v in results.values() if v == \\\"PASS\\\")\\n    n_total = len(results)\\n    logger.info(\\\"Result: %d/%d passed\\\", n_pass, n_total)\\n\\n    # Write batch report\\n    report_path = Path(OUTPUT_ROOT) / f\\\"batch_report_{model_name}.json\\\"\\n    report_path.parent.mkdir(parents=True, exist_ok=True)\\n    report = {\\n        \\\"model_name\\\": model_name,\\n        \\\"model_size\\\": args.model_size,\\n        \\\"dry_run\\\": args.dry_run,\\n        \\\"tasks_run\\\": n_total,\\n        \\\"tasks_passed\\\": n_pass,\\n        \\\"skipped\\\": skipped,\\n        \\\"results\\\": results,\\n    }\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2)\\n    logger.info(\\\"Batch report saved to %s\\\", report_path)\\n\\n    sys.exit(0 if n_pass == n_total else 1)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log shows that both mmlu and gsm8k failed, and the stderr only shows the tail end of what looks like a transformers model list (model architecture names). The stderr is truncated to the last 500 chars (`result.stderr[-500:]`). This looks like it might be a stderr warning output from transformers library rather than an actual error.
+
+Let me check:
+1. The actual error - the stderr only shows model names, which is typically a warning from transformers about unrecognized model types. The real error might be before that.
+2. The return code - the log says FAIL but we don't see the actual return code or the real error message.
+
+
+3. I should also check whether arc_challenge failed too, and look for more clues about whether the process is still running.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "49142d60-30e0-4499-9135-4123d18eeeda",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WV5StXaVLEsUV6igzYracN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4423,
+      "cache_read_input_tokens": 26020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+日志中 stderr 只截了最后 500 字符（`result.stderr[-500:]`），全是 transformers 模型名列表，真正的错误被截断了。需要看 compute_signals.py 的实际执行情况。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "95b636cd-ff4f-47e3-9bdb-e3cbd88e478a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WV5StXaVLEsUV6igzYracN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4423,
+      "cache_read_input_tokens": 26020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xn4W3FoJiHvVHSX62chSFr`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -30 ~/runs/contamcal-irt-calibration/exp_002_signals_05B.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "253c0c51-71f6-4448-9a9e-3224b7673b04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WV5StXaVLEsUV6igzYracN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4423,
+      "cache_read_input_tokens": 26020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T10:26:37.501Z_
+
+<details><summary>↩ Tool result · `toolu_01Xn4W3FoJiHvVHSX62chSFr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 18:19:06,109 [INFO] ============================================================\\n2026-05-14 18:19:06,109 [INFO] exp-002 Signal Pipeline Batch Runner\\n2026-05-14 18:19:06,109 [INFO] ============================================================\\n2026-05-14 18:19:06,109 [INFO] Model: Qwen2.5-0.5B (0.5B)\\n2026-05-14 18:19:06,109 [INFO] Dosages: ['d000', 'd005', 'd100']\\n2026-05-14 18:19:06,109 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge']\\n2026-05-14 18:19:06,109 [INFO] Tasks to run: 9\\n2026-05-14 18:19:06,109 [INFO] Skipped (completed): 0 \\n2026-05-14 18:19:06,110 [INFO] Dry-run: False\\n2026-05-14 18:19:06,110 [INFO] GPU: 0\\n2026-05-14 18:19:06,110 [INFO] ============================================================\\n2026-05-14 18:19:06,110 [INFO] [1/9] Running: Qwen2.5-0.5B_d000_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])\\n2026-05-14 18:22:38,236 [ERROR] [1/9] FAIL: Qwen2.5-0.5B_d000_s42/mmlu\\nstderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth\\n\\n2026-05-14 18:22:38,236 [INFO] [2/9] Running: Qwen2.5-0.5B_d000_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])\\n2026-05-14 18:25:30,600 [ERROR] [2/9] FAIL: Qwen2.5-0.5B_d000_s42/gsm8k\\nstderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth\\n\\n2026-05-14 18:25:30,600 [INFO] [3/9] Running: Qwen2.5-0.5B_d000_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "865e88e6-e0ef-41da-8f68-d23c8ee15ced",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 18:19:06,109 [INFO] ============================================================\\\\n2026-05-14 18:19:06,109 [INFO] exp-002 Signal Pipeline Batch Runner\\\\n2026-05-14 18:19:06,109 [INFO] ============================================================\\\\n2026-05-14 18:19:06,109 [INFO] Model: Qwen2.5-0.5B (0.5B)\\\\n2026-05-14 18:19:06,109 [INFO] Dosages: ['d000', 'd005', 'd100']\\\\n2026-05-14 18:19:06,109 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge']\\\\n2026-05-14 18:19:06,109 [INFO] Tasks to run: 9\\\\n2026-05-14 18:19:06,109 [INFO] Skipped (completed): 0 \\\\n2026-05-14 18:19:06,110 [INFO] Dry-run: False\\\\n2026-05-14 18:19:06,110 [INFO] GPU: 0\\\\n2026-05-14 18:19:06,110 [INFO] ============================================================\\\\n2026-05-14 18:19:06,110 [INFO] [1/9] Running: Qwen2.5-0.5B_d000_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])\\\\n2026-05-14 18:22:38,236 [ERROR] [1/9] FAIL: Qwen2.5-0.5B_d000_s42/mmlu\\\\nstderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth\\\\n\\\\n2026-05-14 18:22:38,236 [INFO] [2/9] Running: Qwen2.5-0.5B_d000_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])\\\\n2026-05-14 18:25:30,600 [ERROR] [2/9] FAIL: Qwen2.5-0.5B_d000_s42/gsm8k\\\\nstderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth\\\\n\\\\n2026-05-14 18:25:30,600 [INFO] [3/9] Running: Qwen2.5-0.5B_d000_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 18:19:06,109 [INFO] ============================================================\\n2026-05-14 18:19:06,109 [INFO] exp-002 Signal Pipeline Batch Runner\\n2026-05-14 18:19:06,109 [INFO] ============================================================\\n2026-05-14 18:19:06,109 [INFO] Model: Qwen2.5-0.5B (0.5B)\\n2026-05-14 18:19:06,109 [INFO] Dosages: ['d000', 'd005', 'd100']\\n2026-05-14 18:19:06,109 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge']\\n2026-05-14 18:19:06,109 [INFO] Tasks to run: 9\\n2026-05-14 18:19:06,109 [INFO] Skipped (completed): 0 \\n2026-05-14 18:19:06,110 [INFO] Dry-run: False\\n2026-05-14 18:19:06,110 [INFO] GPU: 0\\n2026-05-14 18:19:06,110 [INFO] ============================================================\\n2026-05-14 18:19:06,110 [INFO] [1/9] Running: Qwen2.5-0.5B_d000_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])\\n2026-05-14 18:22:38,236 [ERROR] [1/9] FAIL: Qwen2.5-0.5B_d000_s42/mmlu\\nstderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth\\n\\n2026-05-14 18:22:38,236 [INFO] [2/9] Running: Qwen2.5-0.5B_d000_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])\\n2026-05-14 18:25:30,600 [ERROR] [2/9] FAIL: Qwen2.5-0.5B_d000_s42/gsm8k\\nstderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth\\n\\n2026-05-14 18:25:30,600 [INFO] [3/9] Running: Qwen2.5-0.5B_d000_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SNgxk7dcmHHaZBXDTGabMV`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/autodl-tmp/exp002/signals/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "aad479a1-5131-4c56-bfdc-6721a66d21e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WV5StXaVLEsUV6igzYracN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4423,
+      "cache_read_input_tokens": 26020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016wjjwHcaHmhcsKGZquH4RC`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp002/signals/ -type f -name \"*.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "3d112d66-cada-4018-acfe-bcebc1b70a76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WV5StXaVLEsUV6igzYracN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4423,
+      "cache_read_input_tokens": 26020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T10:26:38.453Z_
+
+<details><summary>↩ Tool result · `toolu_01SNgxk7dcmHHaZBXDTGabMV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 3 root root  85 May 14 18:15 .\\ndrwxr-xr-x 3 root root  29 May 14 15:57 ..\\ndrwxr-xr-x 2 root root 147 May 14 18:25 Qwen2.5-0.5B_d000_s42\\n-rw-r--r-- 1 root root 212 May 14 18:15 batch_report_Qwen2.5-0.5B.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "7f17099d-3b03-45bd-a437-95778d03f4ae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 3 root root  85 May 14 18:15 .\\\\ndrwxr-xr-x 3 root root  29 May 14 15:57 ..\\\\ndrwxr-xr-x 2 root root 147 May 14 18:25 Qwen2.5-0.5B_d000_s42\\\\n-rw-r--r-- 1 root root 212 May 14 18:15 batch_report_Qwen2.5-0.5B.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 3 root root  85 May 14 18:15 .\\ndrwxr-xr-x 3 root root  29 May 14 15:57 ..\\ndrwxr-xr-x 2 root root 147 May 14 18:25 Qwen2.5-0.5B_d000_s42\\n-rw-r--r-- 1 root root 212 May 14 18:15 batch_report_Qwen2.5-0.5B.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T10:26:38.928Z_
+
+<details><summary>↩ Tool result · `toolu_016wjjwHcaHmhcsKGZquH4RC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signal_embedding_mmlu_Qwen2.5-0.5B_d000_s42.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signal_embedding_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signal_embedding_gsm8k.json\\n/root/autodl-tmp/exp002/signals/batch_report_Qwen2.5-0.5B.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "236fdcc3-9367-42df-b562-ceadc821cce8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signal_embedding_mmlu_Qwen2.5-0.5B_d000_s42.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signal_embedding_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signal_embedding_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/batch_report_Qwen2.5-0.5B.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signal_embedding_mmlu_Qwen2.5-0.5B_d000_s42.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signal_embedding_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signal_embedding_gsm8k.json\\n/root/autodl-tmp/exp002/signals/batch_report_Qwen2.5-0.5B.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting findings:
+1. The log file hasn't grown beyond the 3rd task yet — arc_challenge is still running (or the batch already finished and the log wasn't updated)
+2. Output dir has partial results — embedding signal was computed for mmlu and gsm8k, but the merged output doesn't exist
+3. The batch_report exists but was written at 18:15 (before the batch started at 18:19?) — that's odd. Let me check that report.
+4. The process seems to still be running since the log only shows up to task 3/9 starting
+
+Let me look at:
+- The batch report content
+
+
+- The compute_signals.py script to see what conditions would trigger a non-zero exit code
+- The actual signal files that were generated to understand what succeeded and what failed
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "6f85a5d9-854c-4f2e-b927-7135215fea8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SLJgdMcErkjMtrGKzWAQjg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2239,
+      "cache_read_input_tokens": 30443,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2239
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+有部分输出文件了（embedding 信号已计算）。让我看 batch report 和 compute_signals.py 的错误处理逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "c557f89a-7f87-441a-ad19-f70a888ca7ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SLJgdMcErkjMtrGKzWAQjg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2239,
+      "cache_read_input_tokens": 30443,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2239
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016kJEAZc3Edt2cmxnvkGAyv`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp002/signals/batch_report_Qwen2.5-0.5B.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "a3a99d0d-1220-405b-a86c-cba0c8a1b50d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SLJgdMcErkjMtrGKzWAQjg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2239,
+      "cache_read_input_tokens": 30443,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2239
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T10:26:48.209Z_
+
+<details><summary>↩ Tool result · `toolu_016kJEAZc3Edt2cmxnvkGAyv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_name\\\": \\\"Qwen2.5-0.5B\\\",\\n  \\\"model_size\\\": \\\"0.5B\\\",\\n  \\\"dry_run\\\": true,\\n  \\\"tasks_run\\\": 1,\\n  \\\"tasks_passed\\\": 0,\\n  \\\"skipped\\\": [],\\n  \\\"results\\\": {\\n    \\\"Qwen2.5-0.5B_d005_s42/arc_challenge\\\": \\\"FAIL (rc=-15)\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "df30d264-fc93-4d47-87f5-b02888aba616",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_name\\\\\\\": \\\\\\\"Qwen2.5-0.5B\\\\\\\",\\\\n  \\\\\\\"model_size\\\\\\\": \\\\\\\"0.5B\\\\\\\",\\\\n  \\\\\\\"dry_run\\\\\\\": true,\\\\n  \\\\\\\"tasks_run\\\\\\\": 1,\\\\n  \\\\\\\"tasks_passed\\\\\\\": 0,\\\\n  \\\\\\\"skipped\\\\\\\": [],\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"Qwen2.5-0.5B_d005_s42/arc_challenge\\\\\\\": \\\\\\\"FAIL (rc=-15)\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_name\\\": \\\"Qwen2.5-0.5B\\\",\\n  \\\"model_size\\\": \\\"0.5B\\\",\\n  \\\"dry_run\\\": true,\\n  \\\"tasks_run\\\": 1,\\n  \\\"tasks_passed\\\": 0,\\n  \\\"skipped\\\": [],\\n  \\\"results\\\": {\\n    \\\"Qwen2.5-0.5B_d005_s42/arc_challenge\\\": \\\"FAIL (rc=-15)\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LsdhZSQJVCPrU7bxpY4sm5`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -100 /root/contamcal-irt-calibration/exp002/compute_signals.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "b2863636-3b85-4f3a-b4c3-acfa5a9517bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SLJgdMcErkjMtrGKzWAQjg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2239,
+      "cache_read_input_tokens": 30443,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2239
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T10:26:48.658Z_
+
+<details><summary>↩ Tool result · `toolu_01LsdhZSQJVCPrU7bxpY4sm5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-002 Stage 1 Signal Pipeline — main entry point.\\n\\nComputes 4 contamination detection signals for each model-item pair:\\n  S1: Embedding near-duplicate retrieval (max cosine sim with training data)\\n  S2: Min-K%++ membership inference (z-scored against reference model)\\n  S3: ConStat performance gap (original vs paraphrased accuracy)\\n  S4: Self-Critique entropy collapse (YES/NO confidence on own answer)\\n\\nInput:  Model checkpoint, benchmark data, paraphrased items, SFT training data\\nOutput: JSON per model with item_id, s1_embedding, s2_minkpp, s3_constat, s4_selfcritique\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef merge_signals(\\n    embedding_results: list[dict],\\n    minkpp_results: list[dict],\\n    constat_results: list[dict],\\n    selfcritique_results: list[dict],\\n    benchmark: str,\\n) -> list[dict]:\\n    \\\"\\\"\\\"Merge 4 signal outputs into a single per-item record.\\\"\\\"\\\"\\n    # Index by item index\\n    emb_map = {r[\\\"index\\\"]: r for r in embedding_results}\\n    mkpp_map = {r[\\\"index\\\"]: r for r in minkpp_results}\\n    con_map = {r[\\\"index\\\"]: r for r in constat_results}\\n    sc_map = {r[\\\"index\\\"]: r for r in selfcritique_results}\\n\\n    all_indices = sorted(set(emb_map) | set(mkpp_map) | set(con_map) | set(sc_map))\\n\\n    merged = []\\n    for idx in all_indices:\\n        record = {\\n            \\\"index\\\": idx,\\n            \\\"benchmark\\\": benchmark,\\n            \\\"s1_embedding\\\": emb_map.get(idx, {}).get(\\\"s1_embedding\\\"),\\n            \\\"s2_minkpp\\\": mkpp_map.get(idx, {}).get(\\\"s2_minkpp\\\"),\\n            \\\"s3_constat\\\": con_map.get(idx, {}).get(\\\"s3_constat\\\"),\\n            \\\"s4_selfcritique\\\": sc_map.get(idx, {}).get(\\\"s4_selfcritique\\\"),\\n        }\\n        merged.append(record)\\n\\n    return merged\\n\\n\\ndef run_signal(signal_name: str, args_dict: dict):\\n    \\\"\\\"\\\"Run a signal computation module.\\\"\\\"\\\"\\n    if signal_name == \\\"embedding\\\":\\n        from signal_embedding import compute_embedding_signal\\n        return compute_embedding_signal(**args_dict)\\n    elif signal_name == \\\"minkpp\\\":\\n        from signal_minkpp import compute_minkpp_signal\\n        return compute_minkpp_signal(**args_dict)\\n    elif signal_name == \\\"constat\\\":\\n        from signal_constat import compute_constat_signal\\n        return compute_constat_signal(**args_dict)\\n    elif signal_name == \\\"selfcritique\\\":\\n        from signal_selfcritique import compute_selfcritique_signal\\n        return compute_selfcritique_signal(**args_dict)\\n    else:\\n        raise ValueError(f\\\"Unknown signal: {signal_name}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Compute all 4 contamination detection signals for a model-benchmark pair\\\"\\n    )\\n    parser.add_argument(\\\"--model-path\\\", type=str, required=True,\\n                        help=\\\"Path to target (potentially contaminated) model checkpoint\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, required=True,\\n                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"])\\n    parser.add_argument(\\\"--ref-model-path\\\", type=str, required=True,\\n                        help=\\\"Reference (clean) model for Min-K%%++ (e.g., 0%% dosage)\\\")\\n    parser.add_argument(\\\"--sft-data-path\\\", type=str, required=True,\\n                        help=\\\"SFT training JSONL for embedding retrieval\\\")\\n    parser.add_argument(\\\"--original-eval-paths\\\", type=str, nargs=\\\"+\\\", default=None,\\n                        help=\\\"eval_results.json paths for original items (one per seed)\\\")\\n    parser.add_argument(\\\"--paraphrase-eval-paths\\\", type=str, nargs=\\\"+\\\", default=None,\\n                        help=\\\"eval_results.json paths for paraphrased items (one per seed)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None)\\n    parser.add_argument(\\\"--batch-size\\\", type=int, default=64,\\n                        help=\\\"Batch size for embedding encoding\\\")\\n    parser.add_argument(\\\"--k-percent\\\", type=int, default=20,\\n                        help=\\\"K%% for Min-K%% selection\\\")\\n    parser.add_argument(\\\"--signals\\\", type=str, nargs=\\\"+\\\",\\n                        default=[\\\"embedding\\\", \\\"minkpp\\\", \\\"constat\\\", \\\"selfcritique\\\"],\\n                        choices=[\\\"embedding\\\", \\\"minkpp\\\", \\\"constat\\\", \\\"selfcritique\\\"],\\n                        help=\\\"Which signals to compute\\\")\\n    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\")\\n    args = parser.parse_args()\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "176e92b5-38c0-4f7d-a023-88b2bb8067da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-002 Stage 1 Signal Pipeline — main entry point.\\\\n\\\\nComputes 4 contamination detection signals for each model-item pair:\\\\n  S1: Embedding near-duplicate retrieval (max cosine sim with training data)\\\\n  S2: Min-K%++ membership inference (z-scored against reference model)\\\\n  S3: ConStat performance gap (original vs paraphrased accuracy)\\\\n  S4: Self-Critique entropy collapse (YES/NO confidence on own answer)\\\\n\\\\nInput:  Model checkpoint, benchmark data, paraphrased items, SFT training data\\\\nOutput: JSON per model with item_id, s1_embedding, s2_minkpp, s3_constat, s4_selfcritique\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef merge_signals(\\\\n    embedding_results: list[dict],\\\\n    minkpp_results: list[dict],\\\\n    constat_results: list[dict],\\\\n    selfcritique_results: list[dict],\\\\n    benchmark: str,\\\\n) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Merge 4 signal outputs into a single per-item record.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Index by item index\\\\n    emb_map = {r[\\\\\\\"index\\\\\\\"]: r for r in embedding_results}\\\\n    mkpp_map = {r[\\\\\\\"index\\\\\\\"]: r for r in minkpp_results}\\\\n    con_map = {r[\\\\\\\"index\\\\\\\"]: r for r in constat_results}\\\\n    sc_map = {r[\\\\\\\"index\\\\\\\"]: r for r in selfcritique_results}\\\\n\\\\n    all_indices = sorted(set(emb_map) | set(mkpp_map) | set(con_map) | set(sc_map))\\\\n\\\\n    merged = []\\\\n    for idx in all_indices:\\\\n        record = {\\\\n            \\\\\\\"index\\\\\\\": idx,\\\\n            \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n            \\\\\\\"s1_embedding\\\\\\\": emb_map.get(idx, {}).get(\\\\\\\"s1_embedding\\\\\\\"),\\\\n            \\\\\\\"s2_minkpp\\\\\\\": mkpp_map.get(idx, {}).get(\\\\\\\"s2_minkpp\\\\\\\"),\\\\n            \\\\\\\"s3_constat\\\\\\\": con_map.get(idx, {}).get(\\\\\\\"s3_constat\\\\\\\"),\\\\n            \\\\\\\"s4_selfcritique\\\\\\\": sc_map.get(idx, {}).get(\\\\\\\"s4_selfcritique\\\\\\\"),\\\\n        }\\\\n        merged.append(record)\\\\n\\\\n    return merged\\\\n\\\\n\\\\ndef run_signal(signal_name: str, args_dict: dict):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run a signal computation module.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if signal_name == \\\\\\\"embedding\\\\\\\":\\\\n        from signal_embedding import compute_embedding_signal\\\\n        return compute_embedding_signal(**args_dict)\\\\n    elif signal_name == \\\\\\\"minkpp\\\\\\\":\\\\n        from signal_minkpp import compute_minkpp_signal\\\\n        return compute_minkpp_signal(**args_dict)\\\\n    elif signal_name == \\\\\\\"constat\\\\\\\":\\\\n        from signal_constat import compute_constat_signal\\\\n        return compute_constat_signal(**args_dict)\\\\n    elif signal_name == \\\\\\\"selfcritique\\\\\\\":\\\\n        from signal_selfcritique import compute_selfcritique_signal\\\\n        return compute_selfcritique_signal(**args_dict)\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown signal: {signal_name}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Compute all 4 contamination detection signals for a model-benchmark pair\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--model-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Path to target (potentially contaminated) model checkpoint\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, required=True,\\\\n                        choices=[\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--ref-model-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Reference (clean) model for Min-K%%++ (e.g., 0%% dosage)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--sft-data-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"SFT training JSONL for embedding retrieval\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--original-eval-paths\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\", default=None,\\\\n                        help=\\\\\\\"eval_results.json paths for original items (one per seed)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--paraphrase-eval-paths\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\", default=None,\\\\n                        help=\\\\\\\"eval_results.json paths for paraphrased items (one per seed)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=64,\\\\n                        help=\\\\\\\"Batch size for embedding encoding\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--k-percent\\\\\\\", type=int, default=20,\\\\n                        help=\\\\\\\"K%% for Min-K%% selection\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--signals\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\",\\\\n                        default=[\\\\\\\"embedding\\\\\\\", \\\\\\\"minkpp\\\\\\\", \\\\\\\"constat\\\\\\\", \\\\\\\"selfcritique\\\\\\\"],\\\\n                        choices=[\\\\\\\"embedding\\\\\\\", \\\\\\\"minkpp\\\\\\\", \\\\\\\"constat\\\\\\\", \\\\\\\"selfcritique\\\\\\\"],\\\\n                        help=\\\\\\\"Which signals to compute\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--cache-dir\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-002 Stage 1 Signal Pipeline — main entry point.\\n\\nComputes 4 contamination detection signals for each model-item pair:\\n  S1: Embedding near-duplicate retrieval (max cosine sim with training data)\\n  S2: Min-K%++ membership inference (z-scored against reference model)\\n  S3: ConStat performance gap (original vs paraphrased accuracy)\\n  S4: Self-Critique entropy collapse (YES/NO confidence on own answer)\\n\\nInput:  Model checkpoint, benchmark data, paraphrased items, SFT training data\\nOutput: JSON per model with item_id, s1_embedding, s2_minkpp, s3_constat, s4_selfcritique\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef merge_signals(\\n    embedding_results: list[dict],\\n    minkpp_results: list[dict],\\n    constat_results: list[dict],\\n    selfcritique_results: list[dict],\\n    benchmark: str,\\n) -> list[dict]:\\n    \\\"\\\"\\\"Merge 4 signal outputs into a single per-item record.\\\"\\\"\\\"\\n    # Index by item index\\n    emb_map = {r[\\\"index\\\"]: r for r in embedding_results}\\n    mkpp_map = {r[\\\"index\\\"]: r for r in minkpp_results}\\n    con_map = {r[\\\"index\\\"]: r for r in constat_results}\\n    sc_map = {r[\\\"index\\\"]: r for r in selfcritique_results}\\n\\n    all_indices = sorted(set(emb_map) | set(mkpp_map) | set(con_map) | set(sc_map))\\n\\n    merged = []\\n    for idx in all_indices:\\n        record = {\\n            \\\"index\\\": idx,\\n            \\\"benchmark\\\": benchmark,\\n            \\\"s1_embedding\\\": emb_map.get(idx, {}).get(\\\"s1_embedding\\\"),\\n            \\\"s2_minkpp\\\": mkpp_map.get(idx, {}).get(\\\"s2_minkpp\\\"),\\n            \\\"s3_constat\\\": con_map.get(idx, {}).get(\\\"s3_constat\\\"),\\n            \\\"s4_selfcritique\\\": sc_map.get(idx, {}).get(\\\"s4_selfcritique\\\"),\\n        }\\n        merged.append(record)\\n\\n    return merged\\n\\n\\ndef run_signal(signal_name: str, args_dict: dict):\\n    \\\"\\\"\\\"Run a signal computation module.\\\"\\\"\\\"\\n    if signal_name == \\\"embedding\\\":\\n        from signal_embedding import compute_embedding_signal\\n        return compute_embedding_signal(**args_dict)\\n    elif signal_name == \\\"minkpp\\\":\\n        from signal_minkpp import compute_minkpp_signal\\n        return compute_minkpp_signal(**args_dict)\\n    elif signal_name == \\\"constat\\\":\\n        from signal_constat import compute_constat_signal\\n        return compute_constat_signal(**args_dict)\\n    elif signal_name == \\\"selfcritique\\\":\\n        from signal_selfcritique import compute_selfcritique_signal\\n        return compute_selfcritique_signal(**args_dict)\\n    else:\\n        raise ValueError(f\\\"Unknown signal: {signal_name}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Compute all 4 contamination detection signals for a model-benchmark pair\\\"\\n    )\\n    parser.add_argument(\\\"--model-path\\\", type=str, required=True,\\n                        help=\\\"Path to target (potentially contaminated) model checkpoint\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, required=True,\\n                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"])\\n    parser.add_argument(\\\"--ref-model-path\\\", type=str, required=True,\\n                        help=\\\"Reference (clean) model for Min-K%%++ (e.g., 0%% dosage)\\\")\\n    parser.add_argument(\\\"--sft-data-path\\\", type=str, required=True,\\n                        help=\\\"SFT training JSONL for embedding retrieval\\\")\\n    parser.add_argument(\\\"--original-eval-paths\\\", type=str, nargs=\\\"+\\\", default=None,\\n                        help=\\\"eval_results.json paths for original items (one per seed)\\\")\\n    parser.add_argument(\\\"--paraphrase-eval-paths\\\", type=str, nargs=\\\"+\\\", default=None,\\n                        help=\\\"eval_results.json paths for paraphrased items (one per seed)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None)\\n    parser.add_argument(\\\"--batch-size\\\", type=int, default=64,\\n                        help=\\\"Batch size for embedding encoding\\\")\\n    parser.add_argument(\\\"--k-percent\\\", type=int, default=20,\\n                        help=\\\"K%% for Min-K%% selection\\\")\\n    parser.add_argument(\\\"--signals\\\", type=str, nargs=\\\"+\\\",\\n                        default=[\\\"embedding\\\", \\\"minkpp\\\", \\\"constat\\\", \\\"selfcritique\\\"],\\n                        choices=[\\\"embedding\\\", \\\"minkpp\\\", \\\"constat\\\", \\\"selfcritique\\\"],\\n                        help=\\\"Which signals to compute\\\")\\n    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\")\\n    args = parser.parse_args()\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DmPxZ5aP1MnLszovD2HXpR`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"sys.exit\\|return_code\\|returncode\\|merge\\|merged\" /root/contamcal-irt-calibration/exp002/compute_signals.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "06265e98-bf1a-4d4b-ad75-57f13c3eea5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SLJgdMcErkjMtrGKzWAQjg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2239,
+      "cache_read_input_tokens": 30443,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2239
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T10:26:49.266Z_
+
+<details><summary>↩ Tool result · `toolu_01DmPxZ5aP1MnLszovD2HXpR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "06d2e411-436b-4066-b0a7-2c0c3ff12c2a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WtenGfmqhSN4xCaHAsgRPP`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"sys.exit\\|merge\\|merged\\|return\" /root/contamcal-irt-calibration/exp002/compute_signals.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "c02f177d-72d9-4e22-a822-2e422c37511f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTDf85NZq1aHByNx85A36H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2728,
+      "cache_read_input_tokens": 32682,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2728
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T10:26:52.705Z_
+
+<details><summary>↩ Tool result · `toolu_01WtenGfmqhSN4xCaHAsgRPP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "980d827a-4d97-430d-9768-3bbe8474daa5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012WaXmbadNvAbMCgF3NUzhR`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "wc -l /root/contamcal-irt-calibration/exp002/compute_signals.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "8c9858c0-aa2d-4b2e-abed-8d9c3645f0df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTDf85NZq1aHByNx85A36H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2728,
+      "cache_read_input_tokens": 32682,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2728
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T10:26:53.450Z_
+
+<details><summary>↩ Tool result · `toolu_012WaXmbadNvAbMCgF3NUzhR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"187 /root/contamcal-irt-calibration/exp002/compute_signals.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "9e90683a-0a71-4b6b-bd00-f93bef5f2a88",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"187 /root/contamcal-irt-calibration/exp002/compute_signals.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"187 /root/contamcal-irt-calibration/exp002/compute_signals.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ce5pHFNjictcEMfDZ5Siit`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp002/compute_signals.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "e204a0d4-5d8c-42cd-8393-9749f9bef0c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcmCJGMgmghcqpyuFR3Ddx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 35410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 571
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T10:26:56.807Z_
+
+<details><summary>↩ Tool result · `toolu_01Ce5pHFNjictcEMfDZ5Siit`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-002 Stage 1 Signal Pipeline — main entry point.\\n\\nComputes 4 contamination detection signals for each model-item pair:\\n  S1: Embedding near-duplicate retrieval (max cosine sim with training data)\\n  S2: Min-K%++ membership inference (z-scored against reference model)\\n  S3: ConStat performance gap (original vs paraphrased accuracy)\\n  S4: Self-Critique entropy collapse (YES/NO confidence on own answer)\\n\\nInput:  Model checkpoint, benchmark data, paraphrased items, SFT training data\\nOutput: JSON per model with item_id, s1_embedding, s2_minkpp, s3_constat, s4_selfcritique\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef merge_signals(\\n    embedding_results: list[dict],\\n    minkpp_results: list[dict],\\n    constat_results: list[dict],\\n    selfcritique_results: list[dict],\\n    benchmark: str,\\n) -> list[dict]:\\n    \\\"\\\"\\\"Merge 4 signal outputs into a single per-item record.\\\"\\\"\\\"\\n    # Index by item index\\n    emb_map = {r[\\\"index\\\"]: r for r in embedding_results}\\n    mkpp_map = {r[\\\"index\\\"]: r for r in minkpp_results}\\n    con_map = {r[\\\"index\\\"]: r for r in constat_results}\\n    sc_map = {r[\\\"index\\\"]: r for r in selfcritique_results}\\n\\n    all_indices = sorted(set(emb_map) | set(mkpp_map) | set(con_map) | set(sc_map))\\n\\n    merged = []\\n    for idx in all_indices:\\n        record = {\\n            \\\"index\\\": idx,\\n            \\\"benchmark\\\": benchmark,\\n            \\\"s1_embedding\\\": emb_map.get(idx, {}).get(\\\"s1_embedding\\\"),\\n            \\\"s2_minkpp\\\": mkpp_map.get(idx, {}).get(\\\"s2_minkpp\\\"),\\n            \\\"s3_constat\\\": con_map.get(idx, {}).get(\\\"s3_constat\\\"),\\n            \\\"s4_selfcritique\\\": sc_map.get(idx, {}).get(\\\"s4_selfcritique\\\"),\\n        }\\n        merged.append(record)\\n\\n    return merged\\n\\n\\ndef run_signal(signal_name: str, args_dict: dict):\\n    \\\"\\\"\\\"Run a signal computation module.\\\"\\\"\\\"\\n    if signal_name == \\\"embedding\\\":\\n        from signal_embedding import compute_embedding_signal\\n        return compute_embedding_signal(**args_dict)\\n    elif signal_name == \\\"minkpp\\\":\\n        from signal_minkpp import compute_minkpp_signal\\n        return compute_minkpp_signal(**args_dict)\\n    elif signal_name == \\\"constat\\\":\\n        from signal_constat import compute_constat_signal\\n        return compute_constat_signal(**args_dict)\\n    elif signal_name == \\\"selfcritique\\\":\\n        from signal_selfcritique import compute_selfcritique_signal\\n        return compute_selfcritique_signal(**args_dict)\\n    else:\\n        raise ValueError(f\\\"Unknown signal: {signal_name}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Compute all 4 contamination detection signals for a model-benchmark pair\\\"\\n    )\\n    parser.add_argument(\\\"--model-path\\\", type=str, required=True,\\n                        help=\\\"Path to target (potentially contaminated) model checkpoint\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, required=True,\\n                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"])\\n    parser.add_argument(\\\"--ref-model-path\\\", type=str, required=True,\\n                        help=\\\"Reference (clean) model for Min-K%%++ (e.g., 0%% dosage)\\\")\\n    parser.add_argument(\\\"--sft-data-path\\\", type=str, required=True,\\n                        help=\\\"SFT training JSONL for embedding retrieval\\\")\\n    parser.add_argument(\\\"--original-eval-paths\\\", type=str, nargs=\\\"+\\\", default=None,\\n                        help=\\\"eval_results.json paths for original items (one per seed)\\\")\\n    parser.add_argument(\\\"--paraphrase-eval-paths\\\", type=str, nargs=\\\"+\\\", default=None,\\n                        help=\\\"eval_results.json paths for paraphrased items (one per seed)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None)\\n    parser.add_argument(\\\"--batch-size\\\", type=int, default=64,\\n                        help=\\\"Batch size for embedding encoding\\\")\\n    parser.add_argument(\\\"--k-percent\\\", type=int, default=20,\\n                        help=\\\"K%% for Min-K%% selection\\\")\\n \\n\\n... [截断: 输出过长，省略 20 字符] ...\\n\\nnt(\\\"--signals\\\", type=str, nargs=\\\"+\\\",\\n                        default=[\\\"embedding\\\", \\\"minkpp\\\", \\\"constat\\\", \\\"selfcritique\\\"],\\n                        choices=[\\\"embedding\\\", \\\"minkpp\\\", \\\"constat\\\", \\\"selfcritique\\\"],\\n                        help=\\\"Which signals to compute\\\")\\n    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    if args.gpu:\\n        os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = args.gpu\\n\\n    import torch\\n    device = \\\"cuda\\\" if torch.cuda.is_available() else \\\"cpu\\\"\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    signal_results = {}\\n\\n    # Signal 1: Embedding\\n    if \\\"embedding\\\" in args.signals:\\n        logger.info(\\\"=== Signal 1: Embedding near-duplicate retrieval ===\\\")\\n        signal_results[\\\"embedding\\\"] = run_signal(\\\"embedding\\\", {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"sft_data_path\\\": args.sft_data_path,\\n            \\\"cache_dir\\\": args.cache_dir,\\n            \\\"batch_size\\\": args.batch_size,\\n            \\\"device\\\": device,\\n        })\\n        _save_signal(signal_results[\\\"embedding\\\"], output_dir, \\\"embedding\\\", args.benchmark)\\n\\n    # Signal 2: Min-K%++\\n    if \\\"minkpp\\\" in args.signals:\\n        logger.info(\\\"=== Signal 2: Min-K%%++ membership inference ===\\\")\\n        signal_results[\\\"minkpp\\\"] = run_signal(\\\"minkpp\\\", {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"target_model_path\\\": args.model_path,\\n            \\\"ref_model_path\\\": args.ref_model_path,\\n            \\\"cache_dir\\\": args.cache_dir,\\n            \\\"k_percent\\\": args.k_percent,\\n        })\\n        _save_signal(signal_results[\\\"minkpp\\\"], output_dir, \\\"minkpp\\\", args.benchmark)\\n\\n    # Signal 3: ConStat\\n    if \\\"constat\\\" in args.signals:\\n        if args.original_eval_paths and args.paraphrase_eval_paths:\\n            logger.info(\\\"=== Signal 3: ConStat performance gap ===\\\")\\n            signal_results[\\\"constat\\\"] = run_signal(\\\"constat\\\", {\\n                \\\"benchmark\\\": args.benchmark,\\n                \\\"original_eval_paths\\\": args.original_eval_paths,\\n                \\\"paraphrase_eval_paths\\\": args.paraphrase_eval_paths,\\n            })\\n            _save_signal(signal_results[\\\"constat\\\"], output_dir, \\\"constat\\\", args.benchmark)\\n        else:\\n            logger.warning(\\\"Skipping ConStat: --original-eval-paths and --paraphrase-eval-paths required\\\")\\n\\n    # Signal 4: Self-Critique\\n    if \\\"selfcritique\\\" in args.signals:\\n        logger.info(\\\"=== Signal 4: Self-Critique entropy collapse ===\\\")\\n        signal_results[\\\"selfcritique\\\"] = run_signal(\\\"selfcritique\\\", {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"model_path\\\": args.model_path,\\n            \\\"cache_dir\\\": args.cache_dir,\\n        })\\n        _save_signal(signal_results[\\\"selfcritique\\\"], output_dir, \\\"selfcritique\\\", args.benchmark)\\n\\n    # Merge all computed signals (graceful: merge whenever >=2 signals available)\\n    if len(signal_results) >= 2:\\n        logger.info(\\\"=== Merging all signals ===\\\")\\n        merged = merge_signals(\\n            signal_results.get(\\\"embedding\\\", []),\\n            signal_results.get(\\\"minkpp\\\", []),\\n            signal_results.get(\\\"constat\\\", []),\\n            signal_results.get(\\\"selfcritique\\\", []),\\n            args.benchmark,\\n        )\\n        merged_file = output_dir / f\\\"signals_merged_{args.benchmark}.json\\\"\\n        with open(merged_file, \\\"w\\\") as f:\\n            json.dump(merged, f, indent=2)\\n        logger.info(\\\"Merged signals saved to %s (%d items)\\\", merged_file, len(merged))\\n    else:\\n        logger.info(\\\"Computed %d/4 signals. Need at least 2 for merged output.\\\", len(signal_results))\\n\\n\\ndef _save_signal(results: list[dict], output_dir: Path, signal_name: str, benchmark: str):\\n    out_file = output_dir / f\\\"signal_{signal_name}_{benchmark}.json\\\"\\n    with open(out_file, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "8590ea64-1850-454f-a62c-205008829620",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-002 Stage 1 Signal Pipeline — main entry point.\\\\n\\\\nComputes 4 contamination detection signals for each model-item pair:\\\\n  S1: Embedding near-duplicate retrieval (max cosine sim with training data)\\\\n  S2: Min-K%++ membership inference (z-scored against reference model)\\\\n  S3: ConStat performance gap (original vs paraphrased accuracy)\\\\n  S4: Self-Critique entropy collapse (YES/NO confidence on own answer)\\\\n\\\\nInput:  Model checkpoint, benchmark data, paraphrased items, SFT training data\\\\nOutput: JSON per model with item_id, s1_embedding, s2_minkpp, s3_constat, s4_selfcritique\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef merge_signals(\\\\n    embedding_results: list[dict],\\\\n    minkpp_results: list[dict],\\\\n    constat_results: list[dict],\\\\n    selfcritique_results: list[dict],\\\\n    benchmark: str,\\\\n) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Merge 4 signal outputs into a single per-item record.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Index by item index\\\\n    emb_map = {r[\\\\\\\"index\\\\\\\"]: r for r in embedding_results}\\\\n    mkpp_map = {r[\\\\\\\"index\\\\\\\"]: r for r in minkpp_results}\\\\n    con_map = {r[\\\\\\\"index\\\\\\\"]: r for r in constat_results}\\\\n    sc_map = {r[\\\\\\\"index\\\\\\\"]: r for r in selfcritique_results}\\\\n\\\\n    all_indices = sorted(set(emb_map) | set(mkpp_map) | set(con_map) | set(sc_map))\\\\n\\\\n    merged = []\\\\n    for idx in all_indices:\\\\n        record = {\\\\n            \\\\\\\"index\\\\\\\": idx,\\\\n            \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n            \\\\\\\"s1_embedding\\\\\\\": emb_map.get(idx, {}).get(\\\\\\\"s1_embedding\\\\\\\"),\\\\n            \\\\\\\"s2_minkpp\\\\\\\": mkpp_map.get(idx, {}).get(\\\\\\\"s2_minkpp\\\\\\\"),\\\\n            \\\\\\\"s3_constat\\\\\\\": con_map.get(idx, {}).get(\\\\\\\"s3_constat\\\\\\\"),\\\\n            \\\\\\\"s4_selfcritique\\\\\\\": sc_map.get(idx, {}).get(\\\\\\\"s4_selfcritique\\\\\\\"),\\\\n        }\\\\n        merged.append(record)\\\\n\\\\n    return merged\\\\n\\\\n\\\\ndef run_signal(signal_name: str, args_dict: dict):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run a signal computation module.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if signal_name == \\\\\\\"embedding\\\\\\\":\\\\n        from signal_embedding import compute_embedding_signal\\\\n        return compute_embedding_signal(**args_dict)\\\\n    elif signal_name == \\\\\\\"minkpp\\\\\\\":\\\\n        from signal_minkpp import compute_minkpp_signal\\\\n        return compute_minkpp_signal(**args_dict)\\\\n    elif signal_name == \\\\\\\"constat\\\\\\\":\\\\n        from signal_constat import compute_constat_signal\\\\n        return compute_constat_signal(**args_dict)\\\\n    elif signal_name == \\\\\\\"selfcritique\\\\\\\":\\\\n        from signal_selfcritique import compute_selfcritique_signal\\\\n        return compute_selfcritique_signal(**args_dict)\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown signal: {signal_name}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Compute all 4 contamination detection signals for a model-benchmark pair\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--model-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Path to target (potentially contaminated) model checkpoint\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, required=True,\\\\n                        choices=[\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--ref-model-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Reference (clean) model for Min-K%%++ (e.g., 0%% dosage)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--sft-data-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"SFT training JSONL for embedding retrieval\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--original-eval-paths\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\", default=None,\\\\n                        help=\\\\\\\"eval_results.json paths for original items (one per seed)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--paraphrase-eval-paths\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\", default=None,\\\\n                        help=\\\\\\\"eval_results.json paths for paraphrased items (one per seed)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=64,\\\\n                        help=\\\\\\\"Batch size for embedding encoding\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--k-percent\\\\\\\", type=int, default=20,\\\\n                        help=\\\\\\\"K%% for Min-K%% selection\\\\\\\")\\\\n \\\\n\\\\n... [截断: 输出过长，省略 20 字符] ...\\\\n\\\\nnt(\\\\\\\"--signals\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\",\\\\n                        default=[\\\\\\\"embedding\\\\\\\", \\\\\\\"minkpp\\\\\\\", \\\\\\\"constat\\\\\\\", \\\\\\\"selfcritique\\\\\\\"],\\\\n                        choices=[\\\\\\\"embedding\\\\\\\", \\\\\\\"minkpp\\\\\\\", \\\\\\\"constat\\\\\\\", \\\\\\\"selfcritique\\\\\\\"],\\\\n                        help=\\\\\\\"Which signals to compute\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--cache-dir\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    if args.gpu:\\\\n        os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = args.gpu\\\\n\\\\n    import torch\\\\n    device = \\\\\\\"cuda\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\"\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    signal_results = {}\\\\n\\\\n    # Signal 1: Embedding\\\\n    if \\\\\\\"embedding\\\\\\\" in args.signals:\\\\n        logger.info(\\\\\\\"=== Signal 1: Embedding near-duplicate retrieval ===\\\\\\\")\\\\n        signal_results[\\\\\\\"embedding\\\\\\\"] = run_signal(\\\\\\\"embedding\\\\\\\", {\\\\n            \\\\\\\"benchmark\\\\\\\": args.benchmark,\\\\n            \\\\\\\"sft_data_path\\\\\\\": args.sft_data_path,\\\\n            \\\\\\\"cache_dir\\\\\\\": args.cache_dir,\\\\n            \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n            \\\\\\\"device\\\\\\\": device,\\\\n        })\\\\n        _save_signal(signal_results[\\\\\\\"embedding\\\\\\\"], output_dir, \\\\\\\"embedding\\\\\\\", args.benchmark)\\\\n\\\\n    # Signal 2: Min-K%++\\\\n    if \\\\\\\"minkpp\\\\\\\" in args.signals:\\\\n        logger.info(\\\\\\\"=== Signal 2: Min-K%%++ membership inference ===\\\\\\\")\\\\n        signal_results[\\\\\\\"minkpp\\\\\\\"] = run_signal(\\\\\\\"minkpp\\\\\\\", {\\\\n            \\\\\\\"benchmark\\\\\\\": args.benchmark,\\\\n            \\\\\\\"target_model_path\\\\\\\": args.model_path,\\\\n            \\\\\\\"ref_model_path\\\\\\\": args.ref_model_path,\\\\n            \\\\\\\"cache_dir\\\\\\\": args.cache_dir,\\\\n            \\\\\\\"k_percent\\\\\\\": args.k_percent,\\\\n        })\\\\n        _save_signal(signal_results[\\\\\\\"minkpp\\\\\\\"], output_dir, \\\\\\\"minkpp\\\\\\\", args.benchmark)\\\\n\\\\n    # Signal 3: ConStat\\\\n    if \\\\\\\"constat\\\\\\\" in args.signals:\\\\n        if args.original_eval_paths and args.paraphrase_eval_paths:\\\\n            logger.info(\\\\\\\"=== Signal 3: ConStat performance gap ===\\\\\\\")\\\\n            signal_results[\\\\\\\"constat\\\\\\\"] = run_signal(\\\\\\\"constat\\\\\\\", {\\\\n                \\\\\\\"benchmark\\\\\\\": args.benchmark,\\\\n                \\\\\\\"original_eval_paths\\\\\\\": args.original_eval_paths,\\\\n                \\\\\\\"paraphrase_eval_paths\\\\\\\": args.paraphrase_eval_paths,\\\\n            })\\\\n            _save_signal(signal_results[\\\\\\\"constat\\\\\\\"], output_dir, \\\\\\\"constat\\\\\\\", args.benchmark)\\\\n        else:\\\\n            logger.warning(\\\\\\\"Skipping ConStat: --original-eval-paths and --paraphrase-eval-paths required\\\\\\\")\\\\n\\\\n    # Signal 4: Self-Critique\\\\n    if \\\\\\\"selfcritique\\\\\\\" in args.signals:\\\\n        logger.info(\\\\\\\"=== Signal 4: Self-Critique entropy collapse ===\\\\\\\")\\\\n        signal_results[\\\\\\\"selfcritique\\\\\\\"] = run_signal(\\\\\\\"selfcritique\\\\\\\", {\\\\n            \\\\\\\"benchmark\\\\\\\": args.benchmark,\\\\n            \\\\\\\"model_path\\\\\\\": args.model_path,\\\\n            \\\\\\\"cache_dir\\\\\\\": args.cache_dir,\\\\n        })\\\\n        _save_signal(signal_results[\\\\\\\"selfcritique\\\\\\\"], output_dir, \\\\\\\"selfcritique\\\\\\\", args.benchmark)\\\\n\\\\n    # Merge all computed signals (graceful: merge whenever >=2 signals available)\\\\n    if len(signal_results) >= 2:\\\\n        logger.info(\\\\\\\"=== Merging all signals ===\\\\\\\")\\\\n        merged = merge_signals(\\\\n            signal_results.get(\\\\\\\"embedding\\\\\\\", []),\\\\n            signal_results.get(\\\\\\\"minkpp\\\\\\\", []),\\\\n            signal_results.get(\\\\\\\"constat\\\\\\\", []),\\\\n            signal_results.get(\\\\\\\"selfcritique\\\\\\\", []),\\\\n            args.benchmark,\\\\n        )\\\\n        merged_file = output_dir / f\\\\\\\"signals_merged_{args.benchmark}.json\\\\\\\"\\\\n        with open(merged_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(merged, f, indent=2)\\\\n        logger.info(\\\\\\\"Merged signals saved to %s (%d items)\\\\\\\", merged_file, len(merged))\\\\n    else:\\\\n        logger.info(\\\\\\\"Computed %d/4 signals. Need at least 2 for merged output.\\\\\\\", len(signal_results))\\\\n\\\\n\\\\ndef _save_signal(results: list[dict], output_dir: Path, signal_name: str, benchmark: str):\\\\n    out_file = output_dir / f\\\\\\\"signal_{signal_name}_{benchmark}.json\\\\\\\"\\\\n    with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    logger.info(\\\\\\\"Saved %d items to %s\\\\\\\", len(results), out_file)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-002 Stage 1 Signal Pipeline — main entry point.\\n\\nComputes 4 contamination detection signals for each model-item pair:\\n  S1: Embedding near-duplicate retrieval (max cosine sim with training data)\\n  S2: Min-K%++ membership inference (z-scored against reference model)\\n  S3: ConStat performance gap (original vs paraphrased accuracy)\\n  S4: Self-Critique entropy collapse (YES/NO confidence on own answer)\\n\\nInput:  Model checkpoint, benchmark data, paraphrased items, SFT training data\\nOutput: JSON per model with item_id, s1_embedding, s2_minkpp, s3_constat, s4_selfcritique\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef merge_signals(\\n    embedding_results: list[dict],\\n    minkpp_results: list[dict],\\n    constat_results: list[dict],\\n    selfcritique_results: list[dict],\\n    benchmark: str,\\n) -> list[dict]:\\n    \\\"\\\"\\\"Merge 4 signal outputs into a single per-item record.\\\"\\\"\\\"\\n    # Index by item index\\n    emb_map = {r[\\\"index\\\"]: r for r in embedding_results}\\n    mkpp_map = {r[\\\"index\\\"]: r for r in minkpp_results}\\n    con_map = {r[\\\"index\\\"]: r for r in constat_results}\\n    sc_map = {r[\\\"index\\\"]: r for r in selfcritique_results}\\n\\n    all_indices = sorted(set(emb_map) | set(mkpp_map) | set(con_map) | set(sc_map))\\n\\n    merged = []\\n    for idx in all_indices:\\n        record = {\\n            \\\"index\\\": idx,\\n            \\\"benchmark\\\": benchmark,\\n            \\\"s1_embedding\\\": emb_map.get(idx, {}).get(\\\"s1_embedding\\\"),\\n            \\\"s2_minkpp\\\": mkpp_map.get(idx, {}).get(\\\"s2_minkpp\\\"),\\n            \\\"s3_constat\\\": con_map.get(idx, {}).get(\\\"s3_constat\\\"),\\n            \\\"s4_selfcritique\\\": sc_map.get(idx, {}).get(\\\"s4_selfcritique\\\"),\\n        }\\n        merged.append(record)\\n\\n    return merged\\n\\n\\ndef run_signal(signal_name: str, args_dict: dict):\\n    \\\"\\\"\\\"Run a signal computation module.\\\"\\\"\\\"\\n    if signal_name == \\\"embedding\\\":\\n        from signal_embedding import compute_embedding_signal\\n        return compute_embedding_signal(**args_dict)\\n    elif signal_name == \\\"minkpp\\\":\\n        from signal_minkpp import compute_minkpp_signal\\n        return compute_minkpp_signal(**args_dict)\\n    elif signal_name == \\\"constat\\\":\\n        from signal_constat import compute_constat_signal\\n        return compute_constat_signal(**args_dict)\\n    elif signal_name == \\\"selfcritique\\\":\\n        from signal_selfcritique import compute_selfcritique_signal\\n        return compute_selfcritique_signal(**args_dict)\\n    else:\\n        raise ValueError(f\\\"Unknown signal: {signal_name}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Compute all 4 contamination detection signals for a model-benchmark pair\\\"\\n    )\\n    parser.add_argument(\\\"--model-path\\\", type=str, required=True,\\n                        help=\\\"Path to target (potentially contaminated) model checkpoint\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, required=True,\\n                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"])\\n    parser.add_argument(\\\"--ref-model-path\\\", type=str, required=True,\\n                        help=\\\"Reference (clean) model for Min-K%%++ (e.g., 0%% dosage)\\\")\\n    parser.add_argument(\\\"--sft-data-path\\\", type=str, required=True,\\n                        help=\\\"SFT training JSONL for embedding retrieval\\\")\\n    parser.add_argument(\\\"--original-eval-paths\\\", type=str, nargs=\\\"+\\\", default=None,\\n                        help=\\\"eval_results.json paths for original items (one per seed)\\\")\\n    parser.add_argument(\\\"--paraphrase-eval-paths\\\", type=str, nargs=\\\"+\\\", default=None,\\n                        help=\\\"eval_results.json paths for paraphrased items (one per seed)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None)\\n    parser.add_argument(\\\"--batch-size\\\", type=int, default=64,\\n                        help=\\\"Batch size for embedding encoding\\\")\\n    parser.add_argument(\\\"--k-percent\\\", type=int, default=20,\\n                        help=\\\"K%% for Min-K%% selection\\\")\\n \\n\\n... [截断: 输出过长，省略 20 字符] ...\\n\\nnt(\\\"--signals\\\", type=str, nargs=\\\"+\\\",\\n                        default=[\\\"embedding\\\", \\\"minkpp\\\", \\\"constat\\\", \\\"selfcritique\\\"],\\n                        choices=[\\\"embedding\\\", \\\"minkpp\\\", \\\"constat\\\", \\\"selfcritique\\\"],\\n                        help=\\\"Which signals to compute\\\")\\n    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    if args.gpu:\\n        os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = args.gpu\\n\\n    import torch\\n    device = \\\"cuda\\\" if torch.cuda.is_available() else \\\"cpu\\\"\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    signal_results = {}\\n\\n    # Signal 1: Embedding\\n    if \\\"embedding\\\" in args.signals:\\n        logger.info(\\\"=== Signal 1: Embedding near-duplicate retrieval ===\\\")\\n        signal_results[\\\"embedding\\\"] = run_signal(\\\"embedding\\\", {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"sft_data_path\\\": args.sft_data_path,\\n            \\\"cache_dir\\\": args.cache_dir,\\n            \\\"batch_size\\\": args.batch_size,\\n            \\\"device\\\": device,\\n        })\\n        _save_signal(signal_results[\\\"embedding\\\"], output_dir, \\\"embedding\\\", args.benchmark)\\n\\n    # Signal 2: Min-K%++\\n    if \\\"minkpp\\\" in args.signals:\\n        logger.info(\\\"=== Signal 2: Min-K%%++ membership inference ===\\\")\\n        signal_results[\\\"minkpp\\\"] = run_signal(\\\"minkpp\\\", {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"target_model_path\\\": args.model_path,\\n            \\\"ref_model_path\\\": args.ref_model_path,\\n            \\\"cache_dir\\\": args.cache_dir,\\n            \\\"k_percent\\\": args.k_percent,\\n        })\\n        _save_signal(signal_results[\\\"minkpp\\\"], output_dir, \\\"minkpp\\\", args.benchmark)\\n\\n    # Signal 3: ConStat\\n    if \\\"constat\\\" in args.signals:\\n        if args.original_eval_paths and args.paraphrase_eval_paths:\\n            logger.info(\\\"=== Signal 3: ConStat performance gap ===\\\")\\n            signal_results[\\\"constat\\\"] = run_signal(\\\"constat\\\", {\\n                \\\"benchmark\\\": args.benchmark,\\n                \\\"original_eval_paths\\\": args.original_eval_paths,\\n                \\\"paraphrase_eval_paths\\\": args.paraphrase_eval_paths,\\n            })\\n            _save_signal(signal_results[\\\"constat\\\"], output_dir, \\\"constat\\\", args.benchmark)\\n        else:\\n            logger.warning(\\\"Skipping ConStat: --original-eval-paths and --paraphrase-eval-paths required\\\")\\n\\n    # Signal 4: Self-Critique\\n    if \\\"selfcritique\\\" in args.signals:\\n        logger.info(\\\"=== Signal 4: Self-Critique entropy collapse ===\\\")\\n        signal_results[\\\"selfcritique\\\"] = run_signal(\\\"selfcritique\\\", {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"model_path\\\": args.model_path,\\n            \\\"cache_dir\\\": args.cache_dir,\\n        })\\n        _save_signal(signal_results[\\\"selfcritique\\\"], output_dir, \\\"selfcritique\\\", args.benchmark)\\n\\n    # Merge all computed signals (graceful: merge whenever >=2 signals available)\\n    if len(signal_results) >= 2:\\n        logger.info(\\\"=== Merging all signals ===\\\")\\n        merged = merge_signals(\\n            signal_results.get(\\\"embedding\\\", []),\\n            signal_results.get(\\\"minkpp\\\", []),\\n            signal_results.get(\\\"constat\\\", []),\\n            signal_results.get(\\\"selfcritique\\\", []),\\n            args.benchmark,\\n        )\\n        merged_file = output_dir / f\\\"signals_merged_{args.benchmark}.json\\\"\\n        with open(merged_file, \\\"w\\\") as f:\\n            json.dump(merged, f, indent=2)\\n        logger.info(\\\"Merged signals saved to %s (%d items)\\\", merged_file, len(merged))\\n    else:\\n        logger.info(\\\"Computed %d/4 signals. Need at least 2 for merged output.\\\", len(signal_results))\\n\\n\\ndef _save_signal(results: list[dict], output_dir: Path, signal_name: str, benchmark: str):\\n    out_file = output_dir / f\\\"signal_{signal_name}_{benchmark}.json\\\"\\n    with open(out_file, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the full picture. The `compute_signals.py` doesn't have an explicit `sys.exit(1)` call — if it crashes, it will exit with a non-zero return code. The key observation is:
+
+1. The stderr in the log only shows the last 500 chars (`result.stderr[-500:]`), which is all model architecture names — this is the `transformers` library printing available model types during loading
+2. The actual error is somewhere earlier in stderr but was truncated
+3. Embedding signal was computed successfully (files exist), but minkpp or selfcritique likely crashed
+4. The process runs: embedding → minkpp → selfcritique (no constat for d000). 
+
+Since embedding succeeded but the overall process failed, either minkpp or selfcritique must have crashed. I need to check what's actually in the signal files, whether there are output files from minkpp or selfcritique, look at those scripts for potential issues, and verify if the batch is still running. Also, the batch_report I saw was from an earlier run with different parameters and a SIGTERM exit code, so the current run is still ongoing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "fc21ff05-b06e-4777-a5e6-307ca6e52bda",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FcFUnQGRGHtM9LWp1z3HMA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3310,
+      "cache_read_input_tokens": 35981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3310
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+关键发现：embedding 信号文件存在（mmlu 和 gsm8k 都有），但没有 minkpp/selfcritique 的输出文件。crash 发生在 embedding 之后。batch_report 是之前 dry-run 的残留。让我看 minkpp 模块和当前进程状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "49888ffb-28c7-437d-8c3b-378a6e674760",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FcFUnQGRGHtM9LWp1z3HMA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3310,
+      "cache_read_input_tokens": 35981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3310
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WJkq9Cva4oC1rMY2pKC8B9`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp002/signal_minkpp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "8b093954-48b3-41f1-ad77-5dde0b7b3d9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FcFUnQGRGHtM9LWp1z3HMA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3310,
+      "cache_read_input_tokens": 35981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3310
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T10:27:10.555Z_
+
+<details><summary>↩ Tool result · `toolu_01WJkq9Cva4oC1rMY2pKC8B9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSignal 2: Min-K%++ membership inference.\\n\\nComputes Min-K%++ scores (Shi et al., ICLR 2025) for each benchmark item.\\nUses a reference model (clean/base, e.g. 0% dosage) for z-score normalization.\\n\\nInput:  Target model, reference model, benchmark items\\nOutput: JSON with per-item Min-K%++ scores\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom tqdm import tqdm\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\\nHF_HOME = os.environ.get(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\nos.environ[\\\"HF_HOME\\\"] = HF_HOME\\n\\nDEFAULT_K_PERCENT = 20\\n\\n\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str):\\n    import os, json\\n    adapter_config_path = os.path.join(model_path, \\\"adapter_config.json\\\")\\n    if os.path.exists(adapter_config_path):\\n        with open(adapter_config_path) as f:\\n            adapter_cfg = json.load(f)\\n        base_model_path = adapter_cfg[\\\"base_model_name_or_path\\\"]\\n        logger.info(\\\"Loading base model: %s + LoRA adapter: %s\\\", base_model_path, model_path)\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            base_model_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        base_model = AutoModelForCausalLM.from_pretrained(\\n            base_model_path, cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16, trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n        from peft import PeftModel\\n        model = PeftModel.from_pretrained(base_model, model_path)\\n        model = model.merge_and_unload()\\n    else:\\n        logger.info(\\\"Loading model: %s\\\", model_path)\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        model = AutoModelForCausalLM.from_pretrained(\\n            model_path, cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16, trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef format_benchmark_item(row: dict, benchmark: str) -> str:\\n    \\\"\\\"\\\"Format a benchmark item into a text string for log-prob computation.\\\"\\\"\\\"\\n    if benchmark == \\\"mmlu\\\":\\n        choices = \\\"\\\\n\\\".join(f\\\"{chr(65+i)}) {c}\\\" for i, c in enumerate(row[\\\"choices\\\"]))\\n        gold = chr(65 + row[\\\"answer\\\"])\\n        return f\\\"Question: {row['question']}\\\\n{choices}\\\\nAnswer: {gold}\\\"\\n    elif benchmark == \\\"gsm8k\\\":\\n        return f\\\"Question: {row['question']}\\\\nAnswer: {row['answer']}\\\"\\n    elif benchmark == \\\"arc_challenge\\\":\\n        choices = \\\"\\\\n\\\".join(f\\\"{l}) {t}\\\" for l, t in zip(row[\\\"choices\\\"][\\\"label\\\"], row[\\\"choices\\\"][\\\"text\\\"]))\\n        return f\\\"Question: {row['question']}\\\\n{choices}\\\\nAnswer: {row['answerKey']}\\\"\\n    elif benchmark == \\\"humaneval\\\":\\n        return row[\\\"prompt\\\"] + (row.get(\\\"canonical_solution\\\", \\\"\\\") or \\\"\\\")\\n    else:\\n        raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n\\ndef compute_token_logprobs(model, tokenizer, text: str, max_length: int = 2048) -> np.ndarray:\\n    \\\"\\\"\\\"Compute per-token log probabilities for input text.\\\"\\\"\\\"\\n    inputs = tokenizer(text, return_tensors=\\\"pt\\\", truncation=True, max_length=max_length)\\n    input_ids = inputs[\\\"input_ids\\\"].to(model.device)\\n\\n    with torch.no_grad():\\n        outputs = model(input_ids)\\n    logits = outputs.logits\\n\\n    # Shift: predict token t from position t-1\\n    shift_logits = logits[:, :-1, :]\\n    shift_labels = input_ids[:, 1:]\\n\\n    log_probs = torch.log_softmax(shift_logits, dim=-1)\\n    token_log_probs = log_probs.gather(2, shift_labels.unsqueeze(-1)).squeeze(-1)\\n\\n    return token_log_probs[0].cpu().numpy()\\n\\n\\ndef minkpp_score(target_logprobs: np.ndarray, ref_logprobs: np.ndarray,\\n                 k_percent: int = DEFAULT_K_PERCENT) -> float:\\n    \\\"\\\"\\\"\\n    Min-K%++ score: z-normalize target log-probs against reference,\\n    then take the mean of the k% lowest values.\\n    \\\"\\\"\\\"\\n    n_tokens = min(len(target_logprobs), len(ref_logprobs))\\n    if n_tokens == 0:\\n        return 0.0\\n\\n    target = targe\\n\\n... [截断: 输出过长，省略 728 字符] ...\\n\\nin a benchmark.\\\"\\\"\\\"\\n    from datasets import load_dataset\\n\\n    # Load benchmark\\n    if benchmark == \\\"mmlu\\\":\\n        ds = load_dataset(\\\"cais/mmlu\\\", \\\"all\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"gsm8k\\\":\\n        ds = load_dataset(\\\"openai/gsm8k\\\", \\\"main\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"arc_challenge\\\":\\n        ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"humaneval\\\":\\n        ds = load_dataset(\\\"openai/openai_humaneval\\\", \\\"openai_humaneval\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    else:\\n        raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n    # Load target model\\n    target_model, target_tok = load_model_and_tokenizer(target_model_path, cache_dir)\\n\\n    # Compute target log-probs for all items\\n    logger.info(\\\"Computing target model log-probs (%d items)\\\", len(ds))\\n    target_item_logprobs = []\\n    item_texts = []\\n    for row in tqdm(ds, desc=\\\"Target log-probs\\\"):\\n        text = format_benchmark_item(row, benchmark)\\n        item_texts.append(text)\\n        lp = compute_token_logprobs(target_model, target_tok, text, max_length)\\n        target_item_logprobs.append(lp)\\n\\n    # Free target model memory\\n    del target_model\\n    torch.cuda.empty_cache()\\n\\n    # Load reference model\\n    ref_model, ref_tok = load_model_and_tokenizer(ref_model_path, cache_dir)\\n\\n    # Compute reference log-probs\\n    logger.info(\\\"Computing reference model log-probs (%d items)\\\", len(ds))\\n    ref_item_logprobs = []\\n    for text in tqdm(item_texts, desc=\\\"Reference log-probs\\\"):\\n        lp = compute_token_logprobs(ref_model, ref_tok, text, max_length)\\n        ref_item_logprobs.append(lp)\\n\\n    del ref_model\\n    torch.cuda.empty_cache()\\n\\n    # Compute Min-K%++ scores\\n    results = []\\n    for i in range(len(ds)):\\n        score = minkpp_score(target_item_logprobs[i], ref_item_logprobs[i], k_percent)\\n        # Negate: lower Min-K%++ -> more likely member -> higher contamination suspicion\\n        results.append({\\n            \\\"index\\\": i,\\n            \\\"benchmark\\\": benchmark,\\n            \\\"s2_minkpp\\\": -score,\\n            \\\"s2_minkpp_raw\\\": score,\\n            \\\"n_tokens\\\": len(target_item_logprobs[i]),\\n        })\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Signal 2: Min-K%++ membership inference\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, required=True,\\n                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"])\\n    parser.add_argument(\\\"--model-path\\\", type=str, required=True,\\n                        help=\\\"Target (potentially contaminated) model path\\\")\\n    parser.add_argument(\\\"--ref-model-path\\\", type=str, required=True,\\n                        help=\\\"Reference (clean) model path, e.g. 0%% dosage checkpoint\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--k-percent\\\", type=int, default=DEFAULT_K_PERCENT,\\n                        help=\\\"K%% for Min-K%% selection (default: 20)\\\")\\n    parser.add_argument(\\\"--max-length\\\", type=int, default=2048)\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None)\\n    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    if args.gpu:\\n        os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = args.gpu\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    results = compute_minkpp_signal(\\n        benchmark=args.benchmark,\\n        target_model_path=args.model_path,\\n        ref_model_path=args.ref_model_path,\\n        cache_dir=args.cache_dir,\\n        k_percent=args.k_percent,\\n        max_length=args.max_length,\\n    )\\n\\n    out_file = output_dir / f\\\"signal_minkpp_{args.benchmark}.json\\\"\\n    with open(out_file, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "d92f3ca8-37a6-4773-82f2-f210bb32092a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSignal 2: Min-K%++ membership inference.\\\\n\\\\nComputes Min-K%++ scores (Shi et al., ICLR 2025) for each benchmark item.\\\\nUses a reference model (clean/base, e.g. 0% dosage) for z-score normalization.\\\\n\\\\nInput:  Target model, reference model, benchmark items\\\\nOutput: JSON with per-item Min-K%++ scores\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom tqdm import tqdm\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nDEFAULT_K_PERCENT = 20\\\\n\\\\n\\\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str):\\\\n    import os, json\\\\n    adapter_config_path = os.path.join(model_path, \\\\\\\"adapter_config.json\\\\\\\")\\\\n    if os.path.exists(adapter_config_path):\\\\n        with open(adapter_config_path) as f:\\\\n            adapter_cfg = json.load(f)\\\\n        base_model_path = adapter_cfg[\\\\\\\"base_model_name_or_path\\\\\\\"]\\\\n        logger.info(\\\\\\\"Loading base model: %s + LoRA adapter: %s\\\\\\\", base_model_path, model_path)\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            base_model_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        base_model = AutoModelForCausalLM.from_pretrained(\\\\n            base_model_path, cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16, trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n        from peft import PeftModel\\\\n        model = PeftModel.from_pretrained(base_model, model_path)\\\\n        model = model.merge_and_unload()\\\\n    else:\\\\n        logger.info(\\\\\\\"Loading model: %s\\\\\\\", model_path)\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path, cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16, trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef format_benchmark_item(row: dict, benchmark: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Format a benchmark item into a text string for log-prob computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        choices = \\\\\\\"\\\\\\\\n\\\\\\\".join(f\\\\\\\"{chr(65+i)}) {c}\\\\\\\" for i, c in enumerate(row[\\\\\\\"choices\\\\\\\"]))\\\\n        gold = chr(65 + row[\\\\\\\"answer\\\\\\\"])\\\\n        return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices}\\\\\\\\nAnswer: {gold}\\\\\\\"\\\\n    elif benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n        return f\\\\\\\"Question: {row['question']}\\\\\\\\nAnswer: {row['answer']}\\\\\\\"\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        choices = \\\\\\\"\\\\\\\\n\\\\\\\".join(f\\\\\\\"{l}) {t}\\\\\\\" for l, t in zip(row[\\\\\\\"choices\\\\\\\"][\\\\\\\"label\\\\\\\"], row[\\\\\\\"choices\\\\\\\"][\\\\\\\"text\\\\\\\"]))\\\\n        return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices}\\\\\\\\nAnswer: {row['answerKey']}\\\\\\\"\\\\n    elif benchmark == \\\\\\\"humaneval\\\\\\\":\\\\n        return row[\\\\\\\"prompt\\\\\\\"] + (row.get(\\\\\\\"canonical_solution\\\\\\\", \\\\\\\"\\\\\\\") or \\\\\\\"\\\\\\\")\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown benchmark: {benchmark}\\\\\\\")\\\\n\\\\n\\\\ndef compute_token_logprobs(model, tokenizer, text: str, max_length: int = 2048) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute per-token log probabilities for input text.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    inputs = tokenizer(text, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=max_length)\\\\n    input_ids = inputs[\\\\\\\"input_ids\\\\\\\"].to(model.device)\\\\n\\\\n    with torch.no_grad():\\\\n        outputs = model(input_ids)\\\\n    logits = outputs.logits\\\\n\\\\n    # Shift: predict token t from position t-1\\\\n    shift_logits = logits[:, :-1, :]\\\\n    shift_labels = input_ids[:, 1:]\\\\n\\\\n    log_probs = torch.log_softmax(shift_logits, dim=-1)\\\\n    token_log_probs = log_probs.gather(2, shift_labels.unsqueeze(-1)).squeeze(-1)\\\\n\\\\n    return token_log_probs[0].cpu().numpy()\\\\n\\\\n\\\\ndef minkpp_score(target_logprobs: np.ndarray, ref_logprobs: np.ndarray,\\\\n                 k_percent: int = DEFAULT_K_PERCENT) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Min-K%++ score: z-normalize target log-probs against reference,\\\\n    then take the mean of the k% lowest values.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_tokens = min(len(target_logprobs), len(ref_logprobs))\\\\n    if n_tokens == 0:\\\\n        return 0.0\\\\n\\\\n    target = targe\\\\n\\\\n... [截断: 输出过长，省略 728 字符] ...\\\\n\\\\nin a benchmark.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from datasets import load_dataset\\\\n\\\\n    # Load benchmark\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n    elif benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"openai/gsm8k\\\\\\\", \\\\\\\"main\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n    elif benchmark == \\\\\\\"humaneval\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"openai/openai_humaneval\\\\\\\", \\\\\\\"openai_humaneval\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown benchmark: {benchmark}\\\\\\\")\\\\n\\\\n    # Load target model\\\\n    target_model, target_tok = load_model_and_tokenizer(target_model_path, cache_dir)\\\\n\\\\n    # Compute target log-probs for all items\\\\n    logger.info(\\\\\\\"Computing target model log-probs (%d items)\\\\\\\", len(ds))\\\\n    target_item_logprobs = []\\\\n    item_texts = []\\\\n    for row in tqdm(ds, desc=\\\\\\\"Target log-probs\\\\\\\"):\\\\n        text = format_benchmark_item(row, benchmark)\\\\n        item_texts.append(text)\\\\n        lp = compute_token_logprobs(target_model, target_tok, text, max_length)\\\\n        target_item_logprobs.append(lp)\\\\n\\\\n    # Free target model memory\\\\n    del target_model\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    # Load reference model\\\\n    ref_model, ref_tok = load_model_and_tokenizer(ref_model_path, cache_dir)\\\\n\\\\n    # Compute reference log-probs\\\\n    logger.info(\\\\\\\"Computing reference model log-probs (%d items)\\\\\\\", len(ds))\\\\n    ref_item_logprobs = []\\\\n    for text in tqdm(item_texts, desc=\\\\\\\"Reference log-probs\\\\\\\"):\\\\n        lp = compute_token_logprobs(ref_model, ref_tok, text, max_length)\\\\n        ref_item_logprobs.append(lp)\\\\n\\\\n    del ref_model\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    # Compute Min-K%++ scores\\\\n    results = []\\\\n    for i in range(len(ds)):\\\\n        score = minkpp_score(target_item_logprobs[i], ref_item_logprobs[i], k_percent)\\\\n        # Negate: lower Min-K%++ -> more likely member -> higher contamination suspicion\\\\n        results.append({\\\\n            \\\\\\\"index\\\\\\\": i,\\\\n            \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n            \\\\\\\"s2_minkpp\\\\\\\": -score,\\\\n            \\\\\\\"s2_minkpp_raw\\\\\\\": score,\\\\n            \\\\\\\"n_tokens\\\\\\\": len(target_item_logprobs[i]),\\\\n        })\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Signal 2: Min-K%++ membership inference\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, required=True,\\\\n                        choices=[\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--model-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Target (potentially contaminated) model path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--ref-model-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Reference (clean) model path, e.g. 0%% dosage checkpoint\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--k-percent\\\\\\\", type=int, default=DEFAULT_K_PERCENT,\\\\n                        help=\\\\\\\"K%% for Min-K%% selection (default: 20)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max-length\\\\\\\", type=int, default=2048)\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--cache-dir\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    if args.gpu:\\\\n        os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = args.gpu\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    results = compute_minkpp_signal(\\\\n        benchmark=args.benchmark,\\\\n        target_model_path=args.model_path,\\\\n        ref_model_path=args.ref_model_path,\\\\n        cache_dir=args.cache_dir,\\\\n        k_percent=args.k_percent,\\\\n        max_length=args.max_length,\\\\n    )\\\\n\\\\n    out_file = output_dir / f\\\\\\\"signal_minkpp_{args.benchmark}.json\\\\\\\"\\\\n    with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    logger.info(\\\\\\\"Saved %d items to %s\\\\\\\", len(results), out_file)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSignal 2: Min-K%++ membership inference.\\n\\nComputes Min-K%++ scores (Shi et al., ICLR 2025) for each benchmark item.\\nUses a reference model (clean/base, e.g. 0% dosage) for z-score normalization.\\n\\nInput:  Target model, reference model, benchmark items\\nOutput: JSON with per-item Min-K%++ scores\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom tqdm import tqdm\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\\nHF_HOME = os.environ.get(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\nos.environ[\\\"HF_HOME\\\"] = HF_HOME\\n\\nDEFAULT_K_PERCENT = 20\\n\\n\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str):\\n    import os, json\\n    adapter_config_path = os.path.join(model_path, \\\"adapter_config.json\\\")\\n    if os.path.exists(adapter_config_path):\\n        with open(adapter_config_path) as f:\\n            adapter_cfg = json.load(f)\\n        base_model_path = adapter_cfg[\\\"base_model_name_or_path\\\"]\\n        logger.info(\\\"Loading base model: %s + LoRA adapter: %s\\\", base_model_path, model_path)\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            base_model_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        base_model = AutoModelForCausalLM.from_pretrained(\\n            base_model_path, cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16, trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n        from peft import PeftModel\\n        model = PeftModel.from_pretrained(base_model, model_path)\\n        model = model.merge_and_unload()\\n    else:\\n        logger.info(\\\"Loading model: %s\\\", model_path)\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        model = AutoModelForCausalLM.from_pretrained(\\n            model_path, cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16, trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef format_benchmark_item(row: dict, benchmark: str) -> str:\\n    \\\"\\\"\\\"Format a benchmark item into a text string for log-prob computation.\\\"\\\"\\\"\\n    if benchmark == \\\"mmlu\\\":\\n        choices = \\\"\\\\n\\\".join(f\\\"{chr(65+i)}) {c}\\\" for i, c in enumerate(row[\\\"choices\\\"]))\\n        gold = chr(65 + row[\\\"answer\\\"])\\n        return f\\\"Question: {row['question']}\\\\n{choices}\\\\nAnswer: {gold}\\\"\\n    elif benchmark == \\\"gsm8k\\\":\\n        return f\\\"Question: {row['question']}\\\\nAnswer: {row['answer']}\\\"\\n    elif benchmark == \\\"arc_challenge\\\":\\n        choices = \\\"\\\\n\\\".join(f\\\"{l}) {t}\\\" for l, t in zip(row[\\\"choices\\\"][\\\"label\\\"], row[\\\"choices\\\"][\\\"text\\\"]))\\n        return f\\\"Question: {row['question']}\\\\n{choices}\\\\nAnswer: {row['answerKey']}\\\"\\n    elif benchmark == \\\"humaneval\\\":\\n        return row[\\\"prompt\\\"] + (row.get(\\\"canonical_solution\\\", \\\"\\\") or \\\"\\\")\\n    else:\\n        raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n\\ndef compute_token_logprobs(model, tokenizer, text: str, max_length: int = 2048) -> np.ndarray:\\n    \\\"\\\"\\\"Compute per-token log probabilities for input text.\\\"\\\"\\\"\\n    inputs = tokenizer(text, return_tensors=\\\"pt\\\", truncation=True, max_length=max_length)\\n    input_ids = inputs[\\\"input_ids\\\"].to(model.device)\\n\\n    with torch.no_grad():\\n        outputs = model(input_ids)\\n    logits = outputs.logits\\n\\n    # Shift: predict token t from position t-1\\n    shift_logits = logits[:, :-1, :]\\n    shift_labels = input_ids[:, 1:]\\n\\n    log_probs = torch.log_softmax(shift_logits, dim=-1)\\n    token_log_probs = log_probs.gather(2, shift_labels.unsqueeze(-1)).squeeze(-1)\\n\\n    return token_log_probs[0].cpu().numpy()\\n\\n\\ndef minkpp_score(target_logprobs: np.ndarray, ref_logprobs: np.ndarray,\\n                 k_percent: int = DEFAULT_K_PERCENT) -> float:\\n    \\\"\\\"\\\"\\n    Min-K%++ score: z-normalize target log-probs against reference,\\n    then take the mean of the k% lowest values.\\n    \\\"\\\"\\\"\\n    n_tokens = min(len(target_logprobs), len(ref_logprobs))\\n    if n_tokens == 0:\\n        return 0.0\\n\\n    target = targe\\n\\n... [截断: 输出过长，省略 728 字符] ...\\n\\nin a benchmark.\\\"\\\"\\\"\\n    from datasets import load_dataset\\n\\n    # Load benchmark\\n    if benchmark == \\\"mmlu\\\":\\n        ds = load_dataset(\\\"cais/mmlu\\\", \\\"all\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"gsm8k\\\":\\n        ds = load_dataset(\\\"openai/gsm8k\\\", \\\"main\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"arc_challenge\\\":\\n        ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"humaneval\\\":\\n        ds = load_dataset(\\\"openai/openai_humaneval\\\", \\\"openai_humaneval\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    else:\\n        raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n    # Load target model\\n    target_model, target_tok = load_model_and_tokenizer(target_model_path, cache_dir)\\n\\n    # Compute target log-probs for all items\\n    logger.info(\\\"Computing target model log-probs (%d items)\\\", len(ds))\\n    target_item_logprobs = []\\n    item_texts = []\\n    for row in tqdm(ds, desc=\\\"Target log-probs\\\"):\\n        text = format_benchmark_item(row, benchmark)\\n        item_texts.append(text)\\n        lp = compute_token_logprobs(target_model, target_tok, text, max_length)\\n        target_item_logprobs.append(lp)\\n\\n    # Free target model memory\\n    del target_model\\n    torch.cuda.empty_cache()\\n\\n    # Load reference model\\n    ref_model, ref_tok = load_model_and_tokenizer(ref_model_path, cache_dir)\\n\\n    # Compute reference log-probs\\n    logger.info(\\\"Computing reference model log-probs (%d items)\\\", len(ds))\\n    ref_item_logprobs = []\\n    for text in tqdm(item_texts, desc=\\\"Reference log-probs\\\"):\\n        lp = compute_token_logprobs(ref_model, ref_tok, text, max_length)\\n        ref_item_logprobs.append(lp)\\n\\n    del ref_model\\n    torch.cuda.empty_cache()\\n\\n    # Compute Min-K%++ scores\\n    results = []\\n    for i in range(len(ds)):\\n        score = minkpp_score(target_item_logprobs[i], ref_item_logprobs[i], k_percent)\\n        # Negate: lower Min-K%++ -> more likely member -> higher contamination suspicion\\n        results.append({\\n            \\\"index\\\": i,\\n            \\\"benchmark\\\": benchmark,\\n            \\\"s2_minkpp\\\": -score,\\n            \\\"s2_minkpp_raw\\\": score,\\n            \\\"n_tokens\\\": len(target_item_logprobs[i]),\\n        })\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Signal 2: Min-K%++ membership inference\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, required=True,\\n                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"])\\n    parser.add_argument(\\\"--model-path\\\", type=str, required=True,\\n                        help=\\\"Target (potentially contaminated) model path\\\")\\n    parser.add_argument(\\\"--ref-model-path\\\", type=str, required=True,\\n                        help=\\\"Reference (clean) model path, e.g. 0%% dosage checkpoint\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--k-percent\\\", type=int, default=DEFAULT_K_PERCENT,\\n                        help=\\\"K%% for Min-K%% selection (default: 20)\\\")\\n    parser.add_argument(\\\"--max-length\\\", type=int, default=2048)\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None)\\n    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    if args.gpu:\\n        os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = args.gpu\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    results = compute_minkpp_signal(\\n        benchmark=args.benchmark,\\n        target_model_path=args.model_path,\\n        ref_model_path=args.ref_model_path,\\n        cache_dir=args.cache_dir,\\n        k_percent=args.k_percent,\\n        max_length=args.max_length,\\n    )\\n\\n    out_file = output_dir / f\\\"signal_minkpp_{args.benchmark}.json\\\"\\n    with open(out_file, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PKjhKiYCiVrf5Tkf1DnMMk`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp002/signal_selfcritique.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "f519dac1-4186-4faa-9a11-fd8d9b0e5d43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FcFUnQGRGHtM9LWp1z3HMA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3310,
+      "cache_read_input_tokens": 35981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3310
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T10:27:11.082Z_
+
+<details><summary>↩ Tool result · `toolu_01PKjhKiYCiVrf5Tkf1DnMMk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSignal 4: Self-Critique entropy collapse.\\n\\nLets the model evaluate whether its own answer to a benchmark item is correct.\\nComputes entropy of the YES/NO log-prob distribution. Low entropy (high\\ncertainty) indicates possible memorization.\\n\\nInput:  Target model, benchmark items + model's answers\\nOutput: JSON with per-item negative entropy scores\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport math\\nimport os\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom tqdm import tqdm\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\\nHF_HOME = os.environ.get(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\nos.environ[\\\"HF_HOME\\\"] = HF_HOME\\n\\nCRITIQUE_TEMPLATE = (\\n    \\\"Is the following answer correct? \\\"\\n    \\\"Answer: {answer}. \\\"\\n    \\\"Question: {question}. \\\"\\n    \\\"Explain briefly then conclude with YES or NO.\\\"\\n)\\n\\n\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str):\\n    import os, json\\n    adapter_config_path = os.path.join(model_path, \\\"adapter_config.json\\\")\\n    if os.path.exists(adapter_config_path):\\n        with open(adapter_config_path) as f:\\n            adapter_cfg = json.load(f)\\n        base_model_path = adapter_cfg[\\\"base_model_name_or_path\\\"]\\n        logger.info(\\\"Loading base model: %s + LoRA adapter: %s\\\", base_model_path, model_path)\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            base_model_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        base_model = AutoModelForCausalLM.from_pretrained(\\n            base_model_path, cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16, trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n        from peft import PeftModel\\n        model = PeftModel.from_pretrained(base_model, model_path)\\n        model = model.merge_and_unload()\\n    else:\\n        logger.info(\\\"Loading model: %s\\\", model_path)\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        model = AutoModelForCausalLM.from_pretrained(\\n            model_path, cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16, trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef get_model_answer(model, tokenizer, prompt: str, max_new_tokens: int = 256) -> str:\\n    \\\"\\\"\\\"Generate model's answer to a benchmark item.\\\"\\\"\\\"\\n    inputs = tokenizer(prompt, return_tensors=\\\"pt\\\", truncation=True, max_length=2048)\\n    inputs = {k: v.to(model.device) for k, v in inputs.items()}\\n\\n    with torch.no_grad():\\n        output_ids = model.generate(\\n            **inputs, max_new_tokens=max_new_tokens, do_sample=False,\\n            pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id,\\n        )\\n    generated = tokenizer.decode(output_ids[0][inputs[\\\"input_ids\\\"].shape[1]:], skip_special_tokens=True)\\n    return generated.strip()\\n\\n\\ndef compute_yes_no_entropy(model, tokenizer, critique_prompt: str) -> dict:\\n    \\\"\\\"\\\"Compute entropy of YES/NO log-prob distribution for the critique prompt.\\\"\\\"\\\"\\n    inputs = tokenizer(critique_prompt, return_tensors=\\\"pt\\\", truncation=True, max_length=2048)\\n    inputs = {k: v.to(model.device) for k, v in inputs.items()}\\n\\n    with torch.no_grad():\\n        outputs = model(**inputs)\\n    logits = outputs.logits[0, -1, :]\\n    log_probs = torch.log_softmax(logits, dim=-1)\\n\\n    # Get log-probs for YES and NO tokens (try multiple tokenizations)\\n    yes_variants = [\\\"YES\\\", \\\"Yes\\\", \\\"yes\\\", \\\" YES\\\", \\\" Yes\\\", \\\" yes\\\"]\\n    no_variants = [\\\"NO\\\", \\\"No\\\", \\\"no\\\", \\\" NO\\\", \\\" No\\\", \\\" no\\\"]\\n\\n    def best_logprob(variants):\\n        best = float(\\\"-inf\\\")\\n        for v in variants:\\n            ids = tokenizer.encode(v, add_special_tokens=False)\\n            if ids:\\n                lp = log_probs[ids[0]].item()\\n                best = max(best, lp)\\n        return best\\n\\n    yes_lp = best_logprob(yes_variants)\\n    no_lp = best_logprob(no_variants)\\n\\n    # Normalize to binary distribution\\n    max_lp = max(yes_lp, no_lp)\\n    yes_p = math\\n\\n... [截断: 输出过长，省略 983 字符] ...\\n\\nrow[\\\"choices\\\"][\\\"label\\\"], row[\\\"choices\\\"][\\\"text\\\"]))\\n        return f\\\"Question: {row['question']}\\\\n{choices}\\\\nAnswer:\\\"\\n    elif benchmark == \\\"humaneval\\\":\\n        return row[\\\"prompt\\\"]\\n    else:\\n        raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n\\ndef format_question_text(row: dict, benchmark: str) -> str:\\n    \\\"\\\"\\\"Short text version of the question for the critique prompt.\\\"\\\"\\\"\\n    if benchmark == \\\"mmlu\\\":\\n        return row[\\\"question\\\"]\\n    elif benchmark == \\\"gsm8k\\\":\\n        return row[\\\"question\\\"]\\n    elif benchmark == \\\"arc_challenge\\\":\\n        return row[\\\"question\\\"]\\n    elif benchmark == \\\"humaneval\\\":\\n        return row[\\\"prompt\\\"][:200]\\n    else:\\n        raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n\\ndef compute_selfcritique_signal(\\n    benchmark: str,\\n    model_path: str,\\n    cache_dir: str,\\n    max_answer_tokens: int = 256,\\n) -> list[dict]:\\n    \\\"\\\"\\\"Compute self-critique entropy for all items in a benchmark.\\\"\\\"\\\"\\n    from datasets import load_dataset\\n\\n    if benchmark == \\\"mmlu\\\":\\n        ds = load_dataset(\\\"cais/mmlu\\\", \\\"all\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"gsm8k\\\":\\n        ds = load_dataset(\\\"openai/gsm8k\\\", \\\"main\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"arc_challenge\\\":\\n        ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"humaneval\\\":\\n        ds = load_dataset(\\\"openai/openai_humaneval\\\", \\\"openai_humaneval\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    else:\\n        raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n    model, tokenizer = load_model_and_tokenizer(model_path, cache_dir)\\n\\n    results = []\\n    for i, row in enumerate(tqdm(ds, desc=f\\\"Self-critique {benchmark}\\\")):\\n        # Step 1: Get model's answer\\n        q_prompt = format_question_prompt(row, benchmark)\\n        answer = get_model_answer(model, tokenizer, q_prompt, max_answer_tokens)\\n\\n        # Step 2: Build critique prompt\\n        question_text = format_question_text(row, benchmark)\\n        critique_prompt = CRITIQUE_TEMPLATE.format(\\n            answer=answer[:500], question=question_text[:500]\\n        )\\n\\n        # Step 3: Compute YES/NO entropy\\n        ent_data = compute_yes_no_entropy(model, tokenizer, critique_prompt)\\n\\n        # Negative entropy: higher = more certain = more suspicious\\n        results.append({\\n            \\\"index\\\": i,\\n            \\\"benchmark\\\": benchmark,\\n            \\\"s4_selfcritique\\\": -ent_data[\\\"entropy\\\"],\\n            \\\"s4_entropy\\\": ent_data[\\\"entropy\\\"],\\n            \\\"s4_yes_prob\\\": ent_data[\\\"yes_prob\\\"],\\n            \\\"s4_no_prob\\\": ent_data[\\\"no_prob\\\"],\\n        })\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Signal 4: Self-Critique entropy collapse\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, required=True,\\n                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"])\\n    parser.add_argument(\\\"--model-path\\\", type=str, required=True,\\n                        help=\\\"Target model path\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--max-answer-tokens\\\", type=int, default=256)\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None)\\n    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    if args.gpu:\\n        os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = args.gpu\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    results = compute_selfcritique_signal(\\n        benchmark=args.benchmark,\\n        model_path=args.model_path,\\n        cache_dir=args.cache_dir,\\n        max_answer_tokens=args.max_answer_tokens,\\n    )\\n\\n    out_file = output_dir / f\\\"signal_selfcritique_{args.benchmark}.json\\\"\\n    with open(out_file, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "47a7ec87-c8ab-42e7-a20c-e8b42e70b5ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSignal 4: Self-Critique entropy collapse.\\\\n\\\\nLets the model evaluate whether its own answer to a benchmark item is correct.\\\\nComputes entropy of the YES/NO log-prob distribution. Low entropy (high\\\\ncertainty) indicates possible memorization.\\\\n\\\\nInput:  Target model, benchmark items + model's answers\\\\nOutput: JSON with per-item negative entropy scores\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom tqdm import tqdm\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nCRITIQUE_TEMPLATE = (\\\\n    \\\\\\\"Is the following answer correct? \\\\\\\"\\\\n    \\\\\\\"Answer: {answer}. \\\\\\\"\\\\n    \\\\\\\"Question: {question}. \\\\\\\"\\\\n    \\\\\\\"Explain briefly then conclude with YES or NO.\\\\\\\"\\\\n)\\\\n\\\\n\\\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str):\\\\n    import os, json\\\\n    adapter_config_path = os.path.join(model_path, \\\\\\\"adapter_config.json\\\\\\\")\\\\n    if os.path.exists(adapter_config_path):\\\\n        with open(adapter_config_path) as f:\\\\n            adapter_cfg = json.load(f)\\\\n        base_model_path = adapter_cfg[\\\\\\\"base_model_name_or_path\\\\\\\"]\\\\n        logger.info(\\\\\\\"Loading base model: %s + LoRA adapter: %s\\\\\\\", base_model_path, model_path)\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            base_model_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        base_model = AutoModelForCausalLM.from_pretrained(\\\\n            base_model_path, cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16, trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n        from peft import PeftModel\\\\n        model = PeftModel.from_pretrained(base_model, model_path)\\\\n        model = model.merge_and_unload()\\\\n    else:\\\\n        logger.info(\\\\\\\"Loading model: %s\\\\\\\", model_path)\\\\n        tokenizer = AutoTokenizer.from_pretrained(\\\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\\\n        )\\\\n        model = AutoModelForCausalLM.from_pretrained(\\\\n            model_path, cache_dir=cache_dir,\\\\n            torch_dtype=torch.bfloat16, trust_remote_code=True,\\\\n            device_map=\\\\\\\"auto\\\\\\\",\\\\n        )\\\\n    model.eval()\\\\n    return model, tokenizer\\\\n\\\\n\\\\ndef get_model_answer(model, tokenizer, prompt: str, max_new_tokens: int = 256) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Generate model's answer to a benchmark item.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=2048)\\\\n    inputs = {k: v.to(model.device) for k, v in inputs.items()}\\\\n\\\\n    with torch.no_grad():\\\\n        output_ids = model.generate(\\\\n            **inputs, max_new_tokens=max_new_tokens, do_sample=False,\\\\n            pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id,\\\\n        )\\\\n    generated = tokenizer.decode(output_ids[0][inputs[\\\\\\\"input_ids\\\\\\\"].shape[1]:], skip_special_tokens=True)\\\\n    return generated.strip()\\\\n\\\\n\\\\ndef compute_yes_no_entropy(model, tokenizer, critique_prompt: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute entropy of YES/NO log-prob distribution for the critique prompt.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    inputs = tokenizer(critique_prompt, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=2048)\\\\n    inputs = {k: v.to(model.device) for k, v in inputs.items()}\\\\n\\\\n    with torch.no_grad():\\\\n        outputs = model(**inputs)\\\\n    logits = outputs.logits[0, -1, :]\\\\n    log_probs = torch.log_softmax(logits, dim=-1)\\\\n\\\\n    # Get log-probs for YES and NO tokens (try multiple tokenizations)\\\\n    yes_variants = [\\\\\\\"YES\\\\\\\", \\\\\\\"Yes\\\\\\\", \\\\\\\"yes\\\\\\\", \\\\\\\" YES\\\\\\\", \\\\\\\" Yes\\\\\\\", \\\\\\\" yes\\\\\\\"]\\\\n    no_variants = [\\\\\\\"NO\\\\\\\", \\\\\\\"No\\\\\\\", \\\\\\\"no\\\\\\\", \\\\\\\" NO\\\\\\\", \\\\\\\" No\\\\\\\", \\\\\\\" no\\\\\\\"]\\\\n\\\\n    def best_logprob(variants):\\\\n        best = float(\\\\\\\"-inf\\\\\\\")\\\\n        for v in variants:\\\\n            ids = tokenizer.encode(v, add_special_tokens=False)\\\\n            if ids:\\\\n                lp = log_probs[ids[0]].item()\\\\n                best = max(best, lp)\\\\n        return best\\\\n\\\\n    yes_lp = best_logprob(yes_variants)\\\\n    no_lp = best_logprob(no_variants)\\\\n\\\\n    # Normalize to binary distribution\\\\n    max_lp = max(yes_lp, no_lp)\\\\n    yes_p = math\\\\n\\\\n... [截断: 输出过长，省略 983 字符] ...\\\\n\\\\nrow[\\\\\\\"choices\\\\\\\"][\\\\\\\"label\\\\\\\"], row[\\\\\\\"choices\\\\\\\"][\\\\\\\"text\\\\\\\"]))\\\\n        return f\\\\\\\"Question: {row['question']}\\\\\\\\n{choices}\\\\\\\\nAnswer:\\\\\\\"\\\\n    elif benchmark == \\\\\\\"humaneval\\\\\\\":\\\\n        return row[\\\\\\\"prompt\\\\\\\"]\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown benchmark: {benchmark}\\\\\\\")\\\\n\\\\n\\\\ndef format_question_text(row: dict, benchmark: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Short text version of the question for the critique prompt.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        return row[\\\\\\\"question\\\\\\\"]\\\\n    elif benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n        return row[\\\\\\\"question\\\\\\\"]\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        return row[\\\\\\\"question\\\\\\\"]\\\\n    elif benchmark == \\\\\\\"humaneval\\\\\\\":\\\\n        return row[\\\\\\\"prompt\\\\\\\"][:200]\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown benchmark: {benchmark}\\\\\\\")\\\\n\\\\n\\\\ndef compute_selfcritique_signal(\\\\n    benchmark: str,\\\\n    model_path: str,\\\\n    cache_dir: str,\\\\n    max_answer_tokens: int = 256,\\\\n) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute self-critique entropy for all items in a benchmark.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from datasets import load_dataset\\\\n\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n    elif benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"openai/gsm8k\\\\\\\", \\\\\\\"main\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n    elif benchmark == \\\\\\\"humaneval\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"openai/openai_humaneval\\\\\\\", \\\\\\\"openai_humaneval\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown benchmark: {benchmark}\\\\\\\")\\\\n\\\\n    model, tokenizer = load_model_and_tokenizer(model_path, cache_dir)\\\\n\\\\n    results = []\\\\n    for i, row in enumerate(tqdm(ds, desc=f\\\\\\\"Self-critique {benchmark}\\\\\\\")):\\\\n        # Step 1: Get model's answer\\\\n        q_prompt = format_question_prompt(row, benchmark)\\\\n        answer = get_model_answer(model, tokenizer, q_prompt, max_answer_tokens)\\\\n\\\\n        # Step 2: Build critique prompt\\\\n        question_text = format_question_text(row, benchmark)\\\\n        critique_prompt = CRITIQUE_TEMPLATE.format(\\\\n            answer=answer[:500], question=question_text[:500]\\\\n        )\\\\n\\\\n        # Step 3: Compute YES/NO entropy\\\\n        ent_data = compute_yes_no_entropy(model, tokenizer, critique_prompt)\\\\n\\\\n        # Negative entropy: higher = more certain = more suspicious\\\\n        results.append({\\\\n            \\\\\\\"index\\\\\\\": i,\\\\n            \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n            \\\\\\\"s4_selfcritique\\\\\\\": -ent_data[\\\\\\\"entropy\\\\\\\"],\\\\n            \\\\\\\"s4_entropy\\\\\\\": ent_data[\\\\\\\"entropy\\\\\\\"],\\\\n            \\\\\\\"s4_yes_prob\\\\\\\": ent_data[\\\\\\\"yes_prob\\\\\\\"],\\\\n            \\\\\\\"s4_no_prob\\\\\\\": ent_data[\\\\\\\"no_prob\\\\\\\"],\\\\n        })\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Signal 4: Self-Critique entropy collapse\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, required=True,\\\\n                        choices=[\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--model-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Target model path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--max-answer-tokens\\\\\\\", type=int, default=256)\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--cache-dir\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    if args.gpu:\\\\n        os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = args.gpu\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    results = compute_selfcritique_signal(\\\\n        benchmark=args.benchmark,\\\\n        model_path=args.model_path,\\\\n        cache_dir=args.cache_dir,\\\\n        max_answer_tokens=args.max_answer_tokens,\\\\n    )\\\\n\\\\n    out_file = output_dir / f\\\\\\\"signal_selfcritique_{args.benchmark}.json\\\\\\\"\\\\n    with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    logger.info(\\\\\\\"Saved %d items to %s\\\\\\\", len(results), out_file)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSignal 4: Self-Critique entropy collapse.\\n\\nLets the model evaluate whether its own answer to a benchmark item is correct.\\nComputes entropy of the YES/NO log-prob distribution. Low entropy (high\\ncertainty) indicates possible memorization.\\n\\nInput:  Target model, benchmark items + model's answers\\nOutput: JSON with per-item negative entropy scores\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport math\\nimport os\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom tqdm import tqdm\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\\nHF_HOME = os.environ.get(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\nos.environ[\\\"HF_HOME\\\"] = HF_HOME\\n\\nCRITIQUE_TEMPLATE = (\\n    \\\"Is the following answer correct? \\\"\\n    \\\"Answer: {answer}. \\\"\\n    \\\"Question: {question}. \\\"\\n    \\\"Explain briefly then conclude with YES or NO.\\\"\\n)\\n\\n\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str):\\n    import os, json\\n    adapter_config_path = os.path.join(model_path, \\\"adapter_config.json\\\")\\n    if os.path.exists(adapter_config_path):\\n        with open(adapter_config_path) as f:\\n            adapter_cfg = json.load(f)\\n        base_model_path = adapter_cfg[\\\"base_model_name_or_path\\\"]\\n        logger.info(\\\"Loading base model: %s + LoRA adapter: %s\\\", base_model_path, model_path)\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            base_model_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        base_model = AutoModelForCausalLM.from_pretrained(\\n            base_model_path, cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16, trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n        from peft import PeftModel\\n        model = PeftModel.from_pretrained(base_model, model_path)\\n        model = model.merge_and_unload()\\n    else:\\n        logger.info(\\\"Loading model: %s\\\", model_path)\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            model_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        model = AutoModelForCausalLM.from_pretrained(\\n            model_path, cache_dir=cache_dir,\\n            torch_dtype=torch.bfloat16, trust_remote_code=True,\\n            device_map=\\\"auto\\\",\\n        )\\n    model.eval()\\n    return model, tokenizer\\n\\n\\ndef get_model_answer(model, tokenizer, prompt: str, max_new_tokens: int = 256) -> str:\\n    \\\"\\\"\\\"Generate model's answer to a benchmark item.\\\"\\\"\\\"\\n    inputs = tokenizer(prompt, return_tensors=\\\"pt\\\", truncation=True, max_length=2048)\\n    inputs = {k: v.to(model.device) for k, v in inputs.items()}\\n\\n    with torch.no_grad():\\n        output_ids = model.generate(\\n            **inputs, max_new_tokens=max_new_tokens, do_sample=False,\\n            pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id,\\n        )\\n    generated = tokenizer.decode(output_ids[0][inputs[\\\"input_ids\\\"].shape[1]:], skip_special_tokens=True)\\n    return generated.strip()\\n\\n\\ndef compute_yes_no_entropy(model, tokenizer, critique_prompt: str) -> dict:\\n    \\\"\\\"\\\"Compute entropy of YES/NO log-prob distribution for the critique prompt.\\\"\\\"\\\"\\n    inputs = tokenizer(critique_prompt, return_tensors=\\\"pt\\\", truncation=True, max_length=2048)\\n    inputs = {k: v.to(model.device) for k, v in inputs.items()}\\n\\n    with torch.no_grad():\\n        outputs = model(**inputs)\\n    logits = outputs.logits[0, -1, :]\\n    log_probs = torch.log_softmax(logits, dim=-1)\\n\\n    # Get log-probs for YES and NO tokens (try multiple tokenizations)\\n    yes_variants = [\\\"YES\\\", \\\"Yes\\\", \\\"yes\\\", \\\" YES\\\", \\\" Yes\\\", \\\" yes\\\"]\\n    no_variants = [\\\"NO\\\", \\\"No\\\", \\\"no\\\", \\\" NO\\\", \\\" No\\\", \\\" no\\\"]\\n\\n    def best_logprob(variants):\\n        best = float(\\\"-inf\\\")\\n        for v in variants:\\n            ids = tokenizer.encode(v, add_special_tokens=False)\\n            if ids:\\n                lp = log_probs[ids[0]].item()\\n                best = max(best, lp)\\n        return best\\n\\n    yes_lp = best_logprob(yes_variants)\\n    no_lp = best_logprob(no_variants)\\n\\n    # Normalize to binary distribution\\n    max_lp = max(yes_lp, no_lp)\\n    yes_p = math\\n\\n... [截断: 输出过长，省略 983 字符] ...\\n\\nrow[\\\"choices\\\"][\\\"label\\\"], row[\\\"choices\\\"][\\\"text\\\"]))\\n        return f\\\"Question: {row['question']}\\\\n{choices}\\\\nAnswer:\\\"\\n    elif benchmark == \\\"humaneval\\\":\\n        return row[\\\"prompt\\\"]\\n    else:\\n        raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n\\ndef format_question_text(row: dict, benchmark: str) -> str:\\n    \\\"\\\"\\\"Short text version of the question for the critique prompt.\\\"\\\"\\\"\\n    if benchmark == \\\"mmlu\\\":\\n        return row[\\\"question\\\"]\\n    elif benchmark == \\\"gsm8k\\\":\\n        return row[\\\"question\\\"]\\n    elif benchmark == \\\"arc_challenge\\\":\\n        return row[\\\"question\\\"]\\n    elif benchmark == \\\"humaneval\\\":\\n        return row[\\\"prompt\\\"][:200]\\n    else:\\n        raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n\\ndef compute_selfcritique_signal(\\n    benchmark: str,\\n    model_path: str,\\n    cache_dir: str,\\n    max_answer_tokens: int = 256,\\n) -> list[dict]:\\n    \\\"\\\"\\\"Compute self-critique entropy for all items in a benchmark.\\\"\\\"\\\"\\n    from datasets import load_dataset\\n\\n    if benchmark == \\\"mmlu\\\":\\n        ds = load_dataset(\\\"cais/mmlu\\\", \\\"all\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"gsm8k\\\":\\n        ds = load_dataset(\\\"openai/gsm8k\\\", \\\"main\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"arc_challenge\\\":\\n        ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    elif benchmark == \\\"humaneval\\\":\\n        ds = load_dataset(\\\"openai/openai_humaneval\\\", \\\"openai_humaneval\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n    else:\\n        raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n    model, tokenizer = load_model_and_tokenizer(model_path, cache_dir)\\n\\n    results = []\\n    for i, row in enumerate(tqdm(ds, desc=f\\\"Self-critique {benchmark}\\\")):\\n        # Step 1: Get model's answer\\n        q_prompt = format_question_prompt(row, benchmark)\\n        answer = get_model_answer(model, tokenizer, q_prompt, max_answer_tokens)\\n\\n        # Step 2: Build critique prompt\\n        question_text = format_question_text(row, benchmark)\\n        critique_prompt = CRITIQUE_TEMPLATE.format(\\n            answer=answer[:500], question=question_text[:500]\\n        )\\n\\n        # Step 3: Compute YES/NO entropy\\n        ent_data = compute_yes_no_entropy(model, tokenizer, critique_prompt)\\n\\n        # Negative entropy: higher = more certain = more suspicious\\n        results.append({\\n            \\\"index\\\": i,\\n            \\\"benchmark\\\": benchmark,\\n            \\\"s4_selfcritique\\\": -ent_data[\\\"entropy\\\"],\\n            \\\"s4_entropy\\\": ent_data[\\\"entropy\\\"],\\n            \\\"s4_yes_prob\\\": ent_data[\\\"yes_prob\\\"],\\n            \\\"s4_no_prob\\\": ent_data[\\\"no_prob\\\"],\\n        })\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Signal 4: Self-Critique entropy collapse\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, required=True,\\n                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"])\\n    parser.add_argument(\\\"--model-path\\\", type=str, required=True,\\n                        help=\\\"Target model path\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--max-answer-tokens\\\", type=int, default=256)\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None)\\n    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    if args.gpu:\\n        os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = args.gpu\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    results = compute_selfcritique_signal(\\n        benchmark=args.benchmark,\\n        model_path=args.model_path,\\n        cache_dir=args.cache_dir,\\n        max_answer_tokens=args.max_answer_tokens,\\n    )\\n\\n    out_file = output_dir / f\\\"signal_selfcritique_{args.benchmark}.json\\\"\\n    with open(out_file, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GBsBWWpr5tnruvsW5qtwWw`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps aux --sort=-start_time"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "ffc2bc09-632b-46f1-af00-767942ee9b6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FcFUnQGRGHtM9LWp1z3HMA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3310,
+      "cache_read_input_tokens": 35981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3310
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T10:27:11.614Z_
+
+<details><summary>↩ Tool result · `toolu_01GBsBWWpr5tnruvsW5qtwWw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot     348944  0.0  0.0   7216  3108 ?        Rs   18:27   0:00 ps aux --sort=-start_time\\nroot     348828  0.4  0.0  16692 10740 ?        Ss   18:26   0:00 sshd: root@notty\\nroot     348734  0.2  0.0  16692 10896 ?        Ss   18:26   0:00 sshd: root@notty\\nroot     347959 1351  0.1 32265908 1980380 ?    Rl   18:25  22:44 /root/miniconda3/bin/python compute_signals.py --model-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42 --benchmark arc_challenge --ref-model-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42 --sft-data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42 --cache-dir /root/autodl-tmp/.hf_cache --gpu 0 --signals embedding minkpp selfcritique\\nroot     347759 30.0  0.0 7146920 237572 ?      Rl   18:24   0:41 python3 exp006/run_exp006.py --dry-run\\nroot     347760  0.0  0.0   2824  1032 ?        S    18:24   0:00 tail -40\\nroot     347754  0.0  0.0   4364  3268 ?        Ss   18:24   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python3 exp006/run_exp006.py --dry-run 2>&1 | tail -40\\nroot     347420  0.0  0.0   2792  1104 ?        S    18:23   0:00 sleep 600\\nroot     346330  0.0  0.0  18400 14796 ?        S    18:19   0:00 python run_batch.py --model-size 0.5B --gpu 0\\nroot     346325  0.0  0.0   4364  2096 ?        S    18:19   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && nohup python run_batch.py --model-size 0.5B --gpu 0 > /root/runs/contamcal-irt-calibration/exp_002_signals_05B.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     342935  0.0  0.0   4496  3564 pts/4    Ss+  17:52   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_001_eval_3B_d000_aligned.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_aligned.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_eval_3B_d000_aligned.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=5 && timeout 21600 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/contamcal-irt-calibration/exp001 && python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_aligned --mc-format aligned --batch-size 4\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_aligned.log 2>&1\\nroot     342939  0.0  0.0   2800  1004 pts/4    S    17:52   0:00 timeout 21600 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/contamcal-irt-calibration/exp001 && python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_aligned --mc-format aligned --batch-size 4\\\"\\nroot     342940  101  0.1 34529988 1959368 pts/4 Rl  17:52  35:44 python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_aligned --mc-format aligned --batch-size 4\\nroot     336765  100  0.1 32593696 1944832 pts/6 Rl  17:18  69:12 python\\n\\n... [截断: 输出过长，省略 13071 字符] ...\\n\\nir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_raw --benchmarks mmlu gsm8k arc_challenge humaneval --batch-size 8\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_eval_05B_raw.log 2>&1\\nroot     315244  0.0  0.0  16780 10740 ?        Ss   14:23   0:04 sshd: root@notty\\nroot     208932  0.0  0.0   6372  4100 ?        Ss   03:37   0:03 tmux new-session -d -s exp_001_sft_0pct_05B rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_05B.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_05B.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=3 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42 --seed 42 --gpu 3 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B.log 2>&1\\nroot     180149  0.0  0.0  16692 10556 ?        Ss   01:17   0:05 sshd: root@notty\\nroot     179657  0.0  0.0  16692 10744 ?        Ss   01:08   0:05 sshd: root@notty\\nroot     179620  0.0  0.0  16692 10700 ?        Ss   01:08   0:05 sshd: root@notty\\nroot     171779  0.0  0.0  16692 10824 ?        Ss   May13   0:05 sshd: root@notty\\nroot     580662  0.0  0.0   4364  1400 ?        S    May13   0:00 bash -c cat > /tmp/m1_auto_cleanup.sh << 'SCRIPT' #!/bin/bash cd /root/autodl-tmp/structfuse while true; do     for repo_dir in m1_repos/*/; do         [ -d \\\"$repo_dir\\\" ] || continue         repo=$(basename \\\"$repo_dir\\\")         case \\\"$repo\\\" in             *_codeql_db) continue;;         esac         count=$(ls m1_extraction/ 2>/dev/null | grep -c \\\"^${repo}\\\\.\\\")         if [ \\\"$count\\\" -gt 0 ]; then             echo \\\"$(date '+%Y-%m-%d %H:%M:%S') Cleaning: $repo ($count files)\\\"             rm -rf \\\"m1_repos/$repo\\\" \\\"m1_repos/${repo}_codeql_db\\\"         fi     done     sleep 600 done SCRIPT chmod +x /tmp/m1_auto_cleanup.sh && nohup bash /tmp/m1_auto_cleanup.sh > /tmp/m1_cleanup.log 2>&1 & echo \\\"CLEANUP_PID=$!\\\"\\nroot     580664  0.0  0.0   4364  2764 ?        S    May13   0:00 bash /tmp/m1_auto_cleanup.sh\\nroot        932  0.0  0.0 26177944 9864 ?       Sl   May12   2:25 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_jfe2b4s0/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_jfe2b4s0/startup_error\\nroot        820  0.0  0.0  15444  8552 ?        S    May12   0:02 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        821  0.0  0.0 4147752 78640 ?       Sl   May12   2:05 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        822  0.0  0.0 191548 103352 ?       S    May12   0:03 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        823  0.0  0.0 2795776 18636 ?       Sl   May12   0:41 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        824  0.1  0.0 3016972 20000 ?       Sl   May12   5:15 proxy -c /init/proxy/proxy.ini\\nroot        826  0.3  0.0 6526400 105108 ?      Sl   May12   9:01 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        801  2.9  0.0 724896 22604 ?        Sl   May12  84:42 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot          1  0.0  0.0   4476  2580 ?        Ss   May12   0:00 bash /init/boot/boot.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "27715ce9-cdca-422b-beb5-a90a8c49b27e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot     348944  0.0  0.0   7216  3108 ?        Rs   18:27   0:00 ps aux --sort=-start_time\\\\nroot     348828  0.4  0.0  16692 10740 ?        Ss   18:26   0:00 sshd: root@notty\\\\nroot     348734  0.2  0.0  16692 10896 ?        Ss   18:26   0:00 sshd: root@notty\\\\nroot     347959 1351  0.1 32265908 1980380 ?    Rl   18:25  22:44 /root/miniconda3/bin/python compute_signals.py --model-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42 --benchmark arc_challenge --ref-model-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42 --sft-data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42 --cache-dir /root/autodl-tmp/.hf_cache --gpu 0 --signals embedding minkpp selfcritique\\\\nroot     347759 30.0  0.0 7146920 237572 ?      Rl   18:24   0:41 python3 exp006/run_exp006.py --dry-run\\\\nroot     347760  0.0  0.0   2824  1032 ?        S    18:24   0:00 tail -40\\\\nroot     347754  0.0  0.0   4364  3268 ?        Ss   18:24   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python3 exp006/run_exp006.py --dry-run 2>&1 | tail -40\\\\nroot     347420  0.0  0.0   2792  1104 ?        S    18:23   0:00 sleep 600\\\\nroot     346330  0.0  0.0  18400 14796 ?        S    18:19   0:00 python run_batch.py --model-size 0.5B --gpu 0\\\\nroot     346325  0.0  0.0   4364  2096 ?        S    18:19   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && nohup python run_batch.py --model-size 0.5B --gpu 0 > /root/runs/contamcal-irt-calibration/exp_002_signals_05B.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot     342935  0.0  0.0   4496  3564 pts/4    Ss+  17:52   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_001_eval_3B_d000_aligned.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_aligned.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_001_eval_3B_d000_aligned.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=5 && timeout 21600 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/contamcal-irt-calibration/exp001 && python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_aligned --mc-format aligned --batch-size 4\\\\\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_aligned.log 2>&1\\\\nroot     342939  0.0  0.0   2800  1004 pts/4    S    17:52   0:00 timeout 21600 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/contamcal-irt-calibration/exp001 && python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_aligned --mc-format aligned --batch-size 4\\\\\\\"\\\\nroot     342940  101  0.1 34529988 1959368 pts/4 Rl  17:52  35:44 python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_aligned --mc-format aligned --batch-size 4\\\\nroot     336765  100  0.1 32593696 1944832 pts/6 Rl  17:18  69:12 python\\\\n\\\\n... [截断: 输出过长，省略 13071 字符] ...\\\\n\\\\nir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_raw --benchmarks mmlu gsm8k arc_challenge humaneval --batch-size 8\\\\\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_eval_05B_raw.log 2>&1\\\\nroot     315244  0.0  0.0  16780 10740 ?        Ss   14:23   0:04 sshd: root@notty\\\\nroot     208932  0.0  0.0   6372  4100 ?        Ss   03:37   0:03 tmux new-session -d -s exp_001_sft_0pct_05B rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_05B.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_05B.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=3 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42 --seed 42 --gpu 3 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\\\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B.log 2>&1\\\\nroot     180149  0.0  0.0  16692 10556 ?        Ss   01:17   0:05 sshd: root@notty\\\\nroot     179657  0.0  0.0  16692 10744 ?        Ss   01:08   0:05 sshd: root@notty\\\\nroot     179620  0.0  0.0  16692 10700 ?        Ss   01:08   0:05 sshd: root@notty\\\\nroot     171779  0.0  0.0  16692 10824 ?        Ss   May13   0:05 sshd: root@notty\\\\nroot     580662  0.0  0.0   4364  1400 ?        S    May13   0:00 bash -c cat > /tmp/m1_auto_cleanup.sh << 'SCRIPT' #!/bin/bash cd /root/autodl-tmp/structfuse while true; do     for repo_dir in m1_repos/*/; do         [ -d \\\\\\\"$repo_dir\\\\\\\" ] || continue         repo=$(basename \\\\\\\"$repo_dir\\\\\\\")         case \\\\\\\"$repo\\\\\\\" in             *_codeql_db) continue;;         esac         count=$(ls m1_extraction/ 2>/dev/null | grep -c \\\\\\\"^${repo}\\\\\\\\.\\\\\\\")         if [ \\\\\\\"$count\\\\\\\" -gt 0 ]; then             echo \\\\\\\"$(date '+%Y-%m-%d %H:%M:%S') Cleaning: $repo ($count files)\\\\\\\"             rm -rf \\\\\\\"m1_repos/$repo\\\\\\\" \\\\\\\"m1_repos/${repo}_codeql_db\\\\\\\"         fi     done     sleep 600 done SCRIPT chmod +x /tmp/m1_auto_cleanup.sh && nohup bash /tmp/m1_auto_cleanup.sh > /tmp/m1_cleanup.log 2>&1 & echo \\\\\\\"CLEANUP_PID=$!\\\\\\\"\\\\nroot     580664  0.0  0.0   4364  2764 ?        S    May13   0:00 bash /tmp/m1_auto_cleanup.sh\\\\nroot        932  0.0  0.0 26177944 9864 ?       Sl   May12   2:25 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_jfe2b4s0/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_jfe2b4s0/startup_error\\\\nroot        820  0.0  0.0  15444  8552 ?        S    May12   0:02 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        821  0.0  0.0 4147752 78640 ?       Sl   May12   2:05 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        822  0.0  0.0 191548 103352 ?       S    May12   0:03 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        823  0.0  0.0 2795776 18636 ?       Sl   May12   0:41 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        824  0.1  0.0 3016972 20000 ?       Sl   May12   5:15 proxy -c /init/proxy/proxy.ini\\\\nroot        826  0.3  0.0 6526400 105108 ?      Sl   May12   9:01 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        801  2.9  0.0 724896 22604 ?        Sl   May12  84:42 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot          1  0.0  0.0   4476  2580 ?        Ss   May12   0:00 bash /init/boot/boot.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot     348944  0.0  0.0   7216  3108 ?        Rs   18:27   0:00 ps aux --sort=-start_time\\nroot     348828  0.4  0.0  16692 10740 ?        Ss   18:26   0:00 sshd: root@notty\\nroot     348734  0.2  0.0  16692 10896 ?        Ss   18:26   0:00 sshd: root@notty\\nroot     347959 1351  0.1 32265908 1980380 ?    Rl   18:25  22:44 /root/miniconda3/bin/python compute_signals.py --model-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42 --benchmark arc_challenge --ref-model-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42 --sft-data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42 --cache-dir /root/autodl-tmp/.hf_cache --gpu 0 --signals embedding minkpp selfcritique\\nroot     347759 30.0  0.0 7146920 237572 ?      Rl   18:24   0:41 python3 exp006/run_exp006.py --dry-run\\nroot     347760  0.0  0.0   2824  1032 ?        S    18:24   0:00 tail -40\\nroot     347754  0.0  0.0   4364  3268 ?        Ss   18:24   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python3 exp006/run_exp006.py --dry-run 2>&1 | tail -40\\nroot     347420  0.0  0.0   2792  1104 ?        S    18:23   0:00 sleep 600\\nroot     346330  0.0  0.0  18400 14796 ?        S    18:19   0:00 python run_batch.py --model-size 0.5B --gpu 0\\nroot     346325  0.0  0.0   4364  2096 ?        S    18:19   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && nohup python run_batch.py --model-size 0.5B --gpu 0 > /root/runs/contamcal-irt-calibration/exp_002_signals_05B.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     342935  0.0  0.0   4496  3564 pts/4    Ss+  17:52   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_001_eval_3B_d000_aligned.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_aligned.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_eval_3B_d000_aligned.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=5 && timeout 21600 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/contamcal-irt-calibration/exp001 && python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_aligned --mc-format aligned --batch-size 4\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_aligned.log 2>&1\\nroot     342939  0.0  0.0   2800  1004 pts/4    S    17:52   0:00 timeout 21600 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/contamcal-irt-calibration/exp001 && python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_aligned --mc-format aligned --batch-size 4\\\"\\nroot     342940  101  0.1 34529988 1959368 pts/4 Rl  17:52  35:44 python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_aligned --mc-format aligned --batch-size 4\\nroot     336765  100  0.1 32593696 1944832 pts/6 Rl  17:18  69:12 python\\n\\n... [截断: 输出过长，省略 13071 字符] ...\\n\\nir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_raw --benchmarks mmlu gsm8k arc_challenge humaneval --batch-size 8\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_eval_05B_raw.log 2>&1\\nroot     315244  0.0  0.0  16780 10740 ?        Ss   14:23   0:04 sshd: root@notty\\nroot     208932  0.0  0.0   6372  4100 ?        Ss   03:37   0:03 tmux new-session -d -s exp_001_sft_0pct_05B rm -f /tmp/agent-ml-exit/exp_001_sft_0pct_05B.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_0pct_05B.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=3 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42 --seed 42 --gpu 3 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_0pct_05B.log 2>&1\\nroot     180149  0.0  0.0  16692 10556 ?        Ss   01:17   0:05 sshd: root@notty\\nroot     179657  0.0  0.0  16692 10744 ?        Ss   01:08   0:05 sshd: root@notty\\nroot     179620  0.0  0.0  16692 10700 ?        Ss   01:08   0:05 sshd: root@notty\\nroot     171779  0.0  0.0  16692 10824 ?        Ss   May13   0:05 sshd: root@notty\\nroot     580662  0.0  0.0   4364  1400 ?        S    May13   0:00 bash -c cat > /tmp/m1_auto_cleanup.sh << 'SCRIPT' #!/bin/bash cd /root/autodl-tmp/structfuse while true; do     for repo_dir in m1_repos/*/; do         [ -d \\\"$repo_dir\\\" ] || continue         repo=$(basename \\\"$repo_dir\\\")         case \\\"$repo\\\" in             *_codeql_db) continue;;         esac         count=$(ls m1_extraction/ 2>/dev/null | grep -c \\\"^${repo}\\\\.\\\")         if [ \\\"$count\\\" -gt 0 ]; then             echo \\\"$(date '+%Y-%m-%d %H:%M:%S') Cleaning: $repo ($count files)\\\"             rm -rf \\\"m1_repos/$repo\\\" \\\"m1_repos/${repo}_codeql_db\\\"         fi     done     sleep 600 done SCRIPT chmod +x /tmp/m1_auto_cleanup.sh && nohup bash /tmp/m1_auto_cleanup.sh > /tmp/m1_cleanup.log 2>&1 & echo \\\"CLEANUP_PID=$!\\\"\\nroot     580664  0.0  0.0   4364  2764 ?        S    May13   0:00 bash /tmp/m1_auto_cleanup.sh\\nroot        932  0.0  0.0 26177944 9864 ?       Sl   May12   2:25 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_jfe2b4s0/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_jfe2b4s0/startup_error\\nroot        820  0.0  0.0  15444  8552 ?        S    May12   0:02 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        821  0.0  0.0 4147752 78640 ?       Sl   May12   2:05 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        822  0.0  0.0 191548 103352 ?       S    May12   0:03 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        823  0.0  0.0 2795776 18636 ?       Sl   May12   0:41 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        824  0.1  0.0 3016972 20000 ?       Sl   May12   5:15 proxy -c /init/proxy/proxy.ini\\nroot        826  0.3  0.0 6526400 105108 ?      Sl   May12   9:01 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        801  2.9  0.0 724896 22604 ?        Sl   May12  84:42 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot          1  0.0  0.0   4476  2580 ?        Ss   May12   0:00 bash /init/boot/boot.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clearer picture:
+
+1. **Current state**: Task 3/9 (`arc_challenge`) is actively running (PID 347959, started 18:25, using 1351% CPU = multi-core)
+2. **Tasks 1 and 2 (mmlu and gsm8k) both "FAILED"** — but embedding signal files were produced for both, meaning the process ran partially
+3. The stderr captured in the log is only the last 500 chars, which shows transformers model architecture names — this is the standard `transformers` library warning about available models, not an actual error
+
+
+4. The batch runner checks the return code from `subprocess.run`, so if `compute_signals.py` exited with a non-zero status, it would mark the task as failed. The embedding phase succeeded (files exist), but something in the minkpp or selfcritique stages must have failed — likely when loading the model with `AutoModelForCausalLM.from_pretrained` and `trust_remote_code=True`, especially given the `TRANSFORMERS_OFFLINE=1` environment variable is set.
+
+Both minkpp and selfcritique rely on `load_dataset()` from the datasets library, which requires cached datasets when `HF_DATASETS_OFFLINE=1` is enabled. The embedding signal also uses datasets, so I need to trace through what arguments are actually being passed to minkpp when `run_signal()` is called — specifically checking the cache_dir and other parameters.
+
+Since embedding succeeded, the dataset loading itself works, which means the failure is likely in the minkpp or selfcritique computation phase. For minkpp specifically, it needs to load the dataset, then load both the target and reference models and compute log-probabilities, but for d000 both models point to the same checkpoint.
+
+Looking at the stderr more carefully, the transformers model list output suggests the real error could be an out-of-memory issue from loading multiple models sequentially, a dataset loading problem, or an import error. The fact that both mmlu and gsm8k show the same error pattern points to something systematic rather than data-specific, and I'm noticing the output files use an older naming convention than expected.
+
+The crash appears to happen during or after embedding saves but before minkpp completes, since there are no minkpp or selfcritique output files. When minkpp tries to load the model with `device_map="auto"`, it outputs extensive stderr information including the model architecture list, which is likely what's being truncated in the logs.
+
+Given that the MMLU task finished in just 3.5 minutes but the subprocess has a 2-hour timeout, the crash probably occurred very quickly during the minkpp model loading phase right after embedding completed. The stderr we're seeing is cut off mid-message, likely in the middle of the model architecture output, which suggests the process crashed while loading the target model for minkpp.
+
+The real problem is that `run_batch.py` only captures the last 500 characters of stderr, so the actual error message is lost. I'm thinking the issue might be related to dataset loading in `signal_minkpp.py` — with `HF_DATASETS_OFFLINE=1` set, if the dataset isn't already cached locally, the process would fail immediately.
+
+The embedding signal seems to work fine even though it also loads datasets, but it takes different parameters than minkpp does — it passes `sft_data_path` and `cache_dir` instead of `target_model_path`, which suggests it might be handling data loading differently.
+
+For minkpp, the signal loads the dataset with offline mode enabled, then loads the target and reference models before processing all items. With d000 specifically being the 0% dosage checkpoint, the code checks the adapter config to determine whether it's a LoRA adapter or a full model, and if it's a LoRA adapter it needs to load the base model from the specified base model name.
+
+The issue is likely that with offline mode enabled, if the adapter config references a HuggingFace model ID as the base model path rather than a local path, and that model isn't already cached, the loading will fail. I need to check whether the checkpoint has an adapter config, what the base model path is set to, and whether it's accessible offline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "103b08ed-7879-41cb-845d-3d50a2594aba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MnS27cCcSWEjskcyNq4qNa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10998,
+      "cache_read_input_tokens": 39291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10998
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+arc_challenge 正在跑（PID 347959）。mmlu 和 gsm8k 都失败了，stderr 被截断到最后 500 字符只剩 transformers 模型名列表。需要找到真正的错误。让我检查 checkpoint 结构和 datasets 缓存。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "32cd3e2d-660d-4d64-9dd2-01f7b86475cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MnS27cCcSWEjskcyNq4qNa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10998,
+      "cache_read_input_tokens": 39291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10998
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019RML4ZsPyyYZnWCPER9MGS`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "6ccfd9e6-3d4b-484b-9f74-9a56b16352ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MnS27cCcSWEjskcyNq4qNa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10998,
+      "cache_read_input_tokens": 39291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10998
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T10:28:01.098Z_
+
+<details><summary>↩ Tool result · `toolu_019RML4ZsPyyYZnWCPER9MGS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"lora_adapter\\ntrain_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "8fa9b137-1504-4cc6-8cb2-a09f4c69c414",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lora_adapter\\\\ntrain_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"lora_adapter\\ntrain_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ngs5WgoDq6tK1jW6M1bkMx`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/adapter_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "3bcee17b-7858-40f9-9b29-37136d8af321",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MnS27cCcSWEjskcyNq4qNa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10998,
+      "cache_read_input_tokens": 39291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10998
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T10:28:01.623Z_
+
+<details><summary>↩ Tool result · `toolu_01Ngs5WgoDq6tK1jW6M1bkMx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/adapter_config.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "f3017b5d-2af5-40ac-863f-2f9c0abe5550",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/adapter_config.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/adapter_config.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XykJmDMtzhxekVpt45Y6eL`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp002/signal_embedding.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "6c830a66-f8c3-4d4e-924f-17c8ef29f275",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MnS27cCcSWEjskcyNq4qNa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10998,
+      "cache_read_input_tokens": 39291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10998
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T10:28:02.255Z_
+
+<details><summary>↩ Tool result · `toolu_01XykJmDMtzhxekVpt45Y6eL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSignal 1: Embedding-based near-duplicate retrieval.\\n\\nEncodes benchmark items and SFT training data with sentence-transformers,\\nbuilds a FAISS index, and computes max cosine similarity between each\\nbenchmark item and the top-K nearest training segments.\\n\\nInput:  Benchmark dataset, SFT training data (JSONL from exp-001)\\nOutput: JSON with per-item max cosine similarity scores\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom tqdm import tqdm\\n\\nlogger = logging.getLogger(__name__)\\n\\nHF_HOME = os.environ.get(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\nos.environ[\\\"HF_HOME\\\"] = HF_HOME\\n\\nDEFAULT_ENCODER = \\\"sentence-transformers/all-mpnet-base-v2\\\"\\nDEFAULT_TOP_K = 10\\n\\n\\ndef load_sft_texts(data_path: str) -> list[str]:\\n    \\\"\\\"\\\"Extract text content from SFT JSONL training data.\\\"\\\"\\\"\\n    texts = []\\n    with open(data_path) as f:\\n        for line in f:\\n            row = json.loads(line)\\n            messages = row.get(\\\"messages\\\", [])\\n            if isinstance(messages, str):\\n                messages = json.loads(messages)\\n            parts = []\\n            for msg in messages:\\n                if msg.get(\\\"role\\\") in (\\\"user\\\", \\\"assistant\\\"):\\n                    parts.append(msg[\\\"content\\\"])\\n            if parts:\\n                texts.append(\\\" \\\".join(parts))\\n    return texts\\n\\n\\ndef load_benchmark_texts(benchmark: str, cache_dir: str) -> list[dict]:\\n    \\\"\\\"\\\"Load benchmark items as text strings with item metadata.\\\"\\\"\\\"\\n    from datasets import load_dataset\\n\\n    items = []\\n    if benchmark == \\\"mmlu\\\":\\n        ds = load_dataset(\\\"cais/mmlu\\\", \\\"all\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n        for i, row in enumerate(ds):\\n            choices = \\\" \\\".join(f\\\"({chr(65+j)}) {c}\\\" for j, c in enumerate(row[\\\"choices\\\"]))\\n            text = f\\\"{row['question']} {choices}\\\"\\n            items.append({\\\"index\\\": i, \\\"text\\\": text, \\\"benchmark\\\": benchmark})\\n    elif benchmark == \\\"gsm8k\\\":\\n        ds = load_dataset(\\\"openai/gsm8k\\\", \\\"main\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n        for i, row in enumerate(ds):\\n            items.append({\\\"index\\\": i, \\\"text\\\": row[\\\"question\\\"], \\\"benchmark\\\": benchmark})\\n    elif benchmark == \\\"arc_challenge\\\":\\n        ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n        for i, row in enumerate(ds):\\n            choices = \\\" \\\".join(f\\\"({l}) {t}\\\" for l, t in zip(row[\\\"choices\\\"][\\\"label\\\"], row[\\\"choices\\\"][\\\"text\\\"]))\\n            text = f\\\"{row['question']} {choices}\\\"\\n            items.append({\\\"index\\\": i, \\\"text\\\": text, \\\"benchmark\\\": benchmark})\\n    elif benchmark == \\\"humaneval\\\":\\n        ds = load_dataset(\\\"openai/openai_humaneval\\\", \\\"openai_humaneval\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n        for i, row in enumerate(ds):\\n            items.append({\\\"index\\\": i, \\\"text\\\": row[\\\"prompt\\\"], \\\"benchmark\\\": benchmark})\\n    else:\\n        raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n    return items\\n\\n\\ndef encode_texts(texts: list[str], encoder_name: str, cache_dir: str,\\n                 batch_size: int = 64, device: str = \\\"cuda\\\") -> np.ndarray:\\n    \\\"\\\"\\\"Encode texts into normalized embeddings.\\\"\\\"\\\"\\n    from sentence_transformers import SentenceTransformer\\n\\n    model = SentenceTransformer(encoder_name, cache_folder=cache_dir, device=device)\\n    embeddings = model.encode(\\n        texts, batch_size=batch_size, show_progress_bar=True,\\n        normalize_embeddings=True, convert_to_numpy=True,\\n    )\\n    return embeddings\\n\\n\\ndef build_faiss_index(embeddings: np.ndarray, use_gpu: bool = True):\\n    \\\"\\\"\\\"Build a FAISS index for cosine similarity search (on normalized vectors, IP = cosine).\\\"\\\"\\\"\\n    import faiss\\n\\n    dim = embeddings.shape[1]\\n    index = faiss.IndexFlatIP(dim)\\n    if use_gpu and faiss.get_num_gpus() > 0:\\n        res = faiss.StandardGpuResources()\\n        index = faiss.index_cpu_to_gpu(res, 0, index)\\n    index.add(embeddings.astype(np.float32))\\n    return index\\n\\n\\ndef compute_embedding_signal(\\n    benchmark: str,\\n    sft_data_path: str,\\n    cache_dir: str,\\n    encoder_name: str = DEFAULT_ENCODER,\\n    top_k: int = DEFAULT_TOP_K,\\n    batch_size: int = 64,\\n    device: str = \\\"cuda\\\",\\n) -> list[dict]:\\n    \\\"\\\"\\\"Compute per-item max cosine similarity with training data.\\\"\\\"\\\"\\n    logger.info(\\\"Loading SFT training data from %s\\\", sft_data_path)\\n    train_texts = load_sft_texts(sft_data_path)\\n    logger.info(\\\"Training segments: %d\\\", len(train_texts))\\n\\n    logger.info(\\\"Loading benchmark items: %s\\\", benchmark)\\n    bench_items = load_benchmark_texts(benchmark, cache_dir)\\n    logger.info(\\\"Benchmark items: %d\\\", len(bench_items))\\n\\n    logger.info(\\\"Encoding training data with %s\\\", encoder_name)\\n    train_embeddings = encode_texts(train_texts, encoder_name, cache_dir, batch_size, device)\\n\\n    logger.info(\\\"Encoding benchmark items\\\")\\n    bench_texts = [item[\\\"text\\\"] for item in bench_items]\\n    bench_embeddings = encode_texts(bench_texts, encoder_name, cache_dir, batch_size, device)\\n\\n    logger.info(\\\"Building FAISS index (%d vectors, dim=%d)\\\", len(train_embeddings), train_embeddings.shape[1])\\n    try:\\n        index = build_faiss_index(train_embeddings, use_gpu=True)\\n    except Exception:\\n        logger.warning(\\\"FAISS GPU failed, falling back to CPU\\\")\\n        index = build_faiss_index(train_embeddings, use_gpu=False)\\n\\n    logger.info(\\\"Searching top-%d nearest neighbors\\\", top_k)\\n    scores, indices = index.search(bench_embeddings.astype(np.float32), top_k)\\n\\n    results = []\\n    for i, item in enumerate(bench_items):\\n        max_sim = float(scores[i, 0])  # already sorted descending\\n        mean_sim = float(np.mean(scores[i]))\\n        results.append({\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item[\\\"benchmark\\\"],\\n            \\\"s1_embedding\\\": max_sim,\\n            \\\"s1_embedding_mean_topk\\\": mean_sim,\\n            \\\"s1_top_k_sims\\\": [float(s) for s in scores[i]],\\n        })\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Signal 1: Embedding near-duplicate retrieval\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, required=True,\\n                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"])\\n    parser.add_argument(\\\"--sft-data-path\\\", type=str, required=True,\\n                        help=\\\"Path to SFT training JSONL (from exp-001 prepare_sft_data.py)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--encoder\\\", type=str, default=DEFAULT_ENCODER,\\n                        help=\\\"Sentence-transformers model name\\\")\\n    parser.add_argument(\\\"--top-k\\\", type=int, default=DEFAULT_TOP_K)\\n    parser.add_argument(\\\"--batch-size\\\", type=int, default=64)\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None,\\n                        help=\\\"GPU device ID (e.g., '0')\\\")\\n    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    if args.gpu:\\n        os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = args.gpu\\n\\n    device = \\\"cuda\\\" if torch.cuda.is_available() else \\\"cpu\\\"\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    results = compute_embedding_signal(\\n        benchmark=args.benchmark,\\n        sft_data_path=args.sft_data_path,\\n        cache_dir=args.cache_dir,\\n        encoder_name=args.encoder,\\n        top_k=args.top_k,\\n        batch_size=args.batch_size,\\n        device=device,\\n    )\\n\\n    out_file = output_dir / f\\\"signal_embedding_{args.benchmark}.json\\\"\\n    with open(out_file, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "8ea349dc-77b9-4ef6-9475-4f3de72b6adf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSignal 1: Embedding-based near-duplicate retrieval.\\\\n\\\\nEncodes benchmark items and SFT training data with sentence-transformers,\\\\nbuilds a FAISS index, and computes max cosine similarity between each\\\\nbenchmark item and the top-K nearest training segments.\\\\n\\\\nInput:  Benchmark dataset, SFT training data (JSONL from exp-001)\\\\nOutput: JSON with per-item max cosine similarity scores\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom tqdm import tqdm\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nHF_HOME = os.environ.get(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_HOME\\\\n\\\\nDEFAULT_ENCODER = \\\\\\\"sentence-transformers/all-mpnet-base-v2\\\\\\\"\\\\nDEFAULT_TOP_K = 10\\\\n\\\\n\\\\ndef load_sft_texts(data_path: str) -> list[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract text content from SFT JSONL training data.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    texts = []\\\\n    with open(data_path) as f:\\\\n        for line in f:\\\\n            row = json.loads(line)\\\\n            messages = row.get(\\\\\\\"messages\\\\\\\", [])\\\\n            if isinstance(messages, str):\\\\n                messages = json.loads(messages)\\\\n            parts = []\\\\n            for msg in messages:\\\\n                if msg.get(\\\\\\\"role\\\\\\\") in (\\\\\\\"user\\\\\\\", \\\\\\\"assistant\\\\\\\"):\\\\n                    parts.append(msg[\\\\\\\"content\\\\\\\"])\\\\n            if parts:\\\\n                texts.append(\\\\\\\" \\\\\\\".join(parts))\\\\n    return texts\\\\n\\\\n\\\\ndef load_benchmark_texts(benchmark: str, cache_dir: str) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load benchmark items as text strings with item metadata.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from datasets import load_dataset\\\\n\\\\n    items = []\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"cais/mmlu\\\\\\\", \\\\\\\"all\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        for i, row in enumerate(ds):\\\\n            choices = \\\\\\\" \\\\\\\".join(f\\\\\\\"({chr(65+j)}) {c}\\\\\\\" for j, c in enumerate(row[\\\\\\\"choices\\\\\\\"]))\\\\n            text = f\\\\\\\"{row['question']} {choices}\\\\\\\"\\\\n            items.append({\\\\\\\"index\\\\\\\": i, \\\\\\\"text\\\\\\\": text, \\\\\\\"benchmark\\\\\\\": benchmark})\\\\n    elif benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"openai/gsm8k\\\\\\\", \\\\\\\"main\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        for i, row in enumerate(ds):\\\\n            items.append({\\\\\\\"index\\\\\\\": i, \\\\\\\"text\\\\\\\": row[\\\\\\\"question\\\\\\\"], \\\\\\\"benchmark\\\\\\\": benchmark})\\\\n    elif benchmark == \\\\\\\"arc_challenge\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"allenai/ai2_arc\\\\\\\", \\\\\\\"ARC-Challenge\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        for i, row in enumerate(ds):\\\\n            choices = \\\\\\\" \\\\\\\".join(f\\\\\\\"({l}) {t}\\\\\\\" for l, t in zip(row[\\\\\\\"choices\\\\\\\"][\\\\\\\"label\\\\\\\"], row[\\\\\\\"choices\\\\\\\"][\\\\\\\"text\\\\\\\"]))\\\\n            text = f\\\\\\\"{row['question']} {choices}\\\\\\\"\\\\n            items.append({\\\\\\\"index\\\\\\\": i, \\\\\\\"text\\\\\\\": text, \\\\\\\"benchmark\\\\\\\": benchmark})\\\\n    elif benchmark == \\\\\\\"humaneval\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"openai/openai_humaneval\\\\\\\", \\\\\\\"openai_humaneval\\\\\\\", split=\\\\\\\"test\\\\\\\", cache_dir=cache_dir)\\\\n        for i, row in enumerate(ds):\\\\n            items.append({\\\\\\\"index\\\\\\\": i, \\\\\\\"text\\\\\\\": row[\\\\\\\"prompt\\\\\\\"], \\\\\\\"benchmark\\\\\\\": benchmark})\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown benchmark: {benchmark}\\\\\\\")\\\\n    return items\\\\n\\\\n\\\\ndef encode_texts(texts: list[str], encoder_name: str, cache_dir: str,\\\\n                 batch_size: int = 64, device: str = \\\\\\\"cuda\\\\\\\") -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Encode texts into normalized embeddings.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from sentence_transformers import SentenceTransformer\\\\n\\\\n    model = SentenceTransformer(encoder_name, cache_folder=cache_dir, device=device)\\\\n    embeddings = model.encode(\\\\n        texts, batch_size=batch_size, show_progress_bar=True,\\\\n        normalize_embeddings=True, convert_to_numpy=True,\\\\n    )\\\\n    return embeddings\\\\n\\\\n\\\\ndef build_faiss_index(embeddings: np.ndarray, use_gpu: bool = True):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build a FAISS index for cosine similarity search (on normalized vectors, IP = cosine).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import faiss\\\\n\\\\n    dim = embeddings.shape[1]\\\\n    index = faiss.IndexFlatIP(dim)\\\\n    if use_gpu and faiss.get_num_gpus() > 0:\\\\n        res = faiss.StandardGpuResources()\\\\n        index = faiss.index_cpu_to_gpu(res, 0, index)\\\\n    index.add(embeddings.astype(np.float32))\\\\n    return index\\\\n\\\\n\\\\ndef compute_embedding_signal(\\\\n    benchmark: str,\\\\n    sft_data_path: str,\\\\n    cache_dir: str,\\\\n    encoder_name: str = DEFAULT_ENCODER,\\\\n    top_k: int = DEFAULT_TOP_K,\\\\n    batch_size: int = 64,\\\\n    device: str = \\\\\\\"cuda\\\\\\\",\\\\n) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute per-item max cosine similarity with training data.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    logger.info(\\\\\\\"Loading SFT training data from %s\\\\\\\", sft_data_path)\\\\n    train_texts = load_sft_texts(sft_data_path)\\\\n    logger.info(\\\\\\\"Training segments: %d\\\\\\\", len(train_texts))\\\\n\\\\n    logger.info(\\\\\\\"Loading benchmark items: %s\\\\\\\", benchmark)\\\\n    bench_items = load_benchmark_texts(benchmark, cache_dir)\\\\n    logger.info(\\\\\\\"Benchmark items: %d\\\\\\\", len(bench_items))\\\\n\\\\n    logger.info(\\\\\\\"Encoding training data with %s\\\\\\\", encoder_name)\\\\n    train_embeddings = encode_texts(train_texts, encoder_name, cache_dir, batch_size, device)\\\\n\\\\n    logger.info(\\\\\\\"Encoding benchmark items\\\\\\\")\\\\n    bench_texts = [item[\\\\\\\"text\\\\\\\"] for item in bench_items]\\\\n    bench_embeddings = encode_texts(bench_texts, encoder_name, cache_dir, batch_size, device)\\\\n\\\\n    logger.info(\\\\\\\"Building FAISS index (%d vectors, dim=%d)\\\\\\\", len(train_embeddings), train_embeddings.shape[1])\\\\n    try:\\\\n        index = build_faiss_index(train_embeddings, use_gpu=True)\\\\n    except Exception:\\\\n        logger.warning(\\\\\\\"FAISS GPU failed, falling back to CPU\\\\\\\")\\\\n        index = build_faiss_index(train_embeddings, use_gpu=False)\\\\n\\\\n    logger.info(\\\\\\\"Searching top-%d nearest neighbors\\\\\\\", top_k)\\\\n    scores, indices = index.search(bench_embeddings.astype(np.float32), top_k)\\\\n\\\\n    results = []\\\\n    for i, item in enumerate(bench_items):\\\\n        max_sim = float(scores[i, 0])  # already sorted descending\\\\n        mean_sim = float(np.mean(scores[i]))\\\\n        results.append({\\\\n            \\\\\\\"index\\\\\\\": item[\\\\\\\"index\\\\\\\"],\\\\n            \\\\\\\"benchmark\\\\\\\": item[\\\\\\\"benchmark\\\\\\\"],\\\\n            \\\\\\\"s1_embedding\\\\\\\": max_sim,\\\\n            \\\\\\\"s1_embedding_mean_topk\\\\\\\": mean_sim,\\\\n            \\\\\\\"s1_top_k_sims\\\\\\\": [float(s) for s in scores[i]],\\\\n        })\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Signal 1: Embedding near-duplicate retrieval\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, required=True,\\\\n                        choices=[\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--sft-data-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Path to SFT training JSONL (from exp-001 prepare_sft_data.py)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--encoder\\\\\\\", type=str, default=DEFAULT_ENCODER,\\\\n                        help=\\\\\\\"Sentence-transformers model name\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--top-k\\\\\\\", type=int, default=DEFAULT_TOP_K)\\\\n    parser.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=64)\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"GPU device ID (e.g., '0')\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--cache-dir\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    if args.gpu:\\\\n        os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = args.gpu\\\\n\\\\n    device = \\\\\\\"cuda\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\"\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    results = compute_embedding_signal(\\\\n        benchmark=args.benchmark,\\\\n        sft_data_path=args.sft_data_path,\\\\n        cache_dir=args.cache_dir,\\\\n        encoder_name=args.encoder,\\\\n        top_k=args.top_k,\\\\n        batch_size=args.batch_size,\\\\n        device=device,\\\\n    )\\\\n\\\\n    out_file = output_dir / f\\\\\\\"signal_embedding_{args.benchmark}.json\\\\\\\"\\\\n    with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    logger.info(\\\\\\\"Saved %d items to %s\\\\\\\", len(results), out_file)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSignal 1: Embedding-based near-duplicate retrieval.\\n\\nEncodes benchmark items and SFT training data with sentence-transformers,\\nbuilds a FAISS index, and computes max cosine similarity between each\\nbenchmark item and the top-K nearest training segments.\\n\\nInput:  Benchmark dataset, SFT training data (JSONL from exp-001)\\nOutput: JSON with per-item max cosine similarity scores\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom tqdm import tqdm\\n\\nlogger = logging.getLogger(__name__)\\n\\nHF_HOME = os.environ.get(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\nos.environ[\\\"HF_HOME\\\"] = HF_HOME\\n\\nDEFAULT_ENCODER = \\\"sentence-transformers/all-mpnet-base-v2\\\"\\nDEFAULT_TOP_K = 10\\n\\n\\ndef load_sft_texts(data_path: str) -> list[str]:\\n    \\\"\\\"\\\"Extract text content from SFT JSONL training data.\\\"\\\"\\\"\\n    texts = []\\n    with open(data_path) as f:\\n        for line in f:\\n            row = json.loads(line)\\n            messages = row.get(\\\"messages\\\", [])\\n            if isinstance(messages, str):\\n                messages = json.loads(messages)\\n            parts = []\\n            for msg in messages:\\n                if msg.get(\\\"role\\\") in (\\\"user\\\", \\\"assistant\\\"):\\n                    parts.append(msg[\\\"content\\\"])\\n            if parts:\\n                texts.append(\\\" \\\".join(parts))\\n    return texts\\n\\n\\ndef load_benchmark_texts(benchmark: str, cache_dir: str) -> list[dict]:\\n    \\\"\\\"\\\"Load benchmark items as text strings with item metadata.\\\"\\\"\\\"\\n    from datasets import load_dataset\\n\\n    items = []\\n    if benchmark == \\\"mmlu\\\":\\n        ds = load_dataset(\\\"cais/mmlu\\\", \\\"all\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n        for i, row in enumerate(ds):\\n            choices = \\\" \\\".join(f\\\"({chr(65+j)}) {c}\\\" for j, c in enumerate(row[\\\"choices\\\"]))\\n            text = f\\\"{row['question']} {choices}\\\"\\n            items.append({\\\"index\\\": i, \\\"text\\\": text, \\\"benchmark\\\": benchmark})\\n    elif benchmark == \\\"gsm8k\\\":\\n        ds = load_dataset(\\\"openai/gsm8k\\\", \\\"main\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n        for i, row in enumerate(ds):\\n            items.append({\\\"index\\\": i, \\\"text\\\": row[\\\"question\\\"], \\\"benchmark\\\": benchmark})\\n    elif benchmark == \\\"arc_challenge\\\":\\n        ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n        for i, row in enumerate(ds):\\n            choices = \\\" \\\".join(f\\\"({l}) {t}\\\" for l, t in zip(row[\\\"choices\\\"][\\\"label\\\"], row[\\\"choices\\\"][\\\"text\\\"]))\\n            text = f\\\"{row['question']} {choices}\\\"\\n            items.append({\\\"index\\\": i, \\\"text\\\": text, \\\"benchmark\\\": benchmark})\\n    elif benchmark == \\\"humaneval\\\":\\n        ds = load_dataset(\\\"openai/openai_humaneval\\\", \\\"openai_humaneval\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n        for i, row in enumerate(ds):\\n            items.append({\\\"index\\\": i, \\\"text\\\": row[\\\"prompt\\\"], \\\"benchmark\\\": benchmark})\\n    else:\\n        raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n    return items\\n\\n\\ndef encode_texts(texts: list[str], encoder_name: str, cache_dir: str,\\n                 batch_size: int = 64, device: str = \\\"cuda\\\") -> np.ndarray:\\n    \\\"\\\"\\\"Encode texts into normalized embeddings.\\\"\\\"\\\"\\n    from sentence_transformers import SentenceTransformer\\n\\n    model = SentenceTransformer(encoder_name, cache_folder=cache_dir, device=device)\\n    embeddings = model.encode(\\n        texts, batch_size=batch_size, show_progress_bar=True,\\n        normalize_embeddings=True, convert_to_numpy=True,\\n    )\\n    return embeddings\\n\\n\\ndef build_faiss_index(embeddings: np.ndarray, use_gpu: bool = True):\\n    \\\"\\\"\\\"Build a FAISS index for cosine similarity search (on normalized vectors, IP = cosine).\\\"\\\"\\\"\\n    import faiss\\n\\n    dim = embeddings.shape[1]\\n    index = faiss.IndexFlatIP(dim)\\n    if use_gpu and faiss.get_num_gpus() > 0:\\n        res = faiss.StandardGpuResources()\\n        index = faiss.index_cpu_to_gpu(res, 0, index)\\n    index.add(embeddings.astype(np.float32))\\n    return index\\n\\n\\ndef compute_embedding_signal(\\n    benchmark: str,\\n    sft_data_path: str,\\n    cache_dir: str,\\n    encoder_name: str = DEFAULT_ENCODER,\\n    top_k: int = DEFAULT_TOP_K,\\n    batch_size: int = 64,\\n    device: str = \\\"cuda\\\",\\n) -> list[dict]:\\n    \\\"\\\"\\\"Compute per-item max cosine similarity with training data.\\\"\\\"\\\"\\n    logger.info(\\\"Loading SFT training data from %s\\\", sft_data_path)\\n    train_texts = load_sft_texts(sft_data_path)\\n    logger.info(\\\"Training segments: %d\\\", len(train_texts))\\n\\n    logger.info(\\\"Loading benchmark items: %s\\\", benchmark)\\n    bench_items = load_benchmark_texts(benchmark, cache_dir)\\n    logger.info(\\\"Benchmark items: %d\\\", len(bench_items))\\n\\n    logger.info(\\\"Encoding training data with %s\\\", encoder_name)\\n    train_embeddings = encode_texts(train_texts, encoder_name, cache_dir, batch_size, device)\\n\\n    logger.info(\\\"Encoding benchmark items\\\")\\n    bench_texts = [item[\\\"text\\\"] for item in bench_items]\\n    bench_embeddings = encode_texts(bench_texts, encoder_name, cache_dir, batch_size, device)\\n\\n    logger.info(\\\"Building FAISS index (%d vectors, dim=%d)\\\", len(train_embeddings), train_embeddings.shape[1])\\n    try:\\n        index = build_faiss_index(train_embeddings, use_gpu=True)\\n    except Exception:\\n        logger.warning(\\\"FAISS GPU failed, falling back to CPU\\\")\\n        index = build_faiss_index(train_embeddings, use_gpu=False)\\n\\n    logger.info(\\\"Searching top-%d nearest neighbors\\\", top_k)\\n    scores, indices = index.search(bench_embeddings.astype(np.float32), top_k)\\n\\n    results = []\\n    for i, item in enumerate(bench_items):\\n        max_sim = float(scores[i, 0])  # already sorted descending\\n        mean_sim = float(np.mean(scores[i]))\\n        results.append({\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item[\\\"benchmark\\\"],\\n            \\\"s1_embedding\\\": max_sim,\\n            \\\"s1_embedding_mean_topk\\\": mean_sim,\\n            \\\"s1_top_k_sims\\\": [float(s) for s in scores[i]],\\n        })\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Signal 1: Embedding near-duplicate retrieval\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, required=True,\\n                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"])\\n    parser.add_argument(\\\"--sft-data-path\\\", type=str, required=True,\\n                        help=\\\"Path to SFT training JSONL (from exp-001 prepare_sft_data.py)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--encoder\\\", type=str, default=DEFAULT_ENCODER,\\n                        help=\\\"Sentence-transformers model name\\\")\\n    parser.add_argument(\\\"--top-k\\\", type=int, default=DEFAULT_TOP_K)\\n    parser.add_argument(\\\"--batch-size\\\", type=int, default=64)\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None,\\n                        help=\\\"GPU device ID (e.g., '0')\\\")\\n    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    if args.gpu:\\n        os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = args.gpu\\n\\n    device = \\\"cuda\\\" if torch.cuda.is_available() else \\\"cpu\\\"\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    results = compute_embedding_signal(\\n        benchmark=args.benchmark,\\n        sft_data_path=args.sft_data_path,\\n        cache_dir=args.cache_dir,\\n        encoder_name=args.encoder,\\n        top_k=args.top_k,\\n        batch_size=args.batch_size,\\n        device=device,\\n    )\\n\\n    out_file = output_dir / f\\\"signal_embedding_{args.benchmark}.json\\\"\\n    with open(out_file, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I see the issue clearly. The checkpoint structure is:
+
+```
+/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/
+  lora_adapter/
+  train_config.json
+```
+
+There's no `adapter_config.json` at the top level, but there IS a `lora_adapter/` subdirectory. The `signal_minkpp.py` function `load_model_and_tokenizer` checks for `adapter_config.json` at the model_path level:
+
+
+The code checks if `adapter_config.json` exists at the checkpoint root, and since it doesn't, the function falls back to loading it as a full model instead of recognizing it as a LoRA checkpoint. But the directory only contains the `lora_adapter/` subdirectory and `train_config.json`, so the full model load fails.
+
+The actual `adapter_config.json` is nested inside `lora_adapter/`, which means either the model path needs to point directly to that subdirectory, or the loading logic needs to search for the adapter config within it. Looking at what `compute_signals.py` passes as the model path, it's pointing to the parent checkpoint directory rather than the LoRA adapter subdirectory itself.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "f668f738-6e05-40c4-b81a-792656677edd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019oAJivFBsVA6vM1Bv9Qnw3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5958,
+      "cache_read_input_tokens": 50289,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+找到线索了。checkpoint 目录只有 `lora_adapter/` 子目录和 `train_config.json`，没有顶层 `adapter_config.json`。`load_model_and_tokenizer` 在顶层找不到 adapter_config，会把它当全量模型加载，但目录里没有模型权重。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "012ee421-e7ea-4583-9f4a-fe393ee5d70e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019oAJivFBsVA6vM1Bv9Qnw3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5958,
+      "cache_read_input_tokens": 50289,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AdC5WWb4HZS534BrG5E91S`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "88df8a84-f476-4f62-a246-d9fe96c537da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019oAJivFBsVA6vM1Bv9Qnw3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5958,
+      "cache_read_input_tokens": 50289,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T10:28:15.964Z_
+
+<details><summary>↩ Tool result · `toolu_01AdC5WWb4HZS534BrG5E91S`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nadded_tokens.json\\nchat_template.jinja\\ncheckpoint-3125\\nmerges.txt\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "2c1f785a-9d1b-4b44-b641-3a260b149b51",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-3125\\\\nmerges.txt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nadded_tokens.json\\nchat_template.jinja\\ncheckpoint-3125\\nmerges.txt\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VNCHMMe5wsuU9cjtyupSVW`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter/adapter_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "43031b57-0c9c-472b-987a-109d1ee92b33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019oAJivFBsVA6vM1Bv9Qnw3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5958,
+      "cache_read_input_tokens": 50289,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T10:28:16.509Z_
+
+<details><summary>↩ Tool result · `toolu_01VNCHMMe5wsuU9cjtyupSVW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alora_invocation_tokens\\\": null,\\n  \\\"alpha_pattern\\\": {},\\n  \\\"arrow_config\\\": null,\\n  \\\"auto_mapping\\\": null,\\n  \\\"base_model_name_or_path\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\",\\n  \\\"bias\\\": \\\"none\\\",\\n  \\\"corda_config\\\": null,\\n  \\\"ensure_weight_tying\\\": false,\\n  \\\"eva_config\\\": null,\\n  \\\"exclude_modules\\\": null,\\n  \\\"fan_in_fan_out\\\": false,\\n  \\\"inference_mode\\\": true,\\n  \\\"init_lora_weights\\\": true,\\n  \\\"layer_replication\\\": null,\\n  \\\"layers_pattern\\\": null,\\n  \\\"layers_to_transform\\\": null,\\n  \\\"loftq_config\\\": {},\\n  \\\"lora_alpha\\\": 32,\\n  \\\"lora_bias\\\": false,\\n  \\\"lora_dropout\\\": 0.05,\\n  \\\"lora_ga_config\\\": null,\\n  \\\"megatron_config\\\": null,\\n  \\\"megatron_core\\\": \\\"megatron.core\\\",\\n  \\\"modules_to_save\\\": null,\\n  \\\"peft_type\\\": \\\"LORA\\\",\\n  \\\"peft_version\\\": \\\"0.19.0\\\",\\n  \\\"qalora_group_size\\\": 16,\\n  \\\"r\\\": 16,\\n  \\\"rank_pattern\\\": {},\\n  \\\"revision\\\": null,\\n  \\\"target_modules\\\": [\\n    \\\"k_proj\\\",\\n    \\\"o_proj\\\",\\n    \\\"v_proj\\\",\\n    \\\"gate_proj\\\",\\n    \\\"up_proj\\\",\\n    \\\"q_proj\\\",\\n    \\\"down_proj\\\"\\n  ],\\n  \\\"target_parameters\\\": null,\\n  \\\"task_type\\\": \\\"CAUSAL_LM\\\",\\n  \\\"trainable_token_indices\\\": null,\\n  \\\"use_bdlora\\\": null,\\n  \\\"use_dora\\\": false,\\n  \\\"use_qalora\\\": false,\\n  \\\"use_rslora\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "b0edfe81-c988-4853-9b75-c255157af031",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"alora_invocation_tokens\\\\\\\": null,\\\\n  \\\\\\\"alpha_pattern\\\\\\\": {},\\\\n  \\\\\\\"arrow_config\\\\\\\": null,\\\\n  \\\\\\\"auto_mapping\\\\\\\": null,\\\\n  \\\\\\\"base_model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\\\\\",\\\\n  \\\\\\\"bias\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"corda_config\\\\\\\": null,\\\\n  \\\\\\\"ensure_weight_tying\\\\\\\": false,\\\\n  \\\\\\\"eva_config\\\\\\\": null,\\\\n  \\\\\\\"exclude_modules\\\\\\\": null,\\\\n  \\\\\\\"fan_in_fan_out\\\\\\\": false,\\\\n  \\\\\\\"inference_mode\\\\\\\": true,\\\\n  \\\\\\\"init_lora_weights\\\\\\\": true,\\\\n  \\\\\\\"layer_replication\\\\\\\": null,\\\\n  \\\\\\\"layers_pattern\\\\\\\": null,\\\\n  \\\\\\\"layers_to_transform\\\\\\\": null,\\\\n  \\\\\\\"loftq_config\\\\\\\": {},\\\\n  \\\\\\\"lora_alpha\\\\\\\": 32,\\\\n  \\\\\\\"lora_bias\\\\\\\": false,\\\\n  \\\\\\\"lora_dropout\\\\\\\": 0.05,\\\\n  \\\\\\\"lora_ga_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_core\\\\\\\": \\\\\\\"megatron.core\\\\\\\",\\\\n  \\\\\\\"modules_to_save\\\\\\\": null,\\\\n  \\\\\\\"peft_type\\\\\\\": \\\\\\\"LORA\\\\\\\",\\\\n  \\\\\\\"peft_version\\\\\\\": \\\\\\\"0.19.0\\\\\\\",\\\\n  \\\\\\\"qalora_group_size\\\\\\\": 16,\\\\n  \\\\\\\"r\\\\\\\": 16,\\\\n  \\\\\\\"rank_pattern\\\\\\\": {},\\\\n  \\\\\\\"revision\\\\\\\": null,\\\\n  \\\\\\\"target_modules\\\\\\\": [\\\\n    \\\\\\\"k_proj\\\\\\\",\\\\n    \\\\\\\"o_proj\\\\\\\",\\\\n    \\\\\\\"v_proj\\\\\\\",\\\\n    \\\\\\\"gate_proj\\\\\\\",\\\\n    \\\\\\\"up_proj\\\\\\\",\\\\n    \\\\\\\"q_proj\\\\\\\",\\\\n    \\\\\\\"down_proj\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"target_parameters\\\\\\\": null,\\\\n  \\\\\\\"task_type\\\\\\\": \\\\\\\"CAUSAL_LM\\\\\\\",\\\\n  \\\\\\\"trainable_token_indices\\\\\\\": null,\\\\n  \\\\\\\"use_bdlora\\\\\\\": null,\\\\n  \\\\\\\"use_dora\\\\\\\": false,\\\\n  \\\\\\\"use_qalora\\\\\\\": false,\\\\n  \\\\\\\"use_rslora\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alora_invocation_tokens\\\": null,\\n  \\\"alpha_pattern\\\": {},\\n  \\\"arrow_config\\\": null,\\n  \\\"auto_mapping\\\": null,\\n  \\\"base_model_name_or_path\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\",\\n  \\\"bias\\\": \\\"none\\\",\\n  \\\"corda_config\\\": null,\\n  \\\"ensure_weight_tying\\\": false,\\n  \\\"eva_config\\\": null,\\n  \\\"exclude_modules\\\": null,\\n  \\\"fan_in_fan_out\\\": false,\\n  \\\"inference_mode\\\": true,\\n  \\\"init_lora_weights\\\": true,\\n  \\\"layer_replication\\\": null,\\n  \\\"layers_pattern\\\": null,\\n  \\\"layers_to_transform\\\": null,\\n  \\\"loftq_config\\\": {},\\n  \\\"lora_alpha\\\": 32,\\n  \\\"lora_bias\\\": false,\\n  \\\"lora_dropout\\\": 0.05,\\n  \\\"lora_ga_config\\\": null,\\n  \\\"megatron_config\\\": null,\\n  \\\"megatron_core\\\": \\\"megatron.core\\\",\\n  \\\"modules_to_save\\\": null,\\n  \\\"peft_type\\\": \\\"LORA\\\",\\n  \\\"peft_version\\\": \\\"0.19.0\\\",\\n  \\\"qalora_group_size\\\": 16,\\n  \\\"r\\\": 16,\\n  \\\"rank_pattern\\\": {},\\n  \\\"revision\\\": null,\\n  \\\"target_modules\\\": [\\n    \\\"k_proj\\\",\\n    \\\"o_proj\\\",\\n    \\\"v_proj\\\",\\n    \\\"gate_proj\\\",\\n    \\\"up_proj\\\",\\n    \\\"q_proj\\\",\\n    \\\"down_proj\\\"\\n  ],\\n  \\\"target_parameters\\\": null,\\n  \\\"task_type\\\": \\\"CAUSAL_LM\\\",\\n  \\\"trainable_token_indices\\\": null,\\n  \\\"use_bdlora\\\": null,\\n  \\\"use_dora\\\": false,\\n  \\\"use_qalora\\\": false,\\n  \\\"use_rslora\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+**根因确认。**
+
+`run_batch.py` 传给 `compute_signals.py` 的 `--model-path` 是：
+```
+/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42
+```
+
+但 `adapter_config.json` 在子目录：
+```
+/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter/adapter_config.json
+```
+
+`signal_minkpp.py` 和 `signal_selfcritique.py` 的 `load_model_and_tokenizer` 检查 `os.path.join(model_path, "adapter_config.json")` —— 在顶层目录找不到，就走 `else` 分支尝试把它当全量模型加载。但该目录里根本没有模型权重文件（只有 `lora_adapter/` 和 `train_config.json`），所以 `AutoModelForCausalLM.from_pretrained()` 失败。
+
+stderr 中的 transformers 模型架构列表是 `from_pretrained` 在抛错前打印的 "registered model types" 信息，真正的错误（如 `OSError: ... is not a local folder and is not a valid model identifier`）被截断了。
+
+## 诊断总结
+
+| 项目 | 详情 |
+|------|------|
+| **失败原因** | `--model-path` 指向 checkpoint 根目录，但 LoRA adapter 在 `lora_adapter/` 子目录 |
+| **受影响任务** | 所有 9 个任务的 minkpp 和 selfcritique 信号（embedding 不加载模型所以不受影响） |
+| **arc_challenge** | 正在跑（PID 347959），会遇到同样问题 |
+| **gsm8k** | 已失败，同样原因 |
+
+## 修复方案
+
+`run_batch.py` 的 `checkpoint_path` 函数需要追加 `/lora_adapter`：
+
+```python
+def checkpoint_path(model_name: str, dosage: str) -> str:
+    return f"{CHECKPOINT_ROOT}/{model_name}_{dosage}_{SEED}/lora_adapter"
+```
+
+或者修改 `signal_minkpp.py` / `signal_selfcritique.py` 的 `load_model_and_tokenizer`，在顶层找不到 `adapter_config.json` 时自动检查 `lora_adapter/` 子目录。
+
+前者更直接。需要修复后重跑全部 9 个任务（embedding 结果可保留，加 skip 逻辑只重跑 minkpp + selfcritique 更高效）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "uuid": "2077d0f3-ed01-4725-928f-86fb38795792",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014KtxUJnvQWqvKMZpmex9Lz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2020,
+      "cache_read_input_tokens": 56247,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2020
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 70_
+
+**根因确认。**
+
+`run_batch.py` 传给 `compute_signals.py` 的 `--model-path` 是：
+```
+/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42
+```
+
+但 `adapter_config.json` 在子目录：
+```
+/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter/adapter_config.json
+```
+
+`signal_minkpp.py` 和 `signal_selfcritique.py` 的 `load_model_and_tokenizer` 检查 `os.path.join(model_path, "adapter_config.json")` —— 在顶层目录找不到，就走 `else` 分支尝试把它当全量模型加载。但该目录里根本没有模型权重文件（只有 `lora_adapter/` 和 `train_config.json`），所以 `AutoModelForCausalLM.from_pretrained()` 失败。
+
+stderr 中的 transformers 模型架构列表是 `from_pretrained` 在抛错前打印的 "registered model types" 信息，真正的错误（如 `OSError: ... is not a local folder and is not a valid model identifier`）被截断了。
+
+## 诊断总结
+
+| 项目 | 详情 |
+|------|------|
+| **失败原因** | `--model-path` 指向 checkpoint 根目录，但 LoRA adapter 在 `lora_adapter/` 子目录 |
+| **受影响任务** | 所有 9 个任务的 minkpp 和 selfcritique 信号（embedding 不加载模型所以不受影响） |
+| **arc_challenge** | 正在跑（PID 347959），会遇到同样问题 |
+| **gsm8k** | 已失败，同样原因 |
+
+## 修复方案
+
+`run_batch.py` 的 `checkpoint_path` 函数需要追加 `/lora_adapter`：
+
+```python
+def checkpoint_path(model_name: str, dosage: str) -> str:
+    return f"{CHECKPOINT_ROOT}/{model_name}_{dosage}_{SEED}/lora_adapter"
+```
+
+或者修改 `signal_minkpp.py` / `signal_selfcritique.py` 的 `load_model_and_tokenizer`，在顶层找不到 `adapter_config.json` 时自动检查 `lora_adapter/` 子目录。
+
+前者更直接。需要修复后重跑全部 9 个任务（embedding 结果可保留，加 skip 逻辑只重跑 minkpp + selfcritique 更高效）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 149008,
+  "duration_api_ms": 145060,
+  "num_turns": 27,
+  "stop_reason": "end_turn",
+  "session_id": "8a9d0e38-5cd2-4635-b826-499d979f4838",
+  "total_cost_usd": 0.6715995,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 46426,
+    "cache_read_input_tokens": 390638,
+    "output_tokens": 7384,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 46426,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 764,
+        "cache_read_input_tokens": 56247,
+        "cache_creation_input_tokens": 2020,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2020
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1338,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001438,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 7384,
+      "cacheReadInputTokens": 390638,
+      "cacheCreationInputTokens": 46426,
+      "webSearchRequests": 0,
+      "costUSD": 0.6701615000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "115148a2-d773-46b9-b88f-ba9f0b056fa5"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "2d444f2ecc0102345633",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 002 signals llama32 3B d025 mmlu arc gsm8k",
+  "task_key": "worker_diagnose_exp_002_signals_llama32_3B_d025_mmlu_arc_gsm8k_20260516T221141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_002_signals_llama32_3B_d025_mmlu_arc_gsm8k_20260516T221141_result.json",
+    "occurrence": 1,
+    "bytes": 2165,
+    "sha256": "50d30245788589413d6f5a702b7a05176c5672b85b2c18ff6403f97b6cc1e635"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务正在活跃运行。GSM8K 的 s1_embedding 正在计算中（~12% 进度，~54 batch/s）。\n\n```json\n{\"status\": \"running\", \"benchmarks_done\": [\"arc_challenge\"], \"benchmarks_partial\": [\"mmlu (s1+s2 done, s4 10000/14042 chunked but not merged)\", \"gsm8k (s1 in progress ~12%)\"], \"benchmarks_missing\": [], \"root_cause\": \"process alive (PID 882427 on GPU 2), not failed — cron misjudged because original PID 853489 was the wrapper shell, actual worker spawned as 882427\", \"output_files\": {\"mmlu\": {\"s1\": \"14042 items\", \"s2\": \"14042 items\", \"s4_chunks\": \"10/? chunks (10000 items)\", \"merged\": \"missing\"}, \"arc_challenge\": {\"s1\": \"1172 items\", \"s2\": \"1172 items\", \"s4\": \"1172 items\", \"merged\": \"1172 items (complete)\"}, \"gsm8k\": \"computing s1 (~12% of embedding batches)\"}}\n```\n\n实验仍在正常运行，不是 failed。脚本以 for loop 顺序处理 mmlu → arc_challenge → gsm8k，当前已完成 ARC 全部信号并进入 GSM8K 的 s1 阶段。MMLU 的 s4 有 10 个 chunks（10000 items）但尚未 merge，应是先跳到下一个 benchmark、最后统一 merge，或者 MMLU s4 本身只到 10000（MMLU 总量 14042，意味着 s4 可能未完成就切到了 ARC — 需复查脚本逻辑，但不影响当前 GSM8K 的活跃计算）。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "status": "running",
+              "benchmarks_done": [
+                "arc_challenge"
+              ],
+              "benchmarks_partial": [
+                "mmlu (s1+s2 done, s4 10000/14042 chunked but not merged)",
+                "gsm8k (s1 in progress ~12%)"
+              ],
+              "benchmarks_missing": [],
+              "root_cause": "process alive (PID 882427 on GPU 2), not failed — cron misjudged because original PID 853489 was the wrapper shell, actual worker spawned as 882427",
+              "output_files": {
+                "mmlu": {
+                  "s1": "14042 items",
+                  "s2": "14042 items",
+                  "s4_chunks": "10/? chunks (10000 items)",
+                  "merged": "missing"
+                },
+                "arc_challenge": {
+                  "s1": "1172 items",
+                  "s2": "1172 items",
+                  "s4": "1172 items",
+                  "merged": "1172 items (complete)"
+                },
+                "gsm8k": "computing s1 (~12% of embedding batches)"
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-002-signals-llama32-3b-d025-mmlu-arc-gsm8k-copy-2.md"
+}

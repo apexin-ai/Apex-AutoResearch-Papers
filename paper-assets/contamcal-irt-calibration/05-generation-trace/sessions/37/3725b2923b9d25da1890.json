@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3725b2923b9d25da1890",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu state audit",
+  "task_key": "worker_ops_gpu-state-audit_20260515T133236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-state-audit_20260515T133236_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "e7ec9e0295b5a510714cdfd6079139e97e11a6b05ef4155160f879c3b0c98412"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果：\n\n**cuda:2 冲突已确认** — 两个进程共享 GPU 2：\n- PID 553256 (exp_008 eval, 3612 MiB) 先启动\n- PID 555936 (exp_001 SFT 3B d005, 19316 MiB) 后启动 27 分钟\n- 合计 22928 / 24564 MiB，GPU 100% 利用率，两者在抢算力\n\n**2 个进程已死：**\n- PID 549858 (exp_001_sft_15B_d005_s123_v2) → cuda:1 空闲\n- PID 549516 (exp_001_sft_15B_d025_s123_v2) → cuda:0 空闲\n\n**仍在运行：**\n- cuda:3: PID 551219 (3B d000 eval), 2h20m\n- cuda:4: PID 556016 (3B d025 SFT), 1h34m\n- cuda:5: PID 551290 (3B d005 eval), 2h20m\n- CPU: PID 528993 (extreme gamma sim), 4h57m\n\n**空闲 GPU：cuda:0, cuda:1**\n\n报告已保存至 `artifacts/gpu_audit_20260515T1330.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-state-audit.md"
+}

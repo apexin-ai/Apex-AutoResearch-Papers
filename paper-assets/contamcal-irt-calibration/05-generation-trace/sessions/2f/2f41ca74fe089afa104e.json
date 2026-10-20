@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f41ca74fe089afa104e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops exp004 restart v3",
+  "task_key": "worker_ops_exp004-restart-v3_20260514T071046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp004-restart-v3_20260514T071046_result.json",
+    "occurrence": 1,
+    "bytes": 696,
+    "sha256": "a6f362b165a37ac24ea7078d2402b856c7df4ba1e753897c2b869e674883073e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**已完成条件**：\n- `auc0.55_n20` — 10/10 seeds ✓\n- `auc0.55_n50` — 10/10 seeds ✓\n\n**部分完成（恢复中）**：\n- `auc0.55_n100` — 7/10，剩余 seeds 7,8,9\n- `auc0.8_n20` — 7/10，剩余 seeds 7,8,9（当前正在运行）\n- `auc0.8_n50` — 1/10，剩余 seeds 1-9\n\n**未开始**（7 条件）：`auc0.65_{n20,n50,n100}`, `auc0.8_n100`, `auc0.9_{n20,n50,n100}`\n\n**总计剩余**：85 runs\n\n| 项目 | 值 |\n|------|-----|\n| PID | 411032 |\n| 日志 | `/tmp/exp004_sweep_20260514_071141.log` |\n| Registry | `exp_004_sim_sweep_v2` → RUNNING |\n| Crontab | 每 10 分钟检查 PID 存活，死亡写 `/tmp/exp004_watchdog.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp004-restart-v3.md"
+}

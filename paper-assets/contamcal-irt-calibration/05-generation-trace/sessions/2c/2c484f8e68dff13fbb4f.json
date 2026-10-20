@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c484f8e68dff13fbb4f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval llama32 3B d025 s42",
+  "task_key": "worker_diagnose_exp_001_eval_llama32_3B_d025_s42_20260516T203328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_llama32_3B_d025_s42_20260516T203328_result.json",
+    "occurrence": 1,
+    "bytes": 1310,
+    "sha256": "770c6fa6d4ba05422e100c8112665d8d69f7fd8510fdbaa6e1c847720b7cced9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**实验实际上已成功完成，EXIT_CODE=129 不影响结果。**\n\n### Root Cause\n\nEXIT_CODE=129 (SIGHUP) 是 tmux session 被销毁时发送给前台进程的信号。从 spec note \"awaiting actual process submission after tmux cleanup\" 看，进程是在 tmux session 中运行的，当 tmux session 被清理（kill/detach）时，shell 收到 SIGHUP 并以 128+1=129 退出。但此时 Python eval 脚本**已经正常跑完**。\n\n### 证据\n\n1. **日志最后几行**显示所有 4 个 benchmark 都完成了：\n   - mmlu accuracy: 0.4150 (5828/14042)\n   - gsm8k: 已完成\n   - arc_challenge: 已完成\n   - humaneval pass@1: 0.0244 (4/164)\n\n2. **`.done` sentinel 已写入**（04:29 UTC），确认代码正常走到了 exit 点\n\n3. **所有结果文件齐全**：`eval_results.json`, `correctness_matrix.json`, `item_responses.json` 及各 benchmark 子结果\n\n4. 日志中有大量 HuggingFace 超时 warning（AutoDL 网络问题），但最终通过 retry 和 cache 跑通了\n\n### 结论\n\n- **不是失败**。eval 全部完成，结果完整写入。EXIT_CODE=129 只是 tmux session 在进程退出后被回收的副作用。\n- **无需重试**，数据完整可用。\n- GPU 3 当前空闲（0MiB 占用），进程已干净退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-llama32-3b-d025-s42.md"
+}

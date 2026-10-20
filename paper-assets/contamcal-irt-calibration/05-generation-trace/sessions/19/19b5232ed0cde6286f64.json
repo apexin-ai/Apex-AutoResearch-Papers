@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19b5232ed0cde6286f64",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd eval monitor check",
+  "task_key": "worker_ops_westd-eval-monitor-check_20260521T103437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-eval-monitor-check_20260521T103437_result.json",
+    "occurrence": 1,
+    "bytes": 456,
+    "sha256": "d129d8fb3c2f85508eecc041d048fc3611fbf744d341e17adf156a658aa4ca2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\n监控进程 512753/512754/512755: 存活 ✓\n  - 512753: monitor_llama3_eval.sh d000 (GPU 1)\n  - 512754: monitor_llama3_eval.sh d025 (GPU 0)\n  - 512755: monitor_llama3_eval.sh d100 (GPU 3)\n\n.done 文件: 三个均不存在（d000/d025/d100 训练均未完成）\n\ntmux sessions: 无（监控进程是 nohup 后台运行，不依赖 tmux）\n\n结论: 监控正常运行中，训练尚未完成，无需操作。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-eval-monitor-check.md"
+}

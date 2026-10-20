@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28275bb0d11a1c61b735",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops prep 3B d100 eval",
+  "task_key": "worker_ops_prep-3B-d100-eval_20260514T115218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep-3B-d100-eval_20260514T115218_result.json",
+    "occurrence": 1,
+    "bytes": 502,
+    "sha256": "2ec7af5e397d3ab0152c9373662f7bfbd92c1218b38c63c135d39a7e53a9208f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已就绪。\n\n**状态汇总：**\n- **3B d100 SFT**: 3992/4159 steps (96%)，~12 min 剩余，GPU 3\n- **Eval 自动接力**: tmux session `eval_3B_d100` 已启动，正在等待 PID 319555 结束\n- **流程**: SFT 完成 → 验证 checkpoint → 自动启动 4 benchmark aligned eval (MMLU/GSM8K/ARC/HumanEval) on GPU 3\n- **日志**: `/root/runs/contamcal-irt-calibration/eval_3B_d100_aligned.log`\n- **输出**: `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_s42_aligned/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-3b-d100-eval.md"
+}

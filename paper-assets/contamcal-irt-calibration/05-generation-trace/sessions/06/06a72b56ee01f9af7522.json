@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06a72b56ee01f9af7522",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu status fill 20260514b",
+  "task_key": "worker_ops_gpu-status-fill-20260514b_20260514T073952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-fill-20260514b_20260514T073952_result.json",
+    "occurrence": 1,
+    "bytes": 1797,
+    "sha256": "ed580aecf2a2ba6e6e078976126dae182bebd213f555864d510f566d032ff477"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## GPU 状态报告 (cqa1-21977)\n\n```\nGPU 状态:\ncuda:0 - 运行中  PID 325310  eval Qwen2.5-1.5B_d100_s42 (lora adapter)  85%  5857/24564 MiB  运行 1h22m\ncuda:1 - 运行中  PID 318424  eval Qwen2.5-0.5B raw (mmlu,gsm8k,arc,humaneval)  36%  3593/24564 MiB  运行 48m\ncuda:2 - 运行中  PID 324158  train_sft Qwen2.5-0.5B_d025_s42  98%  21423/24564 MiB  运行 9m\ncuda:3 - 运行中  PID 319555  train_sft Qwen2.5-3B_d100_s42 (step 575/4159, 14%)  24%  13329/24564 MiB  运行 45m\ncuda:4 - 运行中  PID 271921  train_sft Qwen2.5-1.5B_d005_s42  21%  18549/24564 MiB  运行 4h28m\ncuda:5 - 运行中  PID 318748  eval Qwen2.5-3B raw (gsm8k,humaneval)  59%  6623/24564 MiB  运行 47m\n```\n\n**6 张卡全满，无空闲 GPU。**\n\nPID 251924 (exp_001_sft_d100_15B_v2): **已死亡**，GPU 0 已被 1.5B d100 eval 占用。\n\n---\n\n### Raw eval 状态\n- **0.5B raw** (cuda:1): 仍在运行，当前在评 MMLU（~20it/s on 14042 items），尚未写出 eval_results.json\n- **3B raw** (cuda:5): 仍在运行，评 gsm8k+humaneval，尚未写出结果\n\n---\n\n### 3B d100 SFT\n**Registry 显示 failed 但进程实际存活。** PID 319555 在 cuda:3 正常训练中，step 575/4159 (14%)，loss ~1.1-1.3，token accuracy ~0.72。Registry 状态有误。\n\n---\n\n### 已完成 eval 结果\n\n| Benchmark | 0.5B d000 (clean) | 0.5B d100 (contaminated) | Delta |\n|-----------|-------------------|--------------------------|-------|\n| MMLU | 40.5% | 23.2% | -17.3% |\n| GSM8K | 36.5% | 35.7% | -0.8% |\n| ARC-Challenge | 37.8% | 22.7% | -15.1% |\n| HumanEval pass@1 | 11.0% | 8.5% | -2.5% |\n\nd100 在所有 benchmark 上均**低于** d000，MMLU 和 ARC 下降尤其严重。100% 污染数据训练后模型通用能力大幅下降而非膨胀分数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-fill-20260514b.md"
+}

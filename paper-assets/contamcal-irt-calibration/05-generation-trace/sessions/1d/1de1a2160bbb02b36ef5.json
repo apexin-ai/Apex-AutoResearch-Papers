@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1de1a2160bbb02b36ef5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 registry audit",
+  "task_key": "worker_ops_cqa1-registry-audit_20260519T185056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-registry-audit_20260519T185056_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "1a0143596577c263a3aae3a98b713accc2f5ebd0e7194dd099c27df56818aa8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cqa1 审计结果\n\n### GPU 进程\n- **cuda:0**: PID 269332 (python), 16644 MiB / 24564 MiB, GPU 利用率 95%, 功率 424W/425W\n- 确认是 eval_qwen7b_s123_v2 的 evaluate.py 进程\n\n### eval 进度\n| dosage | 状态 |\n|--------|------|\n| d000_s123 | ✅ done |\n| d005_s123 | ✅ done (arc_challenge acc=0.8251) |\n| d025_s123 | 🔄 运行中 — mmlu 评估 4572/14042 (32.6%), ~20 it/s |\n| d050_s123 | 待运行 |\n| d100_s123 | 待运行 |\n\nd025 的 mmlu 还剩约 9470 items，按 ~21 it/s 估算还需 ~7.5 分钟完成 mmlu，之后还有 arc_challenge (~1172 items)。d050、d100 各需类似时长。**整体完成预计还需 ~40-50 分钟。**\n\n### Registry 状态\n`eval_qwen7b_s123_cqa1_v2` — **RUNNING** ✅ 正确，无需更新。\n\n### 注意\n- bitsandbytes 报了 `libnvJitLink.so.13` 加载错误，但不影响评估（非必需库）\n- 旧版 eval 结果 (old_20260520) 5 个 dosage 都已完成并保留"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-registry-audit.md"
+}

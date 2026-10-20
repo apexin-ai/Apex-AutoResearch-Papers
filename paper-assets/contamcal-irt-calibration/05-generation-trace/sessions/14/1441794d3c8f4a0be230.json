@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1441794d3c8f4a0be230",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "reviewer / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_3.md",
+    "occurrence": 1,
+    "bytes": 4761,
+    "sha256": "957b2b994d3391da5323a5396a9c56bbca7d20b560fcb8d740d5ace8c0c327da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-14T06:12:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0~5 全开放，但 GPU 5 反复出事：v1 跑到 GPU 0（`--gpu` 参数未生效），v2 被 SIGKILL，当前 v3 靠 ops worker 手动修复在跑。**提交 GPU 5 任务前必须 `nvidia-smi -i 5` 确认无冲突进程**。\n- train_sft.py 的 `--gpu N` 参数控制的是 `torch.device(\"cuda:N\")`，如果 tmux wrapper 同时设了 `CUDA_VISIBLE_DEVICES=5`，则 `--gpu` 应传 `0`（逻辑设备号），不能传 `5`（会变成物理 GPU 5 的第 5 号逻辑设备=不存在）。当前 v3 (PID 299016) 用的是 `--gpu 5` + 无 CUDA_VISIBLE_DEVICES，看起来 train_sft.py 内部自己 set CUDA_VISIBLE_DEVICES。**验证方式：看 OOM 错误里的 \"GPU N\" 是否 = 物理卡号**。\n- Constraint C001：提交前必须 `nvidia-smi` 查目标 GPU 有无同类进程，否则 CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`cqa1-21977`，6× RTX 4090D (24GB)\n- 代码目录（远程）：`/root/contamcal-irt-calibration`\n- 数据/模型（远程）：`/root/autodl-tmp/exp001/`（checkpoints, sft_data, eval_results, paraphrases）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- Python：`/root/miniconda3/bin/python`（conda base）\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/`\n- 本地 artifacts：`artifacts/exp002_signal_pipeline/`（4 signal + RRF）、`artifacts/exp006_baselines/`（7 baselines）、`artifacts/exp006_irt_calibration/`（Stan models）\n- Checkpoints（远程，12个）：0.5B×{d000_s42, d000_s123, d005_s42, d025_s42, d100_s42}、1.5B×{d000_s42, d000_s123, d005_s42, d100_s42}、3B×{d000_s42, d000_s123, d100_s42}\n- 活跃进程（截至 handoff）：d025_05B v3 (PID 299016, GPU 5)、debug_gsm8k_3b (PID 300254, GPU 5)、3B d100 SFT (PID 291380, GPU 0)、3B eval (PID 249294, GPU 1)、0.5B eval v5 ×2 (PIDs 266521/266790, GPU 2)、1.5B d005 SFT (PID 271921, GPU 4)、1.5B d100 SFT v2 (PID 251924, GPU 0)\n\n### 3. 📊 当前状态\n**刚完成的审查**：\n- exp_001_sft_d025_05B (v1)：CRITICAL — GPU 分配错误（跑到 GPU 0 OOM），worker 误报 done。已报 Director。\n- exp_001_sft_d025_05B (v2)：被 SIGKILL（EXIT_CODE=137，05:00:05Z），36/3384 步。ops worker 随后以 batch_size=2 重提交（PID 299016），当前正在训练。\n- exp002_signal_pipeline_status：WARNING — 代码完整但有路径兼容问题（`merged/` vs `lora_adapter/`、dosage 命名 `d0` vs `d000`）。未部署到服务器。已报 Director。\n- exp006_irt_baselines：已读代码，7 个 baseline 实现完整（dcr_fuzzy, emperor_mitigation, linear_regression, remove_rescore, vanilla_4pl, single_signal_2pl_gamma, raw_scores），有 dry-run + 5 指标评估框架。**尚未提交审查报告**（MCP 断连前未来得及发）。\n\n**Registry RUNNING**：exp_001_sft_d025_05B_v2, exp_001_sft_d100_3B, exp_004_sim_sweep, exp_005_noise_prop_v3, exp_001_sft_d005_15B, exp_001_eval_05B_d100_v5, exp_001_eval_05B_d000_s42_v5, exp_001_eval_05B_d005, exp_001_sft_d100_15B_v2, exp_001_eval_3B_d000_s42\n\n### 4. 📋 待办（条件触发式）\n- MCP 恢复 → **立即发 exp006_baselines 审查报告**（代码质量 OK，info 级，但需指出 `run_all_baselines.py` 的 real-data 加载假设 `all_y.npy` + `metadata.json` 格式尚无上游产出对接）\n- d025_05B v3 训练完成（ETA ~5h from 13:01）→ 验证 checkpoint 非空 + registry 状态更新\n- exp_001_eval 系列（v5 ×2, 3B_d000_s42, 05B_d005）完成 → 核实 eval 结果写入 + 与 registry 一致\n- exp_004_sim_sweep / exp_005_noise_prop_v3 完成 → 审查结论是否与 hypothesis 匹配\n- exp002 pipeline 部署到服务器 → 再次核实路径兼容性是否已修复\n\n### 5. 🎯 战略上下文\n- **Critical path**：exp-001 SFT → eval → exp-002 signals → exp-003 RRF → exp-006 IRT calibration。当前卡在 SFT 收尾（d025 反复失败）和 eval 并行跑。\n- **最大风险**：exp-002 pipeline 路径不兼容（`merged/` 不存在、dosage 命名错）会阻塞整条 critical path。这不是小 bug——所有下游实验都依赖 exp-002 输出。\n- **GPU 5 是事故高发区**：v1 GPU 错误、v2 被 kill、4 个重复 1.5B 进程——根因可能是多个 worker 同时抢 GPU 5。建议下一个\"你\"对 GPU 5 的任何提交都重点关注。\n- **exp-006 baselines 代码已就绪但 real-data 接口尚无上游**：`all_y.npy` + `metadata.json` 格式需要从 exp-001 eval 结果 + exp-002 signals 输出转换生成，这个 glue code 还不存在。\n- 项目 phase=research，距 DDL 未见硬约束。成功/失败比 16/8，失败大多是 OOM/SIGKILL 等 ops 问题，非方法学问题。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-copy-3.md"
+}

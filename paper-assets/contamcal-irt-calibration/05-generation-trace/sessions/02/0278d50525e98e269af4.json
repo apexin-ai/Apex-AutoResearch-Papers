@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0278d50525e98e269af4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code paper sensitivity fix",
+  "task_key": "worker_code_paper-sensitivity-fix_20260519T221357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_paper-sensitivity-fix_20260519T221357_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "23e6f50c3c7d4054288894fdc293c0bd2d5e915b42df1d90ec8e31cfe6945422"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成。汇总：\n\n**Sensitivity 更新（6 处）：**\n1. `method.tex:59` — \"5/5 families\" → \"all five families...180/180 model--seed--threshold pairs\"\n2. `results.tex:11` — \"150/150 model-combination pairs\" → \"180/180 model--seed--combination pairs\"\n3. `results.tex:27` — 添加 \"(six model--seed configurations;\"\n4. `appendix.tex:158` — \"All five families\" → \"All six model--seed configurations\"\n5. `appendix.tex:170` — Table 7 添加 Qwen-7B (s123) 行，s42 行加标注\n6. `appendix.tex:175` — \"all five families\" → \"all six model--seed configurations\"\n\n**V-recovery 修复（3 处）：**\n1. `limitations.tex:9` — \"Single seed.\" → \"Seed coverage.\"\n2. `abstract.tex:1` — \"partial rebound\" → \"partial-to-full rebound\"\n3. `limitations.tex:10` — \"Triple-seed validation...is in progress\" 保持不变（s0 未完成，描述仍准确）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-paper-sensitivity-fix.md"
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "4881044483b8eb481426",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops server diag loop14",
+  "task_key": "worker_ops_server_diag_loop14_20260516T033610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server_diag_loop14_20260516T033610_result.json",
+    "occurrence": 1,
+    "bytes": 3930,
+    "sha256": "ec722a2dbc7b1ed2cd6ce7bea3cdbd3ce602a20ff48c3321f987012a39ec730c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总如下：\n\n```json\n{\n  \"gpu_status\": {\n    \"cuda:0\": \"BUSY - eval 3B d025_v3_s42 para_aligned (PID 691033, JUST SUBMITTED)\",\n    \"cuda:1\": \"BUSY - eval 3B d000_s42 aligned (PID 676497, ~94min)\",\n    \"cuda:2\": \"BUSY - eval 3B d005_s42 aligned (PID 679190, ~82min)\",\n    \"cuda:3\": \"BUSY - eval 3B d100_a32_s42 aligned (PID 687347, ~32min)\",\n    \"cuda:4\": \"BUSY - signals 3B d100_a32_s123 mmlu s4 (PID 689315, ~13min, ⚠️ UNREGISTERED)\",\n    \"cuda:5\": \"BUSY - signals 0.5B d000_s123 mmlu (PID 687036, ~49min)\"\n  },\n  \"running_experiments_verified\": {\n    \"exp_001_eval_3B_d000_s42_a32_batch\": \"ALIVE on cuda:1, PID 676497, aligned phase\",\n    \"exp_001_eval_3B_d005_s42_a32_batch\": \"ALIVE on cuda:2, PID 679190, aligned phase\",\n    \"exp_001_eval_3B_d100_s42_a32_batch\": \"ALIVE on cuda:3, PID 687347, aligned phase\",\n    \"exp_002_signals_05B_s123_v2\": \"ALIVE on cuda:5, PID 687036, 0.5B d000_s123 mmlu\"\n  },\n  \"d025_checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter (alpha=32 ✓)\",\n  \"submitted_tasks\": [\n    \"exp_001_eval_3B_d025_s42_a32_para → cuda:0, PID 691033, tmux: exp_001_eval_3B_d025_s42_a32_para\"\n  ],\n  \"missing_3B_s123_signals\": {\n    \"d000_a32_s123\": \"ALL MISSING (checkpoint exists, alpha=32 ✓, 0/9 signals)\",\n    \"d005_s123\": \"COMPLETE (9/9 signals ✓)\",\n    \"d025_s123\": \"COMPLETE (9/9 signals ✓)\",\n    \"d100_a32_s123\": \"PARTIAL (mmlu s1✓ s2✓ s4=IN_PROGRESS on cuda:4; gsm8k 0/3; arc 0/3)\"\n  },\n  \"missing_05B_s123_signals\": \"d000 started (mmlu only, s4 in progress on cuda:5). d005/d025/d100 全部缺失.\",\n  \"missing_15B_s123_signals\": \"ALL MISSING — 无任何 signals 目录\"\n}\n```\n\n**关键发现：**\n1. **cuda:4 有未注册进程**（PID 689315, 3B d100_a32_s123 signals）。违反 C007 优先级（0.5B/1.5B s123 应优先于 d100），但已在运行中，未做干预。\n2. **d025 aligned eval 已完成**，仅缺 para_aligned → 已在 cuda:0 提交。\n3. **所有 6 GPU 现在都满载**，无空闲可分配。\n4. **1.5B s123 signals 完全为零**，是达到 N≥16 IRT 门槛的最大缺口。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "gpu_status": {
+                "cuda:0": "BUSY - eval 3B d025_v3_s42 para_aligned (PID 691033, JUST SUBMITTED)",
+                "cuda:1": "BUSY - eval 3B d000_s42 aligned (PID 676497, ~94min)",
+                "cuda:2": "BUSY - eval 3B d005_s42 aligned (PID 679190, ~82min)",
+                "cuda:3": "BUSY - eval 3B d100_a32_s42 aligned (PID 687347, ~32min)",
+                "cuda:4": "BUSY - signals 3B d100_a32_s123 mmlu s4 (PID 689315, ~13min, ⚠️ UNREGISTERED)",
+                "cuda:5": "BUSY - signals 0.5B d000_s123 mmlu (PID 687036, ~49min)"
+              },
+              "running_experiments_verified": {
+                "exp_001_eval_3B_d000_s42_a32_batch": "ALIVE on cuda:1, PID 676497, aligned phase",
+                "exp_001_eval_3B_d005_s42_a32_batch": "ALIVE on cuda:2, PID 679190, aligned phase",
+                "exp_001_eval_3B_d100_s42_a32_batch": "ALIVE on cuda:3, PID 687347, aligned phase",
+                "exp_002_signals_05B_s123_v2": "ALIVE on cuda:5, PID 687036, 0.5B d000_s123 mmlu"
+              },
+              "d025_checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter (alpha=32 ✓)",
+              "submitted_tasks": [
+                "exp_001_eval_3B_d025_s42_a32_para → cuda:0, PID 691033, tmux: exp_001_eval_3B_d025_s42_a32_para"
+              ],
+              "missing_3B_s123_signals": {
+                "d000_a32_s123": "ALL MISSING (checkpoint exists, alpha=32 ✓, 0/9 signals)",
+                "d005_s123": "COMPLETE (9/9 signals ✓)",
+                "d025_s123": "COMPLETE (9/9 signals ✓)",
+                "d100_a32_s123": "PARTIAL (mmlu s1✓ s2✓ s4=IN_PROGRESS on cuda:4; gsm8k 0/3; arc 0/3)"
+              },
+              "missing_05B_s123_signals": "d000 started (mmlu only, s4 in progress on cuda:5). d005/d025/d100 全部缺失.",
+              "missing_15B_s123_signals": "ALL MISSING — 无任何 signals 目录"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-server-diag-loop14.md"
+}

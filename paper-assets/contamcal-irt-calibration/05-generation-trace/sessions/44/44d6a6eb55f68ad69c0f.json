@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44d6a6eb55f68ad69c0f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops download instruct model",
+  "task_key": "worker_ops_download-instruct-model_20260514T080507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download-instruct-model_20260514T080507_result.json",
+    "occurrence": 1,
+    "bytes": 256,
+    "sha256": "4128d66e37cc6c0a064e71928a9ed52ba0b75a64358e3078d7f8c85b6c20f46f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载并验证完成。\n\n**结果：**\n- 模型路径：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct`（符号链接 → `Qwen2___5-0___5B-Instruct`）\n- 参数量：494.0M\n- 词表大小：151665\n- model.safetensors：943MB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-instruct-model.md"
+}

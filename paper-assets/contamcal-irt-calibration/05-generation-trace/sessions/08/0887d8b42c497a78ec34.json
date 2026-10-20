@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0887d8b42c497a78ec34",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp 001 sft 14b d100 s42",
+  "task_key": "worker_analysis_exp_001_sft_14b_d100_s42_20260519T002054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_sft_14b_d100_s42_20260519T002054_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "cce89f25a8dbcf6cb14b57740882c3e96a841d561eef33a5945158b42ec59e8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 14B d100 s42 训练结果\n\n| 项目 | 值 |\n|---|---|\n| **结论** | **SUCCESS** |\n| .done | 存在 |\n| total_steps | 4159/4159 (100%) |\n| epoch | 1.0 |\n| final_loss | ~1.000 (step 4150) |\n| final_token_accuracy | ~0.753 (step 4150) |\n| lora_alpha | 32 (符合规范) |\n| lora_r | 16 |\n| lr | 5e-5 |\n| num_samples | 66,533 |\n| batch_size | 1 × grad_accum 16 |\n| adapter 大小 | 275MB |\n\n训练正常完成，loss 在 0.94–1.06 区间波动，token accuracy 稳定在 0.75 附近，lr 已衰减至接近零。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-sft-14b-d100-s42.md"
+}

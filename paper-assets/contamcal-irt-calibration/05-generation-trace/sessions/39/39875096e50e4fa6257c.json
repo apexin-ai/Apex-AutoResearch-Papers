@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39875096e50e4fa6257c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops read irt v3 results",
+  "task_key": "worker_ops_read_irt_v3_results_20260517T003535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read_irt_v3_results_20260517T003535_result.json",
+    "occurrence": 1,
+    "bytes": 2671,
+    "sha256": "e90ca1205a615911871cc7614dbacb12764f7eb78384056ba288fa78ed219deb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果如下：\n\n---\n\n## 1. Cross-Family IRT v3 结果\n\n**Config:** 2PL+γ, scales=[0.5B, 1.5B, 3B], exposure=rrf_signal  \n**Note:** \"v3: fixed d025 Llama MMLU RRF (3/3 signals), excluded alpha16, excluded d100 MMLU, added Llama 3B MMLU\"\n\n| Benchmark | N_models | PPP | raw_MAE | cal_MAE | ΔMAE | γ mean | γ CI excl 0 |\n|-----------|----------|------|---------|---------|------|--------|-------------|\n| gsm8k | 28 | 0.832 | 0.1792 | 0.0078 | 0.1714 | -0.110 | No |\n| arc_challenge | 20 | 0.449 | 0.0698 | 0.0150 | 0.0548 | 0.002 | No |\n| mmlu | 14 | 0.457 | 0.0449 | 0.0076 | 0.0373 | 0.710 | No |\n\n**Diagnostics (all benchmarks):** all_ok=true, divergent=0, max_rhat≤1.010, min_ess≥1312\n\n**Gamma details:**\n- gsm8k: mean=-0.1099, sd=0.2029, 95%CI=[-0.521, 0.280]\n- arc_challenge: mean=0.0016, sd=0.2965, 95%CI=[-0.568, 0.595]\n- mmlu: mean=0.7095, sd=0.5575, 95%CI=[-0.378, 1.822]\n\n---\n\n## 2. Qwen-Only Baseline (N=24 for gsm8k)\n\n**Config:** 2PL+γ, scales=[0.5B, 1.5B, Qwen2.5-3B], exposure=rrf_signal\n\n| Benchmark | N_models | PPP | raw_MAE | cal_MAE | ΔMAE | γ mean | γ CI excl 0 |\n|-----------|----------|------|---------|---------|------|--------|-------------|\n| mmlu | 16 | 0.192 | 0.0155 | 0.0070 | 0.0085 | 0.655 | No |\n| arc_challenge | 16 | 0.003 | 0.0338 | 0.0201 | 0.0136 | 0.727 | **Yes** |\n| gsm8k | 24 | 0.541 | 0.1694 | 0.0062 | 0.1632 | 0.064 | No |\n\n**Diagnostics (all benchmarks):** all_ok=true, divergent=0, max_rhat≤1.008, min_ess≥1313\n\n---\n\n## 3. Cross-Family v3 RRF Respondent List (33 models)\n\n```\nLlama-3.2-3B_d000_s42\nLlama-3.2-3B_d005_s42\nLlama-3.2-3B_d025_s42\nLlama-3.2-3B_d100_s42\nQwen2.5-0.5B-Instruct\nQwen2.5-0.5B_d000_s123\nQwen2.5-0.5B_d000_s42\nQwen2.5-0.5B_d005_s123\nQwen2.5-0.5B_d005_s42\nQwen2.5-0.5B_d025_s123\nQwen2.5-0.5B_d025_s42\nQwen2.5-0.5B_d100_s123\nQwen2.5-0.5B_d100_s42\nQwen2.5-1.5B-Instruct\nQwen2.5-1.5B_d000_s123\nQwen2.5-1.5B_d000_s42\nQwen2.5-1.5B_d005_s123\nQwen2.5-1.5B_d005_s42\nQwen2.5-1.5B_d025_s123\nQwen2.5-1.5B_d025_s42\nQwen2.5-1.5B_d100_s123\nQwen2.5-1.5B_d100_s42\nQwen2.5-3B_d000_a32_s42\nQwen2.5-3B_d000_s123\nQwen2.5-3B_d000_s123_a32\nQwen2.5-3B_d000_s42_a32\nQwen2.5-3B_d005_a32_s42\nQwen2.5-3B_d005_s123\nQwen2.5-3B_d005_s42_a32\nQwen2.5-3B_d025_s123\nQwen2.5-3B_d025_v3_s42\nQwen2.5-3B_d100_a32_s123\nQwen2.5-3B_d100_a32_s42\n```\n\n---\n\n## 4. d025 RRF v2 Respondent List (7 models, 0 alpha16)\n\n```\nLlama-3.2-3B_d025_s42\nQwen2.5-0.5B_d025_s123\nQwen2.5-0.5B_d025_s42\nQwen2.5-1.5B_d025_s123\nQwen2.5-1.5B_d025_s42\nQwen2.5-3B_d025_s123\nQwen2.5-3B_d025_v3_s42\n```\n\n**Alpha16 entries: 0** (confirmed clean)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-irt-v3-results.md"
+}

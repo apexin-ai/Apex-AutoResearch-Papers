@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c26b66ce1fee0e79a40",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "signals 3B d005 a32 s42",
+  "task_key": "worker_signals_3B_d005_a32_s42_20260516T064923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_signals_3B_d005_a32_s42_20260516T064923_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "82e26677a9db62550c95f8d4b32679311c6186ef4bb1c86a19d619604034c549"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并注册完成。\n\n**状态汇总：**\n- **exp_id**: `exp_002_signals_3B_d005_a32_s42` → RUNNING\n- **PID**: 719534 on cuda:2 (cqa1-21977)\n- **当前进度**: s1_embedding/mmlu encoding ~18% (1114/6354 batches, ~47 it/s)\n- **lora_alpha**: 32 ✅\n- **输出目录**: `/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_a32_s42`\n- **日志**: `/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_a32_s42/run.log`\n- **流程**: mmlu → gsm8k → arc_challenge，每个跑 s1/s2/s3/s4 四个 signals"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/signals-3b-d005-a32-s42.md"
+}

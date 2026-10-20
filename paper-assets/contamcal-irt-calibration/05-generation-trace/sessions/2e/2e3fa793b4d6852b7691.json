@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e3fa793b4d6852b7691",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops volctrl log check",
+  "task_key": "worker_ops_volctrl-log-check_20260523T060411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_volctrl-log-check_20260523T060411_result.json",
+    "occurrence": 1,
+    "bytes": 479,
+    "sha256": "e42a1122be2fabe1244645be8f8a87232bfdbee0f1408a5ea383eb21a4ac92ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`sft_falcon3_7b_volume_control` 训练成功完成。\n\n**结果摘要：**\n- **状态**: DONE / success\n- **总步数**: 4159/4159 (1 epoch)\n- **最终 loss**: ~1.31, token accuracy: ~0.716\n- **Checkpoint**: `/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/lora_adapter/`\n- **配置**: Falcon3-7B-Base, lora_alpha=32, r=16, lr=5e-5, 66533 samples\n\nRegistry 已更新为 DONE/success。Cron job 不在当前 session 中，无需删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-volctrl-log-check.md"
+}

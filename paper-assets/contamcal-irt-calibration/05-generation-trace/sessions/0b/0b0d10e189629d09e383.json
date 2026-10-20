@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b0d10e189629d09e383",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix exp 002 selfcritique maxtoken",
+  "task_key": "worker_fix_exp-002-selfcritique-maxtoken_20260514T124802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp-002-selfcritique-maxtoken_20260514T124802_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "8bf54179e398970233a014180c5c3311db2fa0a4e77dd7b02eabd72e9c8ec793"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。exp-002 进程正常运行中（`run_batch.py` PID 353388，当前子进程 `compute_signals.py` PID 368115 在 GPU 0 上处理 gsm8k）。\n\n**修改汇总** — `signal_selfcritique.py` 三处 `256→64`：\n- **第 88 行**: `batch_generate_answers` 函数默认参数 `max_new_tokens=64`\n- **第 180 行**: `compute_selfcritique_signal` 函数默认参数 `max_answer_tokens=64`\n- **第 241 行**: CLI `--max-answer-tokens` 默认值 `default=64`\n\n当前 `compute_signals.py` 子进程正在跑 gsm8k 的 selfcritique，这个进程还用旧值 256。下一个 task 启动的子进程将自动使用新的 64。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-002-selfcritique-maxtoken.md"
+}

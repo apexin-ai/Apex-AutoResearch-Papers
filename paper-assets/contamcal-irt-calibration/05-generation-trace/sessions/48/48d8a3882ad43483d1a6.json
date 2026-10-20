@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48d8a3882ad43483d1a6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops kill debug processes",
+  "task_key": "worker_ops_kill-debug-processes_20260515T143306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-debug-processes_20260515T143306_result.json",
+    "occurrence": 1,
+    "bytes": 226,
+    "sha256": "18b9511223fad8c684d6d2ad193655c26fba091840c1771456bc32183a3a7627"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。PID 572390 和 572984 已不在任何 GPU 上。当前 GPU 占用进程为 566224、566311、555936、556016（正常实验进程）和 574067（分布在多张卡上）。调试进程已全部清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-debug-processes.md"
+}

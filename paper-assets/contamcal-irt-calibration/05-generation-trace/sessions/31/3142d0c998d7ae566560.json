@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3142d0c998d7ae566560",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research paper method prep",
+  "task_key": "worker_research_paper-method-prep_20260516T165433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-method-prep_20260516T165433_result.json",
+    "occurrence": 1,
+    "bytes": 875,
+    "sha256": "50e1dc44a7e2c14f267f17e0ab645d682387942c0a1b328ddf68478a5b106a90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出文件：`artifacts/method_notes.md`（已注册 art_20260516_5f1b66）。\n\n覆盖内容：\n- §3.1 Problem Formulation（3 structural adaptations、notation、6 citations）\n- §3.2 Stage 1 Multi-Signal Exposure Mapping（S1-S4 定义、RRF 公式、meta-circularity argument）\n- §3.3 Stage 2 Contamination-Augmented IRT（2PL+γ / 4PL+γ 公式、model selection rule C008、per-benchmark γ_k identification、gating criterion）\n- §3.4 Fisher Information and Identifiability（I(γ) 骨架、CI width ∝ N^{-0.48}、domain-method mismatch）\n- 补充模块：domain heterogeneity formalization（Simpson's paradox）、cross-family validation protocol（Llama）、RRF detail、evaluation protocol（6 metrics）\n\n每个 subsection 标注了对应实验 ID 和需要引用的文献（不确定的标注了 [CITE NEEDED]）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-method-prep.md"
+}

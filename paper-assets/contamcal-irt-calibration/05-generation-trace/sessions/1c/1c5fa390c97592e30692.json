@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c5fa390c97592e30692",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh verify paraphrase processes",
+  "task_key": "worker_ssh_verify-paraphrase-processes_20260513T192928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-paraphrase-processes_20260513T192928_result.json",
+    "occurrence": 1,
+    "bytes": 1380,
+    "sha256": "bd9a71480bd0f215f34d665c503bb97680db2aeea9b425a435bb7a5fbb519586"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认完毕。\n\n```\n进程状态：\n- GPU 0 MMLU: ALIVE  PID=204758 (VLLM::EngineCore), 启动 03:15:27, 运行约 15 分钟\n                      父进程 200967 已退出（正常，vLLM fork 后父进程退出）\n- GPU 1 GSM8K: ALIVE  PID=189375 (python3), State=R (running), 启动 02:49:23, 运行约 41 分钟\n- GPU 2 ARC:   ALIVE  PID=190717 (python3), State=R (running), 启动 02:50:43, 运行约 40 分钟\n\nHook 影响: 无破坏性操作。未发现任何 cleanup/restart/recover 进程。\n\n输出目录: /root/autodl-tmp/exp001/paraphrases/\n  - humaneval_paraphrases.json — 500KB, 已完成（03:10 写入）\n  - mmlu/gsm8k/arc 尚未写出文件（进程仍在生成中）\n\n日志 (phase1_paraphrase_v2.log):\n  - MMLU vLLM 生成进度: 15/439 batches (3%), 预计剩余约 1 小时\n\nGPU 状态:\nGPU 0: 100% util, 22541/24564 MiB → VLLM::EngineCore (PID 204758)\nGPU 1:  96% util, 15133/24564 MiB → python3 (PID 189375)\nGPU 2:  95% util, 15201/24564 MiB → python3 (PID 190717)\nGPU 3:   0% util,     0 MiB → idle\nGPU 4:   0% util,     0 MiB → idle\nGPU 5:   0% util,     0 MiB → idle\n```\n\n**结论：3 个进程全部安全运行，on_failed hook 未造成任何破坏。** 注意实际输出路径是 `/root/autodl-tmp/exp001/paraphrases/`（命令行 `--output-dir` 指定），不是 `artifacts/` 下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-paraphrase-processes.md"
+}

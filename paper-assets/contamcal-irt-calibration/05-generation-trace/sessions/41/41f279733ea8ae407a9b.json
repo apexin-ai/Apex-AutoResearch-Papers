@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41f279733ea8ae407a9b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag olmo2 s123 mmlu check4",
+  "task_key": "worker_diag_olmo2-s123-mmlu-check4_20260520T123200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_olmo2-s123-mmlu-check4_20260520T123200_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "ae2006705e1bb4c972df05902a421e14a52dbbbb209faece3d2123e93ef72d0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**OLMo-2 s123 MMLU 结果（5/5 完成）：**\n\n| Dosage | Accuracy |\n|--------|----------|\n| d000 | 55.66% |\n| d005 | 56.14% |\n| d025 | 54.97% |\n| d050 | 55.92% |\n| d100 | 55.11% |\n| **Δ(d100-d000)** | **-0.55pp** |\n\n模式：flat/noisy，无明显 contamination benefit，与 OLMo-2 s42 一致。Registry 已更新为 success。\n\n**Gemma-2 s123 MMLU eval 已提交：**\n- 服务器 westd-29999, cuda:2, tmux session `eval_gemma2_s123_mmlu`\n- PID 343616, 正在加载 d000_s123 模型\n- 预计 ~50min 完成 5 个 dosage"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-olmo2-s123-mmlu-check4.md"
+}

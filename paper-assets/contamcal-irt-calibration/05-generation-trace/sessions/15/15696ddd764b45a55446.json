@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15696ddd764b45a55446",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix n16 naming rerun",
+  "task_key": "worker_fix_n16_naming_rerun_20260516T170011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_n16_naming_rerun_20260516T170011_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "b971960e1e30824a889053a97bcc02cce7e16af44332f21e81c54b64088e2456"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n**修复**：在 `run_pooled_rrf_irt.py` 中添加 `normalize_model_key()` + `resolve_rrf_key()`，解决 3 个命名不匹配：\n1. `_s42_a32` vs `_a32_s42` 重排序（2 个）\n2. `_s123` 缺 `_a32` 后缀回退（1 个）\n\n**结果**（N=16 mmlu/arc, N=24 gsm8k）：\n\n| Bench | Model | calMAE | ΔMAE | γ̂ | PPP |\n|---|---|---|---|---|---|\n| mmlu | vanilla_2pl | **0.0068** | +0.0087 | — | 0.349 |\n| mmlu | 2pl_gamma | 0.0072 | +0.0083 | 0.70 (n.s.) | 0.193 |\n| arc | vanilla_2pl | **0.0158** | +0.0180 | — | 0.035 |\n| arc | 2pl_gamma | 0.0201 | +0.0136 | 0.73 (sig) | 0.003 |\n| gsm8k | vanilla_2pl | 0.0063 | +0.1631 | — | 0.691 |\n| gsm8k | 2pl_gamma | **0.0062** | +0.1632 | 0.06 (n.s.) | 0.541 |\n\n所有收敛诊断正常（Rhat<1.01, ESS>1300, 0 divergences）。vanilla_2pl 在 mmlu/arc 上 calMAE 略优；gsm8k 两者等价。γ 仅在 arc 上显著。ARC 的 PPP 过低值得关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-n16-naming-rerun.md"
+}

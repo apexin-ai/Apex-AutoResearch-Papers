@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38823903960b28179a1e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops eval speedup and 14b retry",
+  "task_key": "worker_ops_eval-speedup-and-14b-retry_20260518T115631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-speedup-and-14b-retry_20260518T115631_result.json",
+    "occurrence": 1,
+    "bytes": 2137,
+    "sha256": "a583cecb8c181ce5a5ca33bbcaad0977808822f723e1880ab3bcc6945b8cb641"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 任务 1: evaluate.py 加速分析\n\n完整代码 763 行，核心结构如下：\n\n### 关键发现\n\n| 维度 | 现状 |\n|------|------|\n| **batch_size** | `--batch-size` 参数存在（默认 8），但**完全未被使用** |\n| **数据迭代** | 所有 4 个 benchmark 都是 `for row in tqdm(ds)` 逐条推理，无 DataLoader |\n| **vLLM** | 无，使用原生 `transformers` 的 `model.generate()` |\n| **max_new_tokens** | MCQ: 5 (generation mode) / GSM8K: 512 / HumanEval: 512 |\n\n### 逐 benchmark 详情\n\n**MMLU/ARC (MCQ)** — 两种模式：\n- **Logprob mode**（默认，非 instruct）: `compute_choice_logprobs()` 逐条做前向传播，取最后 token logits 比较选项概率。**这个最容易 batch 化**，一次前向传播可处理多个 prompt\n- **Generation mode**（instruct）: 逐条 `model.generate(max_new_tokens=5)`\n\n**GSM8K** — 逐条 `model.generate(max_new_tokens=512, do_sample=False)`，8-shot CoT\n\n**HumanEval** — 逐条 `model.generate(max_new_tokens=512)`，然后 subprocess 执行代码验证\n\n### 加速方案（按 ROI 排序）\n\n1. **vLLM offline batched inference** — 最大收益。MMLU 14K items 从小时级降到分钟级。替换 HF generate 为 vLLM `LLM.generate()`，一次性 batch 全部 prompt。需要改造 LoRA adapter 加载方式（vLLM 原生支持）\n2. **Batch logprob scoring**（MCQ non-generation）— `compute_choice_logprobs()` 目前逐条前向传播，可以 pad+batch 多个 prompt 一次推理\n3. **Batch generation**（GSM8K/HumanEval）— `tokenizer(prompts, padding=True)` + batch `model.generate()`，受限于 max_new_tokens=512 的长度方差\n\n---\n\n## 任务 2: 14B 下载重启状态\n\n| 项目 | 状态 |\n|------|------|\n| 旧进程 PID 5066 | **已 kill** |\n| 新进程 PID | 25989 (bash) / 25990 (python) |\n| 当前大小 | **29G** |\n| 进度 | Fetching 18 files: 0%（刚启动，正在恢复已下载的 shard） |\n| 日志 | `/root/autodl-tmp/logs/dl_14b_retry.log` |\n\n同时在下载的其他模型：\n- gemma-2-9b (PID 6380)\n- OLMo-2-1124-7B (PID 19571)\n- phi-4 (PID 19608)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-speedup-and-14b-retry.md"
+}

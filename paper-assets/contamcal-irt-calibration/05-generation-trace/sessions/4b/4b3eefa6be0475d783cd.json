@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b3eefa6be0475d783cd",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix llama eval cuda4 restart",
+  "task_key": "worker_fix_llama_eval_cuda4_restart_20260516T143343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_llama_eval_cuda4_restart_20260516T143343_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "29652a126b45f8b5948b29ed4518b58c57b4873babec86ff7025651ab9fae8a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出报告：\n\n### 1. Kill + GPU 释放\n- PID 785955/785949 已 kill，cuda:4 确认释放\n\n### 2. 脚本修改\n- `evaluate.py` 新增 per-benchmark 即时保存（lines 718-721）：每完成一个 benchmark 立即写 `{benchmark}_results.json` 到输出目录，不再依赖全部完成才写文件\n- 原文件备份为 `evaluate.py.bak2`\n\n### 3. GSM8K 速度诊断\n- **CoT 模式正常慢。** 8-shot CoT + `max_new_tokens=512` + `do_sample=False`（greedy），生成式评测。11s/item 是 3B 模型在 4090D 上做 CoT 推理的正常速度。无配置问题。\n\n### 4. 新实验\n- **PID**: 796488（子进程 796493），cuda:4 占用 7580 MiB\n- MMLU 以 ~40 it/s 评测中，network_turbo 已启用解决 HF 连接问题\n- Registry 已更新\n\n### 5. 预计完成时间\n| Benchmark | Items | Speed | ETA |\n|-----------|-------|-------|-----|\n| MMLU | 14042 | ~40 it/s | ~6 min（进行中） |\n| GSM8K | 1319 | ~0.09 it/s (CoT) | ~4h |\n| ARC-Challenge | ~1172 | ~40 it/s | ~30s |\n| HumanEval | 164 | ~2 it/s | ~1.5 min |\n\n**总计约 4.5 小时**，GSM8K 是瓶颈。预计约 03:10 (UTC+8) 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-llama-eval-cuda4-restart.md"
+}

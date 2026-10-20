@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b0566438c96cc82de74",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 gsm8k eval fix",
+  "task_key": "worker_ops_falcon3-gsm8k-eval-fix_20260522T183023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-gsm8k-eval-fix_20260522T183023_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "5e49ff3d45999f43d4acaed0497043894e6f17acd5585854d51f06ac7b761cdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is running successfully:\n- GPU 0: PID 720817, 18480MiB used, 91% utilization\n- Passed md5 check, loaded model and GSM8K dataset, now evaluating (0/165 batches)\n- `bitsandbytes` warning is non-fatal (same as previous successful eval)\n\nSummary:\n- **Root cause**: Two issues — (1) stale md5 hash `001a9bc2...` in submission vs actual `17673bf3...`; (2) Falcon3 tokenizer returns `token_type_ids` which `model.generate()` rejects\n- **Fix**: Updated md5 in submission command + added `token_type_ids` stripping in `load_model_and_tokenizer()` (line 101-102)\n- **Registry**: `eval_falcon3_d100_gsm8k_s42` → DONE/failed; `eval_falcon3_d100_gsm8k_s42_v2` → RUNNING on cuda:0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-gsm8k-eval-fix.md"
+}

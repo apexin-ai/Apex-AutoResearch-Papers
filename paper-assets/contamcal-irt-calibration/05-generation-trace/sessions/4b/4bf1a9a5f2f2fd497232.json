@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bf1a9a5f2f2fd497232",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis falcon3 bootstrap ci",
+  "task_key": "worker_analysis_falcon3-bootstrap-ci_20260522T144958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_falcon3-bootstrap-ci_20260522T144958_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "1ef56e62d44a69af75e3a5db575644886557779c66015d02b00d577fa3b15e32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**MMLU**: Δ = +4.19pp, 95% BCa CI [+3.60, +4.79], Pattern = Benefit (96.1% stable)\n\n**ARC**: Δ = +4.01pp, 95% BCa CI [+2.22, +5.72], Pattern = Benefit-sat (61.3% stable)\n\n关键观察：\n- MMLU 的 CI 窄且远离零（CI 下界 +3.60），effect 高度显著，96.1% bootstrap 样本一致分类为 Benefit\n- ARC 的 CI 较宽（N=1172 vs 14042），但 CI 下界仍 >0。Pattern stability 较低（61.3%），因为 Benefit 和 Benefit-sat 之间的分界在 bootstrap 中波动（38.7% 被分类为 Benefit 而非 Benefit-sat）\n- 两个 benchmark 的 point estimate 都与预期值完全吻合\n\n结果已保存至 `falcon3_bootstrap_ci.md` 并注册为 artifact，JSON 结果保存在 westd 的 `/root/contamcal-irt-calibration/artifacts/falcon3_bootstrap_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-falcon3-bootstrap-ci.md"
+}

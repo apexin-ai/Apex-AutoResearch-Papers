@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0099c667fcbb6db172e0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit 15B instruct mmlu cuda0",
+  "task_key": "worker_ops_submit_15B_instruct_mmlu_cuda0_20260516T211836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_15B_instruct_mmlu_cuda0_20260516T211836_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "402c968dedf517d8d2bb9d7f30a848c9b56bdb3ccdb98e3dabeac08e7af8a129"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **exp_002_signals_15B_instruct_mmlu_v2** 已在 cuda:0 上启动（PID 870969）\n- 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct`\n- 使用 `HF_DATASETS_OFFLINE=1` 绕过 HuggingFace 网络超时，从本地缓存加载 MMLU（14042 items）\n- tmux session：`exp002_15B_instruct_mmlu_v2`\n- 当前状态：S1 embedding 编码中（sentence-transformers），进度 ~5%\n- Registry 已更新为 RUNNING\n\n与 v1 的区别：使用 cuda:0（非 cuda:4）、batch-size 4、离线模式、显式指定完整模型路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-15b-instruct-mmlu-cuda0.md"
+}

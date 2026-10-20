@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "260da45de3b9225fed78",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "fix domain gamma other",
+  "task_key": "worker_fix_domain_gamma_other_20260516T175755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_domain_gamma_other_20260516T175755_result.json",
+    "occurrence": 1,
+    "bytes": 303,
+    "sha256": "de41691fa954629c54bdf3e511a9a92b0157191b9ad988a582ac194c9868ad00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度：PID 827068 在跑 4 个缺失域（Humanities, Social_Sciences, Business_Law, Other），预计 ~40 分钟完成。实际 N=21（不是 24），两个 RRF 路径都一样——是命名 bug 导致 3B d000 和 d005_a32 无法匹配 eval 目录。4.5 分钟后检查第一个域。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-domain-gamma-other.md"
+}

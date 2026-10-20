@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ca029c563ecf6fffc1a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops registry sync llama 20260517",
+  "task_key": "worker_ops_registry_sync_llama_20260517_20260517T030309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_sync_llama_20260517_20260517T030309_result.json",
+    "occurrence": 1,
+    "bytes": 999,
+    "sha256": "0fbc80f60b629992c1ff98193eee8046a13639b9a27c064d33e3ec0ba1c67729"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个实验全部更新完成。汇总：\n\n| 实验 ID | 原状态 | 新状态 | 服务器验证 |\n|---------|--------|--------|-----------|\n| `exp_002_signals_llama32_3B_d000_mmlu` | PREPARING/success | DONE/success | `signals_merged_mmlu.json` 2.5MB ✓ |\n| `exp_002_signals_llama32_3B_d000_arc_gsm8k` | PREPARING/success | DONE/success | `signals_merged_arc_challenge.json` 235KB + `signals_merged_gsm8k.json` 243KB ✓ |\n| `exp_002_signals_llama32_3B_d100_gsm8k` | PREPARING/无conclusion | DONE/success | `signals_merged_gsm8k.json` 243KB ✓ |\n| `exp_002_signals_llama32_3B_d100_arc` | PREPARING/无conclusion | DONE/success | `signals_merged_arc_challenge.json` 234KB ✓ |\n| `exp_002_signals_llama32_3B_d100_mmlu` | DONE/killed | DONE/success | `signals_merged_mmlu.json` 2.5MB ✓ (有 degenerate 标记) |\n\n注意：d100 MMLU 目录有 `MMLU_DEGENERATE_REFERENCE_ONLY.txt` 标记文件，说明 d100 模型在 MMLU 上退化（全选 A），signals 仅供参考。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-sync-llama-20260517.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "293040502b57a7e80b80",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code new model configs",
+  "task_key": "worker_code_new-model-configs_20260518T083612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_new-model-configs_20260518T083612_result.json",
+    "occurrence": 1,
+    "bytes": 1201,
+    "sha256": "93ae0e52076a8712dd4331c86968fd078d9f3dff87bac46576888cbb76349360"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出总结\n\n### 代码修改 (`exp001/train_sft.py`)\n1. **L21**: 添加 `AutoConfig` import\n2. **L74-79**: 新增 `CHATML_TEMPLATE`（ChatML 格式），用于无 chat_template 的 base 模型（OLMo-2 等）\n3. **L81-83**: 新增 `MODEL_TARGET_MODULES` 映射，Phi3 架构使用 `qkv_proj, o_proj, gate_up_proj, down_proj`\n4. **L159**: chat_template fallback 从 `raise ValueError` 改为自动注入 ChatML 模板\n5. **L185-187**: LoRA `target_modules` 改为按 `model_type` 自动选择，未知架构回退到默认 7 模块\n\n### 配置脚本\n- `exp001/configs/run_phi4_example.sh` — bs=1, grad_accum=16（~55GB VRAM）\n- `exp001/configs/run_olmo2_7b_example.sh` — bs=2, grad_accum=8（~25GB VRAM）\n\n### 兼容性\n| 模型 | LoRA target_modules | chat_template | 状态 |\n|------|-------------------|---------------|------|\n| Phi-4 (phi3) | `qkv_proj, o_proj, gate_up_proj, down_proj` | 内置（ChatML 变体） | 就绪 |\n| OLMo-2-7B (olmo2) | 默认 7 模块（完全匹配） | 自动注入 ChatML | 就绪 |\n\n### 待办\n- 两个模型的权重文件未完全下载（phi-4 缺 safetensors 分片，OLMo-2 仅有 1/6），训练前需补全下载"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-new-model-configs.md"
+}

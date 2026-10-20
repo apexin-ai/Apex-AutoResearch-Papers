@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "0afada786bbf42e738c5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 001 eval 05B d100",
+  "task_key": "worker_diagnose_exp_001_eval_05B_d100_20260514T022332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_eval_05B_d100_20260514T022332_result.json",
+    "occurrence": 1,
+    "bytes": 3148,
+    "sha256": "7480bd86b4d6aa9878f83f6f5c29909be0e5fc25572c1ddea871ef2fdf6bd1eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。综合所有证据：\n\n**时间线**：\n- 09:33 启动，模型加载正常（bitsandbytes 警告非致命）\n- MMLU 完成（14042 items，~5 min @ 50 it/s）\n- ~09:38 开始 GSM8K，遇到大量 HuggingFace 连接超时（但重试后恢复）\n- GSM8K 以 ~5.4s/it 稳定推进\n- 10:12 UTC（10:12 CST）在 GSM8K 36%（474/1319）处被外部 SIGTERM\n- 结果目录为空——evaluate.py 仅在全部完成后写文件，无增量保存\n\n**SIGTERM 来源**：\n- 无 OOM（dmesg 空）、无 Python 异常\n- tmux session 已不存在，`remain-on-exit off`\n- `/tmp/agent-ml-exit/exp_001_eval_05B_d100.exit` 记录了 `143|2026-05-14T02:12:14Z`\n- agent-ml pipeline 框架发出的 kill\n\n```json\n{\"root_cause\":\"agent-ml pipeline orchestrator killed tmux session (exit 143/SIGTERM at GSM8K 474/1319, 36%). No OOM, no Python error. /tmp/agent-ml-exit/exp_001_eval_05B_d100.exit confirms pipeline-level termination. HF connection timeouts during GSM8K dataset load were transient and recovered.\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"重新提交 eval job，使用相同参数: python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42 --benchmarks mmlu gsm8k arc_challenge humaneval\",\"GSM8K 全量 1319 题 @ 5.4s/it 需约 2h，加上 arc_challenge + humaneval 预计总计 2.5-3h，确保 pipeline timeout 设置足够长\",\"可选：给 evaluate.py 加 benchmark 级别的增量保存，避免前序 benchmark 结果因后续中断丢失\"],\"can_auto_fix\":true,\"partial_results\":\"MMLU 已完成评估（14042 items）但结果未落盘（evaluate.py 仅在全部 benchmark 完成后写 eval_results.json）。GSM8K 完成 36%。arc_challenge 和 humaneval 未开始。\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "agent-ml pipeline orchestrator killed tmux session (exit 143/SIGTERM at GSM8K 474/1319, 36%). No OOM, no Python error. /tmp/agent-ml-exit/exp_001_eval_05B_d100.exit confirms pipeline-level termination. HF connection timeouts during GSM8K dataset load were transient and recovered.",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "重新提交 eval job，使用相同参数: python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42 --benchmarks mmlu gsm8k arc_challenge humaneval",
+                "GSM8K 全量 1319 题 @ 5.4s/it 需约 2h，加上 arc_challenge + humaneval 预计总计 2.5-3h，确保 pipeline timeout 设置足够长",
+                "可选：给 evaluate.py 加 benchmark 级别的增量保存，避免前序 benchmark 结果因后续中断丢失"
+              ],
+              "can_auto_fix": true,
+              "partial_results": "MMLU 已完成评估（14042 items）但结果未落盘（evaluate.py 仅在全部 benchmark 完成后写 eval_results.json）。GSM8K 完成 36%。arc_challenge 和 humaneval 未开始。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-eval-05b-d100.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b42942492bce606a1f3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis eval olmo2 s0 mmlu",
+  "task_key": "worker_analysis_eval_olmo2_s0_mmlu_20260520T111827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_olmo2_s0_mmlu_20260520T111827_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "37e7818246e82f4d0a515b6b24e7f73f72d1df032654f012f449b9660e6c6e85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n**OLMo-2-7B seed=0 MMLU 5-shot results:**\n\n| Dosage | Accuracy | Δ vs baseline |\n|--------|----------|---------------|\n| d000 | 55.34% | — |\n| d005 | 56.62% | +1.28pp |\n| d025 | 56.52% | +1.18pp |\n| d050 | 56.27% | +0.93pp |\n| d100 | 56.72% | +1.38pp |\n\n**Cross-seed comparison (d100 Δacc):**\n- s42: +3.21pp (baseline 53.79%)\n- s0: +1.38pp (baseline 55.34%)\n\ns0 shows a weaker contamination effect than s42 (+1.38 vs +3.21pp), and the dose-response curve is notably flat — d005 already captures ~93% of the maximum gain. s0 also has a higher baseline (55.34 vs 53.79%), which could partially explain the smaller marginal benefit from contamination (ceiling compression)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-olmo2-s0-mmlu.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a08f6e98bd2d0a2c527",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops server health check",
+  "task_key": "worker_ops_server-health-check_20260514T030526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server-health-check_20260514T030526_result.json",
+    "occurrence": 1,
+    "bytes": 2291,
+    "sha256": "b7f8f521c7f87fe833a475a4a12bd73006350b36b26747e3ab1b0607d8c6e918"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n\n| GPU | 显存 | 利用率 | PID | 实验 | 当前进度 |\n|-----|------|--------|-----|------|----------|\n| 0 | 10055/24564 MiB | 23% | 251924 | 1.5B d100 SFT | step 2028/4159 (49%) |\n| 1 | 12620/24564 MiB | 100% | 249294 | 3B d000 s42 eval | GSM8K 909/1319 (69%) |\n| 1 | ↑共享 | ↑ | 255322 | 0.5B d005 eval | GSM8K 240/1319 (18%) |\n| 2 | 7330/24564 MiB | 99% | 266511 | 0.5B d000 s42 eval | GSM8K 240/1319 (18%) |\n| 2 | ↑共享 | ↑ | 266780 | 0.5B d100 eval | GSM8K 240/1319 (18%) |\n| 3 | 8957/24564 MiB | 62% | 242581 | 3B d000 s123 eval | HumanEval 146/164 (89%) |\n| 4 | 10365/24564 MiB | 48% | 243290 | 1.5B d000 s42 eval | GSM8K 1185/1319 (90%) |\n| 5 | 5829/24564 MiB | 45% | 250600 | 1.5B d000 s123 eval | GSM8K 726/1319 (55%) |\n\n**全部 8 个 GPU 进程存活。**\n\n## SFT 进度\n\n| 实验 | 当前step/总step | loss | speed | ETA |\n|------|----------------|------|-------|-----|\n| 1.5B d100 s42 (GPU 0) | 2028/4159 (49%) | ~1.29 | 3.8s/it | ~2h15m |\n\n## Eval 完成情况\n\n| 实验 | MMLU | GSM8K | ARC | HumanEval | 预估剩余 |\n|------|------|-------|-----|-----------|----------|\n| 3B d000 s42 (GPU 1) | ✅ | 69% | - | - | ~1.5h |\n| 3B d000 s123 (GPU 3) | ✅ | ✅ | ✅ | 89% | **~2min** |\n| 1.5B d000 s42 (GPU 4) | ✅ | 90% | - | - | ~40min |\n| 1.5B d000 s123 (GPU 5) | ✅ | 55% | - | - | ~1.5h |\n| 0.5B d005 (GPU 1) | ✅ | 18% | - | - | ~2.5h |\n| 0.5B d000 s42 (GPU 2) | ✅ | 18% | - | - | ~2.5h |\n| 0.5B d100 (GPU 2) | ✅ | 18% | - | - | ~2.5h |\n\nBenchmark 执行顺序: MMLU → GSM8K → ARC → HumanEval。GPU 1、2 各跑 2 个 eval，存在资源争抢，速度偏慢。\n\n## CPU 进程\n\n| 实验 | 状态 | 说明 |\n|------|------|------|\n| exp_004_sim_sweep (PID 219346) | **DEAD** | 进程不存在，`/root/contamcal-irt-calibration/exp004/` 目录也不存在 |\n\n## 磁盘\n\n| 分区 | 已用/总量 | 使用率 |\n|------|----------|--------|\n| 根分区 (/) | 17G/30G | 55% |\n| 数据盘 (/root/autodl-tmp) | 104G/169G | 62% |\n| - checkpoints | 2.3G | |\n| - eval_results | 3.0M | |\n| - hf_cache | 56G | |\n\n**3B s123 eval 即将完成（~2min）；1.5B s42 eval 约 40min 后完成。其余 eval 和 SFT 还需 1.5-2.5h。exp004 进程已死，目录不存在。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-server-health-check.md"
+}

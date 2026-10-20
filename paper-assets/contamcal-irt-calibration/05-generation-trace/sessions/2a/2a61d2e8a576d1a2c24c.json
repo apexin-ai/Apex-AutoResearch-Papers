@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a61d2e8a576d1a2c24c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu2 aligned eval submit",
+  "task_key": "worker_ops_gpu2-aligned-eval-submit_20260514T081010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu2-aligned-eval-submit_20260514T081010_result.json",
+    "occurrence": 1,
+    "bytes": 61,
+    "sha256": "b2cd4e9d889c458a019c00aeca067864ab6bdef2cf86e6aedddb9e0b6c82683b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 324158 仍在运行，2 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu2-aligned-eval-submit.md"
+}

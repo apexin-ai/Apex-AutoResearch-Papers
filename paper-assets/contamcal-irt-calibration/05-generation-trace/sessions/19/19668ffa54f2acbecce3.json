@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19668ffa54f2acbecce3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code compute ground truth cross scale",
+  "task_key": "worker_code_compute_ground_truth_cross_scale_20260514T205354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_compute_ground_truth_cross_scale_20260514T205354_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "ea5a7439063fdd71860b30933312dd74df3a4d3bc7018c6f84cf72868a8ae892"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，所有测试通过。\n\n**改动摘要：**\n- `compute_ground_truth(responses, dosages, models=None)` — 新增可选 `models` 参数\n- 当存在多 scale（`models` 中有 ≥2 个不同 scale）时，每个 d>0 模型的 counterfactual 取同 scale d0 均值；某 scale 无 d0 时 fallback 全局均值 + WARNING\n- 单 scale 或无 `models` 参数时行为与原来完全一致（测试已验证）\n- 调用处 L425 传入 `models=models_bench`\n\n测试数据证实了 bug 影响：0.5B 旧值高估 ~15pp，3B 低估 ~15pp，修复后各 scale 使用自己的 d0 基线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-compute-ground-truth-cross-scale.md"
+}

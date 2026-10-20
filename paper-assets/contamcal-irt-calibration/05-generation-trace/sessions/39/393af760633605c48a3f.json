@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "393af760633605c48a3f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "research literature map",
+  "task_key": "worker_research_literature-map_20260516T041853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-map_20260516T041853_result.json",
+    "occurrence": 1,
+    "bytes": 818,
+    "sha256": "e25ca36a0ace9243ba99d6da1c9ce60c538bcc6d0303556c7a90d5884f6259c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`literature_map.yaml` 已创建，包含 25 篇论文，覆盖 6 个类别。\n\n关键发现：\n- **paper_framing.md 中 4 处引用信息有误**，已在 YAML 末尾注释中标注：\n  - \"Lalor et al., AAAI 2024\" → 实际是 EACL 2024 Tutorial\n  - \"ATLAS (Baffour et al., 2024)\" → 实际作者是 Li et al.（arxiv 2511.04689）\n  - \"PSN-IRT (Yao et al., 2024)\" → 实际是 Zhou et al., AAAI 2026（arxiv 2505.15055）\n  - \"DCR (Dekoninck et al., EMNLP 2025)\" → 实际 DCR 作者是 Xu et al.（Dekoninck 是 ConStat 作者）\n\n- **Eckerly 2017** 是 Routledge 书籍章节，无直接 arxiv URL，标记 `verified: false`\n\n分布：detection 8篇、irt-llm 7篇、item-compromise 3篇、calibration 4篇、mitigation 2篇、benchmark 2篇。所有 arxiv URL 均已验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-map.md"
+}

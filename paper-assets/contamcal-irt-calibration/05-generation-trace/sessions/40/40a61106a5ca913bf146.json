@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40a61106a5ca913bf146",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag qwen7b s0 arc wait and collect",
+  "task_key": "worker_diag_qwen7b-s0-arc-wait-and-collect_20260521T000431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_qwen7b-s0-arc-wait-and-collect_20260521T000431_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "6eeb220a45f888fb91819b60e21e8f130ee2e85de81d6f3c8f476f2fd65b283a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。汇总：\n\n**Qwen-7B s0 Eval Results (MMLU + ARC)**\n\n| Dosage | MMLU | ARC |\n|--------|------|-----|\n| d000 | 66.32% | 87.20% |\n| d005 | 64.68% | 85.32% |\n| d025 | 65.67% | 84.47% |\n| d050 | 65.78% | 85.58% |\n| d100 | 65.29% | 85.32% |\n| **Δ(d000→d100)** | **-1.03pp** | **-1.88pp** |\n\n两个 benchmark 都呈现 contamination 训练后性能下降趋势。ARC 下降幅度（-1.88pp）大于 MMLU（-1.03pp）。中间 dosage 呈 V 型回升（d025→d050），与 MMLU 趋势一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-qwen7b-s0-arc-wait-and-collect.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a5b50135ff3bc574eb4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit next eval gpu4",
+  "task_key": "worker_ops_submit-next-eval-gpu4_20260515T101212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-next-eval-gpu4_20260515T101212_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "1d91a6f8d56c257325673e4ef7cf6aaa71df645df8348c2922770c128a161d55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 4 被占用，无法提交。**\n\n当前状态：\n- **GPU 4**: PID 530975 正在运行 `Qwen2.5-1.5B_base_pretrained` eval（已运行 1h27m，占用 5674MiB / 24564MiB）\n\nCheckpoint 就绪情况：\n\n| Checkpoint | 状态 | 优先级 |\n|---|---|---|\n| 1.5B d005 s123 | 空目录，SFT 进行中 | P1 |\n| 1.5B d100 s123 | **就绪**（adapter 73MB） | P2 |\n| 1.5B d025 s123 | 空目录，SFT 进行中 | — |\n| 3B d100 s42 v2 | 目录不存在 | — |\n| 0.5B d005 s123 | **就绪**（adapter 35MB） | P3 |\n\n按约束 C001/C002，GPU 4 上有活跃进程，不能提交新任务。当前 base pretrained eval 完成后，下一个应提交 **1.5B d100 s123 eval**（P1 的 d005 s123 SFT 尚未完成，P2 是最高可提交优先级）。\n\n需要等 PID 530975 结束后再提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-next-eval-gpu4.md"
+}

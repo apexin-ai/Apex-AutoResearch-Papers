@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f44a711820aa6609786",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops eval status eta",
+  "task_key": "worker_ops_eval-status-eta_20260523T063905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-status-eta_20260523T063905_result.json",
+    "occurrence": 1,
+    "bytes": 1167,
+    "sha256": "37426c366d7e050b9f3cd340fdeac921bc17723113adf32b34ccbeb542944b2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. Checkpoint\n`adapter_model.safetensors` 存在，177MB，正常。\n\n### 2. Eval 运行状态\n**正在运行** — 脚本 `run_falcon3_eval.sh` 包含两个 eval 任务，顺序执行：\n\n| # | 任务 | Benchmarks | 状态 |\n|---|------|-----------|------|\n| 1 | Falcon3-7B volume_control | MMLU + ARC + GSM8K | GSM8K 进行中 |\n| 2 | Falcon3-7B d000 baseline | GSM8K | 排队中 |\n\n### 3. 进度明细\n\n**Eval 1 (volume_control):**\n- MMLU (14042 items): **已完成** @ 14:22，准确率见结果文件\n- ARC (1172 items): **已完成** @ 14:27，准确率 **83.28%**\n- GSM8K (660 items): **101/660 (15%)**, ~7.1s/item\n\n**Eval 2 (d000 baseline):**\n- GSM8K: 等 Eval 1 完成后启动\n\n### 4. ETA 估算\n\n| 阶段 | 剩余量 | 预估耗时 |\n|------|--------|---------|\n| GSM8K volume_control | 559 items × 7.1s | ~66 min |\n| 模型重新加载 (d000 base) | — | ~5 min |\n| GSM8K d000 | 660 items × ~7s | ~77 min |\n| **合计** | | **~148 min (~2.5h)** |\n\n**预计全部完成时间：~17:10 CST**\n\nbitsandbytes 的 `libnvJitLink.so.13` 错误是非致命 warning，不影响 eval 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-status-eta.md"
+}

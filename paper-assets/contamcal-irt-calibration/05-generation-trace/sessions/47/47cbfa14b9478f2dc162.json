@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47cbfa14b9478f2dc162",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis dose response compilation",
+  "task_key": "worker_analysis_dose-response-compilation_20260514T205002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dose-response-compilation_20260514T205002_result.json",
+    "occurrence": 1,
+    "bytes": 1442,
+    "sha256": "5b34134c647ff750be7ff1e482118f136f4436485e1026825716cd9425133232"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。表格已保存为 artifact `dose_response_table.md`（art_20260514_6f12f1），insights 已追加到 memory.md。\n\n---\n\n## Cross-Scale d100−d000 Delta 总览\n\n| Benchmark | 0.5B orig | 1.5B orig | 1.5B para | 3B orig |\n|-----------|-----------|-----------|-----------|---------|\n| MMLU | −16.45 | +0.80 | +1.56 | +0.77 |\n| GSM8K | −0.38 | −0.46 | −0.44 | n/a† |\n| ARC | −17.49 | −0.34 | +1.14 | +1.20 |\n| HumanEval | −10.98 | **+17.69** | **+23.07** | +0.61 |\n\n†GSM8K 3B excluded per D018 (CoT catastrophic forgetting)\n\n## 三个核心发现\n\n1. **0.5B 退化而非膨胀。** 所有 benchmark 随 dosage 下降（MMLU −16pp, ARC −17pp），模型容量不足以在记忆的同时维持泛化——contamination 造成的是破坏而非分数膨胀。\n\n2. **1.5B MC benchmarks 完全无法检测。** MMLU/GSM8K/ARC 在 d000→d100 变化 <1pp（orig 和 para 均如此）。准确率指标对 1.5B scale 的 contamination 彻底失盲，这正是 IRT-based detection 的核心动机。\n\n3. **HumanEval 是唯一有 dose-response 的 benchmark（1.5B）。** Orig +17.69pp, para +23.07pp。Para delta 超过 orig，暗示模型泛化了编程模式而非纯粹记忆答案。3B delta 仅 +0.61pp，但 v1 LoRA 有损，v2 待评估。\n\n**缺失数据**: 0.5B d100 para 未提交；3B 大部分 para 缺失；2 个实验仍在运行（0.5B d025 para, 1.5B d025 orig）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dose-response-compilation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fa191e156bc80da5310",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd fix gpu collision",
+  "task_key": "worker_ssh_westd-fix-gpu-collision_20260519T035448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-fix-gpu-collision_20260519T035448_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "2d4d3036226b0bfcf73144287006b1aa794510f2608cf4f00168b8410654cb5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. Kill OLMo-2 d005 (PID 103845) — 完成\n- PID 103845 已终止，GPU 3 显存从 93884MiB 降至 56703MiB（释放 ~37GiB）\n\n### 2. Phi-4 d050 (PID 103574) on cuda:3 — 正常运行\n- PID 103574 存活，56694MiB，GPU 3 利用率 88%\n\n### 3. cuda:2 — 空闲确认\n- 0MiB / 97887MiB，0% 利用率，无进程\n\n### 4. Phi-4 d025 — DONE\n- 3384/3384 steps 完成，训练时间 2h12m35s\n- Final metrics: `loss=1.187, mean_token_accuracy=0.7527, entropy=1.022, epoch=1`\n- `.done` sentinel 已写入，adapter 保存于 `/root/autodl-tmp/exp001/checkpoints/phi-4_d025_s42/lora_adapter`\n\n### 5. 完整 GPU 状态\n\n| GPU | Memory | Util | Process |\n|-----|--------|------|---------|\n| 0 | 37863/97887 MiB | 93% | PID 102096 |\n| 1 | 54867/97887 MiB | 73% | PID 97582 |\n| **2** | **0/97887 MiB** | **0%** | **空闲** |\n| 3 | 56703/97887 MiB | 88% | PID 103574 (Phi-4 d050) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-fix-gpu-collision.md"
+}

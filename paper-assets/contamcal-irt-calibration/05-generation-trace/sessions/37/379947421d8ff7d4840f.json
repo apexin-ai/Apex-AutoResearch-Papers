@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "379947421d8ff7d4840f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops seed123 progress check",
+  "task_key": "worker_ops_seed123-progress-check_20260519T154354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_seed123-progress-check_20260519T154354_result.json",
+    "occurrence": 1,
+    "bytes": 1931,
+    "sha256": "3fb38e4a7fe5e4744fa648054df4840dcc339ffded3327ad7dc428d2040313f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29999 seed=123 训练进度\n\n### GPU 利用率\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| 0 (Phi-4) | 91% | 57.8 / 97.9 GB |\n| 1 (Qwen2.5-14B) | 93% | 64.1 / 97.9 GB |\n| 2 (Qwen-7B + OLMo-2) | 98% | 61.8 / 97.9 GB |\n| 3 (Gemma-2 9B) | 64% | 54.6 / 97.9 GB |\n\n### 各模型详细进度\n\n每个 sweep 包含 5 个 dosage，基于 Qwen-7B 已完成数据估算各 dosage 的 max_steps：d000=3125, d005=3177, d025=3384, d050=3642, d100=4159，总计 17,487 steps/sweep。\n\n**GPU 0 — Phi-4 14.7B**\n- 当前 dosage: **d000**\n- 进度: **3022/3125** (96.7%)，~2.4s/step\n- 已完成: 无\n- ETA d000 完成: **~4 min**\n- ETA 整个 sweep: **~9.6h**（剩余 14,465 steps）\n\n**GPU 1 — Qwen2.5-14B**\n- 当前 dosage: **d000**\n- 进度: **2352/3125** (75.3%)，~3.15s/step\n- 已完成: 无\n- ETA d000 完成: **~41 min**\n- ETA 整个 sweep: **~13.2h**（剩余 15,135 steps）\n\n**GPU 2 — Qwen2.5-7B + OLMo-2-7B**\n- **Qwen2.5-7B: 全部 5 个 dosage 已完成** ✓ (d000→d100)\n- OLMo-2-7B 当前 dosage: **d005**\n- 进度: **620/3177** (19.5%)，~1.85s/step\n- 已完成: d000\n- ETA d005 完成: **~79 min**\n- ETA OLMo-2 sweep 完成: **~7.1h**（剩余 13,742 steps）\n\n**GPU 3 — Gemma-2 9B**\n- 当前 dosage: **d000**\n- 进度: **2478/3125** (79.3%)，~2.95s/step\n- 已完成: 无\n- ETA d000 完成: **~32 min**\n- ETA 整个 sweep: **~12.3h**（剩余 15,009 steps）\n\n### 总结\n\n| 模型 | 整体进度 | 预计完成时间 |\n|------|---------|-------------|\n| Qwen2.5-7B | **100%** ✓ | 已完成 |\n| OLMo-2-7B | 21.4% | ~7h 后 |\n| Phi-4 14.7B | 17.3% | ~10h 后 |\n| Gemma-2 9B | 14.2% | ~12h 后 |\n| Qwen2.5-14B | 13.5% | ~13h 后 |\n\n4 张 GPU 全部在正常跑。Qwen2.5-7B 已率先完成，GPU 2 已自动切换到 OLMo-2。其余 3 张 GPU 都还在各自的 d000 阶段，Phi-4 最快将在 ~4 分钟内进入 d005。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-seed123-progress-check.md"
+}

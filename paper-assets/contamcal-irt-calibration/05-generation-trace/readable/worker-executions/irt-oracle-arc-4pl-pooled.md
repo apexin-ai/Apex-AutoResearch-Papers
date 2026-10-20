@@ -1,0 +1,2724 @@
+# irt oracle arc 4pl pooled
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 58
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_irt_oracle-arc-4pl-pooled_20260515T035153.log`
+- **Structured JSON:** [`7e92a5c15d26706589a5.json`](../../sessions/7e/7e92a5c15d26706589a5.json)
+
+## Before a recorded user message
+
+58 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "48dc7b83-34c3-45bc-b410-30479f152ed5",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778830200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "afaf99e4-b97b-4ebf-b9af-58242c8332fc",
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break down the task:
+1. SSH to the server cqa1-21977
+2. Check run_exp006.py --help to confirm 4PL default model-type
+3. Submit the ARC oracle 4PL+γ pooled IRT experiment
+4. Update registry
+
+Let me start by loading the necessary tools and connecting to the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "e5c50d9a-0b81-4e3b-9f25-e00e52cc76d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015muGrqs7q6crbrbxKUC5kz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11965,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11965
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Let me load the required tools and check the server state.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "61733b19-54c9-4be8-b969-fff1e4ab60b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015muGrqs7q6crbrbxKUC5kz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11965,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11965
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01U999HERJ1ar8NEQ3yVjJq1`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "681c4722-d2ee-4c64-b094-2beb716ced17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015muGrqs7q6crbrbxKUC5kz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11965,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11965
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T03:52:25.304Z_
+
+<details><summary>↩ Tool result · `toolu_01U999HERJ1ar8NEQ3yVjJq1`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "32cddc56-d4b5-4975-8cab-2b24cd708907",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the server state and the run_exp006.py help in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "924c4528-98be-409a-9fd5-0fad9fea4900",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018muD6LE4poCSNVSaUnADRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2348,
+      "cache_read_input_tokens": 23806,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2348
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+先检查服务器状态和确认 4PL 参数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "5958cda5-ee5e-4009-b1ee-07459fb7cffb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018muD6LE4poCSNVSaUnADRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2348,
+      "cache_read_input_tokens": 23806,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2348
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017Y5Hbe8i88XCouWm5D6sR1`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "nvidia-smi --query-gpu=index,gpu_name,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "51e7dc55-e0b0-4b4e-8ad8-e9de4aab5860",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018muD6LE4poCSNVSaUnADRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2348,
+      "cache_read_input_tokens": 23806,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2348
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013fkYyBQh6Z9yMLHX3tNmY6`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 /root/contamcal-irt-calibration/exp006/run_exp006.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "82228d20-c1a7-447f-925d-75e9a3c1fc8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018muD6LE4poCSNVSaUnADRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2348,
+      "cache_read_input_tokens": 23806,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2348
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T03:52:33.007Z_
+
+<details><summary>↩ Tool result · `toolu_017Y5Hbe8i88XCouWm5D6sR1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA GeForce RTX 4090 D, 68 %, 8985 MiB, 24564 MiB\\n1, NVIDIA GeForce RTX 4090 D, 63 %, 8985 MiB, 24564 MiB\\n2, NVIDIA GeForce RTX 4090 D, 64 %, 9017 MiB, 24564 MiB\\n3, NVIDIA GeForce RTX 4090 D, 100 %, 17653 MiB, 24564 MiB\\n4, NVIDIA GeForce RTX 4090 D, 99 %, 7254 MiB, 24564 MiB\\n5, NVIDIA GeForce RTX 4090 D, 44 %, 17981 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "b3f556c1-377d-4493-b38e-30cf433419c3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 4090 D, 68 %, 8985 MiB, 24564 MiB\\\\n1, NVIDIA GeForce RTX 4090 D, 63 %, 8985 MiB, 24564 MiB\\\\n2, NVIDIA GeForce RTX 4090 D, 64 %, 9017 MiB, 24564 MiB\\\\n3, NVIDIA GeForce RTX 4090 D, 100 %, 17653 MiB, 24564 MiB\\\\n4, NVIDIA GeForce RTX 4090 D, 99 %, 7254 MiB, 24564 MiB\\\\n5, NVIDIA GeForce RTX 4090 D, 44 %, 17981 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA GeForce RTX 4090 D, 68 %, 8985 MiB, 24564 MiB\\n1, NVIDIA GeForce RTX 4090 D, 63 %, 8985 MiB, 24564 MiB\\n2, NVIDIA GeForce RTX 4090 D, 64 %, 9017 MiB, 24564 MiB\\n3, NVIDIA GeForce RTX 4090 D, 100 %, 17653 MiB, 24564 MiB\\n4, NVIDIA GeForce RTX 4090 D, 99 %, 7254 MiB, 24564 MiB\\n5, NVIDIA GeForce RTX 4090 D, 44 %, 17981 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T03:52:33.047Z_
+
+<details><summary>↩ Tool result · `toolu_013fkYyBQh6Z9yMLHX3tNmY6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python script execution not allowed; use -c for inline expressions only. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "c06c5bf6-e582-4b04-9e23-f28ed0507c5f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python script execution not allowed; use -c for inline expressions only. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python script execution not allowed; use -c for inline expressions only. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HbtVC53MHTjXkVU7GSFdGx`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "b28f89e6-f0a9-445e-924e-c28ae99919e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018muD6LE4poCSNVSaUnADRB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2348,
+      "cache_read_input_tokens": 23806,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2348
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T03:52:33.419Z_
+
+<details><summary>↩ Tool result · `toolu_01HbtVC53MHTjXkVU7GSFdGx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "23ac4480-8bcc-46a7-a2a4-faa8b4918455",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `--help` command was blocked by ssh_read_only. Let me use `grep` to check the model-type argument in the script, and also check if the output dir exists without the redirect.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "fc73c9c5-acde-4c46-8663-eacc35fc54e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WdZzeiEgK6z3YdTPgyzNsV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 26154,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 941
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+CPU 任务，不占 GPU，无需检查 GPU 占用。让我用其他方式确认 model-type 默认值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "5bea5c40-5fb4-49d1-8235-faef18838806",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WdZzeiEgK6z3YdTPgyzNsV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 26154,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 941
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EKCgaxFD4vR2dXG9Ai8NWS`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"model.type\\|model_type\\|add_argument.*model\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "f9439f93-3936-430f-bb27-d57ffbfd3205",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WdZzeiEgK6z3YdTPgyzNsV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 26154,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 941
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T03:52:44.593Z_
+
+<details><summary>↩ Tool result · `toolu_01EKCgaxFD4vR2dXG9Ai8NWS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "b99210ab-c9e2-4509-b4ab-09dd2a292355",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SsAf75UX5kVrbo3BnrDgZ6`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "46ee3378-6565-4c5b-aceb-dc3f28349e46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WdZzeiEgK6z3YdTPgyzNsV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 26154,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 941
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T03:52:45.257Z_
+
+<details><summary>↩ Tool result · `toolu_01SsAf75UX5kVrbo3BnrDgZ6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "5afd6195-812b-4f42-bc9c-feb70823c530",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qdvoo1EcGKMLeW42K1mTtK`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"model_type\\|model-type\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "fe739985-03f3-46e7-95fe-2ee5cf353d59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CE4rXPvK48XfZ5xobAttmk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 27095,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 600
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T03:52:48.075Z_
+
+<details><summary>↩ Tool result · `toolu_01Qdvoo1EcGKMLeW42K1mTtK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "84309ea9-83f4-4bf6-b544-a0451c8c14cf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015E6bgvF88D4rrwAFcTx6jh`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"model_type\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "6ee59534-db9e-4a6c-9f07-afb131582049",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q2ntR5po99S8YW97gaXWh8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 317,
+      "cache_read_input_tokens": 27695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 317
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T03:52:51.183Z_
+
+<details><summary>↩ Tool result · `toolu_015E6bgvF88D4rrwAFcTx6jh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"255:        \\\"model_type\\\": args.model_type,\\n290:        stan_path = STAN_MODELS.get(args.model_type, \\\"unknown\\\")\\n291:        print(f\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\")\\n404:        log.info(\\\"--- IRT Calibration (%s) ---\\\", args.model_type)\\n410:                args.model_type, args)\\n412:            with open(bench_dir / f\\\"irt_{args.model_type}.json\\\", \\\"w\\\") as f:\\n469:                method_name=f\\\"IRT_{args.model_type}\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "bacb4803-fae5-45b8-acb2-56df7c0fe4e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"255:        \\\\\\\"model_type\\\\\\\": args.model_type,\\\\n290:        stan_path = STAN_MODELS.get(args.model_type, \\\\\\\"unknown\\\\\\\")\\\\n291:        print(f\\\\\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\\\\\")\\\\n404:        log.info(\\\\\\\"--- IRT Calibration (%s) ---\\\\\\\", args.model_type)\\\\n410:                args.model_type, args)\\\\n412:            with open(bench_dir / f\\\\\\\"irt_{args.model_type}.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n469:                method_name=f\\\\\\\"IRT_{args.model_type}\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"255:        \\\"model_type\\\": args.model_type,\\n290:        stan_path = STAN_MODELS.get(args.model_type, \\\"unknown\\\")\\n291:        print(f\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\")\\n404:        log.info(\\\"--- IRT Calibration (%s) ---\\\", args.model_type)\\n410:                args.model_type, args)\\n412:            with open(bench_dir / f\\\"irt_{args.model_type}.json\\\", \\\"w\\\") as f:\\n469:                method_name=f\\\"IRT_{args.model_type}\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J9qpdxgVtYVf7GXoKwZpzy`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"model.type\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "8a7283e0-6c39-4354-9a18-a3403b9d59dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016YsEA3kpod4Got8Btz5MDP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 378,
+      "cache_read_input_tokens": 28012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 378
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T03:52:55.151Z_
+
+<details><summary>↩ Tool result · `toolu_01J9qpdxgVtYVf7GXoKwZpzy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"255:        \\\"model_type\\\": args.model_type,\\n290:        stan_path = STAN_MODELS.get(args.model_type, \\\"unknown\\\")\\n291:        print(f\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\")\\n404:        log.info(\\\"--- IRT Calibration (%s) ---\\\", args.model_type)\\n410:                args.model_type, args)\\n412:            with open(bench_dir / f\\\"irt_{args.model_type}.json\\\", \\\"w\\\") as f:\\n469:                method_name=f\\\"IRT_{args.model_type}\\\",\\n628:        \\\"--model-type\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "5ef216ea-c4c2-4c49-91ca-768eedec5443",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"255:        \\\\\\\"model_type\\\\\\\": args.model_type,\\\\n290:        stan_path = STAN_MODELS.get(args.model_type, \\\\\\\"unknown\\\\\\\")\\\\n291:        print(f\\\\\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\\\\\")\\\\n404:        log.info(\\\\\\\"--- IRT Calibration (%s) ---\\\\\\\", args.model_type)\\\\n410:                args.model_type, args)\\\\n412:            with open(bench_dir / f\\\\\\\"irt_{args.model_type}.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n469:                method_name=f\\\\\\\"IRT_{args.model_type}\\\\\\\",\\\\n628:        \\\\\\\"--model-type\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"255:        \\\"model_type\\\": args.model_type,\\n290:        stan_path = STAN_MODELS.get(args.model_type, \\\"unknown\\\")\\n291:        print(f\\\"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}\\\")\\n404:        log.info(\\\"--- IRT Calibration (%s) ---\\\", args.model_type)\\n410:                args.model_type, args)\\n412:            with open(bench_dir / f\\\"irt_{args.model_type}.json\\\", \\\"w\\\") as f:\\n469:                method_name=f\\\"IRT_{args.model_type}\\\",\\n628:        \\\"--model-type\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DZWbreurPobWzegfAnoiHh`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -640 /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "c9be6c5e-14e1-4828-aaaf-42a3e2729692",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019N33PT2KkoLt8tZuYgvva8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 393,
+      "cache_read_input_tokens": 28390,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 393
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T03:52:58.059Z_
+
+<details><summary>↩ Tool result · `toolu_01DZWbreurPobWzegfAnoiHh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\n\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\nevaluates against ground-truth clean scores (dosage=0 models).\\n\\nUsage:\\n    python run_exp006.py --help\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\n    python run_exp006.py                                         # full run\\n\\nDependencies: cmdstanpy, numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_pooled_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    run_benchmark_fit,\\n    STAN_MODELS,\\n)\\nfrom baselines import run_all_baselines\\nfrom evaluate_calibration import (\\n    evaluate_method,\\n    format_text_table,\\n    format_latex_table,\\n)\\nfrom joint_fit import run_joint_fit\\n\\nlog = logging.getLogger(__name__)\\n\\n# D018: 3B GSM8K excluded from dose-response analysis\\nD018_EXCLUDE = [(\\\"3B\\\", \\\"gsm8k\\\")]\\nD018_EXCLUDE_RULES = [\\n    {\\\"model\\\": \\\"3B\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"reason\\\": \\\"D018 LoRA damage\\\"},\\n]\\n\\n\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n    \\\"\\\"\\\"Check D018 exclusion rules for dose-response analysis.\\\"\\\"\\\"\\n    for pattern, bench in rules:\\n        if pattern in model_name and benchmark == bench:\\n            return True\\n    return False\\n\\n\\ndef compute_ground_truth(responses, dosages, models=None):\\n    \\\"\\\"\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\n\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\n    For dosage>0 models, we use the mean d=0 accuracy of the SAME SCALE\\n    as the counterfactual reference.\\n    \\\"\\\"\\\"\\n    raw_acc = responses.mean(axis=1)\\n    d0_mask = dosages == 0\\n\\n    # Global d0 mean as fallback\\n    if d0_mask.sum() > 0:\\n        global_d0_mean = float(raw_acc[d0_mask].mean())\\n    else:\\n        global_d0_mean = float(raw_acc.mean())\\n\\n    # Per-scale counterfactual when models have scale info\\n    scales = None\\n    if models is not None:\\n        scales = [m.get(\\\"scale\\\", \\\"\\\") for m in models]\\n    has_multiscale = scales and len(set(s for s in scales if s)) > 1\\n\\n    if has_multiscale:\\n        ground_truth = np.empty(len(dosages))\\n        for i, (d, sc) in enumerate(zip(dosages, scales)):\\n            if d == 0:\\n                ground_truth[i] = raw_acc[i]\\n            else:\\n                same_scale_d0 = [\\n                    j for j in range(len(dosages))\\n                    if dosages[j] == 0 and scales[j] == sc\\n                ]\\n                if same_scale_d0:\\n                    ground_truth[i] = float(raw_acc[same_scale_d0].mean())\\n                else:\\n                    log.warning(\\\"No d0 models for scale %s, using global mean\\\", sc)\\n                    ground_truth[i] = global_d0_mean\\n        unique_scales = sorted(set(scales))\\n        for sc in unique_scales:\\n            sc_d0 = [j for j in range(len(dosages)) if dosages[j] == 0 and scales[j] == sc]\\n            if sc_d0:\\n                log.info(\\\"Ground truth [%s]: d0 mean=%.4f (n=%d)\\\",\\n                         sc, float(raw_acc[sc_d0].mean()), len(sc_d0))\\n    else:\\n        ground_truth = np.full(len(dosages), global_d0_mean)\\n        ground_truth[d0_mask] = raw_acc[d0_mask]\\n\\n    return ground_truth\\n\\n\\ndef load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\n                        pool_mode=False):\\n    \\\"\\\"\\\"Load exp-002 merged signals -> per-model contamination score.\\n    D034: when signal_key is set, use that single signal (e.g. s1_embedding).\\n    Default (signal_key=None): 3-signal RRF fusion (S1+S2+S4).\\n    \\\"\\\"\\\"\\n    scores = []\\n    for m in models:\\n        # Strip _aligned/_para suffixes to match signal directory naming\\n        sig_dirname = m[\\\"dirname\\\"].replace(\\\"_para_aligned\\\", \\\"\\\").replace(\\\"_aligned\\\", \\\"\\\").replace(\\\"_para\\\", \\\"\\\").replace\\n\\n... [截断: 输出过长，省略 19566 字符] ...\\n\\ngamma\\\"],\\n            \\\"diagnostics\\\": joint_result[\\\"diagnostics\\\"],\\n        }\\n\\n    # ── Save Combined Results ──\\n    total_time = time.time() - pipeline_t0\\n    combined = {\\n        \\\"metadata\\\": meta,\\n        \\\"total_time_sec\\\": round(total_time, 1),\\n        \\\"benchmarks\\\": all_results,\\n    }\\n    with open(output_dir / \\\"exp006_results.json\\\", \\\"w\\\") as f:\\n        json.dump(combined, f, indent=2, default=str)\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    log.info(\\\"Pipeline complete in %.1fs\\\", total_time)\\n    log.info(\\\"Results saved to %s\\\", output_dir)\\n    log.info(\\\"=\\\" * 60)\\n\\n    return combined\\n\\n\\n# ── CLI ──\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-006: IRT calibration + baselines + evaluation\\\")\\n\\n    # Data\\n    parser.add_argument(\\n        \\\"--eval-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp001/eval_results\\\",\\n        help=\\\"exp-001 eval results directory\\\")\\n    parser.add_argument(\\n        \\\"--exposure-file\\\", type=str, default=None,\\n        help=\\\"exp-002/003 exposure scores JSON \\\"\\n             \\\"(per-benchmark per-item tau)\\\")\\n    parser.add_argument(\\n        \\\"--tau-model-id\\\", type=str, default=None,\\n        help=\\\"Model ID for exposure tau (e.g. Qwen2.5-0.5B_d100_s42)\\\")\\n    # D023: exp-002 signal-based exposure\\n    parser.add_argument(\\n        \\\"--signals-dir\\\", type=str, default=None,\\n        help=\\\"exp-002 signals directory. When set, uses detected contamination \\\"\\n             \\\"signals instead of oracle dosage for exposure (D023)\\\")\\n    parser.add_argument(\\n        \\\"--signal-key\\\", type=str, default=None,\\n        help=\\\"Use single signal as exposure (e.g. s1_embedding). \\\"\\n             \\\"Default: RRF fusion of S1+S2+S4 (D034)\\\")\\n    parser.add_argument(\\n        \\\"--tau-source\\\", type=str, default=\\\"exposure\\\",\\n        choices=[\\\"exposure\\\", \\\"oracle\\\", \\\"aggregated\\\"],\\n        help=\\\"Tau source type (default: exposure)\\\")\\n    parser.add_argument(\\n        \\\"--output-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp006/results\\\",\\n        help=\\\"Output directory\\\")\\n    parser.add_argument(\\n        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n        help=\\\"Benchmarks to analyze (default: all)\\\")\\n    parser.add_argument(\\n        \\\"--model-scale\\\", type=str, default=None,\\n        help=\\\"Model scale filter, e.g. '0.5B'.\\\")\\n    parser.add_argument(\\n        '--pool-scales', nargs='+', default=None,\\n        help=\\\"Cross-scale pooling: merge models from multiple scales as IRT \\\"\\n             \\\"examinees. E.g. --pool-scales 0.5B 1.5B 3B. Overrides --model-scale.\\\")\\n    parser.add_argument(\\n        \\\"--data-seed\\\", type=int, default=None,\\n        help=\\\"Data seed filter.\\\")\\n    parser.add_argument(\\n        \\\"--aligned-only\\\", action=\\\"store_true\\\",\\n        help=\\\"Only load aligned-format eval directories.\\\")\\n    parser.add_argument(\\n        '--exclude-models', type=str, default=None,\\n        help=\\\"Comma-separated model name patterns to exclude \\\"\\n             \\\"(e.g. '3B_d000,3B_d005')\\\")\\n    parser.add_argument(\\n        '--require-signals', action='store_true',\\n        help=\\\"Abort if any pooled scale lacks signal coverage \\\"\\n             \\\"(use with --signals-dir)\\\")\\n    parser.add_argument(\\n        '--oracle-exposure', action='store_true',\\n        help=\\\"Use oracle dosage fraction as uniform exposure per model. \\\"\\n             \\\"Mutually exclusive with --require-signals.\\\")\\n\\n    # IRT config\\n    parser.add_argument(\\n        \\\"--model-type\\\",\\n        choices=list(STAN_MODELS.keys()),\\n        default=\\\"4pl_gamma\\\",\\n        help=\\\"IRT model variant (default: 4pl_gamma)\\\")\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--parallel-chains\\\", type=int, default=1,\\n                        help=\\\"CmdStan parallel chains (default: 1 for cgroup safety)\\\")\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "b33581c4-0818-44c9-9909-f219f2ef8529",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\\\n\\\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\\\nevaluates against ground-truth clean scores (dosage=0 models).\\\\n\\\\nUsage:\\\\n    python run_exp006.py --help\\\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\\\n    python run_exp006.py                                         # full run\\\\n\\\\nDependencies: cmdstanpy, numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom run_irt_calibration import (\\\\n    load_eval_results,\\\\n    load_pooled_eval_results,\\\\n    load_exposure_scores,\\\\n    build_exposure_matrix,\\\\n    run_benchmark_fit,\\\\n    STAN_MODELS,\\\\n)\\\\nfrom baselines import run_all_baselines\\\\nfrom evaluate_calibration import (\\\\n    evaluate_method,\\\\n    format_text_table,\\\\n    format_latex_table,\\\\n)\\\\nfrom joint_fit import run_joint_fit\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n# D018: 3B GSM8K excluded from dose-response analysis\\\\nD018_EXCLUDE = [(\\\\\\\"3B\\\\\\\", \\\\\\\"gsm8k\\\\\\\")]\\\\nD018_EXCLUDE_RULES = [\\\\n    {\\\\\\\"model\\\\\\\": \\\\\\\"3B\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"gsm8k\\\\\\\", \\\\\\\"reason\\\\\\\": \\\\\\\"D018 LoRA damage\\\\\\\"},\\\\n]\\\\n\\\\n\\\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Check D018 exclusion rules for dose-response analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for pattern, bench in rules:\\\\n        if pattern in model_name and benchmark == bench:\\\\n            return True\\\\n    return False\\\\n\\\\n\\\\ndef compute_ground_truth(responses, dosages, models=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\\\n\\\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\\\n    For dosage>0 models, we use the mean d=0 accuracy of the SAME SCALE\\\\n    as the counterfactual reference.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    raw_acc = responses.mean(axis=1)\\\\n    d0_mask = dosages == 0\\\\n\\\\n    # Global d0 mean as fallback\\\\n    if d0_mask.sum() > 0:\\\\n        global_d0_mean = float(raw_acc[d0_mask].mean())\\\\n    else:\\\\n        global_d0_mean = float(raw_acc.mean())\\\\n\\\\n    # Per-scale counterfactual when models have scale info\\\\n    scales = None\\\\n    if models is not None:\\\\n        scales = [m.get(\\\\\\\"scale\\\\\\\", \\\\\\\"\\\\\\\") for m in models]\\\\n    has_multiscale = scales and len(set(s for s in scales if s)) > 1\\\\n\\\\n    if has_multiscale:\\\\n        ground_truth = np.empty(len(dosages))\\\\n        for i, (d, sc) in enumerate(zip(dosages, scales)):\\\\n            if d == 0:\\\\n                ground_truth[i] = raw_acc[i]\\\\n            else:\\\\n                same_scale_d0 = [\\\\n                    j for j in range(len(dosages))\\\\n                    if dosages[j] == 0 and scales[j] == sc\\\\n                ]\\\\n                if same_scale_d0:\\\\n                    ground_truth[i] = float(raw_acc[same_scale_d0].mean())\\\\n                else:\\\\n                    log.warning(\\\\\\\"No d0 models for scale %s, using global mean\\\\\\\", sc)\\\\n                    ground_truth[i] = global_d0_mean\\\\n        unique_scales = sorted(set(scales))\\\\n        for sc in unique_scales:\\\\n            sc_d0 = [j for j in range(len(dosages)) if dosages[j] == 0 and scales[j] == sc]\\\\n            if sc_d0:\\\\n                log.info(\\\\\\\"Ground truth [%s]: d0 mean=%.4f (n=%d)\\\\\\\",\\\\n                         sc, float(raw_acc[sc_d0].mean()), len(sc_d0))\\\\n    else:\\\\n        ground_truth = np.full(len(dosages), global_d0_mean)\\\\n        ground_truth[d0_mask] = raw_acc[d0_mask]\\\\n\\\\n    return ground_truth\\\\n\\\\n\\\\ndef load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\\\n                        pool_mode=False):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load exp-002 merged signals -> per-model contamination score.\\\\n    D034: when signal_key is set, use that single signal (e.g. s1_embedding).\\\\n    Default (signal_key=None): 3-signal RRF fusion (S1+S2+S4).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    scores = []\\\\n    for m in models:\\\\n        # Strip _aligned/_para suffixes to match signal directory naming\\\\n        sig_dirname = m[\\\\\\\"dirname\\\\\\\"].replace(\\\\\\\"_para_aligned\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_aligned\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_para\\\\\\\", \\\\\\\"\\\\\\\").replace\\\\n\\\\n... [截断: 输出过长，省略 19566 字符] ...\\\\n\\\\ngamma\\\\\\\"],\\\\n            \\\\\\\"diagnostics\\\\\\\": joint_result[\\\\\\\"diagnostics\\\\\\\"],\\\\n        }\\\\n\\\\n    # ── Save Combined Results ──\\\\n    total_time = time.time() - pipeline_t0\\\\n    combined = {\\\\n        \\\\\\\"metadata\\\\\\\": meta,\\\\n        \\\\\\\"total_time_sec\\\\\\\": round(total_time, 1),\\\\n        \\\\\\\"benchmarks\\\\\\\": all_results,\\\\n    }\\\\n    with open(output_dir / \\\\\\\"exp006_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(combined, f, indent=2, default=str)\\\\n\\\\n    log.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"Pipeline complete in %.1fs\\\\\\\", total_time)\\\\n    log.info(\\\\\\\"Results saved to %s\\\\\\\", output_dir)\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    return combined\\\\n\\\\n\\\\n# ── CLI ──\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"exp-006: IRT calibration + baselines + evaluation\\\\\\\")\\\\n\\\\n    # Data\\\\n    parser.add_argument(\\\\n        \\\\\\\"--eval-dir\\\\\\\", type=str,\\\\n        default=\\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\",\\\\n        help=\\\\\\\"exp-001 eval results directory\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--exposure-file\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"exp-002/003 exposure scores JSON \\\\\\\"\\\\n             \\\\\\\"(per-benchmark per-item tau)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--tau-model-id\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"Model ID for exposure tau (e.g. Qwen2.5-0.5B_d100_s42)\\\\\\\")\\\\n    # D023: exp-002 signal-based exposure\\\\n    parser.add_argument(\\\\n        \\\\\\\"--signals-dir\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"exp-002 signals directory. When set, uses detected contamination \\\\\\\"\\\\n             \\\\\\\"signals instead of oracle dosage for exposure (D023)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--signal-key\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"Use single signal as exposure (e.g. s1_embedding). \\\\\\\"\\\\n             \\\\\\\"Default: RRF fusion of S1+S2+S4 (D034)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--tau-source\\\\\\\", type=str, default=\\\\\\\"exposure\\\\\\\",\\\\n        choices=[\\\\\\\"exposure\\\\\\\", \\\\\\\"oracle\\\\\\\", \\\\\\\"aggregated\\\\\\\"],\\\\n        help=\\\\\\\"Tau source type (default: exposure)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--output-dir\\\\\\\", type=str,\\\\n        default=\\\\\\\"/root/autodl-tmp/exp006/results\\\\\\\",\\\\n        help=\\\\\\\"Output directory\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--benchmarks\\\\\\\", nargs=\\\\\\\"*\\\\\\\", default=None,\\\\n        help=\\\\\\\"Benchmarks to analyze (default: all)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model-scale\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"Model scale filter, e.g. '0.5B'.\\\\\\\")\\\\n    parser.add_argument(\\\\n        '--pool-scales', nargs='+', default=None,\\\\n        help=\\\\\\\"Cross-scale pooling: merge models from multiple scales as IRT \\\\\\\"\\\\n             \\\\\\\"examinees. E.g. --pool-scales 0.5B 1.5B 3B. Overrides --model-scale.\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--data-seed\\\\\\\", type=int, default=None,\\\\n        help=\\\\\\\"Data seed filter.\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--aligned-only\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Only load aligned-format eval directories.\\\\\\\")\\\\n    parser.add_argument(\\\\n        '--exclude-models', type=str, default=None,\\\\n        help=\\\\\\\"Comma-separated model name patterns to exclude \\\\\\\"\\\\n             \\\\\\\"(e.g. '3B_d000,3B_d005')\\\\\\\")\\\\n    parser.add_argument(\\\\n        '--require-signals', action='store_true',\\\\n        help=\\\\\\\"Abort if any pooled scale lacks signal coverage \\\\\\\"\\\\n             \\\\\\\"(use with --signals-dir)\\\\\\\")\\\\n    parser.add_argument(\\\\n        '--oracle-exposure', action='store_true',\\\\n        help=\\\\\\\"Use oracle dosage fraction as uniform exposure per model. \\\\\\\"\\\\n             \\\\\\\"Mutually exclusive with --require-signals.\\\\\\\")\\\\n\\\\n    # IRT config\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model-type\\\\\\\",\\\\n        choices=list(STAN_MODELS.keys()),\\\\n        default=\\\\\\\"4pl_gamma\\\\\\\",\\\\n        help=\\\\\\\"IRT model variant (default: 4pl_gamma)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--adapt-delta\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--max-treedepth\\\\\\\", type=int, default=12)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--parallel-chains\\\\\\\", type=int, default=1,\\\\n                        help=\\\\\\\"CmdStan parallel chains (default: 1 for cgroup safety)\\\\\\\")\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\n\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\nevaluates against ground-truth clean scores (dosage=0 models).\\n\\nUsage:\\n    python run_exp006.py --help\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\n    python run_exp006.py                                         # full run\\n\\nDependencies: cmdstanpy, numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_pooled_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    run_benchmark_fit,\\n    STAN_MODELS,\\n)\\nfrom baselines import run_all_baselines\\nfrom evaluate_calibration import (\\n    evaluate_method,\\n    format_text_table,\\n    format_latex_table,\\n)\\nfrom joint_fit import run_joint_fit\\n\\nlog = logging.getLogger(__name__)\\n\\n# D018: 3B GSM8K excluded from dose-response analysis\\nD018_EXCLUDE = [(\\\"3B\\\", \\\"gsm8k\\\")]\\nD018_EXCLUDE_RULES = [\\n    {\\\"model\\\": \\\"3B\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"reason\\\": \\\"D018 LoRA damage\\\"},\\n]\\n\\n\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n    \\\"\\\"\\\"Check D018 exclusion rules for dose-response analysis.\\\"\\\"\\\"\\n    for pattern, bench in rules:\\n        if pattern in model_name and benchmark == bench:\\n            return True\\n    return False\\n\\n\\ndef compute_ground_truth(responses, dosages, models=None):\\n    \\\"\\\"\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\n\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\n    For dosage>0 models, we use the mean d=0 accuracy of the SAME SCALE\\n    as the counterfactual reference.\\n    \\\"\\\"\\\"\\n    raw_acc = responses.mean(axis=1)\\n    d0_mask = dosages == 0\\n\\n    # Global d0 mean as fallback\\n    if d0_mask.sum() > 0:\\n        global_d0_mean = float(raw_acc[d0_mask].mean())\\n    else:\\n        global_d0_mean = float(raw_acc.mean())\\n\\n    # Per-scale counterfactual when models have scale info\\n    scales = None\\n    if models is not None:\\n        scales = [m.get(\\\"scale\\\", \\\"\\\") for m in models]\\n    has_multiscale = scales and len(set(s for s in scales if s)) > 1\\n\\n    if has_multiscale:\\n        ground_truth = np.empty(len(dosages))\\n        for i, (d, sc) in enumerate(zip(dosages, scales)):\\n            if d == 0:\\n                ground_truth[i] = raw_acc[i]\\n            else:\\n                same_scale_d0 = [\\n                    j for j in range(len(dosages))\\n                    if dosages[j] == 0 and scales[j] == sc\\n                ]\\n                if same_scale_d0:\\n                    ground_truth[i] = float(raw_acc[same_scale_d0].mean())\\n                else:\\n                    log.warning(\\\"No d0 models for scale %s, using global mean\\\", sc)\\n                    ground_truth[i] = global_d0_mean\\n        unique_scales = sorted(set(scales))\\n        for sc in unique_scales:\\n            sc_d0 = [j for j in range(len(dosages)) if dosages[j] == 0 and scales[j] == sc]\\n            if sc_d0:\\n                log.info(\\\"Ground truth [%s]: d0 mean=%.4f (n=%d)\\\",\\n                         sc, float(raw_acc[sc_d0].mean()), len(sc_d0))\\n    else:\\n        ground_truth = np.full(len(dosages), global_d0_mean)\\n        ground_truth[d0_mask] = raw_acc[d0_mask]\\n\\n    return ground_truth\\n\\n\\ndef load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\n                        pool_mode=False):\\n    \\\"\\\"\\\"Load exp-002 merged signals -> per-model contamination score.\\n    D034: when signal_key is set, use that single signal (e.g. s1_embedding).\\n    Default (signal_key=None): 3-signal RRF fusion (S1+S2+S4).\\n    \\\"\\\"\\\"\\n    scores = []\\n    for m in models:\\n        # Strip _aligned/_para suffixes to match signal directory naming\\n        sig_dirname = m[\\\"dirname\\\"].replace(\\\"_para_aligned\\\", \\\"\\\").replace(\\\"_aligned\\\", \\\"\\\").replace(\\\"_para\\\", \\\"\\\").replace\\n\\n... [截断: 输出过长，省略 19566 字符] ...\\n\\ngamma\\\"],\\n            \\\"diagnostics\\\": joint_result[\\\"diagnostics\\\"],\\n        }\\n\\n    # ── Save Combined Results ──\\n    total_time = time.time() - pipeline_t0\\n    combined = {\\n        \\\"metadata\\\": meta,\\n        \\\"total_time_sec\\\": round(total_time, 1),\\n        \\\"benchmarks\\\": all_results,\\n    }\\n    with open(output_dir / \\\"exp006_results.json\\\", \\\"w\\\") as f:\\n        json.dump(combined, f, indent=2, default=str)\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    log.info(\\\"Pipeline complete in %.1fs\\\", total_time)\\n    log.info(\\\"Results saved to %s\\\", output_dir)\\n    log.info(\\\"=\\\" * 60)\\n\\n    return combined\\n\\n\\n# ── CLI ──\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"exp-006: IRT calibration + baselines + evaluation\\\")\\n\\n    # Data\\n    parser.add_argument(\\n        \\\"--eval-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp001/eval_results\\\",\\n        help=\\\"exp-001 eval results directory\\\")\\n    parser.add_argument(\\n        \\\"--exposure-file\\\", type=str, default=None,\\n        help=\\\"exp-002/003 exposure scores JSON \\\"\\n             \\\"(per-benchmark per-item tau)\\\")\\n    parser.add_argument(\\n        \\\"--tau-model-id\\\", type=str, default=None,\\n        help=\\\"Model ID for exposure tau (e.g. Qwen2.5-0.5B_d100_s42)\\\")\\n    # D023: exp-002 signal-based exposure\\n    parser.add_argument(\\n        \\\"--signals-dir\\\", type=str, default=None,\\n        help=\\\"exp-002 signals directory. When set, uses detected contamination \\\"\\n             \\\"signals instead of oracle dosage for exposure (D023)\\\")\\n    parser.add_argument(\\n        \\\"--signal-key\\\", type=str, default=None,\\n        help=\\\"Use single signal as exposure (e.g. s1_embedding). \\\"\\n             \\\"Default: RRF fusion of S1+S2+S4 (D034)\\\")\\n    parser.add_argument(\\n        \\\"--tau-source\\\", type=str, default=\\\"exposure\\\",\\n        choices=[\\\"exposure\\\", \\\"oracle\\\", \\\"aggregated\\\"],\\n        help=\\\"Tau source type (default: exposure)\\\")\\n    parser.add_argument(\\n        \\\"--output-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp006/results\\\",\\n        help=\\\"Output directory\\\")\\n    parser.add_argument(\\n        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n        help=\\\"Benchmarks to analyze (default: all)\\\")\\n    parser.add_argument(\\n        \\\"--model-scale\\\", type=str, default=None,\\n        help=\\\"Model scale filter, e.g. '0.5B'.\\\")\\n    parser.add_argument(\\n        '--pool-scales', nargs='+', default=None,\\n        help=\\\"Cross-scale pooling: merge models from multiple scales as IRT \\\"\\n             \\\"examinees. E.g. --pool-scales 0.5B 1.5B 3B. Overrides --model-scale.\\\")\\n    parser.add_argument(\\n        \\\"--data-seed\\\", type=int, default=None,\\n        help=\\\"Data seed filter.\\\")\\n    parser.add_argument(\\n        \\\"--aligned-only\\\", action=\\\"store_true\\\",\\n        help=\\\"Only load aligned-format eval directories.\\\")\\n    parser.add_argument(\\n        '--exclude-models', type=str, default=None,\\n        help=\\\"Comma-separated model name patterns to exclude \\\"\\n             \\\"(e.g. '3B_d000,3B_d005')\\\")\\n    parser.add_argument(\\n        '--require-signals', action='store_true',\\n        help=\\\"Abort if any pooled scale lacks signal coverage \\\"\\n             \\\"(use with --signals-dir)\\\")\\n    parser.add_argument(\\n        '--oracle-exposure', action='store_true',\\n        help=\\\"Use oracle dosage fraction as uniform exposure per model. \\\"\\n             \\\"Mutually exclusive with --require-signals.\\\")\\n\\n    # IRT config\\n    parser.add_argument(\\n        \\\"--model-type\\\",\\n        choices=list(STAN_MODELS.keys()),\\n        default=\\\"4pl_gamma\\\",\\n        help=\\\"IRT model variant (default: 4pl_gamma)\\\")\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--parallel-chains\\\", type=int, default=1,\\n                        help=\\\"CmdStan parallel chains (default: 1 for cgroup safety)\\\")\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Confirmed: `--model-type` defaults to `4pl_gamma`. Output dir doesn't exist yet. This is a CPU task so GPU availability doesn't matter.
+
+Let me also check if there are any tmux sessions with conflicting names, and check that the benchmark argument format is correct.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "59f0cd74-5b40-41c2-acd3-985464f4ec8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013wPVgSm1Yo4RKoQewViPFA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3348,
+      "cache_read_input_tokens": 28783,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3348
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+确认 `--model-type` 默认值是 `4pl_gamma`，无需显式传参。输出目录不存在，可以直接提交。
+
+检查是否有同名 tmux session。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "24408f5d-b180-4cc3-84c6-ee969a61a883",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013wPVgSm1Yo4RKoQewViPFA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3348,
+      "cache_read_input_tokens": 28783,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3348
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013fi8nuQEn7UHBEtmX4oEHq`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp006/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "801165e2-fe95-4562-b4be-d644e4c08069",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013wPVgSm1Yo4RKoQewViPFA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3348,
+      "cache_read_input_tokens": 28783,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3348
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T03:53:06.177Z_
+
+<details><summary>↩ Tool result · `toolu_013fi8nuQEn7UHBEtmX4oEHq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dryrun_test\\nexp006_05B_v1.log\\nexp006_arc_nuts.log\\nexp006_gsm8k_nuts.log\\nexp006_sanity_300.log\\nirt_stan_results\\nirt_stan_results_v2\\nresults\\nresults_05B\\nresults_05B_arc_delta\\nresults_05B_gsm8k\\nresults_05B_gsm8k_delta\\nresults_05B_sanity_300\\nresults_05B_v1\\nresults_pooled_05B_15B_2pl_ablation\\nresults_pooled_05B_15B_arc_oracle\\nresults_pooled_05B_15B_arc_oracle_2pl\\nresults_pooled_05B_15B_arc_v2\\nresults_pooled_05B_15B_arc_v2_wider_prior\\nresults_pooled_05B_15B_arc_v3_rrf\\nresults_pooled_05B_15B_arc_v4_rrf\\nresults_pooled_05B_15B_gsm8k_oracle\\nresults_pooled_05B_15B_gsm8k_oracle_extended\\nresults_pooled_05B_15B_gsm8k_oracle_extended_v2\\nresults_pooled_05B_15B_gsm8k_oracle_extended_v2.log\\nresults_pooled_05B_15B_gsm8k_s1only_2pl\\nresults_pooled_05B_15B_gsm8k_v2\\nresults_pooled_05B_15B_gsm8k_v3_rrf\\nresults_pooled_05B_15B_mmlu_v2\\nresults_pooled_gsm8k_v1\\nresults_pooled_s1only_arc\\nresults_pooled_s1only_gsm8k\\nresults_pooled_s1only_gsm8k_v2\\nresults_pooled_s1only_gsm8k_v2.log\\ntest_fix\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "dbe225c2-eea4-4585-8e79-94849437217e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dryrun_test\\\\nexp006_05B_v1.log\\\\nexp006_arc_nuts.log\\\\nexp006_gsm8k_nuts.log\\\\nexp006_sanity_300.log\\\\nirt_stan_results\\\\nirt_stan_results_v2\\\\nresults\\\\nresults_05B\\\\nresults_05B_arc_delta\\\\nresults_05B_gsm8k\\\\nresults_05B_gsm8k_delta\\\\nresults_05B_sanity_300\\\\nresults_05B_v1\\\\nresults_pooled_05B_15B_2pl_ablation\\\\nresults_pooled_05B_15B_arc_oracle\\\\nresults_pooled_05B_15B_arc_oracle_2pl\\\\nresults_pooled_05B_15B_arc_v2\\\\nresults_pooled_05B_15B_arc_v2_wider_prior\\\\nresults_pooled_05B_15B_arc_v3_rrf\\\\nresults_pooled_05B_15B_arc_v4_rrf\\\\nresults_pooled_05B_15B_gsm8k_oracle\\\\nresults_pooled_05B_15B_gsm8k_oracle_extended\\\\nresults_pooled_05B_15B_gsm8k_oracle_extended_v2\\\\nresults_pooled_05B_15B_gsm8k_oracle_extended_v2.log\\\\nresults_pooled_05B_15B_gsm8k_s1only_2pl\\\\nresults_pooled_05B_15B_gsm8k_v2\\\\nresults_pooled_05B_15B_gsm8k_v3_rrf\\\\nresults_pooled_05B_15B_mmlu_v2\\\\nresults_pooled_gsm8k_v1\\\\nresults_pooled_s1only_arc\\\\nresults_pooled_s1only_gsm8k\\\\nresults_pooled_s1only_gsm8k_v2\\\\nresults_pooled_s1only_gsm8k_v2.log\\\\ntest_fix\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"dryrun_test\\nexp006_05B_v1.log\\nexp006_arc_nuts.log\\nexp006_gsm8k_nuts.log\\nexp006_sanity_300.log\\nirt_stan_results\\nirt_stan_results_v2\\nresults\\nresults_05B\\nresults_05B_arc_delta\\nresults_05B_gsm8k\\nresults_05B_gsm8k_delta\\nresults_05B_sanity_300\\nresults_05B_v1\\nresults_pooled_05B_15B_2pl_ablation\\nresults_pooled_05B_15B_arc_oracle\\nresults_pooled_05B_15B_arc_oracle_2pl\\nresults_pooled_05B_15B_arc_v2\\nresults_pooled_05B_15B_arc_v2_wider_prior\\nresults_pooled_05B_15B_arc_v3_rrf\\nresults_pooled_05B_15B_arc_v4_rrf\\nresults_pooled_05B_15B_gsm8k_oracle\\nresults_pooled_05B_15B_gsm8k_oracle_extended\\nresults_pooled_05B_15B_gsm8k_oracle_extended_v2\\nresults_pooled_05B_15B_gsm8k_oracle_extended_v2.log\\nresults_pooled_05B_15B_gsm8k_s1only_2pl\\nresults_pooled_05B_15B_gsm8k_v2\\nresults_pooled_05B_15B_gsm8k_v3_rrf\\nresults_pooled_05B_15B_mmlu_v2\\nresults_pooled_gsm8k_v1\\nresults_pooled_s1only_arc\\nresults_pooled_s1only_gsm8k\\nresults_pooled_s1only_gsm8k_v2\\nresults_pooled_s1only_gsm8k_v2.log\\ntest_fix\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I also notice there's a `results_pooled_05B_15B_arc_oracle` which might be the old oracle result (with only 0.5B + delta exposure). The new one will be `results_pooled_05B_15B_arc_oracle_4pl_pooled`.
+
+Let me also check the `--benchmark` argument - looking at the help text, I see `--benchmarks` (plural) with `nargs="*"`. But the reference commands use `--benchmark` (singular). Let me check.
+
+Looking at the help text more carefully:
+
+
+Defining the argument parser...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "d0eaed75-89bd-488e-a135-f4bea31d961b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018CtrRhxBXEf5UtTs6rFpeH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 32131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MyEgCeLZoaDgyHwRYtdNSU`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"benchmark\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "82189754-a9dc-47f0-8a95-086156ebe046",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018CtrRhxBXEf5UtTs6rFpeH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 32131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T03:53:20.667Z_
+
+<details><summary>↩ Tool result · `toolu_01MyEgCeLZoaDgyHwRYtdNSU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5:runs IRT 4PL+gamma calibration and all baselines per benchmark,\\n32:    run_benchmark_fit,\\n48:    {\\\"model\\\": \\\"3B\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"reason\\\": \\\"D018 LoRA damage\\\"},\\n52:def should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n55:        if pattern in model_name and benchmark == bench:\\n110:def load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\n121:                              \\\"signals_merged_{}.json\\\".format(benchmark))\\n147:                    f\\\"{m['dirname']}/{benchmark} in pooled mode. \\\"\\n150:                       m[\\\"dirname\\\"], benchmark)\\n155:def check_scale_signals(signals_dir, models, benchmarks, scales):\\n162:            for bench in benchmarks:\\n186:            args.eval_dir, args.pool_scales, args.benchmarks,\\n190:        data = load_eval_results(args.eval_dir, args.benchmarks,\\n195:        args.exposure_file, data[\\\"benchmarks\\\"], model_id=args.tau_model_id)\\n199:             len(data[\\\"models\\\"]), list(data[\\\"benchmarks\\\"].keys()))\\n216:            for bench in data[\\\"benchmarks\\\"]:\\n217:                data[\\\"benchmarks\\\"][bench][\\\"responses\\\"] = \\\\\\n218:                    data[\\\"benchmarks\\\"][bench][\\\"responses\\\"][keep_mask]\\n219:                data[\\\"benchmarks\\\"][bench][\\\"valid_mask\\\"] = \\\\\\n220:                    data[\\\"benchmarks\\\"][bench][\\\"valid_mask\\\"][keep_mask]\\n226:        bench_list = list(data[\\\"benchmarks\\\"].keys())\\n244:            for bench in data[\\\"benchmarks\\\"]:\\n245:                data[\\\"benchmarks\\\"][bench][\\\"responses\\\"] = \\\\\\n246:                    data[\\\"benchmarks\\\"][bench][\\\"responses\\\"][keep_mask]\\n247:                data[\\\"benchmarks\\\"][bench][\\\"valid_mask\\\"] = \\\\\\n248:                    data[\\\"benchmarks\\\"][bench][\\\"valid_mask\\\"][keep_mask]\\n263:        \\\"benchmarks\\\": list(data[\\\"benchmarks\\\"].keys()),\\n287:        for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n296:            \\\"benchmarks\\\": {\\n298:                for bench, bd in data[\\\"benchmarks\\\"].items()\\n310:    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n331:        # D018: per-benchmark model exclusion (e.g., 3B excluded from gsm8k)\\n381:        # D023: random subsampling per benchmark (seed=42 for reproducibility)\\n408:            irt_result = run_benchmark_fit(\\n526:            benchmarks=args.benchmarks,\\n549:        \\\"benchmarks\\\": all_results,\\n576:             \\\"(per-benchmark per-item tau)\\\")\\n598:        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n652:        \\\"--benchmark\\\", type=str, default=None,\\n654:        help=\\\"Single benchmark to run (convenience alias for --benchmarks)\\\")\\n662:        help=\\\"Max items per benchmark (default: None = no limit)\\\")\\n669:    # --benchmark (singular) overrides --benchmarks\\n670:    if args.benchmark and not args.benchmarks:\\n671:        args.benchmarks = [args.benchmark]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "f023072c-adea-427b-a23c-0abacc76c398",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5:runs IRT 4PL+gamma calibration and all baselines per benchmark,\\\\n32:    run_benchmark_fit,\\\\n48:    {\\\\\\\"model\\\\\\\": \\\\\\\"3B\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"gsm8k\\\\\\\", \\\\\\\"reason\\\\\\\": \\\\\\\"D018 LoRA damage\\\\\\\"},\\\\n52:def should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\\\n55:        if pattern in model_name and benchmark == bench:\\\\n110:def load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\\\n121:                              \\\\\\\"signals_merged_{}.json\\\\\\\".format(benchmark))\\\\n147:                    f\\\\\\\"{m['dirname']}/{benchmark} in pooled mode. \\\\\\\"\\\\n150:                       m[\\\\\\\"dirname\\\\\\\"], benchmark)\\\\n155:def check_scale_signals(signals_dir, models, benchmarks, scales):\\\\n162:            for bench in benchmarks:\\\\n186:            args.eval_dir, args.pool_scales, args.benchmarks,\\\\n190:        data = load_eval_results(args.eval_dir, args.benchmarks,\\\\n195:        args.exposure_file, data[\\\\\\\"benchmarks\\\\\\\"], model_id=args.tau_model_id)\\\\n199:             len(data[\\\\\\\"models\\\\\\\"]), list(data[\\\\\\\"benchmarks\\\\\\\"].keys()))\\\\n216:            for bench in data[\\\\\\\"benchmarks\\\\\\\"]:\\\\n217:                data[\\\\\\\"benchmarks\\\\\\\"][bench][\\\\\\\"responses\\\\\\\"] = \\\\\\\\\\\\n218:                    data[\\\\\\\"benchmarks\\\\\\\"][bench][\\\\\\\"responses\\\\\\\"][keep_mask]\\\\n219:                data[\\\\\\\"benchmarks\\\\\\\"][bench][\\\\\\\"valid_mask\\\\\\\"] = \\\\\\\\\\\\n220:                    data[\\\\\\\"benchmarks\\\\\\\"][bench][\\\\\\\"valid_mask\\\\\\\"][keep_mask]\\\\n226:        bench_list = list(data[\\\\\\\"benchmarks\\\\\\\"].keys())\\\\n244:            for bench in data[\\\\\\\"benchmarks\\\\\\\"]:\\\\n245:                data[\\\\\\\"benchmarks\\\\\\\"][bench][\\\\\\\"responses\\\\\\\"] = \\\\\\\\\\\\n246:                    data[\\\\\\\"benchmarks\\\\\\\"][bench][\\\\\\\"responses\\\\\\\"][keep_mask]\\\\n247:                data[\\\\\\\"benchmarks\\\\\\\"][bench][\\\\\\\"valid_mask\\\\\\\"] = \\\\\\\\\\\\n248:                    data[\\\\\\\"benchmarks\\\\\\\"][bench][\\\\\\\"valid_mask\\\\\\\"][keep_mask]\\\\n263:        \\\\\\\"benchmarks\\\\\\\": list(data[\\\\\\\"benchmarks\\\\\\\"].keys()),\\\\n287:        for bench, bench_data in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n296:            \\\\\\\"benchmarks\\\\\\\": {\\\\n298:                for bench, bd in data[\\\\\\\"benchmarks\\\\\\\"].items()\\\\n310:    for bench, bench_data in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n331:        # D018: per-benchmark model exclusion (e.g., 3B excluded from gsm8k)\\\\n381:        # D023: random subsampling per benchmark (seed=42 for reproducibility)\\\\n408:            irt_result = run_benchmark_fit(\\\\n526:            benchmarks=args.benchmarks,\\\\n549:        \\\\\\\"benchmarks\\\\\\\": all_results,\\\\n576:             \\\\\\\"(per-benchmark per-item tau)\\\\\\\")\\\\n598:        \\\\\\\"--benchmarks\\\\\\\", nargs=\\\\\\\"*\\\\\\\", default=None,\\\\n652:        \\\\\\\"--benchmark\\\\\\\", type=str, default=None,\\\\n654:        help=\\\\\\\"Single benchmark to run (convenience alias for --benchmarks)\\\\\\\")\\\\n662:        help=\\\\\\\"Max items per benchmark (default: None = no limit)\\\\\\\")\\\\n669:    # --benchmark (singular) overrides --benchmarks\\\\n670:    if args.benchmark and not args.benchmarks:\\\\n671:        args.benchmarks = [args.benchmark]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"5:runs IRT 4PL+gamma calibration and all baselines per benchmark,\\n32:    run_benchmark_fit,\\n48:    {\\\"model\\\": \\\"3B\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"reason\\\": \\\"D018 LoRA damage\\\"},\\n52:def should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n55:        if pattern in model_name and benchmark == bench:\\n110:def load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\n121:                              \\\"signals_merged_{}.json\\\".format(benchmark))\\n147:                    f\\\"{m['dirname']}/{benchmark} in pooled mode. \\\"\\n150:                       m[\\\"dirname\\\"], benchmark)\\n155:def check_scale_signals(signals_dir, models, benchmarks, scales):\\n162:            for bench in benchmarks:\\n186:            args.eval_dir, args.pool_scales, args.benchmarks,\\n190:        data = load_eval_results(args.eval_dir, args.benchmarks,\\n195:        args.exposure_file, data[\\\"benchmarks\\\"], model_id=args.tau_model_id)\\n199:             len(data[\\\"models\\\"]), list(data[\\\"benchmarks\\\"].keys()))\\n216:            for bench in data[\\\"benchmarks\\\"]:\\n217:                data[\\\"benchmarks\\\"][bench][\\\"responses\\\"] = \\\\\\n218:                    data[\\\"benchmarks\\\"][bench][\\\"responses\\\"][keep_mask]\\n219:                data[\\\"benchmarks\\\"][bench][\\\"valid_mask\\\"] = \\\\\\n220:                    data[\\\"benchmarks\\\"][bench][\\\"valid_mask\\\"][keep_mask]\\n226:        bench_list = list(data[\\\"benchmarks\\\"].keys())\\n244:            for bench in data[\\\"benchmarks\\\"]:\\n245:                data[\\\"benchmarks\\\"][bench][\\\"responses\\\"] = \\\\\\n246:                    data[\\\"benchmarks\\\"][bench][\\\"responses\\\"][keep_mask]\\n247:                data[\\\"benchmarks\\\"][bench][\\\"valid_mask\\\"] = \\\\\\n248:                    data[\\\"benchmarks\\\"][bench][\\\"valid_mask\\\"][keep_mask]\\n263:        \\\"benchmarks\\\": list(data[\\\"benchmarks\\\"].keys()),\\n287:        for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n296:            \\\"benchmarks\\\": {\\n298:                for bench, bd in data[\\\"benchmarks\\\"].items()\\n310:    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n331:        # D018: per-benchmark model exclusion (e.g., 3B excluded from gsm8k)\\n381:        # D023: random subsampling per benchmark (seed=42 for reproducibility)\\n408:            irt_result = run_benchmark_fit(\\n526:            benchmarks=args.benchmarks,\\n549:        \\\"benchmarks\\\": all_results,\\n576:             \\\"(per-benchmark per-item tau)\\\")\\n598:        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n652:        \\\"--benchmark\\\", type=str, default=None,\\n654:        help=\\\"Single benchmark to run (convenience alias for --benchmarks)\\\")\\n662:        help=\\\"Max items per benchmark (default: None = no limit)\\\")\\n669:    # --benchmark (singular) overrides --benchmarks\\n670:    if args.benchmark and not args.benchmarks:\\n671:        args.benchmarks = [args.benchmark]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+`--benchmark` 是 `--benchmarks` 的单数别名，参数正确。提交实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "3caf51ad-fdf6-4120-9872-f213b1eb195a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U7yuatGhMva5gT9NEpJKZE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1561,
+      "cache_read_input_tokens": 32987,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1561
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01L3maX37QLteZUdvLQ9N93d`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/contamcal-irt-calibration && tmux new-session -d -s exp006_oracle_arc_4pl_pooled \"TMPDIR=/home/ubuntu/tmp_cmdstan python exp006/run_exp006.py --oracle-exposure --pool-scales 0.5B 1.5B --benchmark arc_challenge --chains 4 --warmup 2000 --samples 4000 --parallel-chains 1 --output-dir /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled --aligned-only 2>&1 | tee /tmp/irt_oracle_arc_4pl_pooled.log\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "a038cbbc-3b35-4de0-9e8a-61ef9012968a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U7yuatGhMva5gT9NEpJKZE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1561,
+      "cache_read_input_tokens": 32987,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1561
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T03:53:30.468Z_
+
+<details><summary>↩ Tool result · `toolu_01L3maX37QLteZUdvLQ9N93d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "e5d0a1cf-24f5-492b-b627-467163e73327",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+tmux session 已启动。确认进程正在运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "3e2f4aee-d9bc-4339-82f7-8f1b3aa72b9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TJGFT2VAxCTT4NteXSuVx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 357,
+      "cache_read_input_tokens": 34548,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 357
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011JmXZ9vQ2iSX6GvZRAigHZ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -20 /tmp/irt_oracle_arc_4pl_pooled.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "cd0ca3f5-6e6b-4623-aae1-f919d5e60eff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TJGFT2VAxCTT4NteXSuVx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 357,
+      "cache_read_input_tokens": 34548,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 357
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T03:53:34.109Z_
+
+<details><summary>↩ Tool result · `toolu_011JmXZ9vQ2iSX6GvZRAigHZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "72f1dd87-acbc-43c6-982a-8bf274f64c52",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: python: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Python not found - likely need to activate conda environment first. Let me check which Python is available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "ec1aea36-ca63-482b-a1a0-457b34af87ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NAnAWvG3UomQbBhAqMbidH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 34905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 313
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+`python` 命令不存在，需要激活 conda 环境。检查 Python 路径后重新提交。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "260c7331-636f-4f2c-9ab7-dc5ff6bfd131",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NAnAWvG3UomQbBhAqMbidH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 34905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 313
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016LxJ2v1zqbFi29sPBQ37Wz`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "which python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "b20422d4-1ff3-4ada-842e-d565261ac0fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NAnAWvG3UomQbBhAqMbidH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 34905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 313
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T03:53:39.135Z_
+
+<details><summary>↩ Tool result · `toolu_016LxJ2v1zqbFi29sPBQ37Wz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "b00f8d43-bbe8-4221-b03d-7d71c7ff279b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LxLYVE5cGmdtyxeHfvgopa`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/miniconda3/bin/python"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "f2e5a7c1-e34b-4a64-b454-1c1af01b4310",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NAnAWvG3UomQbBhAqMbidH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 34905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 313
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T03:53:40.013Z_
+
+<details><summary>↩ Tool result · `toolu_01LxLYVE5cGmdtyxeHfvgopa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "07a783ab-03f3-46c4-b672-c68d0508c80e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+Conda 环境在 `/root/miniconda3`。先 kill 旧 tmux session，重新提交。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "dc0e155d-dbf4-4a14-a9df-4775a0ec5b41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PadnMykhCHLYBzYkKWFvSi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 476,
+      "cache_read_input_tokens": 35218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 476
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01J9UaHAhuHwPz57RbyFLB6B`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tmux kill-session -t exp006_oracle_arc_4pl_pooled 2>/dev/null; cd /root/contamcal-irt-calibration && tmux new-session -d -s exp006_oracle_arc_4pl_pooled \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && TMPDIR=/home/ubuntu/tmp_cmdstan python exp006/run_exp006.py --oracle-exposure --pool-scales 0.5B 1.5B --benchmark arc_challenge --chains 4 --warmup 2000 --samples 4000 --parallel-chains 1 --output-dir /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled --aligned-only 2>&1 | tee /tmp/irt_oracle_arc_4pl_pooled.log\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "d63a53b1-dabc-439f-9661-8c8580948f11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PadnMykhCHLYBzYkKWFvSi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 476,
+      "cache_read_input_tokens": 35218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 476
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T03:53:46.495Z_
+
+<details><summary>↩ Tool result · `toolu_01J9UaHAhuHwPz57RbyFLB6B`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "3e731977-d160-4b03-85e5-7f4166c0ed5c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SjCPDqrjGgwJh5tfFfAstw`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -30 /tmp/irt_oracle_arc_4pl_pooled.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "710dee8d-009d-41b4-b876-e064a3efadc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014J7u11HwjJqoNyr6E4gdSu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 409,
+      "cache_read_input_tokens": 35694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 409
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T03:53:50.397Z_
+
+<details><summary>↩ Tool result · `toolu_01SjCPDqrjGgwJh5tfFfAstw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 11:53:48,073 [INFO] Skipping non-aligned dir: Qwen2.5-3B_d000_s42\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\n2026-05-15 11:53:48,073 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s42_aligned\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_raw\\n2026-05-15 11:53:48,073 [INFO] Found 5 model evaluations\\n2026-05-15 11:53:48,090 [INFO] Benchmarks: ['arc_challenge']\\n2026-05-15 11:53:48,190 [INFO] Pool scale 1.5B: 5 models, dosages=[0, 5, 25, 100, 100]\\n2026-05-15 11:53:48,191 [INFO] Models: 11 | Benchmarks: ['arc_challenge']\\n2026-05-15 11:53:48,191 [INFO] Dosages: [0, 5, 5, 25, 100, 100, 0, 5, 25, 100, 100]\\n2026-05-15 11:53:48,191 [INFO] \\n============================================================\\n2026-05-15 11:53:48,191 [INFO] BENCHMARK: arc_challenge\\n2026-05-15 11:53:48,191 [INFO] ============================================================\\n2026-05-15 11:53:48,191 [INFO] Oracle exposure: [0.0, 0.05, 0.05, 0.25, 1.0, 1.0, 0.0, 0.05, 0.25, 1.0, 1.0]\\n2026-05-15 11:53:48,191 [INFO] --- IRT Calibration (4pl_gamma) ---\\n2026-05-15 11:53:48,191 [INFO] === arc_challenge: 11 models x 1172 items ===\\n2026-05-15 11:53:48,191 [INFO] Mean accuracy: 0.540\\n2026-05-15 11:53:48,192 [INFO] Compiling Stan model: contam_irt_4pl_simple.stan\\n2026-05-15 11:53:48,224 [INFO] Fitting: 11 models x 1172 items, 4 chains x 4000 samples\\n2026-05-15 11:53:48,258 [INFO] CmdStan start processing\\n\\rchain 1:   0%|\\u001b[33m          \\u001b[0m| 0/6000 [00:00<?, ?it/s, (Warmup)]\\n\\rchain 2:   0%|\\u001b[33m          \\u001b[0m| 0/6000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\n\\n\\rchain 3:   0%|\\u001b[33m          \\u001b[0m| 0/6000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\u001b[A\\n\\n\\n\\rchain 4:   0%|\\u001b[33m          \\u001b[0m| 0/6000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\u001b[A\\u001b[A\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "1efc381a-2da9-409d-a911-29dd7a2b155a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 11:53:48,073 [INFO] Skipping non-aligned dir: Qwen2.5-3B_d000_s42\\\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED\\\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\\\n2026-05-15 11:53:48,073 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s42_aligned\\\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED\\\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED\\\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_raw\\\\n2026-05-15 11:53:48,073 [INFO] Found 5 model evaluations\\\\n2026-05-15 11:53:48,090 [INFO] Benchmarks: ['arc_challenge']\\\\n2026-05-15 11:53:48,190 [INFO] Pool scale 1.5B: 5 models, dosages=[0, 5, 25, 100, 100]\\\\n2026-05-15 11:53:48,191 [INFO] Models: 11 | Benchmarks: ['arc_challenge']\\\\n2026-05-15 11:53:48,191 [INFO] Dosages: [0, 5, 5, 25, 100, 100, 0, 5, 25, 100, 100]\\\\n2026-05-15 11:53:48,191 [INFO] \\\\n============================================================\\\\n2026-05-15 11:53:48,191 [INFO] BENCHMARK: arc_challenge\\\\n2026-05-15 11:53:48,191 [INFO] ============================================================\\\\n2026-05-15 11:53:48,191 [INFO] Oracle exposure: [0.0, 0.05, 0.05, 0.25, 1.0, 1.0, 0.0, 0.05, 0.25, 1.0, 1.0]\\\\n2026-05-15 11:53:48,191 [INFO] --- IRT Calibration (4pl_gamma) ---\\\\n2026-05-15 11:53:48,191 [INFO] === arc_challenge: 11 models x 1172 items ===\\\\n2026-05-15 11:53:48,191 [INFO] Mean accuracy: 0.540\\\\n2026-05-15 11:53:48,192 [INFO] Compiling Stan model: contam_irt_4pl_simple.stan\\\\n2026-05-15 11:53:48,224 [INFO] Fitting: 11 models x 1172 items, 4 chains x 4000 samples\\\\n2026-05-15 11:53:48,258 [INFO] CmdStan start processing\\\\n\\\\rchain 1:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/6000 [00:00<?, ?it/s, (Warmup)]\\\\n\\\\rchain 2:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/6000 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\n\\\\n\\\\rchain 3:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/6000 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\u001b[A\\\\n\\\\n\\\\n\\\\rchain 4:   0%|\\\\u001b[33m          \\\\u001b[0m| 0/6000 [00:00<?, ?it/s, (Warmup)]\\\\u001b[A\\\\u001b[A\\\\u001b[A\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 11:53:48,073 [INFO] Skipping non-aligned dir: Qwen2.5-3B_d000_s42\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED\\n2026-05-15 11:53:48,073 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s42_aligned\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED\\n2026-05-15 11:53:48,073 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_raw\\n2026-05-15 11:53:48,073 [INFO] Found 5 model evaluations\\n2026-05-15 11:53:48,090 [INFO] Benchmarks: ['arc_challenge']\\n2026-05-15 11:53:48,190 [INFO] Pool scale 1.5B: 5 models, dosages=[0, 5, 25, 100, 100]\\n2026-05-15 11:53:48,191 [INFO] Models: 11 | Benchmarks: ['arc_challenge']\\n2026-05-15 11:53:48,191 [INFO] Dosages: [0, 5, 5, 25, 100, 100, 0, 5, 25, 100, 100]\\n2026-05-15 11:53:48,191 [INFO] \\n============================================================\\n2026-05-15 11:53:48,191 [INFO] BENCHMARK: arc_challenge\\n2026-05-15 11:53:48,191 [INFO] ============================================================\\n2026-05-15 11:53:48,191 [INFO] Oracle exposure: [0.0, 0.05, 0.05, 0.25, 1.0, 1.0, 0.0, 0.05, 0.25, 1.0, 1.0]\\n2026-05-15 11:53:48,191 [INFO] --- IRT Calibration (4pl_gamma) ---\\n2026-05-15 11:53:48,191 [INFO] === arc_challenge: 11 models x 1172 items ===\\n2026-05-15 11:53:48,191 [INFO] Mean accuracy: 0.540\\n2026-05-15 11:53:48,192 [INFO] Compiling Stan model: contam_irt_4pl_simple.stan\\n2026-05-15 11:53:48,224 [INFO] Fitting: 11 models x 1172 items, 4 chains x 4000 samples\\n2026-05-15 11:53:48,258 [INFO] CmdStan start processing\\n\\rchain 1:   0%|\\u001b[33m          \\u001b[0m| 0/6000 [00:00<?, ?it/s, (Warmup)]\\n\\rchain 2:   0%|\\u001b[33m          \\u001b[0m| 0/6000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\n\\n\\rchain 3:   0%|\\u001b[33m          \\u001b[0m| 0/6000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\u001b[A\\n\\n\\n\\rchain 4:   0%|\\u001b[33m          \\u001b[0m| 0/6000 [00:00<?, ?it/s, (Warmup)]\\u001b[A\\u001b[A\\u001b[A\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+实验已成功启动：11 models × 1172 items，4PL_gamma 模型，4 chains × 4000 samples，正在 warmup。
+
+更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "c3d93079-59bd-4353-a133-9c26aef97903",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VZ3Nz3mUnGwAeJ2nAw1hpX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 36103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1317
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01RRTgB1QmaBwjjG9167MXSS`</summary>
+
+```json
+{
+  "exp_id": "exp006-oracle-arc-4pl-pooled",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contamcal-irt-calibration",
+  "spec": {
+    "command": "TMPDIR=/home/ubuntu/tmp_cmdstan python exp006/run_exp006.py --oracle-exposure --pool-scales 0.5B 1.5B --benchmark arc_challenge --chains 4 --warmup 2000 --samples 4000 --parallel-chains 1 --output-dir /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled --aligned-only",
+    "server": "cqa1-21977",
+    "data_path": "/root/autodl-tmp/exp001/eval_results",
+    "data_count": "11 models x 1172 items",
+    "model_name": "IRT 4PL+gamma pooled (0.5B+1.5B) ARC oracle exposure",
+    "seed": 42,
+    "tmux_session": "exp006_oracle_arc_4pl_pooled",
+    "log_path": "/tmp/irt_oracle_arc_4pl_pooled.log",
+    "checkpoint_path": "/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled",
+    "note": "CPU-only IRT task. Matches GSM8K oracle config (16 models, oracle exposure, 4 chains, 2000 warmup, 4000 samples) but for ARC benchmark."
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "6ad54e97-f70e-4eb5-81df-18001ac37149",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VZ3Nz3mUnGwAeJ2nAw1hpX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 36103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1317
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T03:54:08.615Z_
+
+<details><summary>↩ Tool result · `toolu_01RRTgB1QmaBwjjG9167MXSS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp006-oracle-arc-4pl-pooled\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T03:51:29.732Z\", \"updated_at\": \"2026-05-15T03:54:05.804Z\", \"hypothesis\": \"ARC oracle 4PL+γ pooled IRT with same config as GSM8K oracle (all available models + oracle exposure). Previous ARC 'oracle' used 0.5B-only + delta exposure — not comparable to GSM8K oracle (16 models + oracle). Completes the 2×2×2 matrix (benchmark × model × signal).\", \"spec\": {\"command\": \"TMPDIR=/home/ubuntu/tmp_cmdstan python exp006/run_exp006.py --oracle-exposure --pool-scales 0.5B 1.5B --benchmark arc_challenge --chains 4 --warmup 2000 --samples 4000 --parallel-chains 1 --output-dir /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled --aligned-only\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp001/eval_results\", \"data_count\": \"11 models x 1172 items\", \"model_name\": \"IRT 4PL+gamma pooled (0.5B+1.5B) ARC oracle exposure\", \"seed\": 42, \"tmux_session\": \"exp006_oracle_arc_4pl_pooled\", \"log_path\": \"/tmp/irt_oracle_arc_4pl_pooled.log\", \"checkpoint_path\": \"/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled\", \"note\": \"CPU-only IRT task. Matches GSM8K oracle config (16 models, oracle exposure, 4 chains, 2000 warmup, 4000 samples) but for ARC benchmark.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.9918}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "0aab19a3-b74a-4073-aa7d-02994056d34f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp006-oracle-arc-4pl-pooled\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T03:51:29.732Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:54:05.804Z\\\", \\\"hypothesis\\\": \\\"ARC oracle 4PL+γ pooled IRT with same config as GSM8K oracle (all available models + oracle exposure). Previous ARC 'oracle' used 0.5B-only + delta exposure — not comparable to GSM8K oracle (16 models + oracle). Completes the 2×2×2 matrix (benchmark × model × signal).\\\", \\\"spec\\\": {\\\"command\\\": \\\"TMPDIR=/home/ubuntu/tmp_cmdstan python exp006/run_exp006.py --oracle-exposure --pool-scales 0.5B 1.5B --benchmark arc_challenge --chains 4 --warmup 2000 --samples 4000 --parallel-chains 1 --output-dir /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled --aligned-only\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/eval_results\\\", \\\"data_count\\\": \\\"11 models x 1172 items\\\", \\\"model_name\\\": \\\"IRT 4PL+gamma pooled (0.5B+1.5B) ARC oracle exposure\\\", \\\"seed\\\": 42, \\\"tmux_session\\\": \\\"exp006_oracle_arc_4pl_pooled\\\", \\\"log_path\\\": \\\"/tmp/irt_oracle_arc_4pl_pooled.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled\\\", \\\"note\\\": \\\"CPU-only IRT task. Matches GSM8K oracle config (16 models, oracle exposure, 4 chains, 2000 warmup, 4000 samples) but for ARC benchmark.\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.9918}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp006-oracle-arc-4pl-pooled\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T03:51:29.732Z\", \"updated_at\": \"2026-05-15T03:54:05.804Z\", \"hypothesis\": \"ARC oracle 4PL+γ pooled IRT with same config as GSM8K oracle (all available models + oracle exposure). Previous ARC 'oracle' used 0.5B-only + delta exposure — not comparable to GSM8K oracle (16 models + oracle). Completes the 2×2×2 matrix (benchmark × model × signal).\", \"spec\": {\"command\": \"TMPDIR=/home/ubuntu/tmp_cmdstan python exp006/run_exp006.py --oracle-exposure --pool-scales 0.5B 1.5B --benchmark arc_challenge --chains 4 --warmup 2000 --samples 4000 --parallel-chains 1 --output-dir /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled --aligned-only\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp001/eval_results\", \"data_count\": \"11 models x 1172 items\", \"model_name\": \"IRT 4PL+gamma pooled (0.5B+1.5B) ARC oracle exposure\", \"seed\": 42, \"tmux_session\": \"exp006_oracle_arc_4pl_pooled\", \"log_path\": \"/tmp/irt_oracle_arc_4pl_pooled.log\", \"checkpoint_path\": \"/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled\", \"note\": \"CPU-only IRT task. Matches GSM8K oracle config (16 models, oracle exposure, 4 chains, 2000 warmup, 4000 samples) but for ARC benchmark.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.9918}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+完成。实验 `exp006-oracle-arc-4pl-pooled` 已提交并注册：
+
+- **tmux**: `exp006_oracle_arc_4pl_pooled`
+- **配置**: 4PL_gamma, 11 models (0.5B+1.5B pooled) × 1172 ARC items, oracle exposure, 4 chains, 2000 warmup + 4000 samples
+- **输出**: `/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled`
+- **日志**: `/tmp/irt_oracle_arc_4pl_pooled.log`
+- CPU 任务，预计 20-40 分钟
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "uuid": "b812ab1d-3141-40b0-a162-b84dd611783a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JdXpmGir2sd4ubs5WKyU8h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1124,
+      "cache_read_input_tokens": 37420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1124
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 58_
+
+完成。实验 `exp006-oracle-arc-4pl-pooled` 已提交并注册：
+
+- **tmux**: `exp006_oracle_arc_4pl_pooled`
+- **配置**: 4PL_gamma, 11 models (0.5B+1.5B pooled) × 1172 ARC items, oracle exposure, 4 chains, 2000 warmup + 4000 samples
+- **输出**: `/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled`
+- **日志**: `/tmp/irt_oracle_arc_4pl_pooled.log`
+- CPU 任务，预计 20-40 分钟
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 115189,
+  "duration_api_ms": 107293,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "f81dc60d-ee66-4cec-93b8-49917dc9d1f1",
+  "total_cost_usd": 0.50863675,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 26703,
+    "cache_read_input_tokens": 480782,
+    "output_tokens": 3975,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 26703,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 189,
+        "cache_read_input_tokens": 37420,
+        "cache_creation_input_tokens": 1124,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1124
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1762,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001882,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 19,
+      "outputTokens": 3975,
+      "cacheReadInputTokens": 480782,
+      "cacheCreationInputTokens": 26703,
+      "webSearchRequests": 0,
+      "costUSD": 0.5067547499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "581f0b15-6ce2-44dc-afc0-6600f9f67450"
+}
+```
+
+</details>
+
+---

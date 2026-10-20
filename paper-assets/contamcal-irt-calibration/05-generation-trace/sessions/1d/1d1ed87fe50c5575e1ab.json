@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d1ed87fe50c5575e1ab",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis irt 2pl refit mmlu arc",
+  "task_key": "worker_analysis_irt-2pl-refit-mmlu-arc_20260516T150541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_irt-2pl-refit-mmlu-arc_20260516T150541_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "f7be8a0a051c7b831daf03810c11ee29cf2574322790fdb0f14d14123adb862c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果汇总：\n\n**2PL+γ Refit 效果：**\n\n| Benchmark | Model | PPP | cal_MAE | ΔMAE | 结论 |\n|-----------|-------|-----|---------|------|------|\n| GSM8K (N=16) | 4PL+γ | 0.398 | 0.035 | **+0.118** | 校准有效 |\n| MMLU (N=8) | 4PL+γ→**2PL+γ** | 0.006→**0.426** | 0.021→**0.002** | -0.014→**+0.006** | 修复成功 |\n| ARC (N=8) | 4PL+γ→**2PL+γ** | 0.000→0.002 | 0.086→0.036 | -0.077→-0.028 | 改善但仍不合格 |\n\n**Domain Gamma N=24 核心发现：**\n- STEM_Math γ=+0.97, STEM_Science γ=+0.84（exposure 提升分数）\n- Social_Sciences γ=-0.50, Humanities γ=-0.41, Medical γ=-0.20（exposure 降低分数）\n- Pooled MMLU γ≈-0.26 不显著，是正负 domain 效应的混合平均\n\n报告已注册为 artifact `art_20260516_5bafe5`，输出路径：`/root/contamcal-irt-calibration/artifacts/analysis_2pl_gamma_refit_0516.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-irt-2pl-refit-mmlu-arc.md"
+}

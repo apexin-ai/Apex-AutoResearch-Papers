@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1251daa8fbe896476f1a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops olmo2 rerun status collect",
+  "task_key": "worker_ops_olmo2-rerun-status-collect_20260521T144828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_olmo2-rerun-status-collect_20260521T144828_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "9377aac656e7bc2d1a0a8bf58fd1ac2c84b4119de664cbd64528682445dc1206"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**OLMo-2 eval rerun 状态：进行中**\n\n- **PID 531623**: 运行中，已 22 分钟\n- **GPU 3**: 95% 利用率，16.7GB / 97.9GB 显存\n- **当前进度**: d005 MMLU 评估中 (8756/14042 = 62%)，~17 it/s\n\n### 已完成结果\n\n| Dosage | MMLU (%) | ARC (%) |\n|--------|----------|---------|\n| d000   | **53.79** | **76.11** |\n| d005   | 进行中 (62%) | 未开始 |\n| d025   | 未开始 | 未开始 |\n| d050   | 未开始 | 未开始 |\n| d100   | 未开始 | 未开始 |\n\n**d000 MMLU = 53.79%，与论文 53.79% 完全一致。** evaluate.py md5 已记录在 log 中 (17673bf3...)，lora_alpha=32 确认。\n\n按当前速度，d005 MMLU 剩余 ~5300 items ÷ 17 it/s ≈ 5 分钟完成。全部 10 个 eval（5 dosage × 2 benchmark）估计还需 ~2-3 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-olmo2-rerun-status-collect.md"
+}

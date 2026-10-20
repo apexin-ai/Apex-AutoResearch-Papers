@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3add02aebcc3421d43ad",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code review run batch skip logic",
+  "task_key": "worker_code-review_run_batch_skip_logic_20260515T200323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code-review_run_batch_skip_logic_20260515T200323_result.json",
+    "occurrence": 1,
+    "bytes": 1602,
+    "sha256": "dd1224b92ee6283abfb8527c8cb828b752c6160c66462e3d10fb5e2c6903a92d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：skip 是**一次性检查**，不是逐任务检查\n\n关键代码在 `main()` 函数中：\n\n**Task list 构建阶段**（启动时执行一次）：\n```python\nfor dosage in dosages:\n    for benchmark in benchmarks:\n        if skip_completed and merged_output_exists(model_name, dosage, benchmark):\n            skipped.append(...)\n            continue\n        task = build_task(...)\n        tasks.append(task)\n```\n\n**执行阶段**（无 re-check）：\n```python\nfor i, task in enumerate(tasks, 1):\n    # 直接执行，不重新检查 merged_output_exists\n    result = subprocess.run(task[\"cmd\"], ...)\n```\n\n`merged_output_exists` 检查的是 `signals_merged_{benchmark}.json` 文件是否存在，但**只在构建 task list 时调用一次**。执行循环里没有任何重新扫描 output 目录的逻辑。\n\n**这是一个 bug。** 场景：signals_3B_v5 在 cuda:4 启动，构建 task list 时 d025/mmlu 尚未完成，被加入队列。如果另一个 GPU 上的进程随后先完成了 d025/mmlu 并写入了 `signals_merged_mmlu.json`，v5 执行到 d025/mmlu 时不会重新检查，会重复计算。\n\n**修复方案**：在执行循环里、每个 task 执行前加一次 `merged_output_exists` 检查：\n\n```python\nfor i, task in enumerate(tasks, 1):\n    # 逐任务 re-check\n    if skip_completed and merged_output_exists(model_name, task[\"dosage\"], task[\"benchmark\"]):\n        logger.info(\"[%d/%d] SKIP (completed by another process): %s\", ...)\n        continue\n    # ... 原有执行逻辑\n```\n\n需要修复吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-review-run-batch-skip-logic.md"
+}

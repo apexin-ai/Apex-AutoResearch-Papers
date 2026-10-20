@@ -1,0 +1,373 @@
+{
+  "schema_version": "1.0",
+  "id": "2bf69dd4dbf9d2c000f4",
+  "project": "contamcal-irt-calibration",
+  "kind": "conversation",
+  "title": "research paper method prep",
+  "task_key": "worker_research_paper-method-prep_20260516T165433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_paper-method-prep_20260516T165433.jsonl",
+    "occurrence": 1,
+    "bytes": 30739,
+    "sha256": "96a011c668a8ff4702d1f4401a88b0663c67749828f01e01309617c29a6afdd0"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T16:57:16.036633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T16:57:16.036987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T16:57:16.037173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T16:57:16.037528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — contamcal-irt-calibration\\\\n\\\\n## Target Venue\\\\n- **Primary: EMNLP 2026 ARR May 25** (D006: reinstated per user directive, 12 days)\\\\n- Fallback: AAAI 2027 (Jul-Aug 2026) / ICLR 2027 (Sep 2026)\\\\n- Track: Machine Learning for NLP / Resources and Evaluation\\\\n- Aligns with EMNLP 2026 special theme \\\\\\\"New Missions for NLP Research\\\\\\\" (explicitly invites contamination/data governance work)\\\\n\\\\n## Core Insight (D039 pivot + D108/D115 domain heterogeneity — N=24 confirmed)\\\\nBenchmark contamination effects are far more complex than \\\\\\\"scores go up.\\\\\\\" Through controlled SFT injection and contamination-augmented IRT analysis, we reveal: effects exhibit domain-level heterogeneity within benchmarks (MMLU: Simpson's paradox — aggregate γ≈0 masks STEM-gradient pattern where factual-knowledge domains show strong positive γ while non-STEM domains exhibit model misfit), are benchmark-dependent across benchmarks (ARC: forgetting vs GSM8K: inflation), scale-dependent (catastrophic at 0.5B, negligible at 7B), and detection signals exhibit fundamental failure modes (Min-K++ directional reversal). ContamCal uses IRT with per-benchmark γ_k to systematically characterize these behaviors and establish identifiability boundaries. Calibration is possible conditionally — when model complexity matches benchmark structure (2PL for open-ended, 4PL for MCQ) and signal quality is sufficient (recovery validated down to AUC=0.55, lowest tested, at J≥50) — but the primary contribution is the characterization framework itself. Grounded in educational measurement's item compromise IRT (Eckerly 2017, Sinharay 2017) and explanatory IRT (De Boeck & Wilson 2004).\\\\n\\\\n## Core Claims (4 条 — D039 reorder: characterization first, calibration demoted)\\\\n\\\\n1. **Characterization Claim (PRIMARY — D108/D115: domain h\n…[truncated 22758 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T16:57:16.037729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "writing_plan.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T16:57:16.038089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/writing_plan.yaml\\\", \\\"content\\\": \\\"## writing_plan.yaml — contamcal-irt-calibration\\\\n## Generated: 2026-05-15 | Paper Agent Step 1\\\\n## Status: APPROVED (Director 2026-05-15)\\\\n\\\\nmeta:\\\\n  venue: \\\\\\\"EMNLP 2026 ARR May 25\\\\\\\"\\\\n  track: \\\\\\\"Machine Learning for NLP / Resources and Evaluation\\\\\\\"\\\\n  deadline: \\\\\\\"2026-05-25\\\\\\\"\\\\n  page_limit: 8  # + unlimited appendix\\\\n  template: \\\\\\\"acl_latex (ARR format)\\\\\\\"\\\\n  template_note: \\\\\\\"No local EMNLP 2026 template found; use acl-style-files from github.com/acl-org/acl-style-files. Worker should download latest.\\\\\\\"\\\\n  special_theme: \\\\\\\"New Missions for NLP Research\\\\\\\"\\\\n  framing_doc: \\\\\\\"paper_framing.md (D039 pivot: characterization-led)\\\\\\\"\\\\n  total_word_budget: 5800  # main text excluding references\\\\n\\\\ntitle: >\\\\n  ContamCal: Characterizing Benchmark-Dependent Contamination Effects\\\\n  via Contamination-Augmented Item Response Theory\\\\n\\\\ncore_claims:\\\\n  C1:\\\\n    name: \\\\\\\"Characterization (PRIMARY)\\\\\\\"\\\\n    summary: \\\\\\\"Contamination effects are benchmark-dependent (ARC γ<0, GSM8K γ>0) and scale-dependent (catastrophic at 0.5B, mild at 3B). Per-benchmark γ_k captures bidirectional effects.\\\\\\\"\\\\n    evidence: [exp-001, exp-006]\\\\n    priority: 1\\\\n  C2:\\\\n    name: \\\\\\\"Signal Failure (CO-PRIMARY)\\\\\\\"\\\\n    summary: \\\\\\\"Min-K++ directional reversal (Cohen's d = -1.98 at 0.5B d100). S1 embedding is the only reliable signal (AUC>0.95 at d005). RRF degrades to S1-only in practice.\\\\\\\"\\\\n    evidence: [exp-008, exp-002, exp-003]\\\\n    priority: 1\\\\n  C3:\\\\n    name: \\\\\\\"Identifiability\\\\\\\"\\\\n    summary: \\\\\\\"Fisher Information analysis → recovery successful at AUC=0.55 (lowest tested, J≥50); lower bound open. LLM eval small cohorts create domain-method mismatch.\\\\\\\"\\\\n    evidence: [exp-004, mvp_sim_4pl_gamma]\\\\n    priority: 2\\\\n  C4:\\\\n    name: \\\\\\\"Conditional Calib\n…[truncated 17219 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T16:57:16.038270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T16:57:16.038507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\\\", \\\"content\\\": \\\"# Memory — contamcal-irt-calibration\\\\n\\\\n## 1. 研究方向与核心发现\\\\n\\\\n- **ContamCal**: contamination-augmented IRT with per-benchmark γ_k\\\\n- **D108 核心发现**: MMLU 57 subjects → 8 cognitive domains，aggregate γ≈0 masks domain heterogeneity (Simpson's paradox)。7/8 domains 完成 (Medical excluded due PPP=1.0 misfit)\\\\n- **D116**: Pooled IRT N=25 confirms Simpson's Paradox — aggregate γ 被 domain heterogeneity mask\\\\n- **D111**: STEM_Math γ 方向在 N=24 时反转——heterogeneity 可能 scale-dependent\\\\n- **D110**: Scale-stratified IRT (N=6-8 per scale) negative——N 太小不走这条路\\\\n- **D109**: Aggregate pooled IRT (N=23, 2PL+γ) confirms aggregate γ≈0\\\\n- **PPP=0 in 4/5 domains** → paper claim 必须基于 pattern/ranking，不能 claim 绝对 γ 值\\\\n\\\\n## 2. 论文叙事 (paper_framing)\\\\n\\\\n- Claim 1: Domain heterogeneity (Simpson's paradox) — aggregate masks signal\\\\n- Claim 2: Format dependence — ARC(MC) γ>0 / GSM8K(generative) γ≈0\\\\n- Claim 3: Identifiability (sim_sweep confirmed, D107)\\\\n- Cross-family validation via Llama-3.2-3B (D106)\\\\n- PPP misfit → claim 基于 pattern/ranking not absolute values\\\\n\\\\n## 3. 关键约束\\\\n\\\\n- **服务器名必须是 `cqa1-21977`**，写 \\\\\\\"A6000\\\\\\\" 会导致 cron 无法 SSH 验证进程（exp_006 事故教训）\\\\n- Stan IRT fitting 是 CPU 任务，不占 GPU，但 cron 仍需正确服务器名\\\\n- submit_training_job 有时不自动推进 PREPARING→RUNNING（需手动修正 + 注册 cron）\\\\n- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\\\\n- 工作目录：exp006 在 `/root/autodl-tmp/exp006/`，exp001/002 在 `/root/autodl-tmp/exp001/` & `/root/autodl-tmp/exp002/`\\\\n\\\\n## 4. 文献支撑 (2026-05-16 补充)\\\\n\\\\n- Brown & Thomson (2024): PPP 分布非均匀，low PPP 不自动否定参数估计 → 支持 ARC PPP=0.003 + γ 显著的可解释性\\\\n- Deng et al. (NAACL 2024): TS-Guessing MC contamination 敏感性 57% → 支持 MC format dependence\\\\n- Schaeffer et al. (2026): scaling law + generative contamination → 支持 GSM8K γ≈0\\\\n- Kievit et al. (2013): Simpson's paradox 理论框架 → D108 直接类比\\\\n-\n…[truncated 2259 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T16:57:16.038676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contamcal-irt-calibration",
+              "file": "ROADMAP.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T16:57:16.038865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"content\\\": \\\"# contamcal-irt-calibration — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-16 10:26 UTC | 更新原因: Reviewer critical: 修正d005 false failure + D108措辞降级为domain heterogeneity evidence + GPU状态同步\\\\n\\\\n## 核心方向\\\\nContamCal：contamination-augmented IRT with per-benchmark γ_k → domain heterogeneity evidence (Simpson's paradox, D108)。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**EMNLP 2026 ARR May 25**（距今 9 天）\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research (MVP 2026-05-13 通过) + 审稿进行中\\\\n- **D108 发现**: MMLU 57 subjects → 8 cognitive domains，aggregate γ≈0 masks domain heterogeneity (5 domains significant, γ range: -0.55 to +1.34)。PPP=0 in 4/5 domains → claim 基于 pattern/ranking，非绝对值。N=24 重跑确认前为\\\\\\\"evidence of heterogeneity\\\\\\\"\\\\n- **3B s42 signals**: d000 ✅ d005 ✅ d025 ✅ d100 🔄(cuda:1, ~35min)。d100 完成后全齐 → RRF\\\\n- **0.5B s123**: 全部完成 ✅\\\\n- **1.5B s123**: d025 running (cuda:0), d100 running (cuda:2)。完成后全量 RRF (N≥16+)\\\\n- **Scope expansion (D106)**: Llama 代码+模型就绪 | RL observational 3B-Instruct eval running (cuda:3) | 7B 待云GPU\\\\n\\\\n## GPU 实时占用 (6× RTX 4090D, cqa1-21977)\\\\n| GPU | 任务 | 预计完成 |\\\\n|-----|------|---------|\\\\n| cuda:0 | signals_15B_s123_batch (d025) | ~2h |\\\\n| cuda:1 | signals_3B_d100_a32_s42 | ~35min |\\\\n| cuda:2 | signals_15B_d100_s123 | ~3h |\\\\n| cuda:3 | eval_3B_instruct_aligned_para (P0-C) | ~1h |\\\\n| cuda:4 | **待分配 → Llama-3.2-3B d000 SFT** | 指令已发 |\\\\n| cuda:5 | signals_05B_s123_v2 (d100) | ~2.5h |\\\\n\\\\n## Critical Path (EMNLP T-9)\\\\n```\\\\n[Now]     cuda:1 d100 ~35min → 3B s42 全齐 → RRF 聚合 (CPU)\\\\n          cuda:4 → Llama-3.2-3B d000 SFT 启动\\\\n          cuda:3 3B-Instruct eval ~1h → 0.5B/1.5B-Instruct eval\\\\n[Day 1]   pooled IRT (N≥16+) — 论文核心 γ 数字\\\\n          MMLU domain gamma N=24 (含 3B) — 确认 heterogeneity 是否 scale-dependent\\\\n          Llama d000 SFT + eval\\\\n[Day 2]   Llama d005/d025/d100 SFT + eval + signals\\\\n          scale-st\n…[truncated 2302 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T16:57:16.039036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T16:57:16.039182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2pl_vs_4pl_ablation.md\n3B_s123_eval_matrix_complete.md\n_project\nanalysis_3B_d000_gsm8k_seed_variance.md\ncompile_eval_summary.py\ncoverage_report_20260515.md\nd000_alignment_tax_analysis.md\nd108_v4_analysis.md\ndiag_exp006_pooled_irt_n25.md\ndiag_exp_001_sft_15B_d005_s123.md\ndiag_exp_001_sft_d100_3B.md\ndiagnosis_exp002_3B_d000_s123_cuda2.md\ndose_response_analysis.md\ndream_reports\neval_metrics_summary.json\neval_metrics_summary.md\neval_summary_matrix.csv\nexp-004\nexp-006\nexp-008\nexp001\nexp001_sft_injection\nexp002_signal_pipeline\nexp003_rrf_ablation\nexp004_incremental_analysis.md\nexp005_noise_propagation\nexp006\nexp006-oracle-gsm8k-extended-v2\nexp006-s1only-gsm8k-2pl\nexp006_baselines\nexp006_irt_calibration\nexp006_pooled_rrf_irt_05b_15b\nexp006_readiness_report.md\nexp008\nexp008_3regime_analysis.json\nexp008_auc_heatmap.json\nexp008_v2\nexp_001_eval_3B_d000_s42_a32_batch\nexp_001_eval_3B_d005_s42_para_aligned\nexp_001_sft_injection\nexp_002_signals_05B\nexp_003_mmlu_item_aligned_gap\nexp_005_noise_prop_v4\nexp_006\nexp_006_pooled_irt_2pl_gamma_mmlu_arc\nexp_006_scale_stratified_irt\nexp_008_base_pretrained_15B_eval\nexp_008_instruct_rl_proxy\nexp_008_signal_survival\nexperiment_logs_loop17.txt\nfisher_info_derivation\ngpu_audit_20260515T1330.md\ngpu_audit_loop17.md\ngpu_health_20260515T1654.md\ngpu_health_check_loop10.md\ngpu_status_check.md\ngpu_status_loop17.md\nliterature_supplement_irt_fit.md\nliterature_survey_domain_dependent_contamination.md\nliterature_survey_negative_gamma.md\nmanifest.yaml\nmvp_simulation\nnext_experiment_queue.md\npaper_draft\nphase3_progress.md\nplan_registry_mapping.md\nreport_eval_compilation.md\nreport_gpu_status_check.md\nrrf_readiness_check.md\nrun_pooled_4bench_irt.py\nrun_pooled_irt_n16.sh\nrun_stratified_irt.py\nsignal_coverage_audit.md\nsignals_coverage_audit_0516.md\nsimulation_sweep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T16:57:16.039374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/method_notes.md",
+              "content": "# Method Section Notes — ContamCal\n\nWord budget: 1100 words (per writing_plan.yaml §method)\n\n---\n\n## 3.1 Problem Formulation\n\n**Core idea**: Given model $j$, benchmark $k$ with items $i$, observed binary response $y_{ijk}$. The latent ability $\\theta_j$ is confounded by contamination exposure. Goal: estimate $\\theta_j^{\\text{clean}}$ (ability absent contamination).\n\n**Three structural adaptations from educational measurement IRT**:\n1. Independent examinees → single model with joint item distribution (all items share one θ per model)\n2. Binary leakage indicator → continuous exposure score $e_{ij} \\in [0,1]$\n3. Stable ability → regime-conditional ability (θ may shift with contamination dosage)\n\n**Prior work to cite**:\n- Eckerly (2017): item compromise IRT — closest precedent (binary leak + 3PL)\n- Sinharay (2017): compromised item detection via IRT residuals\n- De Boeck & Wilson (2004): explanatory IRT framework (covariates on item/person parameters)\n- Adams et al. (1997): multifaceted Rasch as structural template\n- Mislevy (1986): fixed-effects IRT when N_examinees is small\n\n**Key notation**:\n- $y_{ijk} \\in \\{0,1\\}$: response of model $j$ to item $i$ on benchmark $k$\n- $\\theta_j$: latent ability of model $j$\n- $e_{ij}$: exposure score (from Stage 1 RRF)\n- $\\gamma_k$: per-benchmark contamination effect parameter\n- $a_i, b_i, c_i, d_i$: item discrimination, difficulty, guessing, slip\n\n**Corresponding experiments**: exp-006 (all IRT fits)\n\n---\n\n## 3.2 Stage 1: Multi-Signal Exposure Mapping\n\n**Core idea**: Map each (model, item) pair to a continuous exposure score $e_{ij}$ via training-free Reciprocal Rank Fusion of multiple contamination signals. Training-free fusion avoids meta-circularity (a learned aggregator's training data may itself be contaminated).\n\n**Signals**:\n| ID | Signal | Method | Source |\n|----|--------|--------|--------|\n| S1 | Embedding similarity | cosine(item embedding, nearest training chunk) | Provenance-based |\n| S2 | Min-K++ | token-level surprise (low perplexity on memorized items) | MIA-based |\n| S3 | [Reserved/deprecated] | — | — |\n| S4 | Self-Critique | model-generated paraphrase similarity | Behavioral |\n\n**RRF formula**:\n$$e_{ij} = \\sum_{s \\in \\text{signals}} \\frac{1}{k + r_s(i,j)}$$\nwhere $r_s(i,j)$ is the rank of item $i$ for model $j$ under signal $s$, and $k=60$ (standard RRF constant).\n\n**Critical empirical finding** (feeds into Results §5.2, but contextualize in Method):\n- S1 is the only reliable signal (AUC > 0.95 at d005)\n- S2 Min-K++ exhibits directional reversal at 0.5B (Cohen's d = -1.98) — actively misleading\n- RRF degrades to S1-only in practice; presented honestly as limitation but RRF remains principled design (extensible when better signals emerge)\n\n**Meta-circularity argument**: Learned aggregation (e.g., logistic regression over signals) requires labeled contamination data → circular dependency. RRF is rank-based, parameter-free, training-free.\n\n**Prior work to cite**:\n- Cormack et al. (2009): RRF original paper\n- Zhang et al. (2024): Min-K++ [CITE: zhang2024minkpp]\n- Shokri et al. (2017): MIA foundations for S2 contextualization\n- Carlini et al. (2022): training data extraction (broader MIA context)\n- Dong et al. (2024): KDS [CITE NEEDED exact ref]\n- Shi et al. (2024): CDD [CITE NEEDED exact ref]\n\n**Corresponding experiments**: exp-002 (signal pipeline), exp-003 (RRF ablation), exp-008 (signal evaluation)\n\n---\n\n## 3.3 Stage 2: Contamination-Augmented IRT\n\n**Core idea**: Extend standard IRT with a contamination covariate $\\gamma_k \\cdot e_{ij}$ in the logit. Per-benchmark $\\gamma_k$ captures heterogeneous contamination effects (inflation on GSM8K, forgetting on ARC).\n\n**Model definitions**:\n\n### 2PL + γ (default, robust)\n$$P(y_{ijk} = 1) = \\sigma\\big(a_i(\\theta_j - b_i) + \\gamma_k \\cdot e_{ij}\\big)$$\n\nUse when: N < 16, or benchmark is not strictly MCQ format.\n\n### 4PL + γ (full model, MCQ benchmarks)\n$$P(y_{ijk} = 1) = c_i + (d_i - c_i) \\cdot \\sigma\\big(a_i(\\theta_j - b_i) + \\gamma_k \\cdot e_{ij}\\big)$$\n\nUse when: N ≥ 16, MCQ format benchmark.\n\n- $c_i$: guessing parameter (lower asymptote, ~0.25 for 4-choice MC)\n- $d_i$: slip parameter (upper asymptote, <1.0 for careless errors)\n\n**Model selection rule** (C008 constraint):\n- 2PL+γ is default — robust even at small N\n- 4PL+γ only when N≥16 AND MCQ format (c/d parameters identifiable only with sufficient data)\n- ARC N=5 with 4PL+γ → PPP=0.000, MAE worsens 17× (overparameterization collapse)\n\n**Per-benchmark $\\gamma_k$ identification strategy**:\n- Fit IRT independently per benchmark (not jointly across benchmarks)\n- $\\gamma_k$ inherits sign and magnitude from exposure-response relationship on that specific benchmark\n- Positive $\\gamma_k$: contamination inflates scores (memorization helps)\n- Negative $\\gamma_k$: contamination degrades scores (forgetting/capacity displacement)\n- Non-significant $\\gamma_k$: benchmark naturally resistant or signal uninformative\n\n**Inference**: Stan NUTS (No-U-Turn Sampler), 4 chains, 1000 warmup + 1000 sampling. Convergence: R̂ < 1.05, ESS > 400. Model fit: PPP ∈ [0.1, 0.9].\n\n**Calibration procedure**:\n1. Fit IRT with exposure scores → posterior $p(\\theta_j, \\gamma_k | \\mathbf{y}, \\mathbf{e})$\n2. Predict clean score: set $e_{ij} = 0$ for all items → $\\hat{y}_{ijk}^{\\text{clean}}$\n3. Calibrated accuracy = mean of predicted clean item responses\n4. CI from posterior draws\n\n**Gating criterion** (when NOT to calibrate):\n- $\\gamma_k$ must be significant (CI excludes 0)\n- PPP ∈ [0.1, 0.9] (model not misspecified)\n- Calibrated MAE < raw MAE (calibration must help)\n- If any condition fails → report raw scores\n\n**Prior work to cite**:\n- De Boeck & Wilson (2004): explanatory IRT (covariate on logit)\n- San Martín et al. (2009): IRT identifiability conditions\n- Maris & Bechger (2009): IRT parameter identifiability\n- Lalor et al. (AAAI 2024): IRT for LLM evaluation\n- Holland & Wainer (1993): DIF — γ_k is essentially DIF between exposed/unexposed groups\n- Talts et al. (2018): SBC for posterior calibration validation\n- Brown & Thomson (2024): PPP distribution interpretation\n\n**Corresponding experiments**: exp-006 (all IRT configurations)\n\n---\n\n## 3.4 Fisher Information and Identifiability\n\n**Core idea**: Derive the Fisher Information $I(\\gamma)$ for the 4PL+γ model to establish theoretical recovery boundaries. Show that signal AUC and N_models jointly determine γ recoverability. Reveal structural domain-method mismatch: LLM evaluation typically has N=8-30 models, but reliable recovery needs N≥50.\n\n**Key results from simulation sweep** (exp-004, 24 conditions × 240 runs):\n- Recovery succeeds at AUC=0.55 (lowest tested) when J≥50 items, N≥20 models\n- CI width ∝ $N^{-0.48}$ (empirically estimated decay rate)\n- Coverage collapse at N<30 (confirmed D036)\n- Lower bound of AUC for recovery remains open (not tested below 0.55)\n\n**Fisher Information sketch** (full derivation in Appendix A):\n$$I(\\gamma) = \\sum_{i,j} e_{ij}^2 \\cdot P_{ij}(1-P_{ij}) \\cdot \\left(\\frac{d_i - c_i}{P_{ij} - c_i}\\right)^2 \\cdot \\frac{(P_{ij}-c_i)^2}{(d_i-c_i)^2}$$\n\nSimplified for 2PL+γ (c=0, d=1):\n$$I(\\gamma) = \\sum_{i,j} e_{ij}^2 \\cdot P_{ij}(1-P_{ij})$$\n\nKey insight: $I(\\gamma)$ scales with (a) variance of exposure scores (higher AUC → more discriminative $e_{ij}$), (b) number of models N, (c) item information (items near difficulty boundary contribute most).\n\n**Domain-method mismatch framing**:\n- Educational testing: hundreds of examinees, clear binary leak indicator → recovery trivial\n- LLM evaluation: 8-30 models, noisy continuous exposure signal → structural challenge\n- This is not merely \"IRT needs more data\" — it's a fundamental mismatch between the measurement framework's assumptions and the LLM evaluation domain's constraints\n\n**Measurement error extension** (exp-005, negative result — mention briefly):\n- Model exposure as noisy observation: $e_{ij} = \\tau_{ij} + \\epsilon$, $\\epsilon \\sim N(0, \\sigma_e^2)$\n- Result: CI width insensitive to $\\sigma_e$ across tested range → noise propagation is NOT the binding constraint\n- Binding constraint is N (number of models), not signal noise\n\n**Prior work to cite**:\n- San Martín et al. (2009): IRT identifiability\n- Talts et al. (2018): SBC diagnostic\n- Reckase (2009): multidimensional IRT (limitation: our θ is unidimensional)\n- Angelopoulos & Bates (2023): conformal prediction as alternative UQ (discuss why Bayesian IRT preferred: interpretable parameters, contamination covariate integration)\n\n**Corresponding experiments**: exp-004 (simulation sweep), exp-005 (noise propagation)\n\n---\n\n## Domain-Level Heterogeneity Analysis (supplements §5.1, methodology described in §3.3)\n\n**Core idea**: Within MMLU, stratify 57 subjects into 8 cognitive domains. Fit 2PL+γ per domain. Reveals Simpson's paradox: aggregate γ≈0 masks domain-level heterogeneity.\n\n**Domain taxonomy**: 57 MMLU subjects → 8 cognitive domains:\n- STEM_Math, STEM_Science, STEM_CS_Eng\n- Medical (excluded, D112: PPP=1.0 systematic misfit)\n- Humanities, Social_Sciences, Business_Law, Other\n\n**Formalization of Simpson's paradox**:\n- Aggregate fit: $\\gamma_{\\text{MMLU}} \\approx 0$ (CI includes 0)\n- Domain-level: $\\gamma_{\\text{Math}} = +0.97$, $\\gamma_{\\text{Science}} = +0.84$, $\\gamma_{\\text{CS\\_Eng}} = +0.20$ (NS)\n- Non-STEM: PPP≈1.0 → model misspecification (2PL+γ inadequate for these domains)\n- Interpretation: contamination susceptibility maps to factual knowledge density\n\n**Claim scope limitations**:\n- Only claim pattern/ranking from domains with PPP ∈ [0.1, 0.9] (Math, Science have acceptable PPP)\n- Non-STEM PPP=1.0 is a boundary finding, not failure — reported as model scope limitation\n- Cannot claim absolute γ values from domains with PPP=0\n\n**Prior work to cite**:\n- Kievit et al. (2013): Simpson's paradox formal framework\n- Ercikan et al. (2008): DIF cancellation as empirical precedent\n- Thissen et al. (1993): DIF detection in IRT\n- Zumbo (1999): DIF overview\n\n**Corresponding experiments**: exp-006 (mmlu_domain_gamma_n24_v4), D108/D115/D116\n\n---\n\n## Cross-Family Validation Protocol (Llama-3.2-3B)\n\n**Core idea**: Test whether contamination susceptibility (per-benchmark γ_k, domain heterogeneity pattern) is a benchmark × domain property rather than a Qwen2.5 family artifact.\n\n**Design**:\n- Model: Llama-3.2-3B (different architecture, tokenizer, pretraining data)\n- Same injection protocol: LoRA alpha=32, same dosages (d000/d005/d025/d100)\n- Same evaluation: aligned + paraphrased format\n- Same signal pipeline: S1 embedding similarity (corpus-agnostic)\n\n**Validation criteria**:\n- γ_k sign agreement across families (ARC negative, GSM8K non-significant)\n- Domain heterogeneity gradient reproduces (STEM > non-STEM)\n- If patterns replicate → contamination effects are benchmark properties\n- If patterns diverge → model architecture/capacity matters more\n\n**Status**: Llama SFTs running (D106), results expected Day 2-3. If complete before deadline, included in main paper. Otherwise, prepared as rebuttal material (exp-014).\n\n**Corresponding experiments**: exp-014 (cross-family), D106\n\n---\n\n## RRF Aggregation Method Detail\n\n**Formula**:\n$$\\text{RRF}(i,j) = \\sum_{s=1}^{S} \\frac{w_s}{k + r_s(i,j)}$$\n\n- $S$: number of active signals (up to 4)\n- $w_s = 1$ for all signals (uniform weight — training-free)\n- $k = 60$ (standard constant from Cormack et al. 2009)\n- $r_s(i,j)$: rank of item $i$ among all items for model $j$ under signal $s$ (1 = most exposed)\n\n**Normalization**: Min-max scale final RRF scores to [0, 1] per model-benchmark.\n\n**Practical reality at current scale**:\n- Only S1 provides discriminative signal (AUC > 0.9)\n- S2, S4 ≈ random at 0.5B; may improve at 1.5B/3B (pending verification)\n- RRF value is principled aggregation architecture; current instantiation ≈ S1-only\n- Honest framing: \"training-free multi-signal architecture with graceful degradation\"\n\n---\n\n## Evaluation Protocol (6 Metrics)\n\n1. **MAE**: $\\frac{1}{J}\\sum_j |{\\hat{acc}_j^{\\text{cal}}} - acc_j^{\\text{clean}}|$ (point estimate quality)\n2. **Coverage@95%**: fraction of true values within 95% credible interval\n3. **Sharpness**: mean CI width (narrower = better at fixed coverage)\n4. **Kendall's τ**: rank correlation between calibrated and true model rankings\n5. **Dose-response monotonicity**: $\\gamma$ effect increases with dosage level\n6. **SBC** (Talts et al. 2018): simulation-based calibration diagnostic at actual N and J\n\n**Ground truth**: $acc_j^{\\text{clean}}$ = accuracy of the d000 (clean) model on same benchmark. For RL observational track (future work): held-out clean benchmark, NOT calibrated scores (avoids circularity).\n"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T16:57:16.039678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/method_notes.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T16:57:16.039814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "method_notes",
+              "type": "intermediate",
+              "description": "Method section writing notes: §3.1-3.4 structure with formulas, prior work, identification strategy, Fisher Information sketch, domain heterogeneity formalization, cross-family protocol, RRF detail, evaluation metrics",
+              "project": "contamcal-irt-calibration",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/method_notes.md",
+              "tags": "['paper', 'method', 'writing']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T16:57:16.039972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_5f1b66\\\", \\\"name\\\": \\\"method_notes\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"Method section writing notes: §3.1-3.4 structure with formulas, prior work, identification strategy, Fisher Information sketch, domain heterogeneity formalization, cross-family protocol, RRF detail, evaluation metrics\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/intermediate/method_notes.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T16:57:02.769220+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"method\\\", \\\"writing\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T16:57:16.040156+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出文件：`artifacts/method_notes.md`（已注册 art_20260516_5f1b66）。\n\n覆盖内容：\n- §3.1 Problem Formulation（3 structural adaptations、notation、6 citations）\n- §3.2 Stage 1 Multi-Signal Exposure Mapping（S1-S4 定义、RRF 公式、meta-circularity argument）\n- §3.3 Stage 2 Contamination-Augmented IRT（2PL+γ / 4PL+γ 公式、model selection rule C008、per-benchmark γ_k identification、gating criterion）\n- §3.4 Fisher Information and Identifiability（I(γ) 骨架、CI width ∝ N^{-0.48}、domain-method mismatch）\n- 补充模块：domain heterogeneity formalization（Simpson's paradox）、cross-family validation protocol（Llama）、RRF detail、evaluation protocol（6 metrics）\n\n每个 subsection 标注了对应实验 ID 和需要引用的文献（不确定的标注了 [CITE NEEDED]）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-method-prep_20260516T165433"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/research-paper-method-prep.md"
+}

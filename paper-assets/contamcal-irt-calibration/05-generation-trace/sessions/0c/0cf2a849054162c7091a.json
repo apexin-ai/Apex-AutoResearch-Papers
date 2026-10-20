@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0cf2a849054162c7091a",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops scp and eval cqa1",
+  "task_key": "worker_ops_scp-and-eval-cqa1_20260518T203927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp-and-eval-cqa1_20260518T203927.log",
+    "occurrence": 1,
+    "bytes": 500952,
+    "sha256": "00a58a3ca150352f792f75f0b79a37c8251e9933f663a35940da4774441f3ffd"
+  },
+  "statistics": {
+    "messages": 345,
+    "user_turns": 0,
+    "tool_calls": 117,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 106,
+      "tool_call": 117,
+      "tool_result": 117,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 345,
+      "chunks": [
+        {
+          "path": "0cf2a849054162c7091a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0cf2a849054162c7091a-part-0002.json",
+          "message_count": 165
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-scp-and-eval-cqa1.md"
+}

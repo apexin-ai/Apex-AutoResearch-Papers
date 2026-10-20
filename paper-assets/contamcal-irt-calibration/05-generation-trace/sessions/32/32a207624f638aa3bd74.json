@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32a207624f638aa3bd74",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis stratified irt design",
+  "task_key": "worker_analysis_stratified-irt-design_20260515T134139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_stratified-irt-design_20260515T134139_result.json",
+    "occurrence": 1,
+    "bytes": 1605,
+    "sha256": "d44ac14f629c6ebed1b14351b37eba20b79f8d49682251ef94d33d324c8919a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 成功。以下是完整统计：\n\n### Scheme A: by Dosage\n\n| 分层 | N_models | mmlu | gsm8k | arc_challenge | humaneval |\n|------|----------|------|-------|---------------|-----------|\n| d000 | 6 | 4 OK | 0 SKIP (D044) | 4 OK | 6 OK |\n| d005 | 4 | 1 SKIP | 4 OK | 1 SKIP | 4 OK |\n| d025 | 4 | 1 SKIP | 4 OK | 1 SKIP | 4 OK |\n| d100 | 4 | 4 OK | 4 OK | 4 OK | 4 OK |\n\n### Scheme B: by Model Size\n\n| 分层 | N_models | mmlu | gsm8k | arc_challenge | humaneval |\n|------|----------|------|-------|---------------|-----------|\n| 0.5B | 8 | 0 SKIP (D045) | 6 OK | 0 SKIP (D045) | 8 OK |\n| 1.5B | 6 | 6 OK | 4 OK | 6 OK | 6 OK |\n| 3B | 4 | 4 OK | 2 SKIP | 4 OK | 4 OK |\n\n### 统计功效评估\n\n**Scheme A 问题：**\n- d005/d025 的 mmlu 和 arc_challenge 排除后只剩 1 个模型（0.5B 被 D045 排除），无法拟合\n- 单 dosage 分层中 exposure 是常数，gamma 不可点识别（d000: exposure=0 → gamma=prior；其余 dosage: exposure=constant → gamma 与 b_j 混淆）\n- 可跑的组合：gsm8k 全部 4 个分层 + humaneval 全部 4 个 + d000/d100 的 mmlu/arc\n\n**Scheme B 是主力分析：**\n- 1.5B 最完整：4 个 benchmark 全部 N≥4，dosages=[0,5,25,100]，gamma 可识别\n- 0.5B 只有 gsm8k 和 humaneval 可用，但 dosages=[0,5,25,100]，gamma 可识别\n- 3B gsm8k 不够（d000 被 D044 排除后只剩 2 个 d100），其余 3 个 benchmark OK，dosages=[0,100]\n\n脚本已部署到 `/root/contamcal-irt-calibration/exp006/run_stratified_irt.py`，输出目录 `/root/autodl-tmp/exp006/results_stratified_irt/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-stratified-irt-design.md"
+}

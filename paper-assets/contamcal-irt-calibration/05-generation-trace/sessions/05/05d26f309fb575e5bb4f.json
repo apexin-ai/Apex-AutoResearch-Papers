@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05d26f309fb575e5bb4f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "paper method section corrections",
+  "task_key": "worker_paper_method-section-corrections_20260516T043244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_method-section-corrections_20260516T043244_result.json",
+    "occurrence": 1,
+    "bytes": 1585,
+    "sha256": "a82491278418f5729a1e96d55c4139276b79aa019a59eb82ccbf0a2dbc2d9386"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无残留。修改汇总：\n\n### method.md (2 处)\n\n| 位置 | 旧 | 新 |\n|------|----|----|\n| L65 | `144-condition simulation sweep` + structural/practical threshold 双分类 + `AUC ≥ 0.70` | `24-condition simulation sweep (240 runs across 10 seeds)` + data-supported 语句：AUC=0.55 lowest tested, J≥50 满足标准；AUC=0.65 small J fails；lower bound open |\n| L67 | `$J = 8$--$20$ models per benchmark, far below the $J \\geq 50$ threshold` | `evaluates models individually or in small cohorts, yielding effective sample sizes well below the $J \\geq 50$` |\n\n### writing_plan.yaml (6 处)\n\n| 位置 | 旧 | 新 |\n|------|----|----|\n| C3.summary | `structural (AUC≥0.55) vs practical (AUC≥0.70, N≥50) thresholds. LLM eval N=8-20` | `recovery successful at AUC=0.55 (lowest tested, J≥50); lower bound open. LLM eval small cohorts` |\n| abstract.key_numbers | `\"AUC≥0.70 threshold\"` | `\"AUC=0.55 recovery (lowest tested)\"` |\n| method 3.3 content | `a_i(θ_j - b_i + γ_k·e_{ij})` | `a_i(θ_j - b_i) + γ_k·e_{ij}` |\n| method 3.4 content | `Structural vs practical thresholds` | `Recovery boundaries from sim sweep (24 conditions, 240 runs)` |\n| fig_identifiability.description | `structural identifiability (AUC≥0.55), practical identifiability (AUC≥0.70, N≥50)` | `successful recovery region (AUC≥0.55, all tested N≥20). Lower bound open.` |\n| results 5.3 content | `N=8-20 in LLM eval` + 无 AUC=0.55 数据 | `AUC=0.55 J≥50 meets all criteria. AUC=0.65 systematically fails at small J. LLM eval small cohorts` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-method-section-corrections.md"
+}

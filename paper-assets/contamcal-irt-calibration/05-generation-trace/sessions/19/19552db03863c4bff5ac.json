@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19552db03863c4bff5ac",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code eval 3B d005 s123 para",
+  "task_key": "worker_code_eval_3B_d005_s123_para_20260515T155342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_3B_d005_s123_para_20260515T155342_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "a70b042ec8bcd17ee27527d17f543cccfbb953820cf2e3c584323af77320af5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 5 被占用，不能提交。当前运行的是：\n\n| 项 | 值 |\n|---|---|\n| PID | 584315 |\n| 运行时间 | 20 分钟 |\n| 任务 | d025_s123 para_aligned eval |\n| 命令 | `evaluate.py --mc-format aligned --paraphrase-dir /root/autodl-tmp/exp001/paraphrases` |\n\n从这个进程也能看出 para_aligned 的参数格式：`--mc-format aligned` + `--paraphrase-dir <path>`，不是单独的 mc-format 值。\n\n**当前所有 6 张 GPU 都有进程在跑，没有空闲 GPU。** 需要等某张 GPU 释放后再提交 d005_s123 para_aligned eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-3b-d005-s123-para.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28a9b02e1d08479ed75c",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops monitor cuda3 submit d100 gsm8k arc",
+  "task_key": "worker_ops_monitor-cuda3-submit-d100-gsm8k-arc_20260516T041233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-cuda3-submit-d100-gsm8k-arc_20260516T041233_result.json",
+    "occurrence": 1,
+    "bytes": 107,
+    "sha256": "defd5c014ab58bb0ef1efb72ab1dff6d02255df97b0cf0a97aecb51e5b737893"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询中。PID 687347 仍在 cuda:3 上运行（8976 MiB）。2 分钟后第 2 次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-cuda3-submit-d100-gsm8k-arc.md"
+}

@@ -1,0 +1,1314 @@
+# ops rrf dry run verify
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/workers/worker_ops_rrf-dry-run-verify_20260516T032257.log`
+- **Structured JSON:** [`152a02a5e69d641b83e1.json`](../../sessions/15/152a02a5e69d641b83e1.json)
+
+## Before a recorded user message
+
+26 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d56b0354-5bb7-40c9-ba8b-3848f43d8c50",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778903400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d90496d5-6bc8-4c28-9701-41558ecdfe64",
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me execute the dry-run verification steps on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "0389e032-310e-448f-b7fd-6767a51f94ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwEDjf6NKrT9jDybrtzL44",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12775,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12775
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Vpjp65bMhL6bPbMFZgDGJi`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "1b45924e-925f-4178-a768-38d79e19c28e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwEDjf6NKrT9jDybrtzL44",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12775,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12775
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T03:23:25.040Z_
+
+<details><summary>↩ Tool result · `toolu_01Vpjp65bMhL6bPbMFZgDGJi`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "e2eb7f51-e692-4a98-b9d4-f0d06c844944",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JGcKL2NHSSDNtRogf7mFRW`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"ALPHA16_BLOCKLIST\\|SKIP_PATTERNS\\|SIGNAL_KEYS\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "cfb06083-a683-4399-a790-4b21547eac71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Vekr1Yj86dvket9GUechc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 453,
+      "cache_read_input_tokens": 24616,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 453
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T03:23:29.768Z_
+
+<details><summary>↩ Tool result · `toolu_01JGcKL2NHSSDNtRogf7mFRW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "bbfe77bc-128a-447b-acba-5a8c483de0cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015RfjngyFTw3eEPkUmnefSk`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "96afaf19-a525-4f14-aa73-5169df840849",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Vekr1Yj86dvket9GUechc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 453,
+      "cache_read_input_tokens": 24616,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 453
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T03:23:31.354Z_
+
+<details><summary>↩ Tool result · `toolu_015RfjngyFTw3eEPkUmnefSk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-0.5B_d000_s123\\nQwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d005_s42\\nQwen2.5-0.5B_d025_s42\\nQwen2.5-0.5B_d100_s42\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d005_s42\\nQwen2.5-1.5B_d025_s42\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-3B_d000_v2_s42\\nQwen2.5-3B_d005_s123\\nQwen2.5-3B_d005_s42\\nQwen2.5-3B_d025_s123\\nQwen2.5-3B_d025_s42\\nQwen2.5-3B_d025_s42_DEPRECATED_alpha16\\nQwen2.5-3B_d025_v3_s42\\nQwen2.5-3B_d100_a32_s123\\nQwen2.5-3B_d100_s42\\nbatch_report_Qwen2.5-0.5B.json\\nbatch_report_Qwen2.5-1.5B.json\\nbatch_report_Qwen2.5-3B.json\\nsignals_05B_s123_v2.log\\nsignals_3B_d025_v3_s42.log\\nsignals_3B_v6.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "1dfc9b21-0165-4950-867a-2894ffad41eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s123\\\\nQwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d025_s42\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d005_s42\\\\nQwen2.5-1.5B_d025_s42\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-3B_d000_v2_s42\\\\nQwen2.5-3B_d005_s123\\\\nQwen2.5-3B_d005_s42\\\\nQwen2.5-3B_d025_s123\\\\nQwen2.5-3B_d025_s42\\\\nQwen2.5-3B_d025_s42_DEPRECATED_alpha16\\\\nQwen2.5-3B_d025_v3_s42\\\\nQwen2.5-3B_d100_a32_s123\\\\nQwen2.5-3B_d100_s42\\\\nbatch_report_Qwen2.5-0.5B.json\\\\nbatch_report_Qwen2.5-1.5B.json\\\\nbatch_report_Qwen2.5-3B.json\\\\nsignals_05B_s123_v2.log\\\\nsignals_3B_d025_v3_s42.log\\\\nsignals_3B_v6.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-0.5B_d000_s123\\nQwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d005_s42\\nQwen2.5-0.5B_d025_s42\\nQwen2.5-0.5B_d100_s42\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d005_s42\\nQwen2.5-1.5B_d025_s42\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-3B_d000_v2_s42\\nQwen2.5-3B_d005_s123\\nQwen2.5-3B_d005_s42\\nQwen2.5-3B_d025_s123\\nQwen2.5-3B_d025_s42\\nQwen2.5-3B_d025_s42_DEPRECATED_alpha16\\nQwen2.5-3B_d025_v3_s42\\nQwen2.5-3B_d100_a32_s123\\nQwen2.5-3B_d100_s42\\nbatch_report_Qwen2.5-0.5B.json\\nbatch_report_Qwen2.5-1.5B.json\\nbatch_report_Qwen2.5-3B.json\\nsignals_05B_s123_v2.log\\nsignals_3B_d025_v3_s42.log\\nsignals_3B_v6.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PuV7vS7gfaLiFSAgqkfPMp`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"ALPHA16_BLOCKLIST\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "e80be783-505a-4577-983c-eb5f9402b7c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RYu2UGzgQfocSHKnEzjUBU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 25069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 868
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01X9c6UyjHSEJFBG2dbhGGYr`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"SKIP_PATTERNS\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "c9e9744d-9366-4800-8bf7-005b04f79a68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RYu2UGzgQfocSHKnEzjUBU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 25069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 868
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T03:23:37.205Z_
+
+<details><summary>↩ Tool result · `toolu_01PuV7vS7gfaLiFSAgqkfPMp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"43:ALPHA16_BLOCKLIST = {\\n233:        if any(pat in model_id for pat in SKIP_PATTERNS) or model_id in ALPHA16_BLOCKLIST:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "b178d51e-bf83-4347-83aa-cfe0d579e5e0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"43:ALPHA16_BLOCKLIST = {\\\\n233:        if any(pat in model_id for pat in SKIP_PATTERNS) or model_id in ALPHA16_BLOCKLIST:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"43:ALPHA16_BLOCKLIST = {\\n233:        if any(pat in model_id for pat in SKIP_PATTERNS) or model_id in ALPHA16_BLOCKLIST:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014aWyFQH16f43pijBUVQoij`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"SIGNAL_KEYS\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "6a738e1d-acc0-4f58-bf35-0881dd80e7bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RYu2UGzgQfocSHKnEzjUBU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 25069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 868
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T03:23:37.673Z_
+
+<details><summary>↩ Tool result · `toolu_01X9c6UyjHSEJFBG2dbhGGYr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"40:SKIP_PATTERNS = [\\\"DEPRECATED\\\"]\\n233:        if any(pat in model_id for pat in SKIP_PATTERNS) or model_id in ALPHA16_BLOCKLIST:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "ef00831e-8b3f-4182-a1a6-ece2ee1a626a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"40:SKIP_PATTERNS = [\\\\\\\"DEPRECATED\\\\\\\"]\\\\n233:        if any(pat in model_id for pat in SKIP_PATTERNS) or model_id in ALPHA16_BLOCKLIST:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"40:SKIP_PATTERNS = [\\\"DEPRECATED\\\"]\\n233:        if any(pat in model_id for pat in SKIP_PATTERNS) or model_id in ALPHA16_BLOCKLIST:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T03:23:38.116Z_
+
+<details><summary>↩ Tool result · `toolu_014aWyFQH16f43pijBUVQoij`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"26:SIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s4_selfcritique\\\"]\\n117:    for sig in SIGNAL_KEYS:\\n313:                for sig in SIGNAL_KEYS:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "2e8774b1-683d-470b-907a-53c7de389362",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"26:SIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\n117:    for sig in SIGNAL_KEYS:\\\\n313:                for sig in SIGNAL_KEYS:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"26:SIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s4_selfcritique\\\"]\\n117:    for sig in SIGNAL_KEYS:\\n313:                for sig in SIGNAL_KEYS:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V2gAGmBPv8YMRbJoLD3avK`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "e4ce9bad-18c5-4327-960d-da65ff72980b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HoLYBqFz1Qzsk84pZy6EmK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 25937,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 796
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T03:23:41.219Z_
+
+<details><summary>↩ Tool result · `toolu_01V2gAGmBPv8YMRbJoLD3avK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\n\\nFuses per-item signal scores from exp-002 into composite exposure scores\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\n\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\n\\nCSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\n                    rrf_score, rrf_raw, s1_embedding, s2_minkpp,\\n                    s4_selfcritique, rank_s1_embedding, ...\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport logging\\nimport re\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_NAMES = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K++\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\nDEFAULT_K = 60\\n\\nSIGNAL_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d100\\\"]\\nDOSAGE_NUM = {\\\"d000\\\": 0, \\\"d005\\\": 5, \\\"d025\\\": 25, \\\"d100\\\": 100}\\n\\nSKIP_PATTERNS = [\\\"DEPRECATED\\\"]\\n\\n# D076: alpha=16 / lr=2e-4 checkpoints — all downstream signals invalidated\\nALPHA16_BLOCKLIST = {\\n    \\\"Qwen2.5-3B_d000_s42\\\",\\n    \\\"Qwen2.5-3B_d000_v2_s42\\\",\\n    \\\"Qwen2.5-3B_d005_s42\\\",\\n    \\\"Qwen2.5-3B_d025_s42\\\",\\n    \\\"Qwen2.5-3B_d100_s42\\\",\\n}\\n\\n_DIR_RE = re.compile(r'Qwen2\\\\.5-(\\\\d+\\\\.?\\\\d*B)_(d\\\\d+)(?:_[va]\\\\d+)*_(s\\\\d+)')\\n\\n\\ndef parse_model_dir(dirname: str) -> dict:\\n    \\\"\\\"\\\"Parse signal directory name into model_size, dose, seed.\\\"\\\"\\\"\\n    m = _DIR_RE.match(dirname)\\n    if not m:\\n        return {\\\"model_size\\\": \\\"unknown\\\", \\\"dose\\\": \\\"unknown\\\", \\\"seed\\\": \\\"unknown\\\"}\\n    return {\\\"model_size\\\": m.group(1), \\\"dose\\\": m.group(2), \\\"seed\\\": m.group(3)}\\n\\n\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\n    \\\"\\\"\\\"Load per-item signals from exp-002 output directory.\\n\\n    Tries signals_merged_{benchmark}.json first, falls back to\\n    loading and merging individual signal files.\\n    \\\"\\\"\\\"\\n    signal_dir = Path(signal_dir)\\n\\n    merged = signal_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged.exists():\\n        with open(merged) as f:\\n            data = json.load(f)\\n        for item in data:\\n            if \\\"item_id\\\" in item and \\\"index\\\" not in item:\\n                item[\\\"index\\\"] = item[\\\"item_id\\\"]\\n        return data\\n\\n    items_by_idx = {}\\n    sig_name_map = {\\n        \\\"s1_embedding\\\": \\\"embedding\\\",\\n        \\\"s2_minkpp\\\": \\\"minkpp\\\",\\n        \\\"s4_selfcritique\\\": \\\"selfcritique\\\",\\n    }\\n    for sig_key, sig_name in sig_name_map.items():\\n        sig_file = signal_dir / f\\\"signal_{sig_key}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            sig_file = signal_dir / f\\\"signal_{sig_name}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            continue\\n        with open(sig_file) as f:\\n            data = json.load(f)\\n        for item in data:\\n            if \\\"index\\\" in item:\\n                idx = item[\\\"index\\\"]\\n            elif \\\"item_id\\\" in item:\\n                idx = item[\\\"item_id\\\"]\\n            else:\\n                continue\\n            if idx not in items_by_idx:\\n                items_by_idx[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": benchmark}\\n            if \\\"score\\\" in item and \\\"signal\\\" in item:\\n                items_by_idx[idx][item[\\\"signal\\\"]] = item[\\\"score\\\"]\\n            else:\\n                items_by_idx[idx].update(item)\\n\\n    if not items_by_idx:\\n        logger.warning(\\\"No signal files found in %s for %s\\\", signal_dir, benchmark)\\n        return []\\n\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\n\\n\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\n    \\\"\\\"\\\"Return signal keys that have non-null, non-zero values.\\\"\\\"\\\"\\n    available = []\\n    for sig in SIGNAL_KEYS:\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\n            available.append(sig)\\n    return available\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank from 1 (highest \\n\\n... [截断: 输出过长，省略 7948 字符] ...\\n\\nype=int, default=DEFAULT_K,\\n                        help=\\\"RRF k parameter (default: 60)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--dosage-filter\\\", type=str, default=None,\\n                        help=\\\"Only process dirs matching this dosage (e.g., d005)\\\")\\n    parser.add_argument(\\\"--no-normalize\\\", action=\\\"store_true\\\",\\n                        help=\\\"Skip min-max normalization to [0,1]\\\")\\n    parser.add_argument(\\\"--generate-exposure\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate exposure_scores.json for exp-006\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=None,\\n                        help=\\\"Model identifier for single-dir mode output naming\\\")\\n    parser.add_argument(\\\"--csv\\\", action=\\\"store_true\\\",\\n                        help=\\\"Also output a flat CSV with structured columns\\\")\\n    parser.add_argument(\\\"--limit\\\", type=int, default=0,\\n                        help=\\\"Limit items per benchmark (for dry-run testing)\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    normalize = not args.no_normalize\\n\\n    if args.generate_exposure:\\n        exposure, aggregated = generate_exposure_json(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n            limit=args.limit,\\n        )\\n        out_file = output_dir / \\\"exposure_scores.json\\\"\\n        with open(out_file, \\\"w\\\") as f:\\n            json.dump(exposure, f, indent=2)\\n        logger.info(\\\"Exposure scores saved to %s\\\", out_file)\\n        for mid, bd in exposure.items():\\n            for bench, data in bd.items():\\n                logger.info(\\\"  %s/%s: %d items\\\", mid, bench, data[\\\"item_count\\\"])\\n\\n        agg_file = output_dir / \\\"exposure_aggregated.json\\\"\\n        with open(agg_file, \\\"w\\\") as f:\\n            json.dump(aggregated, f, indent=2)\\n        logger.info(\\\"Aggregated exposure saved to %s (%d benchmarks)\\\",\\n                    agg_file, len(aggregated))\\n        return\\n\\n    if args.signal_dir:\\n        for bench in args.benchmarks:\\n            results = aggregate_single(args.signal_dir, bench, k=args.k,\\n                                       normalize=normalize, limit=args.limit)\\n            if results:\\n                name = args.model_name or Path(args.signal_dir).name\\n                out_file = output_dir / f\\\"rrf_scores_{name}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(results, f, indent=2)\\n                logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n    else:\\n        all_results = aggregate_all_models(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n            limit=args.limit,\\n        )\\n        for model_id, bench_data in all_results.items():\\n            for bench, items in bench_data.items():\\n                out_file = output_dir / f\\\"rrf_scores_{model_id}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(items, f, indent=2)\\n\\n        summary = {\\n            model_id: {\\n                bench: {\\n                    \\\"count\\\": len(items),\\n                    \\\"exposure_mean\\\": float(np.mean([r[\\\"exposure\\\"] for r in items])),\\n                    \\\"exposure_std\\\": float(np.std([r[\\\"exposure\\\"] for r in items])),\\n                }\\n                for bench, items in bench_data.items()\\n            }\\n            for model_id, bench_data in all_results.items()\\n        }\\n        with open(output_dir / \\\"rrf_summary.json\\\", \\\"w\\\") as f:\\n            json.dump(summary, f, indent=2)\\n        logger.info(\\\"Summary saved to %s\\\", output_dir / \\\"rrf_summary.json\\\")\\n\\n        if args.csv:\\n            write_csv(all_results, output_dir / \\\"rrf_scores_all.csv\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "3cd77969-6e6d-410a-be84-844c345cbc7d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\\\n\\\\nFuses per-item signal scores from exp-002 into composite exposure scores\\\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\\\n\\\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\\\n\\\\nCSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\\\n                    rrf_score, rrf_raw, s1_embedding, s2_minkpp,\\\\n                    s4_selfcritique, rank_s1_embedding, ...\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport logging\\\\nimport re\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_NAMES = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K++\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\nDEFAULT_K = 60\\\\n\\\\nSIGNAL_ROOT = \\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\"\\\\nLABELS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nDOSAGES = [\\\\\\\"d000\\\\\\\", \\\\\\\"d005\\\\\\\", \\\\\\\"d025\\\\\\\", \\\\\\\"d100\\\\\\\"]\\\\nDOSAGE_NUM = {\\\\\\\"d000\\\\\\\": 0, \\\\\\\"d005\\\\\\\": 5, \\\\\\\"d025\\\\\\\": 25, \\\\\\\"d100\\\\\\\": 100}\\\\n\\\\nSKIP_PATTERNS = [\\\\\\\"DEPRECATED\\\\\\\"]\\\\n\\\\n# D076: alpha=16 / lr=2e-4 checkpoints — all downstream signals invalidated\\\\nALPHA16_BLOCKLIST = {\\\\n    \\\\\\\"Qwen2.5-3B_d000_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d000_v2_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d005_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d025_s42\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-3B_d100_s42\\\\\\\",\\\\n}\\\\n\\\\n_DIR_RE = re.compile(r'Qwen2\\\\\\\\.5-(\\\\\\\\d+\\\\\\\\.?\\\\\\\\d*B)_(d\\\\\\\\d+)(?:_[va]\\\\\\\\d+)*_(s\\\\\\\\d+)')\\\\n\\\\n\\\\ndef parse_model_dir(dirname: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse signal directory name into model_size, dose, seed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    m = _DIR_RE.match(dirname)\\\\n    if not m:\\\\n        return {\\\\\\\"model_size\\\\\\\": \\\\\\\"unknown\\\\\\\", \\\\\\\"dose\\\\\\\": \\\\\\\"unknown\\\\\\\", \\\\\\\"seed\\\\\\\": \\\\\\\"unknown\\\\\\\"}\\\\n    return {\\\\\\\"model_size\\\\\\\": m.group(1), \\\\\\\"dose\\\\\\\": m.group(2), \\\\\\\"seed\\\\\\\": m.group(3)}\\\\n\\\\n\\\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load per-item signals from exp-002 output directory.\\\\n\\\\n    Tries signals_merged_{benchmark}.json first, falls back to\\\\n    loading and merging individual signal files.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    signal_dir = Path(signal_dir)\\\\n\\\\n    merged = signal_dir / f\\\\\\\"signals_merged_{benchmark}.json\\\\\\\"\\\\n    if merged.exists():\\\\n        with open(merged) as f:\\\\n            data = json.load(f)\\\\n        for item in data:\\\\n            if \\\\\\\"item_id\\\\\\\" in item and \\\\\\\"index\\\\\\\" not in item:\\\\n                item[\\\\\\\"index\\\\\\\"] = item[\\\\\\\"item_id\\\\\\\"]\\\\n        return data\\\\n\\\\n    items_by_idx = {}\\\\n    sig_name_map = {\\\\n        \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"embedding\\\\\\\",\\\\n        \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"minkpp\\\\\\\",\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"selfcritique\\\\\\\",\\\\n    }\\\\n    for sig_key, sig_name in sig_name_map.items():\\\\n        sig_file = signal_dir / f\\\\\\\"signal_{sig_key}_{benchmark}.json\\\\\\\"\\\\n        if not sig_file.exists():\\\\n            sig_file = signal_dir / f\\\\\\\"signal_{sig_name}_{benchmark}.json\\\\\\\"\\\\n        if not sig_file.exists():\\\\n            continue\\\\n        with open(sig_file) as f:\\\\n            data = json.load(f)\\\\n        for item in data:\\\\n            if \\\\\\\"index\\\\\\\" in item:\\\\n                idx = item[\\\\\\\"index\\\\\\\"]\\\\n            elif \\\\\\\"item_id\\\\\\\" in item:\\\\n                idx = item[\\\\\\\"item_id\\\\\\\"]\\\\n            else:\\\\n                continue\\\\n            if idx not in items_by_idx:\\\\n                items_by_idx[idx] = {\\\\\\\"index\\\\\\\": idx, \\\\\\\"benchmark\\\\\\\": benchmark}\\\\n            if \\\\\\\"score\\\\\\\" in item and \\\\\\\"signal\\\\\\\" in item:\\\\n                items_by_idx[idx][item[\\\\\\\"signal\\\\\\\"]] = item[\\\\\\\"score\\\\\\\"]\\\\n            else:\\\\n                items_by_idx[idx].update(item)\\\\n\\\\n    if not items_by_idx:\\\\n        logger.warning(\\\\\\\"No signal files found in %s for %s\\\\\\\", signal_dir, benchmark)\\\\n        return []\\\\n\\\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\\\n\\\\n\\\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return signal keys that have non-null, non-zero values.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    available = []\\\\n    for sig in SIGNAL_KEYS:\\\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\\\n            available.append(sig)\\\\n    return available\\\\n\\\\n\\\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Rank from 1 (highest \\\\n\\\\n... [截断: 输出过长，省略 7948 字符] ...\\\\n\\\\nype=int, default=DEFAULT_K,\\\\n                        help=\\\\\\\"RRF k parameter (default: 60)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--dosage-filter\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Only process dirs matching this dosage (e.g., d005)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--no-normalize\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Skip min-max normalization to [0,1]\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--generate-exposure\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Generate exposure_scores.json for exp-006\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model-name\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Model identifier for single-dir mode output naming\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--csv\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Also output a flat CSV with structured columns\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--limit\\\\\\\", type=int, default=0,\\\\n                        help=\\\\\\\"Limit items per benchmark (for dry-run testing)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO,\\\\n                        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n    normalize = not args.no_normalize\\\\n\\\\n    if args.generate_exposure:\\\\n        exposure, aggregated = generate_exposure_json(\\\\n            args.signal_root, args.benchmarks,\\\\n            k=args.k, normalize=normalize,\\\\n            dosage_filter=args.dosage_filter,\\\\n            limit=args.limit,\\\\n        )\\\\n        out_file = output_dir / \\\\\\\"exposure_scores.json\\\\\\\"\\\\n        with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(exposure, f, indent=2)\\\\n        logger.info(\\\\\\\"Exposure scores saved to %s\\\\\\\", out_file)\\\\n        for mid, bd in exposure.items():\\\\n            for bench, data in bd.items():\\\\n                logger.info(\\\\\\\"  %s/%s: %d items\\\\\\\", mid, bench, data[\\\\\\\"item_count\\\\\\\"])\\\\n\\\\n        agg_file = output_dir / \\\\\\\"exposure_aggregated.json\\\\\\\"\\\\n        with open(agg_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(aggregated, f, indent=2)\\\\n        logger.info(\\\\\\\"Aggregated exposure saved to %s (%d benchmarks)\\\\\\\",\\\\n                    agg_file, len(aggregated))\\\\n        return\\\\n\\\\n    if args.signal_dir:\\\\n        for bench in args.benchmarks:\\\\n            results = aggregate_single(args.signal_dir, bench, k=args.k,\\\\n                                       normalize=normalize, limit=args.limit)\\\\n            if results:\\\\n                name = args.model_name or Path(args.signal_dir).name\\\\n                out_file = output_dir / f\\\\\\\"rrf_scores_{name}_{bench}.json\\\\\\\"\\\\n                with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(results, f, indent=2)\\\\n                logger.info(\\\\\\\"Saved %d items to %s\\\\\\\", len(results), out_file)\\\\n    else:\\\\n        all_results = aggregate_all_models(\\\\n            args.signal_root, args.benchmarks,\\\\n            k=args.k, normalize=normalize,\\\\n            dosage_filter=args.dosage_filter,\\\\n            limit=args.limit,\\\\n        )\\\\n        for model_id, bench_data in all_results.items():\\\\n            for bench, items in bench_data.items():\\\\n                out_file = output_dir / f\\\\\\\"rrf_scores_{model_id}_{bench}.json\\\\\\\"\\\\n                with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(items, f, indent=2)\\\\n\\\\n        summary = {\\\\n            model_id: {\\\\n                bench: {\\\\n                    \\\\\\\"count\\\\\\\": len(items),\\\\n                    \\\\\\\"exposure_mean\\\\\\\": float(np.mean([r[\\\\\\\"exposure\\\\\\\"] for r in items])),\\\\n                    \\\\\\\"exposure_std\\\\\\\": float(np.std([r[\\\\\\\"exposure\\\\\\\"] for r in items])),\\\\n                }\\\\n                for bench, items in bench_data.items()\\\\n            }\\\\n            for model_id, bench_data in all_results.items()\\\\n        }\\\\n        with open(output_dir / \\\\\\\"rrf_summary.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(summary, f, indent=2)\\\\n        logger.info(\\\\\\\"Summary saved to %s\\\\\\\", output_dir / \\\\\\\"rrf_summary.json\\\\\\\")\\\\n\\\\n        if args.csv:\\\\n            write_csv(all_results, output_dir / \\\\\\\"rrf_scores_all.csv\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\n\\nFuses per-item signal scores from exp-002 into composite exposure scores\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\n\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\n\\nCSV output columns: item_id, benchmark, model_id, model_size, dose, seed,\\n                    rrf_score, rrf_raw, s1_embedding, s2_minkpp,\\n                    s4_selfcritique, rank_s1_embedding, ...\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport logging\\nimport re\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_NAMES = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K++\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\nDEFAULT_K = 60\\n\\nSIGNAL_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d100\\\"]\\nDOSAGE_NUM = {\\\"d000\\\": 0, \\\"d005\\\": 5, \\\"d025\\\": 25, \\\"d100\\\": 100}\\n\\nSKIP_PATTERNS = [\\\"DEPRECATED\\\"]\\n\\n# D076: alpha=16 / lr=2e-4 checkpoints — all downstream signals invalidated\\nALPHA16_BLOCKLIST = {\\n    \\\"Qwen2.5-3B_d000_s42\\\",\\n    \\\"Qwen2.5-3B_d000_v2_s42\\\",\\n    \\\"Qwen2.5-3B_d005_s42\\\",\\n    \\\"Qwen2.5-3B_d025_s42\\\",\\n    \\\"Qwen2.5-3B_d100_s42\\\",\\n}\\n\\n_DIR_RE = re.compile(r'Qwen2\\\\.5-(\\\\d+\\\\.?\\\\d*B)_(d\\\\d+)(?:_[va]\\\\d+)*_(s\\\\d+)')\\n\\n\\ndef parse_model_dir(dirname: str) -> dict:\\n    \\\"\\\"\\\"Parse signal directory name into model_size, dose, seed.\\\"\\\"\\\"\\n    m = _DIR_RE.match(dirname)\\n    if not m:\\n        return {\\\"model_size\\\": \\\"unknown\\\", \\\"dose\\\": \\\"unknown\\\", \\\"seed\\\": \\\"unknown\\\"}\\n    return {\\\"model_size\\\": m.group(1), \\\"dose\\\": m.group(2), \\\"seed\\\": m.group(3)}\\n\\n\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\n    \\\"\\\"\\\"Load per-item signals from exp-002 output directory.\\n\\n    Tries signals_merged_{benchmark}.json first, falls back to\\n    loading and merging individual signal files.\\n    \\\"\\\"\\\"\\n    signal_dir = Path(signal_dir)\\n\\n    merged = signal_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged.exists():\\n        with open(merged) as f:\\n            data = json.load(f)\\n        for item in data:\\n            if \\\"item_id\\\" in item and \\\"index\\\" not in item:\\n                item[\\\"index\\\"] = item[\\\"item_id\\\"]\\n        return data\\n\\n    items_by_idx = {}\\n    sig_name_map = {\\n        \\\"s1_embedding\\\": \\\"embedding\\\",\\n        \\\"s2_minkpp\\\": \\\"minkpp\\\",\\n        \\\"s4_selfcritique\\\": \\\"selfcritique\\\",\\n    }\\n    for sig_key, sig_name in sig_name_map.items():\\n        sig_file = signal_dir / f\\\"signal_{sig_key}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            sig_file = signal_dir / f\\\"signal_{sig_name}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            continue\\n        with open(sig_file) as f:\\n            data = json.load(f)\\n        for item in data:\\n            if \\\"index\\\" in item:\\n                idx = item[\\\"index\\\"]\\n            elif \\\"item_id\\\" in item:\\n                idx = item[\\\"item_id\\\"]\\n            else:\\n                continue\\n            if idx not in items_by_idx:\\n                items_by_idx[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": benchmark}\\n            if \\\"score\\\" in item and \\\"signal\\\" in item:\\n                items_by_idx[idx][item[\\\"signal\\\"]] = item[\\\"score\\\"]\\n            else:\\n                items_by_idx[idx].update(item)\\n\\n    if not items_by_idx:\\n        logger.warning(\\\"No signal files found in %s for %s\\\", signal_dir, benchmark)\\n        return []\\n\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\n\\n\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\n    \\\"\\\"\\\"Return signal keys that have non-null, non-zero values.\\\"\\\"\\\"\\n    available = []\\n    for sig in SIGNAL_KEYS:\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\n            available.append(sig)\\n    return available\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank from 1 (highest \\n\\n... [截断: 输出过长，省略 7948 字符] ...\\n\\nype=int, default=DEFAULT_K,\\n                        help=\\\"RRF k parameter (default: 60)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--dosage-filter\\\", type=str, default=None,\\n                        help=\\\"Only process dirs matching this dosage (e.g., d005)\\\")\\n    parser.add_argument(\\\"--no-normalize\\\", action=\\\"store_true\\\",\\n                        help=\\\"Skip min-max normalization to [0,1]\\\")\\n    parser.add_argument(\\\"--generate-exposure\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate exposure_scores.json for exp-006\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=None,\\n                        help=\\\"Model identifier for single-dir mode output naming\\\")\\n    parser.add_argument(\\\"--csv\\\", action=\\\"store_true\\\",\\n                        help=\\\"Also output a flat CSV with structured columns\\\")\\n    parser.add_argument(\\\"--limit\\\", type=int, default=0,\\n                        help=\\\"Limit items per benchmark (for dry-run testing)\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    normalize = not args.no_normalize\\n\\n    if args.generate_exposure:\\n        exposure, aggregated = generate_exposure_json(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n            limit=args.limit,\\n        )\\n        out_file = output_dir / \\\"exposure_scores.json\\\"\\n        with open(out_file, \\\"w\\\") as f:\\n            json.dump(exposure, f, indent=2)\\n        logger.info(\\\"Exposure scores saved to %s\\\", out_file)\\n        for mid, bd in exposure.items():\\n            for bench, data in bd.items():\\n                logger.info(\\\"  %s/%s: %d items\\\", mid, bench, data[\\\"item_count\\\"])\\n\\n        agg_file = output_dir / \\\"exposure_aggregated.json\\\"\\n        with open(agg_file, \\\"w\\\") as f:\\n            json.dump(aggregated, f, indent=2)\\n        logger.info(\\\"Aggregated exposure saved to %s (%d benchmarks)\\\",\\n                    agg_file, len(aggregated))\\n        return\\n\\n    if args.signal_dir:\\n        for bench in args.benchmarks:\\n            results = aggregate_single(args.signal_dir, bench, k=args.k,\\n                                       normalize=normalize, limit=args.limit)\\n            if results:\\n                name = args.model_name or Path(args.signal_dir).name\\n                out_file = output_dir / f\\\"rrf_scores_{name}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(results, f, indent=2)\\n                logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n    else:\\n        all_results = aggregate_all_models(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n            limit=args.limit,\\n        )\\n        for model_id, bench_data in all_results.items():\\n            for bench, items in bench_data.items():\\n                out_file = output_dir / f\\\"rrf_scores_{model_id}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(items, f, indent=2)\\n\\n        summary = {\\n            model_id: {\\n                bench: {\\n                    \\\"count\\\": len(items),\\n                    \\\"exposure_mean\\\": float(np.mean([r[\\\"exposure\\\"] for r in items])),\\n                    \\\"exposure_std\\\": float(np.std([r[\\\"exposure\\\"] for r in items])),\\n                }\\n                for bench, items in bench_data.items()\\n            }\\n            for model_id, bench_data in all_results.items()\\n        }\\n        with open(output_dir / \\\"rrf_summary.json\\\", \\\"w\\\") as f:\\n            json.dump(summary, f, indent=2)\\n        logger.info(\\\"Summary saved to %s\\\", output_dir / \\\"rrf_summary.json\\\")\\n\\n        if args.csv:\\n            write_csv(all_results, output_dir / \\\"rrf_scores_all.csv\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Now let me run the dry-run verification to check which directories get INCLUDE/SKIP.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "efe054cc-5d95-4249-8982-11546b86dc14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UVKnfx6Qb4VaTQ1aDkBEFC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3460,
+      "cache_read_input_tokens": 26733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3460
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DMtU8Jcpm6dujoM7QdpKwv`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"\nimport os, re\nSKIP_PATTERNS = ['DEPRECATED']\nALPHA16_BLOCKLIST = {\n    'Qwen2.5-3B_d000_s42',\n    'Qwen2.5-3B_d000_v2_s42',\n    'Qwen2.5-3B_d005_s42',\n    'Qwen2.5-3B_d025_s42',\n    'Qwen2.5-3B_d100_s42',\n}\nsignals_dir = '/root/autodl-tmp/exp002/signals'\nall_entries = sorted(os.listdir(signals_dir))\ndirs = [d for d in all_entries if os.path.isdir(os.path.join(signals_dir, d))]\nprint('=== ALL DIRECTORIES ===')\nfor d in dirs:\n    skip = any(pat in d for pat in SKIP_PATTERNS) or d in ALPHA16_BLOCKLIST\n    print(f'  {\\\"SKIP\\\":8s}: {d}' if skip else f'  {\\\"INCLUDE\\\":8s}: {d}')\nprint()\nincluded = [d for d in dirs if not (any(pat in d for pat in SKIP_PATTERNS) or d in ALPHA16_BLOCKLIST)]\nskipped = [d for d in dirs if (any(pat in d for pat in SKIP_PATTERNS) or d in ALPHA16_BLOCKLIST)]\nprint(f'=== INCLUDE: {len(included)} ===')\nfor d in included:\n    print(f'  {d}')\nprint(f'=== SKIP: {len(skipped)} ===')\nfor d in skipped:\n    reason = 'DEPRECATED' if any(p in d for p in SKIP_PATTERNS) else 'ALPHA16_BLOCKLIST'\n    print(f'  {d} ({reason})')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "77ef61cc-ecb8-4536-b86d-ebcdcca83f0d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UVKnfx6Qb4VaTQ1aDkBEFC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3460,
+      "cache_read_input_tokens": 26733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3460
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T03:23:49.867Z_
+
+<details><summary>↩ Tool result · `toolu_01DMtU8Jcpm6dujoM7QdpKwv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "6f477391-fb9d-45f0-9ce7-12939053fab1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014opKzcauir6KiiTVJS685q`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp002/signals -maxdepth 1 -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "ef723b7d-aa30-4114-84c8-acb6ff76784f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3n4nd2a1eKMygDP3XLnRD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 668,
+      "cache_read_input_tokens": 30193,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 668
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T03:23:52.769Z_
+
+<details><summary>↩ Tool result · `toolu_014opKzcauir6KiiTVJS685q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42_DEPRECATED_alpha16\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_v3_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "6fbf368a-8f89-4b3a-85d3-6311ffa4fb9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp002/signals\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42_DEPRECATED_alpha16\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_v3_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s123\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42_DEPRECATED_alpha16\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_v3_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s42\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_s123\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d025_s123\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the directories. Let me analyze them against the ALPHA16_BLOCKLIST and SKIP_PATTERNS.
+
+Directories (all subdirs):
+1. Qwen2.5-0.5B_d000_s42
+2. Qwen2.5-0.5B_d005_s42
+3. Qwen2.5-0.5B_d100_s42
+4. Qwen2.5-0.5B_d025_s42
+5. Qwen2.5-1.5B_d000_s42
+
+
+6. Qwen2.5-1.5B_d005_s42
+7. Qwen2.5-1.5B_d025_s42
+8. Qwen2.5-1.5B_d100_s42
+9. Qwen2.5-3B_d005_s42
+10. Qwen2.5-3B_d100_s42
+11. Qwen2.5-3B_d000_v2_s42
+12. Qwen2.5-3B_d025_s42_DEPRECATED_alpha16
+13. Qwen2.5-3B_d025_v3_s42
+14. Qwen2.5-3B_d025_s42
+15. Qwen2.5-3B_d000_s42
+16. Qwen2.5-3B_d025_s123
+17. Qwen2.5-3B_d100_a32_s123
+18. Qwen2.5-0.5B_d000_s123
+
+I'm setting up a blocklist to filter out deprecated models and duplicates, skipping anything marked as deprecated and removing entries that match existing directory listings to avoid conflicts.
+
+Now I'm going through each directory to verify which ones should be included, checking against the blocklist and skip patterns to ensure only valid, non-conflicting models make it through. I'm seeing a contradiction in the constraint—C006 lists `Qwen2.5-3B_d000_v2_s42` in the blocklist but then says it shouldn't contain _v2/_v3 alpha=32 retrained versions. Looking at the actual code, I think `d000_v2` might be specifically an alpha=16 variant, which would explain why it's included while other _v2/_v3 versions are excluded. I'm working through the blocklist logic systematically now. The parenthetical note about alpha=32 retrained versions is clarifying that those aren't included in the blocklist for other dosages, but d000_v2 is still blocked because it uses alpha=16. Moving through the remaining entries: d025_DEPRECATED gets skipped, d025_v3 is included since it's not blocked, d025 itself is blocked, and d005 passes through as well.
+
+Now I'm compiling the final list of directories that should be included—13 total across the different model sizes and configurations. I'm verifying the blocklist logic to ensure the filter correctly identifies which model directories to skip versus include, checking that the pattern matching in the aggregation script works as expected.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "b3a58980-02a7-4034-85bb-2fe9ed1206d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018cx6nRgqGD3YXrio83s3fP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 872,
+      "cache_read_input_tokens": 30861,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 872
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+## RRF 聚合 Dry-Run 结果
+
+过滤逻辑确认（L233）：`SKIP_PATTERNS` 用子串匹配，`ALPHA16_BLOCKLIST` 用精确匹配（set membership）。
+
+### INCLUDE — 13 个目录（全部 alpha=32 有效）
+
+| 目录 | 模型 | dosage | seed |
+|------|------|--------|------|
+| Qwen2.5-0.5B_d000_s42 | 0.5B | d000 | s42 |
+| Qwen2.5-0.5B_d000_s123 | 0.5B | d000 | s123 |
+| Qwen2.5-0.5B_d005_s42 | 0.5B | d005 | s42 |
+| Qwen2.5-0.5B_d025_s42 | 0.5B | d025 | s42 |
+| Qwen2.5-0.5B_d100_s42 | 0.5B | d100 | s42 |
+| Qwen2.5-1.5B_d000_s42 | 1.5B | d000 | s42 |
+| Qwen2.5-1.5B_d005_s42 | 1.5B | d005 | s42 |
+| Qwen2.5-1.5B_d025_s42 | 1.5B | d025 | s42 |
+| Qwen2.5-1.5B_d100_s42 | 1.5B | d100 | s42 |
+| Qwen2.5-3B_d005_s123 | 3B | d005 | s123 |
+| Qwen2.5-3B_d025_s123 | 3B | d025 | s123 |
+| Qwen2.5-3B_d025_v3_s42 | 3B | d025 | s42 |
+| Qwen2.5-3B_d100_a32_s123 | 3B | d100 | s123 |
+
+### SKIP — 5 个目录
+
+| 目录 | 原因 |
+|------|------|
+| Qwen2.5-3B_d000_v2_s42 | ALPHA16_BLOCKLIST |
+| Qwen2.5-3B_d005_s42 | ALPHA16_BLOCKLIST |
+| Qwen2.5-3B_d025_s42 | ALPHA16_BLOCKLIST |
+| Qwen2.5-3B_d100_s42 | ALPHA16_BLOCKLIST |
+| Qwen2.5-3B_d025_s42_DEPRECATED_alpha16 | DEPRECATED 子串匹配 |
+
+注：blocklist 中的 `Qwen2.5-3B_d000_s42` 在 signals 目录中不存在（该目录可能已被删除），属于无害冗余条目。
+
+### 误判检查
+
+**无误判。** 所有 alpha=16 的 3B 目录均被正确 SKIP；0.5B/1.5B 全量 INCLUDE；3B 有效目录（v3、a32、s123）均 INCLUDE。精确匹配逻辑工作正常，不会误伤含 `_v3`/`_a32` 后缀的有效目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "uuid": "3e34ba16-c950-44f0-b05f-1af25a3654e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018cx6nRgqGD3YXrio83s3fP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 872,
+      "cache_read_input_tokens": 30861,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 872
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 26_
+
+## RRF 聚合 Dry-Run 结果
+
+过滤逻辑确认（L233）：`SKIP_PATTERNS` 用子串匹配，`ALPHA16_BLOCKLIST` 用精确匹配（set membership）。
+
+### INCLUDE — 13 个目录（全部 alpha=32 有效）
+
+| 目录 | 模型 | dosage | seed |
+|------|------|--------|------|
+| Qwen2.5-0.5B_d000_s42 | 0.5B | d000 | s42 |
+| Qwen2.5-0.5B_d000_s123 | 0.5B | d000 | s123 |
+| Qwen2.5-0.5B_d005_s42 | 0.5B | d005 | s42 |
+| Qwen2.5-0.5B_d025_s42 | 0.5B | d025 | s42 |
+| Qwen2.5-0.5B_d100_s42 | 0.5B | d100 | s42 |
+| Qwen2.5-1.5B_d000_s42 | 1.5B | d000 | s42 |
+| Qwen2.5-1.5B_d005_s42 | 1.5B | d005 | s42 |
+| Qwen2.5-1.5B_d025_s42 | 1.5B | d025 | s42 |
+| Qwen2.5-1.5B_d100_s42 | 1.5B | d100 | s42 |
+| Qwen2.5-3B_d005_s123 | 3B | d005 | s123 |
+| Qwen2.5-3B_d025_s123 | 3B | d025 | s123 |
+| Qwen2.5-3B_d025_v3_s42 | 3B | d025 | s42 |
+| Qwen2.5-3B_d100_a32_s123 | 3B | d100 | s123 |
+
+### SKIP — 5 个目录
+
+| 目录 | 原因 |
+|------|------|
+| Qwen2.5-3B_d000_v2_s42 | ALPHA16_BLOCKLIST |
+| Qwen2.5-3B_d005_s42 | ALPHA16_BLOCKLIST |
+| Qwen2.5-3B_d025_s42 | ALPHA16_BLOCKLIST |
+| Qwen2.5-3B_d100_s42 | ALPHA16_BLOCKLIST |
+| Qwen2.5-3B_d025_s42_DEPRECATED_alpha16 | DEPRECATED 子串匹配 |
+
+注：blocklist 中的 `Qwen2.5-3B_d000_s42` 在 signals 目录中不存在（该目录可能已被删除），属于无害冗余条目。
+
+### 误判检查
+
+**无误判。** 所有 alpha=16 的 3B 目录均被正确 SKIP；0.5B/1.5B 全量 INCLUDE；3B 有效目录（v3、a32、s123）均 INCLUDE。精确匹配逻辑工作正常，不会误伤含 `_v3`/`_a32` 后缀的有效目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 74459,
+  "duration_api_ms": 72016,
+  "num_turns": 10,
+  "stop_reason": "end_turn",
+  "session_id": "a4459db9-d8ca-4727-8498-693759a6f352",
+  "total_cost_usd": 0.336021,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 19892,
+    "cache_read_input_tokens": 175250,
+    "output_tokens": 4853,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19892,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 3404,
+        "cache_read_input_tokens": 30861,
+        "cache_creation_input_tokens": 872,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 872
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2611,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002696,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 4853,
+      "cacheReadInputTokens": 175250,
+      "cacheCreationInputTokens": 19892,
+      "webSearchRequests": 0,
+      "costUSD": 0.33332500000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "241822b0-83ba-4e3c-a1e5-a3c567f4961d"
+}
+```
+
+</details>
+
+---

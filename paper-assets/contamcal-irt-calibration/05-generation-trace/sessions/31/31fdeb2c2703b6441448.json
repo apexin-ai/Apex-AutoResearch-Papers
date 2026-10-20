@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31fdeb2c2703b6441448",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops llama3 training check",
+  "task_key": "worker_ops_llama3-training-check_20260521T110629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama3-training-check_20260521T110629_result.json",
+    "occurrence": 1,
+    "bytes": 1788,
+    "sha256": "39bc2966e4fef9b8ebda4078c6a49fc0607ded97be36b979dc72e751862cd009"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度汇报\n\n### 3 个进程全部存活，无异常\n\n| 任务 | GPU | PID | 进度 | Epoch | Loss | 速度 | 预计剩余 |\n|------|-----|-----|------|-------|------|------|----------|\n| **d000_s0** | cuda:1 | 508651 | 1563/3125 (50%) | 0.50 | ~1.32 | ~2.5s/it | **~65 min** |\n| **d025_s0** | cuda:0 | 509578 | 1426/3384 (42%) | ~0.27 | ~1.38 | ~2.5s/it | **~82 min** |\n| **d100_s0** | cuda:3 | 510203 | 1224/4159 (29%) | ~0.22 | ~1.43 | ~2.8s/it | **~137 min** |\n\n**预计完成时间（UTC+8）：**\n- d000_s0: ~19:15\n- d025_s0: ~19:35\n- d100_s0: ~20:30\n\n### GPU 利用率\n\n| GPU | 利用率 | 显存占用 | 任务 |\n|-----|--------|----------|------|\n| 0 | 98% | 50981/97887 MiB | d025_s0 |\n| 1 | 78% | 44479/97887 MiB | d000_s0 |\n| 2 | 0% | 0 MiB | **空闲** |\n| 3 | 75% | 37911/97887 MiB | d100_s0 |\n\n### Loss 曲线\n\n- d000: 2.25 → 1.32，收敛正常，warmup 后稳定下降\n- d025: 类似轨迹，当前 ~1.38，正常\n- d100: 当前 ~1.43，略高于 d000/d025——符合预期（d100 含更多 contaminated 数据，entropy 更高）\n- 无 OOM、loss spike 或进程死亡\n\n### Eval 脚本\n\n已创建 `scripts/eval_llama3_s0.sh`，包含：\n- 3 个 dosage (d000/d025/d100) × 2 个 benchmark (MMLU 5-shot + ARC 25-shot) = **6 个 eval**\n- 使用 GPU 2（当前空闲）\n- 包含 C004/C006/C009 合规检查（CUDA_VISIBLE_DEVICES 显式设置、lora_alpha=32 校验、evaluate.py md5 校验）\n- 输出到 `results/mmlu_eval/llama3/` 和 `results/arc_eval/llama3/`（与现有目录结构一致）\n- 基模型路径: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B`\n\n**训练最早完成 ~19:15（d000），最晚 ~20:30（d100）。d000 完成后即可开始跑 eval，无需等全部结束。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama3-training-check.md"
+}

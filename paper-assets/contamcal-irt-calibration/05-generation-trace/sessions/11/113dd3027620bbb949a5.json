@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "113dd3027620bbb949a5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag exp 002 signals llama32 3B d005 arc gsm8k verify",
+  "task_key": "worker_diag_exp_002_signals_llama32_3B_d005_arc_gsm8k_verify_20260516T211055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp_002_signals_llama32_3B_d005_arc_gsm8k_verify_20260516T211055_result.json",
+    "occurrence": 1,
+    "bytes": 341,
+    "sha256": "0bd98675453c66affcc9bfde24342214471195ade6ef71778c3510ec3bd3611b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结论：success 确认。**\n\n- 日志正常结束，最终行：`Done. Results in /root/autodl-tmp/exp002/signals/Llama-3.2-3B_d005_s42`\n- arc_challenge 和 gsm8k 各有 s1/s2/s4 三个信号文件 + merged 文件（共 8 个，大小合理）\n- 进程已退出，无残留\n- Registry 标记正确，无需修改"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp-002-signals-llama32-3b-d005-arc-gsm8k-verify.md"
+}

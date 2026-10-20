@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "263a5ca1b769d1255efd",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_9_1778856253.md",
+  "task_key": "loop_9_1778856253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778856253.md",
+    "occurrence": 1,
+    "bytes": 4621,
+    "sha256": "f968101d23c5f042b298af25a6efebc010551231688de0fa98044a01d0024818"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T13:45:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cqa1-21977 的 cuda:0~cuda:5 共 6 张，全部分配给本项目，不可用其他服务器/GPU\n- 0.5B MMLU/ARC 已从 IRT pooling 排除（D045: position bias A=46%），任何 pooled IRT 跑这两个 benchmark 时不能包含 0.5B 数据\n- d000 counterfactual 导致 gamma 捕获 SFT_tax（D043），IRT 结果解读必须区分 gamma 的 contamination 成分和 format confound 成分\n- joint_fit.py 2PL 有已知 bug（D041: --model-type 参数在 joint fit 路径被忽略），跑 2PL 必须确认已修复\n- Paper framing 已 pivot（D038）: 从 \"calibration method\" 转为 \"detection diagnostics\"，所有论文写作必须对齐新 framing\n\n### 2. 🖥️ 基础设施快照\n- 服务器: cqa1-21977, 工作目录 /root/contamcal-irt-calibration/\n- Python: /root/miniconda3/bin/python（conda base 环境，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型缓存: /root/autodl-tmp/.hf_cache/\n- SFT checkpoints: /root/autodl-tmp/exp001/checkpoints/（格式: Qwen2.5-{size}_d{dosage}_s{seed}/lora_adapter）\n- Eval 结果: /root/autodl-tmp/exp001/eval_results/\n- 6× RTX 4090D\n- 活跃进程（reconcile_crons 确认）:\n  - exp_008_base_pretrained_eval (PID 530888)\n  - exp_008_base_pretrained_15B_eval (PID 530970)\n  - exp_004_sim_sweep_extreme_gamma (PID 528993)\n  - exp_001_sft_15B_d025_s123_v3 (PID 533174)\n  - exp_008_base_pretrained_eval_v2 (PID 530893)\n  - exp_008_base_pretrained_15B_eval_v2 (PID 530975)\n  - exp_001_sft_15B_d005_s123_v4 (PID 534536)\n\n### 3. 📊 当前状态\n**刚收到 CRON 回调**: `exp_001_eval_15B_d000_s123_aligned` (1.5B d000 s123 baseline eval) 进程正常退出，状态 ANALYZING。已 spawn Worker `worker_analysis_exp_001_eval_15B_d000_s123_aligned_20260515T104336` 去读取 eval 结果并更新 registry，**该 Worker 回调尚未返回**。\n\n**RUNNING 的实验** (7 个，上面已列 PID):\n- exp_008 系列: base pretrained eval (0.5B + 1.5B，各 2 个版本) — 3-regime comparison 数据点\n- exp_004_sim_sweep_extreme_gamma: coverage collapse 调查的模拟 sweep\n- exp_001_sft_15B_d025_s123_v3: 1.5B 25% dosage seed=123 SFT 训练\n- exp_001_sft_15B_d005_s123_v4: 1.5B 5% dosage seed=123 SFT 训练\n\n**PREPARING**: 17 个实验待提交（见 report.md 待处理列表）\n\n**活跃 Worker**: \n- `worker_research_2pl-full-pipeline-coverage` (running) — 2PL full pipeline coverage 调研\n- `worker_analysis_exp_001_eval_15B_d000_s123_aligned` (running) — 正在分析本次回调的实验\n\n### 4. 📋 待办（条件触发式）\n- Worker `analysis:exp_001_eval_15B_d000_s123_aligned` 回调 → 读取 metrics，update_registry(conclusion/metrics)，更新 report.md，与 d100_s123 对比后汇报 Director\n- exp_001_sft_15B_d025_s123_v3 完成 → spawn eval worker（aligned MC, 4 benchmarks）→ 填充 seed=123 SFT 矩阵 d025 格\n- exp_001_sft_15B_d005_s123_v4 完成 → spawn eval worker → 填充 seed=123 SFT 矩阵 d005 格\n- exp_008 base pretrained eval 完成 → 3-regime comparison 分析（base→SFT→Instruct 信号变化），验证 D043 gamma 语义假说\n- exp_004_sim_sweep_extreme_gamma 完成 → coverage collapse 根因分析关键数据点，判断是否需要 model misspecification fix\n- seed=123 SFT 全部完成 → N≥16 multi-seed pooled IRT 重跑 → 检查 coverage 是否改善（Critical Path 最高优先级）\n- Worker `research:2pl-full-pipeline-coverage` 回调 → 整合 2PL pipeline 调研结论到 memory.md\n\n### 5. 🎯 战略上下文\n- **投稿倒计时 10 天**（EMNLP 2026 ARR May 25）\n- **核心发现链**: ARC gamma 负方向 confirmed (D036) → coverage collapse 20-33% (D042: model misspecification) → framing pivot 从 calibration 到 detection diagnostics (D038) → gamma 语义包含 SFT_tax 而非纯 contamination (D043) → format confound 发现 (D044)\n- **最大风险**: coverage collapse 未解决。即使 oracle 设定 coverage 仍极低 + PPP 极值，说明 4PL+γ additive IRT 模型可能根本不够。两条缓解路径并行推进: (1) multi-seed pooling 增加 N (2) 更灵活的 IRT 结构\n- **易错点**: \n  - 不要混淆 oracle vs RRF 的 N_models（15 vs 8），需匹配 N=8 重跑 oracle 才能公平对比\n  - GSM8K oracle 诊断 FAIL（rhat=1.012/ESS=345），需更长 chains（warmup=2000/samples=2000）\n  - 跨种子方差大（0.5B d100 ARC 7.25pp），单 seed 结论不可靠\n  - Scale effect 显著（3B d100 ARC=84% vs 0.5B=29-37%），不同 scale 的 contamination 效应定性不同\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778856253.md"
+}

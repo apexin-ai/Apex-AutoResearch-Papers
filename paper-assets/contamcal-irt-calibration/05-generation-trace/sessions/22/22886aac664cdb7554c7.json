@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22886aac664cdb7554c7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 gsm8k eval prep",
+  "task_key": "worker_ops_falcon3-gsm8k-eval-prep_20260522T180723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-gsm8k-eval-prep_20260522T180723_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "53ad43b53459d412385dd58b310e2884d3059e1f2cf98ebeba31b6bdefe4dc70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。写入 `artifacts/falcon3_gsm8k_eval_commands.md`。\n\n**关键问题：d000 checkpoint 不在 cqa1 上**，仅有 d100_s42。d000 需从源服务器传输后才能 eval。\n\n已准备内容：\n- d100 GSM8K eval 命令：S4 完成后直接可用\n- d000 GSM8K eval 命令：需先传输 checkpoint\n- 所有命令遵循 C001-C009 约束（md5 校验、显式 CUDA_VISIBLE_DEVICES、alpha=32 检查）\n- 参数与现有 Qwen7B/Gemma2 GSM8K eval 一致（8-shot CoT, batch_size=8）\n- 预估运行时间 ~30-45 分钟/dosage"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-gsm8k-eval-prep.md"
+}

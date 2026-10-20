@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a89c3bbc7bbda376d6a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check cuda3 pid45613",
+  "task_key": "worker_ops_check-cuda3-pid45613_20260518T172545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-cuda3-pid45613_20260518T172545_result.json",
+    "occurrence": 1,
+    "bytes": 1102,
+    "sha256": "6df8343d3ce5184d1d28ff7766ad40a704c4adf29d813f8d05a10fa1ea15872f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n**PID 45613 (cuda:3) 确认是 d025 s123 副本，与 cuda:1 上的 PID 42743 重复。**\n\n对比：\n\n| | cuda:1 (PID 42743) | cuda:3 (PID 45613) |\n|---|---|---|\n| 脚本 | `train_sft.py` | `train_sft.py` |\n| data-path | `sft_dosage_025.jsonl` | `sft_dosage_025.jsonl` |\n| output-dir | `Qwen2.5-7B_d025_s123` | `Qwen2.5-7B_d025_s123` |\n| seed | 123 | 123 |\n| lora-alpha | 32 | 32 |\n| PPID | 42742 | 1 (父进程已退出) |\n\n**参数完全一致**，两个进程写同一个 output-dir `Qwen2.5-7B_d025_s123`。PID 45613 的 PPID=1 说明它是由 relay tmux session (`wait_d025`) 启动后父进程退出被 init 收养的，符合你描述的 relay 自动触发场景。\n\n**风险**：两个进程竞争写同一个 checkpoint 目录，会导致数据腐败（C003 场景）。\n\n按要求，不杀进程，等你决定保留哪个。\n\n当前 4 GPU 全满：\n- cuda:0: PID 46066 — 7B d050 s123\n- cuda:1: PID 42743 — 7B d025 s123 (**先启动**)\n- cuda:2: PID 38920 — 14B d005 s42\n- cuda:3: PID 45613 — 7B d025 s123 (**重复，relay 触发**)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-cuda3-pid45613.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cce01cc4af06855e6e6",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify running experiments",
+  "task_key": "worker_ops_verify-running-experiments_20260516T190236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-running-experiments_20260516T190236_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "b9d0173ed4a7607ef38c062e6a32562b4f9f1a94f361fa50d6a84c0d150f6d1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/gpu_status_loop18.md`。\n\n关键发现：\n- **4 个 GPU 实验存活**：d005 eval (cuda:0, 55%), d000 mmlu signals (cuda:1), d025 eval (cuda:3, 37%), d100 eval (cuda:5)\n- **1 个 CPU 实验存活**：exp_006 domain gamma v3，正在跑 stansummary (MCMC汇总)\n- **2 个已死**：gsm8k signals (PID 835978) 和 15B instruct mmlu (PID 810809)\n- **arc signals 已完成**：所有输出文件已生成，进程正常退出\n- **gsm8k signals 实际已完成**：虽然注册的 PID 835978 死了，但非注册 PID 831936 在 cuda:4 完成了 gsm8k 全部信号计算（输出文件已存在）\n- **15B instruct mmlu 从未启动**：无日志文件、无 exit file\n- **GPU 2 空闲可用**，GPU 4 有残留进程可回收\n- **需要清理**：kill 卡住的 PID 835593（HF 超时死循环）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-running-experiments.md"
+}

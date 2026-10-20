@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "195d48c604251a8e04ae",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis gsm8k oracle mcmc extended",
+  "task_key": "worker_analysis_gsm8k-oracle-mcmc-extended_20260515T000157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gsm8k-oracle-mcmc-extended_20260515T000157_result.json",
+    "occurrence": 1,
+    "bytes": 410,
+    "sha256": "8d43f6330784f41b60c15abb76aa9ae537c374602effd7cbd7a78e75ab30aa4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交，PID=469645，运行中：\n- **配置**: 4 chains x 4000 samples + 2000 warmup = 6000 iter/chain（上次 1000+1000）\n- **预计完成**: ~35 分钟（约 08:40 UTC）\n- **输出目录**: `/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/`\n- **实验 ID**: `exp006-oracle-gsm8k-extended`，已注册为 RUNNING\n\n20 分钟后自动回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gsm8k-oracle-mcmc-extended.md"
+}

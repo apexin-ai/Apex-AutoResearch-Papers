@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a4ecd2db1568771a4f4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops falcon3 westd monitor and eval",
+  "task_key": "worker_ops_falcon3-westd-monitor-and-eval_20260522T073935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_falcon3-westd-monitor-and-eval_20260522T073935_result.json",
+    "occurrence": 1,
+    "bytes": 457,
+    "sha256": "97fc96c3bc3d6f8dfe1957f3b6c3e0fe2552d1c7584516480c495a82bad6885b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "监控已启动。当前 4 个 Falcon3 训练状态：\n\n| Dosage | GPU | PID | 进度 | 预计完成 |\n|--------|-----|-----|------|----------|\n| d000 | 0 | 577758 | 79% (2477/3125) | ~16:10 UTC |\n| d005 | 1 | 577836 | 78% (2482/3177) | ~16:19 UTC |\n| d025 | 2 | 577974 | 75% (2549/3384) | ~16:26 UTC |\n| d050 | 3 | 578223 | 59% (2162/3642) | ~17:15 UTC |\n\n每 3 分钟检查一次，训练完成后立即提交 eval 到对应 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-falcon3-westd-monitor-and-eval.md"
+}

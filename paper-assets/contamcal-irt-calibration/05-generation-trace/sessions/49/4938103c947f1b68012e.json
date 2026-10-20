@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4938103c947f1b68012e",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diag r3w10 dgp collect results",
+  "task_key": "worker_diag_r3w10-dgp-collect-results_20260520T204259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_r3w10-dgp-collect-results_20260520T204259_result.json",
+    "occurrence": 1,
+    "bytes": 139,
+    "sha256": "db1096e9bd2d92f8e2f38fe6ba6d52b26c6e2150df7fd59490c47229ac5ffdfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sweep is at **108/400** (~27%), running ~11s/iteration. ETA ~43 minutes (~05:27 server time). Will check again in 4 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-r3w10-dgp-collect-results.md"
+}

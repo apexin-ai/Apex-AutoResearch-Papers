@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c4d57abda67091ecff3",
+  "project": "contamcal-irt-calibration",
+  "kind": "history",
+  "title": "agent / loop_11_1778869267.md",
+  "task_key": "loop_11_1778869267",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778869267.md",
+    "occurrence": 1,
+    "bytes": 5096,
+    "sha256": "7701dcaf309720c4a7d14ed0adf6386b5a7a1981e3d2721bbf75ecd054690dad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T18:11:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 **cqa1-21977**，GPU 白名单 `cuda:0-5`（6× RTX 4090D）。config 已确认全部分配给本项目\n- LoRA alpha **统一 32**（D050/D055）。3B s42 的 d025/d100/d000 旧 checkpoint（alpha=16）已弃用，正在重跑。**不要用任何 alpha=16 的 3B s42 checkpoint 做 eval/IRT**\n- d000_v2（alpha=16）已弃用，原始 d000（alpha=32）保留。弃用 checkpoint 路径：`Qwen2.5-3B_d000_v2_s42`\n- 联合 IRT / Stratified IRT 已废弃（D053），论文只引用 per-benchmark 独立 IRT\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能裸 `python`\n- **EMNLP 2026 ARR May 25 截止，距今 10 天**\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**cqa1-21977**（AutoDL），工作目录 `/root/contamcal-irt-calibration`\n- Python：`/root/miniconda3/bin/python`（conda base），无 venv\n- 模型缓存：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`\n- SFT 数据：`/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`\n- Checkpoints：`/root/autodl-tmp/exp001/checkpoints/`\n- Eval 结果：`/root/autodl-tmp/exp001/eval_results/`\n- Signals：`/root/autodl-tmp/exp002/signals/`（0.5B ✅, 1.5B ✅, 3B 未开始）\n- exp-004 本地：`/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/simulation_sweep/`\n- W&B：未在 memory 中看到 config，需确认\n- **活跃进程**：\n  - `exp_001_sft_3B_d100_s42_a32_v2` — PID 593740, cuda:1, tmux, ~30% done\n  - `exp_001_sft_3B_d100_s123_a32_v2` — PID 594489, cuda:0, tmux\n  - `exp_001_sft_d025_3B_v3` — PID 589763, cuda:5, tmux\n  - `exp_001_sft_3B_d000_v3` — PID 597174, cuda:4, tmux, ~25% done\n  - `exp_001_eval_3B_d005_s123_aligned` — PID 580693, cuda:2, tmux（eval）\n  - `exp_004_sim_sweep_v6` — PID 528993, **local CPU**（simulation sweep）\n- **空闲 GPU**：cuda:3\n- **活跃 Worker**：`worker_fix_exp004_tmpdir_isolation_v7`（正在修 exp-004 tmpdir 问题）\n- **Cron 监控**：7 个 active cron 对应上述 6 个 RUNNING 实验 + 1 个旧 exp\n\n### 3. 📊 当前状态\n**刚做完**：D055 alpha=32 统一重跑启动。4 个 3B SFT 任务已全部提交（d000_v3, d025_v3, d100_s42_v2, d100_s123_v2），占 cuda:0/1/4/5。D057 kill 了 GPU 4 上的 signals 僵尸进程（PID 590509），为 d000_v3 腾出空间。\n\n**正在进行**：\n1. 4× 3B SFT RUNNING（cuda:0/1/4/5），预计各需 4-5h（d100 数据量大需更久）\n2. 1× 3B eval RUNNING（cuda:2，d005_s123 aligned eval）\n3. exp_004_sim_sweep_v6 本地 CPU 跑 simulation sweep（66/80+ seeds done）\n4. Worker 正在修 exp-004 tmpdir 隔离问题\n\n**等待中**：\n- Worker `fix_exp004_tmpdir_isolation_v7` 回调\n- 4× SFT cron 完成回调 → 触发 eval 链\n- eval d005_s123 cron 完成回调 → 可释放 cuda:2\n\n### 4. 📋 待办（条件触发式）\n- `exp_001_eval_3B_d005_s123_aligned` 完成 → cuda:2 空闲 → 提交下一个 eval（优先 d025_s123 或 d005_s42_aligned_v2 para eval）\n- `exp_001_sft_d025_3B_v3` (cuda:5) 完成 → spawn worker 提交 aligned eval + para eval\n- `exp_001_sft_3B_d100_s42_a32_v2` (cuda:1) 完成 → spawn worker 提交 aligned eval + para eval\n- `exp_001_sft_3B_d100_s123_a32_v2` (cuda:0) 完成 → spawn worker 提交 aligned eval + para eval\n- `exp_001_sft_3B_d000_v3` (cuda:4) 完成 → spawn worker 提交 aligned eval（d000 无 para eval）+ 更新 para_aligned eval 用新 d000_v3 checkpoint\n- 所有 3B alpha=32 SFT+eval 完成 → 3B signals (exp-002) 可以开跑（需 3B 全矩阵 checkpoint）\n- exp-004 worker 回调 → 检查 coverage sweep 结果，更新 D056 结论\n- **cuda:3 当前空闲** → 应立即安排任务（d005_s42 aligned_v2 eval 或 para eval 队列）\n- 所有 seed=42+123 eval 完成 → N≥16 multi-seed pooled IRT 重跑 → 检查 coverage 是否改善\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D056: Coverage collapse 确认为 model misspecification（不是 γ 值大）→ framing 转向 \"benchmark-dependent effects\"\n- D053: 废弃联合/Stratified IRT，只用 per-benchmark 独立 IRT\n- D052: gamma 方向不稳定，不 pivot，等更多数据\n- D050/D055: LoRA alpha 统一 32，3B s42 仅需重跑 3 个 SFT（d025/d100_s42/d100_s123）\n- D051: 3B s123 alpha=16 接受不重跑（只有 s42 需要统一）\n\n**易错点**：\n- **cuda:3 空闲是失职** — 新 session 启动后立即安排任务\n- 不要把 d000_v2（alpha=16）和 d000 原始（alpha=32）混淆，eval 路径不同\n- 3B signals (exp-002) 依赖 3B **全矩阵** checkpoint 就绪，不能提前跑\n- exp-004 sim sweep 是 CPU 任务在本地跑，不占 GPU，但 tmpdir 有隔离问题（worker 正在修）\n- para eval 命令需要 `--paraphrase-dir /root/autodl-tmp/exp001/paraphrases`，aligned eval 不需要\n- 0.5B/1.5B 已全部 alpha=32 无异常，不需要重跑\n- **10 天截止**，3B SFT 完成后还有 eval → signals → IRT 全链路要走，时间极紧\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778869267.md"
+}

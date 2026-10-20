@@ -1,0 +1,854 @@
+# ssh westd cuda0 status check
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/workers/worker_ssh_westd-cuda0-status-check_20260519T074025.log`
+- **Structured JSON:** [`21a0a49d87a36296263d.json`](../../sessions/21/21a0a49d87a36296263d.json)
+
+## Before a recorded user message
+
+17 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f448c325-671a-41b0-a34f-689470e32f0d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to SSH to a server called "westd-29999" and run several commands to check the status of a training job. Let me use the ssh_execute tool to run these commands.
+
+First, I need to load the MCP tool schemas.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "uuid": "1a6b6708-a003-4540-b1fd-8cc033ad10ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016RZFrkoiwofTpXezT3Eca3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13911,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13911
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AaFJSjnm873nwkkVM3JXdo`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "uuid": "57c28fbd-78be-4397-bc08-010e7590eb7c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016RZFrkoiwofTpXezT3Eca3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13911,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13911
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-19T07:40:43.046Z_
+
+<details><summary>↩ Tool result · `toolu_01AaFJSjnm873nwkkVM3JXdo`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "uuid": "ffacfa3e-e4a9-4076-ac45-d980436c1eb1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779178800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2c704178-2a3b-4885-81dd-2da179f84708",
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run all four commands on the server. I can run them in parallel since they're independent.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "uuid": "84f73f3a-40b9-4a68-a840-75636ac9d4a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195f5WspDCdSTfTFX2mDxoK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 417,
+      "cache_read_input_tokens": 25752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 417
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019EwxEPKRu1Wd2LHhuCzKtM`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ps aux | grep 111715 | grep -v grep",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "uuid": "609924ba-149e-4a0a-b475-303f69260f4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195f5WspDCdSTfTFX2mDxoK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 417,
+      "cache_read_input_tokens": 25752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 417
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FVZDG8TvpYKWbxRdZhiiYM`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "nvidia-smi"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "uuid": "bb14b14e-d821-4d4c-83fc-f3f52d31e2ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195f5WspDCdSTfTFX2mDxoK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 417,
+      "cache_read_input_tokens": 25752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 417
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01CRs8N5zmb5sACfHubKBcHf`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ls -la /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42/.done 2>/dev/null || echo \"no .done\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "uuid": "696a00b4-34f2-4714-8b73-bab653d6abaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195f5WspDCdSTfTFX2mDxoK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 417,
+      "cache_read_input_tokens": 25752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 417
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T07:40:49.000Z_
+
+<details><summary>↩ Tool result · `toolu_019EwxEPKRu1Wd2LHhuCzKtM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "uuid": "435643f8-9c87-4843-bbed-d14d7452856d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016fhELhqPfhbFsBWYRtSwuA`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "tail -20 ~/runs/contamcal-irt-calibration/exp_001_sft_olmo2_7b_d050_s42.log",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "uuid": "91b8e2e0-c4ea-4bda-9820-417aeec7dbd8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195f5WspDCdSTfTFX2mDxoK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 417,
+      "cache_read_input_tokens": 25752,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 417
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T07:40:49.853Z_
+
+<details><summary>↩ Tool result · `toolu_01FVZDG8TvpYKWbxRdZhiiYM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Tue May 19 15:40:49 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\n| N/A   32C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   72C    P0            357W /  600W |   52103MiB /  97887MiB |     72%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\n| N/A   69C    P0            307W /  600W |   38165MiB /  97887MiB |     49%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\n| N/A   65C    P0            600W /  600W |   31715MiB /  97887MiB |     99%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    1   N/A  N/A          110298      C   /root/miniconda3/bin/python3.12       52094MiB |\\n|    2   N/A  N/A          114344      C   /root/miniconda3/bin/python3.12       38156MiB |\\n|    3   N/A  N/A          119519      C   /root/miniconda3/bin/python3          31706MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "uuid": "fb062241-72ea-4f39-9260-b252a0f493f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Tue May 19 15:40:49 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\\\n| N/A   32C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   72C    P0            357W /  600W |   52103MiB /  97887MiB |     72%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   69C    P0            307W /  600W |   38165MiB /  97887MiB |     49%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\\\n| N/A   65C    P0            600W /  600W |   31715MiB /  97887MiB |     99%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    1   N/A  N/A          110298      C   /root/miniconda3/bin/python3.12       52094MiB |\\\\n|    2   N/A  N/A          114344      C   /root/miniconda3/bin/python3.12       38156MiB |\\\\n|    3   N/A  N/A          119519      C   /root/miniconda3/bin/python3          31706MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Tue May 19 15:40:49 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\n| N/A   32C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   72C    P0            357W /  600W |   52103MiB /  97887MiB |     72%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\n| N/A   69C    P0            307W /  600W |   38165MiB /  97887MiB |     49%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\n| N/A   65C    P0            600W /  600W |   31715MiB /  97887MiB |     99%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    1   N/A  N/A          110298      C   /root/miniconda3/bin/python3.12       52094MiB |\\n|    2   N/A  N/A          114344      C   /root/miniconda3/bin/python3.12       38156MiB |\\n|    3   N/A  N/A          119519      C   /root/miniconda3/bin/python3          31706MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T07:40:50.401Z_
+
+<details><summary>↩ Tool result · `toolu_01CRs8N5zmb5sACfHubKBcHf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 5 May 19 15:31 /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42/.done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "uuid": "87276152-37cb-4a4d-ad26-445f751094da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 5 May 19 15:31 /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42/.done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 5 May 19 15:31 /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42/.done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T07:40:51.027Z_
+
+<details><summary>↩ Tool result · `toolu_016fhELhqPfhbFsBWYRtSwuA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\r 96%|█████████▌| 3490/3642 [2:00:04<05:12,  2.06s/it]\\r 96%|█████████▌| 3491/3642 [2:00:06<05:07,  2.04s/it]\\r 96%|█████████▌| 3492/3642 [2:00:08<04:59,  2.00s/it]\\r 96%|█████████▌| 3493/3642 [2:00:10<05:09,  2.08s/it]\\r 96%|█████████▌| 3494/3642 [2:00:12<05:00,  2.03s/it]\\r 96%|█████████▌| 3495/3642 [2:00:14<05:07,  2.09s/it]\\r 96%|█████████▌| 3496/3642 [2:00:16<05:05,  2.09s/it]\\r 96%|█████████▌| 3497/3642 [2:00:19<05:06,  2.12s/it]\\r 96%|█████████▌| 3498/3642 [2:00:21<05:04,  2.12s/it]\\r 96%|█████████▌| 3499/3642 [2:00:23<05:03,  2.12s/it]\\r 96%|█████████▌| 3500/3642 [2:00:25<05:03,  2.14s/it]\\r                                                     \\r{'loss': '0.9249', 'grad_norm': '0.3465', 'learning_rate': '2.106e-07', 'entropy': '1.013', 'num_tokens': '2.001e+07', 'mean_token_accuracy': '0.7676', 'epoch': '0.9611'}\\n\\r 96%|█████████▌| 3500/3642 [2:00:25<05:03,  2.14s/it]\\r 96%|█████████▌| 3501/3642 [2:00:27<04:59,  2.13s/it]\\r 96%|█████████▌| 3502/3642 [2:00:29<04:47,  2.05s/it]\\r 96%|█████████▌| 3503/3642 [2:00:31<04:39,  2.01s/it]\\r 96%|█████████▌| 3504/3642 [2:00:33<04:41,  2.04s/it]\\r 96%|█████████▌| 3505/3642 [2:00:35<04:36,  2.02s/it]\\r 96%|█████████▋| 3506/3642 [2:00:37<04:26,  1.96s/it]\\r 96%|█████████▋| 3507/3642 [2:00:39<04:25,  1.97s/it]\\r 96%|█████████▋| 3508/3642 [2:00:41<04:32,  2.04s/it]\\r 96%|█████████▋| 3509/3642 [2:00:43<04:42,  2.13s/it]\\r 96%|█████████▋| 3510/3642 [2:00:45<04:33,  2.07s/it]\\r                                                     \\r{'loss': '0.9427', 'grad_norm': '0.406', 'learning_rate': '1.822e-07', 'entropy': '1.054', 'num_tokens': '2.006e+07', 'mean_token_accuracy': '0.753', 'epoch': '0.9639'}\\n\\r 96%|█████████▋| 3510/3642 [2:00:45<04:33,  2.07s/it]\\r 96%|█████████▋| 3511/3642 [2:00:47<04:29,  2.05s/it]\\r 96%|█████████▋| 3512/3642 [2:00:49<04:33,  2.10s/it]\\r 96%|█████████▋| 3513/3642 [2:00:51<04:26,  2.07s/it]\\r 96%|█████████▋| 3514/3642 [2:00:53<04:19,  2.03s/it]\\r 97%|█████████▋| 3515/3642 [2:00:55<04:15,  2.02s/it]\\r 97%|█████████▋| 3516/3642 [2:00:57<04:16,  2.04s/it]\\r 97%|█████████▋| 3517/3642 [2:00:59<04:08,  1.99s/it]\\r 97%|█████████▋| 3518/3642 [2:01:01<04:03,  1.97s/it]\\r 97%|█████████▋| 3519/3642 [2:01:03<03:57,  1.93s/it]\\r 97%|█████████▋| 3520/3642 [2:01:05<04:06,  2.02s/it]\\r                                                     \\r{'loss': '0.8637', 'grad_norm': '0.3384', 'learning_rate': '1.558e-07', 'entropy': '0.9873', 'num_tokens': '2.011e+07', 'mean_token_accuracy': '0.7722', 'epoch': '0.9666'}\\n\\r 97%|█████████▋| 3520/3642 [2:01:05<04:06,  2.02s/it]\\r 97%|█████████▋| 3521/3642 [2:01:07<04:01,  2.00s/it]\\r 97%|█████████▋| 3522/3642 [2:01:09<04:04,  2.04s/it]\\r 97%|█████████▋| 3523/3642 [2:01:12<04:05,  2.06s/it]\\r 97%|█████████▋| 3524/3642 [2:01:14<04:01,  2.04s/it]\\r 97%|█████████▋| 3525/3642 [2:01:16<03:58,  2.03s/it]\\r 97%|█████████▋| 3526/3642 [2:01:18<03:54,  2.02s/it]\\r 97%|█████████▋| 3527/3642 [2:01:20<03:52,  2.02s/it]\\r 97%|█████████▋| 3528/3642 [2:01:22<03:54,  2.06s/it]\\r 97%|█████████▋| 3529/3642 [2:01:24<03:49,  2.03s/it]\\r 97%|█████████▋| 3530/3642 [2:01:26<03:53,  2.08s/it]\\r                                                     \\r{'loss': '1.048', 'grad_norm': '0.3103', 'learning_rate': '1.315e-07', 'entropy': '1.091', 'num_tokens': '2.017e+07', 'mean_token_accuracy': '0.744', 'epoch': '0.9693'}\\n\\r 97%|█████████▋| 3530/3642 [2:01:26<03:53,  2.08s/it]\\r 97%|█████████▋| 3531/3642 [2:01:28<03:51,  2.08s/it]\\r 97%|█████████▋| 3532/3642 [2:01:30<03:46,  2.06s/it]\\r 97%|█████████▋| 3533/3642 [2:01:32<03:40,  2.02s/it]\\r 97%|█████████▋| 3534/3642 [2:01:34<03:49,  2.13s/it]\\r 97%|█████████▋| 3535/3642 [2:01:37<03:51,  2.16s/it]\\r 97%|█████████▋| 3536/3642 [2:01:38<03:42,  2.10s/it]\\r 97%|█████████▋| 3537/3642 [2:01:40<03:35,  2.05s/it]\\r 97%|█████████▋| 3538/3642 [2:01:42<03:30,  2.02s/it]\\r 97%|█████████▋| 3539/3642 [2:01:44<03:28,  2.02s/it]\\r 97%|█████████▋| 3540/3642 [2:01:47<03:35,  2.11s/it]\\r                                                     \\r{'loss': '0.8707', 'grad_norm': '0.3433', 'learning_rate': '1.093e-07', 'e\\n\\n... [截断: 输出过长，省略 5104 字符] ...\\n\\n53<01:22,  2.01s/it]\\r 99%|█████████▉| 3602/3642 [2:03:55<01:20,  2.00s/it]\\r 99%|█████████▉| 3603/3642 [2:03:58<01:19,  2.04s/it]\\r 99%|█████████▉| 3604/3642 [2:03:59<01:15,  2.00s/it]\\r 99%|█████████▉| 3605/3642 [2:04:01<01:13,  1.99s/it]\\r 99%|█████████▉| 3606/3642 [2:04:04<01:14,  2.08s/it]\\r 99%|█████████▉| 3607/3642 [2:04:06<01:12,  2.06s/it]\\r 99%|█████████▉| 3608/3642 [2:04:08<01:11,  2.09s/it]\\r 99%|█████████▉| 3609/3642 [2:04:10<01:09,  2.10s/it]\\r 99%|█████████▉| 3610/3642 [2:04:12<01:05,  2.04s/it]\\r                                                     \\r{'loss': '0.8454', 'grad_norm': '0.4916', 'learning_rate': '1.123e-08', 'entropy': '0.9893', 'num_tokens': '2.063e+07', 'mean_token_accuracy': '0.7735', 'epoch': '0.9913'}\\n\\r 99%|█████████▉| 3610/3642 [2:04:12<01:05,  2.04s/it]\\r 99%|█████████▉| 3611/3642 [2:04:14<01:03,  2.05s/it]\\r 99%|█████████▉| 3612/3642 [2:04:16<00:59,  1.99s/it]\\r 99%|█████████▉| 3613/3642 [2:04:18<00:59,  2.06s/it]\\r 99%|█████████▉| 3614/3642 [2:04:20<00:56,  2.02s/it]\\r 99%|█████████▉| 3615/3642 [2:04:22<00:55,  2.06s/it]\\r 99%|█████████▉| 3616/3642 [2:04:24<00:52,  2.04s/it]\\r 99%|█████████▉| 3617/3642 [2:04:26<00:50,  2.01s/it]\\r 99%|█████████▉| 3618/3642 [2:04:28<00:48,  2.02s/it]\\r 99%|█████████▉| 3619/3642 [2:04:30<00:47,  2.08s/it]\\r 99%|█████████▉| 3620/3642 [2:04:33<00:48,  2.19s/it]\\r                                                     \\r{'loss': '0.8505', 'grad_norm': '0.3008', 'learning_rate': '5.454e-09', 'entropy': '0.9584', 'num_tokens': '2.069e+07', 'mean_token_accuracy': '0.7786', 'epoch': '0.9941'}\\n\\r 99%|█████████▉| 3620/3642 [2:04:33<00:48,  2.19s/it]\\r 99%|█████████▉| 3621/3642 [2:04:35<00:45,  2.15s/it]\\r 99%|█████████▉| 3622/3642 [2:04:37<00:41,  2.10s/it]\\r 99%|█████████▉| 3623/3642 [2:04:39<00:39,  2.09s/it]\\r100%|█████████▉| 3624/3642 [2:04:41<00:37,  2.06s/it]\\r100%|█████████▉| 3625/3642 [2:04:43<00:34,  2.04s/it]\\r100%|█████████▉| 3626/3642 [2:04:45<00:32,  2.06s/it]\\r100%|█████████▉| 3627/3642 [2:04:48<00:33,  2.22s/it]\\r100%|█████████▉| 3628/3642 [2:04:50<00:31,  2.23s/it]\\r100%|█████████▉| 3629/3642 [2:04:52<00:28,  2.16s/it]\\r100%|█████████▉| 3630/3642 [2:04:54<00:25,  2.12s/it]\\r                                                     \\r{'loss': '0.8848', 'grad_norm': '0.3661', 'learning_rate': '1.743e-09', 'entropy': '1.007', 'num_tokens': '2.075e+07', 'mean_token_accuracy': '0.7697', 'epoch': '0.9968'}\\n\\r100%|█████████▉| 3630/3642 [2:04:54<00:25,  2.12s/it]\\r100%|█████████▉| 3631/3642 [2:04:56<00:22,  2.05s/it]\\r100%|█████████▉| 3632/3642 [2:04:58<00:19,  2.00s/it]\\r100%|█████████▉| 3633/3642 [2:05:00<00:17,  1.99s/it]\\r100%|█████████▉| 3634/3642 [2:05:01<00:15,  1.98s/it]\\r100%|█████████▉| 3635/3642 [2:05:04<00:14,  2.03s/it]\\r100%|█████████▉| 3636/3642 [2:05:06<00:12,  2.04s/it]\\r100%|█████████▉| 3637/3642 [2:05:08<00:10,  2.12s/it]\\r100%|█████████▉| 3638/3642 [2:05:10<00:08,  2.09s/it]\\r100%|█████████▉| 3639/3642 [2:05:12<00:06,  2.16s/it]\\r100%|█████████▉| 3640/3642 [2:05:15<00:04,  2.17s/it]\\r                                                     \\r{'loss': '0.8916', 'grad_norm': '0.3434', 'learning_rate': '9.28e-11', 'entropy': '0.9642', 'num_tokens': '2.081e+07', 'mean_token_accuracy': '0.7746', 'epoch': '0.9996'}\\n\\r100%|█████████▉| 3640/3642 [2:05:15<00:04,  2.17s/it]\\r100%|█████████▉| 3641/3642 [2:05:17<00:02,  2.13s/it]\\r100%|██████████| 3642/3642 [2:05:18<00:00,  1.93s/it]\\r                                                     \\r{'train_runtime': '7519', 'train_samples_per_second': '7.749', 'train_steps_per_second': '0.484', 'train_loss': '0.9733', 'entropy': '1.122', 'num_tokens': '2.082e+07', 'mean_token_accuracy': '0.7418', 'epoch': '1'}\\n\\r100%|██████████| 3642/3642 [2:05:19<00:00,  1.93s/it]\\r100%|██████████| 3642/3642 [2:05:19<00:00,  2.06s/it]\\n2026-05-19 15:31:50,980 [INFO] LoRA adapter saved to /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42/lora_adapter\\n2026-05-19 15:31:50,981 [INFO] Training complete. Sentinel written to /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42/.done\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "uuid": "d5695d4f-cfee-4cc6-9a89-d9e16f250839",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 96%|█████████▌| 3490/3642 [2:00:04<05:12,  2.06s/it]\\\\r 96%|█████████▌| 3491/3642 [2:00:06<05:07,  2.04s/it]\\\\r 96%|█████████▌| 3492/3642 [2:00:08<04:59,  2.00s/it]\\\\r 96%|█████████▌| 3493/3642 [2:00:10<05:09,  2.08s/it]\\\\r 96%|█████████▌| 3494/3642 [2:00:12<05:00,  2.03s/it]\\\\r 96%|█████████▌| 3495/3642 [2:00:14<05:07,  2.09s/it]\\\\r 96%|█████████▌| 3496/3642 [2:00:16<05:05,  2.09s/it]\\\\r 96%|█████████▌| 3497/3642 [2:00:19<05:06,  2.12s/it]\\\\r 96%|█████████▌| 3498/3642 [2:00:21<05:04,  2.12s/it]\\\\r 96%|█████████▌| 3499/3642 [2:00:23<05:03,  2.12s/it]\\\\r 96%|█████████▌| 3500/3642 [2:00:25<05:03,  2.14s/it]\\\\r                                                     \\\\r{'loss': '0.9249', 'grad_norm': '0.3465', 'learning_rate': '2.106e-07', 'entropy': '1.013', 'num_tokens': '2.001e+07', 'mean_token_accuracy': '0.7676', 'epoch': '0.9611'}\\\\n\\\\r 96%|█████████▌| 3500/3642 [2:00:25<05:03,  2.14s/it]\\\\r 96%|█████████▌| 3501/3642 [2:00:27<04:59,  2.13s/it]\\\\r 96%|█████████▌| 3502/3642 [2:00:29<04:47,  2.05s/it]\\\\r 96%|█████████▌| 3503/3642 [2:00:31<04:39,  2.01s/it]\\\\r 96%|█████████▌| 3504/3642 [2:00:33<04:41,  2.04s/it]\\\\r 96%|█████████▌| 3505/3642 [2:00:35<04:36,  2.02s/it]\\\\r 96%|█████████▋| 3506/3642 [2:00:37<04:26,  1.96s/it]\\\\r 96%|█████████▋| 3507/3642 [2:00:39<04:25,  1.97s/it]\\\\r 96%|█████████▋| 3508/3642 [2:00:41<04:32,  2.04s/it]\\\\r 96%|█████████▋| 3509/3642 [2:00:43<04:42,  2.13s/it]\\\\r 96%|█████████▋| 3510/3642 [2:00:45<04:33,  2.07s/it]\\\\r                                                     \\\\r{'loss': '0.9427', 'grad_norm': '0.406', 'learning_rate': '1.822e-07', 'entropy': '1.054', 'num_tokens': '2.006e+07', 'mean_token_accuracy': '0.753', 'epoch': '0.9639'}\\\\n\\\\r 96%|█████████▋| 3510/3642 [2:00:45<04:33,  2.07s/it]\\\\r 96%|█████████▋| 3511/3642 [2:00:47<04:29,  2.05s/it]\\\\r 96%|█████████▋| 3512/3642 [2:00:49<04:33,  2.10s/it]\\\\r 96%|█████████▋| 3513/3642 [2:00:51<04:26,  2.07s/it]\\\\r 96%|█████████▋| 3514/3642 [2:00:53<04:19,  2.03s/it]\\\\r 97%|█████████▋| 3515/3642 [2:00:55<04:15,  2.02s/it]\\\\r 97%|█████████▋| 3516/3642 [2:00:57<04:16,  2.04s/it]\\\\r 97%|█████████▋| 3517/3642 [2:00:59<04:08,  1.99s/it]\\\\r 97%|█████████▋| 3518/3642 [2:01:01<04:03,  1.97s/it]\\\\r 97%|█████████▋| 3519/3642 [2:01:03<03:57,  1.93s/it]\\\\r 97%|█████████▋| 3520/3642 [2:01:05<04:06,  2.02s/it]\\\\r                                                     \\\\r{'loss': '0.8637', 'grad_norm': '0.3384', 'learning_rate': '1.558e-07', 'entropy': '0.9873', 'num_tokens': '2.011e+07', 'mean_token_accuracy': '0.7722', 'epoch': '0.9666'}\\\\n\\\\r 97%|█████████▋| 3520/3642 [2:01:05<04:06,  2.02s/it]\\\\r 97%|█████████▋| 3521/3642 [2:01:07<04:01,  2.00s/it]\\\\r 97%|█████████▋| 3522/3642 [2:01:09<04:04,  2.04s/it]\\\\r 97%|█████████▋| 3523/3642 [2:01:12<04:05,  2.06s/it]\\\\r 97%|█████████▋| 3524/3642 [2:01:14<04:01,  2.04s/it]\\\\r 97%|█████████▋| 3525/3642 [2:01:16<03:58,  2.03s/it]\\\\r 97%|█████████▋| 3526/3642 [2:01:18<03:54,  2.02s/it]\\\\r 97%|█████████▋| 3527/3642 [2:01:20<03:52,  2.02s/it]\\\\r 97%|█████████▋| 3528/3642 [2:01:22<03:54,  2.06s/it]\\\\r 97%|█████████▋| 3529/3642 [2:01:24<03:49,  2.03s/it]\\\\r 97%|█████████▋| 3530/3642 [2:01:26<03:53,  2.08s/it]\\\\r                                                     \\\\r{'loss': '1.048', 'grad_norm': '0.3103', 'learning_rate': '1.315e-07', 'entropy': '1.091', 'num_tokens': '2.017e+07', 'mean_token_accuracy': '0.744', 'epoch': '0.9693'}\\\\n\\\\r 97%|█████████▋| 3530/3642 [2:01:26<03:53,  2.08s/it]\\\\r 97%|█████████▋| 3531/3642 [2:01:28<03:51,  2.08s/it]\\\\r 97%|█████████▋| 3532/3642 [2:01:30<03:46,  2.06s/it]\\\\r 97%|█████████▋| 3533/3642 [2:01:32<03:40,  2.02s/it]\\\\r 97%|█████████▋| 3534/3642 [2:01:34<03:49,  2.13s/it]\\\\r 97%|█████████▋| 3535/3642 [2:01:37<03:51,  2.16s/it]\\\\r 97%|█████████▋| 3536/3642 [2:01:38<03:42,  2.10s/it]\\\\r 97%|█████████▋| 3537/3642 [2:01:40<03:35,  2.05s/it]\\\\r 97%|█████████▋| 3538/3642 [2:01:42<03:30,  2.02s/it]\\\\r 97%|█████████▋| 3539/3642 [2:01:44<03:28,  2.02s/it]\\\\r 97%|█████████▋| 3540/3642 [2:01:47<03:35,  2.11s/it]\\\\r                                                     \\\\r{'loss': '0.8707', 'grad_norm': '0.3433', 'learning_rate': '1.093e-07', 'e\\\\n\\\\n... [截断: 输出过长，省略 5104 字符] ...\\\\n\\\\n53<01:22,  2.01s/it]\\\\r 99%|█████████▉| 3602/3642 [2:03:55<01:20,  2.00s/it]\\\\r 99%|█████████▉| 3603/3642 [2:03:58<01:19,  2.04s/it]\\\\r 99%|█████████▉| 3604/3642 [2:03:59<01:15,  2.00s/it]\\\\r 99%|█████████▉| 3605/3642 [2:04:01<01:13,  1.99s/it]\\\\r 99%|█████████▉| 3606/3642 [2:04:04<01:14,  2.08s/it]\\\\r 99%|█████████▉| 3607/3642 [2:04:06<01:12,  2.06s/it]\\\\r 99%|█████████▉| 3608/3642 [2:04:08<01:11,  2.09s/it]\\\\r 99%|█████████▉| 3609/3642 [2:04:10<01:09,  2.10s/it]\\\\r 99%|█████████▉| 3610/3642 [2:04:12<01:05,  2.04s/it]\\\\r                                                     \\\\r{'loss': '0.8454', 'grad_norm': '0.4916', 'learning_rate': '1.123e-08', 'entropy': '0.9893', 'num_tokens': '2.063e+07', 'mean_token_accuracy': '0.7735', 'epoch': '0.9913'}\\\\n\\\\r 99%|█████████▉| 3610/3642 [2:04:12<01:05,  2.04s/it]\\\\r 99%|█████████▉| 3611/3642 [2:04:14<01:03,  2.05s/it]\\\\r 99%|█████████▉| 3612/3642 [2:04:16<00:59,  1.99s/it]\\\\r 99%|█████████▉| 3613/3642 [2:04:18<00:59,  2.06s/it]\\\\r 99%|█████████▉| 3614/3642 [2:04:20<00:56,  2.02s/it]\\\\r 99%|█████████▉| 3615/3642 [2:04:22<00:55,  2.06s/it]\\\\r 99%|█████████▉| 3616/3642 [2:04:24<00:52,  2.04s/it]\\\\r 99%|█████████▉| 3617/3642 [2:04:26<00:50,  2.01s/it]\\\\r 99%|█████████▉| 3618/3642 [2:04:28<00:48,  2.02s/it]\\\\r 99%|█████████▉| 3619/3642 [2:04:30<00:47,  2.08s/it]\\\\r 99%|█████████▉| 3620/3642 [2:04:33<00:48,  2.19s/it]\\\\r                                                     \\\\r{'loss': '0.8505', 'grad_norm': '0.3008', 'learning_rate': '5.454e-09', 'entropy': '0.9584', 'num_tokens': '2.069e+07', 'mean_token_accuracy': '0.7786', 'epoch': '0.9941'}\\\\n\\\\r 99%|█████████▉| 3620/3642 [2:04:33<00:48,  2.19s/it]\\\\r 99%|█████████▉| 3621/3642 [2:04:35<00:45,  2.15s/it]\\\\r 99%|█████████▉| 3622/3642 [2:04:37<00:41,  2.10s/it]\\\\r 99%|█████████▉| 3623/3642 [2:04:39<00:39,  2.09s/it]\\\\r100%|█████████▉| 3624/3642 [2:04:41<00:37,  2.06s/it]\\\\r100%|█████████▉| 3625/3642 [2:04:43<00:34,  2.04s/it]\\\\r100%|█████████▉| 3626/3642 [2:04:45<00:32,  2.06s/it]\\\\r100%|█████████▉| 3627/3642 [2:04:48<00:33,  2.22s/it]\\\\r100%|█████████▉| 3628/3642 [2:04:50<00:31,  2.23s/it]\\\\r100%|█████████▉| 3629/3642 [2:04:52<00:28,  2.16s/it]\\\\r100%|█████████▉| 3630/3642 [2:04:54<00:25,  2.12s/it]\\\\r                                                     \\\\r{'loss': '0.8848', 'grad_norm': '0.3661', 'learning_rate': '1.743e-09', 'entropy': '1.007', 'num_tokens': '2.075e+07', 'mean_token_accuracy': '0.7697', 'epoch': '0.9968'}\\\\n\\\\r100%|█████████▉| 3630/3642 [2:04:54<00:25,  2.12s/it]\\\\r100%|█████████▉| 3631/3642 [2:04:56<00:22,  2.05s/it]\\\\r100%|█████████▉| 3632/3642 [2:04:58<00:19,  2.00s/it]\\\\r100%|█████████▉| 3633/3642 [2:05:00<00:17,  1.99s/it]\\\\r100%|█████████▉| 3634/3642 [2:05:01<00:15,  1.98s/it]\\\\r100%|█████████▉| 3635/3642 [2:05:04<00:14,  2.03s/it]\\\\r100%|█████████▉| 3636/3642 [2:05:06<00:12,  2.04s/it]\\\\r100%|█████████▉| 3637/3642 [2:05:08<00:10,  2.12s/it]\\\\r100%|█████████▉| 3638/3642 [2:05:10<00:08,  2.09s/it]\\\\r100%|█████████▉| 3639/3642 [2:05:12<00:06,  2.16s/it]\\\\r100%|█████████▉| 3640/3642 [2:05:15<00:04,  2.17s/it]\\\\r                                                     \\\\r{'loss': '0.8916', 'grad_norm': '0.3434', 'learning_rate': '9.28e-11', 'entropy': '0.9642', 'num_tokens': '2.081e+07', 'mean_token_accuracy': '0.7746', 'epoch': '0.9996'}\\\\n\\\\r100%|█████████▉| 3640/3642 [2:05:15<00:04,  2.17s/it]\\\\r100%|█████████▉| 3641/3642 [2:05:17<00:02,  2.13s/it]\\\\r100%|██████████| 3642/3642 [2:05:18<00:00,  1.93s/it]\\\\r                                                     \\\\r{'train_runtime': '7519', 'train_samples_per_second': '7.749', 'train_steps_per_second': '0.484', 'train_loss': '0.9733', 'entropy': '1.122', 'num_tokens': '2.082e+07', 'mean_token_accuracy': '0.7418', 'epoch': '1'}\\\\n\\\\r100%|██████████| 3642/3642 [2:05:19<00:00,  1.93s/it]\\\\r100%|██████████| 3642/3642 [2:05:19<00:00,  2.06s/it]\\\\n2026-05-19 15:31:50,980 [INFO] LoRA adapter saved to /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42/lora_adapter\\\\n2026-05-19 15:31:50,981 [INFO] Training complete. Sentinel written to /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42/.done\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\r 96%|█████████▌| 3490/3642 [2:00:04<05:12,  2.06s/it]\\r 96%|█████████▌| 3491/3642 [2:00:06<05:07,  2.04s/it]\\r 96%|█████████▌| 3492/3642 [2:00:08<04:59,  2.00s/it]\\r 96%|█████████▌| 3493/3642 [2:00:10<05:09,  2.08s/it]\\r 96%|█████████▌| 3494/3642 [2:00:12<05:00,  2.03s/it]\\r 96%|█████████▌| 3495/3642 [2:00:14<05:07,  2.09s/it]\\r 96%|█████████▌| 3496/3642 [2:00:16<05:05,  2.09s/it]\\r 96%|█████████▌| 3497/3642 [2:00:19<05:06,  2.12s/it]\\r 96%|█████████▌| 3498/3642 [2:00:21<05:04,  2.12s/it]\\r 96%|█████████▌| 3499/3642 [2:00:23<05:03,  2.12s/it]\\r 96%|█████████▌| 3500/3642 [2:00:25<05:03,  2.14s/it]\\r                                                     \\r{'loss': '0.9249', 'grad_norm': '0.3465', 'learning_rate': '2.106e-07', 'entropy': '1.013', 'num_tokens': '2.001e+07', 'mean_token_accuracy': '0.7676', 'epoch': '0.9611'}\\n\\r 96%|█████████▌| 3500/3642 [2:00:25<05:03,  2.14s/it]\\r 96%|█████████▌| 3501/3642 [2:00:27<04:59,  2.13s/it]\\r 96%|█████████▌| 3502/3642 [2:00:29<04:47,  2.05s/it]\\r 96%|█████████▌| 3503/3642 [2:00:31<04:39,  2.01s/it]\\r 96%|█████████▌| 3504/3642 [2:00:33<04:41,  2.04s/it]\\r 96%|█████████▌| 3505/3642 [2:00:35<04:36,  2.02s/it]\\r 96%|█████████▋| 3506/3642 [2:00:37<04:26,  1.96s/it]\\r 96%|█████████▋| 3507/3642 [2:00:39<04:25,  1.97s/it]\\r 96%|█████████▋| 3508/3642 [2:00:41<04:32,  2.04s/it]\\r 96%|█████████▋| 3509/3642 [2:00:43<04:42,  2.13s/it]\\r 96%|█████████▋| 3510/3642 [2:00:45<04:33,  2.07s/it]\\r                                                     \\r{'loss': '0.9427', 'grad_norm': '0.406', 'learning_rate': '1.822e-07', 'entropy': '1.054', 'num_tokens': '2.006e+07', 'mean_token_accuracy': '0.753', 'epoch': '0.9639'}\\n\\r 96%|█████████▋| 3510/3642 [2:00:45<04:33,  2.07s/it]\\r 96%|█████████▋| 3511/3642 [2:00:47<04:29,  2.05s/it]\\r 96%|█████████▋| 3512/3642 [2:00:49<04:33,  2.10s/it]\\r 96%|█████████▋| 3513/3642 [2:00:51<04:26,  2.07s/it]\\r 96%|█████████▋| 3514/3642 [2:00:53<04:19,  2.03s/it]\\r 97%|█████████▋| 3515/3642 [2:00:55<04:15,  2.02s/it]\\r 97%|█████████▋| 3516/3642 [2:00:57<04:16,  2.04s/it]\\r 97%|█████████▋| 3517/3642 [2:00:59<04:08,  1.99s/it]\\r 97%|█████████▋| 3518/3642 [2:01:01<04:03,  1.97s/it]\\r 97%|█████████▋| 3519/3642 [2:01:03<03:57,  1.93s/it]\\r 97%|█████████▋| 3520/3642 [2:01:05<04:06,  2.02s/it]\\r                                                     \\r{'loss': '0.8637', 'grad_norm': '0.3384', 'learning_rate': '1.558e-07', 'entropy': '0.9873', 'num_tokens': '2.011e+07', 'mean_token_accuracy': '0.7722', 'epoch': '0.9666'}\\n\\r 97%|█████████▋| 3520/3642 [2:01:05<04:06,  2.02s/it]\\r 97%|█████████▋| 3521/3642 [2:01:07<04:01,  2.00s/it]\\r 97%|█████████▋| 3522/3642 [2:01:09<04:04,  2.04s/it]\\r 97%|█████████▋| 3523/3642 [2:01:12<04:05,  2.06s/it]\\r 97%|█████████▋| 3524/3642 [2:01:14<04:01,  2.04s/it]\\r 97%|█████████▋| 3525/3642 [2:01:16<03:58,  2.03s/it]\\r 97%|█████████▋| 3526/3642 [2:01:18<03:54,  2.02s/it]\\r 97%|█████████▋| 3527/3642 [2:01:20<03:52,  2.02s/it]\\r 97%|█████████▋| 3528/3642 [2:01:22<03:54,  2.06s/it]\\r 97%|█████████▋| 3529/3642 [2:01:24<03:49,  2.03s/it]\\r 97%|█████████▋| 3530/3642 [2:01:26<03:53,  2.08s/it]\\r                                                     \\r{'loss': '1.048', 'grad_norm': '0.3103', 'learning_rate': '1.315e-07', 'entropy': '1.091', 'num_tokens': '2.017e+07', 'mean_token_accuracy': '0.744', 'epoch': '0.9693'}\\n\\r 97%|█████████▋| 3530/3642 [2:01:26<03:53,  2.08s/it]\\r 97%|█████████▋| 3531/3642 [2:01:28<03:51,  2.08s/it]\\r 97%|█████████▋| 3532/3642 [2:01:30<03:46,  2.06s/it]\\r 97%|█████████▋| 3533/3642 [2:01:32<03:40,  2.02s/it]\\r 97%|█████████▋| 3534/3642 [2:01:34<03:49,  2.13s/it]\\r 97%|█████████▋| 3535/3642 [2:01:37<03:51,  2.16s/it]\\r 97%|█████████▋| 3536/3642 [2:01:38<03:42,  2.10s/it]\\r 97%|█████████▋| 3537/3642 [2:01:40<03:35,  2.05s/it]\\r 97%|█████████▋| 3538/3642 [2:01:42<03:30,  2.02s/it]\\r 97%|█████████▋| 3539/3642 [2:01:44<03:28,  2.02s/it]\\r 97%|█████████▋| 3540/3642 [2:01:47<03:35,  2.11s/it]\\r                                                     \\r{'loss': '0.8707', 'grad_norm': '0.3433', 'learning_rate': '1.093e-07', 'e\\n\\n... [截断: 输出过长，省略 5104 字符] ...\\n\\n53<01:22,  2.01s/it]\\r 99%|█████████▉| 3602/3642 [2:03:55<01:20,  2.00s/it]\\r 99%|█████████▉| 3603/3642 [2:03:58<01:19,  2.04s/it]\\r 99%|█████████▉| 3604/3642 [2:03:59<01:15,  2.00s/it]\\r 99%|█████████▉| 3605/3642 [2:04:01<01:13,  1.99s/it]\\r 99%|█████████▉| 3606/3642 [2:04:04<01:14,  2.08s/it]\\r 99%|█████████▉| 3607/3642 [2:04:06<01:12,  2.06s/it]\\r 99%|█████████▉| 3608/3642 [2:04:08<01:11,  2.09s/it]\\r 99%|█████████▉| 3609/3642 [2:04:10<01:09,  2.10s/it]\\r 99%|█████████▉| 3610/3642 [2:04:12<01:05,  2.04s/it]\\r                                                     \\r{'loss': '0.8454', 'grad_norm': '0.4916', 'learning_rate': '1.123e-08', 'entropy': '0.9893', 'num_tokens': '2.063e+07', 'mean_token_accuracy': '0.7735', 'epoch': '0.9913'}\\n\\r 99%|█████████▉| 3610/3642 [2:04:12<01:05,  2.04s/it]\\r 99%|█████████▉| 3611/3642 [2:04:14<01:03,  2.05s/it]\\r 99%|█████████▉| 3612/3642 [2:04:16<00:59,  1.99s/it]\\r 99%|█████████▉| 3613/3642 [2:04:18<00:59,  2.06s/it]\\r 99%|█████████▉| 3614/3642 [2:04:20<00:56,  2.02s/it]\\r 99%|█████████▉| 3615/3642 [2:04:22<00:55,  2.06s/it]\\r 99%|█████████▉| 3616/3642 [2:04:24<00:52,  2.04s/it]\\r 99%|█████████▉| 3617/3642 [2:04:26<00:50,  2.01s/it]\\r 99%|█████████▉| 3618/3642 [2:04:28<00:48,  2.02s/it]\\r 99%|█████████▉| 3619/3642 [2:04:30<00:47,  2.08s/it]\\r 99%|█████████▉| 3620/3642 [2:04:33<00:48,  2.19s/it]\\r                                                     \\r{'loss': '0.8505', 'grad_norm': '0.3008', 'learning_rate': '5.454e-09', 'entropy': '0.9584', 'num_tokens': '2.069e+07', 'mean_token_accuracy': '0.7786', 'epoch': '0.9941'}\\n\\r 99%|█████████▉| 3620/3642 [2:04:33<00:48,  2.19s/it]\\r 99%|█████████▉| 3621/3642 [2:04:35<00:45,  2.15s/it]\\r 99%|█████████▉| 3622/3642 [2:04:37<00:41,  2.10s/it]\\r 99%|█████████▉| 3623/3642 [2:04:39<00:39,  2.09s/it]\\r100%|█████████▉| 3624/3642 [2:04:41<00:37,  2.06s/it]\\r100%|█████████▉| 3625/3642 [2:04:43<00:34,  2.04s/it]\\r100%|█████████▉| 3626/3642 [2:04:45<00:32,  2.06s/it]\\r100%|█████████▉| 3627/3642 [2:04:48<00:33,  2.22s/it]\\r100%|█████████▉| 3628/3642 [2:04:50<00:31,  2.23s/it]\\r100%|█████████▉| 3629/3642 [2:04:52<00:28,  2.16s/it]\\r100%|█████████▉| 3630/3642 [2:04:54<00:25,  2.12s/it]\\r                                                     \\r{'loss': '0.8848', 'grad_norm': '0.3661', 'learning_rate': '1.743e-09', 'entropy': '1.007', 'num_tokens': '2.075e+07', 'mean_token_accuracy': '0.7697', 'epoch': '0.9968'}\\n\\r100%|█████████▉| 3630/3642 [2:04:54<00:25,  2.12s/it]\\r100%|█████████▉| 3631/3642 [2:04:56<00:22,  2.05s/it]\\r100%|█████████▉| 3632/3642 [2:04:58<00:19,  2.00s/it]\\r100%|█████████▉| 3633/3642 [2:05:00<00:17,  1.99s/it]\\r100%|█████████▉| 3634/3642 [2:05:01<00:15,  1.98s/it]\\r100%|█████████▉| 3635/3642 [2:05:04<00:14,  2.03s/it]\\r100%|█████████▉| 3636/3642 [2:05:06<00:12,  2.04s/it]\\r100%|█████████▉| 3637/3642 [2:05:08<00:10,  2.12s/it]\\r100%|█████████▉| 3638/3642 [2:05:10<00:08,  2.09s/it]\\r100%|█████████▉| 3639/3642 [2:05:12<00:06,  2.16s/it]\\r100%|█████████▉| 3640/3642 [2:05:15<00:04,  2.17s/it]\\r                                                     \\r{'loss': '0.8916', 'grad_norm': '0.3434', 'learning_rate': '9.28e-11', 'entropy': '0.9642', 'num_tokens': '2.081e+07', 'mean_token_accuracy': '0.7746', 'epoch': '0.9996'}\\n\\r100%|█████████▉| 3640/3642 [2:05:15<00:04,  2.17s/it]\\r100%|█████████▉| 3641/3642 [2:05:17<00:02,  2.13s/it]\\r100%|██████████| 3642/3642 [2:05:18<00:00,  1.93s/it]\\r                                                     \\r{'train_runtime': '7519', 'train_samples_per_second': '7.749', 'train_steps_per_second': '0.484', 'train_loss': '0.9733', 'entropy': '1.122', 'num_tokens': '2.082e+07', 'mean_token_accuracy': '0.7418', 'epoch': '1'}\\n\\r100%|██████████| 3642/3642 [2:05:19<00:00,  1.93s/it]\\r100%|██████████| 3642/3642 [2:05:19<00:00,  2.06s/it]\\n2026-05-19 15:31:50,980 [INFO] LoRA adapter saved to /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42/lora_adapter\\n2026-05-19 15:31:50,981 [INFO] Training complete. Sentinel written to /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42/.done\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+**OLMo-2 7B d050 训练已完成。**
+
+| 指标 | 值 |
+|---|---|
+| PID 111715 | 已退出 |
+| `.done` | 存在 (15:31 写入) |
+| 总步数 | 3642/3642 (100%) |
+| 运行时间 | 2h 05m 19s (7519s) |
+| 最终 train_loss | 0.9733 |
+| 最终 mean_token_accuracy | 0.7418 |
+| 最终 entropy | 1.122 |
+| 吞吐 | 7.75 samples/s, 0.484 steps/s |
+| Adapter 路径 | `/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42/lora_adapter` |
+
+cuda:0 当前空闲 (0 MiB, 0% util)。cuda:1/2/3 有其他进程在跑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "uuid": "f98c069f-162a-4687-8ec6-fafdf3dae819",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011GHZubVNJUQWNgRKgT4H1J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6590,
+      "cache_read_input_tokens": 26169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6590
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 17_
+
+**OLMo-2 7B d050 训练已完成。**
+
+| 指标 | 值 |
+|---|---|
+| PID 111715 | 已退出 |
+| `.done` | 存在 (15:31 写入) |
+| 总步数 | 3642/3642 (100%) |
+| 运行时间 | 2h 05m 19s (7519s) |
+| 最终 train_loss | 0.9733 |
+| 最终 mean_token_accuracy | 0.7418 |
+| 最终 entropy | 1.122 |
+| 吞吐 | 7.75 samples/s, 0.484 steps/s |
+| Adapter 路径 | `/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s42/lora_adapter` |
+
+cuda:0 当前空闲 (0 MiB, 0% util)。cuda:1/2/3 有其他进程在跑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 18671,
+  "duration_api_ms": 28270,
+  "num_turns": 6,
+  "stop_reason": "end_turn",
+  "session_id": "de14aa5a-aa8a-4ff8-b451-6b361b3cf5a9",
+  "total_cost_usd": 0.1871385,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 20918,
+    "cache_read_input_tokens": 63762,
+    "output_tokens": 886,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 20918,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 278,
+        "cache_read_input_tokens": 26169,
+        "cache_creation_input_tokens": 6590,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 6590
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 886,
+      "cacheReadInputTokens": 63762,
+      "cacheCreationInputTokens": 20918,
+      "webSearchRequests": 0,
+      "costUSD": 0.1848035,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2200,
+      "outputTokens": 27,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0023350000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "552f865f-e2af-47b4-85c4-f4af6ca25817"
+}
+```
+
+</details>
+
+---

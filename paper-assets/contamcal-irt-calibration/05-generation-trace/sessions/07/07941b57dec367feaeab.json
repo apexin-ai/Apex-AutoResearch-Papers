@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07941b57dec367feaeab",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis fisher info heatmap",
+  "task_key": "worker_analysis_fisher_info_heatmap_20260516T174835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fisher_info_heatmap_20260516T174835_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "5972c61e9b2889d45b679c3acaa4a2f108ac32eb117f370ee61ba2006c716aec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张图已生成并注册。\n\n**输出文件（服务器 cqa1-21977）：**\n- `/root/autodl-tmp/exp006/figures/fisher_info_heatmap.pdf` / `.png`\n- `/root/autodl-tmp/exp006/figures/ci_width_scaling.pdf` / `.png`\n- 生成脚本：`/root/contamcal-irt-calibration/exp004_sim_sweep/plot_fisher_heatmap.py`\n\n**关键结果：**\n\n| | N=8 | N=20 | N=50 | N=100 |\n|---|---|---|---|---|\n| AUC=0.55 | 0.197 | 0.133 | 0.087 | 0.065 |\n| AUC=0.65 | 0.228 | 0.156 | 0.102 | 0.076 |\n| AUC=0.80 | 0.416 | 0.258 | 0.163 | 0.116 |\n| AUC=0.90 | 0.540 | 0.330 | 0.206 | 0.148 |\n\n**Scaling exponent:** 全局 α = **-0.482**（接近理论 √N 率 -0.5），per-AUC 范围 [-0.44, -0.51]。高 AUC（harder discrimination）的 CI 更宽但 scaling 更陡，低 AUC 下 CI 已很窄。支持 Claim 3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fisher-info-heatmap.md"
+}

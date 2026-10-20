@@ -1,0 +1,3714 @@
+# code irt signal autoscan check
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 77
+- **Recorded user turns:** 0
+- **Tool calls:** 28
+- **Original source:** `logs/workers/worker_code_irt-signal-autoscan-check_20260515T202032.log`
+- **Structured JSON:** [`08258c531b6c8040d72f.json`](../../sessions/08/08258c531b6c8040d72f.json)
+
+## Before a recorded user message
+
+77 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778886000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0f7ae72f-ce48-43fa-a41a-2b38df3cfde5",
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627"
+}
+```
+
+---
+
+### System
+
+_source line 3_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "7a97bfc6-46d6-47bd-8c8c-39f0d0c6dda1",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check the IRT pipeline code on the remote server to see if there's automatic directory scanning logic that could accidentally include signals from `Qwen2.5-3B_d000_v2_s42/` (which uses alpha=16, not the standard alpha=32).
+
+Let me search the server for the relevant code.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "76b18f0f-0725-428f-a48a-dcbfee123b30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVgc5oqbisioQn2Vgeai8i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12059,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12059
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LCvK9PZAvWCPcNhW82Gu13`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "8ac80458-0f99-4243-ab54-9df46ddbe498",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVgc5oqbisioQn2Vgeai8i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12059,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12059
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T20:20:55.738Z_
+
+<details><summary>↩ Tool result · `toolu_01LCvK9PZAvWCPcNhW82Gu13`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "3db6e63b-47a7-4029-9217-6c6d1b0c07a0",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+检查服务器上的信号扫描逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "0b3ce214-3a4a-4c3d-9d8b-e5d301d6cee9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0114oL6BvVjZ5qBzNhHNPWZE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 517,
+      "cache_read_input_tokens": 23900,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 517
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Umo3EwpMTU7j1X87Fzwh1Y`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -rn \"glob\\|listdir\\|walk\\|scandir\" /root/contamcal-irt-calibration/src/*.py /root/contamcal-irt-calibration/src/**/*.py 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "87347748-e6e9-42b6-8056-bab3294aff18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0114oL6BvVjZ5qBzNhHNPWZE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 517,
+      "cache_read_input_tokens": 23900,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 517
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T20:20:59.763Z_
+
+<details><summary>↩ Tool result · `toolu_01Umo3EwpMTU7j1X87Fzwh1Y`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "58020725-a529-4ef4-aee7-9dca8d7ebc6b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V6QubGQ78vjWdauyB7srMT`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration -name \"*.py\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "28c475ec-ac34-4fd7-bb0d-c2f301ddfa64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0114oL6BvVjZ5qBzNhHNPWZE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 517,
+      "cache_read_input_tokens": 23900,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 517
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R7y3YTwnrgZRuXhni1nKNQ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/*.py /root/autodl-tmp/exp003/*.py /root/autodl-tmp/exp006/*.py 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "aeb7cfdf-f95c-4a8c-b88d-f463abc26baa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0114oL6BvVjZ5qBzNhHNPWZE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 517,
+      "cache_read_input_tokens": 23900,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 517
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T20:21:02.518Z_
+
+<details><summary>↩ Tool result · `toolu_01V6QubGQ78vjWdauyB7srMT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp001/train_sft.py\\n/root/contamcal-irt-calibration/exp001/prepare_sft_data.py\\n/root/contamcal-irt-calibration/exp001/evaluate.py\\n/root/contamcal-irt-calibration/exp001/paraphrase_gen.py\\n/root/contamcal-irt-calibration/exp001/prepare_0pct_data.py\\n/root/contamcal-irt-calibration/exp001/prepare_qc_only_data.py\\n/root/contamcal-irt-calibration/exp001/rescore_gsm8k.py\\n/root/contamcal-irt-calibration/exp006/run_irt_calibration.py\\n/root/contamcal-irt-calibration/exp006/run_irt_stan.py\\n/root/contamcal-irt-calibration/exp006/run_all_baselines.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/utils.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/__init__.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/raw_scores.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/linear_regression.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/remove_rescore.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/dcr_fuzzy.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/emperor_mitigation.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/vanilla_4pl.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/single_signal_2pl_gamma.py\\n/root/contamcal-irt-calibration/exp006/baselines.py\\n/root/contamcal-irt-calibration/exp006/evaluate_calibration.py\\n/root/contamcal-irt-calibration/exp006/run_exp006.py\\n/root/contamcal-irt-calibration/exp006/joint_fit.py\\n/root/contamcal-irt-calibration/exp006/run_wider_prior_ablation.py\\n/root/contamcal-irt-calibration/exp006/run_2pl_ablation.py\\n/root/contamcal-irt-calibration/exp006/run_pooled_4bench_irt.py\\n/root/contamcal-irt-calibration/exp006/run_stratified_irt.py\\n/root/contamcal-irt-calibration/exp006/run_pooled_15B_4pl.py\\n/root/contamcal-irt-calibration/exp002/compute_signals.py\\n/root/contamcal-irt-calibration/exp002/signal_embedding.py\\n/root/contamcal-irt-calibration/exp002/signal_minkpp.py\\n/root/contamcal-irt-calibration/exp002/signal_constat.py\\n/root/contamcal-irt-calibration/exp002/signal_selfcritique.py\\n/root/contamcal-irt-calibration/exp002/aggregate_rrf.py\\n/root/contamcal-irt-calibration/exp002/test_dryrun.py\\n/root/contamcal-irt-calibration/exp002/test_dryrun_v2.py\\n/root/contamcal-irt-calibration/exp002/run_batch.py\\n/root/contamcal-irt-calibration/exp002/signals/__init__.py\\n/root/contamcal-irt-calibration/exp002/signals/s1_embedding.py\\n/root/contamcal-irt-calibration/exp002/signals/s2_minkpp.py\\n/root/contamcal-irt-calibration/exp002/signals/s3_constat.py\\n/root/contamcal-irt-calibration/exp002/signals/s4_selfcritique.py\\n/root/contamcal-irt-calibration/exp002/utils.py\\n/root/contamcal-irt-calibration/exp008/signal_survival_analysis.py\\n/root/contamcal-irt-calibration/exp008/run_signal_survival.py\\n/root/contamcal-irt-calibration/exp008/plot_survival.py\\n/root/contamcal-irt-calibration/exp008/signal_survival.py\\n/root/contamcal-irt-calibration/exp008/run_exp002_survival.py\\n/root/contamcal-irt-calibration/exp008/signal_survival_v4.py\\n/root/contamcal-irt-calibration/exp003/rrf_aggregation.py\\n/root/contamcal-irt-calibration/exp003/ablations.py\\n/root/contamcal-irt-calibration/exp003/evaluate_rrf.py\\n/root/contamcal-irt-calibration/exp008_new/compute_signals_on_model.py\\n/root/contamcal-irt-calibration/exp008_new/run_signal_survival.py\\n/root/contamcal-irt-calibration/exp008_new/analyze_survival.py\\n/root/contamcal-irt-calibration/exp004_sim_sweep/run_sweep.py\\n/root/contamcal-irt-calibration/exp004_sim_sweep/run_extreme_gamma.py\\n/root/contamcal-irt-calibration/scripts/gen_eval_matrix.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "e3a21572-8b82-44f1-b7cd-b8dd2b2c8b9f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/exp001/train_sft.py\\\\n/root/contamcal-irt-calibration/exp001/prepare_sft_data.py\\\\n/root/contamcal-irt-calibration/exp001/evaluate.py\\\\n/root/contamcal-irt-calibration/exp001/paraphrase_gen.py\\\\n/root/contamcal-irt-calibration/exp001/prepare_0pct_data.py\\\\n/root/contamcal-irt-calibration/exp001/prepare_qc_only_data.py\\\\n/root/contamcal-irt-calibration/exp001/rescore_gsm8k.py\\\\n/root/contamcal-irt-calibration/exp006/run_irt_calibration.py\\\\n/root/contamcal-irt-calibration/exp006/run_irt_stan.py\\\\n/root/contamcal-irt-calibration/exp006/run_all_baselines.py\\\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/utils.py\\\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/__init__.py\\\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/raw_scores.py\\\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/linear_regression.py\\\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/remove_rescore.py\\\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/dcr_fuzzy.py\\\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/emperor_mitigation.py\\\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/vanilla_4pl.py\\\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/single_signal_2pl_gamma.py\\\\n/root/contamcal-irt-calibration/exp006/baselines.py\\\\n/root/contamcal-irt-calibration/exp006/evaluate_calibration.py\\\\n/root/contamcal-irt-calibration/exp006/run_exp006.py\\\\n/root/contamcal-irt-calibration/exp006/joint_fit.py\\\\n/root/contamcal-irt-calibration/exp006/run_wider_prior_ablation.py\\\\n/root/contamcal-irt-calibration/exp006/run_2pl_ablation.py\\\\n/root/contamcal-irt-calibration/exp006/run_pooled_4bench_irt.py\\\\n/root/contamcal-irt-calibration/exp006/run_stratified_irt.py\\\\n/root/contamcal-irt-calibration/exp006/run_pooled_15B_4pl.py\\\\n/root/contamcal-irt-calibration/exp002/compute_signals.py\\\\n/root/contamcal-irt-calibration/exp002/signal_embedding.py\\\\n/root/contamcal-irt-calibration/exp002/signal_minkpp.py\\\\n/root/contamcal-irt-calibration/exp002/signal_constat.py\\\\n/root/contamcal-irt-calibration/exp002/signal_selfcritique.py\\\\n/root/contamcal-irt-calibration/exp002/aggregate_rrf.py\\\\n/root/contamcal-irt-calibration/exp002/test_dryrun.py\\\\n/root/contamcal-irt-calibration/exp002/test_dryrun_v2.py\\\\n/root/contamcal-irt-calibration/exp002/run_batch.py\\\\n/root/contamcal-irt-calibration/exp002/signals/__init__.py\\\\n/root/contamcal-irt-calibration/exp002/signals/s1_embedding.py\\\\n/root/contamcal-irt-calibration/exp002/signals/s2_minkpp.py\\\\n/root/contamcal-irt-calibration/exp002/signals/s3_constat.py\\\\n/root/contamcal-irt-calibration/exp002/signals/s4_selfcritique.py\\\\n/root/contamcal-irt-calibration/exp002/utils.py\\\\n/root/contamcal-irt-calibration/exp008/signal_survival_analysis.py\\\\n/root/contamcal-irt-calibration/exp008/run_signal_survival.py\\\\n/root/contamcal-irt-calibration/exp008/plot_survival.py\\\\n/root/contamcal-irt-calibration/exp008/signal_survival.py\\\\n/root/contamcal-irt-calibration/exp008/run_exp002_survival.py\\\\n/root/contamcal-irt-calibration/exp008/signal_survival_v4.py\\\\n/root/contamcal-irt-calibration/exp003/rrf_aggregation.py\\\\n/root/contamcal-irt-calibration/exp003/ablations.py\\\\n/root/contamcal-irt-calibration/exp003/evaluate_rrf.py\\\\n/root/contamcal-irt-calibration/exp008_new/compute_signals_on_model.py\\\\n/root/contamcal-irt-calibration/exp008_new/run_signal_survival.py\\\\n/root/contamcal-irt-calibration/exp008_new/analyze_survival.py\\\\n/root/contamcal-irt-calibration/exp004_sim_sweep/run_sweep.py\\\\n/root/contamcal-irt-calibration/exp004_sim_sweep/run_extreme_gamma.py\\\\n/root/contamcal-irt-calibration/scripts/gen_eval_matrix.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp001/train_sft.py\\n/root/contamcal-irt-calibration/exp001/prepare_sft_data.py\\n/root/contamcal-irt-calibration/exp001/evaluate.py\\n/root/contamcal-irt-calibration/exp001/paraphrase_gen.py\\n/root/contamcal-irt-calibration/exp001/prepare_0pct_data.py\\n/root/contamcal-irt-calibration/exp001/prepare_qc_only_data.py\\n/root/contamcal-irt-calibration/exp001/rescore_gsm8k.py\\n/root/contamcal-irt-calibration/exp006/run_irt_calibration.py\\n/root/contamcal-irt-calibration/exp006/run_irt_stan.py\\n/root/contamcal-irt-calibration/exp006/run_all_baselines.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/utils.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/__init__.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/raw_scores.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/linear_regression.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/remove_rescore.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/dcr_fuzzy.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/emperor_mitigation.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/vanilla_4pl.py\\n/root/contamcal-irt-calibration/exp006/_baselines_v1/single_signal_2pl_gamma.py\\n/root/contamcal-irt-calibration/exp006/baselines.py\\n/root/contamcal-irt-calibration/exp006/evaluate_calibration.py\\n/root/contamcal-irt-calibration/exp006/run_exp006.py\\n/root/contamcal-irt-calibration/exp006/joint_fit.py\\n/root/contamcal-irt-calibration/exp006/run_wider_prior_ablation.py\\n/root/contamcal-irt-calibration/exp006/run_2pl_ablation.py\\n/root/contamcal-irt-calibration/exp006/run_pooled_4bench_irt.py\\n/root/contamcal-irt-calibration/exp006/run_stratified_irt.py\\n/root/contamcal-irt-calibration/exp006/run_pooled_15B_4pl.py\\n/root/contamcal-irt-calibration/exp002/compute_signals.py\\n/root/contamcal-irt-calibration/exp002/signal_embedding.py\\n/root/contamcal-irt-calibration/exp002/signal_minkpp.py\\n/root/contamcal-irt-calibration/exp002/signal_constat.py\\n/root/contamcal-irt-calibration/exp002/signal_selfcritique.py\\n/root/contamcal-irt-calibration/exp002/aggregate_rrf.py\\n/root/contamcal-irt-calibration/exp002/test_dryrun.py\\n/root/contamcal-irt-calibration/exp002/test_dryrun_v2.py\\n/root/contamcal-irt-calibration/exp002/run_batch.py\\n/root/contamcal-irt-calibration/exp002/signals/__init__.py\\n/root/contamcal-irt-calibration/exp002/signals/s1_embedding.py\\n/root/contamcal-irt-calibration/exp002/signals/s2_minkpp.py\\n/root/contamcal-irt-calibration/exp002/signals/s3_constat.py\\n/root/contamcal-irt-calibration/exp002/signals/s4_selfcritique.py\\n/root/contamcal-irt-calibration/exp002/utils.py\\n/root/contamcal-irt-calibration/exp008/signal_survival_analysis.py\\n/root/contamcal-irt-calibration/exp008/run_signal_survival.py\\n/root/contamcal-irt-calibration/exp008/plot_survival.py\\n/root/contamcal-irt-calibration/exp008/signal_survival.py\\n/root/contamcal-irt-calibration/exp008/run_exp002_survival.py\\n/root/contamcal-irt-calibration/exp008/signal_survival_v4.py\\n/root/contamcal-irt-calibration/exp003/rrf_aggregation.py\\n/root/contamcal-irt-calibration/exp003/ablations.py\\n/root/contamcal-irt-calibration/exp003/evaluate_rrf.py\\n/root/contamcal-irt-calibration/exp008_new/compute_signals_on_model.py\\n/root/contamcal-irt-calibration/exp008_new/run_signal_survival.py\\n/root/contamcal-irt-calibration/exp008_new/analyze_survival.py\\n/root/contamcal-irt-calibration/exp004_sim_sweep/run_sweep.py\\n/root/contamcal-irt-calibration/exp004_sim_sweep/run_extreme_gamma.py\\n/root/contamcal-irt-calibration/scripts/gen_eval_matrix.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T20:21:02.658Z_
+
+<details><summary>↩ Tool result · `toolu_01R7y3YTwnrgZRuXhni1nKNQ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "6e139077-5662-4030-8af0-3c0da7117cdd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+关键文件找到了。重点检查 exp002/aggregate_rrf.py、exp003/rrf_aggregation.py 和 exp006 下的 IRT fitting 代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "eb11a071-6acd-4a43-a7d6-dabd1a9a17a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GpJf9maWocartbxqVNHdsc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2221,
+      "cache_read_input_tokens": 24417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2221
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BS1dFS8bcLG4oNXYFC9n6M`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp002/aggregate_rrf.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "aa4a8949-11b8-4bee-8e06-d70bfef94190",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GpJf9maWocartbxqVNHdsc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2221,
+      "cache_read_input_tokens": 24417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2221
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T20:21:07.147Z_
+
+<details><summary>↩ Tool result · `toolu_01BS1dFS8bcLG4oNXYFC9n6M`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nRRF (Reciprocal Rank Fusion) aggregation of contamination signals.\\n\\nFuses 4 per-item signal scores into a single exposure score using RRF\\n(Cormack et al. 2009). Also implements ablation variants: equal-weight\\nrank averaging and single-signal baselines.\\n\\nInput:  Per-item signal scores (JSON from compute_signals.py)\\nOutput: Per-model-item fused exposure scores + signal survival AUC matrix\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nRRF_K = 60\\n\\n\\ndef detect_available_signals(items: list[dict], candidates: list[str] = None) -> list[str]:\\n    \\\"\\\"\\\"Auto-detect which signals have non-trivial values (not all null/zero).\\\"\\\"\\\"\\n    if candidates is None:\\n        candidates = SIGNAL_KEYS\\n    available = []\\n    for sig in candidates:\\n        vals = [item.get(sig) for item in items]\\n        if any(v is not None and v != 0.0 for v in vals):\\n            available.append(sig)\\n    return available\\n\\n\\ndef load_signal_data(signal_files: list[str]) -> list[dict]:\\n    \\\"\\\"\\\"Load and merge signal files. Each file contains a list of per-item dicts.\\\"\\\"\\\"\\n    merged = {}\\n    for fpath in signal_files:\\n        with open(fpath) as f:\\n            data = json.load(f)\\n        for item in data:\\n            idx = item[\\\"index\\\"]\\n            if idx not in merged:\\n                merged[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\")}\\n            merged[idx].update(item)\\n    return [merged[k] for k in sorted(merged)]\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank items from 1 (highest score = most suspicious) to N.\\\"\\\"\\\"\\n    order = np.argsort(-scores)  # descending\\n    ranks = np.empty_like(order)\\n    ranks[order] = np.arange(1, len(scores) + 1)\\n    return ranks\\n\\n\\ndef rrf_aggregate(items: list[dict], k: int = RRF_K,\\n                  signals: list[str] = None) -> list[dict]:\\n    \\\"\\\"\\\"\\n    RRF fusion: score_j = sum_s 1/(k + rank_s(j))\\n\\n    All signals are oriented so higher = more suspicious.\\n    \\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n        if not signals:\\n            logger.warning(\\\"No signals with non-trivial values found\\\")\\n            return []\\n\\n    n = len(items)\\n    if n == 0:\\n        return []\\n\\n    # Extract score vectors\\n    score_matrix = {}\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        score_matrix[sig] = vals\\n\\n    # Compute ranks for each signal\\n    rank_matrix = {}\\n    for sig in signals:\\n        rank_matrix[sig] = compute_ranks(score_matrix[sig])\\n\\n    # RRF fusion\\n    rrf_scores = np.zeros(n)\\n    for sig in signals:\\n        rrf_scores += 1.0 / (k + rank_matrix[sig])\\n\\n    # Build output\\n    results = []\\n    for i, item in enumerate(items):\\n        record = {\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\"),\\n            \\\"rrf_score\\\": float(rrf_scores[i]),\\n        }\\n        for sig in signals:\\n            record[f\\\"rank_{sig}\\\"] = int(rank_matrix[sig][i])\\n        results.append(record)\\n\\n    return results\\n\\n\\ndef rank_average_aggregate(items: list[dict],\\n                           signals: list[str] = None) -> list[dict]:\\n    \\\"\\\"\\\"Equal-weight rank averaging (ablation baseline).\\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n        if not signals:\\n            return []\\n\\n    n = len(items)\\n    if n == 0:\\n        return []\\n\\n    rank_matrix = {}\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        rank_matrix[sig] = compute_ranks(vals)\\n\\n    avg_ranks = np.zeros(n)\\n    for sig in signals:\\n        avg_ranks += rank_matrix[sig]\\n    avg_ranks /= len(signals)\\n\\n    # Lower average rank = more suspicious, so score = -avg_rank for consistent ordering\\n    results = []\\n    for i, item in enumerate(items):\\n        results.append({\\n            \\\"index\\\": it\\n\\n... [截断: 输出过长，省略 4410 字符] ...\\n\\ntput-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--k\\\", type=int, default=RRF_K,\\n                        help=\\\"RRF k parameter (default: 60)\\\")\\n    parser.add_argument(\\\"--labels-file\\\", type=str, default=None,\\n                        help=\\\"JSON file with ground-truth contamination labels (list of 0/1)\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=\\\"unknown\\\",\\n                        help=\\\"Model identifier for output naming\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, default=None)\\n    parser.add_argument(\\\"--generate-exposure\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate exposure_scores.json for exp-006 IRT calibration\\\")\\n    parser.add_argument(\\\"--signal-dir\\\", type=str, default=None,\\n                        help=\\\"Root signal output dir (for --generate-exposure mode)\\\")\\n    parser.add_argument(\\\"--benchmarks\\\", type=str, nargs=\\\"+\\\",\\n                        default=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"],\\n                        help=\\\"Benchmarks to include in exposure scores\\\")\\n    parser.add_argument(\\\"--dosage-filter\\\", type=str, default=None,\\n                        help=\\\"Only use signals from this dosage (e.g. d100)\\\")\\n    parser.add_argument(\\\"--normalize\\\", action=\\\"store_true\\\", default=True,\\n                        help=\\\"Min-max normalize tau to [0, 1]\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # Mode: generate exposure_scores.json for exp-006\\n    if args.generate_exposure:\\n        if not args.signal_dir:\\n            parser.error(\\\"--signal-dir required with --generate-exposure\\\")\\n        exposure = generate_exposure_json(\\n            args.signal_dir, args.benchmarks,\\n            dosage_filter=args.dosage_filter, k=args.k,\\n            normalize=args.normalize,\\n        )\\n        out_file = output_dir / \\\"exposure_scores.json\\\"\\n        with open(out_file, \\\"w\\\") as f:\\n            json.dump(exposure, f, indent=2)\\n        logger.info(\\\"Exposure scores saved to %s\\\", out_file)\\n        for bench, tau in exposure.items():\\n            logger.info(\\\"  %s: %d items\\\", bench, len(tau))\\n        return\\n\\n    # Load signals\\n    if not args.signal_files:\\n        parser.error(\\\"--signal-files required (or use --generate-exposure)\\\")\\n    items = load_signal_data(args.signal_files)\\n    logger.info(\\\"Loaded %d items with signals\\\", len(items))\\n    active_signals = detect_available_signals(items)\\n    logger.info(\\\"Active signals: %s\\\", active_signals)\\n\\n    # RRF aggregation\\n    rrf_results = rrf_aggregate(items, k=args.k)\\n    rrf_file = output_dir / f\\\"rrf_scores_{args.model_name}.json\\\"\\n    with open(rrf_file, \\\"w\\\") as f:\\n        json.dump(rrf_results, f, indent=2)\\n    logger.info(\\\"RRF scores saved to %s\\\", rrf_file)\\n\\n    # Ablation: rank averaging\\n    ra_results = rank_average_aggregate(items)\\n    ra_file = output_dir / f\\\"rank_avg_scores_{args.model_name}.json\\\"\\n    with open(ra_file, \\\"w\\\") as f:\\n        json.dump(ra_results, f, indent=2)\\n\\n    # Ablation: single signal\\n    ss_results = single_signal_scores(items)\\n    ss_file = output_dir / f\\\"single_signal_scores_{args.model_name}.json\\\"\\n    with open(ss_file, \\\"w\\\") as f:\\n        json.dump({k: v for k, v in ss_results.items()}, f, indent=2)\\n\\n    # AUC matrix (if labels available)\\n    if args.labels_file:\\n        with open(args.labels_file) as f:\\n            labels = json.load(f)\\n        auc_results = compute_signal_auc(items, labels)\\n        auc_file = output_dir / f\\\"signal_auc_{args.model_name}.json\\\"\\n        with open(auc_file, \\\"w\\\") as f:\\n            json.dump(auc_results, f, indent=2)\\n        logger.info(\\\"Signal AUC matrix: %s\\\", json.dumps(auc_results, indent=2))\\n\\n    # Summary statistics\\n    rrf_scores = [r[\\\"rrf_score\\\"] for r in rrf_results]\\n    logger.info(\\\"RRF score range: [%.6f, %.6f], mean=%.6f\\\",\\n                min(rrf_scores), max(rrf_scores), np.mean(rrf_scores))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "cc8b2a91-0953-493a-b033-4c2673d9f3d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nRRF (Reciprocal Rank Fusion) aggregation of contamination signals.\\\\n\\\\nFuses 4 per-item signal scores into a single exposure score using RRF\\\\n(Cormack et al. 2009). Also implements ablation variants: equal-weight\\\\nrank averaging and single-signal baselines.\\\\n\\\\nInput:  Per-item signal scores (JSON from compute_signals.py)\\\\nOutput: Per-model-item fused exposure scores + signal survival AUC matrix\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nRRF_K = 60\\\\n\\\\n\\\\ndef detect_available_signals(items: list[dict], candidates: list[str] = None) -> list[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Auto-detect which signals have non-trivial values (not all null/zero).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if candidates is None:\\\\n        candidates = SIGNAL_KEYS\\\\n    available = []\\\\n    for sig in candidates:\\\\n        vals = [item.get(sig) for item in items]\\\\n        if any(v is not None and v != 0.0 for v in vals):\\\\n            available.append(sig)\\\\n    return available\\\\n\\\\n\\\\ndef load_signal_data(signal_files: list[str]) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and merge signal files. Each file contains a list of per-item dicts.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    merged = {}\\\\n    for fpath in signal_files:\\\\n        with open(fpath) as f:\\\\n            data = json.load(f)\\\\n        for item in data:\\\\n            idx = item[\\\\\\\"index\\\\\\\"]\\\\n            if idx not in merged:\\\\n                merged[idx] = {\\\\\\\"index\\\\\\\": idx, \\\\\\\"benchmark\\\\\\\": item.get(\\\\\\\"benchmark\\\\\\\", \\\\\\\"\\\\\\\")}\\\\n            merged[idx].update(item)\\\\n    return [merged[k] for k in sorted(merged)]\\\\n\\\\n\\\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Rank items from 1 (highest score = most suspicious) to N.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    order = np.argsort(-scores)  # descending\\\\n    ranks = np.empty_like(order)\\\\n    ranks[order] = np.arange(1, len(scores) + 1)\\\\n    return ranks\\\\n\\\\n\\\\ndef rrf_aggregate(items: list[dict], k: int = RRF_K,\\\\n                  signals: list[str] = None) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    RRF fusion: score_j = sum_s 1/(k + rank_s(j))\\\\n\\\\n    All signals are oriented so higher = more suspicious.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if signals is None:\\\\n        signals = detect_available_signals(items)\\\\n        if not signals:\\\\n            logger.warning(\\\\\\\"No signals with non-trivial values found\\\\\\\")\\\\n            return []\\\\n\\\\n    n = len(items)\\\\n    if n == 0:\\\\n        return []\\\\n\\\\n    # Extract score vectors\\\\n    score_matrix = {}\\\\n    for sig in signals:\\\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\\\n        score_matrix[sig] = vals\\\\n\\\\n    # Compute ranks for each signal\\\\n    rank_matrix = {}\\\\n    for sig in signals:\\\\n        rank_matrix[sig] = compute_ranks(score_matrix[sig])\\\\n\\\\n    # RRF fusion\\\\n    rrf_scores = np.zeros(n)\\\\n    for sig in signals:\\\\n        rrf_scores += 1.0 / (k + rank_matrix[sig])\\\\n\\\\n    # Build output\\\\n    results = []\\\\n    for i, item in enumerate(items):\\\\n        record = {\\\\n            \\\\\\\"index\\\\\\\": item[\\\\\\\"index\\\\\\\"],\\\\n            \\\\\\\"benchmark\\\\\\\": item.get(\\\\\\\"benchmark\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"rrf_score\\\\\\\": float(rrf_scores[i]),\\\\n        }\\\\n        for sig in signals:\\\\n            record[f\\\\\\\"rank_{sig}\\\\\\\"] = int(rank_matrix[sig][i])\\\\n        results.append(record)\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef rank_average_aggregate(items: list[dict],\\\\n                           signals: list[str] = None) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Equal-weight rank averaging (ablation baseline).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if signals is None:\\\\n        signals = detect_available_signals(items)\\\\n        if not signals:\\\\n            return []\\\\n\\\\n    n = len(items)\\\\n    if n == 0:\\\\n        return []\\\\n\\\\n    rank_matrix = {}\\\\n    for sig in signals:\\\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\\\n        rank_matrix[sig] = compute_ranks(vals)\\\\n\\\\n    avg_ranks = np.zeros(n)\\\\n    for sig in signals:\\\\n        avg_ranks += rank_matrix[sig]\\\\n    avg_ranks /= len(signals)\\\\n\\\\n    # Lower average rank = more suspicious, so score = -avg_rank for consistent ordering\\\\n    results = []\\\\n    for i, item in enumerate(items):\\\\n        results.append({\\\\n            \\\\\\\"index\\\\\\\": it\\\\n\\\\n... [截断: 输出过长，省略 4410 字符] ...\\\\n\\\\ntput-dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--k\\\\\\\", type=int, default=RRF_K,\\\\n                        help=\\\\\\\"RRF k parameter (default: 60)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--labels-file\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"JSON file with ground-truth contamination labels (list of 0/1)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model-name\\\\\\\", type=str, default=\\\\\\\"unknown\\\\\\\",\\\\n                        help=\\\\\\\"Model identifier for output naming\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--generate-exposure\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Generate exposure_scores.json for exp-006 IRT calibration\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--signal-dir\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Root signal output dir (for --generate-exposure mode)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmarks\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\",\\\\n                        default=[\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"],\\\\n                        help=\\\\\\\"Benchmarks to include in exposure scores\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dosage-filter\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Only use signals from this dosage (e.g. d100)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--normalize\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True,\\\\n                        help=\\\\\\\"Min-max normalize tau to [0, 1]\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # Mode: generate exposure_scores.json for exp-006\\\\n    if args.generate_exposure:\\\\n        if not args.signal_dir:\\\\n            parser.error(\\\\\\\"--signal-dir required with --generate-exposure\\\\\\\")\\\\n        exposure = generate_exposure_json(\\\\n            args.signal_dir, args.benchmarks,\\\\n            dosage_filter=args.dosage_filter, k=args.k,\\\\n            normalize=args.normalize,\\\\n        )\\\\n        out_file = output_dir / \\\\\\\"exposure_scores.json\\\\\\\"\\\\n        with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(exposure, f, indent=2)\\\\n        logger.info(\\\\\\\"Exposure scores saved to %s\\\\\\\", out_file)\\\\n        for bench, tau in exposure.items():\\\\n            logger.info(\\\\\\\"  %s: %d items\\\\\\\", bench, len(tau))\\\\n        return\\\\n\\\\n    # Load signals\\\\n    if not args.signal_files:\\\\n        parser.error(\\\\\\\"--signal-files required (or use --generate-exposure)\\\\\\\")\\\\n    items = load_signal_data(args.signal_files)\\\\n    logger.info(\\\\\\\"Loaded %d items with signals\\\\\\\", len(items))\\\\n    active_signals = detect_available_signals(items)\\\\n    logger.info(\\\\\\\"Active signals: %s\\\\\\\", active_signals)\\\\n\\\\n    # RRF aggregation\\\\n    rrf_results = rrf_aggregate(items, k=args.k)\\\\n    rrf_file = output_dir / f\\\\\\\"rrf_scores_{args.model_name}.json\\\\\\\"\\\\n    with open(rrf_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(rrf_results, f, indent=2)\\\\n    logger.info(\\\\\\\"RRF scores saved to %s\\\\\\\", rrf_file)\\\\n\\\\n    # Ablation: rank averaging\\\\n    ra_results = rank_average_aggregate(items)\\\\n    ra_file = output_dir / f\\\\\\\"rank_avg_scores_{args.model_name}.json\\\\\\\"\\\\n    with open(ra_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(ra_results, f, indent=2)\\\\n\\\\n    # Ablation: single signal\\\\n    ss_results = single_signal_scores(items)\\\\n    ss_file = output_dir / f\\\\\\\"single_signal_scores_{args.model_name}.json\\\\\\\"\\\\n    with open(ss_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump({k: v for k, v in ss_results.items()}, f, indent=2)\\\\n\\\\n    # AUC matrix (if labels available)\\\\n    if args.labels_file:\\\\n        with open(args.labels_file) as f:\\\\n            labels = json.load(f)\\\\n        auc_results = compute_signal_auc(items, labels)\\\\n        auc_file = output_dir / f\\\\\\\"signal_auc_{args.model_name}.json\\\\\\\"\\\\n        with open(auc_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(auc_results, f, indent=2)\\\\n        logger.info(\\\\\\\"Signal AUC matrix: %s\\\\\\\", json.dumps(auc_results, indent=2))\\\\n\\\\n    # Summary statistics\\\\n    rrf_scores = [r[\\\\\\\"rrf_score\\\\\\\"] for r in rrf_results]\\\\n    logger.info(\\\\\\\"RRF score range: [%.6f, %.6f], mean=%.6f\\\\\\\",\\\\n                min(rrf_scores), max(rrf_scores), np.mean(rrf_scores))\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nRRF (Reciprocal Rank Fusion) aggregation of contamination signals.\\n\\nFuses 4 per-item signal scores into a single exposure score using RRF\\n(Cormack et al. 2009). Also implements ablation variants: equal-weight\\nrank averaging and single-signal baselines.\\n\\nInput:  Per-item signal scores (JSON from compute_signals.py)\\nOutput: Per-model-item fused exposure scores + signal survival AUC matrix\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nRRF_K = 60\\n\\n\\ndef detect_available_signals(items: list[dict], candidates: list[str] = None) -> list[str]:\\n    \\\"\\\"\\\"Auto-detect which signals have non-trivial values (not all null/zero).\\\"\\\"\\\"\\n    if candidates is None:\\n        candidates = SIGNAL_KEYS\\n    available = []\\n    for sig in candidates:\\n        vals = [item.get(sig) for item in items]\\n        if any(v is not None and v != 0.0 for v in vals):\\n            available.append(sig)\\n    return available\\n\\n\\ndef load_signal_data(signal_files: list[str]) -> list[dict]:\\n    \\\"\\\"\\\"Load and merge signal files. Each file contains a list of per-item dicts.\\\"\\\"\\\"\\n    merged = {}\\n    for fpath in signal_files:\\n        with open(fpath) as f:\\n            data = json.load(f)\\n        for item in data:\\n            idx = item[\\\"index\\\"]\\n            if idx not in merged:\\n                merged[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\")}\\n            merged[idx].update(item)\\n    return [merged[k] for k in sorted(merged)]\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank items from 1 (highest score = most suspicious) to N.\\\"\\\"\\\"\\n    order = np.argsort(-scores)  # descending\\n    ranks = np.empty_like(order)\\n    ranks[order] = np.arange(1, len(scores) + 1)\\n    return ranks\\n\\n\\ndef rrf_aggregate(items: list[dict], k: int = RRF_K,\\n                  signals: list[str] = None) -> list[dict]:\\n    \\\"\\\"\\\"\\n    RRF fusion: score_j = sum_s 1/(k + rank_s(j))\\n\\n    All signals are oriented so higher = more suspicious.\\n    \\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n        if not signals:\\n            logger.warning(\\\"No signals with non-trivial values found\\\")\\n            return []\\n\\n    n = len(items)\\n    if n == 0:\\n        return []\\n\\n    # Extract score vectors\\n    score_matrix = {}\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        score_matrix[sig] = vals\\n\\n    # Compute ranks for each signal\\n    rank_matrix = {}\\n    for sig in signals:\\n        rank_matrix[sig] = compute_ranks(score_matrix[sig])\\n\\n    # RRF fusion\\n    rrf_scores = np.zeros(n)\\n    for sig in signals:\\n        rrf_scores += 1.0 / (k + rank_matrix[sig])\\n\\n    # Build output\\n    results = []\\n    for i, item in enumerate(items):\\n        record = {\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\"),\\n            \\\"rrf_score\\\": float(rrf_scores[i]),\\n        }\\n        for sig in signals:\\n            record[f\\\"rank_{sig}\\\"] = int(rank_matrix[sig][i])\\n        results.append(record)\\n\\n    return results\\n\\n\\ndef rank_average_aggregate(items: list[dict],\\n                           signals: list[str] = None) -> list[dict]:\\n    \\\"\\\"\\\"Equal-weight rank averaging (ablation baseline).\\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n        if not signals:\\n            return []\\n\\n    n = len(items)\\n    if n == 0:\\n        return []\\n\\n    rank_matrix = {}\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        rank_matrix[sig] = compute_ranks(vals)\\n\\n    avg_ranks = np.zeros(n)\\n    for sig in signals:\\n        avg_ranks += rank_matrix[sig]\\n    avg_ranks /= len(signals)\\n\\n    # Lower average rank = more suspicious, so score = -avg_rank for consistent ordering\\n    results = []\\n    for i, item in enumerate(items):\\n        results.append({\\n            \\\"index\\\": it\\n\\n... [截断: 输出过长，省略 4410 字符] ...\\n\\ntput-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--k\\\", type=int, default=RRF_K,\\n                        help=\\\"RRF k parameter (default: 60)\\\")\\n    parser.add_argument(\\\"--labels-file\\\", type=str, default=None,\\n                        help=\\\"JSON file with ground-truth contamination labels (list of 0/1)\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=\\\"unknown\\\",\\n                        help=\\\"Model identifier for output naming\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, default=None)\\n    parser.add_argument(\\\"--generate-exposure\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate exposure_scores.json for exp-006 IRT calibration\\\")\\n    parser.add_argument(\\\"--signal-dir\\\", type=str, default=None,\\n                        help=\\\"Root signal output dir (for --generate-exposure mode)\\\")\\n    parser.add_argument(\\\"--benchmarks\\\", type=str, nargs=\\\"+\\\",\\n                        default=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"],\\n                        help=\\\"Benchmarks to include in exposure scores\\\")\\n    parser.add_argument(\\\"--dosage-filter\\\", type=str, default=None,\\n                        help=\\\"Only use signals from this dosage (e.g. d100)\\\")\\n    parser.add_argument(\\\"--normalize\\\", action=\\\"store_true\\\", default=True,\\n                        help=\\\"Min-max normalize tau to [0, 1]\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # Mode: generate exposure_scores.json for exp-006\\n    if args.generate_exposure:\\n        if not args.signal_dir:\\n            parser.error(\\\"--signal-dir required with --generate-exposure\\\")\\n        exposure = generate_exposure_json(\\n            args.signal_dir, args.benchmarks,\\n            dosage_filter=args.dosage_filter, k=args.k,\\n            normalize=args.normalize,\\n        )\\n        out_file = output_dir / \\\"exposure_scores.json\\\"\\n        with open(out_file, \\\"w\\\") as f:\\n            json.dump(exposure, f, indent=2)\\n        logger.info(\\\"Exposure scores saved to %s\\\", out_file)\\n        for bench, tau in exposure.items():\\n            logger.info(\\\"  %s: %d items\\\", bench, len(tau))\\n        return\\n\\n    # Load signals\\n    if not args.signal_files:\\n        parser.error(\\\"--signal-files required (or use --generate-exposure)\\\")\\n    items = load_signal_data(args.signal_files)\\n    logger.info(\\\"Loaded %d items with signals\\\", len(items))\\n    active_signals = detect_available_signals(items)\\n    logger.info(\\\"Active signals: %s\\\", active_signals)\\n\\n    # RRF aggregation\\n    rrf_results = rrf_aggregate(items, k=args.k)\\n    rrf_file = output_dir / f\\\"rrf_scores_{args.model_name}.json\\\"\\n    with open(rrf_file, \\\"w\\\") as f:\\n        json.dump(rrf_results, f, indent=2)\\n    logger.info(\\\"RRF scores saved to %s\\\", rrf_file)\\n\\n    # Ablation: rank averaging\\n    ra_results = rank_average_aggregate(items)\\n    ra_file = output_dir / f\\\"rank_avg_scores_{args.model_name}.json\\\"\\n    with open(ra_file, \\\"w\\\") as f:\\n        json.dump(ra_results, f, indent=2)\\n\\n    # Ablation: single signal\\n    ss_results = single_signal_scores(items)\\n    ss_file = output_dir / f\\\"single_signal_scores_{args.model_name}.json\\\"\\n    with open(ss_file, \\\"w\\\") as f:\\n        json.dump({k: v for k, v in ss_results.items()}, f, indent=2)\\n\\n    # AUC matrix (if labels available)\\n    if args.labels_file:\\n        with open(args.labels_file) as f:\\n            labels = json.load(f)\\n        auc_results = compute_signal_auc(items, labels)\\n        auc_file = output_dir / f\\\"signal_auc_{args.model_name}.json\\\"\\n        with open(auc_file, \\\"w\\\") as f:\\n            json.dump(auc_results, f, indent=2)\\n        logger.info(\\\"Signal AUC matrix: %s\\\", json.dumps(auc_results, indent=2))\\n\\n    # Summary statistics\\n    rrf_scores = [r[\\\"rrf_score\\\"] for r in rrf_results]\\n    logger.info(\\\"RRF score range: [%.6f, %.6f], mean=%.6f\\\",\\n                min(rrf_scores), max(rrf_scores), np.mean(rrf_scores))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ERqFUJfcFeExFByC3aAPJV`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "a24c9137-10b8-44f1-a595-3c3a379f9f5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GpJf9maWocartbxqVNHdsc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2221,
+      "cache_read_input_tokens": 24417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2221
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T20:21:07.811Z_
+
+<details><summary>↩ Tool result · `toolu_01ERqFUJfcFeExFByC3aAPJV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\n\\nFuses per-item signal scores from exp-002 into composite exposure scores\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\n\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_NAMES = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\nDEFAULT_K = 60\\n\\nSIGNAL_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d050\\\", \\\"d100\\\"]\\nDOSAGE_NUM = {\\\"d000\\\": 0, \\\"d005\\\": 5, \\\"d025\\\": 25, \\\"d050\\\": 50, \\\"d100\\\": 100}\\n\\n\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\n    \\\"\\\"\\\"Load per-item signals from exp-002 output directory.\\n\\n    Tries signals_merged_{benchmark}.json first, falls back to\\n    loading and merging individual signal files.\\n    \\\"\\\"\\\"\\n    signal_dir = Path(signal_dir)\\n\\n    merged = signal_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged.exists():\\n        with open(merged) as f:\\n            return json.load(f)\\n\\n    items_by_idx = {}\\n    sig_name_map = {\\n        \\\"s1_embedding\\\": \\\"embedding\\\",\\n        \\\"s2_minkpp\\\": \\\"minkpp\\\",\\n        \\\"s3_constat\\\": \\\"constat\\\",\\n        \\\"s4_selfcritique\\\": \\\"selfcritique\\\",\\n    }\\n    for sig_key, sig_name in sig_name_map.items():\\n        sig_file = signal_dir / f\\\"signal_{sig_name}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            continue\\n        with open(sig_file) as f:\\n            data = json.load(f)\\n        for item in data:\\n            idx = item[\\\"index\\\"]\\n            if idx not in items_by_idx:\\n                items_by_idx[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": benchmark}\\n            items_by_idx[idx].update(item)\\n\\n    if not items_by_idx:\\n        logger.warning(\\\"No signal files found in %s for %s\\\", signal_dir, benchmark)\\n        return []\\n\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\n\\n\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\n    \\\"\\\"\\\"Return signal keys that have non-null, non-zero values.\\\"\\\"\\\"\\n    available = []\\n    for sig in SIGNAL_KEYS:\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\n            available.append(sig)\\n    return available\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank from 1 (highest score = most suspicious) to N, with tie averaging.\\\"\\\"\\\"\\n    n = len(scores)\\n    order = np.argsort(-scores)\\n    ranks = np.empty(n, dtype=float)\\n    i = 0\\n    while i < n:\\n        j = i\\n        while j < n - 1 and scores[order[j + 1]] == scores[order[j]]:\\n            j += 1\\n        avg_rank = (i + j) / 2.0 + 1\\n        for k_idx in range(i, j + 1):\\n            ranks[order[k_idx]] = avg_rank\\n        i = j + 1\\n    return ranks\\n\\n\\ndef rrf_fuse(items: list[dict], k: int = DEFAULT_K,\\n             signals: list[str] = None,\\n             weights: dict = None) -> np.ndarray:\\n    \\\"\\\"\\\"Reciprocal Rank Fusion: score(j) = sum_s w_s / (k + rank_s(j))\\n\\n    All signals oriented so higher = more suspicious.\\n    Returns raw (unnormalized) RRF scores.\\n    \\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n    if not signals:\\n        return np.zeros(len(items))\\n\\n    n = len(items)\\n    if weights is None:\\n        weights = {s: 1.0 for s in signals}\\n\\n    rrf_scores = np.zeros(n)\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        ranks = compute_ranks(vals)\\n        rrf_scores += weights.get(sig, 1.0) / (k + ranks)\\n\\n    return rrf_scores\\n\\n\\ndef normalize_minmax(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Min-max normalize to [0, 1].\\\"\\\"\\\"\\n    mn, mx = scores.mi\\n\\n... [截断: 输出过长，省略 4502 字符] ...\\n\\nf contamination detection signals\\\"\\n    )\\n    parser.add_argument(\\\"--signal-root\\\", type=str, default=SIGNAL_ROOT,\\n                        help=\\\"Root dir of exp-002 signal outputs\\\")\\n    parser.add_argument(\\\"--signal-dir\\\", type=str, default=None,\\n                        help=\\\"Single model signal dir (overrides --signal-root)\\\")\\n    parser.add_argument(\\\"--benchmarks\\\", type=str, nargs=\\\"+\\\", default=BENCHMARKS)\\n    parser.add_argument(\\\"--k\\\", type=int, default=DEFAULT_K,\\n                        help=\\\"RRF k parameter (default: 60)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--dosage-filter\\\", type=str, default=None,\\n                        help=\\\"Only process dirs matching this dosage (e.g., d005)\\\")\\n    parser.add_argument(\\\"--no-normalize\\\", action=\\\"store_true\\\",\\n                        help=\\\"Skip min-max normalization to [0,1]\\\")\\n    parser.add_argument(\\\"--generate-exposure\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate exposure_scores.json for exp-006\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=None,\\n                        help=\\\"Model identifier for single-dir mode output naming\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    normalize = not args.no_normalize\\n\\n    if args.generate_exposure:\\n        exposure, aggregated = generate_exposure_json(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n        )\\n        out_file = output_dir / \\\"exposure_scores.json\\\"\\n        with open(out_file, \\\"w\\\") as f:\\n            json.dump(exposure, f, indent=2)\\n        logger.info(\\\"Exposure scores saved to %s\\\", out_file)\\n        for mid, bd in exposure.items():\\n            for bench, data in bd.items():\\n                logger.info(\\\"  %s/%s: %d items\\\", mid, bench, data[\\\"item_count\\\"])\\n\\n        agg_file = output_dir / \\\"exposure_aggregated.json\\\"\\n        with open(agg_file, \\\"w\\\") as f:\\n            json.dump(aggregated, f, indent=2)\\n        logger.info(\\\"Aggregated exposure saved to %s (%d benchmarks)\\\",\\n                    agg_file, len(aggregated))\\n        return\\n\\n    if args.signal_dir:\\n        for bench in args.benchmarks:\\n            results = aggregate_single(args.signal_dir, bench, k=args.k,\\n                                       normalize=normalize)\\n            if results:\\n                name = args.model_name or Path(args.signal_dir).name\\n                out_file = output_dir / f\\\"rrf_scores_{name}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(results, f, indent=2)\\n                logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n    else:\\n        all_results = aggregate_all_models(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n        )\\n        for model_id, bench_data in all_results.items():\\n            for bench, items in bench_data.items():\\n                out_file = output_dir / f\\\"rrf_scores_{model_id}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(items, f, indent=2)\\n\\n        summary = {\\n            model_id: {\\n                bench: {\\n                    \\\"count\\\": len(items),\\n                    \\\"exposure_mean\\\": float(np.mean([r[\\\"exposure\\\"] for r in items])),\\n                    \\\"exposure_std\\\": float(np.std([r[\\\"exposure\\\"] for r in items])),\\n                }\\n                for bench, items in bench_data.items()\\n            }\\n            for model_id, bench_data in all_results.items()\\n        }\\n        with open(output_dir / \\\"rrf_summary.json\\\", \\\"w\\\") as f:\\n            json.dump(summary, f, indent=2)\\n        logger.info(\\\"Summary saved to %s\\\", output_dir / \\\"rrf_summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "622ac911-8f65-43d4-bea9-1eb41dcf20fe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\\\n\\\\nFuses per-item signal scores from exp-002 into composite exposure scores\\\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\\\n\\\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_NAMES = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\nDEFAULT_K = 60\\\\n\\\\nSIGNAL_ROOT = \\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\"\\\\nLABELS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nDOSAGES = [\\\\\\\"d000\\\\\\\", \\\\\\\"d005\\\\\\\", \\\\\\\"d025\\\\\\\", \\\\\\\"d050\\\\\\\", \\\\\\\"d100\\\\\\\"]\\\\nDOSAGE_NUM = {\\\\\\\"d000\\\\\\\": 0, \\\\\\\"d005\\\\\\\": 5, \\\\\\\"d025\\\\\\\": 25, \\\\\\\"d050\\\\\\\": 50, \\\\\\\"d100\\\\\\\": 100}\\\\n\\\\n\\\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load per-item signals from exp-002 output directory.\\\\n\\\\n    Tries signals_merged_{benchmark}.json first, falls back to\\\\n    loading and merging individual signal files.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    signal_dir = Path(signal_dir)\\\\n\\\\n    merged = signal_dir / f\\\\\\\"signals_merged_{benchmark}.json\\\\\\\"\\\\n    if merged.exists():\\\\n        with open(merged) as f:\\\\n            return json.load(f)\\\\n\\\\n    items_by_idx = {}\\\\n    sig_name_map = {\\\\n        \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"embedding\\\\\\\",\\\\n        \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"minkpp\\\\\\\",\\\\n        \\\\\\\"s3_constat\\\\\\\": \\\\\\\"constat\\\\\\\",\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"selfcritique\\\\\\\",\\\\n    }\\\\n    for sig_key, sig_name in sig_name_map.items():\\\\n        sig_file = signal_dir / f\\\\\\\"signal_{sig_name}_{benchmark}.json\\\\\\\"\\\\n        if not sig_file.exists():\\\\n            continue\\\\n        with open(sig_file) as f:\\\\n            data = json.load(f)\\\\n        for item in data:\\\\n            idx = item[\\\\\\\"index\\\\\\\"]\\\\n            if idx not in items_by_idx:\\\\n                items_by_idx[idx] = {\\\\\\\"index\\\\\\\": idx, \\\\\\\"benchmark\\\\\\\": benchmark}\\\\n            items_by_idx[idx].update(item)\\\\n\\\\n    if not items_by_idx:\\\\n        logger.warning(\\\\\\\"No signal files found in %s for %s\\\\\\\", signal_dir, benchmark)\\\\n        return []\\\\n\\\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\\\n\\\\n\\\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return signal keys that have non-null, non-zero values.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    available = []\\\\n    for sig in SIGNAL_KEYS:\\\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\\\n            available.append(sig)\\\\n    return available\\\\n\\\\n\\\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Rank from 1 (highest score = most suspicious) to N, with tie averaging.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(scores)\\\\n    order = np.argsort(-scores)\\\\n    ranks = np.empty(n, dtype=float)\\\\n    i = 0\\\\n    while i < n:\\\\n        j = i\\\\n        while j < n - 1 and scores[order[j + 1]] == scores[order[j]]:\\\\n            j += 1\\\\n        avg_rank = (i + j) / 2.0 + 1\\\\n        for k_idx in range(i, j + 1):\\\\n            ranks[order[k_idx]] = avg_rank\\\\n        i = j + 1\\\\n    return ranks\\\\n\\\\n\\\\ndef rrf_fuse(items: list[dict], k: int = DEFAULT_K,\\\\n             signals: list[str] = None,\\\\n             weights: dict = None) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Reciprocal Rank Fusion: score(j) = sum_s w_s / (k + rank_s(j))\\\\n\\\\n    All signals oriented so higher = more suspicious.\\\\n    Returns raw (unnormalized) RRF scores.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if signals is None:\\\\n        signals = detect_available_signals(items)\\\\n    if not signals:\\\\n        return np.zeros(len(items))\\\\n\\\\n    n = len(items)\\\\n    if weights is None:\\\\n        weights = {s: 1.0 for s in signals}\\\\n\\\\n    rrf_scores = np.zeros(n)\\\\n    for sig in signals:\\\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\\\n        ranks = compute_ranks(vals)\\\\n        rrf_scores += weights.get(sig, 1.0) / (k + ranks)\\\\n\\\\n    return rrf_scores\\\\n\\\\n\\\\ndef normalize_minmax(scores: np.ndarray) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Min-max normalize to [0, 1].\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mn, mx = scores.mi\\\\n\\\\n... [截断: 输出过长，省略 4502 字符] ...\\\\n\\\\nf contamination detection signals\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--signal-root\\\\\\\", type=str, default=SIGNAL_ROOT,\\\\n                        help=\\\\\\\"Root dir of exp-002 signal outputs\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--signal-dir\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Single model signal dir (overrides --signal-root)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmarks\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\", default=BENCHMARKS)\\\\n    parser.add_argument(\\\\\\\"--k\\\\\\\", type=int, default=DEFAULT_K,\\\\n                        help=\\\\\\\"RRF k parameter (default: 60)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--dosage-filter\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Only process dirs matching this dosage (e.g., d005)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--no-normalize\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Skip min-max normalization to [0,1]\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--generate-exposure\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Generate exposure_scores.json for exp-006\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model-name\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Model identifier for single-dir mode output naming\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO,\\\\n                        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n    normalize = not args.no_normalize\\\\n\\\\n    if args.generate_exposure:\\\\n        exposure, aggregated = generate_exposure_json(\\\\n            args.signal_root, args.benchmarks,\\\\n            k=args.k, normalize=normalize,\\\\n            dosage_filter=args.dosage_filter,\\\\n        )\\\\n        out_file = output_dir / \\\\\\\"exposure_scores.json\\\\\\\"\\\\n        with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(exposure, f, indent=2)\\\\n        logger.info(\\\\\\\"Exposure scores saved to %s\\\\\\\", out_file)\\\\n        for mid, bd in exposure.items():\\\\n            for bench, data in bd.items():\\\\n                logger.info(\\\\\\\"  %s/%s: %d items\\\\\\\", mid, bench, data[\\\\\\\"item_count\\\\\\\"])\\\\n\\\\n        agg_file = output_dir / \\\\\\\"exposure_aggregated.json\\\\\\\"\\\\n        with open(agg_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(aggregated, f, indent=2)\\\\n        logger.info(\\\\\\\"Aggregated exposure saved to %s (%d benchmarks)\\\\\\\",\\\\n                    agg_file, len(aggregated))\\\\n        return\\\\n\\\\n    if args.signal_dir:\\\\n        for bench in args.benchmarks:\\\\n            results = aggregate_single(args.signal_dir, bench, k=args.k,\\\\n                                       normalize=normalize)\\\\n            if results:\\\\n                name = args.model_name or Path(args.signal_dir).name\\\\n                out_file = output_dir / f\\\\\\\"rrf_scores_{name}_{bench}.json\\\\\\\"\\\\n                with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(results, f, indent=2)\\\\n                logger.info(\\\\\\\"Saved %d items to %s\\\\\\\", len(results), out_file)\\\\n    else:\\\\n        all_results = aggregate_all_models(\\\\n            args.signal_root, args.benchmarks,\\\\n            k=args.k, normalize=normalize,\\\\n            dosage_filter=args.dosage_filter,\\\\n        )\\\\n        for model_id, bench_data in all_results.items():\\\\n            for bench, items in bench_data.items():\\\\n                out_file = output_dir / f\\\\\\\"rrf_scores_{model_id}_{bench}.json\\\\\\\"\\\\n                with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n                    json.dump(items, f, indent=2)\\\\n\\\\n        summary = {\\\\n            model_id: {\\\\n                bench: {\\\\n                    \\\\\\\"count\\\\\\\": len(items),\\\\n                    \\\\\\\"exposure_mean\\\\\\\": float(np.mean([r[\\\\\\\"exposure\\\\\\\"] for r in items])),\\\\n                    \\\\\\\"exposure_std\\\\\\\": float(np.std([r[\\\\\\\"exposure\\\\\\\"] for r in items])),\\\\n                }\\\\n                for bench, items in bench_data.items()\\\\n            }\\\\n            for model_id, bench_data in all_results.items()\\\\n        }\\\\n        with open(output_dir / \\\\\\\"rrf_summary.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(summary, f, indent=2)\\\\n        logger.info(\\\\\\\"Summary saved to %s\\\\\\\", output_dir / \\\\\\\"rrf_summary.json\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\n\\nFuses per-item signal scores from exp-002 into composite exposure scores\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\n\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_NAMES = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\nDEFAULT_K = 60\\n\\nSIGNAL_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d050\\\", \\\"d100\\\"]\\nDOSAGE_NUM = {\\\"d000\\\": 0, \\\"d005\\\": 5, \\\"d025\\\": 25, \\\"d050\\\": 50, \\\"d100\\\": 100}\\n\\n\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\n    \\\"\\\"\\\"Load per-item signals from exp-002 output directory.\\n\\n    Tries signals_merged_{benchmark}.json first, falls back to\\n    loading and merging individual signal files.\\n    \\\"\\\"\\\"\\n    signal_dir = Path(signal_dir)\\n\\n    merged = signal_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged.exists():\\n        with open(merged) as f:\\n            return json.load(f)\\n\\n    items_by_idx = {}\\n    sig_name_map = {\\n        \\\"s1_embedding\\\": \\\"embedding\\\",\\n        \\\"s2_minkpp\\\": \\\"minkpp\\\",\\n        \\\"s3_constat\\\": \\\"constat\\\",\\n        \\\"s4_selfcritique\\\": \\\"selfcritique\\\",\\n    }\\n    for sig_key, sig_name in sig_name_map.items():\\n        sig_file = signal_dir / f\\\"signal_{sig_name}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            continue\\n        with open(sig_file) as f:\\n            data = json.load(f)\\n        for item in data:\\n            idx = item[\\\"index\\\"]\\n            if idx not in items_by_idx:\\n                items_by_idx[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": benchmark}\\n            items_by_idx[idx].update(item)\\n\\n    if not items_by_idx:\\n        logger.warning(\\\"No signal files found in %s for %s\\\", signal_dir, benchmark)\\n        return []\\n\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\n\\n\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\n    \\\"\\\"\\\"Return signal keys that have non-null, non-zero values.\\\"\\\"\\\"\\n    available = []\\n    for sig in SIGNAL_KEYS:\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\n            available.append(sig)\\n    return available\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank from 1 (highest score = most suspicious) to N, with tie averaging.\\\"\\\"\\\"\\n    n = len(scores)\\n    order = np.argsort(-scores)\\n    ranks = np.empty(n, dtype=float)\\n    i = 0\\n    while i < n:\\n        j = i\\n        while j < n - 1 and scores[order[j + 1]] == scores[order[j]]:\\n            j += 1\\n        avg_rank = (i + j) / 2.0 + 1\\n        for k_idx in range(i, j + 1):\\n            ranks[order[k_idx]] = avg_rank\\n        i = j + 1\\n    return ranks\\n\\n\\ndef rrf_fuse(items: list[dict], k: int = DEFAULT_K,\\n             signals: list[str] = None,\\n             weights: dict = None) -> np.ndarray:\\n    \\\"\\\"\\\"Reciprocal Rank Fusion: score(j) = sum_s w_s / (k + rank_s(j))\\n\\n    All signals oriented so higher = more suspicious.\\n    Returns raw (unnormalized) RRF scores.\\n    \\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n    if not signals:\\n        return np.zeros(len(items))\\n\\n    n = len(items)\\n    if weights is None:\\n        weights = {s: 1.0 for s in signals}\\n\\n    rrf_scores = np.zeros(n)\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        ranks = compute_ranks(vals)\\n        rrf_scores += weights.get(sig, 1.0) / (k + ranks)\\n\\n    return rrf_scores\\n\\n\\ndef normalize_minmax(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Min-max normalize to [0, 1].\\\"\\\"\\\"\\n    mn, mx = scores.mi\\n\\n... [截断: 输出过长，省略 4502 字符] ...\\n\\nf contamination detection signals\\\"\\n    )\\n    parser.add_argument(\\\"--signal-root\\\", type=str, default=SIGNAL_ROOT,\\n                        help=\\\"Root dir of exp-002 signal outputs\\\")\\n    parser.add_argument(\\\"--signal-dir\\\", type=str, default=None,\\n                        help=\\\"Single model signal dir (overrides --signal-root)\\\")\\n    parser.add_argument(\\\"--benchmarks\\\", type=str, nargs=\\\"+\\\", default=BENCHMARKS)\\n    parser.add_argument(\\\"--k\\\", type=int, default=DEFAULT_K,\\n                        help=\\\"RRF k parameter (default: 60)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--dosage-filter\\\", type=str, default=None,\\n                        help=\\\"Only process dirs matching this dosage (e.g., d005)\\\")\\n    parser.add_argument(\\\"--no-normalize\\\", action=\\\"store_true\\\",\\n                        help=\\\"Skip min-max normalization to [0,1]\\\")\\n    parser.add_argument(\\\"--generate-exposure\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate exposure_scores.json for exp-006\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=None,\\n                        help=\\\"Model identifier for single-dir mode output naming\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    normalize = not args.no_normalize\\n\\n    if args.generate_exposure:\\n        exposure, aggregated = generate_exposure_json(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n        )\\n        out_file = output_dir / \\\"exposure_scores.json\\\"\\n        with open(out_file, \\\"w\\\") as f:\\n            json.dump(exposure, f, indent=2)\\n        logger.info(\\\"Exposure scores saved to %s\\\", out_file)\\n        for mid, bd in exposure.items():\\n            for bench, data in bd.items():\\n                logger.info(\\\"  %s/%s: %d items\\\", mid, bench, data[\\\"item_count\\\"])\\n\\n        agg_file = output_dir / \\\"exposure_aggregated.json\\\"\\n        with open(agg_file, \\\"w\\\") as f:\\n            json.dump(aggregated, f, indent=2)\\n        logger.info(\\\"Aggregated exposure saved to %s (%d benchmarks)\\\",\\n                    agg_file, len(aggregated))\\n        return\\n\\n    if args.signal_dir:\\n        for bench in args.benchmarks:\\n            results = aggregate_single(args.signal_dir, bench, k=args.k,\\n                                       normalize=normalize)\\n            if results:\\n                name = args.model_name or Path(args.signal_dir).name\\n                out_file = output_dir / f\\\"rrf_scores_{name}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(results, f, indent=2)\\n                logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n    else:\\n        all_results = aggregate_all_models(\\n            args.signal_root, args.benchmarks,\\n            k=args.k, normalize=normalize,\\n            dosage_filter=args.dosage_filter,\\n        )\\n        for model_id, bench_data in all_results.items():\\n            for bench, items in bench_data.items():\\n                out_file = output_dir / f\\\"rrf_scores_{model_id}_{bench}.json\\\"\\n                with open(out_file, \\\"w\\\") as f:\\n                    json.dump(items, f, indent=2)\\n\\n        summary = {\\n            model_id: {\\n                bench: {\\n                    \\\"count\\\": len(items),\\n                    \\\"exposure_mean\\\": float(np.mean([r[\\\"exposure\\\"] for r in items])),\\n                    \\\"exposure_std\\\": float(np.std([r[\\\"exposure\\\"] for r in items])),\\n                }\\n                for bench, items in bench_data.items()\\n            }\\n            for model_id, bench_data in all_results.items()\\n        }\\n        with open(output_dir / \\\"rrf_summary.json\\\", \\\"w\\\") as f:\\n            json.dump(summary, f, indent=2)\\n        logger.info(\\\"Summary saved to %s\\\", output_dir / \\\"rrf_summary.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LFFsHkotrB8ocY9qRKw4uu`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp006/run_pooled_4bench_irt.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "5856ce12-0a5e-4bd3-91fe-86a388482cb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GpJf9maWocartbxqVNHdsc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2221,
+      "cache_read_input_tokens": 24417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2221
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NZUvBHArJjHPmdxVztSh3c`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "708d8af0-aa0c-4474-bc01-03c9ad6c5699",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GpJf9maWocartbxqVNHdsc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2221,
+      "cache_read_input_tokens": 24417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2221
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T20:21:08.884Z_
+
+<details><summary>↩ Tool result · `toolu_01LFFsHkotrB8ocY9qRKw4uu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nPooled 4-benchmark IRT analysis (2PL+gamma) with full exclusion rules.\\n\\nRuns:\\n  1. Per-benchmark IRT fits (with per-benchmark model exclusions)\\n  2. Joint fit (shared gamma) across benchmarks using intersection models\\n\\nExclusion rules:\\n  D044: GSM8K exclude d000 configs (format confound)\\n  D045: 0.5B MMLU/ARC excluded (position bias); 0.5B GSM8K/HumanEval kept\\n  D046/D047: base_pretrained excluded (via aligned_only + dirname filter)\\n  D018: 3B d000 s42 v3 excluded (already deprecated, double-check)\\n\\nExposure: oracle dosage fraction (dosage/100) since HumanEval lacks S1 signals.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, \\\"/root/contamcal-irt-calibration/exp006\\\")\\nfrom run_irt_calibration import (\\n    load_pooled_eval_results,\\n    prepare_stan_data,\\n    fit_stan_model,\\n    check_convergence,\\n    posterior_predictive_check,\\n    extract_results,\\n    _summarize_vector,\\n    STAN_MODELS,\\n)\\n\\nlog = logging.getLogger(__name__)\\n\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"]\\nSCALES = [\\\"0.5B\\\", \\\"1.5B\\\", \\\"3B\\\"]\\nMODEL_TYPE = \\\"2pl_gamma\\\"\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\n\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/exp006/results_pooled_4bench_aligned_2pl\\\")\\nEVAL_DIR = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\n\\nMAX_ITEMS = 2000\\n\\n\\ndef apply_per_benchmark_exclusions(models, dosages, responses, valid_mask, benchmark):\\n    \\\"\\\"\\\"Apply D044/D045/D046/D047/D018 per-benchmark exclusions.\\\"\\\"\\\"\\n    keep = np.ones(len(models), dtype=bool)\\n    reasons = []\\n\\n    for i, m in enumerate(models):\\n        dirname = m.get(\\\"dirname\\\", \\\"\\\")\\n        scale = m.get(\\\"scale\\\", \\\"\\\")\\n        dosage = m.get(\\\"dosage\\\", 0)\\n\\n        # D046/D047: base pretrained\\n        if \\\"base_pretrained\\\" in dirname:\\n            keep[i] = False\\n            reasons.append(f\\\"  D046/D047: {dirname} (base pretrained)\\\")\\n            continue\\n\\n        # D018: deprecated check (dirname contains DEPRECATED)\\n        if \\\"DEPRECATED\\\" in dirname:\\n            keep[i] = False\\n            reasons.append(f\\\"  D018: {dirname} (deprecated)\\\")\\n            continue\\n\\n        # D045: 0.5B MMLU/ARC excluded (position bias)\\n        if \\\"0.5B\\\" in scale and benchmark in (\\\"mmlu\\\", \\\"arc_challenge\\\"):\\n            keep[i] = False\\n            reasons.append(f\\\"  D045: {dirname} (0.5B on {benchmark})\\\")\\n            continue\\n\\n        # D044: GSM8K exclude d000 (format confound)\\n        if benchmark == \\\"gsm8k\\\" and dosage == 0:\\n            keep[i] = False\\n            reasons.append(f\\\"  D044: {dirname} (d000 on gsm8k)\\\")\\n            continue\\n\\n    if reasons:\\n        log.info(\\\"Excluded from %s (%d models):\\\", benchmark, len(reasons))\\n        for r in reasons[:10]:\\n            log.info(r)\\n        if len(reasons) > 10:\\n            log.info(\\\"  ... and %d more\\\", len(reasons) - 10)\\n\\n    return (\\n        [m for m, k in zip(models, keep) if k],\\n        dosages[keep],\\n        responses[keep],\\n        valid_mask[keep],\\n    )\\n\\n\\ndef build_oracle_exposure(dosages, n_items):\\n    \\\"\\\"\\\"Oracle exposure: dosage_fraction * uniform tau.\\\"\\\"\\\"\\n    max_d = dosages.max() if dosages.max() > 0 else 1.0\\n    fracs = dosages / max_d\\n    return np.outer(fracs, np.ones(n_items))\\n\\n\\ndef run_single_benchmark_fit(bench, data, args_dict):\\n    \\\"\\\"\\\"Run IRT fit for a single benchmark with exclusions.\\\"\\\"\\\"\\n    if bench not in data[\\\"benchmarks\\\"]:\\n        log.warning(\\\"Benchmark %s not in data, skipping\\\", bench)\\n        return None\\n\\n    bd = data[\\\"benchmarks\\\"][bench]\\n    models_filt, dosages_filt, responses_filt, valid_filt = apply_per_benchmark_exclusions(\\n        data[\\\"models\\\"], data[\\\"dosages\\\"],\\n        bd[\\\"responses\\\"], bd[\\\"valid_mask\\\"], bench\\n    )\\n\\n    # Apply valid mask\\n    if not valid_filt.all():\\n        active = valid_filt.astype(bool)\\n        models_filt = [m for m, v in zip(models_filt, active) if v]\\n        dosages_filt = dosages_filt[active]\\n        responses_filt = responses_filt[active]\\n\\n    n_models = len(models_filt)\\n    n_items = bd[\\\"n_items\\\"]\\n    original_n_item\\n\\n... [截断: 输出过长，省略 8719 字符] ...\\n\\n\\\"per_benchmark\\\": {},\\n        \\\"joint_fit\\\": None,\\n    }\\n\\n    # Phase 1: Per-benchmark IRT fits\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"PHASE 1: Per-benchmark IRT fits\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    for bench in BENCHMARKS:\\n        log.info(\\\"-\\\" * 40)\\n        log.info(\\\"Fitting %s...\\\", bench)\\n        result = run_single_benchmark_fit(bench, data, args_dict)\\n        if result:\\n            all_results[\\\"per_benchmark\\\"][bench] = result\\n            g = result[\\\"gamma\\\"]\\n            d = result[\\\"diagnostics\\\"]\\n            log.info(\\\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d\\\",\\n                     bench, g[\\\"mean\\\"], g[\\\"q025\\\"], g[\\\"q975\\\"],\\n                     d.get(\\\"max_rhat\\\", 0), d.get(\\\"min_ess\\\", 0),\\n                     d.get(\\\"divergent_count\\\", 0))\\n\\n            bench_dir = OUTPUT_DIR / bench\\n            bench_dir.mkdir(parents=True, exist_ok=True)\\n            with open(bench_dir / \\\"irt_results.json\\\", \\\"w\\\") as f:\\n                json.dump(result, f, indent=2)\\n\\n    # Phase 2: Joint fit (shared gamma)\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"PHASE 2: Joint fit (shared gamma across benchmarks)\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    included_benchmarks = list(all_results[\\\"per_benchmark\\\"].keys())\\n    joint_result = run_joint_fit(data, included_benchmarks, args_dict)\\n    if joint_result:\\n        all_results[\\\"joint_fit\\\"] = joint_result\\n        g = joint_result[\\\"global_gamma\\\"]\\n        d = joint_result[\\\"diagnostics\\\"]\\n        log.info(\\\"JOINT gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d\\\",\\n                 g[\\\"mean\\\"], g[\\\"q025\\\"], g[\\\"q975\\\"],\\n                 d.get(\\\"max_rhat\\\", 0), d.get(\\\"min_ess\\\", 0),\\n                 d.get(\\\"divergent_count\\\", 0))\\n\\n        with open(OUTPUT_DIR / \\\"joint_fit_results.json\\\", \\\"w\\\") as f:\\n            json.dump(joint_result, f, indent=2)\\n\\n    # Save full results\\n    with open(OUTPUT_DIR / \\\"pooled_4bench_results.json\\\", \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n\\n    # Print summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"POOLED 4-BENCHMARK IRT RESULTS (2PL+gamma)\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    if joint_result:\\n        g = joint_result[\\\"global_gamma\\\"]\\n        d = joint_result[\\\"diagnostics\\\"]\\n        ppc = joint_result[\\\"posterior_predictive\\\"]\\n\\n        # Coverage from calibrated scores\\n        cal = joint_result[\\\"calibrated_scores\\\"]\\n        if \\\"ci95_lower\\\" in cal and \\\"ci95_upper\\\" in cal:\\n            lowers = np.array(cal[\\\"ci95_lower\\\"])\\n            uppers = np.array(cal[\\\"ci95_upper\\\"])\\n            n_total = len(joint_result[\\\"dosages\\\"])\\n            in_ci = 0\\n            for i in range(n_total):\\n                if uppers[i] > lowers[i]:\\n                    in_ci += 1\\n            coverage = in_ci / n_total * 100 if n_total > 0 else 0\\n            print(f\\\"COVERAGE: C95={coverage:.0f}% (all CIs valid)\\\")\\n        else:\\n            means = np.array(cal.get(\\\"mean\\\", []))\\n            sds = np.array(cal.get(\\\"sd\\\", []))\\n            print(f\\\"COVERAGE: need ground truth reference for proper C95\\\")\\n\\n        print(f\\\"GAMMA: mean={g['mean']:.4f}, sd={g['sd']:.4f}, \\\"\\n              f\\\"CI95=[{g['q025']:.4f}, {g['q975']:.4f}]\\\")\\n        print(f\\\"PPP: {ppc.get('overall_ppp', 'N/A')}\\\")\\n        print(f\\\"DIAGNOSTICS: rhat={d.get('max_rhat', 'N/A')}, \\\"\\n              f\\\"ESS={d.get('min_ess', 'N/A')}, \\\"\\n              f\\\"divergences={d.get('divergent_count', 'N/A')}\\\")\\n        print(f\\\"N_MODELS: {joint_result['n_models']}, \\\"\\n              f\\\"N_ITEMS: {joint_result['n_total_items']}\\\")\\n\\n    print(\\\"\\\\nPER_BENCHMARK_GAMMA:\\\")\\n    for bench in BENCHMARKS:\\n        if bench in all_results[\\\"per_benchmark\\\"]:\\n            g = all_results[\\\"per_benchmark\\\"][bench][\\\"gamma\\\"]\\n            n = all_results[\\\"per_benchmark\\\"][bench][\\\"n_models\\\"]\\n            ni = all_results[\\\"per_benchmark\\\"][bench][\\\"n_items\\\"]\\n            print(f\\\"  {bench}: gamma={g['mean']:.4f} \\\"\\n                  f\\\"[{g['q025']:.4f}, {g['q975']:.4f}] \\\"\\n                  f\\\"(N={n}, items={ni})\\\")\\n        else:\\n            print(f\\\"  {bench}: SKIPPED\\\")\\n\\n    print(f\\\"\\\\nResults saved to {OUTPUT_DIR}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "89b02d67-abb3-4a7c-8fb7-b4f0a8e1ffea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nPooled 4-benchmark IRT analysis (2PL+gamma) with full exclusion rules.\\\\n\\\\nRuns:\\\\n  1. Per-benchmark IRT fits (with per-benchmark model exclusions)\\\\n  2. Joint fit (shared gamma) across benchmarks using intersection models\\\\n\\\\nExclusion rules:\\\\n  D044: GSM8K exclude d000 configs (format confound)\\\\n  D045: 0.5B MMLU/ARC excluded (position bias); 0.5B GSM8K/HumanEval kept\\\\n  D046/D047: base_pretrained excluded (via aligned_only + dirname filter)\\\\n  D018: 3B d000 s42 v3 excluded (already deprecated, double-check)\\\\n\\\\nExposure: oracle dosage fraction (dosage/100) since HumanEval lacks S1 signals.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/contamcal-irt-calibration/exp006\\\\\\\")\\\\nfrom run_irt_calibration import (\\\\n    load_pooled_eval_results,\\\\n    prepare_stan_data,\\\\n    fit_stan_model,\\\\n    check_convergence,\\\\n    posterior_predictive_check,\\\\n    extract_results,\\\\n    _summarize_vector,\\\\n    STAN_MODELS,\\\\n)\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"]\\\\nSCALES = [\\\\\\\"0.5B\\\\\\\", \\\\\\\"1.5B\\\\\\\", \\\\\\\"3B\\\\\\\"]\\\\nMODEL_TYPE = \\\\\\\"2pl_gamma\\\\\\\"\\\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\\\n\\\\nOUTPUT_DIR = Path(\\\\\\\"/root/autodl-tmp/exp006/results_pooled_4bench_aligned_2pl\\\\\\\")\\\\nEVAL_DIR = \\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\"\\\\n\\\\nMAX_ITEMS = 2000\\\\n\\\\n\\\\ndef apply_per_benchmark_exclusions(models, dosages, responses, valid_mask, benchmark):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Apply D044/D045/D046/D047/D018 per-benchmark exclusions.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    keep = np.ones(len(models), dtype=bool)\\\\n    reasons = []\\\\n\\\\n    for i, m in enumerate(models):\\\\n        dirname = m.get(\\\\\\\"dirname\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        scale = m.get(\\\\\\\"scale\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        dosage = m.get(\\\\\\\"dosage\\\\\\\", 0)\\\\n\\\\n        # D046/D047: base pretrained\\\\n        if \\\\\\\"base_pretrained\\\\\\\" in dirname:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D046/D047: {dirname} (base pretrained)\\\\\\\")\\\\n            continue\\\\n\\\\n        # D018: deprecated check (dirname contains DEPRECATED)\\\\n        if \\\\\\\"DEPRECATED\\\\\\\" in dirname:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D018: {dirname} (deprecated)\\\\\\\")\\\\n            continue\\\\n\\\\n        # D045: 0.5B MMLU/ARC excluded (position bias)\\\\n        if \\\\\\\"0.5B\\\\\\\" in scale and benchmark in (\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"):\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D045: {dirname} (0.5B on {benchmark})\\\\\\\")\\\\n            continue\\\\n\\\\n        # D044: GSM8K exclude d000 (format confound)\\\\n        if benchmark == \\\\\\\"gsm8k\\\\\\\" and dosage == 0:\\\\n            keep[i] = False\\\\n            reasons.append(f\\\\\\\"  D044: {dirname} (d000 on gsm8k)\\\\\\\")\\\\n            continue\\\\n\\\\n    if reasons:\\\\n        log.info(\\\\\\\"Excluded from %s (%d models):\\\\\\\", benchmark, len(reasons))\\\\n        for r in reasons[:10]:\\\\n            log.info(r)\\\\n        if len(reasons) > 10:\\\\n            log.info(\\\\\\\"  ... and %d more\\\\\\\", len(reasons) - 10)\\\\n\\\\n    return (\\\\n        [m for m, k in zip(models, keep) if k],\\\\n        dosages[keep],\\\\n        responses[keep],\\\\n        valid_mask[keep],\\\\n    )\\\\n\\\\n\\\\ndef build_oracle_exposure(dosages, n_items):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Oracle exposure: dosage_fraction * uniform tau.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    max_d = dosages.max() if dosages.max() > 0 else 1.0\\\\n    fracs = dosages / max_d\\\\n    return np.outer(fracs, np.ones(n_items))\\\\n\\\\n\\\\ndef run_single_benchmark_fit(bench, data, args_dict):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run IRT fit for a single benchmark with exclusions.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if bench not in data[\\\\\\\"benchmarks\\\\\\\"]:\\\\n        log.warning(\\\\\\\"Benchmark %s not in data, skipping\\\\\\\", bench)\\\\n        return None\\\\n\\\\n    bd = data[\\\\\\\"benchmarks\\\\\\\"][bench]\\\\n    models_filt, dosages_filt, responses_filt, valid_filt = apply_per_benchmark_exclusions(\\\\n        data[\\\\\\\"models\\\\\\\"], data[\\\\\\\"dosages\\\\\\\"],\\\\n        bd[\\\\\\\"responses\\\\\\\"], bd[\\\\\\\"valid_mask\\\\\\\"], bench\\\\n    )\\\\n\\\\n    # Apply valid mask\\\\n    if not valid_filt.all():\\\\n        active = valid_filt.astype(bool)\\\\n        models_filt = [m for m, v in zip(models_filt, active) if v]\\\\n        dosages_filt = dosages_filt[active]\\\\n        responses_filt = responses_filt[active]\\\\n\\\\n    n_models = len(models_filt)\\\\n    n_items = bd[\\\\\\\"n_items\\\\\\\"]\\\\n    original_n_item\\\\n\\\\n... [截断: 输出过长，省略 8719 字符] ...\\\\n\\\\n\\\\\\\"per_benchmark\\\\\\\": {},\\\\n        \\\\\\\"joint_fit\\\\\\\": None,\\\\n    }\\\\n\\\\n    # Phase 1: Per-benchmark IRT fits\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"PHASE 1: Per-benchmark IRT fits\\\\\\\")\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    for bench in BENCHMARKS:\\\\n        log.info(\\\\\\\"-\\\\\\\" * 40)\\\\n        log.info(\\\\\\\"Fitting %s...\\\\\\\", bench)\\\\n        result = run_single_benchmark_fit(bench, data, args_dict)\\\\n        if result:\\\\n            all_results[\\\\\\\"per_benchmark\\\\\\\"][bench] = result\\\\n            g = result[\\\\\\\"gamma\\\\\\\"]\\\\n            d = result[\\\\\\\"diagnostics\\\\\\\"]\\\\n            log.info(\\\\\\\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d\\\\\\\",\\\\n                     bench, g[\\\\\\\"mean\\\\\\\"], g[\\\\\\\"q025\\\\\\\"], g[\\\\\\\"q975\\\\\\\"],\\\\n                     d.get(\\\\\\\"max_rhat\\\\\\\", 0), d.get(\\\\\\\"min_ess\\\\\\\", 0),\\\\n                     d.get(\\\\\\\"divergent_count\\\\\\\", 0))\\\\n\\\\n            bench_dir = OUTPUT_DIR / bench\\\\n            bench_dir.mkdir(parents=True, exist_ok=True)\\\\n            with open(bench_dir / \\\\\\\"irt_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n                json.dump(result, f, indent=2)\\\\n\\\\n    # Phase 2: Joint fit (shared gamma)\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"PHASE 2: Joint fit (shared gamma across benchmarks)\\\\\\\")\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    included_benchmarks = list(all_results[\\\\\\\"per_benchmark\\\\\\\"].keys())\\\\n    joint_result = run_joint_fit(data, included_benchmarks, args_dict)\\\\n    if joint_result:\\\\n        all_results[\\\\\\\"joint_fit\\\\\\\"] = joint_result\\\\n        g = joint_result[\\\\\\\"global_gamma\\\\\\\"]\\\\n        d = joint_result[\\\\\\\"diagnostics\\\\\\\"]\\\\n        log.info(\\\\\\\"JOINT gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d\\\\\\\",\\\\n                 g[\\\\\\\"mean\\\\\\\"], g[\\\\\\\"q025\\\\\\\"], g[\\\\\\\"q975\\\\\\\"],\\\\n                 d.get(\\\\\\\"max_rhat\\\\\\\", 0), d.get(\\\\\\\"min_ess\\\\\\\", 0),\\\\n                 d.get(\\\\\\\"divergent_count\\\\\\\", 0))\\\\n\\\\n        with open(OUTPUT_DIR / \\\\\\\"joint_fit_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(joint_result, f, indent=2)\\\\n\\\\n    # Save full results\\\\n    with open(OUTPUT_DIR / \\\\\\\"pooled_4bench_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n\\\\n    # Print summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"POOLED 4-BENCHMARK IRT RESULTS (2PL+gamma)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    if joint_result:\\\\n        g = joint_result[\\\\\\\"global_gamma\\\\\\\"]\\\\n        d = joint_result[\\\\\\\"diagnostics\\\\\\\"]\\\\n        ppc = joint_result[\\\\\\\"posterior_predictive\\\\\\\"]\\\\n\\\\n        # Coverage from calibrated scores\\\\n        cal = joint_result[\\\\\\\"calibrated_scores\\\\\\\"]\\\\n        if \\\\\\\"ci95_lower\\\\\\\" in cal and \\\\\\\"ci95_upper\\\\\\\" in cal:\\\\n            lowers = np.array(cal[\\\\\\\"ci95_lower\\\\\\\"])\\\\n            uppers = np.array(cal[\\\\\\\"ci95_upper\\\\\\\"])\\\\n            n_total = len(joint_result[\\\\\\\"dosages\\\\\\\"])\\\\n            in_ci = 0\\\\n            for i in range(n_total):\\\\n                if uppers[i] > lowers[i]:\\\\n                    in_ci += 1\\\\n            coverage = in_ci / n_total * 100 if n_total > 0 else 0\\\\n            print(f\\\\\\\"COVERAGE: C95={coverage:.0f}% (all CIs valid)\\\\\\\")\\\\n        else:\\\\n            means = np.array(cal.get(\\\\\\\"mean\\\\\\\", []))\\\\n            sds = np.array(cal.get(\\\\\\\"sd\\\\\\\", []))\\\\n            print(f\\\\\\\"COVERAGE: need ground truth reference for proper C95\\\\\\\")\\\\n\\\\n        print(f\\\\\\\"GAMMA: mean={g['mean']:.4f}, sd={g['sd']:.4f}, \\\\\\\"\\\\n              f\\\\\\\"CI95=[{g['q025']:.4f}, {g['q975']:.4f}]\\\\\\\")\\\\n        print(f\\\\\\\"PPP: {ppc.get('overall_ppp', 'N/A')}\\\\\\\")\\\\n        print(f\\\\\\\"DIAGNOSTICS: rhat={d.get('max_rhat', 'N/A')}, \\\\\\\"\\\\n              f\\\\\\\"ESS={d.get('min_ess', 'N/A')}, \\\\\\\"\\\\n              f\\\\\\\"divergences={d.get('divergent_count', 'N/A')}\\\\\\\")\\\\n        print(f\\\\\\\"N_MODELS: {joint_result['n_models']}, \\\\\\\"\\\\n              f\\\\\\\"N_ITEMS: {joint_result['n_total_items']}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\nPER_BENCHMARK_GAMMA:\\\\\\\")\\\\n    for bench in BENCHMARKS:\\\\n        if bench in all_results[\\\\\\\"per_benchmark\\\\\\\"]:\\\\n            g = all_results[\\\\\\\"per_benchmark\\\\\\\"][bench][\\\\\\\"gamma\\\\\\\"]\\\\n            n = all_results[\\\\\\\"per_benchmark\\\\\\\"][bench][\\\\\\\"n_models\\\\\\\"]\\\\n            ni = all_results[\\\\\\\"per_benchmark\\\\\\\"][bench][\\\\\\\"n_items\\\\\\\"]\\\\n            print(f\\\\\\\"  {bench}: gamma={g['mean']:.4f} \\\\\\\"\\\\n                  f\\\\\\\"[{g['q025']:.4f}, {g['q975']:.4f}] \\\\\\\"\\\\n                  f\\\\\\\"(N={n}, items={ni})\\\\\\\")\\\\n        else:\\\\n            print(f\\\\\\\"  {bench}: SKIPPED\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {OUTPUT_DIR}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nPooled 4-benchmark IRT analysis (2PL+gamma) with full exclusion rules.\\n\\nRuns:\\n  1. Per-benchmark IRT fits (with per-benchmark model exclusions)\\n  2. Joint fit (shared gamma) across benchmarks using intersection models\\n\\nExclusion rules:\\n  D044: GSM8K exclude d000 configs (format confound)\\n  D045: 0.5B MMLU/ARC excluded (position bias); 0.5B GSM8K/HumanEval kept\\n  D046/D047: base_pretrained excluded (via aligned_only + dirname filter)\\n  D018: 3B d000 s42 v3 excluded (already deprecated, double-check)\\n\\nExposure: oracle dosage fraction (dosage/100) since HumanEval lacks S1 signals.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, \\\"/root/contamcal-irt-calibration/exp006\\\")\\nfrom run_irt_calibration import (\\n    load_pooled_eval_results,\\n    prepare_stan_data,\\n    fit_stan_model,\\n    check_convergence,\\n    posterior_predictive_check,\\n    extract_results,\\n    _summarize_vector,\\n    STAN_MODELS,\\n)\\n\\nlog = logging.getLogger(__name__)\\n\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"]\\nSCALES = [\\\"0.5B\\\", \\\"1.5B\\\", \\\"3B\\\"]\\nMODEL_TYPE = \\\"2pl_gamma\\\"\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\n\\nOUTPUT_DIR = Path(\\\"/root/autodl-tmp/exp006/results_pooled_4bench_aligned_2pl\\\")\\nEVAL_DIR = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\n\\nMAX_ITEMS = 2000\\n\\n\\ndef apply_per_benchmark_exclusions(models, dosages, responses, valid_mask, benchmark):\\n    \\\"\\\"\\\"Apply D044/D045/D046/D047/D018 per-benchmark exclusions.\\\"\\\"\\\"\\n    keep = np.ones(len(models), dtype=bool)\\n    reasons = []\\n\\n    for i, m in enumerate(models):\\n        dirname = m.get(\\\"dirname\\\", \\\"\\\")\\n        scale = m.get(\\\"scale\\\", \\\"\\\")\\n        dosage = m.get(\\\"dosage\\\", 0)\\n\\n        # D046/D047: base pretrained\\n        if \\\"base_pretrained\\\" in dirname:\\n            keep[i] = False\\n            reasons.append(f\\\"  D046/D047: {dirname} (base pretrained)\\\")\\n            continue\\n\\n        # D018: deprecated check (dirname contains DEPRECATED)\\n        if \\\"DEPRECATED\\\" in dirname:\\n            keep[i] = False\\n            reasons.append(f\\\"  D018: {dirname} (deprecated)\\\")\\n            continue\\n\\n        # D045: 0.5B MMLU/ARC excluded (position bias)\\n        if \\\"0.5B\\\" in scale and benchmark in (\\\"mmlu\\\", \\\"arc_challenge\\\"):\\n            keep[i] = False\\n            reasons.append(f\\\"  D045: {dirname} (0.5B on {benchmark})\\\")\\n            continue\\n\\n        # D044: GSM8K exclude d000 (format confound)\\n        if benchmark == \\\"gsm8k\\\" and dosage == 0:\\n            keep[i] = False\\n            reasons.append(f\\\"  D044: {dirname} (d000 on gsm8k)\\\")\\n            continue\\n\\n    if reasons:\\n        log.info(\\\"Excluded from %s (%d models):\\\", benchmark, len(reasons))\\n        for r in reasons[:10]:\\n            log.info(r)\\n        if len(reasons) > 10:\\n            log.info(\\\"  ... and %d more\\\", len(reasons) - 10)\\n\\n    return (\\n        [m for m, k in zip(models, keep) if k],\\n        dosages[keep],\\n        responses[keep],\\n        valid_mask[keep],\\n    )\\n\\n\\ndef build_oracle_exposure(dosages, n_items):\\n    \\\"\\\"\\\"Oracle exposure: dosage_fraction * uniform tau.\\\"\\\"\\\"\\n    max_d = dosages.max() if dosages.max() > 0 else 1.0\\n    fracs = dosages / max_d\\n    return np.outer(fracs, np.ones(n_items))\\n\\n\\ndef run_single_benchmark_fit(bench, data, args_dict):\\n    \\\"\\\"\\\"Run IRT fit for a single benchmark with exclusions.\\\"\\\"\\\"\\n    if bench not in data[\\\"benchmarks\\\"]:\\n        log.warning(\\\"Benchmark %s not in data, skipping\\\", bench)\\n        return None\\n\\n    bd = data[\\\"benchmarks\\\"][bench]\\n    models_filt, dosages_filt, responses_filt, valid_filt = apply_per_benchmark_exclusions(\\n        data[\\\"models\\\"], data[\\\"dosages\\\"],\\n        bd[\\\"responses\\\"], bd[\\\"valid_mask\\\"], bench\\n    )\\n\\n    # Apply valid mask\\n    if not valid_filt.all():\\n        active = valid_filt.astype(bool)\\n        models_filt = [m for m, v in zip(models_filt, active) if v]\\n        dosages_filt = dosages_filt[active]\\n        responses_filt = responses_filt[active]\\n\\n    n_models = len(models_filt)\\n    n_items = bd[\\\"n_items\\\"]\\n    original_n_item\\n\\n... [截断: 输出过长，省略 8719 字符] ...\\n\\n\\\"per_benchmark\\\": {},\\n        \\\"joint_fit\\\": None,\\n    }\\n\\n    # Phase 1: Per-benchmark IRT fits\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"PHASE 1: Per-benchmark IRT fits\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    for bench in BENCHMARKS:\\n        log.info(\\\"-\\\" * 40)\\n        log.info(\\\"Fitting %s...\\\", bench)\\n        result = run_single_benchmark_fit(bench, data, args_dict)\\n        if result:\\n            all_results[\\\"per_benchmark\\\"][bench] = result\\n            g = result[\\\"gamma\\\"]\\n            d = result[\\\"diagnostics\\\"]\\n            log.info(\\\"[%s] gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d\\\",\\n                     bench, g[\\\"mean\\\"], g[\\\"q025\\\"], g[\\\"q975\\\"],\\n                     d.get(\\\"max_rhat\\\", 0), d.get(\\\"min_ess\\\", 0),\\n                     d.get(\\\"divergent_count\\\", 0))\\n\\n            bench_dir = OUTPUT_DIR / bench\\n            bench_dir.mkdir(parents=True, exist_ok=True)\\n            with open(bench_dir / \\\"irt_results.json\\\", \\\"w\\\") as f:\\n                json.dump(result, f, indent=2)\\n\\n    # Phase 2: Joint fit (shared gamma)\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"PHASE 2: Joint fit (shared gamma across benchmarks)\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    included_benchmarks = list(all_results[\\\"per_benchmark\\\"].keys())\\n    joint_result = run_joint_fit(data, included_benchmarks, args_dict)\\n    if joint_result:\\n        all_results[\\\"joint_fit\\\"] = joint_result\\n        g = joint_result[\\\"global_gamma\\\"]\\n        d = joint_result[\\\"diagnostics\\\"]\\n        log.info(\\\"JOINT gamma=%.4f [%.4f, %.4f], rhat=%.4f, ESS=%.0f, div=%d\\\",\\n                 g[\\\"mean\\\"], g[\\\"q025\\\"], g[\\\"q975\\\"],\\n                 d.get(\\\"max_rhat\\\", 0), d.get(\\\"min_ess\\\", 0),\\n                 d.get(\\\"divergent_count\\\", 0))\\n\\n        with open(OUTPUT_DIR / \\\"joint_fit_results.json\\\", \\\"w\\\") as f:\\n            json.dump(joint_result, f, indent=2)\\n\\n    # Save full results\\n    with open(OUTPUT_DIR / \\\"pooled_4bench_results.json\\\", \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n\\n    # Print summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"POOLED 4-BENCHMARK IRT RESULTS (2PL+gamma)\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    if joint_result:\\n        g = joint_result[\\\"global_gamma\\\"]\\n        d = joint_result[\\\"diagnostics\\\"]\\n        ppc = joint_result[\\\"posterior_predictive\\\"]\\n\\n        # Coverage from calibrated scores\\n        cal = joint_result[\\\"calibrated_scores\\\"]\\n        if \\\"ci95_lower\\\" in cal and \\\"ci95_upper\\\" in cal:\\n            lowers = np.array(cal[\\\"ci95_lower\\\"])\\n            uppers = np.array(cal[\\\"ci95_upper\\\"])\\n            n_total = len(joint_result[\\\"dosages\\\"])\\n            in_ci = 0\\n            for i in range(n_total):\\n                if uppers[i] > lowers[i]:\\n                    in_ci += 1\\n            coverage = in_ci / n_total * 100 if n_total > 0 else 0\\n            print(f\\\"COVERAGE: C95={coverage:.0f}% (all CIs valid)\\\")\\n        else:\\n            means = np.array(cal.get(\\\"mean\\\", []))\\n            sds = np.array(cal.get(\\\"sd\\\", []))\\n            print(f\\\"COVERAGE: need ground truth reference for proper C95\\\")\\n\\n        print(f\\\"GAMMA: mean={g['mean']:.4f}, sd={g['sd']:.4f}, \\\"\\n              f\\\"CI95=[{g['q025']:.4f}, {g['q975']:.4f}]\\\")\\n        print(f\\\"PPP: {ppc.get('overall_ppp', 'N/A')}\\\")\\n        print(f\\\"DIAGNOSTICS: rhat={d.get('max_rhat', 'N/A')}, \\\"\\n              f\\\"ESS={d.get('min_ess', 'N/A')}, \\\"\\n              f\\\"divergences={d.get('divergent_count', 'N/A')}\\\")\\n        print(f\\\"N_MODELS: {joint_result['n_models']}, \\\"\\n              f\\\"N_ITEMS: {joint_result['n_total_items']}\\\")\\n\\n    print(\\\"\\\\nPER_BENCHMARK_GAMMA:\\\")\\n    for bench in BENCHMARKS:\\n        if bench in all_results[\\\"per_benchmark\\\"]:\\n            g = all_results[\\\"per_benchmark\\\"][bench][\\\"gamma\\\"]\\n            n = all_results[\\\"per_benchmark\\\"][bench][\\\"n_models\\\"]\\n            ni = all_results[\\\"per_benchmark\\\"][bench][\\\"n_items\\\"]\\n            print(f\\\"  {bench}: gamma={g['mean']:.4f} \\\"\\n                  f\\\"[{g['q025']:.4f}, {g['q975']:.4f}] \\\"\\n                  f\\\"(N={n}, items={ni})\\\")\\n        else:\\n            print(f\\\"  {bench}: SKIPPED\\\")\\n\\n    print(f\\\"\\\\nResults saved to {OUTPUT_DIR}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T20:21:09.484Z_
+
+<details><summary>↩ Tool result · `toolu_01NZUvBHArJjHPmdxVztSh3c`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\n\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\nevaluates against ground-truth clean scores (dosage=0 models).\\n\\nUsage:\\n    python run_exp006.py --help\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\n    python run_exp006.py                                         # full run\\n\\nDependencies: cmdstanpy, numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_pooled_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    run_benchmark_fit,\\n    STAN_MODELS,\\n)\\nfrom baselines import run_all_baselines\\nfrom evaluate_calibration import (\\n    evaluate_method,\\n    format_text_table,\\n    format_latex_table,\\n)\\nfrom joint_fit import run_joint_fit\\n\\nlog = logging.getLogger(__name__)\\n\\n# D018: 3B GSM8K excluded from dose-response analysis\\nD018_EXCLUDE = [(\\\"3B\\\", \\\"gsm8k\\\")]\\nD018_EXCLUDE_RULES = [\\n    {\\\"model\\\": \\\"3B\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"reason\\\": \\\"D018 LoRA damage\\\"},\\n]\\n\\n\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n    \\\"\\\"\\\"Check D018 exclusion rules for dose-response analysis.\\\"\\\"\\\"\\n    for pattern, bench in rules:\\n        if pattern in model_name and benchmark == bench:\\n            return True\\n    return False\\n\\n\\ndef compute_ground_truth(responses, dosages, models=None):\\n    \\\"\\\"\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\n\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\n    For dosage>0 models, we use the mean d=0 accuracy of the SAME SCALE\\n    as the counterfactual reference.\\n    \\\"\\\"\\\"\\n    raw_acc = responses.mean(axis=1)\\n    d0_mask = dosages == 0\\n\\n    # Global d0 mean as fallback\\n    if d0_mask.sum() > 0:\\n        global_d0_mean = float(raw_acc[d0_mask].mean())\\n    else:\\n        global_d0_mean = float(raw_acc.mean())\\n\\n    # Per-scale counterfactual when models have scale info\\n    scales = None\\n    if models is not None:\\n        scales = [m.get(\\\"scale\\\", \\\"\\\") for m in models]\\n    has_multiscale = scales and len(set(s for s in scales if s)) > 1\\n\\n    if has_multiscale:\\n        ground_truth = np.empty(len(dosages))\\n        for i, (d, sc) in enumerate(zip(dosages, scales)):\\n            if d == 0:\\n                ground_truth[i] = raw_acc[i]\\n            else:\\n                same_scale_d0 = [\\n                    j for j in range(len(dosages))\\n                    if dosages[j] == 0 and scales[j] == sc\\n                ]\\n                if same_scale_d0:\\n                    ground_truth[i] = float(raw_acc[same_scale_d0].mean())\\n                else:\\n                    log.warning(\\\"No d0 models for scale %s, using global mean\\\", sc)\\n                    ground_truth[i] = global_d0_mean\\n        unique_scales = sorted(set(scales))\\n        for sc in unique_scales:\\n            sc_d0 = [j for j in range(len(dosages)) if dosages[j] == 0 and scales[j] == sc]\\n            if sc_d0:\\n                log.info(\\\"Ground truth [%s]: d0 mean=%.4f (n=%d)\\\",\\n                         sc, float(raw_acc[sc_d0].mean()), len(sc_d0))\\n    else:\\n        ground_truth = np.full(len(dosages), global_d0_mean)\\n        ground_truth[d0_mask] = raw_acc[d0_mask]\\n\\n    return ground_truth\\n\\n\\ndef load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\n                        pool_mode=False):\\n    \\\"\\\"\\\"Load exp-002 merged signals -> per-model contamination score.\\n    D034: when signal_key is set, use that single signal (e.g. s1_embedding).\\n    Default (signal_key=None): 3-signal RRF fusion (S1+S2+S4).\\n    \\\"\\\"\\\"\\n    scores = []\\n    for m in models:\\n        # Strip _aligned/_para suffixes to match signal directory naming\\n        sig_dirname = m[\\\"dirname\\\"].replace(\\\"_para_aligned\\\", \\\"\\\").replace(\\\"_aligned\\\", \\\"\\\").replace(\\\"_para\\\", \\\"\\\").replace\\n\\n... [截断: 输出过长，省略 20930 字符] ...\\n\\n    help=\\\"exp-002 signals directory. When set, uses detected contamination \\\"\\n             \\\"signals instead of oracle dosage for exposure (D023)\\\")\\n    parser.add_argument(\\n        \\\"--signal-key\\\", type=str, default=None,\\n        help=\\\"Use single signal as exposure (e.g. s1_embedding). \\\"\\n             \\\"Default: RRF fusion of S1+S2+S4 (D034)\\\")\\n    parser.add_argument(\\n        \\\"--tau-source\\\", type=str, default=\\\"exposure\\\",\\n        choices=[\\\"exposure\\\", \\\"oracle\\\", \\\"aggregated\\\"],\\n        help=\\\"Tau source type (default: exposure)\\\")\\n    parser.add_argument(\\n        \\\"--output-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp006/results\\\",\\n        help=\\\"Output directory\\\")\\n    parser.add_argument(\\n        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n        help=\\\"Benchmarks to analyze (default: all)\\\")\\n    parser.add_argument(\\n        \\\"--model-scale\\\", type=str, default=None,\\n        help=\\\"Model scale filter, e.g. '0.5B'.\\\")\\n    parser.add_argument(\\n        '--pool-scales', nargs='+', default=None,\\n        help=\\\"Cross-scale pooling: merge models from multiple scales as IRT \\\"\\n             \\\"examinees. E.g. --pool-scales 0.5B 1.5B 3B. Overrides --model-scale.\\\")\\n    parser.add_argument(\\n        \\\"--data-seed\\\", type=int, default=None,\\n        help=\\\"Data seed filter.\\\")\\n    parser.add_argument(\\n        \\\"--aligned-only\\\", action=\\\"store_true\\\",\\n        help=\\\"Only load aligned-format eval directories.\\\")\\n    parser.add_argument(\\n        '--exclude-models', type=str, default=None,\\n        help=\\\"Comma-separated model name patterns to exclude \\\"\\n             \\\"(e.g. '3B_d000,3B_d005')\\\")\\n    parser.add_argument(\\n        '--require-signals', action='store_true',\\n        help=\\\"Abort if any pooled scale lacks signal coverage \\\"\\n             \\\"(use with --signals-dir)\\\")\\n    parser.add_argument(\\n        '--oracle-exposure', action='store_true',\\n        help=\\\"Use oracle dosage fraction as uniform exposure per model. \\\"\\n             \\\"Mutually exclusive with --require-signals.\\\")\\n\\n    # IRT config\\n    parser.add_argument(\\n        \\\"--model-type\\\",\\n        choices=list(STAN_MODELS.keys()),\\n        default=\\\"4pl_gamma\\\",\\n        help=\\\"IRT model variant (default: 4pl_gamma)\\\")\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--parallel-chains\\\", type=int, default=1,\\n                        help=\\\"CmdStan parallel chains (default: 1 for cgroup safety)\\\")\\n\\n    # Baseline config\\n    parser.add_argument(\\n        \\\"--skip-stan\\\", action=\\\"store_true\\\",\\n        help=\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\")\\n\\n    # Ablation\\n    parser.add_argument(\\n        \\\"--joint-fit\\\", action=\\\"store_true\\\",\\n        help=\\\"Also run joint fitting ablation (shared global gamma)\\\")\\n\\n    parser.add_argument(\\n        \\\"--benchmark\\\", type=str, default=None,\\n        choices=[\\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"mmlu\\\", \\\"humaneval\\\"],\\n        help=\\\"Single benchmark to run (convenience alias for --benchmarks)\\\")\\n\\n    # Dry-run\\n    parser.add_argument(\\n        \\\"--dry-run\\\", action=\\\"store_true\\\",\\n        help=\\\"Quick validation with truncated items\\\")\\n    parser.add_argument(\\n        \\\"--max-items\\\", type=int, default=None,\\n        help=\\\"Max items per benchmark (default: None = no limit)\\\")\\n\\n    args = parser.parse_args()\\n\\n    if getattr(args, 'oracle_exposure', False) and args.require_signals:\\n        parser.error(\\\"--oracle-exposure and --require-signals are mutually exclusive\\\")\\n\\n    # --benchmark (singular) overrides --benchmarks\\n    if args.benchmark and not args.benchmarks:\\n        args.benchmarks = [args.benchmark]\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "9e1f0083-276d-4978-8a6f-bdffa1384a42",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\\\n\\\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\\\nevaluates against ground-truth clean scores (dosage=0 models).\\\\n\\\\nUsage:\\\\n    python run_exp006.py --help\\\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\\\n    python run_exp006.py                                         # full run\\\\n\\\\nDependencies: cmdstanpy, numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom run_irt_calibration import (\\\\n    load_eval_results,\\\\n    load_pooled_eval_results,\\\\n    load_exposure_scores,\\\\n    build_exposure_matrix,\\\\n    run_benchmark_fit,\\\\n    STAN_MODELS,\\\\n)\\\\nfrom baselines import run_all_baselines\\\\nfrom evaluate_calibration import (\\\\n    evaluate_method,\\\\n    format_text_table,\\\\n    format_latex_table,\\\\n)\\\\nfrom joint_fit import run_joint_fit\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n# D018: 3B GSM8K excluded from dose-response analysis\\\\nD018_EXCLUDE = [(\\\\\\\"3B\\\\\\\", \\\\\\\"gsm8k\\\\\\\")]\\\\nD018_EXCLUDE_RULES = [\\\\n    {\\\\\\\"model\\\\\\\": \\\\\\\"3B\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"gsm8k\\\\\\\", \\\\\\\"reason\\\\\\\": \\\\\\\"D018 LoRA damage\\\\\\\"},\\\\n]\\\\n\\\\n\\\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Check D018 exclusion rules for dose-response analysis.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for pattern, bench in rules:\\\\n        if pattern in model_name and benchmark == bench:\\\\n            return True\\\\n    return False\\\\n\\\\n\\\\ndef compute_ground_truth(responses, dosages, models=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\\\n\\\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\\\n    For dosage>0 models, we use the mean d=0 accuracy of the SAME SCALE\\\\n    as the counterfactual reference.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    raw_acc = responses.mean(axis=1)\\\\n    d0_mask = dosages == 0\\\\n\\\\n    # Global d0 mean as fallback\\\\n    if d0_mask.sum() > 0:\\\\n        global_d0_mean = float(raw_acc[d0_mask].mean())\\\\n    else:\\\\n        global_d0_mean = float(raw_acc.mean())\\\\n\\\\n    # Per-scale counterfactual when models have scale info\\\\n    scales = None\\\\n    if models is not None:\\\\n        scales = [m.get(\\\\\\\"scale\\\\\\\", \\\\\\\"\\\\\\\") for m in models]\\\\n    has_multiscale = scales and len(set(s for s in scales if s)) > 1\\\\n\\\\n    if has_multiscale:\\\\n        ground_truth = np.empty(len(dosages))\\\\n        for i, (d, sc) in enumerate(zip(dosages, scales)):\\\\n            if d == 0:\\\\n                ground_truth[i] = raw_acc[i]\\\\n            else:\\\\n                same_scale_d0 = [\\\\n                    j for j in range(len(dosages))\\\\n                    if dosages[j] == 0 and scales[j] == sc\\\\n                ]\\\\n                if same_scale_d0:\\\\n                    ground_truth[i] = float(raw_acc[same_scale_d0].mean())\\\\n                else:\\\\n                    log.warning(\\\\\\\"No d0 models for scale %s, using global mean\\\\\\\", sc)\\\\n                    ground_truth[i] = global_d0_mean\\\\n        unique_scales = sorted(set(scales))\\\\n        for sc in unique_scales:\\\\n            sc_d0 = [j for j in range(len(dosages)) if dosages[j] == 0 and scales[j] == sc]\\\\n            if sc_d0:\\\\n                log.info(\\\\\\\"Ground truth [%s]: d0 mean=%.4f (n=%d)\\\\\\\",\\\\n                         sc, float(raw_acc[sc_d0].mean()), len(sc_d0))\\\\n    else:\\\\n        ground_truth = np.full(len(dosages), global_d0_mean)\\\\n        ground_truth[d0_mask] = raw_acc[d0_mask]\\\\n\\\\n    return ground_truth\\\\n\\\\n\\\\ndef load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\\\n                        pool_mode=False):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load exp-002 merged signals -> per-model contamination score.\\\\n    D034: when signal_key is set, use that single signal (e.g. s1_embedding).\\\\n    Default (signal_key=None): 3-signal RRF fusion (S1+S2+S4).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    scores = []\\\\n    for m in models:\\\\n        # Strip _aligned/_para suffixes to match signal directory naming\\\\n        sig_dirname = m[\\\\\\\"dirname\\\\\\\"].replace(\\\\\\\"_para_aligned\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_aligned\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_para\\\\\\\", \\\\\\\"\\\\\\\").replace\\\\n\\\\n... [截断: 输出过长，省略 20930 字符] ...\\\\n\\\\n    help=\\\\\\\"exp-002 signals directory. When set, uses detected contamination \\\\\\\"\\\\n             \\\\\\\"signals instead of oracle dosage for exposure (D023)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--signal-key\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"Use single signal as exposure (e.g. s1_embedding). \\\\\\\"\\\\n             \\\\\\\"Default: RRF fusion of S1+S2+S4 (D034)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--tau-source\\\\\\\", type=str, default=\\\\\\\"exposure\\\\\\\",\\\\n        choices=[\\\\\\\"exposure\\\\\\\", \\\\\\\"oracle\\\\\\\", \\\\\\\"aggregated\\\\\\\"],\\\\n        help=\\\\\\\"Tau source type (default: exposure)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--output-dir\\\\\\\", type=str,\\\\n        default=\\\\\\\"/root/autodl-tmp/exp006/results\\\\\\\",\\\\n        help=\\\\\\\"Output directory\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--benchmarks\\\\\\\", nargs=\\\\\\\"*\\\\\\\", default=None,\\\\n        help=\\\\\\\"Benchmarks to analyze (default: all)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model-scale\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"Model scale filter, e.g. '0.5B'.\\\\\\\")\\\\n    parser.add_argument(\\\\n        '--pool-scales', nargs='+', default=None,\\\\n        help=\\\\\\\"Cross-scale pooling: merge models from multiple scales as IRT \\\\\\\"\\\\n             \\\\\\\"examinees. E.g. --pool-scales 0.5B 1.5B 3B. Overrides --model-scale.\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--data-seed\\\\\\\", type=int, default=None,\\\\n        help=\\\\\\\"Data seed filter.\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--aligned-only\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Only load aligned-format eval directories.\\\\\\\")\\\\n    parser.add_argument(\\\\n        '--exclude-models', type=str, default=None,\\\\n        help=\\\\\\\"Comma-separated model name patterns to exclude \\\\\\\"\\\\n             \\\\\\\"(e.g. '3B_d000,3B_d005')\\\\\\\")\\\\n    parser.add_argument(\\\\n        '--require-signals', action='store_true',\\\\n        help=\\\\\\\"Abort if any pooled scale lacks signal coverage \\\\\\\"\\\\n             \\\\\\\"(use with --signals-dir)\\\\\\\")\\\\n    parser.add_argument(\\\\n        '--oracle-exposure', action='store_true',\\\\n        help=\\\\\\\"Use oracle dosage fraction as uniform exposure per model. \\\\\\\"\\\\n             \\\\\\\"Mutually exclusive with --require-signals.\\\\\\\")\\\\n\\\\n    # IRT config\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model-type\\\\\\\",\\\\n        choices=list(STAN_MODELS.keys()),\\\\n        default=\\\\\\\"4pl_gamma\\\\\\\",\\\\n        help=\\\\\\\"IRT model variant (default: 4pl_gamma)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--adapt-delta\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--max-treedepth\\\\\\\", type=int, default=12)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--parallel-chains\\\\\\\", type=int, default=1,\\\\n                        help=\\\\\\\"CmdStan parallel chains (default: 1 for cgroup safety)\\\\\\\")\\\\n\\\\n    # Baseline config\\\\n    parser.add_argument(\\\\n        \\\\\\\"--skip-stan\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\\\\\")\\\\n\\\\n    # Ablation\\\\n    parser.add_argument(\\\\n        \\\\\\\"--joint-fit\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Also run joint fitting ablation (shared global gamma)\\\\\\\")\\\\n\\\\n    parser.add_argument(\\\\n        \\\\\\\"--benchmark\\\\\\\", type=str, default=None,\\\\n        choices=[\\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"mmlu\\\\\\\", \\\\\\\"humaneval\\\\\\\"],\\\\n        help=\\\\\\\"Single benchmark to run (convenience alias for --benchmarks)\\\\\\\")\\\\n\\\\n    # Dry-run\\\\n    parser.add_argument(\\\\n        \\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Quick validation with truncated items\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--max-items\\\\\\\", type=int, default=None,\\\\n        help=\\\\\\\"Max items per benchmark (default: None = no limit)\\\\\\\")\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    if getattr(args, 'oracle_exposure', False) and args.require_signals:\\\\n        parser.error(\\\\\\\"--oracle-exposure and --require-signals are mutually exclusive\\\\\\\")\\\\n\\\\n    # --benchmark (singular) overrides --benchmarks\\\\n    if args.benchmark and not args.benchmarks:\\\\n        args.benchmarks = [args.benchmark]\\\\n\\\\n    logging.basicConfig(\\\\n        level=logging.INFO,\\\\n        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    )\\\\n\\\\n    run_pipeline(args)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\n\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\nevaluates against ground-truth clean scores (dosage=0 models).\\n\\nUsage:\\n    python run_exp006.py --help\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\n    python run_exp006.py                                         # full run\\n\\nDependencies: cmdstanpy, numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_pooled_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    run_benchmark_fit,\\n    STAN_MODELS,\\n)\\nfrom baselines import run_all_baselines\\nfrom evaluate_calibration import (\\n    evaluate_method,\\n    format_text_table,\\n    format_latex_table,\\n)\\nfrom joint_fit import run_joint_fit\\n\\nlog = logging.getLogger(__name__)\\n\\n# D018: 3B GSM8K excluded from dose-response analysis\\nD018_EXCLUDE = [(\\\"3B\\\", \\\"gsm8k\\\")]\\nD018_EXCLUDE_RULES = [\\n    {\\\"model\\\": \\\"3B\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"reason\\\": \\\"D018 LoRA damage\\\"},\\n]\\n\\n\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n    \\\"\\\"\\\"Check D018 exclusion rules for dose-response analysis.\\\"\\\"\\\"\\n    for pattern, bench in rules:\\n        if pattern in model_name and benchmark == bench:\\n            return True\\n    return False\\n\\n\\ndef compute_ground_truth(responses, dosages, models=None):\\n    \\\"\\\"\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\n\\n    For dosage-0 models, raw accuracy IS the clean accuracy.\\n    For dosage>0 models, we use the mean d=0 accuracy of the SAME SCALE\\n    as the counterfactual reference.\\n    \\\"\\\"\\\"\\n    raw_acc = responses.mean(axis=1)\\n    d0_mask = dosages == 0\\n\\n    # Global d0 mean as fallback\\n    if d0_mask.sum() > 0:\\n        global_d0_mean = float(raw_acc[d0_mask].mean())\\n    else:\\n        global_d0_mean = float(raw_acc.mean())\\n\\n    # Per-scale counterfactual when models have scale info\\n    scales = None\\n    if models is not None:\\n        scales = [m.get(\\\"scale\\\", \\\"\\\") for m in models]\\n    has_multiscale = scales and len(set(s for s in scales if s)) > 1\\n\\n    if has_multiscale:\\n        ground_truth = np.empty(len(dosages))\\n        for i, (d, sc) in enumerate(zip(dosages, scales)):\\n            if d == 0:\\n                ground_truth[i] = raw_acc[i]\\n            else:\\n                same_scale_d0 = [\\n                    j for j in range(len(dosages))\\n                    if dosages[j] == 0 and scales[j] == sc\\n                ]\\n                if same_scale_d0:\\n                    ground_truth[i] = float(raw_acc[same_scale_d0].mean())\\n                else:\\n                    log.warning(\\\"No d0 models for scale %s, using global mean\\\", sc)\\n                    ground_truth[i] = global_d0_mean\\n        unique_scales = sorted(set(scales))\\n        for sc in unique_scales:\\n            sc_d0 = [j for j in range(len(dosages)) if dosages[j] == 0 and scales[j] == sc]\\n            if sc_d0:\\n                log.info(\\\"Ground truth [%s]: d0 mean=%.4f (n=%d)\\\",\\n                         sc, float(raw_acc[sc_d0].mean()), len(sc_d0))\\n    else:\\n        ground_truth = np.full(len(dosages), global_d0_mean)\\n        ground_truth[d0_mask] = raw_acc[d0_mask]\\n\\n    return ground_truth\\n\\n\\ndef load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\n                        pool_mode=False):\\n    \\\"\\\"\\\"Load exp-002 merged signals -> per-model contamination score.\\n    D034: when signal_key is set, use that single signal (e.g. s1_embedding).\\n    Default (signal_key=None): 3-signal RRF fusion (S1+S2+S4).\\n    \\\"\\\"\\\"\\n    scores = []\\n    for m in models:\\n        # Strip _aligned/_para suffixes to match signal directory naming\\n        sig_dirname = m[\\\"dirname\\\"].replace(\\\"_para_aligned\\\", \\\"\\\").replace(\\\"_aligned\\\", \\\"\\\").replace(\\\"_para\\\", \\\"\\\").replace\\n\\n... [截断: 输出过长，省略 20930 字符] ...\\n\\n    help=\\\"exp-002 signals directory. When set, uses detected contamination \\\"\\n             \\\"signals instead of oracle dosage for exposure (D023)\\\")\\n    parser.add_argument(\\n        \\\"--signal-key\\\", type=str, default=None,\\n        help=\\\"Use single signal as exposure (e.g. s1_embedding). \\\"\\n             \\\"Default: RRF fusion of S1+S2+S4 (D034)\\\")\\n    parser.add_argument(\\n        \\\"--tau-source\\\", type=str, default=\\\"exposure\\\",\\n        choices=[\\\"exposure\\\", \\\"oracle\\\", \\\"aggregated\\\"],\\n        help=\\\"Tau source type (default: exposure)\\\")\\n    parser.add_argument(\\n        \\\"--output-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp006/results\\\",\\n        help=\\\"Output directory\\\")\\n    parser.add_argument(\\n        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n        help=\\\"Benchmarks to analyze (default: all)\\\")\\n    parser.add_argument(\\n        \\\"--model-scale\\\", type=str, default=None,\\n        help=\\\"Model scale filter, e.g. '0.5B'.\\\")\\n    parser.add_argument(\\n        '--pool-scales', nargs='+', default=None,\\n        help=\\\"Cross-scale pooling: merge models from multiple scales as IRT \\\"\\n             \\\"examinees. E.g. --pool-scales 0.5B 1.5B 3B. Overrides --model-scale.\\\")\\n    parser.add_argument(\\n        \\\"--data-seed\\\", type=int, default=None,\\n        help=\\\"Data seed filter.\\\")\\n    parser.add_argument(\\n        \\\"--aligned-only\\\", action=\\\"store_true\\\",\\n        help=\\\"Only load aligned-format eval directories.\\\")\\n    parser.add_argument(\\n        '--exclude-models', type=str, default=None,\\n        help=\\\"Comma-separated model name patterns to exclude \\\"\\n             \\\"(e.g. '3B_d000,3B_d005')\\\")\\n    parser.add_argument(\\n        '--require-signals', action='store_true',\\n        help=\\\"Abort if any pooled scale lacks signal coverage \\\"\\n             \\\"(use with --signals-dir)\\\")\\n    parser.add_argument(\\n        '--oracle-exposure', action='store_true',\\n        help=\\\"Use oracle dosage fraction as uniform exposure per model. \\\"\\n             \\\"Mutually exclusive with --require-signals.\\\")\\n\\n    # IRT config\\n    parser.add_argument(\\n        \\\"--model-type\\\",\\n        choices=list(STAN_MODELS.keys()),\\n        default=\\\"4pl_gamma\\\",\\n        help=\\\"IRT model variant (default: 4pl_gamma)\\\")\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--parallel-chains\\\", type=int, default=1,\\n                        help=\\\"CmdStan parallel chains (default: 1 for cgroup safety)\\\")\\n\\n    # Baseline config\\n    parser.add_argument(\\n        \\\"--skip-stan\\\", action=\\\"store_true\\\",\\n        help=\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\")\\n\\n    # Ablation\\n    parser.add_argument(\\n        \\\"--joint-fit\\\", action=\\\"store_true\\\",\\n        help=\\\"Also run joint fitting ablation (shared global gamma)\\\")\\n\\n    parser.add_argument(\\n        \\\"--benchmark\\\", type=str, default=None,\\n        choices=[\\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"mmlu\\\", \\\"humaneval\\\"],\\n        help=\\\"Single benchmark to run (convenience alias for --benchmarks)\\\")\\n\\n    # Dry-run\\n    parser.add_argument(\\n        \\\"--dry-run\\\", action=\\\"store_true\\\",\\n        help=\\\"Quick validation with truncated items\\\")\\n    parser.add_argument(\\n        \\\"--max-items\\\", type=int, default=None,\\n        help=\\\"Max items per benchmark (default: None = no limit)\\\")\\n\\n    args = parser.parse_args()\\n\\n    if getattr(args, 'oracle_exposure', False) and args.require_signals:\\n        parser.error(\\\"--oracle-exposure and --require-signals are mutually exclusive\\\")\\n\\n    # --benchmark (singular) overrides --benchmarks\\n    if args.benchmark and not args.benchmarks:\\n        args.benchmarks = [args.benchmark]\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to find the key scanning logic. Let me look at the `aggregate_all_models` function in exp003/rrf_aggregation.py, and the `generate_exposure_json` function in both exp002/aggregate_rrf.py and exp003/rrf_aggregation.py. These are the functions that would scan the signals directory. I also need to check `load_pooled_eval_results` and `load_exp002_signals` in exp006 code.
+
+The exp003/rrf_aggregation.py output was truncated. 
+
+Let me trace through the key functions - `aggregate_all_models` and `generate_exposure_json` - to understand how they're scanning and processing the signals, and I need to look at the exp006 code for `load_pooled_eval_results` as well.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "e8a38190-6e44-4a0c-9145-f0a34baf9694",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ecGpjSrU1t62ih6NFfL2T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13811,
+      "cache_read_input_tokens": 26638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13811
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+需要看被截断的关键函数。检查目录扫描逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "f3718947-17ee-403d-8266-80caf42b2d50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ecGpjSrU1t62ih6NFfL2T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13811,
+      "cache_read_input_tokens": 26638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13811
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016Y6shCvK3Xxw2Yg1b77Jbs`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"def aggregate_all_models\\|def generate_exposure_json\\|listdir\\|glob\\|iterdir\\|scandir\\|walk\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "4b1ec317-1543-4667-a6f8-837bc883336e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ecGpjSrU1t62ih6NFfL2T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13811,
+      "cache_read_input_tokens": 26638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13811
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T20:21:18.542Z_
+
+<details><summary>↩ Tool result · `toolu_016Y6shCvK3Xxw2Yg1b77Jbs`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "3667bf39-8470-4e2c-9c87-993896bcf2ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FBeWPc647TBeE9QcFCjF25`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"def aggregate_all_models\\|def generate_exposure_json\\|listdir\\|glob\\|iterdir\\|scandir\\|walk\" /root/contamcal-irt-calibration/exp002/aggregate_rrf.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "83331392-588b-44da-ab2a-c5f45761f15f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ecGpjSrU1t62ih6NFfL2T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13811,
+      "cache_read_input_tokens": 26638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13811
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T20:21:19.546Z_
+
+<details><summary>↩ Tool result · `toolu_01FBeWPc647TBeE9QcFCjF25`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "5caa8078-8f1d-4d4d-84ec-9d407c76203f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UymtSfCGBmeY83NGxkXvQZ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"def load_pooled_eval_results\\|def load_exp002_signals\\|listdir\\|glob\\|iterdir\\|scandir\\|walk\" /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "b73584db-88b5-4bcc-9892-38c4be0e93e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ecGpjSrU1t62ih6NFfL2T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13811,
+      "cache_read_input_tokens": 26638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13811
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T20:21:20.906Z_
+
+<details><summary>↩ Tool result · `toolu_01UymtSfCGBmeY83NGxkXvQZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "f63d048f-03b6-449a-b81c-20889473af82",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Tmu6CbkWAHE7qdwJrMUXvA`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"def load_pooled_eval_results\\|def load_exp002_signals\\|listdir\\|glob\\|iterdir\\|scandir\\|walk\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "4fe42462-d3a6-4876-8125-fcc1e2a1e058",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ecGpjSrU1t62ih6NFfL2T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13811,
+      "cache_read_input_tokens": 26638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13811
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T20:21:21.479Z_
+
+<details><summary>↩ Tool result · `toolu_01Tmu6CbkWAHE7qdwJrMUXvA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "bbcbca7d-9726-4acd-8db9-9854f97e51ca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The pipe character is not allowed. Let me use grep with -E (extended regex) instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "7c128fcf-7efc-422b-b58c-2c6752f6ec4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013EgqVh6U7a9eGBvjC5jF9N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1254,
+      "cache_read_input_tokens": 40449,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1254
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+管道符被禁止了，换成不带管道的 grep。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "3c6db383-9473-49cd-b7a5-80cdb11f9b9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013EgqVh6U7a9eGBvjC5jF9N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1254,
+      "cache_read_input_tokens": 40449,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1254
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016bQpnENiNq61S3oWotZ3pt`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -nE \"(def aggregate_all|def generate_exposure|iterdir|listdir|glob|scandir|os.walk)\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "0d3a6f94-9127-4b35-9c3f-40719350e464",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013EgqVh6U7a9eGBvjC5jF9N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1254,
+      "cache_read_input_tokens": 40449,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1254
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T20:21:26.117Z_
+
+<details><summary>↩ Tool result · `toolu_016bQpnENiNq61S3oWotZ3pt`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "8bd3b12b-ea10-4e46-86fd-0e0f38e3088c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0146hyvEvKfeNPpy7f4xR7Wz`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -nE \"(def aggregate_all|def generate_exposure|iterdir|listdir|glob|scandir|os.walk)\" /root/contamcal-irt-calibration/exp002/aggregate_rrf.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "bf9c5fb1-8795-495d-b2be-bd781561416f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013EgqVh6U7a9eGBvjC5jF9N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1254,
+      "cache_read_input_tokens": 40449,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1254
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T20:21:26.593Z_
+
+<details><summary>↩ Tool result · `toolu_0146hyvEvKfeNPpy7f4xR7Wz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "eeb7f20b-eba3-4831-8baa-babc1a13f82e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015Rvm85myca6mTA6TgRSzW6`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -nE \"(def load_pooled|def load_exp002|iterdir|listdir|glob|scandir|os.walk)\" /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "1be78dbb-0189-4c0e-94bd-3269823a1bcc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013EgqVh6U7a9eGBvjC5jF9N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1254,
+      "cache_read_input_tokens": 40449,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1254
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T20:21:27.532Z_
+
+<details><summary>↩ Tool result · `toolu_015Rvm85myca6mTA6TgRSzW6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "f500c793-b162-45ed-8c55-76a805115763",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N7aBhCbiSnpguDrjTTSJeE`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -nE \"(iterdir|listdir|glob|scandir|os.walk)\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "8e8fa579-4a69-4684-8be1-215bd90e3ca7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013EgqVh6U7a9eGBvjC5jF9N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1254,
+      "cache_read_input_tokens": 40449,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1254
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T20:21:28.240Z_
+
+<details><summary>↩ Tool result · `toolu_01N7aBhCbiSnpguDrjTTSJeE`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "2bbf4042-2f61-486d-aafd-d2289c5b0157",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `|` in the `(...)` regex group is being treated as a shell metacharacter. I need to escape it or use a different approach. Let me use `-e` multiple times instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "0453bbee-9e50-4a51-8bc9-2986aa2fa1f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D3M3HueWz5V6yoA1tB7EtL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 41703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+括号里的 `|` 也被当管道处理了。改用 `-e` 多模式搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "d620693b-7f07-4f61-81d2-676b9d636b80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D3M3HueWz5V6yoA1tB7EtL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 41703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014PGbwFwp4Ujoory7u3ZkoM`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n -e \"iterdir\" -e \"listdir\" -e \"glob\" -e \"scandir\" -e \"os.walk\" -e \"def aggregate_all\" -e \"def generate_exposure\" /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "aed6c21f-a283-40a3-811e-98574f8d86e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D3M3HueWz5V6yoA1tB7EtL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 41703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T20:21:33.627Z_
+
+<details><summary>↩ Tool result · `toolu_014PGbwFwp4Ujoory7u3ZkoM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"178:def aggregate_all_models(signal_root: str, benchmarks: list[str],\\n188:    for model_dir in sorted(signal_root.iterdir()):\\n208:def generate_exposure_json(signal_root: str, benchmarks: list[str],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "92ac1d9d-5a23-494e-b1e1-41401f7a7c87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"178:def aggregate_all_models(signal_root: str, benchmarks: list[str],\\\\n188:    for model_dir in sorted(signal_root.iterdir()):\\\\n208:def generate_exposure_json(signal_root: str, benchmarks: list[str],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"178:def aggregate_all_models(signal_root: str, benchmarks: list[str],\\n188:    for model_dir in sorted(signal_root.iterdir()):\\n208:def generate_exposure_json(signal_root: str, benchmarks: list[str],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SRUQfv9SELuWsF59qUW5et`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n -e \"iterdir\" -e \"listdir\" -e \"glob\" -e \"scandir\" -e \"os.walk\" -e \"def aggregate_all\" -e \"def generate_exposure\" /root/contamcal-irt-calibration/exp002/aggregate_rrf.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "240fe8ff-1387-4205-9d53-2267eaabf6bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D3M3HueWz5V6yoA1tB7EtL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 41703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T20:21:34.514Z_
+
+<details><summary>↩ Tool result · `toolu_01SRUQfv9SELuWsF59qUW5et`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"185:def generate_exposure_json(signal_dir: str, benchmarks: list[str],\\n207:        merged_files = sorted(signal_path.glob(f\\\"*/signals_merged_{bench}.json\\\"))\\n214:            sig_files = sorted(signal_path.glob(f\\\"*/signal_*_{bench}.json\\\"))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "0c070a41-d5e3-40e3-a700-ded9a9e80ec9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"185:def generate_exposure_json(signal_dir: str, benchmarks: list[str],\\\\n207:        merged_files = sorted(signal_path.glob(f\\\\\\\"*/signals_merged_{bench}.json\\\\\\\"))\\\\n214:            sig_files = sorted(signal_path.glob(f\\\\\\\"*/signal_*_{bench}.json\\\\\\\"))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"185:def generate_exposure_json(signal_dir: str, benchmarks: list[str],\\n207:        merged_files = sorted(signal_path.glob(f\\\"*/signals_merged_{bench}.json\\\"))\\n214:            sig_files = sorted(signal_path.glob(f\\\"*/signal_*_{bench}.json\\\"))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0177FPxAYd5jtfukdAbUDvNj`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n -e \"iterdir\" -e \"listdir\" -e \"glob\" -e \"scandir\" -e \"os.walk\" -e \"def load_pooled\" -e \"def load_exp002\" /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "5bc99eef-d03c-4aa4-8167-9b901067ae2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D3M3HueWz5V6yoA1tB7EtL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 41703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0177PysoUkWFyfG4EDDhu6cA`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n -e \"iterdir\" -e \"listdir\" -e \"glob\" -e \"scandir\" -e \"os.walk\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "dd8716e3-d65e-4c41-a443-a44630ceb6b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D3M3HueWz5V6yoA1tB7EtL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 41703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T20:21:36.224Z_
+
+<details><summary>↩ Tool result · `toolu_0177FPxAYd5jtfukdAbUDvNj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"81:        d for d in eval_path.iterdir()\\n202:def load_pooled_eval_results(eval_dir, scales, benchmarks=None, **kwargs):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "120a1264-ea26-42cf-a189-795b4e944a97",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"81:        d for d in eval_path.iterdir()\\\\n202:def load_pooled_eval_results(eval_dir, scales, benchmarks=None, **kwargs):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"81:        d for d in eval_path.iterdir()\\n202:def load_pooled_eval_results(eval_dir, scales, benchmarks=None, **kwargs):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T20:21:36.849Z_
+
+<details><summary>↩ Tool result · `toolu_0177PysoUkWFyfG4EDDhu6cA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"72:        global_d0_mean = float(raw_acc[d0_mask].mean())\\n74:        global_d0_mean = float(raw_acc.mean())\\n95:                    log.warning(\\\"No d0 models for scale %s, using global mean\\\", sc)\\n96:                    ground_truth[i] = global_d0_mean\\n104:        ground_truth = np.full(len(dosages), global_d0_mean)\\n202:    # --exclude-models: global model exclusion by pattern\\n521:        log.info(\\\"ABLATION: Joint fitting (shared global gamma)\\\")\\n541:            \\\"global_gamma\\\": joint_result[\\\"global_gamma\\\"],\\n650:        help=\\\"Also run joint fitting ablation (shared global gamma)\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "b93b8209-ab3d-46dd-9a49-f7f8c72a192b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"72:        global_d0_mean = float(raw_acc[d0_mask].mean())\\\\n74:        global_d0_mean = float(raw_acc.mean())\\\\n95:                    log.warning(\\\\\\\"No d0 models for scale %s, using global mean\\\\\\\", sc)\\\\n96:                    ground_truth[i] = global_d0_mean\\\\n104:        ground_truth = np.full(len(dosages), global_d0_mean)\\\\n202:    # --exclude-models: global model exclusion by pattern\\\\n521:        log.info(\\\\\\\"ABLATION: Joint fitting (shared global gamma)\\\\\\\")\\\\n541:            \\\\\\\"global_gamma\\\\\\\": joint_result[\\\\\\\"global_gamma\\\\\\\"],\\\\n650:        help=\\\\\\\"Also run joint fitting ablation (shared global gamma)\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"72:        global_d0_mean = float(raw_acc[d0_mask].mean())\\n74:        global_d0_mean = float(raw_acc.mean())\\n95:                    log.warning(\\\"No d0 models for scale %s, using global mean\\\", sc)\\n96:                    ground_truth[i] = global_d0_mean\\n104:        ground_truth = np.full(len(dosages), global_d0_mean)\\n202:    # --exclude-models: global model exclusion by pattern\\n521:        log.info(\\\"ABLATION: Joint fitting (shared global gamma)\\\")\\n541:            \\\"global_gamma\\\": joint_result[\\\"global_gamma\\\"],\\n650:        help=\\\"Also run joint fitting ablation (shared global gamma)\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I found the key scanning points:
+
+1. **exp003/rrf_aggregation.py:188** - `aggregate_all_models` uses `signal_root.iterdir()` to scan
+2. **exp003/rrf_aggregation.py:208** - `generate_exposure_json` also likely scans
+3. **exp002/aggregate_rrf.py:207,214** - `generate_exposure_json` uses `signal_path.glob(...)` to scan
+4. **exp006/run_irt_calibration.py:81** - `iterdir()` to scan eval directories
+
+
+5. Now I need to examine each of these functions to see how they're filtering the directories and what conditions they're checking.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "a5d78880-2cea-4aaf-a448-16959d982c86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YV6gkWTVFC8oTnEFj6Tvhn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1460,
+      "cache_read_input_tokens": 42836,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1460
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+找到扫描点了。读取关键函数的详细逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "e611145f-2e2f-48c5-9df9-d7de4e685a16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YV6gkWTVFC8oTnEFj6Tvhn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1460,
+      "cache_read_input_tokens": 42836,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1460
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013Erx6Dw5rkwdUVWx1PiJAp`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -240 /root/contamcal-irt-calibration/exp003/rrf_aggregation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "f4aea05d-5f1f-4805-9de7-5c3b0d3e5edb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YV6gkWTVFC8oTnEFj6Tvhn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1460,
+      "cache_read_input_tokens": 42836,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1460
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T20:21:43.193Z_
+
+<details><summary>↩ Tool result · `toolu_013Erx6Dw5rkwdUVWx1PiJAp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\n\\nFuses per-item signal scores from exp-002 into composite exposure scores\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\n\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_NAMES = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\nDEFAULT_K = 60\\n\\nSIGNAL_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d050\\\", \\\"d100\\\"]\\nDOSAGE_NUM = {\\\"d000\\\": 0, \\\"d005\\\": 5, \\\"d025\\\": 25, \\\"d050\\\": 50, \\\"d100\\\": 100}\\n\\n\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\n    \\\"\\\"\\\"Load per-item signals from exp-002 output directory.\\n\\n    Tries signals_merged_{benchmark}.json first, falls back to\\n    loading and merging individual signal files.\\n    \\\"\\\"\\\"\\n    signal_dir = Path(signal_dir)\\n\\n    merged = signal_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged.exists():\\n        with open(merged) as f:\\n            return json.load(f)\\n\\n    items_by_idx = {}\\n    sig_name_map = {\\n        \\\"s1_embedding\\\": \\\"embedding\\\",\\n        \\\"s2_minkpp\\\": \\\"minkpp\\\",\\n        \\\"s3_constat\\\": \\\"constat\\\",\\n        \\\"s4_selfcritique\\\": \\\"selfcritique\\\",\\n    }\\n    for sig_key, sig_name in sig_name_map.items():\\n        sig_file = signal_dir / f\\\"signal_{sig_name}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            continue\\n        with open(sig_file) as f:\\n            data = json.load(f)\\n        for item in data:\\n            idx = item[\\\"index\\\"]\\n            if idx not in items_by_idx:\\n                items_by_idx[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": benchmark}\\n            items_by_idx[idx].update(item)\\n\\n    if not items_by_idx:\\n        logger.warning(\\\"No signal files found in %s for %s\\\", signal_dir, benchmark)\\n        return []\\n\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\n\\n\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\n    \\\"\\\"\\\"Return signal keys that have non-null, non-zero values.\\\"\\\"\\\"\\n    available = []\\n    for sig in SIGNAL_KEYS:\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\n            available.append(sig)\\n    return available\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank from 1 (highest score = most suspicious) to N, with tie averaging.\\\"\\\"\\\"\\n    n = len(scores)\\n    order = np.argsort(-scores)\\n    ranks = np.empty(n, dtype=float)\\n    i = 0\\n    while i < n:\\n        j = i\\n        while j < n - 1 and scores[order[j + 1]] == scores[order[j]]:\\n            j += 1\\n        avg_rank = (i + j) / 2.0 + 1\\n        for k_idx in range(i, j + 1):\\n            ranks[order[k_idx]] = avg_rank\\n        i = j + 1\\n    return ranks\\n\\n\\ndef rrf_fuse(items: list[dict], k: int = DEFAULT_K,\\n             signals: list[str] = None,\\n             weights: dict = None) -> np.ndarray:\\n    \\\"\\\"\\\"Reciprocal Rank Fusion: score(j) = sum_s w_s / (k + rank_s(j))\\n\\n    All signals oriented so higher = more suspicious.\\n    Returns raw (unnormalized) RRF scores.\\n    \\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n    if not signals:\\n        return np.zeros(len(items))\\n\\n    n = len(items)\\n    if weights is None:\\n        weights = {s: 1.0 for s in signals}\\n\\n    rrf_scores = np.zeros(n)\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        ranks = compute_ranks(vals)\\n        rrf_scores += weights.get(sig, 1.0) / (k + ranks)\\n\\n    return rrf_scores\\n\\n\\ndef normalize_minmax(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Min-max normalize to [0, 1].\\\"\\\"\\\"\\n    mn, mx = scores.mi\\n\\n... [截断: 输出过长，省略 45 字符] ...\\n\\n     return np.full_like(scores, 0.5)\\n    return (scores - mn) / (mx - mn)\\n\\n\\ndef aggregate_single(signal_dir: str, benchmark: str, k: int = DEFAULT_K,\\n                     signals: list[str] = None, weights: dict = None,\\n                     normalize: bool = True) -> list[dict]:\\n    \\\"\\\"\\\"Full RRF pipeline for one signal directory and benchmark.\\n\\n    Returns list of {\\\"index\\\", \\\"benchmark\\\", \\\"exposure\\\", \\\"rrf_raw\\\", \\\"rank_*\\\"}.\\n    \\\"\\\"\\\"\\n    items = load_signal_files(signal_dir, benchmark)\\n    if not items:\\n        return []\\n\\n    active = signals or detect_available_signals(items)\\n    n = len(items)\\n\\n    # Precompute rank matrix\\n    rank_matrix = {}\\n    for sig in active:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        rank_matrix[sig] = compute_ranks(vals)\\n\\n    # RRF fusion\\n    w = weights or {s: 1.0 for s in active}\\n    rrf_scores = np.zeros(n)\\n    for sig in active:\\n        rrf_scores += w.get(sig, 1.0) / (k + rank_matrix[sig])\\n\\n    exposure = normalize_minmax(rrf_scores) if normalize else rrf_scores\\n\\n    results = []\\n    for i, item in enumerate(items):\\n        rec = {\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item.get(\\\"benchmark\\\", benchmark),\\n            \\\"exposure\\\": float(exposure[i]),\\n            \\\"rrf_raw\\\": float(rrf_scores[i]),\\n        }\\n        for sig in active:\\n            rec[f\\\"rank_{sig}\\\"] = int(rank_matrix[sig][i])\\n        results.append(rec)\\n\\n    return results\\n\\n\\ndef aggregate_all_models(signal_root: str, benchmarks: list[str],\\n                         k: int = DEFAULT_K, normalize: bool = True,\\n                         dosage_filter: str = None) -> dict:\\n    \\\"\\\"\\\"Aggregate across all model directories in signal_root.\\n\\n    Returns {model_id: {benchmark: [per-item results]}}\\n    \\\"\\\"\\\"\\n    signal_root = Path(signal_root)\\n    results = {}\\n\\n    for model_dir in sorted(signal_root.iterdir()):\\n        if not model_dir.is_dir():\\n            continue\\n        model_id = model_dir.name\\n        if dosage_filter and dosage_filter not in model_id:\\n            continue\\n\\n        results[model_id] = {}\\n        for bench in benchmarks:\\n            agg = aggregate_single(str(model_dir), bench, k=k, normalize=normalize)\\n            if agg:\\n                results[model_id][bench] = agg\\n                logger.info(\\\"%s/%s: %d items, exposure [%.4f, %.4f]\\\",\\n                            model_id, bench, len(agg),\\n                            min(r[\\\"exposure\\\"] for r in agg),\\n                            max(r[\\\"exposure\\\"] for r in agg))\\n\\n    return results\\n\\n\\ndef generate_exposure_json(signal_root: str, benchmarks: list[str],\\n                           k: int = DEFAULT_K, normalize: bool = True,\\n                           dosage_filter: str = None) -> dict:\\n    \\\"\\\"\\\"Generate exposure_scores.json for exp-006 IRT calibration.\\n\\n    Output format per model:\\n      {model_id: {benchmark: {\\\"exposure_scores\\\": [...], \\\"item_count\\\": N, \\\"signals_used\\\": [...]}}}\\n    \\\"\\\"\\\"\\n    all_results = aggregate_all_models(signal_root, benchmarks, k=k,\\n                                       normalize=normalize,\\n                                       dosage_filter=dosage_filter)\\n    exposure = {}\\n    for model_id, bench_data in all_results.items():\\n        exposure[model_id] = {}\\n        for bench, items in bench_data.items():\\n            signals_used = sorted(set(\\n                key.replace(\\\"rank_\\\", \\\"\\\")\\n                for item in items for key in item if key.startswith(\\\"rank_\\\")\\n            ))\\n            exposure[model_id][bench] = {\\n                \\\"exposure_scores\\\": [item[\\\"exposure\\\"] for item in items],\\n                \\\"item_count\\\": len(items),\\n                \\\"signals_used\\\": signals_used,\\n            }\\n\\n    # Compute cross-model aggregated exposure (mean over all models per item)\\n    aggregated = {}\\n    all_benchmarks = set()\\n    for bd in exposure.values():\\n        all_benchmarks.update(bd.keys())\\n    for bench in sorted(all_benchmarks):\\n        scores_per_model = []\\n        for model_id_key, bd in exposure.items():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "ab2c523e-a5a6-4eab-8635-cbda0686eb44",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\\\n\\\\nFuses per-item signal scores from exp-002 into composite exposure scores\\\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\\\n\\\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nSIGNAL_NAMES = {\\\\n    \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"Embedding\\\\\\\",\\\\n    \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"Min-K++\\\\\\\",\\\\n    \\\\\\\"s3_constat\\\\\\\": \\\\\\\"ConStat\\\\\\\",\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"Self-Critique\\\\\\\",\\\\n}\\\\nDEFAULT_K = 60\\\\n\\\\nSIGNAL_ROOT = \\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\"\\\\nLABELS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nDOSAGES = [\\\\\\\"d000\\\\\\\", \\\\\\\"d005\\\\\\\", \\\\\\\"d025\\\\\\\", \\\\\\\"d050\\\\\\\", \\\\\\\"d100\\\\\\\"]\\\\nDOSAGE_NUM = {\\\\\\\"d000\\\\\\\": 0, \\\\\\\"d005\\\\\\\": 5, \\\\\\\"d025\\\\\\\": 25, \\\\\\\"d050\\\\\\\": 50, \\\\\\\"d100\\\\\\\": 100}\\\\n\\\\n\\\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load per-item signals from exp-002 output directory.\\\\n\\\\n    Tries signals_merged_{benchmark}.json first, falls back to\\\\n    loading and merging individual signal files.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    signal_dir = Path(signal_dir)\\\\n\\\\n    merged = signal_dir / f\\\\\\\"signals_merged_{benchmark}.json\\\\\\\"\\\\n    if merged.exists():\\\\n        with open(merged) as f:\\\\n            return json.load(f)\\\\n\\\\n    items_by_idx = {}\\\\n    sig_name_map = {\\\\n        \\\\\\\"s1_embedding\\\\\\\": \\\\\\\"embedding\\\\\\\",\\\\n        \\\\\\\"s2_minkpp\\\\\\\": \\\\\\\"minkpp\\\\\\\",\\\\n        \\\\\\\"s3_constat\\\\\\\": \\\\\\\"constat\\\\\\\",\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": \\\\\\\"selfcritique\\\\\\\",\\\\n    }\\\\n    for sig_key, sig_name in sig_name_map.items():\\\\n        sig_file = signal_dir / f\\\\\\\"signal_{sig_name}_{benchmark}.json\\\\\\\"\\\\n        if not sig_file.exists():\\\\n            continue\\\\n        with open(sig_file) as f:\\\\n            data = json.load(f)\\\\n        for item in data:\\\\n            idx = item[\\\\\\\"index\\\\\\\"]\\\\n            if idx not in items_by_idx:\\\\n                items_by_idx[idx] = {\\\\\\\"index\\\\\\\": idx, \\\\\\\"benchmark\\\\\\\": benchmark}\\\\n            items_by_idx[idx].update(item)\\\\n\\\\n    if not items_by_idx:\\\\n        logger.warning(\\\\\\\"No signal files found in %s for %s\\\\\\\", signal_dir, benchmark)\\\\n        return []\\\\n\\\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\\\n\\\\n\\\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return signal keys that have non-null, non-zero values.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    available = []\\\\n    for sig in SIGNAL_KEYS:\\\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\\\n            available.append(sig)\\\\n    return available\\\\n\\\\n\\\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Rank from 1 (highest score = most suspicious) to N, with tie averaging.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(scores)\\\\n    order = np.argsort(-scores)\\\\n    ranks = np.empty(n, dtype=float)\\\\n    i = 0\\\\n    while i < n:\\\\n        j = i\\\\n        while j < n - 1 and scores[order[j + 1]] == scores[order[j]]:\\\\n            j += 1\\\\n        avg_rank = (i + j) / 2.0 + 1\\\\n        for k_idx in range(i, j + 1):\\\\n            ranks[order[k_idx]] = avg_rank\\\\n        i = j + 1\\\\n    return ranks\\\\n\\\\n\\\\ndef rrf_fuse(items: list[dict], k: int = DEFAULT_K,\\\\n             signals: list[str] = None,\\\\n             weights: dict = None) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Reciprocal Rank Fusion: score(j) = sum_s w_s / (k + rank_s(j))\\\\n\\\\n    All signals oriented so higher = more suspicious.\\\\n    Returns raw (unnormalized) RRF scores.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if signals is None:\\\\n        signals = detect_available_signals(items)\\\\n    if not signals:\\\\n        return np.zeros(len(items))\\\\n\\\\n    n = len(items)\\\\n    if weights is None:\\\\n        weights = {s: 1.0 for s in signals}\\\\n\\\\n    rrf_scores = np.zeros(n)\\\\n    for sig in signals:\\\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\\\n        ranks = compute_ranks(vals)\\\\n        rrf_scores += weights.get(sig, 1.0) / (k + ranks)\\\\n\\\\n    return rrf_scores\\\\n\\\\n\\\\ndef normalize_minmax(scores: np.ndarray) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Min-max normalize to [0, 1].\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    mn, mx = scores.mi\\\\n\\\\n... [截断: 输出过长，省略 45 字符] ...\\\\n\\\\n     return np.full_like(scores, 0.5)\\\\n    return (scores - mn) / (mx - mn)\\\\n\\\\n\\\\ndef aggregate_single(signal_dir: str, benchmark: str, k: int = DEFAULT_K,\\\\n                     signals: list[str] = None, weights: dict = None,\\\\n                     normalize: bool = True) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Full RRF pipeline for one signal directory and benchmark.\\\\n\\\\n    Returns list of {\\\\\\\"index\\\\\\\", \\\\\\\"benchmark\\\\\\\", \\\\\\\"exposure\\\\\\\", \\\\\\\"rrf_raw\\\\\\\", \\\\\\\"rank_*\\\\\\\"}.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    items = load_signal_files(signal_dir, benchmark)\\\\n    if not items:\\\\n        return []\\\\n\\\\n    active = signals or detect_available_signals(items)\\\\n    n = len(items)\\\\n\\\\n    # Precompute rank matrix\\\\n    rank_matrix = {}\\\\n    for sig in active:\\\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\\\n        rank_matrix[sig] = compute_ranks(vals)\\\\n\\\\n    # RRF fusion\\\\n    w = weights or {s: 1.0 for s in active}\\\\n    rrf_scores = np.zeros(n)\\\\n    for sig in active:\\\\n        rrf_scores += w.get(sig, 1.0) / (k + rank_matrix[sig])\\\\n\\\\n    exposure = normalize_minmax(rrf_scores) if normalize else rrf_scores\\\\n\\\\n    results = []\\\\n    for i, item in enumerate(items):\\\\n        rec = {\\\\n            \\\\\\\"index\\\\\\\": item[\\\\\\\"index\\\\\\\"],\\\\n            \\\\\\\"benchmark\\\\\\\": item.get(\\\\\\\"benchmark\\\\\\\", benchmark),\\\\n            \\\\\\\"exposure\\\\\\\": float(exposure[i]),\\\\n            \\\\\\\"rrf_raw\\\\\\\": float(rrf_scores[i]),\\\\n        }\\\\n        for sig in active:\\\\n            rec[f\\\\\\\"rank_{sig}\\\\\\\"] = int(rank_matrix[sig][i])\\\\n        results.append(rec)\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef aggregate_all_models(signal_root: str, benchmarks: list[str],\\\\n                         k: int = DEFAULT_K, normalize: bool = True,\\\\n                         dosage_filter: str = None) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Aggregate across all model directories in signal_root.\\\\n\\\\n    Returns {model_id: {benchmark: [per-item results]}}\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    signal_root = Path(signal_root)\\\\n    results = {}\\\\n\\\\n    for model_dir in sorted(signal_root.iterdir()):\\\\n        if not model_dir.is_dir():\\\\n            continue\\\\n        model_id = model_dir.name\\\\n        if dosage_filter and dosage_filter not in model_id:\\\\n            continue\\\\n\\\\n        results[model_id] = {}\\\\n        for bench in benchmarks:\\\\n            agg = aggregate_single(str(model_dir), bench, k=k, normalize=normalize)\\\\n            if agg:\\\\n                results[model_id][bench] = agg\\\\n                logger.info(\\\\\\\"%s/%s: %d items, exposure [%.4f, %.4f]\\\\\\\",\\\\n                            model_id, bench, len(agg),\\\\n                            min(r[\\\\\\\"exposure\\\\\\\"] for r in agg),\\\\n                            max(r[\\\\\\\"exposure\\\\\\\"] for r in agg))\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef generate_exposure_json(signal_root: str, benchmarks: list[str],\\\\n                           k: int = DEFAULT_K, normalize: bool = True,\\\\n                           dosage_filter: str = None) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Generate exposure_scores.json for exp-006 IRT calibration.\\\\n\\\\n    Output format per model:\\\\n      {model_id: {benchmark: {\\\\\\\"exposure_scores\\\\\\\": [...], \\\\\\\"item_count\\\\\\\": N, \\\\\\\"signals_used\\\\\\\": [...]}}}\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_results = aggregate_all_models(signal_root, benchmarks, k=k,\\\\n                                       normalize=normalize,\\\\n                                       dosage_filter=dosage_filter)\\\\n    exposure = {}\\\\n    for model_id, bench_data in all_results.items():\\\\n        exposure[model_id] = {}\\\\n        for bench, items in bench_data.items():\\\\n            signals_used = sorted(set(\\\\n                key.replace(\\\\\\\"rank_\\\\\\\", \\\\\\\"\\\\\\\")\\\\n                for item in items for key in item if key.startswith(\\\\\\\"rank_\\\\\\\")\\\\n            ))\\\\n            exposure[model_id][bench] = {\\\\n                \\\\\\\"exposure_scores\\\\\\\": [item[\\\\\\\"exposure\\\\\\\"] for item in items],\\\\n                \\\\\\\"item_count\\\\\\\": len(items),\\\\n                \\\\\\\"signals_used\\\\\\\": signals_used,\\\\n            }\\\\n\\\\n    # Compute cross-model aggregated exposure (mean over all models per item)\\\\n    aggregated = {}\\\\n    all_benchmarks = set()\\\\n    for bd in exposure.values():\\\\n        all_benchmarks.update(bd.keys())\\\\n    for bench in sorted(all_benchmarks):\\\\n        scores_per_model = []\\\\n        for model_id_key, bd in exposure.items():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-003: RRF Aggregation of Contamination Detection Signals.\\n\\nFuses per-item signal scores from exp-002 into composite exposure scores\\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\\n\\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nSIGNAL_NAMES = {\\n    \\\"s1_embedding\\\": \\\"Embedding\\\",\\n    \\\"s2_minkpp\\\": \\\"Min-K++\\\",\\n    \\\"s3_constat\\\": \\\"ConStat\\\",\\n    \\\"s4_selfcritique\\\": \\\"Self-Critique\\\",\\n}\\nDEFAULT_K = 60\\n\\nSIGNAL_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d050\\\", \\\"d100\\\"]\\nDOSAGE_NUM = {\\\"d000\\\": 0, \\\"d005\\\": 5, \\\"d025\\\": 25, \\\"d050\\\": 50, \\\"d100\\\": 100}\\n\\n\\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\\n    \\\"\\\"\\\"Load per-item signals from exp-002 output directory.\\n\\n    Tries signals_merged_{benchmark}.json first, falls back to\\n    loading and merging individual signal files.\\n    \\\"\\\"\\\"\\n    signal_dir = Path(signal_dir)\\n\\n    merged = signal_dir / f\\\"signals_merged_{benchmark}.json\\\"\\n    if merged.exists():\\n        with open(merged) as f:\\n            return json.load(f)\\n\\n    items_by_idx = {}\\n    sig_name_map = {\\n        \\\"s1_embedding\\\": \\\"embedding\\\",\\n        \\\"s2_minkpp\\\": \\\"minkpp\\\",\\n        \\\"s3_constat\\\": \\\"constat\\\",\\n        \\\"s4_selfcritique\\\": \\\"selfcritique\\\",\\n    }\\n    for sig_key, sig_name in sig_name_map.items():\\n        sig_file = signal_dir / f\\\"signal_{sig_name}_{benchmark}.json\\\"\\n        if not sig_file.exists():\\n            continue\\n        with open(sig_file) as f:\\n            data = json.load(f)\\n        for item in data:\\n            idx = item[\\\"index\\\"]\\n            if idx not in items_by_idx:\\n                items_by_idx[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": benchmark}\\n            items_by_idx[idx].update(item)\\n\\n    if not items_by_idx:\\n        logger.warning(\\\"No signal files found in %s for %s\\\", signal_dir, benchmark)\\n        return []\\n\\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\\n\\n\\ndef detect_available_signals(items: list[dict]) -> list[str]:\\n    \\\"\\\"\\\"Return signal keys that have non-null, non-zero values.\\\"\\\"\\\"\\n    available = []\\n    for sig in SIGNAL_KEYS:\\n        if any(item.get(sig) not in (None, 0.0) for item in items):\\n            available.append(sig)\\n    return available\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank from 1 (highest score = most suspicious) to N, with tie averaging.\\\"\\\"\\\"\\n    n = len(scores)\\n    order = np.argsort(-scores)\\n    ranks = np.empty(n, dtype=float)\\n    i = 0\\n    while i < n:\\n        j = i\\n        while j < n - 1 and scores[order[j + 1]] == scores[order[j]]:\\n            j += 1\\n        avg_rank = (i + j) / 2.0 + 1\\n        for k_idx in range(i, j + 1):\\n            ranks[order[k_idx]] = avg_rank\\n        i = j + 1\\n    return ranks\\n\\n\\ndef rrf_fuse(items: list[dict], k: int = DEFAULT_K,\\n             signals: list[str] = None,\\n             weights: dict = None) -> np.ndarray:\\n    \\\"\\\"\\\"Reciprocal Rank Fusion: score(j) = sum_s w_s / (k + rank_s(j))\\n\\n    All signals oriented so higher = more suspicious.\\n    Returns raw (unnormalized) RRF scores.\\n    \\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n    if not signals:\\n        return np.zeros(len(items))\\n\\n    n = len(items)\\n    if weights is None:\\n        weights = {s: 1.0 for s in signals}\\n\\n    rrf_scores = np.zeros(n)\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        ranks = compute_ranks(vals)\\n        rrf_scores += weights.get(sig, 1.0) / (k + ranks)\\n\\n    return rrf_scores\\n\\n\\ndef normalize_minmax(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Min-max normalize to [0, 1].\\\"\\\"\\\"\\n    mn, mx = scores.mi\\n\\n... [截断: 输出过长，省略 45 字符] ...\\n\\n     return np.full_like(scores, 0.5)\\n    return (scores - mn) / (mx - mn)\\n\\n\\ndef aggregate_single(signal_dir: str, benchmark: str, k: int = DEFAULT_K,\\n                     signals: list[str] = None, weights: dict = None,\\n                     normalize: bool = True) -> list[dict]:\\n    \\\"\\\"\\\"Full RRF pipeline for one signal directory and benchmark.\\n\\n    Returns list of {\\\"index\\\", \\\"benchmark\\\", \\\"exposure\\\", \\\"rrf_raw\\\", \\\"rank_*\\\"}.\\n    \\\"\\\"\\\"\\n    items = load_signal_files(signal_dir, benchmark)\\n    if not items:\\n        return []\\n\\n    active = signals or detect_available_signals(items)\\n    n = len(items)\\n\\n    # Precompute rank matrix\\n    rank_matrix = {}\\n    for sig in active:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        rank_matrix[sig] = compute_ranks(vals)\\n\\n    # RRF fusion\\n    w = weights or {s: 1.0 for s in active}\\n    rrf_scores = np.zeros(n)\\n    for sig in active:\\n        rrf_scores += w.get(sig, 1.0) / (k + rank_matrix[sig])\\n\\n    exposure = normalize_minmax(rrf_scores) if normalize else rrf_scores\\n\\n    results = []\\n    for i, item in enumerate(items):\\n        rec = {\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item.get(\\\"benchmark\\\", benchmark),\\n            \\\"exposure\\\": float(exposure[i]),\\n            \\\"rrf_raw\\\": float(rrf_scores[i]),\\n        }\\n        for sig in active:\\n            rec[f\\\"rank_{sig}\\\"] = int(rank_matrix[sig][i])\\n        results.append(rec)\\n\\n    return results\\n\\n\\ndef aggregate_all_models(signal_root: str, benchmarks: list[str],\\n                         k: int = DEFAULT_K, normalize: bool = True,\\n                         dosage_filter: str = None) -> dict:\\n    \\\"\\\"\\\"Aggregate across all model directories in signal_root.\\n\\n    Returns {model_id: {benchmark: [per-item results]}}\\n    \\\"\\\"\\\"\\n    signal_root = Path(signal_root)\\n    results = {}\\n\\n    for model_dir in sorted(signal_root.iterdir()):\\n        if not model_dir.is_dir():\\n            continue\\n        model_id = model_dir.name\\n        if dosage_filter and dosage_filter not in model_id:\\n            continue\\n\\n        results[model_id] = {}\\n        for bench in benchmarks:\\n            agg = aggregate_single(str(model_dir), bench, k=k, normalize=normalize)\\n            if agg:\\n                results[model_id][bench] = agg\\n                logger.info(\\\"%s/%s: %d items, exposure [%.4f, %.4f]\\\",\\n                            model_id, bench, len(agg),\\n                            min(r[\\\"exposure\\\"] for r in agg),\\n                            max(r[\\\"exposure\\\"] for r in agg))\\n\\n    return results\\n\\n\\ndef generate_exposure_json(signal_root: str, benchmarks: list[str],\\n                           k: int = DEFAULT_K, normalize: bool = True,\\n                           dosage_filter: str = None) -> dict:\\n    \\\"\\\"\\\"Generate exposure_scores.json for exp-006 IRT calibration.\\n\\n    Output format per model:\\n      {model_id: {benchmark: {\\\"exposure_scores\\\": [...], \\\"item_count\\\": N, \\\"signals_used\\\": [...]}}}\\n    \\\"\\\"\\\"\\n    all_results = aggregate_all_models(signal_root, benchmarks, k=k,\\n                                       normalize=normalize,\\n                                       dosage_filter=dosage_filter)\\n    exposure = {}\\n    for model_id, bench_data in all_results.items():\\n        exposure[model_id] = {}\\n        for bench, items in bench_data.items():\\n            signals_used = sorted(set(\\n                key.replace(\\\"rank_\\\", \\\"\\\")\\n                for item in items for key in item if key.startswith(\\\"rank_\\\")\\n            ))\\n            exposure[model_id][bench] = {\\n                \\\"exposure_scores\\\": [item[\\\"exposure\\\"] for item in items],\\n                \\\"item_count\\\": len(items),\\n                \\\"signals_used\\\": signals_used,\\n            }\\n\\n    # Compute cross-model aggregated exposure (mean over all models per item)\\n    aggregated = {}\\n    all_benchmarks = set()\\n    for bd in exposure.values():\\n        all_benchmarks.update(bd.keys())\\n    for bench in sorted(all_benchmarks):\\n        scores_per_model = []\\n        for model_id_key, bd in exposure.items():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01P1rAQ2PNEukSWkWPsYEFpV`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -240 /root/contamcal-irt-calibration/exp002/aggregate_rrf.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "952adf14-3bf6-4ac5-9a26-f54e391ff972",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YV6gkWTVFC8oTnEFj6Tvhn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1460,
+      "cache_read_input_tokens": 42836,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1460
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T20:21:43.712Z_
+
+<details><summary>↩ Tool result · `toolu_01P1rAQ2PNEukSWkWPsYEFpV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nRRF (Reciprocal Rank Fusion) aggregation of contamination signals.\\n\\nFuses 4 per-item signal scores into a single exposure score using RRF\\n(Cormack et al. 2009). Also implements ablation variants: equal-weight\\nrank averaging and single-signal baselines.\\n\\nInput:  Per-item signal scores (JSON from compute_signals.py)\\nOutput: Per-model-item fused exposure scores + signal survival AUC matrix\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nRRF_K = 60\\n\\n\\ndef detect_available_signals(items: list[dict], candidates: list[str] = None) -> list[str]:\\n    \\\"\\\"\\\"Auto-detect which signals have non-trivial values (not all null/zero).\\\"\\\"\\\"\\n    if candidates is None:\\n        candidates = SIGNAL_KEYS\\n    available = []\\n    for sig in candidates:\\n        vals = [item.get(sig) for item in items]\\n        if any(v is not None and v != 0.0 for v in vals):\\n            available.append(sig)\\n    return available\\n\\n\\ndef load_signal_data(signal_files: list[str]) -> list[dict]:\\n    \\\"\\\"\\\"Load and merge signal files. Each file contains a list of per-item dicts.\\\"\\\"\\\"\\n    merged = {}\\n    for fpath in signal_files:\\n        with open(fpath) as f:\\n            data = json.load(f)\\n        for item in data:\\n            idx = item[\\\"index\\\"]\\n            if idx not in merged:\\n                merged[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\")}\\n            merged[idx].update(item)\\n    return [merged[k] for k in sorted(merged)]\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank items from 1 (highest score = most suspicious) to N.\\\"\\\"\\\"\\n    order = np.argsort(-scores)  # descending\\n    ranks = np.empty_like(order)\\n    ranks[order] = np.arange(1, len(scores) + 1)\\n    return ranks\\n\\n\\ndef rrf_aggregate(items: list[dict], k: int = RRF_K,\\n                  signals: list[str] = None) -> list[dict]:\\n    \\\"\\\"\\\"\\n    RRF fusion: score_j = sum_s 1/(k + rank_s(j))\\n\\n    All signals are oriented so higher = more suspicious.\\n    \\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n        if not signals:\\n            logger.warning(\\\"No signals with non-trivial values found\\\")\\n            return []\\n\\n    n = len(items)\\n    if n == 0:\\n        return []\\n\\n    # Extract score vectors\\n    score_matrix = {}\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        score_matrix[sig] = vals\\n\\n    # Compute ranks for each signal\\n    rank_matrix = {}\\n    for sig in signals:\\n        rank_matrix[sig] = compute_ranks(score_matrix[sig])\\n\\n    # RRF fusion\\n    rrf_scores = np.zeros(n)\\n    for sig in signals:\\n        rrf_scores += 1.0 / (k + rank_matrix[sig])\\n\\n    # Build output\\n    results = []\\n    for i, item in enumerate(items):\\n        record = {\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\"),\\n            \\\"rrf_score\\\": float(rrf_scores[i]),\\n        }\\n        for sig in signals:\\n            record[f\\\"rank_{sig}\\\"] = int(rank_matrix[sig][i])\\n        results.append(record)\\n\\n    return results\\n\\n\\ndef rank_average_aggregate(items: list[dict],\\n                           signals: list[str] = None) -> list[dict]:\\n    \\\"\\\"\\\"Equal-weight rank averaging (ablation baseline).\\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n        if not signals:\\n            return []\\n\\n    n = len(items)\\n    if n == 0:\\n        return []\\n\\n    rank_matrix = {}\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        rank_matrix[sig] = compute_ranks(vals)\\n\\n    avg_ranks = np.zeros(n)\\n    for sig in signals:\\n        avg_ranks += rank_matrix[sig]\\n    avg_ranks /= len(signals)\\n\\n    # Lower average rank = more suspicious, so score = -avg_rank for consistent ordering\\n    results = []\\n    for i, item in enumerate(items):\\n        results.append({\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\"),\\n            \\\"rank_avg_score\\\": float(-avg_ranks[i]),\\n            \\\"mean_rank\\\": float(avg_ranks[i]),\\n        })\\n    return results\\n\\n\\ndef single_signal_scores(items: list[dict]) -> dict[str, list[dict]]:\\n    \\\"\\\"\\\"Single-signal ablation: each signal alone as the exposure score.\\\"\\\"\\\"\\n    results = {}\\n    for sig in SIGNAL_KEYS:\\n        vals = [{\\\"index\\\": item[\\\"index\\\"], \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\"),\\n                 f\\\"single_{sig}\\\": item.get(sig, 0.0) or 0.0} for item in items]\\n        results[sig] = vals\\n    return results\\n\\n\\ndef compute_signal_auc(items: list[dict], labels: list[int]) -> dict:\\n    \\\"\\\"\\\"\\n    Compute per-signal AUC if ground-truth contamination labels are available.\\n    Returns signal survival AUC matrix.\\n    \\\"\\\"\\\"\\n    from sklearn.metrics import roc_auc_score\\n\\n    labels_arr = np.array(labels)\\n    if len(np.unique(labels_arr)) < 2:\\n        logger.warning(\\\"Cannot compute AUC: labels have only one class\\\")\\n        return {}\\n\\n    auc_results = {}\\n    for sig in SIGNAL_KEYS:\\n        scores = np.array([item.get(sig, 0.0) or 0.0 for item in items])\\n        try:\\n            auc = roc_auc_score(labels_arr, scores)\\n            auc_results[sig] = float(auc)\\n        except ValueError as e:\\n            logger.warning(\\\"AUC computation failed for %s: %s\\\", sig, e)\\n            auc_results[sig] = None\\n\\n    # Also compute AUC for RRF fused score\\n    rrf_results = rrf_aggregate(items)\\n    rrf_scores = np.array([r[\\\"rrf_score\\\"] for r in rrf_results])\\n    try:\\n        auc_results[\\\"rrf_fused\\\"] = float(roc_auc_score(labels_arr, rrf_scores))\\n    except ValueError:\\n        auc_results[\\\"rrf_fused\\\"] = None\\n\\n    return auc_results\\n\\n\\n\\ndef generate_exposure_json(signal_dir: str, benchmarks: list[str],\\n                           dosage_filter: str = None,\\n                           k: int = RRF_K,\\n                           normalize: bool = True) -> dict:\\n    \\\"\\\"\\\"\\n    Generate exposure_scores.json for exp-006 IRT calibration.\\n\\n    Scans signal_dir for merged signal files, computes RRF per benchmark,\\n    and returns {benchmark: [tau_per_item]} dict.\\n\\n    Args:\\n        signal_dir: Root of exp-002 signal outputs (contains model_dosage_seed/ subdirs)\\n        benchmarks: List of benchmark names\\n        dosage_filter: If set, only use signals from this dosage (e.g. \\\"d100\\\")\\n        k: RRF k parameter\\n        normalize: If True, min-max normalize tau to [0, 1]\\n    \\\"\\\"\\\"\\n    signal_path = Path(signal_dir)\\n    exposure = {}\\n\\n    for bench in benchmarks:\\n        # Collect all merged signal files for this benchmark\\n        merged_files = sorted(signal_path.glob(f\\\"*/signals_merged_{bench}.json\\\"))\\n\\n        if dosage_filter:\\n            merged_files = [f for f in merged_files if dosage_filter in f.parent.name]\\n\\n        if not merged_files:\\n            # Try individual signal files\\n            sig_files = sorted(signal_path.glob(f\\\"*/signal_*_{bench}.json\\\"))\\n            if dosage_filter:\\n                sig_files = [f for f in sig_files if dosage_filter in f.parent.name]\\n            if not sig_files:\\n                logger.warning(\\\"No signal files found for benchmark %s\\\", bench)\\n                continue\\n            items = load_signal_data([str(f) for f in sig_files])\\n        else:\\n            # Use merged file (prefer highest dosage for strongest signal)\\n            items = load_signal_data([str(merged_files[-1])])\\n\\n        if not items:\\n            logger.warning(\\\"No items loaded for benchmark %s\\\", bench)\\n            continue\\n\\n        rrf_results = rrf_aggregate(items, k=k)\\n        if not rrf_results:\\n            continue\\n\\n        # Sort by index to ensure correct ordering\\n        rrf_results.sort(key=lambda r: r[\\\"index\\\"])\\n        tau = [r[\\\"rrf_score\\\"] for r in rrf_results]\\n\\n        if normalize and tau:\\n            mn, mx = min(tau), max(tau)\\n            if mx > mn:\\n                tau = [(v - mn) / (mx - mn) for v in tau]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "6e2e44f7-07c2-4762-b695-c78411d86653",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nRRF (Reciprocal Rank Fusion) aggregation of contamination signals.\\\\n\\\\nFuses 4 per-item signal scores into a single exposure score using RRF\\\\n(Cormack et al. 2009). Also implements ablation variants: equal-weight\\\\nrank averaging and single-signal baselines.\\\\n\\\\nInput:  Per-item signal scores (JSON from compute_signals.py)\\\\nOutput: Per-model-item fused exposure scores + signal survival AUC matrix\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nRRF_K = 60\\\\n\\\\n\\\\ndef detect_available_signals(items: list[dict], candidates: list[str] = None) -> list[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Auto-detect which signals have non-trivial values (not all null/zero).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if candidates is None:\\\\n        candidates = SIGNAL_KEYS\\\\n    available = []\\\\n    for sig in candidates:\\\\n        vals = [item.get(sig) for item in items]\\\\n        if any(v is not None and v != 0.0 for v in vals):\\\\n            available.append(sig)\\\\n    return available\\\\n\\\\n\\\\ndef load_signal_data(signal_files: list[str]) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and merge signal files. Each file contains a list of per-item dicts.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    merged = {}\\\\n    for fpath in signal_files:\\\\n        with open(fpath) as f:\\\\n            data = json.load(f)\\\\n        for item in data:\\\\n            idx = item[\\\\\\\"index\\\\\\\"]\\\\n            if idx not in merged:\\\\n                merged[idx] = {\\\\\\\"index\\\\\\\": idx, \\\\\\\"benchmark\\\\\\\": item.get(\\\\\\\"benchmark\\\\\\\", \\\\\\\"\\\\\\\")}\\\\n            merged[idx].update(item)\\\\n    return [merged[k] for k in sorted(merged)]\\\\n\\\\n\\\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Rank items from 1 (highest score = most suspicious) to N.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    order = np.argsort(-scores)  # descending\\\\n    ranks = np.empty_like(order)\\\\n    ranks[order] = np.arange(1, len(scores) + 1)\\\\n    return ranks\\\\n\\\\n\\\\ndef rrf_aggregate(items: list[dict], k: int = RRF_K,\\\\n                  signals: list[str] = None) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    RRF fusion: score_j = sum_s 1/(k + rank_s(j))\\\\n\\\\n    All signals are oriented so higher = more suspicious.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if signals is None:\\\\n        signals = detect_available_signals(items)\\\\n        if not signals:\\\\n            logger.warning(\\\\\\\"No signals with non-trivial values found\\\\\\\")\\\\n            return []\\\\n\\\\n    n = len(items)\\\\n    if n == 0:\\\\n        return []\\\\n\\\\n    # Extract score vectors\\\\n    score_matrix = {}\\\\n    for sig in signals:\\\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\\\n        score_matrix[sig] = vals\\\\n\\\\n    # Compute ranks for each signal\\\\n    rank_matrix = {}\\\\n    for sig in signals:\\\\n        rank_matrix[sig] = compute_ranks(score_matrix[sig])\\\\n\\\\n    # RRF fusion\\\\n    rrf_scores = np.zeros(n)\\\\n    for sig in signals:\\\\n        rrf_scores += 1.0 / (k + rank_matrix[sig])\\\\n\\\\n    # Build output\\\\n    results = []\\\\n    for i, item in enumerate(items):\\\\n        record = {\\\\n            \\\\\\\"index\\\\\\\": item[\\\\\\\"index\\\\\\\"],\\\\n            \\\\\\\"benchmark\\\\\\\": item.get(\\\\\\\"benchmark\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"rrf_score\\\\\\\": float(rrf_scores[i]),\\\\n        }\\\\n        for sig in signals:\\\\n            record[f\\\\\\\"rank_{sig}\\\\\\\"] = int(rank_matrix[sig][i])\\\\n        results.append(record)\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef rank_average_aggregate(items: list[dict],\\\\n                           signals: list[str] = None) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Equal-weight rank averaging (ablation baseline).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if signals is None:\\\\n        signals = detect_available_signals(items)\\\\n        if not signals:\\\\n            return []\\\\n\\\\n    n = len(items)\\\\n    if n == 0:\\\\n        return []\\\\n\\\\n    rank_matrix = {}\\\\n    for sig in signals:\\\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\\\n        rank_matrix[sig] = compute_ranks(vals)\\\\n\\\\n    avg_ranks = np.zeros(n)\\\\n    for sig in signals:\\\\n        avg_ranks += rank_matrix[sig]\\\\n    avg_ranks /= len(signals)\\\\n\\\\n    # Lower average rank = more suspicious, so score = -avg_rank for consistent ordering\\\\n    results = []\\\\n    for i, item in enumerate(items):\\\\n        results.append({\\\\n            \\\\\\\"index\\\\\\\": item[\\\\\\\"index\\\\\\\"],\\\\n            \\\\\\\"benchmark\\\\\\\": item.get(\\\\\\\"benchmark\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"rank_avg_score\\\\\\\": float(-avg_ranks[i]),\\\\n            \\\\\\\"mean_rank\\\\\\\": float(avg_ranks[i]),\\\\n        })\\\\n    return results\\\\n\\\\n\\\\ndef single_signal_scores(items: list[dict]) -> dict[str, list[dict]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Single-signal ablation: each signal alone as the exposure score.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = {}\\\\n    for sig in SIGNAL_KEYS:\\\\n        vals = [{\\\\\\\"index\\\\\\\": item[\\\\\\\"index\\\\\\\"], \\\\\\\"benchmark\\\\\\\": item.get(\\\\\\\"benchmark\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n                 f\\\\\\\"single_{sig}\\\\\\\": item.get(sig, 0.0) or 0.0} for item in items]\\\\n        results[sig] = vals\\\\n    return results\\\\n\\\\n\\\\ndef compute_signal_auc(items: list[dict], labels: list[int]) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Compute per-signal AUC if ground-truth contamination labels are available.\\\\n    Returns signal survival AUC matrix.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from sklearn.metrics import roc_auc_score\\\\n\\\\n    labels_arr = np.array(labels)\\\\n    if len(np.unique(labels_arr)) < 2:\\\\n        logger.warning(\\\\\\\"Cannot compute AUC: labels have only one class\\\\\\\")\\\\n        return {}\\\\n\\\\n    auc_results = {}\\\\n    for sig in SIGNAL_KEYS:\\\\n        scores = np.array([item.get(sig, 0.0) or 0.0 for item in items])\\\\n        try:\\\\n            auc = roc_auc_score(labels_arr, scores)\\\\n            auc_results[sig] = float(auc)\\\\n        except ValueError as e:\\\\n            logger.warning(\\\\\\\"AUC computation failed for %s: %s\\\\\\\", sig, e)\\\\n            auc_results[sig] = None\\\\n\\\\n    # Also compute AUC for RRF fused score\\\\n    rrf_results = rrf_aggregate(items)\\\\n    rrf_scores = np.array([r[\\\\\\\"rrf_score\\\\\\\"] for r in rrf_results])\\\\n    try:\\\\n        auc_results[\\\\\\\"rrf_fused\\\\\\\"] = float(roc_auc_score(labels_arr, rrf_scores))\\\\n    except ValueError:\\\\n        auc_results[\\\\\\\"rrf_fused\\\\\\\"] = None\\\\n\\\\n    return auc_results\\\\n\\\\n\\\\n\\\\ndef generate_exposure_json(signal_dir: str, benchmarks: list[str],\\\\n                           dosage_filter: str = None,\\\\n                           k: int = RRF_K,\\\\n                           normalize: bool = True) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Generate exposure_scores.json for exp-006 IRT calibration.\\\\n\\\\n    Scans signal_dir for merged signal files, computes RRF per benchmark,\\\\n    and returns {benchmark: [tau_per_item]} dict.\\\\n\\\\n    Args:\\\\n        signal_dir: Root of exp-002 signal outputs (contains model_dosage_seed/ subdirs)\\\\n        benchmarks: List of benchmark names\\\\n        dosage_filter: If set, only use signals from this dosage (e.g. \\\\\\\"d100\\\\\\\")\\\\n        k: RRF k parameter\\\\n        normalize: If True, min-max normalize tau to [0, 1]\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    signal_path = Path(signal_dir)\\\\n    exposure = {}\\\\n\\\\n    for bench in benchmarks:\\\\n        # Collect all merged signal files for this benchmark\\\\n        merged_files = sorted(signal_path.glob(f\\\\\\\"*/signals_merged_{bench}.json\\\\\\\"))\\\\n\\\\n        if dosage_filter:\\\\n            merged_files = [f for f in merged_files if dosage_filter in f.parent.name]\\\\n\\\\n        if not merged_files:\\\\n            # Try individual signal files\\\\n            sig_files = sorted(signal_path.glob(f\\\\\\\"*/signal_*_{bench}.json\\\\\\\"))\\\\n            if dosage_filter:\\\\n                sig_files = [f for f in sig_files if dosage_filter in f.parent.name]\\\\n            if not sig_files:\\\\n                logger.warning(\\\\\\\"No signal files found for benchmark %s\\\\\\\", bench)\\\\n                continue\\\\n            items = load_signal_data([str(f) for f in sig_files])\\\\n        else:\\\\n            # Use merged file (prefer highest dosage for strongest signal)\\\\n            items = load_signal_data([str(merged_files[-1])])\\\\n\\\\n        if not items:\\\\n            logger.warning(\\\\\\\"No items loaded for benchmark %s\\\\\\\", bench)\\\\n            continue\\\\n\\\\n        rrf_results = rrf_aggregate(items, k=k)\\\\n        if not rrf_results:\\\\n            continue\\\\n\\\\n        # Sort by index to ensure correct ordering\\\\n        rrf_results.sort(key=lambda r: r[\\\\\\\"index\\\\\\\"])\\\\n        tau = [r[\\\\\\\"rrf_score\\\\\\\"] for r in rrf_results]\\\\n\\\\n        if normalize and tau:\\\\n            mn, mx = min(tau), max(tau)\\\\n            if mx > mn:\\\\n                tau = [(v - mn) / (mx - mn) for v in tau]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nRRF (Reciprocal Rank Fusion) aggregation of contamination signals.\\n\\nFuses 4 per-item signal scores into a single exposure score using RRF\\n(Cormack et al. 2009). Also implements ablation variants: equal-weight\\nrank averaging and single-signal baselines.\\n\\nInput:  Per-item signal scores (JSON from compute_signals.py)\\nOutput: Per-model-item fused exposure scores + signal survival AUC matrix\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nRRF_K = 60\\n\\n\\ndef detect_available_signals(items: list[dict], candidates: list[str] = None) -> list[str]:\\n    \\\"\\\"\\\"Auto-detect which signals have non-trivial values (not all null/zero).\\\"\\\"\\\"\\n    if candidates is None:\\n        candidates = SIGNAL_KEYS\\n    available = []\\n    for sig in candidates:\\n        vals = [item.get(sig) for item in items]\\n        if any(v is not None and v != 0.0 for v in vals):\\n            available.append(sig)\\n    return available\\n\\n\\ndef load_signal_data(signal_files: list[str]) -> list[dict]:\\n    \\\"\\\"\\\"Load and merge signal files. Each file contains a list of per-item dicts.\\\"\\\"\\\"\\n    merged = {}\\n    for fpath in signal_files:\\n        with open(fpath) as f:\\n            data = json.load(f)\\n        for item in data:\\n            idx = item[\\\"index\\\"]\\n            if idx not in merged:\\n                merged[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\")}\\n            merged[idx].update(item)\\n    return [merged[k] for k in sorted(merged)]\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank items from 1 (highest score = most suspicious) to N.\\\"\\\"\\\"\\n    order = np.argsort(-scores)  # descending\\n    ranks = np.empty_like(order)\\n    ranks[order] = np.arange(1, len(scores) + 1)\\n    return ranks\\n\\n\\ndef rrf_aggregate(items: list[dict], k: int = RRF_K,\\n                  signals: list[str] = None) -> list[dict]:\\n    \\\"\\\"\\\"\\n    RRF fusion: score_j = sum_s 1/(k + rank_s(j))\\n\\n    All signals are oriented so higher = more suspicious.\\n    \\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n        if not signals:\\n            logger.warning(\\\"No signals with non-trivial values found\\\")\\n            return []\\n\\n    n = len(items)\\n    if n == 0:\\n        return []\\n\\n    # Extract score vectors\\n    score_matrix = {}\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        score_matrix[sig] = vals\\n\\n    # Compute ranks for each signal\\n    rank_matrix = {}\\n    for sig in signals:\\n        rank_matrix[sig] = compute_ranks(score_matrix[sig])\\n\\n    # RRF fusion\\n    rrf_scores = np.zeros(n)\\n    for sig in signals:\\n        rrf_scores += 1.0 / (k + rank_matrix[sig])\\n\\n    # Build output\\n    results = []\\n    for i, item in enumerate(items):\\n        record = {\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\"),\\n            \\\"rrf_score\\\": float(rrf_scores[i]),\\n        }\\n        for sig in signals:\\n            record[f\\\"rank_{sig}\\\"] = int(rank_matrix[sig][i])\\n        results.append(record)\\n\\n    return results\\n\\n\\ndef rank_average_aggregate(items: list[dict],\\n                           signals: list[str] = None) -> list[dict]:\\n    \\\"\\\"\\\"Equal-weight rank averaging (ablation baseline).\\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n        if not signals:\\n            return []\\n\\n    n = len(items)\\n    if n == 0:\\n        return []\\n\\n    rank_matrix = {}\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        rank_matrix[sig] = compute_ranks(vals)\\n\\n    avg_ranks = np.zeros(n)\\n    for sig in signals:\\n        avg_ranks += rank_matrix[sig]\\n    avg_ranks /= len(signals)\\n\\n    # Lower average rank = more suspicious, so score = -avg_rank for consistent ordering\\n    results = []\\n    for i, item in enumerate(items):\\n        results.append({\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\"),\\n            \\\"rank_avg_score\\\": float(-avg_ranks[i]),\\n            \\\"mean_rank\\\": float(avg_ranks[i]),\\n        })\\n    return results\\n\\n\\ndef single_signal_scores(items: list[dict]) -> dict[str, list[dict]]:\\n    \\\"\\\"\\\"Single-signal ablation: each signal alone as the exposure score.\\\"\\\"\\\"\\n    results = {}\\n    for sig in SIGNAL_KEYS:\\n        vals = [{\\\"index\\\": item[\\\"index\\\"], \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\"),\\n                 f\\\"single_{sig}\\\": item.get(sig, 0.0) or 0.0} for item in items]\\n        results[sig] = vals\\n    return results\\n\\n\\ndef compute_signal_auc(items: list[dict], labels: list[int]) -> dict:\\n    \\\"\\\"\\\"\\n    Compute per-signal AUC if ground-truth contamination labels are available.\\n    Returns signal survival AUC matrix.\\n    \\\"\\\"\\\"\\n    from sklearn.metrics import roc_auc_score\\n\\n    labels_arr = np.array(labels)\\n    if len(np.unique(labels_arr)) < 2:\\n        logger.warning(\\\"Cannot compute AUC: labels have only one class\\\")\\n        return {}\\n\\n    auc_results = {}\\n    for sig in SIGNAL_KEYS:\\n        scores = np.array([item.get(sig, 0.0) or 0.0 for item in items])\\n        try:\\n            auc = roc_auc_score(labels_arr, scores)\\n            auc_results[sig] = float(auc)\\n        except ValueError as e:\\n            logger.warning(\\\"AUC computation failed for %s: %s\\\", sig, e)\\n            auc_results[sig] = None\\n\\n    # Also compute AUC for RRF fused score\\n    rrf_results = rrf_aggregate(items)\\n    rrf_scores = np.array([r[\\\"rrf_score\\\"] for r in rrf_results])\\n    try:\\n        auc_results[\\\"rrf_fused\\\"] = float(roc_auc_score(labels_arr, rrf_scores))\\n    except ValueError:\\n        auc_results[\\\"rrf_fused\\\"] = None\\n\\n    return auc_results\\n\\n\\n\\ndef generate_exposure_json(signal_dir: str, benchmarks: list[str],\\n                           dosage_filter: str = None,\\n                           k: int = RRF_K,\\n                           normalize: bool = True) -> dict:\\n    \\\"\\\"\\\"\\n    Generate exposure_scores.json for exp-006 IRT calibration.\\n\\n    Scans signal_dir for merged signal files, computes RRF per benchmark,\\n    and returns {benchmark: [tau_per_item]} dict.\\n\\n    Args:\\n        signal_dir: Root of exp-002 signal outputs (contains model_dosage_seed/ subdirs)\\n        benchmarks: List of benchmark names\\n        dosage_filter: If set, only use signals from this dosage (e.g. \\\"d100\\\")\\n        k: RRF k parameter\\n        normalize: If True, min-max normalize tau to [0, 1]\\n    \\\"\\\"\\\"\\n    signal_path = Path(signal_dir)\\n    exposure = {}\\n\\n    for bench in benchmarks:\\n        # Collect all merged signal files for this benchmark\\n        merged_files = sorted(signal_path.glob(f\\\"*/signals_merged_{bench}.json\\\"))\\n\\n        if dosage_filter:\\n            merged_files = [f for f in merged_files if dosage_filter in f.parent.name]\\n\\n        if not merged_files:\\n            # Try individual signal files\\n            sig_files = sorted(signal_path.glob(f\\\"*/signal_*_{bench}.json\\\"))\\n            if dosage_filter:\\n                sig_files = [f for f in sig_files if dosage_filter in f.parent.name]\\n            if not sig_files:\\n                logger.warning(\\\"No signal files found for benchmark %s\\\", bench)\\n                continue\\n            items = load_signal_data([str(f) for f in sig_files])\\n        else:\\n            # Use merged file (prefer highest dosage for strongest signal)\\n            items = load_signal_data([str(merged_files[-1])])\\n\\n        if not items:\\n            logger.warning(\\\"No items loaded for benchmark %s\\\", bench)\\n            continue\\n\\n        rrf_results = rrf_aggregate(items, k=k)\\n        if not rrf_results:\\n            continue\\n\\n        # Sort by index to ensure correct ordering\\n        rrf_results.sort(key=lambda r: r[\\\"index\\\"])\\n        tau = [r[\\\"rrf_score\\\"] for r in rrf_results]\\n\\n        if normalize and tau:\\n            mn, mx = min(tau), max(tau)\\n            if mx > mn:\\n                tau = [(v - mn) / (mx - mn) for v in tau]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HnFCSrXQqW2aREfGB5oumY`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -120 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "caff1a66-484a-4e01-bee9-73f3dc27ba5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YV6gkWTVFC8oTnEFj6Tvhn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1460,
+      "cache_read_input_tokens": 42836,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1460
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T20:21:44.168Z_
+
+<details><summary>↩ Tool result · `toolu_01HnFCSrXQqW2aREfGB5oumY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nIRT calibration for contamination-aware benchmark score correction.\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\n\\nInput:\\n  - Correctness matrix (N_models x N_items): binary 0/1\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\n  OR\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\n\\nOutput (per benchmark):\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\n  - Posterior predictive checks\\n\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport cmdstanpy\\n\\nlog = logging.getLogger(__name__)\\n\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\nSTAN_MODEL_DIR = \\\"/root/contamcal-irt-calibration/stan_models\\\"\\nSTAN_MODELS = {\\n    \\\"4pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple.stan\\\"),\\n    \\\"2pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_2pl_gamma.stan\\\"),\\n    \\\"vanilla_4pl\\\": os.path.join(STAN_MODEL_DIR, \\\"vanilla_4pl.stan\\\"),\\n    \\\"4pl_gamma_wider\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple_wider.stan\\\"),\\n}\\n\\nDOSAGE_PATTERN = re.compile(r\\\"_d(\\\\d+)(?:_v\\\\d+)?_s(\\\\d+)(_para)?(_aligned)?(?:_v\\\\d+)?$\\\")\\n\\n\\n# ── Data Loading ──\\n\\ndef parse_model_dir_name(dirname):\\n    \\\"\\\"\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\"\\\"\\\"\\n    m = DOSAGE_PATTERN.search(dirname)\\n    if not m:\\n        return None\\n    return {\\n        \\\"dirname\\\": dirname,\\n        \\\"model_name\\\": dirname[:m.start()],\\n        \\\"dosage\\\": int(m.group(1)),\\n        \\\"seed\\\": int(m.group(2)),\\n        \\\"is_para\\\": m.group(3) is not None,\\n        \\\"is_aligned\\\": m.group(4) is not None,\\n    }\\n\\n\\ndef load_matrix(path):\\n    \\\"\\\"\\\"Load matrix from .npy, .csv, or .json.\\\"\\\"\\\"\\n    ext = os.path.splitext(path)[1].lower()\\n    if ext == \\\".npy\\\":\\n        return np.load(path)\\n    elif ext == \\\".csv\\\":\\n        return np.loadtxt(path, delimiter=\\\",\\\", skiprows=1)\\n    elif ext == \\\".json\\\":\\n        with open(path) as f:\\n            return np.array(json.load(f))\\n    raise ValueError(f\\\"Unsupported format: {ext}\\\")\\n\\n\\ndef load_eval_results(eval_dir, benchmarks=None, skip_para=True,\\n                      model_scale=None, seed_filter=None, aligned_only=False):\\n    \\\"\\\"\\\"Load per-model eval results into response matrices per benchmark.\\\"\\\"\\\"\\n    eval_path = Path(eval_dir)\\n    model_dirs = sorted([\\n        d for d in eval_path.iterdir()\\n        if d.is_dir() and (d / \\\"eval_results.json\\\").exists()\\n    ])\\n\\n    models = []\\n    for d in model_dirs:\\n        info = parse_model_dir_name(d.name)\\n        if info is None:\\n            log.warning(\\\"Skipping unrecognized dir: %s\\\", d.name)\\n            continue\\n        if skip_para and info[\\\"is_para\\\"]:\\n            continue\\n        if aligned_only and not info.get(\\\"is_aligned\\\", False):\\n            log.info(\\\"Skipping non-aligned dir: %s\\\", d.name)\\n            continue\\n        if model_scale and model_scale not in d.name:\\n            log.info(\\\"Skipping dir (scale mismatch): %s\\\", d.name)\\n            continue\\n        if seed_filter is not None and info[\\\"seed\\\"] != seed_filter:\\n            log.info(\\\"Skipping dir (seed mismatch): %s\\\", d.name)\\n            continue\\n        info[\\\"path\\\"] = str(d)\\n        models.append(info)\\n\\n    if not models:\\n        raise ValueError(f\\\"No valid eval results in {eval_dir}\\\")\\n    log.info(\\\"Found %d model evaluations\\\", len(models))\\n\\n    with open(Path(models[0][\\\"path\\\"]) / \\\"eval_results.json\\\") as f:\\n        sample = json.load(f)\\n    available = list(sample[\\\"benchmarks\\\"].keys())\\n    benchmarks = [b for b in (benchmarks or available) if b in available]\\n    log.info(\\\"Benchmarks: %s\\\", benchmarks)\\n\\n    result = {\\n        \\\"models\\\": models,\\n        \\\"benchmarks\\\": {},\\n        \\\"dosages\\\": np.array([m[\\\"dosage\\\"] for m in models]),\\n    }\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "6a9de461-8164-49df-94ff-9c777ac599d8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nIRT calibration for contamination-aware benchmark score correction.\\\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\\\n\\\\nInput:\\\\n  - Correctness matrix (N_models x N_items): binary 0/1\\\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\\\n  OR\\\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\\\n\\\\nOutput (per benchmark):\\\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\\\n  - Posterior predictive checks\\\\n\\\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport cmdstanpy\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\\\nSTAN_MODEL_DIR = \\\\\\\"/root/contamcal-irt-calibration/stan_models\\\\\\\"\\\\nSTAN_MODELS = {\\\\n    \\\\\\\"4pl_gamma\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_4pl_simple.stan\\\\\\\"),\\\\n    \\\\\\\"2pl_gamma\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_2pl_gamma.stan\\\\\\\"),\\\\n    \\\\\\\"vanilla_4pl\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"vanilla_4pl.stan\\\\\\\"),\\\\n    \\\\\\\"4pl_gamma_wider\\\\\\\": os.path.join(STAN_MODEL_DIR, \\\\\\\"contam_irt_4pl_simple_wider.stan\\\\\\\"),\\\\n}\\\\n\\\\nDOSAGE_PATTERN = re.compile(r\\\\\\\"_d(\\\\\\\\d+)(?:_v\\\\\\\\d+)?_s(\\\\\\\\d+)(_para)?(_aligned)?(?:_v\\\\\\\\d+)?$\\\\\\\")\\\\n\\\\n\\\\n# ── Data Loading ──\\\\n\\\\ndef parse_model_dir_name(dirname):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    m = DOSAGE_PATTERN.search(dirname)\\\\n    if not m:\\\\n        return None\\\\n    return {\\\\n        \\\\\\\"dirname\\\\\\\": dirname,\\\\n        \\\\\\\"model_name\\\\\\\": dirname[:m.start()],\\\\n        \\\\\\\"dosage\\\\\\\": int(m.group(1)),\\\\n        \\\\\\\"seed\\\\\\\": int(m.group(2)),\\\\n        \\\\\\\"is_para\\\\\\\": m.group(3) is not None,\\\\n        \\\\\\\"is_aligned\\\\\\\": m.group(4) is not None,\\\\n    }\\\\n\\\\n\\\\ndef load_matrix(path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load matrix from .npy, .csv, or .json.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ext = os.path.splitext(path)[1].lower()\\\\n    if ext == \\\\\\\".npy\\\\\\\":\\\\n        return np.load(path)\\\\n    elif ext == \\\\\\\".csv\\\\\\\":\\\\n        return np.loadtxt(path, delimiter=\\\\\\\",\\\\\\\", skiprows=1)\\\\n    elif ext == \\\\\\\".json\\\\\\\":\\\\n        with open(path) as f:\\\\n            return np.array(json.load(f))\\\\n    raise ValueError(f\\\\\\\"Unsupported format: {ext}\\\\\\\")\\\\n\\\\n\\\\ndef load_eval_results(eval_dir, benchmarks=None, skip_para=True,\\\\n                      model_scale=None, seed_filter=None, aligned_only=False):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load per-model eval results into response matrices per benchmark.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    eval_path = Path(eval_dir)\\\\n    model_dirs = sorted([\\\\n        d for d in eval_path.iterdir()\\\\n        if d.is_dir() and (d / \\\\\\\"eval_results.json\\\\\\\").exists()\\\\n    ])\\\\n\\\\n    models = []\\\\n    for d in model_dirs:\\\\n        info = parse_model_dir_name(d.name)\\\\n        if info is None:\\\\n            log.warning(\\\\\\\"Skipping unrecognized dir: %s\\\\\\\", d.name)\\\\n            continue\\\\n        if skip_para and info[\\\\\\\"is_para\\\\\\\"]:\\\\n            continue\\\\n        if aligned_only and not info.get(\\\\\\\"is_aligned\\\\\\\", False):\\\\n            log.info(\\\\\\\"Skipping non-aligned dir: %s\\\\\\\", d.name)\\\\n            continue\\\\n        if model_scale and model_scale not in d.name:\\\\n            log.info(\\\\\\\"Skipping dir (scale mismatch): %s\\\\\\\", d.name)\\\\n            continue\\\\n        if seed_filter is not None and info[\\\\\\\"seed\\\\\\\"] != seed_filter:\\\\n            log.info(\\\\\\\"Skipping dir (seed mismatch): %s\\\\\\\", d.name)\\\\n            continue\\\\n        info[\\\\\\\"path\\\\\\\"] = str(d)\\\\n        models.append(info)\\\\n\\\\n    if not models:\\\\n        raise ValueError(f\\\\\\\"No valid eval results in {eval_dir}\\\\\\\")\\\\n    log.info(\\\\\\\"Found %d model evaluations\\\\\\\", len(models))\\\\n\\\\n    with open(Path(models[0][\\\\\\\"path\\\\\\\"]) / \\\\\\\"eval_results.json\\\\\\\") as f:\\\\n        sample = json.load(f)\\\\n    available = list(sample[\\\\\\\"benchmarks\\\\\\\"].keys())\\\\n    benchmarks = [b for b in (benchmarks or available) if b in available]\\\\n    log.info(\\\\\\\"Benchmarks: %s\\\\\\\", benchmarks)\\\\n\\\\n    result = {\\\\n        \\\\\\\"models\\\\\\\": models,\\\\n        \\\\\\\"benchmarks\\\\\\\": {},\\\\n        \\\\\\\"dosages\\\\\\\": np.array([m[\\\\\\\"dosage\\\\\\\"] for m in models]),\\\\n    }\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nIRT calibration for contamination-aware benchmark score correction.\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\n\\nInput:\\n  - Correctness matrix (N_models x N_items): binary 0/1\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\n  OR\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\n\\nOutput (per benchmark):\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\n  - Posterior predictive checks\\n\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport cmdstanpy\\n\\nlog = logging.getLogger(__name__)\\n\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\nSTAN_MODEL_DIR = \\\"/root/contamcal-irt-calibration/stan_models\\\"\\nSTAN_MODELS = {\\n    \\\"4pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple.stan\\\"),\\n    \\\"2pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_2pl_gamma.stan\\\"),\\n    \\\"vanilla_4pl\\\": os.path.join(STAN_MODEL_DIR, \\\"vanilla_4pl.stan\\\"),\\n    \\\"4pl_gamma_wider\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple_wider.stan\\\"),\\n}\\n\\nDOSAGE_PATTERN = re.compile(r\\\"_d(\\\\d+)(?:_v\\\\d+)?_s(\\\\d+)(_para)?(_aligned)?(?:_v\\\\d+)?$\\\")\\n\\n\\n# ── Data Loading ──\\n\\ndef parse_model_dir_name(dirname):\\n    \\\"\\\"\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\"\\\"\\\"\\n    m = DOSAGE_PATTERN.search(dirname)\\n    if not m:\\n        return None\\n    return {\\n        \\\"dirname\\\": dirname,\\n        \\\"model_name\\\": dirname[:m.start()],\\n        \\\"dosage\\\": int(m.group(1)),\\n        \\\"seed\\\": int(m.group(2)),\\n        \\\"is_para\\\": m.group(3) is not None,\\n        \\\"is_aligned\\\": m.group(4) is not None,\\n    }\\n\\n\\ndef load_matrix(path):\\n    \\\"\\\"\\\"Load matrix from .npy, .csv, or .json.\\\"\\\"\\\"\\n    ext = os.path.splitext(path)[1].lower()\\n    if ext == \\\".npy\\\":\\n        return np.load(path)\\n    elif ext == \\\".csv\\\":\\n        return np.loadtxt(path, delimiter=\\\",\\\", skiprows=1)\\n    elif ext == \\\".json\\\":\\n        with open(path) as f:\\n            return np.array(json.load(f))\\n    raise ValueError(f\\\"Unsupported format: {ext}\\\")\\n\\n\\ndef load_eval_results(eval_dir, benchmarks=None, skip_para=True,\\n                      model_scale=None, seed_filter=None, aligned_only=False):\\n    \\\"\\\"\\\"Load per-model eval results into response matrices per benchmark.\\\"\\\"\\\"\\n    eval_path = Path(eval_dir)\\n    model_dirs = sorted([\\n        d for d in eval_path.iterdir()\\n        if d.is_dir() and (d / \\\"eval_results.json\\\").exists()\\n    ])\\n\\n    models = []\\n    for d in model_dirs:\\n        info = parse_model_dir_name(d.name)\\n        if info is None:\\n            log.warning(\\\"Skipping unrecognized dir: %s\\\", d.name)\\n            continue\\n        if skip_para and info[\\\"is_para\\\"]:\\n            continue\\n        if aligned_only and not info.get(\\\"is_aligned\\\", False):\\n            log.info(\\\"Skipping non-aligned dir: %s\\\", d.name)\\n            continue\\n        if model_scale and model_scale not in d.name:\\n            log.info(\\\"Skipping dir (scale mismatch): %s\\\", d.name)\\n            continue\\n        if seed_filter is not None and info[\\\"seed\\\"] != seed_filter:\\n            log.info(\\\"Skipping dir (seed mismatch): %s\\\", d.name)\\n            continue\\n        info[\\\"path\\\"] = str(d)\\n        models.append(info)\\n\\n    if not models:\\n        raise ValueError(f\\\"No valid eval results in {eval_dir}\\\")\\n    log.info(\\\"Found %d model evaluations\\\", len(models))\\n\\n    with open(Path(models[0][\\\"path\\\"]) / \\\"eval_results.json\\\") as f:\\n        sample = json.load(f)\\n    available = list(sample[\\\"benchmarks\\\"].keys())\\n    benchmarks = [b for b in (benchmarks or available) if b in available]\\n    log.info(\\\"Benchmarks: %s\\\", benchmarks)\\n\\n    result = {\\n        \\\"models\\\": models,\\n        \\\"benchmarks\\\": {},\\n        \\\"dosages\\\": np.array([m[\\\"dosage\\\"] for m in models]),\\n    }\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me also check the `load_exp002_signals` function in `run_exp006.py` - I saw it in the initial read but it was truncated. Let me read the relevant portion.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "cc9932b3-ae4c-4a33-8745-b42c28ed0a3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NrVnqWejKZpJvVzAkJqH5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8580,
+      "cache_read_input_tokens": 44296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8580
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+还需要看 exp006/run_exp006.py 中 `load_exp002_signals` 的完整逻辑，以及 exp006/run_irt_calibration.py 中 `load_pooled_eval_results` 的逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "7baaef46-73d3-46c9-9d2a-4cc4c9c400be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NrVnqWejKZpJvVzAkJqH5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8580,
+      "cache_read_input_tokens": 44296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8580
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RXhzcNzpdoDKbjpvgxCx3x`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"def load_exp002_signals\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "0045118d-7b31-4e25-bb36-adcf2adf53f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NrVnqWejKZpJvVzAkJqH5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8580,
+      "cache_read_input_tokens": 44296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8580
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0116yTTVUptt7UkLvJkBueKa`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"def load_pooled_eval_results\" /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "e92dd93b-54b0-4028-bff4-b578fa4f2b0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NrVnqWejKZpJvVzAkJqH5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8580,
+      "cache_read_input_tokens": 44296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8580
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T20:21:51.895Z_
+
+<details><summary>↩ Tool result · `toolu_01RXhzcNzpdoDKbjpvgxCx3x`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"110:def load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "7c97ebd4-d453-4521-849c-d66e90dc866f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"110:def load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"110:def load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T20:21:52.349Z_
+
+<details><summary>↩ Tool result · `toolu_0116yTTVUptt7UkLvJkBueKa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"202:def load_pooled_eval_results(eval_dir, scales, benchmarks=None, **kwargs):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "f2c1cfb9-e419-4e17-b1f4-6a29ccb1e214",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"202:def load_pooled_eval_results(eval_dir, scales, benchmarks=None, **kwargs):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"202:def load_pooled_eval_results(eval_dir, scales, benchmarks=None, **kwargs):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011w4npWn2fGyciCLcHz1XQY`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -n +110 /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "c4de2428-935f-4d34-8dd1-809519df452a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeQQgqdBNVLzSEoM5MFXkd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 726,
+      "cache_read_input_tokens": 52876,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 726
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013CsBcQ1zWVXrtYL7ffaWoF`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -n +202 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "f51e222f-6dd2-4fab-ac71-4d6e6c74ac8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LeQQgqdBNVLzSEoM5MFXkd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 726,
+      "cache_read_input_tokens": 52876,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 726
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T20:21:55.422Z_
+
+<details><summary>↩ Tool result · `toolu_011w4npWn2fGyciCLcHz1XQY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\n                        pool_mode=False):\\n    \\\"\\\"\\\"Load exp-002 merged signals -> per-model contamination score.\\n    D034: when signal_key is set, use that single signal (e.g. s1_embedding).\\n    Default (signal_key=None): 3-signal RRF fusion (S1+S2+S4).\\n    \\\"\\\"\\\"\\n    scores = []\\n    for m in models:\\n        # Strip _aligned/_para suffixes to match signal directory naming\\n        sig_dirname = m[\\\"dirname\\\"].replace(\\\"_para_aligned\\\", \\\"\\\").replace(\\\"_aligned\\\", \\\"\\\").replace(\\\"_para\\\", \\\"\\\").replace(\\\"_v1\\\", \\\"\\\").replace(\\\"_v2\\\", \\\"\\\").replace(\\\"_v3\\\", \\\"\\\").replace(\\\"_v4\\\", \\\"\\\")\\n        merged = os.path.join(signals_dir, sig_dirname,\\n                              \\\"signals_merged_{}.json\\\".format(benchmark))\\n        if os.path.exists(merged):\\n            with open(merged) as f:\\n                items = json.load(f)\\n            n = len(items)\\n            if signal_key:\\n                # D034: single signal mode\\n                v = np.array([it.get(signal_key, 0.0) or 0.0 for it in items])\\n                scores.append(float(v.mean()))\\n            else:\\n                rrf = np.zeros(n)\\n                for sig in (\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s4_selfcritique\\\"):\\n                    v = np.array([it.get(sig, 0.0) or 0.0 for it in items])\\n                    if sig == \\\"s2_minkpp\\\":\\n                        v = -v\\n                    order = np.argsort(-v)\\n                    ranks = np.empty(n)\\n                    ranks[order] = np.arange(1, n + 1)\\n                    rrf += 1.0 / (60 + ranks)\\n                mn, mx = rrf.min(), rrf.max()\\n                rrf = (rrf - mn) / (mx - mn) if mx > mn else rrf\\n                scores.append(float(rrf.mean()))\\n        else:\\n            if pool_mode:\\n                raise RuntimeError(\\n                    f\\\"Signal homogeneity violation: no signals for \\\"\\n                    f\\\"{m['dirname']}/{benchmark} in pooled mode. \\\"\\n                    f\\\"Cannot mix signal-derived and oracle exposure.\\\")\\n            log.warning(\\\"No exp-002 signals for %s/%s, falling back to oracle dosage\\\",\\n                       m[\\\"dirname\\\"], benchmark)\\n            scores.append(m[\\\"dosage\\\"] / 100.0)\\n    return np.array(scores)\\n\\n\\ndef check_scale_signals(signals_dir, models, benchmarks, scales):\\n    \\\"\\\"\\\"Pre-check signal file availability per scale for homogeneity.\\\"\\\"\\\"\\n    excluded = set()\\n    for scale in scales:\\n        scale_models = [m for m in models if m.get(\\\"scale\\\", \\\"\\\") == scale]\\n        for m in scale_models:\\n            sig_dirname = m[\\\"dirname\\\"].replace(\\\"_para_aligned\\\", \\\"\\\").replace(\\\"_aligned\\\", \\\"\\\").replace(\\\"_para\\\", \\\"\\\").replace(\\\"_v1\\\", \\\"\\\").replace(\\\"_v2\\\", \\\"\\\").replace(\\\"_v3\\\", \\\"\\\").replace(\\\"_v4\\\", \\\"\\\")\\n            for bench in benchmarks:\\n                path = os.path.join(signals_dir, sig_dirname,\\n                                    \\\"signals_merged_{}.json\\\".format(bench))\\n                if not os.path.exists(path):\\n                    log.error(\\\"Scale %s excluded from pool: no signals for %s/%s \\\"\\n                              \\\"(would fallback to oracle — homogeneity violation)\\\",\\n                              scale, sig_dirname, bench)\\n                    excluded.add(scale)\\n                    break\\n            if scale in excluded:\\n                break\\n    return excluded\\n\\n\\ndef run_pipeline(args):\\n    \\\"\\\"\\\"Run full exp-006 pipeline.\\\"\\\"\\\"\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # ── Load Data ──\\n    # Cross-scale pooling: load multiple scales and merge\\n    if getattr(args, 'pool_scales', None):\\n        log.info(\\\"Cross-scale pooling: scales=%s\\\", args.pool_scales)\\n        data = load_pooled_eval_results(\\n            args.eval_dir, args.pool_scales, args.benchmarks,\\n            seed_filter=args.data_seed, aligned_only=args.aligned_only)\\n    else:\\n        log.info(\\\"Loading eval results from %s\\\", args.eval_dir)\\n        data = load_eval_results(args.eval_dir, args.benchmarks,\\n                                  model_scale=args.model_scale,\\n      \\n\\n... [截断: 输出过长，省略 17489 字符] ...\\n\\n    help=\\\"exp-002 signals directory. When set, uses detected contamination \\\"\\n             \\\"signals instead of oracle dosage for exposure (D023)\\\")\\n    parser.add_argument(\\n        \\\"--signal-key\\\", type=str, default=None,\\n        help=\\\"Use single signal as exposure (e.g. s1_embedding). \\\"\\n             \\\"Default: RRF fusion of S1+S2+S4 (D034)\\\")\\n    parser.add_argument(\\n        \\\"--tau-source\\\", type=str, default=\\\"exposure\\\",\\n        choices=[\\\"exposure\\\", \\\"oracle\\\", \\\"aggregated\\\"],\\n        help=\\\"Tau source type (default: exposure)\\\")\\n    parser.add_argument(\\n        \\\"--output-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp006/results\\\",\\n        help=\\\"Output directory\\\")\\n    parser.add_argument(\\n        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n        help=\\\"Benchmarks to analyze (default: all)\\\")\\n    parser.add_argument(\\n        \\\"--model-scale\\\", type=str, default=None,\\n        help=\\\"Model scale filter, e.g. '0.5B'.\\\")\\n    parser.add_argument(\\n        '--pool-scales', nargs='+', default=None,\\n        help=\\\"Cross-scale pooling: merge models from multiple scales as IRT \\\"\\n             \\\"examinees. E.g. --pool-scales 0.5B 1.5B 3B. Overrides --model-scale.\\\")\\n    parser.add_argument(\\n        \\\"--data-seed\\\", type=int, default=None,\\n        help=\\\"Data seed filter.\\\")\\n    parser.add_argument(\\n        \\\"--aligned-only\\\", action=\\\"store_true\\\",\\n        help=\\\"Only load aligned-format eval directories.\\\")\\n    parser.add_argument(\\n        '--exclude-models', type=str, default=None,\\n        help=\\\"Comma-separated model name patterns to exclude \\\"\\n             \\\"(e.g. '3B_d000,3B_d005')\\\")\\n    parser.add_argument(\\n        '--require-signals', action='store_true',\\n        help=\\\"Abort if any pooled scale lacks signal coverage \\\"\\n             \\\"(use with --signals-dir)\\\")\\n    parser.add_argument(\\n        '--oracle-exposure', action='store_true',\\n        help=\\\"Use oracle dosage fraction as uniform exposure per model. \\\"\\n             \\\"Mutually exclusive with --require-signals.\\\")\\n\\n    # IRT config\\n    parser.add_argument(\\n        \\\"--model-type\\\",\\n        choices=list(STAN_MODELS.keys()),\\n        default=\\\"4pl_gamma\\\",\\n        help=\\\"IRT model variant (default: 4pl_gamma)\\\")\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--parallel-chains\\\", type=int, default=1,\\n                        help=\\\"CmdStan parallel chains (default: 1 for cgroup safety)\\\")\\n\\n    # Baseline config\\n    parser.add_argument(\\n        \\\"--skip-stan\\\", action=\\\"store_true\\\",\\n        help=\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\")\\n\\n    # Ablation\\n    parser.add_argument(\\n        \\\"--joint-fit\\\", action=\\\"store_true\\\",\\n        help=\\\"Also run joint fitting ablation (shared global gamma)\\\")\\n\\n    parser.add_argument(\\n        \\\"--benchmark\\\", type=str, default=None,\\n        choices=[\\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"mmlu\\\", \\\"humaneval\\\"],\\n        help=\\\"Single benchmark to run (convenience alias for --benchmarks)\\\")\\n\\n    # Dry-run\\n    parser.add_argument(\\n        \\\"--dry-run\\\", action=\\\"store_true\\\",\\n        help=\\\"Quick validation with truncated items\\\")\\n    parser.add_argument(\\n        \\\"--max-items\\\", type=int, default=None,\\n        help=\\\"Max items per benchmark (default: None = no limit)\\\")\\n\\n    args = parser.parse_args()\\n\\n    if getattr(args, 'oracle_exposure', False) and args.require_signals:\\n        parser.error(\\\"--oracle-exposure and --require-signals are mutually exclusive\\\")\\n\\n    # --benchmark (singular) overrides --benchmarks\\n    if args.benchmark and not args.benchmarks:\\n        args.benchmarks = [args.benchmark]\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "0e6548ec-4338-4104-8f35-8d44dd827c33",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\\\n                        pool_mode=False):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load exp-002 merged signals -> per-model contamination score.\\\\n    D034: when signal_key is set, use that single signal (e.g. s1_embedding).\\\\n    Default (signal_key=None): 3-signal RRF fusion (S1+S2+S4).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    scores = []\\\\n    for m in models:\\\\n        # Strip _aligned/_para suffixes to match signal directory naming\\\\n        sig_dirname = m[\\\\\\\"dirname\\\\\\\"].replace(\\\\\\\"_para_aligned\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_aligned\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_para\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_v1\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_v2\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_v3\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_v4\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        merged = os.path.join(signals_dir, sig_dirname,\\\\n                              \\\\\\\"signals_merged_{}.json\\\\\\\".format(benchmark))\\\\n        if os.path.exists(merged):\\\\n            with open(merged) as f:\\\\n                items = json.load(f)\\\\n            n = len(items)\\\\n            if signal_key:\\\\n                # D034: single signal mode\\\\n                v = np.array([it.get(signal_key, 0.0) or 0.0 for it in items])\\\\n                scores.append(float(v.mean()))\\\\n            else:\\\\n                rrf = np.zeros(n)\\\\n                for sig in (\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"):\\\\n                    v = np.array([it.get(sig, 0.0) or 0.0 for it in items])\\\\n                    if sig == \\\\\\\"s2_minkpp\\\\\\\":\\\\n                        v = -v\\\\n                    order = np.argsort(-v)\\\\n                    ranks = np.empty(n)\\\\n                    ranks[order] = np.arange(1, n + 1)\\\\n                    rrf += 1.0 / (60 + ranks)\\\\n                mn, mx = rrf.min(), rrf.max()\\\\n                rrf = (rrf - mn) / (mx - mn) if mx > mn else rrf\\\\n                scores.append(float(rrf.mean()))\\\\n        else:\\\\n            if pool_mode:\\\\n                raise RuntimeError(\\\\n                    f\\\\\\\"Signal homogeneity violation: no signals for \\\\\\\"\\\\n                    f\\\\\\\"{m['dirname']}/{benchmark} in pooled mode. \\\\\\\"\\\\n                    f\\\\\\\"Cannot mix signal-derived and oracle exposure.\\\\\\\")\\\\n            log.warning(\\\\\\\"No exp-002 signals for %s/%s, falling back to oracle dosage\\\\\\\",\\\\n                       m[\\\\\\\"dirname\\\\\\\"], benchmark)\\\\n            scores.append(m[\\\\\\\"dosage\\\\\\\"] / 100.0)\\\\n    return np.array(scores)\\\\n\\\\n\\\\ndef check_scale_signals(signals_dir, models, benchmarks, scales):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pre-check signal file availability per scale for homogeneity.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    excluded = set()\\\\n    for scale in scales:\\\\n        scale_models = [m for m in models if m.get(\\\\\\\"scale\\\\\\\", \\\\\\\"\\\\\\\") == scale]\\\\n        for m in scale_models:\\\\n            sig_dirname = m[\\\\\\\"dirname\\\\\\\"].replace(\\\\\\\"_para_aligned\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_aligned\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_para\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_v1\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_v2\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_v3\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"_v4\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            for bench in benchmarks:\\\\n                path = os.path.join(signals_dir, sig_dirname,\\\\n                                    \\\\\\\"signals_merged_{}.json\\\\\\\".format(bench))\\\\n                if not os.path.exists(path):\\\\n                    log.error(\\\\\\\"Scale %s excluded from pool: no signals for %s/%s \\\\\\\"\\\\n                              \\\\\\\"(would fallback to oracle — homogeneity violation)\\\\\\\",\\\\n                              scale, sig_dirname, bench)\\\\n                    excluded.add(scale)\\\\n                    break\\\\n            if scale in excluded:\\\\n                break\\\\n    return excluded\\\\n\\\\n\\\\ndef run_pipeline(args):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run full exp-006 pipeline.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # ── Load Data ──\\\\n    # Cross-scale pooling: load multiple scales and merge\\\\n    if getattr(args, 'pool_scales', None):\\\\n        log.info(\\\\\\\"Cross-scale pooling: scales=%s\\\\\\\", args.pool_scales)\\\\n        data = load_pooled_eval_results(\\\\n            args.eval_dir, args.pool_scales, args.benchmarks,\\\\n            seed_filter=args.data_seed, aligned_only=args.aligned_only)\\\\n    else:\\\\n        log.info(\\\\\\\"Loading eval results from %s\\\\\\\", args.eval_dir)\\\\n        data = load_eval_results(args.eval_dir, args.benchmarks,\\\\n                                  model_scale=args.model_scale,\\\\n      \\\\n\\\\n... [截断: 输出过长，省略 17489 字符] ...\\\\n\\\\n    help=\\\\\\\"exp-002 signals directory. When set, uses detected contamination \\\\\\\"\\\\n             \\\\\\\"signals instead of oracle dosage for exposure (D023)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--signal-key\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"Use single signal as exposure (e.g. s1_embedding). \\\\\\\"\\\\n             \\\\\\\"Default: RRF fusion of S1+S2+S4 (D034)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--tau-source\\\\\\\", type=str, default=\\\\\\\"exposure\\\\\\\",\\\\n        choices=[\\\\\\\"exposure\\\\\\\", \\\\\\\"oracle\\\\\\\", \\\\\\\"aggregated\\\\\\\"],\\\\n        help=\\\\\\\"Tau source type (default: exposure)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--output-dir\\\\\\\", type=str,\\\\n        default=\\\\\\\"/root/autodl-tmp/exp006/results\\\\\\\",\\\\n        help=\\\\\\\"Output directory\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--benchmarks\\\\\\\", nargs=\\\\\\\"*\\\\\\\", default=None,\\\\n        help=\\\\\\\"Benchmarks to analyze (default: all)\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model-scale\\\\\\\", type=str, default=None,\\\\n        help=\\\\\\\"Model scale filter, e.g. '0.5B'.\\\\\\\")\\\\n    parser.add_argument(\\\\n        '--pool-scales', nargs='+', default=None,\\\\n        help=\\\\\\\"Cross-scale pooling: merge models from multiple scales as IRT \\\\\\\"\\\\n             \\\\\\\"examinees. E.g. --pool-scales 0.5B 1.5B 3B. Overrides --model-scale.\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--data-seed\\\\\\\", type=int, default=None,\\\\n        help=\\\\\\\"Data seed filter.\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--aligned-only\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Only load aligned-format eval directories.\\\\\\\")\\\\n    parser.add_argument(\\\\n        '--exclude-models', type=str, default=None,\\\\n        help=\\\\\\\"Comma-separated model name patterns to exclude \\\\\\\"\\\\n             \\\\\\\"(e.g. '3B_d000,3B_d005')\\\\\\\")\\\\n    parser.add_argument(\\\\n        '--require-signals', action='store_true',\\\\n        help=\\\\\\\"Abort if any pooled scale lacks signal coverage \\\\\\\"\\\\n             \\\\\\\"(use with --signals-dir)\\\\\\\")\\\\n    parser.add_argument(\\\\n        '--oracle-exposure', action='store_true',\\\\n        help=\\\\\\\"Use oracle dosage fraction as uniform exposure per model. \\\\\\\"\\\\n             \\\\\\\"Mutually exclusive with --require-signals.\\\\\\\")\\\\n\\\\n    # IRT config\\\\n    parser.add_argument(\\\\n        \\\\\\\"--model-type\\\\\\\",\\\\n        choices=list(STAN_MODELS.keys()),\\\\n        default=\\\\\\\"4pl_gamma\\\\\\\",\\\\n        help=\\\\\\\"IRT model variant (default: 4pl_gamma)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--adapt-delta\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--max-treedepth\\\\\\\", type=int, default=12)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--parallel-chains\\\\\\\", type=int, default=1,\\\\n                        help=\\\\\\\"CmdStan parallel chains (default: 1 for cgroup safety)\\\\\\\")\\\\n\\\\n    # Baseline config\\\\n    parser.add_argument(\\\\n        \\\\\\\"--skip-stan\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\\\\\")\\\\n\\\\n    # Ablation\\\\n    parser.add_argument(\\\\n        \\\\\\\"--joint-fit\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Also run joint fitting ablation (shared global gamma)\\\\\\\")\\\\n\\\\n    parser.add_argument(\\\\n        \\\\\\\"--benchmark\\\\\\\", type=str, default=None,\\\\n        choices=[\\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"mmlu\\\\\\\", \\\\\\\"humaneval\\\\\\\"],\\\\n        help=\\\\\\\"Single benchmark to run (convenience alias for --benchmarks)\\\\\\\")\\\\n\\\\n    # Dry-run\\\\n    parser.add_argument(\\\\n        \\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n        help=\\\\\\\"Quick validation with truncated items\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--max-items\\\\\\\", type=int, default=None,\\\\n        help=\\\\\\\"Max items per benchmark (default: None = no limit)\\\\\\\")\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    if getattr(args, 'oracle_exposure', False) and args.require_signals:\\\\n        parser.error(\\\\\\\"--oracle-exposure and --require-signals are mutually exclusive\\\\\\\")\\\\n\\\\n    # --benchmark (singular) overrides --benchmarks\\\\n    if args.benchmark and not args.benchmarks:\\\\n        args.benchmarks = [args.benchmark]\\\\n\\\\n    logging.basicConfig(\\\\n        level=logging.INFO,\\\\n        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    )\\\\n\\\\n    run_pipeline(args)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def load_exp002_signals(signals_dir, models, benchmark, signal_key=None,\\n                        pool_mode=False):\\n    \\\"\\\"\\\"Load exp-002 merged signals -> per-model contamination score.\\n    D034: when signal_key is set, use that single signal (e.g. s1_embedding).\\n    Default (signal_key=None): 3-signal RRF fusion (S1+S2+S4).\\n    \\\"\\\"\\\"\\n    scores = []\\n    for m in models:\\n        # Strip _aligned/_para suffixes to match signal directory naming\\n        sig_dirname = m[\\\"dirname\\\"].replace(\\\"_para_aligned\\\", \\\"\\\").replace(\\\"_aligned\\\", \\\"\\\").replace(\\\"_para\\\", \\\"\\\").replace(\\\"_v1\\\", \\\"\\\").replace(\\\"_v2\\\", \\\"\\\").replace(\\\"_v3\\\", \\\"\\\").replace(\\\"_v4\\\", \\\"\\\")\\n        merged = os.path.join(signals_dir, sig_dirname,\\n                              \\\"signals_merged_{}.json\\\".format(benchmark))\\n        if os.path.exists(merged):\\n            with open(merged) as f:\\n                items = json.load(f)\\n            n = len(items)\\n            if signal_key:\\n                # D034: single signal mode\\n                v = np.array([it.get(signal_key, 0.0) or 0.0 for it in items])\\n                scores.append(float(v.mean()))\\n            else:\\n                rrf = np.zeros(n)\\n                for sig in (\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s4_selfcritique\\\"):\\n                    v = np.array([it.get(sig, 0.0) or 0.0 for it in items])\\n                    if sig == \\\"s2_minkpp\\\":\\n                        v = -v\\n                    order = np.argsort(-v)\\n                    ranks = np.empty(n)\\n                    ranks[order] = np.arange(1, n + 1)\\n                    rrf += 1.0 / (60 + ranks)\\n                mn, mx = rrf.min(), rrf.max()\\n                rrf = (rrf - mn) / (mx - mn) if mx > mn else rrf\\n                scores.append(float(rrf.mean()))\\n        else:\\n            if pool_mode:\\n                raise RuntimeError(\\n                    f\\\"Signal homogeneity violation: no signals for \\\"\\n                    f\\\"{m['dirname']}/{benchmark} in pooled mode. \\\"\\n                    f\\\"Cannot mix signal-derived and oracle exposure.\\\")\\n            log.warning(\\\"No exp-002 signals for %s/%s, falling back to oracle dosage\\\",\\n                       m[\\\"dirname\\\"], benchmark)\\n            scores.append(m[\\\"dosage\\\"] / 100.0)\\n    return np.array(scores)\\n\\n\\ndef check_scale_signals(signals_dir, models, benchmarks, scales):\\n    \\\"\\\"\\\"Pre-check signal file availability per scale for homogeneity.\\\"\\\"\\\"\\n    excluded = set()\\n    for scale in scales:\\n        scale_models = [m for m in models if m.get(\\\"scale\\\", \\\"\\\") == scale]\\n        for m in scale_models:\\n            sig_dirname = m[\\\"dirname\\\"].replace(\\\"_para_aligned\\\", \\\"\\\").replace(\\\"_aligned\\\", \\\"\\\").replace(\\\"_para\\\", \\\"\\\").replace(\\\"_v1\\\", \\\"\\\").replace(\\\"_v2\\\", \\\"\\\").replace(\\\"_v3\\\", \\\"\\\").replace(\\\"_v4\\\", \\\"\\\")\\n            for bench in benchmarks:\\n                path = os.path.join(signals_dir, sig_dirname,\\n                                    \\\"signals_merged_{}.json\\\".format(bench))\\n                if not os.path.exists(path):\\n                    log.error(\\\"Scale %s excluded from pool: no signals for %s/%s \\\"\\n                              \\\"(would fallback to oracle — homogeneity violation)\\\",\\n                              scale, sig_dirname, bench)\\n                    excluded.add(scale)\\n                    break\\n            if scale in excluded:\\n                break\\n    return excluded\\n\\n\\ndef run_pipeline(args):\\n    \\\"\\\"\\\"Run full exp-006 pipeline.\\\"\\\"\\\"\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # ── Load Data ──\\n    # Cross-scale pooling: load multiple scales and merge\\n    if getattr(args, 'pool_scales', None):\\n        log.info(\\\"Cross-scale pooling: scales=%s\\\", args.pool_scales)\\n        data = load_pooled_eval_results(\\n            args.eval_dir, args.pool_scales, args.benchmarks,\\n            seed_filter=args.data_seed, aligned_only=args.aligned_only)\\n    else:\\n        log.info(\\\"Loading eval results from %s\\\", args.eval_dir)\\n        data = load_eval_results(args.eval_dir, args.benchmarks,\\n                                  model_scale=args.model_scale,\\n      \\n\\n... [截断: 输出过长，省略 17489 字符] ...\\n\\n    help=\\\"exp-002 signals directory. When set, uses detected contamination \\\"\\n             \\\"signals instead of oracle dosage for exposure (D023)\\\")\\n    parser.add_argument(\\n        \\\"--signal-key\\\", type=str, default=None,\\n        help=\\\"Use single signal as exposure (e.g. s1_embedding). \\\"\\n             \\\"Default: RRF fusion of S1+S2+S4 (D034)\\\")\\n    parser.add_argument(\\n        \\\"--tau-source\\\", type=str, default=\\\"exposure\\\",\\n        choices=[\\\"exposure\\\", \\\"oracle\\\", \\\"aggregated\\\"],\\n        help=\\\"Tau source type (default: exposure)\\\")\\n    parser.add_argument(\\n        \\\"--output-dir\\\", type=str,\\n        default=\\\"/root/autodl-tmp/exp006/results\\\",\\n        help=\\\"Output directory\\\")\\n    parser.add_argument(\\n        \\\"--benchmarks\\\", nargs=\\\"*\\\", default=None,\\n        help=\\\"Benchmarks to analyze (default: all)\\\")\\n    parser.add_argument(\\n        \\\"--model-scale\\\", type=str, default=None,\\n        help=\\\"Model scale filter, e.g. '0.5B'.\\\")\\n    parser.add_argument(\\n        '--pool-scales', nargs='+', default=None,\\n        help=\\\"Cross-scale pooling: merge models from multiple scales as IRT \\\"\\n             \\\"examinees. E.g. --pool-scales 0.5B 1.5B 3B. Overrides --model-scale.\\\")\\n    parser.add_argument(\\n        \\\"--data-seed\\\", type=int, default=None,\\n        help=\\\"Data seed filter.\\\")\\n    parser.add_argument(\\n        \\\"--aligned-only\\\", action=\\\"store_true\\\",\\n        help=\\\"Only load aligned-format eval directories.\\\")\\n    parser.add_argument(\\n        '--exclude-models', type=str, default=None,\\n        help=\\\"Comma-separated model name patterns to exclude \\\"\\n             \\\"(e.g. '3B_d000,3B_d005')\\\")\\n    parser.add_argument(\\n        '--require-signals', action='store_true',\\n        help=\\\"Abort if any pooled scale lacks signal coverage \\\"\\n             \\\"(use with --signals-dir)\\\")\\n    parser.add_argument(\\n        '--oracle-exposure', action='store_true',\\n        help=\\\"Use oracle dosage fraction as uniform exposure per model. \\\"\\n             \\\"Mutually exclusive with --require-signals.\\\")\\n\\n    # IRT config\\n    parser.add_argument(\\n        \\\"--model-type\\\",\\n        choices=list(STAN_MODELS.keys()),\\n        default=\\\"4pl_gamma\\\",\\n        help=\\\"IRT model variant (default: 4pl_gamma)\\\")\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--parallel-chains\\\", type=int, default=1,\\n                        help=\\\"CmdStan parallel chains (default: 1 for cgroup safety)\\\")\\n\\n    # Baseline config\\n    parser.add_argument(\\n        \\\"--skip-stan\\\", action=\\\"store_true\\\",\\n        help=\\\"Skip Stan-based baselines (B2, B3) for faster testing\\\")\\n\\n    # Ablation\\n    parser.add_argument(\\n        \\\"--joint-fit\\\", action=\\\"store_true\\\",\\n        help=\\\"Also run joint fitting ablation (shared global gamma)\\\")\\n\\n    parser.add_argument(\\n        \\\"--benchmark\\\", type=str, default=None,\\n        choices=[\\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"mmlu\\\", \\\"humaneval\\\"],\\n        help=\\\"Single benchmark to run (convenience alias for --benchmarks)\\\")\\n\\n    # Dry-run\\n    parser.add_argument(\\n        \\\"--dry-run\\\", action=\\\"store_true\\\",\\n        help=\\\"Quick validation with truncated items\\\")\\n    parser.add_argument(\\n        \\\"--max-items\\\", type=int, default=None,\\n        help=\\\"Max items per benchmark (default: None = no limit)\\\")\\n\\n    args = parser.parse_args()\\n\\n    if getattr(args, 'oracle_exposure', False) and args.require_signals:\\n        parser.error(\\\"--oracle-exposure and --require-signals are mutually exclusive\\\")\\n\\n    # --benchmark (singular) overrides --benchmarks\\n    if args.benchmark and not args.benchmarks:\\n        args.benchmarks = [args.benchmark]\\n\\n    logging.basicConfig(\\n        level=logging.INFO,\\n        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    )\\n\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T20:21:55.873Z_
+
+<details><summary>↩ Tool result · `toolu_013CsBcQ1zWVXrtYL7ffaWoF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def load_pooled_eval_results(eval_dir, scales, benchmarks=None, **kwargs):\\n    \\\"\\\"\\\"Load and merge eval results across multiple model scales.\\n\\n    Calls load_eval_results once per scale, tags each model with its scale,\\n    and stacks response matrices vertically. Items are truncated to the\\n    minimum count across scales for consistency.\\n    \\\"\\\"\\\"\\n    all_models = []\\n    all_dosages = []\\n    bench_accum = {}\\n\\n    for scale in scales:\\n        data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kwargs)\\n        log.info(\\\"Pool scale %s: %d models, dosages=%s\\\",\\n                 scale, len(data[\\\"models\\\"]), data[\\\"dosages\\\"].tolist())\\n        for m in data[\\\"models\\\"]:\\n            m[\\\"scale\\\"] = scale\\n        all_models.extend(data[\\\"models\\\"])\\n        all_dosages.extend(data[\\\"dosages\\\"].tolist())\\n\\n        for bench, bd in data[\\\"benchmarks\\\"].items():\\n            if bench not in bench_accum:\\n                bench_accum[bench] = {\\\"n_items\\\": bd[\\\"n_items\\\"],\\n                                      \\\"responses\\\": [], \\\"valid\\\": []}\\n            bench_accum[bench][\\\"n_items\\\"] = min(\\n                bench_accum[bench][\\\"n_items\\\"], bd[\\\"n_items\\\"])\\n            bench_accum[bench][\\\"responses\\\"].append(bd[\\\"responses\\\"])\\n            bench_accum[bench][\\\"valid\\\"].append(bd[\\\"valid_mask\\\"])\\n\\n    result_benchmarks = {}\\n    for bench, acc in bench_accum.items():\\n        ni = acc[\\\"n_items\\\"]\\n        responses = np.vstack([r[:, :ni] for r in acc[\\\"responses\\\"]])\\n        valid = np.concatenate(acc[\\\"valid\\\"])\\n        result_benchmarks[bench] = {\\n            \\\"responses\\\": responses, \\\"n_items\\\": ni, \\\"valid_mask\\\": valid,\\n        }\\n\\n    return {\\n        \\\"models\\\": all_models,\\n        \\\"dosages\\\": np.array(all_dosages),\\n        \\\"benchmarks\\\": result_benchmarks,\\n    }\\n\\n\\n\\n# ── Stan Fitting ──\\n\\ndef prepare_stan_data(y, exposure, model_type=\\\"4pl_gamma\\\"):\\n    \\\"\\\"\\\"Prepare data dict for Stan model.\\\"\\\"\\\"\\n    N_models, N_items = y.shape\\n    data = {\\n        \\\"N_models\\\": int(N_models),\\n        \\\"N_items\\\": int(N_items),\\n        \\\"y\\\": y.astype(int).tolist(),\\n    }\\n    if model_type != \\\"vanilla_4pl\\\":\\n        data[\\\"exposure\\\"] = exposure.tolist()\\n    return data\\n\\n\\ndef fit_stan_model(stan_file, stan_data, chains=4, iter_warmup=1000,\\n                   iter_sampling=1000, adapt_delta=0.95, max_treedepth=12,\\n                   seed=42, parallel_chains=None):\\n    \\\"\\\"\\\"Fit Stan model via CmdStanPy NUTS sampler.\\\"\\\"\\\"\\n    log.info(\\\"Compiling Stan model: %s\\\", os.path.basename(stan_file))\\n    model = cmdstanpy.CmdStanModel(stan_file=stan_file)\\n\\n    log.info(\\\"Fitting: %d models x %d items, %d chains x %d samples\\\",\\n             stan_data[\\\"N_models\\\"], stan_data[\\\"N_items\\\"], chains, iter_sampling)\\n    t0 = time.time()\\n    fit = model.sample(\\n        data=stan_data,\\n        chains=chains,\\n        iter_warmup=iter_warmup,\\n        iter_sampling=iter_sampling,\\n        seed=seed,\\n        adapt_delta=adapt_delta,\\n        max_treedepth=max_treedepth,\\n        parallel_chains=parallel_chains if parallel_chains is not None else min(chains, 4),\\n        show_progress=True,\\n    )\\n    elapsed = time.time() - t0\\n    log.info(\\\"Sampling completed in %.1fs\\\", elapsed)\\n    return fit, elapsed\\n\\n\\n\\n\\n# ── Diagnostics ──\\n\\ndef check_convergence(fit):\\n    \\\"\\\"\\\"Check Rhat, ESS, divergences.\\\"\\\"\\\"\\n    summary = fit.summary()\\n    diag = {}\\n\\n    for col in [\\\"R_hat\\\", \\\"Rhat\\\"]:\\n        if col in summary.columns:\\n            diag[\\\"max_rhat\\\"] = round(float(summary[col].max()), 4)\\n            diag[\\\"rhat_ok\\\"] = diag[\\\"max_rhat\\\"] < 1.01\\n            break\\n\\n    for col in [\\\"ESS_bulk\\\", \\\"N_Eff\\\", \\\"N_eff\\\"]:\\n        if col in summary.columns:\\n            diag[\\\"min_ess\\\"] = round(float(summary[col].min()), 1)\\n            diag[\\\"ess_ok\\\"] = diag[\\\"min_ess\\\"] > 400\\n            break\\n\\n    diag_text = fit.diagnose()\\n    divergent = 0\\n    for line in diag_text.split(\\\"\\\\n\\\"):\\n        if \\\"divergent\\\" in line.lower():\\n            parts = [w for w in line.split() if w.isdigit()]\\n            if parts:\\n                divergent = int(parts[0])\\n                break\\n    total_draws = fit.chai\\n\\n... [截断: 输出过长，省略 7228 字符] ...\\n\\n\\n    parser.add_argument(\\\"--model-scale\\\", type=str, default=None,\\n                        help=\\\"Model scale filter, e.g. '0.5B'. Only loads matching eval dirs.\\\")\\n    parser.add_argument(\\\"--data-seed\\\", type=int, default=None,\\n                        help=\\\"Data seed filter. Only loads eval dirs with this seed.\\\")\\n    parser.add_argument(\\\"--aligned-only\\\", action=\\\"store_true\\\",\\n                        help=\\\"Only load aligned-format eval directories.\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # Mode 1: direct matrix input\\n    if args.response_matrix:\\n        if not args.exposure_matrix and args.model_type != \\\"vanilla_4pl\\\":\\n            parser.error(\\\"--exposure-matrix required with --response-matrix \\\"\\n                         \\\"(unless --model-type=vanilla_4pl)\\\")\\n        y = load_matrix(args.response_matrix).astype(int)\\n        if args.exposure_matrix:\\n            exposure = load_matrix(args.exposure_matrix)\\n            assert y.shape == exposure.shape, (\\n                f\\\"Shape mismatch: response {y.shape} vs exposure {exposure.shape}\\\")\\n        else:\\n            exposure = np.zeros_like(y, dtype=float)\\n        bench_name = args.benchmark or \\\"benchmark\\\"\\n\\n        result = run_benchmark_fit(bench_name, y, exposure, args.model_type, args)\\n\\n        out_path = output_dir / f\\\"{bench_name}_{args.model_type}_results.json\\\"\\n        with open(out_path, \\\"w\\\") as f:\\n            json.dump(result, f, indent=2)\\n        log.info(\\\"Results saved to %s\\\", out_path)\\n        return\\n\\n    # Mode 2: eval-dir input\\n    if not args.eval_dir:\\n        parser.error(\\\"Specify --eval-dir or --response-matrix\\\")\\n\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\n                              model_scale=args.model_scale,\\n                              seed_filter=args.data_seed,\\n                              aligned_only=args.aligned_only)\\n    exposure_scores = load_exposure_scores(args.exposure_file, data[\\\"benchmarks\\\"],\\n                                           model_id=args.tau_model_id)\\n    dosages = data[\\\"dosages\\\"]\\n\\n    all_results = {\\n        \\\"mode\\\": \\\"eval_dir\\\",\\n        \\\"eval_dir\\\": args.eval_dir,\\n        \\\"model_type\\\": args.model_type,\\n        \\\"models\\\": [\\n            {\\\"dirname\\\": m[\\\"dirname\\\"], \\\"model_name\\\": m[\\\"model_name\\\"],\\n             \\\"dosage\\\": m[\\\"dosage\\\"], \\\"seed\\\": m[\\\"seed\\\"]}\\n            for m in data[\\\"models\\\"]\\n        ],\\n        \\\"benchmarks\\\": {},\\n    }\\n\\n    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n        responses = bench_data[\\\"responses\\\"]\\n        valid = bench_data[\\\"valid_mask\\\"]\\n        tau = exposure_scores[bench]\\n\\n        if not valid.all():\\n            responses = responses[valid]\\n            dosages_bench = dosages[valid]\\n        else:\\n            dosages_bench = dosages\\n\\n        exposure_matrix = build_exposure_matrix(dosages_bench, tau[:bench_data[\\\"n_items\\\"]])\\n        result = run_benchmark_fit(bench, responses, exposure_matrix, args.model_type, args)\\n        all_results[\\\"benchmarks\\\"][bench] = result\\n\\n        bench_dir = output_dir / bench\\n        bench_dir.mkdir(parents=True, exist_ok=True)\\n        with open(bench_dir / f\\\"{args.model_type}_results.json\\\", \\\"w\\\") as f:\\n            json.dump(result, f, indent=2)\\n\\n    with open(output_dir / \\\"irt_calibration_results.json\\\", \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    log.info(\\\"All results saved to %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "7e74e22a-e4bb-426e-84e3-3898cc2942d8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def load_pooled_eval_results(eval_dir, scales, benchmarks=None, **kwargs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and merge eval results across multiple model scales.\\\\n\\\\n    Calls load_eval_results once per scale, tags each model with its scale,\\\\n    and stacks response matrices vertically. Items are truncated to the\\\\n    minimum count across scales for consistency.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_models = []\\\\n    all_dosages = []\\\\n    bench_accum = {}\\\\n\\\\n    for scale in scales:\\\\n        data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kwargs)\\\\n        log.info(\\\\\\\"Pool scale %s: %d models, dosages=%s\\\\\\\",\\\\n                 scale, len(data[\\\\\\\"models\\\\\\\"]), data[\\\\\\\"dosages\\\\\\\"].tolist())\\\\n        for m in data[\\\\\\\"models\\\\\\\"]:\\\\n            m[\\\\\\\"scale\\\\\\\"] = scale\\\\n        all_models.extend(data[\\\\\\\"models\\\\\\\"])\\\\n        all_dosages.extend(data[\\\\\\\"dosages\\\\\\\"].tolist())\\\\n\\\\n        for bench, bd in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n            if bench not in bench_accum:\\\\n                bench_accum[bench] = {\\\\\\\"n_items\\\\\\\": bd[\\\\\\\"n_items\\\\\\\"],\\\\n                                      \\\\\\\"responses\\\\\\\": [], \\\\\\\"valid\\\\\\\": []}\\\\n            bench_accum[bench][\\\\\\\"n_items\\\\\\\"] = min(\\\\n                bench_accum[bench][\\\\\\\"n_items\\\\\\\"], bd[\\\\\\\"n_items\\\\\\\"])\\\\n            bench_accum[bench][\\\\\\\"responses\\\\\\\"].append(bd[\\\\\\\"responses\\\\\\\"])\\\\n            bench_accum[bench][\\\\\\\"valid\\\\\\\"].append(bd[\\\\\\\"valid_mask\\\\\\\"])\\\\n\\\\n    result_benchmarks = {}\\\\n    for bench, acc in bench_accum.items():\\\\n        ni = acc[\\\\\\\"n_items\\\\\\\"]\\\\n        responses = np.vstack([r[:, :ni] for r in acc[\\\\\\\"responses\\\\\\\"]])\\\\n        valid = np.concatenate(acc[\\\\\\\"valid\\\\\\\"])\\\\n        result_benchmarks[bench] = {\\\\n            \\\\\\\"responses\\\\\\\": responses, \\\\\\\"n_items\\\\\\\": ni, \\\\\\\"valid_mask\\\\\\\": valid,\\\\n        }\\\\n\\\\n    return {\\\\n        \\\\\\\"models\\\\\\\": all_models,\\\\n        \\\\\\\"dosages\\\\\\\": np.array(all_dosages),\\\\n        \\\\\\\"benchmarks\\\\\\\": result_benchmarks,\\\\n    }\\\\n\\\\n\\\\n\\\\n# ── Stan Fitting ──\\\\n\\\\ndef prepare_stan_data(y, exposure, model_type=\\\\\\\"4pl_gamma\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Prepare data dict for Stan model.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    N_models, N_items = y.shape\\\\n    data = {\\\\n        \\\\\\\"N_models\\\\\\\": int(N_models),\\\\n        \\\\\\\"N_items\\\\\\\": int(N_items),\\\\n        \\\\\\\"y\\\\\\\": y.astype(int).tolist(),\\\\n    }\\\\n    if model_type != \\\\\\\"vanilla_4pl\\\\\\\":\\\\n        data[\\\\\\\"exposure\\\\\\\"] = exposure.tolist()\\\\n    return data\\\\n\\\\n\\\\ndef fit_stan_model(stan_file, stan_data, chains=4, iter_warmup=1000,\\\\n                   iter_sampling=1000, adapt_delta=0.95, max_treedepth=12,\\\\n                   seed=42, parallel_chains=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Fit Stan model via CmdStanPy NUTS sampler.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    log.info(\\\\\\\"Compiling Stan model: %s\\\\\\\", os.path.basename(stan_file))\\\\n    model = cmdstanpy.CmdStanModel(stan_file=stan_file)\\\\n\\\\n    log.info(\\\\\\\"Fitting: %d models x %d items, %d chains x %d samples\\\\\\\",\\\\n             stan_data[\\\\\\\"N_models\\\\\\\"], stan_data[\\\\\\\"N_items\\\\\\\"], chains, iter_sampling)\\\\n    t0 = time.time()\\\\n    fit = model.sample(\\\\n        data=stan_data,\\\\n        chains=chains,\\\\n        iter_warmup=iter_warmup,\\\\n        iter_sampling=iter_sampling,\\\\n        seed=seed,\\\\n        adapt_delta=adapt_delta,\\\\n        max_treedepth=max_treedepth,\\\\n        parallel_chains=parallel_chains if parallel_chains is not None else min(chains, 4),\\\\n        show_progress=True,\\\\n    )\\\\n    elapsed = time.time() - t0\\\\n    log.info(\\\\\\\"Sampling completed in %.1fs\\\\\\\", elapsed)\\\\n    return fit, elapsed\\\\n\\\\n\\\\n\\\\n\\\\n# ── Diagnostics ──\\\\n\\\\ndef check_convergence(fit):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Check Rhat, ESS, divergences.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    summary = fit.summary()\\\\n    diag = {}\\\\n\\\\n    for col in [\\\\\\\"R_hat\\\\\\\", \\\\\\\"Rhat\\\\\\\"]:\\\\n        if col in summary.columns:\\\\n            diag[\\\\\\\"max_rhat\\\\\\\"] = round(float(summary[col].max()), 4)\\\\n            diag[\\\\\\\"rhat_ok\\\\\\\"] = diag[\\\\\\\"max_rhat\\\\\\\"] < 1.01\\\\n            break\\\\n\\\\n    for col in [\\\\\\\"ESS_bulk\\\\\\\", \\\\\\\"N_Eff\\\\\\\", \\\\\\\"N_eff\\\\\\\"]:\\\\n        if col in summary.columns:\\\\n            diag[\\\\\\\"min_ess\\\\\\\"] = round(float(summary[col].min()), 1)\\\\n            diag[\\\\\\\"ess_ok\\\\\\\"] = diag[\\\\\\\"min_ess\\\\\\\"] > 400\\\\n            break\\\\n\\\\n    diag_text = fit.diagnose()\\\\n    divergent = 0\\\\n    for line in diag_text.split(\\\\\\\"\\\\\\\\n\\\\\\\"):\\\\n        if \\\\\\\"divergent\\\\\\\" in line.lower():\\\\n            parts = [w for w in line.split() if w.isdigit()]\\\\n            if parts:\\\\n                divergent = int(parts[0])\\\\n                break\\\\n    total_draws = fit.chai\\\\n\\\\n... [截断: 输出过长，省略 7228 字符] ...\\\\n\\\\n\\\\n    parser.add_argument(\\\\\\\"--model-scale\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Model scale filter, e.g. '0.5B'. Only loads matching eval dirs.\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-seed\\\\\\\", type=int, default=None,\\\\n                        help=\\\\\\\"Data seed filter. Only loads eval dirs with this seed.\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--aligned-only\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Only load aligned-format eval directories.\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n\\\\n    parser.add_argument(\\\\\\\"--chains\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--warmup\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--samples\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--adapt-delta\\\\\\\", type=float, default=0.95)\\\\n    parser.add_argument(\\\\\\\"--max-treedepth\\\\\\\", type=int, default=12)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO,\\\\n                        format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # Mode 1: direct matrix input\\\\n    if args.response_matrix:\\\\n        if not args.exposure_matrix and args.model_type != \\\\\\\"vanilla_4pl\\\\\\\":\\\\n            parser.error(\\\\\\\"--exposure-matrix required with --response-matrix \\\\\\\"\\\\n                         \\\\\\\"(unless --model-type=vanilla_4pl)\\\\\\\")\\\\n        y = load_matrix(args.response_matrix).astype(int)\\\\n        if args.exposure_matrix:\\\\n            exposure = load_matrix(args.exposure_matrix)\\\\n            assert y.shape == exposure.shape, (\\\\n                f\\\\\\\"Shape mismatch: response {y.shape} vs exposure {exposure.shape}\\\\\\\")\\\\n        else:\\\\n            exposure = np.zeros_like(y, dtype=float)\\\\n        bench_name = args.benchmark or \\\\\\\"benchmark\\\\\\\"\\\\n\\\\n        result = run_benchmark_fit(bench_name, y, exposure, args.model_type, args)\\\\n\\\\n        out_path = output_dir / f\\\\\\\"{bench_name}_{args.model_type}_results.json\\\\\\\"\\\\n        with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(result, f, indent=2)\\\\n        log.info(\\\\\\\"Results saved to %s\\\\\\\", out_path)\\\\n        return\\\\n\\\\n    # Mode 2: eval-dir input\\\\n    if not args.eval_dir:\\\\n        parser.error(\\\\\\\"Specify --eval-dir or --response-matrix\\\\\\\")\\\\n\\\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\\\n                              model_scale=args.model_scale,\\\\n                              seed_filter=args.data_seed,\\\\n                              aligned_only=args.aligned_only)\\\\n    exposure_scores = load_exposure_scores(args.exposure_file, data[\\\\\\\"benchmarks\\\\\\\"],\\\\n                                           model_id=args.tau_model_id)\\\\n    dosages = data[\\\\\\\"dosages\\\\\\\"]\\\\n\\\\n    all_results = {\\\\n        \\\\\\\"mode\\\\\\\": \\\\\\\"eval_dir\\\\\\\",\\\\n        \\\\\\\"eval_dir\\\\\\\": args.eval_dir,\\\\n        \\\\\\\"model_type\\\\\\\": args.model_type,\\\\n        \\\\\\\"models\\\\\\\": [\\\\n            {\\\\\\\"dirname\\\\\\\": m[\\\\\\\"dirname\\\\\\\"], \\\\\\\"model_name\\\\\\\": m[\\\\\\\"model_name\\\\\\\"],\\\\n             \\\\\\\"dosage\\\\\\\": m[\\\\\\\"dosage\\\\\\\"], \\\\\\\"seed\\\\\\\": m[\\\\\\\"seed\\\\\\\"]}\\\\n            for m in data[\\\\\\\"models\\\\\\\"]\\\\n        ],\\\\n        \\\\\\\"benchmarks\\\\\\\": {},\\\\n    }\\\\n\\\\n    for bench, bench_data in data[\\\\\\\"benchmarks\\\\\\\"].items():\\\\n        responses = bench_data[\\\\\\\"responses\\\\\\\"]\\\\n        valid = bench_data[\\\\\\\"valid_mask\\\\\\\"]\\\\n        tau = exposure_scores[bench]\\\\n\\\\n        if not valid.all():\\\\n            responses = responses[valid]\\\\n            dosages_bench = dosages[valid]\\\\n        else:\\\\n            dosages_bench = dosages\\\\n\\\\n        exposure_matrix = build_exposure_matrix(dosages_bench, tau[:bench_data[\\\\\\\"n_items\\\\\\\"]])\\\\n        result = run_benchmark_fit(bench, responses, exposure_matrix, args.model_type, args)\\\\n        all_results[\\\\\\\"benchmarks\\\\\\\"][bench] = result\\\\n\\\\n        bench_dir = output_dir / bench\\\\n        bench_dir.mkdir(parents=True, exist_ok=True)\\\\n        with open(bench_dir / f\\\\\\\"{args.model_type}_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(result, f, indent=2)\\\\n\\\\n    with open(output_dir / \\\\\\\"irt_calibration_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n    log.info(\\\\\\\"All results saved to %s\\\\\\\", output_dir)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def load_pooled_eval_results(eval_dir, scales, benchmarks=None, **kwargs):\\n    \\\"\\\"\\\"Load and merge eval results across multiple model scales.\\n\\n    Calls load_eval_results once per scale, tags each model with its scale,\\n    and stacks response matrices vertically. Items are truncated to the\\n    minimum count across scales for consistency.\\n    \\\"\\\"\\\"\\n    all_models = []\\n    all_dosages = []\\n    bench_accum = {}\\n\\n    for scale in scales:\\n        data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kwargs)\\n        log.info(\\\"Pool scale %s: %d models, dosages=%s\\\",\\n                 scale, len(data[\\\"models\\\"]), data[\\\"dosages\\\"].tolist())\\n        for m in data[\\\"models\\\"]:\\n            m[\\\"scale\\\"] = scale\\n        all_models.extend(data[\\\"models\\\"])\\n        all_dosages.extend(data[\\\"dosages\\\"].tolist())\\n\\n        for bench, bd in data[\\\"benchmarks\\\"].items():\\n            if bench not in bench_accum:\\n                bench_accum[bench] = {\\\"n_items\\\": bd[\\\"n_items\\\"],\\n                                      \\\"responses\\\": [], \\\"valid\\\": []}\\n            bench_accum[bench][\\\"n_items\\\"] = min(\\n                bench_accum[bench][\\\"n_items\\\"], bd[\\\"n_items\\\"])\\n            bench_accum[bench][\\\"responses\\\"].append(bd[\\\"responses\\\"])\\n            bench_accum[bench][\\\"valid\\\"].append(bd[\\\"valid_mask\\\"])\\n\\n    result_benchmarks = {}\\n    for bench, acc in bench_accum.items():\\n        ni = acc[\\\"n_items\\\"]\\n        responses = np.vstack([r[:, :ni] for r in acc[\\\"responses\\\"]])\\n        valid = np.concatenate(acc[\\\"valid\\\"])\\n        result_benchmarks[bench] = {\\n            \\\"responses\\\": responses, \\\"n_items\\\": ni, \\\"valid_mask\\\": valid,\\n        }\\n\\n    return {\\n        \\\"models\\\": all_models,\\n        \\\"dosages\\\": np.array(all_dosages),\\n        \\\"benchmarks\\\": result_benchmarks,\\n    }\\n\\n\\n\\n# ── Stan Fitting ──\\n\\ndef prepare_stan_data(y, exposure, model_type=\\\"4pl_gamma\\\"):\\n    \\\"\\\"\\\"Prepare data dict for Stan model.\\\"\\\"\\\"\\n    N_models, N_items = y.shape\\n    data = {\\n        \\\"N_models\\\": int(N_models),\\n        \\\"N_items\\\": int(N_items),\\n        \\\"y\\\": y.astype(int).tolist(),\\n    }\\n    if model_type != \\\"vanilla_4pl\\\":\\n        data[\\\"exposure\\\"] = exposure.tolist()\\n    return data\\n\\n\\ndef fit_stan_model(stan_file, stan_data, chains=4, iter_warmup=1000,\\n                   iter_sampling=1000, adapt_delta=0.95, max_treedepth=12,\\n                   seed=42, parallel_chains=None):\\n    \\\"\\\"\\\"Fit Stan model via CmdStanPy NUTS sampler.\\\"\\\"\\\"\\n    log.info(\\\"Compiling Stan model: %s\\\", os.path.basename(stan_file))\\n    model = cmdstanpy.CmdStanModel(stan_file=stan_file)\\n\\n    log.info(\\\"Fitting: %d models x %d items, %d chains x %d samples\\\",\\n             stan_data[\\\"N_models\\\"], stan_data[\\\"N_items\\\"], chains, iter_sampling)\\n    t0 = time.time()\\n    fit = model.sample(\\n        data=stan_data,\\n        chains=chains,\\n        iter_warmup=iter_warmup,\\n        iter_sampling=iter_sampling,\\n        seed=seed,\\n        adapt_delta=adapt_delta,\\n        max_treedepth=max_treedepth,\\n        parallel_chains=parallel_chains if parallel_chains is not None else min(chains, 4),\\n        show_progress=True,\\n    )\\n    elapsed = time.time() - t0\\n    log.info(\\\"Sampling completed in %.1fs\\\", elapsed)\\n    return fit, elapsed\\n\\n\\n\\n\\n# ── Diagnostics ──\\n\\ndef check_convergence(fit):\\n    \\\"\\\"\\\"Check Rhat, ESS, divergences.\\\"\\\"\\\"\\n    summary = fit.summary()\\n    diag = {}\\n\\n    for col in [\\\"R_hat\\\", \\\"Rhat\\\"]:\\n        if col in summary.columns:\\n            diag[\\\"max_rhat\\\"] = round(float(summary[col].max()), 4)\\n            diag[\\\"rhat_ok\\\"] = diag[\\\"max_rhat\\\"] < 1.01\\n            break\\n\\n    for col in [\\\"ESS_bulk\\\", \\\"N_Eff\\\", \\\"N_eff\\\"]:\\n        if col in summary.columns:\\n            diag[\\\"min_ess\\\"] = round(float(summary[col].min()), 1)\\n            diag[\\\"ess_ok\\\"] = diag[\\\"min_ess\\\"] > 400\\n            break\\n\\n    diag_text = fit.diagnose()\\n    divergent = 0\\n    for line in diag_text.split(\\\"\\\\n\\\"):\\n        if \\\"divergent\\\" in line.lower():\\n            parts = [w for w in line.split() if w.isdigit()]\\n            if parts:\\n                divergent = int(parts[0])\\n                break\\n    total_draws = fit.chai\\n\\n... [截断: 输出过长，省略 7228 字符] ...\\n\\n\\n    parser.add_argument(\\\"--model-scale\\\", type=str, default=None,\\n                        help=\\\"Model scale filter, e.g. '0.5B'. Only loads matching eval dirs.\\\")\\n    parser.add_argument(\\\"--data-seed\\\", type=int, default=None,\\n                        help=\\\"Data seed filter. Only loads eval dirs with this seed.\\\")\\n    parser.add_argument(\\\"--aligned-only\\\", action=\\\"store_true\\\",\\n                        help=\\\"Only load aligned-format eval directories.\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n\\n    parser.add_argument(\\\"--chains\\\", type=int, default=4)\\n    parser.add_argument(\\\"--warmup\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--samples\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--adapt-delta\\\", type=float, default=0.95)\\n    parser.add_argument(\\\"--max-treedepth\\\", type=int, default=12)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # Mode 1: direct matrix input\\n    if args.response_matrix:\\n        if not args.exposure_matrix and args.model_type != \\\"vanilla_4pl\\\":\\n            parser.error(\\\"--exposure-matrix required with --response-matrix \\\"\\n                         \\\"(unless --model-type=vanilla_4pl)\\\")\\n        y = load_matrix(args.response_matrix).astype(int)\\n        if args.exposure_matrix:\\n            exposure = load_matrix(args.exposure_matrix)\\n            assert y.shape == exposure.shape, (\\n                f\\\"Shape mismatch: response {y.shape} vs exposure {exposure.shape}\\\")\\n        else:\\n            exposure = np.zeros_like(y, dtype=float)\\n        bench_name = args.benchmark or \\\"benchmark\\\"\\n\\n        result = run_benchmark_fit(bench_name, y, exposure, args.model_type, args)\\n\\n        out_path = output_dir / f\\\"{bench_name}_{args.model_type}_results.json\\\"\\n        with open(out_path, \\\"w\\\") as f:\\n            json.dump(result, f, indent=2)\\n        log.info(\\\"Results saved to %s\\\", out_path)\\n        return\\n\\n    # Mode 2: eval-dir input\\n    if not args.eval_dir:\\n        parser.error(\\\"Specify --eval-dir or --response-matrix\\\")\\n\\n    data = load_eval_results(args.eval_dir, args.benchmarks,\\n                              model_scale=args.model_scale,\\n                              seed_filter=args.data_seed,\\n                              aligned_only=args.aligned_only)\\n    exposure_scores = load_exposure_scores(args.exposure_file, data[\\\"benchmarks\\\"],\\n                                           model_id=args.tau_model_id)\\n    dosages = data[\\\"dosages\\\"]\\n\\n    all_results = {\\n        \\\"mode\\\": \\\"eval_dir\\\",\\n        \\\"eval_dir\\\": args.eval_dir,\\n        \\\"model_type\\\": args.model_type,\\n        \\\"models\\\": [\\n            {\\\"dirname\\\": m[\\\"dirname\\\"], \\\"model_name\\\": m[\\\"model_name\\\"],\\n             \\\"dosage\\\": m[\\\"dosage\\\"], \\\"seed\\\": m[\\\"seed\\\"]}\\n            for m in data[\\\"models\\\"]\\n        ],\\n        \\\"benchmarks\\\": {},\\n    }\\n\\n    for bench, bench_data in data[\\\"benchmarks\\\"].items():\\n        responses = bench_data[\\\"responses\\\"]\\n        valid = bench_data[\\\"valid_mask\\\"]\\n        tau = exposure_scores[bench]\\n\\n        if not valid.all():\\n            responses = responses[valid]\\n            dosages_bench = dosages[valid]\\n        else:\\n            dosages_bench = dosages\\n\\n        exposure_matrix = build_exposure_matrix(dosages_bench, tau[:bench_data[\\\"n_items\\\"]])\\n        result = run_benchmark_fit(bench, responses, exposure_matrix, args.model_type, args)\\n        all_results[\\\"benchmarks\\\"][bench] = result\\n\\n        bench_dir = output_dir / bench\\n        bench_dir.mkdir(parents=True, exist_ok=True)\\n        with open(bench_dir / f\\\"{args.model_type}_results.json\\\", \\\"w\\\") as f:\\n            json.dump(result, f, indent=2)\\n\\n    with open(output_dir / \\\"irt_calibration_results.json\\\", \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    log.info(\\\"All results saved to %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also check what's actually in the signals directory to understand the current state:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "35e50203-53ac-47d4-8707-e9cf1266dc51",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kdW5dVLJjUusvwEmGenTf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6632,
+      "cache_read_input_tokens": 53602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6632
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+确认一下信号目录的当前内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "e16143de-3a6f-4327-847b-550d445d1582",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kdW5dVLJjUusvwEmGenTf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6632,
+      "cache_read_input_tokens": 53602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6632
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XV9hAXhLiLe3XsRqc9FdUV`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "cbd9c3d2-391a-4fc9-85f6-0d2879435e63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kdW5dVLJjUusvwEmGenTf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6632,
+      "cache_read_input_tokens": 53602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6632
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T20:22:03.291Z_
+
+<details><summary>↩ Tool result · `toolu_01XV9hAXhLiLe3XsRqc9FdUV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d005_s42\\nQwen2.5-0.5B_d025_s42\\nQwen2.5-0.5B_d100_s42\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d005_s42\\nQwen2.5-1.5B_d025_s42\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-3B_d000_s42.INVALID\\nQwen2.5-3B_d000_v2_s42\\nQwen2.5-3B_d005_s42\\nQwen2.5-3B_d025_s42\\nQwen2.5-3B_d100_s42\\nbatch_report_Qwen2.5-0.5B.json\\nbatch_report_Qwen2.5-1.5B.json\\nbatch_report_Qwen2.5-3B.json\\nsignals_3B_v6.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "b3044aca-e570-4c77-9816-c465f0a0a278",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d005_s42\\\\nQwen2.5-0.5B_d025_s42\\\\nQwen2.5-0.5B_d100_s42\\\\nQwen2.5-1.5B_d000_s42\\\\nQwen2.5-1.5B_d005_s42\\\\nQwen2.5-1.5B_d025_s42\\\\nQwen2.5-1.5B_d100_s42\\\\nQwen2.5-3B_d000_s42.INVALID\\\\nQwen2.5-3B_d000_v2_s42\\\\nQwen2.5-3B_d005_s42\\\\nQwen2.5-3B_d025_s42\\\\nQwen2.5-3B_d100_s42\\\\nbatch_report_Qwen2.5-0.5B.json\\\\nbatch_report_Qwen2.5-1.5B.json\\\\nbatch_report_Qwen2.5-3B.json\\\\nsignals_3B_v6.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d005_s42\\nQwen2.5-0.5B_d025_s42\\nQwen2.5-0.5B_d100_s42\\nQwen2.5-1.5B_d000_s42\\nQwen2.5-1.5B_d005_s42\\nQwen2.5-1.5B_d025_s42\\nQwen2.5-1.5B_d100_s42\\nQwen2.5-3B_d000_s42.INVALID\\nQwen2.5-3B_d000_v2_s42\\nQwen2.5-3B_d005_s42\\nQwen2.5-3B_d025_s42\\nQwen2.5-3B_d100_s42\\nbatch_report_Qwen2.5-0.5B.json\\nbatch_report_Qwen2.5-1.5B.json\\nbatch_report_Qwen2.5-3B.json\\nsignals_3B_v6.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete picture. Let me analyze:
+
+The signal directory `Qwen2.5-3B_d000_v2_s42` is the one produced by v6 with alpha=16. It's already there in the signals directory.
+
+Now let me trace the data flow:
+
+### 1. exp003/rrf_aggregation.py - `aggregate_all_models()` (line 178-206)
+- **Scans**: `signal_root.iterdir()` at line 188
+- **Filters**: Only `dosage_filter` (substring match on model_id)
+- **Risk**: YES - this will pick up `Qwen2.5-3B_d000_v2_s42/` directory when scanning all models
+
+
+- **Impact**: The RRF aggregation would include this alpha=16 checkpoint's signals
+
+### 2. exp003/rrf_aggregation.py - `generate_exposure_json()` (line 208)
+- Calls `aggregate_all_models()`, so inherits the same risk
+
+### 3. exp002/aggregate_rrf.py - `generate_exposure_json()` (line 185)
+- **Scans**: `signal_path.glob(f"*/signals_merged_{bench}.json")` at line 207
+- **Risk**: YES - the glob `*/...` will match any subdirectory including `Qwen2.5-3B_d000_v2_s42/`
+- This function also pulls in the contaminated signals through the same pattern matching.
+
+### 4. exp006/run_irt_calibration.py - `load_eval_results()` (line 77-81)
+- **Scans**: `eval_path.iterdir()` at line 81
+- This scans **eval_results** (exp001), not signal directories
+- The v6 signals in exp002/signals wouldn't be directly scanned here
+
+### 5. exp006/run_exp006.py - `load_exp002_signals()` (line 110)
+- **Scans**: Nothing - it iterates over `models` list (which comes from eval_results dir scan), and for each model, constructs the signal dir path by deriving from the model's dirname
+- The signal dir path is constructed dynamically...
+
+### 6. exp006/run_pooled_4bench_irt.py
+- Uses oracle dosage as exposure (`build_oracle_exposure`), not signal-based exposure
+- Uses `load_pooled_eval_results` which scans eval_results dir, not signals dir
+
+## Conclusion
+
+**Two risk points exist:**
+
+1. **exp003/rrf_aggregation.py `aggregate_all_models()` (line 188)**: Uses `iterdir()` to scan all subdirectories in `SIGNAL_ROOT` (`/root/autodl-tmp/exp002/signals`). This WILL include `Qwen2.5-3B_d000_v2_s42/`. The only way this gets filtered out is if there's downstream logic that excludes it based on naming patterns or other criteria.
+
+2. **exp002/aggregate_rrf.py `generate_exposure_json()` (lines 207, 214)**: Uses `glob("*/signals_merged_*.json")` which WILL match files in `Qwen2.5-3B_d000_v2_s42/`.
+
+**One safe point:**
+
+3. **exp006/run_exp006.py `load_exp002_signals()` (line 110)**: This is model-driven rather than directory-driven, so it only looks for signals corresponding to models that have eval results. The dirname stripping logic would map `Qwen2.5-3B_d000_v2_s42_aligned` to `Qwen2.5-3B_d000_s42`, which wouldn't match the actual signal directory name.
+
+Let me trace through the stripping logic more carefully. The code removes alignment suffixes and version tags sequentially, so `Qwen2.5-3B_d000_v2_s42_aligned` becomes `Qwen2.5-3B_d000__s42` (with double underscores after stripping `_v2`), which definitely won't match `Qwen2.5-3B_d000_v2_s42`.
+
+Actually, I need to reconsider what's happening here. The real issue is that there's a new `Qwen2.5-3B_d000_v2_s42` directory in the signal storage, and I need to verify whether this is actually the v6 output and whether downstream code will pick it up when scanning for signals.
+
+The main concern is in the directory scanning logic within `aggregate_all_models()` and the exp002 `generate_exposure_json()`. For the exp006 path that loads exp002 signals, the function relies on the eval results model list. If there's an eval_results entry for `Qwen2.5-3B_d000_v2_s42_aligned`, the underscore stripping would convert it to `Qwen2.5-3B_d000_s42`, which wouldn't match the actual v2_s42 signals directory and would fail to find them.
+
+The real vulnerability is in exp003's `aggregate_all_models()` function, which could encounter the `.INVALID` directory that's been renamed, causing the existence check to fail for the original path.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "9f18eeef-a3dd-4794-a5dc-f6cc2c778347",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A4bn5RmkqaZ8x189JknuF7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 518,
+      "cache_read_input_tokens": 60234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+分析完毕。以下是结果。
+
+---
+
+## 报告：IRT Pipeline 信号目录扫描风险分析
+
+### 当前信号目录状态
+
+`/root/autodl-tmp/exp002/signals/` 已包含 `Qwen2.5-3B_d000_v2_s42/` 目录（v6 产出，alpha=16）。
+
+### 扫描点分析
+
+#### 1. **exp003/rrf_aggregation.py:188 — `aggregate_all_models()` — 有风险**
+
+```python
+for model_dir in sorted(signal_root.iterdir()):
+    if not model_dir.is_dir():
+        continue
+    model_id = model_dir.name
+    if dosage_filter and dosage_filter not in model_id:
+        continue
+```
+
+使用 `iterdir()` 无差别扫描 `SIGNAL_ROOT` 下所有子目录。唯一的过滤是 `dosage_filter`（子串匹配）。`generate_exposure_json()` (line 208) 调用此函数，也继承风险。
+
+**结论：会误包含 `Qwen2.5-3B_d000_v2_s42/`。** 特别是当不传 `dosage_filter` 或传 `d000` 时，该目录会被纳入。
+
+#### 2. **exp002/aggregate_rrf.py:207 — `generate_exposure_json()` — 有风险**
+
+```python
+merged_files = sorted(signal_path.glob(f"*/signals_merged_{bench}.json"))
+```
+
+`*/` 通配符会匹配所有子目录，包括 `Qwen2.5-3B_d000_v2_s42/`。
+
+**结论：会误包含。**
+
+#### 3. **exp006/run_exp006.py:110 — `load_exp002_signals()` — 安全**
+
+此函数**不扫描信号目录**。它遍历 eval_results 模型列表，通过模型 dirname 推导信号路径：
+
+```python
+sig_dirname = m["dirname"].replace("_para_aligned", "")...replace("_v2", "")...
+merged = os.path.join(signals_dir, sig_dirname, "signals_merged_{}.json".format(benchmark))
+```
+
+信号路径查找是**模型驱动**的，不是目录扫描。而且 `.replace("_v2", "")` 会把 eval dirname 中的 `_v2` 去掉，导致路径指向 `Qwen2.5-3B_d000_s42`（已被标为 `.INVALID`），不会命中 `_v2_s42` 目录。
+
+**结论：安全。**
+
+#### 4. **exp006/run_pooled_4bench_irt.py — 安全**
+
+使用 oracle dosage（`build_oracle_exposure`）而非信号文件。数据来源是 eval_results 目录（exp001），不碰信号目录。
+
+**结论：安全。**
+
+#### 5. **exp006/run_irt_calibration.py:81 — `load_eval_results()` — 安全**
+
+扫描的是 `/root/autodl-tmp/exp001/eval_results/`（eval 目录），不是信号目录。
+
+---
+
+### 总结
+
+| 文件 | 函数 | 扫描方式 | 风险 |
+|------|------|----------|------|
+| `exp003/rrf_aggregation.py:188` | `aggregate_all_models` | `iterdir()` 全扫描 | **会误包含** |
+| `exp003/rrf_aggregation.py:208` | `generate_exposure_json` | 调用上面函数 | **会误包含** |
+| `exp002/aggregate_rrf.py:207` | `generate_exposure_json` | `glob("*/...")` | **会误包含** |
+| `exp006/run_exp006.py:110` | `load_exp002_signals` | 模型驱动，不扫描 | 安全 |
+| `exp006/run_pooled_4bench_irt.py` | `run_single_benchmark_fit` | oracle dosage | 安全 |
+| `exp006/run_irt_calibration.py:81` | `load_eval_results` | 扫描 eval 目录 | 安全 |
+
+### 建议修复方案
+
+**最简方案：重命名目录**，加 `.INVALID` 后缀（与 `Qwen2.5-3B_d000_s42.INVALID` 一致）：
+```bash
+mv /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42 \
+   /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42.EXCLUDED_alpha16
+```
+
+所有 `iterdir()` / `glob` 扫描不会受影响，因为 `aggregate_all_models` 检查 `is_dir()` 时仍会匹配，但如果信号文件路径变了就找不到文件。实际上更稳妥的方式是：
+
+1. 在 `aggregate_all_models()` 加 **blocklist**，跳过包含 `.INVALID` 或 `.EXCLUDED` 的目录名
+2. 或在 exp003 和 exp002 的扫描逻辑中增加 naming convention 过滤（例如只接受 `{model}_{dosage}_s{seed}` 格式，排除含 `_v2_` 的非标准目录名）
+
+**最终 IRT pipeline（exp006）是安全的**——它通过 eval_results 模型列表驱动信号查找，不做目录扫描。风险集中在 exp002/exp003 的 RRF 聚合路径，如果重新运行 `--generate-exposure` 或 `aggregate_all_models()`，v6 的 alpha=16 信号会被混入。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "uuid": "e240f20d-aa4c-4ac5-bfe5-8f16e227d7c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A4bn5RmkqaZ8x189JknuF7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 518,
+      "cache_read_input_tokens": 60234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 77_
+
+分析完毕。以下是结果。
+
+---
+
+## 报告：IRT Pipeline 信号目录扫描风险分析
+
+### 当前信号目录状态
+
+`/root/autodl-tmp/exp002/signals/` 已包含 `Qwen2.5-3B_d000_v2_s42/` 目录（v6 产出，alpha=16）。
+
+### 扫描点分析
+
+#### 1. **exp003/rrf_aggregation.py:188 — `aggregate_all_models()` — 有风险**
+
+```python
+for model_dir in sorted(signal_root.iterdir()):
+    if not model_dir.is_dir():
+        continue
+    model_id = model_dir.name
+    if dosage_filter and dosage_filter not in model_id:
+        continue
+```
+
+使用 `iterdir()` 无差别扫描 `SIGNAL_ROOT` 下所有子目录。唯一的过滤是 `dosage_filter`（子串匹配）。`generate_exposure_json()` (line 208) 调用此函数，也继承风险。
+
+**结论：会误包含 `Qwen2.5-3B_d000_v2_s42/`。** 特别是当不传 `dosage_filter` 或传 `d000` 时，该目录会被纳入。
+
+#### 2. **exp002/aggregate_rrf.py:207 — `generate_exposure_json()` — 有风险**
+
+```python
+merged_files = sorted(signal_path.glob(f"*/signals_merged_{bench}.json"))
+```
+
+`*/` 通配符会匹配所有子目录，包括 `Qwen2.5-3B_d000_v2_s42/`。
+
+**结论：会误包含。**
+
+#### 3. **exp006/run_exp006.py:110 — `load_exp002_signals()` — 安全**
+
+此函数**不扫描信号目录**。它遍历 eval_results 模型列表，通过模型 dirname 推导信号路径：
+
+```python
+sig_dirname = m["dirname"].replace("_para_aligned", "")...replace("_v2", "")...
+merged = os.path.join(signals_dir, sig_dirname, "signals_merged_{}.json".format(benchmark))
+```
+
+信号路径查找是**模型驱动**的，不是目录扫描。而且 `.replace("_v2", "")` 会把 eval dirname 中的 `_v2` 去掉，导致路径指向 `Qwen2.5-3B_d000_s42`（已被标为 `.INVALID`），不会命中 `_v2_s42` 目录。
+
+**结论：安全。**
+
+#### 4. **exp006/run_pooled_4bench_irt.py — 安全**
+
+使用 oracle dosage（`build_oracle_exposure`）而非信号文件。数据来源是 eval_results 目录（exp001），不碰信号目录。
+
+**结论：安全。**
+
+#### 5. **exp006/run_irt_calibration.py:81 — `load_eval_results()` — 安全**
+
+扫描的是 `/root/autodl-tmp/exp001/eval_results/`（eval 目录），不是信号目录。
+
+---
+
+### 总结
+
+| 文件 | 函数 | 扫描方式 | 风险 |
+|------|------|----------|------|
+| `exp003/rrf_aggregation.py:188` | `aggregate_all_models` | `iterdir()` 全扫描 | **会误包含** |
+| `exp003/rrf_aggregation.py:208` | `generate_exposure_json` | 调用上面函数 | **会误包含** |
+| `exp002/aggregate_rrf.py:207` | `generate_exposure_json` | `glob("*/...")` | **会误包含** |
+| `exp006/run_exp006.py:110` | `load_exp002_signals` | 模型驱动，不扫描 | 安全 |
+| `exp006/run_pooled_4bench_irt.py` | `run_single_benchmark_fit` | oracle dosage | 安全 |
+| `exp006/run_irt_calibration.py:81` | `load_eval_results` | 扫描 eval 目录 | 安全 |
+
+### 建议修复方案
+
+**最简方案：重命名目录**，加 `.INVALID` 后缀（与 `Qwen2.5-3B_d000_s42.INVALID` 一致）：
+```bash
+mv /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42 \
+   /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42.EXCLUDED_alpha16
+```
+
+所有 `iterdir()` / `glob` 扫描不会受影响，因为 `aggregate_all_models` 检查 `is_dir()` 时仍会匹配，但如果信号文件路径变了就找不到文件。实际上更稳妥的方式是：
+
+1. 在 `aggregate_all_models()` 加 **blocklist**，跳过包含 `.INVALID` 或 `.EXCLUDED` 的目录名
+2. 或在 exp003 和 exp002 的扫描逻辑中增加 naming convention 过滤（例如只接受 `{model}_{dosage}_s{seed}` 格式，排除含 `_v2_` 的非标准目录名）
+
+**最终 IRT pipeline（exp006）是安全的**——它通过 eval_results 模型列表驱动信号查找，不做目录扫描。风险集中在 exp002/exp003 的 RRF 聚合路径，如果重新运行 `--generate-exposure` 或 `aggregate_all_models()`，v6 的 alpha=16 信号会被混入。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 133466,
+  "duration_api_ms": 129653,
+  "num_turns": 29,
+  "stop_reason": "end_turn",
+  "session_id": "65e0b228-445e-400c-9d03-3bc65ac3d627",
+  "total_cost_usd": 0.7083947500000001,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 48911,
+    "cache_read_input_tokens": 422792,
+    "output_tokens": 7570,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 48911,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 3400,
+        "cache_read_input_tokens": 60234,
+        "cache_creation_input_tokens": 518,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 518
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1895,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00198,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 7570,
+      "cacheReadInputTokens": 422792,
+      "cacheCreationInputTokens": 48911,
+      "webSearchRequests": 0,
+      "costUSD": 0.70641475,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "09cdccee-25f2-4f4a-a331-e95abb9f3d15"
+}
+```
+
+</details>
+
+---

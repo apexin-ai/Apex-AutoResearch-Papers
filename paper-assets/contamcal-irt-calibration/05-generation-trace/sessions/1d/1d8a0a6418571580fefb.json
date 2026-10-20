@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d8a0a6418571580fefb",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis cross benchmark consistency",
+  "task_key": "worker_analysis_cross-benchmark-consistency_20260522T094139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross-benchmark-consistency_20260522T094139_result.json",
+    "occurrence": 1,
+    "bytes": 1237,
+    "sha256": "e4e96041a726ccb6b61bf307a5e9430b59ec19033bb23f7dd94d281603f01a23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**Pattern Classification Matrix:**\n\n| Model | MMLU | ARC | GSM8K |\n|-------|------|-----|-------|\n| Phi-4 14.7B | Immune | Immune | Immune |\n| Qwen-14B | Collapse | Collapse | Benefit |\n| Qwen-7B | V-recovery | V-recovery | Benefit |\n| Gemma-2 9B | Benefit | Immune | Excluded |\n| OLMo-2 7B | Benefit | Benefit | Benefit |\n| LLaMA-3.1 8B | Immune | Immune | Benefit |\n\n**Agreement Statistics:**\n- MCQ cross-benchmark (MMLU vs ARC): **5/6 = 83%** directionally consistent\n- MCQ vs GSM8K (MMLU vs GSM8K): **2/5 = 40%** — 3 families show directional reversal\n- Full 3-benchmark consistency: **2/5 = 40%** (Phi-4, OLMo-2)\n\n**关键发现：**\n1. MCQ 之间方向一致性高（83%），但 MCQ→GSM8K 频繁出现方向反转\n2. 5/5 non-excluded families 在 GSM8K 上都显示正向 transfer（+1 to +16pp），即使 MMLU 上 Collapse 的模型\n3. 最大 swing：Qwen-14B MMLU −9.4pp 同时 GSM8K +13.1pp（22.5pp 摆幅）\n4. Gemma-2 是最清晰的 benchmark-conditional 案例（MMLU Benefit, ARC Immune）\n5. Pattern 是 (model × benchmark) 的属性，不是 model 单独的属性\n\n报告已保存至 `artifacts/cross_benchmark_consistency.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-benchmark-consistency.md"
+}

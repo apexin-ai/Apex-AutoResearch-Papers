@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "1450b9bae3f18cfcdf18",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "code scale stratified irt",
+  "task_key": "worker_code_scale-stratified-irt_20260516T052844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scale-stratified-irt_20260516T052844.log",
+    "occurrence": 1,
+    "bytes": 638822,
+    "sha256": "922de4e35d2e7e9d9bd44b37bbc44a876754cfa379a7a9c0c6f1e542ee742071"
+  },
+  "statistics": {
+    "messages": 123,
+    "user_turns": 1,
+    "tool_calls": 40,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 40,
+      "user": 1,
+      "tool_result": 40,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "1450b9bae3f18cfcdf18-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 116,
+      "chunks": [
+        {
+          "path": "1450b9bae3f18cfcdf18-part-0001.json",
+          "message_count": 106
+        },
+        {
+          "path": "1450b9bae3f18cfcdf18-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-scale-stratified-irt.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fab6b317877ed99201b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cqa1 post restart diag",
+  "task_key": "worker_ops_cqa1-post-restart-diag_20260520T030524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-post-restart-diag_20260520T030524_result.json",
+    "occurrence": 1,
+    "bytes": 434,
+    "sha256": "3e360d7f0abd91fc0e4ea6ee1707d4886a96fcaf4fe8b393243906a61fc3c2a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ncqa1 GPU: 在跑 (GPU 0, 37% util, 21325/24564 MiB)\ns0 训练进度: 当前 dosage=d000, step 397/3125 (12.7%), ETA ~3h, ~4.0s/it\n已有 checkpoint: 无 (d000 尚未完成, d005/d025/d050/d100 未开始)\n磁盘: 72% (49G free)\n```\n\n注：bitsandbytes 报了 `libnvJitLink.so.13` 加载错误，但训练本身在正常推进（非 8-bit 优化器路径），不影响训练。LoRA 配置已确认 alpha=32。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-post-restart-diag.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "332ad3d9ae48bbfa3668",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code d018 exclusion signal homogeneity",
+  "task_key": "worker_code_d018_exclusion_signal_homogeneity_20260514T204013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d018_exclusion_signal_homogeneity_20260514T204013_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "f41917b64664493be8172696c20141ff6ccab43d13aedb7d5d68fd60049d6aa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。总结：\n\n**问题 1 — D018 排除（死代码修复）**：\n- `should_exclude_dose_response()` 原来定义了但从未被调用\n- 现在在 benchmark 循环中（line 284-296）正式调用，对每个 benchmark 检查 D018 规则，匹配的模型从 responses/dosages/models_bench 中过滤掉\n- 新增 `--exclude-models` 参数（line 555），支持逗号分隔的模式全局排除\n\n**问题 2 — 信号同源性检查**：\n- 新增 `check_scale_signals()` 函数（line 109），预检每个 scale 的信号文件覆盖\n- 在 `run_pipeline()` 数据加载后、dry-run 前（line 178-202），当 `pool_scales + signals_dir` 同时指定时自动检查，无信号的 scale 被 ERROR 排除\n- `load_exp002_signals()` 新增 `pool_mode` 参数（line 81），pool 模式下缺信号抛 RuntimeError 而非静默 fallback\n- 新增 `--require-signals` 参数（line 559），强制所有 scale 有信号否则 abort\n\n**向后兼容**：非 pool 模式、不带 `--signals-dir` 时行为不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d018-exclusion-signal-homogeneity.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4623037c773fb17478e3",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops diagnose signals v9 cuda0",
+  "task_key": "worker_ops_diagnose-signals-v9-cuda0_20260516T034833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-signals-v9-cuda0_20260516T034833_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "2bbfcc4c4400001e0a93c9b355b2952fa24b227735e81dfae1729c70245606ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n- **v9**: 部分完成。d025_s123 全部信号已就绪。d100_a32_s123 mmlu s4 由 orphan PID 689315 继续（~2.4h），但 gsm8k/arc 需要新提交。\n- **cuda:0**: eval + 1.5B signals 共存，内存安全（58%），互相竞争计算但不会崩。1.5B 在 ~45%。\n- **cuda:4**: PID 689315 独占，正常运行 d100_a32_s123 mmlu s4。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-signals-v9-cuda0.md"
+}

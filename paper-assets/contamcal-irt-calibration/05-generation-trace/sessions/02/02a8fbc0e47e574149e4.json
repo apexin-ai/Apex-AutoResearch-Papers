@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02a8fbc0e47e574149e4",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops check d100 eval results",
+  "task_key": "worker_ops_check_d100_eval_results_20260514T020912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_d100_eval_results_20260514T020912_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "98aadb50ecf6ed4040ddc0b77b91946db772f6bce37ebcfdf3dc35ab621b1f9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### d100 eval — 仍在运行，未完成\n\n- 结果目录为空，尚无 `eval_results.json`\n- 日志显示：MMLU 已完成，当前 GSM8K 进度 **27% (359/1319)**，速度 ~5.5s/it\n- 剩余 GSM8K 约 88 min，之后还有 arc_challenge + humaneval\n- 预计还需 **2-3 小时**\n\n**注意：d100 有两个进程同时在跑同一个 eval，写同一个输出目录**：\n| PID | GPU | Elapsed |\n|-----|-----|---------|\n| 255703 | 默认 | 40 min |\n| 256509 | cuda:4 | 37 min |\n\n这可能导致结果文件冲突或覆盖。\n\n### d000_s42 eval — 仍在运行\n\n- PID 257034，cuda:2，已运行 35 min\n- 结果目录为空，尚无产出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-d100-eval-results.md"
+}

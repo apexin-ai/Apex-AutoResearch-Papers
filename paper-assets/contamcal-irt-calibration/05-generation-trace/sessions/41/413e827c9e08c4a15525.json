@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "413e827c9e08c4a15525",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp008 run script",
+  "task_key": "worker_code_exp008-run-script_20260514T081342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp008-run-script_20260514T081342_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "f0305d0fa2e8346403b83deb7f7138ad4aa8e2a0d981f90f840f8bc0de11fcdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建: `/root/contamcal-irt-calibration/exp008/run_exp008.sh` (111 行)\n\n结构：\n- **参数**: `bash run_exp008.sh GPU_IDS` (如 `1,4,5`)\n- **Step 0**: 转换 d100 labels 为 `{index: 0/1}` 格式 (run_signal_survival.py 需要)\n- **Step 1**: 4 regimes × 3 benchmarks = 12 次 compute_signals，输出到 `signals/{regime}/{bench}/`，跳过已有 merged 文件的组合\n- **Step 2**: 3 次 signal_survival 分析 (per benchmark)，输出到 `results/{bench}/`\n- 信号: embedding, minkpp, selfcritique (跳过 constat)\n- Min-K++ ref model 统一用 base Qwen2.5-0.5B\n\n注意: d100 labels 全为 1 (contaminated_count == total_items)，AUC 分析需要两类样本。如果 signal_survival 报错，需换用 d050 labels。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp008-run-script.md"
+}

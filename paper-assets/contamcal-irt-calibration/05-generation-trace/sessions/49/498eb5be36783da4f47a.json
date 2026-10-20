@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "498eb5be36783da4f47a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose exp 002 signals 15B instruct mmlu",
+  "task_key": "worker_diagnose_exp_002_signals_15B_instruct_mmlu_20260516T191453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_002_signals_15B_instruct_mmlu_20260516T191453_result.json",
+    "occurrence": 1,
+    "bytes": 2019,
+    "sha256": "eb26c3c6d238ebc8afac01418cb29790f5bf39ddb0e1c34e967b9f4c17358e59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。结论明确：\n\n**实验并非失败——它已成功完成并正常退出。** 进程被检测为 \"dead\" 是因为它正常结束了（exit 0），而非崩溃。\n\n证据：\n- 输出目录包含完整的 signals 文件：`signal_s1_embedding_mmlu.json`、`signal_s2_minkpp_mmlu.json`、`signal_s4_selfcritique_mmlu.json`（含全部 14042 样本的 chunks）\n- `signals_merged_mmlu.json` 已生成（所有 signal 合并完成）\n- `exposure_aggregated.json` 和 `exposure_scores.json` 已生成（最终聚合步骤完成）\n- 额外还计算了 arc_challenge 和 gsm8k 的 signals（因为 `--signal all --benchmark mmlu` 但 exposure 聚合包含多个 benchmark）\n- GPU cuda:4 当前仅 579MiB 占用（进程已释放显存）\n- 无 sentinel 文件是因为 `compute_signals.py` 脚本本身不写 sentinel（非 submit_training_job 框架）\n- 无 W&B metrics 是因为 signals 计算脚本不上报 W&B\n\n```json\n{\"root_cause\":\"进程正常完成后退出（非崩溃），监控系统将正常退出的进程误判为 dead。输出目录包含完整结果：3 个 benchmark × 3 个 signal + merged + exposure_aggregated，共 16 个文件\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"无需修复——实验已成功完成\",\"将实验状态从 failed 改为 completed\",\"注册产出文件到 artifacts\"],\"can_auto_fix\":true,\"partial_output\":\"无（完整输出）\",\"model_cached\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "进程正常完成后退出（非崩溃），监控系统将正常退出的进程误判为 dead。输出目录包含完整结果：3 个 benchmark × 3 个 signal + merged + exposure_aggregated，共 16 个文件",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "无需修复——实验已成功完成",
+                "将实验状态从 failed 改为 completed",
+                "注册产出文件到 artifacts"
+              ],
+              "can_auto_fix": true,
+              "partial_output": "无（完整输出）",
+              "model_cached": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-002-signals-15b-instruct-mmlu.md"
+}

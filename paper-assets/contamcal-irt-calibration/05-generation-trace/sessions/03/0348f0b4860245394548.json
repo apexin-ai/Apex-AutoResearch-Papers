@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0348f0b4860245394548",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops westd training progress",
+  "task_key": "worker_ops_westd-training-progress_20260519T223906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-training-progress_20260519T223906_result.json",
+    "occurrence": 1,
+    "bytes": 3011,
+    "sha256": "3e7f0538687a032c888fee4afddd989886c060553c643c921076859cf9531c21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All s42 checkpoints (d000 + d100) exist on westd for Phi-4, Gemma-2, OLMo-2, and Qwen-14B. All GSM8K s123 scripts are hardcoded to `CUDA_VISIBLE_DEVICES=0` — they'll need modification for parallel execution on multiple GPUs.\n\nNow let me compile the full report.\n\n---\n\n## 训练进度报告（CST 时间，~07:00 查询）\n\n| GPU | 当前模型 | 当前 dosage | 进度 | 速度 | 剩余 dosage | 预计完成 |\n|-----|---------|-------------|------|------|------------|---------|\n| **cuda:0** | Phi-4 | d100 (5/5) | 78/4159 (2%) | ~2.2s/it | 无 | **~09:00** |\n| **cuda:1** | Qwen-14B | d050 (4/5) | 635/3642 (17%) | ~3.0s/it | d100 | **~12:00** |\n| **cuda:2** | OLMo-2 (Qwen-7B 已完成) | d100 (5/5) | 3763/4159 (90%) | ~1.7s/it | 无 | **~07:15** |\n| **cuda:3** | Gemma-2 | d050 (4/5) | 1198/3642 (33%) | ~2.8s/it | d100 | **~11:30** |\n\n### 各 GPU 的 per-dosage 训练用时参考\n- **Phi-4**: ~2h10-2h20m/dosage\n- **Qwen-14B**: ~2h45-2h55m/dosage\n- **OLMo-2/Qwen-7B**: ~1h45-1h55m/dosage\n- **Gemma-2**: ~2h36-2h46m/dosage\n\n---\n\n## GSM8K 脚本就绪状态\n\n**s123 GSM8K 脚本**: 5 个全部就绪（`scripts/gsm8k_s123/`），覆盖 phi4/gemma2/qwen14b/qwen7b/olmo2。每个脚本 eval d000+d100，含 C009 md5 校验。\n\n**s42 GSM8K 脚本**: **不存在**，需要创建。\n\n**s42 checkpoints on westd**: Phi-4/Gemma-2/OLMo-2/Qwen-14B 的 d000+d100 全部就绪。Qwen-7B 的 s42 可在 cqa1 跑。\n\n**注意**: 所有 s123 GSM8K 脚本都硬编码了 `CUDA_VISIBLE_DEVICES=0`，并行执行需要修改。GSM8K 结果目录（`results/gsm8k/`）尚不存在。\n\n---\n\n## 建议任务链\n\n### cuda:2（最先空闲，~07:15）\n1. **07:15** → GSM8K s42 eval: OLMo-2 d000+d100（~30min，需创建脚本，CUDA=2）\n2. **07:45** → GSM8K s123 eval: OLMo-2 d000+d100（~30min，修改现有脚本 CUDA=2）\n3. **08:15** → GSM8K s42 eval: Qwen-7B d000+d100（如果 cqa1 不跑的话）\n4. **08:45** → 开始 s0 训练（Qwen-7B + OLMo-2 sweep，同 s123 的组合模式）\n\n### cuda:0（~09:00 空闲）\n1. **09:00** → GSM8K s42 eval: Phi-4 d000+d100（~30min，CUDA=0）\n2. **09:30** → GSM8K s123 eval: Phi-4 d000+d100（~30min）\n3. **10:00** → 开始 Phi-4 s0 训练\n\n### cuda:3（~11:30 空闲）\n1. **11:30** → GSM8K s42 eval: Gemma-2 d000+d100（~30min，CUDA=3）\n2. **12:00** → GSM8K s123 eval: Gemma-2 d000+d100（~30min）\n3. **12:30** → 开始 Gemma-2 s0 训练\n\n### cuda:1（~12:00 空闲）\n1. **12:00** → GSM8K s42 eval: Qwen-14B d000+d100（~45min，14B 模型较慢，CUDA=1）\n2. **12:45** → GSM8K s123 eval: Qwen-14B d000+d100（~45min）\n3. **13:30** → 开始 Qwen-14B s0 训练\n\n### 待办\n1. 创建 s42 GSM8K eval 脚本（5 个 family，参照 s123 脚本结构，改 checkpoint 路径和 CUDA 分配）\n2. 修改 s123 GSM8K 脚本的 CUDA_VISIBLE_DEVICES，使其可在对应 GPU 上运行\n3. cuda:2 即将空闲（~15min），是否现在就准备 OLMo-2 的 s42 GSM8K 脚本？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-training-progress-copy-2.md"
+}

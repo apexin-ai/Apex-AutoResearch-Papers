@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d17d9e2d58fbd73cac5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gsm8k both westd fix",
+  "task_key": "worker_ops_gsm8k-both-westd-fix_20260520T053102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k-both-westd-fix_20260520T053102_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "907c7e00ad863a21c5c5b1c86f9996ea0fce0690b0dbe686a05153fff16e75e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认正确。汇总：\n\n### 结果\n\n| GPU | 进程 | PID | 显存 | 状态 |\n|-----|------|-----|------|------|\n| 0 | Phi-4 SFT (d005_s0) | 286341 | 57,646 MiB | 未受影响 ✓ |\n| 1 | **Qwen-14B GSM8K eval** | 289218 | 33,322 MiB | 新启动 ✓ |\n| 2 | OLMo-2 SFT (d025_s0) | 280811 | 66,742 MiB | 未受影响 ✓ |\n| 3 | **Gemma-2 GSM8K eval** | 289137 | 24,856 MiB | 新启动 ✓ |\n\n1. **cuda:0 错误进程已清理** — PID 287548 已 kill，tmux session 已删除\n2. **脚本 CUDA_VISIBLE_DEVICES** — Gemma-2→3, Qwen-14B→1\n3. **Checkpoint 验证** — 4 个 adapter 均 >100MB，lora_alpha=32\n4. **新 PID** — Gemma-2: 289137 (cuda:3), Qwen-14B: 289218 (cuda:1)\n5. **四卡状态正确** — 两个 SFT 训练不受影响，两个 GSM8K eval 在正确 GPU 上运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-both-westd-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "078b5ddd162ddc73b039",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "diagnose sft olmo2 s0 sweep exit",
+  "task_key": "worker_diagnose_sft_olmo2_s0_sweep_exit_20260520T044050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_sft_olmo2_s0_sweep_exit_20260520T044050_result.json",
+    "occurrence": 1,
+    "bytes": 923,
+    "sha256": "382ec59178bf678765b48be92c29930b97155dd83f8a5eff231d620139cbd64b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sweep **仍在正常运行**，没有退出。\n\n**诊断结果：**\n\n| 项目 | 状态 |\n|------|------|\n| PID 261133 | 已退出（不是 sweep 脚本本身） |\n| sweep 脚本 | PID 238801，bash `run_olmo2_s0.sh`，存活，已运行 3h30m |\n| GPU 2 当前进程 | PID 280811，训练 **d025_s0**，已运行 ~6 分钟 |\n\n**Checkpoint 完成情况：**\n- d000: ✅ 完成（`adapter_model.safetensors` 存在）\n- d005: ✅ 完成（`adapter_model.safetensors` 存在）\n- d025: 🔄 训练中（目录已创建，PID 280811 刚开始）\n- d050: ⏳ 未开始\n- d100: ⏳ 未开始\n\n**进度估算：** 2/5 dosage 完成，d025 刚启动。按 ~1.9s/step 估算，d025 (3384 steps) + d050 (3642) + d100 (4159) ≈ 11,185 steps ≈ **5.5-6 小时**后全部完成。\n\n**不更新 registry，不删 cron** — sweep 正常推进中。westd cuda:2 **不空闲**，正在被 sweep 占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-sft-olmo2-s0-sweep-exit.md"
+}

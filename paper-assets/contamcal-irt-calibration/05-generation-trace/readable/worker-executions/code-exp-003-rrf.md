@@ -1,0 +1,4029 @@
+# code exp 003 rrf
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 86
+- **Recorded user turns:** 0
+- **Tool calls:** 35
+- **Original source:** `logs/workers/worker_code_exp-003-rrf_20260514T124248.log`
+- **Structured JSON:** [`f62ba117b87018ed8a4e.json`](../../sessions/f6/f62ba117b87018ed8a4e.json)
+
+## Before a recorded user message
+
+86 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "bdef3fe7-2600-41d6-8ae7-8d22bf7931e3",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778779800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "185e3868-5088-4cbe-8f92-9a4a9b150609",
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the exp-002 signal output format, then write the exp-003 code. I'll first check the server for the exp-002 code structure and output format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "c9cc34e9-c6c9-4f20-a529-3a7d0dcafe4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Db9Vh4Q2gaXhCFA3Md3wLZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12224,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12224
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先检查 exp-002 的代码结构和信号输出格式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "04cbb946-ac4d-4f01-9979-f6abf9a26ca6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Db9Vh4Q2gaXhCFA3Md3wLZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12224,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12224
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0116W7Ue96f53xQRgt5bqwrt`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "8416074d-e67b-4cbc-a547-ea7b58645737",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Db9Vh4Q2gaXhCFA3Md3wLZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12224,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12224
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T12:43:12.008Z_
+
+<details><summary>↩ Tool result · `toolu_0116W7Ue96f53xQRgt5bqwrt`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "3646cad0-3ebf-4108-8dd8-d2a4a35bf4af",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WKMb1BKLk9jXua9L9tAifL`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/exp002 -type f -name \"*.py\" -o -name \"*.json\" -o -name \"*.yaml\" -o -name \"*.md\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "03666fa7-575c-447d-a5c2-2cd03e6b545e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VGpYD1ocTXdm4mYoH9bRap",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1548,
+      "cache_read_input_tokens": 24065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1548
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N7Ey7hZGdawWG8Zbkg6GxH`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp002/results/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "c1a775b8-472c-416d-bfe2-1e14664bd293",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VGpYD1ocTXdm4mYoH9bRap",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1548,
+      "cache_read_input_tokens": 24065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1548
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RphoiUcJdwLAkzQXr4TTbG`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/autodl-tmp/exp001/signal_results/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "1366f069-051c-4a22-bb1e-5ca30f39d28e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VGpYD1ocTXdm4mYoH9bRap",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1548,
+      "cache_read_input_tokens": 24065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1548
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T12:43:19.484Z_
+
+<details><summary>↩ Tool result · `toolu_01WKMb1BKLk9jXua9L9tAifL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp002/compute_signals.py\\n/root/contamcal-irt-calibration/exp002/signal_embedding.py\\n/root/contamcal-irt-calibration/exp002/signal_minkpp.py\\n/root/contamcal-irt-calibration/exp002/signal_constat.py\\n/root/contamcal-irt-calibration/exp002/signal_selfcritique.py\\n/root/contamcal-irt-calibration/exp002/aggregate_rrf.py\\n/root/contamcal-irt-calibration/exp002/test_dryrun.py\\n/root/contamcal-irt-calibration/exp002/test_dryrun_v2.py\\n/root/contamcal-irt-calibration/exp002/run_batch.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "577fd139-b01f-4dd3-90d8-48aad529b0de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/exp002/compute_signals.py\\\\n/root/contamcal-irt-calibration/exp002/signal_embedding.py\\\\n/root/contamcal-irt-calibration/exp002/signal_minkpp.py\\\\n/root/contamcal-irt-calibration/exp002/signal_constat.py\\\\n/root/contamcal-irt-calibration/exp002/signal_selfcritique.py\\\\n/root/contamcal-irt-calibration/exp002/aggregate_rrf.py\\\\n/root/contamcal-irt-calibration/exp002/test_dryrun.py\\\\n/root/contamcal-irt-calibration/exp002/test_dryrun_v2.py\\\\n/root/contamcal-irt-calibration/exp002/run_batch.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp002/compute_signals.py\\n/root/contamcal-irt-calibration/exp002/signal_embedding.py\\n/root/contamcal-irt-calibration/exp002/signal_minkpp.py\\n/root/contamcal-irt-calibration/exp002/signal_constat.py\\n/root/contamcal-irt-calibration/exp002/signal_selfcritique.py\\n/root/contamcal-irt-calibration/exp002/aggregate_rrf.py\\n/root/contamcal-irt-calibration/exp002/test_dryrun.py\\n/root/contamcal-irt-calibration/exp002/test_dryrun_v2.py\\n/root/contamcal-irt-calibration/exp002/run_batch.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T12:43:19.566Z_
+
+<details><summary>↩ Tool result · `toolu_01N7Ey7hZGdawWG8Zbkg6GxH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "6e1efc91-994a-4dd5-b434-99084ed881cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T12:43:19.616Z_
+
+<details><summary>↩ Tool result · `toolu_01RphoiUcJdwLAkzQXr4TTbG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "8e19b3a8-a818-40dc-a823-9713b5fe6650",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EWQpo5yNpHehd5t7rGHGoa`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp002/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "6a214017-aad7-4e22-9aed-9bf54206ff84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7y3dngXETaf6DBVuYsaS5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 888,
+      "cache_read_input_tokens": 25613,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 888
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T12:43:23.743Z_
+
+<details><summary>↩ Tool result · `toolu_01EWQpo5yNpHehd5t7rGHGoa`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contamcal-irt-calibration/exp002/results/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "54458bd5-3cfc-4b44-880c-22907b3a152d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/contamcal-irt-calibration/exp002/results/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contamcal-irt-calibration/exp002/results/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QVYfKLPH8Wbj5yNxCbx3sM`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp002/compute_signals.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "abdcbb80-d11e-41da-804a-fe093cb4ab1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7y3dngXETaf6DBVuYsaS5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 888,
+      "cache_read_input_tokens": 25613,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 888
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TXLTKVh6siUFeexrxb73hN`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp002/aggregate_rrf.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "f44d7301-7ff1-4e33-97e1-5390d9126898",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7y3dngXETaf6DBVuYsaS5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 888,
+      "cache_read_input_tokens": 25613,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 888
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T12:43:25.000Z_
+
+<details><summary>↩ Tool result · `toolu_01QVYfKLPH8Wbj5yNxCbx3sM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-002 Stage 1 Signal Pipeline — main entry point.\\n\\nComputes 4 contamination detection signals for each model-item pair:\\n  S1: Embedding near-duplicate retrieval (max cosine sim with training data)\\n  S2: Min-K%++ membership inference (z-scored against reference model)\\n  S3: ConStat performance gap (original vs paraphrased accuracy)\\n  S4: Self-Critique entropy collapse (YES/NO confidence on own answer)\\n\\nInput:  Model checkpoint, benchmark data, paraphrased items, SFT training data\\nOutput: JSON per model with item_id, s1_embedding, s2_minkpp, s3_constat, s4_selfcritique\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef merge_signals(\\n    embedding_results: list[dict],\\n    minkpp_results: list[dict],\\n    constat_results: list[dict],\\n    selfcritique_results: list[dict],\\n    benchmark: str,\\n) -> list[dict]:\\n    \\\"\\\"\\\"Merge 4 signal outputs into a single per-item record.\\\"\\\"\\\"\\n    # Index by item index\\n    emb_map = {r[\\\"index\\\"]: r for r in embedding_results}\\n    mkpp_map = {r[\\\"index\\\"]: r for r in minkpp_results}\\n    con_map = {r[\\\"index\\\"]: r for r in constat_results}\\n    sc_map = {r[\\\"index\\\"]: r for r in selfcritique_results}\\n\\n    all_indices = sorted(set(emb_map) | set(mkpp_map) | set(con_map) | set(sc_map))\\n\\n    merged = []\\n    for idx in all_indices:\\n        record = {\\n            \\\"index\\\": idx,\\n            \\\"benchmark\\\": benchmark,\\n            \\\"s1_embedding\\\": emb_map.get(idx, {}).get(\\\"s1_embedding\\\"),\\n            \\\"s2_minkpp\\\": mkpp_map.get(idx, {}).get(\\\"s2_minkpp\\\"),\\n            \\\"s3_constat\\\": con_map.get(idx, {}).get(\\\"s3_constat\\\"),\\n            \\\"s4_selfcritique\\\": sc_map.get(idx, {}).get(\\\"s4_selfcritique\\\"),\\n        }\\n        merged.append(record)\\n\\n    return merged\\n\\n\\ndef run_signal(signal_name: str, args_dict: dict):\\n    \\\"\\\"\\\"Run a signal computation module.\\\"\\\"\\\"\\n    if signal_name == \\\"embedding\\\":\\n        from signal_embedding import compute_embedding_signal\\n        return compute_embedding_signal(**args_dict)\\n    elif signal_name == \\\"minkpp\\\":\\n        from signal_minkpp import compute_minkpp_signal\\n        return compute_minkpp_signal(**args_dict)\\n    elif signal_name == \\\"constat\\\":\\n        from signal_constat import compute_constat_signal\\n        return compute_constat_signal(**args_dict)\\n    elif signal_name == \\\"selfcritique\\\":\\n        from signal_selfcritique import compute_selfcritique_signal\\n        return compute_selfcritique_signal(**args_dict)\\n    else:\\n        raise ValueError(f\\\"Unknown signal: {signal_name}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Compute all 4 contamination detection signals for a model-benchmark pair\\\"\\n    )\\n    parser.add_argument(\\\"--model-path\\\", type=str, required=True,\\n                        help=\\\"Path to target (potentially contaminated) model checkpoint\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, required=True,\\n                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"])\\n    parser.add_argument(\\\"--ref-model-path\\\", type=str, required=True,\\n                        help=\\\"Reference (clean) model for Min-K%%++ (e.g., 0%% dosage)\\\")\\n    parser.add_argument(\\\"--sft-data-path\\\", type=str, required=True,\\n                        help=\\\"SFT training JSONL for embedding retrieval\\\")\\n    parser.add_argument(\\\"--original-eval-paths\\\", type=str, nargs=\\\"+\\\", default=None,\\n                        help=\\\"eval_results.json paths for original items (one per seed)\\\")\\n    parser.add_argument(\\\"--paraphrase-eval-paths\\\", type=str, nargs=\\\"+\\\", default=None,\\n                        help=\\\"eval_results.json paths for paraphrased items (one per seed)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None)\\n    parser.add_argument(\\\"--batch-size\\\", type=int, default=64,\\n                        help=\\\"Batch size for embedding encoding\\\")\\n    parser.add_argument(\\\"--k-percent\\\", type=int, default=20,\\n                        help=\\\"K%% for Min-K%% selection\\\")\\n \\n\\n... [截断: 输出过长，省略 20 字符] ...\\n\\nnt(\\\"--signals\\\", type=str, nargs=\\\"+\\\",\\n                        default=[\\\"embedding\\\", \\\"minkpp\\\", \\\"constat\\\", \\\"selfcritique\\\"],\\n                        choices=[\\\"embedding\\\", \\\"minkpp\\\", \\\"constat\\\", \\\"selfcritique\\\"],\\n                        help=\\\"Which signals to compute\\\")\\n    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    if args.gpu:\\n        os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = args.gpu\\n\\n    import torch\\n    device = \\\"cuda\\\" if torch.cuda.is_available() else \\\"cpu\\\"\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    signal_results = {}\\n\\n    # Signal 1: Embedding\\n    if \\\"embedding\\\" in args.signals:\\n        logger.info(\\\"=== Signal 1: Embedding near-duplicate retrieval ===\\\")\\n        signal_results[\\\"embedding\\\"] = run_signal(\\\"embedding\\\", {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"sft_data_path\\\": args.sft_data_path,\\n            \\\"cache_dir\\\": args.cache_dir,\\n            \\\"batch_size\\\": args.batch_size,\\n            \\\"device\\\": device,\\n        })\\n        _save_signal(signal_results[\\\"embedding\\\"], output_dir, \\\"embedding\\\", args.benchmark)\\n\\n    # Signal 2: Min-K%++\\n    if \\\"minkpp\\\" in args.signals:\\n        logger.info(\\\"=== Signal 2: Min-K%%++ membership inference ===\\\")\\n        signal_results[\\\"minkpp\\\"] = run_signal(\\\"minkpp\\\", {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"target_model_path\\\": args.model_path,\\n            \\\"ref_model_path\\\": args.ref_model_path,\\n            \\\"cache_dir\\\": args.cache_dir,\\n            \\\"k_percent\\\": args.k_percent,\\n        })\\n        _save_signal(signal_results[\\\"minkpp\\\"], output_dir, \\\"minkpp\\\", args.benchmark)\\n\\n    # Signal 3: ConStat\\n    if \\\"constat\\\" in args.signals:\\n        if args.original_eval_paths and args.paraphrase_eval_paths:\\n            logger.info(\\\"=== Signal 3: ConStat performance gap ===\\\")\\n            signal_results[\\\"constat\\\"] = run_signal(\\\"constat\\\", {\\n                \\\"benchmark\\\": args.benchmark,\\n                \\\"original_eval_paths\\\": args.original_eval_paths,\\n                \\\"paraphrase_eval_paths\\\": args.paraphrase_eval_paths,\\n            })\\n            _save_signal(signal_results[\\\"constat\\\"], output_dir, \\\"constat\\\", args.benchmark)\\n        else:\\n            logger.warning(\\\"Skipping ConStat: --original-eval-paths and --paraphrase-eval-paths required\\\")\\n\\n    # Signal 4: Self-Critique\\n    if \\\"selfcritique\\\" in args.signals:\\n        logger.info(\\\"=== Signal 4: Self-Critique entropy collapse ===\\\")\\n        signal_results[\\\"selfcritique\\\"] = run_signal(\\\"selfcritique\\\", {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"model_path\\\": args.model_path,\\n            \\\"cache_dir\\\": args.cache_dir,\\n        })\\n        _save_signal(signal_results[\\\"selfcritique\\\"], output_dir, \\\"selfcritique\\\", args.benchmark)\\n\\n    # Merge all computed signals (graceful: merge whenever >=2 signals available)\\n    if len(signal_results) >= 2:\\n        logger.info(\\\"=== Merging all signals ===\\\")\\n        merged = merge_signals(\\n            signal_results.get(\\\"embedding\\\", []),\\n            signal_results.get(\\\"minkpp\\\", []),\\n            signal_results.get(\\\"constat\\\", []),\\n            signal_results.get(\\\"selfcritique\\\", []),\\n            args.benchmark,\\n        )\\n        merged_file = output_dir / f\\\"signals_merged_{args.benchmark}.json\\\"\\n        with open(merged_file, \\\"w\\\") as f:\\n            json.dump(merged, f, indent=2)\\n        logger.info(\\\"Merged signals saved to %s (%d items)\\\", merged_file, len(merged))\\n    else:\\n        logger.info(\\\"Computed %d/4 signals. Need at least 2 for merged output.\\\", len(signal_results))\\n\\n\\ndef _save_signal(results: list[dict], output_dir: Path, signal_name: str, benchmark: str):\\n    out_file = output_dir / f\\\"signal_{signal_name}_{benchmark}.json\\\"\\n    with open(out_file, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "1104c70a-e4e5-4b92-80ad-c970d146b5f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-002 Stage 1 Signal Pipeline — main entry point.\\\\n\\\\nComputes 4 contamination detection signals for each model-item pair:\\\\n  S1: Embedding near-duplicate retrieval (max cosine sim with training data)\\\\n  S2: Min-K%++ membership inference (z-scored against reference model)\\\\n  S3: ConStat performance gap (original vs paraphrased accuracy)\\\\n  S4: Self-Critique entropy collapse (YES/NO confidence on own answer)\\\\n\\\\nInput:  Model checkpoint, benchmark data, paraphrased items, SFT training data\\\\nOutput: JSON per model with item_id, s1_embedding, s2_minkpp, s3_constat, s4_selfcritique\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef merge_signals(\\\\n    embedding_results: list[dict],\\\\n    minkpp_results: list[dict],\\\\n    constat_results: list[dict],\\\\n    selfcritique_results: list[dict],\\\\n    benchmark: str,\\\\n) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Merge 4 signal outputs into a single per-item record.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Index by item index\\\\n    emb_map = {r[\\\\\\\"index\\\\\\\"]: r for r in embedding_results}\\\\n    mkpp_map = {r[\\\\\\\"index\\\\\\\"]: r for r in minkpp_results}\\\\n    con_map = {r[\\\\\\\"index\\\\\\\"]: r for r in constat_results}\\\\n    sc_map = {r[\\\\\\\"index\\\\\\\"]: r for r in selfcritique_results}\\\\n\\\\n    all_indices = sorted(set(emb_map) | set(mkpp_map) | set(con_map) | set(sc_map))\\\\n\\\\n    merged = []\\\\n    for idx in all_indices:\\\\n        record = {\\\\n            \\\\\\\"index\\\\\\\": idx,\\\\n            \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n            \\\\\\\"s1_embedding\\\\\\\": emb_map.get(idx, {}).get(\\\\\\\"s1_embedding\\\\\\\"),\\\\n            \\\\\\\"s2_minkpp\\\\\\\": mkpp_map.get(idx, {}).get(\\\\\\\"s2_minkpp\\\\\\\"),\\\\n            \\\\\\\"s3_constat\\\\\\\": con_map.get(idx, {}).get(\\\\\\\"s3_constat\\\\\\\"),\\\\n            \\\\\\\"s4_selfcritique\\\\\\\": sc_map.get(idx, {}).get(\\\\\\\"s4_selfcritique\\\\\\\"),\\\\n        }\\\\n        merged.append(record)\\\\n\\\\n    return merged\\\\n\\\\n\\\\ndef run_signal(signal_name: str, args_dict: dict):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run a signal computation module.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if signal_name == \\\\\\\"embedding\\\\\\\":\\\\n        from signal_embedding import compute_embedding_signal\\\\n        return compute_embedding_signal(**args_dict)\\\\n    elif signal_name == \\\\\\\"minkpp\\\\\\\":\\\\n        from signal_minkpp import compute_minkpp_signal\\\\n        return compute_minkpp_signal(**args_dict)\\\\n    elif signal_name == \\\\\\\"constat\\\\\\\":\\\\n        from signal_constat import compute_constat_signal\\\\n        return compute_constat_signal(**args_dict)\\\\n    elif signal_name == \\\\\\\"selfcritique\\\\\\\":\\\\n        from signal_selfcritique import compute_selfcritique_signal\\\\n        return compute_selfcritique_signal(**args_dict)\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown signal: {signal_name}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Compute all 4 contamination detection signals for a model-benchmark pair\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--model-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Path to target (potentially contaminated) model checkpoint\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, required=True,\\\\n                        choices=[\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"humaneval\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--ref-model-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Reference (clean) model for Min-K%%++ (e.g., 0%% dosage)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--sft-data-path\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"SFT training JSONL for embedding retrieval\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--original-eval-paths\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\", default=None,\\\\n                        help=\\\\\\\"eval_results.json paths for original items (one per seed)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--paraphrase-eval-paths\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\", default=None,\\\\n                        help=\\\\\\\"eval_results.json paths for paraphrased items (one per seed)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=64,\\\\n                        help=\\\\\\\"Batch size for embedding encoding\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--k-percent\\\\\\\", type=int, default=20,\\\\n                        help=\\\\\\\"K%% for Min-K%% selection\\\\\\\")\\\\n \\\\n\\\\n... [截断: 输出过长，省略 20 字符] ...\\\\n\\\\nnt(\\\\\\\"--signals\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\",\\\\n                        default=[\\\\\\\"embedding\\\\\\\", \\\\\\\"minkpp\\\\\\\", \\\\\\\"constat\\\\\\\", \\\\\\\"selfcritique\\\\\\\"],\\\\n                        choices=[\\\\\\\"embedding\\\\\\\", \\\\\\\"minkpp\\\\\\\", \\\\\\\"constat\\\\\\\", \\\\\\\"selfcritique\\\\\\\"],\\\\n                        help=\\\\\\\"Which signals to compute\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--cache-dir\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    if args.gpu:\\\\n        os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = args.gpu\\\\n\\\\n    import torch\\\\n    device = \\\\\\\"cuda\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\"\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    signal_results = {}\\\\n\\\\n    # Signal 1: Embedding\\\\n    if \\\\\\\"embedding\\\\\\\" in args.signals:\\\\n        logger.info(\\\\\\\"=== Signal 1: Embedding near-duplicate retrieval ===\\\\\\\")\\\\n        signal_results[\\\\\\\"embedding\\\\\\\"] = run_signal(\\\\\\\"embedding\\\\\\\", {\\\\n            \\\\\\\"benchmark\\\\\\\": args.benchmark,\\\\n            \\\\\\\"sft_data_path\\\\\\\": args.sft_data_path,\\\\n            \\\\\\\"cache_dir\\\\\\\": args.cache_dir,\\\\n            \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n            \\\\\\\"device\\\\\\\": device,\\\\n        })\\\\n        _save_signal(signal_results[\\\\\\\"embedding\\\\\\\"], output_dir, \\\\\\\"embedding\\\\\\\", args.benchmark)\\\\n\\\\n    # Signal 2: Min-K%++\\\\n    if \\\\\\\"minkpp\\\\\\\" in args.signals:\\\\n        logger.info(\\\\\\\"=== Signal 2: Min-K%%++ membership inference ===\\\\\\\")\\\\n        signal_results[\\\\\\\"minkpp\\\\\\\"] = run_signal(\\\\\\\"minkpp\\\\\\\", {\\\\n            \\\\\\\"benchmark\\\\\\\": args.benchmark,\\\\n            \\\\\\\"target_model_path\\\\\\\": args.model_path,\\\\n            \\\\\\\"ref_model_path\\\\\\\": args.ref_model_path,\\\\n            \\\\\\\"cache_dir\\\\\\\": args.cache_dir,\\\\n            \\\\\\\"k_percent\\\\\\\": args.k_percent,\\\\n        })\\\\n        _save_signal(signal_results[\\\\\\\"minkpp\\\\\\\"], output_dir, \\\\\\\"minkpp\\\\\\\", args.benchmark)\\\\n\\\\n    # Signal 3: ConStat\\\\n    if \\\\\\\"constat\\\\\\\" in args.signals:\\\\n        if args.original_eval_paths and args.paraphrase_eval_paths:\\\\n            logger.info(\\\\\\\"=== Signal 3: ConStat performance gap ===\\\\\\\")\\\\n            signal_results[\\\\\\\"constat\\\\\\\"] = run_signal(\\\\\\\"constat\\\\\\\", {\\\\n                \\\\\\\"benchmark\\\\\\\": args.benchmark,\\\\n                \\\\\\\"original_eval_paths\\\\\\\": args.original_eval_paths,\\\\n                \\\\\\\"paraphrase_eval_paths\\\\\\\": args.paraphrase_eval_paths,\\\\n            })\\\\n            _save_signal(signal_results[\\\\\\\"constat\\\\\\\"], output_dir, \\\\\\\"constat\\\\\\\", args.benchmark)\\\\n        else:\\\\n            logger.warning(\\\\\\\"Skipping ConStat: --original-eval-paths and --paraphrase-eval-paths required\\\\\\\")\\\\n\\\\n    # Signal 4: Self-Critique\\\\n    if \\\\\\\"selfcritique\\\\\\\" in args.signals:\\\\n        logger.info(\\\\\\\"=== Signal 4: Self-Critique entropy collapse ===\\\\\\\")\\\\n        signal_results[\\\\\\\"selfcritique\\\\\\\"] = run_signal(\\\\\\\"selfcritique\\\\\\\", {\\\\n            \\\\\\\"benchmark\\\\\\\": args.benchmark,\\\\n            \\\\\\\"model_path\\\\\\\": args.model_path,\\\\n            \\\\\\\"cache_dir\\\\\\\": args.cache_dir,\\\\n        })\\\\n        _save_signal(signal_results[\\\\\\\"selfcritique\\\\\\\"], output_dir, \\\\\\\"selfcritique\\\\\\\", args.benchmark)\\\\n\\\\n    # Merge all computed signals (graceful: merge whenever >=2 signals available)\\\\n    if len(signal_results) >= 2:\\\\n        logger.info(\\\\\\\"=== Merging all signals ===\\\\\\\")\\\\n        merged = merge_signals(\\\\n            signal_results.get(\\\\\\\"embedding\\\\\\\", []),\\\\n            signal_results.get(\\\\\\\"minkpp\\\\\\\", []),\\\\n            signal_results.get(\\\\\\\"constat\\\\\\\", []),\\\\n            signal_results.get(\\\\\\\"selfcritique\\\\\\\", []),\\\\n            args.benchmark,\\\\n        )\\\\n        merged_file = output_dir / f\\\\\\\"signals_merged_{args.benchmark}.json\\\\\\\"\\\\n        with open(merged_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(merged, f, indent=2)\\\\n        logger.info(\\\\\\\"Merged signals saved to %s (%d items)\\\\\\\", merged_file, len(merged))\\\\n    else:\\\\n        logger.info(\\\\\\\"Computed %d/4 signals. Need at least 2 for merged output.\\\\\\\", len(signal_results))\\\\n\\\\n\\\\ndef _save_signal(results: list[dict], output_dir: Path, signal_name: str, benchmark: str):\\\\n    out_file = output_dir / f\\\\\\\"signal_{signal_name}_{benchmark}.json\\\\\\\"\\\\n    with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    logger.info(\\\\\\\"Saved %d items to %s\\\\\\\", len(results), out_file)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-002 Stage 1 Signal Pipeline — main entry point.\\n\\nComputes 4 contamination detection signals for each model-item pair:\\n  S1: Embedding near-duplicate retrieval (max cosine sim with training data)\\n  S2: Min-K%++ membership inference (z-scored against reference model)\\n  S3: ConStat performance gap (original vs paraphrased accuracy)\\n  S4: Self-Critique entropy collapse (YES/NO confidence on own answer)\\n\\nInput:  Model checkpoint, benchmark data, paraphrased items, SFT training data\\nOutput: JSON per model with item_id, s1_embedding, s2_minkpp, s3_constat, s4_selfcritique\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef merge_signals(\\n    embedding_results: list[dict],\\n    minkpp_results: list[dict],\\n    constat_results: list[dict],\\n    selfcritique_results: list[dict],\\n    benchmark: str,\\n) -> list[dict]:\\n    \\\"\\\"\\\"Merge 4 signal outputs into a single per-item record.\\\"\\\"\\\"\\n    # Index by item index\\n    emb_map = {r[\\\"index\\\"]: r for r in embedding_results}\\n    mkpp_map = {r[\\\"index\\\"]: r for r in minkpp_results}\\n    con_map = {r[\\\"index\\\"]: r for r in constat_results}\\n    sc_map = {r[\\\"index\\\"]: r for r in selfcritique_results}\\n\\n    all_indices = sorted(set(emb_map) | set(mkpp_map) | set(con_map) | set(sc_map))\\n\\n    merged = []\\n    for idx in all_indices:\\n        record = {\\n            \\\"index\\\": idx,\\n            \\\"benchmark\\\": benchmark,\\n            \\\"s1_embedding\\\": emb_map.get(idx, {}).get(\\\"s1_embedding\\\"),\\n            \\\"s2_minkpp\\\": mkpp_map.get(idx, {}).get(\\\"s2_minkpp\\\"),\\n            \\\"s3_constat\\\": con_map.get(idx, {}).get(\\\"s3_constat\\\"),\\n            \\\"s4_selfcritique\\\": sc_map.get(idx, {}).get(\\\"s4_selfcritique\\\"),\\n        }\\n        merged.append(record)\\n\\n    return merged\\n\\n\\ndef run_signal(signal_name: str, args_dict: dict):\\n    \\\"\\\"\\\"Run a signal computation module.\\\"\\\"\\\"\\n    if signal_name == \\\"embedding\\\":\\n        from signal_embedding import compute_embedding_signal\\n        return compute_embedding_signal(**args_dict)\\n    elif signal_name == \\\"minkpp\\\":\\n        from signal_minkpp import compute_minkpp_signal\\n        return compute_minkpp_signal(**args_dict)\\n    elif signal_name == \\\"constat\\\":\\n        from signal_constat import compute_constat_signal\\n        return compute_constat_signal(**args_dict)\\n    elif signal_name == \\\"selfcritique\\\":\\n        from signal_selfcritique import compute_selfcritique_signal\\n        return compute_selfcritique_signal(**args_dict)\\n    else:\\n        raise ValueError(f\\\"Unknown signal: {signal_name}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Compute all 4 contamination detection signals for a model-benchmark pair\\\"\\n    )\\n    parser.add_argument(\\\"--model-path\\\", type=str, required=True,\\n                        help=\\\"Path to target (potentially contaminated) model checkpoint\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, required=True,\\n                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"])\\n    parser.add_argument(\\\"--ref-model-path\\\", type=str, required=True,\\n                        help=\\\"Reference (clean) model for Min-K%%++ (e.g., 0%% dosage)\\\")\\n    parser.add_argument(\\\"--sft-data-path\\\", type=str, required=True,\\n                        help=\\\"SFT training JSONL for embedding retrieval\\\")\\n    parser.add_argument(\\\"--original-eval-paths\\\", type=str, nargs=\\\"+\\\", default=None,\\n                        help=\\\"eval_results.json paths for original items (one per seed)\\\")\\n    parser.add_argument(\\\"--paraphrase-eval-paths\\\", type=str, nargs=\\\"+\\\", default=None,\\n                        help=\\\"eval_results.json paths for paraphrased items (one per seed)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=None)\\n    parser.add_argument(\\\"--batch-size\\\", type=int, default=64,\\n                        help=\\\"Batch size for embedding encoding\\\")\\n    parser.add_argument(\\\"--k-percent\\\", type=int, default=20,\\n                        help=\\\"K%% for Min-K%% selection\\\")\\n \\n\\n... [截断: 输出过长，省略 20 字符] ...\\n\\nnt(\\\"--signals\\\", type=str, nargs=\\\"+\\\",\\n                        default=[\\\"embedding\\\", \\\"minkpp\\\", \\\"constat\\\", \\\"selfcritique\\\"],\\n                        choices=[\\\"embedding\\\", \\\"minkpp\\\", \\\"constat\\\", \\\"selfcritique\\\"],\\n                        help=\\\"Which signals to compute\\\")\\n    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    if args.gpu:\\n        os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = args.gpu\\n\\n    import torch\\n    device = \\\"cuda\\\" if torch.cuda.is_available() else \\\"cpu\\\"\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    signal_results = {}\\n\\n    # Signal 1: Embedding\\n    if \\\"embedding\\\" in args.signals:\\n        logger.info(\\\"=== Signal 1: Embedding near-duplicate retrieval ===\\\")\\n        signal_results[\\\"embedding\\\"] = run_signal(\\\"embedding\\\", {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"sft_data_path\\\": args.sft_data_path,\\n            \\\"cache_dir\\\": args.cache_dir,\\n            \\\"batch_size\\\": args.batch_size,\\n            \\\"device\\\": device,\\n        })\\n        _save_signal(signal_results[\\\"embedding\\\"], output_dir, \\\"embedding\\\", args.benchmark)\\n\\n    # Signal 2: Min-K%++\\n    if \\\"minkpp\\\" in args.signals:\\n        logger.info(\\\"=== Signal 2: Min-K%%++ membership inference ===\\\")\\n        signal_results[\\\"minkpp\\\"] = run_signal(\\\"minkpp\\\", {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"target_model_path\\\": args.model_path,\\n            \\\"ref_model_path\\\": args.ref_model_path,\\n            \\\"cache_dir\\\": args.cache_dir,\\n            \\\"k_percent\\\": args.k_percent,\\n        })\\n        _save_signal(signal_results[\\\"minkpp\\\"], output_dir, \\\"minkpp\\\", args.benchmark)\\n\\n    # Signal 3: ConStat\\n    if \\\"constat\\\" in args.signals:\\n        if args.original_eval_paths and args.paraphrase_eval_paths:\\n            logger.info(\\\"=== Signal 3: ConStat performance gap ===\\\")\\n            signal_results[\\\"constat\\\"] = run_signal(\\\"constat\\\", {\\n                \\\"benchmark\\\": args.benchmark,\\n                \\\"original_eval_paths\\\": args.original_eval_paths,\\n                \\\"paraphrase_eval_paths\\\": args.paraphrase_eval_paths,\\n            })\\n            _save_signal(signal_results[\\\"constat\\\"], output_dir, \\\"constat\\\", args.benchmark)\\n        else:\\n            logger.warning(\\\"Skipping ConStat: --original-eval-paths and --paraphrase-eval-paths required\\\")\\n\\n    # Signal 4: Self-Critique\\n    if \\\"selfcritique\\\" in args.signals:\\n        logger.info(\\\"=== Signal 4: Self-Critique entropy collapse ===\\\")\\n        signal_results[\\\"selfcritique\\\"] = run_signal(\\\"selfcritique\\\", {\\n            \\\"benchmark\\\": args.benchmark,\\n            \\\"model_path\\\": args.model_path,\\n            \\\"cache_dir\\\": args.cache_dir,\\n        })\\n        _save_signal(signal_results[\\\"selfcritique\\\"], output_dir, \\\"selfcritique\\\", args.benchmark)\\n\\n    # Merge all computed signals (graceful: merge whenever >=2 signals available)\\n    if len(signal_results) >= 2:\\n        logger.info(\\\"=== Merging all signals ===\\\")\\n        merged = merge_signals(\\n            signal_results.get(\\\"embedding\\\", []),\\n            signal_results.get(\\\"minkpp\\\", []),\\n            signal_results.get(\\\"constat\\\", []),\\n            signal_results.get(\\\"selfcritique\\\", []),\\n            args.benchmark,\\n        )\\n        merged_file = output_dir / f\\\"signals_merged_{args.benchmark}.json\\\"\\n        with open(merged_file, \\\"w\\\") as f:\\n            json.dump(merged, f, indent=2)\\n        logger.info(\\\"Merged signals saved to %s (%d items)\\\", merged_file, len(merged))\\n    else:\\n        logger.info(\\\"Computed %d/4 signals. Need at least 2 for merged output.\\\", len(signal_results))\\n\\n\\ndef _save_signal(results: list[dict], output_dir: Path, signal_name: str, benchmark: str):\\n    out_file = output_dir / f\\\"signal_{signal_name}_{benchmark}.json\\\"\\n    with open(out_file, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    logger.info(\\\"Saved %d items to %s\\\", len(results), out_file)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T12:43:25.587Z_
+
+<details><summary>↩ Tool result · `toolu_01TXLTKVh6siUFeexrxb73hN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nRRF (Reciprocal Rank Fusion) aggregation of contamination signals.\\n\\nFuses 4 per-item signal scores into a single exposure score using RRF\\n(Cormack et al. 2009). Also implements ablation variants: equal-weight\\nrank averaging and single-signal baselines.\\n\\nInput:  Per-item signal scores (JSON from compute_signals.py)\\nOutput: Per-model-item fused exposure scores + signal survival AUC matrix\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nRRF_K = 60\\n\\n\\ndef detect_available_signals(items: list[dict], candidates: list[str] = None) -> list[str]:\\n    \\\"\\\"\\\"Auto-detect which signals have non-trivial values (not all null/zero).\\\"\\\"\\\"\\n    if candidates is None:\\n        candidates = SIGNAL_KEYS\\n    available = []\\n    for sig in candidates:\\n        vals = [item.get(sig) for item in items]\\n        if any(v is not None and v != 0.0 for v in vals):\\n            available.append(sig)\\n    return available\\n\\n\\ndef load_signal_data(signal_files: list[str]) -> list[dict]:\\n    \\\"\\\"\\\"Load and merge signal files. Each file contains a list of per-item dicts.\\\"\\\"\\\"\\n    merged = {}\\n    for fpath in signal_files:\\n        with open(fpath) as f:\\n            data = json.load(f)\\n        for item in data:\\n            idx = item[\\\"index\\\"]\\n            if idx not in merged:\\n                merged[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\")}\\n            merged[idx].update(item)\\n    return [merged[k] for k in sorted(merged)]\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank items from 1 (highest score = most suspicious) to N.\\\"\\\"\\\"\\n    order = np.argsort(-scores)  # descending\\n    ranks = np.empty_like(order)\\n    ranks[order] = np.arange(1, len(scores) + 1)\\n    return ranks\\n\\n\\ndef rrf_aggregate(items: list[dict], k: int = RRF_K,\\n                  signals: list[str] = None) -> list[dict]:\\n    \\\"\\\"\\\"\\n    RRF fusion: score_j = sum_s 1/(k + rank_s(j))\\n\\n    All signals are oriented so higher = more suspicious.\\n    \\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n        if not signals:\\n            logger.warning(\\\"No signals with non-trivial values found\\\")\\n            return []\\n\\n    n = len(items)\\n    if n == 0:\\n        return []\\n\\n    # Extract score vectors\\n    score_matrix = {}\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        score_matrix[sig] = vals\\n\\n    # Compute ranks for each signal\\n    rank_matrix = {}\\n    for sig in signals:\\n        rank_matrix[sig] = compute_ranks(score_matrix[sig])\\n\\n    # RRF fusion\\n    rrf_scores = np.zeros(n)\\n    for sig in signals:\\n        rrf_scores += 1.0 / (k + rank_matrix[sig])\\n\\n    # Build output\\n    results = []\\n    for i, item in enumerate(items):\\n        record = {\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\"),\\n            \\\"rrf_score\\\": float(rrf_scores[i]),\\n        }\\n        for sig in signals:\\n            record[f\\\"rank_{sig}\\\"] = int(rank_matrix[sig][i])\\n        results.append(record)\\n\\n    return results\\n\\n\\ndef rank_average_aggregate(items: list[dict],\\n                           signals: list[str] = None) -> list[dict]:\\n    \\\"\\\"\\\"Equal-weight rank averaging (ablation baseline).\\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n        if not signals:\\n            return []\\n\\n    n = len(items)\\n    if n == 0:\\n        return []\\n\\n    rank_matrix = {}\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        rank_matrix[sig] = compute_ranks(vals)\\n\\n    avg_ranks = np.zeros(n)\\n    for sig in signals:\\n        avg_ranks += rank_matrix[sig]\\n    avg_ranks /= len(signals)\\n\\n    # Lower average rank = more suspicious, so score = -avg_rank for consistent ordering\\n    results = []\\n    for i, item in enumerate(items):\\n        results.append({\\n            \\\"index\\\": it\\n\\n... [截断: 输出过长，省略 4410 字符] ...\\n\\ntput-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--k\\\", type=int, default=RRF_K,\\n                        help=\\\"RRF k parameter (default: 60)\\\")\\n    parser.add_argument(\\\"--labels-file\\\", type=str, default=None,\\n                        help=\\\"JSON file with ground-truth contamination labels (list of 0/1)\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=\\\"unknown\\\",\\n                        help=\\\"Model identifier for output naming\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, default=None)\\n    parser.add_argument(\\\"--generate-exposure\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate exposure_scores.json for exp-006 IRT calibration\\\")\\n    parser.add_argument(\\\"--signal-dir\\\", type=str, default=None,\\n                        help=\\\"Root signal output dir (for --generate-exposure mode)\\\")\\n    parser.add_argument(\\\"--benchmarks\\\", type=str, nargs=\\\"+\\\",\\n                        default=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"],\\n                        help=\\\"Benchmarks to include in exposure scores\\\")\\n    parser.add_argument(\\\"--dosage-filter\\\", type=str, default=None,\\n                        help=\\\"Only use signals from this dosage (e.g. d100)\\\")\\n    parser.add_argument(\\\"--normalize\\\", action=\\\"store_true\\\", default=True,\\n                        help=\\\"Min-max normalize tau to [0, 1]\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # Mode: generate exposure_scores.json for exp-006\\n    if args.generate_exposure:\\n        if not args.signal_dir:\\n            parser.error(\\\"--signal-dir required with --generate-exposure\\\")\\n        exposure = generate_exposure_json(\\n            args.signal_dir, args.benchmarks,\\n            dosage_filter=args.dosage_filter, k=args.k,\\n            normalize=args.normalize,\\n        )\\n        out_file = output_dir / \\\"exposure_scores.json\\\"\\n        with open(out_file, \\\"w\\\") as f:\\n            json.dump(exposure, f, indent=2)\\n        logger.info(\\\"Exposure scores saved to %s\\\", out_file)\\n        for bench, tau in exposure.items():\\n            logger.info(\\\"  %s: %d items\\\", bench, len(tau))\\n        return\\n\\n    # Load signals\\n    if not args.signal_files:\\n        parser.error(\\\"--signal-files required (or use --generate-exposure)\\\")\\n    items = load_signal_data(args.signal_files)\\n    logger.info(\\\"Loaded %d items with signals\\\", len(items))\\n    active_signals = detect_available_signals(items)\\n    logger.info(\\\"Active signals: %s\\\", active_signals)\\n\\n    # RRF aggregation\\n    rrf_results = rrf_aggregate(items, k=args.k)\\n    rrf_file = output_dir / f\\\"rrf_scores_{args.model_name}.json\\\"\\n    with open(rrf_file, \\\"w\\\") as f:\\n        json.dump(rrf_results, f, indent=2)\\n    logger.info(\\\"RRF scores saved to %s\\\", rrf_file)\\n\\n    # Ablation: rank averaging\\n    ra_results = rank_average_aggregate(items)\\n    ra_file = output_dir / f\\\"rank_avg_scores_{args.model_name}.json\\\"\\n    with open(ra_file, \\\"w\\\") as f:\\n        json.dump(ra_results, f, indent=2)\\n\\n    # Ablation: single signal\\n    ss_results = single_signal_scores(items)\\n    ss_file = output_dir / f\\\"single_signal_scores_{args.model_name}.json\\\"\\n    with open(ss_file, \\\"w\\\") as f:\\n        json.dump({k: v for k, v in ss_results.items()}, f, indent=2)\\n\\n    # AUC matrix (if labels available)\\n    if args.labels_file:\\n        with open(args.labels_file) as f:\\n            labels = json.load(f)\\n        auc_results = compute_signal_auc(items, labels)\\n        auc_file = output_dir / f\\\"signal_auc_{args.model_name}.json\\\"\\n        with open(auc_file, \\\"w\\\") as f:\\n            json.dump(auc_results, f, indent=2)\\n        logger.info(\\\"Signal AUC matrix: %s\\\", json.dumps(auc_results, indent=2))\\n\\n    # Summary statistics\\n    rrf_scores = [r[\\\"rrf_score\\\"] for r in rrf_results]\\n    logger.info(\\\"RRF score range: [%.6f, %.6f], mean=%.6f\\\",\\n                min(rrf_scores), max(rrf_scores), np.mean(rrf_scores))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "4d71fefc-8d28-459b-8a58-d6bbc8f9bb7f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nRRF (Reciprocal Rank Fusion) aggregation of contamination signals.\\\\n\\\\nFuses 4 per-item signal scores into a single exposure score using RRF\\\\n(Cormack et al. 2009). Also implements ablation variants: equal-weight\\\\nrank averaging and single-signal baselines.\\\\n\\\\nInput:  Per-item signal scores (JSON from compute_signals.py)\\\\nOutput: Per-model-item fused exposure scores + signal survival AUC matrix\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nSIGNAL_KEYS = [\\\\\\\"s1_embedding\\\\\\\", \\\\\\\"s2_minkpp\\\\\\\", \\\\\\\"s3_constat\\\\\\\", \\\\\\\"s4_selfcritique\\\\\\\"]\\\\nRRF_K = 60\\\\n\\\\n\\\\ndef detect_available_signals(items: list[dict], candidates: list[str] = None) -> list[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Auto-detect which signals have non-trivial values (not all null/zero).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if candidates is None:\\\\n        candidates = SIGNAL_KEYS\\\\n    available = []\\\\n    for sig in candidates:\\\\n        vals = [item.get(sig) for item in items]\\\\n        if any(v is not None and v != 0.0 for v in vals):\\\\n            available.append(sig)\\\\n    return available\\\\n\\\\n\\\\ndef load_signal_data(signal_files: list[str]) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and merge signal files. Each file contains a list of per-item dicts.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    merged = {}\\\\n    for fpath in signal_files:\\\\n        with open(fpath) as f:\\\\n            data = json.load(f)\\\\n        for item in data:\\\\n            idx = item[\\\\\\\"index\\\\\\\"]\\\\n            if idx not in merged:\\\\n                merged[idx] = {\\\\\\\"index\\\\\\\": idx, \\\\\\\"benchmark\\\\\\\": item.get(\\\\\\\"benchmark\\\\\\\", \\\\\\\"\\\\\\\")}\\\\n            merged[idx].update(item)\\\\n    return [merged[k] for k in sorted(merged)]\\\\n\\\\n\\\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Rank items from 1 (highest score = most suspicious) to N.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    order = np.argsort(-scores)  # descending\\\\n    ranks = np.empty_like(order)\\\\n    ranks[order] = np.arange(1, len(scores) + 1)\\\\n    return ranks\\\\n\\\\n\\\\ndef rrf_aggregate(items: list[dict], k: int = RRF_K,\\\\n                  signals: list[str] = None) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    RRF fusion: score_j = sum_s 1/(k + rank_s(j))\\\\n\\\\n    All signals are oriented so higher = more suspicious.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if signals is None:\\\\n        signals = detect_available_signals(items)\\\\n        if not signals:\\\\n            logger.warning(\\\\\\\"No signals with non-trivial values found\\\\\\\")\\\\n            return []\\\\n\\\\n    n = len(items)\\\\n    if n == 0:\\\\n        return []\\\\n\\\\n    # Extract score vectors\\\\n    score_matrix = {}\\\\n    for sig in signals:\\\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\\\n        score_matrix[sig] = vals\\\\n\\\\n    # Compute ranks for each signal\\\\n    rank_matrix = {}\\\\n    for sig in signals:\\\\n        rank_matrix[sig] = compute_ranks(score_matrix[sig])\\\\n\\\\n    # RRF fusion\\\\n    rrf_scores = np.zeros(n)\\\\n    for sig in signals:\\\\n        rrf_scores += 1.0 / (k + rank_matrix[sig])\\\\n\\\\n    # Build output\\\\n    results = []\\\\n    for i, item in enumerate(items):\\\\n        record = {\\\\n            \\\\\\\"index\\\\\\\": item[\\\\\\\"index\\\\\\\"],\\\\n            \\\\\\\"benchmark\\\\\\\": item.get(\\\\\\\"benchmark\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"rrf_score\\\\\\\": float(rrf_scores[i]),\\\\n        }\\\\n        for sig in signals:\\\\n            record[f\\\\\\\"rank_{sig}\\\\\\\"] = int(rank_matrix[sig][i])\\\\n        results.append(record)\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef rank_average_aggregate(items: list[dict],\\\\n                           signals: list[str] = None) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Equal-weight rank averaging (ablation baseline).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if signals is None:\\\\n        signals = detect_available_signals(items)\\\\n        if not signals:\\\\n            return []\\\\n\\\\n    n = len(items)\\\\n    if n == 0:\\\\n        return []\\\\n\\\\n    rank_matrix = {}\\\\n    for sig in signals:\\\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\\\n        rank_matrix[sig] = compute_ranks(vals)\\\\n\\\\n    avg_ranks = np.zeros(n)\\\\n    for sig in signals:\\\\n        avg_ranks += rank_matrix[sig]\\\\n    avg_ranks /= len(signals)\\\\n\\\\n    # Lower average rank = more suspicious, so score = -avg_rank for consistent ordering\\\\n    results = []\\\\n    for i, item in enumerate(items):\\\\n        results.append({\\\\n            \\\\\\\"index\\\\\\\": it\\\\n\\\\n... [截断: 输出过长，省略 4410 字符] ...\\\\n\\\\ntput-dir\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--k\\\\\\\", type=int, default=RRF_K,\\\\n                        help=\\\\\\\"RRF k parameter (default: 60)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--labels-file\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"JSON file with ground-truth contamination labels (list of 0/1)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model-name\\\\\\\", type=str, default=\\\\\\\"unknown\\\\\\\",\\\\n                        help=\\\\\\\"Model identifier for output naming\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--generate-exposure\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Generate exposure_scores.json for exp-006 IRT calibration\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--signal-dir\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Root signal output dir (for --generate-exposure mode)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--benchmarks\\\\\\\", type=str, nargs=\\\\\\\"+\\\\\\\",\\\\n                        default=[\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"],\\\\n                        help=\\\\\\\"Benchmarks to include in exposure scores\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dosage-filter\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Only use signals from this dosage (e.g. d100)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--normalize\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True,\\\\n                        help=\\\\\\\"Min-max normalize tau to [0, 1]\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # Mode: generate exposure_scores.json for exp-006\\\\n    if args.generate_exposure:\\\\n        if not args.signal_dir:\\\\n            parser.error(\\\\\\\"--signal-dir required with --generate-exposure\\\\\\\")\\\\n        exposure = generate_exposure_json(\\\\n            args.signal_dir, args.benchmarks,\\\\n            dosage_filter=args.dosage_filter, k=args.k,\\\\n            normalize=args.normalize,\\\\n        )\\\\n        out_file = output_dir / \\\\\\\"exposure_scores.json\\\\\\\"\\\\n        with open(out_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(exposure, f, indent=2)\\\\n        logger.info(\\\\\\\"Exposure scores saved to %s\\\\\\\", out_file)\\\\n        for bench, tau in exposure.items():\\\\n            logger.info(\\\\\\\"  %s: %d items\\\\\\\", bench, len(tau))\\\\n        return\\\\n\\\\n    # Load signals\\\\n    if not args.signal_files:\\\\n        parser.error(\\\\\\\"--signal-files required (or use --generate-exposure)\\\\\\\")\\\\n    items = load_signal_data(args.signal_files)\\\\n    logger.info(\\\\\\\"Loaded %d items with signals\\\\\\\", len(items))\\\\n    active_signals = detect_available_signals(items)\\\\n    logger.info(\\\\\\\"Active signals: %s\\\\\\\", active_signals)\\\\n\\\\n    # RRF aggregation\\\\n    rrf_results = rrf_aggregate(items, k=args.k)\\\\n    rrf_file = output_dir / f\\\\\\\"rrf_scores_{args.model_name}.json\\\\\\\"\\\\n    with open(rrf_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(rrf_results, f, indent=2)\\\\n    logger.info(\\\\\\\"RRF scores saved to %s\\\\\\\", rrf_file)\\\\n\\\\n    # Ablation: rank averaging\\\\n    ra_results = rank_average_aggregate(items)\\\\n    ra_file = output_dir / f\\\\\\\"rank_avg_scores_{args.model_name}.json\\\\\\\"\\\\n    with open(ra_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(ra_results, f, indent=2)\\\\n\\\\n    # Ablation: single signal\\\\n    ss_results = single_signal_scores(items)\\\\n    ss_file = output_dir / f\\\\\\\"single_signal_scores_{args.model_name}.json\\\\\\\"\\\\n    with open(ss_file, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump({k: v for k, v in ss_results.items()}, f, indent=2)\\\\n\\\\n    # AUC matrix (if labels available)\\\\n    if args.labels_file:\\\\n        with open(args.labels_file) as f:\\\\n            labels = json.load(f)\\\\n        auc_results = compute_signal_auc(items, labels)\\\\n        auc_file = output_dir / f\\\\\\\"signal_auc_{args.model_name}.json\\\\\\\"\\\\n        with open(auc_file, \\\\\\\"w\\\\\\\") as f:\\\\n            json.dump(auc_results, f, indent=2)\\\\n        logger.info(\\\\\\\"Signal AUC matrix: %s\\\\\\\", json.dumps(auc_results, indent=2))\\\\n\\\\n    # Summary statistics\\\\n    rrf_scores = [r[\\\\\\\"rrf_score\\\\\\\"] for r in rrf_results]\\\\n    logger.info(\\\\\\\"RRF score range: [%.6f, %.6f], mean=%.6f\\\\\\\",\\\\n                min(rrf_scores), max(rrf_scores), np.mean(rrf_scores))\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nRRF (Reciprocal Rank Fusion) aggregation of contamination signals.\\n\\nFuses 4 per-item signal scores into a single exposure score using RRF\\n(Cormack et al. 2009). Also implements ablation variants: equal-weight\\nrank averaging and single-signal baselines.\\n\\nInput:  Per-item signal scores (JSON from compute_signals.py)\\nOutput: Per-model-item fused exposure scores + signal survival AUC matrix\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nlogger = logging.getLogger(__name__)\\n\\nSIGNAL_KEYS = [\\\"s1_embedding\\\", \\\"s2_minkpp\\\", \\\"s3_constat\\\", \\\"s4_selfcritique\\\"]\\nRRF_K = 60\\n\\n\\ndef detect_available_signals(items: list[dict], candidates: list[str] = None) -> list[str]:\\n    \\\"\\\"\\\"Auto-detect which signals have non-trivial values (not all null/zero).\\\"\\\"\\\"\\n    if candidates is None:\\n        candidates = SIGNAL_KEYS\\n    available = []\\n    for sig in candidates:\\n        vals = [item.get(sig) for item in items]\\n        if any(v is not None and v != 0.0 for v in vals):\\n            available.append(sig)\\n    return available\\n\\n\\ndef load_signal_data(signal_files: list[str]) -> list[dict]:\\n    \\\"\\\"\\\"Load and merge signal files. Each file contains a list of per-item dicts.\\\"\\\"\\\"\\n    merged = {}\\n    for fpath in signal_files:\\n        with open(fpath) as f:\\n            data = json.load(f)\\n        for item in data:\\n            idx = item[\\\"index\\\"]\\n            if idx not in merged:\\n                merged[idx] = {\\\"index\\\": idx, \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\")}\\n            merged[idx].update(item)\\n    return [merged[k] for k in sorted(merged)]\\n\\n\\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Rank items from 1 (highest score = most suspicious) to N.\\\"\\\"\\\"\\n    order = np.argsort(-scores)  # descending\\n    ranks = np.empty_like(order)\\n    ranks[order] = np.arange(1, len(scores) + 1)\\n    return ranks\\n\\n\\ndef rrf_aggregate(items: list[dict], k: int = RRF_K,\\n                  signals: list[str] = None) -> list[dict]:\\n    \\\"\\\"\\\"\\n    RRF fusion: score_j = sum_s 1/(k + rank_s(j))\\n\\n    All signals are oriented so higher = more suspicious.\\n    \\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n        if not signals:\\n            logger.warning(\\\"No signals with non-trivial values found\\\")\\n            return []\\n\\n    n = len(items)\\n    if n == 0:\\n        return []\\n\\n    # Extract score vectors\\n    score_matrix = {}\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        score_matrix[sig] = vals\\n\\n    # Compute ranks for each signal\\n    rank_matrix = {}\\n    for sig in signals:\\n        rank_matrix[sig] = compute_ranks(score_matrix[sig])\\n\\n    # RRF fusion\\n    rrf_scores = np.zeros(n)\\n    for sig in signals:\\n        rrf_scores += 1.0 / (k + rank_matrix[sig])\\n\\n    # Build output\\n    results = []\\n    for i, item in enumerate(items):\\n        record = {\\n            \\\"index\\\": item[\\\"index\\\"],\\n            \\\"benchmark\\\": item.get(\\\"benchmark\\\", \\\"\\\"),\\n            \\\"rrf_score\\\": float(rrf_scores[i]),\\n        }\\n        for sig in signals:\\n            record[f\\\"rank_{sig}\\\"] = int(rank_matrix[sig][i])\\n        results.append(record)\\n\\n    return results\\n\\n\\ndef rank_average_aggregate(items: list[dict],\\n                           signals: list[str] = None) -> list[dict]:\\n    \\\"\\\"\\\"Equal-weight rank averaging (ablation baseline).\\\"\\\"\\\"\\n    if signals is None:\\n        signals = detect_available_signals(items)\\n        if not signals:\\n            return []\\n\\n    n = len(items)\\n    if n == 0:\\n        return []\\n\\n    rank_matrix = {}\\n    for sig in signals:\\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\\n        rank_matrix[sig] = compute_ranks(vals)\\n\\n    avg_ranks = np.zeros(n)\\n    for sig in signals:\\n        avg_ranks += rank_matrix[sig]\\n    avg_ranks /= len(signals)\\n\\n    # Lower average rank = more suspicious, so score = -avg_rank for consistent ordering\\n    results = []\\n    for i, item in enumerate(items):\\n        results.append({\\n            \\\"index\\\": it\\n\\n... [截断: 输出过长，省略 4410 字符] ...\\n\\ntput-dir\\\", type=str, required=True)\\n    parser.add_argument(\\\"--k\\\", type=int, default=RRF_K,\\n                        help=\\\"RRF k parameter (default: 60)\\\")\\n    parser.add_argument(\\\"--labels-file\\\", type=str, default=None,\\n                        help=\\\"JSON file with ground-truth contamination labels (list of 0/1)\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=\\\"unknown\\\",\\n                        help=\\\"Model identifier for output naming\\\")\\n    parser.add_argument(\\\"--benchmark\\\", type=str, default=None)\\n    parser.add_argument(\\\"--generate-exposure\\\", action=\\\"store_true\\\",\\n                        help=\\\"Generate exposure_scores.json for exp-006 IRT calibration\\\")\\n    parser.add_argument(\\\"--signal-dir\\\", type=str, default=None,\\n                        help=\\\"Root signal output dir (for --generate-exposure mode)\\\")\\n    parser.add_argument(\\\"--benchmarks\\\", type=str, nargs=\\\"+\\\",\\n                        default=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"],\\n                        help=\\\"Benchmarks to include in exposure scores\\\")\\n    parser.add_argument(\\\"--dosage-filter\\\", type=str, default=None,\\n                        help=\\\"Only use signals from this dosage (e.g. d100)\\\")\\n    parser.add_argument(\\\"--normalize\\\", action=\\\"store_true\\\", default=True,\\n                        help=\\\"Min-max normalize tau to [0, 1]\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # Mode: generate exposure_scores.json for exp-006\\n    if args.generate_exposure:\\n        if not args.signal_dir:\\n            parser.error(\\\"--signal-dir required with --generate-exposure\\\")\\n        exposure = generate_exposure_json(\\n            args.signal_dir, args.benchmarks,\\n            dosage_filter=args.dosage_filter, k=args.k,\\n            normalize=args.normalize,\\n        )\\n        out_file = output_dir / \\\"exposure_scores.json\\\"\\n        with open(out_file, \\\"w\\\") as f:\\n            json.dump(exposure, f, indent=2)\\n        logger.info(\\\"Exposure scores saved to %s\\\", out_file)\\n        for bench, tau in exposure.items():\\n            logger.info(\\\"  %s: %d items\\\", bench, len(tau))\\n        return\\n\\n    # Load signals\\n    if not args.signal_files:\\n        parser.error(\\\"--signal-files required (or use --generate-exposure)\\\")\\n    items = load_signal_data(args.signal_files)\\n    logger.info(\\\"Loaded %d items with signals\\\", len(items))\\n    active_signals = detect_available_signals(items)\\n    logger.info(\\\"Active signals: %s\\\", active_signals)\\n\\n    # RRF aggregation\\n    rrf_results = rrf_aggregate(items, k=args.k)\\n    rrf_file = output_dir / f\\\"rrf_scores_{args.model_name}.json\\\"\\n    with open(rrf_file, \\\"w\\\") as f:\\n        json.dump(rrf_results, f, indent=2)\\n    logger.info(\\\"RRF scores saved to %s\\\", rrf_file)\\n\\n    # Ablation: rank averaging\\n    ra_results = rank_average_aggregate(items)\\n    ra_file = output_dir / f\\\"rank_avg_scores_{args.model_name}.json\\\"\\n    with open(ra_file, \\\"w\\\") as f:\\n        json.dump(ra_results, f, indent=2)\\n\\n    # Ablation: single signal\\n    ss_results = single_signal_scores(items)\\n    ss_file = output_dir / f\\\"single_signal_scores_{args.model_name}.json\\\"\\n    with open(ss_file, \\\"w\\\") as f:\\n        json.dump({k: v for k, v in ss_results.items()}, f, indent=2)\\n\\n    # AUC matrix (if labels available)\\n    if args.labels_file:\\n        with open(args.labels_file) as f:\\n            labels = json.load(f)\\n        auc_results = compute_signal_auc(items, labels)\\n        auc_file = output_dir / f\\\"signal_auc_{args.model_name}.json\\\"\\n        with open(auc_file, \\\"w\\\") as f:\\n            json.dump(auc_results, f, indent=2)\\n        logger.info(\\\"Signal AUC matrix: %s\\\", json.dumps(auc_results, indent=2))\\n\\n    # Summary statistics\\n    rrf_scores = [r[\\\"rrf_score\\\"] for r in rrf_results]\\n    logger.info(\\\"RRF score range: [%.6f, %.6f], mean=%.6f\\\",\\n                min(rrf_scores), max(rrf_scores), np.mean(rrf_scores))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can see that exp-002 already has an `aggregate_rrf.py` with basic RRF, rank averaging, and single-signal baselines. Let me also check the signal output format more carefully and see if there's a `run_batch.py` to understand the model naming / directory structure. Let me also check exp-001 for ground truth format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "c8fda7ac-2b0c-4a95-be82-ec5303b91b42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkHfjjPU5REts2xzUnhLWy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6808,
+      "cache_read_input_tokens": 26501,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6808
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+exp-002 已经有基础的 `aggregate_rrf.py`。我需要看 run_batch.py 了解目录结构、exp-001 ground truth 格式，以及现有 aggregate_rrf.py 中被截断的部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "8a62c698-6545-4eb8-8838-9a8bb26fa992",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkHfjjPU5REts2xzUnhLWy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6808,
+      "cache_read_input_tokens": 26501,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6808
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DTEHp8ot2Be1svLZGfVArn`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp002/run_batch.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "205846f7-83f7-4e77-8017-023941db003c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkHfjjPU5REts2xzUnhLWy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6808,
+      "cache_read_input_tokens": 26501,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6808
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T12:43:34.384Z_
+
+<details><summary>↩ Tool result · `toolu_01DTEHp8ot2Be1svLZGfVArn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nBatch runner for exp-002 signal pipeline.\\n\\nOrchestrates compute_signals.py across all (dosage, benchmark) combos for a given\\nmodel size. Supports dry-run, GPU selection, resume (skips completed tasks), and\\nparallel or sequential execution.\\n\\nUsage:\\n  python run_batch.py --model-size 0.5B --dry-run           # verify pipeline\\n  python run_batch.py --model-size 0.5B --gpu 3             # run all on GPU 3\\n  python run_batch.py --model-size 0.5B --gpu 3 --only d005 # single dosage\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport subprocess\\nimport sys\\nfrom pathlib import Path\\n\\nos.environ.setdefault(\\\"HF_DATASETS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\n\\nlogger = logging.getLogger(__name__)\\n\\n# --- Path conventions ---\\nCHECKPOINT_ROOT = \\\"/root/autodl-tmp/exp001/checkpoints\\\"\\nSFT_DATA_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nEVAL_RESULTS_ROOT = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\nOUTPUT_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nCACHE_DIR = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d100\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nSEED = \\\"s42\\\"\\n\\nMODEL_SIZE_TO_NAME = {\\n    \\\"0.5B\\\": \\\"Qwen2.5-0.5B\\\",\\n    \\\"1.5B\\\": \\\"Qwen2.5-1.5B\\\",\\n    \\\"3B\\\": \\\"Qwen2.5-3B\\\",\\n}\\n\\nDOSAGE_TO_NUM = {\\\"d000\\\": \\\"000\\\", \\\"d005\\\": \\\"005\\\", \\\"d025\\\": \\\"025\\\", \\\"d050\\\": \\\"050\\\", \\\"d100\\\": \\\"100\\\"}\\n\\n\\ndef checkpoint_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{CHECKPOINT_ROOT}/{model_name}_{dosage}_{SEED}/lora_adapter\\\"\\n\\n\\ndef sft_data_path(dosage: str) -> str:\\n    return f\\\"{SFT_DATA_ROOT}/sft_dosage_{DOSAGE_TO_NUM[dosage]}.jsonl\\\"\\n\\n\\ndef ref_checkpoint_path(model_name: str) -> str:\\n    \\\"\\\"\\\"D016: reference model = 0% dosage fine-tuned model.\\\"\\\"\\\"\\n    return checkpoint_path(model_name, \\\"d000\\\")\\n\\n\\ndef eval_results_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}/eval_results.json\\\"\\n\\n\\ndef para_eval_results_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}_para/eval_results.json\\\"\\n\\n\\ndef labels_path(benchmark: str, dosage: str) -> str:\\n    return f\\\"{LABELS_ROOT}/contamination_labels_{benchmark}_{dosage}.json\\\"\\n\\n\\ndef output_dir_for(model_name: str, dosage: str) -> str:\\n    return f\\\"{OUTPUT_ROOT}/{model_name}_{dosage}_{SEED}\\\"\\n\\n\\ndef merged_output_exists(model_name: str, dosage: str, benchmark: str) -> bool:\\n    outdir = output_dir_for(model_name, dosage)\\n    merged = Path(outdir) / f\\\"signals_merged_{benchmark}.json\\\"\\n    return merged.exists()\\n\\n\\ndef build_task(model_name: str, dosage: str, benchmark: str, gpu: str,\\n               dry_run: bool, max_items: int) -> dict:\\n    \\\"\\\"\\\"Build a single signal computation task.\\\"\\\"\\\"\\n    ckpt = checkpoint_path(model_name, dosage)\\n    ref_ckpt = ref_checkpoint_path(model_name)\\n    sft = sft_data_path(dosage)\\n    outdir = output_dir_for(model_name, dosage)\\n\\n    cmd = [\\n        sys.executable, \\\"compute_signals.py\\\",\\n        \\\"--model-path\\\", ckpt,\\n        \\\"--benchmark\\\", benchmark,\\n        \\\"--ref-model-path\\\", ref_ckpt,\\n        \\\"--sft-data-path\\\", sft,\\n        \\\"--output-dir\\\", outdir,\\n        \\\"--cache-dir\\\", CACHE_DIR,\\n    ]\\n\\n    if gpu is not None:\\n        cmd.extend([\\\"--gpu\\\", str(gpu)])\\n\\n    # ConStat: include only if paraphrase eval results exist\\n    signals = [\\\"embedding\\\", \\\"minkpp\\\", \\\"selfcritique\\\"]\\n    orig_eval = eval_results_path(model_name, dosage)\\n    para_eval = para_eval_results_path(model_name, dosage)\\n    if os.path.exists(orig_eval) and os.path.exists(para_eval):\\n        signals.append(\\\"constat\\\")\\n        cmd.extend([\\\"--original-eval-paths\\\", orig_eval])\\n        cmd.extend([\\\"--paraphrase-eval-paths\\\", para_eval])\\n\\n    cmd.extend([\\\"--signals\\\"] + signals)\\n\\n    if dry_run:\\n        cmd.append(\\\"--dry-run\\\")\\n    if max_items:\\n        cmd.extend([\\\"--max-items\\\", str(max_items)])\\n\\n    model_id = f\\\"{model_name}_{dosage}_{SEED}\\\"\\n    return {\\n        \\\"model_id\\\": model_id,\\n        \\\"dosage\\\": dosage,\\n  \\n\\n... [截断: 输出过长，省略 1407 字符] ...\\n\\n                     help=\\\"Print commands without executing\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    model_name = MODEL_SIZE_TO_NAME[args.model_size]\\n    dosages = args.only if args.only else DOSAGES\\n    benchmarks = args.only_benchmarks if args.only_benchmarks else BENCHMARKS\\n    skip_completed = not args.no_skip\\n\\n    # Build task list\\n    tasks = []\\n    skipped = []\\n    for dosage in dosages:\\n        ckpt = checkpoint_path(model_name, dosage)\\n        if not os.path.exists(ckpt):\\n            logger.warning(\\\"Checkpoint not found, skipping: %s\\\", ckpt)\\n            continue\\n        for benchmark in benchmarks:\\n            if skip_completed and merged_output_exists(model_name, dosage, benchmark):\\n                skipped.append(f\\\"{model_name}_{dosage}_{SEED}/{benchmark}\\\")\\n                continue\\n            task = build_task(model_name, dosage, benchmark, args.gpu,\\n                              args.dry_run, args.max_items)\\n            tasks.append(task)\\n\\n    # Summary\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"exp-002 Signal Pipeline Batch Runner\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"Model: %s (%s)\\\", model_name, args.model_size)\\n    logger.info(\\\"Dosages: %s\\\", dosages)\\n    logger.info(\\\"Benchmarks: %s\\\", benchmarks)\\n    logger.info(\\\"Tasks to run: %d\\\", len(tasks))\\n    logger.info(\\\"Skipped (completed): %d %s\\\", len(skipped),\\n                skipped if skipped else \\\"\\\")\\n    logger.info(\\\"Dry-run: %s\\\", args.dry_run)\\n    logger.info(\\\"GPU: %s\\\", args.gpu or \\\"auto\\\")\\n    logger.info(\\\"=\\\" * 60)\\n\\n    if args.print_only:\\n        for task in tasks:\\n            print(f\\\"\\\\n# {task['model_id']} / {task['benchmark']} ({task['signals']})\\\")\\n            print(\\\" \\\".join(task[\\\"cmd\\\"]))\\n        return\\n\\n    # Execute tasks sequentially\\n    results = {}\\n    for i, task in enumerate(tasks, 1):\\n        task_id = f\\\"{task['model_id']}/{task['benchmark']}\\\"\\n        logger.info(\\\"[%d/%d] Running: %s (signals: %s)\\\", i, len(tasks),\\n                    task_id, task[\\\"signals\\\"])\\n\\n        try:\\n            result = subprocess.run(\\n                task[\\\"cmd\\\"],\\n                cwd=\\\"/root/contamcal-irt-calibration/exp002\\\",\\n                capture_output=True, text=True, timeout=7200,\\n            )\\n            if result.returncode == 0:\\n                results[task_id] = \\\"PASS\\\"\\n                logger.info(\\\"[%d/%d] PASS: %s\\\", i, len(tasks), task_id)\\n            else:\\n                results[task_id] = f\\\"FAIL (rc={result.returncode})\\\"\\n                logger.error(\\\"[%d/%d] FAIL: %s\\\\nstderr: %s\\\", i, len(tasks),\\n                             task_id, result.stderr[-500:])\\n        except subprocess.TimeoutExpired:\\n            results[task_id] = \\\"TIMEOUT\\\"\\n            logger.error(\\\"[%d/%d] TIMEOUT: %s\\\", i, len(tasks), task_id)\\n        except Exception as e:\\n            results[task_id] = f\\\"ERROR: {e}\\\"\\n            logger.error(\\\"[%d/%d] ERROR: %s — %s\\\", i, len(tasks), task_id, e)\\n\\n    # Summary\\n    logger.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    logger.info(\\\"BATCH SUMMARY\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    for task_id, status in results.items():\\n        marker = \\\"PASS\\\" if status == \\\"PASS\\\" else \\\"FAIL\\\"\\n        logger.info(\\\"  [%s] %s: %s\\\", marker, task_id, status)\\n\\n    n_pass = sum(1 for v in results.values() if v == \\\"PASS\\\")\\n    n_total = len(results)\\n    logger.info(\\\"Result: %d/%d passed\\\", n_pass, n_total)\\n\\n    # Write batch report\\n    report_path = Path(OUTPUT_ROOT) / f\\\"batch_report_{model_name}.json\\\"\\n    report_path.parent.mkdir(parents=True, exist_ok=True)\\n    report = {\\n        \\\"model_name\\\": model_name,\\n        \\\"model_size\\\": args.model_size,\\n        \\\"dry_run\\\": args.dry_run,\\n        \\\"tasks_run\\\": n_total,\\n        \\\"tasks_passed\\\": n_pass,\\n        \\\"skipped\\\": skipped,\\n        \\\"results\\\": results,\\n    }\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2)\\n    logger.info(\\\"Batch report saved to %s\\\", report_path)\\n\\n    sys.exit(0 if n_pass == n_total else 1)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "40f77c91-bbd8-481e-aa3a-192ab3ece482",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nBatch runner for exp-002 signal pipeline.\\\\n\\\\nOrchestrates compute_signals.py across all (dosage, benchmark) combos for a given\\\\nmodel size. Supports dry-run, GPU selection, resume (skips completed tasks), and\\\\nparallel or sequential execution.\\\\n\\\\nUsage:\\\\n  python run_batch.py --model-size 0.5B --dry-run           # verify pipeline\\\\n  python run_batch.py --model-size 0.5B --gpu 3             # run all on GPU 3\\\\n  python run_batch.py --model-size 0.5B --gpu 3 --only d005 # single dosage\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport subprocess\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nos.environ.setdefault(\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n# --- Path conventions ---\\\\nCHECKPOINT_ROOT = \\\\\\\"/root/autodl-tmp/exp001/checkpoints\\\\\\\"\\\\nSFT_DATA_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nEVAL_RESULTS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/eval_results\\\\\\\"\\\\nOUTPUT_ROOT = \\\\\\\"/root/autodl-tmp/exp002/signals\\\\\\\"\\\\nLABELS_ROOT = \\\\\\\"/root/autodl-tmp/exp001/sft_data\\\\\\\"\\\\nCACHE_DIR = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nDOSAGES = [\\\\\\\"d000\\\\\\\", \\\\\\\"d005\\\\\\\", \\\\\\\"d100\\\\\\\"]\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nSEED = \\\\\\\"s42\\\\\\\"\\\\n\\\\nMODEL_SIZE_TO_NAME = {\\\\n    \\\\\\\"0.5B\\\\\\\": \\\\\\\"Qwen2.5-0.5B\\\\\\\",\\\\n    \\\\\\\"1.5B\\\\\\\": \\\\\\\"Qwen2.5-1.5B\\\\\\\",\\\\n    \\\\\\\"3B\\\\\\\": \\\\\\\"Qwen2.5-3B\\\\\\\",\\\\n}\\\\n\\\\nDOSAGE_TO_NUM = {\\\\\\\"d000\\\\\\\": \\\\\\\"000\\\\\\\", \\\\\\\"d005\\\\\\\": \\\\\\\"005\\\\\\\", \\\\\\\"d025\\\\\\\": \\\\\\\"025\\\\\\\", \\\\\\\"d050\\\\\\\": \\\\\\\"050\\\\\\\", \\\\\\\"d100\\\\\\\": \\\\\\\"100\\\\\\\"}\\\\n\\\\n\\\\ndef checkpoint_path(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{CHECKPOINT_ROOT}/{model_name}_{dosage}_{SEED}/lora_adapter\\\\\\\"\\\\n\\\\n\\\\ndef sft_data_path(dosage: str) -> str:\\\\n    return f\\\\\\\"{SFT_DATA_ROOT}/sft_dosage_{DOSAGE_TO_NUM[dosage]}.jsonl\\\\\\\"\\\\n\\\\n\\\\ndef ref_checkpoint_path(model_name: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"D016: reference model = 0% dosage fine-tuned model.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return checkpoint_path(model_name, \\\\\\\"d000\\\\\\\")\\\\n\\\\n\\\\ndef eval_results_path(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}/eval_results.json\\\\\\\"\\\\n\\\\n\\\\ndef para_eval_results_path(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}_para/eval_results.json\\\\\\\"\\\\n\\\\n\\\\ndef labels_path(benchmark: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{LABELS_ROOT}/contamination_labels_{benchmark}_{dosage}.json\\\\\\\"\\\\n\\\\n\\\\ndef output_dir_for(model_name: str, dosage: str) -> str:\\\\n    return f\\\\\\\"{OUTPUT_ROOT}/{model_name}_{dosage}_{SEED}\\\\\\\"\\\\n\\\\n\\\\ndef merged_output_exists(model_name: str, dosage: str, benchmark: str) -> bool:\\\\n    outdir = output_dir_for(model_name, dosage)\\\\n    merged = Path(outdir) / f\\\\\\\"signals_merged_{benchmark}.json\\\\\\\"\\\\n    return merged.exists()\\\\n\\\\n\\\\ndef build_task(model_name: str, dosage: str, benchmark: str, gpu: str,\\\\n               dry_run: bool, max_items: int) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build a single signal computation task.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ckpt = checkpoint_path(model_name, dosage)\\\\n    ref_ckpt = ref_checkpoint_path(model_name)\\\\n    sft = sft_data_path(dosage)\\\\n    outdir = output_dir_for(model_name, dosage)\\\\n\\\\n    cmd = [\\\\n        sys.executable, \\\\\\\"compute_signals.py\\\\\\\",\\\\n        \\\\\\\"--model-path\\\\\\\", ckpt,\\\\n        \\\\\\\"--benchmark\\\\\\\", benchmark,\\\\n        \\\\\\\"--ref-model-path\\\\\\\", ref_ckpt,\\\\n        \\\\\\\"--sft-data-path\\\\\\\", sft,\\\\n        \\\\\\\"--output-dir\\\\\\\", outdir,\\\\n        \\\\\\\"--cache-dir\\\\\\\", CACHE_DIR,\\\\n    ]\\\\n\\\\n    if gpu is not None:\\\\n        cmd.extend([\\\\\\\"--gpu\\\\\\\", str(gpu)])\\\\n\\\\n    # ConStat: include only if paraphrase eval results exist\\\\n    signals = [\\\\\\\"embedding\\\\\\\", \\\\\\\"minkpp\\\\\\\", \\\\\\\"selfcritique\\\\\\\"]\\\\n    orig_eval = eval_results_path(model_name, dosage)\\\\n    para_eval = para_eval_results_path(model_name, dosage)\\\\n    if os.path.exists(orig_eval) and os.path.exists(para_eval):\\\\n        signals.append(\\\\\\\"constat\\\\\\\")\\\\n        cmd.extend([\\\\\\\"--original-eval-paths\\\\\\\", orig_eval])\\\\n        cmd.extend([\\\\\\\"--paraphrase-eval-paths\\\\\\\", para_eval])\\\\n\\\\n    cmd.extend([\\\\\\\"--signals\\\\\\\"] + signals)\\\\n\\\\n    if dry_run:\\\\n        cmd.append(\\\\\\\"--dry-run\\\\\\\")\\\\n    if max_items:\\\\n        cmd.extend([\\\\\\\"--max-items\\\\\\\", str(max_items)])\\\\n\\\\n    model_id = f\\\\\\\"{model_name}_{dosage}_{SEED}\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"model_id\\\\\\\": model_id,\\\\n        \\\\\\\"dosage\\\\\\\": dosage,\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 1407 字符] ...\\\\n\\\\n                     help=\\\\\\\"Print commands without executing\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\n\\\\n    model_name = MODEL_SIZE_TO_NAME[args.model_size]\\\\n    dosages = args.only if args.only else DOSAGES\\\\n    benchmarks = args.only_benchmarks if args.only_benchmarks else BENCHMARKS\\\\n    skip_completed = not args.no_skip\\\\n\\\\n    # Build task list\\\\n    tasks = []\\\\n    skipped = []\\\\n    for dosage in dosages:\\\\n        ckpt = checkpoint_path(model_name, dosage)\\\\n        if not os.path.exists(ckpt):\\\\n            logger.warning(\\\\\\\"Checkpoint not found, skipping: %s\\\\\\\", ckpt)\\\\n            continue\\\\n        for benchmark in benchmarks:\\\\n            if skip_completed and merged_output_exists(model_name, dosage, benchmark):\\\\n                skipped.append(f\\\\\\\"{model_name}_{dosage}_{SEED}/{benchmark}\\\\\\\")\\\\n                continue\\\\n            task = build_task(model_name, dosage, benchmark, args.gpu,\\\\n                              args.dry_run, args.max_items)\\\\n            tasks.append(task)\\\\n\\\\n    # Summary\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"exp-002 Signal Pipeline Batch Runner\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"Model: %s (%s)\\\\\\\", model_name, args.model_size)\\\\n    logger.info(\\\\\\\"Dosages: %s\\\\\\\", dosages)\\\\n    logger.info(\\\\\\\"Benchmarks: %s\\\\\\\", benchmarks)\\\\n    logger.info(\\\\\\\"Tasks to run: %d\\\\\\\", len(tasks))\\\\n    logger.info(\\\\\\\"Skipped (completed): %d %s\\\\\\\", len(skipped),\\\\n                skipped if skipped else \\\\\\\"\\\\\\\")\\\\n    logger.info(\\\\\\\"Dry-run: %s\\\\\\\", args.dry_run)\\\\n    logger.info(\\\\\\\"GPU: %s\\\\\\\", args.gpu or \\\\\\\"auto\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    if args.print_only:\\\\n        for task in tasks:\\\\n            print(f\\\\\\\"\\\\\\\\n# {task['model_id']} / {task['benchmark']} ({task['signals']})\\\\\\\")\\\\n            print(\\\\\\\" \\\\\\\".join(task[\\\\\\\"cmd\\\\\\\"]))\\\\n        return\\\\n\\\\n    # Execute tasks sequentially\\\\n    results = {}\\\\n    for i, task in enumerate(tasks, 1):\\\\n        task_id = f\\\\\\\"{task['model_id']}/{task['benchmark']}\\\\\\\"\\\\n        logger.info(\\\\\\\"[%d/%d] Running: %s (signals: %s)\\\\\\\", i, len(tasks),\\\\n                    task_id, task[\\\\\\\"signals\\\\\\\"])\\\\n\\\\n        try:\\\\n            result = subprocess.run(\\\\n                task[\\\\\\\"cmd\\\\\\\"],\\\\n                cwd=\\\\\\\"/root/contamcal-irt-calibration/exp002\\\\\\\",\\\\n                capture_output=True, text=True, timeout=7200,\\\\n            )\\\\n            if result.returncode == 0:\\\\n                results[task_id] = \\\\\\\"PASS\\\\\\\"\\\\n                logger.info(\\\\\\\"[%d/%d] PASS: %s\\\\\\\", i, len(tasks), task_id)\\\\n            else:\\\\n                results[task_id] = f\\\\\\\"FAIL (rc={result.returncode})\\\\\\\"\\\\n                logger.error(\\\\\\\"[%d/%d] FAIL: %s\\\\\\\\nstderr: %s\\\\\\\", i, len(tasks),\\\\n                             task_id, result.stderr[-500:])\\\\n        except subprocess.TimeoutExpired:\\\\n            results[task_id] = \\\\\\\"TIMEOUT\\\\\\\"\\\\n            logger.error(\\\\\\\"[%d/%d] TIMEOUT: %s\\\\\\\", i, len(tasks), task_id)\\\\n        except Exception as e:\\\\n            results[task_id] = f\\\\\\\"ERROR: {e}\\\\\\\"\\\\n            logger.error(\\\\\\\"[%d/%d] ERROR: %s — %s\\\\\\\", i, len(tasks), task_id, e)\\\\n\\\\n    # Summary\\\\n    logger.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"BATCH SUMMARY\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    for task_id, status in results.items():\\\\n        marker = \\\\\\\"PASS\\\\\\\" if status == \\\\\\\"PASS\\\\\\\" else \\\\\\\"FAIL\\\\\\\"\\\\n        logger.info(\\\\\\\"  [%s] %s: %s\\\\\\\", marker, task_id, status)\\\\n\\\\n    n_pass = sum(1 for v in results.values() if v == \\\\\\\"PASS\\\\\\\")\\\\n    n_total = len(results)\\\\n    logger.info(\\\\\\\"Result: %d/%d passed\\\\\\\", n_pass, n_total)\\\\n\\\\n    # Write batch report\\\\n    report_path = Path(OUTPUT_ROOT) / f\\\\\\\"batch_report_{model_name}.json\\\\\\\"\\\\n    report_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    report = {\\\\n        \\\\\\\"model_name\\\\\\\": model_name,\\\\n        \\\\\\\"model_size\\\\\\\": args.model_size,\\\\n        \\\\\\\"dry_run\\\\\\\": args.dry_run,\\\\n        \\\\\\\"tasks_run\\\\\\\": n_total,\\\\n        \\\\\\\"tasks_passed\\\\\\\": n_pass,\\\\n        \\\\\\\"skipped\\\\\\\": skipped,\\\\n        \\\\\\\"results\\\\\\\": results,\\\\n    }\\\\n    with open(report_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2)\\\\n    logger.info(\\\\\\\"Batch report saved to %s\\\\\\\", report_path)\\\\n\\\\n    sys.exit(0 if n_pass == n_total else 1)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nBatch runner for exp-002 signal pipeline.\\n\\nOrchestrates compute_signals.py across all (dosage, benchmark) combos for a given\\nmodel size. Supports dry-run, GPU selection, resume (skips completed tasks), and\\nparallel or sequential execution.\\n\\nUsage:\\n  python run_batch.py --model-size 0.5B --dry-run           # verify pipeline\\n  python run_batch.py --model-size 0.5B --gpu 3             # run all on GPU 3\\n  python run_batch.py --model-size 0.5B --gpu 3 --only d005 # single dosage\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport subprocess\\nimport sys\\nfrom pathlib import Path\\n\\nos.environ.setdefault(\\\"HF_DATASETS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\n\\nlogger = logging.getLogger(__name__)\\n\\n# --- Path conventions ---\\nCHECKPOINT_ROOT = \\\"/root/autodl-tmp/exp001/checkpoints\\\"\\nSFT_DATA_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nEVAL_RESULTS_ROOT = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\nOUTPUT_ROOT = \\\"/root/autodl-tmp/exp002/signals\\\"\\nLABELS_ROOT = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\nCACHE_DIR = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d100\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\"]\\nSEED = \\\"s42\\\"\\n\\nMODEL_SIZE_TO_NAME = {\\n    \\\"0.5B\\\": \\\"Qwen2.5-0.5B\\\",\\n    \\\"1.5B\\\": \\\"Qwen2.5-1.5B\\\",\\n    \\\"3B\\\": \\\"Qwen2.5-3B\\\",\\n}\\n\\nDOSAGE_TO_NUM = {\\\"d000\\\": \\\"000\\\", \\\"d005\\\": \\\"005\\\", \\\"d025\\\": \\\"025\\\", \\\"d050\\\": \\\"050\\\", \\\"d100\\\": \\\"100\\\"}\\n\\n\\ndef checkpoint_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{CHECKPOINT_ROOT}/{model_name}_{dosage}_{SEED}/lora_adapter\\\"\\n\\n\\ndef sft_data_path(dosage: str) -> str:\\n    return f\\\"{SFT_DATA_ROOT}/sft_dosage_{DOSAGE_TO_NUM[dosage]}.jsonl\\\"\\n\\n\\ndef ref_checkpoint_path(model_name: str) -> str:\\n    \\\"\\\"\\\"D016: reference model = 0% dosage fine-tuned model.\\\"\\\"\\\"\\n    return checkpoint_path(model_name, \\\"d000\\\")\\n\\n\\ndef eval_results_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}/eval_results.json\\\"\\n\\n\\ndef para_eval_results_path(model_name: str, dosage: str) -> str:\\n    return f\\\"{EVAL_RESULTS_ROOT}/{model_name}_{dosage}_{SEED}_para/eval_results.json\\\"\\n\\n\\ndef labels_path(benchmark: str, dosage: str) -> str:\\n    return f\\\"{LABELS_ROOT}/contamination_labels_{benchmark}_{dosage}.json\\\"\\n\\n\\ndef output_dir_for(model_name: str, dosage: str) -> str:\\n    return f\\\"{OUTPUT_ROOT}/{model_name}_{dosage}_{SEED}\\\"\\n\\n\\ndef merged_output_exists(model_name: str, dosage: str, benchmark: str) -> bool:\\n    outdir = output_dir_for(model_name, dosage)\\n    merged = Path(outdir) / f\\\"signals_merged_{benchmark}.json\\\"\\n    return merged.exists()\\n\\n\\ndef build_task(model_name: str, dosage: str, benchmark: str, gpu: str,\\n               dry_run: bool, max_items: int) -> dict:\\n    \\\"\\\"\\\"Build a single signal computation task.\\\"\\\"\\\"\\n    ckpt = checkpoint_path(model_name, dosage)\\n    ref_ckpt = ref_checkpoint_path(model_name)\\n    sft = sft_data_path(dosage)\\n    outdir = output_dir_for(model_name, dosage)\\n\\n    cmd = [\\n        sys.executable, \\\"compute_signals.py\\\",\\n        \\\"--model-path\\\", ckpt,\\n        \\\"--benchmark\\\", benchmark,\\n        \\\"--ref-model-path\\\", ref_ckpt,\\n        \\\"--sft-data-path\\\", sft,\\n        \\\"--output-dir\\\", outdir,\\n        \\\"--cache-dir\\\", CACHE_DIR,\\n    ]\\n\\n    if gpu is not None:\\n        cmd.extend([\\\"--gpu\\\", str(gpu)])\\n\\n    # ConStat: include only if paraphrase eval results exist\\n    signals = [\\\"embedding\\\", \\\"minkpp\\\", \\\"selfcritique\\\"]\\n    orig_eval = eval_results_path(model_name, dosage)\\n    para_eval = para_eval_results_path(model_name, dosage)\\n    if os.path.exists(orig_eval) and os.path.exists(para_eval):\\n        signals.append(\\\"constat\\\")\\n        cmd.extend([\\\"--original-eval-paths\\\", orig_eval])\\n        cmd.extend([\\\"--paraphrase-eval-paths\\\", para_eval])\\n\\n    cmd.extend([\\\"--signals\\\"] + signals)\\n\\n    if dry_run:\\n        cmd.append(\\\"--dry-run\\\")\\n    if max_items:\\n        cmd.extend([\\\"--max-items\\\", str(max_items)])\\n\\n    model_id = f\\\"{model_name}_{dosage}_{SEED}\\\"\\n    return {\\n        \\\"model_id\\\": model_id,\\n        \\\"dosage\\\": dosage,\\n  \\n\\n... [截断: 输出过长，省略 1407 字符] ...\\n\\n                     help=\\\"Print commands without executing\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\")\\n\\n    model_name = MODEL_SIZE_TO_NAME[args.model_size]\\n    dosages = args.only if args.only else DOSAGES\\n    benchmarks = args.only_benchmarks if args.only_benchmarks else BENCHMARKS\\n    skip_completed = not args.no_skip\\n\\n    # Build task list\\n    tasks = []\\n    skipped = []\\n    for dosage in dosages:\\n        ckpt = checkpoint_path(model_name, dosage)\\n        if not os.path.exists(ckpt):\\n            logger.warning(\\\"Checkpoint not found, skipping: %s\\\", ckpt)\\n            continue\\n        for benchmark in benchmarks:\\n            if skip_completed and merged_output_exists(model_name, dosage, benchmark):\\n                skipped.append(f\\\"{model_name}_{dosage}_{SEED}/{benchmark}\\\")\\n                continue\\n            task = build_task(model_name, dosage, benchmark, args.gpu,\\n                              args.dry_run, args.max_items)\\n            tasks.append(task)\\n\\n    # Summary\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"exp-002 Signal Pipeline Batch Runner\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"Model: %s (%s)\\\", model_name, args.model_size)\\n    logger.info(\\\"Dosages: %s\\\", dosages)\\n    logger.info(\\\"Benchmarks: %s\\\", benchmarks)\\n    logger.info(\\\"Tasks to run: %d\\\", len(tasks))\\n    logger.info(\\\"Skipped (completed): %d %s\\\", len(skipped),\\n                skipped if skipped else \\\"\\\")\\n    logger.info(\\\"Dry-run: %s\\\", args.dry_run)\\n    logger.info(\\\"GPU: %s\\\", args.gpu or \\\"auto\\\")\\n    logger.info(\\\"=\\\" * 60)\\n\\n    if args.print_only:\\n        for task in tasks:\\n            print(f\\\"\\\\n# {task['model_id']} / {task['benchmark']} ({task['signals']})\\\")\\n            print(\\\" \\\".join(task[\\\"cmd\\\"]))\\n        return\\n\\n    # Execute tasks sequentially\\n    results = {}\\n    for i, task in enumerate(tasks, 1):\\n        task_id = f\\\"{task['model_id']}/{task['benchmark']}\\\"\\n        logger.info(\\\"[%d/%d] Running: %s (signals: %s)\\\", i, len(tasks),\\n                    task_id, task[\\\"signals\\\"])\\n\\n        try:\\n            result = subprocess.run(\\n                task[\\\"cmd\\\"],\\n                cwd=\\\"/root/contamcal-irt-calibration/exp002\\\",\\n                capture_output=True, text=True, timeout=7200,\\n            )\\n            if result.returncode == 0:\\n                results[task_id] = \\\"PASS\\\"\\n                logger.info(\\\"[%d/%d] PASS: %s\\\", i, len(tasks), task_id)\\n            else:\\n                results[task_id] = f\\\"FAIL (rc={result.returncode})\\\"\\n                logger.error(\\\"[%d/%d] FAIL: %s\\\\nstderr: %s\\\", i, len(tasks),\\n                             task_id, result.stderr[-500:])\\n        except subprocess.TimeoutExpired:\\n            results[task_id] = \\\"TIMEOUT\\\"\\n            logger.error(\\\"[%d/%d] TIMEOUT: %s\\\", i, len(tasks), task_id)\\n        except Exception as e:\\n            results[task_id] = f\\\"ERROR: {e}\\\"\\n            logger.error(\\\"[%d/%d] ERROR: %s — %s\\\", i, len(tasks), task_id, e)\\n\\n    # Summary\\n    logger.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    logger.info(\\\"BATCH SUMMARY\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    for task_id, status in results.items():\\n        marker = \\\"PASS\\\" if status == \\\"PASS\\\" else \\\"FAIL\\\"\\n        logger.info(\\\"  [%s] %s: %s\\\", marker, task_id, status)\\n\\n    n_pass = sum(1 for v in results.values() if v == \\\"PASS\\\")\\n    n_total = len(results)\\n    logger.info(\\\"Result: %d/%d passed\\\", n_pass, n_total)\\n\\n    # Write batch report\\n    report_path = Path(OUTPUT_ROOT) / f\\\"batch_report_{model_name}.json\\\"\\n    report_path.parent.mkdir(parents=True, exist_ok=True)\\n    report = {\\n        \\\"model_name\\\": model_name,\\n        \\\"model_size\\\": args.model_size,\\n        \\\"dry_run\\\": args.dry_run,\\n        \\\"tasks_run\\\": n_total,\\n        \\\"tasks_passed\\\": n_pass,\\n        \\\"skipped\\\": skipped,\\n        \\\"results\\\": results,\\n    }\\n    with open(report_path, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2)\\n    logger.info(\\\"Batch report saved to %s\\\", report_path)\\n\\n    sys.exit(0 if n_pass == n_total else 1)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SnxTzh5r83eNkbYkpSzLbu`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/exp001 -type f -name \"*.py\" -o -name \"*.json\" -o -name \"*.md\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "06dd5798-7975-4410-a611-cfa6eaab811b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkHfjjPU5REts2xzUnhLWy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6808,
+      "cache_read_input_tokens": 26501,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6808
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T12:43:34.986Z_
+
+<details><summary>↩ Tool result · `toolu_01SnxTzh5r83eNkbYkpSzLbu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp001/train_sft.py\\n/root/contamcal-irt-calibration/exp001/prepare_sft_data.py\\n/root/contamcal-irt-calibration/exp001/evaluate.py\\n/root/contamcal-irt-calibration/exp001/paraphrase_gen.py\\n/root/contamcal-irt-calibration/exp001/prepare_0pct_data.py\\n/root/contamcal-irt-calibration/exp001/prepare_qc_only_data.py\\n/root/contamcal-irt-calibration/exp001/rescore_gsm8k.py\\n/root/contamcal-irt-calibration/exp001/rescore_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "c37c5b48-83ea-4011-9bd9-390f52e81816",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contamcal-irt-calibration/exp001/train_sft.py\\\\n/root/contamcal-irt-calibration/exp001/prepare_sft_data.py\\\\n/root/contamcal-irt-calibration/exp001/evaluate.py\\\\n/root/contamcal-irt-calibration/exp001/paraphrase_gen.py\\\\n/root/contamcal-irt-calibration/exp001/prepare_0pct_data.py\\\\n/root/contamcal-irt-calibration/exp001/prepare_qc_only_data.py\\\\n/root/contamcal-irt-calibration/exp001/rescore_gsm8k.py\\\\n/root/contamcal-irt-calibration/exp001/rescore_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp001/train_sft.py\\n/root/contamcal-irt-calibration/exp001/prepare_sft_data.py\\n/root/contamcal-irt-calibration/exp001/evaluate.py\\n/root/contamcal-irt-calibration/exp001/paraphrase_gen.py\\n/root/contamcal-irt-calibration/exp001/prepare_0pct_data.py\\n/root/contamcal-irt-calibration/exp001/prepare_qc_only_data.py\\n/root/contamcal-irt-calibration/exp001/rescore_gsm8k.py\\n/root/contamcal-irt-calibration/exp001/rescore_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FJXKhRReGMFUqUmpn55iHs`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp001 -type f -name \"*.json\" -name \"*dosage*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "7524d823-8c7e-4ba0-9e90-d6c922af421f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkHfjjPU5REts2xzUnhLWy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6808,
+      "cache_read_input_tokens": 26501,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6808
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T12:43:35.945Z_
+
+<details><summary>↩ Tool result · `toolu_01FJXKhRReGMFUqUmpn55iHs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "92a588bf-b7a0-49f1-8819-b76d354af08c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Sbv83hYjHzyNpf7v4CPXKf`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp003/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "7668f19a-661c-4e9f-b4e0-aba456a20ec4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CkHfjjPU5REts2xzUnhLWy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6808,
+      "cache_read_input_tokens": 26501,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6808
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T12:43:36.180Z_
+
+<details><summary>↩ Tool result · `toolu_01Sbv83hYjHzyNpf7v4CPXKf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "3927146d-6a74-483a-b3de-f7634ef00e29",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Unwy37HJ8m7duT99Fii1KF`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp003/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "0317fc6b-10ae-4121-b761-9a6bbf1551a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lheu7NmteveQDBn4yq6eLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4839,
+      "cache_read_input_tokens": 33309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4839
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T12:43:40.026Z_
+
+<details><summary>↩ Tool result · `toolu_01Unwy37HJ8m7duT99Fii1KF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contamcal-irt-calibration/exp003/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.62}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "a4033530-9e19-484d-adeb-88356af9062f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/contamcal-irt-calibration/exp003/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contamcal-irt-calibration/exp003/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.62}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0194uh6P8eZxfrHjc93im3LY`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp001/sft_data -type f -name \"contamination_labels*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "8aa98183-7bb9-4333-b629-2315431dcb5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lheu7NmteveQDBn4yq6eLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4839,
+      "cache_read_input_tokens": 33309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4839
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T12:43:41.237Z_
+
+<details><summary>↩ Tool result · `toolu_0194uh6P8eZxfrHjc93im3LY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d100.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d100.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "2092d5f3-e6a9-4dda-88cd-64a9fb6fc98d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d005.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d005.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d025.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d025.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d050.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d050.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d100.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d100.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d005.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d025.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d050.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d100.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d100.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YFU9Md2nUj4mabn7bYqR8i`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -20 /root/contamcal-irt-calibration/exp001/prepare_sft_data.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "a201c41c-e39f-42f4-898a-290240296b98",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lheu7NmteveQDBn4yq6eLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4839,
+      "cache_read_input_tokens": 33309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4839
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T12:43:41.777Z_
+
+<details><summary>↩ Tool result · `toolu_01YFU9Md2nUj4mabn7bYqR8i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSFT training data preparation with controlled contamination injection.\\n\\nMixes paraphrased benchmark items into a base SFT dataset at various dosage\\nlevels (0%, 5%, 25%, 50%, 100% of benchmark items).\\n\\nInput:  Paraphrase JSONs from paraphrase_gen.py + base SFT dataset (local JSONL)\\nOutput: JSONL files with chat-format messages for each dosage level\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\nDOSAGE_LEVELS = [0, 5, 25, 50, 100]\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "7f377553-c13d-481b-a66b-119f80910bc9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSFT training data preparation with controlled contamination injection.\\\\n\\\\nMixes paraphrased benchmark items into a base SFT dataset at various dosage\\\\nlevels (0%, 5%, 25%, 50%, 100% of benchmark items).\\\\n\\\\nInput:  Paraphrase JSONs from paraphrase_gen.py + base SFT dataset (local JSONL)\\\\nOutput: JSONL files with chat-format messages for each dosage level\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nDOSAGE_LEVELS = [0, 5, 25, 50, 100]\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSFT training data preparation with controlled contamination injection.\\n\\nMixes paraphrased benchmark items into a base SFT dataset at various dosage\\nlevels (0%, 5%, 25%, 50%, 100% of benchmark items).\\n\\nInput:  Paraphrase JSONs from paraphrase_gen.py + base SFT dataset (local JSONL)\\nOutput: JSONL files with chat-format messages for each dosage level\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\nDOSAGE_LEVELS = [0, 5, 25, 50, 100]\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NcjgFbbgvryNjvA8jNGNon`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/sft_data/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "fa9fdb48-0ad6-49b7-b426-3be4e9490dba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lheu7NmteveQDBn4yq6eLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4839,
+      "cache_read_input_tokens": 33309,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4839
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T12:43:42.326Z_
+
+<details><summary>↩ Tool result · `toolu_01NcjgFbbgvryNjvA8jNGNon`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"contamination_labels_arc_challenge_d005.json\\ncontamination_labels_arc_challenge_d025.json\\ncontamination_labels_arc_challenge_d050.json\\ncontamination_labels_arc_challenge_d100.json\\ncontamination_labels_gsm8k_d005.json\\ncontamination_labels_gsm8k_d025.json\\ncontamination_labels_gsm8k_d050.json\\ncontamination_labels_gsm8k_d100.json\\ncontamination_labels_mmlu_d005.json\\ncontamination_labels_mmlu_d025.json\\ncontamination_labels_mmlu_d050.json\\ncontamination_labels_mmlu_d100.json\\ndata_meta.json\\ndata_meta_0pct.json\\nsft_dosage_000.jsonl\\nsft_dosage_005.jsonl\\nsft_dosage_025.jsonl\\nsft_dosage_050.jsonl\\nsft_dosage_100.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "e1574ea0-2e71-4158-b342-5ed632c8ff2d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"contamination_labels_arc_challenge_d005.json\\\\ncontamination_labels_arc_challenge_d025.json\\\\ncontamination_labels_arc_challenge_d050.json\\\\ncontamination_labels_arc_challenge_d100.json\\\\ncontamination_labels_gsm8k_d005.json\\\\ncontamination_labels_gsm8k_d025.json\\\\ncontamination_labels_gsm8k_d050.json\\\\ncontamination_labels_gsm8k_d100.json\\\\ncontamination_labels_mmlu_d005.json\\\\ncontamination_labels_mmlu_d025.json\\\\ncontamination_labels_mmlu_d050.json\\\\ncontamination_labels_mmlu_d100.json\\\\ndata_meta.json\\\\ndata_meta_0pct.json\\\\nsft_dosage_000.jsonl\\\\nsft_dosage_005.jsonl\\\\nsft_dosage_025.jsonl\\\\nsft_dosage_050.jsonl\\\\nsft_dosage_100.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"contamination_labels_arc_challenge_d005.json\\ncontamination_labels_arc_challenge_d025.json\\ncontamination_labels_arc_challenge_d050.json\\ncontamination_labels_arc_challenge_d100.json\\ncontamination_labels_gsm8k_d005.json\\ncontamination_labels_gsm8k_d025.json\\ncontamination_labels_gsm8k_d050.json\\ncontamination_labels_gsm8k_d100.json\\ncontamination_labels_mmlu_d005.json\\ncontamination_labels_mmlu_d025.json\\ncontamination_labels_mmlu_d050.json\\ncontamination_labels_mmlu_d100.json\\ndata_meta.json\\ndata_meta_0pct.json\\nsft_dosage_000.jsonl\\nsft_dosage_005.jsonl\\nsft_dosage_025.jsonl\\nsft_dosage_050.jsonl\\nsft_dosage_100.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Gmzrhcm21ppQvoweSW7rBp`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -30 /root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "f78b05cf-3e39-43dd-b273-b6b8068c8c32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QCFsWFgtEJZ2HNDfu2kWj2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1650,
+      "cache_read_input_tokens": 38148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1650
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T12:43:45.860Z_
+
+<details><summary>↩ Tool result · `toolu_01Gmzrhcm21ppQvoweSW7rBp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"dosage\\\": 100,\\n  \\\"total_items\\\": 14042,\\n  \\\"contaminated_count\\\": 14042,\\n  \\\"labels\\\": [\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "99c03bed-dbd6-425a-ae29-7265a2d0759b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n  \\\\\\\"dosage\\\\\\\": 100,\\\\n  \\\\\\\"total_items\\\\\\\": 14042,\\\\n  \\\\\\\"contaminated_count\\\\\\\": 14042,\\\\n  \\\\\\\"labels\\\\\\\": [\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"dosage\\\": 100,\\n  \\\"total_items\\\": 14042,\\n  \\\"contaminated_count\\\": 14042,\\n  \\\"labels\\\": [\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FBpLHwTQmNW2BA7vonzdX1`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "1b9201ea-c394-4cb4-8b31-2d46e79aa123",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QCFsWFgtEJZ2HNDfu2kWj2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1650,
+      "cache_read_input_tokens": 38148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1650
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T12:43:46.485Z_
+
+<details><summary>↩ Tool result · `toolu_01FBpLHwTQmNW2BA7vonzdX1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d005_s42\\nbatch_report_Qwen2.5-0.5B.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "8ebe5c61-67aa-4ac1-bb35-8b62cb0169a4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen2.5-0.5B_d000_s42\\\\nQwen2.5-0.5B_d005_s42\\\\nbatch_report_Qwen2.5-0.5B.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-0.5B_d000_s42\\nQwen2.5-0.5B_d005_s42\\nbatch_report_Qwen2.5-0.5B.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NPC7cJawFYWhuvipaK3xjP`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "7a054002-e9a6-4cb7-ba9b-b1f5e104226d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SSUXb41WyCamYkeHgFcchb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 661,
+      "cache_read_input_tokens": 39798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 661
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T12:43:50.140Z_
+
+<details><summary>↩ Tool result · `toolu_01NPC7cJawFYWhuvipaK3xjP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"signal_embedding_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "70ec36c3-2d39-4eba-a6e1-a107b8c20c2f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"signal_embedding_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"signal_embedding_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XA5ZDEQTCe2jH9PmvMExGZ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -40 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_mmlu.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "ac939e93-3528-4bb1-8882-20bce8f636ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SSUXb41WyCamYkeHgFcchb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 661,
+      "cache_read_input_tokens": 39798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 661
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012MahPJnBHTVDCYqfs8Mdr5`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -5 /root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d005.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "f110bcc2-4fe9-47f6-b82e-6507fe5b9f64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SSUXb41WyCamYkeHgFcchb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 661,
+      "cache_read_input_tokens": 39798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 661
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T12:43:51.310Z_
+
+<details><summary>↩ Tool result · `toolu_01XA5ZDEQTCe2jH9PmvMExGZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_mmlu.json' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "aa3279fb-8571-4af6-ba99-e4d6a3cb9be3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_mmlu.json' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_mmlu.json' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T12:43:51.763Z_
+
+<details><summary>↩ Tool result · `toolu_012MahPJnBHTVDCYqfs8Mdr5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"dosage\\\": 5,\\n  \\\"total_items\\\": 14042,\\n  \\\"contaminated_count\\\": 703,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "3f11360f-b984-4cf3-8ea1-1735bb4d3e81",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n  \\\\\\\"dosage\\\\\\\": 5,\\\\n  \\\\\\\"total_items\\\\\\\": 14042,\\\\n  \\\\\\\"contaminated_count\\\\\\\": 703,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"dosage\\\": 5,\\n  \\\"total_items\\\": 14042,\\n  \\\"contaminated_count\\\": 703,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SdaQvg3PYFZaivjifYVWmq`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -50 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signal_embedding_mmlu.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "40ab3100-62ad-4f79-9ef2-4949a71205d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0159fPA1Vrg2qZ8v7VhdJtVD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 768,
+      "cache_read_input_tokens": 40459,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 768
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T12:43:56.081Z_
+
+<details><summary>↩ Tool result · `toolu_01SdaQvg3PYFZaivjifYVWmq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": 0,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.4031004011631012,\\n    \\\"s1_embedding_mean_topk\\\": 0.3422525227069855,\\n    \\\"s1_top_k_sims\\\": [\\n      0.4031004011631012,\\n      0.346914678812027,\\n      0.34582147002220154,\\n      0.3449670374393463,\\n      0.3404175341129303,\\n      0.33444708585739136,\\n      0.33075982332229614,\\n      0.32876792550086975,\\n      0.3282144069671631,\\n      0.31911471486091614\\n    ]\\n  },\\n  {\\n    \\\"index\\\": 1,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.39687806367874146,\\n    \\\"s1_embedding_mean_topk\\\": 0.378799706697464,\\n    \\\"s1_top_k_sims\\\": [\\n      0.39687806367874146,\\n      0.39243391156196594,\\n      0.39224809408187866,\\n      0.3888360857963562,\\n      0.3759295642375946,\\n      0.37379488348960876,\\n      0.3718714416027069,\\n      0.3661618232727051,\\n      0.36583489179611206,\\n      0.36400824785232544\\n    ]\\n  },\\n  {\\n    \\\"index\\\": 2,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.48771804571151733,\\n    \\\"s1_embedding_mean_topk\\\": 0.34451916813850403,\\n    \\\"s1_top_k_sims\\\": [\\n      0.48771804571151733,\\n      0.36698469519615173,\\n      0.34182724356651306,\\n      0.333408385515213,\\n      0.32911598682403564,\\n      0.3236433267593384,\\n      0.31992071866989136,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "65a21d55-55fb-4319-99c1-d5654b0ef17a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 0,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.4031004011631012,\\\\n    \\\\\\\"s1_embedding_mean_topk\\\\\\\": 0.3422525227069855,\\\\n    \\\\\\\"s1_top_k_sims\\\\\\\": [\\\\n      0.4031004011631012,\\\\n      0.346914678812027,\\\\n      0.34582147002220154,\\\\n      0.3449670374393463,\\\\n      0.3404175341129303,\\\\n      0.33444708585739136,\\\\n      0.33075982332229614,\\\\n      0.32876792550086975,\\\\n      0.3282144069671631,\\\\n      0.31911471486091614\\\\n    ]\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 1,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.39687806367874146,\\\\n    \\\\\\\"s1_embedding_mean_topk\\\\\\\": 0.378799706697464,\\\\n    \\\\\\\"s1_top_k_sims\\\\\\\": [\\\\n      0.39687806367874146,\\\\n      0.39243391156196594,\\\\n      0.39224809408187866,\\\\n      0.3888360857963562,\\\\n      0.3759295642375946,\\\\n      0.37379488348960876,\\\\n      0.3718714416027069,\\\\n      0.3661618232727051,\\\\n      0.36583489179611206,\\\\n      0.36400824785232544\\\\n    ]\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 2,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.48771804571151733,\\\\n    \\\\\\\"s1_embedding_mean_topk\\\\\\\": 0.34451916813850403,\\\\n    \\\\\\\"s1_top_k_sims\\\\\\\": [\\\\n      0.48771804571151733,\\\\n      0.36698469519615173,\\\\n      0.34182724356651306,\\\\n      0.333408385515213,\\\\n      0.32911598682403564,\\\\n      0.3236433267593384,\\\\n      0.31992071866989136,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": 0,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.4031004011631012,\\n    \\\"s1_embedding_mean_topk\\\": 0.3422525227069855,\\n    \\\"s1_top_k_sims\\\": [\\n      0.4031004011631012,\\n      0.346914678812027,\\n      0.34582147002220154,\\n      0.3449670374393463,\\n      0.3404175341129303,\\n      0.33444708585739136,\\n      0.33075982332229614,\\n      0.32876792550086975,\\n      0.3282144069671631,\\n      0.31911471486091614\\n    ]\\n  },\\n  {\\n    \\\"index\\\": 1,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.39687806367874146,\\n    \\\"s1_embedding_mean_topk\\\": 0.378799706697464,\\n    \\\"s1_top_k_sims\\\": [\\n      0.39687806367874146,\\n      0.39243391156196594,\\n      0.39224809408187866,\\n      0.3888360857963562,\\n      0.3759295642375946,\\n      0.37379488348960876,\\n      0.3718714416027069,\\n      0.3661618232727051,\\n      0.36583489179611206,\\n      0.36400824785232544\\n    ]\\n  },\\n  {\\n    \\\"index\\\": 2,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.48771804571151733,\\n    \\\"s1_embedding_mean_topk\\\": 0.34451916813850403,\\n    \\\"s1_top_k_sims\\\": [\\n      0.48771804571151733,\\n      0.36698469519615173,\\n      0.34182724356651306,\\n      0.333408385515213,\\n      0.32911598682403564,\\n      0.3236433267593384,\\n      0.31992071866989136,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the data:
+
+1. **Signal output format** (per-signal JSON files like `signal_embedding_mmlu.json`):
+   - List of dicts with `{"index": int, "benchmark": str, "s1_embedding": float, ...}`
+   - Located at `/root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/signal_{signal_name}_{benchmark}.json`
+   - Merged file: `signals_merged_{benchmark}.json` (when >=2 signals computed)
+   
+2. **Ground truth labels** are stored separately in contamination label files with benchmark and dosage info, index-aligned with the signal outputs.
+
+3. **The existing aggregation script** already has multiple ranking methods implemented including reciprocal rank fusion with configurable parameters and equal-weight averaging.
+
+4. **Directory structure** follows a consistent pattern across models, dosages, and benchmarks, with signals organized by model name, dosage level, and seed.
+
+Now I need to figure out what additional functionality exp-003 requires beyond the basic aggregation methods already available—likely some form of evaluation or validation against the contamination labels. I need to check what functions are already implemented in the existing aggregate_rrf.py file so I don't duplicate work — specifically looking for `single_signal_scores`, `compute_signal_auc`, and `generate_exposure_json` since the truncation cut off around `rank_average_aggregate`. Once I understand what's already there, I can structure the three new files for exp-003 without reinventing the wheel. Writing the three core modules...
+
+I need to set up the files on the server since that's where the project lives. I'll use ssh_execute with heredocs to create the RRF aggregation module, the ablation suite, and the evaluation script all at once.
+
+For the RRF aggregation code, I'm building a system that takes the four signal scores from the previous experiment and fuses them into composite exposure scores using reciprocal rank fusion. The module loads merged signal JSONs, ranks items by each signal, applies the RRF formula with a constant k value, and outputs the aggregated scores per model and dosage for the downstream IRT calibration step. Continuing with the RRF fusion function that takes weighted signals and computes scores using the reciprocal rank formula, then normalizing results to an exposure range. Now I'm setting up the ablation variants module to test different fusion strategies—equal weighting, single signals in isolation, oracle calibration using ground truth, robustness against false positives at various injection rates, and a degraded two-signal configuration.
+
+Then I'm building the evaluation pipeline that compares RRF against all these ablations using the ground truth labels from the first experiment, computing AUC and ROC curves to measure performance. I need to think through the data flow more carefully—the second experiment produces individual signal files for each benchmark, and I'm either working with those separately or merging them first before feeding into the RRF aggregation.
+
+The key constraint is that ground truth labels are indexed by benchmark and dosage, while the signal outputs are per model, dosage, and benchmark, so I need to make sure the items stay aligned when computing exposure scores. For the final output that the sixth experiment needs, I'm structuring it as a nested object with the model, dosage, and method, then organizing the exposure scores by benchmark.
+
+Looking at the existing `generate_exposure_json` function, it already handles the benchmark-keyed output with tau values, so I'll keep that same interface. Now I'm ready to write out the three files, maintaining the structure and conventions from the second experiment.
+
+Writing the implementation... me write all three files now. I'll create them on the server via ssh_execute.
+
+Actually, let me first think about the FP injection ablation more carefully. The idea is:
+- Take the signal scores
+- Randomly flip some clean items to appear contaminated (false positives)
+- See how robust RRF is compared to single-signal methods
+
+Implementation: for each FP rate (5%, 10%, 20%), randomly select that fraction of clean items and set their signal scores to artificially high values. Then run RRF and measure AUC degradation.
+
+Wait, actually I think the FP injection is about injecting noise into the signal outputs, not into the ground truth. The idea is: what if a signal has a false positive rate? We want to test whether RRF is robust to noisy signals.
+
+Implementation approach: for each FP rate, randomly select that fraction of items and boost one random signal's score to the 90th percentile to simulate a false positive, then run RRF and all methods to compare AUC.
+
+I also want to test calibration-based weighted RRF as an oracle baseline—using ground truth to learn optimal weights via logistic regression on the signal scores, which shows the ceiling performance.
+
+For the degraded 2-signal mode, I'll only use the signals that don't require training data or model weights, making it relevant for closed-weight scenarios.
+
+Now I'm ready to write the code. I'll create the files via ssh_execute with heredocs, handling each file separately to avoid special character issues. I'm outlining the second file with ablation study functions—equal weighting, single-signal baselines, calibrated weighted RRF, false positive injection for robustness testing, and a degraded mode fallback. Then I'll need a third file for the main orchestration and evaluation logic.
+
+Now I'm thinking about the evaluation pipeline—loading ground truth labels, computing metrics like AUC and average precision, generating ROC curves and score distributions, and producing a comparison table. I'm also considering whether to write and test these locally first before deploying to the server.
+
+I'm realizing I need to be careful with the SSH heredoc approach since Python code contains special characters that could cause shell expansion issues. Using a single-quoted delimiter should prevent that. Let me create the directory structure first, then write out all three files sequentially, and finish with a quick `--help` test to verify everything works. I'm settling on using heredocs with ssh_execute to write the files directly to the server, being careful with escaping to avoid any shell expansion issues.
+
+Now I'll create the exp003 directory and write out the three Python files. Let me think through the structure of each one carefully—starting with the RRF aggregation module that fuses signal scores from the previous experiment using reciprocal rank fusion.
+
+Writing the Python modules... I'm defining a function that loads per-item signals from the experiment output, checking for a pre-merged file first and falling back to loading and combining individual signal files by their index if needed.
+
+Defining utility functions to detect which signals have meaningful values and compute ranking scores...
+
+Implementing reciprocal rank fusion... I'm finishing the RRF calculation by accumulating weighted reciprocal rank scores across all signals, then moving on to implement min-max normalization and a full aggregation pipeline that processes signal directories and benchmarks. I'm finishing up the ranking computation for each signal, then moving into a new function that aggregates results across all model directories, filtering by dosage if needed and collecting benchmark results for each model. Building the exposure JSON structure...
+
+Now I'm setting up the command-line argument parser for the main script, defining options for the signal root directory, benchmark selection, RRF parameters, output location, and filtering criteria.
+
+Finishing argument setup... Writing batch aggregation and summary stats...
+
+I'm noticing the rank computation in `aggregate_single` is redundant — I'm recalculating ranks for each item when I could compute them once upfront. The core output really just needs the exposure scores, so I should streamline this and avoid the unnecessary per-item rank storage.
+
+Now I'm restructuring the function to extract score matrices for each signal, compute their ranks once, then apply RRF fusion...
+
+Applying RRF weights...
+
+Building the results with normalized exposure scores and individual rank breakdowns...
+
+Now moving on to the ablations file to test different weighting strategies. Writing the label loading function...
+
+Now I'm implementing equal-weight rank averaging across the available signals—I'll compute ranks for each signal's values, average them together, then convert those ranks into scores where lower ranks become higher suspicion scores.
+
+Next I'm setting up single-signal baselines that extract and normalize each signal independently, then moving into a calibrated weighted RRF approach that learns optimal signal weights from ground truth labels.
+
+Fitting logistic regression...
+
+Now I'm extracting the model coefficients and normalizing them to get positive weights that sum to one, handling the edge case where all weights are negative by defaulting to uniform weights. Then I'm computing the final scores by applying these normalized weights across the rank features and scaling them to a 0-1 range before returning both the scores and the weight dictionary.
+
+For the false positive injection function, I'm setting up a mechanism to artificially boost clean items' signal scores to create false positives—specifically, for a fraction of clean items determined by the fp_rate parameter, I randomly select a signal and set it to match the 95th percentile value from contaminated items. Writing the injection logic... Finishing up the normalization for each signal, then returning the results. Now I'm defining a degraded mode that uses only ConStat and Self-Critique signals, checking which ones are available and applying RRF fusion with those constraints. Then I'm setting up the main function to run all the ablation tests. Writing ablation variants... Finishing the argument parser setup and then loading the labels from either a file or directory based on what the user provided, then running the ablation experiments with those labels and the specified k value.
+
+Now I'm saving each ablation result to a JSON file in the output directory, organizing them by method and model ID, then computing summary statistics for each method. Setting up the evaluation script that compares RRF against various ablation methods, computing metrics like AUC-ROC and average precision while generating visualization plots for the results.
+
+Computing evaluation metrics from prediction scores and labels, handling edge cases where all samples belong to one class, then calculating precision at different cutoff thresholds. Writing ROC curve visualization... Finishing the plot configuration and saving it, then moving into a new function to visualize score distributions across clean and contaminated samples.
+
+Now I'm setting up a subplot grid to display histograms for each scoring method, with bins spanning from 0 to 1 to show how the scores separate between clean and contaminated data. Writing visualization code...
+
+Now I'm setting up a function to plot how different methods' AUC scores degrade as false positives are injected, parsing the method scores and filtering by label distribution. Writing the robustness plot...
+
+Now I'm creating a function to format the metrics into a markdown table with columns for AUC-ROC, average precision, and precision at different thresholds, handling NaN values appropriately.
+
+Generating mock data... Finishing the mock data generation with the last embedding score, then setting up the evaluation pipeline to run all detection methods—RRF fusion and rank averaging—on the generated items and storing their normalized scores. Writing evaluation pipeline... Setting up argument parsing...
+
+Now I'm configuring the logging and checking if we're running a mock evaluation. If not, I'll create the output directory and then iterate through all available model directories to extract their dosage information and evaluate each combination. Computing metrics for each method, then generating ROC and distribution plots for each model-benchmark combination before saving all results to a JSON file and printing a summary.
+
+Now I'm handling the single evaluation case where I load labels, run the ablations, compute metrics for each method, format and log the results table, then save everything with the model ID.
+
+Generating visualization outputs...
+
+Now I'm thinking through how to deploy this to the server—I want to avoid heredoc escaping issues, so I'm considering using base64 encoding or writing files locally first and transferring them. The simplest approach would be to write everything to the artifacts directory and then use SSH to move the files over.
+
+Actually, I realize I can just use heredocs with a single-quoted delimiter like `'PYEOF'` to prevent shell expansion, which should work fine as long as the Python code doesn't contain that exact string on its own line. Let me go with that approach for writing the files directly to the server.
+
+Now I need to handle the imports between `rrf_aggregation.py` and `ablations.py` since they're in the same directory. I'll add a sys.path setup at the top of each file that imports siblings, using `Path(__file__).parent` to dynamically reference the current directory regardless of where the script is run from.
+
+Since these are standalone scripts rather than a package, I don't need an `__init__.py`. Now I'll create the directory and write all the files directly to the server. I need to make sure each file is solid before deploying them. Looking at the `compute_ranks` function in rrf_aggregation.py, I'm implementing tie-breaking by averaging ranks for equal scores rather than adding scipy as a dependency, and I want to verify the logic handles ties correctly.
+
+The function sorts scores in descending order, then groups tied values and assigns each group the average of their rank positions. This approach is sound, so I'll keep it as is. Now I should just write out the files and stop second-guessing myself.
+
+I need to make sure each file has proper docstrings at the top and on key functions, plus a README explaining the input/output format and how to run everything. I'll split the implementation across multiple commands to avoid timeout issues—each Python file should be around 250-300 lines, which is manageable. My plan is to create the directory, write the three main modules, add the README, and then test.
+
+Now I'm confirming the structure matches what's needed: the RRF aggregation script, ablation variants, and evaluation script. For evaluate_rrf.py, I'll have it import and delegate to the ablation logic from ablations.py, then focus on metrics and visualization.
+
+For the mock data test, I need to ensure generate_mock_data returns items and labels directly without requiring disk files. The implementation looks good, so I'm ready to write it out.
+
+Actually, I should double-check that exp003 is completely self-contained—no imports from exp002. Since the task asks for a standalone directory, I'll reimplement the core RRF logic in exp003/rrf_aggregation.py rather than importing from the earlier experiment. This keeps everything isolated and self-contained, with ablations.py importing only from rrf_aggregation.py within the same directory.
+
+Before writing, I need to create the directory structure first. For the rrf_fuse function, I'll compute ranks once and reuse them rather than recalculating in each loop iteration. The weights parameter will be a dict that accepts either uniform weights for standard RRF or learned weights for the calibrated ablation.
+
+Writing the implementation now... This is clean. In `equal_weight_rank_avg`, I'm converting average rank to score using a formula that maps rank 1 to 1.0 and rank n to 0.0, which aligns with the contamination convention. For `single_signal_scores`, each signal gets normalized independently to [0, 1] since they operate on different scales. The `calibrated_weighted_rrf` function uses logistic regression on RRF features to learn signal weights as an oracle baseline. For `inject_false_positives`, I'm boosting random clean items' signal values to match the 95th percentile of contaminated items to simulate false positives. I'm also using only two signals for `degraded_2signal`. Since sklearn should be available in the conda base environment, the `--mock` mode in evaluate_rrf.py should run fine without matplotlib, as those plot functions already handle import errors gracefully. Ready to write now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "814bb859-ea30-4daf-84da-81b857dae5b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQqWY5UrFPWArAixhompY2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 957,
+      "cache_read_input_tokens": 41227,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 957
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+现在我了解了完整的数据结构。让我写 exp-003 代码。
+
+关键发现：
+- 信号输出：`/root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/signal_{name}_{benchmark}.json`
+- 格式：`[{"index": 0, "benchmark": "mmlu", "s1_embedding": 0.403, ...}, ...]`
+- Ground truth：`/root/autodl-tmp/exp001/sft_data/contamination_labels_{benchmark}_{dosage}.json`，含 `{"labels": [0,1,...], "total_items": N}`
+- exp-002 目前只完成了部分信号计算
+
+创建 exp003 目录并写入代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "3c4e80ac-96be-4f67-bdf7-d4b834c34d4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQqWY5UrFPWArAixhompY2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 957,
+      "cache_read_input_tokens": 41227,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 957
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FXVyWt98ykg9qv39XW5Ny7`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "mkdir -p /root/contamcal-irt-calibration/exp003"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "cabf8e07-2490-48ad-a6e0-057370e32d7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQqWY5UrFPWArAixhompY2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 957,
+      "cache_read_input_tokens": 41227,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 957
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T12:49:18.107Z_
+
+<details><summary>↩ Tool result · `toolu_01FXVyWt98ykg9qv39XW5Ny7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "c2aaa42b-b8d2-4aa6-94a9-98fb2d34f86a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011KkCNURmKD5YGtS3okQH1E`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat << 'PYEOF' > /root/contamcal-irt-calibration/exp003/rrf_aggregation.py\n\"\"\"\nexp-003: RRF Aggregation of Contamination Detection Signals.\n\nFuses per-item signal scores from exp-002 into composite exposure scores\nusing Reciprocal Rank Fusion (Cormack et al., 2009).\n\nInput:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/\nOutput: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nfrom pathlib import Path\n\nimport numpy as np\n\nlogger = logging.getLogger(__name__)\n\nSIGNAL_KEYS = [\"s1_embedding\", \"s2_minkpp\", \"s3_constat\", \"s4_selfcritique\"]\nSIGNAL_NAMES = {\n    \"s1_embedding\": \"Embedding\",\n    \"s2_minkpp\": \"Min-K++\",\n    \"s3_constat\": \"ConStat\",\n    \"s4_selfcritique\": \"Self-Critique\",\n}\nDEFAULT_K = 60\n\nSIGNAL_ROOT = \"/root/autodl-tmp/exp002/signals\"\nLABELS_ROOT = \"/root/autodl-tmp/exp001/sft_data\"\nBENCHMARKS = [\"mmlu\", \"gsm8k\", \"arc_challenge\"]\nDOSAGES = [\"d000\", \"d005\", \"d025\", \"d050\", \"d100\"]\nDOSAGE_NUM = {\"d000\": 0, \"d005\": 5, \"d025\": 25, \"d050\": 50, \"d100\": 100}\n\n\ndef load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:\n    \"\"\"Load per-item signals from exp-002 output directory.\n\n    Tries signals_merged_{benchmark}.json first, falls back to\n    loading and merging individual signal files.\n    \"\"\"\n    signal_dir = Path(signal_dir)\n\n    merged = signal_dir / f\"signals_merged_{benchmark}.json\"\n    if merged.exists():\n        with open(merged) as f:\n            return json.load(f)\n\n    items_by_idx = {}\n    sig_name_map = {\n        \"s1_embedding\": \"embedding\",\n        \"s2_minkpp\": \"minkpp\",\n        \"s3_constat\": \"constat\",\n        \"s4_selfcritique\": \"selfcritique\",\n    }\n    for sig_key, sig_name in sig_name_map.items():\n        sig_file = signal_dir / f\"signal_{sig_name}_{benchmark}.json\"\n        if not sig_file.exists():\n            continue\n        with open(sig_file) as f:\n            data = json.load(f)\n        for item in data:\n            idx = item[\"index\"]\n            if idx not in items_by_idx:\n                items_by_idx[idx] = {\"index\": idx, \"benchmark\": benchmark}\n            items_by_idx[idx].update(item)\n\n    if not items_by_idx:\n        logger.warning(\"No signal files found in %s for %s\", signal_dir, benchmark)\n        return []\n\n    return [items_by_idx[k] for k in sorted(items_by_idx)]\n\n\ndef detect_available_signals(items: list[dict]) -> list[str]:\n    \"\"\"Return signal keys that have non-null, non-zero values.\"\"\"\n    available = []\n    for sig in SIGNAL_KEYS:\n        if any(item.get(sig) not in (None, 0.0) for item in items):\n            available.append(sig)\n    return available\n\n\ndef compute_ranks(scores: np.ndarray) -> np.ndarray:\n    \"\"\"Rank from 1 (highest score = most suspicious) to N, with tie averaging.\"\"\"\n    n = len(scores)\n    order = np.argsort(-scores)\n    ranks = np.empty(n, dtype=float)\n    i = 0\n    while i < n:\n        j = i\n        while j < n - 1 and scores[order[j + 1]] == scores[order[j]]:\n            j += 1\n        avg_rank = (i + j) / 2.0 + 1\n        for k_idx in range(i, j + 1):\n            ranks[order[k_idx]] = avg_rank\n        i = j + 1\n    return ranks\n\n\ndef rrf_fuse(items: list[dict], k: int = DEFAULT_K,\n             signals: list[str] = None,\n             weights: dict = None) -> np.ndarray:\n    \"\"\"Reciprocal Rank Fusion: score(j) = sum_s w_s / (k + rank_s(j))\n\n    All signals oriented so higher = more suspicious.\n    Returns raw (unnormalized) RRF scores.\n    \"\"\"\n    if signals is None:\n        signals = detect_available_signals(items)\n    if not signals:\n        return np.zeros(len(items))\n\n    n = len(items)\n    if weights is None:\n        weights = {s: 1.0 for s in signals}\n\n    rrf_scores = np.zeros(n)\n    for sig in signals:\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\n        ranks = compute_ranks(vals)\n        rrf_scores += weights.get(sig, 1.0) / (k + ranks)\n\n    return rrf_scores\n\n\ndef normalize_minmax(scores: np.ndarray) -> np.ndarray:\n    \"\"\"Min-max normalize to [0, 1].\"\"\"\n    mn, mx = scores.min(), scores.max()\n    if mx - mn < 1e-12:\n        return np.full_like(scores, 0.5)\n    return (scores - mn) / (mx - mn)\n\n\ndef aggregate_single(signal_dir: str, benchmark: str, k: int = DEFAULT_K,\n                     signals: list[str] = None, weights: dict = None,\n                     normalize: bool = True) -> list[dict]:\n    \"\"\"Full RRF pipeline for one signal directory and benchmark.\n\n    Returns list of {\"index\", \"benchmark\", \"exposure\", \"rrf_raw\", \"rank_*\"}.\n    \"\"\"\n    items = load_signal_files(signal_dir, benchmark)\n    if not items:\n        return []\n\n    active = signals or detect_available_signals(items)\n    n = len(items)\n\n    # Precompute rank matrix\n    rank_matrix = {}\n    for sig in active:\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\n        rank_matrix[sig] = compute_ranks(vals)\n\n    # RRF fusion\n    w = weights or {s: 1.0 for s in active}\n    rrf_scores = np.zeros(n)\n    for sig in active:\n        rrf_scores += w.get(sig, 1.0) / (k + rank_matrix[sig])\n\n    exposure = normalize_minmax(rrf_scores) if normalize else rrf_scores\n\n    results = []\n    for i, item in enumerate(items):\n        rec = {\n            \"index\": item[\"index\"],\n            \"benchmark\": item.get(\"benchmark\", benchmark),\n            \"exposure\": float(exposure[i]),\n            \"rrf_raw\": float(rrf_scores[i]),\n        }\n        for sig in active:\n            rec[f\"rank_{sig}\"] = int(rank_matrix[sig][i])\n        results.append(rec)\n\n    return results\n\n\ndef aggregate_all_models(signal_root: str, benchmarks: list[str],\n                         k: int = DEFAULT_K, normalize: bool = True,\n                         dosage_filter: str = None) -> dict:\n    \"\"\"Aggregate across all model directories in signal_root.\n\n    Returns {model_id: {benchmark: [per-item results]}}\n    \"\"\"\n    signal_root = Path(signal_root)\n    results = {}\n\n    for model_dir in sorted(signal_root.iterdir()):\n        if not model_dir.is_dir():\n            continue\n        model_id = model_dir.name\n        if dosage_filter and dosage_filter not in model_id:\n            continue\n\n        results[model_id] = {}\n        for bench in benchmarks:\n            agg = aggregate_single(str(model_dir), bench, k=k, normalize=normalize)\n            if agg:\n                results[model_id][bench] = agg\n                logger.info(\"%s/%s: %d items, exposure [%.4f, %.4f]\",\n                            model_id, bench, len(agg),\n                            min(r[\"exposure\"] for r in agg),\n                            max(r[\"exposure\"] for r in agg))\n\n    return results\n\n\ndef generate_exposure_json(signal_root: str, benchmarks: list[str],\n                           k: int = DEFAULT_K, normalize: bool = True,\n                           dosage_filter: str = None) -> dict:\n    \"\"\"Generate exposure_scores.json for exp-006 IRT calibration.\n\n    Output format per model:\n      {model_id: {benchmark: {\"exposure_scores\": [...], \"item_count\": N, \"signals_used\": [...]}}}\n    \"\"\"\n    all_results = aggregate_all_models(signal_root, benchmarks, k=k,\n                                       normalize=normalize,\n                                       dosage_filter=dosage_filter)\n    exposure = {}\n    for model_id, bench_data in all_results.items():\n        exposure[model_id] = {}\n        for bench, items in bench_data.items():\n            signals_used = sorted(set(\n                key.replace(\"rank_\", \"\")\n                for item in items for key in item if key.startswith(\"rank_\")\n            ))\n            exposure[model_id][bench] = {\n                \"exposure_scores\": [item[\"exposure\"] for item in items],\n                \"item_count\": len(items),\n                \"signals_used\": signals_used,\n            }\n    return exposure\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"exp-003: RRF aggregation of contamination detection signals\"\n    )\n    parser.add_argument(\"--signal-root\", type=str, default=SIGNAL_ROOT,\n                        help=\"Root dir of exp-002 signal outputs\")\n    parser.add_argument(\"--signal-dir\", type=str, default=None,\n                        help=\"Single model signal dir (overrides --signal-root)\")\n    parser.add_argument(\"--benchmarks\", type=str, nargs=\"+\", default=BENCHMARKS)\n    parser.add_argument(\"--k\", type=int, default=DEFAULT_K,\n                        help=\"RRF k parameter (default: 60)\")\n    parser.add_argument(\"--output-dir\", type=str, required=True)\n    parser.add_argument(\"--dosage-filter\", type=str, default=None,\n                        help=\"Only process dirs matching this dosage (e.g., d005)\")\n    parser.add_argument(\"--no-normalize\", action=\"store_true\",\n                        help=\"Skip min-max normalization to [0,1]\")\n    parser.add_argument(\"--generate-exposure\", action=\"store_true\",\n                        help=\"Generate exposure_scores.json for exp-006\")\n    parser.add_argument(\"--model-name\", type=str, default=None,\n                        help=\"Model identifier for single-dir mode output naming\")\n    args = parser.parse_args()\n\n    logging.basicConfig(level=logging.INFO,\n                        format=\"%(asctime)s [%(levelname)s] %(message)s\")\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n    normalize = not args.no_normalize\n\n    if args.generate_exposure:\n        exposure = generate_exposure_json(\n            args.signal_root, args.benchmarks,\n            k=args.k, normalize=normalize,\n            dosage_filter=args.dosage_filter,\n        )\n        out_file = output_dir / \"exposure_scores.json\"\n        with open(out_file, \"w\") as f:\n            json.dump(exposure, f, indent=2)\n        logger.info(\"Exposure scores saved to %s\", out_file)\n        for mid, bd in exposure.items():\n            for bench, data in bd.items():\n                logger.info(\"  %s/%s: %d items\", mid, bench, data[\"item_count\"])\n        return\n\n    if args.signal_dir:\n        for bench in args.benchmarks:\n            results = aggregate_single(args.signal_dir, bench, k=args.k,\n                                       normalize=normalize)\n            if results:\n                name = args.model_name or Path(args.signal_dir).name\n                out_file = output_dir / f\"rrf_scores_{name}_{bench}.json\"\n                with open(out_file, \"w\") as f:\n                    json.dump(results, f, indent=2)\n                logger.info(\"Saved %d items to %s\", len(results), out_file)\n    else:\n        all_results = aggregate_all_models(\n            args.signal_root, args.benchmarks,\n            k=args.k, normalize=normalize,\n            dosage_filter=args.dosage_filter,\n        )\n        for model_id, bench_data in all_results.items():\n            for bench, items in bench_data.items():\n                out_file = output_dir / f\"rrf_scores_{model_id}_{bench}.json\"\n                with open(out_file, \"w\") as f:\n                    json.dump(items, f, indent=2)\n\n        summary = {\n            model_id: {\n                bench: {\n                    \"count\": len(items),\n                    \"exposure_mean\": float(np.mean([r[\"exposure\"] for r in items])),\n                    \"exposure_std\": float(np.std([r[\"exposure\"] for r in items])),\n                }\n                for bench, items in bench_data.items()\n            }\n            for model_id, bench_data in all_results.items()\n        }\n        with open(output_dir / \"rrf_summary.json\", \"w\") as f:\n            json.dump(summary, f, indent=2)\n        logger.info(\"Summary saved to %s\", output_dir / \"rrf_summary.json\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "b6be67ba-5810-4c4c-aea9-8be7a0829d7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0175kTZxoWPg24b6N5Q7pkdU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20584,
+      "cache_read_input_tokens": 42184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20584
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-14T12:50:10.318Z_
+
+<details><summary>↩ Tool result · `toolu_011KkCNURmKD5YGtS3okQH1E`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "788cedd2-afb5-4eec-82b5-7ca7de9b0b76",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012wNxU5JQYm7EM9eUgFzF84`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat << 'PYEOF' > /root/contamcal-irt-calibration/exp003/ablations.py\n\"\"\"\nexp-003 Ablation Variants for RRF Aggregation.\n\n(a) Equal-weight rank averaging\n(b) Single-signal only (x4 baselines)\n(c) Calibration-based weighted RRF (oracle, learns weights from ground truth)\n(d) FP injection robustness (5%, 10%, 20% false positive rates)\n(e) Degraded 2-signal mode (ConStat + Self-Critique only, closed-weight scenario)\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\n\nsys.path.insert(0, str(Path(__file__).parent))\nfrom rrf_aggregation import (\n    load_signal_files, detect_available_signals, compute_ranks,\n    rrf_fuse, normalize_minmax, SIGNAL_KEYS, DEFAULT_K,\n    SIGNAL_ROOT, LABELS_ROOT, BENCHMARKS,\n)\n\nlogger = logging.getLogger(__name__)\n\n\ndef load_labels(labels_dir: str, benchmark: str, dosage: str) -> np.ndarray:\n    \"\"\"Load ground truth contamination labels (0/1 per item).\"\"\"\n    label_file = Path(labels_dir) / f\"contamination_labels_{benchmark}_{dosage}.json\"\n    if not label_file.exists():\n        raise FileNotFoundError(f\"Labels not found: {label_file}\")\n    with open(label_file) as f:\n        data = json.load(f)\n    return np.array(data[\"labels\"], dtype=int)\n\n\n# --- (a) Equal-weight rank averaging ---\n\ndef equal_weight_rank_avg(items: list[dict], signals: list[str] = None) -> np.ndarray:\n    \"\"\"Average normalized ranks across signals. Lower avg rank = more suspicious.\"\"\"\n    if signals is None:\n        signals = detect_available_signals(items)\n    n = len(items)\n    if n == 0:\n        return np.array([])\n\n    avg_rank = np.zeros(n)\n    for sig in signals:\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\n        avg_rank += compute_ranks(vals)\n    avg_rank /= len(signals)\n\n    # Lower rank = more suspicious -> higher score\n    if n > 1:\n        scores = 1.0 - (avg_rank - 1) / (n - 1)\n    else:\n        scores = np.array([0.5])\n    return scores\n\n\n# --- (b) Single-signal baselines ---\n\ndef single_signal_scores(items: list[dict]) -> dict:\n    \"\"\"Normalize each signal independently to [0,1].\"\"\"\n    results = {}\n    for sig in SIGNAL_KEYS:\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\n        if np.any(vals != 0):\n            results[sig] = normalize_minmax(vals)\n    return results\n\n\n# --- (c) Calibration-based weighted RRF (oracle) ---\n\ndef calibrated_weighted_rrf(items: list[dict], labels: np.ndarray,\n                            k: int = DEFAULT_K,\n                            signals: list[str] = None) -> tuple:\n    \"\"\"Learn signal weights from ground truth via logistic regression.\n\n    Oracle baseline -- uses labels unavailable in practice.\n    Returns (exposure_scores, learned_weights_dict).\n    \"\"\"\n    from sklearn.linear_model import LogisticRegression\n\n    if signals is None:\n        signals = detect_available_signals(items)\n\n    n = len(items)\n\n    # Build RRF feature matrix: each column = 1/(k + rank_s)\n    rank_features = np.zeros((n, len(signals)))\n    for j, sig in enumerate(signals):\n        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)\n        rank_features[:, j] = 1.0 / (k + compute_ranks(vals))\n\n    y = labels[:n] if len(labels) >= n else np.pad(labels, (0, n - len(labels)))\n\n    lr = LogisticRegression(max_iter=1000, class_weight=\"balanced\")\n    lr.fit(rank_features, y)\n\n    raw_weights = lr.coef_[0]\n    pos_weights = np.maximum(raw_weights, 0)\n    if pos_weights.sum() > 0:\n        pos_weights = pos_weights / pos_weights.sum()\n    else:\n        pos_weights = np.ones(len(signals)) / len(signals)\n\n    weights = {sig: float(w) for sig, w in zip(signals, pos_weights)}\n\n    scores = np.zeros(n)\n    for j, sig in enumerate(signals):\n        scores += pos_weights[j] * rank_features[:, j]\n    scores = normalize_minmax(scores)\n\n    return scores, weights\n\n\n# --- (d) FP injection robustness ---\n\ndef inject_false_positives(items: list[dict], labels: np.ndarray,\n                           fp_rate: float, signals: list[str] = None,\n                           seed: int = 42) -> list[dict]:\n    \"\"\"Inject false positives by boosting clean items' scores to contaminated p95.\"\"\"\n    if signals is None:\n        signals = detect_available_signals(items)\n\n    rng = np.random.RandomState(seed)\n    n = min(len(items), len(labels))\n\n    clean_indices = [i for i in range(n) if labels[i] == 0]\n    contam_indices = [i for i in range(n) if labels[i] == 1]\n    n_inject = int(len(clean_indices) * fp_rate)\n    if n_inject == 0:\n        return list(items)\n    inject_indices = set(rng.choice(clean_indices, size=n_inject, replace=False))\n\n    # 95th percentile of contaminated items per signal\n    p95 = {}\n    for sig in signals:\n        contam_vals = [items[i].get(sig, 0.0) or 0.0 for i in contam_indices]\n        p95[sig] = float(np.percentile(contam_vals, 95)) if contam_vals else 1.0\n\n    modified = []\n    for i, item in enumerate(items):\n        rec = dict(item)\n        if i in inject_indices:\n            target_sig = rng.choice(signals)\n            rec[target_sig] = p95[target_sig]\n        modified.append(rec)\n\n    return modified\n\n\ndef fp_robustness_test(items: list[dict], labels: np.ndarray,\n                       k: int = DEFAULT_K,\n                       fp_rates: list = None) -> dict:\n    \"\"\"Test RRF and single-signal robustness under FP injection.\n\n    Returns {fp_rate_key: {method_name: list_of_scores}}.\n    \"\"\"\n    if fp_rates is None:\n        fp_rates = [0.05, 0.10, 0.20]\n\n    signals = detect_available_signals(items)\n    results = {}\n\n    for rate in fp_rates:\n        modified = inject_false_positives(items, labels, rate, signals)\n        rate_key = f\"fp_{int(rate * 100):02d}pct\"\n        results[rate_key] = {}\n\n        rrf_scores = rrf_fuse(modified, k=k, signals=signals)\n        results[rate_key][\"rrf\"] = normalize_minmax(rrf_scores).tolist()\n\n        results[rate_key][\"rank_avg\"] = equal_weight_rank_avg(modified, signals).tolist()\n\n        for sig in signals:\n            vals = np.array([item.get(sig, 0.0) or 0.0 for item in modified], dtype=float)\n            if np.any(vals != 0):\n                results[rate_key][sig] = normalize_minmax(vals).tolist()\n\n    return results\n\n\n# --- (e) Degraded 2-signal mode ---\n\ndef degraded_2signal(items: list[dict], k: int = DEFAULT_K) -> np.ndarray:\n    \"\"\"RRF with only ConStat + Self-Critique (closed-weight scenario).\"\"\"\n    closed_signals = [\"s3_constat\", \"s4_selfcritique\"]\n    available = [s for s in closed_signals if s in detect_available_signals(items)]\n    if not available:\n        logger.warning(\"Neither ConStat nor Self-Critique available for degraded mode\")\n        return np.full(len(items), 0.5)\n\n    scores = rrf_fuse(items, k=k, signals=available)\n    return normalize_minmax(scores)\n\n\n# --- Run all ---\n\ndef run_all_ablations(signal_dir: str, benchmark: str, labels: np.ndarray,\n                      k: int = DEFAULT_K) -> dict:\n    \"\"\"Run all ablation variants, return {method_name: np.ndarray of exposure scores}.\"\"\"\n    items = load_signal_files(signal_dir, benchmark)\n    if not items:\n        return {}\n\n    signals = detect_available_signals(items)\n    n = len(items)\n    results = {}\n\n    # Main RRF\n    results[\"rrf\"] = normalize_minmax(rrf_fuse(items, k=k, signals=signals))\n\n    # (a) Equal-weight rank averaging\n    results[\"rank_avg\"] = equal_weight_rank_avg(items, signals)\n\n    # (b) Single-signal baselines\n    for sig, scores in single_signal_scores(items).items():\n        results[f\"single_{sig}\"] = scores\n\n    # (c) Calibrated weighted RRF\n    if labels is not None and len(labels) >= n:\n        try:\n            cal_scores, cal_weights = calibrated_weighted_rrf(\n                items, labels, k=k, signals=signals\n            )\n            results[\"calibrated_rrf\"] = cal_scores\n            logger.info(\"Calibrated weights: %s\", cal_weights)\n        except Exception as e:\n            logger.warning(\"Calibrated RRF failed: %s\", e)\n\n    # (d) FP robustness (only when labels available)\n    if labels is not None:\n        fp_results = fp_robustness_test(items, labels, k=k)\n        for rate_key, method_scores in fp_results.items():\n            for method, scores in method_scores.items():\n                results[f\"{rate_key}_{method}\"] = np.array(scores)\n\n    # (e) Degraded 2-signal\n    results[\"degraded_2sig\"] = degraded_2signal(items, k=k)\n\n    return results\n\n\ndef run_all_ablations_from_items(items: list[dict], labels: np.ndarray,\n                                 k: int = DEFAULT_K) -> dict:\n    \"\"\"Same as run_all_ablations but takes pre-loaded items directly.\"\"\"\n    if not items:\n        return {}\n\n    signals = detect_available_signals(items)\n    n = len(items)\n    results = {}\n\n    results[\"rrf\"] = normalize_minmax(rrf_fuse(items, k=k, signals=signals))\n    results[\"rank_avg\"] = equal_weight_rank_avg(items, signals)\n\n    for sig, scores in single_signal_scores(items).items():\n        results[f\"single_{sig}\"] = scores\n\n    if labels is not None and len(labels) >= n:\n        try:\n            cal_scores, cal_weights = calibrated_weighted_rrf(\n                items, labels, k=k, signals=signals\n            )\n            results[\"calibrated_rrf\"] = cal_scores\n            logger.info(\"Calibrated weights: %s\", cal_weights)\n        except Exception as e:\n            logger.warning(\"Calibrated RRF failed: %s\", e)\n\n    if labels is not None:\n        fp_results = fp_robustness_test(items, labels, k=k)\n        for rate_key, method_scores in fp_results.items():\n            for method, scores in method_scores.items():\n                results[f\"{rate_key}_{method}\"] = np.array(scores)\n\n    results[\"degraded_2sig\"] = degraded_2signal(items, k=k)\n\n    return results\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"exp-003 ablation variants for RRF aggregation\"\n    )\n    parser.add_argument(\"--signal-dir\", type=str, required=True,\n                        help=\"Signal output dir for one model-dosage\")\n    parser.add_argument(\"--benchmark\", type=str, required=True,\n                        choices=BENCHMARKS)\n    parser.add_argument(\"--labels-file\", type=str, default=None,\n                        help=\"Ground truth labels JSON (overrides --dosage)\")\n    parser.add_argument(\"--labels-dir\", type=str, default=LABELS_ROOT)\n    parser.add_argument(\"--dosage\", type=str, default=None,\n                        help=\"Dosage key for auto-loading labels (e.g. d005)\")\n    parser.add_argument(\"--k\", type=int, default=DEFAULT_K)\n    parser.add_argument(\"--output-dir\", type=str, required=True)\n    args = parser.parse_args()\n\n    logging.basicConfig(level=logging.INFO,\n                        format=\"%(asctime)s [%(levelname)s] %(message)s\")\n\n    labels = None\n    if args.labels_file:\n        with open(args.labels_file) as f:\n            data = json.load(f)\n        labels = np.array(data[\"labels\"], dtype=int)\n    elif args.dosage:\n        labels = load_labels(args.labels_dir, args.benchmark, args.dosage)\n\n    results = run_all_ablations(args.signal_dir, args.benchmark, labels, k=args.k)\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    model_id = Path(args.signal_dir).name\n    for method, scores in results.items():\n        out_data = [\n            {\"index\": i, \"benchmark\": args.benchmark, \"exposure\": float(s)}\n            for i, s in enumerate(scores)\n        ]\n        out_file = output_dir / f\"ablation_{method}_{model_id}_{args.benchmark}.json\"\n        with open(out_file, \"w\") as f:\n            json.dump(out_data, f, indent=2)\n\n    logger.info(\"Saved %d ablation results to %s\", len(results), output_dir)\n\n    summary = {}\n    for method, scores in results.items():\n        summary[method] = {\n            \"mean\": float(np.mean(scores)),\n            \"std\": float(np.std(scores)),\n            \"min\": float(np.min(scores)),\n            \"max\": float(np.max(scores)),\n        }\n    summary_file = output_dir / f\"ablation_summary_{model_id}_{args.benchmark}.json\"\n    with open(summary_file, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    logger.info(\"Summary:\\n%s\", json.dumps(summary, indent=2))\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "5d0e8bc1-a008-41ae-a851-60541b483e7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0175kTZxoWPg24b6N5Q7pkdU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20584,
+      "cache_read_input_tokens": 42184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20584
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-14T12:50:59.459Z_
+
+<details><summary>↩ Tool result · `toolu_012wNxU5JQYm7EM9eUgFzF84`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "616b69c3-b20f-4a4b-911c-43f09042d288",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016bFxvviZRvnS2WFtC2XTUL`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat << 'PYEOF' > /root/contamcal-irt-calibration/exp003/evaluate_rrf.py\n\"\"\"\nexp-003 Evaluation: Compare RRF vs Ablation Methods.\n\nComputes AUC-ROC, Average Precision, precision@k for all aggregation\nmethods. Generates ROC curves, score distribution plots, and FP\nrobustness degradation curves.\n\nSupports --mock mode for testing with synthetic data.\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nfrom sklearn.metrics import roc_auc_score, average_precision_score, roc_curve\n\nsys.path.insert(0, str(Path(__file__).parent))\nfrom rrf_aggregation import (\n    load_signal_files, detect_available_signals, rrf_fuse,\n    normalize_minmax, SIGNAL_KEYS, DEFAULT_K,\n    SIGNAL_ROOT, LABELS_ROOT, BENCHMARKS,\n)\nfrom ablations import (\n    load_labels, equal_weight_rank_avg, single_signal_scores,\n    calibrated_weighted_rrf, degraded_2signal,\n    run_all_ablations, run_all_ablations_from_items,\n    fp_robustness_test,\n)\n\nlogger = logging.getLogger(__name__)\n\n\ndef compute_metrics(scores: np.ndarray, labels: np.ndarray) -> dict:\n    \"\"\"Compute AUC-ROC, Average Precision, and precision@k.\"\"\"\n    n = min(len(scores), len(labels))\n    scores, labels = scores[:n], labels[:n]\n\n    if len(np.unique(labels)) < 2:\n        return {\"auc_roc\": float(\"nan\"), \"avg_precision\": float(\"nan\"),\n                \"precision_at_100\": float(\"nan\"), \"precision_at_500\": float(\"nan\")}\n\n    auc = roc_auc_score(labels, scores)\n    ap = average_precision_score(labels, scores)\n\n    sorted_idx = np.argsort(-scores)\n    p100 = float(labels[sorted_idx[:100]].mean()) if n >= 100 else float(\"nan\")\n    p500 = float(labels[sorted_idx[:500]].mean()) if n >= 500 else float(\"nan\")\n\n    return {\n        \"auc_roc\": float(auc),\n        \"avg_precision\": float(ap),\n        \"precision_at_100\": p100,\n        \"precision_at_500\": p500,\n    }\n\n\ndef plot_roc_curves(method_scores: dict, labels: np.ndarray,\n                    output_path: str, title: str = \"ROC Curves\"):\n    \"\"\"Plot ROC curves for main methods (excludes FP variants).\"\"\"\n    try:\n        import matplotlib\n        matplotlib.use(\"Agg\")\n        import matplotlib.pyplot as plt\n    except ImportError:\n        logger.warning(\"matplotlib unavailable, skipping ROC plot\")\n        return\n\n    n = min(min(len(s) for s in method_scores.values()), len(labels))\n    labels_n = labels[:n]\n    if len(np.unique(labels_n)) < 2:\n        logger.warning(\"Single-class labels, skipping ROC plot\")\n        return\n\n    fig, ax = plt.subplots(1, 1, figsize=(8, 6))\n    main_methods = [m for m in method_scores if not m.startswith(\"fp_\")]\n\n    for method in sorted(main_methods):\n        scores = method_scores[method][:n]\n        fpr, tpr, _ = roc_curve(labels_n, scores)\n        auc = roc_auc_score(labels_n, scores)\n        ax.plot(fpr, tpr, label=f\"{method} (AUC={auc:.3f})\")\n\n    ax.plot([0, 1], [0, 1], \"k--\", alpha=0.3)\n    ax.set_xlabel(\"False Positive Rate\")\n    ax.set_ylabel(\"True Positive Rate\")\n    ax.set_title(title)\n    ax.legend(loc=\"lower right\", fontsize=8)\n    ax.grid(True, alpha=0.3)\n\n    fig.tight_layout()\n    fig.savefig(output_path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n    logger.info(\"ROC plot saved to %s\", output_path)\n\n\ndef plot_score_distributions(method_scores: dict, labels: np.ndarray,\n                             output_path: str, title: str = \"Score Distributions\"):\n    \"\"\"Histogram of exposure scores split by clean/contaminated.\"\"\"\n    try:\n        import matplotlib\n        matplotlib.use(\"Agg\")\n        import matplotlib.pyplot as plt\n    except ImportError:\n        logger.warning(\"matplotlib unavailable, skipping distribution plot\")\n        return\n\n    main_methods = sorted(m for m in method_scores if not m.startswith(\"fp_\"))\n    n_methods = len(main_methods)\n    if n_methods == 0:\n        return\n\n    ncols = min(3, n_methods)\n    nrows = (n_methods + ncols - 1) // ncols\n    fig, axes = plt.subplots(nrows, ncols, figsize=(5 * ncols, 4 * nrows))\n    if n_methods == 1:\n        axes = np.array([axes])\n    axes = np.atleast_1d(axes).flatten()\n\n    n = min(min(len(s) for s in method_scores.values()), len(labels))\n    labels_n = labels[:n]\n    clean_mask = labels_n == 0\n    contam_mask = labels_n == 1\n\n    for i, method in enumerate(main_methods):\n        ax = axes[i]\n        scores = method_scores[method][:n]\n        bins = np.linspace(0, 1, 50)\n        if np.any(clean_mask):\n            ax.hist(scores[clean_mask], bins=bins, alpha=0.6,\n                    label=\"Clean\", color=\"steelblue\")\n        if np.any(contam_mask):\n            ax.hist(scores[contam_mask], bins=bins, alpha=0.6,\n                    label=\"Contaminated\", color=\"tomato\")\n        ax.set_title(method, fontsize=10)\n        ax.set_xlabel(\"Exposure Score\")\n        ax.set_ylabel(\"Count\")\n        ax.legend(fontsize=8)\n\n    for i in range(n_methods, len(axes)):\n        axes[i].set_visible(False)\n\n    fig.suptitle(title, fontsize=12)\n    fig.tight_layout()\n    fig.savefig(output_path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n    logger.info(\"Distribution plot saved to %s\", output_path)\n\n\ndef plot_fp_robustness(method_scores: dict, labels: np.ndarray,\n                       output_path: str):\n    \"\"\"AUC degradation curve under increasing FP injection rates.\"\"\"\n    try:\n        import matplotlib\n        matplotlib.use(\"Agg\")\n        import matplotlib.pyplot as plt\n    except ImportError:\n        return\n\n    n = min(min(len(s) for s in method_scores.values()), len(labels))\n    labels_n = labels[:n]\n    if len(np.unique(labels_n)) < 2:\n        return\n\n    # Parse fp_{rate}pct_{method} keys\n    fp_data = {}\n    for key, scores in method_scores.items():\n        if not key.startswith(\"fp_\"):\n            continue\n        parts = key.split(\"_\", 3)  # fp, 05pct, method...\n        rate = int(parts[1].replace(\"pct\", \"\"))\n        method = \"_\".join(parts[2:])\n        if method not in fp_data:\n            fp_data[method] = {}\n        fp_data[method][rate] = roc_auc_score(labels_n, np.array(scores[:n]))\n\n    if not fp_data:\n        return\n\n    # Add 0% baseline\n    for key, scores in method_scores.items():\n        if key.startswith(\"fp_\"):\n            continue\n        if key in fp_data:\n            fp_data[key][0] = roc_auc_score(labels_n, np.array(scores[:n]))\n\n    fig, ax = plt.subplots(1, 1, figsize=(8, 5))\n    for method, rate_aucs in sorted(fp_data.items()):\n        rates = sorted(rate_aucs.keys())\n        aucs = [rate_aucs[r] for r in rates]\n        ax.plot(rates, aucs, \"o-\", label=method)\n\n    ax.set_xlabel(\"FP Injection Rate (%)\")\n    ax.set_ylabel(\"AUC-ROC\")\n    ax.set_title(\"Robustness to False Positive Injection\")\n    ax.legend(fontsize=8)\n    ax.grid(True, alpha=0.3)\n\n    fig.tight_layout()\n    fig.savefig(output_path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n    logger.info(\"FP robustness plot saved to %s\", output_path)\n\n\ndef format_metrics_table(all_metrics: dict) -> str:\n    \"\"\"Format metrics as a markdown table.\"\"\"\n    lines = [\n        \"| Method | AUC-ROC | Avg Precision | P@100 | P@500 |\",\n        \"|--------|---------|---------------|-------|-------|\",\n    ]\n    for method in sorted(all_metrics):\n        m = all_metrics[method]\n        def fmt(v):\n            return f\"{v:.4f}\" if not np.isnan(v) else \"N/A\"\n        lines.append(\n            f\"| {method} | {fmt(m['auc_roc'])} | {fmt(m['avg_precision'])} \"\n            f\"| {fmt(m['precision_at_100'])} | {fmt(m['precision_at_500'])} |\"\n        )\n    return \"\\n\".join(lines)\n\n\ndef generate_mock_data(n_items: int = 1000, n_contaminated: int = 100,\n                       seed: int = 42) -> tuple:\n    \"\"\"Generate synthetic signal data for pipeline testing.\"\"\"\n    rng = np.random.RandomState(seed)\n    labels = np.zeros(n_items, dtype=int)\n    contam_idx = rng.choice(n_items, size=n_contaminated, replace=False)\n    labels[contam_idx] = 1\n\n    items = []\n    for i in range(n_items):\n        base = 0.3 if labels[i] == 0 else 0.7\n        items.append({\n            \"index\": i,\n            \"benchmark\": \"mock\",\n            \"s1_embedding\": float(np.clip(rng.normal(base, 0.15), 0, 1)),\n            \"s2_minkpp\": float(np.clip(rng.normal(base + 0.05, 0.2), 0, 1)),\n            \"s3_constat\": float(np.clip(rng.normal(base - 0.05, 0.18), 0, 1)),\n            \"s4_selfcritique\": float(np.clip(rng.normal(base + 0.1, 0.22), 0, 1)),\n        })\n\n    return items, labels\n\n\ndef run_mock_evaluation(output_dir: str):\n    \"\"\"Full evaluation pipeline on synthetic mock data.\"\"\"\n    logger.info(\"=== Mock Evaluation ===\")\n    items, labels = generate_mock_data()\n    logger.info(\"Generated %d items (%d contaminated)\", len(items), int(labels.sum()))\n\n    output_dir = Path(output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    results = run_all_ablations_from_items(items, labels)\n\n    # Compute metrics\n    metrics = {}\n    for method, scores in results.items():\n        metrics[method] = compute_metrics(scores, labels)\n\n    table = format_metrics_table(metrics)\n    logger.info(\"\\n%s\", table)\n\n    with open(output_dir / \"mock_metrics.json\", \"w\") as f:\n        json.dump(metrics, f, indent=2)\n\n    # Plots\n    plot_roc_curves(results, labels,\n                    str(output_dir / \"mock_roc_curves.png\"),\n                    \"Mock Data: ROC Curves\")\n    plot_score_distributions(results, labels,\n                             str(output_dir / \"mock_score_dist.png\"),\n                             \"Mock Data: Score Distributions\")\n    plot_fp_robustness(results, labels,\n                       str(output_dir / \"mock_fp_robustness.png\"))\n\n    logger.info(\"Mock evaluation complete. Results in %s\", output_dir)\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"exp-003: Evaluate RRF aggregation methods\"\n    )\n    parser.add_argument(\"--mock\", action=\"store_true\",\n                        help=\"Run evaluation on synthetic mock data\")\n    parser.add_argument(\"--signal-root\", type=str, default=SIGNAL_ROOT)\n    parser.add_argument(\"--labels-dir\", type=str, default=LABELS_ROOT)\n    parser.add_argument(\"--signal-dir\", type=str, default=None,\n                        help=\"Single model signal dir\")\n    parser.add_argument(\"--benchmark\", type=str, default=None,\n                        choices=BENCHMARKS)\n    parser.add_argument(\"--dosage\", type=str, default=None)\n    parser.add_argument(\"--k\", type=int, default=DEFAULT_K)\n    parser.add_argument(\"--output-dir\", type=str, required=True)\n    parser.add_argument(\"--all\", action=\"store_true\",\n                        help=\"Evaluate all model-dosage-benchmark combos\")\n    args = parser.parse_args()\n\n    logging.basicConfig(level=logging.INFO,\n                        format=\"%(asctime)s [%(levelname)s] %(message)s\")\n\n    if args.mock:\n        run_mock_evaluation(args.output_dir)\n        return\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    if args.all:\n        signal_root = Path(args.signal_root)\n        all_metrics = {}\n\n        for model_dir in sorted(signal_root.iterdir()):\n            if not model_dir.is_dir():\n                continue\n            model_id = model_dir.name\n            parts = model_id.split(\"_\")\n            dosage = next(\n                (p for p in parts if p.startswith(\"d\") and p[1:].isdigit()), None\n            )\n            if not dosage or dosage == \"d000\":\n                continue\n\n            for bench in BENCHMARKS:\n                try:\n                    labels = load_labels(args.labels_dir, bench, dosage)\n                except FileNotFoundError:\n                    continue\n\n                items = load_signal_files(str(model_dir), bench)\n                if not items:\n                    continue\n\n                key = f\"{model_id}/{bench}\"\n                logger.info(\"Evaluating %s ...\", key)\n\n                results = run_all_ablations(str(model_dir), bench, labels, k=args.k)\n                metrics = {}\n                for method, scores in results.items():\n                    metrics[method] = compute_metrics(scores, labels)\n                all_metrics[key] = metrics\n\n                combo_dir = output_dir / model_id / bench\n                combo_dir.mkdir(parents=True, exist_ok=True)\n                plot_roc_curves(results, labels,\n                                str(combo_dir / \"roc_curves.png\"),\n                                f\"ROC: {model_id} / {bench}\")\n                plot_score_distributions(results, labels,\n                                         str(combo_dir / \"score_dist.png\"),\n                                         f\"Dist: {model_id} / {bench}\")\n                plot_fp_robustness(results, labels,\n                                   str(combo_dir / \"fp_robustness.png\"))\n\n        with open(output_dir / \"all_metrics.json\", \"w\") as f:\n            json.dump(all_metrics, f, indent=2)\n\n        for key, metrics in all_metrics.items():\n            logger.info(\"\\n=== %s ===\", key)\n            logger.info(\"\\n%s\", format_metrics_table(metrics))\n        return\n\n    # Single evaluation mode\n    if not args.signal_dir or not args.benchmark or not args.dosage:\n        parser.error(\"Need --signal-dir, --benchmark, --dosage (or use --mock / --all)\")\n\n    labels = load_labels(args.labels_dir, args.benchmark, args.dosage)\n    results = run_all_ablations(args.signal_dir, args.benchmark, labels, k=args.k)\n\n    metrics = {}\n    for method, scores in results.items():\n        metrics[method] = compute_metrics(scores, labels)\n\n    table = format_metrics_table(metrics)\n    logger.info(\"\\n%s\", table)\n\n    model_id = Path(args.signal_dir).name\n    with open(output_dir / f\"metrics_{model_id}_{args.benchmark}.json\", \"w\") as f:\n        json.dump(metrics, f, indent=2)\n\n    plot_roc_curves(results, labels,\n                    str(output_dir / f\"roc_{model_id}_{args.benchmark}.png\"),\n                    f\"ROC: {model_id} / {args.benchmark}\")\n    plot_score_distributions(results, labels,\n                             str(output_dir / f\"dist_{model_id}_{args.benchmark}.png\"),\n                             f\"Dist: {model_id} / {args.benchmark}\")\n    plot_fp_robustness(results, labels,\n                       str(output_dir / f\"fp_robust_{model_id}_{args.benchmark}.png\"))\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "f5729df1-8da9-42c0-8c22-dcc9f2bf11f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0175kTZxoWPg24b6N5Q7pkdU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20584,
+      "cache_read_input_tokens": 42184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20584
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-14T12:51:52.861Z_
+
+<details><summary>↩ Tool result · `toolu_016bFxvviZRvnS2WFtC2XTUL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "4be1e58a-04f3-47db-be00-229daab0894e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DnLS9USo1qnCtdHyYE1qxz`</summary>
+
+````json
+{
+  "server": "cqa1-21977",
+  "command": "cat << 'MDEOF' > /root/contamcal-irt-calibration/exp003/README.md\n# exp-003: RRF Aggregation of Contamination Detection Signals\n\nFuses 4 per-item signal scores from exp-002 into composite exposure scores\nusing Reciprocal Rank Fusion (RRF). Produces per-model per-item exposure\nscores for downstream IRT calibration (exp-006).\n\n## Input\n\nSignal JSONs from exp-002:\n```\n/root/autodl-tmp/exp002/signals/{ModelName}_{dosage}_{seed}/\n  signal_embedding_{benchmark}.json\n  signal_minkpp_{benchmark}.json\n  signal_constat_{benchmark}.json\n  signal_selfcritique_{benchmark}.json\n  signals_merged_{benchmark}.json   # optional merged file\n```\n\nEach signal file: `[{\"index\": 0, \"benchmark\": \"mmlu\", \"s1_embedding\": 0.403, ...}, ...]`\n\nGround truth labels from exp-001:\n```\n/root/autodl-tmp/exp001/sft_data/contamination_labels_{benchmark}_{dosage}.json\n  {\"benchmark\": \"mmlu\", \"dosage\": 5, \"total_items\": 14042, \"contaminated_count\": 703, \"labels\": [0,1,...]}\n```\n\n## Output\n\nPer-item exposure scores in [0, 1]: 0=clean, 1=definitely contaminated.\n\n```json\n[{\"index\": 0, \"benchmark\": \"mmlu\", \"exposure\": 0.82, \"rrf_raw\": 0.0163, \"rank_s1_embedding\": 42}, ...]\n```\n\nFor exp-006: `exposure_scores.json` with `{model_id: {benchmark: {exposure_scores: [...], item_count: N}}}`\n\n## Usage\n\n### Main RRF aggregation\n\n```bash\n# Single model\npython exp003/rrf_aggregation.py \\\n  --signal-dir /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42 \\\n  --output-dir /root/autodl-tmp/exp003/results\n\n# All models\npython exp003/rrf_aggregation.py \\\n  --output-dir /root/autodl-tmp/exp003/results\n\n# Generate exposure_scores.json for exp-006\npython exp003/rrf_aggregation.py \\\n  --generate-exposure \\\n  --output-dir /root/autodl-tmp/exp003/results\n```\n\n### Ablations\n\n```bash\npython exp003/ablations.py \\\n  --signal-dir /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42 \\\n  --benchmark mmlu \\\n  --dosage d005 \\\n  --output-dir /root/autodl-tmp/exp003/ablations\n```\n\n### Evaluation\n\n```bash\n# Mock data test\npython exp003/evaluate_rrf.py --mock --output-dir /tmp/exp003_mock\n\n# Single model-benchmark\npython exp003/evaluate_rrf.py \\\n  --signal-dir /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42 \\\n  --benchmark mmlu --dosage d005 \\\n  --output-dir /root/autodl-tmp/exp003/eval\n\n# All available combos\npython exp003/evaluate_rrf.py --all --output-dir /root/autodl-tmp/exp003/eval\n```\n\n## Ablation Variants\n\n| ID | Method | Description |\n|----|--------|-------------|\n| (a) | rank_avg | Equal-weight rank averaging |\n| (b) | single_{signal} | Single-signal only (x4 baselines) |\n| (c) | calibrated_rrf | Weighted RRF with oracle weights from ground truth |\n| (d) | fp_{rate}pct_{method} | FP injection robustness at 5/10/20% rates |\n| (e) | degraded_2sig | ConStat + Self-Critique only (closed-weight scenario) |\n\n## Key Parameters\n\n- `--k`: RRF smoothing parameter (default: 60)\n- `--dosage-filter`: Only process matching dosages\n- `--no-normalize`: Output raw RRF scores instead of [0,1]\nMDEOF"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "9cc73abd-6cbd-4797-830b-c6ad91fb9357",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0175kTZxoWPg24b6N5Q7pkdU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20584,
+      "cache_read_input_tokens": 42184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20584
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-14T12:52:12.828Z_
+
+<details><summary>↩ Tool result · `toolu_01DnLS9USo1qnCtdHyYE1qxz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "69b9668b-5dae-46fa-b2ae-b624d4b53d14",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+4 个文件都已写入。验证文件完整性和运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "73e414f8-0615-4737-8381-9ccc0cb50a4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KiwkiexvPLU3epvoALEipY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13765,
+      "cache_read_input_tokens": 62768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13765
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013d8Xv5qmPAqdzE6YFapB6v`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp003/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "ff30c5c6-bfb2-483e-b6d8-f17a46566237",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KiwkiexvPLU3epvoALEipY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13765,
+      "cache_read_input_tokens": 62768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13765
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Va2UxZGv8nh1Sw6BaYSjPg`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "wc -l /root/contamcal-irt-calibration/exp003/*.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "62ecf560-c2f8-429c-8e43-adcc20bf0bd1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KiwkiexvPLU3epvoALEipY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13765,
+      "cache_read_input_tokens": 62768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13765
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-14T12:52:18.405Z_
+
+<details><summary>↩ Tool result · `toolu_013d8Xv5qmPAqdzE6YFapB6v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 44\\ndrwxr-xr-x 2 root root   112 May 14 20:52 .\\ndrwxr-xr-x 9 root root   166 May 14 20:49 ..\\n-rw-r--r-- 1 root root  2905 May 14 20:52 README.md\\n-rw-r--r-- 1 root root 12122 May 14 20:50 ablations.py\\n-rw-r--r-- 1 root root 14152 May 14 20:51 evaluate_rrf.py\\n-rw-r--r-- 1 root root 11567 May 14 20:50 rrf_aggregation.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "c4388d64-d808-4e2b-90c4-141929e93726",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 44\\\\ndrwxr-xr-x 2 root root   112 May 14 20:52 .\\\\ndrwxr-xr-x 9 root root   166 May 14 20:49 ..\\\\n-rw-r--r-- 1 root root  2905 May 14 20:52 README.md\\\\n-rw-r--r-- 1 root root 12122 May 14 20:50 ablations.py\\\\n-rw-r--r-- 1 root root 14152 May 14 20:51 evaluate_rrf.py\\\\n-rw-r--r-- 1 root root 11567 May 14 20:50 rrf_aggregation.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 44\\ndrwxr-xr-x 2 root root   112 May 14 20:52 .\\ndrwxr-xr-x 9 root root   166 May 14 20:49 ..\\n-rw-r--r-- 1 root root  2905 May 14 20:52 README.md\\n-rw-r--r-- 1 root root 12122 May 14 20:50 ablations.py\\n-rw-r--r-- 1 root root 14152 May 14 20:51 evaluate_rrf.py\\n-rw-r--r-- 1 root root 11567 May 14 20:50 rrf_aggregation.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T12:52:18.905Z_
+
+<details><summary>↩ Tool result · `toolu_01Va2UxZGv8nh1Sw6BaYSjPg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  345 /root/contamcal-irt-calibration/exp003/ablations.py\\n  393 /root/contamcal-irt-calibration/exp003/evaluate_rrf.py\\n  318 /root/contamcal-irt-calibration/exp003/rrf_aggregation.py\\n 1056 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "daee7f14-59eb-45a3-adb9-4d5ddfcd8335",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  345 /root/contamcal-irt-calibration/exp003/ablations.py\\\\n  393 /root/contamcal-irt-calibration/exp003/evaluate_rrf.py\\\\n  318 /root/contamcal-irt-calibration/exp003/rrf_aggregation.py\\\\n 1056 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  345 /root/contamcal-irt-calibration/exp003/ablations.py\\n  393 /root/contamcal-irt-calibration/exp003/evaluate_rrf.py\\n  318 /root/contamcal-irt-calibration/exp003/rrf_aggregation.py\\n 1056 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+文件就绪。测试 `--help` 和 `--mock` 模式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "0de31cf7-39a7-47a6-b0dd-a8fd279b5f56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZxSznQ2QMTj2GTMy1qEb2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 698,
+      "cache_read_input_tokens": 76533,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 698
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RhpL1JxqyqRA14wbuFUjjf`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/contamcal-irt-calibration && /root/miniconda3/bin/python exp003/rrf_aggregation.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "fc49e50a-d504-4a1b-abb3-eede254ae7ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZxSznQ2QMTj2GTMy1qEb2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 698,
+      "cache_read_input_tokens": 76533,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 698
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016VHF9Y3PqskG6UmAVwnAg4`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/contamcal-irt-calibration && /root/miniconda3/bin/python exp003/ablations.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "feba6429-fdc6-4413-8290-15d0ed7f8d55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZxSznQ2QMTj2GTMy1qEb2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 698,
+      "cache_read_input_tokens": 76533,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 698
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T12:52:24.230Z_
+
+<details><summary>↩ Tool result · `toolu_01RhpL1JxqyqRA14wbuFUjjf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: rrf_aggregation.py [-h] [--signal-root SIGNAL_ROOT]\\n                          [--signal-dir SIGNAL_DIR]\\n                          [--benchmarks BENCHMARKS [BENCHMARKS ...]] [--k K]\\n                          --output-dir OUTPUT_DIR\\n                          [--dosage-filter DOSAGE_FILTER] [--no-normalize]\\n                          [--generate-exposure] [--model-name MODEL_NAME]\\n\\nexp-003: RRF aggregation of contamination detection signals\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --signal-root SIGNAL_ROOT\\n                        Root dir of exp-002 signal outputs\\n  --signal-dir SIGNAL_DIR\\n                        Single model signal dir (overrides --signal-root)\\n  --benchmarks BENCHMARKS [BENCHMARKS ...]\\n  --k K                 RRF k parameter (default: 60)\\n  --output-dir OUTPUT_DIR\\n  --dosage-filter DOSAGE_FILTER\\n                        Only process dirs matching this dosage (e.g., d005)\\n  --no-normalize        Skip min-max normalization to [0,1]\\n  --generate-exposure   Generate exposure_scores.json for exp-006\\n  --model-name MODEL_NAME\\n                        Model identifier for single-dir mode output naming\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "a14f88dc-b9b7-4186-9987-3d34a3557f74",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: rrf_aggregation.py [-h] [--signal-root SIGNAL_ROOT]\\\\n                          [--signal-dir SIGNAL_DIR]\\\\n                          [--benchmarks BENCHMARKS [BENCHMARKS ...]] [--k K]\\\\n                          --output-dir OUTPUT_DIR\\\\n                          [--dosage-filter DOSAGE_FILTER] [--no-normalize]\\\\n                          [--generate-exposure] [--model-name MODEL_NAME]\\\\n\\\\nexp-003: RRF aggregation of contamination detection signals\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --signal-root SIGNAL_ROOT\\\\n                        Root dir of exp-002 signal outputs\\\\n  --signal-dir SIGNAL_DIR\\\\n                        Single model signal dir (overrides --signal-root)\\\\n  --benchmarks BENCHMARKS [BENCHMARKS ...]\\\\n  --k K                 RRF k parameter (default: 60)\\\\n  --output-dir OUTPUT_DIR\\\\n  --dosage-filter DOSAGE_FILTER\\\\n                        Only process dirs matching this dosage (e.g., d005)\\\\n  --no-normalize        Skip min-max normalization to [0,1]\\\\n  --generate-exposure   Generate exposure_scores.json for exp-006\\\\n  --model-name MODEL_NAME\\\\n                        Model identifier for single-dir mode output naming\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: rrf_aggregation.py [-h] [--signal-root SIGNAL_ROOT]\\n                          [--signal-dir SIGNAL_DIR]\\n                          [--benchmarks BENCHMARKS [BENCHMARKS ...]] [--k K]\\n                          --output-dir OUTPUT_DIR\\n                          [--dosage-filter DOSAGE_FILTER] [--no-normalize]\\n                          [--generate-exposure] [--model-name MODEL_NAME]\\n\\nexp-003: RRF aggregation of contamination detection signals\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --signal-root SIGNAL_ROOT\\n                        Root dir of exp-002 signal outputs\\n  --signal-dir SIGNAL_DIR\\n                        Single model signal dir (overrides --signal-root)\\n  --benchmarks BENCHMARKS [BENCHMARKS ...]\\n  --k K                 RRF k parameter (default: 60)\\n  --output-dir OUTPUT_DIR\\n  --dosage-filter DOSAGE_FILTER\\n                        Only process dirs matching this dosage (e.g., d005)\\n  --no-normalize        Skip min-max normalization to [0,1]\\n  --generate-exposure   Generate exposure_scores.json for exp-006\\n  --model-name MODEL_NAME\\n                        Model identifier for single-dir mode output naming\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FeBnvJkrwL1eMnczmgmCQw`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/contamcal-irt-calibration && /root/miniconda3/bin/python exp003/evaluate_rrf.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "bcb597f9-5481-49d0-8b7d-df8b6a3dfae8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZxSznQ2QMTj2GTMy1qEb2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 698,
+      "cache_read_input_tokens": 76533,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 698
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T12:52:24.844Z_
+
+<details><summary>↩ Tool result · `toolu_016VHF9Y3PqskG6UmAVwnAg4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: ablations.py [-h] --signal-dir SIGNAL_DIR --benchmark\\n                    {mmlu,gsm8k,arc_challenge} [--labels-file LABELS_FILE]\\n                    [--labels-dir LABELS_DIR] [--dosage DOSAGE] [--k K]\\n                    --output-dir OUTPUT_DIR\\n\\nexp-003 ablation variants for RRF aggregation\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --signal-dir SIGNAL_DIR\\n                        Signal output dir for one model-dosage\\n  --benchmark {mmlu,gsm8k,arc_challenge}\\n  --labels-file LABELS_FILE\\n                        Ground truth labels JSON (overrides --dosage)\\n  --labels-dir LABELS_DIR\\n  --dosage DOSAGE       Dosage key for auto-loading labels (e.g. d005)\\n  --k K\\n  --output-dir OUTPUT_DIR\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "81dd2a23-1d35-45a7-8c18-df3f896de05e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: ablations.py [-h] --signal-dir SIGNAL_DIR --benchmark\\\\n                    {mmlu,gsm8k,arc_challenge} [--labels-file LABELS_FILE]\\\\n                    [--labels-dir LABELS_DIR] [--dosage DOSAGE] [--k K]\\\\n                    --output-dir OUTPUT_DIR\\\\n\\\\nexp-003 ablation variants for RRF aggregation\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --signal-dir SIGNAL_DIR\\\\n                        Signal output dir for one model-dosage\\\\n  --benchmark {mmlu,gsm8k,arc_challenge}\\\\n  --labels-file LABELS_FILE\\\\n                        Ground truth labels JSON (overrides --dosage)\\\\n  --labels-dir LABELS_DIR\\\\n  --dosage DOSAGE       Dosage key for auto-loading labels (e.g. d005)\\\\n  --k K\\\\n  --output-dir OUTPUT_DIR\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: ablations.py [-h] --signal-dir SIGNAL_DIR --benchmark\\n                    {mmlu,gsm8k,arc_challenge} [--labels-file LABELS_FILE]\\n                    [--labels-dir LABELS_DIR] [--dosage DOSAGE] [--k K]\\n                    --output-dir OUTPUT_DIR\\n\\nexp-003 ablation variants for RRF aggregation\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --signal-dir SIGNAL_DIR\\n                        Signal output dir for one model-dosage\\n  --benchmark {mmlu,gsm8k,arc_challenge}\\n  --labels-file LABELS_FILE\\n                        Ground truth labels JSON (overrides --dosage)\\n  --labels-dir LABELS_DIR\\n  --dosage DOSAGE       Dosage key for auto-loading labels (e.g. d005)\\n  --k K\\n  --output-dir OUTPUT_DIR\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-14T12:52:26.840Z_
+
+<details><summary>↩ Tool result · `toolu_01FeBnvJkrwL1eMnczmgmCQw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: evaluate_rrf.py [-h] [--mock] [--signal-root SIGNAL_ROOT]\\n                       [--labels-dir LABELS_DIR] [--signal-dir SIGNAL_DIR]\\n                       [--benchmark {mmlu,gsm8k,arc_challenge}]\\n                       [--dosage DOSAGE] [--k K] --output-dir OUTPUT_DIR\\n                       [--all]\\n\\nexp-003: Evaluate RRF aggregation methods\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --mock                Run evaluation on synthetic mock data\\n  --signal-root SIGNAL_ROOT\\n  --labels-dir LABELS_DIR\\n  --signal-dir SIGNAL_DIR\\n                        Single model signal dir\\n  --benchmark {mmlu,gsm8k,arc_challenge}\\n  --dosage DOSAGE\\n  --k K\\n  --output-dir OUTPUT_DIR\\n  --all                 Evaluate all model-dosage-benchmark combos\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "0d5843c0-2f57-4700-9331-088978b72c38",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: evaluate_rrf.py [-h] [--mock] [--signal-root SIGNAL_ROOT]\\\\n                       [--labels-dir LABELS_DIR] [--signal-dir SIGNAL_DIR]\\\\n                       [--benchmark {mmlu,gsm8k,arc_challenge}]\\\\n                       [--dosage DOSAGE] [--k K] --output-dir OUTPUT_DIR\\\\n                       [--all]\\\\n\\\\nexp-003: Evaluate RRF aggregation methods\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --mock                Run evaluation on synthetic mock data\\\\n  --signal-root SIGNAL_ROOT\\\\n  --labels-dir LABELS_DIR\\\\n  --signal-dir SIGNAL_DIR\\\\n                        Single model signal dir\\\\n  --benchmark {mmlu,gsm8k,arc_challenge}\\\\n  --dosage DOSAGE\\\\n  --k K\\\\n  --output-dir OUTPUT_DIR\\\\n  --all                 Evaluate all model-dosage-benchmark combos\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: evaluate_rrf.py [-h] [--mock] [--signal-root SIGNAL_ROOT]\\n                       [--labels-dir LABELS_DIR] [--signal-dir SIGNAL_DIR]\\n                       [--benchmark {mmlu,gsm8k,arc_challenge}]\\n                       [--dosage DOSAGE] [--k K] --output-dir OUTPUT_DIR\\n                       [--all]\\n\\nexp-003: Evaluate RRF aggregation methods\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --mock                Run evaluation on synthetic mock data\\n  --signal-root SIGNAL_ROOT\\n  --labels-dir LABELS_DIR\\n  --signal-dir SIGNAL_DIR\\n                        Single model signal dir\\n  --benchmark {mmlu,gsm8k,arc_challenge}\\n  --dosage DOSAGE\\n  --k K\\n  --output-dir OUTPUT_DIR\\n  --all                 Evaluate all model-dosage-benchmark combos\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+3 个脚本 `--help` 通过。跑 mock 评估测试完整 pipeline。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "10c1cafc-5f1b-4339-9de4-6899d4f7ae71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WuY2TwQiemyLKhGX72dMJZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1587,
+      "cache_read_input_tokens": 77231,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1587
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019fKqTvp4Wyu3nzhBKBXR7n`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/contamcal-irt-calibration && /root/miniconda3/bin/python exp003/evaluate_rrf.py --mock --output-dir /tmp/exp003_mock 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "89f7ca16-40bb-490f-94e9-df12a3aba3b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WuY2TwQiemyLKhGX72dMJZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1587,
+      "cache_read_input_tokens": 77231,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1587
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-14T12:52:37.353Z_
+
+<details><summary>↩ Tool result · `toolu_019fKqTvp4Wyu3nzhBKBXR7n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 20:52:34,571 [INFO] === Mock Evaluation ===\\n2026-05-14 20:52:34,595 [INFO] Generated 1000 items (100 contaminated)\\n2026-05-14 20:52:34,647 [INFO] Calibrated weights: {'s1_embedding': 0.2774273838979162, 's2_minkpp': 0.2467544485018951, 's3_constat': 0.2530219127301883, 's4_selfcritique': 0.22279625487000027}\\n2026-05-14 20:52:34,745 [INFO] \\n| Method | AUC-ROC | Avg Precision | P@100 | P@500 |\\n|--------|---------|---------------|-------|-------|\\n| calibrated_rrf | 0.9999 | 0.9987 | 0.9700 | 0.2000 |\\n| degraded_2sig | 0.9791 | 0.8927 | 0.8000 | 0.2000 |\\n| fp_05pct_rank_avg | 0.9987 | 0.9891 | 0.9500 | 0.2000 |\\n| fp_05pct_rrf | 0.9984 | 0.9876 | 0.9300 | 0.2000 |\\n| fp_05pct_s1_embedding | 0.9647 | 0.6845 | 0.7100 | 0.2000 |\\n| fp_05pct_s2_minkpp | 0.9186 | 0.5430 | 0.5900 | 0.1940 |\\n| fp_05pct_s3_constat | 0.9357 | 0.5933 | 0.6300 | 0.1980 |\\n| fp_05pct_s4_selfcritique | 0.9068 | 0.5015 | 0.5500 | 0.1940 |\\n| fp_10pct_rank_avg | 0.9981 | 0.9843 | 0.9400 | 0.2000 |\\n| fp_10pct_rrf | 0.9955 | 0.9675 | 0.9000 | 0.2000 |\\n| fp_10pct_s1_embedding | 0.9569 | 0.6074 | 0.6900 | 0.2000 |\\n| fp_10pct_s2_minkpp | 0.9063 | 0.4507 | 0.5500 | 0.1940 |\\n| fp_10pct_s3_constat | 0.9245 | 0.5096 | 0.5800 | 0.1980 |\\n| fp_10pct_s4_selfcritique | 0.8946 | 0.4145 | 0.5300 | 0.1940 |\\n| fp_20pct_rank_avg | 0.9971 | 0.9760 | 0.9000 | 0.2000 |\\n| fp_20pct_rrf | 0.9880 | 0.9208 | 0.8000 | 0.2000 |\\n| fp_20pct_s1_embedding | 0.9318 | 0.4674 | 0.5300 | 0.2000 |\\n| fp_20pct_s2_minkpp | 0.8836 | 0.3519 | 0.4300 | 0.1940 |\\n| fp_20pct_s3_constat | 0.9042 | 0.4185 | 0.4900 | 0.1980 |\\n| fp_20pct_s4_selfcritique | 0.8737 | 0.3306 | 0.4100 | 0.1940 |\\n| rank_avg | 0.9987 | 0.9891 | 0.9500 | 0.2000 |\\n| rrf | 0.9998 | 0.9982 | 0.9700 | 0.2000 |\\n| single_s1_embedding | 0.9747 | 0.8519 | 0.7400 | 0.2000 |\\n| single_s2_minkpp | 0.9319 | 0.7345 | 0.6500 | 0.1940 |\\n| single_s3_constat | 0.9464 | 0.7534 | 0.6700 | 0.1980 |\\n| single_s4_selfcritique | 0.9167 | 0.6233 | 0.5900 | 0.1940 |\\n2026-05-14 20:52:35,400 [INFO] ROC plot saved to /tmp/exp003_mock/mock_roc_curves.png\\n2026-05-14 20:52:36,974 [INFO] Distribution plot saved to /tmp/exp003_mock/mock_score_dist.png\\n2026-05-14 20:52:37,135 [INFO] FP robustness plot saved to /tmp/exp003_mock/mock_fp_robustness.png\\n2026-05-14 20:52:37,135 [INFO] Mock evaluation complete. Results in /tmp/exp003_mock\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.77}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "1e9f7670-c01d-45c0-b36f-d91b01b42d18",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 20:52:34,571 [INFO] === Mock Evaluation ===\\\\n2026-05-14 20:52:34,595 [INFO] Generated 1000 items (100 contaminated)\\\\n2026-05-14 20:52:34,647 [INFO] Calibrated weights: {'s1_embedding': 0.2774273838979162, 's2_minkpp': 0.2467544485018951, 's3_constat': 0.2530219127301883, 's4_selfcritique': 0.22279625487000027}\\\\n2026-05-14 20:52:34,745 [INFO] \\\\n| Method | AUC-ROC | Avg Precision | P@100 | P@500 |\\\\n|--------|---------|---------------|-------|-------|\\\\n| calibrated_rrf | 0.9999 | 0.9987 | 0.9700 | 0.2000 |\\\\n| degraded_2sig | 0.9791 | 0.8927 | 0.8000 | 0.2000 |\\\\n| fp_05pct_rank_avg | 0.9987 | 0.9891 | 0.9500 | 0.2000 |\\\\n| fp_05pct_rrf | 0.9984 | 0.9876 | 0.9300 | 0.2000 |\\\\n| fp_05pct_s1_embedding | 0.9647 | 0.6845 | 0.7100 | 0.2000 |\\\\n| fp_05pct_s2_minkpp | 0.9186 | 0.5430 | 0.5900 | 0.1940 |\\\\n| fp_05pct_s3_constat | 0.9357 | 0.5933 | 0.6300 | 0.1980 |\\\\n| fp_05pct_s4_selfcritique | 0.9068 | 0.5015 | 0.5500 | 0.1940 |\\\\n| fp_10pct_rank_avg | 0.9981 | 0.9843 | 0.9400 | 0.2000 |\\\\n| fp_10pct_rrf | 0.9955 | 0.9675 | 0.9000 | 0.2000 |\\\\n| fp_10pct_s1_embedding | 0.9569 | 0.6074 | 0.6900 | 0.2000 |\\\\n| fp_10pct_s2_minkpp | 0.9063 | 0.4507 | 0.5500 | 0.1940 |\\\\n| fp_10pct_s3_constat | 0.9245 | 0.5096 | 0.5800 | 0.1980 |\\\\n| fp_10pct_s4_selfcritique | 0.8946 | 0.4145 | 0.5300 | 0.1940 |\\\\n| fp_20pct_rank_avg | 0.9971 | 0.9760 | 0.9000 | 0.2000 |\\\\n| fp_20pct_rrf | 0.9880 | 0.9208 | 0.8000 | 0.2000 |\\\\n| fp_20pct_s1_embedding | 0.9318 | 0.4674 | 0.5300 | 0.2000 |\\\\n| fp_20pct_s2_minkpp | 0.8836 | 0.3519 | 0.4300 | 0.1940 |\\\\n| fp_20pct_s3_constat | 0.9042 | 0.4185 | 0.4900 | 0.1980 |\\\\n| fp_20pct_s4_selfcritique | 0.8737 | 0.3306 | 0.4100 | 0.1940 |\\\\n| rank_avg | 0.9987 | 0.9891 | 0.9500 | 0.2000 |\\\\n| rrf | 0.9998 | 0.9982 | 0.9700 | 0.2000 |\\\\n| single_s1_embedding | 0.9747 | 0.8519 | 0.7400 | 0.2000 |\\\\n| single_s2_minkpp | 0.9319 | 0.7345 | 0.6500 | 0.1940 |\\\\n| single_s3_constat | 0.9464 | 0.7534 | 0.6700 | 0.1980 |\\\\n| single_s4_selfcritique | 0.9167 | 0.6233 | 0.5900 | 0.1940 |\\\\n2026-05-14 20:52:35,400 [INFO] ROC plot saved to /tmp/exp003_mock/mock_roc_curves.png\\\\n2026-05-14 20:52:36,974 [INFO] Distribution plot saved to /tmp/exp003_mock/mock_score_dist.png\\\\n2026-05-14 20:52:37,135 [INFO] FP robustness plot saved to /tmp/exp003_mock/mock_fp_robustness.png\\\\n2026-05-14 20:52:37,135 [INFO] Mock evaluation complete. Results in /tmp/exp003_mock\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.77}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 20:52:34,571 [INFO] === Mock Evaluation ===\\n2026-05-14 20:52:34,595 [INFO] Generated 1000 items (100 contaminated)\\n2026-05-14 20:52:34,647 [INFO] Calibrated weights: {'s1_embedding': 0.2774273838979162, 's2_minkpp': 0.2467544485018951, 's3_constat': 0.2530219127301883, 's4_selfcritique': 0.22279625487000027}\\n2026-05-14 20:52:34,745 [INFO] \\n| Method | AUC-ROC | Avg Precision | P@100 | P@500 |\\n|--------|---------|---------------|-------|-------|\\n| calibrated_rrf | 0.9999 | 0.9987 | 0.9700 | 0.2000 |\\n| degraded_2sig | 0.9791 | 0.8927 | 0.8000 | 0.2000 |\\n| fp_05pct_rank_avg | 0.9987 | 0.9891 | 0.9500 | 0.2000 |\\n| fp_05pct_rrf | 0.9984 | 0.9876 | 0.9300 | 0.2000 |\\n| fp_05pct_s1_embedding | 0.9647 | 0.6845 | 0.7100 | 0.2000 |\\n| fp_05pct_s2_minkpp | 0.9186 | 0.5430 | 0.5900 | 0.1940 |\\n| fp_05pct_s3_constat | 0.9357 | 0.5933 | 0.6300 | 0.1980 |\\n| fp_05pct_s4_selfcritique | 0.9068 | 0.5015 | 0.5500 | 0.1940 |\\n| fp_10pct_rank_avg | 0.9981 | 0.9843 | 0.9400 | 0.2000 |\\n| fp_10pct_rrf | 0.9955 | 0.9675 | 0.9000 | 0.2000 |\\n| fp_10pct_s1_embedding | 0.9569 | 0.6074 | 0.6900 | 0.2000 |\\n| fp_10pct_s2_minkpp | 0.9063 | 0.4507 | 0.5500 | 0.1940 |\\n| fp_10pct_s3_constat | 0.9245 | 0.5096 | 0.5800 | 0.1980 |\\n| fp_10pct_s4_selfcritique | 0.8946 | 0.4145 | 0.5300 | 0.1940 |\\n| fp_20pct_rank_avg | 0.9971 | 0.9760 | 0.9000 | 0.2000 |\\n| fp_20pct_rrf | 0.9880 | 0.9208 | 0.8000 | 0.2000 |\\n| fp_20pct_s1_embedding | 0.9318 | 0.4674 | 0.5300 | 0.2000 |\\n| fp_20pct_s2_minkpp | 0.8836 | 0.3519 | 0.4300 | 0.1940 |\\n| fp_20pct_s3_constat | 0.9042 | 0.4185 | 0.4900 | 0.1980 |\\n| fp_20pct_s4_selfcritique | 0.8737 | 0.3306 | 0.4100 | 0.1940 |\\n| rank_avg | 0.9987 | 0.9891 | 0.9500 | 0.2000 |\\n| rrf | 0.9998 | 0.9982 | 0.9700 | 0.2000 |\\n| single_s1_embedding | 0.9747 | 0.8519 | 0.7400 | 0.2000 |\\n| single_s2_minkpp | 0.9319 | 0.7345 | 0.6500 | 0.1940 |\\n| single_s3_constat | 0.9464 | 0.7534 | 0.6700 | 0.1980 |\\n| single_s4_selfcritique | 0.9167 | 0.6233 | 0.5900 | 0.1940 |\\n2026-05-14 20:52:35,400 [INFO] ROC plot saved to /tmp/exp003_mock/mock_roc_curves.png\\n2026-05-14 20:52:36,974 [INFO] Distribution plot saved to /tmp/exp003_mock/mock_score_dist.png\\n2026-05-14 20:52:37,135 [INFO] FP robustness plot saved to /tmp/exp003_mock/mock_fp_robustness.png\\n2026-05-14 20:52:37,135 [INFO] Mock evaluation complete. Results in /tmp/exp003_mock\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.77}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+Mock 评估完整通过。验证生成的输出文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "35b9a655-7290-49ab-bb05-c86f3e4e0044",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6isze7WrepKryBmuf4HqF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1675,
+      "cache_read_input_tokens": 78818,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1675
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016Meh56obNULvbtQJ2b7qmE`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /tmp/exp003_mock/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "fdde9e13-3065-4e0b-8f68-22e8783b57f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6isze7WrepKryBmuf4HqF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1675,
+      "cache_read_input_tokens": 78818,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1675
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-14T12:52:42.585Z_
+
+<details><summary>↩ Tool result · `toolu_016Meh56obNULvbtQJ2b7qmE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 380\\ndrwxr-xr-x 2 root root    115 May 14 20:52 .\\ndrwxrwxrwt 1 root root  28672 May 14 20:52 ..\\n-rw-r--r-- 1 root root  88729 May 14 20:52 mock_fp_robustness.png\\n-rw-r--r-- 1 root root   4263 May 14 20:52 mock_metrics.json\\n-rw-r--r-- 1 root root  99467 May 14 20:52 mock_roc_curves.png\\n-rw-r--r-- 1 root root 141153 May 14 20:52 mock_score_dist.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "514f3e83-bba0-4d8b-a784-fa68002d8de5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 380\\\\ndrwxr-xr-x 2 root root    115 May 14 20:52 .\\\\ndrwxrwxrwt 1 root root  28672 May 14 20:52 ..\\\\n-rw-r--r-- 1 root root  88729 May 14 20:52 mock_fp_robustness.png\\\\n-rw-r--r-- 1 root root   4263 May 14 20:52 mock_metrics.json\\\\n-rw-r--r-- 1 root root  99467 May 14 20:52 mock_roc_curves.png\\\\n-rw-r--r-- 1 root root 141153 May 14 20:52 mock_score_dist.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 380\\ndrwxr-xr-x 2 root root    115 May 14 20:52 .\\ndrwxrwxrwt 1 root root  28672 May 14 20:52 ..\\n-rw-r--r-- 1 root root  88729 May 14 20:52 mock_fp_robustness.png\\n-rw-r--r-- 1 root root   4263 May 14 20:52 mock_metrics.json\\n-rw-r--r-- 1 root root  99467 May 14 20:52 mock_roc_curves.png\\n-rw-r--r-- 1 root root 141153 May 14 20:52 mock_score_dist.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+也测一下 RRF 聚合在真实 exp-002 数据上能否跑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "d293dfeb-db92-4fee-9613-16678a19306c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K2u9eBZ1pvFibtx6K4ojGn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 388,
+      "cache_read_input_tokens": 80493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 388
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0147WRsmWLFu1GAHXKZDZcim`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/contamcal-irt-calibration && /root/miniconda3/bin/python exp003/rrf_aggregation.py --signal-dir /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42 --benchmarks mmlu --output-dir /tmp/exp003_real_test 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "086424b2-d57a-4693-80b8-2bc8b1e38758",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K2u9eBZ1pvFibtx6K4ojGn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 388,
+      "cache_read_input_tokens": 80493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 388
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-14T12:52:49.888Z_
+
+<details><summary>↩ Tool result · `toolu_0147WRsmWLFu1GAHXKZDZcim`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 20:52:49,792 [INFO] Saved 14042 items to /tmp/exp003_real_test/rrf_scores_Qwen2.5-0.5B_d005_s42_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "1032e985-8e00-4d73-b5a4-ae110f5772f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 20:52:49,792 [INFO] Saved 14042 items to /tmp/exp003_real_test/rrf_scores_Qwen2.5-0.5B_d005_s42_mmlu.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 20:52:49,792 [INFO] Saved 14042 items to /tmp/exp003_real_test/rrf_scores_Qwen2.5-0.5B_d005_s42_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Uadp2RKCmex6EBcqzBCSXJ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -20 /tmp/exp003_real_test/rrf_scores_Qwen2.5-0.5B_d005_s42_mmlu.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "568f640b-b899-472a-9f69-5670b8fb829d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fe7Ts7Ny45Y8uBExM3Bmsu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 342,
+      "cache_read_input_tokens": 80881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 342
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-14T12:52:53.950Z_
+
+<details><summary>↩ Tool result · `toolu_01Uadp2RKCmex6EBcqzBCSXJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": 0,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"exposure\\\": 9.63607200211762e-05,\\n    \\\"rrf_raw\\\": 7.248477819657872e-05,\\n    \\\"rank_s1_embedding\\\": 13736\\n  },\\n  {\\n    \\\"index\\\": 1,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"exposure\\\": 8.128330257140105e-05,\\n    \\\"rrf_raw\\\": 7.223867658744492e-05,\\n    \\\"rank_s1_embedding\\\": 13783\\n  },\\n  {\\n    \\\"index\\\": 2,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"exposure\\\": 0.0007656818146972071,\\n    \\\"rrf_raw\\\": 8.340979230961715e-05,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "b225a0f3-4883-412e-b35b-729754cab32d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 0,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"exposure\\\\\\\": 9.63607200211762e-05,\\\\n    \\\\\\\"rrf_raw\\\\\\\": 7.248477819657872e-05,\\\\n    \\\\\\\"rank_s1_embedding\\\\\\\": 13736\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 1,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"exposure\\\\\\\": 8.128330257140105e-05,\\\\n    \\\\\\\"rrf_raw\\\\\\\": 7.223867658744492e-05,\\\\n    \\\\\\\"rank_s1_embedding\\\\\\\": 13783\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 2,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"exposure\\\\\\\": 0.0007656818146972071,\\\\n    \\\\\\\"rrf_raw\\\\\\\": 8.340979230961715e-05,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": 0,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"exposure\\\": 9.63607200211762e-05,\\n    \\\"rrf_raw\\\": 7.248477819657872e-05,\\n    \\\"rank_s1_embedding\\\": 13736\\n  },\\n  {\\n    \\\"index\\\": 1,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"exposure\\\": 8.128330257140105e-05,\\n    \\\"rrf_raw\\\": 7.223867658744492e-05,\\n    \\\"rank_s1_embedding\\\": 13783\\n  },\\n  {\\n    \\\"index\\\": 2,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"exposure\\\": 0.0007656818146972071,\\n    \\\"rrf_raw\\\": 8.340979230961715e-05,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+全部通过。exp-003 代码已部署并验证完毕。
+
+**产出文件**（`/root/contamcal-irt-calibration/exp003/`）：
+
+| 文件 | 行数 | 功能 |
+|------|------|------|
+| `rrf_aggregation.py` | 318 | RRF 主聚合脚本，支持单模型/批量/exp-006 exposure 输出 |
+| `ablations.py` | 345 | 5 种 ablation：rank_avg, single-signal×4, calibrated RRF, FP injection, degraded 2-signal |
+| `evaluate_rrf.py` | 393 | AUC/AP/P@k 评估 + ROC/分布/FP robustness 图表，支持 `--mock` 测试 |
+| `README.md` | — | I/O 格式和用法说明 |
+
+**Mock 测试结果**（1000 items, 100 contaminated）：
+- RRF AUC=0.9998, rank_avg=0.9987, calibrated_rrf=0.9999
+- 单信号 AUC 范围 0.917–0.975
+- degraded_2sig AUC=0.979
+- FP 20% 注入后 RRF AUC 仍达 0.988，单信号降至 0.87–0.93 → 验证了 RRF 的鲁棒性
+
+**真实数据测试**：成功处理 Qwen2.5-0.5B_d005_s42 的 14042 条 MMLU 信号（目前只有 embedding 一个信号可用，等 exp-002 完成后所有信号都会参与融合）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "uuid": "6b1ab455-eb62-4b1d-9579-a0ca9ca37ecd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012MiSLHmqoev6d3jxMNqVJg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 81223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 86_
+
+全部通过。exp-003 代码已部署并验证完毕。
+
+**产出文件**（`/root/contamcal-irt-calibration/exp003/`）：
+
+| 文件 | 行数 | 功能 |
+|------|------|------|
+| `rrf_aggregation.py` | 318 | RRF 主聚合脚本，支持单模型/批量/exp-006 exposure 输出 |
+| `ablations.py` | 345 | 5 种 ablation：rank_avg, single-signal×4, calibrated RRF, FP injection, degraded 2-signal |
+| `evaluate_rrf.py` | 393 | AUC/AP/P@k 评估 + ROC/分布/FP robustness 图表，支持 `--mock` 测试 |
+| `README.md` | — | I/O 格式和用法说明 |
+
+**Mock 测试结果**（1000 items, 100 contaminated）：
+- RRF AUC=0.9998, rank_avg=0.9987, calibrated_rrf=0.9999
+- 单信号 AUC 范围 0.917–0.975
+- degraded_2sig AUC=0.979
+- FP 20% 注入后 RRF AUC 仍达 0.988，单信号降至 0.87–0.93 → 验证了 RRF 的鲁棒性
+
+**真实数据测试**：成功处理 Qwen2.5-0.5B_d005_s42 的 14042 条 MMLU 信号（目前只有 embedding 一个信号可用，等 exp-002 完成后所有信号都会参与融合）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 606530,
+  "duration_api_ms": 594849,
+  "num_turns": 36,
+  "stop_reason": "end_turn",
+  "session_id": "14433c42-4407-4634-9dc5-5c77029c8c03",
+  "total_cost_usd": 1.82020925,
+  "usage": {
+    "input_tokens": 21,
+    "cache_creation_input_tokens": 69873,
+    "cache_read_input_tokens": 861092,
+    "output_tokens": 38029,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 69873,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 481,
+        "cache_read_input_tokens": 81223,
+        "cache_creation_input_tokens": 491,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 491
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2017,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002127,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 21,
+      "outputTokens": 38029,
+      "cacheReadInputTokens": 861092,
+      "cacheCreationInputTokens": 69873,
+      "webSearchRequests": 0,
+      "costUSD": 1.8180822499999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "b2a6ac68-9c22-4ad8-889b-db3152278ade"
+}
+```
+
+</details>
+
+---

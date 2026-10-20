@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f9fb90695f6c4b23e34",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops cuda0 fill llama d005 eval",
+  "task_key": "worker_ops_cuda0-fill-llama-d005-eval_20260516T175222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda0-fill-llama-d005-eval_20260516T175222_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "cb79881563cab82b1a254db8022ea7ab9e2dfcd38311dddd369e80f2932daf6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**exp_001_sft_llama32_3B_d005_s42 (SFT)**:\n- 训练完成 3177/3177 steps (1 epoch, 2h15m)\n- train_loss=1.5206, mean_token_accuracy=0.6599\n- LoRA adapter 完好保存，merge 因磁盘满失败（`/root/autodl-tmp/` 94% 占用，仅 11G 空闲）\n- Registry 已更新：conclusion=success, metrics 已填入\n\n**exp_001_eval_llama32_3B_d005_s42 (Eval)**:\n- 已在 cuda:0 启动（PID 825638, tmux session `eval_llama_d005`）\n- 命令调整：用 `--model-path` (base Llama-3.2-3B) + `--adapter-path` (LoRA adapter) 替代不完整的 merged 模型，evaluate.py 会在内存中 merge_and_unload\n- Benchmarks: mmlu, gsm8k, arc_challenge, humaneval (mc-format=aligned)\n- Registry 状态：RUNNING\n\n**注意**：数据盘仅剩 11G，后续如果需要 merge 其他模型或存 eval 结果需关注磁盘空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda0-fill-llama-d005-eval.md"
+}

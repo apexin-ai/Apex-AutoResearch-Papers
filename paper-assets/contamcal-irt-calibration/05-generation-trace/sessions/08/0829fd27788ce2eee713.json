@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0829fd27788ce2eee713",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code bootstrap stats prep",
+  "task_key": "worker_code_bootstrap-stats-prep_20260519T160607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap-stats-prep_20260519T160607_result.json",
+    "occurrence": 1,
+    "bytes": 1582,
+    "sha256": "cc841161850bbdd2455af039d838d5e46be88a21cda2544af0707ac0458812eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已完成，部署在两个位置：\n\n**本地**: `artifacts/bootstrap_profile_stability.py`\n**cqa1**: `/root/contamcal-irt-calibration/analysis/bootstrap_profile_stability.py`\n\n**运行方式**（cqa1 eval 全部完成后）：\n\n```bash\n# westd s42 全量 5-model 分析\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython /root/contamcal-irt-calibration/analysis/bootstrap_profile_stability.py \\\n    --data-dir /root/autodl-tmp/exp001/eval_results_v2/ \\\n    --benchmark mmlu --n-bootstrap 10000 \\\n    --output-dir /root/contamcal-irt-calibration/analysis/results/\n\n# cqa1 s123 单模型（等 d100_s123 eval 完成后）\npython bootstrap_profile_stability.py \\\n    --data-dir /root/autodl-tmp/exp001/eval_results_v2/ \\\n    --seed-suffix _s123 --models qwen7b \\\n    --output-dir /root/contamcal-irt-calibration/analysis/results/\n```\n\n**当前状态**: cqa1 上 `qwen7b_d100_s123` 目录为空（eval 未完成），其余 d000-d050 数据就绪。westd 上全部 25 个 model×dosage 数据完整。\n\n**脚本关键设计**:\n- **Paired bootstrap**: 同一组 item indices 用于所有模型和 dosage，保留 cross-model 相关性\n- **Vectorized classification**: numpy 向量化 pattern 分类，避免 Python 循环\n- **两种数据源**: 优先读 `correctness_matrix.json`（紧凑），fallback `item_responses.json`\n- **Threshold CI**: 线性插值找 benefit/harm 分界点，对每次 bootstrap 计算 crossing\n- **输出**: JSON 结果 + 2 张 PNG（delta 分布 + dose-response CI bands）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-stats-prep.md"
+}

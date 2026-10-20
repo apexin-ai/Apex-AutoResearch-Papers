@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2328bb60761e46928661",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis mmlu domain gamma n24 with 3B",
+  "task_key": "worker_analysis_mmlu_domain_gamma_n24_with_3B_20260516T112049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmlu_domain_gamma_n24_with_3B_20260516T112049_result.json",
+    "occurrence": 1,
+    "bytes": 199,
+    "sha256": "f3536f9ccf8ab0a3e6937fba4558d5a76afbf166a94ebc5090bf3b3480a216fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MCMC 运行中：STEM_Math 已完成，STEM_Science 刚采样完毕在做 summary。约 20 min/domain，剩余 6 个 domain，预计总共还需 ~2h。30 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mmlu-domain-gamma-n24-with-3b.md"
+}

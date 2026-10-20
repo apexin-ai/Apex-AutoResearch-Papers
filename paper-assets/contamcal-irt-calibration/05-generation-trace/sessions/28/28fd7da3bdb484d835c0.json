@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28fd7da3bdb484d835c0",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "check cpu irt status",
+  "task_key": "worker_check_cpu-irt-status_20260515T001803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cpu-irt-status_20260515T001803_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "d773eadf178069e5901a600f848f86be657248148c45e4b8d82dd486ad793e38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个任务全部 **running**：\n\n| 任务 | 状态 | 进度 |\n|------|------|------|\n| **exp006-oracle-gsm8k-extended** | running | 4 chains, ~50-53% sampling (warmup 2000 + samples 4000 = 6000 total), ~3.6 it/s, 预计还需 ~14 min |\n| **exp006-pooled-s1only-gsm8k** | running | 刚开始 warmup, 4 chains 约 5-10% warmup (200/2000), ~4-5 it/s |\n| **exp006-pooled-s1only-arc** | running | chains 1&2 在 65-70% sampling, chains 3&4 在 55-60% sampling (总共 2000 samples), ~7.5 it/s, 预计还需 ~2-3 min |\n\n**预计完成顺序**: arc (最快, ~2-3 min) → oracle-extended (~14 min) → s1only-gsm8k (最慢, 刚开始 warmup)\n\n另外注意：服务器上还有 2 个其他 exp006 进程在跑：\n- `results_pooled_05B_15B_gsm8k_v3_rrf`\n- `results_pooled_05B_15B_2pl_ablation`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cpu-irt-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "120e18d098899c2cfa60",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh westd gemma d000 v2 eval",
+  "task_key": "worker_ssh_westd-gemma-d000-v2-eval_20260519T112732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd-gemma-d000-v2-eval_20260519T112732_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "6b40aef24597253f0c8e698ee87d86f7621189d16808cf7d08c606e3c1e6466b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:2 正在跑 Qwen2.5-7B d100 eval，1 分钟后再检查。命令已准备好：\n\n```\nCUDA_VISIBLE_DEVICES=2 ... evaluate.py \\\n  --model-path /root/autodl-tmp/models/gemma-2-9b \\\n  --adapter-path /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d000_s42/lora_adapter \\\n  --benchmarks mmlu arc_challenge --mc-format aligned \\\n  --output-dir /root/autodl-tmp/exp001/eval_results_v2/gemma2_d000\n```\n\n确认：d000 有 adapter（lora_alpha=32，合规），使用 `--adapter-path`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-gemma-d000-v2-eval.md"
+}

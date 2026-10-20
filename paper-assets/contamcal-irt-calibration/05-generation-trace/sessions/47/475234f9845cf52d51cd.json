@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "475234f9845cf52d51cd",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "audit rrf naming dedup",
+  "task_key": "worker_audit_rrf_naming_dedup_20260516T110942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_rrf_naming_dedup_20260516T110942_result.json",
+    "occurrence": 1,
+    "bytes": 4181,
+    "sha256": "adbded5227057855ad62e815346e31c00937b3d56c4d6b060c0caf9f290b7ef8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "发现关键线索：eval_results 使用 `_s42_a32` 命名，而 signals 使用 `_a32_s42` 命名。RRF 输出包含两种命名。\n\n---\n\n## 审计报告：RRF 聚合中 3B 信号目录命名重复\n\n### 1. 所有 3B 信号目录 + checkpoint 来源\n\n| 信号目录 | Blocklist/Skip | 状态 |\n|----------|---------------|------|\n| `Qwen2.5-3B_d000_a32_s42` | — | 活跃，有 merged (3 bench) |\n| `Qwen2.5-3B_d000_v2_s42` | ALPHA16_BLOCKLIST | 已屏蔽 |\n| `Qwen2.5-3B_d005_a32_s42` | — | 活跃，有 merged (3 bench) |\n| `Qwen2.5-3B_d005_s123` | — | 活跃，部分信号 |\n| `Qwen2.5-3B_d005_s42` | ALPHA16_BLOCKLIST | 已屏蔽 |\n| `Qwen2.5-3B_d025_s123` | — | 活跃 |\n| `Qwen2.5-3B_d025_s42` | ALPHA16_BLOCKLIST | 已屏蔽 |\n| `Qwen2.5-3B_d025_s42_DEPRECATED_alpha16` | SKIP (DEPRECATED) | 已屏蔽 |\n| `Qwen2.5-3B_d025_v3_s42` | — | 活跃 |\n| `Qwen2.5-3B_d100_a32_s123` | — | 活跃 |\n| `Qwen2.5-3B_d100_a32_s42` | — | 活跃 |\n| `Qwen2.5-3B_d100_s42` | ALPHA16_BLOCKLIST | 已屏蔽 |\n\n无 symlink。ALPHA16_BLOCKLIST 和 SKIP_PATTERNS 正确覆盖了 5 个 alpha=16 和 1 个 DEPRECATED 目录。\n\n### 2. 重复确认：YES\n\n`exposure_scores.json` 包含 **25 个 respondent 条目**，其中 2 对是重复：\n\n| 条目 A (信号目录命名) | 条目 B (eval 目录命名) | 数据一致性 |\n|---|---|---|\n| `Qwen2.5-3B_d000_a32_s42` | `Qwen2.5-3B_d000_s42_a32` | **完全相同** (首值 `0.00654886448200862`) |\n| `Qwen2.5-3B_d005_a32_s42` | `Qwen2.5-3B_d005_s42_a32` | **完全相同** (首值 `0.0062049003275283215`) |\n\n**根因**：信号目录命名为 `_a32_s42`（alpha 在前），eval_results 命名为 `_s42_a32`（seed 在前）。RRF 脚本从信号目录生成了 `_a32_s42` 条目；`_s42_a32` 条目来源不明——当前信号目录中 **不存在** `_s42_a32` 目录，推测是之前某次运行时存在同名目录（后被删除/重命名），产出被合并到当前 JSON。\n\n### 3. alpha=16 是否混入\n\n**否**。ALPHA16_BLOCKLIST 正确屏蔽了全部 5 个 alpha=16 目录。活跃的 `_a32_s42` 目录名中 `a32` 标识 alpha=32。无法直接验证 adapter_config.json（服务器上未找到 SFT model 文件），但信号文件中的 `sft_data_path` 一致指向正确的 dosage 数据。\n\n### 4. RRF 输出实际 respondent（25 条，含 2 对重复）\n\n```\nQwen2.5-0.5B_d000_s123     Qwen2.5-1.5B_d000_s123     Qwen2.5-3B_d000_a32_s42\nQwen2.5-0.5B_d000_s42      Qwen2.5-1.5B_d000_s42      Qwen2.5-3B_d005_a32_s42\nQwen2.5-0.5B_d005_s123     Qwen2.5-1.5B_d005_s123     Qwen2.5-3B_d005_s123\nQwen2.5-0.5B_d005_s42      Qwen2.5-1.5B_d005_s42      Qwen2.5-3B_d025_s123\nQwen2.5-0.5B_d025_s123     Qwen2.5-1.5B_d025_s123     Qwen2.5-3B_d025_v3_s42\nQwen2.5-0.5B_d025_s42      Qwen2.5-1.5B_d025_s42      Qwen2.5-3B_d100_a32_s123\nQwen2.5-0.5B_d100_s123     Qwen2.5-1.5B_d100_s123     Qwen2.5-3B_d100_a32_s42\nQwen2.5-0.5B_d100_s42      Qwen2.5-1.5B_d100_s42      Qwen2.5-3B_d000_s42_a32  ← 重复\n                                                         Qwen2.5-3B_d005_s42_a32  ← 重复\n```\n\n`exposure_aggregated.json` 的均值基于 25 条（含重复）计算，3B d000/d005 被双倍加权。\n\n### 5. 结论\n\n**RRF `exposure_scores.json` 有污染，需要重跑或手动修复。**\n\n- **影响程度**：\n  - `run_pooled_rrf_irt.py`（per-model lookup）：**不受影响**——模型列表来自 eval_results，按 key 精确匹配 rrf_data，多余条目被忽略\n  - `exposure_aggregated.json`（跨模型均值）：**受影响**——25 个模型参与平均而非 23 个，3B d000/d005 双倍权重\n  - 任何直接遍历 `exposure_scores.json` 全部 key 的下游代码：**受影响**\n\n- **修复方案**：删除 `_s42_a32` 两个条目后重新生成聚合文件，或重跑 `rrf_aggregation.py --generate-exposure`（当前信号目录已无 `_s42_a32`，重跑自然不会产生重复）\n\n- **命名不一致根因**：eval_results 用 `_s42_a32`（seed 先 alpha 后），signals 用 `_a32_s42`（alpha 先 seed 后）。建议统一为一种命名规范并在 `_DIR_RE` 正则和 `strip_aligned` 中显式处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-rrf-naming-dedup.md"
+}

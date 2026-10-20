@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33aaf2772dccf30b73a2",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "submit eval 05B d100 resubmit",
+  "task_key": "worker_submit_eval_05B_d100_resubmit_20260514T144243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_eval_05B_d100_resubmit_20260514T144243_result.json",
+    "occurrence": 1,
+    "bytes": 2113,
+    "sha256": "37fbfce425a9e788585bae8357e912ec4341ed6e1c8941932da72626bcf9089d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "成功启动，MMLU 已在跑（5%, 80 it/s），离线模式直接用缓存，无网络延迟。\n\n---\n\n## 产出汇总\n\n### 1. GPU 状态表\n\n| GPU | VRAM | Task | 进度 | 预计剩余 |\n|-----|------|------|------|----------|\n| **0** | 14365/24564 MiB (65%) | 1.5B d025 SFT (tmux: sft_15B_d025) | 13% (429/3384 steps, 3.76s/step) | **~3h05m** |\n| **1** | 5857/24564 MiB (52%) | 1.5B aligned batch eval (PID 336750, 5h24m) | d005 aligned GSM8K 92% (1221/1319) | 完成 d005 ~12min，后续 d100+d025 各 original+para ≈ **4×2.5h，将再次超时** |\n| **2** | 1302/24564 MiB | **0.5B d100 aligned+para_aligned** (刚提交) | MMLU 5% (740/14042, 80it/s) | d100_aligned ~2h, d100_para_aligned ~2h, **总计 ~4h** |\n| **3** | 8985/24564 MiB (68%) | 3B d100 aligned eval (PID 362942, 2h36m) | MMLU ✓ (64.17%), GSM8K 90% (1191/1319) | GSM8K ~16min + arc + humaneval ≈ **~1.5h** |\n| **4** | 8985/24564 MiB (69%) | 3B d005 aligned eval (PID 373931, 1h33m) | MMLU ✓ (63.45%), GSM8K 52% (690/1319) | GSM8K ~1h18m + arc + humaneval ≈ **~2.5h** |\n| **5** | 3695/24564 MiB (36%) | 0.5B d025 aligned eval (PID 374947, 1h28m) | GSM8K 67% (881/1319) | GSM8K ~37min + arc + humaneval ≈ **~1h** |\n\n### 2. d100_aligned eval 提交确认\n\n- **tmux session**: `eval_05B_d100_aligned`\n- **GPU**: 2 (`CUDA_VISIBLE_DEVICES=2`)\n- **PID**: 389338（GPU 进程已确认加载）\n- **环境变量**: `HF_HUB_OFFLINE=1`, `HF_DATASETS_OFFLINE=1`（避免 HF 网络超时）\n- **timeout**: 4h per run\n- **d100_para_aligned**: 已用 `&&` 串行链接在同一 tmux session，d100_aligned 完成后自动启动\n\n### 3. d100_para_aligned 建议\n\n已自动串行排队在 GPU 2 上，无需额外操作。预计 ~2h 后 d100_aligned 完成时自动启动。\n\n### 4. 风险提示\n\n**GPU 1 的 1.5B batch eval 将再次超时**：36000s timeout 剩余 ~4.6h，但还有 4 轮 eval（d100 original/para + d025 original/para），每轮 ~2.5h，总共需 ~10h。建议 batch 完成 d005 后手动拆分剩余任务到空闲 GPU（GPU 3 预计 ~1.5h 后释放，GPU 5 ~1h 后释放）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-eval-05b-d100-resubmit.md"
+}

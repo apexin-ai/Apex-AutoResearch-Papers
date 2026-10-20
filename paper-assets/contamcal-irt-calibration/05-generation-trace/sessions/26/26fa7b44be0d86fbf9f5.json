@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26fa7b44be0d86fbf9f5",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops fisher heatmap restart",
+  "task_key": "worker_ops_fisher-heatmap-restart_20260516T204721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fisher-heatmap-restart_20260516T204721_result.json",
+    "occurrence": 1,
+    "bytes": 253,
+    "sha256": "8f34526cd0da10a85b735a024e78a8b7f91de05735d8fc2e6726478ec6ec11ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fisher heatmap 已成功重启：\n\n- **主进程 PID**: 862089 + 8 个 worker 子进程\n- **纯 CPU 运行**（`CUDA_VISIBLE_DEVICES=\"\"`），不占 GPU\n- CmdStan 采样链已在执行，已完成的 7 个 conditions 会自动跳过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fisher-heatmap-restart.md"
+}

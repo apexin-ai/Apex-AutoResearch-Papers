@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "02d7ecf26f0ed85d79d9",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops evaluate py sync and reeval",
+  "task_key": "worker_ops_evaluate-py-sync-and-reeval_20260519T180333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_evaluate-py-sync-and-reeval_20260519T180333.log",
+    "occurrence": 1,
+    "bytes": 834604,
+    "sha256": "902903716d6ad598157b2c165178eeb2543b238dbad96241218bf04fc35deeec"
+  },
+  "statistics": {
+    "messages": 275,
+    "user_turns": 2,
+    "tool_calls": 97,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 2,
+      "assistant": 65,
+      "tool_call": 97,
+      "tool_result": 97,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 190,
+      "chunks": [
+        {
+          "path": "02d7ecf26f0ed85d79d9-part-0001.json",
+          "message_count": 161
+        },
+        {
+          "path": "02d7ecf26f0ed85d79d9-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 74,
+      "chunks": [
+        {
+          "path": "02d7ecf26f0ed85d79d9-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "02d7ecf26f0ed85d79d9-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-evaluate-py-sync-and-reeval.md"
+}

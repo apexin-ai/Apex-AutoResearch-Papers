@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15fff1e14bf45d7e8ead",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code exp 006 irt calibration",
+  "task_key": "worker_code_exp-006-irt-calibration_20260513T174017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-006-irt-calibration_20260513T174017_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "17f1b6356500a1dc1adedc0b16ecef142942a94b594825e503d7831ee2b48f5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "7 个文件全部创建完成：\n\n| 文件 | 说明 |\n|------|------|\n| `contam_irt_4pl_me.stan` | 4PL+γ + measurement error (tau latent + sigma_e jointly estimated) + generated quantities (calibrated_score, log_lik) |\n| `contam_irt_4pl_simple.stan` | 4PL+γ 无 ME (ablation baseline) + generated quantities |\n| `contam_irt_2pl.stan` | 2PL+γ (baseline 2 用) + bernoulli_logit + generated quantities |\n| `fit_irt.py` | IRT fitting 主脚本，`--model-type me/simple/2pl`，CmdStanPy NUTS 4chains×2000samples，收敛诊断 (Rhat/ESS/divergent)，输出 posterior summary + calibrated CSV |\n| `compute_baselines.py` | 7 baselines (B0-B6)，B2/B3 用 Stan fit，B1/B4/B6 带 bootstrap CI |\n| `evaluate_calibration.py` | 5 metrics (MAE/Coverage/Sharpness/Kendall τ/Dose-response) + bootstrap 95% CI + LaTeX table 输出 |\n| `run_exp006.sh` | 编排脚本，per-benchmark fit + baselines + evaluate + aggregate |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-006-irt-calibration.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bb40e0d57d08b85de78",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu0 kill and submit para",
+  "task_key": "worker_ops_gpu0-kill-and-submit-para_20260515T000428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu0-kill-and-submit-para_20260515T000428_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "a34b4b47f4cdc65647dabbfe9cb44f827ca2eab9e6ba5e6578f49f73872e1fbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 步骤 | 结果 |\n|------|------|\n| Kill PID 461879 | 进程已不存在（kill 前已自行退出） |\n| 清理空目录 | `Qwen2.5-3B_d100_v2_s42_aligned/` 已删除（空目录） |\n| GPU 0 状态 | 空闲 → 已占用 |\n| 提交 para eval | PID 470062, GPU 0, 7122 MiB, 正在跑 paraphrased MMLU |\n| Registry | `exp_001_eval_3B_d100_v2_para_aligned` → RUNNING |\n| 进程来源排查 | **不可追溯** — /proc 已消亡，bash_history 无记录，tmux 无对应 session，无 nohup 文件。最可能是某个已关闭的 tmux session 或自动化 hook 启动后 session 被清理 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu0-kill-and-submit-para.md"
+}

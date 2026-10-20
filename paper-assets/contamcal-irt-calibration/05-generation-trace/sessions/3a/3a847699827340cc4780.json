@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "3a847699827340cc4780",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "ops prep vllm eval westd",
+  "task_key": "worker_ops_prep-vllm-eval-westd_20260518T215515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep-vllm-eval-westd_20260518T215515.log",
+    "occurrence": 1,
+    "bytes": 658886,
+    "sha256": "caf7483ff4c90e8b75a2fd3995c384ff3d25b35f488003981885f54cd23dc7d6"
+  },
+  "statistics": {
+    "messages": 398,
+    "user_turns": 1,
+    "tool_calls": 143,
+    "roles": {
+      "log": 1,
+      "system": 14,
+      "record": 1,
+      "assistant": 94,
+      "tool_call": 143,
+      "tool_result": 143,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 75,
+      "chunks": [
+        {
+          "path": "3a847699827340cc4780-part-0001.json",
+          "message_count": 75
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 323,
+      "chunks": [
+        {
+          "path": "3a847699827340cc4780-part-0001.json",
+          "message_count": 105
+        },
+        {
+          "path": "3a847699827340cc4780-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3a847699827340cc4780-part-0003.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-prep-vllm-eval-westd.md"
+}

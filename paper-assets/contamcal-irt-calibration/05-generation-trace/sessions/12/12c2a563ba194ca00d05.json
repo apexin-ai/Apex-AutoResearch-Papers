@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "12c2a563ba194ca00d05",
+  "project": "contamcal-irt-calibration",
+  "kind": "worker",
+  "title": "audit data correctness table10 xref",
+  "task_key": "worker_audit_data-correctness-table10-xref_20260522T022433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-correctness-table10-xref_20260522T022433.log",
+    "occurrence": 1,
+    "bytes": 580122,
+    "sha256": "3938024ae820b79412cd4365df2e7d034db0ab1080b97c6ce532861a7307497b"
+  },
+  "statistics": {
+    "messages": 208,
+    "user_turns": 0,
+    "tool_calls": 46,
+    "roles": {
+      "log": 1,
+      "system": 90,
+      "record": 1,
+      "assistant": 23,
+      "tool_call": 46,
+      "tool_result": 46,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 208,
+      "chunks": [
+        {
+          "path": "12c2a563ba194ca00d05-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "12c2a563ba194ca00d05-part-0002.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-data-correctness-table10-xref.md"
+}

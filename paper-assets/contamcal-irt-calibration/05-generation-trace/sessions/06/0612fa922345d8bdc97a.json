@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0612fa922345d8bdc97a",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops verify exp002 readiness",
+  "task_key": "worker_ops_verify-exp002-readiness_20260514T100525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-exp002-readiness_20260514T100525_result.json",
+    "occurrence": 1,
+    "bytes": 1455,
+    "sha256": "1f0ad8eb8c184b14448ab7d71a49e0a8161cf7e721534cb657111b29075bcc8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证报告\n\n### 1. run_batch.py 部署状态\n- **位置**: `/root/contamcal-irt-calibration/exp002/run_batch.py` (注意：在 exp002/ 下，非 exp001/)\n- **状态**: 存在，9454 bytes，`--help` 正常输出\n- **支持参数**: `--model-size`, `--gpu`, `--dry-run`, `--only`, `--only-benchmarks`, `--skip-completed`, `--print-only`\n- exp002/ 下共 9 个 signal 文件完整: `compute_signals.py`, `signal_constat.py`, `signal_embedding.py`, `signal_minkpp.py`, `signal_selfcritique.py`, `aggregate_rrf.py`, `run_batch.py`, `run_signals_05B.sh`, `test_dryrun.py`\n\n### 2. 0.5B SFT Checkpoints\n- `Qwen2.5-0.5B_d000_s42/lora_adapter` ✓\n- `Qwen2.5-0.5B_d005_s42/lora_adapter` ✓\n- `Qwen2.5-0.5B_d100_s42/lora_adapter` ✓\n\n### 3. cuda:0 当前状态\n- **GPU 利用率**: 50%, **显存**: 13220 / 24564 MiB\n- **PID 325310**: 运行中，已运行 2h27m\n- **当前任务**: 1.5B d100 eval — HumanEval 77/164 (47%), ~6s/it\n- **已完成 benchmark**:\n  - MMLU: **0.5933** (8331/14042)\n  - GSM8K: **0.6497** (857/1319)\n  - ARC-Challenge: **0.7688** (901/1172)\n- **HumanEval 是最后一个 benchmark**，剩余 87 items × ~6s ≈ **~9 min**\n- **预估释放时间**: ~18:15-18:20 UTC\n\n### 4. exp-002 提交就绪确认\n\n**YES** — 无阻塞项。cuda:0 约 9 分钟后释放，届时可立即提交：\n```bash\ncd /root/contamcal-irt-calibration/exp002 && python run_batch.py --model-size 0.5B --gpu 0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-exp002-readiness.md"
+}

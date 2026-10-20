@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49950b9b80ee4155fcf7",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "exp j16 gamma blocking wait",
+  "task_key": "worker_exp_j16-gamma-blocking-wait_20260518T022523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_j16-gamma-blocking-wait_20260518T022523_result.json",
+    "occurrence": 1,
+    "bytes": 83,
+    "sha256": "a0a1d4e0fb147db89225a0f9c88656e01283f6ebd0d1799eb943db23053be7df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Waiting for more domains to complete. Will check back in ~4 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-j16-gamma-blocking-wait.md"
+}

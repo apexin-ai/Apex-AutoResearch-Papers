@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "333d77ed6cd49fd598bc",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops local exp check",
+  "task_key": "worker_ops_local-exp-check_20260514T121929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_local-exp-check_20260514T121929_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "4b533b31c81d884384b3ad683fc6920c751231f5fa505700dcc115fb6a676473"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### exp_004_sim_sweep_v2\n- **状态**: Running (5h8m)\n- **进度**: 3/12 conditions，当前第 3 个 (`auc0.8_n100_prior1.0_binary`) 的 seed 1/10 完成，seed 2 正在跑\n- 前 2 个 condition（n=20, n=50）每个约 1.5-2h，当前 n=100 condition 每个 seed ~80min，10 seeds 预计 ~13h\n- **ETA**: 日志显示 ETA 15.3h（从 10:15 起算），即大约明天凌晨 ~01:30 完成当前 condition。剩余 9 个 conditions 后面还需很长时间\n- **总 ETA**: 粗估剩余 9 个 conditions × ~4-13h/condition，总计还需 **2-4 天**\n\n### exp_005_noise_prop_v3\n- **状态**: Running (3h53m)\n- **进度**: **11/25 fits** 完成（上次 9/25），当前正在跑第 12 个 fit（σ_e=0.5, seed=43 的 simple model）\n- 每个 fit ~35min（与预期一致），每对 (simple + ME) ~35min 共 ~70min/pair\n- **ETA**: 剩余 14 fits × ~35min ≈ **8.2h**，预计今天 ~20:30 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-local-exp-check.md"
+}

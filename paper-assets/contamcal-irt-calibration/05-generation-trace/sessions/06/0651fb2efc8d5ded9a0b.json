@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0651fb2efc8d5ded9a0b",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops submit cuda2 filler eval",
+  "task_key": "worker_ops_submit-cuda2-filler-eval_20260515T051633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-cuda2-filler-eval_20260515T051633_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "84587fcd2474a361a2566963e1f8e5bb2fdb79057f50d9610f20e4ac41fed1b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**情况变化**：SFT 3B d100 s123 (PID 471296) 已经完成（train_loss=1.1846, epoch=1.0, runtime=18252s），checkpoint 完整。因此跳过 0.5B filler，直接提交了 3B eval。\n\n**已完成操作**：\n\n1. **exp_001_sft_3B_d100_s123** → 标记 DONE (success)，metrics 已记录\n2. **exp_001_eval_3B_d100_v2_s123_aligned** → 已创建并提交到 cuda:2\n   - PID: 506625\n   - GPU 2 内存占用: 7530 MiB\n   - tmux session: `exp_001_eval_3B_d100_v2_s123_aligned`\n   - 输出目录: `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_v2_s123_aligned`\n   - Registry status: RUNNING\n\n**GPU 状态**：\n| GPU | 占用 | 任务 |\n|-----|------|------|\n| 0 | 12471 MiB | exp_001_sft_05B_d025_s123_v2 (PID 498153) |\n| 1 | 8985 MiB | exp_001_eval_3B_d000_v2_s123_aligned (PID 492660) |\n| 2 | 7671 MiB | **exp_001_eval_3B_d100_v2_s123_aligned (PID 506625)** ← 刚提交 |\n| 3 | 8985 MiB | exp_001_eval_3B_d025_v2_aligned (PID 503791) |\n| 4 | 3695 MiB | exp_001_eval_05B_d000_s42_v7 (PID 494109) |\n| 5 | 0 MiB | 空闲（SFT 3B d100 s123 已完成释放） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-cuda2-filler-eval.md"
+}

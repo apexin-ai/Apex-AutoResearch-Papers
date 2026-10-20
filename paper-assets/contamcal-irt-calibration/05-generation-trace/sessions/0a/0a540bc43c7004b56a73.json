@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a540bc43c7004b56a73",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops gpu0 eval utilization",
+  "task_key": "worker_ops_gpu0_eval_utilization_20260514T221449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu0_eval_utilization_20260514T221449_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "bd193a12316ddcaacae3236fb9a956d461eff3ed529ca57077e2618f9d071c95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已成功提交。\n\n**实验 ID**: `exp_001_eval_3B_d000_v2_para_aligned`\n\n| 项目 | 详情 |\n|------|------|\n| GPU | 0 (RTX 4090 D), PID 450055, 6782 MiB |\n| 任务 | 3B d000 v2 paraphrased aligned eval (mmlu/gsm8k/arc/humaneval) |\n| Checkpoint | `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter` |\n| 输出目录 | `/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_v2_s42_para_aligned` |\n| tmux | `eval_3B_d000_v2_para` |\n| 日志 | `/tmp/eval_3B_d000_v2_para_aligned.log` |\n\n当前 GPU 分布：GPU 0 para_aligned eval / GPU 1 0.5B d100 s123 eval / GPU 2 1.5B d100 s123 SFT / GPU 3 3B d100 v2 SFT / GPU 4 3B d000 v2 aligned eval / GPU 5 3B d000 s123 SFT。全部 6 卡满载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu0-eval-utilization.md"
+}

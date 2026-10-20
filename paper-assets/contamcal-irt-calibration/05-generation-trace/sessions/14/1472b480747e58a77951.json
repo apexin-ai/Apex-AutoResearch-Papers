@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1472b480747e58a77951",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops exp005 v3 restart",
+  "task_key": "worker_ops_exp005-v3-restart_20260514T082550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp005-v3-restart_20260514T082550_result.json",
+    "occurrence": 1,
+    "bytes": 254,
+    "sha256": "97349b23f24d2360685c9b6b7ffcf274dc28146ae4bb2611199b6cd68310f1af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，确认：\n\n- **PID**: 426335\n- **Checkpoint resume 生效**: 跳过了已完成的 4 个 fits (seed 42-45)，从 seed=46 的 simple model 继续\n- 进程存活，MCMC chains 正在采样\n- 剩余 21/25 fits，预计 ~9-10h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp005-v3-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06af9ce636132d477f16",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops j16 results extraction",
+  "task_key": "worker_ops_j16_results_extraction_20260517T122319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_j16_results_extraction_20260517T122319_result.json",
+    "occurrence": 1,
+    "bytes": 1647,
+    "sha256": "f9f24bd8046448e0a980258aef12ce8cd79e02da30658daf3c4fa4c892a983a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## MCMC 状态: 进行中（2/9 完成）\n\n**时间线:**\n| 阶段 | 时间 (UTC) | 耗时 |\n|------|-----------|------|\n| 启动 | 20:07:25 | - |\n| STEM_Math 完成 | 20:15:41 | 8.3 min |\n| STEM_Science 采样完成 | 20:22:18 | 6.6 min (结果待写入) |\n| 剩余 6 domains + pooled | - | 预计 ~70 min |\n| **预计全部完成** | **~21:35 UTC** | - |\n\n---\n\n## 已完成结果: STEM_Math\n\n| 指标 | 值 |\n|------|---|\n| γ mean | **-0.3855** |\n| γ 95% CI | [-0.999, 0.200] |\n| γ 90% CI | [-0.890, 0.119] |\n| Significant? | **No** (CI includes 0) |\n| PPP | **0.998** (excellent fit) |\n| n_items | 1190 |\n| n_models | 16 |\n| mean_acc | 0.412 |\n| rhat | 1.009 (ok) |\n| ESS | 1448 (ok) |\n| Divergences | 0 |\n\nγ 为负值趋势（contamination 在 math domain 可能反而降低表现），但 CI 太宽，无法下结论。\n\n---\n\n## GPU 状态\n\n| GPU | Util% | Memory | Process |\n|-----|-------|--------|---------|\n| 0 | 36% | 1475/24564 MiB | PID 983741: exp008 eval Qwen2.5-0.5B base — GSM8K **87%** (1147/1319), ~14 min 剩余 |\n| 1 | 0% | 0 MiB | **idle** |\n| 2 | 0% | 0 MiB | **idle** |\n| 3 | 0% | 0 MiB | **idle** |\n| 4 | 0% | 0 MiB | **idle** |\n| 5 | 0% | 0 MiB | **idle** |\n\nIRT MCMC (PID 990725) 是 CPU-only 任务，不占 GPU。\n\n**tmux sessions:**\n- `exp008_eval`: Qwen2.5-0.5B base pretrained → GSM8K 87% 完成，之后跑 ARC_challenge\n- `exp009_3b_instruct`, `exp009_deepseek`: 自 12:18 UTC 起运行（可能已完成或 idle）\n\n---\n\nMCMC 预计 ~21:35 UTC 全部完成，届时再查看完整 8 domains + pooled 结果。GPU 1-5 当前全部空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-j16-results-extraction.md"
+}

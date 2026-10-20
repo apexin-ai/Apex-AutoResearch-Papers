@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "379f94f727c5f5035b4d",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ssh gpu cleanup status",
+  "task_key": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu-cleanup-status_20260514T164541_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "44dec41504917ad37714ee5ff2339c597ab782bc22cf5a06c9e92fe72c062e05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "排查完成。结果汇总：\n\n**僵尸进程**: PID 398501 (GPU 3, exp_001_eval_05B_d025_aligned) 已 kill，GPU 3 释放。\n\n**当前 GPU 状态**:\n| GPU | 状态 | 说明 |\n|-----|------|------|\n| cuda:0 | 占用 | PID 385407 训练 1.5B_d025 (预期外，运行 2.5h) |\n| cuda:1 | 占用 | PID 398887 评估 1.5B_d100_aligned |\n| cuda:2 | 占用 | PID 396024 评估 0.5B_d100_aligned |\n| cuda:3 | **空闲** | 已清理僵尸进程，24GB 可用 |\n| cuda:4 | **空闲** | 24GB 可用 |\n| cuda:5 | 占用 | 训练 3B_d000_v2 + 评估 0.5B_d025_para_aligned |\n\n**注意**: cuda:0 上有未预期的训练进程，cuda:1 的 PID 与预期不符（336750 → 398887），可能是旧任务已结束、新任务已接替。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-cleanup-status.md"
+}

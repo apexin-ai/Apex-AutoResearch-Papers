@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "364d44ef4bf148bf7af1",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "analysis exp004 incremental",
+  "task_key": "worker_analysis_exp004_incremental_20260514T041612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp004_incremental_20260514T041612_result.json",
+    "occurrence": 1,
+    "bytes": 1232,
+    "sha256": "cd3c071b29ac85dcb1e686dd1b185c0078a6e97e42d8f19058bd5652bde8a8cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果摘要\n\n**进度**: 4/12 条件已启动，27/120 runs 完成 (22.5%)，进程仍在运行。\n\n**核心发现**:\n\n| 条件 | Seeds | γ Bias | CI95 宽度 | Coverage | 0∉CI |\n|------|-------|--------|----------|----------|------|\n| AUC=0.55, N=20 | 10 | +0.020 | 13.3pp | 80% | 100% |\n| AUC=0.55, N=50 | 10 | +0.015 | 8.7pp | 90% | 100% |\n| AUC=0.55, N=100 | 6 | −0.003 | 6.5pp | 100% | 100% |\n| AUC=0.80, N=50 | 1* | +0.008 | 16.2pp | 100% | 100% |\n\n**关键结论**:\n\n1. **γ 在 AUC=0.55 就能识别** — 即使 exposure signal 接近随机，bias ≤ 0.02，RMSE ≤ 0.04，100% power。可辨识边界可能低于 AUC=0.55。\n\n2. **N_models 主导精度** — CI 宽度 ≈ 1/√N 缩放（N=20→100: 13.3pp→6.5pp，比值 2.04 vs 理论 2.24）。\n\n3. **AUC=0.80 CI 反而更宽 (16.2pp)** — 仅 1 seed，可能是噪声，但也可能是 exposure-ability collinearity 导致。需更多 seeds 确认。\n\n4. **MCMC 质量完美** — 0 divergences，Rhat 全部 < 1.011。\n\n5. **AUC threshold 暂无法确定** — 需要 AUC=0.65/0.90 数据。当前看 N≥50 时 15pp 阈值在 AUC=0.55 以下就已满足。\n\n**预计剩余时间**: 93 runs，约 30-50 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp004-incremental.md"
+}

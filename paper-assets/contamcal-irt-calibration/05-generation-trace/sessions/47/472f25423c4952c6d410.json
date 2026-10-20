@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "472f25423c4952c6d410",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "code batch generation gsm8k v2",
+  "task_key": "worker_code_batch-generation-gsm8k-v2_20260518T125856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_batch-generation-gsm8k-v2_20260518T125856_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "3807272a72ce4fbdd78ce5cefa407323613cef31672bb1d6b303188af84ff4a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改内容：\n\n1. **evaluate_gsm8k** (line 278): 改为 batch generation，left-pad tokenization，`max_new_tokens=256`，按 `--batch-size` 分批调用 `model.generate`\n2. **evaluate_humaneval** (line 347): 同样改为 batch generation，`max_new_tokens=512`\n3. 两个函数都会保存/恢复 `tokenizer.padding_side`，处理最后不足 batch_size 的尾 batch\n4. 函数签名、调用链、评估逻辑（答案提取、正则匹配、代码执行）、`max_items`/`subsample_seed` 均不变\n5. 语法检查通过，main() 中的调用点完好"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-batch-generation-gsm8k-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a477f9f888b34521b8f",
+  "project": "contamcal-irt-calibration",
+  "kind": "result",
+  "title": "ops rename eval vllm",
+  "task_key": "worker_ops_rename-eval-vllm_20260519T143425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rename-eval-vllm_20260519T143425_result.json",
+    "occurrence": 1,
+    "bytes": 106,
+    "sha256": "b79871d2f0b651ae9faa99cbdb1c400a5419d8f47d6cf65acc79d594d23f9a9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "重命名完成。`eval_vllm/` → `eval_vllm_0shot_DO_NOT_USE/`，原路径已不存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-rename-eval-vllm.md"
+}
