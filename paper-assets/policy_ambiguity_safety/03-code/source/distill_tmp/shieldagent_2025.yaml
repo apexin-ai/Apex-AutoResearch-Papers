@@ -1,0 +1,82 @@
+paper_key: "shieldagent_2025"
+title: "ShieldAgent: Shielding Agents via Verifiable Safety Policy Reasoning"
+venue: "ICML 2025"
+full_text_available: true
+
+research:
+  baselines: [Direct Prompt, Rule Traverse, GuardAgent]
+  metrics:
+    - {name: "Guardrail Accuracy (ACC)", direction: "higher_better"}
+    - {name: "False Positive Rate (FPR)", direction: "lower_better"}
+    - {name: "Average Rule Recall (ARR)", direction: "higher_better"}
+    - {name: "Inference Cost (API queries + time)", direction: "lower_better"}
+  datasets:
+    - {name: "ShieldAgent-Bench", size: "3,110 samples across 6 web environments, 7 risk categories"}
+    - {name: "ST-WebAgentBench", size: "234 samples, 3 risk categories"}
+    - {name: "VWA-Adv", size: "200 adversarial samples"}
+    - {name: "AgentHarm", size: "110+ samples, 11 harm categories"}
+  ablation_dimensions: [risk_category, attack_type, web_environment]
+  training_recipe: {optimizer: "N/A (inference framework)", lr: "N/A", hardware: "GPT-4o for extraction, InternVL2-2B for specialized ops"}
+  method_family: "probabilistic logic reasoning + formal verification"
+
+positioning:
+  core_claim: "First guardrail agent that extracts verifiable rules from policy documents into action-based probabilistic rule circuits, achieving 90.1% recall with 64.7% fewer API queries."
+  key_results: "ShieldAgent-Bench: 91.0% ACC, 4.8% FPR, 90.1% ARR; +11.3% avg over baselines; ST-Web: 91.1%; VWA-Adv: 94.1%; AgentHarm: 86.9%; 64.7% API reduction, 58.2% time reduction"
+  limitations:
+    - "Relies on GPT-4o for policy extraction (model dependency)"
+    - "Rule extraction quality depends on policy document clarity"
+    - "Formal verification limited to LTL-expressible properties"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "开篇指出existing guardrails只关注LLM-as-model，忽略了LLM-as-agent的sequential interaction安全需求"
+  tension: "safety policies复杂、冗长、编码在regulation文档中，现有方法无法高效提取和验证"
+  key_insight: "将policy verification问题转化为action-based probabilistic rule circuits，用Markov Logic Networks实现soft constraint reasoning"
+  argument_chain: "agent safety gap → policy extraction pipeline (NL→LTL) → action-based rule circuits → probabilistic inference → formal verification → SOTA across 4 benchmarks"
+  contribution_framing: "四项贡献：ASPM model + verification framework + ShieldAgent-Bench + SOTA results"
+  intro_structure: "5段：agent风险 → 现有guardrail不足 → ASPM概念 → ShieldAgent方案 → 贡献列表"
+  notable_technique: "三阶段policy extraction(NL→structured→LTL→optimized)的pipeline设计；vagueness proxy用embedding similarity量化规则模糊度；relative safety condition减少false positive"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "method_overview"
+    description: "两阶段workflow：(上)自动规则提取+迭代优化+聚类为action-based circuits；(下)推理pipeline：workflow检索→shielding plan→formal verification→概率推理"
+    narrative_role: "展示端到端系统设计"
+    design_elements: ["上下分区", "pipeline箭头", "模块化组件"]
+    visual_style: "上半部分展示offline policy建模，下半部分展示online verification"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "grouped_bar"
+      what_compared: "ST-WebAgentBench各category表现"
+      how_gain_highlighted: "ShieldAgent(91.1%)始终最高"
+      design_note: "per-category breakdown展示一致性优势"
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "flow_diagram"
+      dimensions_varied: ["dataset curation pipeline"]
+      design_note: "展示safe/unsafe trajectory生成流程"
+  figure_narrative_role: "Figure 1(系统架构) → Figure 2(数据构建) → Figure 3(per-category结果)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "ACC / FPR / ARR per attack type"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run percentages"
+    num_baselines: 4
+    design_note: "agent-based和environment-based attacks分列展示，突出两种attack场景下的一致性"
+  ablation_tables:
+    - table_id: "Table 2 (per risk category)"
+      what_varied: ["7 risk categories × 2 attack types"]
+      variation_style: "full_numbers"
+      design_note: "7×2矩阵展示每种风险类别的表现"
+  supplementary_tables:
+    in_appendix: false
+    content: "Benchmark comparison (Table 1), Cross-benchmark (Table 3), Online integration (Table 4)"
+    reason: "Table 1突出ShieldAgent-Bench的独特性；Table 3-4展示泛化能力"

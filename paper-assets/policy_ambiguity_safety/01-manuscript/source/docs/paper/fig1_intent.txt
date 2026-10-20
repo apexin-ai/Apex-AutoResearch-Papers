@@ -1,0 +1,20 @@
+Academic experiment overview diagram for a research paper on policy ambiguity and AI safety.
+
+The diagram is a left-to-right flow with three major stages connected by thick gray arrows on a white background.
+
+STAGE 1 (left side, labeled 'Ambiguity Taxonomy'): A rounded rectangle containing two stacked groups separated by a thin line.
+- Top group labeled 'Specification Layer' with light blue (#D6EAF8) background, containing three small rounded boxes side by side: 'Incompleteness', 'Auth. Scope', 'Cond. Prec.'
+- Bottom group labeled 'Linguistic Layer' with light green (#D5F5E3) background, containing three small rounded boxes side by side: 'Lexical', 'Scopal', 'Coreferential'
+- Below the main box: italic text '300 Matched Clause Pairs'
+
+STAGE 2 (center, labeled 'Evaluation'): A rounded rectangle with light gray (#F2F3F4) background containing:
+- Top line: bold 'τ²-bench'
+- Five model name labels stacked: GPT-5.4, GPT-4.1, Claude Sonnet, Qwen3-235B, DeepSeek-V3
+- Bottom line: '2,997 Episodes'
+
+STAGE 3 (right side, labeled 'Assessment'): A rounded rectangle with light orange (#FDEBD0) background containing:
+- Text 'Cross-Judge Evaluation'
+- A small vertical severity scale showing four levels from top to bottom: critical (dark red #C0392B), moderate (orange #E67E22), minor (yellow #F1C40F), none (light gray #BDC3C7)
+- Below: 'Violation Classification'
+
+Style: Clean academic publication style, suitable for grayscale printing. Sans-serif font (DejaVu Sans or similar). Thin black outlines on all boxes. No decorative elements, no shadows, no gradients. Figure size: 7 inches wide by 2.5 inches tall. 300 DPI. White background.

@@ -1,0 +1,250 @@
+{
+  "total_annotated": 123,
+  "parse_errors": 0,
+  "per_type_counts": {
+    "authorization_scope": 32,
+    "conditional_precedence": 17,
+    "coreferential": 9,
+    "incompleteness": 23,
+    "lexical": 21,
+    "scopal": 21
+  },
+  "per_type_failure_modes": {
+    "authorization_scope": {
+      "counts": {
+        "unauthorized_escalation": 23,
+        "assumption_based_action": 9
+      },
+      "percentages": {
+        "unauthorized_escalation": 71.9,
+        "assumption_based_action": 28.1
+      },
+      "total": 32
+    },
+    "conditional_precedence": {
+      "counts": {
+        "scope_misapplication": 7,
+        "assumption_based_action": 1,
+        "arbitrary_rule_selection": 5,
+        "unauthorized_escalation": 3,
+        "conservative_refusal": 1
+      },
+      "percentages": {
+        "scope_misapplication": 41.2,
+        "assumption_based_action": 5.9,
+        "arbitrary_rule_selection": 29.4,
+        "unauthorized_escalation": 17.6,
+        "conservative_refusal": 5.9
+      },
+      "total": 17
+    },
+    "coreferential": {
+      "counts": {
+        "conservative_refusal": 1,
+        "scope_misapplication": 4,
+        "referent_misidentification": 1,
+        "assumption_based_action": 1,
+        "other": 1,
+        "unauthorized_escalation": 1
+      },
+      "percentages": {
+        "conservative_refusal": 11.1,
+        "scope_misapplication": 44.4,
+        "referent_misidentification": 11.1,
+        "assumption_based_action": 11.1,
+        "other": 11.1,
+        "unauthorized_escalation": 11.1
+      },
+      "total": 9
+    },
+    "incompleteness": {
+      "counts": {
+        "assumption_based_action": 14,
+        "scope_misapplication": 3,
+        "unauthorized_escalation": 4,
+        "conservative_refusal": 1,
+        "surface_adoption": 1
+      },
+      "percentages": {
+        "assumption_based_action": 60.9,
+        "scope_misapplication": 13.0,
+        "unauthorized_escalation": 17.4,
+        "conservative_refusal": 4.3,
+        "surface_adoption": 4.3
+      },
+      "total": 23
+    },
+    "lexical": {
+      "counts": {
+        "assumption_based_action": 15,
+        "scope_misapplication": 4,
+        "conservative_refusal": 1,
+        "surface_adoption": 1
+      },
+      "percentages": {
+        "assumption_based_action": 71.4,
+        "scope_misapplication": 19.0,
+        "conservative_refusal": 4.8,
+        "surface_adoption": 4.8
+      },
+      "total": 21
+    },
+    "scopal": {
+      "counts": {
+        "unauthorized_escalation": 4,
+        "scope_misapplication": 16,
+        "assumption_based_action": 1
+      },
+      "percentages": {
+        "unauthorized_escalation": 19.0,
+        "scope_misapplication": 76.2,
+        "assumption_based_action": 4.8
+      },
+      "total": 21
+    }
+  },
+  "per_type_resolution_strategies": {
+    "authorization_scope": {
+      "counts": {
+        "surface_adoption": 32
+      },
+      "percentages": {
+        "surface_adoption": 100.0
+      },
+      "total": 32
+    },
+    "conditional_precedence": {
+      "counts": {
+        "surface_adoption": 14,
+        "conservative": 3
+      },
+      "percentages": {
+        "surface_adoption": 82.4,
+        "conservative": 17.6
+      },
+      "total": 17
+    },
+    "coreferential": {
+      "counts": {
+        "conservative": 1,
+        "surface_adoption": 8
+      },
+      "percentages": {
+        "conservative": 11.1,
+        "surface_adoption": 88.9
+      },
+      "total": 9
+    },
+    "incompleteness": {
+      "counts": {
+        "surface_adoption": 22,
+        "guess": 1
+      },
+      "percentages": {
+        "surface_adoption": 95.7,
+        "guess": 4.3
+      },
+      "total": 23
+    },
+    "lexical": {
+      "counts": {
+        "surface_adoption": 19,
+        "conservative": 1,
+        "escalate_to_user": 1
+      },
+      "percentages": {
+        "surface_adoption": 90.5,
+        "conservative": 4.8,
+        "escalate_to_user": 4.8
+      },
+      "total": 21
+    },
+    "scopal": {
+      "counts": {
+        "surface_adoption": 21
+      },
+      "percentages": {
+        "surface_adoption": 100.0
+      },
+      "total": 21
+    }
+  },
+  "per_type_disambiguation_awareness": {
+    "authorization_scope": {
+      "showed_awareness_count": 1,
+      "total": 32,
+      "rate": 3.1
+    },
+    "conditional_precedence": {
+      "showed_awareness_count": 2,
+      "total": 17,
+      "rate": 11.8
+    },
+    "coreferential": {
+      "showed_awareness_count": 0,
+      "total": 9,
+      "rate": 0.0
+    },
+    "incompleteness": {
+      "showed_awareness_count": 1,
+      "total": 23,
+      "rate": 4.3
+    },
+    "lexical": {
+      "showed_awareness_count": 1,
+      "total": 21,
+      "rate": 4.8
+    },
+    "scopal": {
+      "showed_awareness_count": 0,
+      "total": 21,
+      "rate": 0.0
+    }
+  },
+  "cross_type_highlights": {
+    "spec_layer_assumption_based_action": {
+      "spec_types": {
+        "incompleteness": 60.9,
+        "conditional_precedence": 5.9,
+        "authorization_scope": 28.1
+      },
+      "ling_types": {
+        "scopal": 4.8,
+        "lexical": 71.4,
+        "coreferential": 11.1
+      },
+      "spec_avg": 31.6,
+      "ling_avg": 29.1
+    },
+    "ling_layer_scope_misapplication": {
+      "ling_types": {
+        "scopal": 76.2,
+        "lexical": 19.0,
+        "coreferential": 44.4
+      },
+      "spec_types": {
+        "incompleteness": 13.0,
+        "conditional_precedence": 41.2,
+        "authorization_scope": 0
+      },
+      "ling_avg": 46.5,
+      "spec_avg": 18.1
+    },
+    "coreferential_conservative_refusal": {
+      "coreferential_rate": 11.1,
+      "other_types": {
+        "authorization_scope": 0,
+        "conditional_precedence": 5.9,
+        "incompleteness": 4.3,
+        "lexical": 4.8,
+        "scopal": 0
+      },
+      "other_avg": 3.0
+    }
+  },
+  "confidence_distribution": {
+    "mean": 0.942,
+    "min": 0.84,
+    "max": 0.98
+  }
+}

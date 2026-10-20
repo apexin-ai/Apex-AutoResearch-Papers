@@ -1,0 +1,32 @@
+# directories
+__pycache__/
+__deprecated__/
+plotting/
+processing/
+output/all
+
+# files
+test*.py
+*.pyc
+.DS_Store
+.env
+*_task.py
+sync.sh
+
+# keys
+swarm/.env
+
+# ignore output files
+output/
+
+# backup files
+data_backup/
+output_backup/
+analysis/
+
+# verl
+verl/
+
+data_v2/
+output_v2/
+filter_data.py

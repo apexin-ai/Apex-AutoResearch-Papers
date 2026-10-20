@@ -1,0 +1,873 @@
+narrative_guidance: '放弃''All Ambiguity Is Nocuous''的uniform叙事。Binary effect仍可复现但效应量被open-source模型拉低至~21pp，
+  且type uniformity null被打破（V=0.26）。核心reframe为''Not All Ambiguity Is Equal''——authorization_scope
+  和scopal显著比coreferential和lexical更危险，type×model交互显著。Visibility effect在cross-model层面
+  不一致（API模型中CP<scopal，Qwen3-8B上反转）。标题改为''Not All Ambiguity Is Equal: Type-Specific
+  Safety Vulnerabilities in LLM Agent Policies''。EMNLP投稿仍可行：2400 episodes的因果数据＋type-specific
+  发现提供更细粒度的practical guidance，但claims从''binary detection suffices''转向''type-aware
+  triage is necessary''。RC6的回应反而更强——不仅ambiguity有害，哪种更有害是non-trivial的empirical question。
+  主要风险：error analysis需要解释为什么type matters，且inter-annotator agreement偏低（κ=0.38）， 可能被reviewer质疑qualitative
+  analysis的rigor。
+
+  '
+imagined_experiments:
+- name: full_study_clause_generation
+  plan_id: plan_001
+  description: '为full study生成剩余140条clauses（coreferential 50, authorization_scope 50,
+    lexical +20, incompleteness +20），验证全部300条clauses的质量和cross-type balance。 CP格式混合labeled/unlabeled。
+
+    '
+  expected_results:
+    total_clauses_generated: 300
+    clauses_per_type: 50
+    generation_pass_rate_round1: 0.82
+    clauses_requiring_revision: 27
+    coreferential_revision_rate: 0.36
+    authorization_scope_revision_rate: 0.14
+    cross_type_sentence_length_cv: 0.18
+    flesch_kincaid_range:
+    - 8.2
+    - 12.7
+    cp_format_mix:
+      labeled: 25
+      unlabeled: 25
+    validator_agreement_kappa: 0.71
+  result_rationale: 'Coreferential clauses的revision rate最高（36%），因为构造需要跨句代词-先行词链， matched
+    pair的unambiguous版本需要同时消除歧义又保持自然度，这在policy语域中比其他类型 更难实现。Authorization_scope相对容易生成（14%
+    revision），因为permission boundary 的ambiguous/unambiguous对比有成熟的RE模板可参考。总体82%的first-round
+    pass rate 反映了coreferential和部分lexical clauses的难度。Validator agreement κ=0.71 表明clause质量判断存在一定主观性，尤其在incompleteness
+    clauses的信息充分性判断上。
+
+    '
+  tables:
+  - name: 'Table A1: Clause Generation Summary'
+    content: '| Type                  | Generated | Round-1 Pass | Revised | Final
+      | Avg Tokens |
+
+      |-----------------------|-----------|-------------|---------|-------|------------|
+
+      | scopal                | 50        | 44          | 6       | 50    | 28.4       |
+
+      | lexical               | 50        | 42          | 8       | 50    | 24.1       |
+
+      | incompleteness        | 50        | 40          | 10      | 50    | 31.7       |
+
+      | coreferential         | 50        | 32          | 18      | 50    | 35.2       |
+
+      | authorization_scope   | 50        | 43          | 7       | 50    | 26.8       |
+
+      | conditional_precedence| 50        | 45          | 5       | 50    | 33.5       |
+
+      '
+  figures_description:
+  - Box plot showing token length distributions per type，标注cross-type CV=0.18
+  analysis: 'Clause generation总体成功但coreferential类型的难度值得注意。High revision rate暗示 coreferential
+    pairs的ecological validity可能偏低——过度简化的代词链可能不代表real-world policy中的coreferential ambiguity
+    pattern。这为后续coreferential效应偏弱提供了 methodological confound的alternative explanation。建议在paper中explicitly讨论
+    coreferential clause quality作为limitation。
+
+    '
+- name: full_study_api
+  plan_id: plan_002
+  description: '300 clauses × 2 conditions × 2 API models (gpt-5.4, gpt-4.1) = 1,200
+    episodes。 Cross-judge evaluation。
+
+    '
+  expected_results:
+    total_episodes: 1200
+    episodes_per_model: 600
+    gpt54_overall_amb_vr: 0.413
+    gpt54_overall_unamb_vr: 0.13
+    gpt54_overall_delta_pp: 28.3
+    gpt41_overall_amb_vr: 0.397
+    gpt41_overall_unamb_vr: 0.17
+    gpt41_overall_delta_pp: 22.7
+    gpt54_per_type_delta_pp:
+      authorization_scope: 48
+      scopal: 36
+      incompleteness: 30
+      conditional_precedence: 24
+      lexical: 18
+      coreferential: 14
+    gpt41_per_type_delta_pp:
+      authorization_scope: 36
+      scopal: 28
+      incompleteness: 24
+      conditional_precedence: 20
+      lexical: 16
+      coreferential: 12
+    gpt54_type_range_pp:
+    - 14
+    - 48
+    gpt41_type_range_pp:
+    - 12
+    - 36
+    cross_judge_agreement_kappa: 0.82
+    api_cost_usd: 340
+  result_rationale: 'API模型的binary effect仍然强劲（gpt-5.4 +28pp, gpt-4.1 +23pp），但type间variance
+    显著扩大。gpt-5.4展示更陡的type gradient（auth_scope 48pp vs coreferential 14pp）， 反映higher-capability
+    model对不同ambiguity type的differential sensitivity—— auth_scope涉及permission boundary的explicit
+    violation，模型必须做出binary allow/deny决策，ambiguity直接导致wrong-side error；coreferential涉及pronoun
+    resolution，gpt-5.4的强coreference能力部分抵消了ambiguity的影响。gpt-4.1的gradient 较平（36pp vs
+    12pp），但方向一致。这种capability-dependent type discrimination 成为worst tier的核心发现。Cross-judge
+    κ=0.82说明judgment质量本身不是问题。
+
+    '
+  tables:
+  - name: 'Table 1: API Model Violation Rates by Type'
+    content: '| Type                  | gpt-5.4        |           | gpt-4.1        |           |
+
+      |                       | Amb    | Unamb  | Δpp      | Amb    | Unamb  | Δpp      |
+
+      |-----------------------|--------|--------|----------|--------|--------|----------|
+
+      | authorization_scope   | 58%    | 10%    | +48      | 52%    | 16%    | +36      |
+
+      | scopal                | 50%    | 14%    | +36      | 46%    | 18%    | +28      |
+
+      | incompleteness        | 44%    | 14%    | +30      | 40%    | 16%    | +24      |
+
+      | conditional_precedence| 40%    | 16%    | +24      | 38%    | 18%    | +20      |
+
+      | lexical               | 32%    | 14%    | +18      | 34%    | 18%    | +16      |
+
+      | coreferential         | 24%    | 10%    | +14      | 28%    | 16%    | +12      |
+
+      | Overall               | 41.3%  | 13.0%  | +28.3    | 39.7%  | 17.0%  | +22.7    |
+
+      '
+  figures_description:
+  - Paired bar chart showing amb vs unamb violation rates per type, faceted by model，
+    标注type ranking一致但gradient slope不同
+  analysis: 'API模型单独看仍然支持strong binary effect（+23~28pp），与MVP的+31-42pp同量级但略低。 关键差异是type
+    gradient：MVP中3种type的差异不显著（V=0.084），但加入auth_scope和 coreferential后variance显著扩大。gpt-5.4的auth_scope(58%)与coreferential(24%)差距
+    达34pp——这不是noise，而是systematic的type×capability交互。如果只看API模型， 仍然可以argue binary effect
+    is dominant，但combined analysis（plan_004）会因 open-source模型的弱效应进一步拉大type variance。
+
+    '
+- name: full_study_local
+  plan_id: plan_003
+  description: '300 clauses × 2 conditions × 2 local models (Qwen3-8B, Qwen3-32B-AWQ)
+    = 1,200 episodes。 vLLM serving on RTX PRO 6000。Cross-judge uses API models。
+
+    '
+  expected_results:
+    total_episodes: 1200
+    episodes_per_model: 600
+    qwen32b_overall_amb_vr: 0.327
+    qwen32b_overall_unamb_vr: 0.18
+    qwen32b_overall_delta_pp: 14.7
+    qwen8b_overall_amb_vr: 0.293
+    qwen8b_overall_unamb_vr: 0.18
+    qwen8b_overall_delta_pp: 11.3
+    qwen32b_per_type_delta_pp:
+      authorization_scope: 28
+      scopal: 18
+      incompleteness: 14
+      conditional_precedence: 12
+      lexical: 6
+      coreferential: 4
+    qwen8b_per_type_delta_pp:
+      authorization_scope: 22
+      scopal: 14
+      incompleteness: 12
+      conditional_precedence: 14
+      lexical: 4
+      coreferential: 2
+    qwen8b_visibility_reversal: true
+    qwen8b_cp_amb_vr: 0.34
+    qwen8b_scopal_amb_vr: 0.3
+    qwen8b_visibility_delta_pp: 4
+    vllm_throughput_episodes_per_hour: 45
+    gpu_hours_used: 27
+    cross_judge_agreement_kappa: 0.79
+  result_rationale: 'Open-source模型的binary effect显著缩水（Qwen3-8B仅+11pp，Qwen3-32B +15pp），
+    是拉低overall effect的主要原因。机制：(1) Qwen3-8B的instruction following能力较弱， baseline violation
+    rate就偏高（unamb=18%），压缩了amb能造成的incremental damage； (2) 对subtle linguistic ambiguity（coreferential,
+    lexical）的sensitivity极低—— 模型可能根本没有parse出ambiguity，而是用heuristic处理policy text，导致amb和unamb
+    条件下行为趋同。Auth_scope仍保持较强效应（+22pp for Qwen3-8B），因为permission boundary的ambiguity即使对weak
+    model也足以改变allow/deny决策。最关键的发现： Qwen3-8B上visibility effect反转（CP 34% > scopal 30%），与API模型方向相反。
+    原因是Qwen3-8B缺乏explicit conflict detection的meta-cognitive能力——面对CP的 显式规则冲突不会采取conservative
+    strategy，反而因confused reasoning导致更多violation； 而scopal ambiguity对其而言与unambiguous
+    text几乎无差异。这种反转使得pooled visibility effect被wash out。GPU使用27小时在48小时预算内。
+
+    '
+  tables:
+  - name: 'Table 2: Local Model Violation Rates by Type'
+    content: '| Type                  | Qwen3-32B-AWQ  |           | Qwen3-8B       |           |
+
+      |                       | Amb    | Unamb  | Δpp      | Amb    | Unamb  | Δpp      |
+
+      |-----------------------|--------|--------|----------|--------|--------|----------|
+
+      | authorization_scope   | 46%    | 18%    | +28      | 40%    | 18%    | +22      |
+
+      | scopal                | 36%    | 18%    | +18      | 30%    | 16%    | +14      |
+
+      | incompleteness        | 32%    | 18%    | +14      | 30%    | 18%    | +12      |
+
+      | conditional_precedence| 32%    | 20%    | +12      | 34%    | 20%    | +14      |
+
+      | lexical               | 26%    | 20%    | +6       | 22%    | 18%    | +4       |
+
+      | coreferential         | 24%    | 20%    | +4       | 20%    | 18%    | +2       |
+
+      | Overall               | 32.7%  | 19.0%  | +14.7    | 29.3%  | 18.0%  | +11.3    |
+
+      '
+  - name: 'Table 2a: Visibility Effect by Model (CP vs Scopal, Amb Condition)'
+    content: '| Model         | CP Amb VR | Scopal Amb VR | Δ(CP−Scopal) | Direction    |
+
+      |---------------|-----------|---------------|--------------|--------------|
+
+      | gpt-5.4       | 40%       | 50%           | −10pp        | CP < Scopal  |
+
+      | gpt-4.1       | 38%       | 46%           | −8pp         | CP < Scopal  |
+
+      | Qwen3-32B-AWQ | 32%       | 36%           | −4pp         | CP < Scopal  |
+
+      | Qwen3-8B      | 34%       | 30%           | +4pp         | CP > Scopal  |
+
+      | Pooled        | 36%       | 40.5%         | −4.5pp       | inconsistent |
+
+      '
+  figures_description:
+  - Slope plot showing per-type binary effect (Δpp) across 4 models ordered by capability，
+    显示auth_scope线条陡峭而coreferential近乎flat
+  - Scatter plot of visibility Δ(CP−scopal) vs model capability rank，标注Qwen3-8B反转点
+  analysis: 'Open-source模型数据是worst tier scenario的关键驱动因素。两个核心问题： (1) Qwen3-8B的coreferential
+    Δ=+2pp和lexical Δ=+4pp基本是noise level——即使 跑更多episodes也不太可能达到significance，这意味着对weak
+    models而言，subtle linguistic ambiguity确实不构成additional safety risk（模型本身的baseline
+    error rate已经很高）。(2) Visibility反转破坏了clean的''visibility moderates risk''叙事， 需要改为''visibility
+    effect is capability-dependent''，增加了story complexity。
+
+    '
+- name: full_study_analysis
+  plan_id: plan_004
+  description: '合并2,400 episodes的统计分析：binary effect per type (C1), omnibus χ² + pairwise
+    (C2), visibility comparison (C3), model×type interaction (C4)。
+
+    '
+  expected_results:
+    total_episodes: 2400
+    overall_amb_vr: 0.358
+    overall_unamb_vr: 0.165
+    overall_binary_effect_pp: 19.3
+    overall_binary_effect_ci95:
+    - 15.8
+    - 22.8
+    overall_mcnemar_chi2: 89.4
+    overall_mcnemar_p: <1e-12
+    per_type_binary_effects:
+      authorization_scope:
+        delta_pp: 33.5
+        ci95:
+        - 26.2
+        - 40.8
+        mcnemar_p: <1e-8
+      scopal:
+        delta_pp: 24.0
+        ci95:
+        - 17.1
+        - 30.9
+        mcnemar_p: <1e-5
+      incompleteness:
+        delta_pp: 20.0
+        ci95:
+        - 13.4
+        - 26.6
+        mcnemar_p: 3.0e-05
+      conditional_precedence:
+        delta_pp: 17.5
+        ci95:
+        - 10.8
+        - 24.2
+        mcnemar_p: 0.0003
+      lexical:
+        delta_pp: 11.0
+        ci95:
+        - 4.7
+        - 17.3
+        mcnemar_p: 0.005
+      coreferential:
+        delta_pp: 8.0
+        ci95:
+        - 1.9
+        - 14.1
+        mcnemar_p: 0.028
+    types_significant_holm_corrected: 4
+    types_failing_correction:
+    - lexical
+    - coreferential
+    type_uniformity_chi2: 52.3
+    type_uniformity_df: 5
+    type_uniformity_p: <0.001
+    type_uniformity_V: 0.26
+    pairwise_significant_pairs:
+    - - authorization_scope
+      - coreferential
+      - Δ=25.5pp, p<0.001
+    - - authorization_scope
+      - lexical
+      - Δ=22.5pp, p<0.001
+    - - authorization_scope
+      - conditional_precedence
+      - Δ=16.0pp, p=0.003
+    - - scopal
+      - coreferential
+      - Δ=16.0pp, p=0.004
+    - - scopal
+      - lexical
+      - Δ=13.0pp, p=0.018
+    pairwise_nonsig_pairs_example:
+    - - scopal
+      - incompleteness
+      - Δ=4.0pp, p=0.52
+    - - conditional_precedence
+      - lexical
+      - Δ=6.5pp, p=0.31
+    visibility_pooled_delta_pp: -4.5
+    visibility_ci95:
+    - -11.2
+    - 2.2
+    visibility_p: 0.47
+    visibility_direction_consistent_models: 3
+    visibility_direction_reversed_models: 1
+    model_type_interaction_chi2: 38.7
+    model_type_interaction_df: 15
+    model_type_interaction_p: 0.001
+    logistic_regression_model_type_lrt_chi2: 36.2
+    logistic_regression_model_type_lrt_p: 0.002
+    per_model_overall_delta_pp:
+      gpt54: 28.3
+      gpt41: 22.7
+      qwen32b: 14.7
+      qwen8b: 11.3
+    capability_effect_correlation_r: 0.97
+    capability_effect_correlation_note: model capability rank与overall Δpp的Spearman相关
+  result_rationale: 'Overall binary effect +19pp显著弱于MVP的+35-42pp，主因是open-source模型（Qwen3-8B
+    +11pp, Qwen3-32B +15pp）拉低均值。但所有6种type在pooled analysis中仍显示positive effect（最弱的 coreferential也有+8pp），binary
+    effect的existence不受challenge。Type uniformity null 被decisively reject（V=0.26, p<0.001）：auth_scope
+    (+33.5pp)与coreferential (+8pp) 差距达25.5pp，远超sampling noise。Pairwise分析显示5对type间存在显著差异，形成rough
+    hierarchy：{auth_scope, scopal} >> {incompleteness, CP} > {lexical, coreferential}。
+    Visibility effect pooled后不显著（Δ=-4.5pp, p=0.47），因Qwen3-8B的反转抵消了API模型 的consistent
+    trend；但这本身成为一个finding——visibility sensitivity是capability-dependent的。 Model×type交互高度显著（p=0.001），驱动因素是gpt-5.4的steep
+    type gradient vs Qwen3-8B的 near-flat gradient。Spearman r=0.97（model capability
+    rank vs overall Δ）表明ambiguity sensitivity本身可能作为capability benchmark的proxy。
+
+    '
+  tables:
+  - name: 'Table 3: Full Study Binary Effect by Ambiguity Type (Pooled Across Models)'
+    content: '| Type                  | N pairs | Amb VR | Unamb VR | Δpp   | 95%
+      CI       | McNemar p | Holm-sig |
+
+      |-----------------------|---------|--------|----------|-------|--------------|-----------|----------|
+
+      | authorization_scope   | 200     | 49.0%  | 15.5%    | +33.5 | [26.2, 40.8]
+      | <1e-8     | ***      |
+
+      | scopal                | 200     | 40.5%  | 16.5%    | +24.0 | [17.1, 30.9]
+      | <1e-5     | ***      |
+
+      | incompleteness        | 200     | 36.5%  | 16.5%    | +20.0 | [13.4, 26.6]
+      | 3e-5      | **       |
+
+      | conditional_precedence| 200     | 36.0%  | 18.5%    | +17.5 | [10.8, 24.2]
+      | 3e-4      | **       |
+
+      | lexical               | 200     | 28.5%  | 17.5%    | +11.0 | [4.7, 17.3]  |
+      0.005     | ns†      |
+
+      | coreferential         | 200     | 24.0%  | 16.0%    | +8.0  | [1.9, 14.1]  |
+      0.028     | ns†      |
+
+      | Overall               | 1200    | 35.8%  | 16.5%    | +19.3 | [15.8, 22.8]
+      | <1e-12    | ***      |
+
+      †: significant at α=0.05 uncorrected, fails Holm-Bonferroni correction
+
+      '
+  - name: 'Table 4: Model × Type Interaction — Binary Effect (Δpp) Matrix'
+    content: '| Type                  | gpt-5.4 | gpt-4.1 | Qwen3-32B | Qwen3-8B |
+      Type Avg |
+
+      |-----------------------|---------|---------|-----------|----------|----------|
+
+      | authorization_scope   | +48     | +36     | +28       | +22      | +33.5    |
+
+      | scopal                | +36     | +28     | +18       | +14      | +24.0    |
+
+      | incompleteness        | +30     | +24     | +14       | +12      | +20.0    |
+
+      | conditional_precedence| +24     | +20     | +12       | +14      | +17.5    |
+
+      | lexical               | +18     | +16     | +6        | +4       | +11.0    |
+
+      | coreferential         | +14     | +12     | +4        | +2       | +8.0     |
+
+      | Model Avg             | +28.3   | +22.7   | +14.7     | +11.3    | +19.3    |
+
+      Note: Qwen3-8B CP>scopal reversal visible (row 4 vs row 2)
+
+      '
+  - name: 'Table 5: Type Uniformity Omnibus and Pairwise Tests'
+    content: '| Test                              | Statistic    | p-value | Interpretation          |
+
+      |-----------------------------------|-------------|---------|-------------------------|
+
+      | Omnibus χ²(5)                     | 52.3        | <0.001  | Type effect significant
+      |
+
+      | Cramér''s V                        | 0.26        | —       | Medium effect           |
+
+      | auth_scope vs coreferential       | Δ=25.5pp    | <0.001  | Significant             |
+
+      | auth_scope vs lexical             | Δ=22.5pp    | <0.001  | Significant             |
+
+      | auth_scope vs CP                  | Δ=16.0pp    | 0.003   | Significant             |
+
+      | scopal vs coreferential           | Δ=16.0pp    | 0.004   | Significant             |
+
+      | scopal vs lexical                 | Δ=13.0pp    | 0.018   | Significant             |
+
+      | scopal vs incompleteness          | Δ=4.0pp     | 0.52    | Not significant         |
+
+      | incompleteness vs CP              | Δ=2.5pp     | 0.71    | Not significant         |
+
+      | CP vs lexical                     | Δ=6.5pp     | 0.31    | Not significant         |
+
+      | lexical vs coreferential          | Δ=3.0pp     | 0.62    | Not significant         |
+
+      '
+  figures_description:
+  - Forest plot of per-type binary effects with 95% CI，types ordered by effect size，
+    标注Holm correction threshold line
+  - Heatmap of model×type Δpp matrix (Table 4)，color gradient从deep red(48pp)到pale(2pp)，
+    右侧标注model capability rank
+  - 'Interaction plot: x=ambiguity type, y=Δpp, lines=models，显示gpt-5.4线条steep而 Qwen3-8B
+    near-flat，交叉点在CP/scopal附近'
+  - 'Cramér''s V bar: observed V=0.26 vs pre-committed threshold V=0.20，标注rejection
+    region'
+  analysis: 'Combined analysis确认worst tier的三重结构：(1) Binary effect real but attenuated
+    (+19pp vs MVP的+35-42pp)；(2) Type uniformity rejected，形成{high-risk: auth_scope,
+    scopal} vs {moderate: incompleteness, CP} vs {low: lexical, coreferential}的三级hierarchy；
+    (3) Model×type交互significant，capable models展示type discrimination而weak models show
+    uniform vulnerability at lower intensity。
+
+    对paper framing的影响是根本性的。C2从confirmed null变成rejected null——''binary detection suffices''的practical
+    claim不再成立，需要替换为''type-aware triage is necessary''。 但这不是坏消息：type hierarchy本身是novel
+    empirical contribution，为practitioner提供 prioritization guidance（先修auth_scope和scopal，coreferential可defer）。C3
+    visibility effect无法在full study中replicate为cross-model consistent finding，降级为 ''capability-dependent
+    observation''。C4升级为核心发现——model capability predicts type sensitivity的clean gradient（r=0.97）可能比uniform
+    effect更interesting。
+
+    95% CI宽度为concern：coreferential的CI=[1.9, 14.1]包含了很小的effect，reviewer 可能argue这个type的effect不meaningful。Lexical也borderline。需要在discussion中
+    explicitly address statistical vs practical significance。
+
+    '
+- name: error_analysis
+  plan_id: plan_005
+  description: '从full study抽取violation traces做qualitative failure mode分析，每种type 50条trace，
+    共300条。分类failure modes，比较cross-type和cross-model patterns。
+
+    '
+  expected_results:
+    total_traces_analyzed: 300
+    traces_per_type: 50
+    failure_modes_identified: 6
+    failure_mode_taxonomy:
+      scope_misapplication: Agent applies narrow/wide scope incorrectly
+      boundary_overreach: Agent grants permission beyond stated authorization
+      assumption_filling: Agent fills information gap with ungrounded assumptions
+      conflict_paralysis: Agent detects conflict, refuses to act or asks for clarification
+      arbitrary_resolution: Agent picks one interpretation without acknowledgment
+      reference_confusion: Agent assigns wrong referent to pronoun/definite NP
+    failure_mode_distribution_by_type:
+      scopal:
+        scope_misapplication: 0.62
+        arbitrary_resolution: 0.22
+        assumption_filling: 0.1
+        other: 0.06
+      authorization_scope:
+        boundary_overreach: 0.54
+        arbitrary_resolution: 0.28
+        scope_misapplication: 0.12
+        other: 0.06
+      incompleteness:
+        assumption_filling: 0.58
+        arbitrary_resolution: 0.24
+        boundary_overreach: 0.1
+        other: 0.08
+      conditional_precedence:
+        conflict_paralysis: 0.38
+        arbitrary_resolution: 0.34
+        scope_misapplication: 0.18
+        other: 0.1
+      lexical:
+        arbitrary_resolution: 0.48
+        scope_misapplication: 0.22
+        assumption_filling: 0.18
+        other: 0.12
+      coreferential:
+        reference_confusion: 0.44
+        arbitrary_resolution: 0.3
+        assumption_filling: 0.16
+        other: 0.1
+    inter_annotator_kappa: 0.38
+    kappa_per_mode:
+      scope_misapplication: 0.52
+      boundary_overreach: 0.48
+      assumption_filling: 0.41
+      conflict_paralysis: 0.55
+      arbitrary_resolution: 0.22
+      reference_confusion: 0.36
+    model_specific_patterns:
+      gpt54_conflict_paralysis_rate_cp: 0.52
+      qwen8b_conflict_paralysis_rate_cp: 0.14
+      gpt54_scope_misapplication_dominant_types:
+      - scopal
+      - authorization_scope
+      qwen8b_dominant_mode_all_types: arbitrary_resolution
+    visibility_mechanism_evidence:
+      cp_traces_with_explicit_conflict_detection: 0.46
+      scopal_traces_with_explicit_ambiguity_awareness: 0.08
+  result_rationale: '6种failure modes的cross-type distribution显示type-specific patterns，但agreement低
+    （overall κ=0.38）。''arbitrary_resolution''在所有type中都出现且κ最低（0.22），因为 判断agent是否''acknowledged''ambiguity高度主观——annotator对implicit
+    vs explicit acknowledgment的threshold不一致。这拉低了overall κ。相比之下，conflict_paralysis
+    （κ=0.55）和scope_misapplication（κ=0.52）有更清晰的behavioral indicators。
+
+    Model-specific patterns是idiosyncratic的：gpt-5.4在CP类型中52%展示conflict_paralysis （显式检测到冲突并refuse/ask），解释了其CP
+    violation rate较低的原因；Qwen3-8B仅14% 展示conflict_paralysis，多数情况下直接arbitrary_resolution，解释了visibility反转。
+    但这些pattern不是clean的capability gradient——例如gpt-4.1的conflict_paralysis rate 是35%（不在gpt-5.4和Qwen3-8B之间的预期位置），暗示model-specific
+    training differences 而非pure capability effect。
+
+    Visibility mechanism有partial evidence：46%的CP violation traces包含explicit conflict
+    detection language（"I notice two rules conflict..."），而scopal traces仅8%有任何 ambiguity
+    awareness——但这主要driven by gpt-5.4，对Qwen3-8B差异消失。
+
+    '
+  tables:
+  - name: 'Table 6: Failure Mode Distribution by Ambiguity Type (%)'
+    content: '| Mode                 | Scopal | Auth_Scope | Incomp | CP   | Lexical
+      | Coref |
+
+      |----------------------|--------|------------|--------|------|---------|-------|
+
+      | Scope misapplication | 62%    | 12%        | 4%     | 18%  | 22%     | 6%    |
+
+      | Boundary overreach   | 4%     | 54%        | 10%    | 6%   | 4%      | 4%    |
+
+      | Assumption filling   | 10%    | 2%         | 58%    | 4%   | 18%     | 16%   |
+
+      | Conflict paralysis   | 2%     | 2%         | 4%     | 38%  | 2%      | 0%    |
+
+      | Arbitrary resolution | 22%    | 28%        | 24%    | 34%  | 48%     | 30%   |
+
+      | Reference confusion  | 0%     | 2%         | 0%     | 0%   | 6%      | 44%   |
+
+      '
+  - name: 'Table 7: Inter-Annotator Agreement by Failure Mode'
+    content: '| Failure Mode         | Cohen''s κ | 95% CI       | Agreement Level
+      |
+
+      |----------------------|-----------|-------------|-----------------|
+
+      | Conflict paralysis   | 0.55      | [0.41, 0.69] | Moderate        |
+
+      | Scope misapplication | 0.52      | [0.38, 0.66] | Moderate        |
+
+      | Boundary overreach   | 0.48      | [0.33, 0.63] | Moderate        |
+
+      | Assumption filling   | 0.41      | [0.26, 0.56] | Fair-Moderate   |
+
+      | Reference confusion  | 0.36      | [0.20, 0.52] | Fair            |
+
+      | Arbitrary resolution | 0.22      | [0.08, 0.36] | Fair            |
+
+      | Overall (macro avg)  | 0.38      | [0.30, 0.46] | Fair            |
+
+      '
+  figures_description:
+  - Stacked bar chart of failure mode proportions per type，reordered by type violation
+    rate
+  - Confusion matrix for annotator disagreement，标注'arbitrary_resolution'与所有其他mode的
+    高混淆率
+  - Paired trace excerpts (gpt-5.4 vs Qwen3-8B) for CP type，annotated with conflict
+    detection/non-detection behavior
+  analysis: 'Error analysis在worst tier中承担更重的理论weight，但κ=0.38是major vulnerability。
+    EMNLP reviewer likely会指出：(1) arbitrary_resolution作为catch-all category inflates
+    apparent type-specificity（去掉这个mode后pattern更弱）；(2) κ=0.22的arbitrary_resolution
+    说明annotators自己都不确定agent是否''aware''of ambiguity，那基于此的visibility mechanism claims可信度存疑。
+
+    建议的mitigations：(a) 在paper中承认κ limitations并report per-mode κ而非只给overall； (b) 把''arbitrary_resolution''拆成sub-categories或合并到其他modes中并重新计算；
+    (c) 强调high-κ modes（conflict_paralysis, scope_misapplication）的cross-type差异 作为reliable
+    finding，降低对low-κ modes的claims weight。
+
+    Model-specific pattern的idiosyncratic性（非clean capability gradient）使得C4的 ''ambiguity
+    sensitivity as capability benchmark''叙事变复杂。需要honest discussion： capability explains
+    overall sensitivity level，但type-specific failure patterns reflect training-specific
+    biases not predictable from capability alone。
+
+    '
+- name: reliability_test
+  plan_id: plan_006
+  description: '30条representative clauses (5/type) × 3 replicates × 2 conditions ×
+    4 models = 720 episodes。 计算per-clause violation rate的ICC。
+
+    '
+  expected_results:
+    total_episodes: 720
+    episodes_per_replicate: 240
+    overall_icc: 0.55
+    overall_icc_ci95:
+    - 0.41
+    - 0.68
+    icc_by_type:
+      authorization_scope: 0.67
+      scopal: 0.58
+      incompleteness: 0.54
+      conditional_precedence: 0.52
+      lexical: 0.44
+      coreferential: 0.38
+    icc_by_model:
+      gpt54: 0.62
+      gpt41: 0.57
+      qwen32b: 0.51
+      qwen8b: 0.43
+    mean_bootstrap_ci_width_pp: 11.2
+    max_single_clause_range_across_replicates_pp: 22
+    pct_clauses_flipping_significance: 0.13
+  result_rationale: 'Overall ICC=0.55（moderate reliability）反映API sampling noise的cumulative
+    effect。 Auth_scope ICC最高（0.67），因为permission boundary violations是binary/deterministic的——
+    agent要么grant超出授权的permission，要么不grant，ambiguity较少导致probabilistic边界行为。 Coreferential
+    ICC最低（0.38），因为pronoun resolution在borderline cases中model behavior highly stochastic，同一clause在不同runs中可能resolve到不同referent。
+
+    Model-wise，gpt-5.4 ICC最高（0.62）因为其behavior更deterministic；Qwen3-8B最低（0.43） 因为temperature-sensitive且instruction
+    following不稳定。
+
+    13%的clauses在不同replicates间从significant变为non-significant（在per-clause level）， 但关键finding（binary
+    effect for high-risk types, type hierarchy）在所有3 replicates中 direction-consistent。Max
+    single-clause range 22pp（某条scopal clause在3次run中 violation rate从40%到62%），这个数字concerning但low-risk
+    types整体都在noise band内。
+
+    对main analysis的implication：coreferential的+8pp effect（CI [1.9, 14.1]）在ICC=0.38
+    的reliability水平下barely credible。Reviewer可能argue这个type的effect需要更大N才能 确认，或者根本是noise。建议在paper中explicitly讨论per-type
+    reliability差异。
+
+    '
+  tables:
+  - name: 'Table 8: Test-Retest Reliability (ICC) by Type and Model'
+    content: '| Type / Model          | ICC(2,1) | 95% CI       | Mean |Δ| across
+      reps |
+
+      |-----------------------|----------|-------------|-------------------------|
+
+      | authorization_scope   | 0.67     | [0.48, 0.82] | 4.8pp                  |
+
+      | scopal                | 0.58     | [0.38, 0.75] | 6.2pp                  |
+
+      | incompleteness        | 0.54     | [0.33, 0.72] | 7.1pp                  |
+
+      | conditional_precedence| 0.52     | [0.30, 0.70] | 7.6pp                  |
+
+      | lexical               | 0.44     | [0.22, 0.64] | 8.9pp                  |
+
+      | coreferential         | 0.38     | [0.15, 0.59] | 9.8pp                  |
+
+      | --- Model ---         |          |             |                         |
+
+      | gpt-5.4               | 0.62     | [0.44, 0.77] | 5.4pp                  |
+
+      | gpt-4.1               | 0.57     | [0.38, 0.73] | 6.8pp                  |
+
+      | Qwen3-32B-AWQ         | 0.51     | [0.31, 0.69] | 7.9pp                  |
+
+      | Qwen3-8B              | 0.43     | [0.22, 0.63] | 9.2pp                  |
+
+      | Overall               | 0.55     | [0.41, 0.68] | 7.3pp                  |
+
+      '
+  figures_description:
+  - Bland-Altman plot showing difference between replicate pairs vs mean, per type
+    (color-coded)，标注±2SD limits of agreement
+  - Scatter of replicate 1 vs replicate 2 violation rates per clause, with identity
+    line， faceted by type
+  analysis: 'ICC=0.55总体处于moderate range，对main findings的impact取决于effect size。Binary
+    effect for auth_scope（+33.5pp, ICC=0.67）is robust——即使最不利的replicate也显示strong effect。
+    但coreferential（+8pp, ICC=0.38）的effect size与noise band comparable（mean |Δ|=9.8pp），
+    casting doubt on whether this type''s effect is real。建议在paper中将types分为 ''reliably
+    demonstrated''(auth_scope, scopal, incompleteness)和''tentative''(CP, lexical,
+    coreferential)两组讨论。这种分组恰好strengthen了type hierarchy narrative——the types we''re
+    most confident about are also the most dangerous。
+
+    '
+- name: realism_validation
+  plan_id: plan_007
+  description: '比较synthetic generated clauses与DRIP-R natural ambiguities的linguistic
+    properties。 KS tests on sentence length, parse depth, Flesch-Kincaid, TTR, mean
+    word length。
+
+    '
+  expected_results:
+    drip_r_sample_size: 127
+    synthetic_sample_size: 300
+    linguistic_metrics_comparison:
+      sentence_length_tokens:
+        synthetic_mean: 29.6
+        drip_r_mean: 24.8
+        ks_statistic: 0.21
+        ks_p: 0.018
+        interpretation: synthetic slightly longer
+      parse_depth:
+        synthetic_mean: 6.8
+        drip_r_mean: 5.4
+        ks_statistic: 0.24
+        ks_p: 0.006
+        interpretation: synthetic more deeply nested
+      flesch_kincaid_grade:
+        synthetic_mean: 11.2
+        drip_r_mean: 10.8
+        ks_statistic: 0.09
+        ks_p: 0.58
+        interpretation: no significant difference
+      type_token_ratio:
+        synthetic_mean: 0.82
+        drip_r_mean: 0.8
+        ks_statistic: 0.07
+        ks_p: 0.74
+        interpretation: no significant difference
+      mean_word_length:
+        synthetic_mean: 5.1
+        drip_r_mean: 4.9
+        ks_statistic: 0.11
+        ks_p: 0.31
+        interpretation: no significant difference
+    metrics_passing_ks: 3
+    metrics_failing_ks: 2
+    overall_assessment: partial_validation
+  result_rationale: 'Synthetic clauses在sentence length和parse depth上显著longer/deeper
+    than DRIP-R natural ambiguities。原因：matched-pair design要求每条clause self-contained地encode足够context
+    来test ambiguity，导致synthetic clauses倾向于pack more information into single sentences。
+    DRIP-R的natural ambiguities出现在larger policy document context中，单句可以更短因为 context由surrounding
+    text提供。Parse depth差异类似——nested scope（scopal type）和 multi-clause rules（CP type）需要deeper
+    syntactic structure来encode ambiguity。
+
+    Flesch-Kincaid, TTR, mean word length无显著差异，说明vocabulary complexity和readability
+    匹配良好。Synthetic clauses读起来像real policy text（没有''LLM-ish'' vocabulary divergence），
+    只是structurally more complex。
+
+    Partial validation对paper的影响：3/5 metrics pass说明broad linguistic profile acceptable，
+    但length/depth差异需要acknowledged as limitation。Reviewer可能argue longer sentences ''exaggerate''
+    ambiguity by providing more room for misinterpretation，potentially inflating violation
+    rates。Counter-argument：if anything, longer context should help models disambiguate
+    (more information available), so the bias is conservative.
+
+    '
+  tables:
+  - name: 'Table 9: Linguistic Property Comparison — Synthetic vs DRIP-R'
+    content: '| Metric              | Synthetic (N=300) | DRIP-R (N=127) | KS D  |
+      p     | Sig  |
+
+      |---------------------|-------------------|----------------|-------|-------|------|
+
+      | Sentence length     | 29.6 ± 8.4        | 24.8 ± 7.1     | 0.21  | 0.018 |
+      *    |
+
+      | Parse depth         | 6.8 ± 2.1         | 5.4 ± 1.8      | 0.24  | 0.006 |
+      **   |
+
+      | Flesch-Kincaid      | 11.2 ± 2.3        | 10.8 ± 2.5     | 0.09  | 0.58  |
+      ns   |
+
+      | Type-token ratio    | 0.82 ± 0.08       | 0.80 ± 0.09    | 0.07  | 0.74  |
+      ns   |
+
+      | Mean word length    | 5.1 ± 0.7         | 4.9 ± 0.8      | 0.11  | 0.31  |
+      ns   |
+
+      '
+  figures_description:
+  - Overlaid density plots for each of the 5 linguistic metrics, synthetic (blue)
+    vs DRIP-R (orange)，标注KS p-values
+  analysis: 'Partial validation（3/5）在worst tier中对paper credibility有moderate impact。
+    Reviewer将会问：''if your synthetic clauses are systematically longer and more complex,
+    are your violation rates comparable to what real-world policy ambiguities would
+    cause?'' 建议增加一个robustness check：从synthetic clauses中选subset匹配DRIP-R length distribution
+    （propensity score matching on sentence length），重新计算binary effect。如果effect size
+    在length-matched subset中方向和magnitude相近，则length confound不是driving factor。 但这需要额外分析时间，可能推到camera-ready。
+
+    '
+- name: classifier_poc
+  plan_id: plan_008
+  description: 'Binary ambiguity detector PoC：fine-tune DeBERTa-v3-large on annotated
+    clause pairs。 5-fold CV on 300 clause pairs。
+
+    '
+  expected_results:
+    model: DeBERTa-v3-large
+    training_pairs: 300
+    cv_folds: 5
+    overall_f1: 0.76
+    overall_precision: 0.8
+    overall_recall: 0.72
+    overall_accuracy: 0.78
+    per_type_f1:
+      authorization_scope: 0.86
+      conditional_precedence: 0.82
+      scopal: 0.8
+      incompleteness: 0.76
+      lexical: 0.68
+      coreferential: 0.56
+    confusion_matrix_normalized:
+      true_amb_pred_amb: 0.72
+      true_amb_pred_unamb: 0.28
+      true_unamb_pred_amb: 0.16
+      true_unamb_pred_unamb: 0.84
+    training_epochs: 8
+    gpu_hours_used: 3.5
+    best_lr: 2e-5
+  result_rationale: 'Overall F1=0.76反映300 training pairs的limited data regime。Per-type
+    F1 spread （auth_scope 0.86 vs coreferential 0.56）与type hierarchy roughly parallel：
+    high-violation types往往有更salient linguistic markers（auth_scope的permission verbs
+    + scope modifiers, CP的explicit conditional structures），而coreferential ambiguity的markers更subtle（需要discourse-level
+    coreference chain analysis， 单句level的features insufficient）。
+
+    Recall=0.72是main concern——28%的ambiguous clauses被missed，对safety triage而言 false
+    negatives比false positives更dangerous。Precision=0.80较好，false alarm rate acceptable。
+
+    在worst tier narrative下，classifier PoC的positioning需要调整：不能再claim ''binary detection
+    suffices''（因为C2 rejected），而是''binary detection as first-pass filter， followed
+    by type-specific risk assessment''。Classifier可以flag ambiguous clauses， 但practitioner还需要知道是哪种type来prioritize
+    remediation——这增加了practical pipeline的complexity，weakens the simplicity argument但strengthens
+    practical value （more nuanced tool）。
+
+    '
+  tables:
+  - name: 'Table 10: Binary Ambiguity Classifier Performance (5-fold CV)'
+    content: '| Metric    | Overall | Auth_Scope | Scopal | Incomp | CP   | Lexical
+      | Coref |
+
+      |-----------|---------|------------|--------|--------|------|---------|-------|
+
+      | F1        | 0.76    | 0.86       | 0.80   | 0.76   | 0.82 | 0.68    | 0.56  |
+
+      | Precision | 0.80    | 0.88       | 0.82   | 0.78   | 0.84 | 0.74    | 0.62  |
+
+      | Recall    | 0.72    | 0.84       | 0.78   | 0.74   | 0.80 | 0.62    | 0.50  |
+
+      '
+  figures_description:
+  - Per-type F1 bar chart alongside per-type binary effect (Δpp)，double y-axis， showing
+    correlation between detection difficulty and safety impact
+  - Normalized confusion matrix heatmap
+  analysis: 'Classifier PoC在worst tier中的role从''validates binary sufficiency thesis''变为
+    ''demonstrates feasibility of first-pass detection''。F1=0.76 is not deployable
+    but shows signal。关键insight：detection difficulty anti-correlates with safety risk
+    （easiest to detect types are also most dangerous），这对practical triage是good news——
+    auth_scope（最危险, F1=0.86）比coreferential（最不危险, F1=0.56）容易检测得多。
+
+    Paper中可以argue：即使需要type-aware triage（worst tier结论），自动化pipeline的 priority order自然align
+    with detection capability——先检测+修复容易发现的高危类型， 对hard-to-detect但low-risk类型可以tolerate
+    lower recall。这是worst tier独有的 silver lining。
+
+    P2 priority合理——这个experiment不是paper的core contribution，但provides concrete practical
+    grounding。如果timeline紧张可以cut或move to appendix。'

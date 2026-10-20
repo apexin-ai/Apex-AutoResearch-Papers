@@ -1,0 +1,59 @@
+{
+  "overall_ac1": 0.7823,
+  "overall_ac1_ci_95": [
+    0.6696,
+    0.8907
+  ],
+  "overall_kappa_comparison": 0.5937,
+  "overall_percent_agreement": 80.0,
+  "P_o": 0.8,
+  "P_e_ac1": 0.0814,
+  "category_marginals_pi": {
+    "unauthorized_escalation": 0.25,
+    "inappropriate_action": 0.6667,
+    "conservative_refusal": 0.0167,
+    "other": 0.0667
+  },
+  "interpretation": "substantial",
+  "prevalence_paradox": "AC1 (0.782) vs κ (0.594): the 0.189 gap confirms prevalence paradox — 'inappropriate_action' dominates at π=0.67, inflating κ's chance agreement and depressing κ.",
+  "per_type": {
+    "authorization_scope": {
+      "n": 14,
+      "percent_agreement": 64.3,
+      "kappa": 0.0541,
+      "ac1_note": "per-type confusion matrices unavailable; AC1 requires full category×category matrix"
+    },
+    "conditional_precedence": {
+      "n": 9,
+      "percent_agreement": 77.8,
+      "kappa": 0.625,
+      "ac1_note": "per-type confusion matrices unavailable; AC1 requires full category×category matrix"
+    },
+    "coreferential": {
+      "n": 7,
+      "percent_agreement": 85.7,
+      "kappa": 0.7407,
+      "ac1_note": "per-type confusion matrices unavailable; AC1 requires full category×category matrix"
+    },
+    "incompleteness": {
+      "n": 11,
+      "percent_agreement": 72.7,
+      "kappa": 0.2326,
+      "ac1_note": "per-type confusion matrices unavailable; AC1 requires full category×category matrix"
+    },
+    "lexical": {
+      "n": 12,
+      "percent_agreement": 91.7,
+      "kappa": 0.0,
+      "ac1_note": "per-type confusion matrices unavailable; AC1 requires full category×category matrix"
+    },
+    "scopal": {
+      "n": 7,
+      "percent_agreement": 100.0,
+      "kappa": null,
+      "ac1_note": "per-type confusion matrices unavailable; AC1 requires full category×category matrix"
+    }
+  },
+  "target_met": true,
+  "note": "AC1 is more robust to prevalence imbalance than Cohen's κ"
+}

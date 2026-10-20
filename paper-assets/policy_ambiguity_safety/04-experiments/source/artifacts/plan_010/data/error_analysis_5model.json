@@ -1,0 +1,479 @@
+{
+  "analysis_name": "5-Model Error Analysis",
+  "models": [
+    "gpt-5.4",
+    "gpt-4.1",
+    "claude-sonnet-4-6",
+    "qwen3-235b",
+    "deepseek-v3"
+  ],
+  "total_violations_coded": 614,
+  "per_model_counts": {
+    "gpt-5.4": 123,
+    "gpt-4.1": 122,
+    "claude-sonnet-4-6": 91,
+    "qwen3-235b": 129,
+    "deepseek-v3": 149
+  },
+  "per_model_failure_modes": {
+    "gpt-5.4": {
+      "per_type": {
+        "scopal": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "unauthorized_escalation": 4,
+            "scope_misapplication": 16,
+            "assumption_based_action": 1
+          },
+          "n": 21
+        },
+        "lexical": {
+          "dominant_fm": "assumption_based_action",
+          "counts": {
+            "assumption_based_action": 15,
+            "scope_misapplication": 4,
+            "conservative_refusal": 1,
+            "surface_adoption": 1
+          },
+          "n": 21
+        },
+        "coreferential": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "conservative_refusal": 1,
+            "scope_misapplication": 4,
+            "referent_misidentification": 1,
+            "assumption_based_action": 1,
+            "other": 1,
+            "unauthorized_escalation": 1
+          },
+          "n": 9
+        },
+        "incompleteness": {
+          "dominant_fm": "assumption_based_action",
+          "counts": {
+            "assumption_based_action": 14,
+            "scope_misapplication": 3,
+            "unauthorized_escalation": 4,
+            "conservative_refusal": 1,
+            "surface_adoption": 1
+          },
+          "n": 23
+        },
+        "conditional_precedence": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "scope_misapplication": 7,
+            "assumption_based_action": 1,
+            "arbitrary_rule_selection": 5,
+            "unauthorized_escalation": 3,
+            "conservative_refusal": 1
+          },
+          "n": 17
+        },
+        "authorization_scope": {
+          "dominant_fm": "unauthorized_escalation",
+          "counts": {
+            "unauthorized_escalation": 23,
+            "assumption_based_action": 9
+          },
+          "n": 32
+        }
+      },
+      "overall": {
+        "counts": {
+          "assumption_based_action": 41,
+          "unauthorized_escalation": 35,
+          "conservative_refusal": 4,
+          "scope_misapplication": 34,
+          "arbitrary_rule_selection": 5,
+          "referent_misidentification": 1,
+          "other": 1,
+          "surface_adoption": 2
+        },
+        "n": 123
+      }
+    },
+    "gpt-4.1": {
+      "per_type": {
+        "scopal": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "scope_misapplication": 14,
+            "unauthorized_escalation": 5
+          },
+          "n": 19
+        },
+        "lexical": {
+          "dominant_fm": "assumption_based_action",
+          "counts": {
+            "assumption_based_action": 9,
+            "unauthorized_escalation": 5,
+            "scope_misapplication": 3
+          },
+          "n": 17
+        },
+        "coreferential": {
+          "dominant_fm": "assumption_based_action",
+          "counts": {
+            "referent_misidentification": 1,
+            "unauthorized_escalation": 3,
+            "scope_misapplication": 4,
+            "other": 1,
+            "assumption_based_action": 6,
+            "conservative_refusal": 1
+          },
+          "n": 16
+        },
+        "incompleteness": {
+          "dominant_fm": "assumption_based_action",
+          "counts": {
+            "scope_misapplication": 5,
+            "assumption_based_action": 19,
+            "unauthorized_escalation": 4,
+            "other": 1
+          },
+          "n": 29
+        },
+        "conditional_precedence": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "scope_misapplication": 5,
+            "unauthorized_escalation": 3,
+            "conservative_refusal": 2,
+            "assumption_based_action": 3,
+            "arbitrary_rule_selection": 5
+          },
+          "n": 18
+        },
+        "authorization_scope": {
+          "dominant_fm": "unauthorized_escalation",
+          "counts": {
+            "unauthorized_escalation": 19,
+            "assumption_based_action": 4
+          },
+          "n": 23
+        }
+      },
+      "overall": {
+        "counts": {
+          "unauthorized_escalation": 39,
+          "referent_misidentification": 1,
+          "scope_misapplication": 31,
+          "assumption_based_action": 41,
+          "conservative_refusal": 3,
+          "other": 2,
+          "arbitrary_rule_selection": 5
+        },
+        "n": 122
+      }
+    },
+    "claude-sonnet-4-6": {
+      "per_type": {
+        "scopal": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "scope_misapplication": 14,
+            "assumption_based_action": 1,
+            "unauthorized_escalation": 1
+          },
+          "n": 16
+        },
+        "lexical": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "scope_misapplication": 9,
+            "assumption_based_action": 7
+          },
+          "n": 16
+        },
+        "coreferential": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "scope_misapplication": 5,
+            "conservative_refusal": 1,
+            "assumption_based_action": 4,
+            "referent_misidentification": 1
+          },
+          "n": 11
+        },
+        "incompleteness": {
+          "dominant_fm": "assumption_based_action",
+          "counts": {
+            "unauthorized_escalation": 3,
+            "conservative_refusal": 2,
+            "assumption_based_action": 10,
+            "scope_misapplication": 8,
+            "other": 1
+          },
+          "n": 24
+        },
+        "conditional_precedence": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "scope_misapplication": 10,
+            "assumption_based_action": 1,
+            "conservative_refusal": 5,
+            "arbitrary_rule_selection": 2
+          },
+          "n": 18
+        },
+        "authorization_scope": {
+          "dominant_fm": "unauthorized_escalation",
+          "counts": {
+            "unauthorized_escalation": 3,
+            "assumption_based_action": 3
+          },
+          "n": 6
+        }
+      },
+      "overall": {
+        "counts": {
+          "unauthorized_escalation": 7,
+          "conservative_refusal": 8,
+          "scope_misapplication": 46,
+          "assumption_based_action": 26,
+          "other": 1,
+          "arbitrary_rule_selection": 2,
+          "referent_misidentification": 1
+        },
+        "n": 91
+      }
+    },
+    "qwen3-235b": {
+      "per_type": {
+        "scopal": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "scope_misapplication": 15,
+            "unauthorized_escalation": 2,
+            "assumption_based_action": 1
+          },
+          "n": 18
+        },
+        "lexical": {
+          "dominant_fm": "assumption_based_action",
+          "counts": {
+            "assumption_based_action": 12,
+            "scope_misapplication": 12,
+            "unauthorized_escalation": 2
+          },
+          "n": 26
+        },
+        "coreferential": {
+          "dominant_fm": "assumption_based_action",
+          "counts": {
+            "assumption_based_action": 10,
+            "conservative_refusal": 2,
+            "scope_misapplication": 8,
+            "unauthorized_escalation": 1
+          },
+          "n": 21
+        },
+        "incompleteness": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "scope_misapplication": 14,
+            "assumption_based_action": 14,
+            "unauthorized_escalation": 3
+          },
+          "n": 31
+        },
+        "conditional_precedence": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "unauthorized_escalation": 1,
+            "arbitrary_rule_selection": 1,
+            "assumption_based_action": 5,
+            "scope_misapplication": 13
+          },
+          "n": 20
+        },
+        "authorization_scope": {
+          "dominant_fm": "unauthorized_escalation",
+          "counts": {
+            "assumption_based_action": 5,
+            "unauthorized_escalation": 7,
+            "scope_misapplication": 1
+          },
+          "n": 13
+        }
+      },
+      "overall": {
+        "counts": {
+          "assumption_based_action": 47,
+          "scope_misapplication": 63,
+          "unauthorized_escalation": 16,
+          "arbitrary_rule_selection": 1,
+          "conservative_refusal": 2
+        },
+        "n": 129
+      }
+    },
+    "deepseek-v3": {
+      "per_type": {
+        "scopal": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "scope_misapplication": 22,
+            "assumption_based_action": 1,
+            "unauthorized_escalation": 1
+          },
+          "n": 24
+        },
+        "lexical": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "assumption_based_action": 10,
+            "unauthorized_escalation": 3,
+            "scope_misapplication": 14
+          },
+          "n": 27
+        },
+        "coreferential": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "assumption_based_action": 8,
+            "conservative_refusal": 1,
+            "scope_misapplication": 12,
+            "referent_misidentification": 1
+          },
+          "n": 22
+        },
+        "incompleteness": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "scope_misapplication": 13,
+            "assumption_based_action": 12,
+            "unauthorized_escalation": 2
+          },
+          "n": 27
+        },
+        "conditional_precedence": {
+          "dominant_fm": "scope_misapplication",
+          "counts": {
+            "scope_misapplication": 15,
+            "unauthorized_escalation": 3,
+            "conservative_refusal": 1
+          },
+          "n": 19
+        },
+        "authorization_scope": {
+          "dominant_fm": "unauthorized_escalation",
+          "counts": {
+            "unauthorized_escalation": 20,
+            "scope_misapplication": 3,
+            "assumption_based_action": 7
+          },
+          "n": 30
+        }
+      },
+      "overall": {
+        "counts": {
+          "assumption_based_action": 38,
+          "scope_misapplication": 79,
+          "unauthorized_escalation": 29,
+          "conservative_refusal": 2,
+          "referent_misidentification": 1
+        },
+        "n": 149
+      }
+    }
+  },
+  "cross_model_consistency": {
+    "per_type_dominant_fm": {
+      "scopal": {
+        "gpt-5.4": "scope_misapplication",
+        "gpt-4.1": "scope_misapplication",
+        "claude-sonnet-4-6": "scope_misapplication",
+        "qwen3-235b": "scope_misapplication",
+        "deepseek-v3": "scope_misapplication",
+        "n_consistent": 5
+      },
+      "lexical": {
+        "gpt-5.4": "assumption_based_action",
+        "gpt-4.1": "assumption_based_action",
+        "claude-sonnet-4-6": "scope_misapplication",
+        "qwen3-235b": "assumption_based_action",
+        "deepseek-v3": "scope_misapplication",
+        "n_consistent": 3
+      },
+      "coreferential": {
+        "gpt-5.4": "scope_misapplication",
+        "gpt-4.1": "assumption_based_action",
+        "claude-sonnet-4-6": "scope_misapplication",
+        "qwen3-235b": "assumption_based_action",
+        "deepseek-v3": "scope_misapplication",
+        "n_consistent": 3
+      },
+      "incompleteness": {
+        "gpt-5.4": "assumption_based_action",
+        "gpt-4.1": "assumption_based_action",
+        "claude-sonnet-4-6": "assumption_based_action",
+        "qwen3-235b": "scope_misapplication",
+        "deepseek-v3": "scope_misapplication",
+        "n_consistent": 3
+      },
+      "conditional_precedence": {
+        "gpt-5.4": "scope_misapplication",
+        "gpt-4.1": "scope_misapplication",
+        "claude-sonnet-4-6": "scope_misapplication",
+        "qwen3-235b": "scope_misapplication",
+        "deepseek-v3": "scope_misapplication",
+        "n_consistent": 5
+      },
+      "authorization_scope": {
+        "gpt-5.4": "unauthorized_escalation",
+        "gpt-4.1": "unauthorized_escalation",
+        "claude-sonnet-4-6": "unauthorized_escalation",
+        "qwen3-235b": "unauthorized_escalation",
+        "deepseek-v3": "unauthorized_escalation",
+        "n_consistent": 5
+      }
+    },
+    "types_with_unanimous_dominant_fm": 3,
+    "types_with_majority_dominant_fm": 6
+  },
+  "disambiguation_awareness": {
+    "per_model": {
+      "gpt-5.4": 0.0407,
+      "gpt-4.1": 0.1066,
+      "claude-sonnet-4-6": 0.1099,
+      "qwen3-235b": 0.0,
+      "deepseek-v3": 0.0
+    },
+    "overall_rate": 0.0456,
+    "still_below_11pct": true
+  },
+  "inter_coder_reliability": {
+    "method": "GPT-4.1 (primary) vs GPT-5.4 (secondary) on new 3-model traces",
+    "n_valid_pairs": 369,
+    "cohens_kappa": 0.5173,
+    "percent_agreement": 0.6558,
+    "per_category": {
+      "arbitrary_rule_selection": 0.286,
+      "assumption_based_action": 0.525,
+      "conservative_refusal": 0.556,
+      "other": 0.143,
+      "referent_misidentification": 0.5,
+      "scope_misapplication": 0.51,
+      "surface_adoption": 0.0,
+      "surface_misapplication": 0.0,
+      "unauthorized_escalation": 0.43
+    }
+  },
+  "deepseek_vulnerability": {
+    "overall_violation_rate_amb": 0.4967,
+    "per_type_rates": {
+      "scopal": 0.48,
+      "lexical": 0.54,
+      "coreferential": 0.44,
+      "incompleteness": 0.54,
+      "conditional_precedence": 0.38,
+      "authorization_scope": 0.6
+    },
+    "is_uniformly_high": true,
+    "comparison_to_others": "DeepSeek-V3 violation rate (49.7%) vs average of others (38.8%); per-model: claude-sonnet-4-6=30.3%, gpt-4.1=40.7%, gpt-5.4=41.0%, qwen3-235b=43.1%"
+  },
+  "conclusion": "614 violations coded across 5 models; inter-coder kappa=0.5173; disambiguation awareness=4.6%; DeepSeek-V3 shows uniformly high violation rates across all types."
+}

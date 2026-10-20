@@ -1,0 +1,50 @@
+{
+  "analysis": "c4_logistic_regression_robustness",
+  "n_episodes_ambiguous": 1499,
+  "interaction_test": {
+    "lr_statistic": 47.1972,
+    "df": 20,
+    "p_value": 0.000551,
+    "significant_at_005": true
+  },
+  "model_main_effect": {
+    "lr_statistic": 24.8318,
+    "df": 4,
+    "p_value": 5.4e-05
+  },
+  "type_main_effect": {
+    "lr_statistic": 28.4534,
+    "df": 5,
+    "p_value": 3e-05
+  },
+  "top_interaction_terms": [
+    {
+      "term": "C(model)[T.gpt-5.4]:C(ambiguity_type)[T.incompleteness]",
+      "coef": -2.6481,
+      "z": -4.0066,
+      "p": 0.0001
+    },
+    {
+      "term": "C(model)[T.gpt-5.4]:C(ambiguity_type)[T.conditional_precedence]",
+      "coef": -2.6557,
+      "z": -3.9496,
+      "p": 0.0001
+    },
+    {
+      "term": "C(model)[T.gpt-5.4]:C(ambiguity_type)[T.coreferential]",
+      "coef": -2.8185,
+      "z": -3.8779,
+      "p": 0.0001
+    }
+  ],
+  "anova_comparison": {
+    "anova_f": 1.97,
+    "anova_p": 0.006,
+    "logistic_chi2": 47.1972,
+    "logistic_p": 0.000551,
+    "conclusion": "consistent"
+  },
+  "model2_pseudo_r2": 0.0493,
+  "model2_aic": 1988.77,
+  "model2_bic": 2148.15
+}

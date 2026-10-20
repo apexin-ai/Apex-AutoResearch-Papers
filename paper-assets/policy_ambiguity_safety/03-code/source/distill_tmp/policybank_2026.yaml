@@ -1,0 +1,82 @@
+paper_key: "policybank_2026"
+title: "PolicyBank: Evolving Policy Understanding for LLM Agents"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines: [No Memory, Synapse, AWM (Agent Workflow Memory), ReasoningBank]
+  metrics:
+    - {name: "pass^k (k=1,2,3,4)", direction: "higher_better"}
+  datasets:
+    - {name: "Extended τ-Bench (airline)", size: "50 original + 7 parent + 21 sister tasks"}
+    - {name: "Extended τ-Bench (retail)", size: "114 original + 3 parent + 9 sister tasks"}
+  ablation_dimensions: [feedback_type (reward/explanation), task_complexity (t-1/t-2/t-3), retrieval_variant]
+  training_recipe: {optimizer: "N/A (memory mechanism)", lr: "N/A", hardware: "Gemini-3.0-Pro, Claude-Opus-4.5"}
+  method_family: "iterative memory refinement for policy understanding"
+
+positioning:
+  core_claim: "Written policies inherently contain specification gaps; PolicyBank iteratively refines policy interpretation through interaction feedback, closing up to 82% of the gap toward human oracle performance."
+  key_results: "Airline sister tasks: 0.01→0.74 pass^1 (Gemini); Retail sister tasks: 0.31→0.83 pass^1 (Gemini); Standard memory baselines achieve near-zero on policy-gap scenarios; Human oracle: 0.90 pass^1"
+  limitations:
+    - "Only two domains (airline, retail)"
+    - "Relies on trusted developer feedback"
+    - "Policy Agent reasoning quality is model-dependent"
+    - "Open-source models not evaluated"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "开篇区分execution failures(能力不足)和alignment failures(规范不足)，指出现有方法只解决前者"
+  tension: "现有memory mechanisms把written policy当不可变ground truth，但specifications本身有gaps——'compliant but wrong'行为被反复强化"
+  key_insight: "Figure 3展示policy entry的非单调演化：初始严格→过度泛化→精确收敛，policy理解是iterative deductive process"
+  argument_chain: "policy gaps exist (3 types) → existing memory reinforces wrong specs → PolicyBank iteratively refines → closes 82% of gap to oracle → non-monotonic convergence"
+  contribution_framing: "三项贡献：problem formalization(Type I/II failure) + methodology(PolicyBank) + evaluation framework(extended τ-Bench)"
+  intro_structure: "5段：agent policy compliance现状 → alignment failure定义 → 现有memory不足 → PolicyBank方案 → 贡献列表"
+  notable_technique: "三种policy gap类型(Ambiguous Scope, Under-Specified Exceptions, Logical Contradiction)的分类学精准；sister task设计(t-1 simplified, t-2 different instance, t-3 complex)控制实验粒度；pass^k metric强调consistency over discovery"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "motivation"
+    description: "对比standard agents(treat πspec as immutable→systematic failure when spec≠req) vs PolicyBank(iteratively refine interpretation using feedback)"
+    narrative_role: "一图定义问题和方案的核心区别"
+    design_elements: ["左右对比", "πspec vs πreq概念化", "feedback循环"]
+    visual_style: "概念图，左侧immutable policy导致failure，右侧iterative refinement收敛"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "各task family的pass rate演化"
+      how_gain_highlighted: "PolicyBank快速适应，baselines持续低位"
+      design_note: "展示temporal adaptation dynamics"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "qualitative_comparison"
+      dimensions_varied: ["policy entry evolution phases"]
+      design_note: "展示单个entry的三阶段演化(strict→over-general→precise)，是论文最具说服力的图"
+    - figure_id: "Figure 5"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["retrieval variant"]
+      design_note: "agent-triggered vs full-context对比"
+  figure_narrative_role: "Figure 1(问题定义) → Figure 2(框架概览) → Figure 3(进化轨迹) → Figure 4(pass rate) → Figure 5(retrieval对比)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "domain × task_type × pass^k"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "mean across 5 random seeds"
+    num_baselines: 5
+    design_note: "Sister tasks和Original tasks分列展示，突出policy gap上的dramatic collapse(0.66→0.01)"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["feedback type (None/Reward/Reward+Explanation/Human Oracle)"]
+      variation_style: "full_numbers"
+      design_note: "feedback granularity的递进展示，证明binary signal不足以resolve policy gaps"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 1(policy gap examples), Table 4(complete task breakdown), A.1-A.6(详细gap和sister task specifications)"
+    reason: "主文放关键结果，appendix放完整任务规格和案例分析"

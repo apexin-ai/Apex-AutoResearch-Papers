@@ -1,0 +1,87 @@
+{
+  "tested_at": "2026-05-20",
+  "proxy": "http://47.94.22.126/v1",
+  "note": "Models require 'provider/' prefix (e.g. 'anthropic/claude-sonnet-4-6'). Without prefix returns 'not a valid model ID'. The /models endpoint only lists OpenAI models; non-OpenAI models are routed by prefix but not listed.",
+  "results": [
+    {
+      "model": "anthropic/claude-sonnet-4-6",
+      "success": true,
+      "resolved_model": "anthropic/claude-4.6-sonnet-20260217",
+      "provider": "Google",
+      "response_snippet": "Hello!",
+      "error": null
+    },
+    {
+      "model": "anthropic/claude-opus-4-6",
+      "success": true,
+      "resolved_model": "anthropic/claude-4.6-opus-20260205",
+      "provider": "Anthropic",
+      "response_snippet": "Hello",
+      "error": null
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "success": true,
+      "resolved_model": "google/gemini-2.5-pro",
+      "provider": "Google",
+      "response_snippet": "(used all tokens on reasoning, no visible content with max_tokens=10)",
+      "error": null
+    },
+    {
+      "model": "qwen/qwen3-235b-a22b",
+      "success": true,
+      "resolved_model": "qwen/qwen3-235b-a22b-04-28",
+      "provider": "Alibaba",
+      "response_snippet": "Hello!",
+      "error": null
+    },
+    {
+      "model": "qwen/qwen3-30b-a3b",
+      "success": true,
+      "resolved_model": "qwen/qwen3-30b-a3b-04-28",
+      "provider": "Novita",
+      "response_snippet": "(used all tokens on reasoning, no visible content with max_tokens=10)",
+      "error": null
+    },
+    {
+      "model": "deepseek/deepseek-chat-v3-0324",
+      "success": true,
+      "resolved_model": "deepseek/deepseek-chat-v3-0324",
+      "provider": "ModelRun",
+      "response_snippet": "Hello",
+      "error": null
+    },
+    {
+      "model": "qwen/qwen-2.5-72b-instruct",
+      "success": true,
+      "resolved_model": "qwen/qwen-2.5-72b-instruct",
+      "provider": "DeepInfra",
+      "response_snippet": "Hello.",
+      "error": null
+    }
+  ],
+  "models_list_available": true,
+  "models_list_note": "Only lists 118 OpenAI models. Non-OpenAI models (anthropic/, google/, qwen/, deepseek/) are routed but not listed.",
+  "available_models_sample": [
+    "gpt-5.5",
+    "gpt-5.5-pro",
+    "gpt-5.4",
+    "gpt-5.4-pro",
+    "gpt-5.4-mini",
+    "gpt-5.4-nano",
+    "gpt-4.1",
+    "gpt-4.1-mini",
+    "gpt-4.1-nano",
+    "gpt-4o",
+    "gpt-4o-mini",
+    "o3",
+    "o4-mini",
+    "o1",
+    "o1-pro"
+  ],
+  "important_notes": {
+    "prefix_required": "Non-OpenAI models MUST use provider prefix (e.g. 'anthropic/claude-sonnet-4-6', not 'claude-sonnet-4-6')",
+    "reasoning_models": "qwen3 and gemini-2.5-pro use reasoning tokens; with max_tokens=10 they may exhaust budget on thinking and return no visible content. Use higher max_tokens for actual use.",
+    "existing_config_issue": "artifacts/config.py uses 'claude-sonnet-4-6' without prefix -- this will fail. Should be 'anthropic/claude-sonnet-4-6'."
+  }
+}

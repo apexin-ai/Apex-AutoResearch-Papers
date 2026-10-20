@@ -1,0 +1,293 @@
+{
+  "n_common_episodes": 2997,
+  "n_ambiguous_common": 1499,
+  "violation_rates_by_judge_and_model": {
+    "gpt": {
+      "gpt-4.1": 0.4067,
+      "deepseek-v3": 0.4967,
+      "qwen3-235b": 0.4314,
+      "gpt-5.4": 0.41,
+      "claude-sonnet-4-6": 0.3033
+    },
+    "claude": {
+      "gpt-4.1": 0.4233,
+      "deepseek-v3": 0.4867,
+      "qwen3-235b": 0.4181,
+      "gpt-5.4": 0.3767,
+      "claude-sonnet-4-6": 0.31
+    },
+    "gemini": {
+      "gpt-4.1": 0.52,
+      "deepseek-v3": 0.5533,
+      "qwen3-235b": 0.5619,
+      "gpt-5.4": 0.46,
+      "claude-sonnet-4-6": 0.3933
+    }
+  },
+  "violation_rates_by_judge_and_type": {
+    "gpt": {
+      "scopal": 0.3936,
+      "lexical": 0.428,
+      "incompleteness": 0.536,
+      "authorization_scope": 0.416,
+      "conditional_precedence": 0.368,
+      "coreferential": 0.316
+    },
+    "claude": {
+      "scopal": 0.4418,
+      "lexical": 0.392,
+      "incompleteness": 0.468,
+      "authorization_scope": 0.48,
+      "conditional_precedence": 0.348,
+      "coreferential": 0.288
+    },
+    "gemini": {
+      "scopal": 0.4819,
+      "lexical": 0.5,
+      "incompleteness": 0.592,
+      "authorization_scope": 0.656,
+      "conditional_precedence": 0.376,
+      "coreferential": 0.38
+    }
+  },
+  "cohens_kappa_pairwise": {
+    "gpt_vs_claude": 0.776,
+    "gpt_vs_gemini": 0.6955,
+    "claude_vs_gemini": 0.6848
+  },
+  "fleiss_kappa_3judge": 0.7171,
+  "model_ranking_spearman": {
+    "gpt_vs_claude": {
+      "rho": 0.7,
+      "p": 0.1881
+    },
+    "gpt_vs_gemini": {
+      "rho": 0.8,
+      "p": 0.1041
+    },
+    "claude_vs_gemini": {
+      "rho": 0.7,
+      "p": 0.1881
+    }
+  },
+  "type_ranking_spearman": {
+    "gpt_vs_claude": {
+      "rho": 0.7143,
+      "p": 0.1108
+    },
+    "gpt_vs_gemini": {
+      "rho": 0.7714,
+      "p": 0.0724
+    },
+    "claude_vs_gemini": {
+      "rho": 0.8857,
+      "p": 0.0188
+    }
+  },
+  "model_rankings": {
+    "gpt": {
+      "claude-sonnet-4-6": {
+        "rank": 5,
+        "rate": 0.3033
+      },
+      "deepseek-v3": {
+        "rank": 1,
+        "rate": 0.4967
+      },
+      "gpt-4.1": {
+        "rank": 4,
+        "rate": 0.4067
+      },
+      "gpt-5.4": {
+        "rank": 3,
+        "rate": 0.41
+      },
+      "qwen3-235b": {
+        "rank": 2,
+        "rate": 0.4314
+      }
+    },
+    "claude": {
+      "claude-sonnet-4-6": {
+        "rank": 5,
+        "rate": 0.31
+      },
+      "deepseek-v3": {
+        "rank": 1,
+        "rate": 0.4867
+      },
+      "gpt-4.1": {
+        "rank": 2,
+        "rate": 0.4233
+      },
+      "gpt-5.4": {
+        "rank": 4,
+        "rate": 0.3767
+      },
+      "qwen3-235b": {
+        "rank": 3,
+        "rate": 0.4181
+      }
+    },
+    "gemini": {
+      "claude-sonnet-4-6": {
+        "rank": 5,
+        "rate": 0.3933
+      },
+      "deepseek-v3": {
+        "rank": 2,
+        "rate": 0.5533
+      },
+      "gpt-4.1": {
+        "rank": 3,
+        "rate": 0.52
+      },
+      "gpt-5.4": {
+        "rank": 4,
+        "rate": 0.46
+      },
+      "qwen3-235b": {
+        "rank": 1,
+        "rate": 0.5619
+      }
+    }
+  },
+  "type_rankings": {
+    "gpt": {
+      "scopal": {
+        "rank": 4,
+        "rate": 0.3936
+      },
+      "lexical": {
+        "rank": 2,
+        "rate": 0.428
+      },
+      "coreferential": {
+        "rank": 6,
+        "rate": 0.316
+      },
+      "incompleteness": {
+        "rank": 1,
+        "rate": 0.536
+      },
+      "conditional_precedence": {
+        "rank": 5,
+        "rate": 0.368
+      },
+      "authorization_scope": {
+        "rank": 3,
+        "rate": 0.416
+      }
+    },
+    "claude": {
+      "scopal": {
+        "rank": 3,
+        "rate": 0.4418
+      },
+      "lexical": {
+        "rank": 4,
+        "rate": 0.392
+      },
+      "coreferential": {
+        "rank": 6,
+        "rate": 0.288
+      },
+      "incompleteness": {
+        "rank": 2,
+        "rate": 0.468
+      },
+      "conditional_precedence": {
+        "rank": 5,
+        "rate": 0.348
+      },
+      "authorization_scope": {
+        "rank": 1,
+        "rate": 0.48
+      }
+    },
+    "gemini": {
+      "scopal": {
+        "rank": 4,
+        "rate": 0.4819
+      },
+      "lexical": {
+        "rank": 3,
+        "rate": 0.5
+      },
+      "coreferential": {
+        "rank": 5,
+        "rate": 0.38
+      },
+      "incompleteness": {
+        "rank": 2,
+        "rate": 0.592
+      },
+      "conditional_precedence": {
+        "rank": 6,
+        "rate": 0.376
+      },
+      "authorization_scope": {
+        "rank": 1,
+        "rate": 0.656
+      }
+    }
+  },
+  "judge_effect_size": {
+    "gpt_vs_claude": {
+      "per_model": {
+        "claude-sonnet-4-6": 0.0067,
+        "deepseek-v3": 0.01,
+        "gpt-4.1": 0.0167,
+        "gpt-5.4": 0.0333,
+        "qwen3-235b": 0.0134
+      },
+      "mean": 0.016,
+      "max": 0.0333
+    },
+    "gpt_vs_gemini": {
+      "per_model": {
+        "claude-sonnet-4-6": 0.09,
+        "deepseek-v3": 0.0567,
+        "gpt-4.1": 0.1133,
+        "gpt-5.4": 0.05,
+        "qwen3-235b": 0.1304
+      },
+      "mean": 0.0881,
+      "max": 0.1304
+    },
+    "claude_vs_gemini": {
+      "per_model": {
+        "claude-sonnet-4-6": 0.0833,
+        "deepseek-v3": 0.0667,
+        "gpt-4.1": 0.0967,
+        "gpt-5.4": 0.0833,
+        "qwen3-235b": 0.1438
+      },
+      "mean": 0.0948,
+      "max": 0.1438
+    }
+  },
+  "authorization_scope_rates_by_judge_and_model": {
+    "gpt": {
+      "deepseek-v3": 0.6,
+      "qwen3-235b": 0.26,
+      "claude-sonnet-4-6": 0.12,
+      "gpt-5.4": 0.64,
+      "gpt-4.1": 0.46
+    },
+    "claude": {
+      "deepseek-v3": 0.56,
+      "qwen3-235b": 0.4,
+      "claude-sonnet-4-6": 0.3,
+      "gpt-5.4": 0.54,
+      "gpt-4.1": 0.6
+    },
+    "gemini": {
+      "deepseek-v3": 0.7,
+      "qwen3-235b": 0.72,
+      "claude-sonnet-4-6": 0.48,
+      "gpt-5.4": 0.72,
+      "gpt-4.1": 0.66
+    }
+  }
+}

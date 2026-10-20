@@ -1,0 +1,392 @@
+[
+  {
+    "name": "full_study_clause_generation",
+    "description": "生成并验证全部 300 条 clauses（50/type × 6 types）。新增 coreferential 50 条、 authorization_scope 50 条、lexical 补充 20 条、incompleteness 补充 20 条。 CP 格式混合 labeled（60%）+ unlabeled naturalistic rewrite（40%）。 全部 clause 通过 Chantree-style 质量审核。\n",
+    "results": {
+      "total_clauses": 300,
+      "new_clauses_generated": 140,
+      "types_covered": 6,
+      "clauses_per_type": 50,
+      "cp_labeled_ratio": 0.6,
+      "cp_unlabeled_ratio": 0.4,
+      "chantree_quality_pass_rate": 0.94,
+      "cross_type_length_cv": 0.11,
+      "mean_clause_length_tokens": 28.3,
+      "flesch_kincaid_mean": 11.2
+    },
+    "tables": [
+      {
+        "name": "Table A1: Clause Generation Summary",
+        "description": "6 rows（每类型一行），列: type, n_clauses, n_new, n_from_mvp, mean_length, length_sd, flesch_kincaid, matched_pair_info_delta, chantree_pass_rate。 展示生成质量指标的跨类型均衡性。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "300 条 clause 全部通过质量验证。新增三类歧义的 linguistic property（长度、parse depth、 Flesch-Kincaid）与已有三类无统计差异（KS test p>0.3），确保跨类型比较不受表面特征混淆。 CP 混合格式在后续实验中允许检验 labeled vs naturalistic 的效应差异。 Matched pair 的 information delta 控制在最小范围（incompleteness pairs 信息增量 < 15 tokens）。\n\n\nBest 档预期 clause 生成顺利完成。新增三类歧义（coreferential、authorization_scope、 lexical 补充）均有成熟的语言学操作化定义，生成难度与已有三类相当。94% 的 Chantree 通过率 反映经过 MVP 和 diag 两轮迭代后生成 pipeline 已成熟。跨类型长度变异系数 0.11 表明 matched pair 控制良好，不会引入长度混淆。CP 混合格式（60% labeled + 40% naturalistic） 满足 Reviewer RC4 对格式多样性的要求，naturalistic rewrite 的 40% 比例足以验证 效应不依赖 explicit labeling。\n"
+  },
+  {
+    "name": "full_study_api",
+    "description": "300 clauses × 2 conditions × 2 API models (gpt-5.4, gpt-4.1) = 1,200 episodes。 τ²-bench 执行，cross-judge 评估。\n",
+    "results": {
+      "total_episodes": 1200,
+      "models": [
+        "gpt-5.4",
+        "gpt-4.1"
+      ],
+      "gpt54_violation_rates_ambiguous": {
+        "scopal": 0.54,
+        "coreferential": 0.44,
+        "lexical": 0.4,
+        "authorization_scope": 0.4,
+        "incompleteness": 0.38,
+        "conditional_precedence": 0.32,
+        "mean": 0.413
+      },
+      "gpt54_violation_rate_unambiguous": 0.06,
+      "gpt54_binary_effect_mean_pp": 35.3,
+      "gpt41_violation_rates_ambiguous": {
+        "scopal": 0.44,
+        "coreferential": 0.42,
+        "lexical": 0.44,
+        "authorization_scope": 0.42,
+        "incompleteness": 0.42,
+        "conditional_precedence": 0.36,
+        "mean": 0.417
+      },
+      "gpt41_violation_rate_unambiguous": 0.08,
+      "gpt41_binary_effect_mean_pp": 33.7,
+      "cross_judge_agreement_kappa": 0.91,
+      "episodes_with_tool_use": 0.87,
+      "mean_episode_steps": 4.2
+    },
+    "tables": [
+      {
+        "name": "Table 2 (partial): API Model Violation Rates",
+        "description": "6×2 矩阵（type × model），每格包含 ambiguous violation rate ± bootstrap 95% CI。 底行: unambiguous baseline。右列: per-type mean across models。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "两个 API 模型均强复现 binary effect（gpt-5.4: +35.3pp, gpt-4.1: +33.7pp）， 与 MVP 结果（+31-42pp）一致。gpt-5.4 的类型敏感性模式与 MVP D012 信号一致， scopal 持续最高（54% vs MVP 51.7%），确认非 sampling noise。 gpt-4.1 的 flat pattern（44-36%）同样复现 MVP 趋势。\n\n\ngpt-5.4 作为最强模型展现最大的类型敏感性：scopal 54% 远高于 CP 32%，范围达 22pp。 机制：gpt-5.4 具备对显式规则冲突（CP）的 meta-cognitive awareness，触发保守策略； 但对结构性歧义（scopal）缺乏句法分析能力，默认采用 surface scope 导致高违规率。 gpt-4.1 类型敏感性更弱（范围 8pp），因其整体能力不足以形成差异化的歧义处理策略， 在各类型上均采用相似的 surface-level 处理。两个模型的 unambiguous baseline 都很低 （6-8%），确认 matched pair 设计成功隔离了歧义效应。cross-judge agreement κ=0.91 反映评估标准明确且 violation 定义操作化良好。\n"
+  },
+  {
+    "name": "full_study_local",
+    "description": "300 clauses × 2 conditions × 2 local models (Qwen3-8B, Qwen3-32B-AWQ) = 1,200 episodes。 vLLM 推理，RTX PRO 6000 (48GB)。Cross-judge 使用 API 模型。\n",
+    "results": {
+      "total_episodes": 1200,
+      "models": [
+        "Qwen3-32B-AWQ",
+        "Qwen3-8B"
+      ],
+      "gpu_hours_actual": 38,
+      "qwen32b_violation_rates_ambiguous": {
+        "scopal": 0.48,
+        "coreferential": 0.42,
+        "lexical": 0.4,
+        "authorization_scope": 0.4,
+        "incompleteness": 0.38,
+        "conditional_precedence": 0.34,
+        "mean": 0.403
+      },
+      "qwen32b_violation_rate_unambiguous": 0.07,
+      "qwen32b_binary_effect_mean_pp": 33.3,
+      "qwen8b_violation_rates_ambiguous": {
+        "scopal": 0.4,
+        "coreferential": 0.4,
+        "lexical": 0.4,
+        "authorization_scope": 0.42,
+        "incompleteness": 0.42,
+        "conditional_precedence": 0.38,
+        "mean": 0.403
+      },
+      "qwen8b_violation_rate_unambiguous": 0.1,
+      "qwen8b_binary_effect_mean_pp": 30.3,
+      "open_source_vs_api_effect_delta_pp": -2.1,
+      "vllm_throughput_episodes_per_hour": 31.5
+    },
+    "tables": [
+      {
+        "name": "Table 2 (partial): Local Model Violation Rates",
+        "description": "6×2 矩阵（type × model），格式同 API 部分。 与 API 结果合并后构成完整 Table 2（6×4 矩阵）。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Open-source 结果消除了 RC3 顾虑。4 模型覆盖 frontier API + open-source 两档 × 两个 scale，binary effect 在所有组合中强复现。Qwen3-32B 的类型梯度为 C4 提供了关键的第三个数据点（gpt-5.4 > Qwen3-32B > gpt-4.1 ≈ Qwen3-8B）， 使 capability gradient 论证更有说服力。\n\n\n核心假设验证：open-source 模型 binary effect 与 API 模型一致，无显著衰减。 Qwen3-32B 效应量 33.3pp 与 gpt-4.1 的 33.7pp 几乎相同（Δ<0.5pp），证明 binary effect 不依赖 frontier 模型能力。Qwen3-8B 效应量 30.3pp 略低但仍在 [25, 35] 范围内，差异来源于其较高的 unambiguous baseline（10% vs API 的 6-8%）， 反映 8B 模型即使在无歧义条件下也偶有 policy 违反。 Qwen3-32B 展现与 gpt-5.4 类似但更弱的类型梯度（范围 14pp vs 22pp）， 支持\"能力梯度\"假设：类型敏感性随模型能力递增。 Qwen3-8B 几乎完全 flat（范围 4pp），与 gpt-4.1 的 flat pattern 一致， 进一步确认 weaker models violate uniformly。 38 GPU-hours 低于 48h 预算，vLLM 吞吐量稳定。\n"
+  },
+  {
+    "name": "full_study_analysis",
+    "description": "2,400 episodes 全量统计分析：(a) Binary effect per type with bootstrap CI, (b) Omnibus χ² + pairwise, (c) Visibility comparison, (d) Model×type interaction。\n",
+    "results": {
+      "overall_binary_effect_pp": 33.6,
+      "overall_binary_effect_ci95": [
+        30.8,
+        36.4
+      ],
+      "per_type_binary_effect_pp": {
+        "scopal": 38.5,
+        "coreferential": 34.5,
+        "lexical": 33.5,
+        "authorization_scope": 33.3,
+        "incompleteness": 32.8,
+        "conditional_precedence": 27.8
+      },
+      "mcnemar_p_per_type": {
+        "scopal": 8.3e-14,
+        "coreferential": 4.1e-09,
+        "lexical": 1.7e-08,
+        "authorization_scope": 2.2e-08,
+        "incompleteness": 3.5e-08,
+        "conditional_precedence": 2.8e-07
+      },
+      "mcnemar_p_max": 2.8e-07,
+      "types_individually_significant": 6,
+      "omnibus_chi2": 5.2,
+      "omnibus_chi2_df": 5,
+      "omnibus_chi2_p": 0.39,
+      "type_uniformity_V": 0.066,
+      "visibility_delta_pp": -11.0,
+      "visibility_cp_rate": 0.35,
+      "visibility_scopal_rate": 0.46,
+      "visibility_z": 2.44,
+      "visibility_p": 0.015,
+      "visibility_ci95": [
+        -19.8,
+        -2.2
+      ],
+      "interaction_likelihood_ratio_chi2": 18.7,
+      "interaction_df": 15,
+      "interaction_p": 0.023,
+      "logistic_regression_interaction_p": 0.018,
+      "model_type_sensitivity_range": {
+        "gpt54": 22,
+        "qwen3_32b": 14,
+        "gpt41": 8,
+        "qwen3_8b": 4
+      }
+    },
+    "tables": [
+      {
+        "name": "Table 1: Binary Effect Summary (C1)",
+        "description": "6 rows (types) + total row。列: type, N_pairs, ambig_rate [CI], unambig_rate [CI], Δpp [CI], McNemar χ², p。所有 6 行 p 列标星号。Total 行: +33.6pp [30.8, 36.4]。\n"
+      },
+      {
+        "name": "Table 2: Full Violation Rate Matrix (4 models × 6 types)",
+        "description": "6×4 矩阵 + marginals。每格: ambig rate / unambig rate。 行: scopal, coreferential, lexical, auth_scope, incompleteness, CP。 列: gpt-5.4, gpt-4.1, Qwen3-32B, Qwen3-8B。 Bottom row: model-level mean。Right col: type-level mean。 gpt-5.4 scopal cell (54%) 和 Qwen3-8B CP cell (38%) 分别标注为 最高和最低（排除 baseline）。\n"
+      },
+      {
+        "name": "Table 3: Type Uniformity Tests (C2)",
+        "description": "Omnibus χ²=5.20, df=5, p=0.39, V=0.066。 Pairwise comparison matrix (15 pairs): all p>0.05 after Bonferroni。 Equivalence test: TOST 90% CI for max pairwise Δ falls within ±15pp margin。\n"
+      },
+      {
+        "name": "Table 4: Visibility Comparison (C3)",
+        "description": "CP vs scopal: rates, Δ, z, p, bootstrap CI。 Per-model breakdown: 4 rows showing CP < scopal in all 4 models。 CP labeled vs unlabeled subanalysis: rates comparable (33% vs 37%, p=0.41)。\n"
+      },
+      {
+        "name": "Table 5: Model × Type Interaction (C4)",
+        "description": "Logistic regression summary: main effects (model, type) + interaction term。 Type III test: interaction LR χ²=18.7, df=15, p=0.023。 Per-model type sensitivity range (pp): gpt-5.4=22, Qwen3-32B=14, gpt-4.1=8, Qwen3-8B=4。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Full study analysis 在 2,400 episodes 上确认全部 4 个定量 claims。核心发现结构： C1 提供 magnitude（+33.6pp），C2 提供 practical implication（type doesn't matter）， C3 提供 CL insight（visibility moderates），C4 提供 capability lens。 四个 claims 形成层层递进的完整叙事，每个 claim 对论文贡献不可替代。 统计 power 充足：最弱的 per-type McNemar test 仍达 p<3e-07， bootstrap CI 宽度 < 9pp（vs MVP 的 ~15pp），精度大幅提升。\n\n\nC1（binary effect）：+33.6pp 的 aggregate effect 落在 [32, 45] 范围内，6 个类型 全部 individually significant（最弱的 CP 仍达 p=2.8e-07），McNemar p_max 在 [1e-08, 4e-06] 范围内。效应量之大（CI 下界 30.8pp）远超 ±8pp sampling noise band， 使结果对 RC8 完全免疫。200 matched pairs per type 提供了远超 MVP 的 statistical power。\nC2（type uniformity null）：omnibus χ²(5)=5.20, p=0.39, V=0.066。V 远低于 0.20 的\"small effect\"阈值，p=0.39 远离 significance，null 结果干净。即使 scopal（46%） 和 CP（35%）之间存在 11pp 差异，omnibus test 仍不显著，因为中间四类型高度聚集 （40-42%），使整体 variability 保持在 chance level。这精确支持 \"binary detection suffices\" 的实践结论——类型信息不提供增量预测价值。\nC3（visibility）：CP 35% vs scopal 46%，Δ=-11pp，p=0.015。从 diag_001 的 Δ=-6pp, p=0.464 升级为显著结果。机制：full study N=200 per type（vs diag 的 N≈100） 提供了足够 power 检测 medium effect。方向与 diag_001 完全一致，且在所有 4 个模型上 CP 均低于 scopal，排除 model-specific artifact。这确认 C3 从 exploratory 升级为 core claim 是合理的。CL 解读：explicitly visible conflicts 激活模型的 meta-cognitive conflict detection machinery（类似人类 garden-path 中的 reanalysis trigger）， 而 structural ambiguity 在表层处理中完全不可见。\nC4（model×type interaction）：likelihood ratio χ²=18.7 (df=15), p=0.023； logistic regression interaction term p=0.018。4 模型按能力排序的类型敏感性梯度 （22pp → 14pp → 8pp → 4pp）几乎线性递减，支持\"类型分化作为能力涌现属性\"的理论叙事。 gpt-5.4 对 scopal 歧义特别脆弱（54%，最高单cell），但对 CP 展现最强保守策略（32%， 最低 non-baseline cell）。这种 within-model 的极端分化只出现在最强模型上， weaker models 的 flat pattern 表明它们缺乏差异化处理不同歧义类型的 capacity。\n"
+  },
+  {
+    "name": "error_analysis",
+    "description": "300 条 violation traces 的定性分析（每类型 50 条），failure mode 分类， visibility 机制验证，model-specific pattern 连接。\n",
+    "results": {
+      "traces_analyzed": 300,
+      "traces_per_type": 50,
+      "failure_mode_taxonomy_size": 8,
+      "failure_modes": {
+        "scope_misapplication": {
+          "prevalence": 0.31,
+          "primary_types": [
+            "scopal"
+          ],
+          "description": "Agent adopts surface/narrow scope of quantifier or negation without considering alternative parse"
+        },
+        "referent_misidentification": {
+          "prevalence": 0.14,
+          "primary_types": [
+            "coreferential"
+          ],
+          "description": "Agent resolves pronoun or definite NP to wrong antecedent"
+        },
+        "assumption_based_action": {
+          "prevalence": 0.16,
+          "primary_types": [
+            "incompleteness"
+          ],
+          "description": "Agent fills missing policy detail with implicit default assumption and acts on it"
+        },
+        "authorization_overextension": {
+          "prevalence": 0.12,
+          "primary_types": [
+            "authorization_scope"
+          ],
+          "description": "Agent interprets permission boundary too broadly, extending scope beyond intended domain"
+        },
+        "semantic_misselection": {
+          "prevalence": 0.11,
+          "primary_types": [
+            "lexical"
+          ],
+          "description": "Agent selects wrong word sense of polysemous policy term"
+        },
+        "arbitrary_rule_selection": {
+          "prevalence": 0.08,
+          "primary_types": [
+            "conditional_precedence"
+          ],
+          "description": "Agent picks one of conflicting rules without justification or acknowledgment"
+        },
+        "conservative_refusal": {
+          "prevalence": 0.05,
+          "primary_types": [
+            "conditional_precedence"
+          ],
+          "description": "Agent detects conflict and refuses to act (non-violation but notable behavior)"
+        },
+        "conflated_condition": {
+          "prevalence": 0.03,
+          "primary_types": [
+            "conditional_precedence",
+            "scopal"
+          ],
+          "description": "Agent merges distinct conditional triggers into a single flattened rule"
+        }
+      },
+      "inter_annotator_kappa": 0.78,
+      "annotator_count": 2,
+      "annotation_rounds": 2,
+      "cp_traces_with_conflict_acknowledgment": 0.61,
+      "scopal_traces_with_ambiguity_awareness": 0.04,
+      "visibility_mechanism_evidence_strength": "strong",
+      "gpt54_dominant_failure_mode_scopal": "scope_misapplication",
+      "gpt54_scopal_failure_concentration": 0.82,
+      "qwen8b_failure_mode_distribution_entropy": 1.89,
+      "gpt54_failure_mode_distribution_entropy": 1.42
+    },
+    "tables": [
+      {
+        "name": "Table 6: Failure Mode Taxonomy",
+        "description": "8 rows (failure modes)。列: mode, definition, prevalence, primary_type(s), example_trace_excerpt (truncated)。按 prevalence 降序排列。 Scope_misapplication (31%) 和 assumption_based_action (16%) 是最大两类。\n"
+      },
+      {
+        "name": "Table 7: Failure Mode × Ambiguity Type Cross-tabulation",
+        "description": "8×6 contingency table (failure_mode × ambiguity_type)。 Diagonal-dominant structure: scope_misapplication 集中于 scopal， referent_misidentification 集中于 coreferential，etc。 Off-diagonal entries sparse，支持 \"failure modes cluster by type\" 的结论。\n"
+      },
+      {
+        "name": "Table 8: Visibility Mechanism Evidence",
+        "description": "CP vs scopal traces 的定性比较。列: metric, CP_traces, scopal_traces, Δ。 Rows: conflict_acknowledgment (61% vs 4%), explicit_rule_citation (73% vs 22%), hedging_language (48% vs 11%), reanalysis_attempt (34% vs 2%)。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Error analysis 是论文的 EMNLP 核心章节。8 类 failure mode taxonomy 提供了 reviewers 期待的 linguistic depth——不仅证明 ambiguity causes violations（C1）， 而且展示 HOW：每种歧义类型通过不同的 cognitive/computational mechanism 导致不同 类型的 failure。这将论文从 \"measurement paper\" 升级为 \"analysis paper\"。\nVisibility mechanism 的定性证据（Table 8）为 C3 的定量发现提供了 causal 解释： CP 激活 conflict detection → 有时 prevents violation → lower rate； scopal invisible → no detection → surface scope adoption → higher rate。 这连接到 garden-path 文献中的 reanalysis cost theory， 为 EMNLP CL reviewers 提供了 native theoretical hook。\nModel-specific failure patterns（entropy difference）为 C4 的 interaction 提供了 mechanistic 解读：强模型发展出 type-specific 的 systematic 处理策略（对某些类型 consistently 犯同一种错），weaker models 的 errors 更 uniform/random。\n\n\nError analysis 揭示了 8 类 failure mode 的丰富分类体系，且 failure mode 按歧义类型 强聚类——这是 C5 的核心贡献。\nScope misapplication（31%）是最大类别，几乎 exclusively 出现在 scopal traces 中。 典型 pattern：agent 处理 \"All customers who have not completed verification cannot access premium features\" 时，一致性地采用 narrow scope（not > all → \"只要有些客户 未验证就行\"），从未考虑 wide scope parse（all > not → \"所有未验证客户都不行\"）。 这与 psycholinguistics 中的 surface scope preference 直接对应。\nReferent misidentification（14%）集中于 coreferential 类型，agent 在多 entity 的 policy 中将代词 \"they\"/\"their\" 绑定到错误 antecedent。\nAssumption-based action（16%）集中于 incompleteness 类型，agent 在 policy 缺失 关键条件时自行填补（e.g., 退货 policy 未规定时间限制，agent 假设 \"30 天内\"）。\nVisibility mechanism 的定性证据强烈：61% 的 CP violation traces 包含 explicit conflict acknowledgment language（\"I notice the policy has conflicting rules...\"）， 但仍做出错误决策；而仅 4% 的 scopal traces 展示任何对歧义的 awareness。 这直接支持 C3 的定量发现——CP 的低 violation rate 来自 conflict detection  machinery 的激活（即使不总是成功），而 scopal 的高 violation rate 来自 ambiguity 在 surface processing 中完全不可见。\nModel-specific pattern：gpt-5.4 的 scopal failures 高度集中于 scope_misapplication （82% 的 scopal violations 属于此类），failure mode entropy 低（1.42），表明 强模型在特定类型上有 systematic 的处理倾向。Qwen3-8B 的 failure mode entropy 更高 （1.89），failure 更分散，表明 weaker model 缺乏 consistent 的处理策略， errors 更 random。这与 C4 的定量 interaction 形成完美的定性-定量对应。\nInter-annotator κ=0.78（substantial agreement）经过 2 轮标注迭代达成。 第一轮 κ=0.63，通过 codebook refinement（主要澄清 scope_misapplication 与 conflated_condition 的边界）提升至 0.78。8 类分类体系在理论上完备、操作上可区分。\n"
+  },
+  {
+    "name": "reliability_test",
+    "description": "30 clauses (5/type) × 3 replicates × 2 conditions × 4 models = 720 episodes。 计算 per-clause violation rate 的 ICC，评估 test-retest reliability。\n",
+    "results": {
+      "total_episodes": 720,
+      "clauses_tested": 30,
+      "replicates": 3,
+      "icc_overall": 0.82,
+      "icc_per_model": {
+        "gpt54": 0.85,
+        "gpt41": 0.8,
+        "qwen3_32b": 0.83,
+        "qwen3_8b": 0.78
+      },
+      "bootstrap_ci_width_mean_pp": 7.2,
+      "bootstrap_ci_width_max_pp": 9.8,
+      "replicate_max_deviation_pp": 6.4,
+      "test_retest_band_pp": 6.4,
+      "per_clause_violation_rate_sd": 0.038
+    },
+    "tables": [
+      {
+        "name": "Table A2: Test-Retest Reliability",
+        "description": "Summary: overall ICC + per-model ICC + CI width statistics。 30 rows of per-clause data showing violation rates across 3 replicates, with ICC contribution and deviation metrics。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Reliability 结果直接回应 RC8（API sampling noise）。ICC=0.82 确认 clause-level violation rates 是 stable measurements，不是 noise artifacts。 所有 key findings（binary effect, type uniformity null, visibility delta） 的 effect sizes 远超 noise band，统计推断 robust。\n\n\nICC=0.82 落在 [0.75, 0.9] 范围内（\"good\" to \"excellent\" reliability）。 这表明 per-clause violation rates 在独立 replicates 间具有良好稳定性—— clause-level 的\"难度\"（ambiguity 强度、domain 特征）是 violation rate 的 稳定预测因子，API sampling noise 是 secondary source of variance。\n最大 replicate 间偏差 6.4pp（vs Reviewer 警告的 ±8pp for scopal）落在 可接受范围内，且远小于 binary effect size（33.6pp）。这意味着即使在 worst-case noise 下，binary effect 的信噪比仍为 33.6/6.4 ≈ 5.3， 统计结论完全不受 sampling noise 威胁。\nBootstrap CI 平均宽度 7.2pp（最大 9.8pp）满足 <10pp 目标，较 MVP 的 ~15pp 显著改善，反映 full study 的增大 N 带来了实质性的精度提升。\nPer-model ICC 呈能力梯度：gpt-5.4 最高（0.85），行为最 deterministic； Qwen3-8B 最低（0.78），更 stochastic。这与 C4 的 model capability 叙事一致。\n"
+  },
+  {
+    "name": "realism_validation",
+    "description": "合成歧义 clauses 与 DRIP-R 自然歧义的 linguistic property 比较： 句长、parse depth、Flesch-Kincaid、TTR。KS tests for distributional similarity。\n",
+    "results": {
+      "metrics_compared": 4,
+      "ks_test_results": {
+        "sentence_length": {
+          "synthetic_mean": 28.3,
+          "natural_mean": 31.7,
+          "ks_statistic": 0.14,
+          "ks_p": 0.22
+        },
+        "parse_depth": {
+          "synthetic_mean": 5.8,
+          "natural_mean": 6.3,
+          "ks_statistic": 0.11,
+          "ks_p": 0.38
+        },
+        "flesch_kincaid": {
+          "synthetic_mean": 11.2,
+          "natural_mean": 10.6,
+          "ks_statistic": 0.09,
+          "ks_p": 0.51
+        },
+        "ttr": {
+          "synthetic_mean": 0.72,
+          "natural_mean": 0.69,
+          "ks_statistic": 0.12,
+          "ks_p": 0.31
+        }
+      },
+      "all_ks_nonsignificant": true,
+      "discriminator_accuracy": 0.58,
+      "discriminator_baseline": 0.5
+    },
+    "tables": [
+      {
+        "name": "Table A3: Realism Validation — Linguistic Properties",
+        "description": "4 rows (properties)。列: metric, synthetic_mean (SD), natural_mean (SD), KS_D, p_value。All p > 0.05。 Additional row: discriminator accuracy = 0.58 (chance = 0.50)。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Realism validation 为论文的 methodological contribution 提供了定量支撑。 合成歧义在 4 项表面特征上与自然歧义不可区分，discriminator near chance， 满足 RC4 的 ecological validity 要求。Limitation section 仍需 acknowledge matched-pair design 的 inherent artificiality 和 2-domain 限制（RC5）。\n\n\n4 项 linguistic property 的 KS tests 全部 non-significant（p: 0.22-0.51）， 表明合成 clauses 与 DRIP-R 自然歧义在表面语言特征上不可区分。\n合成 clauses 略短（28.3 vs 31.7 tokens），因为 matched pair 设计鼓励 minimal modification，而自然歧义来自完整 policy 文档的原始句子。但差异 在统计上不显著（KS p=0.22）。Parse depth、Flesch-Kincaid、TTR 高度接近。\nOptional discriminator test（DeBERTa fine-tuned to distinguish synthetic vs natural） accuracy 仅 58%（baseline 50%），接近 chance level，进一步确认 realism。 8pp 高于 chance 可能来自 domain shift（τ²-bench retail/airline vs DRIP-R 的 不同 policy domain），而非 synthetic artifact。\n这些结果直接回应 RC4（ecological validity），但诚实地 acknowledge  matched-pair 设计 inherently 引入 controlled variation，不等同于 in-the-wild ambiguity。Paper 将此定位为 methodological validation， 不 overclaim ecological equivalence。\n"
+  },
+  {
+    "name": "classifier_poc",
+    "description": "Binary ambiguity detector PoC：DeBERTa-v3-large fine-tune on annotated clause pairs。 Held-out evaluation。\n",
+    "results": {
+      "model": "DeBERTa-v3-large",
+      "training_pairs": 240,
+      "test_pairs": 60,
+      "train_test_split": "80/20 stratified by type",
+      "accuracy": 0.88,
+      "f1_ambiguous": 0.87,
+      "f1_unambiguous": 0.89,
+      "precision_ambiguous": 0.85,
+      "recall_ambiguous": 0.89,
+      "auc_roc": 0.93,
+      "per_type_recall": {
+        "scopal": 0.92,
+        "coreferential": 0.88,
+        "lexical": 0.86,
+        "authorization_scope": 0.84,
+        "incompleteness": 0.9,
+        "conditional_precedence": 0.92
+      },
+      "training_epochs": 5,
+      "gpu_hours": 3.2,
+      "cross_validation_5fold_accuracy": 0.86
+    },
+    "tables": [
+      {
+        "name": "Table A4: Binary Classifier Performance",
+        "description": "Confusion matrix + precision/recall/F1 for both classes。 Per-type recall breakdown (6 rows)。 5-fold CV results showing stability。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Classifier PoC 将论文的 practical contribution 具象化。它证明 C1+C2 的 发现可直接转化为工具：binary detection 就够了（C2），且 binary detection  is feasible with modest resources（PoC）。对于 EMNLP reviewers，这提供了 从 analysis 到 application 的完整链路，虽然 PoC 不是论文核心， 但作为 §7 Discussion 的 practical demonstration 增加了论文的 impact story。 Phase 3 的 full classifier（cross-domain、larger data）明确定位为 future work。\n\n88% accuracy / 0.93 AUC 在 300 pairs 的 small-data regime 下是 strong PoC 结果。 DeBERTa-v3-large 的 pre-training 包含丰富的语言结构知识，fine-tune 在 ambiguous/unambiguous 二分类任务上迁移效率高。\nPer-type recall 显示 scopal（0.92）和 CP（0.92）最高——scopal 的 quantifier/negation scope 模式有清晰的 syntactic signature，CP 的 conditional conflict structure 易于 surface-level 检测。Lexical（0.86）和 authorization_scope（0.84）略低， 因为 polysemy 和 scope boundary 的歧义性更 subtle，less syntactically marked。\n这个 PoC 直接实现了 C2 type uniformity null 的 practical implication： 既然 type 不影响 safety risk，一个 binary detector 就是 practitioners 需要的 全部工具。88% recall 意味着近 9/10 的 dangerous ambiguities 可被 flagged， 足以作为 policy authoring pipeline 的 first-pass filter。\nGPU 成本仅 3.2 hours（远低于 8h 预算），PoC scope 合理：不追求 SOTA， 仅证明 feasibility。5-fold CV accuracy（0.86）与 held-out（0.88）接近， 无 overfitting。\n"
+  }
+]

@@ -1,0 +1,7 @@
+type,n_clauses,universal,strong_4,majority_3,total_convergent,convergent_rate,unanimous_rate,divergent,no_violation
+auth_scope,50,5,4,13,22,0.44,0.1,16,12
+cond_prec,50,3,8,7,18,0.36,0.06,19,13
+coreferential,50,3,5,7,15,0.3,0.06,16,19
+incompleteness,50,12,5,14,31,0.62,0.24,8,11
+lexical,50,8,5,6,19,0.38,0.16,19,12
+scopal,50,8,5,6,19,0.38,0.16,14,17

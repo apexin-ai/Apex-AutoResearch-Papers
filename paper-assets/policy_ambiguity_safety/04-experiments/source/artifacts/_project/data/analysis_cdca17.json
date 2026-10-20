@@ -1,0 +1,51 @@
+{
+  "model": "llama-4-scout",
+  "model_id": "meta-llama/llama-4-scout",
+  "n_episodes": 500,
+  "n_ambiguous": 250,
+  "n_unambiguous": 250,
+  "judge_model": "gpt-5.4",
+  "overall": {
+    "ambiguous_rate": 0.376,
+    "unambiguous_rate": 0.176,
+    "delta_pp": 0.2,
+    "or": 0.35447221648419747,
+    "p_value": 7.746497726194295e-07
+  },
+  "per_type": {
+    "scopal": {
+      "ambiguous_rate": 0.3,
+      "unambiguous_rate": 0.14,
+      "delta_pp": 0.15999999999999998
+    },
+    "lexical": {
+      "ambiguous_rate": 0.38,
+      "unambiguous_rate": 0.2,
+      "delta_pp": 0.18
+    },
+    "incompleteness": {
+      "ambiguous_rate": 0.52,
+      "unambiguous_rate": 0.18,
+      "delta_pp": 0.34
+    },
+    "conditional_precedence": {
+      "ambiguous_rate": 0.28,
+      "unambiguous_rate": 0.12,
+      "delta_pp": 0.16000000000000003
+    },
+    "authorization_scope": {
+      "ambiguous_rate": 0.4,
+      "unambiguous_rate": 0.24,
+      "delta_pp": 0.16000000000000003
+    }
+  },
+  "c1_replicates": true,
+  "c2_rank_correlation": -0.19999999999999998,
+  "type_ranking": [
+    "incompleteness",
+    "authorization_scope",
+    "lexical",
+    "scopal",
+    "conditional_precedence"
+  ]
+}

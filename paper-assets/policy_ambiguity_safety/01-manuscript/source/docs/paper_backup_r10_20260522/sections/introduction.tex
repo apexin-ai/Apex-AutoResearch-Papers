@@ -1,0 +1,21 @@
+\section{Introduction}
+\label{sec:introduction}
+
+A customer asks to return a customized item within the 30-day window. The agent consults the store policy, which states that ``items may be returned within 30 days.'' The word ``items'' scopes over all product categories, including custom orders that are normally final sale. The agent grants a full refund and arranges free return shipping. One word of scopal ambiguity costs the retailer \$200.
+
+LLM-based agents increasingly operate under natural-language policy specifications that govern their permitted actions. These specifications inevitably contain ambiguity: a property that has been studied for decades in requirements engineering (RE) and computational linguistics. \citet{berry_kamsties_2004} distinguish between \emph{nocuous} (i.e., harmful) ambiguity, where different stakeholders arrive at different interpretations, and \emph{innocuous} ambiguity, where shared organizational context ensures convergent interpretation. In human RE workflows, most ambiguity is innocuous because developers share domain knowledge, can consult colleagues, and iteratively clarify requirements.
+
+LLM agents lack these disambiguation channels. They cannot consult colleagues, rarely escalate to users, and must resolve ambiguity in real time from the text alone. This raises a question that has not been empirically addressed: does policy ambiguity cause safety violations in LLM agents, and if so, does the \emph{type} of ambiguity predict the severity of the violation? Prior work classifies ambiguity types in policies \citep{drip_r_2026,li_ambiguity_taxonomy_2024} or measures policy understanding quality \citep{policybank_2026}, but no existing study provides a causal, type-granularity mapping from ambiguity to safety violations.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig1_overview.pdf}
+\caption{Experimental overview. We construct 300 matched clause pairs across a six-type, two-layer ambiguity taxonomy and inject them into $\tau^2$-bench policy documents. Five models interact with the modified policies across 2,997 episodes. A cross-judge evaluation pipeline classifies violation severity on a four-tier scale.}
+\label{fig:overview}
+\end{figure*}
+
+We address this gap with a matched-pair causal study on $\tau^2$-bench \citep{tau2_bench_2025}, a dual-control conversational agent benchmark. Using a six-type taxonomy organized into two layers (linguistic and specification, \S\ref{sec:taxonomy}), we construct 300 ambiguous/unambiguous clause pairs and evaluate five architecturally diverse models across 2,997 episodes.
+
+Our results show that all policy ambiguity is nocuous for LLM agents ($+34.0$ pp violation rate increase, OR $= 15.1$), but that type primarily determines severity, with a smaller but significant model$\times$type interaction (2.9\% of variance). Incompleteness is consistently high (46--62\% violation rate across all models), while authorization scope shows the widest but least reliably measured cross-model range (52\,pp; $\kappa = 0.385$, \S Limitations), suggesting that safety training may differentially mitigate specific ambiguity types. Agents exhibit disambiguation deficit in over 89\% of cases, with fewer than 11\% showing any disambiguation awareness.
+
+Our contributions are: (1)~the first causal quantification of policy ambiguity's safety impact via matched-pair design with perturbation control (\S\ref{sec:method}), observed across five primary models and confirmed in two additional replication models; (2)~incompleteness as a consistent upper-bound risk type across all models and margins, with type identity explaining 22$\times$ more variance than model identity (\S\ref{sec:results}); and (3)~a failure mode taxonomy with the empirical phenomenon of \emph{Disambiguation Deficit} ($\leq$11\% awareness; \S\ref{sec:analysis}).

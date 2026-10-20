@@ -1,0 +1,33 @@
+{
+  "c2_type_uniformity": {
+    "design_N_per_type": 200,
+    "design_N_total": 1200,
+    "n_types": 6,
+    "df": 5,
+    "alpha": 0.05,
+    "target_power": 0.8,
+    "mde_cramers_v": 0.1034
+  },
+  "c3_per_type_comparison": {
+    "design_N": 200,
+    "df": 1,
+    "alpha": 0.05,
+    "target_power": 0.8,
+    "mde_cramers_v": 0.1981
+  },
+  "observed_cramers_v": 0.1367,
+  "actual_sample": {
+    "N_total": 1499,
+    "per_type": {
+      "authorization_scope": 250,
+      "conditional_precedence": 250,
+      "coreferential": 250,
+      "incompleteness": 250,
+      "lexical": 250,
+      "scopal": 249
+    },
+    "mde_cramers_v": 0.0925,
+    "power_at_observed": 0.9927
+  },
+  "underpowered_warning": "False"
+}

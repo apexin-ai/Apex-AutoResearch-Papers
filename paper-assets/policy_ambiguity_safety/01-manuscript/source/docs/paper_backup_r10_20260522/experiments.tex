@@ -1,0 +1,65 @@
+\section{Results}
+\label{sec:results}
+
+We organize results around four claims of increasing specificity: the binary ambiguity effect (C1), the type hierarchy (C2), the layer effect (C3), and the model$\times$type interaction (C4).
+
+\subsection{Binary Ambiguity Effect (C1)}
+
+Across all five models and six ambiguity types, ambiguous policy clauses increase the violation rate by 34.0 percentage points (pp) relative to their unambiguous matched variants (41.0\% vs.\ 6.9\%, Mantel-Haenszel OR $= 15.1$, 95\% CI $[10.78, 21.17]$, $p < 10^{-105}$; bootstrap 95\% CI for $\Delta$: $[31.2, 36.9]$ pp). All six ambiguity types individually produce significant increases (all Fisher $p < 10^{-5}$), and all five models show large, significant effects: Claude $+25.7$ pp, Qwen3 $+32.4$ pp, GPT-4.1 $+34.7$ pp, GPT-5.4 $+38.3$ pp, and DeepSeek $+39.0$ pp (all $p < 10^{-17}$). The perturbation control experiment (synonym substitution and clause reordering, $n = 120$) yields $\Delta_{\text{perturb}} = 3.33$ pp with a 95\% CI containing zero, confirming that the observed effect is specific to semantic ambiguity rather than surface-level prompt sensitivity.
+
+\subsection{Type Hierarchy (C2)}
+
+\begin{table*}[t]
+\centering
+\caption{Violation rates (\%) under ambiguous policy clauses by type and model. $\Delta$pp denotes the pooled difference between ambiguous and unambiguous conditions across all five models. All per-type differences are significant ($p < 10^{-5}$, Fisher's exact test).}
+\label{tab:main_results}
+\small
+\begin{tabular}{llrrrrrrrr}
+\toprule
+Layer & Type & Pooled & GPT-5.4 & GPT-4.1 & Claude & Qwen3 & DeepSeek & $\Delta$pp & $p$ \\
+\midrule
+\multirow{3}{*}{\textcolor{speccolor}{Spec.}} & Incompleteness & 53.6 & 46.0 & 58.0 & 48.0 & 62.0 & 54.0 & +49.2 & $<10^{-37}$ \\
+ & Auth.\ Scope & 41.6 & 64.0 & 46.0 & 12.0 & 26.0 & 60.0 & +36.0 & $<10^{-22}$ \\
+ & Cond.\ Precedence & 36.8 & 34.0 & 36.0 & 36.0 & 40.0 & 38.0 & +30.8 & $<10^{-17}$ \\
+\midrule
+\multirow{3}{*}{\textcolor{lingcolor}{Ling.}} & Lexical & 42.8 & 42.0 & 34.0 & 32.0 & 52.0 & 54.0 & +35.2 & $<10^{-20}$ \\
+ & Scopal & 39.4 & 42.0 & 38.0 & 32.0 & 36.7 & 48.0 & +34.2 & $<10^{-21}$ \\
+ & Coreferential & 31.6 & 18.0 & 32.0 & 22.0 & 42.0 & 44.0 & +18.7 & $<10^{-6}$ \\
+\midrule
+\multicolumn{2}{l}{\textbf{Overall}} & \textbf{41.0} & 41.0 & 40.7 & 30.3 & 43.1 & 49.7 & \textbf{+34.0} & $<10^{-105}$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The six types are not interchangeable. An omnibus $\chi^2$ test on ambiguous-condition violation rates rejects the uniformity null ($\chi^2 = 28.02$, $df = 5$, $p = 3.6 \times 10^{-5}$, Cram\'{e}r's $V = 0.137$; statistical power $= 0.993$ at the observed effect). TOST equivalence testing at a $\pm 15$ pp margin reveals a three-tier structure: incompleteness stands alone at the top (53.6\%), a mid-tier cluster spans four types (lexical 42.8\%, authorization scope 41.6\%, scopal 39.4\%, conditional precedence 36.8\%), and coreferential occupies the bottom (31.6\%). Table~\ref{tab:main_results} and Figure~\ref{fig:forest_plot} present the full breakdown.
+
+Incompleteness produces the highest violation rate in four of five models (all except GPT-5.4, where authorization scope ranks first at 64\%). Coreferential produces the lowest rate in three of five models. The 22 pp gap between the extremes (incompleteness 53.6\% vs.\ coreferential 31.6\%) is robust: coreferential agents occasionally adopt cautious strategies (conservative refusal rate 6--11\% vs.\ 2--3\% average), partially resolving ambiguity through tool responses.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig2_forest_plot.pdf}
+\caption{Per-type effect sizes ($\Delta$pp, ambiguous minus unambiguous) with Newcombe 95\% CIs. All types produce significant increases. A three-tier hierarchy emerges: incompleteness $\gg$ mid cluster $\gg$ coreferential.}
+\label{fig:forest_plot}
+\end{figure}
+
+\subsection{Layer Effect (C3)}
+
+Specification-layer types produce higher violation rates than linguistic-layer types on average (44.0\% vs.\ 37.9\%, $\Delta = 6.08$ pp, $\chi^2 = 5.73$, $p = 0.017$, $V = 0.062$, OR $= 1.29$ $[1.05, 1.58]$). This aggregate, however, masks substantial model dependence. GPT-5.4 and GPT-4.1 show a strong layer gap ($+14.0$ pp and $+12.0$ pp respectively), driven by their high authorization scope vulnerability (64\% and 46\%). Claude shows a weak gap ($+3.3$ pp), DeepSeek a negligible one ($+2.0$ pp), and Qwen3 reverses the direction ($-0.9$ pp). The mid-tier overlap between conditional precedence (36.8\%, specification) and scopal (39.4\%, linguistic) further illustrates that the layer boundary is not a clean threshold. We therefore treat C3 as a secondary finding that motivates the more informative model$\times$type interaction (C4).
+
+Per-type ICC values from the reproducibility study mirror this pattern: linguistic-layer types achieve excellent reliability (scopal 0.989, lexical 0.981, coreferential 0.976), while specification-layer types show good but lower reliability (authorization scope 0.857, conditional precedence 0.856, incompleteness 0.807). Agents produce more variable outputs when external disambiguation channels are absent, consistent with the forced-guessing mechanism hypothesized for specification-layer ambiguity.
+
+\subsection{Model $\times$ Type Interaction (C4)}
+\label{sec:c4}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig3_heatmap.pdf}
+\caption{Violation rates (\%) by model and ambiguity type under ambiguous conditions ($n = 2{,}997$). Authorization scope varies 52 pp across models (Claude 12\% to GPT-5.4 64\%), while incompleteness remains uniformly high (46--62\%).}
+\label{fig:heatmap}
+\end{figure}
+
+The most striking finding is the interaction between model and ambiguity type. A model main effect is significant ($\chi^2 = 31.02$, $p = 3.0 \times 10^{-6}$, $V = 0.102$), with Claude (30.3\%) substantially less vulnerable than DeepSeek (49.7\%). Per-model type-effect tests reveal that GPT-5.4 ($V = 0.28$, $p < 0.001$) and Claude ($V = 0.24$, $p = 0.003$) show the strongest type differentiation, while DeepSeek ($V = 0.14$, $p = 0.28$) shows no significant type effect, suggesting uniformly high vulnerability.
+
+Figure~\ref{fig:heatmap} highlights three interaction patterns. First, authorization scope is the \emph{model-differentiating type}: its violation rate spans 52 pp from Claude (12\%) to GPT-5.4 (64\%). Claude's low rate suggests that its safety training specifically addresses authorization boundary reasoning. Second, incompleteness is a \emph{universal vulnerability}: all models fall between 46\% and 62\% (16 pp range), indicating that safety training provides little protection when policy information is simply absent. Third, conditional precedence is the most \emph{model-invariant type} (34--40\%, 6 pp range), handled similarly across architectures.
+
+Cross-model agreement on individual clauses is only fair (Fleiss' $\kappa = 0.384$). The binary effect is universal, but \emph{which specific clauses} trigger violations depends on the model. This clause-level disagreement, combined with the type-level interaction, indicates that safety alignment creates model-specific vulnerability profiles rather than a uniform defense.

@@ -1,0 +1,67 @@
+paper_key: "tau2_bench_2025"
+title: "τ²-bench: Evaluating Conversational Agents in a Dual-Control Environment"
+venue: "arXiv 2025 (submitted to ICLR 2026)"
+full_text_available: false
+
+research:
+  baselines: [Claude 3.5 Sonnet, GPT-4.1, o4-mini]
+  metrics:
+    - {name: "Task success rate", direction: "higher_better"}
+    - {name: "Reasoning error rate", direction: "lower_better"}
+    - {name: "Communication/coordination error rate", direction: "lower_better"}
+  datasets:
+    - {name: "τ²-bench Telecom", size: "2,285 compositional tasks from 15 subtask groups"}
+    - {name: "τ²-bench Airline", size: "50 tasks"}
+    - {name: "τ²-bench Retail", size: "114 tasks"}
+  ablation_dimensions: [single_vs_dual_control, error_type (reasoning/communication), domain]
+  training_recipe: {optimizer: "N/A (benchmark)", lr: "N/A", hardware: "API-based"}
+  method_family: "Dec-POMDP benchmark with dual-control"
+
+positioning:
+  core_claim: "Existing benchmarks test single-control environments; dual-control settings where both agent and user actively modify shared state reveal significant performance drops and distinct coordination failure modes."
+  key_results: "Significant performance drops from single-control to dual-control; errors decomposed into reasoning vs communication/coordination failures"
+  limitations:
+    - "Primarily telecom domain for dual-control"
+    - "User simulator fidelity constraints"
+    - "ICLR 2026 desk-rejected"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Existing benchmarks only test single-control: agent acts, user provides info passively — but real customer service requires both parties to modify shared state"
+  tension: "Single-control benchmarks overestimate agent capability; they miss coordination and communication failures"
+  key_insight: "Dec-POMDP formulation: agent and user as cooperative actors with partial observability and shared environment, revealing performance degradation"
+  argument_chain: "single-control limitation → Dec-POMDP formulation → compositional task generation → behavior-constrained user simulator → dual-control reveals new failure modes"
+  contribution_framing: "四项贡献：novel domain + task generator + user simulator + performance analysis"
+  intro_structure: "4段：conversational agent evaluation gap → single vs dual-control distinction → τ²-bench design → contributions"
+  notable_technique: "Compositional task generator from atomic components保证domain coverage和complexity control；user simulator与environment tight coupling提升simulation fidelity"
+
+figures:
+  figure_count: "N/A (full text unavailable)"
+  figure1:
+    type: "N/A"
+    description: "N/A"
+    narrative_role: "N/A"
+    design_elements: []
+    visual_style: "N/A"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "N/A"
+
+tables:
+  table_count: "N/A"
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: "N/A"
+    design_note: "N/A"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: "N/A"
+    content: "N/A"
+    reason: "N/A"

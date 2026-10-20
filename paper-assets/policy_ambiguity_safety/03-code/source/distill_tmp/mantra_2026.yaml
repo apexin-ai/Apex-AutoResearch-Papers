@@ -1,0 +1,19 @@
+paper_key: "mantra_2026"
+title: "MANTRA: Synthesizing SMT-Validated Compliance Benchmarks for Tool-Using LLM Agents"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [manually constructed benchmarks, LLM-based judges]
+  metrics:
+    - {name: "Trace-level compliance (deterministic)", direction: "higher_better"}
+    - {name: "Benchmark generation scalability", direction: "higher_better"}
+  datasets:
+    - {name: "MANTRA benchmark suite", size: "285 tasks across 6 domains, manuals >50 pages"}
+  ablation_dimensions: [domain, manual_complexity]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "SMT solver"}
+  method_family: "formal verification + symbolic world model"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

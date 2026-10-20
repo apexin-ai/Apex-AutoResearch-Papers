@@ -1,0 +1,28 @@
+\section{Error Analysis \emph{[Exploratory]}}
+\label{sec:analysis}
+
+The following failure mode taxonomy emerges empirically from LLM-coded traces, distinct from the input ambiguity taxonomy (\S\ref{sec:taxonomy}).
+
+We analyze 614 violation traces across all five models, coded into five failure modes: unauthorized escalation, assumption-based action, scope misapplication, arbitrary rule selection, and conservative refusal. GPT-5.4 and GPT-4.1 serve as detailed annotation anchors because they span the judge boundary. Inter-coder reliability is substantial (Gwet's AC$_1$ $= 0.62$ \citep{gwet_2014}; Cohen's $\kappa = 0.52$ \citep{cohen_1960}). The gap reflects the prevalence paradox: three categories account for ${\sim}$90\% of instances, compressing the $\kappa$ denominator and yielding artificially low values despite high raw agreement.
+
+\subsection{Type-Specific Failure Mechanisms}
+
+The five-model data reveal three mechanistically distinct failure patterns that crosscut the specification/linguistic layer boundary.
+
+\emph{Structural misparse} (scope misapplication): the agent constructs an incorrect parse and follows it consistently, paralleling garden-path processing \citep{frazier_rayner_1982,ferreira_good_enough_2002} at a behavioral (not mechanistic) level---e.g., parsing ``items purchased with a coupon or during a sale are final'' as restricting only coupon purchases. This dominates scopal (all 5 models), conditional precedence (all 5), and coreferential (3/5).
+
+\emph{Information gap-filling} (assumption-based action): the agent fills missing information with plausible but incorrect defaults---e.g., inventing a 30-day return window when none is specified. This dominates incompleteness (3/5) and lexical (3/5).
+
+\emph{Boundary violation} (unauthorized escalation): the agent exceeds permission boundaries when authorization scope is underspecified---e.g., issuing a refund above its stated limit rather than escalating; 69.2\% of such violations involve unauthorized escalation with zero conservative refusals ($p < 10^{-4}$, binomial test), revealing systematic permissiveness bias. This dominates authorization scope exclusively (all 5 models).
+
+Each type's dominant failure mode is majority-consistent ($\geq$3/5 models), with three achieving unanimity. The layer distinction does not hold mechanistically: conditional precedence shares its mode with scopal, while authorization scope follows a unique boundary-violation pattern.
+
+\subsection{Disambiguation Deficit}
+
+Agents rarely recognize ambiguity. We code \emph{disambiguation awareness} (acknowledging multiple interpretations, asking clarifying questions, or conditioning on ambiguity) versus \emph{surface adoption} (proceeding with a single interpretation). Overall disambiguation awareness is 4.6\%: Claude (11.0\%) and GPT-4.1 (10.7\%) show the highest rates, while Qwen3 and DeepSeek show zero across all 278 combined violation traces.
+
+We term this the \emph{Disambiguation Deficit}---a default behavioral pattern in uninstructed settings, not an inherent inability. Unlike humans, agents proceed with full confidence in a single interpretation, consistent with \citet{hu_ambiguity_2025}'s finding that LLM ambiguity reflects missing conceptual representations. Our mitigation experiment ($-$8.5\,pp; Appendix~\ref{app:mitigation}) confirms that disambiguation can be elicited, paralleling human good-enough processing \citep{ferreira_good_enough_2002}.
+
+\subsection{Systematic Nocuity}
+
+Among ambiguous clauses, 41.3\% trigger majority-convergent violations ($\geq$3/5 models), with 13\% producing universal violations. This extends \citet{berry_kamsties_2004}'s framework with \emph{systematic nocuity}: all models converge on the same incorrect interpretation, invisible in agreement-based evaluation. Incompleteness has the highest universal convergence (24\%).

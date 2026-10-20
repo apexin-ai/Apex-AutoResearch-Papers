@@ -1,0 +1,135 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yao2023react,schick2024toolformer}
+\citation{berry2003ambiguity,massey2014identifying,li2024drip}
+\citation{ruan2024toolemu,xie2024phantompolicy}
+\citation{tau2bench2024}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(1) Matched-pair causal framework.}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(2) Judge calibration pipeline.}{1}{section*.2}\protected@file@percent }
+\citation{berry2003ambiguity}
+\citation{massey2014identifying}
+\citation{chantree2006identifying}
+\citation{ferrari2017nlp}
+\citation{li2024drip}
+\citation{poesio2005reliability}
+\citation{li2024gardenpath}
+\citation{wasow2005puzzle}
+\citation{tau2bench2024}
+\citation{ruan2024toolemu}
+\citation{yuan2024rjudge}
+\citation{xie2024phantompolicy}
+\citation{agentpex2024}
+\citation{zheng2024judging}
+\citation{wang2024large}
+\citation{li2024drip}
+\citation{massey2014identifying}
+\@writefile{toc}{\contentsline {paragraph}{(3) Corrected differential analysis.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ambiguity in requirements engineering.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ambiguity in NLP.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agent safety evaluation.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-judge reliability.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Ambiguity Taxonomy}{2}{section.3}\protected@file@percent }
+\newlabel{sec:taxonomy}{{3}{2}{Ambiguity Taxonomy}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Specification layer}{2}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Linguistic layer}{2}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{2}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{2}{Method}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Clause Generation}{2}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:clause_gen}{{4.1}{2}{Clause Generation}{subsection.4.1}{}}
+\citation{li2024drip}
+\citation{tau2bench2024}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Per-type clause statistics. $\bar  {t}_\text  {amb}$: mean tokens in ambiguous clause. $\Delta t$: token delta (disambiguation length). Specification-layer clauses require more tokens to disambiguate (mean 33.6 vs.\ 11.9 for linguistic).}}{3}{table.caption.10}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:clause_stats}{{1}{3}{Per-type clause statistics. $\bar {t}_\text {amb}$: mean tokens in ambiguous clause. $\Delta t$: token delta (disambiguation length). Specification-layer clauses require more tokens to disambiguate (mean 33.6 vs.\ 11.9 for linguistic)}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Realism comparison: synthetic clauses vs.\ DRIP-R natural ambiguities. No significant distributional differences at $p$\,$<$\,0.05.}}{3}{table.caption.11}\protected@file@percent }
+\newlabel{tab:realism}{{2}{3}{Realism comparison: synthetic clauses vs.\ DRIP-R natural ambiguities. No significant distributional differences at $p$\,$<$\,0.05}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Realism Validation}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experimental Setup}{3}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Perturbation control verdict. The near-zero perturbation effect ($\Delta $\,=\,$-$0.67pp) vs.\ the corrected ambiguity effect (+19.5pp) confirms ambiguity-specific causation.}}{3}{table.caption.14}\protected@file@percent }
+\newlabel{tab:perturbation}{{3}{3}{Perturbation control verdict. The near-zero perturbation effect ($\Delta $\,=\,$-$0.67pp) vs.\ the corrected ambiguity effect (+19.5pp) confirms ambiguity-specific causation}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evaluation Pipeline}{3}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:eval_pipeline}{{4.4}{3}{Evaluation Pipeline}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Stage 1: LLM-as-judge.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage 2: Human calibration.}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Perturbation Control}{3}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:perturbation}{{4.5}{3}{Perturbation Control}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Measurement Reliability}{3}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Judge Calibration}{3}{section.5}\protected@file@percent }
+\newlabel{sec:judge_cal}{{5}{3}{Judge Calibration}{section.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Reliability vs.\ accuracy dissociation. Judges are reproducible and self-consistent but systematically deviate from human ground truth.}}{4}{table.caption.15}\protected@file@percent }
+\newlabel{tab:dissociation}{{4}{4}{Reliability vs.\ accuracy dissociation. Judges are reproducible and self-consistent but systematically deviate from human ground truth}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Judge calibration by condition. Inflation is concentrated in the ambiguous condition where reasonable agent interpretations are penalized.}}{4}{table.caption.16}\protected@file@percent }
+\newlabel{tab:judge_condition}{{5}{4}{Judge calibration by condition. Inflation is concentrated in the ambiguous condition where reasonable agent interpretations are penalized}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Reliability--Accuracy Dissociation}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Inflation Mechanism}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Type-Specific Bias}{4}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Judge calibration by ambiguity type. Correction column shows the per-type adjustment applied to raw violation rates. Types with fuzzier violation boundaries receive larger corrections.}}{4}{table.caption.17}\protected@file@percent }
+\newlabel{tab:judge_type}{{6}{4}{Judge calibration by ambiguity type. Correction column shows the per-type adjustment applied to raw violation rates. Types with fuzzier violation boundaries receive larger corrections}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Severity-Tier Analysis}{4}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cross-Judge Asymmetry}{4}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Results}{4}{section.6}\protected@file@percent }
+\newlabel{sec:results}{{6}{4}{Results}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}C1: Binary Effect (Corrected)}{4}{subsection.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Raw per-model results and corrected aggregate. Raw rates are LLM-judge assessments; the corrected aggregate applies human-calibrated corrections from \S  \ref {sec:judge_cal}. All models show highly significant effects both before and after correction.}}{5}{table.caption.18}\protected@file@percent }
+\newlabel{tab:raw_results}{{7}{5}{Raw per-model results and corrected aggregate. Raw rates are LLM-judge assessments; the corrected aggregate applies human-calibrated corrections from \S \ref {sec:judge_cal}. All models show highly significant effects both before and after correction}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Corrected ambiguity-type hierarchy. Incompleteness remains most dangerous; coreferential least. Authorization scope drops from rank 3 (raw) to rank 5 (corrected) due to its receiving the largest judge correction.}}{5}{table.caption.19}\protected@file@percent }
+\newlabel{tab:type_hierarchy}{{8}{5}{Corrected ambiguity-type hierarchy. Incompleteness remains most dangerous; coreferential least. Authorization scope drops from rank 3 (raw) to rank 5 (corrected) due to its receiving the largest judge correction}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}C2: Type Hierarchy (Corrected)}{5}{subsection.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Corrected violation rates (\%) by model and type (ambiguous condition). Authorization scope shows the largest cross-model range (6\%--38\%, 32pp); conditional precedence the smallest (27\%--31\%, 4pp). Bold indicates notable extremes.}}{5}{table.caption.20}\protected@file@percent }
+\newlabel{tab:model_type}{{9}{5}{Corrected violation rates (\%) by model and type (ambiguous condition). Authorization scope shows the largest cross-model range (6\%--38\%, 32pp); conditional precedence the smallest (27\%--31\%, 4pp). Bold indicates notable extremes}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}C4: Model $\times $ Type Interaction (Corrected)}{5}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Note on Layer Effect}{5}{subsection.6.4}\protected@file@percent }
+\citation{ferreira2002good}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Cross-model range comparison: raw vs.\ corrected. Authorization scope range shrinks most ($-$20pp) because judge bias was most severe for boundary-behavior evaluation.}}{6}{table.caption.21}\protected@file@percent }
+\newlabel{tab:range_comparison}{{10}{6}{Cross-model range comparison: raw vs.\ corrected. Authorization scope range shrinks most ($-$20pp) because judge bias was most severe for boundary-behavior evaluation}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Reliability stratification of qualitative findings. Only ambiguity blindness and layer-level mechanisms are human-validated as robust; fine-grained mode percentages are unreliable.}}{6}{table.caption.22}\protected@file@percent }
+\newlabel{tab:c5_reliability}{{11}{6}{Reliability stratification of qualitative findings. Only ambiguity blindness and layer-level mechanisms are human-validated as robust; fine-grained mode percentages are unreliable}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Qualitative Analysis}{6}{section.7}\protected@file@percent }
+\newlabel{sec:error_analysis}{{7}{6}{Qualitative Analysis}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Ambiguity Blindness}{6}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Layer-Level Failure Mechanisms}{6}{subsection.7.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Ambiguity classifier comparison. Binary detection is feasible (F1\,=\,0.74--0.81) but type-level classification remains challenging.}}{6}{table.caption.23}\protected@file@percent }
+\newlabel{tab:classifier}{{12}{6}{Ambiguity classifier comparison. Binary detection is feasible (F1\,=\,0.74--0.81) but type-level classification remains challenging}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Dominant Modes per Type}{6}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Ambiguity Detection}{6}{section.8}\protected@file@percent }
+\newlabel{sec:classifier}{{8}{6}{Ambiguity Detection}{section.8}{}}
+\bibdata{anthology,custom}
+\bibstyle{acl_natbib}
+\bibcite{berry2003ambiguity}{{1}{2003}{{Berry and Kamsties}}{{}}}
+\bibcite{chantree2006identifying}{{2}{2006}{{Chantree et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion}{7}{section.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Methodological contribution.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Corrected but robust effects.}{7}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Differential nocuity after correction.}{7}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for agent deployment.}{7}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Limitations}{7}{section.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{7}{section.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Raw (Uncorrected) Results}{7}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Per-Type ICC vs.\ Judge F1}{7}{appendix.B}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces ICC (test-retest reliability) vs.\ judge F1 (accuracy against human ground truth) by type. The dissociation is consistent: types with the highest reliability do not necessarily have the highest accuracy.}}{7}{table.caption.28}\protected@file@percent }
+\newlabel{tab:icc_f1}{{13}{7}{ICC (test-retest reliability) vs.\ judge F1 (accuracy against human ground truth) by type. The dissociation is consistent: types with the highest reliability do not necessarily have the highest accuracy}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Claim Status Summary}{7}{appendix.C}\protected@file@percent }
+\bibcite{ferrari2017nlp}{{3}{2017}{{Ferrari et~al.}}{{}}}
+\bibcite{ferreira2002good}{{4}{2002}{{Ferreira et~al.}}{{}}}
+\bibcite{li2024drip}{{5}{2024a}{{Li et~al.}}{{}}}
+\bibcite{li2024gardenpath}{{6}{2024b}{{Li et~al.}}{{}}}
+\bibcite{massey2014identifying}{{7}{2014}{{Massey et~al.}}{{}}}
+\bibcite{poesio2005reliability}{{8}{2005}{{Poesio and Artstein}}{{}}}
+\bibcite{ruan2024toolemu}{{9}{2024}{{Ruan et~al.}}{{}}}
+\bibcite{schick2024toolformer}{{10}{2024}{{Schick et~al.}}{{}}}
+\bibcite{tau2bench2024}{{11}{2024}{{$\tau ^2$-bench}}{{}}}
+\bibcite{wang2024large}{{12}{2024}{{Wang et~al.}}{{}}}
+\bibcite{wasow2005puzzle}{{13}{2005}{{Wasow et~al.}}{{}}}
+\bibcite{xie2024phantompolicy}{{14}{2024}{{Xie et~al.}}{{}}}
+\bibcite{yao2023react}{{15}{2023}{{Yao et~al.}}{{}}}
+\bibcite{yuan2024rjudge}{{16}{2024}{{Yuan et~al.}}{{}}}
+\bibcite{zheng2024judging}{{17}{2024}{{Zheng et~al.}}{{}}}
+\bibcite{agentpex2024}{{18}{2024}{{AgentPex}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Claim status before and after judge calibration correction.}}{8}{table.caption.29}\protected@file@percent }
+\newlabel{tab:claim_status}{{14}{8}{Claim status before and after judge calibration correction}{table.caption.29}{}}
+\gdef \@abspage@last{8}

@@ -1,0 +1,82 @@
+{
+  "per_domain": {
+    "airline": {
+      "n": 119,
+      "n_gpt54": 61,
+      "n_gpt41": 58,
+      "failure_mode_distribution": {
+        "arbitrary_rule_selection": 5.0,
+        "assumption_based_action": 37.0,
+        "conservative_refusal": 1.7,
+        "other": 0.8,
+        "scope_misapplication": 29.4,
+        "unauthorized_escalation": 26.1
+      },
+      "awareness_rate": 5.0,
+      "per_model": {
+        "gpt54": {
+          "n": 61,
+          "failure_mode_distribution": {
+            "assumption_based_action": 36.1,
+            "unauthorized_escalation": 27.9,
+            "scope_misapplication": 29.5,
+            "arbitrary_rule_selection": 4.9,
+            "conservative_refusal": 1.6
+          },
+          "awareness_rate": 1.6
+        },
+        "gpt41": {
+          "n": 58,
+          "failure_mode_distribution": {
+            "scope_misapplication": 29.3,
+            "assumption_based_action": 37.9,
+            "unauthorized_escalation": 24.1,
+            "conservative_refusal": 1.7,
+            "arbitrary_rule_selection": 5.2,
+            "other": 1.7
+          },
+          "awareness_rate": 8.6
+        }
+      }
+    },
+    "retail": {
+      "n": 101,
+      "n_gpt54": 53,
+      "n_gpt41": 48,
+      "failure_mode_distribution": {
+        "arbitrary_rule_selection": 4.0,
+        "assumption_based_action": 30.7,
+        "conservative_refusal": 3.0,
+        "scope_misapplication": 21.8,
+        "unauthorized_escalation": 38.6
+      },
+      "awareness_rate": 7.9,
+      "per_model": {
+        "gpt54": {
+          "n": 53,
+          "failure_mode_distribution": {
+            "unauthorized_escalation": 32.1,
+            "assumption_based_action": 34.0,
+            "arbitrary_rule_selection": 3.8,
+            "scope_misapplication": 22.6,
+            "conservative_refusal": 3.8,
+            "surface_adoption": 3.8
+          },
+          "awareness_rate": 7.5
+        },
+        "gpt41": {
+          "n": 48,
+          "failure_mode_distribution": {
+            "unauthorized_escalation": 45.8,
+            "scope_misapplication": 20.8,
+            "assumption_based_action": 27.1,
+            "arbitrary_rule_selection": 4.2,
+            "conservative_refusal": 2.1
+          },
+          "awareness_rate": 8.3
+        }
+      }
+    }
+  },
+  "cross_domain_highlights": "unauthorized_escalation: retail (38.6%) vs airline (26.1%), diff=12.5pp; Awareness in airline: gpt-5.4=1.6% vs gpt-4.1=8.6%"
+}

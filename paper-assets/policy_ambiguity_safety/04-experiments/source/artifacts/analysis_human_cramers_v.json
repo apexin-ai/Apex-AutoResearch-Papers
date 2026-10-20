@@ -1,0 +1,283 @@
+{
+  "description": "Cram\u00e9r's V for human-coded ambiguity_type \u00d7 failure_mechanism association",
+  "annotators": {
+    "annotator_1": {
+      "full_6x5": {
+        "cramers_v": 0.4001,
+        "chi2": 64.0258,
+        "p_value": 1.666845e-06,
+        "dof": 20,
+        "n": 100,
+        "contingency_table": [
+          [
+            1,
+            1,
+            4,
+            7,
+            2
+          ],
+          [
+            2,
+            0,
+            0,
+            15,
+            1
+          ],
+          [
+            4,
+            0,
+            1,
+            8,
+            4
+          ],
+          [
+            1,
+            9,
+            2,
+            1,
+            4
+          ],
+          [
+            2,
+            8,
+            6,
+            0,
+            1
+          ],
+          [
+            3,
+            2,
+            1,
+            7,
+            3
+          ]
+        ],
+        "row_labels": [
+          "authorization_scope",
+          "conditional_precedence",
+          "coreferential",
+          "incompleteness",
+          "lexical",
+          "scopal"
+        ],
+        "col_labels": [
+          "SM",
+          "GF",
+          "BV",
+          "SC",
+          "CR"
+        ],
+        "bootstrap_95ci": [
+          0.3806,
+          0.5119
+        ],
+        "bootstrap_valid_samples": 10000
+      },
+      "collapsed_6x4": {
+        "cramers_v": 0.4397,
+        "chi2": 57.9962,
+        "p_value": 5.556092e-07,
+        "dof": 15,
+        "n": 100,
+        "contingency_table": [
+          [
+            8,
+            1,
+            4,
+            2
+          ],
+          [
+            17,
+            0,
+            0,
+            1
+          ],
+          [
+            12,
+            0,
+            1,
+            4
+          ],
+          [
+            2,
+            9,
+            2,
+            4
+          ],
+          [
+            2,
+            8,
+            6,
+            1
+          ],
+          [
+            10,
+            2,
+            1,
+            3
+          ]
+        ],
+        "row_labels": [
+          "authorization_scope",
+          "conditional_precedence",
+          "coreferential",
+          "incompleteness",
+          "lexical",
+          "scopal"
+        ],
+        "col_labels": [
+          "misparse",
+          "GF",
+          "BV",
+          "CR"
+        ],
+        "bootstrap_95ci": [
+          0.3996,
+          0.5561
+        ],
+        "bootstrap_valid_samples": 10000
+      }
+    },
+    "annotator_3": {
+      "full_6x5": {
+        "cramers_v": 0.392,
+        "chi2": 61.4641,
+        "p_value": 4.21662e-06,
+        "dof": 20,
+        "n": 100,
+        "contingency_table": [
+          [
+            0,
+            8,
+            6,
+            0,
+            1
+          ],
+          [
+            2,
+            2,
+            0,
+            11,
+            3
+          ],
+          [
+            3,
+            7,
+            3,
+            0,
+            4
+          ],
+          [
+            1,
+            12,
+            3,
+            0,
+            1
+          ],
+          [
+            0,
+            8,
+            4,
+            2,
+            3
+          ],
+          [
+            3,
+            1,
+            3,
+            4,
+            5
+          ]
+        ],
+        "row_labels": [
+          "authorization_scope",
+          "conditional_precedence",
+          "coreferential",
+          "incompleteness",
+          "lexical",
+          "scopal"
+        ],
+        "col_labels": [
+          "SM",
+          "GF",
+          "BV",
+          "SC",
+          "CR"
+        ],
+        "bootstrap_95ci": [
+          0.3661,
+          0.5137
+        ],
+        "bootstrap_valid_samples": 9999
+      },
+      "collapsed_6x4": {
+        "cramers_v": 0.4101,
+        "chi2": 50.4575,
+        "p_value": 1.013498e-05,
+        "dof": 15,
+        "n": 100,
+        "contingency_table": [
+          [
+            0,
+            8,
+            6,
+            1
+          ],
+          [
+            13,
+            2,
+            0,
+            3
+          ],
+          [
+            3,
+            7,
+            3,
+            4
+          ],
+          [
+            1,
+            12,
+            3,
+            1
+          ],
+          [
+            2,
+            8,
+            4,
+            3
+          ],
+          [
+            7,
+            1,
+            3,
+            5
+          ]
+        ],
+        "row_labels": [
+          "authorization_scope",
+          "conditional_precedence",
+          "coreferential",
+          "incompleteness",
+          "lexical",
+          "scopal"
+        ],
+        "col_labels": [
+          "misparse",
+          "GF",
+          "BV",
+          "CR"
+        ],
+        "bootstrap_95ci": [
+          0.3715,
+          0.5402
+        ],
+        "bootstrap_valid_samples": 10000
+      }
+    }
+  },
+  "summary": {
+    "mean_cramers_v_full_6x5": 0.396,
+    "mean_cramers_v_collapsed_6x4": 0.4249
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "n_models": 5,
+  "models": [
+    "gpt-5.4",
+    "gpt-4.1",
+    "claude-sonnet-4-6",
+    "qwen3-235b",
+    "deepseek-v3"
+  ],
+  "n_clauses": 300,
+  "ambiguous": {
+    "n_clauses": 300,
+    "universal_convergence": {
+      "count": 39,
+      "rate": 0.13,
+      "description": "5/5 models violated"
+    },
+    "strong_convergence": {
+      "count": 32,
+      "rate": 0.1067,
+      "description": ">=4/5 models violated"
+    },
+    "majority_convergence": {
+      "count": 53,
+      "rate": 0.1767,
+      "description": ">=3/5 models violated"
+    },
+    "divergent": {
+      "count": 92,
+      "rate": 0.3067,
+      "description": "1-2 models violated"
+    },
+    "no_violation": {
+      "count": 84,
+      "rate": 0.28,
+      "description": "0 models violated"
+    },
+    "per_type": {
+      "authorization_scope": {
+        "n_clauses": 50,
+        "universal": 5,
+        "strong": 4,
+        "majority": 13,
+        "divergent": 16,
+        "no_violation": 12
+      },
+      "conditional_precedence": {
+        "n_clauses": 50,
+        "universal": 3,
+        "strong": 8,
+        "majority": 7,
+        "divergent": 19,
+        "no_violation": 13
+      },
+      "coreferential": {
+        "n_clauses": 50,
+        "universal": 3,
+        "strong": 5,
+        "majority": 7,
+        "divergent": 16,
+        "no_violation": 19
+      },
+      "incompleteness": {
+        "n_clauses": 50,
+        "universal": 12,
+        "strong": 5,
+        "majority": 14,
+        "divergent": 8,
+        "no_violation": 11
+      },
+      "lexical": {
+        "n_clauses": 50,
+        "universal": 8,
+        "strong": 5,
+        "majority": 6,
+        "divergent": 19,
+        "no_violation": 12
+      },
+      "scopal": {
+        "n_clauses": 50,
+        "universal": 8,
+        "strong": 5,
+        "majority": 6,
+        "divergent": 14,
+        "no_violation": 17
+      }
+    }
+  },
+  "unambiguous": {
+    "n_clauses": 300,
+    "universal_convergence": {
+      "count": 1,
+      "rate": 0.0033,
+      "description": "5/5 models violated"
+    },
+    "strong_convergence": {
+      "count": 1,
+      "rate": 0.0033,
+      "description": ">=4/5 models violated"
+    },
+    "majority_convergence": {
+      "count": 3,
+      "rate": 0.01,
+      "description": ">=3/5 models violated"
+    },
+    "divergent": {
+      "count": 70,
+      "rate": 0.2333,
+      "description": "1-2 models violated"
+    },
+    "no_violation": {
+      "count": 225,
+      "rate": 0.75,
+      "description": "0 models violated"
+    },
+    "per_type": {
+      "authorization_scope": {
+        "n_clauses": 50,
+        "universal": 0,
+        "strong": 0,
+        "majority": 0,
+        "divergent": 12,
+        "no_violation": 38
+      },
+      "conditional_precedence": {
+        "n_clauses": 50,
+        "universal": 0,
+        "strong": 0,
+        "majority": 0,
+        "divergent": 14,
+        "no_violation": 36
+      },
+      "coreferential": {
+        "n_clauses": 50,
+        "universal": 0,
+        "strong": 1,
+        "majority": 2,
+        "divergent": 15,
+        "no_violation": 32
+      },
+      "incompleteness": {
+        "n_clauses": 50,
+        "universal": 0,
+        "strong": 0,
+        "majority": 0,
+        "divergent": 8,
+        "no_violation": 42
+      },
+      "lexical": {
+        "n_clauses": 50,
+        "universal": 1,
+        "strong": 0,
+        "majority": 1,
+        "divergent": 9,
+        "no_violation": 39
+      },
+      "scopal": {
+        "n_clauses": 50,
+        "universal": 0,
+        "strong": 0,
+        "majority": 0,
+        "divergent": 12,
+        "no_violation": 38
+      }
+    }
+  },
+  "severity_agreement": {
+    "fleiss_kappa": 0.141,
+    "n_clauses_evaluated": 123,
+    "interpretation": "slight"
+  },
+  "interpretation": "Among 300 ambiguous clauses, 124 (41.3%) show majority+ convergent violation (>=3/5 models). Universal (5/5): 39, Strong (4/5): 32, Majority (3/5): 53. Unambiguous control: 5/300 (1.7%) majority+ convergent violation. Severity agreement (Fleiss' kappa): 0.141 (slight)."
+}

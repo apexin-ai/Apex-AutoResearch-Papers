@@ -1,0 +1,79 @@
+{
+  "test": "layer_effect (C3)",
+  "specification_layer": {
+    "types": [
+      "authorization_scope",
+      "conditional_precedence",
+      "incompleteness"
+    ],
+    "n": 750,
+    "violations": 330,
+    "rate_pct": 44.0
+  },
+  "linguistic_layer": {
+    "types": [
+      "coreferential",
+      "lexical",
+      "scopal"
+    ],
+    "n": 749,
+    "violations": 284,
+    "rate_pct": 37.92
+  },
+  "delta_pp": 6.08,
+  "bootstrap_ci_95": [
+    1.14,
+    11.02
+  ],
+  "chi_squared": {
+    "statistic": 5.7337,
+    "df": 1,
+    "p": 0.016642
+  },
+  "cramers_v": 0.0618,
+  "odds_ratio": {
+    "or": 1.2865,
+    "ci_95": [
+      1.0466,
+      1.5813
+    ]
+  },
+  "per_type_detail": {
+    "conditional_precedence": {
+      "n": 250,
+      "violations": 92,
+      "rate": 36.8,
+      "layer": "specification"
+    },
+    "authorization_scope": {
+      "n": 250,
+      "violations": 104,
+      "rate": 41.6,
+      "layer": "specification"
+    },
+    "incompleteness": {
+      "n": 250,
+      "violations": 134,
+      "rate": 53.6,
+      "layer": "specification"
+    },
+    "coreferential": {
+      "n": 250,
+      "violations": 79,
+      "rate": 31.6,
+      "layer": "linguistic"
+    },
+    "lexical": {
+      "n": 250,
+      "violations": 107,
+      "rate": 42.8,
+      "layer": "linguistic"
+    },
+    "scopal": {
+      "n": 249,
+      "violations": 98,
+      "rate": 39.36,
+      "layer": "linguistic"
+    }
+  }
+}

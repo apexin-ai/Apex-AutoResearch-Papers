@@ -1,0 +1,225 @@
+{
+  "domain_split": {
+    "episode_counts": {
+      "airline": 1437,
+      "retail": 1520
+    },
+    "excluded_ambiguous_domain": 40,
+    "total_classified": 2957,
+    "per_domain_condition_counts": {
+      "airline": {
+        "ambiguous": 714,
+        "unambiguous": 723,
+        "total": 1437
+      },
+      "retail": {
+        "ambiguous": 755,
+        "unambiguous": 765,
+        "total": 1520
+      }
+    }
+  },
+  "per_domain_c1": {
+    "airline": {
+      "n_ambiguous": 714,
+      "n_unambiguous": 723,
+      "ambiguous_violation_rate": 0.5448,
+      "unambiguous_violation_rate": 0.1051,
+      "delta_pp": 44.0,
+      "odds_ratio": 10.19,
+      "fisher_p": 2.290886598917729e-75,
+      "significant": "True"
+    },
+    "retail": {
+      "n_ambiguous": 755,
+      "n_unambiguous": 765,
+      "ambiguous_violation_rate": 0.4609,
+      "unambiguous_violation_rate": 0.1242,
+      "delta_pp": 33.7,
+      "odds_ratio": 6.03,
+      "fisher_p": 3.985045058603673e-49,
+      "significant": "True"
+    }
+  },
+  "c2_type_ranking": {
+    "airline": {
+      "incompleteness": {
+        "rate": 0.696,
+        "rank": 1
+      },
+      "lexical": {
+        "rate": 0.6,
+        "rank": 2
+      },
+      "authorization_scope": {
+        "rate": 0.5583,
+        "rank": 3
+      },
+      "conditional_precedence": {
+        "rate": 0.5043,
+        "rank": 4
+      },
+      "coreferential": {
+        "rate": 0.4696,
+        "rank": 5
+      },
+      "scopal": {
+        "rate": 0.4286,
+        "rank": 6
+      }
+    },
+    "retail": {
+      "incompleteness": {
+        "rate": 0.5917,
+        "rank": 1
+      },
+      "authorization_scope": {
+        "rate": 0.5667,
+        "rank": 2
+      },
+      "scopal": {
+        "rate": 0.448,
+        "rank": 3
+      },
+      "lexical": {
+        "rate": 0.4462,
+        "rank": 4
+      },
+      "coreferential": {
+        "rate": 0.424,
+        "rank": 5
+      },
+      "conditional_precedence": {
+        "rate": 0.3111,
+        "rank": 6
+      }
+    },
+    "spearman_rho": 0.4857,
+    "spearman_p": 0.3287,
+    "types_compared": [
+      "authorization_scope",
+      "conditional_precedence",
+      "coreferential",
+      "incompleteness",
+      "lexical",
+      "scopal"
+    ]
+  },
+  "logistic_interaction": {
+    "coefficients": {
+      "intercept": -1.9534,
+      "condition_ambiguous": 1.7968,
+      "domain_airline": -0.1882,
+      "interaction": 0.5246
+    },
+    "p_values": {
+      "intercept": 0.0,
+      "condition_ambiguous": 2.2755489170090382e-42,
+      "domain_airline": 0.249585,
+      "interaction": 0.006899
+    },
+    "interaction_significant": true,
+    "interpretation": "Domain DOES moderate the ambiguity effect",
+    "n": 2957,
+    "aic": 3094.3,
+    "pseudo_r2": 0.1538
+  },
+  "per_type_domain": {
+    "authorization_scope": {
+      "airline": {
+        "n": 120,
+        "violations": 67,
+        "rate": 0.5583
+      },
+      "retail": {
+        "n": 120,
+        "violations": 68,
+        "rate": 0.5667
+      },
+      "fisher_p": 1.0,
+      "odds_ratio": 0.967,
+      "significant": false,
+      "delta_pp": -0.8
+    },
+    "conditional_precedence": {
+      "airline": {
+        "n": 115,
+        "violations": 58,
+        "rate": 0.5043
+      },
+      "retail": {
+        "n": 135,
+        "violations": 42,
+        "rate": 0.3111
+      },
+      "fisher_p": 0.002805534441938545,
+      "odds_ratio": 2.253,
+      "significant": "True",
+      "delta_pp": 19.3
+    },
+    "coreferential": {
+      "airline": {
+        "n": 115,
+        "violations": 54,
+        "rate": 0.4696
+      },
+      "retail": {
+        "n": 125,
+        "violations": 53,
+        "rate": 0.424
+      },
+      "fisher_p": 0.5168835558685516,
+      "odds_ratio": 1.203,
+      "significant": "False",
+      "delta_pp": 4.6
+    },
+    "incompleteness": {
+      "airline": {
+        "n": 125,
+        "violations": 87,
+        "rate": 0.696
+      },
+      "retail": {
+        "n": 120,
+        "violations": 71,
+        "rate": 0.5917
+      },
+      "fisher_p": 0.10897394694000025,
+      "odds_ratio": 1.58,
+      "significant": "False",
+      "delta_pp": 10.4
+    },
+    "lexical": {
+      "airline": {
+        "n": 120,
+        "violations": 72,
+        "rate": 0.6
+      },
+      "retail": {
+        "n": 130,
+        "violations": 58,
+        "rate": 0.4462
+      },
+      "fisher_p": 0.016449194128221403,
+      "odds_ratio": 1.862,
+      "significant": "True",
+      "delta_pp": 15.4
+    },
+    "scopal": {
+      "airline": {
+        "n": 119,
+        "violations": 51,
+        "rate": 0.4286
+      },
+      "retail": {
+        "n": 125,
+        "violations": 56,
+        "rate": 0.448
+      },
+      "fisher_p": 0.7970559439652444,
+      "odds_ratio": 0.924,
+      "significant": "False",
+      "delta_pp": -1.9
+    }
+  }
+}

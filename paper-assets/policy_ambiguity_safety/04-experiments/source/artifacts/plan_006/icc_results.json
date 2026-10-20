@@ -1,0 +1,1780 @@
+{
+  "n_clauses": 30,
+  "n_replicates": 3,
+  "n_episodes": 360,
+  "n_complete_groups": 120,
+  "overall_icc": {
+    "icc_2_1": 0.9191,
+    "ci_95": [
+      0.8924,
+      0.9404
+    ],
+    "interpretation": "excellent"
+  },
+  "binary_icc": {
+    "icc_2_1": 0.8465,
+    "ci_95": [
+      0.7991,
+      0.8854
+    ],
+    "interpretation": "good"
+  },
+  "per_type": {
+    "scopal": {
+      "icc_2_1": 0.9893,
+      "ci_95": [
+        0.9777,
+        0.9954
+      ],
+      "interpretation": "excellent",
+      "n": 20
+    },
+    "lexical": {
+      "icc_2_1": 0.9813,
+      "ci_95": [
+        0.9612,
+        0.992
+      ],
+      "interpretation": "excellent",
+      "n": 20
+    },
+    "coreferential": {
+      "icc_2_1": 0.9761,
+      "ci_95": [
+        0.9505,
+        0.9897
+      ],
+      "interpretation": "excellent",
+      "n": 20
+    },
+    "incompleteness": {
+      "icc_2_1": 0.807,
+      "ci_95": [
+        0.6436,
+        0.9111
+      ],
+      "interpretation": "good",
+      "n": 20
+    },
+    "conditional_precedence": {
+      "icc_2_1": 0.8559,
+      "ci_95": [
+        0.7261,
+        0.9349
+      ],
+      "interpretation": "good",
+      "n": 20
+    },
+    "authorization_scope": {
+      "icc_2_1": 0.8567,
+      "ci_95": [
+        0.7266,
+        0.9354
+      ],
+      "interpretation": "good",
+      "n": 20
+    }
+  },
+  "per_model": {
+    "gpt-5.4": {
+      "icc_2_1": 0.921,
+      "ci_95": [
+        0.882,
+        0.9493
+      ],
+      "interpretation": "excellent",
+      "n": 60
+    },
+    "gpt-4.1": {
+      "icc_2_1": 0.9181,
+      "ci_95": [
+        0.8778,
+        0.9474
+      ],
+      "interpretation": "excellent",
+      "n": 60
+    }
+  },
+  "per_clause_detail": [
+    {
+      "clause_id": "auth_004",
+      "type": "authorization_scope",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "auth_004",
+      "type": "authorization_scope",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        1
+      ],
+      "mean": 0.3333,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "auth_004",
+      "type": "authorization_scope",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        2,
+        0
+      ],
+      "mean": 0.6667,
+      "std": 0.9428,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "auth_004",
+      "type": "authorization_scope",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "auth_015",
+      "type": "authorization_scope",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        1,
+        1,
+        0
+      ],
+      "mean": 0.6667,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "auth_015",
+      "type": "authorization_scope",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "auth_015",
+      "type": "authorization_scope",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        1
+      ],
+      "mean": 0.3333,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "auth_015",
+      "type": "authorization_scope",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "auth_029",
+      "type": "authorization_scope",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        2,
+        2
+      ],
+      "mean": 2.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "auth_029",
+      "type": "authorization_scope",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "auth_029",
+      "type": "authorization_scope",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        3,
+        2,
+        2
+      ],
+      "mean": 2.3333,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "auth_029",
+      "type": "authorization_scope",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "auth_040",
+      "type": "authorization_scope",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        1,
+        2,
+        2
+      ],
+      "mean": 1.6667,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "auth_040",
+      "type": "authorization_scope",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "auth_040",
+      "type": "authorization_scope",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        2,
+        2
+      ],
+      "mean": 2.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "auth_040",
+      "type": "authorization_scope",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "auth_046",
+      "type": "authorization_scope",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        2,
+        3
+      ],
+      "mean": 2.3333,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "auth_046",
+      "type": "authorization_scope",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "auth_046",
+      "type": "authorization_scope",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        3,
+        3,
+        3
+      ],
+      "mean": 3.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "auth_046",
+      "type": "authorization_scope",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_001",
+      "type": "conditional_precedence",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_001",
+      "type": "conditional_precedence",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_001",
+      "type": "conditional_precedence",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_001",
+      "type": "conditional_precedence",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_034",
+      "type": "conditional_precedence",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        2,
+        2
+      ],
+      "mean": 2.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_034",
+      "type": "conditional_precedence",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_034",
+      "type": "conditional_precedence",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        3,
+        3,
+        3
+      ],
+      "mean": 3.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_034",
+      "type": "conditional_precedence",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_046",
+      "type": "conditional_precedence",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_046",
+      "type": "conditional_precedence",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_046",
+      "type": "conditional_precedence",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_046",
+      "type": "conditional_precedence",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_049",
+      "type": "conditional_precedence",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        2,
+        2
+      ],
+      "mean": 2.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_049",
+      "type": "conditional_precedence",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        2,
+        1,
+        1
+      ],
+      "mean": 1.3333,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "cp_049",
+      "type": "conditional_precedence",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        2,
+        0
+      ],
+      "mean": 1.3333,
+      "std": 0.9428,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "cp_049",
+      "type": "conditional_precedence",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_050",
+      "type": "conditional_precedence",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        0,
+        1
+      ],
+      "mean": 1.0,
+      "std": 0.8165,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "cp_050",
+      "type": "conditional_precedence",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_050",
+      "type": "conditional_precedence",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "cp_050",
+      "type": "conditional_precedence",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_002",
+      "type": "coreferential",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_002",
+      "type": "coreferential",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_002",
+      "type": "coreferential",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_002",
+      "type": "coreferential",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_028",
+      "type": "coreferential",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_028",
+      "type": "coreferential",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_028",
+      "type": "coreferential",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_028",
+      "type": "coreferential",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_030",
+      "type": "coreferential",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_030",
+      "type": "coreferential",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_030",
+      "type": "coreferential",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_030",
+      "type": "coreferential",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_044",
+      "type": "coreferential",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_044",
+      "type": "coreferential",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_044",
+      "type": "coreferential",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_044",
+      "type": "coreferential",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_049",
+      "type": "coreferential",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        3,
+        2
+      ],
+      "mean": 2.3333,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "coref_049",
+      "type": "coreferential",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_049",
+      "type": "coreferential",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        3,
+        3,
+        3
+      ],
+      "mean": 3.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "coref_049",
+      "type": "coreferential",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_005",
+      "type": "incompleteness",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_005",
+      "type": "incompleteness",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_005",
+      "type": "incompleteness",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_005",
+      "type": "incompleteness",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_023",
+      "type": "incompleteness",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_023",
+      "type": "incompleteness",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_023",
+      "type": "incompleteness",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_023",
+      "type": "incompleteness",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_025",
+      "type": "incompleteness",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        1,
+        1
+      ],
+      "mean": 1.3333,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "incompleteness_025",
+      "type": "incompleteness",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_025",
+      "type": "incompleteness",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        1,
+        0
+      ],
+      "mean": 0.3333,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "incompleteness_025",
+      "type": "incompleteness",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_030",
+      "type": "incompleteness",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        1,
+        2,
+        2
+      ],
+      "mean": 1.6667,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "incompleteness_030",
+      "type": "incompleteness",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_030",
+      "type": "incompleteness",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        1,
+        0,
+        2
+      ],
+      "mean": 1.0,
+      "std": 0.8165,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "incompleteness_030",
+      "type": "incompleteness",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_050",
+      "type": "incompleteness",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        2,
+        2
+      ],
+      "mean": 2.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_050",
+      "type": "incompleteness",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        1
+      ],
+      "mean": 0.3333,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "incompleteness_050",
+      "type": "incompleteness",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        2,
+        2
+      ],
+      "mean": 2.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "incompleteness_050",
+      "type": "incompleteness",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_002",
+      "type": "lexical",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_002",
+      "type": "lexical",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_002",
+      "type": "lexical",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_002",
+      "type": "lexical",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_006",
+      "type": "lexical",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        2,
+        2
+      ],
+      "mean": 2.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_006",
+      "type": "lexical",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        2,
+        2,
+        2
+      ],
+      "mean": 2.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_006",
+      "type": "lexical",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_006",
+      "type": "lexical",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_007",
+      "type": "lexical",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_007",
+      "type": "lexical",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_007",
+      "type": "lexical",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_007",
+      "type": "lexical",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_044",
+      "type": "lexical",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        1,
+        1
+      ],
+      "mean": 0.6667,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "lexical_044",
+      "type": "lexical",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_044",
+      "type": "lexical",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        1,
+        1,
+        1
+      ],
+      "mean": 1.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_044",
+      "type": "lexical",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_048",
+      "type": "lexical",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        2,
+        2
+      ],
+      "mean": 2.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_048",
+      "type": "lexical",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_048",
+      "type": "lexical",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        3,
+        3,
+        3
+      ],
+      "mean": 3.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "lexical_048",
+      "type": "lexical",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_001",
+      "type": "scopal",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_001",
+      "type": "scopal",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_001",
+      "type": "scopal",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_001",
+      "type": "scopal",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_003",
+      "type": "scopal",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_003",
+      "type": "scopal",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_003",
+      "type": "scopal",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        2,
+        1,
+        2
+      ],
+      "mean": 1.6667,
+      "std": 0.4714,
+      "exact_agreement": false
+    },
+    {
+      "clause_id": "scopal_003",
+      "type": "scopal",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_019",
+      "type": "scopal",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_019",
+      "type": "scopal",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_019",
+      "type": "scopal",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_019",
+      "type": "scopal",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_026",
+      "type": "scopal",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        3,
+        3,
+        3
+      ],
+      "mean": 3.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_026",
+      "type": "scopal",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_026",
+      "type": "scopal",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        3,
+        3,
+        3
+      ],
+      "mean": 3.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_026",
+      "type": "scopal",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_046",
+      "type": "scopal",
+      "model": "gpt-4.1",
+      "condition": "ambiguous",
+      "replicates": [
+        3,
+        3,
+        3
+      ],
+      "mean": 3.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_046",
+      "type": "scopal",
+      "model": "gpt-4.1",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_046",
+      "type": "scopal",
+      "model": "gpt-5.4",
+      "condition": "ambiguous",
+      "replicates": [
+        3,
+        3,
+        3
+      ],
+      "mean": 3.0,
+      "std": 0.0,
+      "exact_agreement": true
+    },
+    {
+      "clause_id": "scopal_046",
+      "type": "scopal",
+      "model": "gpt-5.4",
+      "condition": "unambiguous",
+      "replicates": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0.0,
+      "std": 0.0,
+      "exact_agreement": true
+    }
+  ]
+}

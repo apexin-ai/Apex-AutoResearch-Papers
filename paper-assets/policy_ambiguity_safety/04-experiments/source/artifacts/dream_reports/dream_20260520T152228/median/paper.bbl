@@ -1,0 +1,93 @@
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Anonymous(2024)}]{tau2bench2024}
+Anonymous. 2024.
+\newblock $\tau^2$-bench: A benchmark for tool-augmented agent policies.
+\newblock In \emph{arXiv preprint}.
+
+\bibitem[{Berry and Kamsties(2003)}]{berry2003ambiguity}
+Daniel~M Berry and Erik Kamsties. 2003.
+\newblock From contract drafting to software specification: Linguistic sources
+  of ambiguity.
+\newblock In \emph{Technical Report}.
+
+\bibitem[{Ferreira et~al.(2002)Ferreira, Bailey, and
+  Ferraro}]{ferreira2002good}
+Fernanda Ferreira, Karl~G.D. Bailey, and Vittoria Ferraro. 2002.
+\newblock Good-enough representations in language comprehension.
+\newblock In \emph{Current Directions in Psychological Science}.
+
+\bibitem[{Ferreira and Patson(2007)}]{ferreira2007good}
+Fernanda Ferreira and Nikole~D. Patson. 2007.
+\newblock The misinterpretation of noncanonical sentences.
+\newblock In \emph{Cognitive Psychology}.
+
+\bibitem[{Li et~al.(2024)}]{li2024drip}
+Xiang Li and 1 others. 2024.
+\newblock {DRIP-R}: Divergent readings of imprecise policies in retail.
+\newblock In \emph{Proceedings of EMNLP}.
+
+\bibitem[{Liu et~al.(2024)}]{liu2024injecagent}
+Qiusi Liu and 1 others. 2024.
+\newblock {InjecAgent}: Benchmarking indirect prompt injections in
+  tool-integrated llm agents.
+\newblock In \emph{Findings of ACL}.
+
+\bibitem[{Lu et~al.(2022)}]{lu2022fantastically}
+Yao Lu and 1 others. 2022.
+\newblock Fantastically ordered prompts and where to find them: Overcoming
+  few-shot prompt order sensitivity.
+\newblock In \emph{Proceedings of ACL}.
+
+\bibitem[{Massey et~al.(2014)Massey, Rutledge et~al.}]{massey2014}
+Aaron~K Massey, Richard~L Rutledge, and 1 others. 2014.
+\newblock Evaluating existing security and privacy requirements for legal
+  compliance.
+\newblock In \emph{Requirements Engineering}.
+
+\bibitem[{Ruan et~al.(2024)}]{ruan2024toolemu}
+Yangjun Ruan and 1 others. 2024.
+\newblock {ToolEmu}: Identifying risks of lm agents with an lm-emulated
+  sandbox.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Sclar et~al.(2024)}]{sclar2024quantifying}
+Melanie Sclar and 1 others. 2024.
+\newblock Quantifying language models' sensitivity to spurious features in
+  prompt design.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Wang et~al.(2024)}]{wang2024toolbench}
+Yujia Wang and 1 others. 2024.
+\newblock {ToolBench}: An open platform for training and evaluating tool-use
+  llms.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Wasow et~al.(2005)Wasow, Perfors, and Beaver}]{wasow2005}
+Thomas Wasow, Amy Perfors, and David Beaver. 2005.
+\newblock Ambiguity avoidance is overrated.
+\newblock In \emph{Stanford Occasional Papers in Linguistics}.
+
+\bibitem[{Xi et~al.(2023)}]{xi2023agent}
+Zhiheng Xi and 1 others. 2023.
+\newblock The rise and potential of large language model based agents: A
+  survey.
+\newblock In \emph{arXiv preprint}.
+
+\bibitem[{Yuan et~al.(2024)}]{yuan2024rjudge}
+Tongxin Yuan and 1 others. 2024.
+\newblock {R-Judge}: Benchmarking safety risk awareness for llm agents.
+\newblock In \emph{Proceedings of EMNLP}.
+
+\bibitem[{Zhang et~al.(2024)}]{zhang2024agentpex}
+Yifei Zhang and 1 others. 2024.
+\newblock {AgentPex}: Policy enforcement examination for llm-based agents.
+\newblock In \emph{Proceedings of NeurIPS}.
+
+\bibitem[{Zhou et~al.(2023)}]{zhou2023ifeval}
+Jeffrey Zhou and 1 others. 2023.
+\newblock Instruction-following evaluation for large language models.
+\newblock In \emph{arXiv preprint}.
+
+\end{thebibliography}

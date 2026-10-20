@@ -1,0 +1,81 @@
+\begin{thebibliography}{14}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Berry and Kamsties(2003)}]{berry2003ambiguity}
+Daniel~M. Berry and Erik Kamsties. 2003.
+\newblock \href
+  {https://cs.uwaterloo.ca/~dberry/FTP_SITE/tech.reports/ambiguity.handbook.pdf}
+  {From contract drafting to software specification: Linguistic sources of
+  ambiguity}.
+
+\bibitem[{Chantree et~al.(2006)Chantree, Nuseibeh, de~Roeck, and
+  Willis}]{chantree2006identifying}
+Francis Chantree, Bashar Nuseibeh, Anne de~Roeck, and Alistair Willis. 2006.
+\newblock Identifying nocuous ambiguities in natural language requirements.
+\newblock In \emph{Proceedings of RE}.
+
+\bibitem[{Frazier(1979)}]{frazier1979comprehending}
+Lyn Frazier. 1979.
+\newblock Comprehending sentences with ambiguous relative clause attachment.
+\newblock \emph{Cognition}.
+
+\bibitem[{Kennedy(2007)}]{kennedy2007vagueness}
+Christopher Kennedy. 2007.
+\newblock Vagueness and grammar: The semantics of relative and absolute
+  gradable adjectives.
+\newblock \emph{Linguistics and Philosophy}, 30:1--45.
+
+\bibitem[{Li et~al.(2024)}]{li2024ambiguity}
+Jian Li and 1 others. 2024.
+\newblock Linguistically grounded ambiguity in natural language processing.
+\newblock In \emph{Proceedings of ACL}.
+
+\bibitem[{Massey et~al.(2014)Massey, Rutledge et~al.}]{massey2014evaluating}
+Aaron~K. Massey, Robert~L. Rutledge, and 1 others. 2014.
+\newblock Evaluating existing security and privacy requirements for legal
+  compliance.
+\newblock In \emph{Requirements Engineering Journal}.
+
+\bibitem[{Murthy et~al.(2024)}]{murthy2024dripr}
+Rudra Murthy and 1 others. 2024.
+\newblock {DRIP-R}: Benchmarking {LLM} agents on retail policy decision quality
+  under ambiguity.
+\newblock In \emph{Proceedings of NeurIPS}.
+
+\bibitem[{Ruan et~al.(2024)}]{ruan2024toolemu}
+Yangjun Ruan and 1 others. 2024.
+\newblock Identifying the risks of {LM} agents with an {LM}-emulated sandbox.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Shafran et~al.(2024)}]{shafran2024machine}
+Izhak Shafran and 1 others. 2024.
+\newblock Machine-readable policy specifications for agent systems.
+\newblock In \emph{Proceedings of NAACL}.
+
+\bibitem[{Wang et~al.(2024)}]{wang2024phantom}
+Zhe Wang and 1 others. 2024.
+\newblock Phantompolicy: Probing implicit policy violations in {LLM} agents.
+\newblock In \emph{Proceedings of ACL}.
+
+\bibitem[{Wasow et~al.(2005)Wasow, Perfors, and Beaver}]{wasow2005intuitions}
+Thomas Wasow, Amy Perfors, and David Beaver. 2005.
+\newblock Intuitions and models of vagueness and ambiguity.
+\newblock \emph{Handbook of Experimental Semantics and Pragmatics}.
+
+\bibitem[{Wu et~al.(2024)}]{wu2024seal}
+Zijun Wu and 1 others. 2024.
+\newblock {SEAL}: Safety-enhanced agent lifecycle for {LLM}-based applications.
+\newblock In \emph{Proceedings of EMNLP}.
+
+\bibitem[{Yao et~al.(2024)}]{yao2024tau}
+Shunyu Yao and 1 others. 2024.
+\newblock $\tau^2$-bench: Benchmarking agents in real-world customer service.
+\newblock In \emph{Proceedings of NeurIPS}.
+
+\bibitem[{Zhan et~al.(2024)}]{zhan2024injecagent}
+Qiusi Zhan and 1 others. 2024.
+\newblock Injecagent: Benchmarking indirect prompt injections in
+  tool-integrated {LLM} agents.
+\newblock In \emph{Findings of ACL}.
+
+\end{thebibliography}

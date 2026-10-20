@@ -1,0 +1,91 @@
+{
+  "method": "automated inter-coder agreement with merged categories",
+  "n_traces": 60,
+  "original_categories": 6,
+  "merged_categories": 4,
+  "merge_rule": "assumption_based_action + scope_misapplication → inappropriate_action; arbitrary_rule_selection + referent_misidentification + other + surface_adoption → other",
+  "original_kappa": 0.5352,
+  "merged_kappa": 0.5937,
+  "merged_percent_agreement": 80.0,
+  "interpretation": "moderate",
+  "per_type_merged_kappa": {
+    "authorization_scope": {
+      "n": 14,
+      "agreement": 9,
+      "percent_agreement": 64.3,
+      "kappa": 0.0541
+    },
+    "conditional_precedence": {
+      "n": 9,
+      "agreement": 7,
+      "percent_agreement": 77.8,
+      "kappa": 0.625
+    },
+    "coreferential": {
+      "n": 7,
+      "agreement": 6,
+      "percent_agreement": 85.7,
+      "kappa": 0.7407
+    },
+    "incompleteness": {
+      "n": 11,
+      "agreement": 8,
+      "percent_agreement": 72.7,
+      "kappa": 0.2326
+    },
+    "lexical": {
+      "n": 12,
+      "agreement": 11,
+      "percent_agreement": 91.7,
+      "kappa": 0.0
+    },
+    "scopal": {
+      "n": 7,
+      "agreement": 7,
+      "percent_agreement": 100.0,
+      "kappa": null
+    }
+  },
+  "confusion_matrix_merged": {
+    "labels": [
+      "unauthorized_escalation",
+      "inappropriate_action",
+      "conservative_refusal",
+      "other"
+    ],
+    "matrix": [
+      [
+        10,
+        7,
+        0,
+        0
+      ],
+      [
+        3,
+        34,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        2,
+        0,
+        3
+      ]
+    ]
+  },
+  "original_vs_merged_comparison": {
+    "original_kappa": 0.5352,
+    "merged_kappa": 0.5937,
+    "kappa_improvement": 0.0584,
+    "note": "Merging 6→4 categories raised κ from 0.535 to 0.594 (+0.058)"
+  },
+  "target_met": false,
+  "assessment": "⚠️ merged κ = 0.594 < 0.70 threshold — C5 inter-coder agreement below target"
+}

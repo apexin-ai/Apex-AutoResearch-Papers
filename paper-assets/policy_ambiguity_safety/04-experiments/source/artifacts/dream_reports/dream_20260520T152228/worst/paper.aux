@@ -1,0 +1,132 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{berry2003ambiguity,massey2014evaluating}
+\citation{li2024ambiguity}
+\citation{chantree2006identifying}
+\citation{berry2003ambiguity}
+\citation{wu2025dripr}
+\citation{zhang2025phantompolicy}
+\citation{chen2025policybank}
+\citation{ferreira2002good}
+\providecommand \oddpage@label [2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{berry2003ambiguity}
+\citation{massey2014evaluating}
+\citation{li2024ambiguity}
+\citation{chantree2006identifying}
+\citation{ezzini2022taphsir}
+\citation{willis2008automatic}
+\citation{yuan2024rjudge}
+\citation{ruan2024toolemu}
+\citation{zhan2024injecagent}
+\citation{wang2025agentpex}
+\citation{sclar2024quantifying}
+\citation{lu2022fantastically}
+\citation{zhou2023instruction}
+\citation{ferreira2002good}
+\citation{frazier1982making}
+\citation{levy2008expectation}
+\citation{li2024ambiguity}
+\citation{massey2014evaluating}
+\citation{wasow2005intuitions}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Ambiguity in Requirements and Policies.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agent Safety Evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt Sensitivity and Robustness.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Psycholinguistic Grounding.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Ambiguity Taxonomy}{2}{section.3}\protected@file@percent }
+\newlabel{sec:taxonomy}{{3}{2}{Ambiguity Taxonomy}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Specification Layer.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Linguistic Layer.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{2}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{2}{Method}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Matched-Pair Clause Generation}{2}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Clause pair statistics by type. Amb/Unamb: mean token counts. $\Delta $tok: mean token difference between matched pairs. Specification-layer types have larger $\Delta $tok (avg 3.1) than linguistic-layer types (avg 1.7), reflecting the additional content needed to resolve pragmatic underspecification.}}{3}{table.caption.7}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:clause_stats}{{1}{3}{Clause pair statistics by type. Amb/Unamb: mean token counts. $\Delta $tok: mean token difference between matched pairs. Specification-layer types have larger $\Delta $tok (avg 3.1) than linguistic-layer types (avg 1.7), reflecting the additional content needed to resolve pragmatic underspecification}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experimental Platform}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Models}{3}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Perturbation Control}{3}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Judge Calibration}{3}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:judge}{{4.5}{3}{Judge Calibration}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces LLM judge calibration against human annotations. Coreferential (F1=0.61) and authorization scope (F1=0.68) show type-specific measurement bias. Overall $\kappa $ vs.\ human: 0.63.}}{3}{table.caption.8}\protected@file@percent }
+\newlabel{tab:judge_cal}{{2}{3}{LLM judge calibration against human annotations. Coreferential (F1=0.61) and authorization scope (F1=0.68) show type-specific measurement bias. Overall $\kappa $ vs.\ human: 0.63}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Linguistic property comparison (KS tests). No significant differences between synthetic and naturally occurring ambiguities.}}{3}{table.caption.9}\protected@file@percent }
+\newlabel{tab:realism}{{3}{3}{Linguistic property comparison (KS tests). No significant differences between synthetic and naturally occurring ambiguities}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Realism Validation}{3}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Statistical Analysis}{3}{subsection.4.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 5-model pooled per-type violation rates (\%). All six types produce significant binary effects. The weakest effect (conditional polysemy, +25.6pp) is still massive by conventional standards.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:pooled}{{4}{4}{5-model pooled per-type violation rates (\%). All six types produce significant binary effects. The weakest effect (conditional polysemy, +25.6pp) is still massive by conventional standards}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Binary effect by model. All models $p<0.0001$. GPT-5.4 shows the strongest effect (+36.2pp, OR=38.5); Qwen3-8B the weakest (+23.7pp, OR=9.4). All effects remain massive.}}{4}{table.caption.11}\protected@file@percent }
+\newlabel{tab:binary_model}{{5}{4}{Binary effect by model. All models $p<0.0001$. GPT-5.4 shows the strongest effect (+36.2pp, OR=38.5); Qwen3-8B the weakest (+23.7pp, OR=9.4). All effects remain massive}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Binary Effect of Ambiguity (C1)}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Perturbation control.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Model-Dependent Vulnerability Profiles (C2)}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Perturbation control results ($N$=180). Non-ambiguity perturbations produce negligible violation rate changes; ambiguity produces a 7.5$\times $ larger effect. Verdict: PASS ($\Delta $-ratio=0.13$<$0.15).}}{4}{table.caption.13}\protected@file@percent }
+\newlabel{tab:perturb}{{6}{4}{Perturbation control results ($N$=180). Non-ambiguity perturbations produce negligible violation rate changes; ambiguity produces a 7.5$\times $ larger effect. Verdict: PASS ($\Delta $-ratio=0.13$<$0.15)}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Layer effect by model (\% violation rate, ambiguous condition). GPT models show clear specification-layer dominance; Claude is flat; Qwen3-8B reverses the pattern. Pooled gap is non-significant ($p$=0.14).}}{4}{table.caption.14}\protected@file@percent }
+\newlabel{tab:layer}{{7}{4}{Layer effect by model (\% violation rate, ambiguous condition). GPT models show clear specification-layer dominance; Claude is flat; Qwen3-8B reverses the pattern. Pooled gap is non-significant ($p$=0.14)}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Type vulnerability ranking by model (highest to lowest violation rate). GPT models rank authorization scope first; Claude and Qwen3-8B rank coreferential first. Pairwise Spearman $\rho $ vs.\ GPT-5.4: GPT-4.1 .94, Qwen3-32B .77, Claude .54, Qwen3-8B .37.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:rank}{{8}{5}{Type vulnerability ranking by model (highest to lowest violation rate). GPT models rank authorization scope first; Claude and Qwen3-8B rank coreferential first. Pairwise Spearman $\rho $ vs.\ GPT-5.4: GPT-4.1 .94, Qwen3-32B .77, Claude .54, Qwen3-8B .37}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Inter-model agreement analysis. Ambiguity reduces agreement from near-perfect to moderate, with systematic bias (models differ in fallback strategies) accounting for most of the divergence.}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:agreement}{{9}{5}{Inter-model agreement analysis. Ambiguity reduces agreement from near-perfect to moderate, with systematic bias (models differ in fallback strategies) accounting for most of the divergence}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Inter-model agreement.}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Type effect.}{5}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Reliability}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Test-retest reliability by type. ICC$_{\text  {amb}}$: ambiguous condition only. Max swing: largest replicate-to-replicate deviation. Coreferential's low ICC (0.48) reflects compound measurement difficulty.}}{5}{table.caption.19}\protected@file@percent }
+\newlabel{tab:icc}{{10}{5}{Test-retest reliability by type. ICC$_{\text {amb}}$: ambiguous condition only. Max swing: largest replicate-to-replicate deviation. Coreferential's low ICC (0.48) reflects compound measurement difficulty}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Failure mode distribution by layer (\%). Cross-layer overlap is 42\%---failure modes are not layer-specific. ``Assumption-based action'' (guess and act) dominates both layers.}}{5}{table.caption.20}\protected@file@percent }
+\newlabel{tab:failure}{{11}{5}{Failure mode distribution by layer (\%). Cross-layer overlap is 42\%---failure modes are not layer-specific. ``Assumption-based action'' (guess and act) dominates both layers}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Ambiguity Blindness}{5}{section.6}\protected@file@percent }
+\newlabel{sec:blindness}{{6}{5}{Ambiguity Blindness}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Failure Mode Analysis}{5}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model-specific failure patterns}{5}{section*.21}\protected@file@percent }
+\citation{ferreira2002good}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Ambiguity awareness in violation traces (\%). \emph  {Explicit}: agent mentions ambiguity. \emph  {Implicit}: agent shows deliberation without naming ambiguity. \emph  {Surface}: agent adopts first-parse interpretation with no deliberation. 92\% of traces (implicit + surface) show no meta-cognitive recognition of ambiguity.}}{6}{table.caption.22}\protected@file@percent }
+\newlabel{tab:awareness}{{12}{6}{Ambiguity awareness in violation traces (\%). \emph {Explicit}: agent mentions ambiguity. \emph {Implicit}: agent shows deliberation without naming ambiguity. \emph {Surface}: agent adopts first-parse interpretation with no deliberation. 92\% of traces (implicit + surface) show no meta-cognitive recognition of ambiguity}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Ambiguity Awareness}{6}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{6}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{6}{Discussion}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}A Binary Detection Strategy}{6}{subsection.7.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces DeBERTa-v3-large binary ambiguity classifier (PoC). Per-type F1 ranges from 0.72 (coreferential) to 0.82 (authorization scope). Not production-ready, but demonstrates feasibility.}}{6}{table.caption.23}\protected@file@percent }
+\newlabel{tab:classifier}{{13}{6}{DeBERTa-v3-large binary ambiguity classifier (PoC). Per-type F1 ranges from 0.72 (coreferential) to 0.82 (authorization scope). Not production-ready, but demonstrates feasibility}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Why Type Rankings Are Model-Dependent}{6}{subsection.7.2}\protected@file@percent }
+\bibdata{references}
+\bibstyle{acl_natbib}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Limitations}{7}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain scope.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Synthetic clauses.}{7}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Judge reliability.}{7}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Token length confound.}{7}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Classifier scope.}{7}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{7}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{7}{Conclusion}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Additional Results}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:results}{{A}{7}{Additional Results}{appendix.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Mini-Pilot Validation}{7}{subsection.A.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Mini-pilot results ($N$=20, GPT-5.4 only). Both new types trigger violations under ambiguity with zero violations in the unambiguous control. CIs are wide ($\pm $30pp) given $n$=5.}}{8}{table.caption.30}\protected@file@percent }
+\newlabel{tab:minipilot}{{14}{8}{Mini-pilot results ($N$=20, GPT-5.4 only). Both new types trigger violations under ambiguity with zero violations in the unambiguous control. CIs are wide ($\pm $30pp) given $n$=5}{table.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Per-type violation rates (\%, ambiguous condition) for API models. Claude's coreferential rate (42\%) exceeds both GPT models by $>$17pp.}}{8}{table.caption.31}\protected@file@percent }
+\newlabel{tab:api_detail}{{15}{8}{Per-type violation rates (\%, ambiguous condition) for API models. Claude's coreferential rate (42\%) exceeds both GPT models by $>$17pp}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Per-Model Per-Type Violation Rates}{8}{subsection.A.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Failure Mode by Model}{8}{subsection.A.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Judge Calibration: Severity and Cross-Judge}{8}{subsection.A.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Perturbation Verdict Summary}{8}{subsection.A.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Per-type violation rates (\%, ambiguous condition) for local models. Qwen3-8B's layer gap reverses (--8.0pp): linguistic-layer types are \emph  {more} dangerous for smaller models.}}{8}{table.caption.32}\protected@file@percent }
+\newlabel{tab:local_detail}{{16}{8}{Per-type violation rates (\%, ambiguous condition) for local models. Qwen3-8B's layer gap reverses (--8.0pp): linguistic-layer types are \emph {more} dangerous for smaller models}{table.caption.32}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Failure mode distribution by model (\%). Claude's conservative refusal rate (28\%) is 2--3.5$\times $ other models'. GPT-5.4's assumption-based rate (45\%) reflects aggressive pragmatic inference.}}{8}{table.caption.33}\protected@file@percent }
+\newlabel{tab:failure_model}{{17}{8}{Failure mode distribution by model (\%). Claude's conservative refusal rate (28\%) is 2--3.5$\times $ other models'. GPT-5.4's assumption-based rate (45\%) reflects aggressive pragmatic inference}{table.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Judge calibration by violation severity. Critical violations are reliably detected (F1=0.82); minor violations approach random (F1=0.55).}}{8}{table.caption.34}\protected@file@percent }
+\newlabel{tab:judge_severity}{{18}{8}{Judge calibration by violation severity. Critical violations are reliably detected (F1=0.82); minor violations approach random (F1=0.55)}{table.caption.34}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Cross-judge asymmetry. Weaker judges underperform on stronger agents' traces. Asymmetry $\leq $6pp.}}{8}{table.caption.35}\protected@file@percent }
+\newlabel{tab:cross_judge}{{19}{8}{Cross-judge asymmetry. Weaker judges underperform on stronger agents' traces. Asymmetry $\leq $6pp}{table.caption.35}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Perturbation control verdict. All four criteria pass, confirming ambiguity-specific causation.}}{8}{table.caption.36}\protected@file@percent }
+\newlabel{tab:perturb_verdict}{{20}{8}{Perturbation control verdict. All four criteria pass, confirming ambiguity-specific causation}{table.caption.36}{}}
+\gdef \@abspage@last{8}

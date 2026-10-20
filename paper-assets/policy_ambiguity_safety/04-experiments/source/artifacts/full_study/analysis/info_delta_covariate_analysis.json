@@ -1,0 +1,138 @@
+{
+  "analysis_name": "Per-Clause Info Delta Covariate Analysis",
+  "motivation": "Response to reviewer N3 (incompleteness confound) and MF-2 (info delta confound). Tests whether controlling for per-clause token delta changes type/layer effects.",
+  "n_observations": 2997,
+  "n_clauses": 300,
+  "per_type_info_delta": {
+    "authorization_scope": {
+      "mean": 36.06,
+      "sd": 8.55,
+      "n_clauses": 50
+    },
+    "conditional_precedence": {
+      "mean": 17.52,
+      "sd": 9.84,
+      "n_clauses": 50
+    },
+    "coreferential": {
+      "mean": 0.0,
+      "sd": 0.0,
+      "n_clauses": 50
+    },
+    "incompleteness": {
+      "mean": 34.56,
+      "sd": 8.4,
+      "n_clauses": 50
+    },
+    "lexical": {
+      "mean": 25.66,
+      "sd": 5.2,
+      "n_clauses": 50
+    },
+    "scopal": {
+      "mean": 17.76,
+      "sd": 7.66,
+      "n_clauses": 50
+    }
+  },
+  "models": {
+    "model1_baseline": {
+      "formula": "violation ~ C(condition) + C(ambiguity_type)",
+      "aic": 2762.97,
+      "pseudo_r2": 0.1715,
+      "note": "Reference category: authorization_scope"
+    },
+    "model2_with_info_delta": {
+      "formula": "violation ~ C(condition) + C(ambiguity_type) + info_delta",
+      "aic": 2758.08,
+      "pseudo_r2": 0.1736,
+      "info_delta_coef": 0.0168,
+      "info_delta_p": 0.009,
+      "info_delta_or": 1.017,
+      "note": "Info delta significant; each additional token difference increases violation odds by 1.7%"
+    },
+    "model3_layer_only": {
+      "formula": "violation ~ C(condition) + C(layer)",
+      "layer_coef": 0.0934,
+      "layer_p": 0.317,
+      "layer_or": 1.098,
+      "aic": 2770.52,
+      "note": "Layer NOT significant in full-data model (p=0.317)"
+    },
+    "model4_layer_with_info_delta": {
+      "formula": "violation ~ C(condition) + C(layer) + info_delta",
+      "layer_coef": -0.0957,
+      "layer_p": 0.384,
+      "layer_or": 0.909,
+      "info_delta_coef": 0.0127,
+      "info_delta_p": 0.001,
+      "aic": 2761.78,
+      "note": "Layer sign FLIPS (spec -> negative) after controlling for info_delta; info_delta absorbs layer variance"
+    }
+  },
+  "layer_effect_sensitivity": {
+    "layer_coef_without_info_delta": 0.0934,
+    "layer_p_without_info_delta": 0.317,
+    "layer_coef_with_info_delta": -0.0957,
+    "layer_p_with_info_delta": 0.384,
+    "coefficient_change_pct": 202.4,
+    "sign_flipped": true,
+    "layer_significant_before": false,
+    "layer_significant_after": false,
+    "interpretation": "Layer effect was already non-significant (p=0.317) in the full-data logistic model. Adding info_delta flips the sign (spec advantage disappears), confirming C3 fragility. The spec-ling difference in the chi-squared test (p=0.017) arises from marginal rates, but disappears when modeled with condition as covariate."
+  },
+  "type_coefficient_changes_m1_vs_m2": {
+    "conditional_precedence": {
+      "coef_before": -0.1486,
+      "p_before": 0.366,
+      "coef_after": 0.1611,
+      "p_after": 0.426,
+      "change_pct": 208.4
+    },
+    "coreferential": {
+      "coef_before": -0.092,
+      "p_before": 0.574,
+      "coef_after": 0.517,
+      "p_after": 0.07,
+      "change_pct": 662.2
+    },
+    "incompleteness": {
+      "coef_before": 0.3382,
+      "p_before": 0.033,
+      "coef_after": 0.3648,
+      "p_after": 0.022,
+      "change_pct": 7.9
+    },
+    "lexical": {
+      "coef_before": 0.1036,
+      "p_before": 0.52,
+      "coef_after": 0.2806,
+      "p_after": 0.109,
+      "change_pct": 170.8
+    },
+    "scopal": {
+      "coef_before": -0.0884,
+      "p_before": 0.589,
+      "coef_after": 0.2192,
+      "p_after": 0.277,
+      "change_pct": 347.8
+    },
+    "note": "Reference: authorization_scope. Incompleteness is the only type that remains significant (p=0.022) after adding info_delta, with minimal coefficient change (7.9%). Coreferential shows the largest change (662%) because its info_delta is exactly 0 (amb and unamb variants have same token count)."
+  },
+  "lr_tests": {
+    "model1_vs_model2": {
+      "chi2": 6.891,
+      "p": 0.0087,
+      "significant": "yes",
+      "note": "Adding info_delta significantly improves fit beyond ambiguity_type"
+    },
+    "model3_vs_model4": {
+      "chi2": 10.742,
+      "p": 0.001,
+      "significant": "yes",
+      "note": "Adding info_delta significantly improves fit beyond layer"
+    }
+  },
+  "key_insight": "Coreferential has info_delta=0 (identical token count for amb/unamb variants), yet it has the lowest violation rate (31.6%). This means coreferential's low rate is NOT driven by information addition \u2014 it is genuinely less nocuous. The confound applies primarily to incompleteness and authorization_scope (info_delta ~35 tokens).",
+  "conclusion": "Layer effect (C3) is non-significant in full logistic model (p=0.317) even before adding info_delta, and flips sign after (coef: +0.09 -> -0.10). Info delta is a significant covariate (p=0.001). However, incompleteness remains the only individually significant type (p=0.022) with only 7.9% coefficient change, indicating its high violation rate is real beyond the information confound. Coreferential (info_delta=0) provides a clean lower bound unaffected by the confound."
+}

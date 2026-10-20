@@ -1,0 +1,98 @@
+\begin{thebibliography}{18}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{{AgentPex Authors}(2025)}]{agentpex2025}
+{AgentPex Authors}. 2025.
+\newblock {AgentPex}: Procedural compliance evaluation for {LLM} agents.
+
+\bibitem[{Berry and Kamsties(2003)}]{berry2003ambiguity}
+Daniel~M Berry and Erik Kamsties. 2003.
+\newblock From contract drafting to software specification: Linguistic sources
+  of ambiguity.
+
+\bibitem[{Chantree et~al.(2006)Chantree, Nuseibeh, de~Roeck, and
+  Willis}]{chantree2006identifying}
+Francis Chantree, Bashar Nuseibeh, Anne de~Roeck, and Alistair Willis. 2006.
+\newblock Identifying nocuous ambiguities in natural language requirements.
+\newblock In \emph{Proc. ASE}.
+
+\bibitem[{Ferrari et~al.(2017)Ferrari, Spagnolo, and
+  Gnesi}]{ferrari2017detecting}
+Alessio Ferrari, Giorgio~Oronzo Spagnolo, and Stefania Gnesi. 2017.
+\newblock Detecting requirements defects with {NLP} patterns.
+\newblock In \emph{Proc. ICSE}.
+
+\bibitem[{Ferreira et~al.(2002)Ferreira, Bailey, and
+  Ferraro}]{ferreira2002good}
+Fernanda Ferreira, Karl G~D Bailey, and Vittoria Ferraro. 2002.
+\newblock Good-enough representations in language comprehension.
+\newblock \emph{Current Directions in Psychological Science}.
+
+\bibitem[{Frazier and Rayner(1982)}]{frazier1982making}
+Lyn Frazier and Keith Rayner. 1982.
+\newblock Making and correcting errors during sentence comprehension.
+\newblock \emph{Cognitive Psychology}.
+
+\bibitem[{Levy(2008)}]{levy2008expectation}
+Roger Levy. 2008.
+\newblock Expectation-based syntactic comprehension.
+\newblock \emph{Cognition}.
+
+\bibitem[{Li et~al.(2024)}]{li2024drip}
+Jian Li and 1 others. 2024.
+\newblock {DRIP-R}: Divergent reader interpretations of policies -- revisited.
+\newblock In \emph{Proc. ACL}.
+
+\bibitem[{Li(2025)}]{li2025sopbench}
+others Li. 2025.
+\newblock {SOPBench}: Benchmarking {LLM} agents on standard operating
+  procedures.
+
+\bibitem[{Lu et~al.(2022)}]{lu2022fantastically}
+Yao Lu and 1 others. 2022.
+\newblock Fantastically ordered prompts and where to find them.
+\newblock In \emph{Proc. ACL}.
+
+\bibitem[{Massey et~al.(2014)Massey, Rutledge, Ant{\'o}n, and
+  Swire}]{massey2014identifying}
+Aaron~K Massey, Richard~L Rutledge, Annie~I Ant{\'o}n, and Peter~P Swire. 2014.
+\newblock Identifying and classifying ambiguity for regulatory requirements.
+\newblock In \emph{Proc. RE}.
+
+\bibitem[{{PhantomPolicy Authors}(2025)}]{phantompolicy2025}
+{PhantomPolicy Authors}. 2025.
+\newblock Phantom policies: Evaluating {LLM} agents under absent
+  specifications.
+
+\bibitem[{{PolicyBank Authors}(2025)}]{policybank2025}
+{PolicyBank Authors}. 2025.
+\newblock {PolicyBank}: Benchmarking policy specification gaps.
+
+\bibitem[{Qin et~al.(2024)}]{qin2024toolllm}
+Yujia Qin and 1 others. 2024.
+\newblock {ToolLLM}: Facilitating large language models to master 16000+
+  real-world {API}s.
+\newblock In \emph{Proc. ICLR}.
+
+\bibitem[{Ruan et~al.(2024)}]{ruan2024toolemu}
+Yangjun Ruan and 1 others. 2024.
+\newblock {ToolEmu}: Identifying risks of {LLM} agents with an {LLM}-emulated
+  sandbox.
+\newblock In \emph{Proc. ICLR}.
+
+\bibitem[{Sclar et~al.(2024)}]{sclar2024quantifying}
+Melanie Sclar and 1 others. 2024.
+\newblock Quantifying language models' sensitivity to spurious features in
+  prompt design.
+\newblock In \emph{Proc. ICLR}.
+
+\bibitem[{Yuan et~al.(2024)}]{yuan2024rjudge}
+Tongxin Yuan and 1 others. 2024.
+\newblock {R-Judge}: Benchmarking safety risk awareness for {LLM} agents.
+\newblock In \emph{Proc. EMNLP}.
+
+\bibitem[{Zhou et~al.(2023)}]{zhou2023instruction}
+Jeffrey Zhou and 1 others. 2023.
+\newblock Instruction-following evaluation for large language models.
+
+\end{thebibliography}

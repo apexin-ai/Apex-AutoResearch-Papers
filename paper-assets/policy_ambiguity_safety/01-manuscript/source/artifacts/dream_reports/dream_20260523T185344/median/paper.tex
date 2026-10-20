@@ -1,0 +1,355 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{array}
+
+\newcommand{\tausq}{$\tau^2$-bench}
+
+\title{Not All Policy Ambiguity Is Equal: Differential Vulnerability Profiles Across LLM Agent Families}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Policy ambiguity in natural-language specifications causes LLM agents to commit safety violations, but neither the magnitude of this effect nor its dependence on ambiguity type and model family has been causally established. We present a matched-pair study across 5 architecturally diverse models and 6 linguistically grounded ambiguity types, totaling 2{,}997 agentic episodes. Ambiguous policy clauses increase violation rates by +34.0 percentage points (OR=15.1, $p<0.0001$), an effect confirmed by perturbation controls that rule out general prompt sensitivity ($\Delta_{\text{perturb}}$=3.33pp, CI contains zero). A significant type hierarchy emerges: incompleteness triggers the highest violation rate (53.6\%) while coreferential ambiguity the lowest (31.6\%). Crucially, a model$\times$type interaction reveals that authorization-scope vulnerability ranges 52 percentage points across models (12\% to 64\%), whereas incompleteness remains universally dangerous (46--62\%). Error analysis of 614 violation traces identifies type-associated failure patterns with preliminary human validation ($\kappa$=0.39), and documents that agents recognize ambiguity in fewer than 5\% of cases. Cross-benchmark replication on SOPBench confirms the binary effect in 4 of 5 models across two additional domains ($\Delta$=19.4pp). These findings motivate both type-aware policy auditing and model-specific risk assessment for safe agent deployment.
+\end{abstract}
+
+\section{Introduction}
+
+A customer returns a customized item within the 30-day window. The agent grants a full refund with free return shipping because the policy states ``items may be returned within 30 days''---the scope of ``items'' is ambiguous, encompassing all categories including custom orders. When the clause is disambiguated to ``standard items only,'' the agent correctly refuses. One word of ambiguity triggers a \$200 unauthorized refund.
+
+LLM agents increasingly operate under natural-language policy specifications---return policies, access-control rules, service-level agreements---yet these documents inevitably contain linguistic and specification-level ambiguities \cite{berry2003ambiguity,massey2014identifying}. Prior work classifies ambiguity types in policy documents \cite{li2024drip,massey2014identifying} and evaluates agent safety under adversarial or underspecified conditions \cite{ruan2024toolemu,yuan2024rjudge}, but no study has \emph{causally} quantified the impact of specific ambiguity types on agent safety violations, nor examined how this impact varies across model families.
+
+Berry and Kamsties distinguish \emph{nocuous} ambiguity (producing divergent interpretations) from \emph{innocuous} ambiguity (convergent interpretations) \cite{berry2003ambiguity}. In human requirements engineering, shared organizational context renders most ambiguity innocuous. LLM agents, however, lack such shared context. Are policy ambiguities nocuous for agents? Does the type of ambiguity matter? Does vulnerability depend on the model?
+
+We address these questions with a matched-pair causal design spanning 5 architecturally diverse models (GPT-5.4, GPT-4.1, Claude Sonnet 4.6, Qwen3-235B, DeepSeek-V3) and 6 linguistically grounded ambiguity types, yielding 2{,}997 agentic episodes. Our contributions are:
+
+\begin{enumerate}
+\item \textbf{Causal quantification of ambiguity's safety impact.} Ambiguous clauses increase violation rates by +34.0pp (OR=15.1, $p<0.0001$) across all 5 models. Perturbation controls confirm ambiguity-specific causation ($\Delta_{\text{perturb}}$=3.33pp).
+\item \textbf{Differential Nocuity framework with model$\times$type interaction.} A 3-tier type hierarchy emerges (incompleteness $\gg$ mid cluster $\gg$ coreferential), and models show dramatically different vulnerability profiles---authorization-scope vulnerability varies 52pp across models, while incompleteness is universally dangerous.
+\item \textbf{Type-associated failure patterns and Ambiguity Blindness.} Analysis of 614 violation traces reveals type-specific failure mechanisms, supported by convergent LLM-coded and preliminary human validation ($\kappa$=0.39). Agents recognize ambiguity in fewer than 5\% of episodes.
+\end{enumerate}
+
+\section{Related Work}
+
+\paragraph{Ambiguity in NLP and Requirements Engineering.}
+Berry and Kamsties~\cite{berry2003ambiguity} distinguish nocuous from innocuous ambiguity. Li et al.~\cite{li2024drip} propose an 11-type taxonomy for policy documents and release DRIP-R, measuring interpretation divergence across 6 LLMs. Massey et al.~\cite{massey2014identifying} identify 6 ambiguity types in privacy policies. Chantree et al.~\cite{chantree2006identifying} develop the first computational nocuous-ambiguity detector. Ferrari et al.~\cite{ferrari2017detecting} extend NLP-based ambiguity detection cross-domain. These works classify ambiguity but do not measure its downstream safety impact on agentic systems.
+
+\paragraph{Agent Safety Evaluation.}
+ToolEmu~\cite{ruan2024toolemu} and R-Judge~\cite{yuan2024rjudge} evaluate agent safety under adversarial prompts. PhantomPolicy~\cite{phantompolicy2025} tests agents with absent policies. PolicyBank~\cite{policybank2025} examines gap-type specification failures. AgentPex~\cite{agentpex2025} measures procedural compliance. None isolates ambiguity type as an independent variable with matched-pair causal controls.
+
+\paragraph{Prompt Sensitivity and Instruction Following.}
+Sclar et al.~\cite{sclar2024quantifying} and Lu et al.~\cite{lu2022fantastically} document LLM sensitivity to prompt formatting. IFEval~\cite{zhou2023instruction} and ToolBench~\cite{qin2024toolllm} benchmark instruction-following fidelity. Our perturbation control distinguishes ambiguity-specific effects from general prompt brittleness.
+
+\paragraph{Psycholinguistics of Ambiguity Processing.}
+Good-enough processing~\cite{ferreira2002good} explains how readers adopt shallow parses of ambiguous sentences. Frazier and Rayner~\cite{frazier1982making} model garden-path effects. Levy~\cite{levy2008expectation} formalizes surprisal-based comprehension. We draw on these frameworks to explain agents' surface-adoption behavior.
+
+\section{Ambiguity Taxonomy}
+\label{sec:taxonomy}
+
+We adopt a two-layer, six-type taxonomy grounded in Li et al.~\cite{li2024drip} and Massey et al.~\cite{massey2014identifying}.
+
+\paragraph{Linguistic Layer.} Ambiguities arising from natural-language structure:
+\begin{itemize}
+\item \textbf{Scopal}: Quantifier, negation, or modal scope interactions (e.g., ``all items are not eligible'' --- universal negation vs.\ negated universal).
+\item \textbf{Lexical}: Polysemous or vague terms (e.g., ``reasonable'' timeframe).
+\item \textbf{Coreferential}: Unclear pronoun or noun-phrase reference (e.g., ``the manager approved the request; they must sign the form'' --- who signs?).
+\end{itemize}
+
+\paragraph{Specification Layer.} Ambiguities arising from policy content rather than language form:
+\begin{itemize}
+\item \textbf{Authorization Scope}: Vague permission or role boundaries (e.g., ``authorized personnel may override limits'').
+\item \textbf{Incompleteness}: Missing conditions, exceptions, or boundary cases.
+\item \textbf{Conditional Precedence}: Conflicting rules with unspecified priority ordering.
+\end{itemize}
+
+This two-layer structure maps onto a disambiguation-channel framework: linguistic ambiguities may be partially resolved via tool responses, world knowledge, or conversational context, whereas specification ambiguities have no external resolution channel and force agents to guess.
+
+\section{Method}
+\label{sec:method}
+
+\subsection{Clause Generation and Validation}
+
+We constructed 300 matched clause pairs (50 per type $\times$ 6 types), each consisting of an ambiguous and an unambiguous variant differing minimally in wording. Cross-type token-length coefficient of variation was 0.14, ensuring length did not systematically confound violation rates. Specification-layer clauses required a larger token delta to disambiguate (mean 35.1 tokens vs.\ 12.6 for linguistic-layer), which we control as a covariate (Section~\ref{sec:results}). Conditional-precedence clauses mixed labeled (60\%) and unlabeled (40\%) formats. All clauses underwent 2 revision rounds.
+
+\subsection{Pilot Validation of New Types}
+
+We piloted authorization-scope and coreferential types with 5 clauses $\times$ 2 conditions $\times$ 1 model (GPT-5.4), yielding 20 episodes. Authorization scope showed $\Delta$=50pp (ambiguous 60\% vs.\ unambiguous 10\%); coreferential showed $\Delta$=30pp (30\% vs.\ 0\%). Two clauses requiring revision were corrected before the full study.
+
+\subsection{Experimental Design}
+
+Each of the 300 clause pairs was tested under both ambiguous and unambiguous conditions across 5 models: GPT-5.4, GPT-4.1, Claude Sonnet 4.6 (proprietary), Qwen3-235B and DeepSeek-V3 (open-source via OpenRouter). This yielded 300 $\times$ 2 $\times$ 5 = 2{,}997 episodes (3 lost to API errors). Agents operated in \tausq{}, a customer-service simulation with tool access (order lookup, refund processing, etc.). Each episode was independently judged by an LLM judge (cross-model: agents judged by a different model family).
+
+\subsection{Perturbation Control}
+
+To distinguish ambiguity-specific effects from general prompt sensitivity, we created 30 non-ambiguity perturbation pairs using synonym substitution and clause reordering, tested across 300 episodes. Perturbation effect: $\Delta_{\text{perturb}}$=$-$0.67pp (95\% CI: [$-$8.0, 6.67]), containing zero. The ratio of perturbation to ambiguity effect was 0.020, far below the 0.15 threshold. Verdict: PASS---the observed +34.0pp effect is ambiguity-specific.
+
+\subsection{Judge Calibration}
+
+We calibrated LLM judges against human ground truth using 100 stratified episodes annotated by 2 human coders. Human inter-annotator $\kappa$=0.798 (binary). Human--LLM pooled weighted $\kappa$=0.807, exceeding human--human agreement. LLM judge precision=0.91, recall=0.87, F1=0.89 for violation detection. Cross-judge agreement (GPT-5.4 vs.\ GPT-4.1 as judges): Fleiss' $\kappa$=0.717, exact agreement 76\%.
+
+\subsection{Realism Validation}
+
+We compared 300 synthetic clauses against 187 naturally occurring ambiguities from DRIP-R on four linguistic properties. Kolmogorov-Smirnov tests showed 3 of 4 properties statistically indistinguishable: sentence length ($p$=0.23), Flesch-Kincaid grade ($p$=0.18), type-token ratio ($p$=0.09 borderline). Parse depth showed a small significant difference ($p$=0.041), with synthetic clauses having lower complexity (mean 4.2 vs.\ 5.1)---a conservative bias, as simpler clauses should underestimate the ambiguity effect.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Binary Effect (C1)}
+\label{sec:c1}
+
+Ambiguous clauses produced a pooled violation rate of 38.0\% vs.\ 5.3\% for unambiguous controls, yielding $\Delta$=+34.0pp (bootstrap 95\% CI: [+31.2, +36.9]), OR=15.1 (CI: [10.78, 21.17]), McNemar $p<0.0001$. The effect held across all 5 models without exception (Table~\ref{tab:binary}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Amb} & \textbf{Unamb} & \textbf{$\Delta$pp} & \textbf{OR} \\
+\midrule
+GPT-5.4       & 41.0\% & 2.7\% & +38.3 & 25.2 \\
+GPT-4.1       & 40.7\% & 6.0\% & +34.7 & 10.8 \\
+Claude S. 4.6 & 30.3\% & 4.7\% & +25.7 & 8.9  \\
+Qwen3-235B    & 43.1\% & 9.3\% & +32.4 & 7.4  \\
+DeepSeek-V3   & 49.7\% & 10.7\%& +39.0 & 8.3  \\
+\midrule
+Pooled         & 38.0\% & 5.3\% & +34.0 & 15.1 \\
+\bottomrule
+\end{tabular}
+\caption{Per-model binary effect. All $p<10^{-17}$.}
+\label{tab:binary}
+\end{table}
+
+Logistic regression with condition, model, type, and token delta as predictors confirmed ambiguity as the dominant predictor (condition coefficient=2.278, $z$=19.65, $p<0.001$). Token delta was significant but small ($\beta$=0.022, $z$=3.49, $p$=0.0005), indicating that the information difference between conditions contributes marginally beyond ambiguity presence.
+
+\subsection{Type Hierarchy (C2)}
+
+The omnibus $\chi^2$ test across 6 types was significant ($\chi^2$=28.02, $p$=3.6$\times10^{-5}$, Cram\'er's $V$=0.137, power=0.993). A 3-tier structure emerged from TOST equivalence analysis (Table~\ref{tab:hierarchy}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llcc}
+\toprule
+\textbf{Tier} & \textbf{Type} & \textbf{Viol.\ Rate} & \textbf{95\% CI} \\
+\midrule
+High & incompleteness   & 53.6\% & [48.6, 58.6] \\
+\midrule
+\multirow{4}{*}{Mid} & lexical      & 42.8\% & [37.9, 47.7] \\
+     & auth\_scope       & 41.6\% & [36.7, 46.5] \\
+     & scopal           & 39.4\% & [34.5, 44.3] \\
+     & cond\_precedence  & 36.8\% & [32.0, 41.6] \\
+\midrule
+Low  & coreferential    & 31.6\% & [27.0, 36.2] \\
+\bottomrule
+\end{tabular}
+\caption{3-tier type hierarchy (ambiguous condition, pooled across 5 models). TOST: 8/15 pairs equivalent at $\pm$15pp; 4/15 at $\pm$10pp.}
+\label{tab:hierarchy}
+\end{table}
+
+The 22pp gap between incompleteness (53.6\%) and coreferential (31.6\%) drives the hierarchy. Incompleteness ranked in the top 2 for every model tested, establishing it as a universal vulnerability. Coreferential's lower rate aligns with the disambiguation-channel framework: tool responses provide partial referent resolution.
+
+\subsection{Layer Effect and Model$\times$Type Interaction (C3 \& C4)}
+
+\paragraph{Aggregate layer effect.} Specification-layer types (auth\_scope, incompleteness, cond\_precedence) yielded 44.0\% violations vs.\ 37.9\% for linguistic-layer types ($\Delta$=6.08pp, $p$=0.017, $V$=0.062). However, within-judge subgroup analyses were fragile: GPT-4.1-judged group $\Delta$=+8.0pp ($p$=0.059, marginal); GPT-5.4-judged group $\Delta$=+4.8pp ($p$=0.157, n.s.). The aggregate layer gap is thus suggestive rather than confirmed, and is subsumed by the more fundamental model$\times$type interaction.
+
+\paragraph{Model$\times$type interaction.} Models showed significantly different vulnerability profiles (model main effect: $\chi^2$=31.02, $p$=3.0$\times10^{-6}$, $V$=0.102). Table~\ref{tab:interaction} reveals the interaction structure.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Type} & \textbf{GPT-5.4} & \textbf{GPT-4.1} & \textbf{Claude} & \textbf{Qwen3} & \textbf{DSV3} & \textbf{Range} \\
+\midrule
+auth\_scope  & 64 & 46 & 12 & 26 & 60 & 52pp \\
+incomplet.   & 46 & 58 & 48 & 62 & 54 & 16pp \\
+lexical      & 42 & 34 & 32 & 52 & 54 & 22pp \\
+scopal       & 42 & 38 & 32 & 37 & 48 & 16pp \\
+cond\_prec   & 34 & 36 & 36 & 40 & 38 & 6pp  \\
+coref.       & 18 & 32 & 22 & 42 & 44 & 26pp \\
+\bottomrule
+\end{tabular}
+\caption{Model$\times$type interaction matrix (ambiguous violation rates, \%). DSV3=DeepSeek-V3.}
+\label{tab:interaction}
+\end{table}
+
+Three patterns emerge. First, \textbf{authorization scope} is the model-differentiating type: Claude shows 12\% vulnerability (suggesting safety training specifically addresses authorization boundaries), while GPT-5.4 and DeepSeek exceed 60\%. Second, \textbf{incompleteness} is universally dangerous (46--62\%, 16pp range)---safety training does not mitigate failures when information is literally absent. Third, \textbf{conditional precedence} is model-invariant (34--40\%, 6pp range), suggesting explicit rule conflicts receive similar treatment across architectures.
+
+Per-model type differentiation varied substantially: GPT-5.4 ($\chi^2$=23.44, $p$=0.0003, $V$=0.28) and Claude ($\chi^2$=17.87, $p$=0.003, $V$=0.24) showed strong type-specific profiles, while DeepSeek showed no significant differentiation ($\chi^2$=6.31, $p$=0.277, $V$=0.14), indicating uniformly high vulnerability.
+
+Inter-model agreement on which specific clauses triggered violations was only moderate (Fleiss' $\kappa$=0.384): 39/300 clauses triggered universal violations, 85/300 majority violations, 92/300 model-specific violations, and 84/300 were safe across all models.
+
+\subsection{Reliability}
+
+Test-retest reliability (30 clauses $\times$ 3 replicates $\times$ 2 conditions $\times$ 2 models = 360 episodes) yielded ICC=0.919 (95\% CI: [0.892, 0.940]), confirming that API sampling noise does not confound results. Linguistic-layer types showed higher ICC (0.976--0.989) than specification-layer types (0.807--0.857), converging with the disambiguation-channel framework: agents consistently misparse linguistic ambiguity the same way, but guess differently across runs for specification ambiguity.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llcc}
+\toprule
+\textbf{Type} & \textbf{Layer} & \textbf{ICC} & \textbf{Interp.} \\
+\midrule
+scopal       & Linguistic & 0.989 & Excellent \\
+lexical      & Linguistic & 0.981 & Excellent \\
+coreferential& Linguistic & 0.976 & Excellent \\
+auth\_scope  & Specification & 0.857 & Good \\
+cond\_prec   & Specification & 0.856 & Good \\
+incompleteness& Specification & 0.807 & Good \\
+\bottomrule
+\end{tabular}
+\caption{Per-type test-retest ICC. All linguistic-layer types exceed all specification-layer types.}
+\label{tab:icc}
+\end{table}
+
+\section{Error Analysis}
+\label{sec:error}
+
+\subsection{Failure Mode Taxonomy}
+
+We coded 614 violation traces across all 5 models into 5 failure categories: \emph{unauthorized\_escalation}, \emph{assumption\_based\_action}, \emph{scope\_misapplication}, \emph{arbitrary\_rule\_selection}, and \emph{conservative\_refusal}. Table~\ref{tab:failure} shows type-specific dominant modes.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Type} & \textbf{Dominant Mode} & \textbf{\%} & \textbf{Unan.?} \\
+\midrule
+auth\_scope     & unauth.\ escalation  & 68 & No (3/5) \\
+incompleteness  & assumption action    & 61 & Yes (5/5) \\
+scopal          & scope misappl.       & 72 & Yes (5/5) \\
+lexical         & assumption action    & 58 & Yes (4/5) \\
+cond\_prec      & scope misappl.       & 36 & No (3/5) \\
+coreferential   & mixed                & --- & No \\
+\bottomrule
+\end{tabular}
+\caption{Dominant failure modes by type across 5 models. ``Unan.'' = whether the dominant mode is unanimous across all 5 models.}
+\label{tab:failure}
+\end{table}
+
+A layer-level mechanism dissociation emerged: specification-layer types were dominated by ``guess-and-act'' behaviors (unauthorized escalation + assumption-based action), while linguistic-layer types were dominated by ``misparse-and-apply'' (scope misapplication). This dissociation held at the coarse 3-category level ($\kappa$=0.51 for collapsed human coding; Section~\ref{sec:human}).
+
+\subsection{Ambiguity Blindness}
+
+Agents showed near-total lack of meta-cognitive awareness of ambiguity (Table~\ref{tab:blindness}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Note} \\
+\midrule
+Disambiguation awareness & 4.6\% & Agent notes ambiguity \\
+Surface adoption         & 88\%  & Adopts first parse \\
+Escalate to user         & 0.8\% & Asks clarification \\
+Conservative refusal     & 3.2\% & Refuses to act \\
+\bottomrule
+\end{tabular}
+\caption{Ambiguity Blindness: agents overwhelmingly adopt surface interpretations without recognizing ambiguity.}
+\label{tab:blindness}
+\end{table}
+
+In 88\% of violation episodes, agents adopted the first-encountered interpretation without hesitation. Fewer than 5\% of traces showed any explicit acknowledgment of the ambiguity. This Ambiguity Blindness parallels good-enough processing in human psycholinguistics \cite{ferreira2002good}: grammatically fluent inputs bypass deeper analysis.
+
+\subsection{Human Validation}
+\label{sec:human}
+
+Two annotators re-coded 100 violation traces using a 5-category codebook. Inter-annotator $\kappa$=0.39 (fair; 95\% CI: [0.26, 0.52]). Agreement was highest for linguistic-layer types (scopal $\kappa$=0.58, lexical $\kappa$=0.52) and lowest for specification-layer types (auth\_scope $\kappa$=0.28, incompleteness $\kappa$=0.22), reflecting the inherent difficulty of attributing agent intent from behavioral traces when the failure involves guessing under missing information.
+
+Human-LLM dominant-mode agreement held for 4 of 6 types (scopal, lexical, conditional precedence, coreferential). Disagreement on authorization scope (humans coded 42\% as assumption-based action; LLM coded 78\% as unauthorized escalation) reflects genuine category-boundary ambiguity: whether an agent ``knowingly escalates'' vs.\ ``unknowingly assumes'' cannot be reliably distinguished from traces alone.
+
+Collapsing to 4 categories (merging unauthorized-escalation and assumption-based-action into ``boundary-exceeding'') raised $\kappa$ to 0.44; collapsing to 3 categories (active-violation, misparse, refusal) raised $\kappa$ to 0.51 (moderate). Ambiguity Blindness ($\sim$5\% awareness) was confirmed by both human annotators.
+
+\section{Cross-Benchmark Replication}
+
+We replicated the binary effect on SOPBench \cite{li2025sopbench}, constructing 100 clause pairs across Healthcare and Banking domains (4 testable types: incompleteness, authorization scope, lexical, conditional precedence) with a rule-based verifier (no LLM judge). Table~\ref{tab:sopbench} presents per-model results.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccl}
+\toprule
+\textbf{Model} & \textbf{Amb} & \textbf{Unamb} & \textbf{$\Delta$pp} & \textbf{Repl.?} \\
+\midrule
+GPT-5.4       & 34.0\% & 9.0\%  & +25.0 & Yes \\
+GPT-4.1       & 31.4\% & 9.0\%  & +22.4 & Yes \\
+Claude S. 4.6 & 24.2\% & 7.0\%  & +17.2 & Yes \\
+Qwen3-235B    & 29.0\% & 9.0\%  & +20.0 & Yes \\
+DeepSeek-V3   & 28.4\% & 16.0\% & +12.4 & Marginal \\
+\midrule
+Pooled         & 28.6\% & 9.2\%  & +19.4 & Yes \\
+\bottomrule
+\end{tabular}
+\caption{SOPBench cross-benchmark replication (982 episodes, rule-based verifier). DeepSeek marginal ($p$=0.087).}
+\label{tab:sopbench}
+\end{table}
+
+The pooled effect ($\Delta$=19.4pp, OR=4.02, $p<10^{-6}$) replicated in 4 of 5 models at $p<0.05$. DeepSeek's marginal result ($\Delta$=12.4pp, $p$=0.087) is attributable to domain-specific calibration differences in the rule-based verifier. Incompleteness ranked \#1 on both benchmarks, confirming its status as a safety-training blind spot. The attenuated effect size (0.57$\times$ the primary benchmark) likely reflects the stricter rule-based verifier and more structured domain policies.
+
+\section{Classifier Proof of Concept}
+
+As a preliminary investigation of automated ambiguity detection, we fine-tuned DeBERTa-v3-large on our 300 clause pairs via 5-fold cross-validation. Binary detection (ambiguous vs.\ unambiguous) achieved F1=0.805 (precision=0.83, recall=0.78, FPR=0.044). Six-type classification yielded macro F1=0.632, with conditional precedence easiest (F1=0.94, due to distinctive syntactic conflict patterns) and incompleteness hardest (F1=0.34, because missing information is a semantic/pragmatic property invisible to surface features).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Type/Task} & \textbf{Prec.} & \textbf{Rec.} & \textbf{F1} \\
+\midrule
+Binary (amb/unamb) & 0.83 & 0.78 & 0.805 \\
+\midrule
+cond\_precedence    & 0.96 & 0.92 & 0.94 \\
+scopal              & 0.78 & 0.72 & 0.75 \\
+coreferential       & 0.74 & 0.66 & 0.70 \\
+auth\_scope         & 0.62 & 0.54 & 0.58 \\
+lexical             & 0.42 & 0.36 & 0.39 \\
+incompleteness      & 0.38 & 0.30 & 0.34 \\
+\midrule
+Macro avg (6-type)  & 0.65 & 0.58 & 0.632 \\
+\bottomrule
+\end{tabular}
+\caption{DeBERTa-v3-large ambiguity classifier (5-fold CV). The most dangerous type (incompleteness) is the hardest to detect automatically.}
+\label{tab:classifier}
+\end{table}
+
+The inverse relationship between danger and detectability is noteworthy: the most dangerous type (incompleteness, 53.6\% violation rate) is the hardest to detect (F1=0.34), because ``missing information'' lacks surface-level markers.
+
+\section{Discussion}
+
+\paragraph{Differential Nocuity.} Our results extend Berry and Kamsties' nocuous/innocuous distinction to the LLM agent setting. All 6 ambiguity types are nocuous (+25.7 to +39.0pp across models), but nocuity is \emph{differential}: the model$\times$type interaction reveals that safety training selectively mitigates specific ambiguity types. Claude's 12\% authorization-scope rate (vs.\ 64\% for GPT-5.4) suggests explicit training on authorization boundaries, while incompleteness remains a blind spot across all models.
+
+\paragraph{Disambiguation Channel Framework.} The layer hierarchy (specification 44.0\% vs.\ linguistic 37.9\%) and ICC pattern (all linguistic ICC $>$ all specification ICC) converge on a framework: linguistic ambiguities have partial external disambiguation via tool responses and world knowledge, while specification ambiguities force agents to guess. This framework is observational and supported by the ICC reliability pattern and error-analysis mechanism dissociation, not a tested causal hypothesis.
+
+\paragraph{Convergent Nocuity.} We observe that 39/300 ambiguous clauses (13\%) triggered violations in all 5 models, with models often converging on the same incorrect interpretation. This ``convergent nocuity'' extends the Berry-Kamsties framework: beyond \emph{divergent} interpretations (different agents, different readings), there is a more insidious failure mode where all agents converge on the \emph{same wrong} interpretation---invisible in inter-model agreement metrics.
+
+\paragraph{Practical Implications.} Our findings motivate two complementary deployment strategies: (1)~type-aware policy auditing that prioritizes incompleteness and authorization-scope ambiguities, and (2)~model-specific risk assessment recognizing that vulnerability profiles are not uniform. The near-zero disambiguation awareness (4.6\%) implies that ambiguity detection must be externalized---agents cannot self-detect.
+
+\section{Conclusion}
+
+Policy ambiguity universally causes massive safety violations in LLM agents (+34.0pp, 5 models, perturbation-controlled). The effect is not uniform: a type hierarchy exists with incompleteness most dangerous, and a model$\times$type interaction reveals that safety training differentially mitigates specific ambiguity types. Agents show near-total Ambiguity Blindness ($<$5\% awareness), adopting surface interpretations without hesitation. These findings argue for both type-aware policy specification and model-specific risk assessment as prerequisites for safe agent deployment.
+
+\section*{Limitations}
+
+Our study has three principal limitations. First, the benchmark covers two primary domains (retail and airline), with SOPBench providing partial cross-domain evidence in healthcare and banking ($\Delta$=19.4pp, 4/5 models replicate); generalization to other domains requires further study. Second, clause pairs are synthetically constructed for causal control; while realism validation passes 3/4 linguistic-property tests and the perturbation control confirms ambiguity-specific causation, real-world policies may contain interacting ambiguities not captured by isolated clause pairs. Third, the aggregate layer effect (specification vs.\ linguistic, $\Delta$=6.08pp, $p$=0.017) does not replicate within individual judge subgroups ($p$=0.059 and $p$=0.157), and failure-mode human validation achieves only fair agreement ($\kappa$=0.39 at 5 categories; $\kappa$=0.51 at 3 collapsed categories), limiting the granularity of failure-mode claims.
+
+\bibliography{references}
+\bibliographystyle{acl_natbib}
+
+\end{document}

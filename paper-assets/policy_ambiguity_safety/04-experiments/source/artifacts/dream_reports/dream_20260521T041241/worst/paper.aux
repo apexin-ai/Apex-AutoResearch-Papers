@@ -1,0 +1,91 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wasow2005}
+\citation{berry2003}
+\citation{berry2003,massey2014,li2024}
+\citation{ruan2024toolemu}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{li2024}
+\citation{massey2014}
+\citation{wasow2005,frazier1982}
+\citation{ferreira2002}
+\citation{berry2003,chantree2006}
+\citation{massey2014}
+\citation{li2024}
+\citation{ferrari2017}
+\citation{chantree2006,chantree2008}
+\citation{ruan2024toolemu}
+\citation{zhou2023ifeval}
+\citation{sclar2024}
+\citation{lu2022}
+\citation{sclar2024}
+\citation{zhou2023ifeval}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ambiguity in NLP and Requirements Engineering.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agent Safety Evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM Sensitivity to Specification.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Ambiguity Taxonomy}{2}{section.3}\protected@file@percent }
+\newlabel{sec:taxonomy}{{3}{2}{Ambiguity Taxonomy}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Specification Layer.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Linguistic Layer.}{2}{section*.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Clause pair statistics by ambiguity type. Token counts are means. Specification-layer types require more tokens for disambiguation ($\Delta = 3.5$ tokens) than linguistic-layer types ($\Delta = 1.6$).}}{3}{table.caption.6}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:clause_stats}{{1}{3}{Clause pair statistics by ambiguity type. Token counts are means. Specification-layer types require more tokens for disambiguation ($\Delta = 3.5$ tokens) than linguistic-layer types ($\Delta = 1.6$)}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{3}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{3}{Method}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Clause Pair Generation}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Realism Validation}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experimental Setup}{3}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Mini-Pilot Validation}{3}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Perturbation Control}{3}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:perturbation}{{4.5}{3}{Perturbation Control}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Judge Calibration}{3}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:judge_cal}{{4.6}{3}{Judge Calibration}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{3}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{3}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}C1: Universal Nocuity of Policy Ambiguity}{3}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Binary effect of ambiguity on violation rate by model. 5-model pooled: McNemar OR = 7.2, CI [5.1, 10.2]. All models show highly significant effects.}}{4}{table.caption.7}\protected@file@percent }
+\newlabel{tab:binary_effect}{{2}{4}{Binary effect of ambiguity on violation rate by model. 5-model pooled: McNemar OR = 7.2, CI [5.1, 10.2]. All models show highly significant effects}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 5-model pooled per-type violation rates and binary effects. All types show significant nocuity. Coreferential has the weakest effect (+18.8pp) but remains highly significant.}}{4}{table.caption.8}\protected@file@percent }
+\newlabel{tab:per_type}{{3}{4}{5-model pooled per-type violation rates and binary effects. All types show significant nocuity. Coreferential has the weakest effect (+18.8pp) but remains highly significant}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Perturbation Control: Ambiguity Within Specification Sensitivity}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Perturbation control results (180 episodes, 3 models). Perturbation ratio = 0.49: non-ambiguity surface changes account for roughly half the ambiguity effect. Composite verdict: CONDITIONAL.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:perturbation}{{4}{4}{Perturbation control results (180 episodes, 3 models). Perturbation ratio = 0.49: non-ambiguity surface changes account for roughly half the ambiguity effect. Composite verdict: CONDITIONAL}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Per-model layer gap. Claude's reversed direction (-5.3pp) offsets GPT models' positive gaps. Pooled effect not significant ($p = 0.22$).}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:layer}{{5}{4}{Per-model layer gap. Claude's reversed direction (-5.3pp) offsets GPT models' positive gaps. Pooled effect not significant ($p = 0.22$)}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Type Taxonomy as Diagnostic Vocabulary}{4}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Layer Effect: Not Supported}{4}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Model $\times $ type violation rates (ambiguous condition). Claude (bold) shows distinctly low authorization-scope and high coreferential rates, driving the interaction. 4 models without Claude: interaction $p = 0.23$ (n.s.).}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:interaction}{{6}{5}{Model $\times $ type violation rates (ambiguous condition). Claude (bold) shows distinctly low authorization-scope and high coreferential rates, driving the interaction. 4 models without Claude: interaction $p = 0.23$ (n.s.)}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Model $\times $ Type Interaction: Claude-Driven}{5}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Reliability}{5}{subsection.5.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Spearman rank correlation of per-type violation rates vs.\ GPT-5.4. Claude is the sole outlier.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:rank_corr}{{7}{5}{Spearman rank correlation of per-type violation rates vs.\ GPT-5.4. Claude is the sole outlier}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Failure mode distribution by layer (5-model pooled, 300 traces). Layer specificity is weak: most failure modes occur across both layers.}}{5}{table.caption.13}\protected@file@percent }
+\newlabel{tab:failure_modes}{{8}{5}{Failure mode distribution by layer (5-model pooled, 300 traces). Layer specificity is weak: most failure modes occur across both layers}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Inter-Model Agreement}{5}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Error Analysis}{5}{section.6}\protected@file@percent }
+\newlabel{sec:error_analysis}{{6}{5}{Error Analysis}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Failure Mode Taxonomy}{5}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Type-Diagnostic Signatures}{5}{subsection.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Type-specific failure signatures. $^*$Claude shows refusal-dominant pattern (55\%) rather than unauthorized escalation. Three types have clear diagnostic signatures; three do not.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:signatures}{{9}{6}{Type-specific failure signatures. $^*$Claude shows refusal-dominant pattern (55\%) rather than unauthorized escalation. Three types have clear diagnostic signatures; three do not}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Ambiguity awareness by model. Surface adoption dominates universally (70--85\%). There is a weak positive correlation between model capability and awareness (GPT-5.4 18\% vs.\ DeepSeek 8\%), but even the most aware model fails to acknowledge ambiguity in 82\% of violations.}}{6}{table.caption.15}\protected@file@percent }
+\newlabel{tab:blindness}{{10}{6}{Ambiguity awareness by model. Surface adoption dominates universally (70--85\%). There is a weak positive correlation between model capability and awareness (GPT-5.4 18\% vs.\ DeepSeek 8\%), but even the most aware model fails to acknowledge ambiguity in 82\% of violations}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Ambiguity Blindness}{6}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{6}{section.7}\protected@file@percent }
+\newlabel{sec:discuss}{{7}{6}{Discussion}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Reframing: Ambiguity Within Specification Sensitivity}{6}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Taxonomy Boundaries}{6}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Practical Implications: Binary Detection}{7}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Limitations}{7}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Perturbation confound.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Judge calibration.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Claude-driven interaction.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain coverage.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Synthetic clause injection.}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{7}{section.8}\protected@file@percent }
+\gdef \@abspage@last{8}

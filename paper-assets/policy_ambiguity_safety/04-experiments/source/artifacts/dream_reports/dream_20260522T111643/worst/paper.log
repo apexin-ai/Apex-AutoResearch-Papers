@@ -1,0 +1,840 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex 2026.5.2)  22 MAY 2026 11:50
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**paper.tex
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+) (./acl.sty
+Conference Style for ACL
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count283
+\Gm@cntv=\count284
+\c@Gm@tempcnt=\count285
+\Gm@bindingoffset=\dimen149
+\Gm@wd@mp=\dimen150
+\Gm@odd@mp=\dimen151
+\Gm@even@mp=\dimen152
+\Gm@layoutwidth=\dimen153
+\Gm@layoutheight=\dimen154
+\Gm@layouthoffset=\dimen155
+\Gm@layoutvoffset=\dimen156
+\Gm@dimlist=\toks18
+)
+\titlebox=\skip51
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen157
+\captionmargin=\dimen158
+\caption@leftmargin=\dimen159
+\caption@rightmargin=\dimen160
+\caption@width=\dimen161
+\caption@indent=\dimen162
+\caption@parindent=\dimen163
+\caption@hangindent=\dimen164
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count286
+\c@continuedfloat=\count287
+)
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip52
+\bibsep=\skip53
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count288
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count289
+)
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count290
+)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen165
+\Hy@linkcounter=\count291
+\Hy@pagecounter=\count292
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count293
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `breaklinks' set `true' on input line 4066.
+Package hyperref Info: Hyper figures OFF on input line 4195.
+Package hyperref Info: Link nesting OFF on input line 4200.
+Package hyperref Info: Hyper index ON on input line 4203.
+Package hyperref Info: Plain pages OFF on input line 4210.
+Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4462.
+\c@Hy@tempcnt=\count294
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4801.
+\XeTeXLinkMargin=\dimen166
+
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count295
+\Field@Width=\dimen167
+\Fld@charsize=\dimen168
+Package hyperref Info: Hyper figures OFF on input line 6078.
+Package hyperref Info: Link nesting OFF on input line 6083.
+Package hyperref Info: Hyper index ON on input line 6086.
+Package hyperref Info: backreferencing OFF on input line 6093.
+Package hyperref Info: Link coloring OFF on input line 6098.
+Package hyperref Info: Link coloring with OCG OFF on input line 6103.
+Package hyperref Info: PDF/A mode OFF on input line 6108.
+\Hy@abspage=\count296
+\c@Item=\count297
+\c@Hfootnote=\count298
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
+\Fld@listcount=\count299
+\c@bookmark@seq@number=\count300
+
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+84.
+)
+\Hy@SectionHShift=\skip54
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 305.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+)
+\Gin@req@height=\dimen169
+\Gin@req@width=\dimen170
+)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen171
+\lightrulewidth=\dimen172
+\cmidrulewidth=\dimen173
+\belowrulesep=\dimen174
+\belowbottomsep=\dimen175
+\aboverulesep=\dimen176
+\abovetopsep=\dimen177
+\cmidrulesep=\dimen178
+\cmidrulekern=\dimen179
+\defaultaddspace=\dimen180
+\@cmidla=\count301
+\@cmidlb=\count302
+\@aboverulesep=\dimen181
+\@belowrulesep=\dimen182
+\@thisruleclass=\count303
+\@lastruleclass=\count304
+\@thisrulewidth=\dimen183
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2025/07/09 v2.17z AMS math features
+\@mathmargin=\skip55
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen184
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen185
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count305
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count306
+\leftroot@=\count307
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count308
+\DOTSCASE@=\count309
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen186
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count310
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count311
+\dotsspace@=\muskip18
+\c@parentequation=\count312
+\dspbrk@lvl=\count313
+\tag@help=\toks20
+\row@=\count314
+\column@=\count315
+\maxfields@=\count316
+\andhelp@=\toks21
+\eqnshift@=\dimen187
+\alignsep@=\dimen188
+\tagshift@=\dimen189
+\tagwidth@=\dimen190
+\totwidth@=\dimen191
+\lineht@=\dimen192
+\@envbody=\toks22
+\multlinegap=\skip56
+\multlinetaggap=\skip57
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip58
+\multirow@cntb=\count317
+\multirow@dima=\skip59
+\bigstrutjot=\dimen193
+)
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 1
+5.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count318
+)
+(./paper.aux)
+\openout1 = `paper.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count319
+\scratchdimen=\dimen194
+\scratchbox=\box55
+\nofMPsegments=\count320
+\nofMParguments=\count321
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count322
+\MPscratchDim=\dimen195
+\MPnumerator=\count323
+\makeMPintoPDFobject=\count324
+\everyMPtoPDFconversion=\toks25
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: heightrounded 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=704.60031pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-38.1381pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=59.0pt
+* \marginparsep=10.0pt
+* \columnsep=17.07182pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumntrue
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: End \AtBeginDocument code.
+Package hyperref Info: Link coloring ON on input line 15.
+(./paper.out) (./paper.out)
+\@outlinefile=\write3
+\openout3 = `paper.out'.
+
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 16
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+Underfull \hbox (badness 1571) in paragraph at lines 19--20
+[]\OT1/ptm/m/n/10 LLM-based agents ex-e-cute tasks gov-erned
+ []
+
+
+Underfull \hbox (badness 1226) in paragraph at lines 19--20
+\OT1/ptm/m/n/10 in-evitably con-tain am-bi-gu-ity. We present
+ []
+
+
+Underfull \hbox (badness 1960) in paragraph at lines 19--20
+\OT1/ptm/m/n/10 the first matched-pair causal study iso-lat-
+ []
+
+
+Underfull \hbox (badness 2799) in paragraph at lines 19--20
+\OT1/ptm/m/n/10 ing the safety im-pact of pol-icy am-bi-gu-
+ []
+
+
+Underfull \hbox (badness 3492) in paragraph at lines 19--20
+\OT1/ptm/m/n/10 ity across 7 ar-chi-tec-turally di-verse mod-
+ []
+
+
+Underfull \hbox (badness 3271) in paragraph at lines 19--20
+\OT1/ptm/m/n/10 fect, we un-cover a sig-nif-i-cant model $\OMS/cmsy/m/n/10 ^^B$
+
+ []
+
+
+Underfull \hbox (badness 1616) in paragraph at lines 19--20
+\OT1/ptm/m/n/10 diagnostic fail-ure sig-na-tures and per-va-sive
+ []
+
+
+Underfull \hbox (badness 3668) in paragraph at lines 19--20
+\OT1/ptm/m/n/10 de-sign, per-tur-ba-tion con-trol, ICC val-i-da-
+ []
+
+
+Underfull \hbox (badness 4205) in paragraph at lines 19--20
+\OT1/ptm/m/n/10 tion (0.919), and human-calibrated judg-
+ []
+
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
+4.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+Underfull \hbox (badness 1975) in paragraph at lines 28--29
+\OT1/ptm/m/it/10.95 ous \OT1/ptm/m/n/10.95 am-bi-gu-ity (di-ver-gent in-ter-pre
+-ta-tions caus-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
+[]\OT1/ptm/b/n/10.95 Methodological tem-plate\OT1/ptm/m/n/10.95 : The first
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
+\OT1/ptm/m/n/10.95 matched-pair + perturbation-controlled
+ []
+
+
+Underfull \hbox (badness 4416) in paragraph at lines 33--34
+\OT1/ptm/m/n/10.95 Per-tur-ba-tion con-trol con-firms ambiguity-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
+\OT1/ptm/m/n/10.95 human-LLM judge agree-ment $\OML/cmm/m/it/10.95 ^^T$\OT1/ptm
+/m/n/10.95 =0.807
+ []
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}
+
+
+
+]
+Underfull \hbox (badness 1655) in paragraph at lines 35--36
+\OT1/ptm/m/n/10.95 (+34.0pp) con-firmed across 3 pro-pri-etary
+ []
+
+
+Underfull \hbox (badness 1668) in paragraph at lines 35--36
+\OT1/ptm/m/n/10.95 4 open-source/additional mod-els (Qwen3-
+ []
+
+
+Underfull \hbox (badness 4531) in paragraph at lines 35--36
+\OT1/ptm/m/n/10.95 235B, DeepSeek-V3, Gem-ini, LLaMA),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+ []\OT1/ptm/b/n/10.95 Agent Safety Eval-u-a-tion.[] \OT1/ptm/m/n/10.95 Phan-tom
+-Pol-icy
+ []
+
+
+Underfull \hbox (badness 6001) in paragraph at lines 44--45
+\OT1/ptm/m/n/10.95 and ToolEmu ([][]Anony-mous[][], [][]2024c[][]) eval-u-ate
+ []
+
+
+Underfull \hbox (badness 3098) in paragraph at lines 44--45
+\OT1/ptm/m/n/10.95 am-bi-gu-ity as the causal vari-able or pro-vide
+ []
+
+
+Underfull \hbox (badness 1097) in paragraph at lines 47--48
+\OT1/ptm/m/n/10.95 al. ([][]2024[][]) quan-tify prompt sen-si-tiv-ity; IFE-val
+ []
+
+
+Underfull \hbox (badness 1033) in paragraph at lines 50--51
+\OT1/ptm/m/n/10.95 pro-cess-ing ([][]Fer-reira et al.[][], [][]2002[][]) and ga
+rden-
+ []
+
+
+Underfull \hbox (badness 3271) in paragraph at lines 63--64
+ []\OT1/ptm/b/n/10.95 Linguistic Layer[] \OT1/ptm/m/n/10.95 (am-bi-gu-ity in po
+l-icy \OT1/ptm/m/it/10.95 lan-
+ []
+
+
+Underfull \hbox (badness 2111) in paragraph at lines 66--67
+[]\OT1/ptm/b/n/10.95 Lexical\OT1/ptm/m/n/10.95 : Pol-y-semy or context-dependen
+t
+ []
+
+
+Underfull \hbox (badness 6047) in paragraph at lines 80--81
+[][]\OT1/ptm/m/n/10.95 2024e[][]), a multi-turn customer-service agent
+ []
+
+
+Underfull \hbox (badness 3612) in paragraph at lines 80--81
+\OT1/ptm/m/n/10.95 235B (open-source MoE), and DeepSeek-V3
+ []
+
+
+Underfull \hbox (badness 1527) in paragraph at lines 80--81
+\OT1/ptm/m/n/10.95 (open-source dense). Two ad-di-tional mod-els
+ []
+
+
+Underfull \hbox (badness 1259) in paragraph at lines 84--85
+\OT1/ptm/m/n/10.95 eral prompt sen-si-tiv-ity, we con-struct 30 non-
+ []
+
+[2]
+Underfull \hbox (badness 3460) in paragraph at lines 88--89
+\OT1/ptm/m/n/10.95 model: GPT-5.4 judged by GPT-4.1, GPT-
+ []
+
+
+Underfull \hbox (badness 1448) in paragraph at lines 145--146
+[]\OT1/ptm/m/n/10.95 TOST equiv-a-lence test-ing con-firms the tier
+ []
+
+
+Underfull \hbox (badness 4582) in paragraph at lines 149--150
+\OT1/ptm/m/n/10.95 Specification-layer types show higher ag-gre-
+ []
+
+
+Underfull \hbox (badness 1297) in paragraph at lines 149--150
+\OT1/ptm/m/n/10.95 gate vi-o-la-tion rates than linguistic-layer types
+ []
+
+
+Underfull \hbox (badness 4279) in paragraph at lines 149--150
+\OT1/ptm/m/n/10.95 ($\OT1/cmr/m/n/10.95 ^^A$\OT1/ptm/m/n/10.95 =6.08pp, $\OML/c
+mm/m/it/10.95 p$\OT1/ptm/m/n/10.95 =0.017, $\OML/cmm/m/it/10.95 V$\OT1/ptm/m/n/
+10.95 =0.062). How-ever,
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 151.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\times' on input line 151.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 151.
+
+
+Overfull \hbox (64.74487pt too wide) in paragraph at lines 158--170
+ [][] 
+ []
+
+
+Underfull \hbox (badness 1048) in paragraph at lines 174--175
+\OT1/ptm/m/n/10.95 spot. (3) \OT1/ptm/b/n/10.95 Con-di-tional prece-dence \OT1/
+ptm/m/n/10.95 is model-
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
+\OT1/ptm/m/n/10.95 Non-ambiguity per-tur-ba-tions pro-duce
+ []
+
+
+Underfull \hbox (badness 1681) in paragraph at lines 178--179
+\OML/cmm/m/it/10.95 p$\OT1/ptm/m/n/10.95 =1.0, ver-sus am-bi-gu-ity in-jec-tion
+ $\OT1/cmr/m/n/10.95 ^^A$\OT1/ptm/m/n/10.95 =+34.0pp
+ []
+
+
+Underfull \hbox (badness 2269) in paragraph at lines 178--179
+\OT1/ptm/m/n/10.95 (Ta-ble [][]4[][]). The per-tur-ba-tion con-trol passes:
+ []
+
+
+Overfull \hbox (4.40742pt too wide) in paragraph at lines 183--193
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 203--204
+[]\OT1/ptm/m/n/10.95 Judge cal-i-bra-tion: human-LLM $\OML/cmm/m/it/10.95 ^^T$\
+OT1/ptm/m/n/10.95 =0.807
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 203--204
+\OT1/ptm/m/n/10.95 (strong), ex-ceed-ing hu-man inter-annotator
+ []
+
+
+Underfull \hbox (badness 1137) in paragraph at lines 203--204
+\OML/cmm/m/it/10.95 ^^T$\OT1/ptm/m/n/10.95 =0.762. Bi-nary pre-ci-sion 0.89, re
+-call 0.84,
+ []
+
+
+Overfull \hbox (72.19916pt too wide) in paragraph at lines 212--224
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 224--224
+[]\OT1/ptm/m/n/10 Table 5: |Dom-i-nant fail-ure modes by type.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 224--224
+\OT1/ptm/m/n/10 Specification-layer types trig-ger guess-and-act;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+ []\OT1/ptm/b/n/10.95 Ambiguity Blind-ness.[] \OT1/ptm/m/n/10.95 Across all mod
+-els,
+ []
+
+
+Underfull \hbox (badness 1584) in paragraph at lines 228--229
+\OT1/ptm/m/n/10.95 88%, and user es-ca-la-tion oc-curs in $\OML/cmm/m/it/10.95 
+<$\OT1/ptm/m/n/10.95 1% of
+ []
+
+
+Underfull \hbox (badness 3792) in paragraph at lines 228--229
+\OT1/ptm/m/n/10.95 (2.4%) and high-est sur-face adop-tion (93%);
+ []
+
+
+Underfull \hbox (badness 1748) in paragraph at lines 234--235
+\OT1/ptm/m/n/10.95 A DeBERTa-v3-large bi-nary am-bi-gu-ity de-tec-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
+ []\OT1/ptm/b/n/10.95 Differential Nocu-ity.[] \OT1/ptm/m/n/10.95 Berry and Kam
+-sties'
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
+ []\OT1/ptm/b/n/10.95 Safety Train-ing Se-lec-tiv-ity.[] \OT1/ptm/m/n/10.95 The
+ 52pp
+ []
+
+
+Underfull \hbox (badness 4454) in paragraph at lines 240--241
+\OT1/ptm/m/n/10.95 auth[]scope range (Claude 12% vs. GPT-5.4
+ []
+
+
+Underfull \hbox (badness 1496) in paragraph at lines 240--241
+\OT1/ptm/m/n/10.95 64%) re-veals that safety train-ing can specif-i-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
+\OT1/ptm/m/n/10.95 authorization-boundary ro-bust-ness con-trasts
+ []
+
+
+Underfull \hbox (badness 3679) in paragraph at lines 242--243
+ []\OT1/ptm/b/n/10.95 Systematic Nocu-ity.[] \OT1/ptm/m/n/10.95 In 27% of am-bi
+gu-ous
+ []
+
+[4]
+Underfull \hbox (badness 7540) in paragraph at lines 244--245
+ []\OT1/ptm/b/n/10.95 Disambiguation Chan-nel Frame-work.[] \OT1/ptm/m/n/10.95 
+The
+ []
+
+
+Underfull \hbox (badness 1728) in paragraph at lines 250--251
+[]\OT1/ptm/m/n/10.95 Clauses are syn-thet-i-cally gen-er-ated, though
+ []
+
+
+Underfull \hbox (badness 5022) in paragraph at lines 254--255
+\OT1/ptm/m/n/10.95 Policy am-bi-gu-ity uni-ver-sally causes mas-sive
+ []
+
+
+Underfull \hbox (badness 1270) in paragraph at lines 254--255
+\OT1/ptm/m/n/10.95 am-bi-gu-ity type and model ar-chi-tec-ture. The
+ []
+
+
+Underfull \hbox (badness 5036) in paragraph at lines 254--255
+\OT1/ptm/m/n/10.95 com-plete-ness blind spot---reveals that safety
+ []
+
+
+Underfull \hbox (badness 1377) in paragraph at lines 254--255
+\OT1/ptm/m/n/10.95 train-ing ad-dresses am-bi-gu-ity se-lec-tively rather
+ []
+
+
+Underfull \vbox (badness 1348) has occurred while \output is active []
+
+
+Underfull \hbox (badness 1102) in paragraph at lines 268--272
+[]\OT1/ptm/m/n/10 Alessio Fer-rari, Glo-ria O. Spag-nolo, and Ste-fa-nia
+ []
+
+[5] [6
+
+] (./paper.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+ ***********
+Package rerunfilecheck Info: File `paper.out' has not changed.
+(rerunfilecheck)             Checksum: 2AB56A29C58413783ED90772DF1EAF6F;2976.
+ ) 
+Here is how much of TeX's memory you used:
+ 12216 strings out of 469438
+ 190867 string characters out of 5468411
+ 628383 words of memory out of 5000000
+ 40658 multiletter control sequences out of 15000+600000
+ 652757 words of font info for 94 fonts, out of 8000000 for 9000
+ 59 hyphenation exceptions out of 8191
+ 90i,10n,93p,1455b,599s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (6 pages, 155597 bytes).
+PDF statistics:
+ 277 PDF objects out of 1000 (max. 8388607)
+ 242 compressed objects within 3 object streams
+ 66 named destinations out of 1000 (max. 500000)
+ 169 words of extra memory for PDF output out of 10000 (max. 10000000)
+

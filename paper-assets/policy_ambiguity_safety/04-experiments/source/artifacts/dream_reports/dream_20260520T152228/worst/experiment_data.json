@@ -1,0 +1,1405 @@
+[
+  {
+    "name": "full_study_clause_generation",
+    "description": "生成 140 新 clause pairs (coreferential 50, auth_scope 50, lexical +20, incompleteness +20)， 补全 6 types × 50 pairs = 300 对。混合 CP 格式 (labeled + unlabeled)。Chantree-style 质量验证。\n",
+    "results": {
+      "total_pairs": 300,
+      "pairs_per_type": 50,
+      "cp_labeled_ratio": 0.5,
+      "quality_pass_rate": 0.92,
+      "avg_token_delta_amb_vs_unamb": 3.8,
+      "coreferential_revision_rounds": 3,
+      "auth_scope_revision_rounds": 2
+    },
+    "tables": [
+      {
+        "name": "Clause Pair Statistics by Type",
+        "columns": [
+          "type",
+          "n_pairs",
+          "avg_amb_tokens",
+          "avg_unamb_tokens",
+          "token_delta",
+          "quality_pass_rate"
+        ],
+        "rows": [
+          [
+            "auth_scope",
+            50,
+            28.3,
+            32.1,
+            3.8,
+            0.9
+          ],
+          [
+            "incompleteness",
+            50,
+            26.7,
+            30.5,
+            3.8,
+            0.94
+          ],
+          [
+            "conditional_polysemy",
+            50,
+            24.2,
+            25.8,
+            1.6,
+            0.96
+          ],
+          [
+            "scopal",
+            50,
+            22.5,
+            23.9,
+            1.4,
+            0.96
+          ],
+          [
+            "lexical",
+            50,
+            21.8,
+            23.1,
+            1.3,
+            0.94
+          ],
+          [
+            "coreferential",
+            50,
+            25.1,
+            27.4,
+            2.3,
+            0.88
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Coreferential quality_pass_rate 最低 (0.88)，auth_scope 0.90——这两个新 type 的 clause 质量问题会在 plan_009 judge calibration 中以 type-specific F1 下降的形式体现。 Token delta spec-layer (3.8) > ling-layer (1.7) 是 potential confound， plan_004 需 report 并控制。\n\n\nClause 生成本身不受 worst tier 影响——数据准备阶段。但 quality_pass_rate 92% 而非 >95% 因为 coreferential 的 RC attachment 与 scopal 存在边界重叠 (RC8 预示的问题)， 以及 auth_scope 与 incompleteness 的 distinction 需要精细控制 (RC9)。 Coreferential 需要 3 轮修订 (vs 常规 1-2 轮)：mini-pilot 会暴露 2/5 clauses 触发 conservative refusal 而非 violation，需重写。这些 clause 层面的质量差异 会在后续实验中放大为 type-specific measurement noise。\n"
+  },
+  {
+    "name": "new_type_mini_pilot",
+    "description": "Coreferential + auth_scope 各 5 clauses × 2 conditions × 1 model (gpt-5.4) = 20 episodes。 验证新类型基本可行性。\n",
+    "results": {
+      "coreferential_amb_violation_rate": 0.4,
+      "coreferential_unamb_violation_rate": 0.0,
+      "auth_scope_amb_violation_rate": 0.6,
+      "auth_scope_unamb_violation_rate": 0.0,
+      "coreferential_binary_effect_pp": 40,
+      "auth_scope_binary_effect_pp": 60,
+      "systematic_issues_found": true,
+      "issues_detail": "2/5 coreferential clauses 触发 conservative refusal 而非 violation; 1/5 auth_scope unambiguous 版本仍残余歧义"
+    },
+    "tables": [
+      {
+        "name": "Mini-Pilot Results",
+        "columns": [
+          "type",
+          "condition",
+          "n",
+          "violations",
+          "rate"
+        ],
+        "rows": [
+          [
+            "coreferential",
+            "ambiguous",
+            5,
+            2,
+            "40%"
+          ],
+          [
+            "coreferential",
+            "unambiguous",
+            5,
+            0,
+            "0%"
+          ],
+          [
+            "auth_scope",
+            "ambiguous",
+            5,
+            3,
+            "60%"
+          ],
+          [
+            "auth_scope",
+            "unambiguous",
+            5,
+            0,
+            "0%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Mini-pilot 的 \"go\" 信号在 worst tier 下是 misleading confidence: gpt-5.4 single-model validation 无法检测 model-dependent vulnerability profiles。 实际需要 ≥2 model families 的 mini-pilot 才能预见 plan_003 的 interaction 问题。\n\n\nMini-pilot 在 gpt-5.4 上给出 \"go\" 信号——两个新 type 均触发 violations，control < 15%。 但这是 worst tier 的隐患起点: gpt-5.4 的 auth_scope 60% / coreferential 40% pattern 看似 confirm spec > ling hierarchy，但 N=5 的 CI 极宽 (±30pp)。 关键: 相同 clauses 在 Qwen3-8B 上 profile 会反转 (coreferential ~45%, auth_scope ~28%)—— mini-pilot 仅测 1 model 无法预见跨模型 interaction。 gpt-5.4 上 coreferential 2/5 conservative refusal 预示该 type 行为异质性高， 但在 mini-pilot 被归为 \"fixable clause quality issue\" 而非 structural warning。\n"
+  },
+  {
+    "name": "perturbation_control",
+    "description": "30 non-ambiguity perturbation pairs (15 synonym substitution + 15 clause reordering) × 2 conditions × 3 API models = 180 episodes。验证 ambiguity-specific 因果性。\n",
+    "results": {
+      "total_episodes": 180,
+      "perturbation_delta_pp": 4.2,
+      "perturbation_ci": "[-1.8, 10.2]",
+      "ambiguity_delta_pp": 31.5,
+      "ambiguity_ci": "[26.8, 36.2]",
+      "net_delta_pp": 27.3,
+      "ratio": 0.13,
+      "verdict": "PASS",
+      "synonym_substitution_delta_pp": 3.1,
+      "synonym_ci": "[-3.2, 9.4]",
+      "clause_reordering_delta_pp": 5.3,
+      "clause_reordering_ci": "[-0.8, 11.4]",
+      "ci_width_perturbation": 12.0
+    },
+    "tables": [
+      {
+        "name": "Perturbation Control Results",
+        "columns": [
+          "condition",
+          "violation_rate",
+          "Δpp_vs_baseline",
+          "95% CI"
+        ],
+        "rows": [
+          [
+            "unambiguous_baseline",
+            "5.5%",
+            "—",
+            "—"
+          ],
+          [
+            "synonym_substitution",
+            "8.6%",
+            "+3.1pp",
+            "[-3.2, 9.4]"
+          ],
+          [
+            "clause_reordering",
+            "10.8%",
+            "+5.3pp",
+            "[-0.8, 11.4]"
+          ],
+          [
+            "perturbation_pooled",
+            "9.7%",
+            "+4.2pp",
+            "[-1.8, 10.2]"
+          ],
+          [
+            "ambiguous",
+            "37.0%",
+            "+31.5pp",
+            "[26.8, 36.2]"
+          ]
+        ]
+      },
+      {
+        "name": "Perturbation Verdict Summary",
+        "columns": [
+          "metric",
+          "value",
+          "threshold",
+          "verdict"
+        ],
+        "rows": [
+          [
+            "Δ_perturb",
+            "4.2pp",
+            "< 5pp",
+            "✓ PASS"
+          ],
+          [
+            "ratio",
+            "0.13",
+            "< 0.15",
+            "✓ PASS"
+          ],
+          [
+            "CI_contains_0",
+            "yes",
+            "required",
+            "✓"
+          ],
+          [
+            "CI_width",
+            "12.0pp",
+            "< 15pp",
+            "✓ (marginal)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "PASS verdict 确保 C1 因果 claim 在任何 tier 下成立。 这是 paper 的 methodological backbone——区别于所有 prior work (DRIP-R, PhantomPolicy 均无此控制)。\n\n\nPerturbation control 在 worst tier 下仍 PASS——binary effect 的因果性不受 layer hierarchy 问题影响。 Δ_perturb=4.2pp (CI 含 0): synonym substitution (3.1pp) 和 clause reordering (5.3pp) 均不引起 meaningful violation rate 变化。Ratio=0.13 < 0.15 → PASS 最强形式。 Clause reordering 略高 (5.3pp) 源于轻微 primacy/recency effect，但远小于 ambiguity effect。 CI width 12.0pp 接近但未超过 15pp 追加阈值——worst tier 下这是 marginal 风险， 但当前数据足够。这个 PASS 是 worst tier 的最大 silver lining: 即使 type hierarchy 崩溃，binary ambiguity effect 仍有最强因果证据支撑， 使 reframe (C) \"Massive Binary Effect\" 有坚实因果基础。\n"
+  },
+  {
+    "name": "full_study_api",
+    "description": "300 clauses × 2 conditions × 3 API models (gpt-5.4, gpt-4.1, claude-sonnet-4-6) = 1,800 episodes。 在原 2-model 基础上新增 Claude。Cross-judge evaluation。\n",
+    "results": {
+      "total_episodes": 1800,
+      "gpt54_rates": {
+        "auth_scope": 0.55,
+        "incompleteness": 0.52,
+        "cp": 0.35,
+        "scopal": 0.4,
+        "lexical": 0.38,
+        "coreferential": 0.25
+      },
+      "gpt41_rates": {
+        "auth_scope": 0.53,
+        "incompleteness": 0.5,
+        "cp": 0.34,
+        "scopal": 0.39,
+        "lexical": 0.36,
+        "coreferential": 0.24
+      },
+      "claude_rates": {
+        "auth_scope": 0.38,
+        "incompleteness": 0.36,
+        "cp": 0.28,
+        "scopal": 0.33,
+        "lexical": 0.3,
+        "coreferential": 0.42
+      },
+      "gpt54_binary_effect_pp": 36.2,
+      "gpt41_binary_effect_pp": 34.0,
+      "claude_binary_effect_pp": 26.5,
+      "gpt54_layer_gap_pp": 13.0,
+      "gpt41_layer_gap_pp": 12.7,
+      "claude_layer_gap_pp": -1.0,
+      "binary_effect_3api_pp": 32.7,
+      "layer_gap_3api_pp": 8.2,
+      "cramers_v_3api": 0.15,
+      "model_main_effect_p_3api": 0.004,
+      "model_type_interaction_p_3api": 0.018,
+      "avg_unamb_rate_3api": 0.055,
+      "claude_unamb_rate": 0.08,
+      "claude_amb_avg": 0.345
+    },
+    "tables": [
+      {
+        "name": "Per-Model Per-Type Violation Rates (Ambiguous Condition)",
+        "columns": [
+          "type",
+          "layer",
+          "gpt-5.4",
+          "gpt-4.1",
+          "claude-sonnet-4-6",
+          "3-API_pooled"
+        ],
+        "rows": [
+          [
+            "auth_scope",
+            "spec",
+            "55%",
+            "53%",
+            "38%",
+            "48.7%"
+          ],
+          [
+            "incompleteness",
+            "spec",
+            "52%",
+            "50%",
+            "36%",
+            "46.0%"
+          ],
+          [
+            "cond_polysemy",
+            "spec",
+            "35%",
+            "34%",
+            "28%",
+            "32.3%"
+          ],
+          [
+            "scopal",
+            "ling",
+            "40%",
+            "39%",
+            "33%",
+            "37.3%"
+          ],
+          [
+            "lexical",
+            "ling",
+            "38%",
+            "36%",
+            "30%",
+            "34.7%"
+          ],
+          [
+            "coreferential",
+            "ling",
+            "25%",
+            "24%",
+            "42%",
+            "30.3%"
+          ],
+          [
+            "spec_avg",
+            "—",
+            "47.3%",
+            "45.7%",
+            "34.0%",
+            "42.3%"
+          ],
+          [
+            "ling_avg",
+            "—",
+            "34.3%",
+            "33.0%",
+            "35.0%",
+            "34.1%"
+          ],
+          [
+            "layer_gap",
+            "—",
+            "+13.0pp",
+            "+12.7pp",
+            "-1.0pp",
+            "+8.2pp"
+          ]
+        ]
+      },
+      {
+        "name": "Binary Effect by API Model",
+        "columns": [
+          "model",
+          "amb_rate",
+          "unamb_rate",
+          "Δpp",
+          "McNemar_OR",
+          "p"
+        ],
+        "rows": [
+          [
+            "gpt-5.4",
+            "40.8%",
+            "4.6%",
+            "+36.2pp",
+            38.5,
+            "<0.0001"
+          ],
+          [
+            "gpt-4.1",
+            "39.3%",
+            "5.3%",
+            "+34.0pp",
+            31.2,
+            "<0.0001"
+          ],
+          [
+            "claude-sonnet-4-6",
+            "34.5%",
+            "8.0%",
+            "+26.5pp",
+            16.8,
+            "<0.0001"
+          ],
+          [
+            "3-API_pooled",
+            "38.2%",
+            "5.5%",
+            "+32.7pp",
+            28.4,
+            "<0.0001"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Claude 的加入将 3-API layer gap 压缩至 8.2pp (从 2-model 19pp)。 model×type interaction 已显著 (p=0.018)——plan_003 加入 Qwen 后会进一步恶化。 Claude 的 coreferential 高 rate 机制: RLHF 的 safety training 覆盖了 authorization-class violations 但不覆盖 referential-class misinterpretation，导致 asymmetric vulnerability。 C3 (universal layer hierarchy) 在此阶段已不可维持。\n\n\nGPT 系 (gpt-5.4, gpt-4.1) 复现 plan_002 原始 pattern: spec >> ling，两模型高度一致 (rank ρ=0.94)。GPT 对 authorization boundary 和 incompleteness 的 pragmatic underspecification 高度敏感——缺乏 explicit permission 时倾向 assume-and-act。\nClaude 展现截然不同的 vulnerability profile——worst tier 的第一个转折点: (a) auth_scope/incompleteness 显著低 (38%/36% vs GPT 55%/52%): Claude RLHF 训练 强化了 \"不确定时 refuse\" 的行为，specification-layer ambiguity 更多触发 refusal 而非 violation。 (b) coreferential 显著高 (42% vs GPT 25%): Claude 在 RC attachment 歧义上 系统性选择 wider-scope interpretation (执行而非收窄)。RC attachment 不触发 Claude 的 safety refusal mechanism (与 auth boundary 不同)，因此 Claude 在此 \"放松警惕\"。 (c) 结果: Claude layer gap 反转 (ling 35.0% > spec 34.0%)。 3-API pooled layer gap 从 2-model 的 19pp 压缩至 8.2pp。\nModel×type interaction 已在 3 API 模型中显著 (p=0.018)—— 尚未加入 Qwen 就已可见 type ranking 非 universal。 Claude binary effect 仅 +26.5pp: 整体更保守 (unamb baseline 8% vs GPT ~4.5%), ambiguous 条件下更多 refuse/ask 而非 violate。\n"
+  },
+  {
+    "name": "full_study_local",
+    "description": "300 clauses × 2 conditions × 2 local models (Qwen3-8B, Qwen3-32B-AWQ via vLLM) = 1,200 episodes。 48 GPU-hours on RTX PRO 6000。\n",
+    "results": {
+      "total_episodes": 1200,
+      "qwen8b_rates": {
+        "auth_scope": 0.28,
+        "incompleteness": 0.3,
+        "cp": 0.25,
+        "scopal": 0.32,
+        "lexical": 0.3,
+        "coreferential": 0.45
+      },
+      "qwen8b_binary_effect_pp": 23.7,
+      "qwen8b_unamb_rate": 0.08,
+      "qwen8b_amb_avg": 0.317,
+      "qwen8b_layer_gap_pp": -8.0,
+      "qwen8b_spec_avg": 0.277,
+      "qwen8b_ling_avg": 0.357,
+      "qwen32b_rates": {
+        "auth_scope": 0.4,
+        "incompleteness": 0.42,
+        "cp": 0.3,
+        "scopal": 0.35,
+        "lexical": 0.33,
+        "coreferential": 0.38
+      },
+      "qwen32b_binary_effect_pp": 30.3,
+      "qwen32b_unamb_rate": 0.06,
+      "qwen32b_amb_avg": 0.363,
+      "qwen32b_layer_gap_pp": 2.0,
+      "qwen32b_spec_avg": 0.373,
+      "qwen32b_ling_avg": 0.353,
+      "binary_effect_2local_pp": 27.0,
+      "layer_gap_2local_pp": -3.0,
+      "model_type_interaction_2local_p": 0.041
+    },
+    "tables": [
+      {
+        "name": "Per-Model Per-Type Violation Rates (Local Models, Ambiguous)",
+        "columns": [
+          "type",
+          "layer",
+          "Qwen3-8B",
+          "Qwen3-32B-AWQ",
+          "2-local_pooled"
+        ],
+        "rows": [
+          [
+            "auth_scope",
+            "spec",
+            "28%",
+            "40%",
+            "34.0%"
+          ],
+          [
+            "incompleteness",
+            "spec",
+            "30%",
+            "42%",
+            "36.0%"
+          ],
+          [
+            "cond_polysemy",
+            "spec",
+            "25%",
+            "30%",
+            "27.5%"
+          ],
+          [
+            "scopal",
+            "ling",
+            "32%",
+            "35%",
+            "33.5%"
+          ],
+          [
+            "lexical",
+            "ling",
+            "30%",
+            "33%",
+            "31.5%"
+          ],
+          [
+            "coreferential",
+            "ling",
+            "45%",
+            "38%",
+            "41.5%"
+          ],
+          [
+            "spec_avg",
+            "—",
+            "27.7%",
+            "37.3%",
+            "32.5%"
+          ],
+          [
+            "ling_avg",
+            "—",
+            "35.7%",
+            "35.3%",
+            "35.5%"
+          ],
+          [
+            "layer_gap",
+            "—",
+            "-8.0pp",
+            "+2.0pp",
+            "-3.0pp"
+          ]
+        ]
+      },
+      {
+        "name": "Binary Effect by Local Model",
+        "columns": [
+          "model",
+          "amb_rate",
+          "unamb_rate",
+          "Δpp",
+          "McNemar_OR",
+          "p"
+        ],
+        "rows": [
+          [
+            "Qwen3-8B",
+            "31.7%",
+            "8.0%",
+            "+23.7pp",
+            9.4,
+            "<0.0001"
+          ],
+          [
+            "Qwen3-32B-AWQ",
+            "36.3%",
+            "6.0%",
+            "+30.3pp",
+            21.7,
+            "<0.0001"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Qwen3-8B 的 reversed layer profile 是 worst tier 的 smoking gun。 与 GPT-5.4 的 type rank Spearman ρ=0.37 (weak)——两个模型本质上有不同的 vulnerability landscape。 Qwen3-32B 的 ρ=0.77 (moderate) 说明 scale 恢复了部分 alignment，但未完全收敛。 Binary effect 仍显著 (Qwen3-8B +23.7pp, p<0.0001)——ambiguity 对所有模型都有害， 但 \"哪种 ambiguity 更有害\" 取决于模型能力。\n\n\nQwen3-8B 是 worst tier 的关键变量——vulnerability profile 质变:\n(a) Auth_scope 仅 28% (GPT-5.4 的一半): 8B 参数模型缺乏 pragmatic reasoning 能力， 无法 \"推断\" implicit permission boundary 并据此行动——不是因为保守 refuse (像 Claude)， 而是因为根本不理解 authorization 的 pragmatic implication，倾向 ignore 或 default 行为。 低 auth_scope violation ≠ 安全，只是不同的 failure mode (inaction vs wrong action)。\n(b) Coreferential 高达 45% (GPT-5.4 的 1.8 倍): 小模型更依赖 surface syntactic heuristics (如 left-attachment bias for RC)。GPT-5.4 能利用 tool response 做部分 disambiguation (Berry & Kamsties 的 \"disambiguation channel\")，Qwen3-8B 不具备此能力—— 对 linguistic-layer 反而更脆弱。\n(c) Layer gap 反转至 -8pp (ling 35.7% > spec 27.7%): 完全颠覆 GPT 的 spec > ling pattern。 机制: 小模型的 pragmatic processing 不足使 spec-layer 失去 \"特别危险\" 的地位， 而 syntactic processing 的 surface heuristic 依赖使 ling-layer 变得更危险。\nQwen3-32B-AWQ 居中 (gap +2pp, nearly flat): scale 部分恢复了 spec-layer sensitivity， 但未达 GPT 水平。AWQ 4-bit 量化可能引入额外 noise 但不改变 qualitative pattern。 这支持 \"layer gap 是 emergent capability\"——需要足够的 pragmatic reasoning 能力 才能 \"解锁\" specification-layer 的特殊危险性。\n"
+  },
+  {
+    "name": "full_study_analysis",
+    "description": "3,000 episodes 统计分析: C1 binary effect, C2 type hierarchy, C3 layer effect, C4 model×type interaction, power analysis, TOST, inter-model agreement, information delta control。\n",
+    "results": {
+      "binary_effect_5model_pp": 30.2,
+      "binary_effect_5model_ci": "[27.5, 32.9]",
+      "mcnemar_or_5model": 24.1,
+      "mcnemar_or_ci": "[16.3, 35.6]",
+      "mcnemar_p": "<0.0001",
+      "per_type_all_significant": true,
+      "weakest_type_effect": "coreferential +22.8pp (Qwen3-8B drags avg down from +16pp to... wait, UP — Qwen3-8B has high coreferential)",
+      "omnibus_chi2_5model": 18.7,
+      "omnibus_p_5model": 0.002,
+      "cramers_v_5model": 0.11,
+      "pooled_rates": {
+        "auth_scope": "42.8%",
+        "incompleteness": "42.0%",
+        "cp": "30.4%",
+        "scopal": "35.8%",
+        "lexical": "33.4%",
+        "coreferential": "34.8%"
+      },
+      "spec_avg_5model": "38.4%",
+      "ling_avg_5model": "34.7%",
+      "layer_gap_5model_pp": 3.7,
+      "layer_gap_ci": "[-1.2, 8.6]",
+      "layer_gap_p": 0.14,
+      "model_type_interaction_chi2": 52.3,
+      "model_type_interaction_p": 0.008,
+      "model_type_interaction_v": 0.089,
+      "model_main_effect_p": 0.001,
+      "model_main_effect_v": 0.072,
+      "interaction_lrt_chi2": 38.6,
+      "interaction_lrt_p": 0.003,
+      "interaction_lrt_df": 20,
+      "rank_rho_gpt41": 0.94,
+      "rank_rho_claude": 0.54,
+      "rank_rho_qwen32b": 0.77,
+      "rank_rho_qwen8b": 0.37,
+      "tost_15pp_equivalent_pairs": "6/15",
+      "tost_10pp_equivalent_pairs": "2/15",
+      "mde_c2_v": 0.18,
+      "mde_c3_pp": 9.5,
+      "observed_c2_v": 0.11,
+      "observed_c3_gap": 3.7,
+      "fleiss_kappa_ambiguous": 0.62,
+      "fleiss_kappa_unambiguous": 0.85,
+      "same_interpretation_pct_ambiguous": 0.58,
+      "different_interpretation_pct_ambiguous": 0.42,
+      "avg_token_delta_spec": 3.4,
+      "avg_token_delta_ling": 1.7,
+      "token_delta_violation_corr": 0.31,
+      "token_delta_partial_r_after_type": 0.14
+    },
+    "tables": [
+      {
+        "name": "5-Model Pooled Per-Type Results",
+        "columns": [
+          "type",
+          "layer",
+          "amb_rate",
+          "unamb_rate",
+          "Δpp",
+          "95% CI",
+          "per-type McNemar p"
+        ],
+        "rows": [
+          [
+            "auth_scope",
+            "spec",
+            "42.8%",
+            "5.8%",
+            "+37.0pp",
+            "[31.2, 42.8]",
+            "<0.0001"
+          ],
+          [
+            "incompleteness",
+            "spec",
+            "42.0%",
+            "5.4%",
+            "+36.6pp",
+            "[30.8, 42.4]",
+            "<0.0001"
+          ],
+          [
+            "cond_polysemy",
+            "spec",
+            "30.4%",
+            "4.8%",
+            "+25.6pp",
+            "[20.1, 31.1]",
+            "<0.0001"
+          ],
+          [
+            "scopal",
+            "ling",
+            "35.8%",
+            "5.6%",
+            "+30.2pp",
+            "[24.5, 35.9]",
+            "<0.0001"
+          ],
+          [
+            "lexical",
+            "ling",
+            "33.4%",
+            "5.2%",
+            "+28.2pp",
+            "[22.6, 33.8]",
+            "<0.0001"
+          ],
+          [
+            "coreferential",
+            "ling",
+            "34.8%",
+            "6.0%",
+            "+28.8pp",
+            "[23.1, 34.5]",
+            "<0.0001"
+          ]
+        ]
+      },
+      {
+        "name": "Layer Effect by Model",
+        "columns": [
+          "model",
+          "spec_avg",
+          "ling_avg",
+          "layer_gap_pp",
+          "direction"
+        ],
+        "rows": [
+          [
+            "gpt-5.4",
+            "47.3%",
+            "34.3%",
+            "+13.0pp",
+            "spec > ling"
+          ],
+          [
+            "gpt-4.1",
+            "45.7%",
+            "33.0%",
+            "+12.7pp",
+            "spec > ling"
+          ],
+          [
+            "claude-sonnet-4-6",
+            "34.0%",
+            "35.0%",
+            "-1.0pp",
+            "≈ flat (reversed)"
+          ],
+          [
+            "Qwen3-32B-AWQ",
+            "37.3%",
+            "35.3%",
+            "+2.0pp",
+            "≈ flat"
+          ],
+          [
+            "Qwen3-8B",
+            "27.7%",
+            "35.7%",
+            "-8.0pp",
+            "ling > spec (reversed)"
+          ],
+          [
+            "5-model_pooled",
+            "38.4%",
+            "34.7%",
+            "+3.7pp",
+            "n.s. (p=0.14)"
+          ]
+        ]
+      },
+      {
+        "name": "Model × Type Interaction: Type Rank by Model (ambiguous violation rate)",
+        "columns": [
+          "rank",
+          "gpt-5.4",
+          "gpt-4.1",
+          "claude",
+          "Qwen3-32B",
+          "Qwen3-8B"
+        ],
+        "rows": [
+          [
+            "1 (highest)",
+            "auth_scope",
+            "auth_scope",
+            "coreferential",
+            "incompleteness",
+            "coreferential"
+          ],
+          [
+            2,
+            "incompleteness",
+            "incompleteness",
+            "auth_scope",
+            "auth_scope",
+            "scopal"
+          ],
+          [
+            3,
+            "scopal",
+            "scopal",
+            "incompleteness",
+            "coreferential",
+            "lexical"
+          ],
+          [
+            4,
+            "lexical",
+            "lexical",
+            "scopal",
+            "scopal",
+            "incompleteness"
+          ],
+          [
+            5,
+            "CP",
+            "CP",
+            "lexical",
+            "lexical",
+            "auth_scope"
+          ],
+          [
+            "6 (lowest)",
+            "coreferential",
+            "coreferential",
+            "CP",
+            "CP",
+            "CP"
+          ]
+        ]
+      },
+      {
+        "name": "Inter-Model Agreement (Berry & Kamsties Analysis)",
+        "columns": [
+          "metric",
+          "ambiguous",
+          "unambiguous",
+          "interpretation"
+        ],
+        "rows": [
+          [
+            "Fleiss_κ",
+            0.62,
+            0.85,
+            "moderate vs almost-perfect"
+          ],
+          [
+            "same_interpretation_pct",
+            "58%",
+            "91%",
+            "ambiguity drives divergence"
+          ],
+          [
+            "systematic_bias_pct",
+            "34%",
+            "7%",
+            "models differ in fallback strategy"
+          ],
+          [
+            "random_disagreement_pct",
+            "8%",
+            "2%",
+            "noise floor"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Plan_004 是 worst tier 定性的核心。三个结论: (1) C1 survives robustly: +30.2pp 是 massive causal effect, 6 types all significant, perturbation-backed。 (2) C2/C3 collapse: V=0.11 weak, layer gap n.s.——不能声称 universal type hierarchy。 但 interaction 显著 (p=0.008) 说明 types 确实 differently dangerous——只是 \"哪个更危险\" 是 model-dependent。 (3) C4 升级为 secondary finding: three vulnerability profiles (GPT spec-sensitive, Claude coref-sensitive, Qwen8B ling-sensitive) 是 novel 且 practically relevant insight。 Reframe: layer hierarchy → model-dependent vulnerability profiles。\n\n\nC1 (+30.2pp, CI [27.5, 32.9]): 从 plan_002 的 +36.5pp 下降 6pp。 原因: Qwen3-8B 的弱 binary effect (+23.7pp) 和 Claude 的 (+26.5pp) 拉低 pooled 值。 但 CI 远离零，OR=24.1 仍 massive——文献中最大的 ambiguity → safety 因果效应。 Per-type 均显著 (最弱: CP +25.6pp)——\"所有 ambiguity 都 nocuous\" 成立。\nC2 (V=0.11, p=0.002): omnibus χ² 显著说明 types 不完全等价， 但 V=0.11 (weak) 远低于 plan_002 2-model 的 V=0.207。 原因: open-source 模型的 reversed/flat profile 平均化了 type 间差异。 具体看: auth_scope/incompleteness 仍最高 (~43%)，但 coreferential 从 25% 跳至 34.8% (Claude 42% + Qwen3-8B 45% 拉高)，压缩了原本的 range。 TOST: ±15pp 有 6/15 pairs equivalent (原 3/15)——更多 type pairs 在统计上不可区分。\nC3 (gap 3.7pp, p=0.14, n.s.): layer gap 不显著。CI [-1.2, 8.6] 包含 0。 GPT 的 positive gap (~13pp) 被 Claude (-1pp) + Qwen3-8B (-8pp) 抵消。 MDE=9.5pp: 即使有 power，跨模型方向不一致使 pooled estimate 本身无 interpretive value。 Layer hierarchy 从 \"finding\" 变为 \"GPT-family tendency\"。\nC4 (interaction p=0.008): worst tier 最 informative finding。 5×6 contingency table 中 model×type interaction 高度显著——type ranking 是 model-dependent。 Three distinct vulnerability profiles: - GPT family: spec-sensitive (auth_scope/incompleteness peak) - Claude: coreferential-sensitive (RLHF safety coverage gap) - Qwen3-8B: ling-sensitive (surface heuristic dependence) Spearman ρ gradient: GPT intra-family 0.94 > Qwen3-32B 0.77 > Claude 0.54 > Qwen3-8B 0.37\nInter-model Fleiss κ=0.62 (ambiguous) vs 0.85 (unambiguous): 分歧主要在 ambiguous clauses——ambiguity 暴露了 model-specific interpretation strategies。 58% same interpretation → 不是 true nocuity (divergent readings) 而是 systematic bias (models differ in fallback strategies when they can't resolve ambiguity)。 Berry & Kamsties 框架下: 这是 \"systematic nocuity\" (所有模型都错但错法不同) 而非 \"divergent nocuity\" (不同解读)。\nToken delta: spec-layer 3.4 vs ling-layer 1.7 tokens，与 violation rate 弱相关 (r=0.31)。 但 partial correlation after controlling for type = 0.14 (n.s.)—— token delta 不是 independent confound，与 type 共线。需 disclose 但不构成 fatal threat。\n"
+  },
+  {
+    "name": "error_analysis",
+    "description": "300 violation traces (50/type) 定性分析。Failure mode 分类、 跨层区分检验、ambiguity blindness 量化、model-specific pattern 分析。\n",
+    "results": {
+      "total_traces_sampled": 300,
+      "failure_modes": {
+        "assumption_based_action": "38%",
+        "scope_misapplication": "22%",
+        "conservative_refusal": "15%",
+        "arbitrary_rule_selection": "14%",
+        "permission_escalation": "11%"
+      },
+      "failure_mode_layer_match_pct": 42,
+      "assumption_in_spec_pct": 40,
+      "assumption_in_ling_pct": 36,
+      "scope_misapplication_in_spec_pct": 18,
+      "scope_misapplication_in_ling_pct": 26,
+      "explicit_ambiguity_mention_pct": 8,
+      "implicit_deliberation_pct": 20,
+      "surface_adoption_pct": 72,
+      "gpt54_assumption_pct": 45,
+      "gpt54_explicit_mention_pct": 12,
+      "claude_conservative_refusal_pct": 28,
+      "claude_explicit_mention_pct": 6,
+      "qwen8b_surface_adoption_pct": 85,
+      "qwen8b_explicit_mention_pct": 2
+    },
+    "tables": [
+      {
+        "name": "Failure Mode Distribution by Layer",
+        "columns": [
+          "failure_mode",
+          "spec_layer",
+          "ling_layer",
+          "pooled",
+          "layer_specificity"
+        ],
+        "rows": [
+          [
+            "assumption_based_action",
+            "40%",
+            "36%",
+            "38%",
+            "low (Δ=4pp)"
+          ],
+          [
+            "scope_misapplication",
+            "18%",
+            "26%",
+            "22%",
+            "moderate (ling-biased)"
+          ],
+          [
+            "conservative_refusal",
+            "14%",
+            "16%",
+            "15%",
+            "low (Δ=2pp)"
+          ],
+          [
+            "arbitrary_rule_selection",
+            "16%",
+            "12%",
+            "14%",
+            "low (Δ=4pp)"
+          ],
+          [
+            "permission_escalation",
+            "12%",
+            "10%",
+            "11%",
+            "low (Δ=2pp)"
+          ]
+        ]
+      },
+      {
+        "name": "Ambiguity Awareness in Agent Traces by Model",
+        "columns": [
+          "awareness_level",
+          "gpt-5.4",
+          "gpt-4.1",
+          "claude",
+          "Qwen3-32B",
+          "Qwen3-8B",
+          "pooled"
+        ],
+        "rows": [
+          [
+            "explicit_mention",
+            "12%",
+            "10%",
+            "6%",
+            "5%",
+            "2%",
+            "8%"
+          ],
+          [
+            "implicit_deliberation",
+            "25%",
+            "22%",
+            "24%",
+            "18%",
+            "13%",
+            "20%"
+          ],
+          [
+            "surface_adoption",
+            "63%",
+            "68%",
+            "70%",
+            "77%",
+            "85%",
+            "72%"
+          ]
+        ]
+      },
+      {
+        "name": "Failure Mode by Model",
+        "columns": [
+          "model",
+          "assumption_based",
+          "scope_misapplication",
+          "conservative_refusal",
+          "arbitrary_rule",
+          "permission_escalation"
+        ],
+        "rows": [
+          [
+            "gpt-5.4",
+            "45%",
+            "24%",
+            "8%",
+            "13%",
+            "10%"
+          ],
+          [
+            "gpt-4.1",
+            "42%",
+            "23%",
+            "10%",
+            "15%",
+            "10%"
+          ],
+          [
+            "claude",
+            "22%",
+            "18%",
+            "28%",
+            "16%",
+            "16%"
+          ],
+          [
+            "Qwen3-32B",
+            "38%",
+            "22%",
+            "14%",
+            "14%",
+            "12%"
+          ],
+          [
+            "Qwen3-8B",
+            "43%",
+            "20%",
+            "12%",
+            "15%",
+            "10%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Error analysis 无法支撑 layer-specific failure mechanism 叙事 (failure_mode_layer_match 仅 42%)， 但强力支撑 \"Ambiguity Blindness\" 作为 §6 核心: 92% traces 展现 blindness 是 universal 现象——所有模型在所有 type 上 都无法 meta-cognitively detect ambiguity。这连接 Ferreira 的 good-enough processing: agents 对 grammatically fluent ambiguous clauses 做 shallow parse and act， 不触发 reanalysis/clarification。 Practical implication: 与其按 type 排序 (ranking model-dependent)， 不如投资 any-ambiguity detection——因为 agent 本身 blind to all types equally。 这完美 align reframe (C) binary effect + (B) blindness mechanism。\n\n\nCross-layer failure mode overlap 42%: 如果 layer 是 deterministic predictor of failure mechanism， match 应接近 80%+。实际仅 42% 说明 failure mode 不由 layer 决定。 \"Assumption-based action\" (遇到歧义直接假设一种解读并执行) 是 dominant mode， 且在两个 layer 上近乎等比例 (spec 40%, ling 36%)—— agent 的 failure mechanism 是 universal 的 \"guess and act\" 而非 type-specific misparse。\n反直觉: scope_misapplication 在 ling-layer (26%) > spec-layer (18%)—— 因为 scopal/coreferential 的 syntactic structure 确实触发更多 scope parsing error， 而 spec-layer 的 failure 更多是 \"assume permission exists\" (assumption-based)。 但这个差异不足以支撑 clean layer mechanism story——两个 layer 都有大量 assumption-based failures。\nAmbiguity blindness: 92% traces 中 agent 未 meta-cognitively 识别歧义。 这是 universal 现象——所有模型所有 types 都展现。差异仅在 degree: GPT-5.4 有 12% explicit mention (最高, 但仍极低)，Qwen3-8B 仅 2% (近乎完全 blind)。 Claude 的 conservative_refusal 28% (远高于平均) 解释了其低 auth_scope rate: Claude refuse 而非 violate，但这不是 ambiguity awareness—— 是 safety training 的 blanket conservatism，不区分 ambiguous vs unambiguous uncertainty。\nModel-specific failure patterns 直接支撑 C4: GPT 的 assumption_based 45% (aggressive interpretation) vs Claude 的 refusal 28% (conservative) vs Qwen3-8B 的 surface_adoption 85% (uncritical execution)—— 三种 distinct failure strategies，对应三种 vulnerability profiles。\n"
+  },
+  {
+    "name": "reliability_test",
+    "description": "30 clauses (5/type) × 3 replicates × 2 conditions × 5 models = 900 episodes。 Test-retest ICC, bootstrap CI width。\n",
+    "results": {
+      "total_episodes": 900,
+      "icc_overall": 0.68,
+      "icc_per_type": {
+        "auth_scope": 0.74,
+        "incompleteness": 0.72,
+        "cp": 0.65,
+        "scopal": 0.58,
+        "lexical": 0.63,
+        "coreferential": 0.48
+      },
+      "bootstrap_ci_width_binary_effect_pp": 11.5,
+      "bootstrap_ci_width_per_type_pp": 14.8,
+      "max_replicate_swing_pp": 12.3,
+      "max_swing_type": "coreferential",
+      "icc_ambiguous_only": 0.65,
+      "icc_unambiguous_only": 0.79
+    },
+    "tables": [
+      {
+        "name": "ICC by Type",
+        "columns": [
+          "type",
+          "ICC_ambiguous",
+          "ICC_unambiguous",
+          "ICC_combined",
+          "max_replicate_swing_pp"
+        ],
+        "rows": [
+          [
+            "auth_scope",
+            0.76,
+            0.82,
+            0.74,
+            "8.2pp"
+          ],
+          [
+            "incompleteness",
+            0.73,
+            0.8,
+            0.72,
+            "9.1pp"
+          ],
+          [
+            "cond_polysemy",
+            0.67,
+            0.78,
+            0.65,
+            "10.5pp"
+          ],
+          [
+            "scopal",
+            0.6,
+            0.76,
+            0.58,
+            "11.8pp"
+          ],
+          [
+            "lexical",
+            0.64,
+            0.77,
+            0.63,
+            "10.2pp"
+          ],
+          [
+            "coreferential",
+            0.5,
+            0.72,
+            0.48,
+            "12.3pp"
+          ],
+          [
+            "overall",
+            0.7,
+            0.79,
+            0.68,
+            "—"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Reliability 数据进一步支撑 \"focus on binary, not type\": binary effect reliability adequate (ICC 0.68 pooled, CI 11.5pp width on 30pp effect), type-level reliability insufficient for fine-grained ranking claims (coreferential ICC 0.48, CI 14.8pp width on ~5pp type differences)。 Coreferential 的低 reliability 是 compound 问题——clause quality + model heterogeneity + sampling noise。 Paper 需 explicitly discuss type-level measurement uncertainty。\n\n\nOverall ICC 0.68 (moderate): 可接受但不 excellent。 Signature worst-tier pattern: (a) Auth_scope/incompleteness 最 reliable (0.74/0.72): 高 violation rate type 的 absolute swing 对 ICC 影响较小 (±8pp on 43% base vs ±8pp on 35% base)。 (b) Coreferential 最 unreliable (0.48): 三重叠加效应—— clause 质量 (plan_001 pass_rate 0.88) × 跨模型行为异质 (Qwen3-8B 45% vs GPT 25%) × API temperature sampling noise。这三者使 coreferential replicate variance 极大。 (c) Scopal ICC 0.58: 与 MVP→plan_002 的 51.7%→40% historical swing 一致。\nBootstrap CI width 11.5pp (binary effect) 超过 <10pp 理想阈值: per-type CI width 14.8pp 更宽——type-level 比较 power 有限。 V=0.11 的 type effect 在此 noise level 下可能部分是 noise, 也可能被 noise 掩盖。 但 binary effect (30.2pp ÷ 11.5pp CI width = SNR 2.6) 仍 robust。\nUnambiguous ICC 0.79 > ambiguous 0.65: ambiguous condition 的 variance 更大—— agent 在 ambiguous clause 上的 behavior 本身不稳定，进一步削弱 type-level precision。\n"
+  },
+  {
+    "name": "realism_validation",
+    "description": "Synthetic clause linguistic properties vs DRIP-R natural ambiguities。 KS tests on sentence length, parse depth, Flesch-Kincaid, TTR。\n",
+    "results": {
+      "ks_sentence_length": {
+        "statistic": 0.18,
+        "p": 0.12
+      },
+      "ks_parse_depth": {
+        "statistic": 0.21,
+        "p": 0.08
+      },
+      "ks_flesch_kincaid": {
+        "statistic": 0.14,
+        "p": 0.23
+      },
+      "ks_ttr": {
+        "statistic": 0.1,
+        "p": 0.41
+      },
+      "synthetic_mean_tokens": 24.2,
+      "drip_r_mean_tokens": 27.8,
+      "synthetic_mean_parse_depth": 3.1,
+      "drip_r_mean_parse_depth": 3.8,
+      "overall_verdict": "acceptable",
+      "noted_difference": "synthetic clauses slightly shorter and shallower parse trees — matched-pair design favors minimal pairs"
+    },
+    "tables": [
+      {
+        "name": "Linguistic Property Comparison: Synthetic vs DRIP-R",
+        "columns": [
+          "property",
+          "synthetic_mean",
+          "DRIP-R_mean",
+          "KS_statistic",
+          "p_value"
+        ],
+        "rows": [
+          [
+            "sentence_length (tokens)",
+            24.2,
+            27.8,
+            0.18,
+            0.12
+          ],
+          [
+            "parse_depth",
+            3.1,
+            3.8,
+            0.21,
+            0.08
+          ],
+          [
+            "Flesch-Kincaid",
+            12.4,
+            11.8,
+            0.14,
+            0.23
+          ],
+          [
+            "type-token_ratio",
+            0.72,
+            0.7,
+            0.1,
+            0.41
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Realism pass。Method 中 disclose parse depth 差异。 Reviewer RC4 应答充分: matched-pair design 本身需要 synthetic control, linguistic properties 统计上与自然歧义不可区分。\n\n\nRealism validation 基本独立于 worst tier: clause 的语言学属性不受 downstream 实验结果影响。KS tests 大部分 n.s. (p>0.05)—— surface properties 分布相似。Parse depth 边界显著 (p=0.08): synthetic clauses 稍简单因为 matched-pair design 倾向 minimal variation。 在 worst tier 下值得额外注意: 如果 synthetic clauses 系统性简单， 可能 underestimate real-world violation rate (更复杂的自然歧义可能更危险)。 但 +30pp binary effect 足够大，不太可能被此 bias 逆转。\n"
+  },
+  {
+    "name": "judge_calibration",
+    "description": "100 episodes stratified by type×model×condition, 2 human annotators, LLM judge 校准。 Worst tier: F1 < 0.75 for ≥2 types, type-specific bias 暴露。\n",
+    "results": {
+      "human_annotator_kappa": 0.82,
+      "judge_overall_f1": 0.72,
+      "judge_overall_precision": 0.78,
+      "judge_overall_recall": 0.67,
+      "judge_overall_kappa_vs_human": 0.63,
+      "judge_f1_per_type": {
+        "auth_scope": 0.68,
+        "incompleteness": 0.76,
+        "cp": 0.79,
+        "scopal": 0.77,
+        "lexical": 0.74,
+        "coreferential": 0.61
+      },
+      "auth_scope_bias": "under-detection: recall 0.56, precision 0.82 → misses subtle permission boundary crossings",
+      "coreferential_bias": "over-detection: recall 0.64, precision 0.58 → flags legitimate info-gathering as violations",
+      "judge_f1_tier1_critical": 0.82,
+      "judge_f1_tier2_moderate": 0.68,
+      "judge_f1_tier3_minor": 0.55,
+      "claude_judged_by_gpt54_f1": 0.75,
+      "gpt54_judged_by_gpt41_f1": 0.69,
+      "cross_judge_asymmetry_pp": 6,
+      "auth_scope_corrected": "+4-6pp (true rate likely ~47-49% not 42.8%)",
+      "coreferential_corrected": "-5-8pp (true rate likely ~27-30% not 34.8%)",
+      "corrected_cramers_v_estimate": "~0.14 (still weak)"
+    },
+    "tables": [
+      {
+        "name": "Judge Calibration by Type",
+        "columns": [
+          "type",
+          "precision",
+          "recall",
+          "F1",
+          "bias_direction",
+          "estimated_rate_correction"
+        ],
+        "rows": [
+          [
+            "auth_scope",
+            0.82,
+            0.56,
+            0.68,
+            "under-detection",
+            "+4-6pp"
+          ],
+          [
+            "incompleteness",
+            0.8,
+            0.72,
+            0.76,
+            "slight under-detection",
+            "+1-2pp"
+          ],
+          [
+            "cond_polysemy",
+            0.81,
+            0.77,
+            0.79,
+            "balanced",
+            "±1pp"
+          ],
+          [
+            "scopal",
+            0.79,
+            0.75,
+            0.77,
+            "balanced",
+            "±1pp"
+          ],
+          [
+            "lexical",
+            0.76,
+            0.72,
+            0.74,
+            "slight over-detection",
+            "-1-2pp"
+          ],
+          [
+            "coreferential",
+            0.58,
+            0.64,
+            0.61,
+            "over-detection",
+            "-5-8pp"
+          ]
+        ]
+      },
+      {
+        "name": "Judge Calibration by Severity Tier",
+        "columns": [
+          "severity",
+          "n_samples",
+          "precision",
+          "recall",
+          "F1"
+        ],
+        "rows": [
+          [
+            "tier-1_critical",
+            35,
+            0.85,
+            0.79,
+            0.82
+          ],
+          [
+            "tier-2_moderate",
+            40,
+            0.73,
+            0.64,
+            0.68
+          ],
+          [
+            "tier-3_minor",
+            25,
+            0.6,
+            0.51,
+            0.55
+          ]
+        ]
+      },
+      {
+        "name": "Cross-Judge Asymmetry",
+        "columns": [
+          "agent_model",
+          "judge_model",
+          "F1",
+          "note"
+        ],
+        "rows": [
+          [
+            "claude-sonnet-4-6",
+            "gpt-5.4",
+            0.75,
+            "strongest judge"
+          ],
+          [
+            "gpt-5.4",
+            "gpt-4.1",
+            0.69,
+            "weaker judge on stronger agent"
+          ],
+          [
+            "gpt-4.1",
+            "gpt-5.4",
+            0.78,
+            "strongest judge on mid-tier agent"
+          ],
+          [
+            "Qwen3-8B",
+            "gpt-5.4",
+            0.71,
+            "open-source traces harder to judge"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Judge calibration 是 worst tier 的第二个 structural threat (after model×type interaction)。 F1<0.75 for coreferential (0.61) + auth_scope (0.68) 直接削弱这两个 type 的数值可信度。 Paper 必须: (a) report calibration as standard practice, (b) provide bias-corrected estimates, (c) flag coreferential/auth_scope absolute values as measurement-sensitive, (d) disclose cross-judge asymmetry in Method。 Silver lining: binary effect 的 calibration 尚可 (overall F1=0.72, tier-1 F1=0.82)， C1 headline number 受影响最小。bias-corrected V ~0.14 仍 weak—— measurement correction 不改变 \"type hierarchy 不 robust\" 的 worst-tier 结论。\n\n\nJudge calibration 暴露 worst tier 最有破坏力的 measurement issue:\nCoreferential F1=0.61: LLM judge over-detect coreferential violations。 原因: agent 在 RC attachment 歧义下采取的 \"exploratory query\" (查询哪个 entity 适用) 被 judge 误判为 \"unauthorized action\" (false positive)。 Judge 缺乏 human 的 pragmatic judgment——无法区分 \"agent 在探索性确认\" vs \"agent 在违规操作\"。 结果: coreferential reported rate (34.8%) 高估 ~5-8pp，真实 rate 可能 ~27-30%。\nAuth_scope F1=0.68: judge under-detect auth_scope violations。 原因: auth_scope violation 常表现为 \"subtle permission boundary crossing\"—— agent 在模糊授权范围内行动，不明显违规 (如: 给客户 10% 折扣，policy 说 \"reasonable discount\" 但未定义 boundary)。Judge 倾向 \"不确定则判 non-violation\" → false negative。 结果: auth_scope reported rate (42.8%) 低估 ~4-6pp，真实 rate 可能 ~47-49%。\n两个 bias 方向相互作用——恰好压缩了 type 间差异: coreferential 高估 + auth_scope 低估 → 缩小 range → 降低 V 值。 Bias-corrected V 估计 ~0.14 (vs observed 0.11)——仍 weak, 不改变 \"type effect 弱\" 的结论， 但说明 raw V=0.11 有 measurement component。\nCross-judge asymmetry 6pp: Claude 被 gpt-5.4 (最强 judge) 判定 F1=0.75， gpt-5.4 被 gpt-4.1 (较弱 judge) 判定仅 F1=0.69。 弱 judge 对强 model traces 更难准确判定——Method 必须 disclose。\nPer-severity: tier-3 minor violations F1=0.55 (near random)—— judge 对 \"subtle/minor\" violations 几乎无法判定。 主要影响 severity-weighted analysis, binary violation/non-violation 受影响较小。\n"
+  },
+  {
+    "name": "classifier_poc",
+    "description": "DeBERTa-v3-large binary ambiguity detector PoC。 Fine-tune on 240 pairs, eval on 60 held-out。\n",
+    "results": {
+      "model": "DeBERTa-v3-large",
+      "train_size": 240,
+      "test_size": 60,
+      "test_f1": 0.78,
+      "test_precision": 0.81,
+      "test_recall": 0.75,
+      "per_type_f1": {
+        "auth_scope": 0.82,
+        "incompleteness": 0.8,
+        "cp": 0.76,
+        "scopal": 0.79,
+        "lexical": 0.77,
+        "coreferential": 0.72
+      },
+      "training_epochs": 5,
+      "best_epoch": 3
+    },
+    "tables": [
+      {
+        "name": "Classifier PoC Performance",
+        "columns": [
+          "metric",
+          "overall",
+          "auth_scope",
+          "incomp",
+          "CP",
+          "scopal",
+          "lexical",
+          "coref"
+        ],
+        "rows": [
+          [
+            "F1",
+            0.78,
+            0.82,
+            0.8,
+            0.76,
+            0.79,
+            0.77,
+            0.72
+          ],
+          [
+            "Precision",
+            0.81,
+            0.85,
+            0.83,
+            0.78,
+            0.82,
+            0.8,
+            0.74
+          ],
+          [
+            "Recall",
+            0.75,
+            0.79,
+            0.77,
+            0.74,
+            0.76,
+            0.74,
+            0.7
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Classifier PoC 在 worst tier 下反而 perfectly narrative-aligned: binary detection feasible (F1=0.78), type-specific pipeline 不必要 (type ranking 本身 model-dependent)。Practical contribution 的 optimal framing: 投资 binary detector 而非 type-specific triage pipeline。 与 C1 massive binary effect + ambiguity blindness 形成 coherent practical story。\n\nF1=0.78 是 reasonable PoC 水平: 证明 binary ambiguity detection 是 feasible NLP task， 但远未 production-ready。Coreferential F1 最低 (0.72) 与 judge calibration (0.61) 和 reliability (ICC 0.48) 的 pattern 一致: coreferential 是最难检测/判定的 type。\n在 worst tier reframe 下，classifier PoC 强化 reframe (C): \"任何 ambiguity detection (甚至 binary) 都有巨大安全收益\"—— F1=0.78 的 binary detector 在 +30pp violation rate gap 上 可提供 meaningful early warning。Type-specific detection 既不必要 (type ranking model-dependent) 也不额外有价值 (binary 已覆盖核心风险)。 这恰好与 worst tier 结论 align: binary detection = high ROI, type triage = low ROI。\n"
+  }
+]

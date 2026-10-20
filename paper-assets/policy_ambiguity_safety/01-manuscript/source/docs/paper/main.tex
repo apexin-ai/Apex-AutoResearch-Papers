@@ -1,0 +1,59 @@
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{placeins}
+
+\setlength{\textfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\intextsep}{4pt plus 1pt minus 1pt}
+\setlength{\dbltextfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\floatsep}{4pt plus 1pt minus 1pt}
+\setlength{\dblfloatsep}{4pt plus 1pt minus 1pt}
+
+\definecolor{speccolor}{HTML}{C44E52}
+\definecolor{lingcolor}{HTML}{4C72B0}
+
+\title{Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/taxonomy}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/analysis}
+\input{sections/discussion}
+\input{sections/limitations}
+
+\section*{Ethical Considerations}
+\label{sec:ethics}
+
+Our stimulus set uses synthetic policy clauses inspired by real-world terms of service; no proprietary policy text is reproduced verbatim. The real-world prevalence audit (Appendix~AH) analyzes publicly available terms-of-service documents and reports only aggregate statistics, with no personally identifiable information. Our experiments reveal that policy ambiguity can systematically induce safety violations in LLM agents; we disclose these findings to support safer deployment practices rather than to enable adversarial exploitation. Human annotators who participated in the inter-annotator agreement validation were co-authors of this work and were not recruited through crowdsourcing platforms.
+
+\bibliography{references}
+
+\appendix
+\makeatletter
+\newcommand{\extAlph}[1]{%
+  \ifcase#1\or A\or B\or C\or D\or E\or F\or G\or H\or I\or J\or K\or L\or M\or N\or O\or P\or Q\or R\or S\or T\or U\or V\or W\or X\or Y\or Z\or AA\or AB\or AC\or AD\or AE\or AF\or AG\or AH\or AI\or AJ\or AK\or AL\or AM\or AN\or AO\fi}
+\renewcommand{\thesection}{\extAlph{\value{section}}}
+\makeatother
+\input{sections/appendix}
+
+\end{document}

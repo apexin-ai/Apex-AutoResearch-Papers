@@ -1,0 +1,69 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure*",
+      "image_path": "figures/fig1_overview.pdf",
+      "caption": "Experimental overview. (a)~Six-type ambiguity taxonomy (two layers) with 300 matched clause pairs. (b)~Matched-pair causal design: each clause pair is injected into $\\tau^2$-bench policy documents; fi",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "sections/introduction.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "1",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/_latex_iso_gubag2x5/main.pdf"
+    },
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Limitations' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "1 critical, 1 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+      "sections": [],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "no_paper_tex",
+          "message": "No section .tex files found under /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper",
+          "location": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper"
+        }
+      ],
+      "info": [],
+      "summary": {
+        "critical": 0,
+        "warning": 1,
+        "info": 0
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/projects/policy_ambiguity_safety/docs/paper/_figure_backups/20260524_143907",
+  "error": "",
+  "timestamp": "2026-05-24T15:07:43.959559+00:00"
+}

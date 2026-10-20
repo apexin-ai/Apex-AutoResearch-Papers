@@ -1,0 +1,62 @@
+{
+  "total_sampled": 100,
+  "by_ambiguity_type": {
+    "authorization_scope": 17,
+    "conditional_precedence": 17,
+    "coreferential": 17,
+    "incompleteness": 17,
+    "lexical": 16,
+    "scopal": 16
+  },
+  "by_model": {
+    "claude-sonnet-4-6": 24,
+    "deepseek-v3": 22,
+    "gpt-4.1": 18,
+    "gpt-5.4": 18,
+    "qwen3-235b": 18
+  },
+  "by_type_and_model": {
+    "authorization_scope": {
+      "claude-sonnet-4-6": 4,
+      "deepseek-v3": 4,
+      "gpt-4.1": 3,
+      "gpt-5.4": 3,
+      "qwen3-235b": 3
+    },
+    "conditional_precedence": {
+      "claude-sonnet-4-6": 4,
+      "deepseek-v3": 4,
+      "gpt-4.1": 3,
+      "gpt-5.4": 3,
+      "qwen3-235b": 3
+    },
+    "coreferential": {
+      "claude-sonnet-4-6": 4,
+      "deepseek-v3": 4,
+      "gpt-4.1": 3,
+      "gpt-5.4": 3,
+      "qwen3-235b": 3
+    },
+    "incompleteness": {
+      "claude-sonnet-4-6": 4,
+      "deepseek-v3": 4,
+      "gpt-4.1": 3,
+      "gpt-5.4": 3,
+      "qwen3-235b": 3
+    },
+    "lexical": {
+      "claude-sonnet-4-6": 4,
+      "deepseek-v3": 3,
+      "gpt-4.1": 3,
+      "gpt-5.4": 3,
+      "qwen3-235b": 3
+    },
+    "scopal": {
+      "claude-sonnet-4-6": 4,
+      "deepseek-v3": 3,
+      "gpt-4.1": 3,
+      "gpt-5.4": 3,
+      "qwen3-235b": 3
+    }
+  }
+}

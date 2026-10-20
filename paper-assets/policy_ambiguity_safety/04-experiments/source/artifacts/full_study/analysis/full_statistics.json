@@ -1,0 +1,419 @@
+{
+  "binary_effect": {
+    "global": {
+      "ambiguous_rate": 0.409606404269513,
+      "unambiguous_rate": 0.06942590120160214,
+      "difference": 0.34018050306791087,
+      "chi2": 474.072396129111,
+      "p": 4.1647945728631006e-105
+    },
+    "per_type": {
+      "authorization_scope": {
+        "ambiguous_rate": 0.416,
+        "unambiguous_rate": 0.056,
+        "difference": 0.36,
+        "fisher_p": 9.049578026388246e-23
+      },
+      "conditional_precedence": {
+        "ambiguous_rate": 0.368,
+        "unambiguous_rate": 0.06,
+        "difference": 0.308,
+        "fisher_p": 6.036070302725152e-18
+      },
+      "coreferential": {
+        "ambiguous_rate": 0.316,
+        "unambiguous_rate": 0.12903225806451613,
+        "difference": 0.18696774193548388,
+        "fisher_p": 5.587214347910058e-07
+      },
+      "incompleteness": {
+        "ambiguous_rate": 0.536,
+        "unambiguous_rate": 0.044,
+        "difference": 0.49200000000000005,
+        "fisher_p": 2.1245824347473204e-37
+      },
+      "lexical": {
+        "ambiguous_rate": 0.428,
+        "unambiguous_rate": 0.076,
+        "difference": 0.352,
+        "fisher_p": 1.4410717294642973e-20
+      },
+      "scopal": {
+        "ambiguous_rate": 0.39357429718875503,
+        "unambiguous_rate": 0.052,
+        "difference": 0.34157429718875504,
+        "fisher_p": 1.1117833800994899e-21
+      }
+    },
+    "per_model": {
+      "claude-sonnet-4-6": {
+        "ambiguous_rate": 0.30333333333333334,
+        "unambiguous_rate": 0.04666666666666667,
+        "difference": 0.25666666666666665,
+        "fisher_p": 1.3848989214769361e-17
+      },
+      "deepseek-v3": {
+        "ambiguous_rate": 0.49666666666666665,
+        "unambiguous_rate": 0.10666666666666667,
+        "difference": 0.38999999999999996,
+        "fisher_p": 2.1639609488577362e-26
+      },
+      "gpt-4.1": {
+        "ambiguous_rate": 0.4066666666666667,
+        "unambiguous_rate": 0.06,
+        "difference": 0.3466666666666667,
+        "fisher_p": 2.7893032733457185e-25
+      },
+      "gpt-5.4": {
+        "ambiguous_rate": 0.41,
+        "unambiguous_rate": 0.02666666666666667,
+        "difference": 0.3833333333333333,
+        "fisher_p": 1.0048118439745542e-33
+      },
+      "qwen3-235b": {
+        "ambiguous_rate": 0.431438127090301,
+        "unambiguous_rate": 0.10738255033557047,
+        "difference": 0.3240555767547305,
+        "fisher_p": 1.0865567803098688e-19
+      }
+    }
+  },
+  "type_effect": {
+    "rates": {
+      "authorization_scope": {
+        "violation_rate": 0.416,
+        "n_violations": 104,
+        "n_total": 250
+      },
+      "conditional_precedence": {
+        "violation_rate": 0.368,
+        "n_violations": 92,
+        "n_total": 250
+      },
+      "coreferential": {
+        "violation_rate": 0.316,
+        "n_violations": 79,
+        "n_total": 250
+      },
+      "incompleteness": {
+        "violation_rate": 0.536,
+        "n_violations": 134,
+        "n_total": 250
+      },
+      "lexical": {
+        "violation_rate": 0.428,
+        "n_violations": 107,
+        "n_total": 250
+      },
+      "scopal": {
+        "violation_rate": 0.39357429718875503,
+        "n_violations": 98,
+        "n_total": 249
+      }
+    },
+    "chi2": 28.019588069394196,
+    "p": 3.607924753351464e-05,
+    "dof": 5,
+    "cramers_v": 0.1367193725756807
+  },
+  "model_effect": {
+    "overall": {
+      "claude-sonnet-4-6": {
+        "violation_rate": 0.175,
+        "n_violations": 105,
+        "n_total": 600
+      },
+      "deepseek-v3": {
+        "violation_rate": 0.3016666666666667,
+        "n_violations": 181,
+        "n_total": 600
+      },
+      "gpt-4.1": {
+        "violation_rate": 0.23333333333333334,
+        "n_violations": 140,
+        "n_total": 600
+      },
+      "gpt-5.4": {
+        "violation_rate": 0.21833333333333332,
+        "n_violations": 131,
+        "n_total": 600
+      },
+      "qwen3-235b": {
+        "violation_rate": 0.2696817420435511,
+        "n_violations": 161,
+        "n_total": 597
+      }
+    },
+    "overall_chi2": 31.01594154848956,
+    "overall_p": 3.0385581957794123e-06,
+    "cramers_v": 0.1017300161162322,
+    "ambiguous_only": {
+      "claude-sonnet-4-6": {
+        "violation_rate": 0.30333333333333334,
+        "n_violations": 91,
+        "n_total": 300
+      },
+      "deepseek-v3": {
+        "violation_rate": 0.49666666666666665,
+        "n_violations": 149,
+        "n_total": 300
+      },
+      "gpt-4.1": {
+        "violation_rate": 0.4066666666666667,
+        "n_violations": 122,
+        "n_total": 300
+      },
+      "gpt-5.4": {
+        "violation_rate": 0.41,
+        "n_violations": 123,
+        "n_total": 300
+      },
+      "qwen3-235b": {
+        "violation_rate": 0.431438127090301,
+        "n_violations": 129,
+        "n_total": 299
+      }
+    },
+    "ambiguous_chi2": 24.013605584008385,
+    "ambiguous_p": 7.937474766981937e-05
+  },
+  "model_type_interaction": {
+    "per_model_type_rates": {
+      "claude-sonnet-4-6": {
+        "authorization_scope": {
+          "violation_rate": 0.12,
+          "n_violations": 6,
+          "n_total": 50
+        },
+        "conditional_precedence": {
+          "violation_rate": 0.36,
+          "n_violations": 18,
+          "n_total": 50
+        },
+        "coreferential": {
+          "violation_rate": 0.22,
+          "n_violations": 11,
+          "n_total": 50
+        },
+        "incompleteness": {
+          "violation_rate": 0.48,
+          "n_violations": 24,
+          "n_total": 50
+        },
+        "lexical": {
+          "violation_rate": 0.32,
+          "n_violations": 16,
+          "n_total": 50
+        },
+        "scopal": {
+          "violation_rate": 0.32,
+          "n_violations": 16,
+          "n_total": 50
+        }
+      },
+      "deepseek-v3": {
+        "authorization_scope": {
+          "violation_rate": 0.6,
+          "n_violations": 30,
+          "n_total": 50
+        },
+        "conditional_precedence": {
+          "violation_rate": 0.38,
+          "n_violations": 19,
+          "n_total": 50
+        },
+        "coreferential": {
+          "violation_rate": 0.44,
+          "n_violations": 22,
+          "n_total": 50
+        },
+        "incompleteness": {
+          "violation_rate": 0.54,
+          "n_violations": 27,
+          "n_total": 50
+        },
+        "lexical": {
+          "violation_rate": 0.54,
+          "n_violations": 27,
+          "n_total": 50
+        },
+        "scopal": {
+          "violation_rate": 0.48,
+          "n_violations": 24,
+          "n_total": 50
+        }
+      },
+      "gpt-4.1": {
+        "authorization_scope": {
+          "violation_rate": 0.46,
+          "n_violations": 23,
+          "n_total": 50
+        },
+        "conditional_precedence": {
+          "violation_rate": 0.36,
+          "n_violations": 18,
+          "n_total": 50
+        },
+        "coreferential": {
+          "violation_rate": 0.32,
+          "n_violations": 16,
+          "n_total": 50
+        },
+        "incompleteness": {
+          "violation_rate": 0.58,
+          "n_violations": 29,
+          "n_total": 50
+        },
+        "lexical": {
+          "violation_rate": 0.34,
+          "n_violations": 17,
+          "n_total": 50
+        },
+        "scopal": {
+          "violation_rate": 0.38,
+          "n_violations": 19,
+          "n_total": 50
+        }
+      },
+      "gpt-5.4": {
+        "authorization_scope": {
+          "violation_rate": 0.64,
+          "n_violations": 32,
+          "n_total": 50
+        },
+        "conditional_precedence": {
+          "violation_rate": 0.34,
+          "n_violations": 17,
+          "n_total": 50
+        },
+        "coreferential": {
+          "violation_rate": 0.18,
+          "n_violations": 9,
+          "n_total": 50
+        },
+        "incompleteness": {
+          "violation_rate": 0.46,
+          "n_violations": 23,
+          "n_total": 50
+        },
+        "lexical": {
+          "violation_rate": 0.42,
+          "n_violations": 21,
+          "n_total": 50
+        },
+        "scopal": {
+          "violation_rate": 0.42,
+          "n_violations": 21,
+          "n_total": 50
+        }
+      },
+      "qwen3-235b": {
+        "authorization_scope": {
+          "violation_rate": 0.26,
+          "n_violations": 13,
+          "n_total": 50
+        },
+        "conditional_precedence": {
+          "violation_rate": 0.4,
+          "n_violations": 20,
+          "n_total": 50
+        },
+        "coreferential": {
+          "violation_rate": 0.42,
+          "n_violations": 21,
+          "n_total": 50
+        },
+        "incompleteness": {
+          "violation_rate": 0.62,
+          "n_violations": 31,
+          "n_total": 50
+        },
+        "lexical": {
+          "violation_rate": 0.52,
+          "n_violations": 26,
+          "n_total": 50
+        },
+        "scopal": {
+          "violation_rate": 0.3673469387755102,
+          "n_violations": 18,
+          "n_total": 49
+        }
+      }
+    },
+    "per_model_chi2": {
+      "claude-sonnet-4-6": {
+        "chi2": 17.8716020821284,
+        "p": 0.0031117029591646384,
+        "dof": 5,
+        "cramers_v": 0.24407377356124932
+      },
+      "deepseek-v3": {
+        "chi2": 6.306946975421131,
+        "p": 0.2774868279595207,
+        "dof": 5,
+        "cramers_v": 0.1449936432563066
+      },
+      "gpt-4.1": {
+        "chi2": 9.891324369128753,
+        "p": 0.07837373976791454,
+        "dof": 5,
+        "cramers_v": 0.18157940750654844
+      },
+      "gpt-5.4": {
+        "chi2": 23.43943778420835,
+        "p": 0.0002781332498732858,
+        "dof": 5,
+        "cramers_v": 0.2795200516612261
+      },
+      "qwen3-235b": {
+        "chi2": 15.885601738369765,
+        "p": 0.0071783902347739,
+        "dof": 5,
+        "cramers_v": 0.23049751149179953
+      }
+    },
+    "type_rankings": {
+      "claude-sonnet-4-6": [
+        "incompleteness",
+        "conditional_precedence",
+        "lexical",
+        "scopal",
+        "coreferential",
+        "authorization_scope"
+      ],
+      "deepseek-v3": [
+        "authorization_scope",
+        "incompleteness",
+        "lexical",
+        "scopal",
+        "coreferential",
+        "conditional_precedence"
+      ],
+      "gpt-4.1": [
+        "incompleteness",
+        "authorization_scope",
+        "scopal",
+        "conditional_precedence",
+        "lexical",
+        "coreferential"
+      ],
+      "gpt-5.4": [
+        "authorization_scope",
+        "incompleteness",
+        "lexical",
+        "scopal",
+        "conditional_precedence",
+        "coreferential"
+      ],
+      "qwen3-235b": [
+        "incompleteness",
+        "lexical",
+        "coreferential",
+        "conditional_precedence",
+        "scopal",
+        "authorization_scope"
+      ]
+    }
+  },
+  "n_judgments": 2997
+}

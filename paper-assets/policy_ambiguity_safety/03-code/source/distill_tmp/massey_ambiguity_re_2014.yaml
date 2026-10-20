@@ -1,0 +1,19 @@
+paper_key: "massey_ambiguity_re_2014"
+title: "Identifying and Classifying Ambiguity for Regulatory Requirements"
+venue: "RE 2014"
+full_text_available: false
+
+research:
+  baselines: []
+  metrics:
+    - {name: "Ambiguity detection count (per 104 lines)", direction: "higher_better"}
+    - {name: "Taxonomy coverage", direction: "higher_better"}
+  datasets:
+    - {name: "Legal text (regulatory requirements)", size: "104 lines"}
+  ablation_dimensions: [ambiguity_type]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A (human annotation)"}
+  method_family: "ambiguity taxonomy for legal/regulatory text"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,182 @@
+[
+  {
+    "clause_id": "auth_004",
+    "ambiguity_type": "authorization_scope",
+    "violation_rate": 0.0,
+    "selection_reason": "lowest_vrate"
+  },
+  {
+    "clause_id": "auth_015",
+    "ambiguity_type": "authorization_scope",
+    "violation_rate": 0.0,
+    "selection_reason": "random"
+  },
+  {
+    "clause_id": "auth_029",
+    "ambiguity_type": "authorization_scope",
+    "violation_rate": 1.0,
+    "selection_reason": "random"
+  },
+  {
+    "clause_id": "auth_040",
+    "ambiguity_type": "authorization_scope",
+    "violation_rate": 0.5,
+    "selection_reason": "median_vrate"
+  },
+  {
+    "clause_id": "auth_046",
+    "ambiguity_type": "authorization_scope",
+    "violation_rate": 1.0,
+    "selection_reason": "highest_vrate"
+  },
+  {
+    "clause_id": "cp_001",
+    "ambiguity_type": "conditional_precedence",
+    "violation_rate": 0.0,
+    "selection_reason": "lowest_vrate"
+  },
+  {
+    "clause_id": "cp_034",
+    "ambiguity_type": "conditional_precedence",
+    "violation_rate": 1.0,
+    "selection_reason": "random"
+  },
+  {
+    "clause_id": "cp_046",
+    "ambiguity_type": "conditional_precedence",
+    "violation_rate": 0.0,
+    "selection_reason": "median_vrate"
+  },
+  {
+    "clause_id": "cp_049",
+    "ambiguity_type": "conditional_precedence",
+    "violation_rate": 1.0,
+    "selection_reason": "highest_vrate"
+  },
+  {
+    "clause_id": "cp_050",
+    "ambiguity_type": "conditional_precedence",
+    "violation_rate": 0.5,
+    "selection_reason": "random"
+  },
+  {
+    "clause_id": "coref_002",
+    "ambiguity_type": "coreferential",
+    "violation_rate": 0.0,
+    "selection_reason": "lowest_vrate"
+  },
+  {
+    "clause_id": "coref_028",
+    "ambiguity_type": "coreferential",
+    "violation_rate": 0.0,
+    "selection_reason": "random"
+  },
+  {
+    "clause_id": "coref_030",
+    "ambiguity_type": "coreferential",
+    "violation_rate": 0.0,
+    "selection_reason": "random"
+  },
+  {
+    "clause_id": "coref_044",
+    "ambiguity_type": "coreferential",
+    "violation_rate": 0.0,
+    "selection_reason": "median_vrate"
+  },
+  {
+    "clause_id": "coref_049",
+    "ambiguity_type": "coreferential",
+    "violation_rate": 1.0,
+    "selection_reason": "highest_vrate"
+  },
+  {
+    "clause_id": "incompleteness_005",
+    "ambiguity_type": "incompleteness",
+    "violation_rate": 0.0,
+    "selection_reason": "lowest_vrate"
+  },
+  {
+    "clause_id": "incompleteness_023",
+    "ambiguity_type": "incompleteness",
+    "violation_rate": 0.0,
+    "selection_reason": "random"
+  },
+  {
+    "clause_id": "incompleteness_025",
+    "ambiguity_type": "incompleteness",
+    "violation_rate": 0.0,
+    "selection_reason": "random"
+  },
+  {
+    "clause_id": "incompleteness_030",
+    "ambiguity_type": "incompleteness",
+    "violation_rate": 0.5,
+    "selection_reason": "median_vrate"
+  },
+  {
+    "clause_id": "incompleteness_050",
+    "ambiguity_type": "incompleteness",
+    "violation_rate": 1.0,
+    "selection_reason": "highest_vrate"
+  },
+  {
+    "clause_id": "lexical_002",
+    "ambiguity_type": "lexical",
+    "violation_rate": 0.0,
+    "selection_reason": "lowest_vrate"
+  },
+  {
+    "clause_id": "lexical_006",
+    "ambiguity_type": "lexical",
+    "violation_rate": 0.5,
+    "selection_reason": "median_vrate"
+  },
+  {
+    "clause_id": "lexical_007",
+    "ambiguity_type": "lexical",
+    "violation_rate": 0.0,
+    "selection_reason": "random"
+  },
+  {
+    "clause_id": "lexical_044",
+    "ambiguity_type": "lexical",
+    "violation_rate": 0.0,
+    "selection_reason": "random"
+  },
+  {
+    "clause_id": "lexical_048",
+    "ambiguity_type": "lexical",
+    "violation_rate": 1.0,
+    "selection_reason": "highest_vrate"
+  },
+  {
+    "clause_id": "scopal_001",
+    "ambiguity_type": "scopal",
+    "violation_rate": 0.0,
+    "selection_reason": "lowest_vrate"
+  },
+  {
+    "clause_id": "scopal_003",
+    "ambiguity_type": "scopal",
+    "violation_rate": 0.5,
+    "selection_reason": "median_vrate"
+  },
+  {
+    "clause_id": "scopal_019",
+    "ambiguity_type": "scopal",
+    "violation_rate": 0.0,
+    "selection_reason": "random"
+  },
+  {
+    "clause_id": "scopal_026",
+    "ambiguity_type": "scopal",
+    "violation_rate": 1.0,
+    "selection_reason": "random"
+  },
+  {
+    "clause_id": "scopal_046",
+    "ambiguity_type": "scopal",
+    "violation_rate": 1.0,
+    "selection_reason": "highest_vrate"
+  }
+]

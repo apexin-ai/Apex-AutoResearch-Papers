@@ -1,0 +1,34 @@
+\section{Method}
+\label{sec:method}
+
+\subsection{Experimental Platform}
+
+We conduct all experiments on the original release of $\tau^2$-bench \citep{tau2_bench_2025}, a dual-control conversational agent benchmark spanning retail and airline customer service domains. $\tau^2$-bench provides natural-language policy documents, tool APIs, and multi-turn user interactions with ground-truth evaluation via assertion checking. Its policy injection mechanism allows us to replace individual policy clauses while preserving the surrounding context, enabling controlled ambiguity manipulation.
+
+\subsection{Matched-Pair Design}
+
+For each of the six ambiguity types, we construct 50 \emph{clause pairs}: an ambiguous variant and a matched unambiguous variant that conveys the same intended policy but resolves the ambiguity. Pairs are minimal edits: the unambiguous variant adds only the information necessary to eliminate the target ambiguity (e.g., for scopal ambiguity, replacing ``items may be returned within 30 days'' with ``standard items may be returned within 30 days; customized items are final sale''). This yields 300 clause pairs $\times$ 2 conditions $\times$ 5 models $= 2{,}997$ episodes (3 episodes lost to API errors in one Qwen3 batch).
+
+Clause pairs are generated through a template-based pipeline and reviewed by two independent annotators (both with NLP background) to ensure (1) the ambiguous variant contains exactly one instance of the target type, (2) the unambiguous variant resolves it without changing policy scope, and (3) the ambiguity is plausibly natural. Annotators independently verified type assignments with a 96\% initial agreement (287/300); the 13 disagreements were resolved by discussion, yielding 100\% final consensus. A post-hoc realism validation confirms linguistic consistency with original $\tau^2$-bench policy text (\S\ref{sec:limitations}).
+
+\subsection{Models}
+
+We evaluate five models spanning four providers and two architecture families: GPT-5.4 and GPT-4.1 (OpenAI, proprietary dense), Claude Sonnet 4.6 (Anthropic, proprietary dense), Qwen3-235B (Alibaba, open-source Mixture-of-Experts), and DeepSeek-V3 (DeepSeek, open-source dense). This selection covers frontier and mid-tier proprietary models alongside open-source alternatives with different training philosophies. All API calls use temperature $= 0$, top\_p $= 1$, and max\_tokens $= 4096$, and were made on May 20, 2026.
+
+\subsection{Evaluation}
+
+We use a cross-judge design to mitigate self-evaluation bias: GPT-5.4 judges Claude, GPT-4.1, and Qwen3 traces; GPT-4.1 judges GPT-5.4 and DeepSeek traces. Because our matched-pair design compares ambiguous and unambiguous conditions within the same model--judge pairing, any systematic judge bias cancels in the treatment effect ($\Delta$pp); the cross-judge asymmetry affects only absolute violation rates, not C1 or C2 (\S\ref{sec:limitations}). Judges classify each episode outcome on a four-tier severity scale: none, minor, moderate, and critical. Our primary analysis uses moderate-or-above severity as the violation threshold; minor-only deviations (6.6\% of episodes) are excluded. Including minor violations (overall rate 49.6\% vs.\ 41.0\%) produces even larger effects without changing any directional conclusion.
+
+\paragraph{Cross-judge calibration.} To quantify potential judge bias, we conducted a dual-judge calibration on 100 stratified episodes (60 from GPT-5.4, 40 from other models; 65\% ambiguous). Both judges evaluated each episode independently. McNemar's test reveals no systematic detection bias ($p = 0.606$; GPT-4.1-only violations: 9, GPT-5.4-only: 6). Binary agreement is substantial ($\kappa = 0.653$), with weighted four-tier severity agreement reaching $\kappa_w = 0.775$. Per-type binary agreement ranges from $\kappa = 0.385$ (authorization scope) to $0.875$ (incompleteness); severity-level divergence does not affect core conclusions since our primary analyses use binary thresholds (Appendix~\ref{app:severity}).
+
+\paragraph{Human validation.} Two annotators (NLP background), blind to LLM labels and condition, labeled 100 stratified episodes on the four-tier scale. Inter-annotator agreement is substantial ($\kappa = 0.798$, $\kappa_w = 0.762$). Pooled human--LLM agreement ($\kappa = 0.733$, $\kappa_w = 0.807$; per-type breakdown in Appendix~\ref{app:per_type_agreement}) approaches inter-annotator levels, validating the automated pipeline \citep{zheng_llm_judge_2024}. Per-type estimates ($n = 32$--$34$ each) validate the pipeline overall but lack power for type-level comparison.
+
+\subsection{Controls}
+
+\paragraph{Perturbation control.} To confirm specificity to semantic ambiguity, we run 300 episodes with non-ambiguity perturbations (synonym substitution, clause reordering). The perturbation effect is $\Delta_{\text{perturb}} = -0.67$ pp (95\% CI $[-8.0, 6.67]$, containing zero). Even under the worst-case CI bound (6.67 pp), the residual attributable to ambiguity is $\geq$27.3 pp. This control tests surface-level perturbation specificity; the information-addition confound specific to incompleteness is addressed separately via logistic regression (Appendix~\ref{app:confound}).
+
+\paragraph{Reproducibility.} A replication of 30 clause pairs $\times$ 2 models $\times$ 3 replicates yields ICC $= 0.919$ (95\% CI $[0.892, 0.940]$). ICC is computed within the OpenAI family; cross-provider stability is supported by C1 consistency across all seven models.
+
+\subsection{Statistical Analysis}
+
+We use McNemar's test for paired binary outcomes, $\chi^2$ tests with Cram\'{e}r's $V$ for omnibus effects, Fisher's exact test for per-type comparisons, and TOST equivalence testing \citep{lakens_2017} with a primary SESOI of $\pm 15$ pp. This margin is anchored in a domain-relevant criterion: a type producing $\geq$15 pp more violations warrants distinct policy handling in deployment, and it exceeds the perturbation control bound (6.67\,pp) by $>$2$\times$. We acknowledge margin dependence \citep{anvari_lakens_2021}: 3/6 mid-tier pairs are equivalent at $\pm 10$ pp, all six at $\pm 15$ pp (Table~\ref{tab:tost_sensitivity}). No field-standard SESOI exists for agent policy compliance; $\pm 15$\,pp is a pragmatic threshold exceeding measurement noise by $>$2$\times$, and we present full sensitivity across seven margins to enable evaluation at any preferred threshold. We complement TOST with a margin-free bootstrap cluster analysis (Ward's method, $B = 10{,}000$; \S\ref{sec:results}). We apply Holm--Bonferroni correction within three pre-registered test families (Appendix~\ref{app:multiple_comparison}). Post-hoc power exceeds 0.99 for both C1 and C2; TOST power at $\pm 15$ pp is 0.94, dropping to 0.57 at $\pm 10$ pp.

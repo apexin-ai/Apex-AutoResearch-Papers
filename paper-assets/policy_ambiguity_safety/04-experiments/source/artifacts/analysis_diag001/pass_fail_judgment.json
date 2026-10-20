@@ -1,0 +1,10 @@
+{
+  "pass": false,
+  "omnibus_significant": false,
+  "any_v_above_threshold": false,
+  "n_significant_pairs": 0,
+  "reasons": [
+    "Omnibus \u03c7\u00b2 p=0.4640 >= \u03b1=0.05 \u2192 FAIL",
+    "Max Cram\u00e9r's V=0.052 (conditional_precedence vs scopal) < 0.2 \u2192 FAIL"
+  ]
+}

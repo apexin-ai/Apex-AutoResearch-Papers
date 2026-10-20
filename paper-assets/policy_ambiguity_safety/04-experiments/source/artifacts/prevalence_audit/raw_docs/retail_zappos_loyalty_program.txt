@@ -1,0 +1,27 @@
+# Source: https://www.zappos.com/c/vip
+# Fetched: 2026-05-23
+# Type: Loyalty Program Rules
+
+# Zappos VIP Program
+
+## Program Basics
+
+The Zappos VIP program is free to join and offers members exclusive benefits including free expedited shipping and points-based rewards.
+
+## Key Benefits
+
+Shipping: Members receive FREE Expedited Shipping as a core perk.
+
+Points System: The program operates on a straightforward earning model where customers accumulate points through purchases and activities.
+
+## Ways to Earn Points
+
+- Purchase-based: Earn 1 Point for $1 Spent with the ability to redeem points for discount codes
+- Login rewards: 5 points daily for logging into your account
+- Product reviews: 10 points for reviewing purchased items
+- Prime integration: Amazon Prime members can link accounts to earn an extra 1 Point per every $1 spent
+- Brand promotions: Bonus points available during select brand promotional periods
+
+## Redemption
+
+Members can redeem points for $ off codes through the VIP dashboard.

@@ -1,0 +1,739 @@
+{
+  "n_violations": 614,
+  "n_types": 6,
+  "types": [
+    "authorization_scope",
+    "conditional_precedence",
+    "coreferential",
+    "incompleteness",
+    "lexical",
+    "scopal"
+  ],
+  "models": [
+    "claude-sonnet-4-6",
+    "deepseek-v3",
+    "gpt-4.1",
+    "gpt-5.4",
+    "qwen3-235b"
+  ],
+  "confusion_matrix_5way": {
+    "labels": [
+      "assumption_based_action",
+      "scope_misapplication",
+      "unauthorized_escalation",
+      "arbitrary_rule_selection",
+      "conservative_refusal",
+      "other"
+    ],
+    "matrix": [
+      [
+        28,
+        4,
+        72,
+        0,
+        0,
+        0
+      ],
+      [
+        10,
+        50,
+        10,
+        13,
+        9,
+        0
+      ],
+      [
+        29,
+        37,
+        5,
+        0,
+        6,
+        2
+      ],
+      [
+        70,
+        43,
+        16,
+        0,
+        3,
+        2
+      ],
+      [
+        54,
+        42,
+        10,
+        0,
+        1,
+        0
+      ],
+      [
+        4,
+        81,
+        13,
+        0,
+        0,
+        0
+      ]
+    ],
+    "note": "referent_misidentification->scope_misapplication, surface_adoption->assumption_based_action, other kept"
+  },
+  "confusion_matrix_3way": {
+    "labels": [
+      "structural_misparse",
+      "gap_filling",
+      "boundary_violation",
+      "other"
+    ],
+    "matrix": [
+      [
+        4,
+        28,
+        72,
+        0
+      ],
+      [
+        50,
+        10,
+        10,
+        22
+      ],
+      [
+        37,
+        29,
+        5,
+        8
+      ],
+      [
+        43,
+        70,
+        16,
+        5
+      ],
+      [
+        42,
+        54,
+        10,
+        1
+      ],
+      [
+        81,
+        4,
+        13,
+        0
+      ]
+    ],
+    "mapping": {
+      "scope_misapplication": "structural_misparse",
+      "assumption_based_action": "gap_filling",
+      "unauthorized_escalation": "boundary_violation",
+      "arbitrary_rule_selection": "other",
+      "conservative_refusal": "other",
+      "referent_misidentification": "structural_misparse",
+      "surface_adoption": "gap_filling",
+      "other": "other"
+    }
+  },
+  "classification_accuracy_5way": {
+    "overall": 0.5928,
+    "per_type": {
+      "authorization_scope": {
+        "majority_label": "unauthorized_escalation",
+        "majority_count": 72,
+        "total": 104,
+        "accuracy": 0.6923
+      },
+      "conditional_precedence": {
+        "majority_label": "scope_misapplication",
+        "majority_count": 50,
+        "total": 92,
+        "accuracy": 0.5435
+      },
+      "coreferential": {
+        "majority_label": "scope_misapplication",
+        "majority_count": 37,
+        "total": 79,
+        "accuracy": 0.4684
+      },
+      "incompleteness": {
+        "majority_label": "assumption_based_action",
+        "majority_count": 70,
+        "total": 134,
+        "accuracy": 0.5224
+      },
+      "lexical": {
+        "majority_label": "assumption_based_action",
+        "majority_count": 54,
+        "total": 107,
+        "accuracy": 0.5047
+      },
+      "scopal": {
+        "majority_label": "scope_misapplication",
+        "majority_count": 81,
+        "total": 98,
+        "accuracy": 0.8265
+      }
+    }
+  },
+  "classification_accuracy_3way": {
+    "overall": 0.5928,
+    "per_type": {
+      "authorization_scope": {
+        "majority_label": "boundary_violation",
+        "majority_count": 72,
+        "total": 104,
+        "accuracy": 0.6923
+      },
+      "conditional_precedence": {
+        "majority_label": "structural_misparse",
+        "majority_count": 50,
+        "total": 92,
+        "accuracy": 0.5435
+      },
+      "coreferential": {
+        "majority_label": "structural_misparse",
+        "majority_count": 37,
+        "total": 79,
+        "accuracy": 0.4684
+      },
+      "incompleteness": {
+        "majority_label": "gap_filling",
+        "majority_count": 70,
+        "total": 134,
+        "accuracy": 0.5224
+      },
+      "lexical": {
+        "majority_label": "gap_filling",
+        "majority_count": 54,
+        "total": 107,
+        "accuracy": 0.5047
+      },
+      "scopal": {
+        "majority_label": "structural_misparse",
+        "majority_count": 81,
+        "total": 98,
+        "accuracy": 0.8265
+      }
+    }
+  },
+  "cramers_v_5way": {
+    "V": 0.3627,
+    "p": 0.0
+  },
+  "cramers_v_3way": {
+    "V": 0.4458,
+    "p": 0.0
+  },
+  "mutual_information": {
+    "type_mechanism_5way": {
+      "MI_bits": 0.4344,
+      "NMI": 0.236
+    },
+    "type_mechanism_3way": {
+      "MI_bits": 0.4076,
+      "NMI": 0.2316
+    },
+    "type_violation_binary": {
+      "MI_bits": 0.0135,
+      "NMI": 0.0138
+    },
+    "ratio_mechanism3_over_violation": 30.19,
+    "interpretation": "Type predicts mechanism 30.2x better than violation rate"
+  },
+  "per_model_majority_mechanism": {
+    "claude-sonnet-4-6": {
+      "authorization_scope": {
+        "majority_mechanism": "boundary_violation",
+        "majority_count": 3,
+        "n": 6,
+        "proportion": 0.5,
+        "distribution": {
+          "boundary_violation": 3,
+          "gap_filling": 3
+        }
+      },
+      "conditional_precedence": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 10,
+        "n": 18,
+        "proportion": 0.556,
+        "distribution": {
+          "structural_misparse": 10,
+          "gap_filling": 1,
+          "other": 7
+        }
+      },
+      "coreferential": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 6,
+        "n": 11,
+        "proportion": 0.545,
+        "distribution": {
+          "structural_misparse": 6,
+          "other": 1,
+          "gap_filling": 4
+        }
+      },
+      "incompleteness": {
+        "majority_mechanism": "gap_filling",
+        "majority_count": 10,
+        "n": 24,
+        "proportion": 0.417,
+        "distribution": {
+          "boundary_violation": 3,
+          "other": 3,
+          "gap_filling": 10,
+          "structural_misparse": 8
+        }
+      },
+      "lexical": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 9,
+        "n": 16,
+        "proportion": 0.562,
+        "distribution": {
+          "structural_misparse": 9,
+          "gap_filling": 7
+        }
+      },
+      "scopal": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 14,
+        "n": 16,
+        "proportion": 0.875,
+        "distribution": {
+          "structural_misparse": 14,
+          "gap_filling": 1,
+          "boundary_violation": 1
+        }
+      }
+    },
+    "deepseek-v3": {
+      "authorization_scope": {
+        "majority_mechanism": "boundary_violation",
+        "majority_count": 20,
+        "n": 30,
+        "proportion": 0.667,
+        "distribution": {
+          "boundary_violation": 20,
+          "structural_misparse": 3,
+          "gap_filling": 7
+        }
+      },
+      "conditional_precedence": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 15,
+        "n": 19,
+        "proportion": 0.789,
+        "distribution": {
+          "structural_misparse": 15,
+          "boundary_violation": 3,
+          "other": 1
+        }
+      },
+      "coreferential": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 13,
+        "n": 22,
+        "proportion": 0.591,
+        "distribution": {
+          "gap_filling": 8,
+          "other": 1,
+          "structural_misparse": 13
+        }
+      },
+      "incompleteness": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 13,
+        "n": 27,
+        "proportion": 0.481,
+        "distribution": {
+          "structural_misparse": 13,
+          "gap_filling": 12,
+          "boundary_violation": 2
+        }
+      },
+      "lexical": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 14,
+        "n": 27,
+        "proportion": 0.519,
+        "distribution": {
+          "gap_filling": 10,
+          "boundary_violation": 3,
+          "structural_misparse": 14
+        }
+      },
+      "scopal": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 22,
+        "n": 24,
+        "proportion": 0.917,
+        "distribution": {
+          "structural_misparse": 22,
+          "gap_filling": 1,
+          "boundary_violation": 1
+        }
+      }
+    },
+    "gpt-4.1": {
+      "authorization_scope": {
+        "majority_mechanism": "boundary_violation",
+        "majority_count": 19,
+        "n": 23,
+        "proportion": 0.826,
+        "distribution": {
+          "boundary_violation": 19,
+          "gap_filling": 4
+        }
+      },
+      "conditional_precedence": {
+        "majority_mechanism": "other",
+        "majority_count": 7,
+        "n": 18,
+        "proportion": 0.389,
+        "distribution": {
+          "structural_misparse": 5,
+          "boundary_violation": 3,
+          "other": 7,
+          "gap_filling": 3
+        }
+      },
+      "coreferential": {
+        "majority_mechanism": "gap_filling",
+        "majority_count": 6,
+        "n": 16,
+        "proportion": 0.375,
+        "distribution": {
+          "structural_misparse": 5,
+          "boundary_violation": 3,
+          "other": 2,
+          "gap_filling": 6
+        }
+      },
+      "incompleteness": {
+        "majority_mechanism": "gap_filling",
+        "majority_count": 19,
+        "n": 29,
+        "proportion": 0.655,
+        "distribution": {
+          "structural_misparse": 5,
+          "gap_filling": 19,
+          "boundary_violation": 4,
+          "other": 1
+        }
+      },
+      "lexical": {
+        "majority_mechanism": "gap_filling",
+        "majority_count": 9,
+        "n": 17,
+        "proportion": 0.529,
+        "distribution": {
+          "gap_filling": 9,
+          "boundary_violation": 5,
+          "structural_misparse": 3
+        }
+      },
+      "scopal": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 14,
+        "n": 19,
+        "proportion": 0.737,
+        "distribution": {
+          "structural_misparse": 14,
+          "boundary_violation": 5
+        }
+      }
+    },
+    "gpt-5.4": {
+      "authorization_scope": {
+        "majority_mechanism": "boundary_violation",
+        "majority_count": 23,
+        "n": 32,
+        "proportion": 0.719,
+        "distribution": {
+          "boundary_violation": 23,
+          "gap_filling": 9
+        }
+      },
+      "conditional_precedence": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 7,
+        "n": 17,
+        "proportion": 0.412,
+        "distribution": {
+          "structural_misparse": 7,
+          "gap_filling": 1,
+          "other": 6,
+          "boundary_violation": 3
+        }
+      },
+      "coreferential": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 5,
+        "n": 9,
+        "proportion": 0.556,
+        "distribution": {
+          "other": 2,
+          "structural_misparse": 5,
+          "gap_filling": 1,
+          "boundary_violation": 1
+        }
+      },
+      "incompleteness": {
+        "majority_mechanism": "gap_filling",
+        "majority_count": 15,
+        "n": 23,
+        "proportion": 0.652,
+        "distribution": {
+          "gap_filling": 15,
+          "structural_misparse": 3,
+          "boundary_violation": 4,
+          "other": 1
+        }
+      },
+      "lexical": {
+        "majority_mechanism": "gap_filling",
+        "majority_count": 16,
+        "n": 21,
+        "proportion": 0.762,
+        "distribution": {
+          "gap_filling": 16,
+          "structural_misparse": 4,
+          "other": 1
+        }
+      },
+      "scopal": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 16,
+        "n": 21,
+        "proportion": 0.762,
+        "distribution": {
+          "boundary_violation": 4,
+          "structural_misparse": 16,
+          "gap_filling": 1
+        }
+      }
+    },
+    "qwen3-235b": {
+      "authorization_scope": {
+        "majority_mechanism": "boundary_violation",
+        "majority_count": 7,
+        "n": 13,
+        "proportion": 0.538,
+        "distribution": {
+          "gap_filling": 5,
+          "boundary_violation": 7,
+          "structural_misparse": 1
+        }
+      },
+      "conditional_precedence": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 13,
+        "n": 20,
+        "proportion": 0.65,
+        "distribution": {
+          "boundary_violation": 1,
+          "other": 1,
+          "gap_filling": 5,
+          "structural_misparse": 13
+        }
+      },
+      "coreferential": {
+        "majority_mechanism": "gap_filling",
+        "majority_count": 10,
+        "n": 21,
+        "proportion": 0.476,
+        "distribution": {
+          "gap_filling": 10,
+          "other": 2,
+          "structural_misparse": 8,
+          "boundary_violation": 1
+        }
+      },
+      "incompleteness": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 14,
+        "n": 31,
+        "proportion": 0.452,
+        "distribution": {
+          "structural_misparse": 14,
+          "gap_filling": 14,
+          "boundary_violation": 3
+        }
+      },
+      "lexical": {
+        "majority_mechanism": "gap_filling",
+        "majority_count": 12,
+        "n": 26,
+        "proportion": 0.462,
+        "distribution": {
+          "gap_filling": 12,
+          "structural_misparse": 12,
+          "boundary_violation": 2
+        }
+      },
+      "scopal": {
+        "majority_mechanism": "structural_misparse",
+        "majority_count": 15,
+        "n": 18,
+        "proportion": 0.833,
+        "distribution": {
+          "structural_misparse": 15,
+          "boundary_violation": 2,
+          "gap_filling": 1
+        }
+      }
+    }
+  },
+  "cross_model_consistency": {
+    "n_unanimous_3way": 2,
+    "n_unanimous_5way": 3,
+    "n_total": 6,
+    "per_type_3way": {
+      "authorization_scope": {
+        "per_model": {
+          "claude-sonnet-4-6": "boundary_violation",
+          "deepseek-v3": "boundary_violation",
+          "gpt-4.1": "boundary_violation",
+          "gpt-5.4": "boundary_violation",
+          "qwen3-235b": "boundary_violation"
+        },
+        "unanimous": true,
+        "majority_mechanisms": {
+          "boundary_violation": 5
+        }
+      },
+      "conditional_precedence": {
+        "per_model": {
+          "claude-sonnet-4-6": "structural_misparse",
+          "deepseek-v3": "structural_misparse",
+          "gpt-4.1": "other",
+          "gpt-5.4": "structural_misparse",
+          "qwen3-235b": "structural_misparse"
+        },
+        "unanimous": false,
+        "majority_mechanisms": {
+          "structural_misparse": 4,
+          "other": 1
+        }
+      },
+      "coreferential": {
+        "per_model": {
+          "claude-sonnet-4-6": "structural_misparse",
+          "deepseek-v3": "structural_misparse",
+          "gpt-4.1": "gap_filling",
+          "gpt-5.4": "structural_misparse",
+          "qwen3-235b": "gap_filling"
+        },
+        "unanimous": false,
+        "majority_mechanisms": {
+          "structural_misparse": 3,
+          "gap_filling": 2
+        }
+      },
+      "incompleteness": {
+        "per_model": {
+          "claude-sonnet-4-6": "gap_filling",
+          "deepseek-v3": "structural_misparse",
+          "gpt-4.1": "gap_filling",
+          "gpt-5.4": "gap_filling",
+          "qwen3-235b": "structural_misparse"
+        },
+        "unanimous": false,
+        "majority_mechanisms": {
+          "gap_filling": 3,
+          "structural_misparse": 2
+        }
+      },
+      "lexical": {
+        "per_model": {
+          "claude-sonnet-4-6": "structural_misparse",
+          "deepseek-v3": "structural_misparse",
+          "gpt-4.1": "gap_filling",
+          "gpt-5.4": "gap_filling",
+          "qwen3-235b": "gap_filling"
+        },
+        "unanimous": false,
+        "majority_mechanisms": {
+          "structural_misparse": 2,
+          "gap_filling": 3
+        }
+      },
+      "scopal": {
+        "per_model": {
+          "claude-sonnet-4-6": "structural_misparse",
+          "deepseek-v3": "structural_misparse",
+          "gpt-4.1": "structural_misparse",
+          "gpt-5.4": "structural_misparse",
+          "qwen3-235b": "structural_misparse"
+        },
+        "unanimous": true,
+        "majority_mechanisms": {
+          "structural_misparse": 5
+        }
+      }
+    },
+    "per_type_5way": {
+      "authorization_scope": {
+        "per_model": {
+          "claude-sonnet-4-6": "unauthorized_escalation",
+          "deepseek-v3": "unauthorized_escalation",
+          "gpt-4.1": "unauthorized_escalation",
+          "gpt-5.4": "unauthorized_escalation",
+          "qwen3-235b": "unauthorized_escalation"
+        },
+        "unanimous": true
+      },
+      "conditional_precedence": {
+        "per_model": {
+          "claude-sonnet-4-6": "scope_misapplication",
+          "deepseek-v3": "scope_misapplication",
+          "gpt-4.1": "scope_misapplication",
+          "gpt-5.4": "scope_misapplication",
+          "qwen3-235b": "scope_misapplication"
+        },
+        "unanimous": true
+      },
+      "coreferential": {
+        "per_model": {
+          "claude-sonnet-4-6": "scope_misapplication",
+          "deepseek-v3": "scope_misapplication",
+          "gpt-4.1": "assumption_based_action",
+          "gpt-5.4": "scope_misapplication",
+          "qwen3-235b": "assumption_based_action"
+        },
+        "unanimous": false
+      },
+      "incompleteness": {
+        "per_model": {
+          "claude-sonnet-4-6": "assumption_based_action",
+          "deepseek-v3": "scope_misapplication",
+          "gpt-4.1": "assumption_based_action",
+          "gpt-5.4": "assumption_based_action",
+          "qwen3-235b": "scope_misapplication"
+        },
+        "unanimous": false
+      },
+      "lexical": {
+        "per_model": {
+          "claude-sonnet-4-6": "scope_misapplication",
+          "deepseek-v3": "scope_misapplication",
+          "gpt-4.1": "assumption_based_action",
+          "gpt-5.4": "assumption_based_action",
+          "qwen3-235b": "assumption_based_action"
+        },
+        "unanimous": false
+      },
+      "scopal": {
+        "per_model": {
+          "claude-sonnet-4-6": "scope_misapplication",
+          "deepseek-v3": "scope_misapplication",
+          "gpt-4.1": "scope_misapplication",
+          "gpt-5.4": "scope_misapplication",
+          "qwen3-235b": "scope_misapplication"
+        },
+        "unanimous": true
+      }
+    }
+  }
+}

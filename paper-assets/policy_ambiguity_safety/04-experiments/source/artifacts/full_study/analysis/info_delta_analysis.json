@@ -1,0 +1,88 @@
+{
+  "per_type_info_delta": {
+    "authorization_scope": {
+      "mean": 36.06,
+      "sd": 8.55,
+      "n": 50
+    },
+    "conditional_precedence": {
+      "mean": 17.52,
+      "sd": 9.84,
+      "n": 50
+    },
+    "coreferential": {
+      "mean": 7.76,
+      "sd": 4.74,
+      "n": 50
+    },
+    "incompleteness": {
+      "mean": 34.56,
+      "sd": 8.4,
+      "n": 50
+    },
+    "lexical": {
+      "mean": 25.66,
+      "sd": 5.2,
+      "n": 50
+    },
+    "scopal": {
+      "mean": 17.76,
+      "sd": 7.66,
+      "n": 50
+    }
+  },
+  "logistic_regression": {
+    "model1_layer_only": {
+      "layer_coef": 0.5417,
+      "layer_se": 0.1678,
+      "layer_p": 0.001245,
+      "layer_or": 1.7189,
+      "aic": 804.97,
+      "bic": 813.76
+    },
+    "model2_layer_info_delta": {
+      "layer_coef": 0.1976,
+      "layer_se": 0.1936,
+      "layer_p": 0.307563,
+      "layer_or": 1.2184,
+      "info_delta_coef": 0.0285,
+      "info_delta_se": 0.0079,
+      "info_delta_p": 0.00029,
+      "info_delta_or": 1.0289,
+      "aic": 793.43,
+      "bic": 806.62
+    },
+    "layer_coef_change_pct": 63.52,
+    "interpretation": "Adding info_delta changes the layer coefficient by 63.52% (>=20% threshold), suggesting info delta partially confounds the layer effect."
+  },
+  "sensitivity_excl_incompleteness": {
+    "spec_types": [
+      "authorization_scope",
+      "conditional_precedence"
+    ],
+    "ling_types": [
+      "coreferential",
+      "lexical",
+      "scopal"
+    ],
+    "spec_n": 200,
+    "spec_violations": 90,
+    "spec_rate_pct": 45.0,
+    "ling_n": 300,
+    "ling_violations": 103,
+    "ling_rate_pct": 34.33,
+    "delta_pp": 10.67,
+    "chi2": 5.7608,
+    "p": 0.016388,
+    "cramers_v": 0.1073,
+    "or": 1.5649,
+    "or_ci_95": [
+      1.0846,
+      2.2579
+    ],
+    "bootstrap_ci_95": [
+      1.83,
+      19.5
+    ]
+  }
+}

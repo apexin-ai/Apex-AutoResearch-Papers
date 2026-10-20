@@ -1,0 +1,109 @@
+{
+  "domain": "healthcare",
+  "n_clause_pairs": 50,
+  "n_models": 5,
+  "n_episodes": 500,
+  "overall": {
+    "amb_violation_rate": 0.6,
+    "unamb_violation_rate": 0.012,
+    "delta_pp": 58.8,
+    "mcnemar_chi2": 147.0,
+    "mcnemar_p": 0.0,
+    "mcnemar_OR": Infinity,
+    "discordant_b": 147,
+    "discordant_c": 0
+  },
+  "per_type": {
+    "scopal": {
+      "amb_rate": 0.675,
+      "unamb_rate": 0.0,
+      "delta_pp": 67.5,
+      "n_amb": 40,
+      "n_unamb": 40,
+      "mcnemar_chi2": 27.0,
+      "mcnemar_p": 0.0
+    },
+    "lexical": {
+      "amb_rate": 0.675,
+      "unamb_rate": 0.0,
+      "delta_pp": 67.5,
+      "n_amb": 40,
+      "n_unamb": 40,
+      "mcnemar_chi2": 27.0,
+      "mcnemar_p": 0.0
+    },
+    "coreferential": {
+      "amb_rate": 0.475,
+      "unamb_rate": 0.0,
+      "delta_pp": 47.5,
+      "n_amb": 40,
+      "n_unamb": 40,
+      "mcnemar_chi2": 19.0,
+      "mcnemar_p": 1.3e-05
+    },
+    "incompleteness": {
+      "amb_rate": 0.625,
+      "unamb_rate": 0.0,
+      "delta_pp": 62.5,
+      "n_amb": 40,
+      "n_unamb": 40,
+      "mcnemar_chi2": 25.0,
+      "mcnemar_p": 1e-06
+    },
+    "conditional_precedence": {
+      "amb_rate": 0.3333,
+      "unamb_rate": 0.0,
+      "delta_pp": 33.3,
+      "n_amb": 45,
+      "n_unamb": 45,
+      "mcnemar_chi2": 15.0,
+      "mcnemar_p": 0.000108
+    },
+    "authorization_scope": {
+      "amb_rate": 0.8222,
+      "unamb_rate": 0.0667,
+      "delta_pp": 75.6,
+      "n_amb": 45,
+      "n_unamb": 45,
+      "mcnemar_chi2": 34.0,
+      "mcnemar_p": 0.0
+    }
+  },
+  "per_model": {
+    "gpt-5.4": {
+      "amb_rate": 0.66,
+      "unamb_rate": 0.0,
+      "delta_pp": 66.0,
+      "n_amb": 50
+    },
+    "gpt-4.1": {
+      "amb_rate": 0.56,
+      "unamb_rate": 0.02,
+      "delta_pp": 54.0,
+      "n_amb": 50
+    },
+    "claude-sonnet-4-6": {
+      "amb_rate": 0.5,
+      "unamb_rate": 0.02,
+      "delta_pp": 48.0,
+      "n_amb": 50
+    },
+    "qwen3-235b": {
+      "amb_rate": 0.58,
+      "unamb_rate": 0.02,
+      "delta_pp": 56.0,
+      "n_amb": 50
+    },
+    "deepseek-v3": {
+      "amb_rate": 0.7,
+      "unamb_rate": 0.0,
+      "delta_pp": 70.0,
+      "n_amb": 50
+    }
+  },
+  "comparison_with_tau2bench": {
+    "tau2_delta_pp": 34.0,
+    "healthcare_delta_pp": 58.8,
+    "note": "tau2-bench uses multi-turn conversational episodes; healthcare uses single-turn policy-following"
+  }
+}

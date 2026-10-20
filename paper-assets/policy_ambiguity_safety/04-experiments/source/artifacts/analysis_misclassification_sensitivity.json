@@ -1,0 +1,109 @@
+{
+  "description": "Misclassification sensitivity analysis for judge reliability",
+  "method": "Bootstrap B=10000. For each iteration, flip each binary violation label with probability=misclassification_rate, then recompute paired difference (ambiguous - unambiguous).",
+  "interpretation": "Random misclassification attenuates paired effects toward zero. The observed effect is thus a conservative lower bound of the true effect.",
+  "coreferential": {
+    "n_pairs": 248,
+    "observed_effect_pp": 18.15,
+    "judge_kappa": 0.479,
+    "implied_error_rate_approx": 0.26,
+    "sensitivity": [
+      {
+        "misclassification_rate": 0.1,
+        "mean_effect_pp": 14.5,
+        "ci_95_low_pp": 9.27,
+        "ci_95_high_pp": 19.76,
+        "p_value": 0.0,
+        "observed_effect_pp": 18.15,
+        "attenuation_pp": 3.65
+      },
+      {
+        "misclassification_rate": 0.15,
+        "mean_effect_pp": 12.7,
+        "ci_95_low_pp": 6.45,
+        "ci_95_high_pp": 18.95,
+        "p_value": 0.0,
+        "observed_effect_pp": 18.15,
+        "attenuation_pp": 5.45
+      },
+      {
+        "misclassification_rate": 0.2,
+        "mean_effect_pp": 10.9,
+        "ci_95_low_pp": 4.03,
+        "ci_95_high_pp": 17.74,
+        "p_value": 0.0014,
+        "observed_effect_pp": 18.15,
+        "attenuation_pp": 7.24
+      },
+      {
+        "misclassification_rate": 0.25,
+        "mean_effect_pp": 9.15,
+        "ci_95_low_pp": 1.21,
+        "ci_95_high_pp": 16.53,
+        "p_value": 0.0109,
+        "observed_effect_pp": 18.15,
+        "attenuation_pp": 8.99
+      },
+      {
+        "misclassification_rate": 0.3,
+        "mean_effect_pp": 7.32,
+        "ci_95_low_pp": -0.81,
+        "ci_95_high_pp": 15.32,
+        "p_value": 0.042,
+        "observed_effect_pp": 18.15,
+        "attenuation_pp": 10.82
+      }
+    ]
+  },
+  "all_types_combined": {
+    "n_pairs": 1497,
+    "observed_effect_pp": 33.93,
+    "sensitivity": [
+      {
+        "misclassification_rate": 0.1,
+        "mean_effect_pp": 27.14,
+        "ci_95_low_pp": 24.92,
+        "ci_95_high_pp": 29.26,
+        "p_value": 0.0,
+        "observed_effect_pp": 33.93,
+        "attenuation_pp": 6.79
+      },
+      {
+        "misclassification_rate": 0.15,
+        "mean_effect_pp": 23.77,
+        "ci_95_low_pp": 21.24,
+        "ci_95_high_pp": 26.32,
+        "p_value": 0.0,
+        "observed_effect_pp": 33.93,
+        "attenuation_pp": 10.17
+      },
+      {
+        "misclassification_rate": 0.2,
+        "mean_effect_pp": 20.38,
+        "ci_95_low_pp": 17.5,
+        "ci_95_high_pp": 23.25,
+        "p_value": 0.0,
+        "observed_effect_pp": 33.93,
+        "attenuation_pp": 13.56
+      },
+      {
+        "misclassification_rate": 0.25,
+        "mean_effect_pp": 16.95,
+        "ci_95_low_pp": 13.89,
+        "ci_95_high_pp": 20.11,
+        "p_value": 0.0,
+        "observed_effect_pp": 33.93,
+        "attenuation_pp": 16.99
+      },
+      {
+        "misclassification_rate": 0.3,
+        "mean_effect_pp": 13.53,
+        "ci_95_low_pp": 10.29,
+        "ci_95_high_pp": 16.77,
+        "p_value": 0.0,
+        "observed_effect_pp": 33.93,
+        "attenuation_pp": 20.4
+      }
+    ]
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "mantel_haenszel": {
+    "OR": 9.5691,
+    "CI_lower": 7.6262,
+    "CI_upper": 12.0071,
+    "ln_OR": 2.2585,
+    "SE_ln_OR": 0.1158,
+    "variance_method": "Robins-Breslow-Greenland"
+  },
+  "cmh_test": {
+    "chi2": 480.056,
+    "df": 1,
+    "p_value": 0.0
+  },
+  "breslow_day_homogeneity": {
+    "chi2": 11.4523,
+    "df": 4,
+    "p_value": 0.021924,
+    "interpretation": "Homogeneity rejected"
+  },
+  "per_model_ORs": {
+    "claude-sonnet-4-6": {
+      "OR": 8.8947,
+      "CI_lower": 4.9292,
+      "CI_upper": 16.0505,
+      "ln_OR": 2.1855,
+      "SE_ln_OR": 0.3012,
+      "chi2": 68.4444,
+      "p_value": 1.31e-16,
+      "table": {
+        "a": 91,
+        "b": 209,
+        "c": 14,
+        "d": 286
+      },
+      "correction_applied": false
+    },
+    "deepseek-v3": {
+      "OR": 8.2641,
+      "CI_lower": 5.3714,
+      "CI_upper": 12.7145,
+      "ln_OR": 2.1119,
+      "SE_ln_OR": 0.2198,
+      "chi2": 108.3005,
+      "p_value": 2.31e-25,
+      "table": {
+        "a": 149,
+        "b": 151,
+        "c": 32,
+        "d": 268
+      },
+      "correction_applied": false
+    },
+    "gpt-4.1": {
+      "OR": 10.7378,
+      "CI_lower": 6.325,
+      "CI_upper": 18.2293,
+      "ln_OR": 2.3738,
+      "SE_ln_OR": 0.27,
+      "chi2": 100.7702,
+      "p_value": 1.03e-23,
+      "table": {
+        "a": 122,
+        "b": 178,
+        "c": 18,
+        "d": 282
+      },
+      "correction_applied": false
+    },
+    "gpt-5.4": {
+      "OR": 25.3644,
+      "CI_lower": 12.1124,
+      "CI_upper": 53.1152,
+      "ln_OR": 3.2333,
+      "SE_ln_OR": 0.3771,
+      "chi2": 129.1525,
+      "p_value": 6.28e-30,
+      "table": {
+        "a": 123,
+        "b": 177,
+        "c": 8,
+        "d": 292
+      },
+      "correction_applied": false
+    },
+    "qwen3-235b": {
+      "OR": 6.3077,
+      "CI_lower": 4.0939,
+      "CI_upper": 9.7188,
+      "ln_OR": 1.8418,
+      "SE_ln_OR": 0.2206,
+      "chi2": 79.5772,
+      "p_value": 4.64e-19,
+      "table": {
+        "a": 129,
+        "b": 170,
+        "c": 32,
+        "d": 266
+      },
+      "correction_applied": false
+    }
+  },
+  "comparison_with_paper": {
+    "paper_pooled_McNemar_OR": 15.1,
+    "paper_CI": [
+      10.78,
+      21.17
+    ],
+    "MH_OR": 9.5691,
+    "MH_CI": [
+      7.6262,
+      12.0071
+    ],
+    "note": "MH stratified analysis vs naive pooled McNemar"
+  },
+  "strata_counts": {
+    "claude-sonnet-4-6": {
+      "a": 91,
+      "b": 209,
+      "c": 14,
+      "d": 286,
+      "n_amb": 300,
+      "n_unamb": 300
+    },
+    "deepseek-v3": {
+      "a": 149,
+      "b": 151,
+      "c": 32,
+      "d": 268,
+      "n_amb": 300,
+      "n_unamb": 300
+    },
+    "gpt-4.1": {
+      "a": 122,
+      "b": 178,
+      "c": 18,
+      "d": 282,
+      "n_amb": 300,
+      "n_unamb": 300
+    },
+    "gpt-5.4": {
+      "a": 123,
+      "b": 177,
+      "c": 8,
+      "d": 292,
+      "n_amb": 300,
+      "n_unamb": 300
+    },
+    "qwen3-235b": {
+      "a": 129,
+      "b": 170,
+      "c": 32,
+      "d": 266,
+      "n_amb": 299,
+      "n_unamb": 298
+    }
+  },
+  "method_notes": "Binary violation (>=1 violation per clause-episode). 2x2 tables: rows=condition(ambiguous/unambiguous), cols=violation(yes/no). Each model stratum has ~300 clauses per condition."
+}

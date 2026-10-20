@@ -1,0 +1,87 @@
+{
+  "analysis": "per_type_human_llm_agreement",
+  "binarization": "moderate_or_above",
+  "n_total_pairs": 200,
+  "n_matched": 200,
+  "n_skipped": 0,
+  "overall": {
+    "n": 200,
+    "kappa": 0.7353,
+    "kappa_ci_95": [
+      0.6164,
+      0.8521
+    ],
+    "agreement_rate": 0.91,
+    "human_violation_rate": 0.18,
+    "llm_violation_rate": 0.25
+  },
+  "per_type": {
+    "authorization_scope": {
+      "n": 34,
+      "kappa": 0.6444,
+      "kappa_ci_95": [
+        0.3544,
+        0.9053
+      ],
+      "agreement_rate": 0.8529,
+      "human_violation_rate": 0.2059,
+      "llm_violation_rate": 0.3529
+    },
+    "conditional_precedence": {
+      "n": 34,
+      "kappa": 0.8365,
+      "kappa_ci_95": [
+        0.5342,
+        1.0
+      ],
+      "agreement_rate": 0.9412,
+      "human_violation_rate": 0.2353,
+      "llm_violation_rate": 0.2353
+    },
+    "coreferential": {
+      "n": 34,
+      "kappa": 0.4785,
+      "kappa_ci_95": [
+        0.0,
+        0.8411
+      ],
+      "agreement_rate": 0.8529,
+      "human_violation_rate": 0.0882,
+      "llm_violation_rate": 0.2353
+    },
+    "incompleteness": {
+      "n": 34,
+      "kappa": 0.7952,
+      "kappa_ci_95": [
+        0.5609,
+        1.0
+      ],
+      "agreement_rate": 0.9118,
+      "human_violation_rate": 0.2647,
+      "llm_violation_rate": 0.3529
+    },
+    "lexical": {
+      "n": 32,
+      "kappa": 0.9036,
+      "kappa_ci_95": [
+        0.6364,
+        1.0
+      ],
+      "agreement_rate": 0.9688,
+      "human_violation_rate": 0.2188,
+      "llm_violation_rate": 0.1875
+    },
+    "scopal": {
+      "n": 32,
+      "kappa": 0.6364,
+      "kappa_ci_95": [
+        0.0,
+        1.0
+      ],
+      "agreement_rate": 0.9375,
+      "human_violation_rate": 0.0625,
+      "llm_violation_rate": 0.125
+    }
+  },
+  "auth_scope_comparison": "authorization scope \u03ba = 0.6444 vs other types mean \u03ba = 0.73"
+}

@@ -1,0 +1,719 @@
+{
+  "test": "TOST two one-sided z-tests for proportions \u2014 multi-margin sensitivity",
+  "alpha": 0.05,
+  "margins_tested": [
+    0.05,
+    0.1,
+    0.15,
+    0.2
+  ],
+  "violation_definition": "moderate or critical",
+  "condition": "ambiguous",
+  "data_sources": [
+    "gpt-5.4",
+    "gpt-4.1"
+  ],
+  "per_type_rates": {
+    "authorization_scope": {
+      "rate": 0.55,
+      "n": 100,
+      "violations": 55
+    },
+    "conditional_precedence": {
+      "rate": 0.35,
+      "n": 100,
+      "violations": 35
+    },
+    "coreferential": {
+      "rate": 0.25,
+      "n": 100,
+      "violations": 25
+    },
+    "incompleteness": {
+      "rate": 0.52,
+      "n": 100,
+      "violations": 52
+    },
+    "lexical": {
+      "rate": 0.38,
+      "n": 100,
+      "violations": 38
+    },
+    "scopal": {
+      "rate": 0.4,
+      "n": 100,
+      "violations": 40
+    }
+  },
+  "pairwise_results": [
+    {
+      "type_1": "authorization_scope",
+      "type_2": "conditional_precedence",
+      "rate_1": 0.55,
+      "rate_2": 0.35,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": 0.2,
+      "tost": {
+        "0.05": {
+          "z_lower": 3.6274,
+          "p_lower": 0.0001,
+          "z_upper": 2.1764,
+          "p_upper": 0.9852,
+          "tost_p": 0.9852,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": 4.3529,
+          "p_lower": 0.0,
+          "z_upper": 1.451,
+          "p_upper": 0.9266,
+          "tost_p": 0.9266,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": 5.0783,
+          "p_lower": 0.0,
+          "z_upper": 0.7255,
+          "p_upper": 0.7659,
+          "tost_p": 0.7659,
+          "equivalent": false
+        },
+        "0.2": {
+          "z_lower": 5.8038,
+          "p_lower": 0.0,
+          "z_upper": 0.0,
+          "p_upper": 0.5,
+          "tost_p": 0.5,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "coreferential",
+      "rate_1": 0.55,
+      "rate_2": 0.25,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": 0.3,
+      "tost": {
+        "0.05": {
+          "z_lower": 5.3067,
+          "p_lower": 0.0,
+          "z_upper": 3.7905,
+          "p_upper": 0.9999,
+          "tost_p": 0.9999,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": 6.0648,
+          "p_lower": 0.0,
+          "z_upper": 3.0324,
+          "p_upper": 0.9988,
+          "tost_p": 0.9988,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": 6.8229,
+          "p_lower": 0.0,
+          "z_upper": 2.2743,
+          "p_upper": 0.9885,
+          "tost_p": 0.9885,
+          "equivalent": false
+        },
+        "0.2": {
+          "z_lower": 7.581,
+          "p_lower": 0.0,
+          "z_upper": 1.5162,
+          "p_upper": 0.9353,
+          "tost_p": 0.9353,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "incompleteness",
+      "rate_1": 0.55,
+      "rate_2": 0.52,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": 0.03,
+      "tost": {
+        "0.05": {
+          "z_lower": 1.1347,
+          "p_lower": 0.1283,
+          "z_upper": -0.2837,
+          "p_upper": 0.3883,
+          "tost_p": 0.3883,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": 1.8438,
+          "p_lower": 0.0326,
+          "z_upper": -0.9928,
+          "p_upper": 0.1604,
+          "tost_p": 0.1604,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": 2.553,
+          "p_lower": 0.0053,
+          "z_upper": -1.702,
+          "p_upper": 0.0444,
+          "tost_p": 0.0444,
+          "equivalent": true
+        },
+        "0.2": {
+          "z_lower": 3.2622,
+          "p_lower": 0.0006,
+          "z_upper": -2.4112,
+          "p_upper": 0.008,
+          "tost_p": 0.008,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.15
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "lexical",
+      "rate_1": 0.55,
+      "rate_2": 0.38,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": 0.17,
+      "tost": {
+        "0.05": {
+          "z_lower": 3.1652,
+          "p_lower": 0.0008,
+          "z_upper": 1.7265,
+          "p_upper": 0.9579,
+          "tost_p": 0.9579,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": 3.8846,
+          "p_lower": 0.0001,
+          "z_upper": 1.0071,
+          "p_upper": 0.8431,
+          "tost_p": 0.8431,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": 4.604,
+          "p_lower": 0.0,
+          "z_upper": 0.2877,
+          "p_upper": 0.6132,
+          "tost_p": 0.6132,
+          "equivalent": false
+        },
+        "0.2": {
+          "z_lower": 5.3233,
+          "p_lower": 0.0,
+          "z_upper": -0.4316,
+          "p_upper": 0.333,
+          "tost_p": 0.333,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "scopal",
+      "rate_1": 0.55,
+      "rate_2": 0.4,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": 0.15,
+      "tost": {
+        "0.05": {
+          "z_lower": 2.8645,
+          "p_lower": 0.0021,
+          "z_upper": 1.4322,
+          "p_upper": 0.924,
+          "tost_p": 0.924,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": 3.5806,
+          "p_lower": 0.0002,
+          "z_upper": 0.7161,
+          "p_upper": 0.763,
+          "tost_p": 0.763,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": 4.2967,
+          "p_lower": 0.0,
+          "z_upper": 0.0,
+          "p_upper": 0.5,
+          "tost_p": 0.5,
+          "equivalent": false
+        },
+        "0.2": {
+          "z_lower": 5.0128,
+          "p_lower": 0.0,
+          "z_upper": -0.7161,
+          "p_upper": 0.237,
+          "tost_p": 0.237,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "coreferential",
+      "rate_1": 0.35,
+      "rate_2": 0.25,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": 0.1,
+      "tost": {
+        "0.05": {
+          "z_lower": 2.3285,
+          "p_lower": 0.0099,
+          "z_upper": 0.7762,
+          "p_upper": 0.7812,
+          "tost_p": 0.7812,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": 3.1046,
+          "p_lower": 0.001,
+          "z_upper": -0.0,
+          "p_upper": 0.5,
+          "tost_p": 0.5,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": 3.8808,
+          "p_lower": 0.0001,
+          "z_upper": -0.7762,
+          "p_upper": 0.2188,
+          "tost_p": 0.2188,
+          "equivalent": false
+        },
+        "0.2": {
+          "z_lower": 4.6569,
+          "p_lower": 0.0,
+          "z_upper": -1.5523,
+          "p_upper": 0.0603,
+          "tost_p": 0.0603,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "incompleteness",
+      "rate_1": 0.35,
+      "rate_2": 0.52,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": -0.17,
+      "tost": {
+        "0.05": {
+          "z_lower": -1.7373,
+          "p_lower": 0.9588,
+          "z_upper": -3.1851,
+          "p_upper": 0.0007,
+          "tost_p": 0.9588,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": -1.0134,
+          "p_lower": 0.8446,
+          "z_upper": -3.9089,
+          "p_upper": 0.0,
+          "tost_p": 0.8446,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": -0.2896,
+          "p_lower": 0.6139,
+          "z_upper": -4.6328,
+          "p_upper": 0.0,
+          "tost_p": 0.6139,
+          "equivalent": false
+        },
+        "0.2": {
+          "z_lower": 0.4343,
+          "p_lower": 0.332,
+          "z_upper": -5.3567,
+          "p_upper": 0.0,
+          "tost_p": 0.332,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "lexical",
+      "rate_1": 0.35,
+      "rate_2": 0.38,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": -0.03,
+      "tost": {
+        "0.05": {
+          "z_lower": 0.2939,
+          "p_lower": 0.3844,
+          "z_upper": -1.1756,
+          "p_upper": 0.1199,
+          "tost_p": 0.3844,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": 1.0286,
+          "p_lower": 0.1518,
+          "z_upper": -1.9103,
+          "p_upper": 0.028,
+          "tost_p": 0.1518,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": 1.7634,
+          "p_lower": 0.0389,
+          "z_upper": -2.6451,
+          "p_upper": 0.0041,
+          "tost_p": 0.0389,
+          "equivalent": true
+        },
+        "0.2": {
+          "z_lower": 2.4981,
+          "p_lower": 0.0062,
+          "z_upper": -3.3798,
+          "p_upper": 0.0004,
+          "tost_p": 0.0062,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.15
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "scopal",
+      "rate_1": 0.35,
+      "rate_2": 0.4,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": -0.05,
+      "tost": {
+        "0.05": {
+          "z_lower": -0.0,
+          "p_lower": 0.5,
+          "z_upper": -1.4625,
+          "p_upper": 0.0718,
+          "tost_p": 0.5,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": 0.7313,
+          "p_lower": 0.2323,
+          "z_upper": -2.1938,
+          "p_upper": 0.0141,
+          "tost_p": 0.2323,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": 1.4625,
+          "p_lower": 0.0718,
+          "z_upper": -2.9251,
+          "p_upper": 0.0017,
+          "tost_p": 0.0718,
+          "equivalent": false
+        },
+        "0.2": {
+          "z_lower": 2.1938,
+          "p_lower": 0.0141,
+          "z_upper": -3.6564,
+          "p_upper": 0.0001,
+          "tost_p": 0.0141,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.2
+    },
+    {
+      "type_1": "coreferential",
+      "type_2": "incompleteness",
+      "rate_1": 0.25,
+      "rate_2": 0.52,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": -0.27,
+      "tost": {
+        "0.05": {
+          "z_lower": -3.3276,
+          "p_lower": 0.9996,
+          "z_upper": -4.8402,
+          "p_upper": 0.0,
+          "tost_p": 0.9996,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": -2.5713,
+          "p_lower": 0.9949,
+          "z_upper": -5.5964,
+          "p_upper": 0.0,
+          "tost_p": 0.9949,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": -1.8151,
+          "p_lower": 0.9652,
+          "z_upper": -6.3527,
+          "p_upper": 0.0,
+          "tost_p": 0.9652,
+          "equivalent": false
+        },
+        "0.2": {
+          "z_lower": -1.0588,
+          "p_lower": 0.8552,
+          "z_upper": -7.109,
+          "p_upper": 0.0,
+          "tost_p": 0.8552,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "coreferential",
+      "type_2": "lexical",
+      "rate_1": 0.25,
+      "rate_2": 0.38,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": -0.13,
+      "tost": {
+        "0.05": {
+          "z_lower": -1.2299,
+          "p_lower": 0.8906,
+          "z_upper": -2.7673,
+          "p_upper": 0.0028,
+          "tost_p": 0.8906,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": -0.4612,
+          "p_lower": 0.6777,
+          "z_upper": -3.536,
+          "p_upper": 0.0002,
+          "tost_p": 0.6777,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": 0.3075,
+          "p_lower": 0.3792,
+          "z_upper": -4.3046,
+          "p_upper": 0.0,
+          "tost_p": 0.3792,
+          "equivalent": false
+        },
+        "0.2": {
+          "z_lower": 1.0762,
+          "p_lower": 0.1409,
+          "z_upper": -5.0733,
+          "p_upper": 0.0,
+          "tost_p": 0.1409,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "coreferential",
+      "type_2": "scopal",
+      "rate_1": 0.25,
+      "rate_2": 0.4,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": -0.15,
+      "tost": {
+        "0.05": {
+          "z_lower": -1.5294,
+          "p_lower": 0.9369,
+          "z_upper": -3.0589,
+          "p_upper": 0.0011,
+          "tost_p": 0.9369,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": -0.7647,
+          "p_lower": 0.7778,
+          "z_upper": -3.8236,
+          "p_upper": 0.0001,
+          "tost_p": 0.7778,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": -0.0,
+          "p_lower": 0.5,
+          "z_upper": -4.5883,
+          "p_upper": 0.0,
+          "tost_p": 0.5,
+          "equivalent": false
+        },
+        "0.2": {
+          "z_lower": 0.7647,
+          "p_lower": 0.2222,
+          "z_upper": -5.353,
+          "p_upper": 0.0,
+          "tost_p": 0.2222,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "incompleteness",
+      "type_2": "lexical",
+      "rate_1": 0.52,
+      "rate_2": 0.38,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": 0.14,
+      "tost": {
+        "0.05": {
+          "z_lower": 2.7277,
+          "p_lower": 0.0032,
+          "z_upper": 1.2921,
+          "p_upper": 0.9018,
+          "tost_p": 0.9018,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": 3.4455,
+          "p_lower": 0.0003,
+          "z_upper": 0.5742,
+          "p_upper": 0.7171,
+          "tost_p": 0.7171,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": 4.1633,
+          "p_lower": 0.0,
+          "z_upper": -0.1436,
+          "p_upper": 0.4429,
+          "tost_p": 0.4429,
+          "equivalent": false
+        },
+        "0.2": {
+          "z_lower": 4.8811,
+          "p_lower": 0.0,
+          "z_upper": -0.8614,
+          "p_upper": 0.1945,
+          "tost_p": 0.1945,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "incompleteness",
+      "type_2": "scopal",
+      "rate_1": 0.52,
+      "rate_2": 0.4,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": 0.12,
+      "tost": {
+        "0.05": {
+          "z_lower": 2.4296,
+          "p_lower": 0.0076,
+          "z_upper": 1.0004,
+          "p_upper": 0.8414,
+          "tost_p": 0.8414,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": 3.1441,
+          "p_lower": 0.0008,
+          "z_upper": 0.2858,
+          "p_upper": 0.6125,
+          "tost_p": 0.6125,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": 3.8587,
+          "p_lower": 0.0001,
+          "z_upper": -0.4287,
+          "p_upper": 0.3341,
+          "tost_p": 0.3341,
+          "equivalent": false
+        },
+        "0.2": {
+          "z_lower": 4.5733,
+          "p_lower": 0.0,
+          "z_upper": -1.1433,
+          "p_upper": 0.1265,
+          "tost_p": 0.1265,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "lexical",
+      "type_2": "scopal",
+      "rate_1": 0.38,
+      "rate_2": 0.4,
+      "n_1": 100,
+      "n_2": 100,
+      "diff": -0.02,
+      "tost": {
+        "0.05": {
+          "z_lower": 0.435,
+          "p_lower": 0.3318,
+          "z_upper": -1.015,
+          "p_upper": 0.155,
+          "tost_p": 0.3318,
+          "equivalent": false
+        },
+        "0.1": {
+          "z_lower": 1.16,
+          "p_lower": 0.123,
+          "z_upper": -1.74,
+          "p_upper": 0.0409,
+          "tost_p": 0.123,
+          "equivalent": false
+        },
+        "0.15": {
+          "z_lower": 1.885,
+          "p_lower": 0.0297,
+          "z_upper": -2.4651,
+          "p_upper": 0.0068,
+          "tost_p": 0.0297,
+          "equivalent": true
+        },
+        "0.2": {
+          "z_lower": 2.6101,
+          "p_lower": 0.0045,
+          "z_upper": -3.1901,
+          "p_upper": 0.0007,
+          "tost_p": 0.0045,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.15
+    }
+  ],
+  "summary": {
+    "n_pairs": 15,
+    "equivalent_at_5pp": 0,
+    "equivalent_at_10pp": 0,
+    "equivalent_at_15pp": 3,
+    "equivalent_at_20pp": 4,
+    "never_equivalent_at_20pp": 11,
+    "interpretation": "Of 15 type pairs, 0/0/3/4 are equivalent at 5/10/15/20pp margins respectively. 11 pairs remain non-equivalent even at \u00b120pp, indicating substantive violation-rate differences between those ambiguity types."
+  }
+}

@@ -1,0 +1,65 @@
+\section{Results}
+\label{sec:results}
+
+We organize results around four analyses of increasing specificity: the binary ambiguity effect (C1), the type hierarchy (C2), the aggregate layer effect (C3), and the model$\times$type interaction (C4). C1 and C2 constitute our primary claims; C3 is inconclusive; C4 is exploratory but provides the model$\times$type interaction analysis.
+
+\subsection{Binary Ambiguity Effect (C1)}
+
+Across all five models and six types, ambiguous clauses increase violation rates by 34.0 pp (41.0\% vs.\ 6.9\%, OR $= 15.1$, 95\% CI $[10.78, 21.17]$, $p < 10^{-105}$). All six types individually produce significant increases (all $p < 10^{-5}$), and all five models show large effects ($+25.7$ to $+39.0$ pp, all $p < 10^{-17}$). Perturbation controls confirm specificity to semantic ambiguity ($n = 300$, $\Delta_{\text{perturb}} = -0.67$\,pp, CI containing zero). Clause identity explains 22.4\% of variance versus 1.0\% for model identity. A replication on two additional model families (Appendix~\ref{app:model_expansion}) confirms the effect across seven models ($\Delta = +20.0$ to $+33.6$\,pp, both $p < 10^{-6}$); excluding incompleteness, it remains large ($\Delta = 31.0$\,pp; Appendix~\ref{app:sans_incompleteness}).
+
+\subsection{Type Hierarchy (C2)}
+
+\begin{table*}[t]
+\centering
+\caption{Violation rates (\%) under ambiguous policy clauses by type and model. $\Delta$pp denotes the pooled difference between ambiguous and unambiguous conditions across all five models. All per-type differences are significant ($p < 10^{-5}$, Fisher's exact test).}
+\label{tab:main_results}
+\small
+\begin{tabular}{llrrrrrrrr}
+\toprule
+Layer & Type & Pooled & GPT-5.4 & GPT-4.1 & Claude & Qwen3 & DeepSeek & $\Delta$pp & $p$ \\
+\midrule
+\multirow{3}{*}{\textcolor{speccolor}{Spec.}} & Incompleteness & 53.6 & 46.0 & 58.0 & 48.0 & 62.0 & 54.0 & +49.2 & $<10^{-37}$ \\
+ & Auth.\ Scope & 41.6 & 64.0 & 46.0 & 12.0 & 26.0 & 60.0 & +36.0 & $<10^{-22}$ \\
+ & Cond.\ Precedence & 36.8 & 34.0 & 36.0 & 36.0 & 40.0 & 38.0 & +30.8 & $<10^{-17}$ \\
+\midrule
+\multirow{3}{*}{\textcolor{lingcolor}{Ling.}} & Lexical & 42.8 & 42.0 & 34.0 & 32.0 & 52.0 & 54.0 & +35.2 & $<10^{-20}$ \\
+ & Scopal & 39.4 & 42.0 & 38.0 & 32.0 & 36.7 & 48.0 & +34.2 & $<10^{-21}$ \\
+ & Coreferential & 31.6 & 18.0 & 32.0 & 22.0 & 42.0 & 44.0 & +18.7 & $<10^{-6}$ \\
+\midrule
+\multicolumn{2}{l}{\textbf{Overall}} & \textbf{41.0} & 41.0 & 40.7 & 30.3 & 43.1 & 49.7 & \textbf{+34.0} & $<10^{-105}$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The six types are not interchangeable. An omnibus $\chi^2$ test on ambiguous-condition violation rates rejects the uniformity null ($\chi^2 = 28.02$, $df = 5$, $p = 3.6 \times 10^{-5}$, Cram\'{e}r's $V = 0.137$; statistical power $= 0.993$ at the observed effect). TOST equivalence testing at a $\pm 15$ pp margin reveals a two-tier structure among five types---authorization scope (41.6\%), lexical (42.8\%), scopal (39.4\%), and conditional precedence (36.8\%) form a mid-tier cluster, with coreferential (31.6\%) below---while incompleteness (53.6\%) stands apart as an upper bound---conditional on the confound controls in Appendix~\ref{app:confound}---whose ranking partly reflects an information-addition confound. Table~\ref{tab:main_results} and Figure~\ref{fig:forest_plot} present the full breakdown.
+
+Sensitivity analysis across seven margins ($\pm 5$--$20$ pp; Appendix~\ref{app:tost}) confirms this structure: the two-tier pattern emerges at $\pm 12$ pp (5/6 mid-tier pairs equivalent) and stabilizes at $\pm 15$ pp (6/6). A margin-free bootstrap cluster analysis (Ward's method, $B = 10{,}000$) corroborates: at $k = 2$, incompleteness forms a singleton with the remaining five types in one cluster; at $k = 3$, coreferential additionally separates---consistent with the TOST two-tier pattern (Appendix~\ref{app:cluster}).
+At $\pm 10$\,pp, only three mid-tier pairs reach equivalence; the incompleteness upper-bound is robust across all margins while mid-tier cohesion is margin-dependent. Cross-model type ranking concordance is moderate (Kendall's $W$; Appendix~\ref{app:kendall_w}).
+
+Incompleteness is highest in four of five models (rates $\geq$46\% in all seven; Appendix~\ref{app:model_expansion}). Its unambiguous variant adds policy content, so the 49.2\,pp effect is an upper bound; a confound analysis confirms significance after controlling for information delta (Appendix~\ref{app:confound}). Coreferential, whose variants are lexically identical, provides a confound-free lower bound at 31.6\%.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig2_forest_plot.pdf}
+\caption{Per-type effect sizes ($\Delta$pp, ambiguous minus unambiguous) with Newcombe 95\% CIs. All types produce significant increases. A two-tier structure emerges among five types (mid cluster $\gg$ coreferential), with incompleteness as an upper bound partly reflecting an information-addition confound.}
+\label{fig:forest_plot}
+\end{figure}
+
+\subsection{Layer Effect (C3)}
+
+Specification-layer types trend higher than linguistic-layer types (44.0\% vs.\ 37.9\%, $p = 0.017$), but C3 is inconclusive: it does not survive Holm--Bonferroni correction, and controlling for token delta reverses the direction. Cross-layer type overlap (conditional precedence 36.8\% vs.\ scopal 39.4\%) further undermines the distinction. The null C3 result does not diminish the taxonomy's operational value: type-level distinctions (C2) hold independently of layer grouping, and the layer distinction retains value as a theoretical organizing principle even without a measurable effect-size gap.
+
+\subsection{Model $\times$ Type Interaction (C4) \emph{[Exploratory]}}
+\label{sec:c4}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig3_heatmap.pdf}
+\caption{Violation rates (\%) by model and ambiguity type under ambiguous conditions ($n = 2{,}997$). Authorization scope varies 52 pp across models (Claude 12\% to GPT-5.4 64\%), while incompleteness remains uniformly high (46--62\%).}
+\label{fig:heatmap}
+\end{figure*}
+
+A model main effect is significant ($\chi^2 = 31.02$, $p = 3.0 \times 10^{-6}$, $V = 0.102$), with Claude (30.3\%) substantially less vulnerable than DeepSeek (49.7\%). Model identity explains only 1.0\% of total violation variance; the significant interaction ($F(20, 2976) = 1.97$, $p = 0.006$; $\mathrm{df} = (5{-}1) \times (6{-}1) = 20$; 2.9\% of variance; confirmed by logistic regression likelihood ratio test: $\chi^2(20) = 47.20$, $p = 5.5 \times 10^{-4}$) concentrates in specific type--model combinations.
+
+Figure~\ref{fig:heatmap} highlights three suggestive patterns: (1) authorization scope is the \emph{most model-differentiating type} (52 pp range; Claude 12\% to GPT-5.4 64\%), though this type has the lowest judge agreement ($\kappa = 0.385$; \S\ref{sec:limitations}), so absolute rates carry more uncertainty than for other types; (2) incompleteness is a \emph{consistent vulnerability} (46--62\%, 16 pp range); (3) conditional precedence is the most \emph{model-invariant type} (34--40\%, 6 pp range). The authorization scope ranking (Claude $<$ Qwen3 $<$ GPT-4.1) is stable within the GPT-5.4 judge subset (bootstrap ranking preservation: 99.5\%, $B = 10{,}000$; pairwise orderings $\geq$99.5\%), controlling for judge identity. The 48\,pp within-judge range far exceeds measurement noise, but given the low cross-judge $\kappa$, we characterize this pattern as suggestive rather than definitive. Excluding authorization scope, the residual interaction vanishes ($p = 0.97$; Appendix~\ref{app:c4_sans_auth}), confirming that the C4 interaction concentrates in this single type. Given the low inter-judge agreement on authorization scope ($\kappa = 0.385$), the 52\,pp range should be treated as an upper bound with substantial measurement uncertainty rather than a precise estimate.
+

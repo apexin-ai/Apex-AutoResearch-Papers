@@ -1,0 +1,178 @@
+{
+  "analysis_name": "Clause-Level Variance Decomposition",
+  "motivation": "Quantify how much violation variance is clause-specific vs model-specific",
+  "n_clauses": 300,
+  "n_models": 5,
+  "n_observations": 2997,
+  "n_ambiguous_observations": 1499,
+  "overall_icc": {
+    "icc_clause_oneway_ambiguous": 0.3859,
+    "icc_clause_mixedlm_full": 0.1885,
+    "interpretation": "38.6% of violation variance (ambiguous condition) is explained by clause identity (one-way ICC). Mixed-model ICC across all data: 18.8%.",
+    "method": "one-way random effects ANOVA (ambiguous) + MixedLM with random clause intercept (full data)"
+  },
+  "mixed_model": {
+    "random_effect_variance_clause": 0.028608,
+    "residual_variance": 0.123189,
+    "icc": 0.1885,
+    "fixed_effects": {
+      "Intercept": 0.3411,
+      "C(model)[T.deepseek-v3]": 0.1267,
+      "C(model)[T.gpt-4.1]": 0.0583,
+      "C(model)[T.gpt-5.4]": 0.0433,
+      "C(model)[T.qwen3-235b]": 0.0956,
+      "C(ambiguity_type)[T.conditional_precedence]": -0.022,
+      "C(ambiguity_type)[T.coreferential]": -0.0124,
+      "C(ambiguity_type)[T.incompleteness]": 0.054,
+      "C(ambiguity_type)[T.lexical]": 0.016,
+      "C(ambiguity_type)[T.scopal]": -0.013,
+      "C(condition)[T.unambiguous]": -0.3398
+    }
+  },
+  "variance_components": {
+    "clause_id": {
+      "sum_sq": 122.0528,
+      "pct": 22.4,
+      "note": "includes ambiguity_type effect (clause nests within type)"
+    },
+    "ambiguity_type": {
+      "sum_sq": 1.967,
+      "pct": 0.4,
+      "note": "between-type component of clause_id"
+    },
+    "clause_within_type": {
+      "sum_sq": 120.3085,
+      "pct": 22.0,
+      "note": "clause-specific variance beyond type"
+    },
+    "model": {
+      "sum_sq": 5.7041,
+      "pct": 1.0
+    },
+    "condition": {
+      "sum_sq": 86.4068,
+      "pct": 15.8
+    },
+    "residual": {
+      "sum_sq": 331.5883,
+      "pct": 60.8
+    }
+  },
+  "per_type_icc": {
+    "authorization_scope": {
+      "icc": 0.29,
+      "n_clauses": 50
+    },
+    "conditional_precedence": {
+      "icc": 0.3183,
+      "n_clauses": 50
+    },
+    "coreferential": {
+      "icc": 0.3586,
+      "n_clauses": 50
+    },
+    "incompleteness": {
+      "icc": 0.4273,
+      "n_clauses": 50
+    },
+    "lexical": {
+      "icc": 0.3854,
+      "n_clauses": 50
+    },
+    "scopal": {
+      "icc": 0.4934,
+      "n_clauses": 50
+    }
+  },
+  "clause_danger_profile": {
+    "universally_dangerous": {
+      "count": 71,
+      "pct": 23.7,
+      "description": ">=4/5 models violated"
+    },
+    "moderate_danger": {
+      "count": 53,
+      "pct": 17.7,
+      "description": "3 models violated"
+    },
+    "model_specific": {
+      "count": 92,
+      "pct": 30.7,
+      "description": "1-2 models violated"
+    },
+    "safe": {
+      "count": 84,
+      "pct": 28.0,
+      "description": "0 models violated"
+    },
+    "per_type_breakdown": {
+      "authorization_scope": {
+        "universal": 9,
+        "moderate": 13,
+        "model_specific": 16,
+        "safe": 12
+      },
+      "conditional_precedence": {
+        "universal": 11,
+        "moderate": 7,
+        "model_specific": 19,
+        "safe": 13
+      },
+      "coreferential": {
+        "universal": 8,
+        "moderate": 7,
+        "model_specific": 16,
+        "safe": 19
+      },
+      "incompleteness": {
+        "universal": 17,
+        "moderate": 14,
+        "model_specific": 8,
+        "safe": 11
+      },
+      "lexical": {
+        "universal": 13,
+        "moderate": 6,
+        "model_specific": 19,
+        "safe": 12
+      },
+      "scopal": {
+        "universal": 13,
+        "moderate": 6,
+        "model_specific": 14,
+        "safe": 17
+      }
+    },
+    "examples": {
+      "universally_dangerous": [
+        "auth_011",
+        "auth_020",
+        "auth_028",
+        "auth_033",
+        "auth_034"
+      ],
+      "moderate_danger": [
+        "auth_002",
+        "auth_003",
+        "auth_009",
+        "auth_010",
+        "auth_014"
+      ],
+      "model_specific": [
+        "auth_001",
+        "auth_007",
+        "auth_013",
+        "auth_017",
+        "auth_019"
+      ],
+      "safe": [
+        "auth_004",
+        "auth_005",
+        "auth_006",
+        "auth_008",
+        "auth_012"
+      ]
+    }
+  },
+  "conclusion": "Clause identity is the dominant source of violation variance: ICC=0.386 in ambiguous condition, clause_id explains 22.4% of total SS vs model 1.0% and condition 15.8% (residual 60.8%). In the ambiguous condition, 71/300 clauses are universally dangerous (>=4/5 models violated) while 84/300 are safe (no model violated)."
+}

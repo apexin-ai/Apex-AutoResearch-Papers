@@ -1,0 +1,10 @@
+\paragraph{Automated Ambiguity Detection Tool}
+To demonstrate the practical utility of our taxonomy, we build an automated ambiguity detection classifier.
+Given a policy clause, the classifier determines (1)~whether the clause contains ambiguity, and (2)~the specific ambiguity type from our five-category taxonomy.
+We use GPT-4.1 as the backbone with a zero-shot prompt that includes definitions and examples for each ambiguity type.
+
+We evaluate on our full dataset of 500 policy clauses (250 ambiguous, 250 unambiguous) using stratified 5-fold cross-validation, where clause pairs are kept in the same fold to prevent data leakage.
+The classifier achieves a macro F1 of 0.63 across all six classes (five ambiguity types plus ``no ambiguity''), substantially outperforming both random (0.17) and majority-class (0.11) baselines.
+For binary ambiguity detection, we observe 0.81 F1 with a false positive rate of 0.04.
+Performance varies across ambiguity types: \textit{conditional\_precedence} is most reliably detected (F1=0.94), while \textit{incompleteness} proves most challenging (F1=0.34).
+These results suggest that LLM-based classifiers can serve as effective first-pass tools for flagging potentially ambiguous policy language, though human review remains essential for nuanced cases.

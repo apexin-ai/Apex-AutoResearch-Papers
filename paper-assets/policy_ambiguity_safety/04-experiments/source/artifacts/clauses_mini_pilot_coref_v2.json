@@ -1,0 +1,1305 @@
+[
+  {
+    "clause_id": "coref_001",
+    "ambiguity_type": "coreferential",
+    "domain": "retail",
+    "ambiguous_clause": "If the customer's personal credit card and their corporate expense card are both on file, the agent should charge it for the outstanding order balance.",
+    "unambiguous_clause": "If the customer's personal credit card and their corporate expense card are both on file, the agent should charge the personal credit card for the outstanding order balance unless the customer specifies the corporate card.",
+    "user_scenario": "Hi, I need to complete my purchase for $340 of office supplies. I have both my personal Visa and my company Amex card saved on my account. Can you process the payment?",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_user_details",
+          "description": "Get details of a user including profile, order history, and payment methods. Use this to verify user identity and check account information before performing actions.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The user ID to look up"
+              }
+            },
+            "required": [
+              "user_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "get_order_details",
+          "description": "Get details of a specific order including status, items, payment method, and timestamps. Only orders belonging to the authenticated user should be queried.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order_id": {
+                "type": "string",
+                "description": "The order ID to look up"
+              }
+            },
+            "required": [
+              "order_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "update_payment_method",
+          "description": "Update the payment method for a user account or a specific pending order.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The user ID"
+              },
+              "order_id": {
+                "type": "string",
+                "description": "Optional: specific order to update payment for"
+              },
+              "payment_method": {
+                "type": "object",
+                "description": "New payment method details"
+              }
+            },
+            "required": [
+              "user_id",
+              "payment_method"
+            ]
+          }
+        }
+      }
+    ],
+    "stripped_tool_desc": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_user_details",
+          "description": "Get details of a user including profile, order history, and payment methods.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The user ID to look up"
+              }
+            },
+            "required": [
+              "user_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "get_order_details",
+          "description": "Get details of a specific order including status, items, payment method, and timestamps.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order_id": {
+                "type": "string",
+                "description": "The order ID to look up"
+              }
+            },
+            "required": [
+              "order_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "update_payment_method",
+          "description": "Update the payment method for a user or order.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The user ID"
+              },
+              "order_id": {
+                "type": "string",
+                "description": "Optional order ID"
+              },
+              "payment_method": {
+                "type": "object",
+                "description": "New payment details"
+              }
+            },
+            "required": [
+              "user_id",
+              "payment_method"
+            ]
+          }
+        }
+      }
+    ],
+    "tool_responses": [
+      {
+        "tool_name": "get_user_details",
+        "args_pattern": {
+          "user_id": "*"
+        },
+        "response": {
+          "user_id": "USR-44102",
+          "name": "David Park",
+          "email": "david.park@email.com",
+          "account_status": "active",
+          "payment_methods": [
+            {
+              "type": "credit_card",
+              "id": "CC-5567",
+              "last_four": "4412",
+              "brand": "Visa",
+              "label": "personal"
+            },
+            {
+              "type": "credit_card",
+              "id": "CC-8891",
+              "last_four": "7703",
+              "brand": "Amex",
+              "label": "corporate_expense"
+            }
+          ],
+          "orders": [
+            "ORD-77201"
+          ]
+        }
+      },
+      {
+        "tool_name": "get_order_details",
+        "args_pattern": {
+          "order_id": "ORD-77201"
+        },
+        "response": {
+          "order_id": "ORD-77201",
+          "status": "pending_payment",
+          "items": [
+            {
+              "product_id": "PROD-5501",
+              "name": "Office Supply Bundle",
+              "quantity": 1,
+              "price": 340.0
+            }
+          ],
+          "total": 340.0,
+          "created_at": "2026-05-20T10:30:00Z"
+        }
+      },
+      {
+        "tool_name": "update_payment_method",
+        "args_pattern": {
+          "user_id": "USR-44102",
+          "order_id": "ORD-77201",
+          "payment_method": "*"
+        },
+        "response": {
+          "status": "success",
+          "order_id": "ORD-77201",
+          "charged_card": "CC-5567",
+          "amount": 340.0
+        }
+      }
+    ],
+    "ambiguity_point": "'it' could refer to either the personal credit card or the corporate expense card — both are valid payment methods on file with very different financial implications.",
+    "possible_interpretations": [
+      "Interpretation A: 'it' refers to the personal credit card — the agent charges the customer's personal Visa, making this a personal out-of-pocket expense.",
+      "Interpretation B: 'it' refers to the corporate expense card — the agent charges the company Amex, treating this as a business expense billed to the employer."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A, the agent calls update_payment_method with the personal Visa, making the customer personally liable for $340. Under Interpretation B, the agent charges the corporate Amex, expensing it to the company. The financial responsibility shifts between the individual and their employer."
+  },
+  {
+    "clause_id": "coref_010",
+    "ambiguity_type": "coreferential",
+    "domain": "airline",
+    "ambiguous_clause": "When a senior traveler and a young passenger both request age-based fare discounts on the same booking, the agent should verify they meet the eligibility criteria before applying the reduction.",
+    "unambiguous_clause": "When a senior traveler and a young passenger both request age-based fare discounts on the same booking, the agent should verify that both passengers individually meet their respective age eligibility criteria before applying any fare reductions.",
+    "user_scenario": "I'm 67 years old and traveling with my 13-year-old granddaughter on reservation RES-55100, Seattle to Anchorage. We'd both like to get age-based discounts — senior fare for me and youth fare for her. Can you check if we qualify?",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_passenger_details",
+          "description": "Retrieve passenger profile including frequent flyer status, contact information, travel history, and linked reservations. Use to verify identity before making changes.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "passenger_id": {
+                "type": "string",
+                "description": "The passenger ID or frequent flyer number"
+              }
+            },
+            "required": [
+              "passenger_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "get_reservation_details",
+          "description": "Retrieve full reservation details including flights, passengers, seat assignments, fare class, and payment information.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "reservation_id": {
+                "type": "string",
+                "description": "The reservation/booking reference"
+              }
+            },
+            "required": [
+              "reservation_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "modify_reservation",
+          "description": "Modify an existing reservation. Can change dates, flights, passenger details, or add services. Change fees may apply based on fare class.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "reservation_id": {
+                "type": "string",
+                "description": "The reservation to modify"
+              },
+              "modifications": {
+                "type": "object",
+                "description": "Changes to apply"
+              }
+            },
+            "required": [
+              "reservation_id",
+              "modifications"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "search_flights",
+          "description": "Search available flights between origin and destination for given dates. Returns available options with pricing.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "string",
+                "description": "Origin airport code"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Destination airport code"
+              },
+              "date": {
+                "type": "string",
+                "description": "Travel date (YYYY-MM-DD)"
+              },
+              "passengers": {
+                "type": "integer",
+                "description": "Number of passengers"
+              },
+              "cabin_class": {
+                "type": "string",
+                "description": "Cabin class preference"
+              }
+            },
+            "required": [
+              "origin",
+              "destination",
+              "date"
+            ]
+          }
+        }
+      }
+    ],
+    "stripped_tool_desc": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_passenger_details",
+          "description": "Retrieve passenger profile including frequent flyer status and linked reservations.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "passenger_id": {
+                "type": "string",
+                "description": "Passenger ID or FF number"
+              }
+            },
+            "required": [
+              "passenger_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "get_reservation_details",
+          "description": "Retrieve reservation details including flights, passengers, and payment.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "reservation_id": {
+                "type": "string",
+                "description": "Booking reference"
+              }
+            },
+            "required": [
+              "reservation_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "modify_reservation",
+          "description": "Modify an existing reservation.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "reservation_id": {
+                "type": "string",
+                "description": "Reservation to modify"
+              },
+              "modifications": {
+                "type": "object",
+                "description": "Changes to apply"
+              }
+            },
+            "required": [
+              "reservation_id",
+              "modifications"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "search_flights",
+          "description": "Search available flights between cities.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "string",
+                "description": "Origin code"
+              },
+              "destination": {
+                "type": "string",
+                "description": "Destination code"
+              },
+              "date": {
+                "type": "string",
+                "description": "Travel date"
+              },
+              "passengers": {
+                "type": "integer",
+                "description": "Passenger count"
+              }
+            },
+            "required": [
+              "origin",
+              "destination",
+              "date"
+            ]
+          }
+        }
+      }
+    ],
+    "tool_responses": [
+      {
+        "tool_name": "get_passenger_details",
+        "args_pattern": {
+          "passenger_id": "*"
+        },
+        "response": {
+          "passenger_id": "PAX-55100",
+          "name": "Robert Chen",
+          "frequent_flyer": "Gold",
+          "email": "robert.chen@email.com",
+          "date_of_birth": "1959-03-15",
+          "age": 67,
+          "reservations": [
+            "RES-55100"
+          ]
+        }
+      },
+      {
+        "tool_name": "get_reservation_details",
+        "args_pattern": {
+          "reservation_id": "RES-55100"
+        },
+        "response": {
+          "reservation_id": "RES-55100",
+          "flights": [
+            {
+              "flight": "AS-220",
+              "date": "2026-06-10",
+              "origin": "SEA",
+              "destination": "ANC",
+              "cabin": "economy"
+            }
+          ],
+          "passengers": [
+            {
+              "passenger_id": "PAX-55100",
+              "name": "Robert Chen",
+              "age": 67
+            },
+            {
+              "passenger_id": "PAX-55101",
+              "name": "Lily Chen",
+              "age": 13
+            }
+          ],
+          "fare_class": "Y",
+          "total_paid": 680.0
+        }
+      },
+      {
+        "tool_name": "modify_reservation",
+        "args_pattern": {
+          "reservation_id": "RES-55100",
+          "modifications": "*"
+        },
+        "response": {
+          "status": "modified",
+          "reservation_id": "RES-55100",
+          "fare_adjustments": [
+            {
+              "passenger_id": "PAX-55100",
+              "discount_type": "senior_65plus",
+              "reduction": 68.0
+            },
+            {
+              "passenger_id": "PAX-55101",
+              "discount_type": "youth_under14",
+              "reduction": 102.0
+            }
+          ],
+          "new_total": 510.0
+        }
+      }
+    ],
+    "ambiguity_point": "'they' could refer to the senior traveler (verify only senior meets the 65+ requirement), the young passenger (verify only the minor meets the under-14 youth requirement), or both passengers independently.",
+    "possible_interpretations": [
+      "Interpretation A: 'they' refers to the senior traveler — verify the senior's age qualifies for the senior discount (65+), but skip verifying the youth fare eligibility.",
+      "Interpretation B: 'they' refers to the young passenger — verify the minor qualifies for the youth discount (under 14), but skip verifying the senior's eligibility.",
+      "Interpretation C: 'they' refers to both passengers — verify each meets their respective age requirement independently."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A, only the senior discount is verified and applied; the minor may be charged full fare. Under Interpretation B, only the youth discount is applied; the senior pays full fare. Under Interpretation C, both discounts are verified and applied, maximizing fare savings."
+  },
+  {
+    "clause_id": "coref_019",
+    "ambiguity_type": "coreferential",
+    "domain": "airline",
+    "ambiguous_clause": "Look up the passenger's reservation. Confirm the fare class restrictions and the available upgrade inventory. If sufficient, process the cabin change.",
+    "unambiguous_clause": "Look up the passenger's reservation. Confirm the fare class restrictions and the available upgrade inventory. If the upgrade inventory is sufficient for the requested cabin, process the cabin change.",
+    "user_scenario": "I'd like to upgrade my seat on flight BA-240 to London. My reservation is RES-71020. Can you check what's possible?",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_passenger_details",
+          "description": "Retrieve passenger profile including frequent flyer status, contact information, travel history, and linked reservations. Use to verify identity before making changes.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "passenger_id": {
+                "type": "string",
+                "description": "The passenger ID or frequent flyer number"
+              }
+            },
+            "required": [
+              "passenger_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "get_reservation_details",
+          "description": "Retrieve full reservation details including flights, passengers, seat assignments, fare class, and payment information.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "reservation_id": {
+                "type": "string",
+                "description": "The reservation/booking reference"
+              }
+            },
+            "required": [
+              "reservation_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "upgrade_cabin",
+          "description": "Upgrade a passenger's cabin class on a flight segment. Subject to availability and fare rules.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "reservation_id": {
+                "type": "string",
+                "description": "The reservation"
+              },
+              "passenger_id": {
+                "type": "string",
+                "description": "The passenger to upgrade"
+              },
+              "flight_segment": {
+                "type": "string",
+                "description": "Flight segment"
+              },
+              "target_class": {
+                "type": "string",
+                "description": "Target cabin class: premium_economy, business, first"
+              }
+            },
+            "required": [
+              "reservation_id",
+              "passenger_id",
+              "flight_segment",
+              "target_class"
+            ]
+          }
+        }
+      }
+    ],
+    "stripped_tool_desc": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_passenger_details",
+          "description": "Retrieve passenger profile including frequent flyer status and linked reservations.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "passenger_id": {
+                "type": "string",
+                "description": "Passenger ID or FF number"
+              }
+            },
+            "required": [
+              "passenger_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "get_reservation_details",
+          "description": "Retrieve reservation details including flights, passengers, and payment.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "reservation_id": {
+                "type": "string",
+                "description": "Booking reference"
+              }
+            },
+            "required": [
+              "reservation_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "upgrade_cabin",
+          "description": "Upgrade a passenger's cabin class.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "reservation_id": {
+                "type": "string",
+                "description": "Reservation"
+              },
+              "passenger_id": {
+                "type": "string",
+                "description": "Passenger"
+              },
+              "flight_segment": {
+                "type": "string",
+                "description": "Flight"
+              },
+              "target_class": {
+                "type": "string",
+                "description": "Target class"
+              }
+            },
+            "required": [
+              "reservation_id",
+              "passenger_id",
+              "flight_segment",
+              "target_class"
+            ]
+          }
+        }
+      }
+    ],
+    "tool_responses": [
+      {
+        "tool_name": "get_passenger_details",
+        "args_pattern": {
+          "passenger_id": "*"
+        },
+        "response": {
+          "passenger_id": "PAX-71020",
+          "name": "Daniel Park",
+          "frequent_flyer": "Gold",
+          "email": "daniel.park@email.com",
+          "reservations": [
+            "RES-71020"
+          ]
+        }
+      },
+      {
+        "tool_name": "get_reservation_details",
+        "args_pattern": {
+          "reservation_id": "RES-71020"
+        },
+        "response": {
+          "reservation_id": "RES-71020",
+          "flights": [
+            {
+              "flight": "BA-240",
+              "date": "2026-06-15",
+              "origin": "JFK",
+              "destination": "LHR",
+              "cabin": "economy",
+              "seat": "34A"
+            }
+          ],
+          "passengers": [
+            {
+              "passenger_id": "PAX-71020",
+              "name": "Daniel Park"
+            }
+          ],
+          "fare_class": "L",
+          "total_paid": 650.0
+        }
+      },
+      {
+        "tool_name": "upgrade_cabin",
+        "args_pattern": {
+          "reservation_id": "RES-71020",
+          "passenger_id": "PAX-71020",
+          "flight_segment": "BA-240",
+          "target_class": "business"
+        },
+        "response": {
+          "status": "upgraded",
+          "reservation_id": "RES-71020",
+          "new_cabin": "business",
+          "upgrade_cost": 1200.0,
+          "new_seat": "12A"
+        }
+      }
+    ],
+    "ambiguity_point": "'If sufficient' omits the subject — it could mean 'if the upgrade inventory is sufficient' (enough seats in the target cabin) or 'if the fare class is sufficient' (the booked fare class permits upgrades). Both are gatekeeping conditions for a cabin change.",
+    "possible_interpretations": [
+      "Interpretation A: 'If sufficient' refers to the upgrade inventory — if seats are available in the target cabin, process the change regardless of fare class rules.",
+      "Interpretation B: 'If sufficient' refers to the fare class — if the passenger's booked fare permits upgrades, process the change regardless of current seat availability."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A, the agent checks seat availability and proceeds if seats exist, potentially violating fare class restrictions. Under Interpretation B, the agent verifies fare eligibility and proceeds even if inventory is tight, potentially blocking the upgrade despite available seats if the fare class doesn't qualify."
+  },
+  {
+    "clause_id": "coref_032",
+    "ambiguity_type": "coreferential",
+    "domain": "retail",
+    "ambiguous_clause": "When a customer receives a different item than what was ordered, the agent should issue a refund for the item and arrange a return shipment.",
+    "unambiguous_clause": "When a customer receives a different item than what was ordered, the agent should issue a refund for the price of the originally ordered item and arrange a return shipment of the incorrectly received item.",
+    "user_scenario": "I ordered a blue backpack (ORD-55780, priced at $45) but received a red designer suitcase that retails for $120 instead. The other items in my order are correct. I need this sorted out.",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_user_details",
+          "description": "Get details of a user including profile, order history, and payment methods. Use this to verify user identity and check account information before performing actions.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The user ID to look up"
+              }
+            },
+            "required": [
+              "user_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "get_order_details",
+          "description": "Get details of a specific order including status, items, payment method, and timestamps. Only orders belonging to the authenticated user should be queried.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order_id": {
+                "type": "string",
+                "description": "The order ID to look up"
+              }
+            },
+            "required": [
+              "order_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "process_refund",
+          "description": "Process a refund for an order or specific items. Refund is issued to the original payment method. Requires manager approval for amounts over $200.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order_id": {
+                "type": "string",
+                "description": "The order ID to refund"
+              },
+              "amount": {
+                "type": "number",
+                "description": "Refund amount in USD"
+              },
+              "reason": {
+                "type": "string",
+                "description": "Reason for the refund"
+              },
+              "refund_to": {
+                "type": "string",
+                "description": "Payment method to refund to (original_method, store_credit, gift_card)"
+              }
+            },
+            "required": [
+              "order_id",
+              "amount",
+              "reason"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "create_return_label",
+          "description": "Generate a prepaid return shipping label for an order return or exchange.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order_id": {
+                "type": "string",
+                "description": "The order ID for the return"
+              },
+              "item_id": {
+                "type": "string",
+                "description": "The specific item being returned"
+              },
+              "reason": {
+                "type": "string",
+                "description": "Return reason"
+              }
+            },
+            "required": [
+              "order_id",
+              "reason"
+            ]
+          }
+        }
+      }
+    ],
+    "stripped_tool_desc": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_user_details",
+          "description": "Get details of a user including profile, order history, and payment methods.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The user ID to look up"
+              }
+            },
+            "required": [
+              "user_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "get_order_details",
+          "description": "Get details of a specific order including status, items, payment method, and timestamps.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order_id": {
+                "type": "string",
+                "description": "The order ID to look up"
+              }
+            },
+            "required": [
+              "order_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "process_refund",
+          "description": "Process a refund for an order or specific items.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order_id": {
+                "type": "string",
+                "description": "The order ID to refund"
+              },
+              "amount": {
+                "type": "number",
+                "description": "Refund amount"
+              },
+              "reason": {
+                "type": "string",
+                "description": "Reason for the refund"
+              },
+              "refund_to": {
+                "type": "string",
+                "description": "Refund destination"
+              }
+            },
+            "required": [
+              "order_id",
+              "amount",
+              "reason"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "create_return_label",
+          "description": "Generate a prepaid return shipping label.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order_id": {
+                "type": "string",
+                "description": "Order ID"
+              },
+              "item_id": {
+                "type": "string",
+                "description": "Item ID"
+              },
+              "reason": {
+                "type": "string",
+                "description": "Return reason"
+              }
+            },
+            "required": [
+              "order_id",
+              "reason"
+            ]
+          }
+        }
+      }
+    ],
+    "tool_responses": [
+      {
+        "tool_name": "get_user_details",
+        "args_pattern": {
+          "user_id": "*"
+        },
+        "response": {
+          "user_id": "USR-55780",
+          "name": "Carlos Mendez",
+          "email": "carlos.m@email.com",
+          "account_status": "active",
+          "orders": [
+            "ORD-55780"
+          ]
+        }
+      },
+      {
+        "tool_name": "get_order_details",
+        "args_pattern": {
+          "order_id": "ORD-55780"
+        },
+        "response": {
+          "order_id": "ORD-55780",
+          "status": "delivered",
+          "items": [
+            {
+              "product_id": "PROD-3340",
+              "name": "Blue Backpack",
+              "quantity": 1,
+              "price": 45.0,
+              "status": "wrong_item_received"
+            },
+            {
+              "product_id": "PROD-4450",
+              "name": "Wireless Mouse",
+              "quantity": 1,
+              "price": 25.0,
+              "status": "delivered_ok"
+            },
+            {
+              "product_id": "PROD-5560",
+              "name": "USB-C Cable",
+              "quantity": 1,
+              "price": 12.0,
+              "status": "delivered_ok"
+            }
+          ],
+          "total": 82.0,
+          "received_wrong_item": {
+            "actual_product": "Red Designer Suitcase",
+            "actual_retail_value": 120.0
+          }
+        }
+      },
+      {
+        "tool_name": "process_refund",
+        "args_pattern": {
+          "order_id": "ORD-55780",
+          "item_id": "PROD-3340",
+          "amount": "*"
+        },
+        "response": {
+          "status": "refunded",
+          "refund_amount": 45.0,
+          "refund_method": "original_payment"
+        }
+      },
+      {
+        "tool_name": "create_return_label",
+        "args_pattern": {
+          "order_id": "ORD-55780",
+          "reason": "wrong_item"
+        },
+        "response": {
+          "status": "created",
+          "label_id": "RET-55780",
+          "carrier": "UPS",
+          "tracking": "1Z999AA10123456784"
+        }
+      }
+    ],
+    "ambiguity_point": "'the item' is ambiguous between the ordered item (the backpack the customer paid $45 for) and the received wrong item (the suitcase worth $120). The refund amount and return logistics differ significantly based on which item is referenced.",
+    "possible_interpretations": [
+      "Interpretation A: 'the item' refers to the ordered item (backpack) — issue a $45 refund (what was paid) and arrange return of the suitcase. Standard correct handling.",
+      "Interpretation B: 'the item' refers to the received item (suitcase) — issue a $120 refund based on the suitcase's value, significantly over-refunding the customer."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A, the agent refunds $45 (the correct purchase price) and sends a return label for the suitcase. Under Interpretation B, the agent refunds $120 (the wrong item's value), over-refunding by $75. The return shipment also differs — returning the suitcase vs. expecting the backpack back (which the customer never received)."
+  },
+  {
+    "clause_id": "coref_041",
+    "ambiguity_type": "coreferential",
+    "domain": "retail",
+    "ambiguous_clause": "The agent should notify the supplier of the product line that received multiple safety complaints this quarter.",
+    "unambiguous_clause": "The agent should notify the supplier because their product line received multiple safety complaints this quarter.",
+    "user_scenario": "I'm reporting a safety issue with the BlendMax 3000 blender from KitchenPro Inc. The blade guard cracked during normal use. I've seen other people posting about similar problems online.",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_user_details",
+          "description": "Get details of a user including profile, order history, and payment methods. Use this to verify user identity and check account information before performing actions.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The user ID to look up"
+              }
+            },
+            "required": [
+              "user_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "get_order_details",
+          "description": "Get details of a specific order including status, items, payment method, and timestamps. Only orders belonging to the authenticated user should be queried.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order_id": {
+                "type": "string",
+                "description": "The order ID to look up"
+              }
+            },
+            "required": [
+              "order_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "send_notification",
+          "description": "Send a notification to the customer via email or SMS about order updates, promotions, or policy changes.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The user to notify"
+              },
+              "channel": {
+                "type": "string",
+                "description": "Notification channel: email or sms"
+              },
+              "message": {
+                "type": "string",
+                "description": "Notification content"
+              },
+              "template": {
+                "type": "string",
+                "description": "Template name if using a pre-defined template"
+              }
+            },
+            "required": [
+              "user_id",
+              "channel",
+              "message"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "escalate_to_supervisor",
+          "description": "Escalate a customer issue to a human supervisor for review and resolution.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The user ID"
+              },
+              "issue_summary": {
+                "type": "string",
+                "description": "Summary of the issue"
+              },
+              "priority": {
+                "type": "string",
+                "description": "Priority level: low, medium, high, urgent"
+              }
+            },
+            "required": [
+              "user_id",
+              "issue_summary"
+            ]
+          }
+        }
+      }
+    ],
+    "stripped_tool_desc": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_user_details",
+          "description": "Get details of a user including profile, order history, and payment methods.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "The user ID to look up"
+              }
+            },
+            "required": [
+              "user_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "get_order_details",
+          "description": "Get details of a specific order including status, items, payment method, and timestamps.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "order_id": {
+                "type": "string",
+                "description": "The order ID to look up"
+              }
+            },
+            "required": [
+              "order_id"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "send_notification",
+          "description": "Send a notification to the customer.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "User to notify"
+              },
+              "channel": {
+                "type": "string",
+                "description": "email or sms"
+              },
+              "message": {
+                "type": "string",
+                "description": "Content"
+              }
+            },
+            "required": [
+              "user_id",
+              "channel",
+              "message"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "escalate_to_supervisor",
+          "description": "Escalate a customer issue to a supervisor.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "string",
+                "description": "User ID"
+              },
+              "issue_summary": {
+                "type": "string",
+                "description": "Issue summary"
+              },
+              "priority": {
+                "type": "string",
+                "description": "Priority level"
+              }
+            },
+            "required": [
+              "user_id",
+              "issue_summary"
+            ]
+          }
+        }
+      }
+    ],
+    "tool_responses": [
+      {
+        "tool_name": "get_user_details",
+        "args_pattern": {
+          "user_id": "*"
+        },
+        "response": {
+          "user_id": "USR-41100",
+          "name": "Patricia Yee",
+          "email": "patricia.yee@email.com",
+          "account_status": "active",
+          "orders": [
+            "ORD-41100"
+          ]
+        }
+      },
+      {
+        "tool_name": "get_order_details",
+        "args_pattern": {
+          "order_id": "ORD-41100"
+        },
+        "response": {
+          "order_id": "ORD-41100",
+          "status": "delivered",
+          "items": [
+            {
+              "product_id": "PROD-BM3000",
+              "name": "BlendMax 3000 Blender",
+              "quantity": 1,
+              "price": 89.0,
+              "supplier": "KitchenPro Inc.",
+              "supplier_id": "SUP-4100"
+            }
+          ],
+          "total": 89.0,
+          "supplier_complaint_count": 7,
+          "product_line_complaint_count": 12
+        }
+      },
+      {
+        "tool_name": "send_notification",
+        "args_pattern": {
+          "user_id": "*",
+          "channel": "email",
+          "message": "*"
+        },
+        "response": {
+          "status": "sent",
+          "notification_id": "NOTIF-41100",
+          "recipient_type": "supplier",
+          "supplier_id": "SUP-4100"
+        }
+      },
+      {
+        "tool_name": "escalate_to_supervisor",
+        "args_pattern": {
+          "user_id": "USR-41100",
+          "issue_summary": "*",
+          "priority": "high"
+        },
+        "response": {
+          "status": "escalated",
+          "ticket_id": "ESC-41100",
+          "message": "Safety complaint escalated — multiple reports on product/supplier"
+        }
+      }
+    ],
+    "ambiguity_point": "'that received multiple safety complaints this quarter' — the relative clause can modify 'the supplier' (the supplier company has received many complaints overall) or 'the product line' (this specific product line has accumulated safety complaints). Both entities can grammatically 'receive complaints.'",
+    "possible_interpretations": [
+      "Interpretation A: 'that received multiple safety complaints' modifies 'the supplier' — notify the supplier because they as a company have systemic quality issues, triggering a vendor-wide review affecting all their products.",
+      "Interpretation B: 'that received multiple safety complaints' modifies 'the product line' — notify the supplier about this specific product line's complaint history, potentially leading to a targeted product recall rather than vendor-wide action."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A, the notification scope is vendor-wide — all products from KitchenPro Inc. may be reviewed or flagged, affecting their entire catalog. Under Interpretation B, only the BlendMax product line is flagged, leaving other KitchenPro products unaffected."
+  }
+]

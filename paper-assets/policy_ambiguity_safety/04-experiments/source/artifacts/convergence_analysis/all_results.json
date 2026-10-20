@@ -1,0 +1,230 @@
+{
+  "analysis_1": {
+    "total": 482,
+    "distribution": {
+      "PERMISSIVE": {
+        "count": 371,
+        "pct": 77.0
+      },
+      "RESTRICTIVE": {
+        "count": 85,
+        "pct": 17.6
+      },
+      "LITERAL": {
+        "count": 26,
+        "pct": 5.4
+      },
+      "OTHER": {
+        "count": 0,
+        "pct": 0.0
+      }
+    },
+    "dominant_category": "PERMISSIVE",
+    "binomial_test": {
+      "dominant": "PERMISSIVE",
+      "count": 371,
+      "n_main": 482,
+      "p_value": 0.0
+    },
+    "per_convergence_category": {
+      "majority": {
+        "PERMISSIVE": 128,
+        "RESTRICTIVE": 26,
+        "LITERAL": 5
+      },
+      "strong": {
+        "PERMISSIVE": 105,
+        "RESTRICTIVE": 21,
+        "LITERAL": 2
+      },
+      "universal": {
+        "PERMISSIVE": 138,
+        "LITERAL": 19,
+        "RESTRICTIVE": 38
+      }
+    },
+    "per_type": {
+      "auth_scope": {
+        "PERMISSIVE": 79,
+        "LITERAL": 1
+      },
+      "coreferential": {
+        "PERMISSIVE": 42,
+        "LITERAL": 9,
+        "RESTRICTIVE": 5
+      },
+      "cond_prec": {
+        "RESTRICTIVE": 32,
+        "PERMISSIVE": 35,
+        "LITERAL": 1
+      },
+      "incompleteness": {
+        "PERMISSIVE": 95,
+        "RESTRICTIVE": 20,
+        "LITERAL": 7
+      },
+      "lexical": {
+        "PERMISSIVE": 59,
+        "RESTRICTIVE": 16,
+        "LITERAL": 3
+      },
+      "scopal": {
+        "PERMISSIVE": 61,
+        "RESTRICTIVE": 12,
+        "LITERAL": 5
+      }
+    }
+  },
+  "analysis_2": {
+    "type_matrix": [
+      {
+        "type": "auth_scope",
+        "n_clauses": 50,
+        "universal": 5,
+        "strong_4": 4,
+        "majority_3": 13,
+        "total_convergent": 22,
+        "convergent_rate": 0.44,
+        "unanimous_rate": 0.1,
+        "divergent": 16,
+        "no_violation": 12
+      },
+      {
+        "type": "cond_prec",
+        "n_clauses": 50,
+        "universal": 3,
+        "strong_4": 8,
+        "majority_3": 7,
+        "total_convergent": 18,
+        "convergent_rate": 0.36,
+        "unanimous_rate": 0.06,
+        "divergent": 19,
+        "no_violation": 13
+      },
+      {
+        "type": "coreferential",
+        "n_clauses": 50,
+        "universal": 3,
+        "strong_4": 5,
+        "majority_3": 7,
+        "total_convergent": 15,
+        "convergent_rate": 0.3,
+        "unanimous_rate": 0.06,
+        "divergent": 16,
+        "no_violation": 19
+      },
+      {
+        "type": "incompleteness",
+        "n_clauses": 50,
+        "universal": 12,
+        "strong_4": 5,
+        "majority_3": 14,
+        "total_convergent": 31,
+        "convergent_rate": 0.62,
+        "unanimous_rate": 0.24,
+        "divergent": 8,
+        "no_violation": 11
+      },
+      {
+        "type": "lexical",
+        "n_clauses": 50,
+        "universal": 8,
+        "strong_4": 5,
+        "majority_3": 6,
+        "total_convergent": 19,
+        "convergent_rate": 0.38,
+        "unanimous_rate": 0.16,
+        "divergent": 19,
+        "no_violation": 12
+      },
+      {
+        "type": "scopal",
+        "n_clauses": 50,
+        "universal": 8,
+        "strong_4": 5,
+        "majority_3": 6,
+        "total_convergent": 19,
+        "convergent_rate": 0.38,
+        "unanimous_rate": 0.16,
+        "divergent": 14,
+        "no_violation": 17
+      }
+    ],
+    "fisher_incompleteness": [
+      {
+        "comparison": "incompleteness vs auth_scope",
+        "odds_ratio": 2.842,
+        "p_value": 0.1084
+      },
+      {
+        "comparison": "incompleteness vs cond_prec",
+        "odds_ratio": 4.947,
+        "p_value": 0.0226
+      },
+      {
+        "comparison": "incompleteness vs coreferential",
+        "odds_ratio": 4.947,
+        "p_value": 0.0226
+      },
+      {
+        "comparison": "incompleteness vs lexical",
+        "odds_ratio": 1.658,
+        "p_value": 0.4539
+      },
+      {
+        "comparison": "incompleteness vs scopal",
+        "odds_ratio": 1.658,
+        "p_value": 0.4539
+      }
+    ],
+    "mechanism_groups": {
+      "structural": {
+        "conv": 52,
+        "n": 150,
+        "rate": 0.347
+      },
+      "gap_filling": {
+        "conv": 50,
+        "n": 100,
+        "rate": 0.5
+      },
+      "boundary": {
+        "conv": 22,
+        "n": 50,
+        "rate": 0.44
+      },
+      "chi2": 5.993,
+      "p_value": 0.05,
+      "dof": 2
+    }
+  },
+  "analysis_3": {
+    "n_divergent": 92,
+    "n_convergent": 124,
+    "type_distribution": {
+      "auth_scope": 16,
+      "cond_prec": 19,
+      "coreferential": 16,
+      "incompleteness": 8,
+      "lexical": 19,
+      "scopal": 14
+    },
+    "type_chi2": 5.435,
+    "type_p": 0.3652,
+    "clause_length": {
+      "divergent_median": 48.5,
+      "convergent_median": 46.0,
+      "u_stat": 6335.5,
+      "p_mwu": 0.1642
+    },
+    "solo_model_counts": {
+      "gpt-5.4": 27,
+      "gpt-4.1": 18,
+      "claude-sonnet-4-6": 16,
+      "qwen3-235b": 28,
+      "deepseek-v3": 43
+    },
+    "model_chi2": 17.318,
+    "model_p": 0.0017
+  }
+}

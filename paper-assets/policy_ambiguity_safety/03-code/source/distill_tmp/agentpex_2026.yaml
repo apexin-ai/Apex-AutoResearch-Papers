@@ -1,0 +1,85 @@
+paper_key: "agentpex_2026"
+title: "Willful Disobedience: Automatically Detecting Failures in Agentic Traces"
+venue: "ACM CAIS 2026"
+full_text_available: true
+
+research:
+  baselines: [Claude 3.5 Sonnet, GPT-4.1, o4-mini]
+  metrics:
+    - {name: "AgentPex aggregate score (0-100)", direction: "higher_better"}
+    - {name: "ROC-AUC (binary failure classification)", direction: "higher_better"}
+    - {name: "output_spec score", direction: "higher_better"}
+    - {name: "argument_groundedness score", direction: "higher_better"}
+  datasets:
+    - {name: "τ²-bench traces", size: "424 traces across telecom/retail/airline"}
+  ablation_dimensions: [specification_family, model, domain]
+  training_recipe: {optimizer: "N/A (evaluation framework)", lr: "N/A", hardware: "GPT-5 mini for spec extraction"}
+  method_family: "specification-driven trace evaluation"
+
+positioning:
+  core_claim: "Outcome-only benchmarks miss critical procedural failures; AgentPex extracts behavioral specs from prompts and finds 83% of perfect-outcome traces contain procedural violations."
+  key_results: "ROC-AUC 0.680 for failure prediction; 83% of perfect τ²-bench traces have violations; 449 simultaneous text-tool-call violations in Claude; per-trace cost $0.019"
+  limitations:
+    - "Single benchmark coverage (τ²-bench only)"
+    - "Double penalization from overlapping spec families"
+    - "Detection without automated repair"
+    - "Cannot reliably predict final states in complex environments"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "标题'Willful Disobedience'即是hook——agent不是不能做，而是故意不遵守规则"
+  tension: "outcome-only evaluation看似通过但隐藏了严重的procedural violations"
+  key_insight: "RQ2揭示：58条perfect-outcome traces中83%存在procedural violations，outcome正确不等于过程合规"
+  argument_chain: "outcome benchmarks insufficient → spec extraction from prompts → seven evaluator suite → procedural violations even in 'correct' traces → cross-model generalization"
+  contribution_framing: "两项贡献：specification-driven evaluation方法 + 大规模empirical验证"
+  intro_structure: "4段：agent部署现状 → outcome评估盲区 → AgentPex方案概述 → 贡献和发现"
+  notable_technique: "三阶段pipeline(normalize → extract → evaluate)设计简洁清晰；'willful disobedience'概念命名精准，将技术问题升华为行为概念"
+
+figures:
+  figure_count: 9
+  figure1:
+    type: "problem_illustration"
+    description: "航空场景trace示例：agent获得perfect τ²-bench reward但存在simultaneous text-tool calls和跳过验证步骤的违规"
+    narrative_role: "用具体例子证明outcome-only评估的盲区"
+    design_elements: ["真实trace展示", "违规标注", "对比(perfect reward vs actual violations)"]
+    visual_style: "trace截图+红色标注违规位置"
+  result_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "AgentPex aggregate scores vs τ²-bench composite scores排序对比"
+      how_gain_highlighted: "两条线趋势一致，无需ground truth即可发现问题traces"
+      design_note: "排序对比展示agreement without supervision"
+    - figure_id: "Figure 6"
+      viz_type: "grouped_bar"
+      what_compared: "各模型在7个spec维度上的得分"
+      how_gain_highlighted: "output_spec一致性地成为bottleneck"
+      design_note: "跨模型比较揭示通用pattern"
+  ablation_figures:
+    - figure_id: "Figure 7"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["domain (telecom/retail/airline)", "metric"]
+      design_note: "per-domain展示metric变异，telecom predicted-plan最难"
+    - figure_id: "Figure 9"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["model"]
+      design_note: "τ²-bench和AgentPex scores并列对比"
+  figure_narrative_role: "Figure 1(问题示例) → Figure 5(AgentPex vs baseline) → Figure 6(cross-model metrics) → Figure 7(cross-domain) → Figure 9(综合对比)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "inline results (RQ1-RQ4)"
+    row_axis: "methods"
+    col_axis: "metrics"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "inline text with specific numbers"
+    statistical_reporting: "single run scores"
+    num_baselines: 3
+    design_note: "结果主要通过RQ回答的叙事方式呈现，而非大表格"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: false
+    content: "计算成本分析(per-trace: 9 API calls, ~77K tokens, $0.019, 139s)"
+    reason: "成本数据直接嵌入正文，展示实用性"

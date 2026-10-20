@@ -1,0 +1,53 @@
+{
+  "model": "gemini-2.5-flash",
+  "model_id": "google/gemini-2.5-flash",
+  "n_episodes": 500,
+  "n_ambiguous": 250,
+  "n_unambiguous": 250,
+  "judge_model": "gpt-5.4",
+  "overall": {
+    "ambiguous_rate": 0.376,
+    "unambiguous_rate": 0.04,
+    "delta_pp": 0.336,
+    "or": 14.46,
+    "p_value": 4.0066903918147467e-22
+  },
+  "per_type": {
+    "scopal": {
+      "ambiguous_rate": 0.34,
+      "unambiguous_rate": 0.0,
+      "delta_pp": 0.34
+    },
+    "lexical": {
+      "ambiguous_rate": 0.5,
+      "unambiguous_rate": 0.08,
+      "delta_pp": 0.42
+    },
+    "incompleteness": {
+      "ambiguous_rate": 0.48,
+      "unambiguous_rate": 0.06,
+      "delta_pp": 0.42
+    },
+    "conditional_precedence": {
+      "ambiguous_rate": 0.34,
+      "unambiguous_rate": 0.04,
+      "delta_pp": 0.3
+    },
+    "authorization_scope": {
+      "ambiguous_rate": 0.22,
+      "unambiguous_rate": 0.02,
+      "delta_pp": 0.2
+    }
+  },
+  "c1_replicates": true,
+  "c2_rank_correlation": 0.6,
+  "c2_rank_p_value": 0.2848,
+  "type_ranking": [
+    "lexical",
+    "incompleteness",
+    "scopal",
+    "conditional_precedence",
+    "authorization_scope"
+  ],
+  "bugfix_note": "reference_rank corrected from arbitrary order to main-study pooled descending; OR inverted from crosstab artifact"
+}

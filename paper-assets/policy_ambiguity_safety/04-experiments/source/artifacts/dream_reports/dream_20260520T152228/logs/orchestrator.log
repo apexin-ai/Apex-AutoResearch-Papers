@@ -1,0 +1,4 @@
+2026-05-20 16:05:49,688 WARNING core.tools.dream  [dream] Phase 2 worst parse failed (attempt 0): mapping values are not allowed here
+  in "<unicode string>", line 788, column 50:
+     ... n_ratio:{synthetic: 0.82, drip_r: 0.79, ks_d: 0.09, p: 0.51,  si ... 
+                                         ^

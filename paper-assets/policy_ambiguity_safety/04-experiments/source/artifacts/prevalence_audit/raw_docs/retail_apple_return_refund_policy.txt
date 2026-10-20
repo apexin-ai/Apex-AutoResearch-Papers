@@ -1,0 +1,31 @@
+# Source: https://www.apple.com/shop/help/returns_refund
+# Fetched: 2026-05-23
+# Type: Return/Refund Policy
+
+# Apple Store Return and Refund Policy
+
+## Returns
+
+Apple enables customers to return undamaged products within 14 days of receipt with original receipt and packaging. For iPhones specifically, the return window is 14 days from purchase date.
+
+Regarding refunds: If the item is returned within this timeframe, Apple will exchange it or offer a refund based upon the original payment method. For retail store returns involving cash transactions exceeding $250, refund checks are mailed within 10 business days.
+
+## Return Restrictions
+
+The following items cannot be returned:
+- Electronic software downloads
+- Software-Up-To-Date subscriptions
+- Apple Store Gift Cards
+- Apple Developer Connection products
+
+Gift purchases receive refunds as store gift cards rather than original payment methods. Devices with active security features may be refused unless disabled first.
+
+Software returns have limitations: Opened software cannot be returned if it contained a seal with the software license on the outside of the package and you could read the software license before opening its packaging, with exceptions for Apple-branded software where licensing terms are rejected.
+
+## Additional Terms
+
+Products can only be returned in their original country of purchase. For iPhone returns, wireless account cancellation is not automatic — customers remain responsible for service agreements and related fees.
+
+## Price Adjustments
+
+When Apple reduces pricing within 14 calendar days of product receipt, eligible customers may contact the Apple Care Center (800-393-399) to request a gift card for the price difference.

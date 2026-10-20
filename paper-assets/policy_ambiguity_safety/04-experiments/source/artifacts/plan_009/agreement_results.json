@@ -1,0 +1,36 @@
+{
+  "n_episodes": 100,
+  "inter_annotator": {
+    "binary_kappa": 0.798,
+    "weighted_kappa": 0.762
+  },
+  "human_llm": {
+    "a1_binary_kappa": 0.775,
+    "a1_weighted_kappa": 0.868,
+    "a2_binary_kappa": 0.692,
+    "a2_weighted_kappa": 0.745,
+    "pooled_binary_kappa": 0.733,
+    "pooled_weighted_kappa": 0.807,
+    "strict_consensus_binary_kappa": 0.692
+  },
+  "label_distributions": {
+    "annotator1": {
+      "1": 21,
+      "0": 58,
+      "3": 10,
+      "2": 11
+    },
+    "annotator2": {
+      "1": 2,
+      "0": 83,
+      "3": 10,
+      "2": 5
+    },
+    "llm_judge": {
+      "1": 4,
+      "0": 71,
+      "3": 9,
+      "2": 16
+    }
+  }
+}

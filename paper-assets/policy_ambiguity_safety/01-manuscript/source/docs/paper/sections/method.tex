@@ -1,0 +1,66 @@
+\section{Method}
+\label{sec:method}
+
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{Evaluated models. Selection spans frontier and mid-tier proprietary models alongside open-source alternatives with different training philosophies.}
+\label{tab:models}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Model} & \textbf{Provider} & \textbf{Type} & \textbf{Access} \\
+\midrule
+GPT-5.4 & OpenAI & Proprietary dense & API \\
+GPT-4.1 & OpenAI & Proprietary dense & API \\
+Claude Sonnet 4.6 & Anthropic & Proprietary dense & API \\
+Qwen3-235B & Alibaba & Open-source MoE & API \\
+DeepSeek-V3 & DeepSeek & Open-source dense & API \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Experimental Platform}
+
+We conduct all experiments on the original release of $\tau^2$-bench \citep{tau2_bench_2025}, a dual-control conversational agent benchmark spanning retail and airline customer service domains. $\tau^2$-bench provides natural-language policy documents, tool APIs, and multi-turn user interactions with ground-truth evaluation via assertion checking. Its policy injection mechanism allows us to replace individual policy clauses while preserving the surrounding context, enabling controlled ambiguity manipulation. Table~\ref{tab:models} lists the five models from four providers spanning two architecture families. All API calls use temperature $= 0$, top\_p $= 1$, and max\_tokens $= 4096$.
+
+\subsection{Matched-Pair Design}
+
+For each of the six ambiguity types, we construct 50 \emph{clause pairs}: an ambiguous variant and a matched unambiguous variant that conveys the same intended policy but resolves the ambiguity. Pairs are minimal edits: the unambiguous variant adds only the information necessary to eliminate the target ambiguity (e.g., for scopal ambiguity, replacing ``items may be returned within 30 days'' with ``standard items may be returned within 30 days; customized items are final sale''). This yields 300 clause pairs $\times$ 2 conditions $\times$ 5 models $= 3{,}000$ episodes; 3 were lost to API errors in one Qwen3 batch, yielding 2{,}997. Appendix~\ref{app:pipeline} details the construction pipeline; Appendix~\ref{app:clause_examples} provides representative examples for each type.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Representative clause pairs. Ambiguous variants introduce a single ambiguity type; disambiguated variants resolve it through minimal edits (bold highlights key differences). Full set: Appendix~\ref{app:clause_examples}.}
+\label{tab:clause_examples_main}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{1.4cm}p{3.0cm}p{3.0cm}@{}}
+\toprule
+\textbf{Type} & \textbf{\textcolor{speccolor}{Ambiguous}} & \textbf{\textcolor{lingcolor}{Disambiguated}} \\
+\midrule
+\raggedright Incomp. \scriptsize{(Spec.)} & \scriptsize Refunds for \textbf{large orders} require \textbf{appropriate approval} and must be processed \textbf{in a timely manner}. & \scriptsize Refunds for orders over \$50 require manager approval and must be processed within 14 business days. \\
+\addlinespace[2pt]
+\raggedright Scopal \scriptsize{(Ling.)} & \scriptsize \textbf{All items} are eligible for return except restricted categories. & \scriptsize All items in the order are eligible for return \textbf{except final-sale items and personalized products}. \\
+\addlinespace[2pt]
+\raggedright Auth.\ Scope \scriptsize{(Spec.)} & \scriptsize The agent may issue refunds \textbf{autonomously for routine amounts}; larger amounts require escalation. & \scriptsize The agent may issue refunds \textbf{up to \$50} without supervisor approval; amounts above \$50 require sign-off. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Clause pairs are hand-crafted following structured type-level specifications and reviewed by two independent annotators (both with NLP background) to ensure (1) the ambiguous variant contains exactly one instance of the target type, (2) the unambiguous variant resolves it without changing policy scope, and (3) the ambiguity is plausibly natural. Annotators independently verified type assignments with a 96\% initial agreement (287/300; Cohen's $\kappa = 0.95$ on six-type classification); this high agreement reflects annotation precision (each pair differs only in the ambiguity-introducing edit), not task simplicity. The 13 disagreements were resolved by discussion, yielding 100\% final consensus. A post-hoc realism validation confirms linguistic consistency with original $\tau^2$-bench policy text (\S\ref{sec:limitations}).
+
+\subsection{Evaluation}
+
+We use a cross-judge design to mitigate self-evaluation bias: GPT-5.4 judges Claude, GPT-4.1, and Qwen3 traces; GPT-4.1 judges GPT-5.4 and DeepSeek traces. Because our matched-pair design compares conditions within the same model--judge pairing, systematic judge bias cancels in the treatment effect ($\Delta$pp); cross-model judge asymmetry affects only absolute rates, not the paired treatment effects (\S\ref{sec:limitations}). Judges classify episodes on a four-tier severity scale (none, minor, moderate, critical); our primary threshold is moderate-or-above (Appendix~\ref{app:severity}). Dual-judge calibration on 100 stratified episodes yields $\kappa = 0.653$ ($\kappa_w = 0.775$; per-type $n \approx 17$, CIs wide; Appendix~\ref{app:per_type_agreement}). Three-family validation (GPT-5.4, GPT-4.1, Claude; Appendix~\ref{app:cross_judge}) yields Fleiss' $\kappa = 0.717$. The judge prompt template is in Appendix~\ref{app:judge_prompt}.
+
+\paragraph{Human validation.} Two annotators, blind to LLM labels, labeled 100 stratified episodes. Inter-annotator $\kappa = 0.798$; human--LLM $\kappa = 0.733$ ($\kappa_w = 0.807$), approaching inter-annotator levels and validating the automated pipeline \citep{zheng_llm_judge_2024}. Per-type estimates ($n \approx 32$--$34$) have wide CIs (Appendix~\ref{app:per_type_agreement}).
+
+\subsection{Controls}
+
+\paragraph{Perturbation control.} To confirm specificity to semantic ambiguity, we run 300 episodes with non-ambiguity perturbations (synonym substitution, clause reordering). The perturbation effect is $\Delta_{\text{perturb}} = -0.67$ pp (95\% CI $[-8.0, 6.67]$, containing zero). Even under the worst-case CI bound (6.67 pp), the residual attributable to ambiguity is $\geq$27.3 pp. This control tests surface-level perturbation specificity; the information-addition confound specific to incompleteness is addressed separately via logistic regression (Appendix~\ref{app:confound}).
+
+\paragraph{Within-family replicability.} A replication of 30 clause pairs $\times$ 2 models $\times$ 3 replicates yields an intraclass correlation coefficient (ICC) of $0.919$ (95\% CI $[0.892, 0.940]$); cross-provider concordance is moderate (Kendall's $W = 0.398$, $p = 0.072$; \S\ref{sec:results}).
+
+\subsection{Statistical Analysis}
+
+We use McNemar's test for paired binary outcomes, $\chi^2$ tests with Cram\'{e}r's $V$ for omnibus effects, Fisher's exact test for per-type comparisons, and two one-sided tests (TOST) equivalence testing \citep{lakens_2017} with a primary smallest effect size of interest (SESOI) of $\pm 15$ pp. We report the matched-pair odds ratio (OR) from McNemar's test on discordant outcomes ($n_{\text{disc}} = 580$ of 1{,}497 pairs), which conditions on within-pair disagreement and thus differs from the crude marginal odds ratio. No industry-standard SESOI exists for LLM agent policy violations. We use $\pm 15$\,pp as a pragmatic threshold: it exceeds measurement noise (perturbation control upper CI: 6.67\,pp) by $>$2$\times$, and a per-type difference below this margin would not warrant distinct mitigation strategies. This is a pragmatic default, not a principled domain-anchored threshold (see Appendix~\ref{app:tost} for cost anchoring); Table~\ref{tab:tost_sensitivity} reports sensitivity across seven margins ($\pm 5$--$20$\,pp; \citealp{anvari_lakens_2021}). The margin-free bootstrap cluster analysis (\S\ref{sec:results}; Appendix~\ref{app:cluster}) confirms the same equivalence structure. We apply Holm--Bonferroni correction within three pre-registered test families (Appendix~\ref{app:multiple_comparison}); post-hoc power exceeds 0.99 for the binary effect and the type partial ordering.

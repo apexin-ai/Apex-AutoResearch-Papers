@@ -1,0 +1,8 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Differential nocuity.}
+Building on \citet{berry_kamsties_2004}'s nocuous/innocuous distinction and \citet{willis_nocuous_2008}'s detection work, our results can be interpreted through a \emph{differential nocuity} lens: risk depends on ambiguity type (base vulnerability), safety training (selective mitigation), and disambiguation channel availability. This generates two testable predictions: (P1) types with explicit decision points should show larger safety-training gains than gap-filling types; (P2) disambiguation channels should reduce violations more for high-deficit types. Our mitigation experiment (Appendix~\ref{app:mitigation}) is consistent with, though not a formal test of, P1 ($-18.0$\,pp for authorization scope vs.\ $-3.4$\,pp for incompleteness).
+
+\paragraph{Practical implications.}
+A proof-of-concept classifier (Appendix~\ref{app:detection}) achieves F1\,=\,0.81 for binary ambiguity detection but only 0.34 for incompleteness---the highest-risk type is the hardest to detect. With agents exhibiting disambiguation deficit in $>$89\% of cases, type-aware auditing and externalized detection \citep{chantree_2006,ferrari_ambiguity_2019} are necessary for policy-governed deployments.

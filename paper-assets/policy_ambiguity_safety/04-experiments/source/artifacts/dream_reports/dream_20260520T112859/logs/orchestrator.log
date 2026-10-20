@@ -1,0 +1,3 @@
+2026-05-20 12:05:18,338 INFO    core.tools.feishu  create_chat: name='审稿-policy_ambiguity_safety' → chat_id=oc_967344d166ba485ad606d14379e69d85
+2026-05-20 12:05:18,341 INFO    core.tools.dream  [dream] auto-created Group C for project=policy_ambiguity_safety: oc_967344d166ba485ad606d14379e69d85
+2026-05-20 12:05:18,448 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-be-idea-gen-0519-4/config/mcp_config_dream_review_director.json

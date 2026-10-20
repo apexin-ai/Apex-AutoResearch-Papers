@@ -1,0 +1,1 @@
+Awareness clusters by model family: GPT-4.1 and Claude~Sonnet~4.6 show non-zero rates (10--11\%) while Qwen3-235B and DeepSeek-V3 exhibit zero awareness across all 278 combined violation episodes ($p = 2.2 \times 10^{-9}$, Fisher's exact test); GPT-5.4 falls in between at 4.1\% (Appendix~\ref{app:awareness-breakdown}).

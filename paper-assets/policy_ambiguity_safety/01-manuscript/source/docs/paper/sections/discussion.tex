@@ -1,0 +1,8 @@
+\section{Discussion and Conclusion}
+\label{sec:discussion}
+
+\paragraph{Disambiguation neglect and prompt-level safety.}
+The 4.6\% awareness rate implies prompt-level safety instructions are insufficient; authorization scope responds to explicit disambiguation ($-$18.0\,pp), but incompleteness does not ($-$3.4\,pp, n.s.; Appendix~\ref{app:mitigation}). Convergent nocuity (\S\ref{sec:nocuity}) further undermines agreement-based monitoring, with cross-family Jaccard similarity approaching within-family levels suggesting shared interpretation heuristics rather than training-data overlap. The type--mechanism dissociation maps types to targeted mitigations (numerical thresholds, structural disambiguation, default-value specification), but the variance decomposition (22.4\% clause vs.\ 0.4\% type) means detection must operate at the clause level, with type labels guiding disambiguation. A proof-of-concept classifier achieves binary F1\,=\,0.81 (Appendix~\ref{app:detection}), confirming feasibility.
+
+\paragraph{Conclusion.}
+This work provides the first causal evidence that policy ambiguity induces safety violations in LLM agents, with directional consistency across benchmarks and model families. Convergent nocuity inverts classical ambiguity theory \citep{berry_kamsties_2004} and defeats agreement-based monitoring; clause-level auditing outperforms type-level screening (22.4\% vs.\ 0.4\% variance).

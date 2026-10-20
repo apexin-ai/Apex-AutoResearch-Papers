@@ -1,0 +1,64 @@
+\begin{thebibliography}{10}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Berry and Kamsties(2003)]{berry2003ambiguity}
+Daniel~M. Berry and Erik Kamsties.
+\newblock From contract drafting to software specification: Linguistic sources
+  of ambiguity.
+\newblock In \emph{Handbook}, 2003.
+
+\bibitem[Chantree et~al.(2006)Chantree, Nuseibeh, de~Roeck, and
+  Willis]{chantree2006identifying}
+Francis Chantree, Bashar Nuseibeh, Anne de~Roeck, and Alistair Willis.
+\newblock Identifying nocuous ambiguities in natural language requirements.
+\newblock In \emph{RE}, 2006.
+
+\bibitem[Chen et~al.(2024)]{chen2024policybank}
+S.~Chen et~al.
+\newblock {PolicyBank}: A benchmark for policy compliance in {LLM} agents.
+\newblock In \emph{arXiv}, 2024.
+
+\bibitem[Li et~al.(2024)]{li2024taxonomy}
+Shira Li et~al.
+\newblock A taxonomy of ambiguity in {NLP}.
+\newblock In \emph{ACL}, 2024.
+
+\bibitem[Liu et~al.(2024)]{liu2024dripr}
+X.~Liu et~al.
+\newblock {DRIP-R}: Decision-making under real-world imperfect policies in
+  retail.
+\newblock In \emph{EMNLP}, 2024.
+
+\bibitem[Massey et~al.(2014)Massey, Rutledge, et~al.]{massey2014evaluating}
+Aaron~K. Massey, Richard~L. Rutledge, et~al.
+\newblock Evaluating existing security and privacy requirements for legal
+  compliance.
+\newblock In \emph{Requirements Engineering}, 2014.
+
+\bibitem[Wasow et~al.(2005)Wasow, Perfors, and Beaver]{wasow2005intuitions}
+Thomas Wasow, Amy Perfors, and David Beaver.
+\newblock Intuitions about ambiguity.
+\newblock In \emph{Syntax}, 2005.
+
+\bibitem[Xi et~al.(2023)]{xi2023rise}
+Zhiheng Xi et~al.
+\newblock The rise and potential of large language model based agents: A
+  survey.
+\newblock In \emph{arXiv preprint arXiv:2309.07864}, 2023.
+
+\bibitem[Yao et~al.(2024)]{yao2024tau2bench}
+Shunyu Yao et~al.
+\newblock $\tau$-bench: A benchmark for tool-agent-user interaction in
+  real-world domains.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Zheng et~al.(2024)]{zheng2024phantompolicy}
+Y.~Zheng et~al.
+\newblock {PhantomPolicy}: Phantom safety risks in {LLM} agent policies.
+\newblock In \emph{arXiv}, 2024.
+
+\end{thebibliography}

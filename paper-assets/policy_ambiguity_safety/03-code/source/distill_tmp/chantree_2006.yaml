@@ -1,0 +1,18 @@
+paper_key: "chantree_2006"
+title: "Identifying Nocuous Ambiguities in Natural Language Requirements"
+venue: "RE 2006"
+full_text_available: false
+
+research:
+  baselines: []
+  metrics:
+    - {name: "Nocuous ambiguity detection accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "Requirements corpus with human ambiguity judgments", size: "N/A"}
+  ablation_dimensions: [ambiguity_type (coordination ambiguity focus)]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A (heuristic-based)"}
+  method_family: "heuristic-based ambiguity detection"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

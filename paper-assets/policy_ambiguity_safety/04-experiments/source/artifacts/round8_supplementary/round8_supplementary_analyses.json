@@ -1,0 +1,299 @@
+{
+  "N1_bootstrap_cluster": {
+    "observed_type_rates": {
+      "incompleteness": 0.536,
+      "lexical": 0.428,
+      "authorization_scope": 0.416,
+      "scopal": 0.395,
+      "conditional_precedence": 0.368,
+      "coreferential": 0.316
+    },
+    "k2_cluster_membership": {
+      "incompleteness": 2,
+      "lexical": 1,
+      "authorization_scope": 1,
+      "scopal": 1,
+      "conditional_precedence": 1,
+      "coreferential": 1
+    },
+    "k3_cluster_membership": {
+      "incompleteness": 3,
+      "lexical": 1,
+      "authorization_scope": 1,
+      "scopal": 1,
+      "conditional_precedence": 1,
+      "coreferential": 2
+    },
+    "incompleteness_singleton_at_k2": true,
+    "bootstrap": {
+      "B": 10000,
+      "incompleteness_singleton_pct": 34.34,
+      "same_k2_structure_pct": 34.34
+    },
+    "multiscale_bootstrap": {
+      "0.5": 0.246,
+      "0.7": 0.2775,
+      "1.0": 0.339,
+      "1.4": 0.3995,
+      "2.0": 0.4695
+    },
+    "au_pvalue_approx": 0.4695,
+    "bp_value": 0.3434
+  },
+  "N2_auth_scope_ranking": {
+    "judge_subset": "gpt-5.4",
+    "models_tested": [
+      "claude-sonnet-4-6",
+      "gpt-4.1",
+      "qwen3-235b"
+    ],
+    "observed_ranking": [
+      "claude-sonnet-4-6",
+      "qwen3-235b",
+      "gpt-4.1"
+    ],
+    "observed_rates": {
+      "claude-sonnet-4-6": 0.12,
+      "gpt-4.1": 0.46,
+      "qwen3-235b": 0.26
+    },
+    "bootstrap": {
+      "B": 10000,
+      "ranking_preserved_pct": 99.53
+    },
+    "per_model_95ci": {
+      "claude-sonnet-4-6": {
+        "observed_rate": 0.12,
+        "ci_95_lower": 0.04,
+        "ci_95_upper": 0.22,
+        "bootstrap_mean": 0.1194,
+        "bootstrap_sd": 0.0458
+      },
+      "gpt-4.1": {
+        "observed_rate": 0.46,
+        "ci_95_lower": 0.32,
+        "ci_95_upper": 0.6,
+        "bootstrap_mean": 0.4613,
+        "bootstrap_sd": 0.07
+      },
+      "qwen3-235b": {
+        "observed_rate": 0.26,
+        "ci_95_lower": 0.14,
+        "ci_95_upper": 0.38,
+        "bootstrap_mean": 0.2613,
+        "bootstrap_sd": 0.0621
+      }
+    },
+    "pairwise_ordering_stability": {
+      "claude-sonnet-4-6 < qwen3-235b": 99.98,
+      "claude-sonnet-4-6 < gpt-4.1": 100.0,
+      "qwen3-235b < gpt-4.1": 99.53
+    }
+  },
+  "W5_clause_variance": {
+    "incompleteness": {
+      "n_clauses": 50,
+      "mean": 0.536,
+      "sd": 0.3691,
+      "min": 0.0,
+      "max": 1.0,
+      "cv": 0.6886,
+      "variance": 0.1362,
+      "loo": {
+        "min_estimate": 0.5265,
+        "max_estimate": 0.5469,
+        "range": 0.0204
+      },
+      "top_influential_clauses": [
+        {
+          "clause_id": "incompleteness_014",
+          "clause_rate": 0.0,
+          "loo_type_rate": 0.5469,
+          "shift": 0.0109
+        },
+        {
+          "clause_id": "incompleteness_022",
+          "clause_rate": 0.0,
+          "loo_type_rate": 0.5469,
+          "shift": 0.0109
+        },
+        {
+          "clause_id": "incompleteness_024",
+          "clause_rate": 0.0,
+          "loo_type_rate": 0.5469,
+          "shift": 0.0109
+        }
+      ]
+    },
+    "lexical": {
+      "n_clauses": 50,
+      "mean": 0.428,
+      "sd": 0.3546,
+      "min": 0.0,
+      "max": 1.0,
+      "cv": 0.8285,
+      "variance": 0.1257,
+      "loo": {
+        "min_estimate": 0.4163,
+        "max_estimate": 0.4367,
+        "range": 0.0204
+      },
+      "top_influential_clauses": [
+        {
+          "clause_id": "lexical_001",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.4163,
+          "shift": -0.0117
+        },
+        {
+          "clause_id": "lexical_003",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.4163,
+          "shift": -0.0117
+        },
+        {
+          "clause_id": "lexical_011",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.4163,
+          "shift": -0.0117
+        }
+      ]
+    },
+    "authorization_scope": {
+      "n_clauses": 50,
+      "mean": 0.416,
+      "sd": 0.3254,
+      "min": 0.0,
+      "max": 1.0,
+      "cv": 0.7821,
+      "variance": 0.1059,
+      "loo": {
+        "min_estimate": 0.4041,
+        "max_estimate": 0.4245,
+        "range": 0.0204
+      },
+      "top_influential_clauses": [
+        {
+          "clause_id": "auth_020",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.4041,
+          "shift": -0.0119
+        },
+        {
+          "clause_id": "auth_036",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.4041,
+          "shift": -0.0119
+        },
+        {
+          "clause_id": "auth_034",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.4041,
+          "shift": -0.0119
+        }
+      ]
+    },
+    "scopal": {
+      "n_clauses": 50,
+      "mean": 0.395,
+      "sd": 0.3791,
+      "min": 0.0,
+      "max": 1.0,
+      "cv": 0.9597,
+      "variance": 0.1437,
+      "loo": {
+        "min_estimate": 0.3827,
+        "max_estimate": 0.4031,
+        "range": 0.0204
+      },
+      "top_influential_clauses": [
+        {
+          "clause_id": "scopal_002",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.3827,
+          "shift": -0.0123
+        },
+        {
+          "clause_id": "scopal_011",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.3827,
+          "shift": -0.0123
+        },
+        {
+          "clause_id": "scopal_022",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.3827,
+          "shift": -0.0123
+        }
+      ]
+    },
+    "conditional_precedence": {
+      "n_clauses": 50,
+      "mean": 0.368,
+      "sd": 0.3267,
+      "min": 0.0,
+      "max": 1.0,
+      "cv": 0.8877,
+      "variance": 0.1067,
+      "loo": {
+        "min_estimate": 0.3551,
+        "max_estimate": 0.3755,
+        "range": 0.0204
+      },
+      "top_influential_clauses": [
+        {
+          "clause_id": "cp_013",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.3551,
+          "shift": -0.0129
+        },
+        {
+          "clause_id": "cp_029",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.3551,
+          "shift": -0.0129
+        },
+        {
+          "clause_id": "cp_038",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.3551,
+          "shift": -0.0129
+        }
+      ]
+    },
+    "coreferential": {
+      "n_clauses": 50,
+      "mean": 0.316,
+      "sd": 0.326,
+      "min": 0.0,
+      "max": 1.0,
+      "cv": 1.0316,
+      "variance": 0.1063,
+      "loo": {
+        "min_estimate": 0.302,
+        "max_estimate": 0.3224,
+        "range": 0.0204
+      },
+      "top_influential_clauses": [
+        {
+          "clause_id": "coref_029",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.302,
+          "shift": -0.014
+        },
+        {
+          "clause_id": "coref_021",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.302,
+          "shift": -0.014
+        },
+        {
+          "clause_id": "coref_041",
+          "clause_rate": 1.0,
+          "loo_type_rate": 0.302,
+          "shift": -0.014
+        }
+      ]
+    }
+  }
+}

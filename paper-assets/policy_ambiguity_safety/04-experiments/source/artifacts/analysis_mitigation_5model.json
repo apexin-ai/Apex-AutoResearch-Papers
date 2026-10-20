@@ -1,0 +1,428 @@
+{
+  "model_type_interaction": {
+    "delta_table": {
+      "gpt-5.4": {
+        "authorization_scope": -40.0,
+        "conditional_precedence": -4.6,
+        "incompleteness": -2.6,
+        "lexical": -16.5,
+        "scopal": -6.7
+      },
+      "gpt-4.1": {
+        "authorization_scope": -26.0,
+        "conditional_precedence": -10.0,
+        "incompleteness": -14.0,
+        "lexical": -10.0,
+        "scopal": -4.0
+      },
+      "claude-sonnet-4-6": {
+        "authorization_scope": 0.0,
+        "conditional_precedence": -12.0,
+        "incompleteness": -2.0,
+        "lexical": -8.0,
+        "scopal": -10.0
+      },
+      "qwen3-235b": {
+        "authorization_scope": -14.0,
+        "conditional_precedence": -2.0,
+        "incompleteness": -2.0,
+        "lexical": -8.0,
+        "scopal": -2.7
+      },
+      "deepseek-v3": {
+        "authorization_scope": -10.0,
+        "conditional_precedence": -12.0,
+        "incompleteness": 4.0,
+        "lexical": -2.0,
+        "scopal": 2.0
+      }
+    },
+    "baseline_table": {
+      "gpt-5.4": {
+        "authorization_scope": 0.64,
+        "conditional_precedence": 0.34,
+        "incompleteness": 0.46,
+        "lexical": 0.42,
+        "scopal": 0.42
+      },
+      "gpt-4.1": {
+        "authorization_scope": 0.46,
+        "conditional_precedence": 0.36,
+        "incompleteness": 0.58,
+        "lexical": 0.34,
+        "scopal": 0.38
+      },
+      "claude-sonnet-4-6": {
+        "authorization_scope": 0.12,
+        "conditional_precedence": 0.36,
+        "incompleteness": 0.48,
+        "lexical": 0.32,
+        "scopal": 0.32
+      },
+      "qwen3-235b": {
+        "authorization_scope": 0.26,
+        "conditional_precedence": 0.4,
+        "incompleteness": 0.62,
+        "lexical": 0.52,
+        "scopal": 0.3673
+      },
+      "deepseek-v3": {
+        "authorization_scope": 0.6,
+        "conditional_precedence": 0.38,
+        "incompleteness": 0.54,
+        "lexical": 0.54,
+        "scopal": 0.48
+      }
+    },
+    "mitigated_table": {
+      "gpt-5.4": {
+        "authorization_scope": 0.24,
+        "conditional_precedence": 0.2941,
+        "incompleteness": 0.434,
+        "lexical": 0.2549,
+        "scopal": 0.3529
+      },
+      "gpt-4.1": {
+        "authorization_scope": 0.2,
+        "conditional_precedence": 0.26,
+        "incompleteness": 0.44,
+        "lexical": 0.24,
+        "scopal": 0.34
+      },
+      "claude-sonnet-4-6": {
+        "authorization_scope": 0.12,
+        "conditional_precedence": 0.24,
+        "incompleteness": 0.46,
+        "lexical": 0.24,
+        "scopal": 0.22
+      },
+      "qwen3-235b": {
+        "authorization_scope": 0.12,
+        "conditional_precedence": 0.38,
+        "incompleteness": 0.6,
+        "lexical": 0.44,
+        "scopal": 0.34
+      },
+      "deepseek-v3": {
+        "authorization_scope": 0.5,
+        "conditional_precedence": 0.26,
+        "incompleteness": 0.58,
+        "lexical": 0.52,
+        "scopal": 0.5
+      }
+    },
+    "top5_improvements": [
+      {
+        "model": "gpt-5.4",
+        "type": "authorization_scope",
+        "delta_pp": -40.0
+      },
+      {
+        "model": "gpt-4.1",
+        "type": "authorization_scope",
+        "delta_pp": -26.0
+      },
+      {
+        "model": "gpt-5.4",
+        "type": "lexical",
+        "delta_pp": -16.5
+      },
+      {
+        "model": "gpt-4.1",
+        "type": "incompleteness",
+        "delta_pp": -14.0
+      },
+      {
+        "model": "qwen3-235b",
+        "type": "authorization_scope",
+        "delta_pp": -14.0
+      }
+    ],
+    "degradations": [
+      {
+        "model": "deepseek-v3",
+        "type": "incompleteness",
+        "delta_pp": 4.0
+      },
+      {
+        "model": "deepseek-v3",
+        "type": "scopal",
+        "delta_pp": 2.0
+      }
+    ]
+  },
+  "vulnerability_responsiveness": {
+    "n_cells": 25,
+    "pearson_r": -0.2146,
+    "pearson_p": 0.302983,
+    "spearman_rho": 0.0751,
+    "spearman_p": 0.721388,
+    "hypothesis": "Higher baseline vulnerability \u2192 larger mitigation effect (negative correlation expected)",
+    "conclusion": "Trend exists (r=-0.215) but not significant (p=0.303)"
+  },
+  "auth_scope_analysis": {
+    "per_model": {
+      "gpt-5.4": {
+        "baseline_rate": 0.64,
+        "mitigated_rate": 0.24,
+        "delta_pp": -40.0,
+        "baseline_n": 50,
+        "mitigated_n": 50
+      },
+      "gpt-4.1": {
+        "baseline_rate": 0.46,
+        "mitigated_rate": 0.2,
+        "delta_pp": -26.0,
+        "baseline_n": 50,
+        "mitigated_n": 50
+      },
+      "claude-sonnet-4-6": {
+        "baseline_rate": 0.12,
+        "mitigated_rate": 0.12,
+        "delta_pp": 0.0,
+        "baseline_n": 50,
+        "mitigated_n": 50
+      },
+      "qwen3-235b": {
+        "baseline_rate": 0.26,
+        "mitigated_rate": 0.12,
+        "delta_pp": -14.0,
+        "baseline_n": 50,
+        "mitigated_n": 50
+      },
+      "deepseek-v3": {
+        "baseline_rate": 0.6,
+        "mitigated_rate": 0.5,
+        "delta_pp": -10.0,
+        "baseline_n": 50,
+        "mitigated_n": 50
+      }
+    },
+    "all_models_improve": true,
+    "is_only_universally_improving_type": false,
+    "fisher_tests": {
+      "gpt-5.4": {
+        "baseline_violations": 32,
+        "baseline_n": 50,
+        "mitigated_violations": 12,
+        "mitigated_n": 50,
+        "odds_ratio": 5.63,
+        "fisher_p": 0.000106,
+        "significant": "True"
+      },
+      "gpt-4.1": {
+        "baseline_violations": 23,
+        "baseline_n": 50,
+        "mitigated_violations": 10,
+        "mitigated_n": 50,
+        "odds_ratio": 3.407,
+        "fisher_p": 0.010155,
+        "significant": "True"
+      },
+      "claude-sonnet-4-6": {
+        "baseline_violations": 6,
+        "baseline_n": 50,
+        "mitigated_violations": 6,
+        "mitigated_n": 50,
+        "odds_ratio": 1.0,
+        "fisher_p": 1.0,
+        "significant": false
+      },
+      "qwen3-235b": {
+        "baseline_violations": 13,
+        "baseline_n": 50,
+        "mitigated_violations": 6,
+        "mitigated_n": 50,
+        "odds_ratio": 2.577,
+        "fisher_p": 0.124737,
+        "significant": "False"
+      },
+      "deepseek-v3": {
+        "baseline_violations": 30,
+        "baseline_n": 50,
+        "mitigated_violations": 25,
+        "mitigated_n": 50,
+        "odds_ratio": 1.5,
+        "fisher_p": 0.421552,
+        "significant": "False"
+      }
+    },
+    "safety_training_comparison": {
+      "claude_low_baseline": 0.12,
+      "claude_delta": 0.0,
+      "gpt54_high_baseline": 0.64,
+      "gpt54_delta": -40.0,
+      "interpretation": "Claude has low baseline (safety training floor) so mitigation adds little; GPT-5.4 has high baseline so mitigation has more room"
+    }
+  },
+  "incompleteness_analysis": {
+    "per_model": {
+      "gpt-5.4": {
+        "baseline_rate": 0.46,
+        "mitigated_rate": 0.434,
+        "delta_pp": -2.6
+      },
+      "gpt-4.1": {
+        "baseline_rate": 0.58,
+        "mitigated_rate": 0.44,
+        "delta_pp": -14.0
+      },
+      "claude-sonnet-4-6": {
+        "baseline_rate": 0.48,
+        "mitigated_rate": 0.46,
+        "delta_pp": -2.0
+      },
+      "qwen3-235b": {
+        "baseline_rate": 0.62,
+        "mitigated_rate": 0.6,
+        "delta_pp": -2.0
+      },
+      "deepseek-v3": {
+        "baseline_rate": 0.54,
+        "mitigated_rate": 0.58,
+        "delta_pp": 4.0
+      }
+    },
+    "models_improving": [
+      "gpt-5.4",
+      "gpt-4.1",
+      "claude-sonnet-4-6",
+      "qwen3-235b"
+    ],
+    "models_worsening": [
+      "deepseek-v3"
+    ],
+    "models_unchanged": [],
+    "n_improve": 4,
+    "n_worsen": 1,
+    "gap_filling_interpretation": "Incompleteness mitigation may trigger gap-filling behavior: model tries to address gaps but fills them incorrectly, leading to more violations in some cases"
+  },
+  "type_responsiveness": {
+    "ranking": [
+      "authorization_scope",
+      "lexical",
+      "conditional_precedence",
+      "scopal",
+      "incompleteness"
+    ],
+    "per_type": {
+      "authorization_scope": {
+        "mean_delta_pp": -18.0,
+        "se": 6.9,
+        "ci_95_lower": -31.52,
+        "ci_95_upper": -4.48,
+        "n_models_improve": 4,
+        "n_models_total": 5,
+        "binom_p": 0.1875,
+        "significant_improvement": "False",
+        "per_model_deltas": {
+          "gpt-5.4": -40.0,
+          "gpt-4.1": -26.0,
+          "claude-sonnet-4-6": 0.0,
+          "qwen3-235b": -14.0,
+          "deepseek-v3": -10.0
+        }
+      },
+      "conditional_precedence": {
+        "mean_delta_pp": -8.12,
+        "se": 2.04,
+        "ci_95_lower": -12.12,
+        "ci_95_upper": -4.12,
+        "n_models_improve": 5,
+        "n_models_total": 5,
+        "binom_p": 0.03125,
+        "significant_improvement": "True",
+        "per_model_deltas": {
+          "gpt-5.4": -4.6,
+          "gpt-4.1": -10.0,
+          "claude-sonnet-4-6": -12.0,
+          "qwen3-235b": -2.0,
+          "deepseek-v3": -12.0
+        }
+      },
+      "incompleteness": {
+        "mean_delta_pp": -3.32,
+        "se": 2.93,
+        "ci_95_lower": -9.06,
+        "ci_95_upper": 2.42,
+        "n_models_improve": 4,
+        "n_models_total": 5,
+        "binom_p": 0.1875,
+        "significant_improvement": "False",
+        "per_model_deltas": {
+          "gpt-5.4": -2.6,
+          "gpt-4.1": -14.0,
+          "claude-sonnet-4-6": -2.0,
+          "qwen3-235b": -2.0,
+          "deepseek-v3": 4.0
+        }
+      },
+      "lexical": {
+        "mean_delta_pp": -8.9,
+        "se": 2.33,
+        "ci_95_lower": -13.46,
+        "ci_95_upper": -4.34,
+        "n_models_improve": 5,
+        "n_models_total": 5,
+        "binom_p": 0.03125,
+        "significant_improvement": "True",
+        "per_model_deltas": {
+          "gpt-5.4": -16.5,
+          "gpt-4.1": -10.0,
+          "claude-sonnet-4-6": -8.0,
+          "qwen3-235b": -8.0,
+          "deepseek-v3": -2.0
+        }
+      },
+      "scopal": {
+        "mean_delta_pp": -4.28,
+        "se": 2.01,
+        "ci_95_lower": -8.21,
+        "ci_95_upper": -0.35,
+        "n_models_improve": 4,
+        "n_models_total": 5,
+        "binom_p": 0.1875,
+        "significant_improvement": "False",
+        "per_model_deltas": {
+          "gpt-5.4": -6.7,
+          "gpt-4.1": -4.0,
+          "claude-sonnet-4-6": -10.0,
+          "qwen3-235b": -2.7,
+          "deepseek-v3": 2.0
+        }
+      }
+    }
+  },
+  "model_overall": {
+    "gpt-5.4": {
+      "mean_delta_pp": -14.08,
+      "overall_baseline": 0.41,
+      "overall_mitigated": 0.3164,
+      "overall_delta_pp": -9.4
+    },
+    "gpt-4.1": {
+      "mean_delta_pp": -12.8,
+      "overall_baseline": 0.4067,
+      "overall_mitigated": 0.296,
+      "overall_delta_pp": -11.1
+    },
+    "claude-sonnet-4-6": {
+      "mean_delta_pp": -6.4,
+      "overall_baseline": 0.3033,
+      "overall_mitigated": 0.256,
+      "overall_delta_pp": -4.7
+    },
+    "qwen3-235b": {
+      "mean_delta_pp": -5.74,
+      "overall_baseline": 0.4314,
+      "overall_mitigated": 0.376,
+      "overall_delta_pp": -5.5
+    },
+    "deepseek-v3": {
+      "mean_delta_pp": -3.6,
+      "overall_baseline": 0.4967,
+      "overall_mitigated": 0.472,
+      "overall_delta_pp": -2.5
+    }
+  }
+}

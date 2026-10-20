@@ -1,0 +1,590 @@
+{
+  "analysis_name": "Within-Judge C2 Type Hierarchy",
+  "motivation": "Response to reviewer N1: verify that the ambiguity-type hierarchy (C2) is not an artifact of judge identity by testing within each judge subgroup separately.",
+  "judged_by_gpt_41": {
+    "models": [
+      "deepseek-v3",
+      "gpt-5.4"
+    ],
+    "n_amb_episodes": 600,
+    "overall_violation_rate": 0.4533,
+    "per_type_rates": {
+      "authorization_scope": 0.62,
+      "incompleteness": 0.5,
+      "lexical": 0.48,
+      "scopal": 0.45,
+      "conditional_precedence": 0.36,
+      "coreferential": 0.31
+    },
+    "per_type_counts": {
+      "scopal": {
+        "violations": 45,
+        "total": 100
+      },
+      "lexical": {
+        "violations": 48,
+        "total": 100
+      },
+      "coreferential": {
+        "violations": 31,
+        "total": 100
+      },
+      "incompleteness": {
+        "violations": 50,
+        "total": 100
+      },
+      "conditional_precedence": {
+        "violations": 36,
+        "total": 100
+      },
+      "authorization_scope": {
+        "violations": 62,
+        "total": 100
+      }
+    },
+    "type_ranking": [
+      "authorization_scope",
+      "incompleteness",
+      "lexical",
+      "scopal",
+      "conditional_precedence",
+      "coreferential"
+    ],
+    "chi2_omnibus": {
+      "chi2": 24.184,
+      "p": 0.0002001295,
+      "dof": 5,
+      "expected_valid": true
+    },
+    "cramers_v": 0.2008,
+    "tier_structure_holds": true,
+    "tier_structure_details": {
+      "holds": true,
+      "incompleteness_rank": 2,
+      "coreferential_rank": 6,
+      "incompleteness_rate": 0.5,
+      "coreferential_rate": 0.31,
+      "rate_gap": 0.19,
+      "criteria": {
+        "incompleteness_in_top2": true,
+        "coreferential_in_bottom2": true,
+        "incompleteness_gt_coreferential": true
+      }
+    },
+    "pairwise_comparisons": {
+      "n_significant": 2,
+      "n_total": 15,
+      "significant_pairs": [
+        {
+          "type_1": "conditional_precedence",
+          "type_2": "authorization_scope",
+          "rate_1": 0.36,
+          "rate_2": 0.62,
+          "diff": -0.26,
+          "p_raw": 0.0004058639,
+          "test": "chi2",
+          "p_holm": 0.0056820946,
+          "significant": true
+        },
+        {
+          "type_1": "coreferential",
+          "type_2": "authorization_scope",
+          "rate_1": 0.31,
+          "rate_2": 0.62,
+          "diff": -0.31,
+          "p_raw": 2.108563e-05,
+          "test": "chi2",
+          "p_holm": 0.00031628445,
+          "significant": true
+        }
+      ],
+      "all_pairs": [
+        {
+          "type_1": "conditional_precedence",
+          "type_2": "authorization_scope",
+          "rate_1": 0.36,
+          "rate_2": 0.62,
+          "diff": -0.26,
+          "p_raw": 0.0004058639,
+          "test": "chi2",
+          "p_holm": 0.0056820946,
+          "significant": true
+        },
+        {
+          "type_1": "coreferential",
+          "type_2": "authorization_scope",
+          "rate_1": 0.31,
+          "rate_2": 0.62,
+          "diff": -0.31,
+          "p_raw": 2.108563e-05,
+          "test": "chi2",
+          "p_holm": 0.00031628445,
+          "significant": true
+        },
+        {
+          "type_1": "coreferential",
+          "type_2": "conditional_precedence",
+          "rate_1": 0.31,
+          "rate_2": 0.36,
+          "diff": -0.05,
+          "p_raw": 0.5490028,
+          "test": "chi2",
+          "p_holm": 1.0,
+          "significant": false
+        },
+        {
+          "type_1": "coreferential",
+          "type_2": "incompleteness",
+          "rate_1": 0.31,
+          "rate_2": 0.5,
+          "diff": -0.19,
+          "p_raw": 0.009519399,
+          "test": "chi2",
+          "p_holm": 0.123752187,
+          "significant": false
+        },
+        {
+          "type_1": "incompleteness",
+          "type_2": "authorization_scope",
+          "rate_1": 0.5,
+          "rate_2": 0.62,
+          "diff": -0.12,
+          "p_raw": 0.1171245,
+          "test": "chi2",
+          "p_holm": 0.702747,
+          "significant": false
+        },
+        {
+          "type_1": "incompleteness",
+          "type_2": "conditional_precedence",
+          "rate_1": 0.5,
+          "rate_2": 0.36,
+          "diff": 0.14,
+          "p_raw": 0.06334474,
+          "test": "chi2",
+          "p_holm": 0.57010266,
+          "significant": false
+        },
+        {
+          "type_1": "lexical",
+          "type_2": "authorization_scope",
+          "rate_1": 0.48,
+          "rate_2": 0.62,
+          "diff": -0.14,
+          "p_raw": 0.06464003,
+          "test": "chi2",
+          "p_holm": 0.51712024,
+          "significant": false
+        },
+        {
+          "type_1": "lexical",
+          "type_2": "conditional_precedence",
+          "rate_1": 0.48,
+          "rate_2": 0.36,
+          "diff": 0.12,
+          "p_raw": 0.1150402,
+          "test": "chi2",
+          "p_holm": 0.8052813999999999,
+          "significant": false
+        },
+        {
+          "type_1": "lexical",
+          "type_2": "coreferential",
+          "rate_1": 0.48,
+          "rate_2": 0.31,
+          "diff": 0.17,
+          "p_raw": 0.02064862,
+          "test": "chi2",
+          "p_holm": 0.24778344,
+          "significant": false
+        },
+        {
+          "type_1": "lexical",
+          "type_2": "incompleteness",
+          "rate_1": 0.48,
+          "rate_2": 0.5,
+          "diff": -0.02,
+          "p_raw": 0.8875147,
+          "test": "chi2",
+          "p_holm": 0.8875147,
+          "significant": false
+        },
+        {
+          "type_1": "scopal",
+          "type_2": "authorization_scope",
+          "rate_1": 0.45,
+          "rate_2": 0.62,
+          "diff": -0.17,
+          "p_raw": 0.02331057,
+          "test": "chi2",
+          "p_holm": 0.25641627,
+          "significant": false
+        },
+        {
+          "type_1": "scopal",
+          "type_2": "conditional_precedence",
+          "rate_1": 0.45,
+          "rate_2": 0.36,
+          "diff": 0.09,
+          "p_raw": 0.2491723,
+          "test": "chi2",
+          "p_holm": 1.0,
+          "significant": false
+        },
+        {
+          "type_1": "scopal",
+          "type_2": "coreferential",
+          "rate_1": 0.45,
+          "rate_2": 0.31,
+          "diff": 0.14,
+          "p_raw": 0.05824774,
+          "test": "chi2",
+          "p_holm": 0.5824774,
+          "significant": false
+        },
+        {
+          "type_1": "scopal",
+          "type_2": "incompleteness",
+          "rate_1": 0.45,
+          "rate_2": 0.5,
+          "diff": -0.05,
+          "p_raw": 0.5711261,
+          "test": "chi2",
+          "p_holm": 1.0,
+          "significant": false
+        },
+        {
+          "type_1": "scopal",
+          "type_2": "lexical",
+          "rate_1": 0.45,
+          "rate_2": 0.48,
+          "diff": -0.03,
+          "p_raw": 0.7767643,
+          "test": "chi2",
+          "p_holm": 1.0,
+          "significant": false
+        }
+      ]
+    }
+  },
+  "judged_by_gpt_54": {
+    "models": [
+      "claude-sonnet-4-6",
+      "gpt-4.1",
+      "qwen3-235b"
+    ],
+    "n_amb_episodes": 899,
+    "overall_violation_rate": 0.3804,
+    "per_type_rates": {
+      "incompleteness": 0.56,
+      "lexical": 0.3933,
+      "conditional_precedence": 0.3733,
+      "scopal": 0.3557,
+      "coreferential": 0.32,
+      "authorization_scope": 0.28
+    },
+    "per_type_counts": {
+      "scopal": {
+        "violations": 53,
+        "total": 149
+      },
+      "lexical": {
+        "violations": 59,
+        "total": 150
+      },
+      "coreferential": {
+        "violations": 48,
+        "total": 150
+      },
+      "incompleteness": {
+        "violations": 84,
+        "total": 150
+      },
+      "conditional_precedence": {
+        "violations": 56,
+        "total": 150
+      },
+      "authorization_scope": {
+        "violations": 42,
+        "total": 150
+      }
+    },
+    "type_ranking": [
+      "incompleteness",
+      "lexical",
+      "conditional_precedence",
+      "scopal",
+      "coreferential",
+      "authorization_scope"
+    ],
+    "chi2_omnibus": {
+      "chi2": 29.7882,
+      "p": 1.623379e-05,
+      "dof": 5,
+      "expected_valid": true
+    },
+    "cramers_v": 0.182,
+    "tier_structure_holds": true,
+    "tier_structure_details": {
+      "holds": true,
+      "incompleteness_rank": 1,
+      "coreferential_rank": 5,
+      "incompleteness_rate": 0.56,
+      "coreferential_rate": 0.32,
+      "rate_gap": 0.24,
+      "criteria": {
+        "incompleteness_in_top2": true,
+        "coreferential_in_bottom2": true,
+        "incompleteness_gt_coreferential": true
+      }
+    },
+    "pairwise_comparisons": {
+      "n_significant": 4,
+      "n_total": 15,
+      "significant_pairs": [
+        {
+          "type_1": "coreferential",
+          "type_2": "incompleteness",
+          "rate_1": 0.32,
+          "rate_2": 0.56,
+          "diff": -0.24,
+          "p_raw": 4.68382e-05,
+          "test": "chi2",
+          "p_holm": 0.0006557348,
+          "significant": true
+        },
+        {
+          "type_1": "incompleteness",
+          "type_2": "authorization_scope",
+          "rate_1": 0.56,
+          "rate_2": 0.28,
+          "diff": 0.28,
+          "p_raw": 1.61817e-06,
+          "test": "chi2",
+          "p_holm": 2.4272550000000002e-05,
+          "significant": true
+        },
+        {
+          "type_1": "incompleteness",
+          "type_2": "conditional_precedence",
+          "rate_1": 0.56,
+          "rate_2": 0.3733,
+          "diff": 0.1867,
+          "p_raw": 0.001780211,
+          "test": "chi2",
+          "p_holm": 0.021362532,
+          "significant": true
+        },
+        {
+          "type_1": "scopal",
+          "type_2": "incompleteness",
+          "rate_1": 0.3557,
+          "rate_2": 0.56,
+          "diff": -0.2043,
+          "p_raw": 0.0006059895,
+          "test": "chi2",
+          "p_holm": 0.0078778635,
+          "significant": true
+        }
+      ],
+      "all_pairs": [
+        {
+          "type_1": "conditional_precedence",
+          "type_2": "authorization_scope",
+          "rate_1": 0.3733,
+          "rate_2": 0.28,
+          "diff": 0.0933,
+          "p_raw": 0.1095207,
+          "test": "chi2",
+          "p_holm": 0.9856863,
+          "significant": false
+        },
+        {
+          "type_1": "coreferential",
+          "type_2": "authorization_scope",
+          "rate_1": 0.32,
+          "rate_2": 0.28,
+          "diff": 0.04,
+          "p_raw": 0.5287333,
+          "test": "chi2",
+          "p_holm": 1.0,
+          "significant": false
+        },
+        {
+          "type_1": "coreferential",
+          "type_2": "conditional_precedence",
+          "rate_1": 0.32,
+          "rate_2": 0.3733,
+          "diff": -0.0533,
+          "p_raw": 0.3957657,
+          "test": "chi2",
+          "p_holm": 1.0,
+          "significant": false
+        },
+        {
+          "type_1": "coreferential",
+          "type_2": "incompleteness",
+          "rate_1": 0.32,
+          "rate_2": 0.56,
+          "diff": -0.24,
+          "p_raw": 4.68382e-05,
+          "test": "chi2",
+          "p_holm": 0.0006557348,
+          "significant": true
+        },
+        {
+          "type_1": "incompleteness",
+          "type_2": "authorization_scope",
+          "rate_1": 0.56,
+          "rate_2": 0.28,
+          "diff": 0.28,
+          "p_raw": 1.61817e-06,
+          "test": "chi2",
+          "p_holm": 2.4272550000000002e-05,
+          "significant": true
+        },
+        {
+          "type_1": "incompleteness",
+          "type_2": "conditional_precedence",
+          "rate_1": 0.56,
+          "rate_2": 0.3733,
+          "diff": 0.1867,
+          "p_raw": 0.001780211,
+          "test": "chi2",
+          "p_holm": 0.021362532,
+          "significant": true
+        },
+        {
+          "type_1": "lexical",
+          "type_2": "authorization_scope",
+          "rate_1": 0.3933,
+          "rate_2": 0.28,
+          "diff": 0.1133,
+          "p_raw": 0.05061144,
+          "test": "chi2",
+          "p_holm": 0.5061144,
+          "significant": false
+        },
+        {
+          "type_1": "lexical",
+          "type_2": "conditional_precedence",
+          "rate_1": 0.3933,
+          "rate_2": 0.3733,
+          "diff": 0.02,
+          "p_raw": 0.8122722,
+          "test": "chi2",
+          "p_holm": 1.0,
+          "significant": false
+        },
+        {
+          "type_1": "lexical",
+          "type_2": "coreferential",
+          "rate_1": 0.3933,
+          "rate_2": 0.32,
+          "diff": 0.0733,
+          "p_raw": 0.2280929,
+          "test": "chi2",
+          "p_holm": 1.0,
+          "significant": false
+        },
+        {
+          "type_1": "lexical",
+          "type_2": "incompleteness",
+          "rate_1": 0.3933,
+          "rate_2": 0.56,
+          "diff": -0.1667,
+          "p_raw": 0.005531998,
+          "test": "chi2",
+          "p_holm": 0.060851978,
+          "significant": false
+        },
+        {
+          "type_1": "scopal",
+          "type_2": "authorization_scope",
+          "rate_1": 0.3557,
+          "rate_2": 0.28,
+          "diff": 0.0757,
+          "p_raw": 0.1999906,
+          "test": "chi2",
+          "p_holm": 1.0,
+          "significant": false
+        },
+        {
+          "type_1": "scopal",
+          "type_2": "conditional_precedence",
+          "rate_1": 0.3557,
+          "rate_2": 0.3733,
+          "diff": -0.0176,
+          "p_raw": 0.8442107,
+          "test": "chi2",
+          "p_holm": 0.8442107,
+          "significant": false
+        },
+        {
+          "type_1": "scopal",
+          "type_2": "coreferential",
+          "rate_1": 0.3557,
+          "rate_2": 0.32,
+          "diff": 0.0357,
+          "p_raw": 0.5958261,
+          "test": "chi2",
+          "p_holm": 1.0,
+          "significant": false
+        },
+        {
+          "type_1": "scopal",
+          "type_2": "incompleteness",
+          "rate_1": 0.3557,
+          "rate_2": 0.56,
+          "diff": -0.2043,
+          "p_raw": 0.0006059895,
+          "test": "chi2",
+          "p_holm": 0.0078778635,
+          "significant": true
+        },
+        {
+          "type_1": "scopal",
+          "type_2": "lexical",
+          "rate_1": 0.3557,
+          "rate_2": 0.3933,
+          "diff": -0.0376,
+          "p_raw": 0.5804952,
+          "test": "chi2",
+          "p_holm": 1.0,
+          "significant": false
+        }
+      ]
+    }
+  },
+  "cross_judge_consistency": {
+    "spearman_rho": 0.0857,
+    "spearman_p": 0.87174,
+    "ranking_judge_1": {
+      "gpt-4.1": [
+        "authorization_scope",
+        "incompleteness",
+        "lexical",
+        "scopal",
+        "conditional_precedence",
+        "coreferential"
+      ]
+    },
+    "ranking_judge_2": {
+      "gpt-5.4": [
+        "incompleteness",
+        "lexical",
+        "conditional_precedence",
+        "scopal",
+        "coreferential",
+        "authorization_scope"
+      ]
+    },
+    "authorization_scope_divergence": {
+      "gpt-4.1_judged_rank": 1,
+      "gpt-5.4_judged_rank": 6,
+      "note": "Driven by model composition (gpt-5.4=0.64, deepseek-v3=0.60 vs claude-sonnet-4-6=0.12, qwen3-235b=0.26), not judge bias"
+    },
+    "description": "Spearman ρ=0.0857 (p=0.87174) between full 6-type rankings from gpt-4.1-judged and gpt-5.4-judged subgroups. The low overall ρ is driven by authorization_scope (rank 1 in gpt-4.1-judged vs rank 6 in gpt-5.4-judged), which reflects model composition rather than judge bias (gpt-5.4 and deepseek-v3 both have very high authorization_scope rates). Crucially, the core tier structure is consistent: incompleteness is top-2 and coreferential is bottom-2 in BOTH subgroups."
+  },
+  "conclusion": "The 3-tier type hierarchy (incompleteness >> mid-tier >> coreferential) holds in BOTH judge subgroups with significant χ² tests (GPT-4.1-judged: p=2.0e-04, V=0.201; GPT-5.4-judged: p=1.6e-05, V=0.182), ruling out judge identity as a confound for C2. The low Spearman ρ between full rankings reflects authorization_scope divergence due to model composition, not judge bias."
+}

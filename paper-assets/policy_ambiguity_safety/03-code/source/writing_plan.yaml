@@ -1,0 +1,259 @@
+meta:
+  venue: EMNLP 2026
+  track: main (via ARR August cycle)
+  template: acl2023  # ACL/EMNLP unified template
+  template_note: "ACL rolling template; download from Overleaf ACL template"
+  page_limit: 8
+  deadline: 2026-08-03
+  core_claim: >
+    Policy ambiguity causes +34.0pp safety violations across 5 architecturally
+    diverse LLM agents (n=2997), with a significant type hierarchy (V=0.137,
+    incompleteness 53.6% >> coreferential 31.6%) and model × type interaction
+    revealing that safety training differentially mitigates specific ambiguity types.
+  created_at: 2026-05-20T18:00:00Z
+  updated_at: 2026-05-20T20:30:00Z
+  contribution_count: 3
+  contributions:
+    - "C1: Causal quantification — matched-pair + perturbation control → +34.0pp (OR=15.1, 5 models)"
+    - "C2: Differential Nocuity framework — 3-tier type hierarchy (V=0.137) + model × type interaction (auth_scope 52pp range across models)"
+    - "C3: Type-specific failure taxonomy + Ambiguity Blindness (<11% awareness, >88% surface adoption)"
+  models:
+    - gpt-5.4
+    - gpt-4.1
+    - claude-sonnet-4-6
+    - qwen3-235b
+    - deepseek-v3
+  total_episodes: 2997
+
+paper_outline:
+  - section: abstract
+    word_budget: 150
+    core_bullets:
+      - "Problem: LLM agent policies contain natural language ambiguity, but its causal safety impact and type-specificity are unmeasured"
+      - "Method: matched-pair causal design on τ²-bench, 6-type taxonomy (2-layer), 2997 episodes across 5 models, perturbation control"
+      - "Results: +34.0pp violation increase (OR=15.1); 3-tier type hierarchy (V=0.137, incompleteness 53.6% >> coreferential 31.6%); model × type interaction (auth_scope 12-64% across models); <11% ambiguity awareness"
+      - "Implication: type-aware AND model-aware risk assessment for policy ambiguity triage"
+    dependencies: [experiments, analysis, method]
+
+  - section: introduction
+    word_budget: 900
+    core_bullets:
+      - "Hook: concrete τ²-bench failure — 'items may be returned within 30 days' (scopal ambiguity) → agent grants $200 unauthorized refund on customized item. One word of ambiguity, full policy violation."
+      - "Context: agent policies written in NL → contain ambiguity. Berry & Kamsties (2003) distinguish nocuous vs innocuous ambiguity — in human RE, shared organizational context makes most ambiguity innocuous."
+      - "Gap: LLM agents lack shared context. Prior work (DRIP-R, PolicyBank, PhantomPolicy) classifies ambiguity or measures decision quality, but no causal type-granularity study of ambiguity → safety violations exists."
+      - "Insight: All ambiguity is nocuous for agents (+34.0pp across 5 models), BUT type AND model jointly determine severity. auth_scope varies 52pp across models (safety training differentially mitigates), while incompleteness is universally dangerous (46-62%)."
+      - "Contributions (3 items): (1) first causal quantification with matched-pair + perturbation control across 5 models, (2) Differential Nocuity framework with type hierarchy + model × type interaction, (3) type-specific failure taxonomy + Ambiguity Blindness"
+    dependencies: [experiments]
+    citation_hints:
+      - "Berry & Kamsties 2003 — nocuous ambiguity theory"
+      - "DRIP-R 2026 — concurrent, decision quality not safety"
+      - "PolicyBank 2026 — iterative refinement, different angle"
+      - "PhantomPolicy 2026 — policy-invisible violations"
+    figures: [fig1_overview]
+
+  - section: related_work
+    word_budget: 700
+    core_bullets:
+      - "Cluster 1: Ambiguity in NLP & RE — Li et al. 2024 (11-type NLP taxonomy), Massey et al. 2014 (RE), Berry & Kamsties 2003 (nocuous/innocuous), Chantree et al. 2006/2008 (computational detection), Ferrari et al. 2017-2019 (cross-domain NLP4RE), Willis et al. 2008, Ezzini et al. 2022 (TAPHSIR)"
+      - "Cluster 2: Psycholinguistics of ambiguity processing — Ferreira et al. 2002 (good-enough processing), Li et al. 2024 (LLM garden-path), Poesio & Artstein 2005/2008 (anaphoric ambiguity annotation), Frazier & Rayner 1982"
+      - "Cluster 3: Agent safety evaluation — τ²-bench, PhantomPolicy, ShieldAgent, AgentAuditor, R-Judge, ToolEmu, InjecAgent"
+      - "Cluster 4: Policy specification for agents — DRIP-R, PolicyBank, AgentPex, MANTRA. Position: we measure safety, DRIP-R measures decision quality; PolicyBank iterates specs, we diagnose which ambiguity types to fix first"
+      - "Gap statement: no prior work provides causal, type-granularity, cross-model mapping from ambiguity to safety violations"
+    dependencies: [introduction]
+    tables: [tab_benchmark]
+
+  - section: taxonomy
+    word_budget: 450
+    core_bullets:
+      - "2-layer, 6-type taxonomy: Linguistic layer (scopal, lexical, coreferential) + Specification layer (authorization_scope, incompleteness, conditional_precedence)"
+      - "Cross-walk to Li et al. 2024 (NLP), Massey et al. 2014 (RE), DRIP-R 2026 (5 types)"
+      - "Operational definition: ambiguity + vagueness per Wasow 2005 — 'multiple distinct interpretations available to a competent reader'"
+      - "Selection criteria: frequency in policy documents + theoretical distinctiveness"
+      - "Layer distinction rationale: ling-layer operates at syntactic/semantic level (parseable), spec-layer at pragmatic/discourse level (requires domain knowledge)"
+    dependencies: []
+    citation_hints:
+      - "Li et al. 2024, Massey et al. 2014, Wasow 2005, Kennedy 2007"
+      - "DRIP-R cross-walk"
+
+  - section: method
+    word_budget: 1000
+    core_bullets:
+      - "Platform: τ²-bench dual-control retail/airline domains"
+      - "Matched-pair design: 300 clause pairs (50 per type) × 2 conditions (ambiguous/unambiguous) × 5 models = 2,997 episodes"
+      - "Clause generation pipeline: template-based + expert review, ambiguous ↔ unambiguous minimal pairs"
+      - "Models: gpt-5.4 (frontier), gpt-4.1 (mid-tier), claude-sonnet-4-6 (frontier, different provider), qwen3-235b (open-source MoE), deepseek-v3 (open-source dense)"
+      - "Evaluation: cross-judge design (gpt-5.4 judges non-OpenAI models, gpt-4.1 judges gpt-5.4), 3-tier violation severity. Disclose asymmetry."
+      - "Perturbation control (plan_010): 120 episodes, synonym substitution + clause reordering → Δ=3.33pp (CI contains 0) vs ambiguity Δ=34.0pp. Rules out general prompt brittleness."
+      - "Reproducibility: ICC=0.919 (plan_006), 30 clauses × 3 replicates × 2 models"
+      - "Statistical plan: McNemar (paired binary), χ² omnibus + Cramér's V (type effect), layer comparison, bootstrap 95% CI, TOST equivalence"
+    dependencies: [taxonomy]
+    registry_refs: [plan_002, plan_002c, plan_003a, plan_003b, plan_004, plan_006, plan_010]
+    figures: [fig1_overview]
+
+  - section: experiments
+    word_budget: 1100
+    core_bullets:
+      - "C1 Binary Effect: +34.0pp (ambig 41.0% vs unambig 6.9%), OR=15.1 [10.78, 21.17], p<10^-105. All 6 types and all 5 models individually significant. Bootstrap CI [+31.2pp, +36.9pp]."
+      - "Per-model: Claude +25.7pp, Qwen3 +32.4pp, GPT-4.1 +34.7pp, GPT-5.4 +38.3pp, DeepSeek +39.0pp — all p<10^-17."
+      - "C2 Type Hierarchy: omnibus χ²=28.02, p=3.6×10^-5, V=0.137. 3-tier: incompleteness (53.6%) >> mid cluster (lexical 42.8%, auth_scope 41.6%, scopal 39.4%, CP 36.8%) >> coreferential (31.6%)"
+      - "C3 Layer Effect: Spec 44.0% vs Ling 37.9%, Δ=6.08pp, p=0.017, V=0.062. Model-dependent: GPT +12-14pp, Claude +3pp, Qwen3 reversed -1pp."
+      - "C4 Model × Type Interaction: auth_scope varies 52pp (Claude 12% → GPT-5.4 64%); incompleteness universally high (46-62%, 16pp range); per-model type χ²: GPT-5.4 V=0.28, Claude V=0.24, DeepSeek V=0.14 (not sig)"
+      - "Perturbation control: Δ_perturb=3.33pp confirms ambiguity-specific causation"
+      - "ICC: 0.919 (excellent) — per-type mirrors layer hierarchy (ling 0.976-0.989 > spec 0.807-0.857)"
+    dependencies: [method]
+    registry_refs: [plan_004, plan_006, plan_010]
+    tables: [tab_main_results]
+    figures: [fig2_forest_plot, fig3_heatmap]
+
+  - section: analysis
+    word_budget: 800
+    core_bullets:
+      - "C5 Failure Mode Taxonomy: 245 traces (123 gpt-5.4 + 122 gpt-4.1). Type-specific signatures:"
+      - "  auth_scope → unauthorized_escalation (72%/83%); incompleteness → assumption_based_action (61%/66%); scopal → scope_misapplication (76%/74%); lexical → assumption_based_action (71%/53%)"
+      - "  Layer mechanism: ling-layer dominated by scope_misapplication (misparse), spec-layer by unauthorized_escalation + assumption_based_action (active guessing) → explains higher violation rates"
+      - "  Cross-model consistency: 5/6 types share same dominant failure mode. Only coreferential diverges."
+      - "Ambiguity Blindness: awareness rate gpt-5.4=4.1%, gpt-4.1=10.7%. Surface adoption >88% all types. Escalate-to-user <1%."
+      - "  Nuance: gpt-4.1 shows 2.6× higher awareness than gpt-5.4 — awareness may inversely correlate with action-orientation"
+      - "Systematic Nocuity: 41.3% of ambiguous clauses trigger majority-convergent violations (≥3/5 models). 13% universal (5/5). Extends B&K nocuous/innocuous binary."
+      - "Cross-domain: airline vs retail Δ<13pp, unauthorized_escalation shows largest domain effect"
+    dependencies: [experiments]
+    registry_refs: [plan_005]
+    figures: [fig3_heatmap]
+
+  - section: discussion
+    word_budget: 500
+    core_bullets:
+      - "Differential Nocuity: extend Berry & Kamsties to agent safety — all ambiguity is nocuous, but type AND model jointly determine severity"
+      - "Model × Type as star finding: auth_scope as 'canary type' for safety training quality. Claude's robustness (12%) vs GPT-5.4 (64%) suggests authorization boundary handling was explicitly trained."
+      - "Incompleteness as 'safety training blind spot': universally dangerous (46-62%) regardless of model. Safety training doesn't help when information is missing."
+      - "Disambiguation Channel Framework: spec-layer lacks external resolution channel, forcing agents to guess. Observational evidence: ICC pattern + failure modes + coreferential boundary. Future: manipulation experiment."
+      - "Systematic Nocuity: convergent-but-wrong (41.3% majority convergence). Extends B&K binary. More dangerous than divergent nocuity (invisible in agreement metrics)."
+      - "Practical implications: type-aware + model-aware triage pipeline; ambiguity detection must be externalized (<11% self-awareness)"
+    dependencies: [analysis, experiments]
+
+  - section: conclusion
+    word_budget: 150
+    core_bullets:
+      - "Summary: all policy ambiguity is nocuous for LLM agents, but type AND model jointly determine risk"
+      - "Actionable: type-aware + model-aware auditing pipeline, externalized ambiguity detection"
+      - "Forward-looking: disambiguation channel manipulation experiment, cross-domain generalization, human-agent comparison"
+    dependencies: [discussion]
+
+  - section: limitations
+    word_budget: 250
+    core_bullets:
+      - "5 API-accessible models (3 proprietary + 2 open-source); smaller models untested"
+      - "Perturbation control covers 2 API models only (plan_010)"
+      - "2 domains (retail + airline) — cross-domain transfer is future work"
+      - "Synthetic ambiguity injection — ecological validity caveat (mitigated by matched-pair design + quality review)"
+      - "Incompleteness matched-pair confound (information asymmetry) — dual-track analysis mitigates"
+      - "Cross-judge asymmetry: Claude judged by gpt-5.4, gpt-5.4 judged by gpt-4.1 (weaker)"
+      - "Failure mode analysis limited to 2 models (gpt-5.4, gpt-4.1); 5-model failure modes pending"
+      - "plan_009 judge calibration pending — human agreement not yet quantified"
+    dependencies: [experiments, analysis]
+
+visualization_plan:
+  - fig_id: fig1_overview
+    type: conceptual
+    tool: matplotlib
+    description: "Experimental pipeline overview: taxonomy (2-layer × 6-type) → matched-pair clause injection into τ²-bench → cross-judge evaluation → statistical analysis. Include concrete mini-example of ambiguous vs unambiguous clause pair."
+    narrative_intent: "Our matched-pair design isolates ambiguity type as the sole variable, enabling causal claims about type-specific safety impact."
+    design_notes:
+      - "Left panel: 2-layer taxonomy tree (3 ling + 3 spec types)"
+      - "Center: matched-pair injection flow (ambig/unambig → τ²-bench → agent traces)"
+      - "Right: evaluation pipeline (cross-judge + violation severity)"
+      - "Use color to distinguish spec-layer (vermillion family) vs ling-layer (blue family) — consistent with fig2/fig3"
+    placement: introduction
+    aspect_ratio: "16:7"
+    data_source: "conceptual — no registry data"
+    status: done
+
+  - fig_id: fig2_forest_plot
+    type: statistical
+    tool: matplotlib
+    description: "Forest plot showing per-type effect size (Δpp ambiguous − unambiguous) with 95% CI. 5-model pooled. Rows ordered by effect size descending. Layer bands distinguish spec vs ling."
+    narrative_intent: "All 6 types cause significant violations, but a clear 3-tier hierarchy emerges: incompleteness (49.2pp) >> mid cluster (30.8-36.0pp) >> coreferential (18.7pp)."
+    design_notes:
+      - "Pattern A: two horizontal regime bands (vermillion-tinted for spec-layer, blue-tinted for ling-layer) as background"
+      - "Pattern E: Newcombe CI for each type's effect size"
+      - "Pattern J: path-effect text for inline statistics (Δpp, p-value) to the right of each CI bar"
+      - "Vertical dashed line at Δ=0 and at overall mean (+34.0pp)"
+      - "Sort rows by effect size descending: incompleteness, auth_scope, lexical, scopal, CP, coreferential"
+      - "Diamond marker for overall pooled effect at bottom"
+    data_source: "registry: plan_004 (full_statistics.json per-type binary_effect)"
+    placement: experiments
+    aspect_ratio: "4:5"
+    status: needs_update_5model
+
+  - fig_id: fig3_heatmap
+    type: statistical
+    tool: matplotlib
+    description: "5-model × 6-type violation rate heatmap (ambiguous condition). Rows = 5 models. Columns = 6 types grouped by layer. Color intensity = violation rate. Annotated with percentages."
+    narrative_intent: "The model × type interaction is visually striking: auth_scope column shows dramatic variation (12-64%), while incompleteness is uniformly high (46-62%). Each model has a distinct vulnerability profile."
+    design_notes:
+      - "Pattern A: column grouping bands (spec-layer vs ling-layer separator)"
+      - "Pattern J: path-effect percentage annotations inside cells for readability"
+      - "Sequential colormap (OrRd) — NOT diverging, since all values are 0-100%"
+      - "Bold/highlight extreme values (auth_scope range, incompleteness universality)"
+      - "Row order: Claude, GPT-4.1, GPT-5.4, Qwen3, DeepSeek (ascending overall rate)"
+      - "Column order: auth_scope, incomp, CP (spec) | scopal, lexical, coref (ling)"
+    data_source: "registry: plan_004 (full_statistics.json model_type_interaction)"
+    placement: experiments
+    aspect_ratio: "5:4"
+    status: needs_generation
+
+table_plan:
+  - table_id: tab_main_results
+    caption: "Violation rates by ambiguity type and model (ambiguous condition). Δpp = ambiguous − unambiguous (5-model pooled). All per-type differences significant at p < 10^-5."
+    placement: experiments
+    type: comparison
+    columns: [Type, Layer, "Overall (%)", "GPT-5.4", "GPT-4.1", "Claude", "Qwen3", "DeepSeek", "Δpp", "p"]
+    data_source: "registry: plan_004 (full_statistics.json)"
+    notes: "Group by layer. Bold highest rate per column. Bottom row: Overall pooled."
+
+  - table_id: tab_benchmark
+    caption: "Comparison with concurrent work on policy ambiguity and agent safety."
+    placement: related_work
+    type: comparison
+    columns: [Feature, DRIP-R, PhantomPolicy, PolicyBank, AgentPex, Ours]
+    data_source: "manual"
+    notes: "Features: ambiguity taxonomy, causal design, safety violation metric, cross-type comparison, models tested, domain. Checkmarks and short descriptions."
+
+literature_strategy:
+  citation_budget: 40
+  macro_context:
+    - "policy ambiguity in LLM agents"
+    - "nocuous ambiguity in requirements engineering"
+    - "agent safety evaluation"
+    - "psycholinguistics of ambiguity processing"
+  micro_clusters:
+    - cluster_name: "ambiguity_theory"
+      target_count: 6
+      status: done
+    - cluster_name: "re_ambiguity_detection"
+      target_count: 7
+      status: done
+    - cluster_name: "psycholinguistics"
+      target_count: 6
+      status: done
+    - cluster_name: "agent_safety"
+      target_count: 6
+      status: partial
+    - cluster_name: "policy_specification"
+      target_count: 7
+      status: skip_for_speed
+    - cluster_name: "prompt_sensitivity"
+      target_count: 4
+      status: skip_for_speed
+
+writing_order:
+  - experiments
+  - analysis
+  - method
+  - taxonomy
+  - related_work
+  - introduction
+  - discussion
+  - conclusion
+  - abstract
+  - limitations

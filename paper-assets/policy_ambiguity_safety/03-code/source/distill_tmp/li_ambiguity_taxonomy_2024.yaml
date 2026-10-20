@@ -1,0 +1,64 @@
+paper_key: "li_ambiguity_taxonomy_2024"
+title: "A Taxonomy of Ambiguity Types for NLP"
+venue: "UnImplicit Workshop, EACL 2024"
+full_text_available: true
+
+research:
+  baselines: [AmbiEnt (Liu et al. 2023)]
+  metrics:
+    - {name: "Ambiguity type coverage", direction: "higher_better"}
+    - {name: "Annotation agreement", direction: "higher_better"}
+  datasets:
+    - {name: "AmbiEnt", size: "NLI-format ambiguity benchmark"}
+  ablation_dimensions: [ambiguity_type]
+  training_recipe: {optimizer: "N/A (taxonomy paper)", lr: "N/A", hardware: "N/A"}
+  method_family: "taxonomy / annotation framework"
+
+positioning:
+  core_claim: "First comprehensive taxonomy of 11 ambiguity types for NLP, enabling fine-grained analysis of model performance across distinct disambiguation challenges."
+  key_results: "11 ambiguity types identified (lexical, syntactic, scopal, elliptical, collective/distributive, implicative, presuppositional, idiomatic, coreferential, generic/nongeneric, type/token); applied to AmbiEnt benchmark"
+  limitations:
+    - "Work-in-progress; quantitative distribution analysis incomplete"
+    - "Taxonomy prioritizes NLP utility over linguistic completeness"
+    - "No model evaluation results presented"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "NLP systems may struggle with language understanding because they cannot handle ambiguities at human levels"
+  tension: "Existing ambiguity categorizations (7 types in AmbiEnt) lack coverage; no comprehensive NLP-oriented taxonomy exists"
+  key_insight: "Different ambiguity types require fundamentally different resolution approaches → need fine-grained taxonomy for targeted evaluation"
+  argument_chain: "NLP struggle with ambiguity → existing categories insufficient → 11-type taxonomy from linguistics → apply to AmbiEnt → enable balanced datasets + targeted evaluation"
+  contribution_framing: "Single main contribution: comprehensive 11-type taxonomy bridging linguistics and NLP"
+  intro_structure: "3段：motivation(NLP ambiguity challenge) → gap(no comprehensive NLP taxonomy) → contribution(11-type framework)"
+  notable_technique: "从linguistic theory到NLP应用的桥接设计；承认taxonomy无法满足所有linguistic theories，务实定位于NLP实用性"
+
+figures:
+  figure_count: 0
+  figure1:
+    type: "N/A"
+    description: "N/A"
+    narrative_role: "N/A"
+    design_elements: []
+    visual_style: "N/A"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "Workshop paper无图，纯文字+表格"
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "ambiguity types"
+    col_axis: "example premise/hypothesis/gold labels"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: 0
+    design_note: "每种ambiguity type配一个NLI格式示例，直观展示类型区别"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix A: categorized AmbiEnt examples"
+    reason: "Workshop paper篇幅限制"

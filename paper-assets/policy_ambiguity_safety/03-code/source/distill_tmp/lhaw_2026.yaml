@@ -1,0 +1,21 @@
+paper_key: "lhaw_2026"
+title: "LHAW: Controllable Underspecification for Long-Horizon Tasks"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: []
+  metrics:
+    - {name: "Terminal state divergence", direction: "N/A"}
+    - {name: "Clarification detection rate", direction: "higher_better"}
+  datasets:
+    - {name: "TheAgentCompany", size: "part of 285 task variants"}
+    - {name: "SWE-Bench Pro", size: "part of 285 task variants"}
+    - {name: "MCP-Atlas", size: "part of 285 task variants"}
+  ablation_dimensions: [underspecification_dimension (Goals/Constraints/Inputs/Context), severity_level]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "synthetic underspecification pipeline"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

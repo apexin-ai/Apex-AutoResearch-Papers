@@ -1,0 +1,92 @@
+{
+  "analysis": "controlled_effect_size_token_count",
+  "n_total_episodes": 2997,
+  "n_clauses": 300,
+  "type_results": {
+    "authorization_scope": {
+      "raw_delta_pp": 36.0,
+      "uncontrolled_predicted_delta_pp": 36.0,
+      "controlled_predicted_delta_pp": 36.1,
+      "reduction_pp": -0.1,
+      "mean_token_delta": 36.1
+    },
+    "conditional_precedence": {
+      "raw_delta_pp": 30.8,
+      "uncontrolled_predicted_delta_pp": 30.8,
+      "controlled_predicted_delta_pp": 30.8,
+      "reduction_pp": -0.0,
+      "mean_token_delta": 17.5
+    },
+    "coreferential": {
+      "raw_delta_pp": 18.7,
+      "uncontrolled_predicted_delta_pp": 18.7,
+      "controlled_predicted_delta_pp": 18.7,
+      "reduction_pp": -0.0,
+      "mean_token_delta": 7.8
+    },
+    "incompleteness": {
+      "raw_delta_pp": 49.2,
+      "uncontrolled_predicted_delta_pp": 49.2,
+      "controlled_predicted_delta_pp": 49.3,
+      "reduction_pp": -0.1,
+      "mean_token_delta": 34.6
+    },
+    "lexical": {
+      "raw_delta_pp": 35.2,
+      "uncontrolled_predicted_delta_pp": 35.2,
+      "controlled_predicted_delta_pp": 35.3,
+      "reduction_pp": -0.1,
+      "mean_token_delta": 25.7
+    },
+    "scopal": {
+      "raw_delta_pp": 34.2,
+      "uncontrolled_predicted_delta_pp": 34.2,
+      "controlled_predicted_delta_pp": 34.3,
+      "reduction_pp": -0.1,
+      "mean_token_delta": 17.8
+    }
+  },
+  "incompleteness_controlled": {
+    "delta_pp": 49.3,
+    "ci_95_lo": 42.4,
+    "ci_95_hi": 56.2,
+    "p_ambiguous": 0.536,
+    "p_unambiguous": 0.0429,
+    "n_bootstrap": 2000
+  },
+  "token_count_covariate": {
+    "coefficient": 0.027057,
+    "p_value": 0.003012,
+    "ci_95": [
+      0.00918,
+      0.044933
+    ]
+  },
+  "lr_test_m2_vs_m1": {
+    "chi2": 8.7507,
+    "df": 1,
+    "p_value": 0.003095
+  },
+  "model_fit": {
+    "m1_aic": 2733.92,
+    "m1_bic": 2830.01,
+    "m1_pseudo_r2": 0.1813,
+    "m2_aic": 2727.17,
+    "m2_bic": 2829.26,
+    "m2_pseudo_r2": 0.1839
+  },
+  "token_delta_moderation": {
+    "is_ambiguous_x_token_delta_coef": 0.020861,
+    "p_value": 0.003363,
+    "ci_95": [
+      0.006918,
+      0.034804
+    ],
+    "lr_test_vs_m1": {
+      "chi2": 8.6629,
+      "df": 1,
+      "p_value": 0.003248
+    },
+    "interpretation": "Tests whether clauses with larger token deltas show larger condition effects within types. Significant but predicted incompleteness \u0394pp unchanged (49.3pp), indicating token length does not mediate the type-specific effects."
+  }
+}

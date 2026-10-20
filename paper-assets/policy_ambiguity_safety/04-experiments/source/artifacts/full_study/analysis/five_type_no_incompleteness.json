@@ -1,0 +1,518 @@
+{
+  "analysis_name": "5-Type Hierarchy (Excluding Incompleteness)",
+  "motivation": "Response to reviewer N3: incompleteness type excluded because its unambiguous variant adds new information, creating a confound",
+  "types_included": [
+    "authorization_scope",
+    "conditional_precedence",
+    "coreferential",
+    "lexical",
+    "scopal"
+  ],
+  "type_excluded": "incompleteness",
+  "n_episodes_excluded": 250,
+  "per_type_rates": {
+    "authorization_scope": {
+      "violation_rate": 0.416,
+      "n_violations": 104,
+      "n_total": 250
+    },
+    "conditional_precedence": {
+      "violation_rate": 0.368,
+      "n_violations": 92,
+      "n_total": 250
+    },
+    "coreferential": {
+      "violation_rate": 0.316,
+      "n_violations": 79,
+      "n_total": 250
+    },
+    "lexical": {
+      "violation_rate": 0.428,
+      "n_violations": 107,
+      "n_total": 250
+    },
+    "scopal": {
+      "violation_rate": 0.393574,
+      "n_violations": 98,
+      "n_total": 249
+    }
+  },
+  "omnibus_chi2": {
+    "chi2": 8.379456557482639,
+    "p": 0.07862646450309511,
+    "dof": 4,
+    "significant_005": false
+  },
+  "cramers_v": 0.081908,
+  "pairwise_fisher": [
+    {
+      "pair": [
+        "authorization_scope",
+        "conditional_precedence"
+      ],
+      "rate_1": 0.416,
+      "rate_2": 0.368,
+      "difference": 0.04799999999999999,
+      "odds_ratio": 1.2233472304943418,
+      "p_raw": 0.3136189417642306,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "pair": [
+        "authorization_scope",
+        "coreferential"
+      ],
+      "rate_1": 0.416,
+      "rate_2": 0.316,
+      "difference": 0.09999999999999998,
+      "odds_ratio": 1.5418761921276227,
+      "p_raw": 0.02574313033640525,
+      "p_holm": 0.23168817302764724,
+      "significant_005": false
+    },
+    {
+      "pair": [
+        "authorization_scope",
+        "lexical"
+      ],
+      "rate_1": 0.416,
+      "rate_2": 0.428,
+      "difference": -0.01200000000000001,
+      "odds_ratio": 0.9519907822301882,
+      "p_raw": 0.8563125795657511,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "pair": [
+        "authorization_scope",
+        "scopal"
+      ],
+      "rate_1": 0.416,
+      "rate_2": 0.39357429718875503,
+      "difference": 0.022425702811244952,
+      "odds_ratio": 1.097567794240984,
+      "p_raw": 0.6486624914338529,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "pair": [
+        "conditional_precedence",
+        "coreferential"
+      ],
+      "rate_1": 0.368,
+      "rate_2": 0.316,
+      "difference": 0.05199999999999999,
+      "odds_ratio": 1.2603749399134754,
+      "p_raw": 0.25790672594463243,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "pair": [
+        "conditional_precedence",
+        "lexical"
+      ],
+      "rate_1": 0.368,
+      "rate_2": 0.428,
+      "difference": -0.06,
+      "odds_ratio": 0.7781852596711227,
+      "p_raw": 0.2008082965319681,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "pair": [
+        "conditional_precedence",
+        "scopal"
+      ],
+      "rate_1": 0.368,
+      "rate_2": 0.39357429718875503,
+      "difference": -0.025574297188755035,
+      "odds_ratio": 0.8971841901317489,
+      "p_raw": 0.58082841574977,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "pair": [
+        "coreferential",
+        "lexical"
+      ],
+      "rate_1": 0.316,
+      "rate_2": 0.428,
+      "difference": -0.11199999999999999,
+      "odds_ratio": 0.6174236213586927,
+      "p_raw": 0.01238403733233558,
+      "p_holm": 0.12384037332335579,
+      "significant_005": false
+    },
+    {
+      "pair": [
+        "coreferential",
+        "scopal"
+      ],
+      "rate_1": 0.316,
+      "rate_2": 0.39357429718875503,
+      "difference": -0.07757429718875503,
+      "odds_ratio": 0.7118391216135577,
+      "p_raw": 0.07582131910582132,
+      "p_holm": 0.6065705528465706,
+      "significant_005": false
+    },
+    {
+      "pair": [
+        "lexical",
+        "scopal"
+      ],
+      "rate_1": 0.428,
+      "rate_2": 0.39357429718875503,
+      "difference": 0.03442570281124496,
+      "odds_ratio": 1.1529185100613673,
+      "p_raw": 0.46700775358779945,
+      "p_holm": 1.0,
+      "significant_005": false
+    }
+  ],
+  "tost_15pp": {
+    "delta_pp": 15,
+    "pairs": [
+      {
+        "pair": [
+          "authorization_scope",
+          "conditional_precedence"
+        ],
+        "difference": 0.048,
+        "delta": 0.15,
+        "z_upper": -2.3388,
+        "z_lower": 4.5399,
+        "p_upper": 0.009673911582629383,
+        "p_lower": 2.813416029701088e-06,
+        "p_tost": 0.009673911582629383,
+        "equivalent_005": true
+      },
+      {
+        "pair": [
+          "authorization_scope",
+          "coreferential"
+        ],
+        "difference": 0.1,
+        "delta": 0.15,
+        "z_upper": -1.1668,
+        "z_lower": 5.8339,
+        "p_upper": 0.121647951408493,
+        "p_lower": 2.7066613395021477e-09,
+        "p_tost": 0.121647951408493,
+        "equivalent_005": false
+      },
+      {
+        "pair": [
+          "authorization_scope",
+          "lexical"
+        ],
+        "difference": -0.012,
+        "delta": 0.15,
+        "z_upper": -3.6676,
+        "z_lower": 3.1243,
+        "p_upper": 0.00012241904982120873,
+        "p_lower": 0.0008912898294732852,
+        "p_tost": 0.0008912898294732852,
+        "equivalent_005": true
+      },
+      {
+        "pair": [
+          "authorization_scope",
+          "scopal"
+        ],
+        "difference": 0.022426,
+        "delta": 0.15,
+        "z_upper": -2.9037,
+        "z_lower": 3.9245,
+        "p_upper": 0.0018439641901104164,
+        "p_lower": 4.3447246904526615e-05,
+        "p_tost": 0.0018439641901104164,
+        "equivalent_005": true
+      },
+      {
+        "pair": [
+          "conditional_precedence",
+          "coreferential"
+        ],
+        "difference": 0.052,
+        "delta": 0.15,
+        "z_upper": -2.3132,
+        "z_lower": 4.768,
+        "p_upper": 0.010356527810982879,
+        "p_lower": 9.304500210305378e-07,
+        "p_tost": 0.010356527810982879,
+        "equivalent_005": true
+      },
+      {
+        "pair": [
+          "conditional_precedence",
+          "lexical"
+        ],
+        "difference": -0.06,
+        "delta": 0.15,
+        "z_upper": -4.8056,
+        "z_lower": 2.0596,
+        "p_upper": 7.712650553053304e-07,
+        "p_lower": 0.019720199046509457,
+        "p_tost": 0.019720199046509457,
+        "equivalent_005": true
+      },
+      {
+        "pair": [
+          "conditional_precedence",
+          "scopal"
+        ],
+        "difference": -0.025574,
+        "delta": 0.15,
+        "z_upper": -4.0398,
+        "z_lower": 2.8629,
+        "p_upper": 2.6743772438079823e-05,
+        "p_lower": 0.0020986001892152606,
+        "p_tost": 0.0020986001892152606,
+        "equivalent_005": true
+      },
+      {
+        "pair": [
+          "coreferential",
+          "lexical"
+        ],
+        "difference": -0.112,
+        "delta": 0.15,
+        "z_upper": -6.1015,
+        "z_lower": 0.885,
+        "p_upper": 5.252469003443035e-10,
+        "p_lower": 0.18809001529589797,
+        "p_tost": 0.18809001529589797,
+        "equivalent_005": false
+      },
+      {
+        "pair": [
+          "coreferential",
+          "scopal"
+        ],
+        "difference": -0.077574,
+        "delta": 0.15,
+        "z_upper": -5.3299,
+        "z_lower": 1.6962,
+        "p_upper": 4.9138806812675423e-08,
+        "p_lower": 0.04492034874711304,
+        "p_tost": 0.04492034874711304,
+        "equivalent_005": true
+      },
+      {
+        "pair": [
+          "lexical",
+          "scopal"
+        ],
+        "difference": 0.034426,
+        "delta": 0.15,
+        "z_upper": -2.6255,
+        "z_lower": 4.1896,
+        "p_upper": 0.0043264273051081435,
+        "p_lower": 1.397514462042615e-05,
+        "p_tost": 0.0043264273051081435,
+        "equivalent_005": true
+      }
+    ],
+    "n_equivalent": 8,
+    "n_total_pairs": 10
+  },
+  "tost_10pp": {
+    "delta_pp": 10,
+    "pairs": [
+      {
+        "pair": [
+          "authorization_scope",
+          "conditional_precedence"
+        ],
+        "difference": 0.048,
+        "delta": 0.1,
+        "z_upper": -1.1923,
+        "z_lower": 3.3935,
+        "p_upper": 0.11656998245678535,
+        "p_lower": 0.00034503298669907867,
+        "p_tost": 0.11656998245678535,
+        "equivalent_005": false
+      },
+      {
+        "pair": [
+          "authorization_scope",
+          "coreferential"
+        ],
+        "difference": 0.1,
+        "delta": 0.1,
+        "z_upper": -0.0,
+        "z_lower": 4.6672,
+        "p_upper": 0.4999999999999997,
+        "p_lower": 1.5270102837749988e-06,
+        "p_tost": 0.4999999999999997,
+        "equivalent_005": false
+      },
+      {
+        "pair": [
+          "authorization_scope",
+          "lexical"
+        ],
+        "difference": -0.012,
+        "delta": 0.1,
+        "z_upper": -2.5356,
+        "z_lower": 1.9923,
+        "p_upper": 0.005612351372938649,
+        "p_lower": 0.02317037105752684,
+        "p_tost": 0.02317037105752684,
+        "equivalent_005": true
+      },
+      {
+        "pair": [
+          "authorization_scope",
+          "scopal"
+        ],
+        "difference": 0.022426,
+        "delta": 0.1,
+        "z_upper": -1.7657,
+        "z_lower": 2.7865,
+        "p_upper": 0.03872717993765087,
+        "p_lower": 0.0026639961514736132,
+        "p_tost": 0.03872717993765087,
+        "equivalent_005": true
+      },
+      {
+        "pair": [
+          "conditional_precedence",
+          "coreferential"
+        ],
+        "difference": 0.052,
+        "delta": 0.1,
+        "z_upper": -1.133,
+        "z_lower": 3.5878,
+        "p_upper": 0.12861062240557974,
+        "p_lower": 0.00016675235985474934,
+        "p_tost": 0.12861062240557974,
+        "equivalent_005": false
+      },
+      {
+        "pair": [
+          "conditional_precedence",
+          "lexical"
+        ],
+        "difference": -0.06,
+        "delta": 0.1,
+        "z_upper": -3.6614,
+        "z_lower": 0.9154,
+        "p_upper": 0.00012539875048614608,
+        "p_lower": 0.18000106030953322,
+        "p_tost": 0.18000106030953322,
+        "equivalent_005": false
+      },
+      {
+        "pair": [
+          "conditional_precedence",
+          "scopal"
+        ],
+        "difference": -0.025574,
+        "delta": 0.1,
+        "z_upper": -2.8894,
+        "z_lower": 1.7125,
+        "p_upper": 0.0019300367162603006,
+        "p_lower": 0.04340386031723753,
+        "p_tost": 0.04340386031723753,
+        "equivalent_005": true
+      },
+      {
+        "pair": [
+          "coreferential",
+          "lexical"
+        ],
+        "difference": -0.112,
+        "delta": 0.1,
+        "z_upper": -4.9371,
+        "z_lower": -0.2795,
+        "p_upper": 3.9641047607287884e-07,
+        "p_lower": 0.6100540783836805,
+        "p_tost": 0.6100540783836805,
+        "equivalent_005": false
+      },
+      {
+        "pair": [
+          "coreferential",
+          "scopal"
+        ],
+        "difference": -0.077574,
+        "delta": 0.1,
+        "z_upper": -4.1589,
+        "z_lower": 0.5252,
+        "p_upper": 1.5991968970405164e-05,
+        "p_lower": 0.29971553572295695,
+        "p_tost": 0.29971553572295695,
+        "equivalent_005": false
+      },
+      {
+        "pair": [
+          "lexical",
+          "scopal"
+        ],
+        "difference": 0.034426,
+        "delta": 0.1,
+        "z_upper": -1.4896,
+        "z_lower": 3.0537,
+        "p_upper": 0.06816004774219457,
+        "p_lower": 0.0011301284444564796,
+        "p_tost": 0.06816004774219457,
+        "equivalent_005": false
+      }
+    ],
+    "n_equivalent": 3,
+    "n_total_pairs": 10
+  },
+  "coreferential_vs_others": {
+    "coreferential_rate": 0.316,
+    "comparisons": [
+      {
+        "comparison": "coreferential vs authorization_scope",
+        "coref_rate": 0.316,
+        "other_rate": 0.416,
+        "difference": -0.1,
+        "fisher_p_one_sided": 0.012871565168202625,
+        "p_holm": 0.038614695504607874,
+        "significant_005": true
+      },
+      {
+        "comparison": "coreferential vs conditional_precedence",
+        "coref_rate": 0.316,
+        "other_rate": 0.368,
+        "difference": -0.052,
+        "fisher_p_one_sided": 0.12895336297231622,
+        "p_holm": 0.12895336297231622,
+        "significant_005": false
+      },
+      {
+        "comparison": "coreferential vs lexical",
+        "coref_rate": 0.316,
+        "other_rate": 0.428,
+        "difference": -0.112,
+        "fisher_p_one_sided": 0.00619201866616779,
+        "p_holm": 0.02476807466467116,
+        "significant_005": true
+      },
+      {
+        "comparison": "coreferential vs scopal",
+        "coref_rate": 0.316,
+        "other_rate": 0.3936,
+        "difference": -0.0776,
+        "fisher_p_one_sided": 0.042882181524311606,
+        "p_holm": 0.08576436304862321,
+        "significant_005": false
+      }
+    ],
+    "n_significant": 2,
+    "n_comparisons": 4,
+    "still_lowest": true
+  },
+  "conclusion": "omnibus chi2 NOT significant (p=7.86e-02); coreferential still lowest; significantly lower than 2/4 types; Cramer's V=0.082 (small effect)"
+}

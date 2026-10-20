@@ -1,0 +1,25 @@
+\section{Ambiguity Taxonomy}
+\label{sec:taxonomy}
+
+We adopt an operational definition of ambiguity following \citet{wasow_ambiguity_2005}: a policy clause is ambiguous when it admits multiple distinct interpretations available to a competent reader, including cases of vagueness where the boundary between interpretations is gradient rather than discrete \citep{kennedy_vagueness_2007}.
+
+Our taxonomy comprises six types organized into two layers, drawing on \citet{li_ambiguity_taxonomy_2024}'s NLP taxonomy (11 types), \citet{massey_ambiguity_re_2014}'s requirements engineering taxonomy (6 types), and the concurrent DRIP-R benchmark \citep{drip_r_2026} (5 types). We select types based on two criteria: frequency in operational policy documents (assessed via manual audit of $\tau^2$-bench policies) and theoretical distinctiveness (each type maps to a different resolution mechanism).
+
+\paragraph{Linguistic layer.} These types operate at the syntactic or semantic level and can, in principle, be resolved by parsing or contextual cues within the text.
+\begin{itemize}
+\item \textbf{Scopal}: quantifier, negation, or modal scope interactions (e.g., ``all items may not be returned'' admits universal-negation and negation-of-universal readings).
+\item \textbf{Lexical}: polysemy or homonymy (e.g., ``charge'' as financial cost vs.\ penalty; ``party'' as individual vs.\ group).
+\item \textbf{Coreferential}: unclear pronoun or noun-phrase reference (e.g., ``the agent should verify the customer's identity before processing their refund request, which must be approved by a supervisor'' where ``which'' could refer to the verification or the refund).
+\end{itemize}
+
+\paragraph{Specification layer.} These types arise from pragmatic or discourse-level gaps that require domain knowledge or organizational context to resolve.
+\begin{itemize}
+\item \textbf{Authorization scope}: vague permission or role boundaries (e.g., ``authorized personnel may issue refunds'' without specifying which personnel or under what conditions).
+\item \textbf{Incompleteness}: missing conditions, exceptions, or boundary cases (e.g., a return policy that specifies the return window but not what happens when the item is damaged). (Note: unlike other types where the unambiguous variant rephrases existing content, incompleteness resolution requires adding new policy content, a confound we address in \S\ref{sec:results}.)
+\item \textbf{Conditional precedence}: conflicting or overlapping rules without priority ordering (e.g., ``premium customers receive free shipping'' and ``orders under \$50 require a shipping fee'' without specifying which rule takes precedence for a premium customer with a \$30 order).
+\end{itemize}
+
+The layer distinction reflects the hypothesis that linguistic ambiguity can be partially resolved through tool responses, user context, or world knowledge, while specification ambiguity has no external resolution channel available to the agent, forcing it to guess. We test this hypothesis empirically in \S\ref{sec:results} and \S\ref{sec:analysis}. The linguistic/specification layer distinction is a theoretical organizing principle; \S\ref{sec:results} tests whether it corresponds to an empirical grouping.
+
+\paragraph{Scope of `ambiguity.'}
+Our taxonomy uses \emph{ambiguity} broadly to encompass policy specification features that admit multiple operationally distinct interpretations by an LLM agent. Authorization scope overlaps with \emph{vagueness} \citep{kennedy_vagueness_2007}, incompleteness with \emph{information absence} (resolution requires adding content), and conditional precedence with \emph{normative conflict} between individually unambiguous rules. \citet{dalpiaz_pinpointing_2018} show that ambiguity and incompleteness frequently co-occur in requirements specifications, supporting their unified treatment. We adopt this inclusive definition because LLM agents process all six types identically---committing to a single interpretation without flagging uncertainty---and the resulting safety violations are behaviorally indistinguishable (\S\ref{sec:results}).

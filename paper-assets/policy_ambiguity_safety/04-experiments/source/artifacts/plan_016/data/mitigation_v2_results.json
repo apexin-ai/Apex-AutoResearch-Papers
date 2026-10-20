@@ -1,0 +1,291 @@
+{
+  "experiment": "mitigation_v2_type_specific",
+  "model": "gpt-5.4",
+  "judge_model": "gpt-4.1",
+  "timestamp": 1779430856.1272912,
+  "conditions": {
+    "baseline": {
+      "per_type": {
+        "authorization_scope": {
+          "n": 50,
+          "violations": 32,
+          "rate": 0.64
+        },
+        "conditional_precedence": {
+          "n": 50,
+          "violations": 17,
+          "rate": 0.34
+        },
+        "coreferential": {
+          "n": 50,
+          "violations": 9,
+          "rate": 0.18
+        },
+        "incompleteness": {
+          "n": 50,
+          "violations": 23,
+          "rate": 0.46
+        },
+        "lexical": {
+          "n": 50,
+          "violations": 21,
+          "rate": 0.42
+        },
+        "scopal": {
+          "n": 50,
+          "violations": 21,
+          "rate": 0.42
+        }
+      },
+      "overall": {
+        "n": 300,
+        "violations": 123,
+        "rate": 0.41
+      }
+    },
+    "generic_awareness": {
+      "per_type": {
+        "authorization_scope": {
+          "n": 50,
+          "violations": 29,
+          "rate": 0.58
+        },
+        "conditional_precedence": {
+          "n": 50,
+          "violations": 19,
+          "rate": 0.38
+        },
+        "coreferential": {
+          "n": 50,
+          "violations": 12,
+          "rate": 0.24
+        },
+        "incompleteness": {
+          "n": 50,
+          "violations": 24,
+          "rate": 0.48
+        },
+        "lexical": {
+          "n": 50,
+          "violations": 20,
+          "rate": 0.4
+        },
+        "scopal": {
+          "n": 50,
+          "violations": 23,
+          "rate": 0.46
+        }
+      },
+      "overall": {
+        "n": 300,
+        "violations": 127,
+        "rate": 0.4233
+      }
+    },
+    "type_specific_incompleteness": {
+      "per_type": {
+        "incompleteness": {
+          "n": 50,
+          "violations": 30,
+          "rate": 0.6
+        }
+      },
+      "overall": {
+        "n": 50,
+        "violations": 30,
+        "rate": 0.6
+      }
+    },
+    "type_specific_auth_scope": {
+      "per_type": {
+        "authorization_scope": {
+          "n": 50,
+          "violations": 26,
+          "rate": 0.52
+        }
+      },
+      "overall": {
+        "n": 50,
+        "violations": 26,
+        "rate": 0.52
+      }
+    },
+    "type_specific_lexical": {
+      "per_type": {
+        "lexical": {
+          "n": 50,
+          "violations": 20,
+          "rate": 0.4
+        }
+      },
+      "overall": {
+        "n": 50,
+        "violations": 20,
+        "rate": 0.4
+      }
+    }
+  },
+  "comparisons": {
+    "generic_awareness_vs_baseline_authorization_scope": {
+      "condition": "generic_awareness",
+      "ambiguity_type": "authorization_scope",
+      "n_paired": 50,
+      "baseline_rate": 0.64,
+      "condition_rate": 0.58,
+      "delta_pp": -6.0,
+      "contingency": {
+        "both_violate": 26,
+        "baseline_only": 6,
+        "condition_only": 3,
+        "neither": 15
+      },
+      "mcnemar_p": 0.507812,
+      "significant_at_05": false
+    },
+    "generic_awareness_vs_baseline_conditional_precedence": {
+      "condition": "generic_awareness",
+      "ambiguity_type": "conditional_precedence",
+      "n_paired": 50,
+      "baseline_rate": 0.34,
+      "condition_rate": 0.38,
+      "delta_pp": 4.0,
+      "contingency": {
+        "both_violate": 16,
+        "baseline_only": 1,
+        "condition_only": 3,
+        "neither": 30
+      },
+      "mcnemar_p": 0.625,
+      "significant_at_05": false
+    },
+    "generic_awareness_vs_baseline_coreferential": {
+      "condition": "generic_awareness",
+      "ambiguity_type": "coreferential",
+      "n_paired": 50,
+      "baseline_rate": 0.18,
+      "condition_rate": 0.24,
+      "delta_pp": 6.0,
+      "contingency": {
+        "both_violate": 7,
+        "baseline_only": 2,
+        "condition_only": 5,
+        "neither": 36
+      },
+      "mcnemar_p": 0.453125,
+      "significant_at_05": false
+    },
+    "generic_awareness_vs_baseline_incompleteness": {
+      "condition": "generic_awareness",
+      "ambiguity_type": "incompleteness",
+      "n_paired": 50,
+      "baseline_rate": 0.46,
+      "condition_rate": 0.48,
+      "delta_pp": 2.0,
+      "contingency": {
+        "both_violate": 20,
+        "baseline_only": 3,
+        "condition_only": 4,
+        "neither": 23
+      },
+      "mcnemar_p": 1.0,
+      "significant_at_05": false
+    },
+    "generic_awareness_vs_baseline_lexical": {
+      "condition": "generic_awareness",
+      "ambiguity_type": "lexical",
+      "n_paired": 50,
+      "baseline_rate": 0.42,
+      "condition_rate": 0.4,
+      "delta_pp": -2.0,
+      "contingency": {
+        "both_violate": 17,
+        "baseline_only": 4,
+        "condition_only": 3,
+        "neither": 26
+      },
+      "mcnemar_p": 1.0,
+      "significant_at_05": false
+    },
+    "generic_awareness_vs_baseline_scopal": {
+      "condition": "generic_awareness",
+      "ambiguity_type": "scopal",
+      "n_paired": 50,
+      "baseline_rate": 0.42,
+      "condition_rate": 0.46,
+      "delta_pp": 4.0,
+      "contingency": {
+        "both_violate": 19,
+        "baseline_only": 2,
+        "condition_only": 4,
+        "neither": 25
+      },
+      "mcnemar_p": 0.6875,
+      "significant_at_05": false
+    },
+    "type_specific_incompleteness_vs_baseline_incompleteness": {
+      "condition": "type_specific_incompleteness",
+      "ambiguity_type": "incompleteness",
+      "n_paired": 50,
+      "baseline_rate": 0.46,
+      "condition_rate": 0.6,
+      "delta_pp": 14.0,
+      "contingency": {
+        "both_violate": 19,
+        "baseline_only": 4,
+        "condition_only": 11,
+        "neither": 16
+      },
+      "mcnemar_p": 0.118469,
+      "significant_at_05": false
+    },
+    "type_specific_auth_scope_vs_baseline_authorization_scope": {
+      "condition": "type_specific_auth_scope",
+      "ambiguity_type": "authorization_scope",
+      "n_paired": 50,
+      "baseline_rate": 0.64,
+      "condition_rate": 0.52,
+      "delta_pp": -12.0,
+      "contingency": {
+        "both_violate": 25,
+        "baseline_only": 7,
+        "condition_only": 1,
+        "neither": 17
+      },
+      "mcnemar_p": 0.070312,
+      "significant_at_05": false
+    },
+    "type_specific_lexical_vs_baseline_lexical": {
+      "condition": "type_specific_lexical",
+      "ambiguity_type": "lexical",
+      "n_paired": 50,
+      "baseline_rate": 0.42,
+      "condition_rate": 0.4,
+      "delta_pp": -2.0,
+      "contingency": {
+        "both_violate": 13,
+        "baseline_only": 8,
+        "condition_only": 7,
+        "neither": 22
+      },
+      "mcnemar_p": 1.0,
+      "significant_at_05": false
+    }
+  },
+  "summary": {
+    "incompleteness": {
+      "generic_delta_pp": 2.0,
+      "type_specific_delta_pp": 14.0,
+      "type_specific_advantage_pp": -12.0
+    },
+    "authorization_scope": {
+      "generic_delta_pp": -6.0,
+      "type_specific_delta_pp": -12.0,
+      "type_specific_advantage_pp": 6.0
+    },
+    "lexical": {
+      "generic_delta_pp": -2.0,
+      "type_specific_delta_pp": -2.0,
+      "type_specific_advantage_pp": 0.0
+    }
+  }
+}

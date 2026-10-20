@@ -1,0 +1,182 @@
+{
+  "1_sans_auth_scope": {
+    "n_episodes": 2497,
+    "n_ambiguous": 1249,
+    "c1_pooled_delta_pp": 33.6,
+    "ambiguous_violation_rate": 0.4083,
+    "unambiguous_violation_rate": 0.0721,
+    "variance_decomposition": {
+      "clause_id_pct": 23.6,
+      "model_pct": 0.9,
+      "condition_pct": 15.5,
+      "ambiguity_type_pct": 0.4,
+      "residual_pct": 60.0
+    },
+    "nmi_type_mechanism_5type": 0.1296,
+    "cramers_v_type_mechanism_5type": {
+      "V": 0.3,
+      "chi2": 183.6,
+      "p": "1.92e-28",
+      "N": 510
+    },
+    "cramers_v_type_violation_5type": {
+      "V": 0.1497,
+      "chi2": 28.0,
+      "p": "1.25e-05",
+      "N": 1249
+    }
+  },
+  "2_cramers_v_comparison": {
+    "type_to_violation": {
+      "V": 0.1367,
+      "chi2": 28.0,
+      "p": "3.61e-05",
+      "N": 1499,
+      "table_shape": "6×2"
+    },
+    "type_to_mechanism": {
+      "V": 0.3627,
+      "chi2": 403.9,
+      "p": "4.92e-70",
+      "N": 614,
+      "table_shape": "6×6"
+    },
+    "ratio": 2.65,
+    "interpretation": "Type predicts mechanism 2.7x more strongly than violation rate using the same metric"
+  },
+  "3_concordant_decomposition": {
+    "n_matched_pairs": 1500,
+    "discordant": {
+      "total": 580,
+      "pct": 38.7,
+      "ambiguous_only": 544,
+      "unambiguous_only": 36
+    },
+    "concordant": {
+      "total": 920,
+      "pct": 61.3,
+      "both_violated": 68,
+      "both_violated_pct": 4.5,
+      "neither_violated": 849,
+      "neither_violated_pct": 56.6
+    }
+  },
+  "4_clause_delta_distribution": {
+    "n_clauses": 300,
+    "mean_pp": 34.0,
+    "median_pp": 20.0,
+    "std_pp": 35.2,
+    "skewness": 0.329,
+    "kurtosis": -0.9,
+    "quartiles_pp": {
+      "Q25": 0.0,
+      "Q50": 20.0,
+      "Q75": 60.0
+    },
+    "iqr_pp": 60.0,
+    "right_skewed": true,
+    "direction_counts": {
+      "positive": 197,
+      "zero": 89,
+      "negative": 14
+    },
+    "interpretation": "Right-skewed (skew=0.329), mean (34.0pp) > median (20.0pp)"
+  },
+  "5_per_domain_permissive_bias": {
+    "overall": {
+      "n_convergent_violations": 482,
+      "permissive": 371,
+      "restrictive": 85,
+      "literal": 26,
+      "permissive_rate": 77.0
+    },
+    "retail": {
+      "n_convergent_violations": 216,
+      "permissive": 162,
+      "restrictive": 37,
+      "literal": 17,
+      "permissive_rate": 75.0
+    },
+    "airline": {
+      "n_convergent_violations": 266,
+      "permissive": 209,
+      "restrictive": 48,
+      "literal": 9,
+      "permissive_rate": 78.6
+    }
+  },
+  "6_failure_mode_coder_prompt": {
+    "type_label_in_prompt": false,
+    "prompt_inputs": [
+      "system_prompt (containing policy clause)",
+      "trajectory",
+      "ground_truth (unambiguous clause)",
+      "violation_description"
+    ],
+    "type_label_added_post_hoc": true,
+    "nmi_contamination_risk": "none",
+    "explanation": "The LLM coder receives trajectory + policy clause + ground truth, but NOT the ambiguity type label. Type is added programmatically to the output record after classification. NMI between type and mechanism is clean.",
+    "scripts": [
+      "artifacts/run_plan005.py",
+      "artifacts/run_plan005_gpt41.py",
+      "artifacts/plan_005/run_cross_coding.py"
+    ],
+    "inter_coder_kappa": 0.52
+  },
+  "7_pipeline_construction": {
+    "total_templates": 300,
+    "per_type": {
+      "authorization_scope": 50,
+      "conditional_precedence": 50,
+      "coreferential": 50,
+      "incompleteness": 50,
+      "lexical": 50,
+      "scopal": 50
+    },
+    "per_domain": {
+      "retail": 155,
+      "airline": 145
+    },
+    "construction_method": "hand-crafted Python dict literals with optional LLM refinement post-pass",
+    "over_generation": false,
+    "rejection_rate": "N/A — no over-generation stage; templates built directly to target count (50 per type)",
+    "quality_review": {
+      "method": "two independent annotators",
+      "initial_agreement": "96% (287/300)",
+      "disagreements_resolved": "13 by discussion → 100% final consensus",
+      "auth_scope_audit": "8/50 (16%) flagged as problematic, 3/50 (6%) cross-type contamination, not removed"
+    },
+    "template_fields": [
+      "clause_id",
+      "ambiguity_type",
+      "domain",
+      "source_clause",
+      "ambiguous_clause",
+      "unambiguous_clause",
+      "ambiguity_point",
+      "possible_interpretations",
+      "expected_agent_behavior_diff",
+      "annotation_rationale",
+      "user_scenario",
+      "tools",
+      "stripped_tool_desc"
+    ],
+    "example": {
+      "clause_id": "scopal_001",
+      "ambiguity_type": "scopal",
+      "domain": "retail",
+      "ambiguous_clause": "Agents must not cancel all pending orders without user confirmation.",
+      "unambiguous_clause": "Agents must not cancel any pending order without first obtaining explicit user confirmation; every cancellation requires confirmation.",
+      "ambiguity_point": "'must not ... all' — negation wide-scope: agents must not cancel any order..."
+    },
+    "key_scripts": {
+      "final_corpus": "artifacts/clause_templates_full.json",
+      "injection_pipeline": "artifacts/injection_pipeline.py",
+      "validation": "artifacts/validate_clauses.py",
+      "generators": [
+        "artifacts/generate_scopal_31_50.py",
+        "artifacts/generate_cp_part2.py"
+      ]
+    }
+  }
+}

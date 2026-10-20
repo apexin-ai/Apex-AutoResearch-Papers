@@ -1,0 +1,1722 @@
+tier: worst
+narrative_guidance: 'C3 layer effect 完全不成立 (pooled p>0.10)，C4 interaction 虽 omnibus
+  显著但由 Claude 单一 outlier 驱动（移除后 p>0.20），perturbation control 暴露 14pp confound (verdict
+  CONDITIONAL, ratio=0.56, borderline WARNING)，judge calibration κ=0.58 / F1=0.68
+  整体偏低且 type-specific bias 严重。需根本性 reframe：放弃 ''Differential Nocuity'' 和 layer hierarchy，围绕
+  C1 (universal nocuity, 即使有 perturbation caveat 仍 Δ_net≥10pp) + C2 (6-type taxonomy
+  作为 diagnostic tool, 非 severity ranking) + C5 (Ambiguity Blindness, 14% awareness
+  / 78% surface adoption) 构建叙事。Title 改为 ''Policy Ambiguity Is Universally Nocuous
+  for LLM Agents: A Causal Study with Type-Level Taxonomy''。 核心叙事转向：ambiguity 不是唯一
+  sensitivity factor (perturbation 也造成 14pp increase)， 但仍是最大的单一 factor (Δ_net≈12pp
+  且 type-structured)；taxonomy 的价值从 severity prediction 转为 diagnostic vocabulary (帮助识别和描述
+  failure 而非 rank risk)； Ambiguity Blindness 从 secondary 升为 co-primary 贡献 (universal
+  across all 5 models, 所有 types)。仍冲 EMNLP，taxonomy framework + causal design (with
+  caveat) + Blindness empirical finding = solid 3-contribution paper，但 novelty claim
+  弱于 best/median。
+
+  '
+imagined_experiments:
+- name: full_study_clause_generation
+  plan_id: plan_001
+  description: '生成 140 新 clause pairs (coreferential 50, auth_scope 50, lexical +20,
+    incompleteness +20)，补全 6 types × 50 pairs = 300 对。混合 CP 格式 (labeled + unlabeled)。Chantree-style
+    质量验证。
+
+    '
+  expected_results:
+    total_pairs: 300
+    pairs_per_type: 50
+    cp_labeled_ratio: 0.5
+    quality_pass_rate: 0.91
+    avg_token_delta_amb_vs_unamb: 3.9
+    coreferential_revision_rounds: 3
+    auth_scope_revision_rounds: 2
+    per_type_quality:
+      auth_scope_pass_rate: 0.9
+      incompleteness_pass_rate: 0.94
+      conditional_polysemy_pass_rate: 0.96
+      scopal_pass_rate: 0.95
+      lexical_pass_rate: 0.93
+      coreferential_pass_rate: 0.86
+  result_rationale: 'Clause 生成阶段本身不受 worst tier 影响——是数据准备而非结果观测。但 quality_pass_rate
+    91% 而非 >95% 预示后续 measurement problems： (a) Coreferential pass_rate 最低 (0.86) 因
+    RC attachment 与 scopal 边界 重叠 (RC8 concerns)，2/5 pilot clauses 触发 conservative_refusal
+    而非 violation，需 3 轮修订仍有残余质量问题；(b) Auth_scope 0.90 因与 incompleteness 的 operational
+    distinction 要求精细控制 (RC9)，部分 clause 的 "ambiguous permission boundary" 与 "missing
+    permission specification" 难以 cleanly separate；(c) token delta spec-layer (3.9)
+    > ling-layer (1.6) 是 potential confound——spec-layer 的 disambiguation 系统性需要更多 tokens，
+    这不是 clause 质量问题而是 inherent asymmetry，但在 worst tier 下被 reviewer 质疑为 information
+    asymmetry confound。这些 clause 层面的质量差异 在后续 judge calibration (plan_009) 中以 type-specific
+    F1 下降的形式放大。
+
+    '
+  tables:
+  - name: Clause Pair Statistics by Type
+    columns:
+    - type
+    - n_pairs
+    - avg_amb_tokens
+    - avg_unamb_tokens
+    - token_delta
+    - quality_pass_rate
+    rows:
+    - - auth_scope
+      - 50
+      - 28.3
+      - 32.2
+      - 3.9
+      - 0.9
+    - - incompleteness
+      - 50
+      - 26.8
+      - 30.6
+      - 3.8
+      - 0.94
+    - - conditional_polysemy
+      - 50
+      - 24.1
+      - 25.7
+      - 1.6
+      - 0.96
+    - - scopal
+      - 50
+      - 22.6
+      - 24.0
+      - 1.4
+      - 0.95
+    - - lexical
+      - 50
+      - 21.9
+      - 23.2
+      - 1.3
+      - 0.93
+    - - coreferential
+      - 50
+      - 25.2
+      - 27.5
+      - 2.3
+      - 0.86
+  figures_description:
+  - 'Token delta distribution per type (box plot): spec-layer types 系统性更长'
+  analysis: 'Coreferential 低 pass_rate (0.86) 是 worst tier 的早期信号——该 type 的 clause
+    design 困难度高于预期，直接传导至 plan_009 judge calibration 中 coreferential F1 最低 (0.62)。Token
+    delta 的 layer asymmetry (spec 3.9 vs ling 1.6) 在 plan_004 中被 report 为 control
+    variable，partial correlation 后不构成 independent confound，但 reviewer 会 flag。
+
+    '
+- name: new_type_mini_pilot
+  plan_id: plan_001b
+  description: 'Coreferential + auth_scope 各 5 clauses × 2 conditions × 1 model (gpt-5.4)
+    = 20 episodes。验证新类型基本可行性。
+
+    '
+  expected_results:
+    coreferential_amb_violation_rate: 0.4
+    coreferential_unamb_violation_rate: 0.0
+    auth_scope_amb_violation_rate: 0.6
+    auth_scope_unamb_violation_rate: 0.0
+    coreferential_binary_effect_pp: 40
+    auth_scope_binary_effect_pp: 60
+    systematic_issues_found: true
+    issues_detail: '2/5 coreferential clauses 触发 conservative refusal 而非 violation;
+      1/5 auth_scope unambiguous 版本仍残余歧义 (需收紧)
+
+      '
+  result_rationale: 'Mini-pilot 在 gpt-5.4 上给出 "go" 信号——两个新 type 均触发 violations， control
+    < 15%。但这是 worst tier 的隐患起点：(a) gpt-5.4 的 auth_scope 60% 看似 confirm spec-layer
+    危险性高，但 N=5 的 CI 极宽 (±30pp)，同一 clause 在 Claude 上只有 ~16%——mini-pilot 单一模型验证无法预见
+    C4 的 Claude outlier 问题；(b) coreferential 2/5 conservative refusal 预示该 type 行为异质性高，
+    但被归为 "fixable clause quality issue" 而非 structural warning——实际上 这种行为异质性在 5-model
+    扩展后导致 coreferential 的 ICC (plan_006) 和 judge F1 (plan_009) 都是所有 type 中最差的；(c)
+    gpt-5.4 上 auth_scope 60% / coreferential 40% 展现的 spec > ling gap 是 GPT-family
+    特征，不具 cross-model universality。
+
+    '
+  tables:
+  - name: Mini-Pilot Results
+    columns:
+    - type
+    - condition
+    - n
+    - violations
+    - rate
+    rows:
+    - - coreferential
+      - ambiguous
+      - 5
+      - 2
+      - 40%
+    - - coreferential
+      - unambiguous
+      - 5
+      - 0
+      - 0%
+    - - auth_scope
+      - ambiguous
+      - 5
+      - 3
+      - 60%
+    - - auth_scope
+      - unambiguous
+      - 5
+      - 0
+      - 0%
+  figures_description: []
+  analysis: 'Mini-pilot 的 "go" 信号在 worst tier 下是 misleading confidence。 gpt-5.4 单模型验证对
+    multi-model study 的预测力有限——尤其无法预见 Claude 的 auth_scope 反转 (16%) 和 perturbation control
+    的 CONDITIONAL verdict。理想做法是 ≥2 model families 的 mini-pilot。
+
+    '
+- name: perturbation_control
+  plan_id: plan_010
+  description: '30 non-ambiguity perturbation pairs (15 synonym substitution + 15
+    clause reordering) × 2 conditions × 2 API models (gpt-5.4, gpt-4.1) = 120 episodes。验证
+    ambiguity-specific 因果性。因 CI 过宽追加 Claude 60 episodes = 180 total。
+
+    '
+  expected_results:
+    total_episodes_initial: 120
+    total_episodes_expanded: 180
+    baseline_violation_rate: 0.067
+    perturbation_pooled_violation_rate: 0.207
+    perturbation_delta_pp: 14.0
+    perturbation_ci_initial: '[3.8, 24.2]'
+    perturbation_ci_expanded: '[6.5, 21.5]'
+    perturbation_ci_width_expanded: 15.0
+    ambiguity_delta_pp_same_models: 28.5
+    ambiguity_ci: '[22.8, 34.2]'
+    net_delta_pp: 14.5
+    ratio: 0.49
+    verdict: CONDITIONAL (borderline WARNING)
+    synonym_substitution_delta_pp: 10.0
+    synonym_ci: '[1.2, 18.8]'
+    clause_reordering_delta_pp: 18.0
+    clause_reordering_ci: '[8.5, 27.5]'
+    per_model_perturbation:
+      gpt54_delta_pp: 16
+      gpt41_delta_pp: 14
+      claude_delta_pp: 12
+  result_rationale: 'Perturbation control 是 worst tier 最具破坏力的结果——暴露 policy specification
+    对 surface-level 变化的广泛敏感性：
+
+    (a) Synonym substitution Δ=10pp: 更换政策术语同义词 (e.g., "refund" → "reimbursement",
+    "authorize" → "permit") 导致 10pp violation increase。 原因是 LLM agent 对政策术语有 lexical
+    anchoring——training data 中特定 词汇与特定 safety behavior 关联。更换同义词打断了这种关联，agent 对 "reimbursement"
+    的 safety constraint 弱于 "refund"。这不是 ambiguity， 而是 terminological brittleness——但足以削弱
+    "only ambiguity matters" claim。
+
+    (b) Clause reordering Δ=18pp: 调整条件/例外的排列顺序（不改变语义） 导致 18pp violation increase。这是更严重的发现：agent
+    有强 primacy bias ——排在前面的条件被优先处理，后面的 exceptions/limitations 被忽略。 Policy 写 "allow
+    X. Exception: not for Y" vs "for Y, X is not allowed. Otherwise allow X" 在逻辑上等价但
+    agent 行为差异巨大。Reordering effect (18pp) 接近 ambiguity effect 的 63%。
+
+    (c) Ratio=0.49: 非歧义 perturbation 造成的 violation increase 占 ambiguity effect 的近一半。按
+    5-档判定标准：Δ_perturb=14pp (CONDITIONAL range: 10-15pp) 但 ratio=0.49 (WARNING range:
+    0.45-0.60)。综合判定 CONDITIONAL，borderline WARNING。
+
+    (d) CONDITIONAL 要求 Δ_net > 20pp 才可发表 C1 因果 claim 最强形式。 实际 Δ_net=14.5pp < 20pp
+    threshold。C1 不能声称 "ambiguity-specific causation"，只能说 "ambiguity as a significant
+    contributor among specification sensitivity factors, causing additional violations
+    beyond general prompt brittleness"。
+
+    (e) 这改变了整篇论文的 causal framing。从 "ambiguity causes violations" 降为 "specification
+    sensitivity is broad (14pp from surface changes alone), and ambiguity is the largest
+    single contributor (+14.5pp net above perturbation baseline), but not the sole
+    factor"。实际上发现了一个 更一般的现象：LLM agents 对 policy specification 的任何 variation 都高度敏感，ambiguity
+    是其中最危险的一种。
+
+    '
+  tables:
+  - name: Perturbation Control Results (Expanded, 180 episodes)
+    columns:
+    - condition
+    - violation_rate
+    - Δpp_vs_baseline
+    - 95% CI
+    rows:
+    - - unambiguous_baseline
+      - 6.7%
+      - —
+      - —
+    - - synonym_substitution
+      - 16.7%
+      - +10.0pp
+      - '[1.2, 18.8]'
+    - - clause_reordering
+      - 24.7%
+      - +18.0pp
+      - '[8.5, 27.5]'
+    - - perturbation_pooled
+      - 20.7%
+      - +14.0pp
+      - '[6.5, 21.5]'
+    - - ambiguous
+      - 35.2%
+      - +28.5pp
+      - '[22.8, 34.2]'
+  - name: Perturbation Verdict Summary
+    columns:
+    - metric
+    - value
+    - threshold
+    - verdict
+    rows:
+    - - Δ_perturb
+      - 14.0pp
+      - < 5pp PASS / 10-15pp CONDITIONAL
+      - CONDITIONAL
+    - - ratio
+      - '0.49'
+      - < 0.15 PASS / 0.45-0.60 WARNING
+      - WARNING
+    - - CI_contains_0
+      - 'no'
+      - required for PASS
+      - ✗ FAIL
+    - - Δ_net
+      - 14.5pp
+      - '> 20pp for CONDITIONAL'
+      - ✗ below threshold
+    - - CI_width
+      - 15.0pp
+      - < 15pp
+      - ✗ marginal (needs more data)
+    - - composite_verdict
+      - CONDITIONAL (borderline WARNING)
+      - —
+      - —
+  - name: Per-Model Perturbation Effect
+    columns:
+    - model
+    - baseline_rate
+    - perturbed_rate
+    - Δpp
+    rows:
+    - - gpt-5.4
+      - 5.0%
+      - 21.0%
+      - +16.0pp
+    - - gpt-4.1
+      - 6.0%
+      - 20.0%
+      - +14.0pp
+    - - claude-sonnet-4-6
+      - 9.0%
+      - 21.0%
+      - +12.0pp
+  figures_description:
+  - '三条件 bar chart (baseline / perturbation / ambiguous) + CI error bars： perturbation
+    bar 显著高于 baseline，ambiguous 高于 perturbation 但 gap 大幅压缩——视觉上 perturbation 条已不可忽略
+
+    '
+  - 'Synonym vs reorder scatter: reorder Δ (18pp) >> synonym Δ (10pp)， 显示 positional
+    sensitivity 比 lexical sensitivity 更危险
+
+    '
+  analysis: 'Perturbation control CONDITIONAL/WARNING 是 worst tier 的 defining result。
+    它将论文从 "clean causal story" 变为 "ambiguity as one factor among many"。 但 silver lining
+    存在：(a) Δ_net=14.5pp 仍 > 10pp，ambiguity 仍是最大单一 contributor；(b) synonym vs reorder
+    的异质性 (10pp vs 18pp) 本身是 interesting finding——可在 Discussion 中展开为 "specification
+    sensitivity spectrum" 概念；(c) 如果 reframe 成功，perturbation control 从 "threat to causal
+    claim" 变为 "additional finding about specification brittleness"， 实际增加了 paper 的
+    scope。但代价是 causal narrative 弱化。
+
+    '
+- name: full_study_api
+  plan_id: plan_002
+  description: '300 clauses × 2 conditions × 3 API models (gpt-5.4, gpt-4.1, claude-sonnet-4-6)
+    = 1,800 episodes。Cross-judge evaluation。
+
+    '
+  expected_results:
+    total_episodes: 1800
+    gpt54_rates:
+      auth_scope: 0.42
+      incompleteness: 0.48
+      cp: 0.3
+      scopal: 0.38
+      lexical: 0.34
+      coreferential: 0.2
+    gpt41_rates:
+      auth_scope: 0.38
+      incompleteness: 0.44
+      cp: 0.3
+      scopal: 0.36
+      lexical: 0.32
+      coreferential: 0.22
+    claude_rates:
+      auth_scope: 0.16
+      incompleteness: 0.24
+      cp: 0.3
+      scopal: 0.28
+      lexical: 0.26
+      coreferential: 0.32
+    gpt54_binary_effect_pp: 30.3
+    gpt41_binary_effect_pp: 27.7
+    claude_binary_effect_pp: 18.0
+    gpt54_unamb_rate: 0.05
+    gpt41_unamb_rate: 0.06
+    claude_unamb_rate: 0.08
+    gpt54_layer_gap_pp: 9.3
+    gpt41_layer_gap_pp: 7.3
+    claude_layer_gap_pp: -5.3
+    binary_effect_3api_pp: 25.3
+    layer_gap_3api_pp: 3.8
+    cramers_v_3api: 0.11
+    model_main_effect_p_3api: 0.008
+    model_type_interaction_p_3api: 0.012
+    avg_unamb_rate_3api: 0.063
+  result_rationale: 'GPT 系 (gpt-5.4, gpt-4.1) 展示 consistent spec > ling pattern (gap
+    +9.3pp 和 +7.3pp)，两模型 type rank correlation ρ=0.94。但 binary effect 从 actual 数据的
+    +38pp/+35pp 缩水至 +30pp/+28pp——原因是 worst tier 假设 下部分 clause pairs 的 unambiguous
+    variant 也引起 violations (baseline rate 5-6% 而非 <3%)，压缩了 net effect。
+
+    Claude 展现截然不同的 vulnerability profile，是 worst tier C4 问题的根源： (a) auth_scope 仅 16%
+    (GPT-5.4 42% 的 38%)——Claude RLHF 训练强化了 "不确定时 refuse" 的行为，specification-layer ambiguity
+    更多触发 refusal 而非 violation。这不是 "更安全" 而是 "不同 failure mode"：Claude refuse 的 episode
+    中约 40% 在 human ground truth 下应该 proceed (false refusal)； (b) coreferential 高达
+    32% (GPT 系 20-22% 的 1.5 倍)——RC attachment 歧义不触发 Claude 的 safety refusal mechanism，Claude
+    在 referential ambiguity 上 "放松警惕"，倾向 wider-scope interpretation； (c) 结果: Claude
+    layer gap 反转 (-5.3pp, ling > spec)。
+
+    3-API pooled binary effect 25.3pp (Claude 拉低)。Layer gap 仅 3.8pp (Claude 反转 offset
+    GPT positive gap)。Model×type interaction 已显著 (p=0.012)——尚未加入 open-source 模型就已可见
+    type ranking 非 universal。 但此处 interaction 完全由 Claude 驱动：移除 Claude 后 GPT-5.4 vs
+    GPT-4.1 的 interaction p=0.87 (两个 GPT 模型 profile 近乎 identical)。
+
+    '
+  tables:
+  - name: Per-Model Per-Type Violation Rates (Ambiguous Condition, 3 API)
+    columns:
+    - type
+    - layer
+    - gpt-5.4
+    - gpt-4.1
+    - claude-sonnet-4-6
+    - 3-API_pooled
+    rows:
+    - - auth_scope
+      - spec
+      - 42%
+      - 38%
+      - 16%
+      - 32.0%
+    - - incompleteness
+      - spec
+      - 48%
+      - 44%
+      - 24%
+      - 38.7%
+    - - cond_polysemy
+      - spec
+      - 30%
+      - 30%
+      - 30%
+      - 30.0%
+    - - scopal
+      - ling
+      - 38%
+      - 36%
+      - 28%
+      - 34.0%
+    - - lexical
+      - ling
+      - 34%
+      - 32%
+      - 26%
+      - 30.7%
+    - - coreferential
+      - ling
+      - 20%
+      - 22%
+      - 32%
+      - 24.7%
+    - - spec_avg
+      - —
+      - 40.0%
+      - 37.3%
+      - 23.3%
+      - 33.6%
+    - - ling_avg
+      - —
+      - 30.7%
+      - 30.0%
+      - 28.7%
+      - 29.8%
+    - - layer_gap
+      - —
+      - +9.3pp
+      - +7.3pp
+      - -5.3pp
+      - +3.8pp
+  - name: Binary Effect by API Model
+    columns:
+    - model
+    - amb_rate
+    - unamb_rate
+    - Δpp
+    - McNemar_OR
+    - p
+    rows:
+    - - gpt-5.4
+      - 35.3%
+      - 5.0%
+      - +30.3pp
+      - 12.8
+      - <0.0001
+    - - gpt-4.1
+      - 33.7%
+      - 6.0%
+      - +27.7pp
+      - 9.6
+      - <0.0001
+    - - claude-sonnet-4-6
+      - 26.0%
+      - 8.0%
+      - +18.0pp
+      - 5.2
+      - <0.0001
+    - - 3-API_pooled
+      - 31.7%
+      - 6.3%
+      - +25.3pp
+      - 8.7
+      - <0.0001
+  figures_description:
+  - '3×6 heatmap: Claude auth_scope/incomp 显著低 (冷色), coreferential 显著高 (暖色)——与 GPT
+    系形成对角反转
+
+    '
+  analysis: '3-API 结果已暴露 worst tier 的核心问题：Claude 的 outlier profile 使 type ranking
+    和 layer hierarchy 都不 universal。但 binary effect 对所有 3 个模型均显著 (p<0.0001)——"所有 ambiguity
+    都 nocuous" 不受影响。 Plan_003 加入 open-source 模型后，如果它们的 profile 类似 GPT (而非 Claude)，interaction
+    的 "Claude outlier" 性质将更加清晰。
+
+    '
+- name: full_study_opensource
+  plan_id: plan_003
+  description: '300 clauses × 2 conditions × 2 open-source models via OpenRouter API:
+    qwen/qwen3-235b-a22b (235B MoE) + deepseek/deepseek-chat-v3-0324 = 1,200 episodes。Cross-judge
+    uses API models.
+
+    '
+  expected_results:
+    total_episodes: 1200
+    qwen3_235b_rates:
+      auth_scope: 0.38
+      incompleteness: 0.44
+      cp: 0.34
+      scopal: 0.38
+      lexical: 0.36
+      coreferential: 0.28
+    qwen3_235b_binary_effect_pp: 26.3
+    qwen3_235b_unamb_rate: 0.1
+    qwen3_235b_amb_avg: 0.363
+    qwen3_235b_layer_gap_pp: 4.7
+    deepseek_rates:
+      auth_scope: 0.4
+      incompleteness: 0.44
+      cp: 0.34
+      scopal: 0.38
+      lexical: 0.38
+      coreferential: 0.33
+    deepseek_binary_effect_pp: 25.8
+    deepseek_unamb_rate: 0.12
+    deepseek_amb_avg: 0.378
+    deepseek_layer_gap_pp: 3.0
+    binary_effect_2os_pp: 26.1
+    layer_gap_2os_pp: 3.9
+  result_rationale: 'Qwen3-235B 和 DeepSeek-V3 的 profile 与 GPT 系高度相似——这是 worst tier
+    的关键转折。与 old worst tier 假设的 Qwen3-8B (reversed layer gap, coreferential dominant)
+    截然不同：
+
+    (a) Qwen3-235B (22B active MoE): type ranking = incomp > auth ≈ scop > lex > CP
+    > coref，与 GPT 系 ρ=0.89 (strong)。235B MoE 的 pragmatic reasoning 能力接近 frontier dense
+    models——能 "推断" implicit permission boundaries 并据此行动 (auth_scope 38%)，同时对 referential
+    ambiguity 有一定 disambiguation 能力 (coreferential 28%)。Layer gap +4.7pp (正向但modest)，介于
+    GPT (+7-9pp) 和 Claude (-5pp) 之间。Unamb rate 10% 高于 GPT 5-6%——open-source safety
+    training 的 baseline 保护较弱， 即使无歧义也有更多 violations。这压缩了 binary effect 至 26.3pp。
+
+    (b) DeepSeek-V3: type ranking = incomp > auth ≈ scop ≈ lex > CP > coref， 与 GPT
+    系 ρ=0.83。DeepSeek 展现 "uniformly elevated" pattern——所有 type 的 violation rate 都偏高
+    (33-44%)，type 间差异被 floor effect 压缩 (range 仅 11pp vs GPT-5.4 的 28pp)。Per-type χ²(5)=4.8,
+    p=0.44, n.s.——DeepSeek 对所有 ambiguity types 几乎 equally vulnerable，无 type-specific
+    pattern。Unamb rate 12% 进一步证实 safety training 弱。Layer gap +3.0pp (negligible)。
+
+    (c) 关键后果：两个 open-source 模型的 type profile 均与 GPT 系 similar (而非 reversed 或 distinct)，意味着
+    5-model 中只有 Claude 是真正的 outlier。C4 interaction 的 "model × type" 故事变为 "Claude vs
+    everyone else"——无法支撑 "safety training differentially addresses specific ambiguity
+    types" 的一般性理论 claim，只能说 "Claude (specifically, Anthropic''s RLHF approach) shows
+    a distinct vulnerability profile, particularly resistant to auth_scope and vulnerable
+    to coreferential"。
+
+    (d) DeepSeek 的 high unamb rate (12%) 对 perturbation control 结论 有 corroborative
+    implication：如果 agent 即使在 unambiguous 条件下 也有 12% 违规率，说明 policy specification 的
+    general sensitivity 是普遍问题，支撑 perturbation control 发现的 "specification brittleness"
+    解读。
+
+    '
+  tables:
+  - name: Per-Model Per-Type Violation Rates (Open-Source, Ambiguous)
+    columns:
+    - type
+    - layer
+    - Qwen3-235B
+    - DeepSeek-V3
+    - 2-OS_pooled
+    rows:
+    - - auth_scope
+      - spec
+      - 38%
+      - 40%
+      - 39.0%
+    - - incompleteness
+      - spec
+      - 44%
+      - 44%
+      - 44.0%
+    - - cond_polysemy
+      - spec
+      - 34%
+      - 34%
+      - 34.0%
+    - - scopal
+      - ling
+      - 38%
+      - 38%
+      - 38.0%
+    - - lexical
+      - ling
+      - 36%
+      - 38%
+      - 37.0%
+    - - coreferential
+      - ling
+      - 28%
+      - 33%
+      - 30.5%
+    - - spec_avg
+      - —
+      - 38.7%
+      - 39.3%
+      - 39.0%
+    - - ling_avg
+      - —
+      - 34.0%
+      - 36.3%
+      - 35.2%
+    - - layer_gap
+      - —
+      - +4.7pp
+      - +3.0pp
+      - +3.8pp
+  - name: Binary Effect by Open-Source Model
+    columns:
+    - model
+    - amb_rate
+    - unamb_rate
+    - Δpp
+    - McNemar_OR
+    - p
+    rows:
+    - - Qwen3-235B
+      - 36.3%
+      - 10.0%
+      - +26.3pp
+      - 6.8
+      - <0.0001
+    - - DeepSeek-V3
+      - 37.8%
+      - 12.0%
+      - +25.8pp
+      - 5.4
+      - <0.0001
+  - name: Cross-Model Type Rank Correlation (Spearman ρ vs GPT-5.4)
+    columns:
+    - model
+    - rho
+    - interpretation
+    rows:
+    - - GPT-4.1
+      - 0.94
+      - near-identical profile
+    - - Qwen3-235B
+      - 0.89
+      - highly similar
+    - - DeepSeek-V3
+      - 0.83
+      - similar (uniformly elevated)
+    - - Claude
+      - 0.14
+      - near-zero — qualitatively different
+  figures_description:
+  - 'Radar chart 5 models × 6 types: 4 models (GPT-5.4, GPT-4.1, Qwen3, DeepSeek)
+    的 radar shape 高度重叠，Claude 是明显 outlier——visual proof that interaction is Claude-driven
+
+    '
+  - 'Type rank parallel coordinates: 4 条线近乎平行 (same ranking), Claude 线交叉所有其他线——直观显示
+    "1 vs 4" pattern
+
+    '
+  analysis: 'Open-source 模型的加入确认了 worst tier 的 C4 diagnosis：interaction 是 "Claude
+    outlier" 而非 "diverse safety training mechanisms"。4/5 模型 的 type profile ρ>0.83，只有
+    Claude ρ=0.14。理论 implication 从 "safety training creates type-specific vulnerabilities"
+    弱化为 "Anthropic''s specific RLHF implementation has a distinct effect on auth_scope/coreferential,
+    but this is a single data point, not a generalizable mechanism"。
+
+    '
+- name: full_study_analysis
+  plan_id: plan_004
+  description: '2,997 episodes (5 models × ~300 clauses × 2 conditions) 统计分析： C1 binary
+    effect, C2 type hierarchy, C3 layer effect, C4 model×type interaction, TOST, power
+    analysis, inter-model agreement, info delta。
+
+    '
+  expected_results:
+    total_episodes: 2997
+    binary_effect_5model_pp: 25.7
+    binary_effect_5model_ci: '[23.1, 28.3]'
+    mcnemar_or_5model: 7.2
+    mcnemar_or_ci: '[5.1, 10.2]'
+    mcnemar_p: <0.0001
+    per_model_binary_effects:
+      gpt54: +30.3pp
+      gpt41: +27.7pp
+      claude: +18.0pp
+      qwen3_235b: +26.3pp
+      deepseek: +25.8pp
+    per_type_all_significant: true
+    weakest_type_effect: coreferential +18.8pp (Claude高+GPT低 → pooled下降)
+    omnibus_chi2_5model: 12.2
+    omnibus_p_5model: 0.032
+    cramers_v_5model: 0.09
+    actual_power_c2: 0.72
+    mde_c2_v: 0.11
+    pooled_rates_ambiguous:
+      auth_scope: 34.8%
+      incompleteness: 40.8%
+      conditional_polysemy: 31.6%
+      scopal: 35.6%
+      lexical: 33.2%
+      coreferential: 27.0%
+    incomp_minus_coref_pp: 13.8
+    tost_15pp_equivalent_pairs: 10/15
+    tost_10pp_equivalent_pairs: 4/15
+    spec_avg_5model: 35.7%
+    ling_avg_5model: 31.9%
+    layer_gap_5model_pp: 3.8
+    layer_gap_ci: '[-1.5, 9.1]'
+    layer_gap_p: 0.22
+    within_judge_1_layer_p: 0.31
+    within_judge_2_layer_p: 0.18
+    model_main_effect_chi2: 22.8
+    model_main_effect_p: 0.0001
+    model_main_effect_v: 0.087
+    model_type_interaction_chi2: 36.4
+    model_type_interaction_p: 0.014
+    model_type_interaction_v: 0.078
+    interaction_without_claude_p: 0.23
+    interaction_without_claude_note: 移除 Claude 后 4-model interaction n.s.
+    logistic_regression:
+      condition_amb_coef: 1.62
+      condition_amb_z: 14.3
+      condition_amb_p: <0.001
+      model_main_sig: true
+      type_main_sig: true
+      model_x_type_sig: true
+      model_x_type_without_claude_sig: false
+      token_delta_coef: 0.018
+      token_delta_z: 2.31
+      token_delta_p: 0.021
+    fleiss_kappa_ambiguous: 0.22
+    fleiss_kappa_unambiguous: 0.78
+    same_interpretation_pct_ambiguous: 0.52
+    different_interpretation_pct_ambiguous: 0.48
+    auth_scope_range_pp: 26
+    incomp_range_pp: 24
+    per_model_type_chi2:
+      gpt54:
+        chi2: 15.8
+        p: 0.007
+        V: 0.23
+      gpt41:
+        chi2: 10.2
+        p: 0.069
+        V: 0.18
+      claude:
+        chi2: 6.4
+        p: 0.27
+        V: 0.15
+      qwen3_235b:
+        chi2: 5.1
+        p: 0.4
+        V: 0.13
+      deepseek:
+        chi2: 4.8
+        p: 0.44
+        V: 0.12
+    avg_token_delta_spec: 3.5
+    avg_token_delta_ling: 1.6
+    token_delta_partial_r_after_type: 0.11
+  result_rationale: 'C1 (binary effect +25.7pp, CI [23.1, 28.3], OR=7.2): 从 actual
+    数据的 +34.0pp/OR=15.1 大幅缩水。三重原因叠加： (i) Claude binary effect 仅 +18.0pp (最低)——RLHF
+    的 blanket conservatism 提高了 unamb baseline (8%) 同时压低了 amb rate (26%)； (ii) open-source
+    模型的 high unamb rates (10-12%) 压缩 effect size—— DeepSeek 即使无歧义也有 12% violation
+    rate，说明 safety training 整体 较弱而非 ambiguity-specific 问题； (iii) 部分 clause pairs 的
+    unambiguous variant 未能完全消除歧义 (plan_001 quality issues 传导)。但 CI 远离零, p<0.0001，6
+    types all significant (最弱 coreferential +18.8pp)——"all ambiguity is nocuous" 成立。结合
+    perturbation control (Δ_net≈12pp): 即使扣除 perturbation baseline，ambiguity 仍造成 significant
+    additional violations。
+
+    C2 (V=0.090, p=0.032): Omnibus χ² 勉强显著——types 不完全等价，但效应极弱。V=0.090 远低于 小效应阈值 0.10。Power=0.72——稍
+    underpowered，MDE=0.11 > observed 0.090，说明需要 更大样本才能 reliably detect 这种 level 的
+    type effect。 TOST: ±15pp 有 10/15 pairs equivalent——大部分 type pairs 在操作上 不可区分。仅
+    incomp vs coref (13.8pp gap) 和 incomp vs CP/lexical 是 non-equivalent。±10pp 仅 4/15
+    equivalent——但 ±10pp 是 stringent margin。实际 type hierarchy 被压缩为 "incompleteness
+    > rest ≈ equal > coreferential" 的弱 2-tier (而非原预期的 3-tier)。V<0.10 意味着 type 分类对
+    violation severity 的 predictive value 极有限。
+
+    C3 (layer gap 3.8pp, p=0.22, n.s.): Layer gap 不显著。CI [-1.5, 9.1] 包含 0。GPT 的 positive
+    gap (+7-9pp) 被 Claude (-5.3pp) 抵消，open-source models 的 small positive gap (+3-5pp)
+    不足以补偿。Within-judge analysis 更糟：两个 judge group 均 n.s. (p=0.31 和 0.18)——即使控制 judge
+    variance 也无法恢复 layer effect。 Layer hierarchy 作为 paper claim 完全不成立。"Disambiguation
+    Channel Framework" 缺乏 empirical support，应降为 Discussion 中的 "potential explanatory
+    framework" 而非 tested theory。
+
+    C4 (interaction omnibus p=0.014, but Claude-driven): 5-model omnibus interaction
+    显著——type ranking 确实 model-dependent。 但移除 Claude 后 4-model interaction p=0.23 (n.s.)。这意味着
+    interaction 完全由 Claude outlier 驱动，不是 5 个模型之间的 systematic 差异。Per-model per-type
+    χ²: 只有 GPT-5.4 有显著的 within-model type differentiation (p=0.007)，其他 4 个模型均 n.s.
+    (p>0.05)—— 说明大部分模型对不同 ambiguity types 的 vulnerability 差异不大， 只有 GPT-5.4 展现 clear
+    type-specific pattern。
+
+    Fleiss κ=0.22 (poor): 5 models 在 which-clauses-violate 的层面 agreement 极低。这不是 Berry
+    & Kamsties 的 "divergent nocuity" (different readings)，而是 stochastic disagreement——models
+    在 borderline cases 的行为不稳定。只有 52% 的 ambiguous clauses 产生 all-5-models-same-outcome——near
+    chance for binary outcome。
+
+    Info delta: spec 3.5 vs ling 1.6 tokens。partial r=0.11 (n.s.) after type control.
+    Token delta 不是 independent confound, 但 reviewer 会 flag.
+
+    '
+  tables:
+  - name: 5-Model Pooled Per-Type Results (Ambiguous)
+    columns:
+    - type
+    - layer
+    - amb_rate
+    - unamb_rate
+    - Δpp
+    - 95% CI
+    - McNemar_p
+    rows:
+    - - auth_scope
+      - spec
+      - 34.8%
+      - 5.6%
+      - +29.2pp
+      - '[23.4, 35.0]'
+      - <0.0001
+    - - incompleteness
+      - spec
+      - 40.8%
+      - 5.8%
+      - +35.0pp
+      - '[29.1, 40.9]'
+      - <0.0001
+    - - cond_polysemy
+      - spec
+      - 31.6%
+      - 5.0%
+      - +26.6pp
+      - '[21.0, 32.2]'
+      - <0.0001
+    - - scopal
+      - ling
+      - 35.6%
+      - 5.4%
+      - +30.2pp
+      - '[24.4, 36.0]'
+      - <0.0001
+    - - lexical
+      - ling
+      - 33.2%
+      - 5.2%
+      - +28.0pp
+      - '[22.3, 33.7]'
+      - <0.0001
+    - - coreferential
+      - ling
+      - 27.0%
+      - 8.2%
+      - +18.8pp
+      - '[13.3, 24.3]'
+      - <0.0001
+  - name: Layer Effect by Model
+    columns:
+    - model
+    - spec_avg
+    - ling_avg
+    - layer_gap_pp
+    - direction
+    rows:
+    - - gpt-5.4
+      - 40.0%
+      - 30.7%
+      - +9.3pp
+      - spec > ling
+    - - gpt-4.1
+      - 37.3%
+      - 30.0%
+      - +7.3pp
+      - spec > ling
+    - - claude-sonnet-4-6
+      - 23.3%
+      - 28.7%
+      - -5.3pp
+      - ling > spec (reversed)
+    - - Qwen3-235B
+      - 38.7%
+      - 34.0%
+      - +4.7pp
+      - ≈ weak positive
+    - - DeepSeek-V3
+      - 39.3%
+      - 36.3%
+      - +3.0pp
+      - ≈ weak positive
+    - - 5-model_pooled
+      - 35.7%
+      - 31.9%
+      - +3.8pp
+      - n.s. (p=0.22)
+  - name: 'Model × Type Interaction: Violation Rate Matrix (Ambiguous)'
+    columns:
+    - type
+    - GPT-5.4
+    - GPT-4.1
+    - Claude
+    - Qwen3-235B
+    - DeepSeek-V3
+    rows:
+    - - auth_scope
+      - 42%
+      - 38%
+      - 16%
+      - 38%
+      - 40%
+    - - incompleteness
+      - 48%
+      - 44%
+      - 24%
+      - 44%
+      - 44%
+    - - cond_polysemy
+      - 30%
+      - 30%
+      - 30%
+      - 34%
+      - 34%
+    - - scopal
+      - 38%
+      - 36%
+      - 28%
+      - 38%
+      - 38%
+    - - lexical
+      - 34%
+      - 32%
+      - 26%
+      - 36%
+      - 38%
+    - - coreferential
+      - 20%
+      - 22%
+      - 32%
+      - 28%
+      - 33%
+  - name: 'C4 Interaction Robustness: With vs Without Claude'
+    columns:
+    - analysis
+    - chi2
+    - df
+    - p
+    - interpretation
+    rows:
+    - - 5-model interaction
+      - 36.4
+      - 20
+      - 0.014
+      - significant
+    - - 4-model (no Claude)
+      - 18.2
+      - 15
+      - 0.23
+      - n.s. — Claude drives interaction
+    - - Claude vs rest (contrast)
+      - 22.8
+      - 5
+      - 0.0004
+      - Claude qualitatively different
+  - name: TOST Equivalence Summary
+    columns:
+    - margin
+    - equivalent_pairs
+    - non_equivalent_pairs
+    - interpretation
+    rows:
+    - - ±15pp
+      - 10/15
+      - 5/15
+      - most types operationally equivalent
+    - - ±10pp
+      - 4/15
+      - 11/15
+      - 'stringent margin: few equivalent'
+  - name: Inter-Model Agreement (Berry & Kamsties)
+    columns:
+    - metric
+    - ambiguous
+    - unambiguous
+    - interpretation
+    rows:
+    - - Fleiss_κ
+      - 0.22
+      - 0.78
+      - poor vs substantial
+    - - same_outcome_pct
+      - 52%
+      - 88%
+      - near-chance on ambiguous clauses
+  figures_description:
+  - 'Forest plot: per-type per-model binary effect with 95% CI — all positive, but
+    Claude auth_scope barely above 10pp
+
+    '
+  - '5×6 heatmap: Claude row visually distinct (cold auth/incomp, warm coref), other
+    4 rows similar — "1 vs 4" pattern
+
+    '
+  - 'Layer gap by model bar chart with CI: GPT positive, Claude negative, open-source
+    near zero — no universal direction
+
+    '
+  - 'Interaction decomposition: 5-model vs 4-model (no Claude) χ² comparison
+
+    '
+  analysis: 'Plan_004 定义了 worst tier 的核心 statistical reality： (1) C1 survives: +25.7pp
+    虽弱于 actual +34pp，仍是 massive effect， per-type 全显著。即使加 perturbation caveat (Δ_net≈12pp)，仍是
+    文献中唯一的 matched-pair causal quantification。 (2) C2 勉强显著但 V=0.09 near noise-floor：type
+    分类的 predictive value 极有限。Reframe 为 "taxonomy as diagnostic vocabulary" (帮助描述 failure)
+    而非 "taxonomy as severity predictor"。 (3) C3 完全不成立：layer gap n.s., within-judge
+    也 n.s.。放弃。 (4) C4 Claude-driven：不能声称 "model × type interaction reveals safety
+    training mechanisms"，只能说 "one model (Claude) shows a distinct profile, possibly
+    reflecting Anthropic''s RLHF approach"。 单一模型的观察不构成 mechanism finding。
+
+    '
+- name: error_analysis
+  plan_id: plan_005
+  description: '从 5-model full study 中采样 violation traces。50 traces/type × 6 types
+    = 300 total (跨 5 models)。Failure mode 分类、layer mechanism 检验、ambiguity blindness
+    量化。
+
+    '
+  expected_results:
+    total_traces_sampled: 300
+    failure_modes_pooled:
+      assumption_based_action: 35%
+      scope_misapplication: 22%
+      conservative_refusal: 14%
+      unauthorized_escalation: 13%
+      arbitrary_rule_selection: 10%
+      other: 6%
+    type_specific_clear_signatures: 3
+    clear_signature_types:
+    - incompleteness → assumption_based_action (58-65% across models)
+    - scopal → scope_misapplication (60-72% across models)
+    - auth_scope → unauthorized_escalation (50-75% for GPT/Qwen/DeepSeek, but only
+      15% for Claude)
+    weak_signature_types:
+    - 'lexical: assumption_based 40-55% but overlaps heavily with incompleteness signature'
+    - 'coreferential: flat distribution, no dominant mode (scope_misapplication 28%,
+      assumption 26%, conservative_refusal 22%)'
+    - 'CP: arbitrary_rule_selection 30-40% but not dominant enough to be signature
+      (assumption_based 25-35%)'
+    cross_model_dominant_mode_agreement: 3/6 types (incomp, scopal, auth_scope for
+      4/5 models)
+    failure_mode_layer_match_pct: 45
+    explicit_ambiguity_mention_pct: 14
+    implicit_deliberation_pct: 22
+    surface_adoption_pct: 78
+    awareness_by_model:
+      gpt54: 18
+      gpt41: 16
+      claude: 12
+      qwen3_235b: 10
+      deepseek: 8
+    surface_adoption_by_model:
+      gpt54: 70
+      gpt41: 72
+      claude: 76
+      qwen3_235b: 80
+      deepseek: 85
+    auth_scope_claude_refusal_vs_violation: 'Claude auth_scope traces: 55% conservative_refusal,
+      30% cautious_proceed, 15% unauthorized_escalation — fundamentally different
+      failure mode distribution than other models
+
+      '
+  result_rationale: '5-model 扩展后 type-specific failure signatures 部分 dissolve：
+
+    (a) Clear signatures 仅 3/6 types：incompleteness (assumption_based dominant across
+    all 5 models), scopal (scope_misapplication dominant across all 5), auth_scope
+    (unauthorized_escalation dominant for 4/5 models — but Claude''s 55% conservative_refusal
+    使其成为 exception)。 这三个 type 的 signature 是 robust 的，可以在 paper 中 report。
+
+    (b) Weak/dissolved signatures 3/6 types：lexical 与 incompleteness 共享 assumption_based
+    mode (40-55%) 但无法区分——两者的 failure mechanism 在 5-model pooled data 中 indistinguishable。这削弱了
+    taxonomy 的 diagnostic value (如果两个 type 产生相同 failure mode, 区分它们的 operational value
+    何在？)。Coreferential 展现 flat distribution (无 dominant mode)——反映该 type 的高 behavioral
+    heterogeneity (Claude refusal 22%, GPT scope_misapplication 28%, DeepSeek assumption_based
+    30%)。CP 的 arbitrary_rule_selection (30-40%) 有 moderate consistency 但不足以构成 "signature"。
+
+    (c) Cross-model dominant mode agreement 仅 3/6 types：5 models 在 failure mode 的
+    agreement 比 violation rate 的 agreement 更差。 原因是 different models 面对同一 ambiguity
+    采取不同 failure strategy ——Claude refuse, GPT guess, DeepSeek surface-adopt——即使最终
+    violation rate 相似，failure mechanism 也不同。
+
+    (d) Ambiguity Blindness: awareness 14% (range 8-18%)，surface adoption 78% (range
+    70-85%)。比 actual 数据的 <5-11% awareness 略高——5-model expansion 中 GPT-5.4 显示 18% explicit
+    mention (较高)，但 DeepSeek 仅 8% (极低)。Overall blindness 仍是 universal phenomenon——≥78%
+    的 traces 中 agent 直接采用 surface interpretation without any deliberation。但 18% →
+    8% 的 model gradient 说明 awareness 与 model capability 有弱正相关——更大 更强的模型有 slightly
+    more meta-cognitive awareness，但仍远 不足以改变 outcome (aware 的 traces 中仍有 60%+ violation)。
+
+    (e) Claude auth_scope 的 refusal-dominant pattern (55%) 说明 Claude 的低 auth_scope
+    rate (16%) 不是 "更安全" 而是 "用 refusal 替代 violation"——这种 conservative 策略在 unambiguous
+    条件下也产生 8% false refusal rate, 是 over-conservative behavior 而非 genuine ambiguity
+    awareness。
+
+    '
+  tables:
+  - name: Failure Mode Distribution by Layer (5-model pooled)
+    columns:
+    - failure_mode
+    - spec_layer
+    - ling_layer
+    - pooled
+    - layer_specificity
+    rows:
+    - - assumption_based_action
+      - 38%
+      - 32%
+      - 35%
+      - low (Δ=6pp)
+    - - scope_misapplication
+      - 16%
+      - 28%
+      - 22%
+      - moderate (ling-biased)
+    - - conservative_refusal
+      - 15%
+      - 13%
+      - 14%
+      - low (Δ=2pp)
+    - - unauthorized_escalation
+      - 16%
+      - 10%
+      - 13%
+      - moderate (spec-biased)
+    - - arbitrary_rule_selection
+      - 10%
+      - 10%
+      - 10%
+      - none
+    - - other
+      - 5%
+      - 7%
+      - 6%
+      - low
+  - name: Type-Specific Failure Signature Consistency (5 models)
+    columns:
+    - type
+    - dominant_mode
+    - consistency_across_models
+    - verdict
+    rows:
+    - - incompleteness
+      - assumption_based_action
+      - 5/5 models agree (58-65%)
+      - CLEAR
+    - - scopal
+      - scope_misapplication
+      - 5/5 models agree (60-72%)
+      - CLEAR
+    - - auth_scope
+      - unauthorized_escalation
+      - 4/5 agree (50-75%), Claude=refusal
+      - CLEAR (with Claude caveat)
+    - - lexical
+      - assumption_based_action
+      - 4/5 agree (40-55%) but overlaps incomp
+      - WEAK
+    - - CP
+      - arbitrary_rule_selection
+      - 3/5 agree (30-40%), not dominant
+      - WEAK
+    - - coreferential
+      - (no dominant)
+      - flat distribution, model-dependent
+      - DISSOLVED
+  - name: Ambiguity Awareness by Model (5-model)
+    columns:
+    - awareness_level
+    - GPT-5.4
+    - GPT-4.1
+    - Claude
+    - Qwen3-235B
+    - DeepSeek
+    - pooled
+    rows:
+    - - explicit_mention
+      - 18%
+      - 16%
+      - 12%
+      - 10%
+      - 8%
+      - 14%
+    - - implicit_deliberation
+      - 12%
+      - 12%
+      - 12%
+      - 10%
+      - 7%
+      - 8%
+    - - surface_adoption
+      - 70%
+      - 72%
+      - 76%
+      - 80%
+      - 85%
+      - 78%
+  figures_description:
+  - 'Type × failure mode stacked bar (5-model pooled): incomp/scopal/auth 有 clear
+    dominant color, lexical/CP/coref 是 mixed rainbow
+
+    '
+  - 'Ambiguity awareness gradient: 5 models 按 capability 排列， awareness 从 18% (GPT-5.4)
+    到 8% (DeepSeek) — weak positive correlation with model capability
+
+    '
+  - 'Annotated trace pair: incompleteness assumption_based (clear signature) vs coreferential
+    mixed-mode (dissolved signature)
+
+    '
+  analysis: 'Error analysis 在 worst tier 下提供 mixed support：3/6 types 有 clear signature
+    (可 report)，3/6 dissolved (只能 acknowledge)。 但 Ambiguity Blindness (78% surface
+    adoption, 14% awareness) 是 robust universal finding——所有 5 models 所有 6 types 都展现。这是
+    worst tier reframe 的核心 C5 贡献：即使 type-specific mechanisms 不清晰，"agents are systematically
+    blind to ambiguity" 本身就是 important empirical finding with practical implications
+    (ambiguity detection must be externalized, cannot rely on agent self-awareness)。
+
+    '
+- name: reliability_test
+  plan_id: plan_006
+  description: '30 clauses (5/type) × 3 replicates × 2 conditions × 2 API models (gpt-5.4,
+    gpt-4.1) = 360 episodes。Test-retest ICC, bootstrap CI width。
+
+    '
+  expected_results:
+    total_episodes: 360
+    icc_overall: 0.8
+    icc_per_type:
+      auth_scope: 0.86
+      incompleteness: 0.84
+      cp: 0.78
+      scopal: 0.72
+      lexical: 0.76
+      coreferential: 0.62
+    icc_ambiguous_only: 0.76
+    icc_unambiguous_only: 0.88
+    bootstrap_ci_width_binary_effect_pp: 10.2
+    bootstrap_ci_width_per_type_pp: 13.5
+    max_replicate_swing_pp: 14.0
+    max_swing_type: coreferential
+    within_gpt_family_note: 'ICC 0.80 reflects within-GPT-family reliability (ρ=0.94).
+      Cross-model reliability (adding Claude, Qwen3, DeepSeek) would be substantially
+      lower — plan_004 Fleiss κ=0.22 on ambiguous clauses reflects the true 5-model
+      disagreement.
+
+      '
+  result_rationale: 'Within-GPT-family ICC 0.80 (good): gpt-5.4 和 gpt-4.1 来自同一 training
+    paradigm, type profiles 几乎 identical (ρ=0.94)，因此 intra-family reliability 高。但这个
+    ICC 有 misleading 的一面：
+
+    (a) ICC 0.80 只反映 GPT family 内部的 test-retest stability，不 代表跨 model family 的 measurement
+    reliability。Plan_004 的 Fleiss κ=0.22 (ambiguous condition) 才是真实的 5-model inter-rater
+    agreement——远低于 ICC。
+
+    (b) Per-type gradient: auth_scope/incomp 最 reliable (0.86/0.84): 高 violation rate
+    的 clause 重复观测稳定性好 (absolute swing 对 base rate 比例小)。Coreferential 最低 (0.62): clause
+    quality issues (plan_001 pass_rate 0.86) + behavioral heterogeneity (conservative
+    refusal vs scope_misapplication vs assumption) + small N per clause。 Max replicate
+    swing 14pp (coreferential)——同一 clause 在 3 次 独立 run 间 violation rate 相差最高 14pp。
+
+    (c) Ambiguous ICC (0.76) < Unambiguous ICC (0.88): agent 在 ambiguous clause 上的行为本身
+    less deterministic——ambiguity introduce nondeterminism in agent reasoning, not
+    just measurement noise。这与 Fleiss κ=0.22 一致——models don''t agree because ambiguity
+    triggers stochastic rather than deterministic failure。
+
+    (d) Bootstrap CI width 10.2pp (binary effect): > ideal <10pp 但 acceptable。Per-type
+    CI 13.5pp: type-level comparisons 的 precision 有限。V=0.09 的 type effect (plan_004)
+    在 CI 13.5pp 的 noise floor 下可能 partly artifact。
+
+    '
+  tables:
+  - name: ICC by Type (2-API, gpt-5.4 + gpt-4.1)
+    columns:
+    - type
+    - ICC_ambiguous
+    - ICC_unambiguous
+    - ICC_combined
+    - max_replicate_swing
+    rows:
+    - - auth_scope
+      - 0.88
+      - 0.92
+      - 0.86
+      - 8.0pp
+    - - incompleteness
+      - 0.86
+      - 0.9
+      - 0.84
+      - 9.2pp
+    - - cond_polysemy
+      - 0.8
+      - 0.86
+      - 0.78
+      - 10.8pp
+    - - scopal
+      - 0.74
+      - 0.82
+      - 0.72
+      - 12.0pp
+    - - lexical
+      - 0.78
+      - 0.84
+      - 0.76
+      - 10.5pp
+    - - coreferential
+      - 0.64
+      - 0.78
+      - 0.62
+      - 14.0pp
+    - - overall
+      - 0.8
+      - 0.88
+      - 0.8
+      - —
+  figures_description:
+  - 'ICC forest plot per type: coreferential CI 显著宽于其他, auth_scope/incomp 最窄——reliability
+    mirrors plan_004 type effect
+
+    '
+  analysis: 'Plan_006 暴露了 worst tier 的 measurement paradox: within-GPT ICC decent
+    (0.80) 但 cross-model κ poor (0.22)。Reviewer 会问："if your own reliability test shows
+    good ICC, why is cross-model agreement so low?" 答案是 ICC 测的是 test-retest stability
+    (same model, same clause, different runs), κ 测的是 inter-model agreement (different
+    models, same clause, same run)——ambiguity triggers model-specific strategies,
+    each consistent within-model but divergent between-models。这进一步支撑 "binary universal
+    + type-specific model-dependent" 的 worst-tier narrative。
+
+    '
+- name: realism_validation
+  plan_id: plan_007
+  description: 'Synthetic clause linguistic properties vs DRIP-R natural ambiguities。
+    KS tests on sentence length, parse depth, Flesch-Kincaid, TTR。
+
+    '
+  expected_results:
+    ks_sentence_length:
+      statistic: 0.18
+      p: 0.12
+    ks_parse_depth:
+      statistic: 0.22
+      p: 0.07
+    ks_flesch_kincaid:
+      statistic: 0.14
+      p: 0.23
+    ks_ttr:
+      statistic: 0.1
+      p: 0.41
+    synthetic_mean_tokens: 24.2
+    drip_r_mean_tokens: 27.8
+    synthetic_mean_parse_depth: 3.1
+    drip_r_mean_parse_depth: 3.8
+    overall_verdict: acceptable
+    noted_difference: 'synthetic clauses slightly shorter and shallower parse trees
+      due to matched-pair minimal-difference design
+
+      '
+  result_rationale: 'Realism validation 基本独立于 worst tier——clause 的语言学属性不受 downstream
+    实验结果影响。KS tests 大部分 n.s. (p>0.05)，surface properties 分布相似。Parse depth 边界显著 (p=0.07):
+    synthetic clauses 稍简单因为 matched-pair design 倾向 minimal variation。在 worst tier
+    下额外值得注意：如果 synthetic clauses 系统性简单，可能 underestimate real-world violation rate
+    (更复杂的自然歧义可能更危险)。但 binary effect (+25.7pp even in worst tier) 足够大，不太可能被此 bias 逆转。
+    更重要的是，perturbation control 已显示 surface-level 变化本身 cause 14pp increase——clause
+    的 specific surface features 确实 influence outcomes，realism gap 是 real concern 但
+    not fatal。
+
+    '
+  tables:
+  - name: 'Linguistic Property Comparison: Synthetic vs DRIP-R'
+    columns:
+    - property
+    - synthetic_mean
+    - DRIP-R_mean
+    - KS_statistic
+    - p_value
+    rows:
+    - - sentence_length (tokens)
+      - 24.2
+      - 27.8
+      - 0.18
+      - 0.12
+    - - parse_depth
+      - 3.1
+      - 3.8
+      - 0.22
+      - 0.07
+    - - Flesch-Kincaid
+      - 12.4
+      - 11.8
+      - 0.14
+      - 0.23
+    - - type-token_ratio
+      - 0.72
+      - 0.7
+      - 0.1
+      - 0.41
+  figures_description:
+  - 'Distribution overlay: synthetic vs DRIP-R sentence length and parse depth — visible
+    but non-significant shift
+
+    '
+  analysis: 'Realism pass (with parse depth caveat)。Method 中 disclose。 Combined with
+    perturbation control findings, positions synthetic injection as "conservative
+    estimate" — natural ambiguities likely cause equal or greater harm.
+
+    '
+- name: judge_calibration
+  plan_id: plan_009
+  description: '100 episodes stratified by type×model×condition, 2 human annotators,
+    LLM judge 校准。Worst tier: κ<0.65, F1<0.75, type-specific bias。
+
+    '
+  expected_results:
+    total_episodes_annotated: 100
+    human_annotator_kappa: 0.78
+    judge_overall_f1: 0.68
+    judge_overall_precision: 0.74
+    judge_overall_recall: 0.63
+    judge_overall_kappa_vs_human: 0.58
+    judge_f1_per_type:
+      auth_scope: 0.62
+      incompleteness: 0.72
+      conditional_polysemy: 0.74
+      scopal: 0.71
+      lexical: 0.68
+      coreferential: 0.6
+    type_specific_biases:
+      auth_scope: 'under-detection: precision 0.78, recall 0.50 — misses subtle permission
+        boundary crossings where agent acts within a plausible interpretation of vague
+        authorization
+
+        '
+      coreferential: 'over-detection: precision 0.54, recall 0.67 — flags exploratory
+        queries and cautious info-gathering as violations; judge lacks pragmatic judgment
+        to distinguish "seeking clarification" from "unauthorized action"
+
+        '
+      lexical: 'moderate over-detection: precision 0.64, recall 0.72 — judge sometimes
+        treats legitimate synonym usage as violation when agent uses different term
+        than policy
+
+        '
+    judge_f1_by_severity:
+      tier1_critical: 0.78
+      tier2_moderate: 0.64
+      tier3_minor: 0.51
+    cross_judge_asymmetry:
+      claude_judged_by_gpt54_f1: 0.72
+      gpt54_judged_by_gpt41_f1: 0.63
+      gpt41_judged_by_gpt54_f1: 0.74
+      qwen3_judged_by_gpt54_f1: 0.67
+      deepseek_judged_by_gpt41_f1: 0.65
+    cross_judge_asymmetry_pp: 9
+    rate_corrections:
+      auth_scope: +5-8pp (true rate likely ~40-43% not 34.8%)
+      coreferential: -4-7pp (true rate likely ~20-23% not 27.0%)
+      corrected_incomp_minus_coref: ~18-20pp (wider than observed 13.8pp)
+      corrected_cramers_v: ~0.12 (slightly higher, still weak)
+  result_rationale: 'Judge calibration 暴露 worst tier 最有系统性破坏力的 measurement issues：
+
+    (a) Overall κ=0.58 (moderate): LLM-judge 与 human 的 agreement 低于 κ=0.65 threshold。这不是
+    random error 而是 systematic bias——judge 在特定 type 和 severity tier 上表现差异巨大 (F1 range:
+    0.60-0.74)。 Human annotator κ=0.78 (substantial): human 之间 agreement 尚可， 说明问题在
+    judge 而非 task definition。
+
+    (b) Auth_scope F1=0.62 (worst type for recall): judge 系统性 miss subtle permission
+    boundary violations。原因: auth_scope violation 常表现为 agent 在 "模糊授权范围" 内行动——如 policy
+    说 "staff may offer reasonable accommodations" 而 agent 给了 $200 refund。这在 human
+    judgment 下是 boundary-crossing (无明确授权金额)，但 LLM judge 倾向 "在可解释范围内则 non-violation"
+    → recall 仅 0.50。这意味着 reported auth_scope rate (34.8%) 低估 5-8pp，真实 rate ~40-43%。
+
+    (c) Coreferential F1=0.60 (worst overall): judge 系统性 over-detect。 Agent 在 RC attachment
+    歧义下采取 exploratory queries ("which product does this policy apply to?") 被 judge
+    误判为 "unauthorized access to customer information"。LLM judge 缺乏 human 的 pragmatic
+    judgment——看到 agent query customer data 就判 violation，不考虑 query 的 intent (disambiguation
+    vs unauthorized access)。Precision 仅 0.54: nearly half of judge''s "violations"
+    are false positives。 Reported coreferential rate (27.0%) 高估 4-7pp，true rate ~20-23%。
+
+    (d) 两个 bias 方向互相 compound：auth_scope 低估 + coreferential 高估 → 缩小了 type 间差异 → 降低了
+    V。Bias-corrected V ≈ 0.12 (vs observed 0.09)——依然 weak, 不改变 "type effect 弱" 的结论，
+    但说明 part of the observed weakness is measurement artifact。 Corrected incomp-coref
+    gap ≈ 18-20pp (vs observed 13.8pp)—— the true type effect may be moderate rather
+    than weak, but we can''t claim this confidently without bias correction.
+
+    (e) Cross-judge asymmetry 9pp: gpt-5.4 judged by gpt-4.1 得 F1=0.63，gpt-4.1 judged
+    by gpt-5.4 得 F1=0.74。弱 judge 对 强 model traces 更难准确判定。DeepSeek traces 同样难判 (F1=0.65)
+    ——open-source model 的 reasoning traces 格式可能与 judge training data 不 aligned。这 9pp
+    asymmetry 是 systematic——不同 model pair 的 measurement precision 不同，但 paper 必须 pool
+    across models。
+
+    (f) Severity tier: tier-3 minor F1=0.51 (near random)。Judge 对 nuanced/borderline
+    violations 几乎无判别力。主要影响 severity-weighted analysis; binary violation/non-violation
+    受影响较小 (tier-1 F1=0.78)。
+
+    '
+  tables:
+  - name: Judge Calibration by Type
+    columns:
+    - type
+    - precision
+    - recall
+    - F1
+    - bias_direction
+    - estimated_correction
+    rows:
+    - - auth_scope
+      - 0.78
+      - 0.5
+      - 0.62
+      - under-detection
+      - +5-8pp
+    - - incompleteness
+      - 0.76
+      - 0.68
+      - 0.72
+      - slight under-detection
+      - +2-3pp
+    - - cond_polysemy
+      - 0.76
+      - 0.72
+      - 0.74
+      - balanced
+      - ±1pp
+    - - scopal
+      - 0.74
+      - 0.68
+      - 0.71
+      - slight under-detection
+      - +1-2pp
+    - - lexical
+      - 0.64
+      - 0.72
+      - 0.68
+      - over-detection
+      - -2-3pp
+    - - coreferential
+      - 0.54
+      - 0.67
+      - 0.6
+      - over-detection
+      - -4-7pp
+  - name: Judge Calibration by Severity
+    columns:
+    - severity
+    - n_samples
+    - precision
+    - recall
+    - F1
+    rows:
+    - - tier-1_critical
+      - 32
+      - 0.82
+      - 0.74
+      - 0.78
+    - - tier-2_moderate
+      - 42
+      - 0.7
+      - 0.59
+      - 0.64
+    - - tier-3_minor
+      - 26
+      - 0.56
+      - 0.47
+      - 0.51
+  - name: Cross-Judge Asymmetry
+    columns:
+    - agent_model
+    - judge_model
+    - F1
+    - note
+    rows:
+    - - claude-sonnet-4-6
+      - gpt-5.4
+      - 0.72
+      - stronger judge
+    - - gpt-5.4
+      - gpt-4.1
+      - 0.63
+      - weaker judge on stronger agent
+    - - gpt-4.1
+      - gpt-5.4
+      - 0.74
+      - stronger judge on mid-tier agent
+    - - Qwen3-235B
+      - gpt-5.4
+      - 0.67
+      - open-source traces harder
+    - - DeepSeek-V3
+      - gpt-4.1
+      - 0.65
+      - open-source + weaker judge
+  figures_description:
+  - 'Per-type precision-recall scatter: auth_scope (high precision, low recall) and
+    coreferential (low precision, high recall) at opposite corners — systematic bias
+    directions
+
+    '
+  - 'Calibration reliability plot: judge confidence vs human agreement — coreferential
+    and auth_scope deviate most from diagonal
+
+    '
+  analysis: 'Judge calibration κ=0.58 / F1=0.68 是 worst tier 的 methodological Achilles
+    heel。Paper 必须：(1) report full calibration as standard practice, (2) provide bias-corrected
+    rate estimates for auth_scope and coreferential, (3) disclose 9pp cross-judge
+    asymmetry, (4) flag tier-3 severity judgments as unreliable (F1=0.51)。Silver lining:
+    binary effect 的 overall F1=0.68 虽低但 tier-1 critical violations F1=0.78，C1 的 headline
+    finding 受影响有限——most violations are serious enough that even imperfect judges catch
+    them。Bias-corrected V≈0.12 不改变 "type effect weak" 的结论。
+
+    '
+- name: classifier_poc
+  plan_id: plan_008
+  description: 'DeBERTa-v3-large binary ambiguity detector PoC。Fine-tune on 240 pairs,
+    eval on 60 held-out。
+
+    '
+  expected_results:
+    model: DeBERTa-v3-large
+    train_size: 240
+    test_size: 60
+    test_f1: 0.76
+    test_precision: 0.79
+    test_recall: 0.73
+    per_type_f1:
+      auth_scope: 0.8
+      incompleteness: 0.78
+      cp: 0.74
+      scopal: 0.78
+      lexical: 0.75
+      coreferential: 0.68
+    training_epochs: 5
+    best_epoch: 3
+    type_classification_f1: 0.42
+    type_classification_note: '6-way type classification F1=0.42 (near random) — types
+      are not easily distinguishable by surface features alone
+
+      '
+  result_rationale: 'Binary detection F1=0.76: adequate PoC level, proving binary
+    ambiguity detection is a feasible NLP task。Per-type F1 mirrors the difficulty
+    gradient seen in judge calibration and reliability: auth_scope highest (0.80,
+    specification gaps are lexically distinct), coreferential lowest (0.68, RC attachment
+    ambiguity is subtle)。
+
+    Type classification F1=0.42 (6-way): types 从 surface features 几乎无法区分——supports
+    worst tier reframe that type-level distinction has limited practical value。Binary
+    detection >> type classification in feasibility。
+
+    In worst tier, classifier PoC perfectly aligns with narrative: (a) Binary detection
+    feasible (F1=0.76) with high practical ROI given +25.7pp binary effect — even
+    imperfect detection catches many dangerous clauses; (b) Type-specific detection
+    unnecessary (type ranking is model-dependent, V=0.09, type classification F1=0.42)
+    and not additionally valuable; (c) Combined with Ambiguity Blindness (78% surface
+    adoption), external detection is the only viable mitigation — agents cannot self-detect。
+
+    Practical framing: "A simple binary detector (F1=0.76) deployed as pre-processing
+    can flag dangerous clauses; type-level triage adds no meaningful risk stratification
+    given V<0.10."
+
+    '
+  tables:
+  - name: Classifier PoC Performance
+    columns:
+    - metric
+    - overall
+    - auth_scope
+    - incomp
+    - CP
+    - scopal
+    - lexical
+    - coref
+    rows:
+    - - Binary_F1
+      - 0.76
+      - 0.8
+      - 0.78
+      - 0.74
+      - 0.78
+      - 0.75
+      - 0.68
+    - - Binary_Precision
+      - 0.79
+      - 0.83
+      - 0.81
+      - 0.76
+      - 0.81
+      - 0.78
+      - 0.7
+    - - Binary_Recall
+      - 0.73
+      - 0.77
+      - 0.75
+      - 0.72
+      - 0.75
+      - 0.72
+      - 0.66
+  - name: Type Classification (6-way, held-out)
+    columns:
+    - metric
+    - value
+    rows:
+    - - macro_F1
+      - 0.42
+    - - most_confusable_pair
+      - auth_scope ↔ incompleteness (38% mutual confusion)
+    - - second_confusable
+      - lexical ↔ coreferential (29%)
+  figures_description:
+  - 'Binary vs type classification F1 comparison bar: binary 0.76 vs 6-way 0.42 —
+    practical gap clearly favoring binary approach
+
+    '
+  - 'Confusion matrix (6-way): auth_scope/incomp cluster and lexical/coref cluster
+    — taxonomy boundary fuzzy
+
+    '
+  analysis: 'Classifier PoC 在 worst tier 下是 narrative-consistent practical contribution：binary
+    detection high ROI (F1=0.76 on +25.7pp effect), type-specific pipeline low ROI
+    (F1=0.42, model-dependent ranking)。 6-way confusion matrix 中 auth_scope ↔ incompleteness
+    mutual confusion (38%) 直接 validates RC9 concern (两个 type boundary fuzzy)。整体 framing:
+    "invest in binary detection, not type triage."'

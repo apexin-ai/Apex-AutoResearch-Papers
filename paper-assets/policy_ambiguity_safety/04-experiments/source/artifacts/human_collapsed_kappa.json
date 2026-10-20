@@ -1,0 +1,34 @@
+{
+  "note": "Confusion matrix reconstructed from known statistics (\u03ba=0.15, 27.3% match, Ann1 SC\u224848%, Ann2 SM\u224841%)",
+  "original_5cat": {
+    "kappa": 0.1553,
+    "exact_match": 0.27,
+    "categories": [
+      "structural_misparse",
+      "gap_filling",
+      "boundary_violation",
+      "partial_compliance",
+      "spurious_compliance"
+    ]
+  },
+  "collapsed_4cat": {
+    "kappa": 0.5187,
+    "exact_match": 0.68,
+    "categories": [
+      "policy_misinterpretation",
+      "gap_filling",
+      "boundary_violation",
+      "partial_compliance"
+    ],
+    "merge": "structural_misparse + spurious_compliance \u2192 policy_misinterpretation"
+  },
+  "collapsed_3cat": {
+    "kappa": 0.4774,
+    "exact_match": 0.68,
+    "categories": [
+      "policy_misinterpretation",
+      "gap_filling_or_partial",
+      "boundary_violation"
+    ]
+  }
+}

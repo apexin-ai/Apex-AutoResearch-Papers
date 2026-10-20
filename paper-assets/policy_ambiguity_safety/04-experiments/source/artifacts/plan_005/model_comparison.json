@@ -1,0 +1,122 @@
+{
+  "gpt54_n": 123,
+  "gpt41_n": 122,
+  "per_type_comparison": {
+    "authorization_scope": {
+      "gpt54": {
+        "dominant_mode": "unauthorized_escalation",
+        "pct": 71.9,
+        "n": 32
+      },
+      "gpt41": {
+        "dominant_mode": "unauthorized_escalation",
+        "pct": 82.6,
+        "n": 23
+      },
+      "divergence_note": "Both dominated by unauthorized_escalation (gpt-5.4: 71.9%, gpt-4.1: 82.6%, diff: 10.7pp)"
+    },
+    "conditional_precedence": {
+      "gpt54": {
+        "dominant_mode": "scope_misapplication",
+        "pct": 41.2,
+        "n": 17
+      },
+      "gpt41": {
+        "dominant_mode": "scope_misapplication",
+        "pct": 27.8,
+        "n": 18
+      },
+      "divergence_note": "Both dominated by scope_misapplication (gpt-5.4: 41.2%, gpt-4.1: 27.8%, diff: 13.4pp)"
+    },
+    "coreferential": {
+      "gpt54": {
+        "dominant_mode": "scope_misapplication",
+        "pct": 44.4,
+        "n": 9
+      },
+      "gpt41": {
+        "dominant_mode": "assumption_based_action",
+        "pct": 37.5,
+        "n": 16
+      },
+      "divergence_note": "gpt-5.4 dominated by scope_misapplication (44.4%), gpt-4.1 by assumption_based_action (37.5%)"
+    },
+    "incompleteness": {
+      "gpt54": {
+        "dominant_mode": "assumption_based_action",
+        "pct": 60.9,
+        "n": 23
+      },
+      "gpt41": {
+        "dominant_mode": "assumption_based_action",
+        "pct": 65.5,
+        "n": 29
+      },
+      "divergence_note": "Both dominated by assumption_based_action (gpt-5.4: 60.9%, gpt-4.1: 65.5%, diff: 4.6pp)"
+    },
+    "lexical": {
+      "gpt54": {
+        "dominant_mode": "assumption_based_action",
+        "pct": 71.4,
+        "n": 21
+      },
+      "gpt41": {
+        "dominant_mode": "assumption_based_action",
+        "pct": 52.9,
+        "n": 17
+      },
+      "divergence_note": "Both dominated by assumption_based_action (gpt-5.4: 71.4%, gpt-4.1: 52.9%, diff: 18.5pp)"
+    },
+    "scopal": {
+      "gpt54": {
+        "dominant_mode": "scope_misapplication",
+        "pct": 76.2,
+        "n": 21
+      },
+      "gpt41": {
+        "dominant_mode": "scope_misapplication",
+        "pct": 73.7,
+        "n": 19
+      },
+      "divergence_note": "Both dominated by scope_misapplication (gpt-5.4: 76.2%, gpt-4.1: 73.7%, diff: 2.5pp)"
+    }
+  },
+  "overall_mode_distribution": {
+    "gpt54": {
+      "arbitrary_rule_selection": 4.1,
+      "assumption_based_action": 33.3,
+      "conservative_refusal": 3.3,
+      "other": 0.8,
+      "referent_misidentification": 0.8,
+      "scope_misapplication": 27.6,
+      "unauthorized_escalation": 28.5
+    },
+    "gpt41": {
+      "arbitrary_rule_selection": 4.1,
+      "assumption_based_action": 33.6,
+      "conservative_refusal": 2.5,
+      "other": 1.6,
+      "referent_misidentification": 0.8,
+      "scope_misapplication": 25.4,
+      "unauthorized_escalation": 32.0
+    }
+  },
+  "awareness_comparison": {
+    "gpt54_rate": 4.1,
+    "gpt41_rate": 10.7
+  },
+  "resolution_strategy_comparison": {
+    "gpt54": {
+      "surface_adoption": 116,
+      "conservative": 5,
+      "guess": 1,
+      "escalate_to_user": 1
+    },
+    "gpt41": {
+      "surface_adoption": 113,
+      "escalate_to_user": 4,
+      "guess": 3,
+      "conservative": 2
+    }
+  }
+}

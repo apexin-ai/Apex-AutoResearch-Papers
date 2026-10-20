@@ -1,0 +1,27 @@
+\begin{table}[!ht]
+\centering
+\small
+\caption{Generic vs.\ type-specific disambiguation prompts (GPT-5.4, $n = 50$ per cell). $\Delta$pp relative to baseline (ambiguous, no prompt). All McNemar $p > 0.05$.}
+\label{tab:generic_vs_specific}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrr}
+\toprule
+Type & Baseline & Generic & Type-spec. & McNemar $p$ \\
+ & rate (\%) & $\Delta$pp & $\Delta$pp & (type-spec.) \\
+\midrule
+Auth.\ scope & 64 & $-$6.0 & $-$12.0 & 0.070 \\
+Lexical & 42 & $-$2.0 & $-$2.0 & 1.000 \\
+Incompleteness & 46 & $+$2.0 & $+$14.0$^\dagger$ & 0.118 \\
+\midrule
+\multicolumn{5}{l}{\textit{Generic prompt only (no type-specific variant tested):}} \\
+Cond.\ prec. & 34 & $+$4.0 & --- & --- \\
+Coreferential & 18 & $+$6.0 & --- & --- \\
+Scopal & 42 & $+$4.0 & --- & --- \\
+\midrule
+Overall & 41 & $+$1.3 & --- & --- \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize $\dagger$\,Though not statistically significant, the positive direction (increased violations) warrants caution: type-specific prompts for incompleteness may inadvertently prime gap-filling behavior.}
+\end{table}

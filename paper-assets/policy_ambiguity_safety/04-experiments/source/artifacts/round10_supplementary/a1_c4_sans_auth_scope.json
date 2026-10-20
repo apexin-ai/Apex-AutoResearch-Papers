@@ -1,0 +1,14 @@
+{
+  "analysis": "c4_sans_auth_scope",
+  "n_models": 5,
+  "n_types": 5,
+  "chi2": 7.1277,
+  "chi2_df": 16,
+  "chi2_p": 0.9707198,
+  "lr_test": {
+    "statistic": 9.2185,
+    "df": 16,
+    "p": 0.9041451
+  },
+  "conclusion": "not_significant"
+}

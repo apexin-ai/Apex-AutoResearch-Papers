@@ -1,0 +1,109 @@
+# Source: https://www.ikea.com/us/en/customer-service/terms-conditions/
+# Fetched: 2026-05-23
+# Type: Terms & Conditions
+
+# IKEA Terms & Conditions
+
+Effective Date: May 1, 2026
+
+These terms govern access to and use of IKEA North America Services' website, apps, and related digital services. Continued use indicates acceptance. Users under 18 cannot access the Services.
+
+## 1. Account Creation and Information
+
+Users may establish accounts (IKEA Family, IKEA Home Shopping) by providing accurate, current information. Account holders are responsible for maintaining confidential credentials and all activity under their account. IKEA reserves the right to suspend accounts with inaccurate information. Users must notify IKEA immediately of unauthorized access.
+
+## 2. Ownership and Copyright
+
+All content—including text, images, software, logos, and designs—belongs to IKEA entities and is protected by intellectual property law. Users may download materials for personal, non-commercial use only with copyright notices intact. Unauthorized copying, distribution, or modification is prohibited. Users cannot use images without permission.
+
+## 3. Use of Services
+
+Services cannot be copied, republished, or distributed without written permission. Prohibited uses include: posting unlawful content, interfering with service operations, web scraping, reverse engineering, uploading malware, and unsolicited advertising. IKEA may remove violating content or suspend access at its discretion.
+
+## 4. Product & Pricing Information
+
+IKEA cannot guarantee product availability and reserves the right to discontinue items. Prices and availability are subject to change without notice and may vary across channels and locations. Quantity limits apply for regular customers.
+
+## 5. IKEA Family Program
+
+A free loyalty club providing digital membership cards. Members can access offers in-store and online, track transactions, create shopping lists, maintain gift registries, and access receipts. See separate IKEA Family terms for full details.
+
+## 6. IKEA Business Network
+
+A free loyalty program offering digital cards and exclusive benefits tailored to business customers. Members track transactions and access receipts online. Separate terms and conditions apply.
+
+## 7. Planning Tools
+
+Digital tools for home improvement planning are for personal, non-commercial use. Tools may be operated by IKEA or third parties. Users must independently verify accuracy, suitability, and legal compliance before implementing plans. IKEA disclaims all warranties regarding design accuracy, measurements, materials, and safety.
+
+## 8. Shop & Go
+
+Members can scan items using the IKEA app and pay at dedicated checkout lanes. Eligible items include cash-and-carry articles and Swedish Food Market items; services and restaurant items are excluded. The service is free and subject to random verification.
+
+## 9. Accuracy of Information
+
+IKEA attempts to provide complete, accurate information but makes no guarantees. Except as prohibited by New Jersey law, IKEA disclaims responsibility for errors or omissions in materials.
+
+## 10. Proprietary Rights
+
+Users retain copyright to feedback and suggestions submitted, but grant IKEA a perpetual, irrevocable, worldwide, royalty-free license to reproduce, adapt, modify, and distribute such content. This license permits IKEA to share content with partners and use it in service provision.
+
+## 11. User Generated Content
+
+11.1 General UGC Terms: User-generated content includes ratings, reviews, questions, answers, photos, videos, and third-party platform content shared with permission. Submitters warrant they own intellectual property rights, are of legal age, and content doesn't violate terms. Content must not be false, infringe third-party rights, violate laws, contain hate speech, or include undisclosed compensation.
+
+11.2 Ratings and Reviews: Users may rate store visits, products, or services after verified purchases or while logged into IKEA Family accounts. Reviews must reflect honest opinions based on actual experience and disclose material connections.
+
+11.3 Questions and Answers: Users may voluntarily submit product questions or answers through IKEA's website, app, or in-store kiosks. Content must be accurate and based on actual experience.
+
+11.4 IKEA Planning Tools: Users may submit photos, videos, or scans for design services. Content must be unaltered, not fabricated or deceptively manipulated, and users must have rights to record the depicted space.
+
+11.5 Third-Party Platform Content: IKEA may request written permission to repost user content from Instagram, TikTok, Pinterest, and similar platforms. Permission requires responding with "#yesIKEA" and clear written consent. Content becomes subject to these terms upon approval. Users warrant content is accurate, depicts products for intended use only, and contains no unauthorized third-party depictions.
+
+11.6 License and Consent: By submitting or authorizing UGC, users grant IKEA and affiliates non-exclusive, irrevocable, perpetual, worldwide, royalty-free rights to use content, including name, image, and likeness, in any medium without approval or compensation. IKEA may remove content anytime. Users waive moral rights and release IKEA from liability. Content may be used to improve services, enhance customer experience, and train systems including AI summarization.
+
+Users may request deletion under applicable law by contacting 1-888-888-4532; IKEA will respond within ten business days. Deletion doesn't affect prior uses, de-identified content, or aggregated data.
+
+11.7 Miscellaneous: IKEA assumes no liability for UGC accuracy or substance.
+
+## 12. Links
+
+Services may link to third-party sites over which IKEA has no control. IKEA doesn't endorse these sites and makes no representations about their accuracy or completeness. Users are responsible for reviewing third-party terms and privacy policies.
+
+## 13. Privacy
+
+User information handling is governed by IKEA's Privacy Policy, incorporated by reference. Acceptance of these Terms constitutes acceptance of the Privacy Policy.
+
+## 14. Limitation of Liability
+
+Within applicable law limits, IKEA is not liable for direct, indirect, incidental, special, or consequential damages resulting from: service use or inability, information-based actions, password negligence, substitute goods costs, unauthorized access, improper authorization, or third-party conduct.
+
+## 15. Disclaimer of Warranties and Release
+
+Services are provided "as-is" and "as-available." IKEA disclaims all warranties—express and implied—including merchantability and fitness for particular purpose. IKEA makes no guarantee that services will meet requirements, remain uninterrupted, be error-free, or produce accurate results. Downloaded materials are at user risk. No oral or written advice creates additional warranties. Users assume liability for disputes with other users.
+
+## 16. Release
+
+Users release IKEA from claims, demands, and damages arising from disputes with other service users.
+
+## 17. Indemnification
+
+Users indemnify IKEA and its officers, directors, and agents from demands, liabilities, damages, and costs resulting from: user conduct, term violations, legal non-compliance, negligence, intellectual property infringement, obscene postings, defamation, or transactions with others through the Services.
+
+## 18. Legal Notice to New Jersey Residents
+
+Terms limiting redress don't apply to New Jersey consumers regarding tortious actions, product liability, punitive damages, commercial code protections, or criminal third-party harm. Damage exclusions don't apply to statutory damages, punitive damages, data loss, or property damage in New Jersey.
+
+## 19. Jurisdiction and General Terms
+
+Services are intended for U.S. users only. Terms are governed by Pennsylvania law. Disputes must be filed in Montgomery County, Pennsylvania courts. Unenforceable provisions are severable. Either party may suspend accounts anytime. Users are independent of IKEA. No waiver of one breach constitutes waiver of others.
+
+## 20. Changes to Terms
+
+IKEA may modify Terms anytime. New versions appear on its website. Continued use after changes constitutes acceptance.
+
+## 21. Entire Agreement
+
+Terms and referenced agreements constitute the complete agreement and supersede prior understandings. Questions: contact 1-888-888-4532 or infosec.dataprivacy.us@ikea.com.
+
+Copyright (c) 2022 Inter IKEA Systems B.V.

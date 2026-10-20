@@ -1,0 +1,66 @@
+{
+  "analysis_name": "Variance Decomposition with Model x Type Interaction",
+  "motivation": "Supplement to clause_variance_decomposition \u2014 add C(model):C(ambiguity_type) interaction to quantify model-type interaction variance (supports C4)",
+  "n_observations": 2997,
+  "ss_total": 545.9867,
+  "full_data": {
+    "model_formula": "violation ~ C(ambiguity_type) * C(model) + C(condition)",
+    "variance_components": {
+      "C(ambiguity_type)": {
+        "sum_sq": 1.9697,
+        "pct_of_total": 0.36,
+        "df": 5,
+        "F": 2.6213,
+        "p": 0.022600903221471787
+      },
+      "C(model)": {
+        "sum_sq": 5.6372,
+        "pct_of_total": 1.03,
+        "df": 4,
+        "F": 9.3774,
+        "p": 1.5721645352715336e-07
+      },
+      "C(condition)": {
+        "sum_sq": 86.666,
+        "pct_of_total": 15.87,
+        "df": 1,
+        "F": 576.6724,
+        "p": 1.3527414795620584e-116
+      },
+      "C(ambiguity_type):C(model)": {
+        "sum_sq": 5.922,
+        "pct_of_total": 1.08,
+        "df": 20,
+        "F": 1.9702,
+        "p": 0.006181446350375442
+      },
+      "Residual": {
+        "sum_sq": 445.7494,
+        "pct_of_total": 81.64,
+        "df": 2966
+      }
+    },
+    "interaction_term": {
+      "sum_sq": 5.922,
+      "pct_of_total_ss": 1.08,
+      "df": 20,
+      "F": 1.9702,
+      "p": 0.006181446350375442,
+      "significant": true
+    },
+    "comparison_to_no_interaction": {
+      "residual_ss_without": 451.6714,
+      "residual_ss_with": 445.7494,
+      "residual_reduction_pct": 1.08
+    }
+  },
+  "ambiguous_only": {
+    "model_formula": "violation ~ C(ambiguity_type) * C(model)",
+    "n": 1499,
+    "interaction_ss": 10.5315,
+    "interaction_pct": 2.91,
+    "interaction_p": 0.0010479148764303003,
+    "significant": true
+  },
+  "conclusion": "Model x type interaction explains 1.1% of total violation variance (F(20)=1.97, p=0.0062). In ambiguous-only data: 2.9% (p=0.0010). This confirms C4 (model-type interaction) is statistically real but small relative to clause identity (22.4%) and condition (15.8%)."
+}

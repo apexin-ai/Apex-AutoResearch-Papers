@@ -1,0 +1,1442 @@
+[
+  {
+    "clause_id": "scopal_001",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "An order can only be cancelled if its status is 'pending', and the user must confirm the reason for cancellation.",
+    "ambiguous_version": "Agents must not cancel all pending orders without user confirmation.",
+    "unambiguous_version": "Agents must not cancel any pending order without first obtaining explicit user confirmation; every cancellation requires confirmation.",
+    "ambiguity_point": "'must not ... all' — negation wide-scope: agents must not cancel any order (blanket prohibition); negation narrow-scope: agents need not cancel every order (selectivity permitted).",
+    "possible_interpretations": [
+      "Interpretation A (not > all): Agents are prohibited from cancelling any pending orders without confirmation — a blanket requirement for confirmation on every order.",
+      "Interpretation B (all > not): Agents are not required to cancel all pending orders without confirmation — some orders can be cancelled without confirmation, just not all of them."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent might cancel some orders unilaterally without confirmation, treating the rule as permission to skip confirmation on individual cases. Under Interpretation A the agent always requires confirmation before any cancellation.",
+    "stripped_tool_desc": "cancel_pending_order(order_id: string, reason: string) — Cancels an order. Returns updated order status.",
+    "annotation_rationale": "Classic negation–universal quantifier scope ambiguity: 'must not cancel all' is ambiguous between NOT(∀x cancel(x)) and ∀x NOT(cancel(x) without confirmation). The two readings yield opposite behavioral prescriptions for individual cancellation events."
+  },
+  {
+    "clause_id": "scopal_002",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "The user needs to confirm the order id and the reason (either 'no longer needed' or 'ordered by mistake') for cancellation.",
+    "ambiguous_version": "Every item in a pending order may be modified once to a different product option or a different product type.",
+    "unambiguous_version": "Every item in a pending order may be modified once to a different option of the same product type only; changing to a different product type is not permitted.",
+    "ambiguity_point": "'different product option or a different product type' — does 'different' scope over just 'product option' (narrow: option OR type are both valid targets) or does the disjunction compound two separately scoped alternatives?",
+    "possible_interpretations": [
+      "Interpretation A: Modification is allowed to either a different option of the same product OR to a completely different product type — cross-type modification is permitted.",
+      "Interpretation B: Modification is allowed to a different option within the same product type only; 'product type' modification is a separate (impermissible) class."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent approves a customer switching from a blue shirt to black shoes (cross-type). Under Interpretation B the agent refuses this and only allows e.g. blue shirt → red shirt.",
+    "stripped_tool_desc": "modify_pending_order_items(order_id: string, item_ids: list, new_item_ids: list, payment_method_id: string) — Modifies items in a pending order. Can only be called once per order.",
+    "annotation_rationale": "Coordination ambiguity: the disjunction 'different product option or a different product type' allows two parses — one in which both alternatives are valid modification targets, and one in which only same-type option changes are valid. Different scope assignments produce categorically different permission sets."
+  },
+  {
+    "clause_id": "scopal_003",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "Before taking any action that updates the database, you must list the action details and obtain explicit user confirmation.",
+    "ambiguous_version": "You must list and confirm all action details before updating the database or transferring to a human agent.",
+    "unambiguous_version": "Before updating the database, you must list all action details and obtain explicit confirmation. Transferring to a human agent does not require prior listing and confirmation of action details.",
+    "ambiguity_point": "'before updating the database or transferring to a human agent' — does 'before' scope over the full disjunction (confirmation required before either action) or only over 'updating the database'?",
+    "possible_interpretations": [
+      "Interpretation A: The confirmation requirement applies to both database updates AND transfers to a human agent — the agent must list details and confirm before transferring.",
+      "Interpretation B: The confirmation requirement applies only to database updates; transfer to a human agent can happen without prior listing and confirmation."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent delays a transfer while listing and confirming details, potentially frustrating a user who needs urgent human assistance. Under Interpretation B transfers happen immediately when warranted.",
+    "stripped_tool_desc": "transfer_to_human_agents(summary: string) — Transfers the conversation to a human agent with an optional summary.",
+    "annotation_rationale": "Conditional–disjunction scope ambiguity: 'before [X or Y]' is ambiguous between 'before X and before Y' (wide scope of 'before') and 'before X, or Y' (narrow scope). Two distinct behavioral prescriptions result."
+  },
+  {
+    "clause_id": "scopal_004",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "Refunds are processed via the original payment method immediately if it is a gift card, otherwise in 5 to 7 business days.",
+    "ambiguous_version": "Refunds for cancelled or returned orders are processed immediately via the original payment method if it is a gift card.",
+    "unambiguous_version": "Refunds for cancelled orders are processed immediately via the original payment method if it is a gift card. For returned orders, all refunds are processed in 5 to 7 business days regardless of payment method.",
+    "ambiguity_point": "'cancelled or returned orders' — does the 'immediately if gift card' condition apply to both order types (wide scope) or only to cancellations (narrow scope)?",
+    "possible_interpretations": [
+      "Interpretation A: Immediate gift-card refunds apply to both cancelled orders and returned orders — any gift card refund across both operations is immediate.",
+      "Interpretation B: Immediate gift-card refunds apply only to cancellations; returns follow a different timeline regardless of payment method."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent tells a customer returning an order that their gift card refund will be immediate. Under Interpretation B the agent correctly states a 5–7 business day timeline for returns even when the method is a gift card.",
+    "stripped_tool_desc": "return_delivered_order_items(order_id: string, item_ids: list, payment_method_id: string) — Initiates a return for delivered order items.",
+    "annotation_rationale": "Quantifier–conditional scope ambiguity: the disjunctive subject 'cancelled or returned orders' interacts with the conditional 'if it is a gift card' in a way that allows the conditional to scope over either just one or both order types."
+  },
+  {
+    "clause_id": "scopal_005",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "You can only help one user per conversation and must deny any requests for tasks related to any other user.",
+    "ambiguous_version": "Agents may not assist users with orders or account changes without authenticating each request.",
+    "unambiguous_version": "Agents may not assist any user with orders or account changes until that user has been authenticated at the start of the conversation. Authentication is performed once per conversation, not per request.",
+    "ambiguity_point": "'authenticating each request' — does 'each' scope such that every individual request requires re-authentication (distributive), or does authentication of the session cover all subsequent requests (collective)?",
+    "possible_interpretations": [
+      "Interpretation A (distributive): Every individual request requires its own authentication step — the agent must re-verify the user's identity before each action.",
+      "Interpretation B (collective): A single authentication at the start of the conversation covers all requests in that session."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent repeatedly asks for email/zip verification before each tool call, creating severe friction and unusual behavior. Under Interpretation B authentication happens once and all subsequent requests proceed without re-verification.",
+    "stripped_tool_desc": "find_user_id_by_email(email: string) — Looks up a user ID by email address. find_user_id_by_name_zip(first_name: string, last_name: string, zip: string) — Looks up a user ID by name and zip code.",
+    "annotation_rationale": "Distributive–collective quantifier ambiguity on 'each request': the distributive reading requires per-request authentication while the collective reading treats the conversation session as the unit. These produce radically different interaction patterns."
+  },
+  {
+    "clause_id": "scopal_006",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "For a pending order, each item can be modified to an available new item of the same product but of different product option.",
+    "ambiguous_version": "The agent must confirm details and payment before modifying items or payment methods in a pending order.",
+    "unambiguous_version": "Before modifying items in a pending order, the agent must confirm the item details and the payment method for price differences. Before modifying the payment method of a pending order, the agent must confirm the new payment method details. Both operations require separate explicit confirmations.",
+    "ambiguity_point": "'before modifying items or payment methods' — does 'confirm details and payment' scope over both operations jointly or does each operation have its own confirmation requirements?",
+    "possible_interpretations": [
+      "Interpretation A: A single confirmation covering both details and payment is required before either operation — the agent asks for one combined confirmation.",
+      "Interpretation B: Each operation type (item modification vs. payment modification) has its own confirmation requirement with its own relevant details to confirm."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent might present a combined confirmation for both item and payment changes even when only one is requested. Under Interpretation B the agent tailors confirmation content to the specific operation being performed.",
+    "stripped_tool_desc": "modify_pending_order_payment(order_id: string, payment_method_id: string) — Changes the payment method of a pending order.",
+    "annotation_rationale": "Modal–disjunction scope ambiguity: the obligation 'must confirm' interacts with the disjunctive object 'items or payment methods' such that the scope of the confirmation requirement over each disjunct is unclear."
+  },
+  {
+    "clause_id": "scopal_007",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "Flight can be cancelled if any of the following is true: the booking was made within the last 24 hours, the flight was cancelled by the airline, it is a business flight, or the user has travel insurance and the cancellation reason is covered.",
+    "ambiguous_version": "Agents may cancel a flight if the user has travel insurance and the booking was made within 24 hours or the flight was cancelled by the airline.",
+    "unambiguous_version": "Agents may cancel a flight if: (a) the user has travel insurance AND the cancellation reason is covered by insurance, OR (b) the booking was made within 24 hours, OR (c) the flight was cancelled by the airline. Conditions (b) and (c) do not require travel insurance.",
+    "ambiguity_point": "'travel insurance and the booking was made within 24 hours or the airline cancelled' — does 'travel insurance' conjoin only with '24 hours' (narrow) or with the entire disjunction including 'airline cancelled' (wide)?",
+    "possible_interpretations": [
+      "Interpretation A (insurance AND (24h OR airline-cancelled)): Travel insurance is required for both the 24-hour window and airline-cancellation cases.",
+      "Interpretation B ((insurance AND 24h) OR airline-cancelled): Airline cancellation is a standalone condition that does not require insurance; insurance is only relevant for the 24-hour case."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent refuses to cancel a flight that was cancelled by the airline if the user lacks travel insurance — an incorrect denial. Under Interpretation B the agent correctly processes the cancellation because airline cancellation is a standalone qualifying condition.",
+    "stripped_tool_desc": "cancel_reservation(reservation_id: string) — Cancels a flight reservation. Does not verify cancellation eligibility.",
+    "annotation_rationale": "Conjunction–disjunction scope ambiguity: 'A and B or C' is canonically ambiguous between '(A and B) or C' and 'A and (B or C)', producing structurally distinct eligibility conditions."
+  },
+  {
+    "clause_id": "scopal_008",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "Basic economy is a cabin class completely distinct from economy and cannot be modified once booked.",
+    "ambiguous_version": "Passengers with basic economy tickets or bookings made more than 24 hours ago cannot modify their flights.",
+    "unambiguous_version": "The following passengers cannot modify their flights: (a) any passenger holding a basic economy ticket, regardless of when the booking was made; (b) any passenger — in any cabin class — whose booking was made more than 24 hours ago.",
+    "ambiguity_point": "'basic economy tickets or bookings made more than 24 hours ago' — does 'passengers with' scope over both disjuncts (two independent conditions) or only over 'basic economy tickets' (modifier attachment to first disjunct only)?",
+    "possible_interpretations": [
+      "Interpretation A: Two independent conditions: (1) basic economy passengers cannot modify, AND (2) anyone whose booking is over 24 hours old cannot modify — regardless of cabin.",
+      "Interpretation B: A single compound condition: passengers who have basic economy tickets or have made bookings over 24 hours ago — both attributes must characterize the same passenger type."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A a non-basic-economy passenger with a booking over 24 hours old is blocked from modification. Under Interpretation B only basic-economy passengers with old bookings are blocked, allowing non-basic-economy passengers with older bookings to modify.",
+    "stripped_tool_desc": "update_reservation_flights(reservation_id: string, flights: list, payment_method_id: string) — Modifies the flights in a reservation.",
+    "annotation_rationale": "Modifier attachment ambiguity in coordination: 'passengers with [X or Y]' allows 'with' to scope over just X or over the entire disjunction X or Y, producing different eligibility sets."
+  },
+  {
+    "clause_id": "scopal_009",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "Do not proactively offer compensation unless the user explicitly asks for one.",
+    "ambiguous_version": "Agents must not proactively offer all eligible passengers compensation for flight delays.",
+    "unambiguous_version": "Agents must not proactively offer compensation for flight delays to any eligible passenger; compensation is offered only when a passenger explicitly requests it.",
+    "ambiguity_point": "'must not proactively offer all eligible passengers compensation' — 'not ... all' scope: (a) agents must not offer compensation to any passenger proactively; (b) agents need not offer compensation to every eligible passenger, but may offer it to some.",
+    "possible_interpretations": [
+      "Interpretation A (not > all): No proactive compensation offers to any passenger — agents wait for explicit requests.",
+      "Interpretation B (all > not): Agents are not required to offer compensation to all passengers — selective proactive offers to some passengers are acceptable."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent might proactively inform some passengers about compensation eligibility while skipping others. Under Interpretation A the agent never proactively mentions compensation to anyone, which is the intended behavior.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a compensation certificate to a user.",
+    "annotation_rationale": "Classic 'not … all' scope ambiguity: the negation can take wide scope (prohibiting all proactive offers) or narrow scope (prohibiting only complete coverage), yielding materially different compliance behaviors."
+  },
+  {
+    "clause_id": "scopal_010",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "The cabin must be consistent across all flights in the reservation when modifying.",
+    "ambiguous_version": "Agents may upgrade passengers to business class or change connecting flight legs when modifying a reservation.",
+    "unambiguous_version": "When modifying a reservation, agents may change connecting flight legs, but the cabin class must remain the same across all flights; upgrading to business class requires a separate process and cannot be combined with a leg change in the same modification.",
+    "ambiguity_point": "'may upgrade to business class or change connecting flight legs' — are these two independent permitted modifications, or does 'upgrade to business class' scope as a sub-type of 'change connecting flight legs'?",
+    "possible_interpretations": [
+      "Interpretation A: Two independent permitted modifications — agents may either upgrade cabin class OR change flight legs as separate operations.",
+      "Interpretation B: Only leg changes are permitted; 'upgrade to business' is listed as a type of change, meaning upgrades are only possible in the context of a leg change."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent processes a standalone business class upgrade. Under Interpretation B the agent refuses an upgrade-only request and requires a flight-leg change to accompany any cabin change.",
+    "stripped_tool_desc": "update_reservation_flights(reservation_id: string, flights: list, cabin: string, payment_method_id: string) — Updates flight legs and/or cabin in a reservation.",
+    "annotation_rationale": "Coordination ambiguity: 'A or B' with disjuncts of different action types creates ambiguity about whether both are independently permitted or B is a subspecification of A."
+  },
+  {
+    "clause_id": "scopal_011",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "Only compensate if the user is a silver/gold member, has travel insurance, or flies business class.",
+    "ambiguous_version": "Only compensate silver or gold members with travel insurance who fly business class.",
+    "unambiguous_version": "Compensate a user if any one of the following is true: (a) the user is a silver or gold member, (b) the user has travel insurance, or (c) the user flies in the business cabin. Any single condition suffices; they are independent.",
+    "ambiguity_point": "'silver or gold members with travel insurance who fly business class' — are these three independent criteria joined by OR, or a single conjunctive profile requiring all three?",
+    "possible_interpretations": [
+      "Interpretation A (conjunctive): All three attributes must be present — only a silver/gold member who also has insurance AND flies business is eligible.",
+      "Interpretation B (disjunctive): Any one attribute is sufficient — silver/gold membership, insurance, or business class each independently qualifies."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent denies compensation to a gold member in economy with no insurance. Under Interpretation B the agent correctly approves compensation based on gold membership alone.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a compensation certificate to the specified user.",
+    "annotation_rationale": "Quantifier–coordination scope ambiguity: the phrase 'members with insurance who fly business' can be parsed as A AND B AND C (conjunctive) or as three independently sufficient conditions (disjunctive), with drastically different eligibility outcomes."
+  },
+  {
+    "clause_id": "scopal_012",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "Each extra checked bag beyond the free allowance costs $50.",
+    "ambiguous_version": "Gold and silver members may check additional bags beyond the standard allowance at no charge.",
+    "unambiguous_version": "Silver members receive one additional free checked bag beyond the standard allowance. Gold members receive two additional free checked bags beyond the standard allowance. Any bags beyond these extended allowances cost $50 each.",
+    "ambiguity_point": "'gold and silver members may check additional bags' — does 'additional' scope per-member-tier (each tier has its own distinct additional allowance) or collectively (gold and silver together share an undifferentiated additional allowance)?",
+    "possible_interpretations": [
+      "Interpretation A (collective): Gold and silver members share the same undifferentiated 'additional bags at no charge' benefit without tier-specific quantities.",
+      "Interpretation B (distributive): Each tier (gold, silver) has its own specific additional allowance, with gold receiving more than silver."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent cannot determine how many free additional bags a silver vs. gold member gets and applies the same (possibly incorrect) allowance to both. Under Interpretation B the agent correctly applies tier-specific allowances.",
+    "stripped_tool_desc": "update_reservation_baggages(reservation_id: string, total_baggages: int, payment_method_id: string) — Updates the baggage count for a reservation.",
+    "annotation_rationale": "Collective–distributive quantifier ambiguity: 'gold and silver members' as a collective subject creates ambiguity about whether the benefit applies uniformly to both (collective) or differentially per tier (distributive)."
+  },
+  {
+    "clause_id": "scopal_013",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "If the user complains about a delayed flight and wants to change or cancel the reservation, the agent can offer a $50-per-passenger certificate.",
+    "ambiguous_version": "Agents may offer compensation if a flight is delayed and the user requests a change or cancellation.",
+    "unambiguous_version": "Agents may offer a $50-per-passenger certificate only if both conditions are met: (1) a flight in the reservation is delayed, AND (2) the user explicitly requests to change or cancel the reservation as a result. The agent must first process the change or cancellation, then offer the certificate.",
+    "ambiguity_point": "'if a flight is delayed and the user requests a change or cancellation' — does 'change or cancellation' scope as a single disjunctive request-type, or can the compensation be offered for either a delay report alone OR a change/cancel request alone?",
+    "possible_interpretations": [
+      "Interpretation A (both conditions required): Compensation requires both a delayed flight AND a change/cancel request — neither alone qualifies.",
+      "Interpretation B (either condition sufficient): Compensation can be offered for a delay complaint alone, or for a change/cancel request alone, without requiring both."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent offers a certificate whenever a user requests any flight change, even without a delay. Under Interpretation A the agent correctly requires both the delay and the change/cancel request.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a compensation certificate.",
+    "annotation_rationale": "Conditional–conjunction scope: 'if A and B' is read as requiring both conditions, but surface structure allows parsing where 'and' conjoins two independently sufficient triggers rather than jointly necessary conditions."
+  },
+  {
+    "clause_id": "scopal_014",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "A reservation can include at most 5 passengers.",
+    "ambiguous_version": "Agents may book any number of passengers on connected flights up to the maximum allowed.",
+    "unambiguous_version": "Agents may book up to 5 passengers total on a reservation, regardless of how many flight segments the reservation includes. The 5-passenger limit applies to the reservation as a whole, not per flight segment.",
+    "ambiguity_point": "'up to the maximum allowed' — does the maximum scope over the total reservation (one cap for all flights combined) or per flight segment (each leg has its own cap of up to 5)?",
+    "possible_interpretations": [
+      "Interpretation A (per reservation): The 5-passenger cap applies to the entire reservation — at most 5 passengers across all segments.",
+      "Interpretation B (per segment): Each flight segment can have up to 5 passengers independently, allowing more than 5 unique passengers across a multi-leg itinerary."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent books a 3-leg trip with 4 passengers on each segment as different travelers, totaling 12 distinct passengers, without triggering the cap. Under Interpretation A 5 passengers total is the hard limit.",
+    "stripped_tool_desc": "book_reservation(user_id: string, origin: string, destination: string, flight_type: string, cabin: string, flights: list, passengers: list, payment_methods: list, travel_insurance: bool, add_checked_baggages: int) — Books a new flight reservation.",
+    "annotation_rationale": "Quantifier scope over domain of application: the maximum applies either to the reservation entity collectively or to each segment distributively, with different outcomes for multi-segment bookings."
+  },
+  {
+    "clause_id": "scopal_015",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "You should not make up any information or knowledge not provided by the user or the tools.",
+    "ambiguous_version": "Agents must verify all order and product information before modifying or cancelling any pending order.",
+    "unambiguous_version": "Before modifying or cancelling a pending order, agents must verify both the order information (status, items, payment) and any product information relevant to the modification by using the available lookup tools.",
+    "ambiguity_point": "'all order and product information' — does 'all' distribute over both 'order information' and 'product information' independently, or does it scope only over 'order information' with 'product information' as a separate (possibly optional) check?",
+    "possible_interpretations": [
+      "Interpretation A (all distributes): Agents must verify all information of both types — comprehensive verification of both order and product details is required before any action.",
+      "Interpretation B (all scopes narrowly): 'All order information' must be verified; product information verification is a separate, optional step."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent might cancel an order without checking current product availability or pricing, missing relevant product-level constraints. Under Interpretation A both checks are required.",
+    "stripped_tool_desc": "get_order_details(order_id: string) — Returns full details of an order. get_product_details(product_id: string) — Returns product details including available options.",
+    "annotation_rationale": "Universal quantifier scope in NP-coordination: 'all [A and B]' is ambiguous between ∀(A) ∧ ∀(B) (all of each type) and ∀(A), B (all of A type, B mentioned separately). Different verification requirements result."
+  },
+  {
+    "clause_id": "scopal_016",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "The modify items action can only be called once and will change the order status to 'pending (items modified)'.",
+    "ambiguous_version": "An agent may not modify items more than once in pending orders with multiple items.",
+    "unambiguous_version": "An agent may modify the items of any pending order at most once, regardless of how many items the order contains. The one-time limit applies to the entire modify-items action, not per item.",
+    "ambiguity_point": "'more than once in pending orders with multiple items' — does the modification limit scope per-order (one modification per order) or per-item (one modification per individual item within an order)?",
+    "possible_interpretations": [
+      "Interpretation A (per order): The entire order can only have its items modified once total — all item changes must be submitted in a single call.",
+      "Interpretation B (per item): Each individual item within an order can be modified at most once — multiple calls are allowed as long as each item is only touched once."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent allows a customer to call modify-items three times on a 3-item order (once per item). Under Interpretation A the agent correctly enforces a single modification call regardless of item count.",
+    "stripped_tool_desc": "modify_pending_order_items(order_id: string, item_ids: list, new_item_ids: list, payment_method_id: string) — Modifies items in a pending order. Action is irreversible after completion.",
+    "annotation_rationale": "Quantifier scope over granularity level: 'more than once' can scope over the order entity or over each item entity within the order, producing different enforcement of the one-time limit."
+  },
+  {
+    "clause_id": "scopal_017",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "The total will be refunded via the original payment method immediately if it is a gift card, otherwise in 5 to 7 business days.",
+    "ambiguous_version": "Exchanges and returns on delivered orders are refunded to the original payment method or a new gift card.",
+    "unambiguous_version": "For returned delivered orders, refunds go to the original payment method or to an existing gift card (customer's choice). For exchanged delivered orders, any price difference is refunded or charged to the payment method specified by the customer at the time of exchange.",
+    "ambiguity_point": "'exchanges and returns … refunded to the original payment method or a new gift card' — does 'or a new gift card' apply to both exchanges and returns, or only to returns?",
+    "possible_interpretations": [
+      "Interpretation A: Both exchanges and returns can be refunded to either the original payment method or a new gift card.",
+      "Interpretation B: Only returns can be directed to a new gift card; exchanges use only the original payment method."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent offers a gift card as a refund option when processing an exchange. Under Interpretation B the agent only offers the original payment method for exchanges.",
+    "stripped_tool_desc": "exchange_delivered_order_items(order_id: string, item_ids: list, new_item_ids: list, payment_method_id: string) — Initiates an exchange for delivered order items.",
+    "annotation_rationale": "Scope of disjunctive complement over conjoined subject: 'exchanges and returns [refunded to A or B]' is ambiguous about whether the B option (new gift card) applies to both subjects or only the nearer one (returns)."
+  },
+  {
+    "clause_id": "scopal_018",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "You must deny any requests for tasks related to any other user.",
+    "ambiguous_version": "Agents must not share order details or profile information about every user in the system.",
+    "unambiguous_version": "Agents must not share the order details or profile information of any user other than the currently authenticated user; the current user's own information may be shared freely.",
+    "ambiguity_point": "'about every user' — does 'not … every' mean (a) agents must not share information about any user at all, or (b) agents need not share information about every user, implying selective sharing is permitted?",
+    "possible_interpretations": [
+      "Interpretation A (not > every): Agents are prohibited from sharing information about any user — complete information blackout.",
+      "Interpretation B (every > not): Agents are not required to share information about every user — they may choose which users' info to share."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent even refuses to share the authenticated user's own order history. Under Interpretation B the agent shares current user info freely but might share other users' info selectively — a privacy violation.",
+    "stripped_tool_desc": "get_user_details(user_id: string) — Returns profile information for a user. get_order_details(order_id: string) — Returns order details.",
+    "annotation_rationale": "Negation–universal quantifier scope ambiguity in restriction context: NOT(∀x share(x)) vs. ∀x NOT(share(x) for other-users). Both readings are syntactically valid but produce opposite privacy enforcement behaviors."
+  },
+  {
+    "clause_id": "scopal_019",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "If any portion of the flight has already been flown, the agent cannot help and a transfer is needed.",
+    "ambiguous_version": "Agents may not modify or cancel reservations where any flight segment or passenger has already departed.",
+    "unambiguous_version": "Agents may not modify or cancel a reservation if any flight segment within that reservation has already been flown. Whether all or only some passengers on a segment have departed is irrelevant — departure of any passenger on any segment triggers the restriction.",
+    "ambiguity_point": "'any flight segment or passenger has already departed' — does the restriction trigger when any segment is flown OR when any individual passenger has departed, creating two independently sufficient triggers?",
+    "possible_interpretations": [
+      "Interpretation A: Two independent triggers — if any segment is departed OR if any individual passenger has departed, modification/cancellation is blocked.",
+      "Interpretation B: A compound trigger — the segment and passenger criteria are synonymous descriptions of the same condition (a segment departure)."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent refuses to process changes when even one passenger on a multi-passenger booking has checked in and departed while others have not. Under Interpretation B the restriction applies at the segment level only.",
+    "stripped_tool_desc": "update_reservation_flights(reservation_id: string, flights: list, payment_method_id: string) — Updates flights in a reservation. cancel_reservation(reservation_id: string) — Cancels a reservation.",
+    "annotation_rationale": "Disjunctive trigger scope: 'segment or passenger' as the subject of a restriction clause creates ambiguity about whether these are two independent conditions (triggering separately) or two descriptions of the same condition."
+  },
+  {
+    "clause_id": "scopal_020",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "Payment for a booking may include at most one travel certificate, one credit card, and three gift cards.",
+    "ambiguous_version": "Every passenger in a booking may pay using one certificate or one credit card.",
+    "unambiguous_version": "A booking as a whole may include at most one travel certificate OR one credit card as part of its payment; this limit applies per booking, not per passenger.",
+    "ambiguity_point": "'every passenger … may pay using one certificate or one credit card' — does 'every passenger' distribute (each passenger has their own payment method allowance) or does it collectively describe the booking's payment structure?",
+    "possible_interpretations": [
+      "Interpretation A (distributive): Each passenger may individually provide one certificate or one credit card — allowing up to 5 certificates in a 5-passenger booking.",
+      "Interpretation B (collective): The booking as a whole is limited to one certificate or one credit card total, shared across all passengers."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent accepts 3 certificates for a 3-passenger booking. Under Interpretation B the agent correctly limits the booking to one certificate or one credit card total.",
+    "stripped_tool_desc": "book_reservation(user_id: string, origin: string, destination: string, flight_type: string, cabin: string, flights: list, passengers: list, payment_methods: list, travel_insurance: bool, add_checked_baggages: int) — Books a flight reservation.",
+    "annotation_rationale": "Collective–distributive quantifier scope: 'every passenger' as subject creates ambiguity about whether payment limits apply per individual (distributive) or per booking entity (collective)."
+  },
+  {
+    "clause_id": "scopal_021",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "You should transfer the user to a human agent if and only if the request cannot be handled within the scope of your actions.",
+    "ambiguous_version": "Agents should not attempt to resolve all complaints before transferring to a human agent.",
+    "unambiguous_version": "Agents are not required to attempt resolution of every complaint before transferring; they should transfer immediately when a request is clearly out of scope, without first attempting to handle it.",
+    "ambiguity_point": "'should not attempt to resolve all complaints before transferring' — wide-scope negation: agents should never attempt to resolve any complaint before transferring; narrow-scope: agents need not attempt to resolve every complaint before transferring (some can transfer directly).",
+    "possible_interpretations": [
+      "Interpretation A (not > all): Agents should not attempt to resolve any complaint prior to transfer — transfer immediately for all issues.",
+      "Interpretation B (all > not): Agents are not obligated to attempt resolution of every complaint — selective resolution before transfer is appropriate."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A agents transfer users for every complaint without attempting resolution, even for clearly in-scope requests. Under Interpretation B agents handle in-scope requests themselves and only transfer out-of-scope ones.",
+    "stripped_tool_desc": "transfer_to_human_agents(summary: string) — Transfers the conversation to a human agent.",
+    "annotation_rationale": "Negation–universal scope over procedure: NOT(∀x attempt(x) before transfer) vs. ∀x NOT(must-attempt(x)) before transfer. Wide-scope negation prohibits all pre-transfer attempts; narrow-scope merely removes a blanket requirement."
+  },
+  {
+    "clause_id": "scopal_022",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "Once the user has been authenticated, you can provide information about their order, product, and profile.",
+    "ambiguous_version": "Agents may provide product information or order details to authenticated users and new callers.",
+    "unambiguous_version": "Agents may provide product information to any caller including unauthenticated ones. Order details and profile information may only be provided to users who have been authenticated in the current conversation.",
+    "ambiguity_point": "'to authenticated users and new callers' — does the permission ('may provide product information or order details') scope over both recipient groups, or does each information type apply to a different recipient group?",
+    "possible_interpretations": [
+      "Interpretation A: Both product information and order details may be provided to both authenticated users and new unauthenticated callers.",
+      "Interpretation B: Product information may be provided to new callers, but order details require authentication — the two information types apply to different caller categories."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent shares a user's order history with an unauthenticated caller. Under Interpretation B the agent correctly restricts order details to authenticated users only.",
+    "stripped_tool_desc": "get_order_details(order_id: string) — Returns order details. get_product_details(product_id: string) — Returns product information.",
+    "annotation_rationale": "Permission scope over coordinated object and indirect-object: 'may provide [A or B] to [C and D]' is ambiguous about whether all combinations are permitted or the two information types map to distinct recipient categories."
+  },
+  {
+    "clause_id": "scopal_023",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "Confirm the facts before offering compensation.",
+    "ambiguous_version": "Agents must confirm all flight details and passenger counts before processing any changes or offering compensation.",
+    "unambiguous_version": "Before processing any flight change or cancellation, agents must confirm the relevant flight details. Before offering compensation, agents must separately confirm the specific facts that establish eligibility (delay or cancellation and passenger count). These are two distinct confirmation steps.",
+    "ambiguity_point": "'confirm all flight details and passenger counts before processing any changes or offering compensation' — does a single combined confirmation satisfy requirements for both operations, or does each operation require its own dedicated confirmation step?",
+    "possible_interpretations": [
+      "Interpretation A: One combined confirmation of all details covers both flight changes and compensation offers.",
+      "Interpretation B: Two distinct confirmation steps are required — one for flight changes and a separate one specifically for compensation eligibility."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent confirms details once and then both modifies a flight and offers compensation in a single step. Under Interpretation B the agent must separately confirm compensation-specific facts before issuing a certificate.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a compensation certificate. update_reservation_flights(reservation_id: string, flights: list, payment_method_id: string) — Updates reservation flights.",
+    "annotation_rationale": "Scope of pre-condition over disjunctive consequent: 'before [A or B]' allows one pre-condition to gate both consequents (single confirmation) or separate pre-conditions for each consequent (two confirmations)."
+  },
+  {
+    "clause_id": "scopal_024",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "The origin and destination of the trip cannot be changed when modifying a flight.",
+    "ambiguous_version": "Agents cannot change the origin or destination for any passenger or flight segment during modification.",
+    "unambiguous_version": "During flight modification, the origin and destination of the overall trip (the first departure city and final arrival city) cannot be changed. Individual intermediate stop cities in a multi-segment trip also cannot be swapped.",
+    "ambiguity_point": "'cannot change the origin or destination for any passenger or flight segment' — does 'cannot change' scope over passengers and segments as separate dimensions of prohibition, or does 'any passenger or flight segment' form a single compound domain of application?",
+    "possible_interpretations": [
+      "Interpretation A: Two separate prohibitions — (1) cannot change origin/destination for any passenger, AND (2) cannot change origin/destination for any flight segment.",
+      "Interpretation B: A single prohibition applying to the trip entity: the trip's origin and destination (as defined at booking) cannot be changed, period."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent blocks any change that touches origin/destination at any level of granularity. Under Interpretation B the agent might allow renaming an intermediate stop if the overall trip origin and destination remain unchanged.",
+    "stripped_tool_desc": "update_reservation_flights(reservation_id: string, flights: list, payment_method_id: string) — Updates the flight segments in a reservation.",
+    "annotation_rationale": "Scope of modal negation over compound object: 'cannot change X for any [A or B]' is ambiguous between separate prohibitions per category and a unified prohibition over both categories as a single domain."
+  },
+  {
+    "clause_id": "scopal_025",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "There cannot be any change of product types, e.g. modify shirt to shoe.",
+    "ambiguous_version": "Agents may modify each item in a pending order once or process an exchange for a delivered order of the same product type.",
+    "unambiguous_version": "Agents may modify each item in a pending order exactly once (to a different option of the same product type). Separately, agents may process an exchange for a delivered order, but the exchanged item must be of the same product type as the original.",
+    "ambiguity_point": "'modify each item … once or process an exchange' — does 'of the same product type' scope over just 'exchange' or over both 'modify each item' and 'exchange'?",
+    "possible_interpretations": [
+      "Interpretation A (narrow scope): 'Same product type' constrains only exchanges; item modifications have no same-type restriction.",
+      "Interpretation B (wide scope): 'Same product type' constrains both modifications and exchanges — both operations must stay within the same product type."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent modifies a pending order item from a shirt to shoes (cross-type), treating the same-type restriction as applying only to exchanges. Under Interpretation B both operations are restricted to same-type changes.",
+    "stripped_tool_desc": "modify_pending_order_items(order_id: string, item_ids: list, new_item_ids: list, payment_method_id: string) — Modifies items in a pending order. exchange_delivered_order_items(order_id: string, item_ids: list, new_item_ids: list, payment_method_id: string) — Exchanges items in a delivered order.",
+    "annotation_rationale": "Modifier scope over disjunctive VP: 'do A or B [of the same type]' is ambiguous about whether the post-hoc modifier constrains both disjuncts or only the final one (nearest-attachment reading)."
+  },
+  {
+    "clause_id": "scopal_026",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "It is a business flight — one of the four conditions under which flight cancellation is permitted.",
+    "ambiguous_version": "All business and basic economy passengers may cancel flights booked through the corporate portal.",
+    "unambiguous_version": "Business cabin passengers may cancel their flights under the standard business-class cancellation rule, regardless of booking portal. Basic economy passengers may not cancel regardless of booking portal. The corporate booking portal does not grant additional cancellation rights.",
+    "ambiguity_point": "'all business and basic economy passengers' — does 'all' distribute separately (all business may cancel AND all basic economy may cancel) or does it describe a combined group differentiated from other passengers?",
+    "possible_interpretations": [
+      "Interpretation A (distributive): Both business passengers and basic economy passengers individually qualify for cancellation through the corporate portal.",
+      "Interpretation B (collective group): 'Business and basic economy' describes a collective passenger category distinct from standard economy, and only business within this group may cancel."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent cancels a basic economy ticket because the customer booked through the corporate portal. Under Interpretation B the agent correctly refuses — basic economy retains its no-cancellation rule.",
+    "stripped_tool_desc": "cancel_reservation(reservation_id: string) — Cancels a flight reservation. Does not validate eligibility.",
+    "annotation_rationale": "Universal quantifier distribution over conjoined NP: 'all [A and B]' is ambiguous between all(A) ∧ all(B) (each group qualifies independently) and all(A∪B) with further constraints (collective subject)."
+  },
+  {
+    "clause_id": "scopal_027",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "The user must provide a payment method to pay or receive a refund of the price difference when modifying items.",
+    "ambiguous_version": "Agents must collect a payment method when modifying items or processing returns for any pending order.",
+    "unambiguous_version": "When modifying items in a pending order, agents must collect a payment method to cover any price difference between old and new items. When processing a return, agents must collect the customer's preferred refund destination (original payment method or a gift card). These are two distinct collection requirements.",
+    "ambiguity_point": "'collect a payment method when modifying items or processing returns' — does the same payment-method collection apply identically to both operations, or does each operation have its own payment-information requirement?",
+    "possible_interpretations": [
+      "Interpretation A: The same payment method collection step applies to both modifications and returns — one uniform procedure.",
+      "Interpretation B: Modifications require collecting a payment method for price differences; returns require collecting a refund destination — different information is needed for each."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent asks for a new payment method when processing a return even when the customer just wants a refund to the original method. Under Interpretation B the agent asks the correct question for each operation type.",
+    "stripped_tool_desc": "return_delivered_order_items(order_id: string, item_ids: list, payment_method_id: string) — Initiates return and refund. modify_pending_order_items(order_id: string, item_ids: list, new_item_ids: list, payment_method_id: string) — Modifies pending order items.",
+    "annotation_rationale": "Scope of requirement over disjunctive action: 'must collect X when [A or B]' is ambiguous between X being the same entity for both A and B, versus X referring to operation-specific variants for each disjunct."
+  },
+  {
+    "clause_id": "scopal_028",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "Do not compensate if the user is a regular member and has no travel insurance and flies (basic) economy.",
+    "ambiguous_version": "Agents must not compensate regular members without travel insurance or basic economy passengers.",
+    "unambiguous_version": "Agents must not compensate a user if ALL three conditions are true simultaneously: (1) the user is a regular member, AND (2) the user has no travel insurance, AND (3) the user flies in economy or basic economy cabin. If any one of these three conditions is absent, compensation may be appropriate.",
+    "ambiguity_point": "'regular members without travel insurance or basic economy passengers' — does the exclusion apply to (regular members without insurance) OR (basic economy passengers) as two independent groups, or to (regular members) who are (without insurance or in basic economy)?",
+    "possible_interpretations": [
+      "Interpretation A: Two separate excluded groups — regular members without insurance are excluded, AND basic economy passengers are excluded (regardless of membership).",
+      "Interpretation B: One conjunctive exclusion — users who are regular members AND (lack insurance OR fly basic economy) are excluded."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A a gold member flying basic economy is denied compensation because they fall in the 'basic economy passengers' excluded group. Under Interpretation B a gold member flying basic economy is still eligible because they are not a 'regular member'.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a compensation certificate.",
+    "annotation_rationale": "Coordination ambiguity in NP modification: 'regular members without insurance or basic economy passengers' allows grouping as [regular members without insurance] OR [basic economy passengers] vs. [regular members] without [insurance or basic economy status]."
+  },
+  {
+    "clause_id": "scopal_029",
+    "ambiguity_type": "scopal",
+    "domain": "retail",
+    "source_clause": "After user confirmation, the order status will be changed to 'cancelled' and the total will be refunded.",
+    "ambiguous_version": "After confirming any pending cancellation or modification, agents must update the order status and notify the user.",
+    "unambiguous_version": "After confirming a cancellation, agents must call the cancel tool to update the order status; the system will automatically refund the user — no separate notification is needed. After confirming a modification, agents must call the modify tool; they should then confirm the new order details to the user.",
+    "ambiguity_point": "'update the order status and notify the user' — does 'and' join two separate sequential steps that apply to both cancellations and modifications, or does each operation have its own post-confirmation procedure?",
+    "possible_interpretations": [
+      "Interpretation A: Both steps (update status + notify) apply uniformly to both cancellations and modifications.",
+      "Interpretation B: Post-confirmation procedures differ by operation type — cancellations only need status update while modifications need status update plus detail confirmation."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent sends an explicit notification message after both cancellations and modifications. Under Interpretation B the agent applies operation-specific post-confirmation behavior.",
+    "stripped_tool_desc": "cancel_pending_order(order_id: string, reason: string) — Cancels a pending order and triggers automatic refund.",
+    "annotation_rationale": "Conjunction scope over coordinated subject: 'after confirming [A or B], do C and D' is ambiguous between C and D applying uniformly to both A and B, versus C and D being operation-specific where each operation has distinct requirements."
+  },
+  {
+    "clause_id": "scopal_030",
+    "ambiguity_type": "scopal",
+    "domain": "airline",
+    "source_clause": "The cabin cannot be changed if any flight in the reservation has already been flown.",
+    "ambiguous_version": "Agents may not modify the cabin or change the flight legs if any passenger has checked in.",
+    "unambiguous_version": "Agents may not modify the cabin class of a reservation if any flight segment has already been flown. Agents may not change flight legs once any passenger has completed check-in. These are two separate restrictions with different trigger conditions.",
+    "ambiguity_point": "'may not modify cabin or change flight legs if any passenger has checked in' — does 'if any passenger has checked in' scope as the trigger for both prohibitions (cabin change AND leg change) or only for leg changes?",
+    "possible_interpretations": [
+      "Interpretation A: Check-in is the trigger for both restrictions — any checked-in passenger blocks both cabin changes and leg changes.",
+      "Interpretation B: The check-in trigger applies only to leg changes; cabin changes are blocked by a different condition (any segment flown), not by check-in."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent refuses to change a cabin even when no flights have been flown but a passenger has checked in — potentially incorrect. Under Interpretation B the agent applies the appropriate trigger for each restriction type.",
+    "stripped_tool_desc": "update_reservation_flights(reservation_id: string, flights: list, cabin: string, payment_method_id: string) — Updates flights and/or cabin in a reservation.",
+    "annotation_rationale": "Conditional scope over disjunctive restriction: 'may not [do A or B] if C' is ambiguous between the conditional C scoping over both A and B versus applying only to the nearer disjunct B."
+  },
+  {
+    "clause_id": "lexical_001",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "The user needs to confirm the reason for cancellation (either 'no longer needed' or 'ordered by mistake').",
+    "ambiguous_version": "The agent must obtain a valid reason from the user before cancelling a pending order.",
+    "unambiguous_version": "The agent must obtain a reason from the user before cancelling a pending order, and the reason must be exactly one of: 'no longer needed' or 'ordered by mistake'. Any other stated reason is not acceptable.",
+    "ambiguity_point": "'valid reason' — valid may mean (a) one of the two enumerated acceptable reasons; (b) any reason that is logically coherent or plausible; (c) any reason the customer sincerely holds.",
+    "possible_interpretations": [
+      "Interpretation A: 'Valid' means from the closed list of two accepted reasons — the agent must reject any reason outside 'no longer needed' / 'ordered by mistake'.",
+      "Interpretation B: 'Valid' means any genuine, non-frivolous customer reason — the agent accepts reasons like 'found a better price' or 'changed my mind'."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent accepts 'I found a cheaper option elsewhere' and proceeds with cancellation. Under Interpretation A the agent correctly rejects this reason and asks the customer to provide one of the two permitted reasons.",
+    "stripped_tool_desc": "cancel_pending_order(order_id: string, reason: string) — Cancels a pending order with the specified reason.",
+    "annotation_rationale": "Polysemy of 'valid': in everyday English 'valid reason' means any defensible reason; in a constrained policy context it means a reason from a closed enumerated set. The intended policy sense is not determinable without the enumeration."
+  },
+  {
+    "clause_id": "lexical_002",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "An order can only be cancelled if its status is 'pending'.",
+    "ambiguous_version": "The agent can cancel orders that have not yet been processed.",
+    "unambiguous_version": "The agent can cancel orders whose status is exactly 'pending'. Orders with status 'processed', 'delivered', or 'cancelled' cannot be cancelled.",
+    "ambiguity_point": "'not yet been processed' — processed may mean (a) the specific order status 'processed' in the system; (b) handled in any way by the warehouse or shipping system; (c) charged to the payment method.",
+    "possible_interpretations": [
+      "Interpretation A: 'Not yet processed' means status is not 'processed' — covers both 'pending' and potentially orders in other non-final states.",
+      "Interpretation B: 'Not yet processed' means status is specifically 'pending' — the only cancellable state."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent might attempt to cancel a 'delivered' order on grounds that it is 'not processed' in the warehouse sense. Under Interpretation B only 'pending' status orders are cancellable.",
+    "stripped_tool_desc": "cancel_pending_order(order_id: string, reason: string) — Cancels an order. Returns error if order is not in a cancellable state.",
+    "annotation_rationale": "Polysemy of 'processed': the word has a domain-specific meaning (a specific order status value) and a common English meaning (handled/acted upon). Without seeing the status enum, an agent may adopt the colloquial meaning."
+  },
+  {
+    "clause_id": "lexical_003",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "The modify items action will change the order status to 'pending (items modified)' and the agent will not be able to modify or cancel the order anymore.",
+    "ambiguous_version": "Once items have been modified, the order is locked and no further changes are permitted.",
+    "unambiguous_version": "Once the modify_pending_order_items tool has been called, the order status changes to 'pending (items modified)' and the agent cannot call modify_pending_order_items or cancel_pending_order on that order again. The payment method may still be updated.",
+    "ambiguity_point": "'locked' and 'no further changes' — 'changes' may mean (a) only item modifications; (b) all modifications including payment; (c) any action including returns after delivery.",
+    "possible_interpretations": [
+      "Interpretation A: 'No further changes' means no modifications of any kind, including payment method changes — the order is fully frozen.",
+      "Interpretation B: 'No further changes' refers only to item-level modifications; payment method can still be updated."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent refuses a customer's request to update the payment method after items have been modified. Under Interpretation B the agent correctly processes the payment update.",
+    "stripped_tool_desc": "modify_pending_order_payment(order_id: string, payment_method_id: string) — Updates the payment method of a pending order.",
+    "annotation_rationale": "Vagueness of 'changes' and 'locked': these terms lack defined scope — whether they apply to all operations or only item modifications is not determinable from context alone."
+  },
+  {
+    "clause_id": "lexical_004",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "If the user provides a gift card, it must have enough balance to cover the price difference.",
+    "ambiguous_version": "The customer must provide adequate payment when modifying order items with a price difference.",
+    "unambiguous_version": "When modifying order items with a price increase, the customer must provide a payment method with sufficient balance or credit to cover the price difference. If a gift card is provided, its current balance must be greater than or equal to the price difference.",
+    "ambiguity_point": "'adequate payment' — adequate may mean (a) any payment method that technically works (credit card with no balance check); (b) payment with verified sufficient balance; (c) payment pre-approved for the exact difference amount.",
+    "possible_interpretations": [
+      "Interpretation A: 'Adequate payment' means any payment method presented — the agent accepts a gift card without checking balance.",
+      "Interpretation B: 'Adequate payment' requires verified sufficient balance — the agent must check gift card balance before proceeding."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent accepts a gift card with $5 balance to cover a $50 price difference and calls the tool, which then fails. Under Interpretation B the agent proactively checks the gift card balance and declines if insufficient.",
+    "stripped_tool_desc": "get_user_details(user_id: string) — Returns user profile including payment methods and gift card balances.",
+    "annotation_rationale": "Vagueness of 'adequate': the term is graded and lacks a defined threshold. In financial contexts it could mean technically valid, sufficiently funded, or pre-authorized — three distinct verification procedures."
+  },
+  {
+    "clause_id": "lexical_005",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "Return delivered order: the refund will be to the original payment method or a gift card.",
+    "ambiguous_version": "Refunds for returned items will be credited back to the customer's account.",
+    "unambiguous_version": "Refunds for returned items will be applied to the original payment method used for the purchase (PayPal, credit card, or gift card) or to an existing gift card in the customer's account, as chosen by the customer.",
+    "ambiguity_point": "'credited back to the customer's account' — 'account' may mean (a) the specific payment method used for the original purchase; (b) a general store account or wallet; (c) any payment method on file; (d) a store credit balance.",
+    "possible_interpretations": [
+      "Interpretation A: Refund goes to the customer's store account or store credit balance — not necessarily the original payment method.",
+      "Interpretation B: Refund goes to the original payment method — the word 'account' refers specifically to that method."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent issues store credit and considers the return resolved. Under Interpretation B the agent refunds to the original PayPal/credit card/gift card as the customer paid.",
+    "stripped_tool_desc": "return_delivered_order_items(order_id: string, item_ids: list, payment_method_id: string) — Initiates a return. The payment_method_id specifies the refund destination.",
+    "annotation_rationale": "Polysemy of 'account': in retail contexts 'account' can refer to the user's platform account (with a store credit balance), the specific payment method used, or any on-file payment method. Each leads to different refund routing."
+  },
+  {
+    "clause_id": "lexical_006",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "You should deny user requests that are against this policy.",
+    "ambiguous_version": "Agents should decline requests that fall outside the scope of permitted retail operations.",
+    "unambiguous_version": "Agents must refuse to execute any request that is explicitly prohibited by or not covered in this policy. For requests that are not covered (i.e., out of scope), agents should transfer the user to a human agent rather than attempting to handle them.",
+    "ambiguity_point": "'decline' — may mean (a) refuse and provide no further assistance; (b) refuse but offer alternatives; (c) mark as declined in the system; (d) deprioritize but eventually handle.",
+    "possible_interpretations": [
+      "Interpretation A: 'Decline' means actively refuse with an explanation and stop — no further action on the request.",
+      "Interpretation B: 'Decline' means not execute directly but still assist indirectly (e.g., transfer to human, provide information about alternative channels)."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent simply says 'I cannot help with that' and ends the interaction. Under Interpretation B the agent refuses the specific action but transfers to a human or explains the alternative path.",
+    "stripped_tool_desc": "transfer_to_human_agents(summary: string) — Transfers the conversation to a human agent.",
+    "annotation_rationale": "Polysemy of 'decline': in customer service contexts, 'decline' can mean refuse-and-close, refuse-and-redirect, or deprioritize. The procedural consequence (transfer vs. terminate) depends heavily on which sense is adopted."
+  },
+  {
+    "clause_id": "lexical_007",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "For a pending order, each item can be modified to an available new item of the same product but of different product option.",
+    "ambiguous_version": "Items in a pending order can be swapped for any available alternative of the same kind.",
+    "unambiguous_version": "Items in a pending order can be replaced with a different variant (option) of the same product type. For example, a size M blue shirt can be changed to a size L blue shirt or a size M red shirt — but not to a different product type like pants.",
+    "ambiguity_point": "'same kind' — 'kind' may mean (a) same product type (e.g., shirt vs. shirt); (b) same product with different variant options; (c) same general category (e.g., clothing); (d) same price range.",
+    "possible_interpretations": [
+      "Interpretation A: 'Same kind' means same general product category (e.g., any clothing item) — a shirt can be swapped for pants.",
+      "Interpretation B: 'Same kind' means same specific product type — shirt for shirt only, with different option (color, size)."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent modifies a shirt to pants because both are 'clothing'. Under Interpretation B the agent correctly refuses the cross-type swap.",
+    "stripped_tool_desc": "modify_pending_order_items(order_id: string, item_ids: list, new_item_ids: list, payment_method_id: string) — Modifies items in a pending order.",
+    "annotation_rationale": "Vagueness of 'kind': the term has multiple granularity levels (category, type, variant). Without defining the level, an agent may apply a broader or narrower interpretation than the policy intends."
+  },
+  {
+    "clause_id": "lexical_008",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "At the beginning of the conversation, you have to authenticate the user identity by locating their user id via email, or via name + zip code.",
+    "ambiguous_version": "Before assisting a customer, the agent must verify the customer's identity.",
+    "unambiguous_version": "Before assisting a customer, the agent must locate the customer's user ID either by asking for their email address or by asking for their full name and zip code. This step is required even if the customer provides their user ID directly.",
+    "ambiguity_point": "'verify identity' — may mean (a) locate user ID via email or name+zip (the policy-specified method); (b) ask for any identifying information the customer provides; (c) confirm the user's stated identity without system lookup; (d) request a password or PIN.",
+    "possible_interpretations": [
+      "Interpretation A: Identity verification means the agent must look up the user ID via one of two specified methods (email or name+zip), regardless of what the customer provides.",
+      "Interpretation B: Identity verification means accepting whatever identifying information the customer provides (including self-stated user IDs, order numbers, etc.)."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent accepts a customer-stated user ID without performing the email or name+zip lookup, bypassing the authentication requirement. Under Interpretation A the lookup is always required.",
+    "stripped_tool_desc": "find_user_id_by_email(email: string) — Finds user ID by email. find_user_id_by_name_zip(first_name: string, last_name: string, zip: string) — Finds user ID by name and zip.",
+    "annotation_rationale": "Polysemy of 'verify': in security contexts, 'verify' can mean confirm-against-system (requiring a lookup) or accept-as-stated (trusting the customer's claim). The policy-intended sense requires the system lookup, but the common English sense of 'verify' could allow acceptance of a provided ID."
+  },
+  {
+    "clause_id": "lexical_009",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "You can only help one user per conversation but can handle multiple requests from the same user.",
+    "ambiguous_version": "The agent must handle each customer's requests individually within a single session.",
+    "unambiguous_version": "The agent may handle multiple requests from the same authenticated user within a single conversation, but must not assist any other user during that conversation. If a different user needs assistance, they must start a new conversation.",
+    "ambiguity_point": "'individually' — may mean (a) one request at a time, sequentially within the same session; (b) each customer gets their own separate session; (c) each request must be handled without combining with others.",
+    "possible_interpretations": [
+      "Interpretation A: 'Individually' means one request per session — only a single request per conversation is permitted, even for the same user.",
+      "Interpretation B: 'Individually' means each request is addressed in turn — multiple requests from the same user are handled sequentially in one session."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent ends the conversation after completing one request and requires a new session for the user's second request. Under Interpretation B the agent correctly handles the user's second request in the same session.",
+    "stripped_tool_desc": null,
+    "annotation_rationale": "Polysemy of 'individually': the adverb can mean 'one at a time in sequence' (allowing multiple sequential requests) or 'each in a separate instance' (requiring separate sessions per request). The policy intent is the former."
+  },
+  {
+    "clause_id": "lexical_010",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "The modify items action can only be called once and the agent will not be able to modify or cancel the order anymore.",
+    "ambiguous_version": "Modifications to an order's items are final and the order record becomes read-only.",
+    "unambiguous_version": "After the modify_pending_order_items tool is called, no further calls to modify or cancel that specific order are allowed. The order status changes to 'pending (items modified)'. The agent can still look up order details but cannot execute further changes.",
+    "ambiguity_point": "'read-only' and 'final' — may mean (a) no tool calls that change the order are permitted; (b) the agent cannot display or discuss the order; (c) the order record is archived and inaccessible.",
+    "possible_interpretations": [
+      "Interpretation A: 'Read-only' means the agent can view but not change — lookups are still permitted, only modifications are blocked.",
+      "Interpretation B: 'Read-only' means no further interaction with the order record — the agent refuses to even display order details."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent refuses to look up and confirm order details after modification, leaving the customer without confirmation of what was changed. Under Interpretation A the agent correctly displays the updated order details.",
+    "stripped_tool_desc": "get_order_details(order_id: string) — Returns current order details including status, items, and payment.",
+    "annotation_rationale": "Technical term polysemy: 'read-only' in database contexts means no writes are permitted but reads are still allowed. However in everyday English 'final' can imply the record is closed entirely. The operational consequence differs significantly."
+  },
+  {
+    "clause_id": "lexical_011",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "Flight can be cancelled if the booking was made within the last 24 hours.",
+    "ambiguous_version": "Passengers may cancel flights booked recently without penalty.",
+    "unambiguous_version": "Passengers may cancel a flight booking made within the last 24 hours without penalty. 'Within the last 24 hours' is calculated from the current time to the time the booking was created, not from the scheduled departure time.",
+    "ambiguity_point": "'recently' — may mean (a) within 24 hours of booking creation; (b) within 24 hours of departure; (c) within the same calendar day; (d) within a few days.",
+    "possible_interpretations": [
+      "Interpretation A: 'Recently' means within 24 hours of the booking creation timestamp.",
+      "Interpretation B: 'Recently' means within some other time window — same day, 48 hours, or within 24 hours of departure."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent cancels a booking made 30 hours ago because 'it seems recent enough.' Under Interpretation A the agent correctly enforces the 24-hour window from booking creation.",
+    "stripped_tool_desc": "cancel_reservation(reservation_id: string) — Cancels a reservation. Does not enforce eligibility.",
+    "annotation_rationale": "Vagueness of 'recently': the adverb lacks a defined threshold and can be interpreted as various time windows. In airline policy '24 hours from booking' is the specific rule, but 'recently' could imply same-day or other windows."
+  },
+  {
+    "clause_id": "lexical_012",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "It is a business flight — one of the four cancellation eligibility conditions.",
+    "ambiguous_version": "Corporate travel bookings are eligible for cancellation under the business travel exception.",
+    "unambiguous_version": "A booking is eligible for cancellation under the business travel exception if and only if the cabin class of all flights in the reservation is 'business'. Corporate account bookings in economy or basic economy are not eligible under this exception.",
+    "ambiguity_point": "'Corporate travel bookings' and 'business travel' — 'business' may mean (a) business cabin class; (b) bookings made for corporate/work purposes; (c) bookings made through a corporate account.",
+    "possible_interpretations": [
+      "Interpretation A: 'Business travel' means the cabin class is business — the flight is in the business cabin.",
+      "Interpretation B: 'Business travel' means the purpose of the trip is work-related — any cabin class qualifies if the passenger is traveling for business."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent cancels an economy booking because the passenger claims it was for a work conference. Under Interpretation A the agent only applies the exception to actual business-cabin bookings.",
+    "stripped_tool_desc": "cancel_reservation(reservation_id: string) — Cancels a reservation. Agent must verify eligibility before calling.",
+    "annotation_rationale": "Domain-specific polysemy of 'business': in airline policy 'business' refers to the business cabin class; in everyday English it refers to commercial/work purpose. Both readings are plausible without the domain definition."
+  },
+  {
+    "clause_id": "lexical_013",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "The user has travel insurance and the reason for cancellation is covered by insurance.",
+    "ambiguous_version": "The agent may cancel a flight if the customer's cancellation reason is covered.",
+    "unambiguous_version": "The agent may cancel a flight if the customer has travel insurance and the stated reason for cancellation is listed as a covered reason in their insurance policy. The agent must ask the customer to confirm that their insurance covers the stated reason.",
+    "ambiguity_point": "'covered' — may mean (a) covered by travel insurance specifically; (b) covered by any policy including corporate reimbursement; (c) covered under general airline cancellation rules; (d) reasonable/understandable.",
+    "possible_interpretations": [
+      "Interpretation A: 'Covered' means specifically covered under the customer's travel insurance policy.",
+      "Interpretation B: 'Covered' means any form of coverage or justification — corporate policies, compelling personal reasons, or general airline rules."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent cancels a flight for a customer who says their employer 'covers' the trip cost, treating employer reimbursement as equivalent to insurance coverage. Under Interpretation A the agent requires actual travel insurance coverage.",
+    "stripped_tool_desc": "cancel_reservation(reservation_id: string) — Cancels a reservation.",
+    "annotation_rationale": "Polysemy of 'covered' in insurance context: the word can mean covered by the specific travel insurance product, or more broadly covered/justified in any sense. The policy intends the narrow insurance-specific meaning."
+  },
+  {
+    "clause_id": "lexical_014",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "Do not proactively offer compensation unless the user explicitly asks for one.",
+    "ambiguous_version": "Agents should not bring up compensation unless the customer raises the issue.",
+    "unambiguous_version": "Agents must not mention, suggest, or hint at compensation eligibility unless the customer explicitly uses words like 'compensation', 'certificate', 'refund for the delay/cancellation', or directly asks what they are entitled to. Oblique references such as 'I'm very unhappy' do not count as raising the issue.",
+    "ambiguity_point": "'raises the issue' and 'explicitly asks' — 'raises' may mean (a) directly asks using the word 'compensation'; (b) complains about the inconvenience in any form; (c) implies interest without directly requesting.",
+    "possible_interpretations": [
+      "Interpretation A: 'Raises the issue' means any expression of dissatisfaction — a complaint about a delay counts, triggering compensation discussion.",
+      "Interpretation B: 'Raises the issue' means a direct, explicit request for compensation — general complaints do not trigger the offer."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent proactively offers compensation whenever a customer says 'this delay is really frustrating.' Under Interpretation B the agent only offers when the customer directly asks about compensation.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a compensation certificate.",
+    "annotation_rationale": "Polysemy of 'raises/explicitly asks': 'raises the issue' spans a spectrum from any complaint (broad) to direct request (narrow). The policy intends the narrow sense but the term admits the broader reading."
+  },
+  {
+    "clause_id": "lexical_015",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "Confirm the facts before offering compensation.",
+    "ambiguous_version": "The agent must establish the situation before issuing any certificate.",
+    "unambiguous_version": "Before issuing a compensation certificate, the agent must confirm with the customer: (1) the specific flight(s) affected, (2) whether those flights were cancelled or delayed, and (3) the number of passengers on the affected flights.",
+    "ambiguity_point": "'establish the situation' — may mean (a) verify specific factual claims (flight cancelled, delay duration, passenger count); (b) understand the customer's emotional state; (c) document the complaint for records; (d) confirm eligibility criteria are met.",
+    "possible_interpretations": [
+      "Interpretation A: 'Establish' means gathering enough customer context to understand their complaint — no specific fact-checking required.",
+      "Interpretation B: 'Establish' means verifying specific factual claims (cancellation/delay, passenger count) before issuing the certificate."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent issues a certificate after listening to the customer's complaint without verifying whether the flight was actually delayed or how many passengers were affected. Under Interpretation B the agent verifies both before calculating and issuing the certificate.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a compensation certificate to a user.",
+    "annotation_rationale": "Vagueness of 'establish': the verb can mean assess contextually (understanding) or verify factually (checking against records). The policy intends specific fact-checking but the term allows a looser interpretation."
+  },
+  {
+    "clause_id": "lexical_016",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "Basic economy is a cabin class completely distinct from economy.",
+    "ambiguous_version": "Economy-class rules apply to all non-premium cabin passengers.",
+    "unambiguous_version": "Standard economy rules apply only to passengers booked in the 'economy' cabin. Basic economy is a separate cabin class with its own more restrictive rules — basic economy passengers cannot modify their reservations regardless of circumstances.",
+    "ambiguity_point": "'non-premium cabin' — may mean (a) economy only; (b) both economy and basic economy; (c) all cabins other than business.",
+    "possible_interpretations": [
+      "Interpretation A: 'Non-premium' covers both economy and basic economy — basic economy passengers receive economy rules.",
+      "Interpretation B: 'Non-premium' refers only to standard economy; basic economy is treated as a distinct cabin with stricter rules."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent allows a basic economy passenger to modify their flight because economy-class rules permit modification. Under Interpretation B the agent correctly refuses modification for basic economy.",
+    "stripped_tool_desc": "update_reservation_flights(reservation_id: string, flights: list, payment_method_id: string) — Updates flights in a reservation.",
+    "annotation_rationale": "Vague category boundary: 'non-premium' is not a defined term in airline policy. Whether it includes only economy or also basic economy is ambiguous — and the distinction has critical operational consequences."
+  },
+  {
+    "clause_id": "lexical_017",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "The API does not check that cancellation rules are met, so the agent must make sure the rules apply before calling the API.",
+    "ambiguous_version": "Agents are responsible for ensuring compliance before executing flight cancellations.",
+    "unambiguous_version": "Agents must manually verify that at least one of the four cancellation eligibility conditions is satisfied before calling the cancel_reservation tool. The cancel_reservation tool will execute the cancellation regardless of eligibility — the agent is the only safeguard.",
+    "ambiguity_point": "'ensuring compliance' — may mean (a) verifying the four specific eligibility conditions before calling the tool; (b) following the conversation protocol (confirmation, documentation); (c) checking that the tool call format is correct.",
+    "possible_interpretations": [
+      "Interpretation A: 'Compliance' refers to process compliance (following conversation steps) — not necessarily checking the four substantive eligibility conditions.",
+      "Interpretation B: 'Compliance' means verifying the four cancellation eligibility conditions — substantive policy compliance before the tool call."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent calls the cancellation tool after getting user confirmation but without checking whether any of the four eligibility conditions apply. Under Interpretation B the agent explicitly verifies eligibility before proceeding.",
+    "stripped_tool_desc": "cancel_reservation(reservation_id: string) — Cancels the specified reservation immediately. No eligibility check is performed.",
+    "annotation_rationale": "Polysemy of 'compliance': in procedural contexts 'compliance' can refer to process/format compliance or substantive rule compliance. The policy requires substantive eligibility checking, but the term alone does not convey this."
+  },
+  {
+    "clause_id": "lexical_018",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "The flight is cancelled by the airline — one of the four conditions under which a passenger's booking can be cancelled.",
+    "ambiguous_version": "Agents may cancel a reservation when the airline has cancelled the service.",
+    "unambiguous_version": "Agents may cancel a reservation when the airline has cancelled one or more of the specific flights in that reservation. A general service suspension (e.g., the airline pausing a route temporarily) that has not yet cancelled the customer's specific scheduled flight does not qualify.",
+    "ambiguity_point": "'cancelled the service' — 'service' may mean (a) the specific flight(s) in the customer's reservation; (b) the route in general; (c) the airline's operations on that day.",
+    "possible_interpretations": [
+      "Interpretation A: 'Service' means the specific flights booked — only the customer's actual flights being cancelled triggers eligibility.",
+      "Interpretation B: 'Service' means the route or general service — any operational disruption on the route qualifies."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent cancels a booking because the airline announced route suspensions next month, even though the customer's specific flight is still scheduled. Under Interpretation A only an actual cancellation of the customer's flight qualifies.",
+    "stripped_tool_desc": "cancel_reservation(reservation_id: string) — Cancels the reservation.",
+    "annotation_rationale": "Polysemy of 'service': airlines use 'service' to mean a specific flight, a route, or general operations. The policy intends the narrow sense (specific flight), but 'service' commonly refers to broader operational categories."
+  },
+  {
+    "clause_id": "lexical_019",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "If the user complains about a cancelled flight, the agent can offer a $100-per-passenger certificate as a gesture.",
+    "ambiguous_version": "When a customer reports a flight disruption, the agent may offer an appropriate gesture of goodwill.",
+    "unambiguous_version": "When a customer reports that a flight in their reservation was cancelled by the airline, and the customer explicitly asks for compensation, the agent may offer a certificate of $100 per passenger in the reservation as a gesture of goodwill.",
+    "ambiguity_point": "'appropriate gesture of goodwill' — may mean (a) the specific $100-per-passenger certificate; (b) any form of goodwill (apology, miles, priority boarding); (c) a variable amount at agent discretion.",
+    "possible_interpretations": [
+      "Interpretation A: 'Appropriate gesture' means the specifically mandated $100-per-passenger certificate — no other form is permitted.",
+      "Interpretation B: 'Appropriate gesture' allows the agent to choose any form of compensation (miles, service upgrades, variable dollar amounts) based on the situation."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent offers 500 frequent flyer miles or a $50 voucher at their discretion. Under Interpretation A the agent correctly offers only the $100-per-passenger certificate as specified.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a compensation certificate of the specified amount.",
+    "annotation_rationale": "Vagueness of 'appropriate gesture of goodwill': the phrase abstracts away the specific policy requirement ($100 per passenger, certificates only). Different agents will apply different standards for 'appropriate'."
+  },
+  {
+    "clause_id": "lexical_020",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "The cabin must be consistent across all flights in the reservation when modifying.",
+    "ambiguous_version": "All flights in a modified reservation must have matching travel class.",
+    "unambiguous_version": "After modification, all flights within a reservation must be in the same cabin class (e.g., all economy or all business). Mixing cabin classes across segments (e.g., one economy leg and one business leg) is not permitted.",
+    "ambiguity_point": "'matching travel class' — 'matching' and 'travel class' may mean (a) all segments in the same named cabin (economy, business, basic economy); (b) same general tier (premium vs. non-premium); (c) same fare class code.",
+    "possible_interpretations": [
+      "Interpretation A: 'Matching' means all flights in the exact same named cabin — economy with economy, business with business.",
+      "Interpretation B: 'Matching' means all flights in a broadly comparable tier — economy and basic economy could both count as 'matching' because they are both non-premium."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent modifies a reservation to mix economy and basic economy segments, treating them as 'matching' non-premium travel classes. Under Interpretation A the agent correctly refuses because basic economy and economy are distinct cabins.",
+    "stripped_tool_desc": "update_reservation_flights(reservation_id: string, flights: list, cabin: string, payment_method_id: string) — Updates reservation flights.",
+    "annotation_rationale": "Polysemy of 'matching travel class': 'matching' could mean exact cabin name matching or tier-level matching. Given that basic economy is a distinct cabin, the intended meaning is exact-name matching, but the term allows tier-based grouping."
+  },
+  {
+    "clause_id": "lexical_021",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "Exchange delivered order: same product type constraint applies.",
+    "ambiguous_version": "Customers may exchange delivered items for equivalent products.",
+    "unambiguous_version": "Customers may exchange delivered items for a different variant (option) of the same product type. The exchanged item must be of the same product type (e.g., shirt for shirt) but can be a different size, color, or other option.",
+    "ambiguity_point": "'equivalent products' — 'equivalent' may mean (a) same product type with different options; (b) same price point; (c) similar functionality or category; (d) same product ID.",
+    "possible_interpretations": [
+      "Interpretation A: 'Equivalent' means same price range — a $30 item can be exchanged for any other $30 item regardless of type.",
+      "Interpretation B: 'Equivalent' means same product type — only exchanges within the same product category are permitted."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent processes an exchange of a shirt for a pair of headphones because both are priced at $30. Under Interpretation B the agent correctly refuses and requires the exchange to stay within the same product type.",
+    "stripped_tool_desc": "exchange_delivered_order_items(order_id: string, item_ids: list, new_item_ids: list, payment_method_id: string) — Processes an exchange for delivered items.",
+    "annotation_rationale": "Polysemy of 'equivalent': the word can mean price-equivalent, function-equivalent, or type-equivalent. Policy intends type-equivalent (same product type), but the term without definition admits price or functional equivalence."
+  },
+  {
+    "clause_id": "lexical_022",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "Modify payment: the new payment method must not be the same as the existing one.",
+    "ambiguous_version": "The replacement payment method must be different from the one currently on the order.",
+    "unambiguous_version": "The replacement payment method must have a different payment method ID than the one currently associated with the order. Two gift cards are considered different payment methods if they have different IDs, even if they belong to the same user.",
+    "ambiguity_point": "'different from' — may mean (a) a different payment method ID (technically different record); (b) a different payment method type (e.g., can't replace credit card with another credit card); (c) functionally different in some way.",
+    "possible_interpretations": [
+      "Interpretation A: 'Different' means a different payment method type — cannot replace a Visa credit card with another credit card, even from a different bank.",
+      "Interpretation B: 'Different' means a different specific payment method ID — any payment method record that is not the exact same stored method qualifies."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent refuses to replace one credit card with a different credit card because they are 'the same type.' Under Interpretation B the agent correctly accepts the change as long as the new card has a different ID.",
+    "stripped_tool_desc": "modify_pending_order_payment(order_id: string, payment_method_id: string) — Updates the payment method of a pending order.",
+    "annotation_rationale": "Ambiguity in 'different': the comparison can be at the record level (different ID) or at the type level (different payment instrument class). The policy intends record-level difference, but 'different payment method' could imply type-level difference."
+  },
+  {
+    "clause_id": "lexical_023",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "You should at most make one tool call at a time and if you make a tool call you should not respond to the user at the same time.",
+    "ambiguous_version": "The agent must complete one transaction at a time before initiating another.",
+    "unambiguous_version": "In each turn of the conversation, the agent must choose between either sending a message to the user or making one tool call. Both actions cannot occur in the same turn. The agent may make multiple tool calls across successive turns to complete a complex request.",
+    "ambiguity_point": "'complete one transaction at a time' — 'transaction' may mean (a) a single tool call per turn; (b) a complete end-to-end customer request (all related tool calls together); (c) a single database operation.",
+    "possible_interpretations": [
+      "Interpretation A: 'Transaction' means a complete customer request — the agent must finish all steps of the current request before starting another (no interleaving).",
+      "Interpretation B: 'Transaction' means a single tool call — the agent may initiate different requests alternately across turns, one tool call per turn."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent refuses to partially address a cancellation and then start discussing a return until the cancellation is fully resolved. Under Interpretation B the agent can freely interleave tool calls for different requests across turns.",
+    "stripped_tool_desc": null,
+    "annotation_rationale": "Polysemy of 'transaction': in database terminology a transaction is an atomic unit of work; in customer service it can mean a complete service episode. These map to different sequential constraints on agent behavior."
+  },
+  {
+    "clause_id": "lexical_024",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "You should not make up any information or knowledge not provided by the user or the tools.",
+    "ambiguous_version": "Agents should only communicate information they can directly support.",
+    "unambiguous_version": "Agents should only communicate information that was explicitly provided by the customer during the conversation or returned by a tool call. Agents must not infer, estimate, or state facts not grounded in these two sources.",
+    "ambiguity_point": "'can directly support' — may mean (a) information explicitly provided by user or tool; (b) information inferable from context or common knowledge; (c) information the agent is reasonably confident about.",
+    "possible_interpretations": [
+      "Interpretation A: 'Directly support' means provably grounded in user input or tool output — no inference or estimation.",
+      "Interpretation B: 'Directly support' means the agent believes it to be correct based on reasoning — informed inference is acceptable."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent says 'Your order will probably arrive tomorrow based on the shipping date' without querying the tracking tool. Under Interpretation A the agent only states delivery information after confirming it via a tool call.",
+    "stripped_tool_desc": "get_order_details(order_id: string) — Returns current order details.",
+    "annotation_rationale": "Vagueness of 'directly support': in epistemological contexts 'supporting' evidence can mean proof (strict) or plausibility (loose). The policy intends the strict reading (explicitly provided data only), but the phrasing admits informed inference."
+  },
+  {
+    "clause_id": "lexical_025",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "If the user complains about a delayed flight and wants to change or cancel the reservation, the agent can offer a $50-per-passenger certificate.",
+    "ambiguous_version": "Agents may issue a delay certificate when the customer's flight was significantly delayed.",
+    "unambiguous_version": "Agents may issue a $50-per-passenger certificate when a flight in the customer's reservation was delayed — for any duration of delay — provided the customer explicitly requests a change or cancellation of the reservation as a result.",
+    "ambiguity_point": "'significantly delayed' — 'significant' is not defined; may mean (a) any delay; (b) delay exceeding a specific threshold (e.g., 2 hours, 3 hours); (c) a delay causing a missed connection; (d) a delay the customer considers significant.",
+    "possible_interpretations": [
+      "Interpretation A: 'Significant' requires a minimum delay duration (e.g., 2+ hours) before compensation is warranted.",
+      "Interpretation B: Any delay — even 15 minutes — qualifies if the customer complains about it."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent asks the customer how long the delay was before offering compensation, potentially denying a $50 certificate for a 45-minute delay. Under Interpretation B the agent offers compensation for any reported delay the customer complains about.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a compensation certificate.",
+    "annotation_rationale": "Vagueness of 'significant': the term is graded and subjective. Different agents will apply different thresholds, producing inconsistent compensation decisions. The actual policy specifies no minimum delay duration."
+  },
+  {
+    "clause_id": "lexical_026",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "A reservation can include at most one travel certificate as part of the payment.",
+    "ambiguous_version": "Only one promotional instrument may be applied per booking.",
+    "unambiguous_version": "Only one travel certificate may be applied per booking. Gift cards and credit cards are not considered promotional instruments and are not subject to this limit.",
+    "ambiguity_point": "'promotional instrument' — may mean (a) only travel certificates; (b) travel certificates and gift cards; (c) any discount or non-standard payment form (certificates, gift cards, miles).",
+    "possible_interpretations": [
+      "Interpretation A: 'Promotional instrument' covers certificates, gift cards, and potentially miles — only one of any such type can be applied.",
+      "Interpretation B: 'Promotional instrument' means only certificates — gift cards are regular payment methods not subject to this limit."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent refuses to accept two gift cards because they treat gift cards as 'promotional instruments.' Under Interpretation B the agent correctly allows up to three gift cards alongside a certificate.",
+    "stripped_tool_desc": "book_reservation(user_id: string, origin: string, destination: string, flight_type: string, cabin: string, flights: list, passengers: list, payment_methods: list, travel_insurance: bool, add_checked_baggages: int) — Books a reservation with specified payment methods.",
+    "annotation_rationale": "Polysemy of 'promotional instrument': in payment processing, promotional instruments typically include certificates and gift cards; in marketing, the term covers any discount mechanism. The distinction determines which payment limits apply."
+  },
+  {
+    "clause_id": "lexical_027",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "The trip type (one-way or round-trip) cannot be changed when modifying a reservation.",
+    "ambiguous_version": "Agents cannot change the structure of a reservation during modification.",
+    "unambiguous_version": "During modification, agents cannot change the trip type (one-way vs. round-trip), the origin airport, or the destination airport. Flight-segment details (dates, times, flight numbers) within the existing structure may be changed.",
+    "ambiguity_point": "'structure of a reservation' — 'structure' may mean (a) trip type and origin/destination only; (b) any fixed booking parameter including number of passengers or cabin; (c) the entire booking configuration.",
+    "possible_interpretations": [
+      "Interpretation A: 'Structure' is narrow — only trip type and origin/destination are fixed; everything else can be modified.",
+      "Interpretation B: 'Structure' is broad — any major booking parameter (passengers, cabin, trip type, routing) counts as structural and cannot be changed."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent refuses to change a cabin class or passenger count because these are 'structural.' Under Interpretation A the agent only blocks changes to trip type and origin/destination, allowing cabin and passenger modifications per other rules.",
+    "stripped_tool_desc": "update_reservation_flights(reservation_id: string, flights: list, payment_method_id: string) — Updates flight segments in a reservation.",
+    "annotation_rationale": "Vagueness of 'structure': in software engineering, structure refers to the template/schema; in travel, it could mean routing, booking class, or trip type. Without definition, agents may apply overly broad or narrow restrictions."
+  },
+  {
+    "clause_id": "lexical_028",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "Return delivered order: items must have been delivered (status is 'delivered').",
+    "ambiguous_version": "The return process applies to orders the customer has received.",
+    "unambiguous_version": "The return process applies only to orders whose status in the system is 'delivered'. Orders in transit, pending, or processed status are not eligible for return processing.",
+    "ambiguity_point": "'received' — may mean (a) the system status is 'delivered'; (b) the customer physically has the item in hand; (c) the carrier has delivered to the address (which may differ from customer receipt).",
+    "possible_interpretations": [
+      "Interpretation A: 'Received' means the system status is 'delivered' — the database state triggers eligibility.",
+      "Interpretation B: 'Received' means the customer physically confirms receipt — a customer could claim receipt before the status updates, or dispute receipt when the status says delivered."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent processes a return for an order the customer claims to have received, even though the system shows status 'processed'. Under Interpretation A the agent checks the database status and only proceeds when status is 'delivered'.",
+    "stripped_tool_desc": "return_delivered_order_items(order_id: string, item_ids: list, payment_method_id: string) — Initiates a return. Returns error if order is not in delivered status.",
+    "annotation_rationale": "Polysemy of 'received': the word can refer to the system-recorded delivery event (database status) or the customer's physical receipt (self-reported). These two can diverge and lead to different eligibility decisions."
+  },
+  {
+    "clause_id": "lexical_029",
+    "ambiguity_type": "lexical",
+    "domain": "airline",
+    "source_clause": "Gold members receive 4 free checked bags in business class.",
+    "ambiguous_version": "Premium-tier travelers in upper-cabin seats receive the maximum checked baggage allowance.",
+    "unambiguous_version": "Gold-tier members booked in the business cabin receive 4 free checked bags. This is the maximum allowance in the system. Silver, regular, and all economy/basic-economy travelers receive fewer free bags according to the baggage table.",
+    "ambiguity_point": "'premium-tier' and 'upper-cabin' — 'premium-tier' may mean gold only or gold+silver; 'upper-cabin' may mean business only or business+economy (vs. basic economy).",
+    "possible_interpretations": [
+      "Interpretation A: 'Premium-tier' = gold only; 'upper-cabin' = business only — only gold members in business get maximum allowance.",
+      "Interpretation B: 'Premium-tier' = silver and gold; 'upper-cabin' = economy and business — silver members in economy also receive maximum allowance."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent allows a silver member booking economy to add 4 free bags. Under Interpretation A only gold-business travelers receive 4 free bags; silver members in economy get fewer.",
+    "stripped_tool_desc": "update_reservation_baggages(reservation_id: string, total_baggages: int, payment_method_id: string) — Updates checked baggage count.",
+    "annotation_rationale": "Polysemy of category labels: 'premium-tier' and 'upper-cabin' are informal synonyms for membership and cabin tiers respectively, but their exact coverage (which tiers qualify) is ambiguous without explicit mapping to the defined tier names."
+  },
+  {
+    "clause_id": "lexical_030",
+    "ambiguity_type": "lexical",
+    "domain": "retail",
+    "source_clause": "You can only help one user per conversation and must deny any requests for tasks related to any other user.",
+    "ambiguous_version": "The agent must decline requests made on behalf of another party.",
+    "unambiguous_version": "The agent must refuse to perform any action (lookups, cancellations, modifications, returns) related to a user account other than the one that was authenticated at the start of the current conversation.",
+    "ambiguity_point": "'on behalf of another party' — 'another party' may mean (a) a different user account; (b) any third party including the customer's family member at the same address; (c) a business entity; (d) anyone other than the authenticated account holder.",
+    "possible_interpretations": [
+      "Interpretation A: 'Another party' means any user other than the authenticated account — even a spouse making a request about their own account is refused.",
+      "Interpretation B: 'Another party' means an unauthorized third party — if the customer has authority over the other account (e.g., family manager), requests can be handled."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation B an agent helps a user manage their spouse's order because the customer claims shared account authority. Under Interpretation A the agent correctly refuses to take any action on any account other than the authenticated one.",
+    "stripped_tool_desc": "get_user_details(user_id: string) — Returns user profile. get_order_details(order_id: string) — Returns order details.",
+    "annotation_rationale": "Polysemy of 'another party': in legal contexts a 'party' is any distinct legal entity; in customer service it may connote unauthorized third parties vs. authorized representatives. The intended meaning is any other user account, but the term allows relationship-based exceptions."
+  },
+  {
+    "clause_id": "incompleteness_001",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "An order can only be cancelled if its status is 'pending', and the user must confirm the reason.",
+    "ambiguous_version": "A pending order may be cancelled upon user request with a stated reason.",
+    "unambiguous_version": "A pending order may be cancelled upon user request. The user must state a reason, and the reason must be either 'no longer needed' or 'ordered by mistake'. Requests with any other stated reason must be declined.",
+    "ambiguity_point": "The clause does not specify what reasons are acceptable — it only says a reason must be stated.",
+    "possible_interpretations": [
+      "Interpretation A: Any stated reason is sufficient — the agent accepts 'I found it cheaper elsewhere' or 'I changed my mind'.",
+      "Interpretation B: Only the two enumerated reasons are acceptable — the agent must reject all others."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent cancels an order for a customer who says 'I just don't want it anymore' (which is not one of the two valid reasons). Under Interpretation B the agent asks the customer to rephrase as one of the two permitted reasons.",
+    "stripped_tool_desc": "cancel_pending_order(order_id: string, reason: string) — Cancels a pending order with the given reason.",
+    "annotation_rationale": "Missing specification of acceptable reason values. The clause requires a reason but fails to enumerate which reasons are valid, leaving the agent to decide acceptability without policy guidance. Per D004, the unambiguous version adds only the two enumerated values."
+  },
+  {
+    "clause_id": "incompleteness_002",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "After user confirmation, the total will be refunded via the original payment method.",
+    "ambiguous_version": "After cancellation, the order total is refunded to the customer's payment method.",
+    "unambiguous_version": "After cancellation, the order total is refunded to the original payment method used for the order. If the original payment method was a gift card, the refund is processed immediately. For all other payment methods, the refund is processed in 5 to 7 business days.",
+    "ambiguity_point": "The clause does not specify refund timing, leaving the agent unable to inform customers when to expect funds.",
+    "possible_interpretations": [
+      "Interpretation A: The refund is immediate for all payment methods.",
+      "Interpretation B: The refund takes several business days for all payment methods."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent tells a credit card customer their refund is immediate. Under Interpretation B the agent correctly states 5–7 business days for credit card/PayPal refunds while gift card refunds are immediate.",
+    "stripped_tool_desc": "cancel_pending_order(order_id: string, reason: string) — Cancels the order and initiates refund.",
+    "annotation_rationale": "Missing refund timing specification. The clause states refunds go to the original payment method but omits the timeline. Per D004, the unambiguous version adds only the timing rule (immediate for gift cards, 5–7 days otherwise) without additional edge cases."
+  },
+  {
+    "clause_id": "incompleteness_003",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "The modify items action can only be called once.",
+    "ambiguous_version": "Items in a pending order can be modified, but this action has limitations.",
+    "unambiguous_version": "Items in a pending order can be modified, but the modify_pending_order_items tool can only be called once per order. After it is called, no further item modifications or cancellations are possible for that order.",
+    "ambiguity_point": "The clause mentions limitations without specifying what they are — particularly the one-time limit and the consequence that the order can no longer be cancelled.",
+    "possible_interpretations": [
+      "Interpretation A: Modifications can be made multiple times with some unspecified cap.",
+      "Interpretation B: Exactly one modification call is permitted, after which neither modification nor cancellation is possible."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent allows a second modification attempt when a customer wants to change another item. Under Interpretation B the agent proactively warns the customer to specify all changes in a single call and declines any subsequent modification requests.",
+    "stripped_tool_desc": "modify_pending_order_items(order_id: string, item_ids: list, new_item_ids: list, payment_method_id: string) — Modifies items in a pending order. Can only be called once per order.",
+    "annotation_rationale": "Missing specification of the one-time limit and its consequence. The unambiguous version adds only the one-call limit and the resulting prohibition on further modifications/cancellations — nothing more."
+  },
+  {
+    "clause_id": "incompleteness_004",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "The new payment method for an order modification must not be the same as the existing one.",
+    "ambiguous_version": "The customer can update the payment method on a pending order to a different one from their account.",
+    "unambiguous_version": "The customer can update the payment method on a pending order to a different payment method from their account. The new payment method must have a different payment method ID than the current one. If the new payment method is a gift card, its balance must be sufficient to cover the order total.",
+    "ambiguity_point": "The clause does not specify the balance requirement when the new payment method is a gift card.",
+    "possible_interpretations": [
+      "Interpretation A: The agent accepts any gift card the customer provides as the new method without checking balance.",
+      "Interpretation B: The agent must verify the gift card has sufficient balance to cover the order total before accepting it as the new payment method."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent switches the payment to a nearly depleted gift card, causing a payment failure. Under Interpretation B the agent checks the gift card balance first and declines if insufficient.",
+    "stripped_tool_desc": "modify_pending_order_payment(order_id: string, payment_method_id: string) — Changes the payment method of a pending order.",
+    "annotation_rationale": "Missing gift card balance check condition. The clause states the new method must differ from the old one but does not address the gift card balance requirement. Per D004, only the balance-check rule is added."
+  },
+  {
+    "clause_id": "incompleteness_005",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "For exchange of a delivered order, the same product type constraint applies.",
+    "ambiguous_version": "Customers can exchange items in a delivered order for different ones.",
+    "unambiguous_version": "Customers can exchange items in a delivered order for different items of the same product type. The exchanged items must be of the same product type as the originals (e.g., shirt for shirt). A payment method must be provided to handle any price difference between the original and new items.",
+    "ambiguity_point": "The clause does not specify that a payment method must be provided to cover price differences in an exchange.",
+    "possible_interpretations": [
+      "Interpretation A: Exchanges are always equal-value — no payment is required or accepted.",
+      "Interpretation B: Exchanges may involve a price difference that must be paid or refunded via a specified payment method."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent processes an exchange without asking for a payment method, causing the tool call to fail when there is a price difference. Under Interpretation B the agent asks for a payment method before processing.",
+    "stripped_tool_desc": "exchange_delivered_order_items(order_id: string, item_ids: list, new_item_ids: list, payment_method_id: string) — Processes an item exchange. Requires a payment method for price differences.",
+    "annotation_rationale": "Missing payment method requirement. The source clause mentions same-type constraint but omits the payment method requirement for price differences. Per D004, only this single missing element is added."
+  },
+  {
+    "clause_id": "incompleteness_006",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "You have to authenticate the user identity by locating their user id via email, or via name + zip code.",
+    "ambiguous_version": "Agents must confirm who they are speaking with before taking any account actions.",
+    "unambiguous_version": "Agents must confirm the user's identity by looking up their user ID via email or via their full name plus zip code before taking any account actions. This lookup must be performed even if the user provides their user ID directly.",
+    "ambiguity_point": "The clause does not specify whether the lookup is required when the user already provides their user ID.",
+    "possible_interpretations": [
+      "Interpretation A: If the user provides their user ID, no further lookup is needed — the agent can proceed directly.",
+      "Interpretation B: The email or name+zip lookup must be performed regardless of whether the user provides their ID."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A an agent skips the authentication step when a user says 'my user ID is user_123'. Under Interpretation B the agent performs the email or name+zip lookup in all cases.",
+    "stripped_tool_desc": "find_user_id_by_email(email: string) — Finds user ID by email. find_user_id_by_name_zip(first_name: string, last_name: string, zip: string) — Finds user ID by name and zip.",
+    "annotation_rationale": "Missing specification that the lookup is required even when the user provides their own ID. This gap leads to authentication bypass under a reasonable reading. Per D004, only the 'even when user provides ID' clause is added."
+  },
+  {
+    "clause_id": "incompleteness_007",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "You must list the action details and obtain explicit user confirmation before taking any action that updates the database.",
+    "ambiguous_version": "Before updating the database, agents should review the requested changes with the customer.",
+    "unambiguous_version": "Before updating the database, agents must explicitly list all details of the action (e.g., order ID, items, amounts, payment method) and receive an explicit 'yes' confirmation from the customer. A general 'ok' or continuation of the conversation does not count as confirmation.",
+    "ambiguity_point": "The clause does not specify what counts as 'explicit confirmation' — whether 'ok', 'sure', 'go ahead' or only 'yes' satisfies the requirement.",
+    "possible_interpretations": [
+      "Interpretation A: Any affirmative response ('ok', 'sure', 'sounds good') counts as confirmation.",
+      "Interpretation B: Only an explicit 'yes' (or direct affirmative) after the agent lists details counts as confirmation."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent proceeds after the customer says 'ok cool' without explicitly saying 'yes'. Under Interpretation B the agent requests a clear 'yes' before proceeding.",
+    "stripped_tool_desc": "cancel_pending_order(order_id: string, reason: string) — Cancels an order. Should only be called after explicit confirmation.",
+    "annotation_rationale": "Missing specification of what constitutes 'explicit confirmation'. The clause says confirmation is required but does not define what counts. Per D004, only the definition of confirmation (explicit yes) is added."
+  },
+  {
+    "clause_id": "incompleteness_008",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "You can only help one user per conversation.",
+    "ambiguous_version": "Each conversation is limited to one customer's requests.",
+    "unambiguous_version": "Each conversation is limited to one customer's requests. If a second person attempts to make a request during the same conversation, the agent must decline their request and explain that they can only assist the authenticated user in this session.",
+    "ambiguity_point": "The clause does not specify what the agent should do when a second person attempts to use the same conversation.",
+    "possible_interpretations": [
+      "Interpretation A: The agent simply stops helping and ends the conversation.",
+      "Interpretation B: The agent declines the second person's request and explains the limitation, but continues the conversation if the original user resumes."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent abruptly terminates the session when a second user appears. Under Interpretation B the agent politely declines the second person and remains available to the authenticated user.",
+    "stripped_tool_desc": null,
+    "annotation_rationale": "Missing procedure for handling multi-user attempts. The clause restricts to one user but does not specify the response when another user attempts to interject. Per D004, only the decline-and-explain response is added."
+  },
+  {
+    "clause_id": "incompleteness_009",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "You should transfer the user to a human agent if and only if the request cannot be handled within the scope of your actions.",
+    "ambiguous_version": "Agents should escalate unresolvable requests to human support.",
+    "unambiguous_version": "Agents should transfer the user to a human agent when the user's request falls outside the scope of the permitted retail operations (cancel, modify, return, exchange, information). The agent must not transfer for requests that are in scope, even if they are complex.",
+    "ambiguity_point": "The clause does not define what 'cannot be handled within scope' means — agents must judge what is in-scope without criteria.",
+    "possible_interpretations": [
+      "Interpretation A: Any request the agent finds difficult or uncertain is out-of-scope and should be escalated.",
+      "Interpretation B: Only requests that are explicitly outside the listed operations (cancel, modify, return, exchange, info) are out-of-scope."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent transfers a complex but technically in-scope cancellation request because it is difficult. Under Interpretation B the agent handles all in-scope requests and only transfers genuinely out-of-scope ones.",
+    "stripped_tool_desc": "transfer_to_human_agents(summary: string) — Transfers the conversation to human support.",
+    "annotation_rationale": "Missing definition of 'within scope'. The clause uses 'cannot be handled' without specifying the scope boundary. Per D004, only the explicit scope list (cancel, modify, return, exchange, information) is added as the definition."
+  },
+  {
+    "clause_id": "incompleteness_010",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "Each item can be modified to an available new item of the same product but of different product option.",
+    "ambiguous_version": "Customers may change items in their pending order to a different variant.",
+    "unambiguous_version": "Customers may change items in their pending order to a different variant (option) of the same product, provided the new item is currently available in inventory. If the desired variant is out of stock, the agent cannot process the modification and should inform the customer.",
+    "ambiguity_point": "The clause requires the new item to be 'available' but does not specify what the agent should do if it is not available.",
+    "possible_interpretations": [
+      "Interpretation A: If the variant is unavailable, the agent improvises — offers an alternative product type, backorder, or any available substitute.",
+      "Interpretation B: If the variant is unavailable, the agent declines the modification and informs the customer."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent substitutes a different product type when the requested option is unavailable. Under Interpretation B the agent informs the customer that the modification cannot proceed and ends the modification attempt.",
+    "stripped_tool_desc": "modify_pending_order_items(order_id: string, item_ids: list, new_item_ids: list, payment_method_id: string) — Modifies pending order items.",
+    "annotation_rationale": "Missing procedure for unavailable-item case. The clause requires availability but omits the agent's response when the item is not available. Per D004, only the decline-and-inform response is added."
+  },
+  {
+    "clause_id": "incompleteness_011",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "Flight can be cancelled if any of the following is true: booking made within 24 hours, airline cancelled the flight, business flight, or insurance covers the reason.",
+    "ambiguous_version": "Agents can cancel a flight if the user meets one of the standard cancellation conditions.",
+    "unambiguous_version": "Agents can cancel a flight if at least one of the following conditions is confirmed: (1) the booking was made within the last 24 hours, (2) the airline cancelled the specific flight, (3) all flights in the reservation are in the business cabin, or (4) the user has travel insurance and the cancellation reason is covered. Agents must verify the applicable condition before calling the cancellation tool.",
+    "ambiguity_point": "The clause references 'standard cancellation conditions' without enumerating them, leaving the agent to infer or recall conditions from elsewhere.",
+    "possible_interpretations": [
+      "Interpretation A: The agent applies whichever conditions it recalls or infers as 'standard' — potentially applying conditions not in policy.",
+      "Interpretation B: The agent applies exactly the four listed conditions."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent may cancel a flight for a customer who expresses severe financial hardship, treating this as a 'standard' reason. Under Interpretation B the agent declines because financial hardship is not one of the four conditions.",
+    "stripped_tool_desc": "cancel_reservation(reservation_id: string) — Cancels the reservation. No eligibility check performed.",
+    "annotation_rationale": "Missing enumeration of conditions. Referring to 'standard conditions' without listing them forces the agent to supply conditions from memory or inference. Per D004, only the four enumerated conditions are added."
+  },
+  {
+    "clause_id": "incompleteness_012",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "If any portion of the flight has already been flown, the agent cannot help and transfer is needed.",
+    "ambiguous_version": "Agents cannot modify or cancel reservations for flights that have already departed.",
+    "unambiguous_version": "Agents cannot modify or cancel reservations if any flight segment in the reservation has already been flown. In such cases, the agent must transfer the user to a human agent rather than simply declining.",
+    "ambiguity_point": "The clause does not specify what the agent should do after determining a flight has been flown — deny and end, or escalate.",
+    "possible_interpretations": [
+      "Interpretation A: The agent simply tells the customer it cannot help and ends the conversation.",
+      "Interpretation B: The agent transfers the customer to a human agent for further assistance."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent says 'I cannot help with that' and closes the conversation, leaving the customer with no path forward. Under Interpretation B the agent transfers to a human agent as required.",
+    "stripped_tool_desc": "transfer_to_human_agents(summary: string) — Transfers to a human agent.",
+    "annotation_rationale": "Missing escalation procedure after determining the flight has been flown. The clause says the agent cannot help but does not specify the transfer requirement. Per D004, only the transfer instruction is added."
+  },
+  {
+    "clause_id": "incompleteness_013",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "Only compensate if the user is a silver/gold member, has travel insurance, or flies business.",
+    "ambiguous_version": "Agents may offer compensation to eligible customers who complain about flight disruptions.",
+    "unambiguous_version": "Agents may offer compensation to customers who complain about flight disruptions, provided the customer meets at least one eligibility condition: silver or gold membership, active travel insurance on the reservation, or business cabin booking. Regular-tier members without insurance flying economy or basic economy are not eligible.",
+    "ambiguity_point": "The clause does not specify what happens when a customer complains but is ineligible — should the agent simply decline or explain the eligibility criteria?",
+    "possible_interpretations": [
+      "Interpretation A: The agent offers compensation anyway to avoid conflict with an insistent customer.",
+      "Interpretation B: The agent declines and, if pressed, explains that the customer does not meet the eligibility criteria."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent issues a certificate to avoid argument. Under Interpretation B the agent correctly declines based on eligibility and explains the criteria if asked.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a compensation certificate.",
+    "annotation_rationale": "Missing procedure for ineligible-customer scenario. The clause defines who is eligible but does not specify the response when an ineligible customer requests compensation. Per D004, only the decline response is added."
+  },
+  {
+    "clause_id": "incompleteness_014",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "The amount of compensation for a cancelled flight is $100 times the number of passengers.",
+    "ambiguous_version": "Agents can offer a certificate for cancelled flights based on the number of passengers affected.",
+    "unambiguous_version": "Agents can offer a certificate for cancelled flights. The certificate amount is $100 multiplied by the total number of passengers listed in the reservation, regardless of how many passengers were personally affected or complained.",
+    "ambiguity_point": "The clause does not specify whether 'number of passengers' means all passengers in the reservation or only those who complained or were personally affected.",
+    "possible_interpretations": [
+      "Interpretation A: 'Affected passengers' means only those who explicitly complained or were on the cancelled flight.",
+      "Interpretation B: 'Number of passengers' means all passengers listed in the reservation."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent issues a $100 certificate when only one of three passengers complains, rather than $300 for all three. Under Interpretation B the agent correctly calculates $100 × total reservation passengers.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a certificate of the specified amount.",
+    "annotation_rationale": "Missing clarification that 'number of passengers' refers to reservation total, not subset. Per D004, only this clarification is added without additional rules."
+  },
+  {
+    "clause_id": "incompleteness_015",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "Checked bag allowance depends on the booking user's membership tier and the cabin class.",
+    "ambiguous_version": "The free baggage allowance is based on the passenger's membership and cabin.",
+    "unambiguous_version": "The free baggage allowance is based on the booking user's membership tier and the cabin class booked, per the following table: regular/basic-economy=0, regular/economy=1, regular/business=2, silver/basic-economy=1, silver/economy=2, silver/business=3, gold/basic-economy=2, gold/economy=3, gold/business=4. Allowance is determined by the booking user's tier, not individual passenger tiers.",
+    "ambiguity_point": "The clause references a lookup but does not provide the actual table, leaving the agent without values for any specific tier+cabin combination.",
+    "possible_interpretations": [
+      "Interpretation A: The agent guesses or estimates baggage allowances from general knowledge.",
+      "Interpretation B: The agent applies the precise tier×cabin table."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent tells a silver member in economy they get 1 free bag (incorrect — should be 2). Under Interpretation B the agent correctly applies 2 free bags for silver/economy.",
+    "stripped_tool_desc": "update_reservation_baggages(reservation_id: string, total_baggages: int, payment_method_id: string) — Updates baggage count on a reservation.",
+    "annotation_rationale": "Missing baggage allowance table. The clause references membership and cabin as determinants but omits the 9-cell lookup table. Per D004, only the table itself is added."
+  },
+  {
+    "clause_id": "incompleteness_016",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "A reservation can include at most one travel certificate, one credit card, and three gift cards as payment.",
+    "ambiguous_version": "Multiple payment methods can be combined for a single booking.",
+    "unambiguous_version": "Multiple payment methods can be combined for a single booking, subject to the following limits: at most one travel certificate, at most one credit card, and at most three gift cards. Any combination within these limits is acceptable.",
+    "ambiguity_point": "The clause allows combination but does not specify the limits on each payment type, making it impossible for the agent to enforce the constraints.",
+    "possible_interpretations": [
+      "Interpretation A: Any number of each payment type can be combined — two certificates and five gift cards are acceptable.",
+      "Interpretation B: Specific limits apply: 1 certificate, 1 credit card, 3 gift cards maximum."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent accepts a payment split across two certificates and four gift cards. Under Interpretation B the agent correctly enforces the per-type limits.",
+    "stripped_tool_desc": "book_reservation(user_id: string, origin: string, destination: string, flight_type: string, cabin: string, flights: list, passengers: list, payment_methods: list, travel_insurance: bool, add_checked_baggages: int) — Books a reservation.",
+    "annotation_rationale": "Missing enumeration of per-type payment limits. The unambiguous version adds only the three specific limits (1 certificate, 1 card, 3 gift cards) without additional rules."
+  },
+  {
+    "clause_id": "incompleteness_017",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "Basic economy cannot be modified once booked.",
+    "ambiguous_version": "Passengers in restricted fare classes have limited modification options.",
+    "unambiguous_version": "Passengers booked in the basic economy cabin cannot make any modifications to their reservation's flights. This restriction applies regardless of when the booking was made, the reason for modification, or the destination.",
+    "ambiguity_point": "The clause does not specify whether exceptions exist (e.g., airline-initiated changes, medical emergencies) or whether 'limited' means zero or reduced options.",
+    "possible_interpretations": [
+      "Interpretation A: 'Limited' means some modifications are still possible under certain circumstances — the agent looks for exceptions.",
+      "Interpretation B: No modifications whatsoever are permitted for basic economy — zero options."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent offers a basic economy passenger a date change if they claim a medical emergency. Under Interpretation B the agent correctly refuses all modifications and explains the basic economy restriction.",
+    "stripped_tool_desc": "update_reservation_flights(reservation_id: string, flights: list, payment_method_id: string) — Updates reservation flights.",
+    "annotation_rationale": "Missing clarification that 'cannot modify' means zero exceptions (within agent scope). Per D004, only the 'regardless of reason or timing' clause is added to eliminate the exception-seeking behavior."
+  },
+  {
+    "clause_id": "incompleteness_018",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "Confirm the facts before offering compensation; do not proactively offer compensation.",
+    "ambiguous_version": "Agents should verify the situation before discussing compensation with a customer.",
+    "unambiguous_version": "Agents should verify the situation before discussing compensation. Specifically, the agent must confirm: (1) whether the relevant flight was actually cancelled or delayed, and (2) the number of passengers on the affected flights. The agent must not bring up compensation unless the customer explicitly asks.",
+    "ambiguity_point": "The clause says 'verify the situation' but does not specify which facts must be confirmed before compensation can be offered.",
+    "possible_interpretations": [
+      "Interpretation A: Verification means a general understanding of the customer's complaint — no specific facts need to be checked.",
+      "Interpretation B: Two specific facts must be confirmed: flight status (cancelled/delayed) and passenger count."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent offers a certificate after the customer describes their experience without verifying the cancellation or passenger count. Under Interpretation B the agent explicitly confirms both facts before calculating and offering the certificate.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a compensation certificate.",
+    "annotation_rationale": "Missing specification of which facts must be verified. Per D004, only the two required verification facts (cancellation/delay status and passenger count) are added."
+  },
+  {
+    "clause_id": "incompleteness_019",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "The origin and destination of the trip cannot be changed when modifying a reservation.",
+    "ambiguous_version": "Some aspects of a flight reservation cannot be changed after booking.",
+    "unambiguous_version": "The following aspects of a flight reservation cannot be changed after booking via the modify tool: (1) the origin airport, (2) the destination airport, and (3) the trip type (one-way or round-trip). Flight dates, times, and specific flight numbers can be changed.",
+    "ambiguity_point": "The clause says 'some aspects' without listing them, leaving the agent unable to determine which changes are permitted.",
+    "possible_interpretations": [
+      "Interpretation A: The agent refuses all modification attempts to avoid violating undisclosed restrictions.",
+      "Interpretation B: The agent allows all modifications that are not explicitly prohibited."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent refuses to change a flight date because 'some aspects cannot be changed' and uncertainty causes over-restriction. Under Interpretation B the agent correctly changes the date while blocking origin/destination/trip-type changes.",
+    "stripped_tool_desc": "update_reservation_flights(reservation_id: string, flights: list, payment_method_id: string) — Updates flight segments.",
+    "annotation_rationale": "Missing enumeration of non-changeable aspects. Per D004, only the three specific prohibited changes (origin, destination, trip type) are added."
+  },
+  {
+    "clause_id": "incompleteness_020",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "A reservation can include at most 5 passengers.",
+    "ambiguous_version": "There is a passenger limit for flight bookings.",
+    "unambiguous_version": "Each reservation can include at most 5 passengers. If a customer requests a booking for more than 5 passengers, the agent must decline and explain the limit. Booking multiple separate reservations for the same trip is not a workaround the agent should offer.",
+    "ambiguity_point": "The clause states there is a limit but does not specify the limit value, nor what the agent should do when a request exceeds it.",
+    "possible_interpretations": [
+      "Interpretation A: The agent applies a limit based on general knowledge (perhaps 9, a common airline group limit).",
+      "Interpretation B: The agent applies the specific 5-passenger limit and declines requests exceeding it."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent books 7 passengers because '5' was not explicitly stated. Under Interpretation B the agent declines any booking request for 6 or more passengers.",
+    "stripped_tool_desc": "book_reservation(user_id: string, origin: string, destination: string, flight_type: string, cabin: string, flights: list, passengers: list, payment_methods: list, travel_insurance: bool, add_checked_baggages: int) — Books a reservation.",
+    "annotation_rationale": "Missing specification of the passenger limit value and the handling procedure. Per D004, only the limit value (5) and the decline response are added."
+  },
+  {
+    "clause_id": "incompleteness_021",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "Return delivered order: the refund will be to the original payment method or a gift card.",
+    "ambiguous_version": "Customers may choose their preferred refund method when returning an item.",
+    "unambiguous_version": "Customers may choose their preferred refund method when returning an item: either to the original payment method used for the order or to an existing gift card in their account. The agent must ask the customer which refund method they prefer before initiating the return.",
+    "ambiguity_point": "The clause allows choice but does not specify that the agent must ask the customer for their preference before proceeding.",
+    "possible_interpretations": [
+      "Interpretation A: The agent automatically refunds to the original payment method unless the customer explicitly requests a gift card.",
+      "Interpretation B: The agent must actively offer both options and ask the customer to choose before initiating the return."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent proceeds with an original-method refund without mentioning the gift card option. Under Interpretation B the agent presents both options and waits for the customer's choice.",
+    "stripped_tool_desc": "return_delivered_order_items(order_id: string, item_ids: list, payment_method_id: string) — Initiates a return with the specified refund destination.",
+    "annotation_rationale": "Missing step requiring the agent to ask for refund preference. The clause mentions options exist but omits the agent's obligation to present them. Per D004, only the ask-for-preference step is added."
+  },
+  {
+    "clause_id": "incompleteness_022",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "Modify items: the user must provide a payment method to pay or receive the price difference.",
+    "ambiguous_version": "A payment method is needed for item modifications that involve a price change.",
+    "unambiguous_version": "A payment method is needed for item modifications that involve a price change. If the modified items are more expensive than the originals, the payment method will be charged the difference. If the modified items are less expensive, the difference will be refunded to the specified payment method.",
+    "ambiguity_point": "The clause requires a payment method but does not specify how it is used when the new items are cheaper (refund direction) vs. more expensive (charge direction).",
+    "possible_interpretations": [
+      "Interpretation A: The payment method is only for charging price increases — refunds always go to the original order payment method.",
+      "Interpretation B: The same payment method handles both charges (for increases) and refunds (for decreases)."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent accepts a gift card as payment for an upcharge but ignores it for refund routing. Under Interpretation B the agent consistently uses the specified method for both directions.",
+    "stripped_tool_desc": "modify_pending_order_items(order_id: string, item_ids: list, new_item_ids: list, payment_method_id: string) — Modifies items and handles price difference via the specified payment method.",
+    "annotation_rationale": "Missing specification of bidirectional payment method usage. The clause states a method is needed but does not clarify that it covers both charges and refunds. Per D004, only this bidirectional clarification is added."
+  },
+  {
+    "clause_id": "incompleteness_023",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "Authenticate the user identity before providing any account information.",
+    "ambiguous_version": "Users must be identified before the agent accesses their records.",
+    "unambiguous_version": "Users must be identified before the agent accesses their records. If the agent cannot locate the user's account via email or name+zip, the agent must inform the customer that no matching account was found and cannot proceed with the request.",
+    "ambiguity_point": "The clause requires identification but does not specify what the agent should do if no matching account is found.",
+    "possible_interpretations": [
+      "Interpretation A: If no account is found, the agent asks for more identifying information and keeps trying.",
+      "Interpretation B: If no account is found after the standard lookup, the agent informs the customer and ends the authentication attempt."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent tries increasingly creative lookups (phone number, order ID, etc.) that are outside the defined authentication methods. Under Interpretation B the agent correctly informs the customer that no account was found and cannot proceed.",
+    "stripped_tool_desc": "find_user_id_by_email(email: string) — Finds user by email. find_user_id_by_name_zip(first_name: string, last_name: string, zip: string) — Finds user by name and zip.",
+    "annotation_rationale": "Missing procedure for failed authentication lookup. Per D004, only the inform-and-stop response for no-match scenarios is added."
+  },
+  {
+    "clause_id": "incompleteness_024",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "You should not make up any information not provided by the user or the tools.",
+    "ambiguous_version": "Agents should only use information available to them during the conversation.",
+    "unambiguous_version": "Agents should only state information that was explicitly provided by the customer during the conversation or returned by one of the available tools. If the requested information is not available from these sources, the agent must tell the customer it does not have that information rather than estimating or inferring.",
+    "ambiguity_point": "The clause does not specify what the agent should do when asked for information that is not available — whether to say so explicitly or attempt to infer.",
+    "possible_interpretations": [
+      "Interpretation A: The agent estimates or infers missing information from context rather than saying it is unavailable.",
+      "Interpretation B: The agent explicitly tells the customer the information is not available through its current tools."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent says 'Your order probably arrived Tuesday based on the shipping date' without looking it up. Under Interpretation B the agent says 'I don't have that specific delivery confirmation — please check your tracking email.'",
+    "stripped_tool_desc": "get_order_details(order_id: string) — Returns available order information.",
+    "annotation_rationale": "Missing response procedure for information gaps. The clause prohibits fabrication but does not specify the alternative (explicit acknowledgment of unavailability). Per D004, only the tell-customer response is added."
+  },
+  {
+    "clause_id": "incompleteness_025",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "The delayed flight compensation is $50 times the number of passengers if the user wants to change or cancel the reservation.",
+    "ambiguous_version": "Agents may provide delay compensation after processing a flight change or cancellation.",
+    "unambiguous_version": "Agents may provide delay compensation after processing a flight change or cancellation requested by the customer. The compensation is $50 per passenger in the reservation. The agent must process the change or cancellation first, then offer the certificate — not before.",
+    "ambiguity_point": "The clause does not specify the ordering: whether compensation is offered before or after the change/cancellation is processed.",
+    "possible_interpretations": [
+      "Interpretation A: The agent offers the certificate first, then processes the flight change — compensation is an incentive to proceed.",
+      "Interpretation B: The agent processes the flight change first, then offers the certificate — compensation follows the action."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent offers a $150 certificate before changing the flights, which the customer may then accept and cancel the change request, receiving compensation without any modification occurring. Under Interpretation B the agent correctly processes the change first.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a compensation certificate. update_reservation_flights(reservation_id: string, flights: list, payment_method_id: string) — Modifies reservation flights.",
+    "annotation_rationale": "Missing ordering specification between the change action and the compensation offer. Per D004, only the sequence instruction (change first, then certificate) is added."
+  },
+  {
+    "clause_id": "incompleteness_026",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "Do not offer compensation for any reason other than cancelled or delayed flights.",
+    "ambiguous_version": "Compensation is only available for specific flight-related issues.",
+    "unambiguous_version": "Compensation certificates are only available for two specific situations: (1) flights in the reservation that were cancelled by the airline, and (2) flights in the reservation that were delayed, provided the customer wants to change or cancel as a result. Compensation is not available for other inconveniences such as gate changes, seat reassignments, or poor service.",
+    "ambiguity_point": "The clause says 'specific issues' without naming them, leaving the agent to infer which issues qualify.",
+    "possible_interpretations": [
+      "Interpretation A: The agent compensates for any significant inconvenience including overbooking, seat changes, or equipment swaps.",
+      "Interpretation B: Only the two specifically defined situations (cancellation, delay-with-change-request) qualify."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent offers a certificate to a customer who complains about an involuntary seat downgrade. Under Interpretation B the agent declines and explains only cancellations and qualifying delays are compensable.",
+    "stripped_tool_desc": "add_certificate(amount: float, user_id: string) — Issues a compensation certificate.",
+    "annotation_rationale": "Missing enumeration of the two qualifying situations. Per D004, only the two specific scenarios (cancellation, delay+change-request) are named as the eligible situations."
+  },
+  {
+    "clause_id": "incompleteness_027",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "The booking was made within the last 24 hours — one of the four cancellation eligibility conditions.",
+    "ambiguous_version": "Customers who recently booked can cancel without conditions.",
+    "unambiguous_version": "Customers whose booking was made within the last 24 hours (measured from the booking creation timestamp to the current time) can cancel without meeting any of the other eligibility conditions. The agent must check the booking timestamp to confirm the 24-hour window has not elapsed.",
+    "ambiguity_point": "The clause does not specify how '24 hours' is measured — from booking creation, from departure, or from some other event — and does not say the agent must verify the timestamp.",
+    "possible_interpretations": [
+      "Interpretation A: '24 hours' is measured from the scheduled departure time — customers can cancel any time up to 24 hours before the flight.",
+      "Interpretation B: '24 hours' is measured from the booking creation timestamp — customers can only cancel within 24 hours of making the booking."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent cancels a week-old booking because the flight is tomorrow (within 24 hours of departure). Under Interpretation B the agent correctly refuses because the booking is older than 24 hours.",
+    "stripped_tool_desc": "cancel_reservation(reservation_id: string) — Cancels a reservation.",
+    "annotation_rationale": "Missing specification of the 24-hour measurement baseline (booking creation vs. departure). Per D004, only the clarification that it is measured from booking creation and requires timestamp verification is added."
+  },
+  {
+    "clause_id": "incompleteness_028",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "The cabin must be consistent across all flights in the reservation when modifying.",
+    "ambiguous_version": "All flights in a reservation modification must be in the same cabin class.",
+    "unambiguous_version": "All flights in a reservation modification must be in the same cabin class. The target cabin class for all flights must be specified at the time of modification. If the customer requests different cabins for different legs, the agent must decline the modification.",
+    "ambiguity_point": "The clause requires consistency but does not specify what happens when a customer requests mixed cabins, nor whether the agent must actively ask for the target cabin.",
+    "possible_interpretations": [
+      "Interpretation A: The agent defaults to the current cabin for all legs without asking, assuming consistency is maintained.",
+      "Interpretation B: The agent must actively ask what cabin the customer wants for all legs and decline if different cabins are requested."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent silently applies the current cabin to all modified legs without confirming with the customer. Under Interpretation B the agent explicitly confirms the cabin class and rejects mixed-cabin modifications.",
+    "stripped_tool_desc": "update_reservation_flights(reservation_id: string, flights: list, cabin: string, payment_method_id: string) — Updates flight segments; cabin must be specified.",
+    "annotation_rationale": "Missing procedure for handling mixed-cabin requests and the requirement to confirm target cabin. Per D004, only the decline-for-mixed-cabin and confirm-cabin steps are added."
+  },
+  {
+    "clause_id": "incompleteness_029",
+    "ambiguity_type": "incompleteness",
+    "domain": "retail",
+    "source_clause": "You should deny user requests that are against this policy.",
+    "ambiguous_version": "Agents should not help with requests that violate the retail policy.",
+    "unambiguous_version": "Agents should not execute requests that violate the retail policy. When declining, the agent should inform the customer that the request is not permitted under the current policy and offer to help with any in-scope requests instead.",
+    "ambiguity_point": "The clause says agents should not help but does not specify what the agent should say or do when declining — whether to explain, redirect, or simply refuse.",
+    "possible_interpretations": [
+      "Interpretation A: The agent abruptly refuses with minimal explanation and awaits the next message.",
+      "Interpretation B: The agent explains the policy reason for the refusal and offers to assist with permissible requests."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent says 'I cannot do that' with no further context. Under Interpretation B the agent explains why the request is not permitted and proactively asks if there is anything else it can help with.",
+    "stripped_tool_desc": null,
+    "annotation_rationale": "Missing communication guidance for policy-denial responses. Per D004, only the explain-and-redirect response pattern is added without additional edge cases."
+  },
+  {
+    "clause_id": "incompleteness_030",
+    "ambiguity_type": "incompleteness",
+    "domain": "airline",
+    "source_clause": "If the user has travel insurance and the reason for cancellation is covered by insurance, the flight can be cancelled.",
+    "ambiguous_version": "Customers with travel insurance may cancel their flight if their reason is covered.",
+    "unambiguous_version": "Customers with travel insurance may cancel their flight if their stated cancellation reason is covered by their insurance policy. The agent must ask the customer to confirm that their insurance specifically covers the stated reason; the agent cannot independently verify insurance coverage and must rely on the customer's confirmation.",
+    "ambiguity_point": "The clause requires the reason to be 'covered' but does not specify how the agent verifies coverage — whether to check a system, ask the customer, or accept the claim at face value.",
+    "possible_interpretations": [
+      "Interpretation A: The agent independently verifies insurance coverage through a tool or system check.",
+      "Interpretation B: The agent asks the customer to confirm their insurance covers the reason and relies on that confirmation."
+    ],
+    "expected_agent_behavior_diff": "Under Interpretation A the agent attempts a system lookup for insurance details, finds no such tool, and either blocks the cancellation or improvises. Under Interpretation B the agent asks the customer to confirm coverage and proceeds on the basis of that confirmation.",
+    "stripped_tool_desc": "cancel_reservation(reservation_id: string) — Cancels a reservation.",
+    "annotation_rationale": "Missing specification of the coverage verification method. Per D004, only the ask-customer-to-confirm procedure is added, clarifying that agent relies on customer confirmation rather than independent verification."
+  }
+]

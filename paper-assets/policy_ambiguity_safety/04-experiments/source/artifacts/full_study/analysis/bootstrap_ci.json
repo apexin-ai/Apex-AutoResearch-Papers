@@ -1,0 +1,233 @@
+{
+  "n_resamples": 10000,
+  "ambig_vs_unambig_global": {
+    "observed_diff": 0.3402,
+    "ci_lower": 0.3122,
+    "ci_upper": 0.3689,
+    "z0": -0.0058,
+    "acceleration": -0.000304
+  },
+  "ambig_vs_unambig_per_type": {
+    "authorization_scope": {
+      "observed_diff": 0.36,
+      "ci_lower": 0.288,
+      "ci_upper": 0.424,
+      "z0": -0.0474,
+      "acceleration": -0.000402
+    },
+    "conditional_precedence": {
+      "observed_diff": 0.308,
+      "ci_lower": 0.236,
+      "ci_upper": 0.368,
+      "z0": -0.0718,
+      "acceleration": 0.000799
+    },
+    "coreferential": {
+      "observed_diff": 0.187,
+      "ci_lower": 0.1188,
+      "ci_upper": 0.2592,
+      "z0": 0.01,
+      "acceleration": -0.00029
+    },
+    "incompleteness": {
+      "observed_diff": 0.492,
+      "ci_lower": 0.42,
+      "ci_upper": 0.556,
+      "z0": -0.0474,
+      "acceleration": -0.003783
+    },
+    "lexical": {
+      "observed_diff": 0.352,
+      "ci_lower": 0.28,
+      "ci_upper": 0.416,
+      "z0": -0.0662,
+      "acceleration": -0.001448
+    },
+    "scopal": {
+      "observed_diff": 0.3416,
+      "ci_lower": 0.2773,
+      "ci_upper": 0.4098,
+      "z0": 0.0123,
+      "acceleration": 0.000478
+    }
+  },
+  "type_pairs_ambiguous": {
+    "authorization_scope_vs_conditional_precedence": {
+      "observed_diff": 0.048,
+      "ci_lower": -0.04,
+      "ci_upper": 0.128,
+      "z0": -0.07,
+      "acceleration": -0.000662
+    },
+    "authorization_scope_vs_coreferential": {
+      "observed_diff": 0.1,
+      "ci_lower": 0.012,
+      "ci_upper": 0.18,
+      "z0": -0.0446,
+      "acceleration": -0.001312
+    },
+    "authorization_scope_vs_incompleteness": {
+      "observed_diff": -0.12,
+      "ci_lower": -0.208,
+      "ci_upper": -0.036,
+      "z0": -0.0386,
+      "acceleration": 0.001796
+    },
+    "authorization_scope_vs_lexical": {
+      "observed_diff": -0.012,
+      "ci_lower": -0.104,
+      "ci_upper": 0.072,
+      "z0": -0.0436,
+      "acceleration": 0.000172
+    },
+    "authorization_scope_vs_scopal": {
+      "observed_diff": 0.0224,
+      "ci_lower": -0.0618,
+      "ci_upper": 0.1105,
+      "z0": -0.0023,
+      "acceleration": -0.000327
+    },
+    "conditional_precedence_vs_coreferential": {
+      "observed_diff": 0.052,
+      "ci_lower": -0.036,
+      "ci_upper": 0.132,
+      "z0": -0.0489,
+      "acceleration": -0.000636
+    },
+    "conditional_precedence_vs_incompleteness": {
+      "observed_diff": -0.168,
+      "ci_lower": -0.256,
+      "ci_upper": -0.084,
+      "z0": -0.0336,
+      "acceleration": 0.002504
+    },
+    "conditional_precedence_vs_lexical": {
+      "observed_diff": -0.06,
+      "ci_lower": -0.148,
+      "ci_upper": 0.024,
+      "z0": -0.0399,
+      "acceleration": 0.000836
+    },
+    "conditional_precedence_vs_scopal": {
+      "observed_diff": -0.0256,
+      "ci_lower": -0.1099,
+      "ci_upper": 0.0586,
+      "z0": -0.0068,
+      "acceleration": 0.000331
+    },
+    "coreferential_vs_incompleteness": {
+      "observed_diff": -0.22,
+      "ci_lower": -0.312,
+      "ci_upper": -0.14,
+      "z0": -0.0587,
+      "acceleration": 0.003241
+    },
+    "coreferential_vs_lexical": {
+      "observed_diff": -0.112,
+      "ci_lower": -0.2,
+      "ci_upper": -0.032,
+      "z0": -0.0186,
+      "acceleration": 0.001492
+    },
+    "coreferential_vs_scopal": {
+      "observed_diff": -0.0776,
+      "ci_lower": -0.1578,
+      "ci_upper": 0.0066,
+      "z0": 0.0138,
+      "acceleration": 0.00097
+    },
+    "incompleteness_vs_lexical": {
+      "observed_diff": 0.108,
+      "ci_lower": 0.02,
+      "ci_upper": 0.192,
+      "z0": -0.0188,
+      "acceleration": -0.001616
+    },
+    "incompleteness_vs_scopal": {
+      "observed_diff": 0.1424,
+      "ci_lower": 0.0543,
+      "ci_upper": 0.2266,
+      "z0": -0.0208,
+      "acceleration": -0.002135
+    },
+    "lexical_vs_scopal": {
+      "observed_diff": 0.0344,
+      "ci_lower": -0.0536,
+      "ci_upper": 0.1187,
+      "z0": -0.0118,
+      "acceleration": -0.000499
+    }
+  },
+  "model_pairs": {
+    "claude-sonnet-4-6_vs_deepseek-v3": {
+      "observed_diff": -0.1267,
+      "ci_lower": -0.1767,
+      "ci_upper": -0.0817,
+      "z0": -0.0527,
+      "acceleration": 0.000331
+    },
+    "claude-sonnet-4-6_vs_gpt-4.1": {
+      "observed_diff": -0.0583,
+      "ci_lower": -0.105,
+      "ci_upper": -0.015,
+      "z0": -0.0444,
+      "acceleration": -5.8e-05
+    },
+    "claude-sonnet-4-6_vs_gpt-5.4": {
+      "observed_diff": -0.0433,
+      "ci_lower": -0.0893,
+      "ci_upper": 0.0017,
+      "z0": -0.0108,
+      "acceleration": -8.8e-05
+    },
+    "claude-sonnet-4-6_vs_qwen3-235b": {
+      "observed_diff": -0.0947,
+      "ci_lower": -0.1398,
+      "ci_upper": -0.0463,
+      "z0": 0.0095,
+      "acceleration": 7.5e-05
+    },
+    "deepseek-v3_vs_gpt-4.1": {
+      "observed_diff": 0.0683,
+      "ci_lower": 0.0183,
+      "ci_upper": 0.1183,
+      "z0": 0.0123,
+      "acceleration": -0.000331
+    },
+    "deepseek-v3_vs_gpt-5.4": {
+      "observed_diff": 0.0833,
+      "ci_lower": 0.035,
+      "ci_upper": 0.1333,
+      "z0": 0.0201,
+      "acceleration": -0.000363
+    },
+    "deepseek-v3_vs_qwen3-235b": {
+      "observed_diff": 0.032,
+      "ci_lower": -0.0197,
+      "ci_upper": 0.0822,
+      "z0": -0.001,
+      "acceleration": -0.00021
+    },
+    "gpt-4.1_vs_gpt-5.4": {
+      "observed_diff": 0.015,
+      "ci_lower": -0.0333,
+      "ci_upper": 0.0617,
+      "z0": -0.016,
+      "acceleration": -2.4e-05
+    },
+    "gpt-4.1_vs_qwen3-235b": {
+      "observed_diff": -0.0363,
+      "ci_lower": -0.0848,
+      "ci_upper": 0.0137,
+      "z0": 0.0058,
+      "acceleration": 0.000111
+    },
+    "gpt-5.4_vs_qwen3-235b": {
+      "observed_diff": -0.0513,
+      "ci_lower": -0.0999,
+      "ci_upper": -0.0045,
+      "z0": -0.0075,
+      "acceleration": 0.000137
+    }
+  }
+}

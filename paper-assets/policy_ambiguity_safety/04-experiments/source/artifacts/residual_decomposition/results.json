@@ -1,0 +1,163 @@
+{
+  "overall_icc": {
+    "icc1": 0.7492,
+    "n_cells": 200,
+    "k_per_cell": 5.0,
+    "n_total": 1000,
+    "grand_mean_violation_rate": 0.158,
+    "ms_between": 0.533849,
+    "ms_within": 0.0335,
+    "sigma2_within": 0.0335,
+    "sigma2_between": 0.10007,
+    "sigma2_total": 0.13357,
+    "stochastic_share": 0.2508,
+    "systematic_share": 0.7492,
+    "balanced": true
+  },
+  "cell_consistency": {
+    "n_cells": 200,
+    "unanimous_cells": 173,
+    "unanimous_no_violation": 151,
+    "unanimous_violation": 22,
+    "mixed_cells": 27,
+    "pct_unanimous": 86.5,
+    "mean_within_cell_variance": 0.0335,
+    "median_within_cell_variance": 0.0
+  },
+  "by_condition": {
+    "ambiguous": {
+      "icc1": 0.7816,
+      "n_cells": 100,
+      "k_per_cell": 5.0,
+      "n_total": 500,
+      "grand_mean_violation_rate": 0.276,
+      "ms_between": 0.831434,
+      "ms_within": 0.044,
+      "sigma2_within": 0.044,
+      "sigma2_between": 0.157487,
+      "sigma2_total": 0.201487,
+      "stochastic_share": 0.2184,
+      "systematic_share": 0.7816,
+      "balanced": true
+    },
+    "unambiguous": {
+      "icc1": 0.4042,
+      "n_cells": 100,
+      "k_per_cell": 5.0,
+      "n_total": 500,
+      "grand_mean_violation_rate": 0.04,
+      "ms_between": 0.10101,
+      "ms_within": 0.023,
+      "sigma2_within": 0.023,
+      "sigma2_between": 0.015602,
+      "sigma2_total": 0.038602,
+      "stochastic_share": 0.5958,
+      "systematic_share": 0.4042,
+      "balanced": true
+    }
+  },
+  "by_ambiguity_type": {
+    "authorization_scope": {
+      "icc1": -0.0057,
+      "n_cells": 36,
+      "k_per_cell": 5.0,
+      "n_total": 180,
+      "grand_mean_violation_rate": 0.0111,
+      "ms_between": 0.010794,
+      "ms_within": 0.011111,
+      "sigma2_within": 0.011111,
+      "sigma2_between": 0.0,
+      "sigma2_total": 0.011111,
+      "stochastic_share": 1.0,
+      "systematic_share": 0.0,
+      "balanced": true
+    },
+    "conditional_precedence": {
+      "icc1": 0.8578,
+      "n_cells": 32,
+      "k_per_cell": 5.0,
+      "n_total": 160,
+      "grand_mean_violation_rate": 0.2188,
+      "ms_between": 0.778831,
+      "ms_within": 0.025,
+      "sigma2_within": 0.025,
+      "sigma2_between": 0.150766,
+      "sigma2_total": 0.175766,
+      "stochastic_share": 0.1422,
+      "systematic_share": 0.8578,
+      "balanced": true
+    },
+    "coreferential": {
+      "icc1": 0.3445,
+      "n_cells": 32,
+      "k_per_cell": 5.0,
+      "n_total": 160,
+      "grand_mean_violation_rate": 0.0875,
+      "ms_between": 0.192742,
+      "ms_within": 0.053125,
+      "sigma2_within": 0.053125,
+      "sigma2_between": 0.027923,
+      "sigma2_total": 0.081048,
+      "stochastic_share": 0.6555,
+      "systematic_share": 0.3445,
+      "balanced": true
+    },
+    "incompleteness": {
+      "icc1": 0.8956,
+      "n_cells": 32,
+      "k_per_cell": 5.0,
+      "n_total": 160,
+      "grand_mean_violation_rate": 0.225,
+      "ms_between": 0.822581,
+      "ms_within": 0.01875,
+      "sigma2_within": 0.01875,
+      "sigma2_between": 0.160766,
+      "sigma2_total": 0.179516,
+      "stochastic_share": 0.1044,
+      "systematic_share": 0.8956,
+      "balanced": true
+    },
+    "lexical": {
+      "icc1": 0.7042,
+      "n_cells": 32,
+      "k_per_cell": 5.0,
+      "n_total": 160,
+      "grand_mean_violation_rate": 0.175,
+      "ms_between": 0.564516,
+      "ms_within": 0.04375,
+      "sigma2_within": 0.04375,
+      "sigma2_between": 0.104153,
+      "sigma2_total": 0.147903,
+      "stochastic_share": 0.2958,
+      "systematic_share": 0.7042,
+      "balanced": true
+    },
+    "scopal": {
+      "icc1": 0.731,
+      "n_cells": 36,
+      "k_per_cell": 5.0,
+      "n_total": 180,
+      "grand_mean_violation_rate": 0.2389,
+      "ms_between": 0.729365,
+      "ms_within": 0.05,
+      "sigma2_within": 0.05,
+      "sigma2_between": 0.135873,
+      "sigma2_total": 0.185873,
+      "stochastic_share": 0.269,
+      "systematic_share": 0.731,
+      "balanced": true
+    }
+  },
+  "residual_mapping": {
+    "original_residual_pct": 60.8,
+    "stochastic_pct_of_total": 15.2,
+    "systematic_unmeasured_pct_of_total": 45.6,
+    "interpretation": "Of the 60.8% residual variance, ~15.2pp is run-to-run stochasticity and ~45.6pp is systematic-but-unmeasured factors."
+  },
+  "metadata": {
+    "n_judgments": 1000,
+    "n_cells": 200,
+    "violation_threshold": "moderate",
+    "original_residual_pct": 60.8
+  }
+}

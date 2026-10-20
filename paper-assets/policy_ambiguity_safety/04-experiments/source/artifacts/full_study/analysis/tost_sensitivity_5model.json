@@ -1,0 +1,416 @@
+{
+  "n_models": 5,
+  "n_per_type": 250,
+  "margins_tested": [
+    0.05,
+    0.1,
+    0.15,
+    0.2
+  ],
+  "per_type_rates": {
+    "authorization_scope": 0.416,
+    "conditional_precedence": 0.368,
+    "coreferential": 0.316,
+    "incompleteness": 0.536,
+    "lexical": 0.428,
+    "scopal": 0.3936
+  },
+  "pairwise_results": [
+    {
+      "type_1": "authorization_scope",
+      "type_2": "conditional_precedence",
+      "rate_1": 0.416,
+      "rate_2": 0.368,
+      "diff": 0.048,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.481712,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.11657,
+          "equivalent": false
+        },
+        "0.15": {
+          "tost_p": 0.009674,
+          "equivalent": true
+        },
+        "0.2": {
+          "tost_p": 0.000246,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.15
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "coreferential",
+      "rate_1": 0.416,
+      "rate_2": 0.316,
+      "diff": 0.1,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.878352,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.5,
+          "equivalent": false
+        },
+        "0.15": {
+          "tost_p": 0.121648,
+          "equivalent": false
+        },
+        "0.2": {
+          "tost_p": 0.009809,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.2
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "incompleteness",
+      "rate_1": 0.416,
+      "rate_2": 0.536,
+      "diff": -0.12,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.942773,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.674004,
+          "equivalent": false
+        },
+        "0.15": {
+          "tost_p": 0.249363,
+          "equivalent": false
+        },
+        "0.2": {
+          "tost_p": 0.035617,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.2
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "lexical",
+      "rate_1": 0.416,
+      "rate_2": 0.428,
+      "diff": -0.012,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.194812,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.02317,
+          "equivalent": true
+        },
+        "0.15": {
+          "tost_p": 0.000891,
+          "equivalent": true
+        },
+        "0.2": {
+          "tost_p": 1e-05,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.1
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "scopal",
+      "rate_1": 0.416,
+      "rate_2": 0.3936,
+      "diff": 0.0224,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.264938,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.038679,
+          "equivalent": true
+        },
+        "0.15": {
+          "tost_p": 0.001841,
+          "equivalent": true
+        },
+        "0.2": {
+          "tost_p": 2.6e-05,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.1
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "coreferential",
+      "rate_1": 0.368,
+      "rate_2": 0.316,
+      "diff": 0.052,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.518826,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.128611,
+          "equivalent": false
+        },
+        "0.15": {
+          "tost_p": 0.010357,
+          "equivalent": true
+        },
+        "0.2": {
+          "tost_p": 0.000238,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.15
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "incompleteness",
+      "rate_1": 0.368,
+      "rate_2": 0.536,
+      "diff": -0.168,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.996421,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.939407,
+          "equivalent": false
+        },
+        "0.15": {
+          "tost_p": 0.659187,
+          "equivalent": false
+        },
+        "0.2": {
+          "tost_p": 0.232901,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "lexical",
+      "rate_1": 0.368,
+      "rate_2": 0.428,
+      "diff": -0.06,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.590503,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.180001,
+          "equivalent": false
+        },
+        "0.15": {
+          "tost_p": 0.01972,
+          "equivalent": true
+        },
+        "0.2": {
+          "tost_p": 0.000678,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.15
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "scopal",
+      "rate_1": 0.368,
+      "rate_2": 0.3936,
+      "diff": -0.0256,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.287254,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.043459,
+          "equivalent": true
+        },
+        "0.15": {
+          "tost_p": 0.002103,
+          "equivalent": true
+        },
+        "0.2": {
+          "tost_p": 3e-05,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.1
+    },
+    {
+      "type_1": "coreferential",
+      "type_2": "incompleteness",
+      "rate_1": 0.316,
+      "rate_2": 0.536,
+      "diff": -0.22,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.99996,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.997306,
+          "equivalent": false
+        },
+        "0.15": {
+          "tost_p": 0.947743,
+          "equivalent": false
+        },
+        "0.2": {
+          "tost_p": 0.67861,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "coreferential",
+      "type_2": "lexical",
+      "rate_1": 0.316,
+      "rate_2": 0.428,
+      "diff": -0.112,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.925613,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.610054,
+          "equivalent": false
+        },
+        "0.15": {
+          "tost_p": 0.18809,
+          "equivalent": false
+        },
+        "0.2": {
+          "tost_p": 0.020213,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.2
+    },
+    {
+      "type_1": "coreferential",
+      "type_2": "scopal",
+      "rate_1": 0.316,
+      "rate_2": 0.3936,
+      "diff": -0.0776,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.74099,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.299926,
+          "equivalent": false
+        },
+        "0.15": {
+          "tost_p": 0.044978,
+          "equivalent": true
+        },
+        "0.2": {
+          "tost_p": 0.002074,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.15
+    },
+    {
+      "type_1": "incompleteness",
+      "type_2": "lexical",
+      "rate_1": 0.536,
+      "rate_2": 0.428,
+      "diff": 0.108,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.904123,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.571446,
+          "equivalent": false
+        },
+        "0.15": {
+          "tost_p": 0.172254,
+          "equivalent": false
+        },
+        "0.2": {
+          "tost_p": 0.019196,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.2
+    },
+    {
+      "type_1": "incompleteness",
+      "type_2": "scopal",
+      "rate_1": 0.536,
+      "rate_2": 0.3936,
+      "diff": 0.1424,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.98172,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.831307,
+          "equivalent": false
+        },
+        "0.15": {
+          "tost_p": 0.431735,
+          "equivalent": false
+        },
+        "0.2": {
+          "tost_p": 0.096243,
+          "equivalent": false
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "lexical",
+      "type_2": "scopal",
+      "rate_1": 0.428,
+      "rate_2": 0.3936,
+      "diff": 0.0344,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.361527,
+          "equivalent": false
+        },
+        "0.1": {
+          "tost_p": 0.068084,
+          "equivalent": false
+        },
+        "0.15": {
+          "tost_p": 0.004319,
+          "equivalent": true
+        },
+        "0.2": {
+          "tost_p": 8.4e-05,
+          "equivalent": true
+        }
+      },
+      "smallest_equiv_margin": 0.15
+    }
+  ],
+  "summary": {
+    "equivalent_at_5pp": 0,
+    "equivalent_at_10pp": 3,
+    "equivalent_at_15pp": 8,
+    "equivalent_at_20pp": 12
+  }
+}

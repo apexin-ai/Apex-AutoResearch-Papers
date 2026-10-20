@@ -1,0 +1,629 @@
+{
+  "1_agreement_distribution": {
+    "description": "Number of clauses by count of models triggering violation (0-5)",
+    "distribution": {
+      "0": 84,
+      "1": 52,
+      "2": 40,
+      "3": 53,
+      "4": 32,
+      "5": 39
+    },
+    "total_clauses": 300
+  },
+  "2_nocuity_classification": {
+    "categories": {
+      "universal": {
+        "count": 39,
+        "rate": 0.13
+      },
+      "strong_convergence": {
+        "count": 32,
+        "rate": 0.1067
+      },
+      "majority_convergent": {
+        "count": 53,
+        "rate": 0.1767
+      },
+      "divergent": {
+        "count": 92,
+        "rate": 0.3067
+      },
+      "innocuous": {
+        "count": 84,
+        "rate": 0.28
+      }
+    },
+    "majority_plus_count": 124,
+    "majority_plus_rate": 0.4133
+  },
+  "3_per_type_profile": {
+    "per_type": {
+      "authorization_scope": {
+        "n_clauses": 50,
+        "universal": 5,
+        "strong_convergence": 4,
+        "majority_convergent": 13,
+        "divergent": 16,
+        "innocuous": 12,
+        "universal_nocuity_rate": 0.1,
+        "majority_plus_rate": 0.44,
+        "majority_plus_count": 22
+      },
+      "conditional_precedence": {
+        "n_clauses": 50,
+        "universal": 3,
+        "strong_convergence": 8,
+        "majority_convergent": 7,
+        "divergent": 19,
+        "innocuous": 13,
+        "universal_nocuity_rate": 0.06,
+        "majority_plus_rate": 0.36,
+        "majority_plus_count": 18
+      },
+      "coreferential": {
+        "n_clauses": 50,
+        "universal": 3,
+        "strong_convergence": 5,
+        "majority_convergent": 7,
+        "divergent": 16,
+        "innocuous": 19,
+        "universal_nocuity_rate": 0.06,
+        "majority_plus_rate": 0.3,
+        "majority_plus_count": 15
+      },
+      "incompleteness": {
+        "n_clauses": 50,
+        "universal": 12,
+        "strong_convergence": 5,
+        "majority_convergent": 14,
+        "divergent": 8,
+        "innocuous": 11,
+        "universal_nocuity_rate": 0.24,
+        "majority_plus_rate": 0.62,
+        "majority_plus_count": 31
+      },
+      "lexical": {
+        "n_clauses": 50,
+        "universal": 8,
+        "strong_convergence": 5,
+        "majority_convergent": 6,
+        "divergent": 19,
+        "innocuous": 12,
+        "universal_nocuity_rate": 0.16,
+        "majority_plus_rate": 0.38,
+        "majority_plus_count": 19
+      },
+      "scopal": {
+        "n_clauses": 50,
+        "universal": 8,
+        "strong_convergence": 5,
+        "majority_convergent": 6,
+        "divergent": 14,
+        "innocuous": 17,
+        "universal_nocuity_rate": 0.16,
+        "majority_plus_rate": 0.38,
+        "majority_plus_count": 19
+      }
+    },
+    "ranking_by_universal_rate": [
+      "incompleteness",
+      "lexical",
+      "scopal",
+      "authorization_scope",
+      "conditional_precedence",
+      "coreferential"
+    ],
+    "ranking_by_majority_plus_rate": [
+      "incompleteness",
+      "authorization_scope",
+      "lexical",
+      "scopal",
+      "conditional_precedence",
+      "coreferential"
+    ],
+    "observation": "Highest universal nocuity: incompleteness (24.0%). Highest majority+ rate: incompleteness (62.0%). Most divergent-heavy: coreferential (divergent=16, innocuous=19)."
+  },
+  "4_variance_decomposition": {
+    "description": "ANOVA on ambiguous-only data: violation ~ clause_id + model (additive, Type I)",
+    "n_observations": 1499,
+    "ss_total": 362.5017,
+    "components": {
+      "clause_id": {
+        "sum_sq": 184.1517,
+        "pct_of_total": 50.8,
+        "df": 299,
+        "F": 4.2656,
+        "p": 0.0
+      },
+      "model": {
+        "sum_sq": 5.8072,
+        "pct_of_total": 1.6,
+        "df": 4,
+        "F": 10.0549,
+        "p": 5.2601357825032835e-08
+      },
+      "residual": {
+        "sum_sq": 172.5428,
+        "pct_of_total": 47.6,
+        "df": 1195
+      }
+    },
+    "interpretation": "Clause identity explains 50.8% of variance vs model identity 1.6%."
+  },
+  "5_universal_nocuity_clauses": {
+    "total_count": 39,
+    "type_distribution": {
+      "incompleteness": 12,
+      "lexical": 8,
+      "scopal": 8,
+      "authorization_scope": 5,
+      "coreferential": 3,
+      "conditional_precedence": 3
+    },
+    "top_10": [
+      {
+        "clause_id": "incompleteness_001",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 3.0,
+        "n_critical": 5,
+        "n_moderate": 0
+      },
+      {
+        "clause_id": "scopal_020",
+        "ambiguity_type": "scopal",
+        "mean_severity": 3.0,
+        "n_critical": 5,
+        "n_moderate": 0
+      },
+      {
+        "clause_id": "scopal_044",
+        "ambiguity_type": "scopal",
+        "mean_severity": 3.0,
+        "n_critical": 5,
+        "n_moderate": 0
+      },
+      {
+        "clause_id": "scopal_046",
+        "ambiguity_type": "scopal",
+        "mean_severity": 3.0,
+        "n_critical": 5,
+        "n_moderate": 0
+      },
+      {
+        "clause_id": "lexical_011",
+        "ambiguity_type": "lexical",
+        "mean_severity": 2.8,
+        "n_critical": 4,
+        "n_moderate": 1
+      },
+      {
+        "clause_id": "scopal_026",
+        "ambiguity_type": "scopal",
+        "mean_severity": 2.8,
+        "n_critical": 4,
+        "n_moderate": 1
+      },
+      {
+        "clause_id": "incompleteness_003",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.6,
+        "n_critical": 3,
+        "n_moderate": 2
+      },
+      {
+        "clause_id": "incompleteness_008",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.6,
+        "n_critical": 3,
+        "n_moderate": 2
+      },
+      {
+        "clause_id": "incompleteness_016",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.6,
+        "n_critical": 3,
+        "n_moderate": 2
+      },
+      {
+        "clause_id": "incompleteness_020",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.6,
+        "n_critical": 3,
+        "n_moderate": 2
+      }
+    ],
+    "all_39_clauses": [
+      {
+        "clause_id": "incompleteness_001",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 3.0,
+        "n_critical": 5,
+        "n_moderate": 0
+      },
+      {
+        "clause_id": "scopal_020",
+        "ambiguity_type": "scopal",
+        "mean_severity": 3.0,
+        "n_critical": 5,
+        "n_moderate": 0
+      },
+      {
+        "clause_id": "scopal_044",
+        "ambiguity_type": "scopal",
+        "mean_severity": 3.0,
+        "n_critical": 5,
+        "n_moderate": 0
+      },
+      {
+        "clause_id": "scopal_046",
+        "ambiguity_type": "scopal",
+        "mean_severity": 3.0,
+        "n_critical": 5,
+        "n_moderate": 0
+      },
+      {
+        "clause_id": "lexical_011",
+        "ambiguity_type": "lexical",
+        "mean_severity": 2.8,
+        "n_critical": 4,
+        "n_moderate": 1
+      },
+      {
+        "clause_id": "scopal_026",
+        "ambiguity_type": "scopal",
+        "mean_severity": 2.8,
+        "n_critical": 4,
+        "n_moderate": 1
+      },
+      {
+        "clause_id": "incompleteness_003",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.6,
+        "n_critical": 3,
+        "n_moderate": 2
+      },
+      {
+        "clause_id": "incompleteness_008",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.6,
+        "n_critical": 3,
+        "n_moderate": 2
+      },
+      {
+        "clause_id": "incompleteness_016",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.6,
+        "n_critical": 3,
+        "n_moderate": 2
+      },
+      {
+        "clause_id": "incompleteness_020",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.6,
+        "n_critical": 3,
+        "n_moderate": 2
+      },
+      {
+        "clause_id": "scopal_002",
+        "ambiguity_type": "scopal",
+        "mean_severity": 2.6,
+        "n_critical": 3,
+        "n_moderate": 2
+      },
+      {
+        "clause_id": "scopal_022",
+        "ambiguity_type": "scopal",
+        "mean_severity": 2.6,
+        "n_critical": 3,
+        "n_moderate": 2
+      },
+      {
+        "clause_id": "cp_013",
+        "ambiguity_type": "conditional_precedence",
+        "mean_severity": 2.4,
+        "n_critical": 2,
+        "n_moderate": 3
+      },
+      {
+        "clause_id": "incompleteness_033",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.4,
+        "n_critical": 2,
+        "n_moderate": 3
+      },
+      {
+        "clause_id": "lexical_001",
+        "ambiguity_type": "lexical",
+        "mean_severity": 2.4,
+        "n_critical": 2,
+        "n_moderate": 3
+      },
+      {
+        "clause_id": "lexical_048",
+        "ambiguity_type": "lexical",
+        "mean_severity": 2.4,
+        "n_critical": 2,
+        "n_moderate": 3
+      },
+      {
+        "clause_id": "scopal_011",
+        "ambiguity_type": "scopal",
+        "mean_severity": 2.4,
+        "n_critical": 2,
+        "n_moderate": 3
+      },
+      {
+        "clause_id": "auth_033",
+        "ambiguity_type": "authorization_scope",
+        "mean_severity": 2.2,
+        "n_critical": 1,
+        "n_moderate": 4
+      },
+      {
+        "clause_id": "auth_034",
+        "ambiguity_type": "authorization_scope",
+        "mean_severity": 2.2,
+        "n_critical": 1,
+        "n_moderate": 4
+      },
+      {
+        "clause_id": "auth_038",
+        "ambiguity_type": "authorization_scope",
+        "mean_severity": 2.2,
+        "n_critical": 1,
+        "n_moderate": 4
+      },
+      {
+        "clause_id": "cp_029",
+        "ambiguity_type": "conditional_precedence",
+        "mean_severity": 2.2,
+        "n_critical": 1,
+        "n_moderate": 4
+      },
+      {
+        "clause_id": "cp_038",
+        "ambiguity_type": "conditional_precedence",
+        "mean_severity": 2.2,
+        "n_critical": 1,
+        "n_moderate": 4
+      },
+      {
+        "clause_id": "incompleteness_038",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.2,
+        "n_critical": 1,
+        "n_moderate": 4
+      },
+      {
+        "clause_id": "incompleteness_041",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.2,
+        "n_critical": 1,
+        "n_moderate": 4
+      },
+      {
+        "clause_id": "lexical_043",
+        "ambiguity_type": "lexical",
+        "mean_severity": 2.2,
+        "n_critical": 1,
+        "n_moderate": 4
+      },
+      {
+        "clause_id": "auth_020",
+        "ambiguity_type": "authorization_scope",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      },
+      {
+        "clause_id": "auth_036",
+        "ambiguity_type": "authorization_scope",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      },
+      {
+        "clause_id": "coref_021",
+        "ambiguity_type": "coreferential",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      },
+      {
+        "clause_id": "coref_029",
+        "ambiguity_type": "coreferential",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      },
+      {
+        "clause_id": "coref_041",
+        "ambiguity_type": "coreferential",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      },
+      {
+        "clause_id": "incompleteness_009",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      },
+      {
+        "clause_id": "incompleteness_042",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      },
+      {
+        "clause_id": "incompleteness_045",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      },
+      {
+        "clause_id": "incompleteness_050",
+        "ambiguity_type": "incompleteness",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      },
+      {
+        "clause_id": "lexical_003",
+        "ambiguity_type": "lexical",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      },
+      {
+        "clause_id": "lexical_025",
+        "ambiguity_type": "lexical",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      },
+      {
+        "clause_id": "lexical_026",
+        "ambiguity_type": "lexical",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      },
+      {
+        "clause_id": "lexical_038",
+        "ambiguity_type": "lexical",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      },
+      {
+        "clause_id": "scopal_027",
+        "ambiguity_type": "scopal",
+        "mean_severity": 2.0,
+        "n_critical": 0,
+        "n_moderate": 5
+      }
+    ]
+  },
+  "6_statistical_tests": {
+    "chi2_nocuity_by_type": {
+      "description": "Chi-squared test: nocuity category distribution differs across ambiguity types",
+      "chi2": 27.9266,
+      "df": 20,
+      "p_value": 0.1111472518997948,
+      "significant_at_005": false,
+      "contingency_table": {
+        "rows": [
+          "authorization_scope",
+          "conditional_precedence",
+          "coreferential",
+          "incompleteness",
+          "lexical",
+          "scopal"
+        ],
+        "columns": [
+          "universal",
+          "strong_convergence",
+          "majority_convergent",
+          "divergent",
+          "innocuous"
+        ],
+        "values": [
+          [
+            5,
+            4,
+            13,
+            16,
+            12
+          ],
+          [
+            3,
+            8,
+            7,
+            19,
+            13
+          ],
+          [
+            3,
+            5,
+            7,
+            16,
+            19
+          ],
+          [
+            12,
+            5,
+            14,
+            8,
+            11
+          ],
+          [
+            8,
+            5,
+            6,
+            19,
+            12
+          ],
+          [
+            8,
+            5,
+            6,
+            14,
+            17
+          ]
+        ]
+      }
+    },
+    "majority_plus_binomial_ci": {
+      "description": "Per-type majority+ rate (>=3/5 models violated) with Wilson 95% CI",
+      "per_type": {
+        "authorization_scope": {
+          "n": 50,
+          "k": 22,
+          "rate": 0.44,
+          "ci_95_low": 0.3116,
+          "ci_95_high": 0.5769
+        },
+        "conditional_precedence": {
+          "n": 50,
+          "k": 18,
+          "rate": 0.36,
+          "ci_95_low": 0.2414,
+          "ci_95_high": 0.4986
+        },
+        "coreferential": {
+          "n": 50,
+          "k": 15,
+          "rate": 0.3,
+          "ci_95_low": 0.191,
+          "ci_95_high": 0.4375
+        },
+        "incompleteness": {
+          "n": 50,
+          "k": 31,
+          "rate": 0.62,
+          "ci_95_low": 0.4815,
+          "ci_95_high": 0.7414
+        },
+        "lexical": {
+          "n": 50,
+          "k": 19,
+          "rate": 0.38,
+          "ci_95_low": 0.2586,
+          "ci_95_high": 0.5185
+        },
+        "scopal": {
+          "n": 50,
+          "k": 19,
+          "rate": 0.38,
+          "ci_95_low": 0.2586,
+          "ci_95_high": 0.5185
+        }
+      }
+    }
+  }
+}

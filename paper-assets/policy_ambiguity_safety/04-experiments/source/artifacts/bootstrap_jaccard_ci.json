@@ -1,0 +1,72 @@
+{
+  "description": "Bootstrap CIs and permutation test for cross-family Jaccard analysis",
+  "seed": 42,
+  "n_clauses": 300,
+  "n_models": 5,
+  "models": [
+    "gpt-5.4",
+    "gpt-4.1",
+    "claude-sonnet-4-6",
+    "deepseek-v3",
+    "qwen3-235b"
+  ],
+  "within_family_pairs": [
+    [
+      "gpt-5.4",
+      "gpt-4.1"
+    ]
+  ],
+  "violation_set_sizes": {
+    "gpt-5.4": 123,
+    "gpt-4.1": 122,
+    "claude-sonnet-4-6": 91,
+    "deepseek-v3": 149,
+    "qwen3-235b": 129
+  },
+  "observed": {
+    "within_family_jaccard": 0.5408805031446541,
+    "cross_family_mean_jaccard": 0.45724133370507236,
+    "difference": 0.08363916943958172,
+    "all_pairwise": {
+      "gpt-5.4_vs_gpt-4.1": 0.5409,
+      "gpt-5.4_vs_claude-sonnet-4-6": 0.3987,
+      "gpt-5.4_vs_deepseek-v3": 0.4945,
+      "gpt-5.4_vs_qwen3-235b": 0.4237,
+      "gpt-4.1_vs_claude-sonnet-4-6": 0.4295,
+      "gpt-4.1_vs_deepseek-v3": 0.5311,
+      "gpt-4.1_vs_qwen3-235b": 0.5305,
+      "claude-sonnet-4-6_vs_deepseek-v3": 0.3333,
+      "claude-sonnet-4-6_vs_qwen3-235b": 0.4379,
+      "deepseek-v3_vs_qwen3-235b": 0.5359
+    }
+  },
+  "bootstrap": {
+    "within_family": {
+      "mean": 0.5405980003180358,
+      "ci_lower": 0.46206787429070273,
+      "ci_upper": 0.6172839506172839,
+      "std": 0.03937720905593542
+    },
+    "cross_family_mean": {
+      "mean": 0.4572673276942309,
+      "ci_lower": 0.40890174695619286,
+      "ci_upper": 0.5051689187699531,
+      "std": 0.02457944206685868
+    },
+    "difference_within_minus_cross": {
+      "mean": 0.083330672623805,
+      "ci_lower": 0.016139271479388186,
+      "ci_upper": 0.15257242814167493,
+      "std": 0.03501965763602117,
+      "prop_positive": 0.9933
+    }
+  },
+  "permutation_test": {
+    "observed_diff": 0.08363916943958172,
+    "p_value": 0.0,
+    "n_permutations": 10000,
+    "perm_diff_mean": -4.074889961241284e-05,
+    "perm_diff_std": 0.037288358743729336,
+    "perm_diff_95th": 0.059144557547390064
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "method": "automated inter-coder agreement (NOT inter-rater reliability)",
+  "n_sampled": 60,
+  "per_type_sampled": {
+    "authorization_scope": 14,
+    "conditional_precedence": 9,
+    "coreferential": 7,
+    "incompleteness": 11,
+    "lexical": 12,
+    "scopal": 7
+  },
+  "coder_1": "gpt-5.4 (original plan_005 annotation)",
+  "coder_2": "gpt-4.1 (independent recoding)",
+  "cohens_kappa": 0.5352,
+  "percent_agreement": 66.7,
+  "interpretation": "moderate",
+  "per_category_agreement": {
+    "arbitrary_rule_selection": {
+      "n_coder1": 3,
+      "n_coder2": 3,
+      "agreed": 3,
+      "agreement_pct": 100.0
+    },
+    "assumption_based_action": {
+      "n_coder1": 19,
+      "n_coder2": 13,
+      "agreed": 9,
+      "agreement_pct": 47.4
+    },
+    "conservative_refusal": {
+      "n_coder1": 1,
+      "n_coder2": 1,
+      "agreed": 1,
+      "agreement_pct": 100.0
+    },
+    "other": {
+      "n_coder1": 2,
+      "n_coder2": 0,
+      "agreed": 0,
+      "agreement_pct": 0.0
+    },
+    "scope_misapplication": {
+      "n_coder1": 18,
+      "n_coder2": 30,
+      "agreed": 17,
+      "agreement_pct": 94.4
+    },
+    "unauthorized_escalation": {
+      "n_coder1": 17,
+      "n_coder2": 13,
+      "agreed": 10,
+      "agreement_pct": 58.8
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "arbitrary_rule_selection",
+      "assumption_based_action",
+      "conservative_refusal",
+      "other",
+      "scope_misapplication",
+      "unauthorized_escalation"
+    ],
+    "matrix": [
+      [
+        3,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        9,
+        0,
+        0,
+        7,
+        3
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        17,
+        0
+      ],
+      [
+        0,
+        3,
+        0,
+        0,
+        4,
+        10
+      ]
+    ]
+  },
+  "cross_model_dominant_mode_consistency": {
+    "n_types_consistent": 5,
+    "n_types_total": 6,
+    "details": {
+      "authorization_scope": {
+        "gpt54_dominant": "unauthorized_escalation",
+        "gpt41_dominant": "unauthorized_escalation",
+        "consistent": true
+      },
+      "conditional_precedence": {
+        "gpt54_dominant": "scope_misapplication",
+        "gpt41_dominant": "scope_misapplication",
+        "consistent": true
+      },
+      "coreferential": {
+        "gpt54_dominant": "scope_misapplication",
+        "gpt41_dominant": "assumption_based_action",
+        "consistent": false
+      },
+      "incompleteness": {
+        "gpt54_dominant": "assumption_based_action",
+        "gpt41_dominant": "assumption_based_action",
+        "consistent": true
+      },
+      "lexical": {
+        "gpt54_dominant": "assumption_based_action",
+        "gpt41_dominant": "assumption_based_action",
+        "consistent": true
+      },
+      "scopal": {
+        "gpt54_dominant": "scope_misapplication",
+        "gpt41_dominant": "scope_misapplication",
+        "consistent": true
+      }
+    }
+  }
+}

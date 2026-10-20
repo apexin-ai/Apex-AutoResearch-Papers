@@ -1,0 +1,237 @@
+{
+  "episode_ids": [
+    "f51a5977-0c76-4335-b7fd-a9ef17b49c34",
+    "1e8a5556-2319-408f-8bee-6e03f4a82358",
+    "ed71656f-3b44-43b3-8e26-49aa8de76689",
+    "5707d909-5d9d-4c6c-8d2b-504592e4391a",
+    "3ddc9bcb-dd19-4e4c-b0d3-e6b8a542c35a",
+    "c85d0257-2f07-4ee4-9af4-0b3957c84b1f",
+    "34ee6da1-c62a-4b7b-b8da-1f4e42b66be2",
+    "f606d5ed-aaca-4c1b-8788-584392aa005d",
+    "6d9def12-e1db-4fc0-a103-09c649852207",
+    "23c9a85a-36dc-4cb4-b5ca-9f045dd97386",
+    "5c806102-ecca-4123-82c2-8d8eba6302ba",
+    "5b1a8a39-b140-4f07-a39e-78de208c97fc",
+    "76d3ae34-2f53-4b0b-afea-674be0c52db4",
+    "fd33e276-e2f5-49c4-b90e-0e829661dc98",
+    "c4d2965a-4763-43fe-88ef-b9959fb7ea11",
+    "adedaa00-05a9-4b2e-8ff2-097dbbe9e8b1",
+    "7817dfdd-7385-4b8e-935a-c0dbc4856f2a",
+    "f7f7c8f0-388a-4d95-b63a-26c47725bacc",
+    "2cc73052-bb1e-494e-a501-033360f5fbc4",
+    "3298a7fe-bed1-417d-b083-127f6ce15a51",
+    "3b1652fb-b1f2-4c96-afb9-41a260161ab4",
+    "5e55bd71-59d4-4f55-9f75-e00c0ef45d64",
+    "ca0fcf16-6c5c-44c0-b70a-86ea630a4fb7",
+    "75d34709-9cec-417b-b0b1-e36527ee3e1b",
+    "b70e73c1-74c8-4100-8ea1-66fb86e1fcc3",
+    "7e5e2534-71d2-42c2-a16a-ff3456c02e54",
+    "acaf9788-2e3f-4a5d-904c-0dbb6d792f9e",
+    "2ecc4e07-1ca4-4528-bc5e-7b109a1a5aa2",
+    "1f91e8b9-c208-4da9-8513-ae7c696c6c2a",
+    "98dae815-30b9-4f26-beee-509ab039b13e",
+    "3056527f-1727-4d23-bab5-07324bff91e1",
+    "8bb55d35-89d6-49dc-9d3b-ddbecff32b9b",
+    "b4142f8d-e7d4-4e4b-89b6-d54765339e14",
+    "4d6c749e-7fa5-4913-a94a-aeb1eda58d13",
+    "67427179-6299-4f20-9f55-abc2c34d1c76",
+    "5a038123-a39b-43b0-a301-bcc9941cacbf",
+    "161694b9-f1b8-4f81-9c95-71a1aba0647f",
+    "7efb2ceb-b1fd-4bca-b613-4dfb09c23fca",
+    "0c63c22f-d581-49a7-a60e-d062f8cc8f63",
+    "449606f7-2e38-4729-9937-9d5ac63fc95b",
+    "0f2da8a2-a338-4c89-a87f-eddd08610f5f",
+    "8e4a956a-f1b4-46ea-8c13-ac5fbdb4e4c2",
+    "1e1f1527-7df1-42af-aebc-112a84d0afe2",
+    "2e616d32-3953-4a1d-a3ac-dc2b07332c60",
+    "6aa4222b-72ed-4227-8ca3-8fea2ac40ee3",
+    "9d03bdca-4ee0-4107-982b-2e0f47823f48",
+    "bfce8466-64a9-44bb-9ccd-c86d9822129c",
+    "52c074ac-5cd7-41bb-9097-f831c926b9e4",
+    "bc8418bc-9e84-43ee-9fa4-9c42c9bbbccf",
+    "9f4410b5-535f-44db-8670-499d0091aa2d",
+    "960cdd87-6443-4c5e-a4fc-a2b03aecdba5",
+    "1d4cd57a-4dce-472b-9d91-aa9ddf09f918",
+    "89f60d6f-df91-45f1-a454-c94ea217844e",
+    "c87ae0d5-707e-4aba-9eaa-f21abb0367fd",
+    "8e7bbf47-f66b-4e2a-8502-aad2671a69ee",
+    "733b67ed-1c68-455f-9d93-aeeeb0568d5b",
+    "ebbede99-f5f2-4bf9-b302-bba5650efa1e",
+    "e0a4d6b7-c545-4858-ac62-8abfff5f86f8",
+    "de9f96a0-0af0-45dd-beaa-c0a1c25be466",
+    "63c178dd-f0c8-4ee0-be0e-c050f655647b",
+    "b6a3201c-1e59-4247-84d0-340b5c5178cd",
+    "9125f43d-53a1-4409-af0e-583ec275506f",
+    "4de978d7-fdc7-422f-a06c-eecb2784e353",
+    "5c1eff3c-5127-4b30-9aeb-1e7cc44130bc",
+    "646bf4f4-3759-4d32-a990-8aaa8c8a3fec",
+    "f28e537c-3595-4cb0-b458-cc63cb1e91a0",
+    "9203b10e-14c8-45f4-82f6-048ae7ac78da",
+    "5d0affff-68f4-4938-9938-0895e1d8693d",
+    "4aa0e1fc-f804-4e5a-b7c3-03180a952eb7",
+    "257824bf-c6ce-47a5-a7b2-f42d4518652d",
+    "7647a90f-25a5-4fe5-82af-8aa628a67ed4",
+    "88259293-6230-491d-b499-c94973d61213",
+    "ce1bd2f7-44d4-420b-97f4-75311a82f258",
+    "88f60af8-2502-422f-a329-2dbbd51a630b",
+    "f1efc280-9f71-4fdb-8ca4-201502b51e09",
+    "a21fdb98-6cb8-4f1a-8ad4-37db298875d6",
+    "aba62b5c-34a3-42a4-ad2e-7c074ac86eaf",
+    "376de1e3-4c4e-4f1d-b47c-5d7019e8a8b4",
+    "55ec609a-b660-4727-8e8d-f8fa084a3c92",
+    "ed43315f-c0a2-4d97-87b0-cb45eea8bc62",
+    "712cd4b1-5100-4983-8ea2-ad24f08a6c54",
+    "c71d5806-51ea-4494-9a2d-9bea6724fdd6",
+    "731a413f-95d8-4985-8e78-c6a396dc2706",
+    "a0c7d243-86eb-4c51-a43f-af35c9375346",
+    "aa42a6ff-1af8-4829-ad03-83ef9c3fa280",
+    "bcfe620e-3686-4157-9189-883caae21ce3",
+    "2eb4ef43-ca13-4ef3-85ee-70b25821f57c",
+    "ede22420-1ff0-494a-bcda-0392fee2788c",
+    "baaab52e-deb9-42ae-a1ad-9f331fc5c291",
+    "077cff4c-feb7-4805-a4f1-e212228dd65d",
+    "a54e3a15-8b21-47d4-aa2c-f0bae8e63469",
+    "370ce65e-c22b-49fd-9d64-fa9337ba89bd",
+    "3dfccc56-9599-4674-a591-aef9871a0722",
+    "993defa6-d9df-43bf-953d-31f06114a65d",
+    "4670f363-3ce3-4a1f-99de-e72cb0717dc1",
+    "5aa174ec-bdf5-400c-9b96-c6afad85f419",
+    "af33f0db-59d4-490a-b23a-199386be3ca0",
+    "ccdf4f99-a61e-4428-a36f-84ac9a901099",
+    "9c5b0d95-663e-4043-88e7-936817986aba",
+    "afe3a6c9-2e1f-4c77-a0c4-08a502d53e6d"
+  ],
+  "stats": {
+    "n_sampled": 100,
+    "ambiguity_types": {
+      "authorization_scope": 17,
+      "conditional_precedence": 17,
+      "coreferential": 17,
+      "incompleteness": 17,
+      "lexical": 16,
+      "scopal": 16
+    },
+    "conditions": {
+      "ambiguous": 58,
+      "unambiguous": 42
+    },
+    "models": {
+      "gpt-4.1": 54,
+      "gpt-5.4": 46
+    },
+    "violation_levels": {
+      "critical": 9,
+      "moderate": 16,
+      "none": 71,
+      "minor": 4
+    },
+    "per_type": {
+      "authorization_scope": {
+        "total_pool": 200,
+        "sampled": 17,
+        "violation_levels": {
+          "critical": 2,
+          "moderate": 4,
+          "none": 11
+        },
+        "conditions": {
+          "ambiguous": 10,
+          "unambiguous": 7
+        },
+        "models": {
+          "gpt-4.1": 9,
+          "gpt-5.4": 8
+        }
+      },
+      "conditional_precedence": {
+        "total_pool": 200,
+        "sampled": 17,
+        "violation_levels": {
+          "critical": 2,
+          "moderate": 2,
+          "none": 13
+        },
+        "conditions": {
+          "ambiguous": 10,
+          "unambiguous": 7
+        },
+        "models": {
+          "gpt-4.1": 9,
+          "gpt-5.4": 8
+        }
+      },
+      "coreferential": {
+        "total_pool": 200,
+        "sampled": 17,
+        "violation_levels": {
+          "critical": 1,
+          "moderate": 3,
+          "none": 12,
+          "minor": 1
+        },
+        "conditions": {
+          "ambiguous": 10,
+          "unambiguous": 7
+        },
+        "models": {
+          "gpt-4.1": 9,
+          "gpt-5.4": 8
+        }
+      },
+      "incompleteness": {
+        "total_pool": 200,
+        "sampled": 17,
+        "violation_levels": {
+          "critical": 2,
+          "moderate": 4,
+          "none": 10,
+          "minor": 1
+        },
+        "conditions": {
+          "ambiguous": 10,
+          "unambiguous": 7
+        },
+        "models": {
+          "gpt-4.1": 9,
+          "gpt-5.4": 8
+        }
+      },
+      "lexical": {
+        "total_pool": 200,
+        "sampled": 16,
+        "violation_levels": {
+          "critical": 1,
+          "moderate": 2,
+          "none": 12,
+          "minor": 1
+        },
+        "conditions": {
+          "ambiguous": 9,
+          "unambiguous": 7
+        },
+        "models": {
+          "gpt-4.1": 9,
+          "gpt-5.4": 7
+        }
+      },
+      "scopal": {
+        "total_pool": 200,
+        "sampled": 16,
+        "violation_levels": {
+          "critical": 1,
+          "moderate": 1,
+          "none": 13,
+          "minor": 1
+        },
+        "conditions": {
+          "ambiguous": 9,
+          "unambiguous": 7
+        },
+        "models": {
+          "gpt-4.1": 9,
+          "gpt-5.4": 7
+        }
+      }
+    }
+  }
+}

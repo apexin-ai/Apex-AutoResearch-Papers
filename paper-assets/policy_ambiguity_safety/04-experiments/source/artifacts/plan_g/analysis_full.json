@@ -1,0 +1,539 @@
+{
+  "matrix": {
+    "gpt-5.4": {
+      "authorization_scope": {
+        "n_aware": 1,
+        "n_total": 32
+      },
+      "conditional_precedence": {
+        "n_aware": 2,
+        "n_total": 17
+      },
+      "coreferential": {
+        "n_aware": 0,
+        "n_total": 9
+      },
+      "incompleteness": {
+        "n_aware": 1,
+        "n_total": 23
+      },
+      "lexical": {
+        "n_aware": 1,
+        "n_total": 21
+      },
+      "scopal": {
+        "n_aware": 0,
+        "n_total": 21
+      }
+    },
+    "gpt-4.1": {
+      "authorization_scope": {
+        "n_aware": 1,
+        "n_total": 23
+      },
+      "conditional_precedence": {
+        "n_aware": 3,
+        "n_total": 18
+      },
+      "coreferential": {
+        "n_aware": 4,
+        "n_total": 16
+      },
+      "incompleteness": {
+        "n_aware": 4,
+        "n_total": 29
+      },
+      "lexical": {
+        "n_aware": 1,
+        "n_total": 17
+      },
+      "scopal": {
+        "n_aware": 0,
+        "n_total": 19
+      }
+    },
+    "claude-sonnet-4-6": {
+      "authorization_scope": {
+        "n_aware": 0,
+        "n_total": 6
+      },
+      "conditional_precedence": {
+        "n_aware": 8,
+        "n_total": 18
+      },
+      "coreferential": {
+        "n_aware": 1,
+        "n_total": 11
+      },
+      "incompleteness": {
+        "n_aware": 0,
+        "n_total": 24
+      },
+      "lexical": {
+        "n_aware": 1,
+        "n_total": 16
+      },
+      "scopal": {
+        "n_aware": 0,
+        "n_total": 16
+      }
+    },
+    "qwen3-235b": {
+      "authorization_scope": {
+        "n_aware": 0,
+        "n_total": 13
+      },
+      "conditional_precedence": {
+        "n_aware": 0,
+        "n_total": 20
+      },
+      "coreferential": {
+        "n_aware": 0,
+        "n_total": 21
+      },
+      "incompleteness": {
+        "n_aware": 0,
+        "n_total": 31
+      },
+      "lexical": {
+        "n_aware": 0,
+        "n_total": 26
+      },
+      "scopal": {
+        "n_aware": 0,
+        "n_total": 18
+      }
+    },
+    "deepseek-v3": {
+      "authorization_scope": {
+        "n_aware": 0,
+        "n_total": 30
+      },
+      "conditional_precedence": {
+        "n_aware": 0,
+        "n_total": 19
+      },
+      "coreferential": {
+        "n_aware": 0,
+        "n_total": 22
+      },
+      "incompleteness": {
+        "n_aware": 0,
+        "n_total": 27
+      },
+      "lexical": {
+        "n_aware": 0,
+        "n_total": 27
+      },
+      "scopal": {
+        "n_aware": 0,
+        "n_total": 24
+      }
+    }
+  },
+  "pairwise_fisher": [
+    {
+      "model_1": "gpt-5.4",
+      "model_2": "gpt-4.1",
+      "aware_1": 5,
+      "total_1": 123,
+      "rate_1": 0.0407,
+      "aware_2": 13,
+      "total_2": 122,
+      "rate_2": 0.1066,
+      "odds_ratio": 0.3553,
+      "p_value": 0.053571,
+      "p_holm": 0.214282,
+      "significant_005": false
+    },
+    {
+      "model_1": "gpt-5.4",
+      "model_2": "claude-sonnet-4-6",
+      "aware_1": 5,
+      "total_1": 123,
+      "rate_1": 0.0407,
+      "aware_2": 10,
+      "total_2": 91,
+      "rate_2": 0.1099,
+      "odds_ratio": 0.3432,
+      "p_value": 0.060398,
+      "p_holm": 0.214282,
+      "significant_005": false
+    },
+    {
+      "model_1": "gpt-5.4",
+      "model_2": "qwen3-235b",
+      "aware_1": 5,
+      "total_1": 123,
+      "rate_1": 0.0407,
+      "aware_2": 0,
+      "total_2": 129,
+      "rate_2": 0.0,
+      "odds_ratio": Infinity,
+      "p_value": 0.026553,
+      "p_holm": 0.132765,
+      "significant_005": false
+    },
+    {
+      "model_1": "gpt-5.4",
+      "model_2": "deepseek-v3",
+      "aware_1": 5,
+      "total_1": 123,
+      "rate_1": 0.0407,
+      "aware_2": 0,
+      "total_2": 149,
+      "rate_2": 0.0,
+      "odds_ratio": Infinity,
+      "p_value": 0.018071,
+      "p_holm": 0.108428,
+      "significant_005": false
+    },
+    {
+      "model_1": "gpt-4.1",
+      "model_2": "claude-sonnet-4-6",
+      "aware_1": 13,
+      "total_1": 122,
+      "rate_1": 0.1066,
+      "aware_2": 10,
+      "total_2": 91,
+      "rate_2": 0.1099,
+      "odds_ratio": 0.9661,
+      "p_value": 1.0,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "model_1": "gpt-4.1",
+      "model_2": "qwen3-235b",
+      "aware_1": 13,
+      "total_1": 122,
+      "rate_1": 0.1066,
+      "aware_2": 0,
+      "total_2": 129,
+      "rate_2": 0.0,
+      "odds_ratio": Infinity,
+      "p_value": 6e-05,
+      "p_holm": 0.000478,
+      "significant_005": true
+    },
+    {
+      "model_1": "gpt-4.1",
+      "model_2": "deepseek-v3",
+      "aware_1": 13,
+      "total_1": 122,
+      "rate_1": 0.1066,
+      "aware_2": 0,
+      "total_2": 149,
+      "rate_2": 0.0,
+      "odds_ratio": Infinity,
+      "p_value": 2.2e-05,
+      "p_holm": 0.000215,
+      "significant_005": true
+    },
+    {
+      "model_1": "claude-sonnet-4-6",
+      "model_2": "qwen3-235b",
+      "aware_1": 10,
+      "total_1": 91,
+      "rate_1": 0.1099,
+      "aware_2": 0,
+      "total_2": 129,
+      "rate_2": 0.0,
+      "odds_ratio": Infinity,
+      "p_value": 0.000108,
+      "p_holm": 0.000756,
+      "significant_005": true
+    },
+    {
+      "model_1": "claude-sonnet-4-6",
+      "model_2": "deepseek-v3",
+      "aware_1": 10,
+      "total_1": 91,
+      "rate_1": 0.1099,
+      "aware_2": 0,
+      "total_2": 149,
+      "rate_2": 0.0,
+      "odds_ratio": Infinity,
+      "p_value": 4.4e-05,
+      "p_holm": 0.0004,
+      "significant_005": true
+    },
+    {
+      "model_1": "qwen3-235b",
+      "model_2": "deepseek-v3",
+      "aware_1": 0,
+      "total_1": 129,
+      "rate_1": 0.0,
+      "aware_2": 0,
+      "total_2": 149,
+      "rate_2": 0.0,
+      "odds_ratio": NaN,
+      "p_value": 1.0,
+      "p_holm": 1.0,
+      "significant_005": false
+    }
+  ],
+  "cluster_test": {
+    "cluster_hi": [
+      "gpt-4.1",
+      "claude-sonnet-4-6"
+    ],
+    "cluster_lo": [
+      "qwen3-235b",
+      "deepseek-v3"
+    ],
+    "aware_hi": 23,
+    "total_hi": 213,
+    "rate_hi": 0.108,
+    "aware_lo": 0,
+    "total_lo": 278,
+    "rate_lo": 0.0,
+    "odds_ratio": "Inf",
+    "p_value": 2.239217057122978e-09
+  },
+  "type_tests": [
+    {
+      "type_1": "authorization_scope",
+      "type_2": "conditional_precedence",
+      "aware_1": 2,
+      "total_1": 104,
+      "rate_1": 0.0192,
+      "aware_2": 13,
+      "total_2": 92,
+      "rate_2": 0.1413,
+      "odds_ratio": 0.1192,
+      "p_value": 0.001978,
+      "p_holm": 0.027685,
+      "significant_005": true
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "coreferential",
+      "aware_1": 2,
+      "total_1": 104,
+      "rate_1": 0.0192,
+      "aware_2": 5,
+      "total_2": 79,
+      "rate_2": 0.0633,
+      "odds_ratio": 0.2902,
+      "p_value": 0.241834,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "incompleteness",
+      "aware_1": 2,
+      "total_1": 104,
+      "rate_1": 0.0192,
+      "aware_2": 5,
+      "total_2": 134,
+      "rate_2": 0.0373,
+      "odds_ratio": 0.5059,
+      "p_value": 0.472537,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "lexical",
+      "aware_1": 2,
+      "total_1": 104,
+      "rate_1": 0.0192,
+      "aware_2": 3,
+      "total_2": 107,
+      "rate_2": 0.028,
+      "odds_ratio": 0.6797,
+      "p_value": 1.0,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "scopal",
+      "aware_1": 2,
+      "total_1": 104,
+      "rate_1": 0.0192,
+      "aware_2": 0,
+      "total_2": 98,
+      "rate_2": 0.0,
+      "odds_ratio": "Inf",
+      "p_value": 0.497956,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "coreferential",
+      "aware_1": 13,
+      "total_1": 92,
+      "rate_1": 0.1413,
+      "aware_2": 5,
+      "total_2": 79,
+      "rate_2": 0.0633,
+      "odds_ratio": 2.4354,
+      "p_value": 0.133801,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "incompleteness",
+      "aware_1": 13,
+      "total_1": 92,
+      "rate_1": 0.1413,
+      "aware_2": 5,
+      "total_2": 134,
+      "rate_2": 0.0373,
+      "odds_ratio": 4.2456,
+      "p_value": 0.00583,
+      "p_holm": 0.069962,
+      "significant_005": false
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "lexical",
+      "aware_1": 13,
+      "total_1": 92,
+      "rate_1": 0.1413,
+      "aware_2": 3,
+      "total_2": 107,
+      "rate_2": 0.028,
+      "odds_ratio": 5.7046,
+      "p_value": 0.003828,
+      "p_holm": 0.049759,
+      "significant_005": true
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "scopal",
+      "aware_1": 13,
+      "total_1": 92,
+      "rate_1": 0.1413,
+      "aware_2": 0,
+      "total_2": 98,
+      "rate_2": 0.0,
+      "odds_ratio": "Inf",
+      "p_value": 5e-05,
+      "p_holm": 0.000755,
+      "significant_005": true
+    },
+    {
+      "type_1": "coreferential",
+      "type_2": "incompleteness",
+      "aware_1": 5,
+      "total_1": 79,
+      "rate_1": 0.0633,
+      "aware_2": 5,
+      "total_2": 134,
+      "rate_2": 0.0373,
+      "odds_ratio": 1.7432,
+      "p_value": 0.504869,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "type_1": "coreferential",
+      "type_2": "lexical",
+      "aware_1": 5,
+      "total_1": 79,
+      "rate_1": 0.0633,
+      "aware_2": 3,
+      "total_2": 107,
+      "rate_2": 0.028,
+      "odds_ratio": 2.3423,
+      "p_value": 0.287597,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "type_1": "coreferential",
+      "type_2": "scopal",
+      "aware_1": 5,
+      "total_1": 79,
+      "rate_1": 0.0633,
+      "aware_2": 0,
+      "total_2": 98,
+      "rate_2": 0.0,
+      "odds_ratio": "Inf",
+      "p_value": 0.01648,
+      "p_holm": 0.181284,
+      "significant_005": false
+    },
+    {
+      "type_1": "incompleteness",
+      "type_2": "lexical",
+      "aware_1": 5,
+      "total_1": 134,
+      "rate_1": 0.0373,
+      "aware_2": 3,
+      "total_2": 107,
+      "rate_2": 0.028,
+      "odds_ratio": 1.3437,
+      "p_value": 1.0,
+      "p_holm": 1.0,
+      "significant_005": false
+    },
+    {
+      "type_1": "incompleteness",
+      "type_2": "scopal",
+      "aware_1": 5,
+      "total_1": 134,
+      "rate_1": 0.0373,
+      "aware_2": 0,
+      "total_2": 98,
+      "rate_2": 0.0,
+      "odds_ratio": "Inf",
+      "p_value": 0.074914,
+      "p_holm": 0.749137,
+      "significant_005": false
+    },
+    {
+      "type_1": "lexical",
+      "type_2": "scopal",
+      "aware_1": 3,
+      "total_1": 107,
+      "rate_1": 0.028,
+      "aware_2": 0,
+      "total_2": 98,
+      "rate_2": 0.0,
+      "odds_ratio": "Inf",
+      "p_value": 0.247776,
+      "p_holm": 1.0,
+      "significant_005": false
+    }
+  ],
+  "type_counts": {
+    "authorization_scope": {
+      "n_aware": 2,
+      "n_total": 104
+    },
+    "conditional_precedence": {
+      "n_aware": 13,
+      "n_total": 92
+    },
+    "coreferential": {
+      "n_aware": 5,
+      "n_total": 79
+    },
+    "incompleteness": {
+      "n_aware": 5,
+      "n_total": 134
+    },
+    "lexical": {
+      "n_aware": 3,
+      "n_total": 107
+    },
+    "scopal": {
+      "n_aware": 0,
+      "n_total": 98
+    }
+  },
+  "gpt54_position": {
+    "gpt54_rate": 0.0407,
+    "hi_cluster_rate": 0.108,
+    "lo_cluster_rate": 0.0,
+    "p_vs_hi_cluster": 0.039261,
+    "p_vs_lo_cluster": 0.002564
+  }
+}

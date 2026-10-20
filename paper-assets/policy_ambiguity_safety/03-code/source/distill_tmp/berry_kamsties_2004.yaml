@@ -1,0 +1,17 @@
+paper_key: "berry_kamsties_2004"
+title: "Ambiguity in Requirements Specification"
+venue: "Perspectives on Software Requirements 2003"
+full_text_available: false
+
+research:
+  baselines: []
+  metrics:
+    - {name: "N/A (survey/framework paper)", direction: "N/A"}
+  datasets: []
+  ablation_dimensions: []
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "survey + ambiguity detection techniques"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

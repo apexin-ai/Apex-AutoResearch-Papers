@@ -1,0 +1,25 @@
+{
+  "n_clauses": 300,
+  "n_models": 5,
+  "models": [
+    "claude-sonnet-4-6",
+    "deepseek-v3",
+    "gpt-4.1",
+    "gpt-5.4",
+    "qwen3-235b"
+  ],
+  "n_raters_per_clause": {
+    "min": 4,
+    "max": 5,
+    "mean": 5.0
+  },
+  "category_proportions": {
+    "violated": 0.4096,
+    "not_violated": 0.5904
+  },
+  "fleiss_kappa": 0.3846,
+  "se": 0.0206,
+  "z": 18.6879,
+  "p": 0.0,
+  "interpretation": "fair agreement"
+}

@@ -1,0 +1,99 @@
+paper_key: "drip_r_2026"
+title: "DRIP-R: A Benchmark for Decision-Making and Reasoning Under Real-World Policy Ambiguity in the Retail Domain"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines: [GPT-5, GPT-4.1, Qwen3-35B-A3B, gpt-oss-120b]
+  metrics:
+    - {name: "Policy Adherence (Policy Support)", direction: "higher_better"}
+    - {name: "Dialogue Quality (Consistency Drift)", direction: "higher_better"}
+    - {name: "Behavioral Alignment", direction: "higher_better"}
+    - {name: "Task-Resolution Adherence", direction: "higher_better"}
+    - {name: "Interest Alignment (Customer/Company)", direction: "higher_better"}
+    - {name: "Cross-model Resolution Agreement", direction: "higher_better"}
+  datasets:
+    - {name: "DRIP-R", size: "400 scenarios (40 tasks × 10 user personas)"}
+  ablation_dimensions: [ambiguity_type, user_persona_traits, agent_persona]
+  training_recipe: {optimizer: "N/A (evaluation benchmark)", lr: "N/A", hardware: "API-based"}
+  method_family: "benchmark + multi-judge evaluation framework"
+
+positioning:
+  core_claim: "Frontier models fundamentally disagree on identical policy-ambiguous scenarios (95.8% partial/full disagreement), and agent behavior exhibits fairness concerns correlated with user personality traits."
+  key_results: "Cross-model agreement: only 4.2% full agreement; GPT-5 Policy Support: 4.02; Neurotic/extraverted users receive 7-11% more customer-favorable treatment; Agent persona significantly anchors outcomes (χ²=59.03, p<0.001)"
+  limitations:
+    - "Only covers retail domain (Amazon return policy)"
+    - "Single primary policy source"
+    - "Limited model coverage"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "开篇指出现有benchmark假设policy无歧义，与现实严重脱节——引用Claude Opus 4.5利用航空政策漏洞的真实案例"
+  tension: "现有评估框架把policy compliance当作二元判断，但真实政策本质上允许多种合理解读"
+  key_insight: "Section 4开头揭示核心发现：95.8%场景模型间存在分歧，policy ambiguity不是noise而是fundamental feature"
+  argument_chain: "real-world policies are inherently ambiguous → existing benchmarks ignore this → DRIP-R uses real Amazon policy → multi-dimensional evaluation reveals systematic disagreement + fairness bias"
+  contribution_framing: "三项贡献：benchmark + evaluation framework + empirical analysis，按递进逻辑排列"
+  intro_structure: "5段：现状(agent部署) → 问题(policy ambiguity被忽略) → 现有工作不足 → 本文方案 → 贡献列表"
+  notable_technique: "用Dec-POMDP形式化问题，将ambiguity从bug重新定义为inherent feature；fairness分析(Big Five personality → outcome bias)作为意外发现增加影响力"
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "method_overview"
+    description: "End-to-end benchmark pipeline: policy ambiguity identification → task construction → conversational simulation → multi-judge evaluation"
+    narrative_role: "让读者一目了然理解整个系统流程"
+    design_elements: ["流程图", "模块化布局", "箭头连接"]
+    visual_style: "水平流程图，从左到右展示pipeline各阶段"
+  result_figures:
+    - figure_id: "Figure 3a"
+      viz_type: "radar_chart"
+      what_compared: "4个模型在8个评估维度上的归一化得分"
+      how_gain_highlighted: "GPT-5在多数维度上占据最外围"
+      design_note: "雷达图紧凑展示多维对比，适合模型间全面比较"
+    - figure_id: "Figure 3b"
+      viz_type: "stacked_bar"
+      what_compared: "不同ambiguity type下的跨模型一致性(Full/Partial/Full Disagreement)"
+      how_gain_highlighted: "用颜色区分三种一致性等级，Overall 4.2%高亮"
+      design_note: "stacked bar清晰展示比例分布"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "对话进程中各模型的policy adherence轨迹"
+      how_gain_highlighted: "GPT-5保持高位(≥4.83)，其他模型中段下降"
+      design_note: "归一化X轴使不同长度对话可比"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "scatter"
+      dimensions_varied: ["Big Five personality traits"]
+      design_note: "散点图+红线group mean展示personality-outcome相关性，附Spearman ρ和p值"
+    - figure_id: "Figure 6"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["agent_persona", "model"]
+      design_note: "5×4分组条形图清晰展示persona对outcome的锚定效应"
+    - figure_id: "Figure 7"
+      viz_type: "stacked_bar + bar_chart"
+      dimensions_varied: ["ambiguity_type"]
+      design_note: "左右并排：outcome比例分布 + behavior-decision gap"
+  figure_narrative_role: "Figure 1(pipeline概览) → Figure 2(评估维度树) → Figure 3(主结果：模型对比+一致性) → Figure 4(过程分析) → Figure 5-6(persona影响) → Figure 7(ambiguity type分析)"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 4"
+    row_axis: "methods"
+    col_axis: "evaluation metrics"
+    row_organization: "by_performance"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "数值直接对比，无bold/underline（放在appendix）"
+    statistical_reporting: "单次运行mean scores (1-5 Likert)"
+    num_baselines: 4
+    design_note: "14个子指标的完整对比表，放在appendix避免主文过载"
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["benchmark comparison dimensions"]
+      variation_style: "full_numbers"
+      design_note: "与其他benchmark的feature对比表（Real-World Policy, Document Structure, FK-Grade），突出DRIP-R的真实性优势"
+  supplementary_tables:
+    in_appendix: true
+    content: "详细模型性能表(Table 4)、数据集统计(Table 2)、ambiguity示例(Table 3)、人类标注一致性(Table 5)、Judge校准(Table 6)"
+    reason: "主文聚焦insight和可视化，详细数字留给appendix"

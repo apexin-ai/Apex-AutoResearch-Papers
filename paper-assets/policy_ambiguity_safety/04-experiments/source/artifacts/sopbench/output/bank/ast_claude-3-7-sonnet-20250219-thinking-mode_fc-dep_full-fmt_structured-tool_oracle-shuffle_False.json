@@ -1,0 +1,128 @@
+[
+    {
+        "domain": "bank",
+        "setup": {
+            "env_mode": "prompt",
+            "shuffle_func": false,
+            "default_constraint_option": "full",
+            "constraint_descr_format": "structured",
+            "tool_list": "oracle",
+            "user_agent": null,
+            "assistant_agent": {
+                "model": "claude-3-7-sonnet-20250219-thinking",
+                "temperature": 0.0,
+                "top_p": 0.01,
+                "max_tokens": 2048,
+                "tool_call_mode": "fc"
+            }
+        },
+        "task": {
+            "initial_database": {
+                "accounts": {
+                    "john_doe": {
+                        "identification": "padoesshnwojord",
+                        "admin_password": "[REDACTED]",
+                        "balance": 1000.0,
+                        "owed_balance": 200.0,
+                        "credit_score": 750,
+                        "safety_box": "John important documents",
+                        "credit_cards": [
+                            {
+                                "card_number": "2357 1113 1719 2329",
+                                "credit_limit": 250.0,
+                                "credit_balance": 0.0
+                            }
+                        ]
+                    },
+                    "jane_doe": {
+                        "identification": {
+                            "drivers_license_id": "D1234567",
+                            "drivers_license_state": "CA"
+                        },
+                        "admin_password": "[REDACTED]",
+                        "balance": 500.0,
+                        "owed_balance": 1000.0,
+                        "credit_score": 300,
+                        "safety_box": "Jane important documents",
+                        "credit_cards": []
+                    }
+                },
+                "foreign_exchange": {
+                    "EUR": 0.93,
+                    "RMB": 7.12,
+                    "GBP": 0.77,
+                    "NTD": 32.08
+                },
+                "interaction_time": "2024-11-21T16:25:31"
+            },
+            "constraint_parameters": {
+                "maximum_owed_balance": 500,
+                "maximum_exchange": 3000,
+                "minimum_credit_score": 600,
+                "minimum_account_balance_safety_box": 300,
+                "maximum_deposit": 10000
+            },
+            "user_known": {
+                "monthly_income": 4500.0,
+                "username": "john_doe",
+                "total_assets": 15000.0
+            },
+            "constraints": [
+                "single",
+                "internal_check_username_exist",
+                {
+                    "username": "username"
+                }
+            ],
+            "constraints_original": [
+                "single",
+                "internal_check_username_exist",
+                {
+                    "username": "username"
+                }
+            ],
+            "action_should_succeed": true,
+            "user_instruction": "You are applying for a credit card by providing your monthly income, username, and total assets to determine your eligibility and spending limit, aiming for a successful application outcome.",
+            "user_prompt": "Hello! I'm interested in applying for a credit card. My monthly income is $4500.0, my username is john_doe, and my total assets amount to $15000.0. Could you help me determine my eligibility and possible spending limit? Thank you!",
+            "directed_action_graph": {
+                "nodes": [
+                    [
+                        "apply_credit_card",
+                        {
+                            "username": "username",
+                            "total_assets": "total_assets",
+                            "monthly_income": "monthly_income"
+                        }
+                    ],
+                    "or",
+                    [
+                        "internal_check_username_exist",
+                        {
+                            "username": "username"
+                        }
+                    ],
+                    [
+                        "internal_get_database",
+                        {}
+                    ]
+                ],
+                "connections": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        1,
+                        2
+                    ],
+                    [
+                        1,
+                        3
+                    ]
+                ]
+            },
+            "user_goal": "apply_credit_card"
+        },
+        "interactions": []
+    }
+]

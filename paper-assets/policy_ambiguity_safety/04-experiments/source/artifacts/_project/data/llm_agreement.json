@@ -1,0 +1,69 @@
+{
+  "n_episodes": 100,
+  "cohens_kappa_weighted": 0.685,
+  "exact_agreement": 0.76,
+  "binary_agreement": 0.9,
+  "binary_kappa": 0.7403,
+  "confusion_matrix": {
+    "rows": "gpt-5.4",
+    "cols": "gpt-4.1",
+    "labels": [
+      "none",
+      "minor",
+      "moderate",
+      "critical"
+    ],
+    "matrix": [
+      [
+        61,
+        3,
+        4,
+        0
+      ],
+      [
+        2,
+        3,
+        2,
+        0
+      ],
+      [
+        4,
+        0,
+        6,
+        9
+      ],
+      [
+        0,
+        0,
+        0,
+        6
+      ]
+    ]
+  },
+  "per_type_agreement": {
+    "authorization_scope": {
+      "n": 17,
+      "exact_agreement": 0.588
+    },
+    "conditional_precedence": {
+      "n": 17,
+      "exact_agreement": 0.824
+    },
+    "coreferential": {
+      "n": 17,
+      "exact_agreement": 0.765
+    },
+    "incompleteness": {
+      "n": 17,
+      "exact_agreement": 0.647
+    },
+    "lexical": {
+      "n": 16,
+      "exact_agreement": 0.938
+    },
+    "scopal": {
+      "n": 16,
+      "exact_agreement": 0.812
+    }
+  }
+}

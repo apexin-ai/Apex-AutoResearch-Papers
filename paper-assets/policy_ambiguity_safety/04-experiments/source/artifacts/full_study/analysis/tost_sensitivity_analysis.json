@@ -1,0 +1,1549 @@
+{
+  "analysis_name": "TOST Margin Sensitivity",
+  "motivation": "Response to reviewer N2: demonstrate that tier structure is robust across a range of equivalence margins, not dependent on arbitrary \u00b115pp/\u00b110pp choice",
+  "method": "Two One-Sided Tests (TOST) for proportions. For each pair, H0_lower: p_A-p_B <= -margin, H0_upper: p_A-p_B >= +margin. Equivalence concluded when both one-sided z-tests reject at alpha=0.05.",
+  "per_type_rates": {
+    "authorization_scope": {
+      "rate": 0.416,
+      "n": 250
+    },
+    "conditional_precedence": {
+      "rate": 0.368,
+      "n": 250
+    },
+    "coreferential": {
+      "rate": 0.316,
+      "n": 250
+    },
+    "incompleteness": {
+      "rate": 0.536,
+      "n": 250
+    },
+    "lexical": {
+      "rate": 0.428,
+      "n": 250
+    },
+    "scopal": {
+      "rate": 0.393574,
+      "n": 249
+    }
+  },
+  "margins_tested": [
+    0.05,
+    0.08,
+    0.1,
+    0.12,
+    0.15,
+    0.18,
+    0.2
+  ],
+  "results_by_margin": {
+    "0.05": {
+      "equivalent_pairs": [],
+      "non_equivalent_pairs": [
+        {
+          "pair": "authorization_scope vs conditional_precedence",
+          "diff": 0.048,
+          "tost_p": 0.481712
+        },
+        {
+          "pair": "authorization_scope vs coreferential",
+          "diff": 0.1,
+          "tost_p": 0.878352
+        },
+        {
+          "pair": "authorization_scope vs incompleteness",
+          "diff": -0.12,
+          "tost_p": 0.942773
+        },
+        {
+          "pair": "authorization_scope vs lexical",
+          "diff": -0.012,
+          "tost_p": 0.194812
+        },
+        {
+          "pair": "authorization_scope vs scopal",
+          "diff": 0.0224,
+          "tost_p": 0.265129
+        },
+        {
+          "pair": "conditional_precedence vs coreferential",
+          "diff": 0.052,
+          "tost_p": 0.518826
+        },
+        {
+          "pair": "conditional_precedence vs incompleteness",
+          "diff": -0.168,
+          "tost_p": 0.996421
+        },
+        {
+          "pair": "conditional_precedence vs lexical",
+          "diff": -0.06,
+          "tost_p": 0.590503
+        },
+        {
+          "pair": "conditional_precedence vs scopal",
+          "diff": -0.0256,
+          "tost_p": 0.287052
+        },
+        {
+          "pair": "coreferential vs incompleteness",
+          "diff": -0.22,
+          "tost_p": 0.99996
+        },
+        {
+          "pair": "coreferential vs lexical",
+          "diff": -0.112,
+          "tost_p": 0.925613
+        },
+        {
+          "pair": "coreferential vs scopal",
+          "diff": -0.0776,
+          "tost_p": 0.740796
+        },
+        {
+          "pair": "incompleteness vs lexical",
+          "diff": 0.108,
+          "tost_p": 0.904123
+        },
+        {
+          "pair": "incompleteness vs scopal",
+          "diff": 0.1424,
+          "tost_p": 0.981747
+        },
+        {
+          "pair": "lexical vs scopal",
+          "diff": 0.0344,
+          "tost_p": 0.361745
+        }
+      ],
+      "n_equivalent": 0,
+      "n_total": 15
+    },
+    "0.08": {
+      "equivalent_pairs": [],
+      "non_equivalent_pairs": [
+        {
+          "pair": "authorization_scope vs conditional_precedence",
+          "diff": 0.048,
+          "tost_p": 0.231557
+        },
+        {
+          "pair": "authorization_scope vs coreferential",
+          "diff": 0.1,
+          "tost_p": 0.679648
+        },
+        {
+          "pair": "authorization_scope vs incompleteness",
+          "diff": -0.12,
+          "tost_p": 0.81647
+        },
+        {
+          "pair": "authorization_scope vs lexical",
+          "diff": -0.012,
+          "tost_p": 0.061843
+        },
+        {
+          "pair": "authorization_scope vs scopal",
+          "diff": 0.0224,
+          "tost_p": 0.095024
+        },
+        {
+          "pair": "conditional_precedence vs coreferential",
+          "diff": 0.052,
+          "tost_p": 0.254336
+        },
+        {
+          "pair": "conditional_precedence vs incompleteness",
+          "diff": -0.168,
+          "tost_p": 0.977553
+        },
+        {
+          "pair": "conditional_precedence vs lexical",
+          "diff": -0.06,
+          "tost_p": 0.323591
+        },
+        {
+          "pair": "conditional_precedence vs scopal",
+          "diff": -0.0256,
+          "tost_p": 0.105231
+        },
+        {
+          "pair": "coreferential vs incompleteness",
+          "diff": -0.22,
+          "tost_p": 0.999416
+        },
+        {
+          "pair": "coreferential vs lexical",
+          "diff": -0.112,
+          "tost_p": 0.771933
+        },
+        {
+          "pair": "coreferential vs scopal",
+          "diff": -0.0776,
+          "tost_p": 0.477348
+        },
+        {
+          "pair": "incompleteness vs lexical",
+          "diff": 0.108,
+          "tost_p": 0.735717
+        },
+        {
+          "pair": "incompleteness vs scopal",
+          "diff": 0.1424,
+          "tost_p": 0.921092
+        },
+        {
+          "pair": "lexical vs scopal",
+          "diff": 0.0344,
+          "tost_p": 0.150264
+        }
+      ],
+      "n_equivalent": 0,
+      "n_total": 15
+    },
+    "0.1": {
+      "equivalent_pairs": [
+        {
+          "pair": "authorization_scope vs lexical",
+          "diff": -0.012,
+          "tost_p": 0.02317
+        },
+        {
+          "pair": "authorization_scope vs scopal",
+          "diff": 0.0224,
+          "tost_p": 0.038727
+        },
+        {
+          "pair": "conditional_precedence vs scopal",
+          "diff": -0.0256,
+          "tost_p": 0.043404
+        }
+      ],
+      "non_equivalent_pairs": [
+        {
+          "pair": "authorization_scope vs conditional_precedence",
+          "diff": 0.048,
+          "tost_p": 0.11657
+        },
+        {
+          "pair": "authorization_scope vs coreferential",
+          "diff": 0.1,
+          "tost_p": 0.5
+        },
+        {
+          "pair": "authorization_scope vs incompleteness",
+          "diff": -0.12,
+          "tost_p": 0.674004
+        },
+        {
+          "pair": "conditional_precedence vs coreferential",
+          "diff": 0.052,
+          "tost_p": 0.128611
+        },
+        {
+          "pair": "conditional_precedence vs incompleteness",
+          "diff": -0.168,
+          "tost_p": 0.939407
+        },
+        {
+          "pair": "conditional_precedence vs lexical",
+          "diff": -0.06,
+          "tost_p": 0.180001
+        },
+        {
+          "pair": "coreferential vs incompleteness",
+          "diff": -0.22,
+          "tost_p": 0.997306
+        },
+        {
+          "pair": "coreferential vs lexical",
+          "diff": -0.112,
+          "tost_p": 0.610054
+        },
+        {
+          "pair": "coreferential vs scopal",
+          "diff": -0.0776,
+          "tost_p": 0.299716
+        },
+        {
+          "pair": "incompleteness vs lexical",
+          "diff": 0.108,
+          "tost_p": 0.571446
+        },
+        {
+          "pair": "incompleteness vs scopal",
+          "diff": 0.1424,
+          "tost_p": 0.831455
+        },
+        {
+          "pair": "lexical vs scopal",
+          "diff": 0.0344,
+          "tost_p": 0.06816
+        }
+      ],
+      "n_equivalent": 3,
+      "n_total": 15
+    },
+    "0.12": {
+      "equivalent_pairs": [
+        {
+          "pair": "authorization_scope vs conditional_precedence",
+          "diff": 0.048,
+          "tost_p": 0.049381
+        },
+        {
+          "pair": "authorization_scope vs lexical",
+          "diff": -0.012,
+          "tost_p": 0.007241
+        },
+        {
+          "pair": "authorization_scope vs scopal",
+          "diff": 0.0224,
+          "tost_p": 0.01318
+        },
+        {
+          "pair": "conditional_precedence vs scopal",
+          "diff": -0.0256,
+          "tost_p": 0.014903
+        },
+        {
+          "pair": "lexical vs scopal",
+          "diff": 0.0344,
+          "tost_p": 0.025949
+        }
+      ],
+      "non_equivalent_pairs": [
+        {
+          "pair": "authorization_scope vs coreferential",
+          "diff": 0.1,
+          "tost_p": 0.320352
+        },
+        {
+          "pair": "authorization_scope vs incompleteness",
+          "diff": -0.12,
+          "tost_p": 0.5
+        },
+        {
+          "pair": "conditional_precedence vs coreferential",
+          "diff": 0.052,
+          "tost_p": 0.05424
+        },
+        {
+          "pair": "conditional_precedence vs incompleteness",
+          "diff": -0.168,
+          "tost_p": 0.86302
+        },
+        {
+          "pair": "conditional_precedence vs lexical",
+          "diff": -0.06,
+          "tost_p": 0.08487
+        },
+        {
+          "pair": "coreferential vs incompleteness",
+          "diff": -0.22,
+          "tost_p": 0.989804
+        },
+        {
+          "pair": "coreferential vs lexical",
+          "diff": -0.112,
+          "tost_p": 0.426102
+        },
+        {
+          "pair": "coreferential vs scopal",
+          "diff": -0.0776,
+          "tost_p": 0.160202
+        },
+        {
+          "pair": "incompleteness vs lexical",
+          "diff": 0.108,
+          "tost_p": 0.393548
+        },
+        {
+          "pair": "incompleteness vs scopal",
+          "diff": 0.1424,
+          "tost_p": 0.694065
+        }
+      ],
+      "n_equivalent": 5,
+      "n_total": 15
+    },
+    "0.15": {
+      "equivalent_pairs": [
+        {
+          "pair": "authorization_scope vs conditional_precedence",
+          "diff": 0.048,
+          "tost_p": 0.009674
+        },
+        {
+          "pair": "authorization_scope vs lexical",
+          "diff": -0.012,
+          "tost_p": 0.000891
+        },
+        {
+          "pair": "authorization_scope vs scopal",
+          "diff": 0.0224,
+          "tost_p": 0.001844
+        },
+        {
+          "pair": "conditional_precedence vs coreferential",
+          "diff": 0.052,
+          "tost_p": 0.010357
+        },
+        {
+          "pair": "conditional_precedence vs lexical",
+          "diff": -0.06,
+          "tost_p": 0.01972
+        },
+        {
+          "pair": "conditional_precedence vs scopal",
+          "diff": -0.0256,
+          "tost_p": 0.002099
+        },
+        {
+          "pair": "coreferential vs scopal",
+          "diff": -0.0776,
+          "tost_p": 0.04492
+        },
+        {
+          "pair": "lexical vs scopal",
+          "diff": 0.0344,
+          "tost_p": 0.004326
+        }
+      ],
+      "non_equivalent_pairs": [
+        {
+          "pair": "authorization_scope vs coreferential",
+          "diff": 0.1,
+          "tost_p": 0.121648
+        },
+        {
+          "pair": "authorization_scope vs incompleteness",
+          "diff": -0.12,
+          "tost_p": 0.249363
+        },
+        {
+          "pair": "conditional_precedence vs incompleteness",
+          "diff": -0.168,
+          "tost_p": 0.659187
+        },
+        {
+          "pair": "coreferential vs incompleteness",
+          "diff": -0.22,
+          "tost_p": 0.947743
+        },
+        {
+          "pair": "coreferential vs lexical",
+          "diff": -0.112,
+          "tost_p": 0.18809
+        },
+        {
+          "pair": "incompleteness vs lexical",
+          "diff": 0.108,
+          "tost_p": 0.172254
+        },
+        {
+          "pair": "incompleteness vs scopal",
+          "diff": 0.1424,
+          "tost_p": 0.431964
+        }
+      ],
+      "n_equivalent": 8,
+      "n_total": 15
+    },
+    "0.18": {
+      "equivalent_pairs": [
+        {
+          "pair": "authorization_scope vs conditional_precedence",
+          "diff": 0.048,
+          "tost_p": 0.001236
+        },
+        {
+          "pair": "authorization_scope vs coreferential",
+          "diff": 0.1,
+          "tost_p": 0.03096
+        },
+        {
+          "pair": "authorization_scope vs lexical",
+          "diff": -0.012,
+          "tost_p": 7.1e-05
+        },
+        {
+          "pair": "authorization_scope vs scopal",
+          "diff": 0.0224,
+          "tost_p": 0.000168
+        },
+        {
+          "pair": "conditional_precedence vs coreferential",
+          "diff": 0.052,
+          "tost_p": 0.001259
+        },
+        {
+          "pair": "conditional_precedence vs lexical",
+          "diff": -0.06,
+          "tost_p": 0.003016
+        },
+        {
+          "pair": "conditional_precedence vs scopal",
+          "diff": -0.0256,
+          "tost_p": 0.00019
+        },
+        {
+          "pair": "coreferential vs scopal",
+          "diff": -0.0776,
+          "tost_p": 0.008223
+        },
+        {
+          "pair": "lexical vs scopal",
+          "diff": 0.0344,
+          "tost_p": 0.000472
+        }
+      ],
+      "non_equivalent_pairs": [
+        {
+          "pair": "authorization_scope vs incompleteness",
+          "diff": -0.12,
+          "tost_p": 0.08803
+        },
+        {
+          "pair": "conditional_precedence vs incompleteness",
+          "diff": -0.168,
+          "tost_p": 0.392236
+        },
+        {
+          "pair": "coreferential vs incompleteness",
+          "diff": -0.22,
+          "tost_p": 0.8232
+        },
+        {
+          "pair": "coreferential vs lexical",
+          "diff": -0.112,
+          "tost_p": 0.056642
+        },
+        {
+          "pair": "incompleteness vs lexical",
+          "diff": 0.108,
+          "tost_p": 0.052562
+        },
+        {
+          "pair": "incompleteness vs scopal",
+          "diff": 0.1424,
+          "tost_p": 0.197618
+        }
+      ],
+      "n_equivalent": 9,
+      "n_total": 15
+    },
+    "0.2": {
+      "equivalent_pairs": [
+        {
+          "pair": "authorization_scope vs conditional_precedence",
+          "diff": 0.048,
+          "tost_p": 0.000246
+        },
+        {
+          "pair": "authorization_scope vs coreferential",
+          "diff": 0.1,
+          "tost_p": 0.009809
+        },
+        {
+          "pair": "authorization_scope vs incompleteness",
+          "diff": -0.12,
+          "tost_p": 0.035617
+        },
+        {
+          "pair": "authorization_scope vs lexical",
+          "diff": -0.012,
+          "tost_p": 1e-05
+        },
+        {
+          "pair": "authorization_scope vs scopal",
+          "diff": 0.0224,
+          "tost_p": 2.7e-05
+        },
+        {
+          "pair": "conditional_precedence vs coreferential",
+          "diff": 0.052,
+          "tost_p": 0.000238
+        },
+        {
+          "pair": "conditional_precedence vs lexical",
+          "diff": -0.06,
+          "tost_p": 0.000678
+        },
+        {
+          "pair": "conditional_precedence vs scopal",
+          "diff": -0.0256,
+          "tost_p": 3e-05
+        },
+        {
+          "pair": "coreferential vs lexical",
+          "diff": -0.112,
+          "tost_p": 0.020213
+        },
+        {
+          "pair": "coreferential vs scopal",
+          "diff": -0.0776,
+          "tost_p": 0.00207
+        },
+        {
+          "pair": "incompleteness vs lexical",
+          "diff": 0.108,
+          "tost_p": 0.019196
+        },
+        {
+          "pair": "lexical vs scopal",
+          "diff": 0.0344,
+          "tost_p": 8.5e-05
+        }
+      ],
+      "non_equivalent_pairs": [
+        {
+          "pair": "conditional_precedence vs incompleteness",
+          "diff": -0.168,
+          "tost_p": 0.232901
+        },
+        {
+          "pair": "coreferential vs incompleteness",
+          "diff": -0.22,
+          "tost_p": 0.67861
+        },
+        {
+          "pair": "incompleteness vs scopal",
+          "diff": 0.1424,
+          "tost_p": 0.096341
+        }
+      ],
+      "n_equivalent": 12,
+      "n_total": 15
+    }
+  },
+  "pairwise_details": [
+    {
+      "type_1": "authorization_scope",
+      "type_2": "conditional_precedence",
+      "rate_1": 0.416,
+      "rate_2": 0.368,
+      "diff": 0.048,
+      "abs_diff": 0.048,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.481712,
+          "equivalent": false,
+          "z_lower": 2.247,
+          "z_upper": -0.0459
+        },
+        "0.08": {
+          "tost_p": 0.231557,
+          "equivalent": false,
+          "z_lower": 2.9349,
+          "z_upper": -0.7337
+        },
+        "0.1": {
+          "tost_p": 0.11657,
+          "equivalent": false,
+          "z_lower": 3.3935,
+          "z_upper": -1.1923
+        },
+        "0.12": {
+          "tost_p": 0.049381,
+          "equivalent": true,
+          "z_lower": 3.8521,
+          "z_upper": -1.6509
+        },
+        "0.15": {
+          "tost_p": 0.009674,
+          "equivalent": true,
+          "z_lower": 4.5399,
+          "z_upper": -2.3388
+        },
+        "0.18": {
+          "tost_p": 0.001236,
+          "equivalent": true,
+          "z_lower": 5.2278,
+          "z_upper": -3.0266
+        },
+        "0.2": {
+          "tost_p": 0.000246,
+          "equivalent": true,
+          "z_lower": 5.6864,
+          "z_upper": -3.4852
+        }
+      },
+      "smallest_equiv_margin": 0.12
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "coreferential",
+      "rate_1": 0.416,
+      "rate_2": 0.316,
+      "diff": 0.1,
+      "abs_diff": 0.1,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.878352,
+          "equivalent": false,
+          "z_lower": 3.5004,
+          "z_upper": 1.1668
+        },
+        "0.08": {
+          "tost_p": 0.679648,
+          "equivalent": false,
+          "z_lower": 4.2004,
+          "z_upper": 0.4667
+        },
+        "0.1": {
+          "tost_p": 0.5,
+          "equivalent": false,
+          "z_lower": 4.6672,
+          "z_upper": -0.0
+        },
+        "0.12": {
+          "tost_p": 0.320352,
+          "equivalent": false,
+          "z_lower": 5.1339,
+          "z_upper": -0.4667
+        },
+        "0.15": {
+          "tost_p": 0.121648,
+          "equivalent": false,
+          "z_lower": 5.8339,
+          "z_upper": -1.1668
+        },
+        "0.18": {
+          "tost_p": 0.03096,
+          "equivalent": true,
+          "z_lower": 6.534,
+          "z_upper": -1.8669
+        },
+        "0.2": {
+          "tost_p": 0.009809,
+          "equivalent": true,
+          "z_lower": 7.0007,
+          "z_upper": -2.3336
+        }
+      },
+      "smallest_equiv_margin": 0.18
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "incompleteness",
+      "rate_1": 0.416,
+      "rate_2": 0.536,
+      "diff": -0.12,
+      "abs_diff": 0.12,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.942773,
+          "equivalent": false,
+          "z_lower": -1.5785,
+          "z_upper": -3.8335
+        },
+        "0.08": {
+          "tost_p": 0.81647,
+          "equivalent": false,
+          "z_lower": -0.902,
+          "z_upper": -4.51
+        },
+        "0.1": {
+          "tost_p": 0.674004,
+          "equivalent": false,
+          "z_lower": -0.451,
+          "z_upper": -4.961
+        },
+        "0.12": {
+          "tost_p": 0.5,
+          "equivalent": false,
+          "z_lower": -0.0,
+          "z_upper": -5.412
+        },
+        "0.15": {
+          "tost_p": 0.249363,
+          "equivalent": false,
+          "z_lower": 0.6765,
+          "z_upper": -6.0884
+        },
+        "0.18": {
+          "tost_p": 0.08803,
+          "equivalent": false,
+          "z_lower": 1.353,
+          "z_upper": -6.7649
+        },
+        "0.2": {
+          "tost_p": 0.035617,
+          "equivalent": true,
+          "z_lower": 1.804,
+          "z_upper": -7.2159
+        }
+      },
+      "smallest_equiv_margin": 0.2
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "lexical",
+      "rate_1": 0.416,
+      "rate_2": 0.428,
+      "diff": -0.012,
+      "abs_diff": 0.012,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.194812,
+          "equivalent": false,
+          "z_lower": 0.8603,
+          "z_upper": -1.4036
+        },
+        "0.08": {
+          "tost_p": 0.061843,
+          "equivalent": false,
+          "z_lower": 1.5395,
+          "z_upper": -2.0828
+        },
+        "0.1": {
+          "tost_p": 0.02317,
+          "equivalent": true,
+          "z_lower": 1.9923,
+          "z_upper": -2.5356
+        },
+        "0.12": {
+          "tost_p": 0.007241,
+          "equivalent": true,
+          "z_lower": 2.4451,
+          "z_upper": -2.9884
+        },
+        "0.15": {
+          "tost_p": 0.000891,
+          "equivalent": true,
+          "z_lower": 3.1243,
+          "z_upper": -3.6676
+        },
+        "0.18": {
+          "tost_p": 7.1e-05,
+          "equivalent": true,
+          "z_lower": 3.8034,
+          "z_upper": -4.3468
+        },
+        "0.2": {
+          "tost_p": 1e-05,
+          "equivalent": true,
+          "z_lower": 4.2562,
+          "z_upper": -4.7996
+        }
+      },
+      "smallest_equiv_margin": 0.1
+    },
+    {
+      "type_1": "authorization_scope",
+      "type_2": "scopal",
+      "rate_1": 0.416,
+      "rate_2": 0.393574,
+      "diff": 0.022426,
+      "abs_diff": 0.022426,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.265129,
+          "equivalent": false,
+          "z_lower": 1.6485,
+          "z_upper": -0.6276
+        },
+        "0.08": {
+          "tost_p": 0.095024,
+          "equivalent": false,
+          "z_lower": 2.3313,
+          "z_upper": -1.3104
+        },
+        "0.1": {
+          "tost_p": 0.038727,
+          "equivalent": true,
+          "z_lower": 2.7865,
+          "z_upper": -1.7657
+        },
+        "0.12": {
+          "tost_p": 0.01318,
+          "equivalent": true,
+          "z_lower": 3.2417,
+          "z_upper": -2.2209
+        },
+        "0.15": {
+          "tost_p": 0.001844,
+          "equivalent": true,
+          "z_lower": 3.9245,
+          "z_upper": -2.9037
+        },
+        "0.18": {
+          "tost_p": 0.000168,
+          "equivalent": true,
+          "z_lower": 4.6074,
+          "z_upper": -3.5865
+        },
+        "0.2": {
+          "tost_p": 2.7e-05,
+          "equivalent": true,
+          "z_lower": 5.0626,
+          "z_upper": -4.0417
+        }
+      },
+      "smallest_equiv_margin": 0.1
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "coreferential",
+      "rate_1": 0.368,
+      "rate_2": 0.316,
+      "diff": 0.052,
+      "abs_diff": 0.052,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.518826,
+          "equivalent": false,
+          "z_lower": 2.4076,
+          "z_upper": 0.0472
+        },
+        "0.08": {
+          "tost_p": 0.254336,
+          "equivalent": false,
+          "z_lower": 3.1157,
+          "z_upper": -0.6609
+        },
+        "0.1": {
+          "tost_p": 0.128611,
+          "equivalent": false,
+          "z_lower": 3.5878,
+          "z_upper": -1.133
+        },
+        "0.12": {
+          "tost_p": 0.05424,
+          "equivalent": false,
+          "z_lower": 4.0599,
+          "z_upper": -1.6051
+        },
+        "0.15": {
+          "tost_p": 0.010357,
+          "equivalent": true,
+          "z_lower": 4.768,
+          "z_upper": -2.3132
+        },
+        "0.18": {
+          "tost_p": 0.001259,
+          "equivalent": true,
+          "z_lower": 5.4761,
+          "z_upper": -3.0213
+        },
+        "0.2": {
+          "tost_p": 0.000238,
+          "equivalent": true,
+          "z_lower": 5.9482,
+          "z_upper": -3.4934
+        }
+      },
+      "smallest_equiv_margin": 0.15
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "incompleteness",
+      "rate_1": 0.368,
+      "rate_2": 0.536,
+      "diff": -0.168,
+      "abs_diff": 0.168,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.996421,
+          "equivalent": false,
+          "z_lower": -2.6894,
+          "z_upper": -4.9685
+        },
+        "0.08": {
+          "tost_p": 0.977553,
+          "equivalent": false,
+          "z_lower": -2.0056,
+          "z_upper": -5.6523
+        },
+        "0.1": {
+          "tost_p": 0.939407,
+          "equivalent": false,
+          "z_lower": -1.5498,
+          "z_upper": -6.1081
+        },
+        "0.12": {
+          "tost_p": 0.86302,
+          "equivalent": false,
+          "z_lower": -1.094,
+          "z_upper": -6.5639
+        },
+        "0.15": {
+          "tost_p": 0.659187,
+          "equivalent": false,
+          "z_lower": -0.4102,
+          "z_upper": -7.2477
+        },
+        "0.18": {
+          "tost_p": 0.392236,
+          "equivalent": false,
+          "z_lower": 0.2735,
+          "z_upper": -7.9314
+        },
+        "0.2": {
+          "tost_p": 0.232901,
+          "equivalent": false,
+          "z_lower": 0.7293,
+          "z_upper": -8.3872
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "lexical",
+      "rate_1": 0.368,
+      "rate_2": 0.428,
+      "diff": -0.06,
+      "abs_diff": 0.06,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.590503,
+          "equivalent": false,
+          "z_lower": -0.2288,
+          "z_upper": -2.5172
+        },
+        "0.08": {
+          "tost_p": 0.323591,
+          "equivalent": false,
+          "z_lower": 0.4577,
+          "z_upper": -3.2038
+        },
+        "0.1": {
+          "tost_p": 0.180001,
+          "equivalent": false,
+          "z_lower": 0.9154,
+          "z_upper": -3.6614
+        },
+        "0.12": {
+          "tost_p": 0.08487,
+          "equivalent": false,
+          "z_lower": 1.373,
+          "z_upper": -4.1191
+        },
+        "0.15": {
+          "tost_p": 0.01972,
+          "equivalent": true,
+          "z_lower": 2.0596,
+          "z_upper": -4.8056
+        },
+        "0.18": {
+          "tost_p": 0.003016,
+          "equivalent": true,
+          "z_lower": 2.7461,
+          "z_upper": -5.4922
+        },
+        "0.2": {
+          "tost_p": 0.000678,
+          "equivalent": true,
+          "z_lower": 3.2038,
+          "z_upper": -5.9498
+        }
+      },
+      "smallest_equiv_margin": 0.15
+    },
+    {
+      "type_1": "conditional_precedence",
+      "type_2": "scopal",
+      "rate_1": 0.368,
+      "rate_2": 0.393574,
+      "diff": -0.025574,
+      "abs_diff": 0.025574,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.287052,
+          "equivalent": false,
+          "z_lower": 0.562,
+          "z_upper": -1.7389
+        },
+        "0.08": {
+          "tost_p": 0.105231,
+          "equivalent": false,
+          "z_lower": 1.2523,
+          "z_upper": -2.4292
+        },
+        "0.1": {
+          "tost_p": 0.043404,
+          "equivalent": true,
+          "z_lower": 1.7125,
+          "z_upper": -2.8894
+        },
+        "0.12": {
+          "tost_p": 0.014903,
+          "equivalent": true,
+          "z_lower": 2.1727,
+          "z_upper": -3.3496
+        },
+        "0.15": {
+          "tost_p": 0.002099,
+          "equivalent": true,
+          "z_lower": 2.8629,
+          "z_upper": -4.0398
+        },
+        "0.18": {
+          "tost_p": 0.00019,
+          "equivalent": true,
+          "z_lower": 3.5532,
+          "z_upper": -4.7301
+        },
+        "0.2": {
+          "tost_p": 3e-05,
+          "equivalent": true,
+          "z_lower": 4.0134,
+          "z_upper": -5.1903
+        }
+      },
+      "smallest_equiv_margin": 0.1
+    },
+    {
+      "type_1": "coreferential",
+      "type_2": "incompleteness",
+      "rate_1": 0.316,
+      "rate_2": 0.536,
+      "diff": -0.22,
+      "abs_diff": 0.22,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.99996,
+          "equivalent": false,
+          "z_lower": -3.9424,
+          "z_upper": -6.2615
+        },
+        "0.08": {
+          "tost_p": 0.999416,
+          "equivalent": false,
+          "z_lower": -3.2467,
+          "z_upper": -6.9572
+        },
+        "0.1": {
+          "tost_p": 0.997306,
+          "equivalent": false,
+          "z_lower": -2.7829,
+          "z_upper": -7.421
+        },
+        "0.12": {
+          "tost_p": 0.989804,
+          "equivalent": false,
+          "z_lower": -2.3191,
+          "z_upper": -7.8849
+        },
+        "0.15": {
+          "tost_p": 0.947743,
+          "equivalent": false,
+          "z_lower": -1.6234,
+          "z_upper": -8.5806
+        },
+        "0.18": {
+          "tost_p": 0.8232,
+          "equivalent": false,
+          "z_lower": -0.9276,
+          "z_upper": -9.2763
+        },
+        "0.2": {
+          "tost_p": 0.67861,
+          "equivalent": false,
+          "z_lower": -0.4638,
+          "z_upper": -9.7401
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "coreferential",
+      "type_2": "lexical",
+      "rate_1": 0.316,
+      "rate_2": 0.428,
+      "diff": -0.112,
+      "abs_diff": 0.112,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.925613,
+          "equivalent": false,
+          "z_lower": -1.4439,
+          "z_upper": -3.7727
+        },
+        "0.08": {
+          "tost_p": 0.771933,
+          "equivalent": false,
+          "z_lower": -0.7452,
+          "z_upper": -4.4714
+        },
+        "0.1": {
+          "tost_p": 0.610054,
+          "equivalent": false,
+          "z_lower": -0.2795,
+          "z_upper": -4.9371
+        },
+        "0.12": {
+          "tost_p": 0.426102,
+          "equivalent": false,
+          "z_lower": 0.1863,
+          "z_upper": -5.4029
+        },
+        "0.15": {
+          "tost_p": 0.18809,
+          "equivalent": false,
+          "z_lower": 0.885,
+          "z_upper": -6.1015
+        },
+        "0.18": {
+          "tost_p": 0.056642,
+          "equivalent": false,
+          "z_lower": 1.5836,
+          "z_upper": -6.8002
+        },
+        "0.2": {
+          "tost_p": 0.020213,
+          "equivalent": true,
+          "z_lower": 2.0494,
+          "z_upper": -7.266
+        }
+      },
+      "smallest_equiv_margin": 0.2
+    },
+    {
+      "type_1": "coreferential",
+      "type_2": "scopal",
+      "rate_1": 0.316,
+      "rate_2": 0.393574,
+      "diff": -0.077574,
+      "abs_diff": 0.077574,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.740796,
+          "equivalent": false,
+          "z_lower": -0.6458,
+          "z_upper": -2.9878
+        },
+        "0.08": {
+          "tost_p": 0.477348,
+          "equivalent": false,
+          "z_lower": 0.0568,
+          "z_upper": -3.6905
+        },
+        "0.1": {
+          "tost_p": 0.299716,
+          "equivalent": false,
+          "z_lower": 0.5252,
+          "z_upper": -4.1589
+        },
+        "0.12": {
+          "tost_p": 0.160202,
+          "equivalent": false,
+          "z_lower": 0.9936,
+          "z_upper": -4.6273
+        },
+        "0.15": {
+          "tost_p": 0.04492,
+          "equivalent": true,
+          "z_lower": 1.6962,
+          "z_upper": -5.3299
+        },
+        "0.18": {
+          "tost_p": 0.008223,
+          "equivalent": true,
+          "z_lower": 2.3989,
+          "z_upper": -6.0325
+        },
+        "0.2": {
+          "tost_p": 0.00207,
+          "equivalent": true,
+          "z_lower": 2.8673,
+          "z_upper": -6.5009
+        }
+      },
+      "smallest_equiv_margin": 0.15
+    },
+    {
+      "type_1": "incompleteness",
+      "type_2": "lexical",
+      "rate_1": 0.536,
+      "rate_2": 0.428,
+      "diff": 0.108,
+      "abs_diff": 0.108,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.904123,
+          "equivalent": false,
+          "z_lower": 3.5561,
+          "z_upper": 1.3054
+        },
+        "0.08": {
+          "tost_p": 0.735717,
+          "equivalent": false,
+          "z_lower": 4.2313,
+          "z_upper": 0.6302
+        },
+        "0.1": {
+          "tost_p": 0.571446,
+          "equivalent": false,
+          "z_lower": 4.6815,
+          "z_upper": 0.1801
+        },
+        "0.12": {
+          "tost_p": 0.393548,
+          "equivalent": false,
+          "z_lower": 5.1316,
+          "z_upper": -0.2701
+        },
+        "0.15": {
+          "tost_p": 0.172254,
+          "equivalent": false,
+          "z_lower": 5.8068,
+          "z_upper": -0.9453
+        },
+        "0.18": {
+          "tost_p": 0.052562,
+          "equivalent": false,
+          "z_lower": 6.482,
+          "z_upper": -1.6205
+        },
+        "0.2": {
+          "tost_p": 0.019196,
+          "equivalent": true,
+          "z_lower": 6.9322,
+          "z_upper": -2.0706
+        }
+      },
+      "smallest_equiv_margin": 0.2
+    },
+    {
+      "type_1": "incompleteness",
+      "type_2": "scopal",
+      "rate_1": 0.536,
+      "rate_2": 0.393574,
+      "diff": 0.142426,
+      "abs_diff": 0.142426,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.981747,
+          "equivalent": false,
+          "z_lower": 4.3539,
+          "z_upper": 2.0912
+        },
+        "0.08": {
+          "tost_p": 0.921092,
+          "equivalent": false,
+          "z_lower": 5.0326,
+          "z_upper": 1.4125
+        },
+        "0.1": {
+          "tost_p": 0.831455,
+          "equivalent": false,
+          "z_lower": 5.4852,
+          "z_upper": 0.9599
+        },
+        "0.12": {
+          "tost_p": 0.694065,
+          "equivalent": false,
+          "z_lower": 5.9377,
+          "z_upper": 0.5074
+        },
+        "0.15": {
+          "tost_p": 0.431964,
+          "equivalent": false,
+          "z_lower": 6.6165,
+          "z_upper": -0.1714
+        },
+        "0.18": {
+          "tost_p": 0.197618,
+          "equivalent": false,
+          "z_lower": 7.2953,
+          "z_upper": -0.8502
+        },
+        "0.2": {
+          "tost_p": 0.096341,
+          "equivalent": false,
+          "z_lower": 7.7478,
+          "z_upper": -1.3027
+        }
+      },
+      "smallest_equiv_margin": null
+    },
+    {
+      "type_1": "lexical",
+      "type_2": "scopal",
+      "rate_1": 0.428,
+      "rate_2": 0.393574,
+      "diff": 0.034426,
+      "abs_diff": 0.034426,
+      "tost": {
+        "0.05": {
+          "tost_p": 0.361745,
+          "equivalent": false,
+          "z_lower": 1.9179,
+          "z_upper": -0.3538
+        },
+        "0.08": {
+          "tost_p": 0.150264,
+          "equivalent": false,
+          "z_lower": 2.5994,
+          "z_upper": -1.0353
+        },
+        "0.1": {
+          "tost_p": 0.06816,
+          "equivalent": false,
+          "z_lower": 3.0537,
+          "z_upper": -1.4896
+        },
+        "0.12": {
+          "tost_p": 0.025949,
+          "equivalent": true,
+          "z_lower": 3.5081,
+          "z_upper": -1.944
+        },
+        "0.15": {
+          "tost_p": 0.004326,
+          "equivalent": true,
+          "z_lower": 4.1896,
+          "z_upper": -2.6255
+        },
+        "0.18": {
+          "tost_p": 0.000472,
+          "equivalent": true,
+          "z_lower": 4.8711,
+          "z_upper": -3.307
+        },
+        "0.2": {
+          "tost_p": 8.5e-05,
+          "equivalent": true,
+          "z_lower": 5.3254,
+          "z_upper": -3.7613
+        }
+      },
+      "smallest_equiv_margin": 0.12
+    }
+  ],
+  "tier_definition": {
+    "tier_1_high": [
+      "incompleteness"
+    ],
+    "tier_2_mid": [
+      "lexical",
+      "authorization_scope",
+      "scopal",
+      "conditional_precedence"
+    ],
+    "tier_3_low": [
+      "coreferential"
+    ],
+    "note": "Based on observed rates: incompleteness (53.6%) >> mid-tier (36.8-42.8%) >> coreferential (31.6%)"
+  },
+  "tier_robustness_by_margin": {
+    "0.05": {
+      "incompleteness_separated_from_mid": true,
+      "incompleteness_equiv_to_mid": [],
+      "coreferential_separated_from_mid": true,
+      "coreferential_equiv_to_mid": [],
+      "mid_tier_cohesion": "0/6",
+      "mid_tier_non_equiv_pairs": [
+        "lexical-authorization_scope",
+        "lexical-scopal",
+        "lexical-conditional_precedence",
+        "authorization_scope-scopal",
+        "authorization_scope-conditional_precedence",
+        "scopal-conditional_precedence"
+      ],
+      "three_tier_holds": false
+    },
+    "0.08": {
+      "incompleteness_separated_from_mid": true,
+      "incompleteness_equiv_to_mid": [],
+      "coreferential_separated_from_mid": true,
+      "coreferential_equiv_to_mid": [],
+      "mid_tier_cohesion": "0/6",
+      "mid_tier_non_equiv_pairs": [
+        "lexical-authorization_scope",
+        "lexical-scopal",
+        "lexical-conditional_precedence",
+        "authorization_scope-scopal",
+        "authorization_scope-conditional_precedence",
+        "scopal-conditional_precedence"
+      ],
+      "three_tier_holds": false
+    },
+    "0.1": {
+      "incompleteness_separated_from_mid": true,
+      "incompleteness_equiv_to_mid": [],
+      "coreferential_separated_from_mid": true,
+      "coreferential_equiv_to_mid": [],
+      "mid_tier_cohesion": "3/6",
+      "mid_tier_non_equiv_pairs": [
+        "lexical-scopal",
+        "lexical-conditional_precedence",
+        "authorization_scope-conditional_precedence"
+      ],
+      "three_tier_holds": false
+    },
+    "0.12": {
+      "incompleteness_separated_from_mid": true,
+      "incompleteness_equiv_to_mid": [],
+      "coreferential_separated_from_mid": true,
+      "coreferential_equiv_to_mid": [],
+      "mid_tier_cohesion": "5/6",
+      "mid_tier_non_equiv_pairs": [
+        "lexical-conditional_precedence"
+      ],
+      "three_tier_holds": false
+    },
+    "0.15": {
+      "incompleteness_separated_from_mid": true,
+      "incompleteness_equiv_to_mid": [],
+      "coreferential_separated_from_mid": false,
+      "coreferential_equiv_to_mid": [
+        "scopal",
+        "conditional_precedence"
+      ],
+      "mid_tier_cohesion": "6/6",
+      "mid_tier_non_equiv_pairs": [],
+      "three_tier_holds": false
+    },
+    "0.18": {
+      "incompleteness_separated_from_mid": true,
+      "incompleteness_equiv_to_mid": [],
+      "coreferential_separated_from_mid": false,
+      "coreferential_equiv_to_mid": [
+        "authorization_scope",
+        "scopal",
+        "conditional_precedence"
+      ],
+      "mid_tier_cohesion": "6/6",
+      "mid_tier_non_equiv_pairs": [],
+      "three_tier_holds": false
+    },
+    "0.2": {
+      "incompleteness_separated_from_mid": false,
+      "incompleteness_equiv_to_mid": [
+        "lexical",
+        "authorization_scope"
+      ],
+      "coreferential_separated_from_mid": false,
+      "coreferential_equiv_to_mid": [
+        "lexical",
+        "authorization_scope",
+        "scopal",
+        "conditional_precedence"
+      ],
+      "mid_tier_cohesion": "6/6",
+      "mid_tier_non_equiv_pairs": [],
+      "three_tier_holds": false
+    }
+  },
+  "tier_robustness": "3-tier structure never fully holds (mid-tier cohesion requires wider margins). Tier separation (inc >> mid, mid >> cor) holds at ['\u00b15pp', '\u00b18pp', '\u00b110pp', '\u00b112pp']. Min gap inc-to-mid: 0.108, min gap cor-to-mid: 0.052.",
+  "never_equivalent_pairs": [
+    {
+      "pair": "conditional_precedence vs incompleteness",
+      "diff": -0.168
+    },
+    {
+      "pair": "coreferential vs incompleteness",
+      "diff": -0.22
+    },
+    {
+      "pair": "incompleteness vs scopal",
+      "diff": 0.142426
+    }
+  ],
+  "conclusion": "The 3-tier separation is robust: incompleteness is never equivalent to any mid-tier type even at \u00b120pp (min gap 10.8%), and coreferential is never equivalent to mid-tier types below \u00b115pp (min gap 5.2%). Mid-tier types (lexical, authorization_scope, scopal, conditional_precedence) achieve full internal equivalence at \u00b115pp. The tier structure is therefore not an artifact of a specific margin choice."
+}

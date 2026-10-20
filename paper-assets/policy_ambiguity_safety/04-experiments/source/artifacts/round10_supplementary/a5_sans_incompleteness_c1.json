@@ -1,0 +1,16 @@
+{
+  "analysis": "c1_sans_incompleteness",
+  "n_types": 5,
+  "pooled_amb_rate": 0.384307,
+  "pooled_unamb_rate": 0.074519,
+  "delta_pp": 0.309788,
+  "odds_ratio": 7.752,
+  "test": {
+    "name": "chi2_no_correction",
+    "statistic": 338.8174,
+    "p": 1.154592e-75
+  },
+  "n_amb_episodes": 1249,
+  "n_unamb_episodes": 1248,
+  "conclusion": "C1 holds without incompleteness"
+}

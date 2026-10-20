@@ -1,0 +1,154 @@
+{
+  "judge_baseline": {
+    "gpt-4.1_as_judge": {
+      "n": 1200,
+      "violation_rate": 0.26
+    },
+    "gpt-5.4_as_judge": {
+      "n": 1797,
+      "violation_rate": 0.2259
+    },
+    "difference": 0.0341,
+    "chi2_p": 0.035964,
+    "controlled_by_condition": {
+      "unambiguous": {
+        "gpt-4.1_rate": 0.0667,
+        "gpt-5.4_rate": 0.0713
+      },
+      "ambiguous": {
+        "gpt-4.1_rate": 0.4533,
+        "gpt-5.4_rate": 0.3804
+      }
+    }
+  },
+  "logistic_regression": {
+    "model_1_baseline": {
+      "aic": 2756.2,
+      "bic": 2822.26,
+      "pseudo_r2": 0.1715,
+      "condition_coef": 2.2679,
+      "condition_p": 0.0,
+      "condition_OR": 9.6592
+    },
+    "model_2_with_judge": {
+      "aic": 2758.2,
+      "bic": 2830.26,
+      "pseudo_r2": 0.1715,
+      "condition_coef": 2.2679,
+      "condition_p": 0.0,
+      "condition_OR": 9.6592,
+      "judge_coef": -1.07,
+      "judge_p": 0.999999,
+      "judge_OR": 0.343,
+      "judge_variable": "C(judge_model)[T.gpt-5.4]"
+    },
+    "coefficient_change": {
+      "condition_change_pct": "0.0%",
+      "type_max_change_pct": "0.0%",
+      "lr_test_stat": -0.0,
+      "lr_test_p": 1.0
+    },
+    "model_3_with_token_delta": {
+      "aic": 2231.75,
+      "bic": 2301.63,
+      "pseudo_r2": 0.2032,
+      "condition_coef": 2.5553,
+      "condition_p": 0.0,
+      "token_delta_coef": 0.017636,
+      "token_delta_p": 0.007248
+    },
+    "conclusion": "Judge identity is perfectly confounded with model identity in the current cross-judge design (each agent model maps to exactly one judge, so p=1.0 is a collinearity artifact, not evidence of no effect). Within-judge-group analyses confirm C1 is robust (both groups p<0.001). Cross-model comparisons (C4) should be interpreted with this design limitation."
+  },
+  "within_judge_subsets": {
+    "judged_by_gpt-4.1": {
+      "judge": "gpt-4.1",
+      "models": [
+        "gpt-5.4",
+        "deepseek-v3"
+      ],
+      "n": 1200,
+      "C1_delta": 0.3867,
+      "C1_delta_pct": "38.7pp",
+      "C2_cramers_V": 0.1024,
+      "condition_coef_logistic": 2.5164,
+      "condition_p_logistic": 0.0,
+      "per_model": {
+        "gpt-5.4": {
+          "n": 600,
+          "violation_rate": 0.2183,
+          "amb_rate": 0.41,
+          "unamb_rate": 0.0267
+        },
+        "deepseek-v3": {
+          "n": 600,
+          "violation_rate": 0.3017,
+          "amb_rate": 0.4967,
+          "unamb_rate": 0.1067
+        }
+      }
+    },
+    "judged_by_gpt-5.4": {
+      "judge": "gpt-5.4",
+      "models": [
+        "gpt-4.1",
+        "claude-sonnet-4-6",
+        "qwen3-235b"
+      ],
+      "n": 1797,
+      "C1_delta": 0.3092,
+      "C1_delta_pct": "30.9pp",
+      "C2_cramers_V": 0.1001,
+      "condition_coef_logistic": 2.1252,
+      "condition_p_logistic": 0.0,
+      "per_model": {
+        "gpt-4.1": {
+          "n": 600,
+          "violation_rate": 0.2333,
+          "amb_rate": 0.4067,
+          "unamb_rate": 0.06
+        },
+        "claude-sonnet-4-6": {
+          "n": 600,
+          "violation_rate": 0.175,
+          "amb_rate": 0.3033,
+          "unamb_rate": 0.0467
+        },
+        "qwen3-235b": {
+          "n": 597,
+          "violation_rate": 0.2697,
+          "amb_rate": 0.4314,
+          "unamb_rate": 0.1074
+        }
+      }
+    }
+  },
+  "within_judge_c3": {
+    "judged_by_gpt-4.1": {
+      "judge": "gpt-4.1",
+      "models": ["gpt-5.4", "deepseek-v3"],
+      "spec_n": 300, "spec_viol": 148, "spec_rate": 0.4933,
+      "ling_n": 300, "ling_viol": 124, "ling_rate": 0.4133,
+      "delta_pp": 8.0,
+      "chi2": 3.558,
+      "p": 0.0593,
+      "OR": 1.376,
+      "significant": false,
+      "note": "Marginal — spec trend present but not significant at α=0.05"
+    },
+    "judged_by_gpt-5.4": {
+      "judge": "gpt-5.4",
+      "models": ["gpt-4.1", "claude-sonnet-4-6", "qwen3-235b"],
+      "spec_n": 450, "spec_viol": 182, "spec_rate": 0.4044,
+      "ling_n": 449, "ling_viol": 160, "ling_rate": 0.3563,
+      "delta_pp": 4.8,
+      "chi2": 2.006,
+      "p": 0.1566,
+      "OR": 1.228,
+      "significant": false,
+      "note": "Not significant — C3 layer effect does not hold within this judge group"
+    },
+    "pooled_c3_p": 0.017,
+    "disclosure": "Pooled C3 (p=0.017) is significant, but NEITHER within-judge subset reaches p<0.05. This suggests C3 may be partially driven by between-judge variance or is underpowered within subsets. Must be disclosed in paper as a limitation."
+  },
+  "interpretation": "CORRECTED: judge_model p=1.0 is a collinearity artifact (perfect confound with model), not evidence of no judge effect. Within-judge C1 is robust (both groups p<0.001). C3 layer effect is fragile: pooled p=0.017 but neither within-judge subset significant (p=0.059, p=0.157). C4 cross-model comparisons carry the caveat that model and judge are confounded."
+}

@@ -1,0 +1,76 @@
+paper_key: "phantompolicy_2026"
+title: "Policy-Invisible Violations in LLM-Based Agents"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines: [GPT-5.4, GPT-5 mini, GPT-5.4 nano, Claude Sonnet 4.6, Claude Opus 4.6]
+  metrics:
+    - {name: "Accuracy", direction: "higher_better"}
+    - {name: "Precision", direction: "higher_better"}
+    - {name: "Recall", direction: "higher_better"}
+    - {name: "F1", direction: "higher_better"}
+  datasets:
+    - {name: "PhantomPolicy", size: "600 traces (60 violation + 60 safe × 5 models), 8 violation categories"}
+  ablation_dimensions: [world_model_coverage, entity_criticality, attribute_type, invariant_type]
+  training_recipe: {optimizer: "N/A (enforcement framework)", lr: "N/A", hardware: "API-based"}
+  method_family: "counterfactual graph simulation + invariant checking"
+
+positioning:
+  core_claim: "LLM agents violate organizational policy in 90-98% of risky cases when policy-relevant state is hidden, and a graph-based enforcement framework (Sentinel) with world model access achieves 93% accuracy."
+  key_results: "Baseline violation rate: 90-98%; Policy-in-prompt reduces to 40.7% (high variance 25-85%); Sentinel: 93.0% accuracy, 98.1% precision, F1=92.71; Content-only DLP: 68.8% accuracy, 40.1% recall"
+  limitations:
+    - "Execution-oriented system prompt may inflate violation rates"
+    - "Single domain (corporate email/file sharing)"
+    - "Small benchmark (120 cases, diagnostic not statistical)"
+    - "World model construction is engineering challenge"
+    - "Cannot monitor model text responses (only tool calls)"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "开篇用具体例子：agent分享文件夹但包含HR限制文件，动作完全合法但违反了不可见的组织策略"
+  tension: "现有安全研究聚焦jailbreaking/authorization，但policy-invisible violations是全新failure mode——语法正确、用户授权、语义恰当，但仍违规"
+  key_insight: "Section 4核心发现：bottleneck不是模型推理能力不足，而是policy-relevant state在决策时不可见"
+  argument_chain: "define new failure mode (policy-invisible) → build taxonomy (8 categories) → show models fail 90-98% → show prompting insufficient (high variance) → Sentinel with world model achieves 93%"
+  contribution_framing: "四项贡献：problem formulation + benchmark + empirical characterization + enforcement framework"
+  intro_structure: "4段：agent部署风险 → 定义新failure mode → 现有方法不足 → 本文四项贡献"
+  notable_technique: "从problem definition到solution的完整闭环；counterfactual graph simulation提供形式化保证(O(|M|)复杂度)；三个定理(verification complexity, conditional soundness, composability)增强理论深度"
+
+figures:
+  figure_count: 1
+  figure1:
+    type: "method_overview"
+    description: "Sentinel三层架构：agent layer → enforcement layer (5-phase: Translate→Fork→Mutate→Check→Decide) → world model layer (typed property graph)"
+    narrative_role: "一图展示整个系统设计和工作流"
+    design_elements: ["分层架构", "pipeline流程", "graph示意"]
+    visual_style: "垂直分层+水平pipeline，世界状态图用node-edge图表示"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "仅Figure 1(系统架构)，其余结果全部用表格呈现"
+
+tables:
+  table_count: 11
+  main_result_table:
+    table_id: "Table 5-8"
+    row_axis: "methods/models"
+    col_axis: "metrics (Accuracy, Precision, Recall, F1)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "per-condition对比(baseline → policy-in-prompt → DLP → Sentinel)"
+    statistical_reporting: "aggregate across models + per-model breakdown"
+    num_baselines: 5
+    design_note: "将实验按条件拆为4个表(Table 5-8)，每表一种enforcement strategy，便于横向对比"
+  ablation_tables:
+    - table_id: "Table 9"
+      what_varied: ["violation category"]
+      variation_style: "full_numbers"
+      design_note: "8个violation category × 5个model的详细breakdown"
+    - table_id: "Table 10"
+      what_varied: ["world model coverage (100%/50%/0%)"]
+      variation_style: "full_numbers"
+      design_note: "coverage degradation实验展示world model完整度的关键性"
+  supplementary_tables:
+    in_appendix: false
+    content: "Violation taxonomy (Table 1), Case distribution (Table 2), Action translation rules (Table 3), Invariant coverage matrix (Table 4), Strategy comparison (Table 11)"
+    reason: "重表格、轻图表的呈现策略——系统性的分类和对比更适合表格"

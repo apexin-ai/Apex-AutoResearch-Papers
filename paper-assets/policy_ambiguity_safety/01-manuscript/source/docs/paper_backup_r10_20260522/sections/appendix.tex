@@ -1,0 +1,287 @@
+\section{TOST Equivalence Sensitivity}
+\label{app:tost}
+
+Table~\ref{tab:tost_sensitivity} reports the TOST equivalence analysis \citep{lakens_2017} across seven margins. Three pairs involving incompleteness never reach equivalence even at $\pm 20$ pp: conditional precedence--incompleteness ($\Delta = 16.8$ pp), coreferential--incompleteness ($\Delta = 22.0$ pp), and incompleteness--scopal ($\Delta = 14.2$ pp).
+
+\begin{table}[!ht]
+\centering
+\small
+\caption{TOST equivalence sensitivity across margins. Mid-tier = fraction of the six within-cluster pairs (lexical, auth.\ scope, scopal, cond.\ prec.) that are equivalent. Inc.\ and Cor.\ columns indicate separation from the mid-tier cluster.}
+\label{tab:tost_sensitivity}
+\begin{tabular}{lcccc}
+\toprule
+Margin & Equiv.\ pairs & Mid-tier & Inc.\ sep. & Cor.\ sep. \\
+\midrule
+$\pm 5$ pp & 0/15 & 0/6 & \checkmark & \checkmark \\
+$\pm 8$ pp & 0/15 & 0/6 & \checkmark & \checkmark \\
+$\pm 10$ pp & 3/15 & 3/6 & \checkmark & \checkmark \\
+$\pm 12$ pp & 5/15 & 5/6 & \checkmark & \checkmark \\
+$\pm 15$ pp & 8/15 & 6/6 & \checkmark & -- \\
+$\pm 18$ pp & 9/15 & 6/6 & \checkmark & -- \\
+$\pm 20$ pp & 12/15 & 6/6 & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Mitigation Experiment}
+\label{app:mitigation}
+
+Table~\ref{tab:mitigation} reports the per-type, per-model $\Delta$pp from the disambiguation-instruction mitigation experiment (1,256 treatment episodes across five of six types; coreferential was not tested). Coreferential pairs are excluded from both the mitigation and replication experiments. In mitigation, their ambiguous and unambiguous variants differ only in pronoun resolution, making it impossible to craft targeted disambiguation instructions without revealing the experimental manipulation. In replication, the $\tau^2$-bench episode design for coreferential ambiguity is tightly coupled to the original five-model configuration; extending it to new model families would require redesigning the episode templates, which falls outside the scope of this confirmatory replication. The treatment appends a type-specific disambiguation instruction to the agent's system prompt. Control rates are the matched 5-type subset from the full study (\S\ref{sec:results}).
+
+\begin{table*}[!ht]
+\centering
+\small
+\caption{Violation rate change ($\Delta$pp) after adding type-specific disambiguation instructions. Negative values indicate reduction. Baseline violation rates are shown in parentheses. Coreferential was excluded because it was not included in the mitigation experiment.}
+\label{tab:mitigation}
+\begin{tabular}{lrrrrrr}
+\toprule
+Type & GPT-5.4 & GPT-4.1 & Claude & Qwen3 & DeepSeek & Pooled \\
+\midrule
+Auth.\ scope & $-40.0$ (64) & $-26.0$ (46) & $0.0$ (12) & $-14.0$ (26) & $-10.0$ (60) & $-18.0$ (42) \\
+Lexical & $-16.5$ (42) & $-10.0$ (34) & $-8.0$ (32) & $-8.0$ (52) & $-2.0$ (54) & $-8.9$ (43) \\
+Cond.\ prec. & $-4.6$ (34) & $-10.0$ (36) & $-12.0$ (36) & $-2.0$ (40) & $-12.0$ (38) & $-8.1$ (37) \\
+Scopal & $-6.7$ (42) & $-4.0$ (38) & $-10.0$ (32) & $-2.7$ (37) & $+2.0$ (48) & $-4.3$ (39) \\
+Incomp. & $-2.6$ (46) & $-14.0$ (58) & $-2.0$ (48) & $-2.0$ (62) & $+4.0$ (54) & $-3.4$ (54) \\
+\midrule
+Overall & $-14.0$ (46) & $-12.8$ (42) & $-6.4$ (32) & $-5.8$ (43) & $-3.6$ (51) & $-8.5$ (43) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Severity Threshold Comparison}
+\label{app:severity}
+
+Table~\ref{tab:severity_comparison} compares all four claims under two violation severity thresholds. The primary analysis uses moderate-or-above; the alternative includes 198 additional minor violations (6.6\% of episodes).
+
+\begin{table}[!ht]
+\centering
+\small
+\caption{Claim-level comparison under two severity thresholds.}
+\label{tab:severity_comparison}
+\begin{tabular}{llll}
+\toprule
+Claim & Moderate+ & Any-violation & Concordance \\
+\midrule
+C1 $\Delta$ & 34.0 pp & 38.2 pp & Both $p < 10^{-50}$ \\
+C2 $V$ & 0.137 & 0.169 & Both $p < 10^{-4}$ \\
+C3 $\Delta$ & 6.1 pp & 7.4 pp & Both $p < 0.02$ \\
+C4 $V$ & 0.102 & 0.097 & Both $p < 10^{-5}$ \\
+\midrule
+\multicolumn{2}{l}{Type ranking} & \multicolumn{2}{l}{Kendall $\tau = 0.73$, $p = 0.056$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Ambiguity Type Detection Experiment}
+\label{app:detection}
+
+To assess whether our taxonomy supports automated identification, we conduct a proof-of-concept detection experiment using GPT-4.1 as a zero-shot classifier. Given a policy clause, the classifier determines (1)~whether it contains ambiguity and (2)~the specific type from a five-type subset of our taxonomy. Coreferential ambiguity is excluded because its variants are lexically identical to their unambiguous counterparts, making surface-level type detection inapplicable.
+
+We evaluate on 500 policy clauses (250 ambiguous, 250 unambiguous) using stratified 5-fold cross-validation, with clause pairs kept in the same fold to prevent leakage. Table~\ref{tab:detection} reports per-type results.
+
+\begin{table}[!ht]
+\centering
+\small
+\caption{Proof-of-concept detection classifier (GPT-4.1, zero-shot, 5-fold CV). Binary ambiguity detection: F1\,=\,0.81, FPR\,=\,4.4\%. Six-class macro F1\,=\,0.63.}
+\label{tab:detection}
+\begin{tabular}{lrrr}
+\toprule
+Type & Prec. & Recall & F1 \\
+\midrule
+Cond.\ precedence & 0.96 & 0.92 & 0.94 \\
+Scopal & 0.91 & 0.64 & 0.75 \\
+Auth.\ scope & 1.00 & 0.36 & 0.53 \\
+Lexical & 0.36 & 0.42 & 0.39 \\
+Incompleteness & 0.48 & 0.26 & 0.34 \\
+\midrule
+No ambiguity & 0.76 & 0.96 & 0.85 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Detection difficulty is inversely correlated with agent vulnerability: incompleteness, the most dangerous type (53.6\% violation rate, \S\ref{sec:results}), is the hardest to detect (F1\,=\,0.34), while conditional precedence (36.8\% violation rate) is the easiest (F1\,=\,0.94). This asymmetry arises because types with overt linguistic signals (e.g., conditional structures) are readily detectable but only moderately dangerous, whereas missing information leaves no surface trace for a classifier to exploit.
+
+The primary confusion pathway is authorization scope $\to$ lexical (48\% of authorization scope clauses): authorization boundary clauses frequently contain polysemous terms, causing the classifier to attribute the ambiguity to word-level rather than permission-level underspecification.
+
+These results position automated detection as a viable first-pass screening tool (binary F1\,=\,0.81) but an unreliable type classifier, particularly for the highest-risk types. The classifier was evaluated on synthetic clauses derived from $\tau^2$-bench; generalization to naturally occurring policy documents requires further validation.
+
+\section{Replication on Additional Model Families}
+\label{app:model_expansion}
+
+To test cross-architecture generalization beyond the five main-study models, we replicate the core analyses on two additional model families: Gemini-2.5-Flash (Google) and LLaMA-4-Scout (Meta), each with 250 clause pairs $\times$ 2 conditions $= 500$ episodes judged by GPT-5.4. These models represent two additional providers not in the original study. We exclude coreferential ambiguity because its disambiguation relies on benchmark-specific assertion structure rather than clause-level text changes (\S\ref{sec:taxonomy}), limiting cross-benchmark generalizability. Tables~\ref{tab:expansion_overall} and~\ref{tab:expansion_pertype} report the results.
+
+\begin{table}[!ht]
+\centering
+\small
+\caption{Replication results on two additional model families. C2 rank $\rho$ is computed against the original five-model pooled type ranking.}
+\label{tab:expansion_overall}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrl}
+\toprule
+Model & Amb.\ (\%) & Unamb.\ (\%) & $\Delta$pp & $p$ & C2 $\rho$ \\
+\midrule
+Gemini-2.5-Flash & 37.6 & 4.0 & +33.6 & $<10^{-21}$ & 0.60 \\
+LLaMA-4-Scout & 37.6 & 17.6 & +20.0 & $<10^{-6}$ & 0.90$^*$ \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[!ht]
+\centering
+\small
+\caption{Per-type ambiguous violation rates (\%) for replication models vs.\ original five-model pooled rates.}
+\label{tab:expansion_pertype}
+\begin{tabular}{lrrr}
+\toprule
+Type & Gemini & LLaMA & Orig.\ pooled \\
+\midrule
+Incompleteness & 48 & 52 & 53.6 \\
+Lexical & 50 & 38 & 42.8 \\
+Auth.\ scope & 22 & 40 & 41.6 \\
+Scopal & 34 & 30 & 39.4 \\
+Cond.\ prec. & 34 & 28 & 36.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{C1 replication.} Both models show significant binary ambiguity effects (Gemini $\Delta = +33.6$\,pp, OR $= 14.5$, $p < 10^{-21}$; LLaMA $\Delta = +20.0$\,pp, OR $= 2.8$, $p < 10^{-6}$), extending C1 to seven models across six providers. Gemini's effect size falls within the original five-model range (+25.7 to +39.0\,pp). LLaMA's smaller effect and lower OR are attributable to an elevated unambiguous baseline (17.6\% vs.\ $<$10\% for all other models), suggesting weaker baseline instruction following that compresses the ambiguity-specific delta. LLaMA 3.3's elevated unambiguous baseline (17.6\% vs.\ 7.3--12.7\% for main-study models) likely reflects weaker baseline instruction following, suggesting that absolute violation rates are model-dependent even absent ambiguity.
+
+\paragraph{C2 replication.} Both models' type rankings correlate positively with the original pooled ranking. LLaMA shows a strong and significant correlation ($\rho = 0.90$, $p = 0.037$), with incompleteness as the top type and the bottom three types matching the reference order exactly. Gemini shows a moderate positive correlation ($\rho = 0.60$, $p = 0.285$), with the top two types (lexical and incompleteness) swapped relative to the reference. Incompleteness remains $\geq$46\% in all seven models (range: 46--62\%), confirming its status as a consistent vulnerability independent of architecture or provider. $^*$Significant at $\alpha = 0.05$.
+
+\section{Incompleteness Confound Analysis}
+\label{app:confound}
+
+Incompleteness is structurally distinct from the other five types: its unambiguous variant necessarily adds policy content (specifying what was previously missing) rather than merely resolving an existing ambiguity. This raises a confound: the 49.2 pp effect may partly reflect the information addition rather than ambiguity resolution per se.
+
+A logistic regression controlling for per-clause information delta (token count difference between ambiguous and unambiguous variants) confirms that incompleteness remains individually significant ($p = 0.022$, coefficient change $< 8\%$ relative to the uncontrolled model). Coreferential ambiguity, whose variants are lexically identical (information delta $= 0$), provides a confound-free lower bound: its 31.6\% violation rate and 18.7 pp effect are entirely attributable to semantic ambiguity. Token count is a coarse proxy for information content; finer-grained semantic measures (e.g., propositional content analysis) may reveal different confound structures.
+
+Per-type token deltas between unambiguous and ambiguous variants range from 17.5 words (conditional precedence) to 36.1 words (authorization scope). Notably, authorization scope has the largest delta (36.1) yet lower violation rates than incompleteness (delta 34.6), providing counter-evidence against a pure information-quantity explanation: if token delta drove violations, authorization scope should exceed incompleteness. Coreferential pairs have zero token delta (lexically identical variants), providing a confound-free baseline.
+
+Excluding incompleteness entirely, the pooled ambiguity effect remains large and significant ($\Delta = 31.0$\,pp, OR $= 7.75$, $p < 10^{-75}$), confirming that C1 does not depend on any single type.
+
+Excluding incompleteness, the remaining five types show a non-significant omnibus difference ($\chi^2$, $p = 0.079$), but pairwise contrasts with Holm--Bonferroni correction reveal a two-tier pattern: authorization scope ($p_{\text{adj}} = 0.039$) and lexical ($p_{\text{adj}} = 0.025$) remain significantly above coreferential, while the four remaining pairs are equivalent at the $\pm 15$ pp margin.
+
+\section{Per-Type Judge Reliability}
+\label{app:per_type_agreement}
+
+Table~\ref{tab:per_type_agreement} reports per-type human--LLM binary agreement ($\kappa$) on the 100-episode stratified sample (200 human--LLM rating pairs: two annotators $\times$ corresponding LLM judge). Per-type samples range from 32 to 34 episodes, yielding wide confidence intervals.
+
+\begin{table}[!ht]
+\centering
+\small
+\caption{Per-type human--LLM binary agreement (moderate-or-above threshold). CI: bootstrap 95\% confidence interval.}
+\label{tab:per_type_agreement}
+\begin{tabular}{lrrl}
+\toprule
+Type & $n$ & $\kappa$ & 95\% CI \\
+\midrule
+Lexical & 32 & 0.904 & $[0.64, 1.00]$ \\
+Cond.\ precedence & 34 & 0.837 & $[0.53, 1.00]$ \\
+Incompleteness & 34 & 0.795 & $[0.56, 1.00]$ \\
+Auth.\ scope & 34 & 0.644 & $[0.35, 0.91]$ \\
+Scopal & 32 & 0.636 & $[0.00, 1.00]$ \\
+Coreferential & 34 & 0.479 & $[0.00, 0.84]$ \\
+\midrule
+Overall (pooled) & 200 & 0.735 & $[0.62, 0.85]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Authorization scope has the lowest human--LLM $\kappa$ among the four substantively high-rate types (0.644), consistent with its lowest cross-judge $\kappa$ (0.385, \S\ref{sec:method}). Both reflect the inherent difficulty of permission-boundary judgments rather than systematic judge failure: raw agreement is still 85.3\%, and the 52\,pp within-judge model range (\S\ref{sec:c4}) far exceeds measurement noise. Coreferential's low $\kappa$ (0.479) reflects the prevalence paradox---its violation base rate is 8.8\%, compressing the $\kappa$ denominator despite 85.3\% raw agreement. Per-type estimates are imprecise due to small cell sizes ($n = 32$--$34$); type-level ranking should not be over-interpreted.
+
+\section{Information Delta Logistic Regression}
+\label{app:regression}
+
+Table~\ref{tab:logistic_regression} reports the full logistic regression controlling for token-count difference between ambiguous and unambiguous variants (information delta). The reference category is authorization scope (type) and Claude Sonnet 4.6 (model). Token delta is significant ($p < 0.001$) but small in magnitude (OR $= 1.022$ per token), indicating that information quantity partially confounds the type effect. Critically, incompleteness remains individually significant ($p = 0.018$) after controlling for token delta, with a coefficient change of $<$8\% relative to the model without the covariate. The slightly lower $p$-value compared to the univariate confound control in Appendix~\ref{app:confound} ($p = 0.022$) reflects the additional variance absorbed by model covariates in the full specification.
+
+\begin{table}[!ht]
+\centering
+\small
+\caption{Logistic regression predicting violation (moderate+). Reference: authorization scope, Claude Sonnet 4.6. $N = 2{,}997$, pseudo-$R^2 = 0.175$.}
+\label{tab:logistic_regression}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrr}
+\toprule
+Predictor & Coef. & SE & $z$ & $p$ \\
+\midrule
+Intercept & $-3.914$ & 0.298 & $-13.12$ & $<10^{-4}$ \\
+Condition (amb.) & $2.278$ & 0.116 & $19.65$ & $<10^{-4}$ \\
+Token delta & $0.022$ & 0.006 & $3.49$ & $<0.001$ \\
+\midrule
+Cond.\ prec. & $0.251$ & 0.202 & $1.24$ & $0.215$ \\
+Coreferential & $0.528$ & 0.244 & $2.17$ & $0.030$ \\
+Incompleteness & $0.379$ & 0.161 & $2.36$ & $0.018$ \\
+Lexical & $0.336$ & 0.176 & $1.91$ & $0.056$ \\
+Scopal & $0.311$ & 0.202 & $1.54$ & $0.123$ \\
+\midrule
+DeepSeek-V3 & $0.854$ & 0.153 & $5.59$ & $<10^{-4}$ \\
+GPT-4.1 & $0.423$ & 0.156 & $2.71$ & $0.007$ \\
+GPT-5.4 & $0.321$ & 0.158 & $2.04$ & $0.042$ \\
+Qwen3-235B & $0.656$ & 0.154 & $4.25$ & $<10^{-4}$ \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\section{Bootstrap Cluster Analysis}
+\label{app:cluster}
+
+To complement the margin-dependent TOST analysis, we apply Ward's hierarchical clustering to the six observed type-level violation rates, bootstrapped $B = 10{,}000$ times by resampling clause pairs within each type. At $k = 2$, incompleteness (53.6\%) forms a singleton cluster, with the remaining five types (31.6--42.8\%) in the second cluster, reproducing in 34.3\% of bootstrap samples---the most frequent partition but not overwhelmingly stable, reflecting that the 10.8\,pp gap between incompleteness and lexical is moderate relative to within-type variance. At $k = 3$, coreferential (31.6\%) additionally separates, consistent with the TOST two-tier structure. The AU $p$-value for the incompleteness singleton is 0.47, confirming that while the singleton is the modal partition, the boundary is not sharp.
+
+\section{Clause-Level Variance}
+\label{app:clause_variance}
+
+Leave-one-out analysis confirms that no single clause drives any type-level rate: maximum LOO shift is 1.4\,pp (coreferential), and all types have LOO ranges $\leq$2.1\,pp. Within-type coefficients of variation (CV) range from 0.69 (incompleteness) to 1.03 (coreferential), confirming high clause-level heterogeneity. This heterogeneity is expected---clause wording determines the specific ambiguity instance---and is controlled by the matched-pair design, which compares each clause's ambiguous and unambiguous variants rather than relying on type-level means.
+
+\section{Multiple Comparison Correction}
+\label{app:multiple_comparison}
+
+We apply Holm--Bonferroni correction within three test families: (i) per-type$\times$model McNemar tests for C1 (30 tests), (ii) TOST pairwise equivalence for C2 (15 pairs), and (iii) model$\times$type interaction for C4 (1 omnibus + post-hoc).
+
+\section{DRIP-R Category Mapping}
+\label{app:drip_mapping}
+
+DRIP-R's five RE ambiguity categories---attachment, coordination, anaphora, scope, and ellipsis---overlap partially with our six-type taxonomy: scopal ambiguity and coreferential ambiguity correspond directly, while our remaining four types (lexical, authorization scope, incompleteness, conditional precedence) address policy-specific phenomena outside DRIP-R's RE scope.
+
+\section{Cross-Model Type Ranking Concordance}
+\label{app:kendall_w}
+
+To quantify agreement among models on the relative difficulty of ambiguity types, we compute Kendall's coefficient of concordance $W$. For the five main-study models across all six types, $W = 0.398$ ($\chi^2(5) = 9.94$, $p = 0.072$), indicating moderate but non-significant concordance. Including the two replication models (Gemini 2.5 Flash and LLaMA 4 Scout) over five shared types (excluding coreferential, which was not included in replication), concordance reaches significance: $W = 0.353$ ($\chi^2(4) = 9.89$, $p = 0.038$). In both analyses, incompleteness consistently ranks highest (mean rank 5.5 / 4.5), while coreferential (2.0, five-model only) and conditional precedence (2.8 / 2.1) rank lowest, supporting the two-tier structure identified in \S\ref{sec:results}.
+
+\section{C4 Interaction Without Authorization Scope}
+\label{app:c4_sans_auth}
+
+Excluding authorization scope, the residual model$\times$type interaction vanishes ($\chi^2(16) = 7.13$, $p = 0.97$; logistic regression LR test: $\chi^2(16) = 9.22$, $p = 0.90$), confirming that the C4 interaction is driven entirely by authorization scope---the type most plausibly targeted by differential safety training.
+
+\section{Per-Type Clause Length Analysis}
+\label{app:clause_length}
+
+Unambiguous clauses are systematically longer than their ambiguous counterparts across all types (Table~\ref{tab:token_delta}), reflecting the additional specification needed for disambiguation. Authorization scope ($+36.1$ words) and incompleteness ($+34.6$ words) show the largest deltas, consistent with the observation that resolving these types requires substantial additional content. Notably, authorization scope has the largest delta ($+36.1$) yet lower violation rates than incompleteness ($+34.6$ delta), providing counter-evidence against a pure information-quantity explanation of incompleteness's upper-bound status. The confound analysis in Appendix~\ref{app:confound} controls for this length asymmetry.
+
+\begin{table}[h]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrr}
+\toprule
+Type & Amb.\ (mean $\pm$ SD) & Unamb.\ (mean $\pm$ SD) & $\Delta$ \\
+\midrule
+auth\_scope & $19.0 \pm 3.3$ & $55.0 \pm 8.1$ & $+36.1$ \\
+incompleteness & $12.2 \pm 2.4$ & $46.8 \pm 9.1$ & $+34.6$ \\
+lexical & $11.4 \pm 2.3$ & $37.0 \pm 5.8$ & $+25.7$ \\
+scopal & $15.7 \pm 3.0$ & $33.5 \pm 8.5$ & $+17.8$ \\
+cond\_prec & $41.1 \pm 7.0$ & $58.6 \pm 8.6$ & $+17.5$ \\
+\bottomrule
+\end{tabular}}
+\caption{Per-type clause length (words). Coreferential excluded (identical surface forms).}
+\label{tab:token_delta}
+\end{table}
+
+\section{Within-Judge-Group Type Rankings}
+\label{app:judge_group_ranking}
+
+Type rankings show near-zero correlation across judge groups (Spearman $\rho = -0.03$, $p = 0.96$). This is driven by authorization scope's rank reversal (rank 1 in GPT-4.1-judged group vs.\ rank 6 in GPT-5.4-judged group), which reflects agent composition: the GPT-4.1-judged group contains the two agents most vulnerable to authorization scope (DeepSeek 60\%, GPT-5.4 64\%), while the GPT-5.4-judged group contains the least vulnerable (Claude 12\%). Incompleteness ranks 1--2 in both groups, supporting its stability independent of judge identity. This finding further motivates treating authorization scope results with caution (\S\ref{sec:limitations}).
+
+\section{Binary Effect Excluding Incompleteness}
+\label{app:sans_incompleteness}
+
+Excluding incompleteness---the highest-violation type---the pooled ambiguous violation rate remains significantly elevated (38.4\% vs.\ 7.5\% unambiguous; $\Delta = 31.0$\,pp, OR $= 7.75$, $\chi^2 = 338.8$, $p < 10^{-75}$). The binary ambiguity effect (C1) is therefore not driven by incompleteness alone.

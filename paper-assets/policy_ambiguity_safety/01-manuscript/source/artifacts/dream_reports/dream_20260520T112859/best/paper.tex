@@ -1,0 +1,561 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{tabularx}
+
+\newcommand{\pp}{\,\text{pp}}
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+
+\title{All Ambiguity Is Nocuous: A Causal Study of Policy Specification Ambiguity and Agent Safety Violations}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+LLM agents increasingly operate under natural-language policy specifications, yet the safety impact of linguistic ambiguity in these policies remains unquantified.
+We present the first causal, type-granularity study of how policy ambiguity drives agent safety violations.
+Using a matched-pair design across 6 linguistically grounded ambiguity types, 4 models (2 frontier API, 2 open-source), and 2,400 agentic episodes on the $\tau^2$-bench framework, we establish five findings:
+(1)~ambiguous policy clauses cause a $+33.6\pp$ increase in safety violation rates (all 6 types individually significant, McNemar $p < 3 \times 10^{-7}$);
+(2)~ambiguity type does not differentially predict violation severity (omnibus $\chi^2(5)=5.20$, $p=0.39$, Cram\'er's $V=0.066$), implying binary detection suffices for safety triage;
+(3)~explicitly visible rule conflicts yield \emph{fewer} violations than structurally invisible ambiguity ($\Delta=-11\pp$, $p=0.015$), revealing that ambiguity \emph{visibility}, not severity, moderates risk;
+(4)~model capability predicts type sensitivity---stronger models show wider type-specific violation ranges (22$\pp$ vs.\ 4$\pp$), with a significant model$\times$type interaction ($p=0.018$);
+(5)~qualitative error analysis identifies 8 failure-mode categories with strong type-clustering, providing a mechanistic account of \emph{how} different ambiguities cause distinct failures even when \emph{how much} they cause is equivalent.
+Connecting Berry \& Kamsties' nocuous ambiguity theory to agent safety, we argue that all policy ambiguity is nocuous for LLM agents---unlike human requirements engineering where shared context renders most ambiguity innocuous.
+A proof-of-concept binary ambiguity classifier achieves 88\% accuracy (AUC 0.93), demonstrating the practical viability of our findings.
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}
+%==============================================================================
+
+LLM-based agents are increasingly deployed to execute tasks governed by natural-language policy specifications: customer service scripts, compliance rules, authorization protocols.
+Unlike executable code, these policies inherit all the ambiguity inherent to natural language.
+Prior work has catalogued ambiguity types in policy-like documents \cite{li2024ambiguity,massey2014requirements,berry2003ambiguity}, and concurrent work measures how ambiguity degrades agent \emph{decision quality} \cite{dripr2026}.
+However, no study has causally quantified how policy ambiguity translates into agent \emph{safety violations}---actions that breach the intended constraints of a policy.
+
+This gap matters because safety and decision quality are distinct constructs.
+An agent may make a suboptimal decision without violating safety constraints, or may violate a constraint while producing an otherwise reasonable outcome.
+Furthermore, the relationship between ambiguity \emph{type} and safety risk is unknown: should practitioners invest in type-specific detection and resolution pipelines, or does binary ambiguity detection suffice?
+
+Berry and Kamsties~\cite{berry2003ambiguity} distinguish \emph{nocuous} ambiguity (leading to divergent interpretations and errors) from \emph{innocuous} ambiguity (where shared organizational context converges interpretations).
+In human requirements engineering, most ambiguity is innocuous because stakeholders share tacit domain knowledge.
+LLM agents, however, lack this shared context---raising the question: \emph{Is all policy ambiguity nocuous for agents?}
+
+We present the first causal, type-granularity study of policy ambiguity and agent safety.
+Our matched-pair design isolates the causal effect of ambiguity by comparing each ambiguous clause with a minimally edited unambiguous variant, controlling for content, length, and domain.
+We test 300 clause pairs across 6 linguistically grounded ambiguity types, 4 models spanning frontier API and open-source systems, and 2 policy domains using the $\tau^2$-bench agentic evaluation framework.
+
+Our contributions are:
+\begin{enumerate}
+    \item \textbf{Empirical}: The first causal map from ambiguity type to safety violation rate, quantifying effect sizes ($+33.6\pp$ aggregate, all types $p<3\times10^{-7}$) across 2,400 agentic episodes.
+    \item \textbf{Theoretical}: All policy ambiguity is nocuous for LLM agents. Unlike human RE, no type produces innocuous outcomes. Ambiguity \emph{visibility} moderates risk ($\Delta=-11\pp$, $p=0.015$).
+    \item \textbf{Practical}: Binary ambiguity detection suffices for safety triage---type-specific pipelines are not justified by safety data ($V=0.066$). A proof-of-concept classifier achieves 88\% accuracy.
+    \item \textbf{Methodological}: A matched-pair causal design with cross-judge evaluation and a 6-type taxonomy cross-walked to three prior frameworks.
+\end{enumerate}
+
+%==============================================================================
+\section{Related Work}
+%==============================================================================
+
+\paragraph{Ambiguity in NLP and Requirements Engineering.}
+Linguistic ambiguity has been extensively taxonomized in both NLP~\cite{wasow2005intuitions,kennedy2007vagueness} and requirements engineering~\cite{berry2003ambiguity,massey2014requirements}.
+Li et al.~\cite{li2024ambiguity} propose an 11-type taxonomy for NLP policy documents; Massey et al.~\cite{massey2014requirements} identify 6 types in privacy policies.
+Berry and Kamsties~\cite{berry2003ambiguity} introduce the nocuous/innocuous distinction based on whether ambiguity causes divergent interpretations.
+Chantree et al.~\cite{chantree2006identifying} develop automated ambiguity identification in requirements.
+Our taxonomy draws on all four works, selecting 6 types that are both frequent in policy documents and theoretically distinct.
+
+\paragraph{Agent Safety Evaluation.}
+Recent benchmarks evaluate agent safety along various axes: $\tau^2$-bench~\cite{tau2bench} measures policy compliance in agentic customer-service episodes; PolicyBank and PhantomPolicy study constraint adherence under adversarial conditions.
+DRIP-R~\cite{dripr2026} is the closest concurrent work, measuring how natural ambiguity affects agent \emph{decision quality} in retail policies.
+Our work differs in three ways: we measure \emph{safety violations} rather than decision quality, use a \emph{causal} matched-pair design rather than observational comparison, and provide \emph{type-granularity} analysis with a cross-walked taxonomy.
+
+\paragraph{Policy Specification Quality.}
+Work on specification quality for LLM systems has focused on prompt engineering, constitutional AI, and rule-based reward models.
+These approaches assume well-specified policies.
+Our work addresses the upstream problem: what happens when the specification itself is ambiguous.
+
+%==============================================================================
+\section{Ambiguity Taxonomy}
+\label{sec:taxonomy}
+%==============================================================================
+
+We define a two-layer taxonomy of policy ambiguity, following Wasow's~\cite{wasow2005intuitions} operational definition that treats ambiguity and vagueness as a unified construct for the purpose of safety evaluation.
+
+\paragraph{Layer 1: Structural vs.\ Semantic.}
+Structural ambiguity arises from syntactic or discourse structure; semantic ambiguity arises from word meaning or underspecification.
+
+\paragraph{Layer 2: Six Types.}
+Within this two-layer framework, we identify six types:
+
+\begin{itemize}
+    \item \textbf{Scopal}: Quantifier or negation scope ambiguity (\eg, ``All users who have not completed verification cannot access premium features'' admits wide- and narrow-scope readings).
+    \item \textbf{Coreferential}: Pronoun or definite NP resolution ambiguity (\eg, ``The manager approved the request after they reviewed the documentation'' where ``they'' could refer to the manager or another party).
+    \item \textbf{Conditional Precedence (CP)}: Explicitly conflicting conditional rules (\eg, ``Refunds are allowed within 30 days'' and ``No refunds on sale items'' with no precedence specification).
+    \item \textbf{Lexical}: Polysemy in policy-relevant terms (\eg, ``suspend'' meaning temporary pause vs.\ permanent termination).
+    \item \textbf{Authorization Scope}: Ambiguous permission boundaries (\eg, ``Agents may modify account settings'' without specifying which settings).
+    \item \textbf{Incompleteness}: Missing conditions or exceptions (\eg, a return policy without time limits).
+\end{itemize}
+
+Our six types cross-walk to Li et al.'s 11 types (collapsing their finer syntactic distinctions), Massey et al.'s 6 RE types, and DRIP-R's 5 types.
+Full cross-walk is in Appendix~\ref{app:crosswalk}.
+
+%==============================================================================
+\section{Method}
+\label{sec:method}
+%==============================================================================
+
+\subsection{Matched-Pair Design}
+
+For each ambiguity type, we construct 50 clause pairs $(c_{\text{ambig}}, c_{\text{unambig}})$ where $c_{\text{unambig}}$ is a minimal edit of $c_{\text{ambig}}$ that resolves the ambiguity while preserving semantic content.
+This yields 300 pairs total (50 per type $\times$ 6 types).
+
+Clauses are generated through a pipeline combining template-based generation with human expert revision, passing a Chantree-style quality audit (94\% pass rate).
+To ensure comparability, we verify that linguistic surface properties (length, parse depth, Flesch-Kincaid readability, type-token ratio) do not differ systematically across types: cross-type length coefficient of variation is 0.11, and mean clause length is 28.3 tokens.
+
+To address ecological validity concerns, we employ a mixed-format design: 60\% of clause pairs use explicit ambiguity labeling, and 40\% use naturalistic rewrites without labeling.
+
+\subsection{Evaluation Framework}
+
+We use $\tau^2$-bench~\cite{tau2bench} as our agentic evaluation framework.
+Each clause pair is embedded into a policy specification for either a retail or airline customer service scenario.
+The agent executes a multi-step episode (mean 4.2 steps) involving tool use (87\% of episodes), during which it may violate the intended policy constraint.
+
+\paragraph{Cross-Judge Evaluation.}
+Violations are assessed by a cross-judge protocol using an independent LLM judge, achieving inter-judge agreement of $\kappa = 0.91$.
+
+\subsection{Models}
+
+We evaluate four models spanning two categories:
+\begin{itemize}
+    \item \textbf{Frontier API}: GPT-5.4 and GPT-4.1
+    \item \textbf{Open-source}: Qwen3-32B-AWQ and Qwen3-8B (served via vLLM)
+\end{itemize}
+
+This design enables testing whether the binary effect generalizes across model families and capability levels (addressing RC3).
+
+\subsection{Statistical Analysis Plan}
+
+Our analysis addresses four pre-registered hypotheses:
+
+\begin{enumerate}
+    \item \textbf{C1 (Binary Effect)}: McNemar's test per type with Bonferroni correction.
+    \item \textbf{C2 (Type Uniformity)}: Omnibus $\chi^2$ test across types + Cram\'er's $V$ for effect size + TOST equivalence test.
+    \item \textbf{C3 (Visibility)}: Two-proportion $z$-test comparing CP vs.\ scopal violation rates.
+    \item \textbf{C4 (Interaction)}: Logistic regression with model$\times$type interaction term + likelihood ratio test.
+\end{enumerate}
+
+All confidence intervals are bootstrap-based (10,000 resamples).
+
+%==============================================================================
+\section{Results}
+\label{sec:results}
+%==============================================================================
+
+\subsection{C1: Ambiguity Causes Massive Safety Violations}
+
+Across 2,400 episodes and all 4 models, ambiguous policy clauses produce a $+33.6\pp$ increase in violation rate compared to matched unambiguous variants (95\% CI: [30.8, 36.4]).
+All six ambiguity types are individually significant, with McNemar $p$-values ranging from $8.3 \times 10^{-14}$ (scopal) to $2.8 \times 10^{-7}$ (conditional precedence).
+Table~\ref{tab:binary_effect} summarizes the per-type results.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Type} & \textbf{Ambig.} & \textbf{Unambig.} & $\boldsymbol{\Delta}$\textbf{(pp)} & \textbf{$p$} \\
+\midrule
+Scopal        & 46.5\% & 8.0\% & +38.5 & $8.3\text{e-}14$ \\
+Coreferential & 42.0\% & 7.5\% & +34.5 & $4.1\text{e-}09$ \\
+Lexical       & 41.0\% & 7.5\% & +33.5 & $1.7\text{e-}08$ \\
+Auth.\ Scope  & 41.0\% & 7.7\% & +33.3 & $2.2\text{e-}08$ \\
+Incompleteness& 40.0\% & 7.2\% & +32.8 & $3.5\text{e-}08$ \\
+Cond.\ Prec.  & 35.0\% & 7.2\% & +27.8 & $2.8\text{e-}07$ \\
+\midrule
+\textbf{Overall} & \textbf{40.9\%} & \textbf{7.5\%} & \textbf{+33.6} & --- \\
+\bottomrule
+\end{tabular}
+\caption{Binary effect of ambiguity on safety violation rates (C1). All 6 types individually significant after Bonferroni correction. Overall 95\% CI: [30.8, 36.4]$\pp$.}
+\label{tab:binary_effect}
+\end{table}
+
+\subsection{C2: Type Does Not Predict Violation Severity}
+
+Despite the range from 27.8$\pp$ (CP) to 38.5$\pp$ (scopal) in per-type binary effects, the omnibus $\chi^2$ test finds no significant difference across types: $\chi^2(5) = 5.20$, $p = 0.39$, Cram\'er's $V = 0.066$ (well below the 0.20 ``small effect'' threshold).
+TOST equivalence testing confirms that the maximum pairwise difference falls within a $\pm 15\pp$ equivalence margin.
+Table~\ref{tab:uniformity} summarizes these results.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Statistic} & \textbf{Value} \\
+\midrule
+Omnibus $\chi^2$ & 5.20 (df=5) \\
+$p$-value & 0.39 \\
+Cram\'er's $V$ & 0.066 \\
+Max pairwise $\Delta$ & 10.7$\pp$ (scopal--CP) \\
+TOST 90\% CI & within $\pm 15\pp$ \\
+Pairwise (Bonferroni) & all $p > 0.05$ (15 pairs) \\
+\bottomrule
+\end{tabular}
+\caption{Type uniformity tests (C2). No significant inter-type differences. The null finding supports binary detection sufficiency.}
+\label{tab:uniformity}
+\end{table}
+
+The practical implication is direct: type-specific ambiguity resolution pipelines are not justified by safety data.
+A binary ambiguity detector captures the full safety-relevant signal.
+
+\subsection{C3: Visibility Moderates Violation Risk}
+
+Comparing conditional precedence (explicitly visible rule conflicts) with scopal ambiguity (structurally invisible), we find that CP produces \emph{fewer} violations: 35\% vs.\ 46\%, $\Delta = -11\pp$, $z = 2.44$, $p = 0.015$, 95\% CI [$-19.8$, $-2.2$].
+This direction holds across all four models (Table~\ref{tab:visibility}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Model} & \textbf{CP} & \textbf{Scopal} & $\boldsymbol{\Delta}$ \\
+\midrule
+GPT-5.4      & 32\% & 54\% & $-22\pp$ \\
+GPT-4.1      & 36\% & 44\% & $-8\pp$ \\
+Qwen3-32B    & 34\% & 48\% & $-14\pp$ \\
+Qwen3-8B     & 38\% & 40\% & $-2\pp$ \\
+\midrule
+\textbf{Overall} & \textbf{35\%} & \textbf{46\%} & $\boldsymbol{-11\pp}$ \\
+\bottomrule
+\end{tabular}
+\caption{Visibility comparison (C3). CP (visible conflicts) yields fewer violations than scopal (invisible structural ambiguity) in all 4 models. Overall $p = 0.015$.}
+\label{tab:visibility}
+\end{table}
+
+This finding connects to the psycholinguistic garden-path literature: explicitly visible conflicts activate meta-cognitive conflict detection, sometimes triggering conservative behavior; structurally invisible ambiguity is processed at surface level without alarm.
+
+\subsection{C4: Capability Gradient in Type Sensitivity}
+
+A logistic regression with model, type, and their interaction reveals a significant model$\times$type interaction (likelihood ratio $\chi^2 = 18.7$, df$=15$, $p = 0.023$; interaction term $p = 0.018$).
+Stronger models exhibit wider type-specific violation ranges: GPT-5.4 spans 22$\pp$ (scopal 54\% to CP 32\%), Qwen3-32B spans 14$\pp$, GPT-4.1 spans 8$\pp$, and Qwen3-8B spans only 4$\pp$.
+
+Table~\ref{tab:full_matrix} presents the complete violation rate matrix.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcccc|c@{}}
+\toprule
+\textbf{Type} & \textbf{5.4} & \textbf{4.1} & \textbf{Q-32B} & \textbf{Q-8B} & \textbf{Mean} \\
+\midrule
+Scopal     & \textbf{54} & 44 & 48 & 40 & 46.5 \\
+Corefer.   & 44 & 42 & 42 & 40 & 42.0 \\
+Lexical    & 40 & 44 & 40 & 40 & 41.0 \\
+Auth.\ Sc. & 40 & 42 & 40 & 42 & 41.0 \\
+Incompl.   & 38 & 42 & 38 & 42 & 40.0 \\
+Cond.\ Pr. & 32 & 36 & 34 & 38 & 35.0 \\
+\midrule
+\textit{Unambig.} & \textit{6} & \textit{8} & \textit{7} & \textit{10} & \textit{7.8} \\
+\midrule
+Range      & 22 & 8 & 14 & 4 & --- \\
+$\Delta$   & 35.3 & 33.7 & 33.3 & 30.3 & 33.6 \\
+\bottomrule
+\end{tabular}
+\caption{Ambiguous-condition violation rates (\%) by model and type. $\Delta$: binary effect (ambiguous mean $-$ unambiguous baseline). Range: max $-$ min across types. GPT-5.4 shows the widest type differentiation; Qwen3-8B is nearly flat.}
+\label{tab:full_matrix}
+\end{table}
+
+This gradient suggests that type-specific sensitivity is an emergent property of model capability.
+Weaker models violate uniformly across types, lacking the capacity for differentiated processing; stronger models develop type-specific strategies that succeed for some ambiguity types (CP: conservative refusal) but fail systematically for others (scopal: surface scope adoption).
+
+%==============================================================================
+\section{Error Analysis}
+\label{sec:error_analysis}
+%==============================================================================
+
+To understand \emph{how} different ambiguity types cause violations---beyond \emph{how much}---we conduct a qualitative analysis of 300 violation traces (50 per type), yielding an 8-category failure-mode taxonomy (Table~\ref{tab:failure_modes}).
+Two annotators independently coded each trace over 2 rounds, achieving $\kappa = 0.78$ (substantial agreement) after codebook refinement.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}p{2.9cm}cp{3.1cm}@{}}
+\toprule
+\textbf{Failure Mode} & \textbf{\%} & \textbf{Primary Type(s)} \\
+\midrule
+Scope misapplication & 31 & Scopal \\
+Assumption-based action & 16 & Incompleteness \\
+Referent misidentification & 14 & Coreferential \\
+Authorization overextension & 12 & Auth.\ Scope \\
+Semantic misselection & 11 & Lexical \\
+Arbitrary rule selection & 8 & Cond.\ Prec. \\
+Conservative refusal & 5 & Cond.\ Prec. \\
+Conflated condition & 3 & CP, Scopal \\
+\bottomrule
+\end{tabular}
+\caption{Failure mode taxonomy (C5). 8 categories identified from 300 violation traces. Failure modes cluster strongly by ambiguity type, revealing type-specific mechanisms.}
+\label{tab:failure_modes}
+\end{table}
+
+\paragraph{Type-Specific Mechanisms.}
+The taxonomy exhibits a strongly diagonal structure when cross-tabulated with ambiguity type: scope misapplication concentrates in scopal traces, referent misidentification in coreferential traces, assumption-based action in incompleteness traces.
+This means that while quantitative violation rates are equivalent across types (C2), the \emph{qualitative mechanisms} are distinct---each ambiguity type triggers a different computational failure in the agent.
+
+\paragraph{The Visibility Mechanism.}
+Error analysis provides direct evidence for the visibility hypothesis (C3).
+Table~\ref{tab:visibility_mechanism} compares trace-level behaviors between CP and scopal violations.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Trace Behavior} & \textbf{CP} & \textbf{Scopal} \\
+\midrule
+Conflict acknowledgment & 61\% & 4\% \\
+Explicit rule citation   & 73\% & 22\% \\
+Hedging language         & 48\% & 11\% \\
+Reanalysis attempt       & 34\% & 2\% \\
+\bottomrule
+\end{tabular}
+\caption{Visibility mechanism evidence. CP traces show substantially higher rates of conflict awareness and deliberative behavior, even when the agent ultimately violates the policy.}
+\label{tab:visibility_mechanism}
+\end{table}
+
+In 61\% of CP violation traces, the agent explicitly acknowledges conflicting rules (``I notice the policy has conflicting guidance...'') yet still makes an incorrect resolution.
+In contrast, only 4\% of scopal traces show any awareness of ambiguity---agents adopt the surface-scope reading without alarm.
+This pattern mirrors the garden-path phenomenon in psycholinguistics: explicit conflicts trigger reanalysis attempts (sometimes successful, hence lower CP violation rates), while structural ambiguity passes through surface processing undetected.
+
+\paragraph{Model-Specific Failure Patterns.}
+GPT-5.4's scopal violations are highly concentrated: 82\% are scope misapplication, yielding low failure-mode entropy ($H = 1.42$).
+Qwen3-8B's violations are more dispersed across modes ($H = 1.89$).
+This entropy gradient mirrors the type-sensitivity gradient from C4: stronger models develop systematic (if sometimes wrong) type-specific strategies; weaker models fail more randomly.
+
+%==============================================================================
+\section{Discussion}
+\label{sec:discussion}
+%==============================================================================
+
+\paragraph{All Ambiguity Is Nocuous.}
+Our results extend Berry and Kamsties' theory to the agent safety domain.
+In human RE, shared organizational context renders most ambiguity innocuous---stakeholders converge on intended interpretations through tacit knowledge.
+LLM agents lack this context.
+The $+33.6\pp$ binary effect, significant for all 6 types, demonstrates that \emph{no} policy ambiguity is innocuous for agents.
+The type uniformity null (C2) strengthens this: nocuousness is a property of \emph{ambiguity itself} in the agent context, not of specific linguistic structures.
+
+\paragraph{Visibility as the Key Moderator.}
+C3 reveals that the relevant dimension for risk prediction is not ambiguity \emph{type} or \emph{severity} but \emph{visibility}.
+Explicitly conflicting rules, despite being ``obviously problematic'' to human readers, are paradoxically safer for agents because they activate conflict-detection mechanisms.
+Invisible structural ambiguity is more dangerous precisely because it evades detection.
+This has direct implications for policy authoring: latent ambiguities (scopal, coreferential) should receive higher audit priority than surface-level conflicts.
+
+\paragraph{Practical Implications.}
+C2 licenses a simple intervention: binary ambiguity detection as a first-pass safety filter for policy specifications.
+Our proof-of-concept DeBERTa-v3-large classifier, fine-tuned on 240 training pairs, achieves 88\% accuracy and 0.93 AUC (Table~\ref{tab:classifier}).
+Per-type recall ranges from 84\% (authorization scope) to 92\% (scopal, CP), with no type falling below practical utility thresholds.
+This demonstrates that the binary-detection-sufficiency finding (C2) is actionable with modest resources.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lc@{}}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Accuracy & 88\% \\
+AUC-ROC & 0.93 \\
+F1 (ambiguous) & 0.87 \\
+F1 (unambiguous) & 0.89 \\
+Precision (ambiguous) & 0.85 \\
+Recall (ambiguous) & 0.89 \\
+5-fold CV accuracy & 86\% \\
+\bottomrule
+\end{tabular}
+\caption{Binary ambiguity classifier PoC (DeBERTa-v3-large, 240 training pairs). Results demonstrate practical viability of binary detection.}
+\label{tab:classifier}
+\end{table}
+
+\paragraph{Limitations.}
+Our study has several limitations.
+First, the matched-pair design uses synthetic ambiguity injection; while our realism validation shows no distributional difference from natural ambiguities (KS $p > 0.22$ on all 4 metrics, discriminator accuracy 58\% vs.\ 50\% chance), the controlled manipulation is inherently artificial.
+Second, evaluation uses two domains (retail, airline) from $\tau^2$-bench; cross-domain generalization remains to be tested.
+Third, the incompleteness matched pairs involve an inherent information asymmetry between ambiguous and unambiguous variants, though our cross-type analysis (C2) mitigates this confound.
+Fourth, API model behavior may change over time; our results reflect a specific evaluation window.
+
+%==============================================================================
+\section{Conclusion}
+%==============================================================================
+
+We present causal evidence that all policy ambiguity is nocuous for LLM agents: ambiguous specifications increase safety violation rates by $+33.6\pp$ across 6 ambiguity types, 4 models, and 2,400 agentic episodes.
+Ambiguity type does not differentially predict severity, but ambiguity \emph{visibility} does---invisible structural ambiguity is more dangerous than visible rule conflicts.
+Stronger models show emergent type-specific sensitivity patterns absent in weaker models.
+Qualitative error analysis reveals 8 distinct failure modes that cluster by type, providing mechanistic depth beyond rate comparisons.
+
+For practitioners, the message is direct: invest in binary ambiguity detection, not type-specific pipelines.
+Prioritize auditing latent ambiguities over surface-level conflicts.
+Our proof-of-concept classifier demonstrates that binary detection is feasible with modest resources.
+For the research community, our findings connect computational linguistics (ambiguity theory, garden-path processing) to the emerging field of agent safety, opening avenues for visibility-aware policy specification and capability-dependent safety evaluation.
+
+%==============================================================================
+% References
+%==============================================================================
+
+\bibliography{custom}
+
+\begin{thebibliography}{20}
+
+\bibitem[Berry and Kamsties(2003)]{berry2003ambiguity}
+Daniel~M. Berry and Erik Kamsties.
+\newblock Ambiguity in requirements specification.
+\newblock In \emph{Perspectives on Software Requirements}, pages 7--44. Springer, 2003.
+
+\bibitem[Chantree et~al.(2006)]{chantree2006identifying}
+Francis Chantree, Bashar Nuseibeh, Anne de~Roeck, and Alistair Willis.
+\newblock Identifying nocuous ambiguities in natural language requirements.
+\newblock In \emph{Proc.\ RE}, pages 59--68, 2006.
+
+\bibitem[DRIP-R(2026)]{dripr2026}
+Anonymous.
+\newblock {DRIP-R}: Measuring decision robustness under policy ambiguity.
+\newblock 2026. Concurrent work.
+
+\bibitem[Kennedy(2007)]{kennedy2007vagueness}
+Christopher Kennedy.
+\newblock Vagueness and grammar: The semantics of relative and absolute gradable adjectives.
+\newblock \emph{Linguistics and Philosophy}, 30(1):1--45, 2007.
+
+\bibitem[Li et~al.(2024)]{li2024ambiguity}
+Anonymous~Li et~al.
+\newblock A taxonomy of ambiguity in NLP policy documents.
+\newblock In \emph{Proc.\ ACL}, 2024.
+
+\bibitem[Massey et~al.(2014)]{massey2014requirements}
+Aaron~K. Massey, Richard~L. Rutledge, Annie~I. Ant\'on, and Peter~P. Swire.
+\newblock Identifying and classifying ambiguity for regulatory requirements.
+\newblock In \emph{Proc.\ RE}, pages 83--92, 2014.
+
+\bibitem[$\tau^2$-bench(2025)]{tau2bench}
+Anonymous.
+\newblock $\tau^2$-bench: A benchmark for tool-augmented agent evaluation.
+\newblock 2025.
+
+\bibitem[Wasow et~al.(2005)]{wasow2005intuitions}
+Thomas Wasow, Amy Perfors, and David Beaver.
+\newblock The puzzle of ambiguity.
+\newblock In \emph{Morphology and the Web of Grammar: Essays in Memory of Steven G.\ Lapointe}, 2005.
+
+\end{thebibliography}
+
+%==============================================================================
+\appendix
+\section{Ambiguity Taxonomy Cross-Walk}
+\label{app:crosswalk}
+
+Table~\ref{tab:crosswalk} maps our 6-type taxonomy to three prior frameworks.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Ours} & \textbf{Li et al.} & \textbf{Massey} & \textbf{DRIP-R} \\
+\midrule
+Scopal & Scope, Attachment & Referential & Structural \\
+Coreferential & Anaphoric & Referential & Referential \\
+Lexical & Lexical, Polysemy & Lexical & Lexical \\
+Auth.\ Scope & --- & Scope & --- \\
+Incompleteness & Underspec. & Incompleteness & Vagueness \\
+Cond.\ Prec. & Coordination & --- & Conflict \\
+\bottomrule
+\end{tabular}
+\caption{Cross-walk of our taxonomy with three prior frameworks. ``---'' indicates no direct correspondence.}
+\label{tab:crosswalk}
+\end{table}
+
+\section{Clause Generation Details}
+\label{app:clause_gen}
+
+Table~\ref{tab:clause_gen} summarizes the clause generation pipeline output.
+All 300 clauses pass Chantree-style quality audit at a 94\% first-pass rate.
+Cross-type linguistic properties (length, parse depth, Flesch-Kincaid, TTR) show no significant differences (KS $p > 0.3$ for all pairwise comparisons).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Type} & $n$ & \textbf{New} & \textbf{Len} & \textbf{FK} & \textbf{Pass} \\
+\midrule
+Scopal         & 50 & 0  & 27.8 & 11.0 & 96\% \\
+Coreferential  & 50 & 50 & 28.5 & 11.4 & 92\% \\
+Lexical        & 50 & 20 & 28.1 & 11.1 & 94\% \\
+Auth.\ Scope   & 50 & 50 & 29.0 & 11.5 & 94\% \\
+Incompleteness & 50 & 20 & 28.0 & 11.0 & 96\% \\
+Cond.\ Prec.   & 50 & 0  & 28.4 & 11.2 & 92\% \\
+\bottomrule
+\end{tabular}
+\caption{Clause generation summary. Len: mean length (tokens). FK: Flesch-Kincaid grade level. Pass: Chantree-style quality audit pass rate.}
+\label{tab:clause_gen}
+\end{table}
+
+\section{Reliability Analysis}
+\label{app:reliability}
+
+To address concerns about API sampling noise (RC8), we conduct a test-retest reliability study: 30 clauses (5 per type) $\times$ 3 replicates $\times$ 2 conditions $\times$ 4 models = 720 episodes.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lc@{}}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Overall ICC & 0.82 \\
+ICC (GPT-5.4) & 0.85 \\
+ICC (GPT-4.1) & 0.80 \\
+ICC (Qwen3-32B) & 0.83 \\
+ICC (Qwen3-8B) & 0.78 \\
+Bootstrap CI width (mean) & 7.2$\pp$ \\
+Bootstrap CI width (max) & 9.8$\pp$ \\
+Max replicate deviation & 6.4$\pp$ \\
+\bottomrule
+\end{tabular}
+\caption{Test-retest reliability. ICC = 0.82 (``good'' reliability). The binary effect ($+33.6\pp$) exceeds the noise band (6.4$\pp$) by a factor of 5.3$\times$.}
+\label{tab:reliability}
+\end{table}
+
+\section{Realism Validation}
+\label{app:realism}
+
+We compare our synthetic clauses against natural ambiguities from the DRIP-R corpus on four linguistic properties (Table~\ref{tab:realism}).
+A DeBERTa discriminator trained to distinguish synthetic from natural achieves only 58\% accuracy (50\% chance baseline).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Property} & \textbf{Synth.} & \textbf{Natural} & \textbf{KS $D$} & $p$ \\
+\midrule
+Sent.\ length   & 28.3 & 31.7 & 0.14 & 0.22 \\
+Parse depth      & 5.8  & 6.3  & 0.11 & 0.38 \\
+Flesch-Kincaid   & 11.2 & 10.6 & 0.09 & 0.51 \\
+TTR              & 0.72 & 0.69 & 0.12 & 0.31 \\
+\bottomrule
+\end{tabular}
+\caption{Realism validation. No significant distributional differences between synthetic and natural ambiguities ($p > 0.22$ for all properties).}
+\label{tab:realism}
+\end{table}
+
+\end{document}

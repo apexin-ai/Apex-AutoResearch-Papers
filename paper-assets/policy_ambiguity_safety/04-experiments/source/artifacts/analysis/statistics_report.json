@@ -1,0 +1,135 @@
+{
+  "primary": {
+    "overall_rates": {
+      "incompleteness": {
+        "violation_rate": 0.4166666666666667,
+        "n_violations": 25,
+        "n_total": 60
+      },
+      "lexical": {
+        "violation_rate": 0.43333333333333335,
+        "n_violations": 26,
+        "n_total": 60
+      },
+      "scopal": {
+        "violation_rate": 0.5166666666666667,
+        "n_violations": 31,
+        "n_total": 60
+      }
+    },
+    "omnibus_chi2": {
+      "chi2": 1.3887506222000996,
+      "p": 0.4993863116517848,
+      "dof": 2
+    },
+    "pairwise": [
+      {
+        "type_1": "incompleteness",
+        "type_2": "lexical",
+        "fisher_p": 1.0,
+        "bonferroni_p": 1.0,
+        "cramers_v": 0.0
+      },
+      {
+        "type_1": "incompleteness",
+        "type_2": "scopal",
+        "fisher_p": 0.36031701908273206,
+        "bonferroni_p": 1.0,
+        "cramers_v": 0.08351913809763262
+      },
+      {
+        "type_1": "lexical",
+        "type_2": "scopal",
+        "fisher_p": 0.46481526072291385,
+        "bonferroni_p": 1.0,
+        "cramers_v": 0.06675015657623451
+      }
+    ],
+    "per_model": {
+      "gpt-4.1": {
+        "incompleteness": {
+          "violation_rate": 0.4,
+          "n_violations": 12,
+          "n_total": 30
+        },
+        "lexical": {
+          "violation_rate": 0.4666666666666667,
+          "n_violations": 14,
+          "n_total": 30
+        },
+        "scopal": {
+          "violation_rate": 0.43333333333333335,
+          "n_violations": 13,
+          "n_total": 30
+        }
+      },
+      "gpt-5.4": {
+        "incompleteness": {
+          "violation_rate": 0.43333333333333335,
+          "n_violations": 13,
+          "n_total": 30
+        },
+        "lexical": {
+          "violation_rate": 0.4,
+          "n_violations": 12,
+          "n_total": 30
+        },
+        "scopal": {
+          "violation_rate": 0.6,
+          "n_violations": 18,
+          "n_total": 30
+        }
+      }
+    }
+  },
+  "secondary": {
+    "scopal": {
+      "ambiguous_violation_rate": 0.5166666666666667,
+      "unambiguous_violation_rate": 0.1,
+      "rate_difference": 0.41666666666666674,
+      "n_pairs": 60,
+      "mcnemar": {
+        "b_amb_only": 26,
+        "c_unamb_only": 1,
+        "statistic": 21.333333333333332,
+        "p": 3.859616436896474e-06
+      },
+      "wilcoxon": {
+        "statistic": 15.5,
+        "p": 3.0326699044105834e-06
+      }
+    },
+    "lexical": {
+      "ambiguous_violation_rate": 0.43333333333333335,
+      "unambiguous_violation_rate": 0.06666666666666667,
+      "rate_difference": 0.3666666666666667,
+      "n_pairs": 60,
+      "mcnemar": {
+        "b_amb_only": 23,
+        "c_unamb_only": 1,
+        "statistic": null,
+        "p": 2.9802322387695312e-06
+      },
+      "wilcoxon": {
+        "statistic": 21.0,
+        "p": 5.821230539639612e-05
+      }
+    },
+    "incompleteness": {
+      "ambiguous_violation_rate": 0.4166666666666667,
+      "unambiguous_violation_rate": 0.06666666666666667,
+      "rate_difference": 0.35000000000000003,
+      "n_pairs": 60,
+      "mcnemar": {
+        "b_amb_only": 22,
+        "c_unamb_only": 1,
+        "statistic": null,
+        "p": 5.7220458984375e-06
+      },
+      "wilcoxon": {
+        "statistic": 16.0,
+        "p": 3.9541856961474455e-06
+      }
+    }
+  }
+}

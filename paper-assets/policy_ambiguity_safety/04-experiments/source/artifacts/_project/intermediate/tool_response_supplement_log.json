@@ -1,0 +1,636 @@
+[
+  {
+    "clause_id": "scopal_004",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_007",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_009",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_011",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_012",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_014",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "search_flights: ['origin', 'destination', 'date']"
+    ]
+  },
+  {
+    "clause_id": "scopal_016",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_017",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_019",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "cancel_reservation: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_026",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_028",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_029",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_030",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_001",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_002",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_004",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "modify_pending_order_items: ['order_id', 'items']"
+    ]
+  },
+  {
+    "clause_id": "lexical_005",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_006",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_user_details: ['user_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_008",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "find_user_id_by_name_zip: ['first_name', 'last_name', 'zip']"
+    ]
+  },
+  {
+    "clause_id": "lexical_010",
+    "source_file": "clause_templates.json",
+    "original_count": 1,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']",
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_011",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_012",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_013",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_014",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_015",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_017",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_018",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_019",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_024",
+    "source_file": "clause_templates.json",
+    "original_count": 1,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']",
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_026",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "search_flights: ['origin', 'destination', 'date']"
+    ]
+  },
+  {
+    "clause_id": "lexical_028",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "lexical_029",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_001",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_002",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_003",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_004",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_005",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_006",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "find_user_id_by_name_zip: ['first_name', 'last_name', 'zip']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_007",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_008",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_009",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_011",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_013",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_014",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_015",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_016",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "search_flights: ['origin', 'destination', 'date']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_017",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_018",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_020",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "search_flights: ['origin', 'destination', 'date']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_021",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_022",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_023",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "find_user_id_by_email: ['email']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_024",
+    "source_file": "clause_templates.json",
+    "original_count": 1,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']",
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_026",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_027",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_029",
+    "source_file": "clause_templates.json",
+    "original_count": 1,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']",
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "incompleteness_030",
+    "source_file": "clause_templates.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_004",
+    "source_file": "clause_templates_diag001.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_007",
+    "source_file": "clause_templates_diag001.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_009",
+    "source_file": "clause_templates_diag001.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_011",
+    "source_file": "clause_templates_diag001.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_012",
+    "source_file": "clause_templates_diag001.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_014",
+    "source_file": "clause_templates_diag001.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "search_flights: ['origin', 'destination', 'date']"
+    ]
+  },
+  {
+    "clause_id": "scopal_016",
+    "source_file": "clause_templates_diag001.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_017",
+    "source_file": "clause_templates_diag001.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_019",
+    "source_file": "clause_templates_diag001.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "cancel_reservation: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_026",
+    "source_file": "clause_templates_diag001.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_028",
+    "source_file": "clause_templates_diag001.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_029",
+    "source_file": "clause_templates_diag001.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_order_details: ['order_id']"
+    ]
+  },
+  {
+    "clause_id": "scopal_030",
+    "source_file": "clause_templates_diag001.json",
+    "original_count": 2,
+    "new_count": 3,
+    "added_responses": [
+      "get_reservation_details: ['reservation_id']"
+    ]
+  }
+]

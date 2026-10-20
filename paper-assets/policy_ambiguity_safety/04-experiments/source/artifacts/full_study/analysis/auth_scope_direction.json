@@ -1,0 +1,56 @@
+{
+  "analysis": "auth_scope_escalation_direction",
+  "per_model": {
+    "gpt-5.4": {
+      "n_auth_scope_violations": 32,
+      "unauthorized_escalation": 23,
+      "conservative_refusal": 0,
+      "other_modes": 9,
+      "escalation_rate": 0.7188,
+      "restriction_rate": 0.0
+    },
+    "gpt-4.1": {
+      "n_auth_scope_violations": 23,
+      "unauthorized_escalation": 19,
+      "conservative_refusal": 0,
+      "other_modes": 4,
+      "escalation_rate": 0.8261,
+      "restriction_rate": 0.0
+    },
+    "claude-sonnet-4-6": {
+      "n_auth_scope_violations": 6,
+      "unauthorized_escalation": 3,
+      "conservative_refusal": 0,
+      "other_modes": 3,
+      "escalation_rate": 0.5,
+      "restriction_rate": 0.0
+    },
+    "qwen3-235b": {
+      "n_auth_scope_violations": 13,
+      "unauthorized_escalation": 7,
+      "conservative_refusal": 0,
+      "other_modes": 6,
+      "escalation_rate": 0.5385,
+      "restriction_rate": 0.0
+    },
+    "deepseek-v3": {
+      "n_auth_scope_violations": 30,
+      "unauthorized_escalation": 20,
+      "conservative_refusal": 0,
+      "other_modes": 10,
+      "escalation_rate": 0.6667,
+      "restriction_rate": 0.0
+    }
+  },
+  "pooled": {
+    "total_auth_scope": 104,
+    "total_escalation": 72,
+    "total_restriction": 0,
+    "total_other": 32,
+    "escalation_rate": 0.6923,
+    "restriction_rate": 0.0,
+    "binomial_p": 5.5e-05,
+    "models_with_majority_escalation": "4/5"
+  },
+  "conclusion": "69.2% of authorization scope violations involve unauthorized escalation (granting permissions beyond policy scope), consistent across all five models (4/5 with majority escalation). Binomial test confirms this exceeds chance (p < .001). No model produced any conservative_refusal within authorization_scope violations\u2014the restriction rate is 0% across all five models."
+}

@@ -1,0 +1,681 @@
+## Review Issues Tracker — policy_ambiguity_safety
+## Paper: "Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety"
+## Venue: EMNLP 2026 via ARR May cycle
+## Latest Round: 34
+## Status: R34 fresh review — 1 Must-Fix, 6 Should-Fix, 3 divergent issues recorded
+
+# ====== Resolved Issues (R33, carried forward) ======
+
+- id: R30-SF6
+  summary: "Incompleteness 在 'ambiguity' 框架下的概念张力——最强效应类型在认识论上最可争议"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 33
+  mentions:
+    - round: 29
+      reviewers: [2]
+      note: "RE 文献有先例但概念张力应显式讨论"
+    - round: 32
+      reviewers: [1, 2]
+      note: "升级为 critical"
+    - round: 33
+      reviewers: [1, 2]
+      note: "R33-MF1: §3 epistemological 段不够深入 + information-addition confound"
+  action_items:
+    - round: 33
+      action: "(A) §3 扩写 contested boundary + Berry&Kamsties/Gleich 先例; (B) Logistic regression Δtoken×condition 交互项; (C) 呈现层面标记"
+      assigned_to: main_agent
+      status: done
+  resolution: "§3 扩写 3 句 RE 先例; appendix app:token_sensitivity 报告交互项 p=0.0004 但 Δtoken=0 效应仍 +20.5pp; §5 加 1 句正文引用。Reviewer PASS。"
+  resolution_round: 33
+
+- id: R30-SF5
+  summary: "Convergent nocuity framing 过度——observed 41.3% vs independence baseline"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 33
+  mentions:
+    - round: 32
+      reviewers: [1, 2]
+      note: "升级为 critical; 需排除 incompleteness 后分析"
+    - round: 33
+      reviewers: [1, 2]
+      note: "R33-SF4: 需 unambiguous condition ambient baseline + permutation test"
+  action_items:
+    - round: 33
+      action: "§6.3 加 ambient baseline 1.7% (5/300) vs 41.3%"
+      assigned_to: main_agent
+      status: done
+  resolution: "Ambient baseline 1.7% (5/300 unambiguous clauses), +39.6pp excess。两层结构 practical/mechanism 保持。Reviewer PASS。"
+  resolution_round: 33
+
+- id: R30-MF1
+  summary: "Human κ=0.41 不足以支撑 type-mechanism dissociation——缺少 human-coded Cramér's V"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 22
+  last_seen_round: 32
+  resolution: "§6 报告 human-coded V=0.40/0.42，corroborates LLM V=0.45 as upper bound。Reviewer PASS。"
+  resolution_round: 33
+
+- id: R30-SF2
+  summary: "Temperature pilot underpowered（3/5 模型, 50 clause pairs, 无 CI）"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 24
+  last_seen_round: 32
+  resolution: "Limitations 新增 power analysis：n=50 pairs, detectable effect ≥24.6pp at 80% power。"
+  resolution_round: 33
+
+- id: R30-SF3
+  summary: "SESOI ±15 pp 缺乏正文领域成本锚定"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 20
+  last_seen_round: 33
+  mentions:
+    - round: 33
+      reviewers: [1, 2]
+      note: "R33-SF1: partial ordering 应标注 exploratory"
+  action_items:
+    - round: 33
+      action: "§5.2 标注 partial ordering exploratory + SESOI 敏感性"
+      assigned_to: main_agent
+      status: done
+  resolution: "§4 正文引用 Appendix cost anchoring; §5.2 标注 exploratory + ±12pp instability。Reviewer PASS。"
+  resolution_round: 33
+
+- id: R31-SF2
+  summary: "C3 层级假设不显著但 Table 1/2 颜色编码暗示实验支持的结构"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 31
+  last_seen_round: 32
+  resolution: "Table 2 caption 新增 inconclusive 标注。"
+  resolution_round: 33
+
+- id: R30-MF2
+  summary: "\\enlargethispage 格式操纵"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 28
+  last_seen_round: 31
+  resolution: "所有 \\enlargethispage 已移除。"
+  resolution_round: 33
+
+- id: R30-M1
+  summary: "Abstract 中 V=0.45 和 κ=0.41 呈现不一致"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 30
+  last_seen_round: 32
+  resolution: "随 R30-MF1 一起解决：V=0.45 统一标注为 upper bound。"
+  resolution_round: 33
+
+- id: R31-M1
+  summary: "Per-type κ CI 很宽（n≈17 per type），需要更强 caveat"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 31
+  last_seen_round: 33
+  mentions:
+    - round: 33
+      reviewers: [1, 2]
+      note: "R33-MF2: per-type κ 差异需正文呈现"
+  action_items:
+    - round: 33
+      action: "§5.2 报告 per-type κ range + coreferential caveat + attenuation 论点"
+      assigned_to: main_agent
+      status: done
+  resolution: "Per-type κ 0.479–0.904 报告在正文; coreferential caveat + attenuation argument; misclassification sensitivity (25% error → +9.2pp, p=0.011)。Reviewer PASS。"
+  resolution_round: 33
+
+- id: R31-M2
+  summary: "'primary risk factor' 应限定为 'among measured predictors'"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 31
+  last_seen_round: 32
+  resolution: "已修改。"
+  resolution_round: 33
+
+- id: R31-M3
+  summary: "C3 hierarchy hypothesis rejection 应更显式标注"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 31
+  last_seen_round: 32
+  resolution: "随 R31-SF2 Table 2 caption 解决。"
+  resolution_round: 33
+
+- id: R31-M5
+  summary: "Figure 1 中 panel 信息密度不均"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 31
+  last_seen_round: 32
+  resolution: "Figure 1 重设计为三 panel; Paper Banana 重画进行中。"
+  resolution_round: 33
+
+- id: R33-MF2
+  summary: "Per-type judge κ 差异掩盖测量可靠性——coreferential 0.479"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 33
+  last_seen_round: 33
+  action_items:
+    - round: 33
+      action: "§5.2 per-type κ range + coreferential caveat + attenuation argument + misclassification sensitivity"
+      assigned_to: main_agent
+      status: done
+  resolution: "Per-type κ 0.479–0.904 in main text; attenuation argument; bootstrap sensitivity at 25% error still significant。"
+  resolution_round: 33
+
+- id: R33-SF3
+  summary: "模型选择偏向 frontier tier（无 7B-70B）"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 33
+  last_seen_round: 33
+  action_items:
+    - round: 33
+      action: "Limitations 加 model tier scope 句"
+      assigned_to: main_agent
+      status: done
+  resolution: "Limitations 新增 frontier-class limitation sentence。"
+  resolution_round: 33
+
+- id: R33-SF5
+  summary: "Pooled McNemar 跨模型聚合违反独立性"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 33
+  last_seen_round: 33
+  action_items:
+    - round: 33
+      action: "Mantel-Haenszel OR in appendix + §5.1 正文引用"
+      assigned_to: main_agent
+      status: done
+  resolution: "MH OR=9.57 [7.63,12.01] in appendix; §5.1 半句引用。Breslow-Day p=0.022 heterogeneity reported。"
+  resolution_round: 33
+
+# ====== Historical Resolved ======
+
+- id: R29-MF1
+  summary: "正文疑似超出 EMNLP 2026 严格 8 页限制"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 30
+  resolution: "演化为 R30-MF2"
+  resolution_round: 30
+
+- id: R29-MF2
+  summary: "Human κ=0.41 不足以支撑 C3"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 22
+  last_seen_round: 30
+  resolution: "合并入 R30-MF1"
+  resolution_round: 30
+
+- id: R29-SF1
+  summary: "'Ambiguity' umbrella term 概念张力"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 30
+  resolution: "合并入 R30-SF6"
+  resolution_round: 30
+
+- id: R29-SF2
+  summary: "SOPBench 效应衰减解释不充分"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 28
+  last_seen_round: 30
+  resolution: "合并入 R30-SF1"
+  resolution_round: 30
+
+- id: R29-SF3
+  summary: "Temperature=0 greedy decoding 限制"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 24
+  last_seen_round: 30
+  resolution: "合并入 R30-SF2"
+  resolution_round: 30
+
+- id: R29-SF5
+  summary: "Cross-family vs within-family Jaccard 差异仅 0.08"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 30
+  resolution: "Bootstrap CI (p<0.0001) 确认统计显著。"
+  resolution_round: 30
+
+# ====== Active Issues (Open/In-Progress) — Updated for R34 ======
+
+- id: R30-SF1
+  summary: "合成效应 vs 自然效应 2.7× 差距（34.0→12.7 pp）——external validity + 'first causal study' framing"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 28
+  last_seen_round: 34
+  mentions:
+    - round: 33
+      reviewers: [1, 2]
+      note: "R33-SF2: replication→directional consistency; 需衰减分析"
+    - round: 34
+      reviewers: [1, 2]
+      note: "R34-MF1: 两位 Reviewer 共识 Must-Fix。'first causal study' 需限定为 synthetic clause pairs；§7 对 34→12.7pp 衰减讨论不足；healthcare pilot n=50 语言过于确定。R1 建议保留因果声明但加限定词。"
+  action_items:
+    - round: 33
+      action: "全文 replication→evaluation/directional consistency + Discussion 1 句 appendix 引用"
+      assigned_to: main_agent
+      status: done
+    - round: 31
+      action: "§7 ~120 words 衰减来源分析"
+      assigned_to: main_agent
+      status: open
+    - round: 34
+      action: "(A) Abstract/Intro 'first causal study' 加限定词; (B) §7 增加衰减原因讨论; (C) healthcare pilot 标注 'pilot' 降低确定性; (D) 显式列出因果识别假设 (SUTVA, no unmeasured confounders)"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R31-SF1
+  summary: "Per-type judge agreement 差异大（auth scope κ=0.385, coreferential κ=0.479）——正文讨论不足"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 31
+  last_seen_round: 34
+  mentions:
+    - round: 33
+      reviewers: [1, 2]
+      note: "R33 未独立重新提出但 R32 action 部分未完成"
+    - round: 34
+      reviewers: [1, 2]
+      note: "R1-W5 + R2 agreement: 低 κ 类型的 per-type 效应估计需正文 caveat；Figure 3 auth scope 列需视觉区分；coreferential 可靠性在正文讨论不够"
+  action_items:
+    - round: 31
+      action: "§5.2 标记 auth scope measurement-unreliable"
+      assigned_to: main_agent
+      status: done
+    - round: 32
+      action: "Figure 3 视觉区分 auth scope; sensitivity excl auth scope"
+      assigned_to: main_agent
+      status: open
+    - round: 34
+      action: "Table 4 或 §5.1 标注哪些类型受低 judge agreement 影响"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R30-SF4
+  summary: "Cross-judge 术语误导 + judge allocation 不对称（3/5 OpenAI）"
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 29
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "R1-W2 再次提出 GPT-4.1 judge +8pp harder。R2 rebut: treatment effect Δpp 不受 judge 偏差影响（同一模型两条件同一 judge）。Director 裁定 Minor——核心 claim 是 Δpp 而非绝对率。"
+  action_items:
+    - round: 32
+      action: "'cross-judge' → 'cross-model judge' (partial done); per-judge convergent nocuity rate (not done)"
+      assigned_to: main_agent
+      status: in_progress
+    - round: 34
+      action: "Table 4 caption 注明绝对率受 judge 影响、跨模型比较应关注 Δpp"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R31-M4
+  summary: "Introduction contributions 列表数字密度可精简"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 31
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "R2-W1 + R1 agree: Abstract 和 Introduction 压缩 10+ 数字损害叙事流畅性。建议聚焦 3-4 核心数字。"
+  action_items:
+    - round: 32
+      action: "精简为 2-3 核心数字"
+      assigned_to: main_agent
+      status: open
+    - round: 34
+      action: "Introduction 聚焦 +34.0pp 效应、22.4% vs 0.4% 方差对比、41.3% convergent nocuity，其余移至 §5"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R32-M1
+  summary: "Missing references: 相关工作未引用"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 32
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "AgentHarm (Andriushchenko et al., ICLR 2025) 应在 §2 引用 [R1+R2 共识]；ToolEmu (Ruan et al., ICLR 2024) 确认版本信息 [R1]"
+  action_items:
+    - round: 32
+      action: "检索并引用（验证真实性后）"
+      assigned_to: main_agent
+      status: open
+    - round: 34
+      action: "引用 AgentHarm + ToolEmu 版本确认"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R30-M3
+  summary: "Residual 方差中 ~46% 系统方差来源未讨论"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 30
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "R34-SF2: R1 提出为 N2 级别，R2 同意。Figure 2 residual 60.8% 含约 46% 系统方差。附录有零散分析但正文缺专门段落。建议将 'clause-level auditing outperforms type-level screening' 改为 'clause-level features are the strongest identified actionable predictor'。"
+  action_items:
+    - round: 34
+      action: "正文增加 1 段讨论残差方差组成 + 修改 auditing claim 措辞"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R30-M4
+  summary: "Discussion 缺少 RLHF/alignment training 讨论"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 30
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "R2-W2: Discussion 应展开 RLHF、prompt injection、scalability。R1 rebut: 8 页限制下不现实，建议附录 Extended Discussion。R1 同意至少 1 句提及 convergent nocuity 与 RLHF reward model 的关系。"
+  action_items:
+    - round: 34
+      action: "Discussion 加 1 句 RLHF implication；可选附录 Extended Discussion"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R29-SF4
+  summary: "Prevalence audit 87% 样本选择偏差 + LLM judge 循环性"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 29
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "R2-W5 + R1 agree: LLM judge 标注的 87% prevalence 存在循环性。Human validation κ=0.295 偏低，意味着 LLM 和人类对歧义判断不一致。需更醒目报告 human validation κ 并讨论 LLM 偏差方向。"
+  action_items:
+    - round: 34
+      action: "Appendix AH 醒目报告 human validation κ=0.295 + 讨论 LLM 偏差方向"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R30-M2
+  summary: "Berry 概念反转的诊断含义变化应更显式"
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 30
+  last_seen_round: 30
+  action_items:
+    - round: 30
+      action: "§6.3 加 1 句 divergent→convergent 含义变化"
+      assigned_to: main_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: R32-M2
+  summary: "§1 pilot audit 未引用 Appendix 编号"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 32
+  last_seen_round: 32
+  action_items:
+    - round: 32
+      action: "§1 添加 Appendix 交叉引用"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R32-M3
+  summary: "参考文献格式不完全统一（arXiv 日期信息）"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 32
+  last_seen_round: 32
+  action_items:
+    - round: 32
+      action: "统一 arXiv preprint 格式"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R32-M4
+  summary: "AI usage disclosure 位置确认"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 32
+  last_seen_round: 32
+  action_items:
+    - round: 32
+      action: "确认 ACL 2026 AI disclosure 位置要求"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+# ====== New R34 Issues ======
+
+- id: R34-SF1
+  summary: "Pooled McNemar 独立性违反——ICC=0.892-0.940 下 1497 对非独立"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 34
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "R1 提出为 Must-Fix，R2 同意技术正确性但降为 Should-Fix（per-model 结果全部 p<10⁻⁵）。Director 裁定 Should-Fix (High)。MH OR=9.57 已在 Appendix J。"
+  action_items:
+    - round: 34
+      action: "(A) 正文以 per-model McNemar 为主、pooled 降为辅助; (B) 补 mixed-effects logistic regression (clause random intercept + model random slope)"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R34-SF2
+  summary: "Incompleteness confound 在 §5.1 六类型结果首次出现时未即时标注"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 34
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "R1-W3 + R2-W3 强共识：Table 4 (§5/p.7) 已报告含 incompleteness 的结果，但 information-addition confound 直到 §4.5 才提及。读者可能误以为六类型证据等质量。"
+  action_items:
+    - round: 34
+      action: "§5.1 首次报告六类型结果时立即加注 incompleteness 的 information-addition caveat"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R34-M1
+  summary: "Figure 2 caption 不够自包含——方差分解逻辑未说明"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 34
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "R2-M1 + R1-M2 共识。'At random' 标签和红色标记线需在 caption 解释；clause identity 独立于 type 解释方差的逻辑需说明。"
+  action_items:
+    - round: 34
+      action: "Figure 2 caption 增加方差分解逻辑说明 + 标签解释"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R34-M2
+  summary: "Table 4 footnote 字体极小"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 34
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "R2-M3 + R1 agree。排版问题。"
+  action_items:
+    - round: 34
+      action: "适当放大 Table 4 footnote 字体"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R34-M3
+  summary: "'First causal study' 需显式列出因果识别假设"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 34
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "R1-M4 + R2 agree。应列出 SUTVA、no unmeasured confounders、exclusive manipulation 三项假设。"
+  action_items:
+    - round: 34
+      action: "正文或附录列出因果识别假设"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R34-M4
+  summary: "Table 5 TOST 列名不够直观"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 34
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "R1-M5 + R2 agree。Margin/Equiv./Mid-tier/Inc./Gc 列名对不熟悉 TOST 的读者不直观。建议 caption 完整说明或移至 Appendix。"
+  action_items:
+    - round: 34
+      action: "Table 5 caption 完整说明列含义，或移至 Appendix 正文用文字总结"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R34-M5
+  summary: "§6.2 disambiguation neglect 统计分母 (614) 来源不清"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 34
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "R1-M3 + R2 agree。4.6% (258/614) 的 614 是 ambiguous-condition violations 还是全部 ambiguous-condition episodes？需明确标注。"
+  action_items:
+    - round: 34
+      action: "§6.2 明确标注分母来源"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: R34-M6
+  summary: "Appendix P (Li et al. taxonomy mapping) 正文引用不够显著"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 34
+  last_seen_round: 34
+  mentions:
+    - round: 34
+      reviewers: [1, 2]
+      note: "R2-M4 + R1 agree。对理解分类体系理论定位有价值但正文引用不够。"
+  action_items:
+    - round: 34
+      action: "正文 §3 更显著引用 Appendix P"
+      assigned_to: main_agent
+      status: open
+  resolution: ""
+  resolution_round: null

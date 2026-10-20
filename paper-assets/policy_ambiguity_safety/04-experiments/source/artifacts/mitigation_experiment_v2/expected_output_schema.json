@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mitigation V2 Results",
+  "type": "object",
+  "required": ["experiment", "model", "judge_model", "timestamp", "conditions", "comparisons", "summary"],
+  "properties": {
+    "experiment": {
+      "type": "string",
+      "const": "mitigation_v2_type_specific"
+    },
+    "model": {
+      "type": "string",
+      "description": "Tested model name"
+    },
+    "judge_model": {
+      "type": "string",
+      "description": "Cross-judge model name"
+    },
+    "timestamp": {
+      "type": "number",
+      "description": "Unix timestamp of analysis"
+    },
+    "conditions": {
+      "type": "object",
+      "description": "Per-condition violation rates",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["per_type", "overall"],
+        "properties": {
+          "per_type": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "required": ["n", "violations", "rate"],
+              "properties": {
+                "n": { "type": "integer" },
+                "violations": { "type": "integer" },
+                "rate": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            }
+          },
+          "overall": {
+            "type": "object",
+            "required": ["n", "violations", "rate"],
+            "properties": {
+              "n": { "type": "integer" },
+              "violations": { "type": "integer" },
+              "rate": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        }
+      }
+    },
+    "comparisons": {
+      "type": "object",
+      "description": "Pairwise condition vs baseline McNemar tests",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["condition", "ambiguity_type", "n_paired", "baseline_rate", "condition_rate", "delta_pp", "contingency", "mcnemar_p", "significant_at_05"],
+        "properties": {
+          "condition": { "type": "string" },
+          "ambiguity_type": { "type": "string" },
+          "n_paired": { "type": "integer" },
+          "baseline_rate": { "type": "number" },
+          "condition_rate": { "type": "number" },
+          "delta_pp": { "type": "number", "description": "Delta in percentage points (negative = improvement)" },
+          "contingency": {
+            "type": "object",
+            "required": ["both_violate", "baseline_only", "condition_only", "neither"],
+            "properties": {
+              "both_violate": { "type": "integer" },
+              "baseline_only": { "type": "integer" },
+              "condition_only": { "type": "integer" },
+              "neither": { "type": "integer" }
+            }
+          },
+          "mcnemar_p": { "type": ["number", "null"] },
+          "significant_at_05": { "type": ["boolean", "null"] }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "description": "Type-specific vs generic advantage per target type",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["generic_delta_pp", "type_specific_delta_pp", "type_specific_advantage_pp"],
+        "properties": {
+          "generic_delta_pp": { "type": "number" },
+          "type_specific_delta_pp": { "type": "number" },
+          "type_specific_advantage_pp": {
+            "type": "number",
+            "description": "Positive = type-specific did better than generic"
+          }
+        }
+      }
+    }
+  }
+}

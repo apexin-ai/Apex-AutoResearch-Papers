@@ -1,0 +1,1206 @@
+- id: art_20260520_01bb5b
+  name: ambiguity_taxonomy
+  type: report
+  description: 3类歧义（Scopal/Lexical/Incompleteness）的操作定义，含文献综述、判定标准、9个matched pair示例、标注指南草案
+  path: projects/policy_ambiguity_safety/artifacts/_project/report/ambiguity_taxonomy.md
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:19:48.182639+00:00'
+  tags:
+  - taxonomy
+  - ambiguity
+  - annotation
+  - matched-pairs
+- id: art_20260520_35356d
+  name: TauBench Policy Format Research
+  type: report
+  description: 深入分析 τ-bench 和 τ²/τ³-bench 的 policy 文档结构、agent 交互格式、评估方式，以及对 policy_ambiguity_safety
+    项目的启示。涵盖 retail/airline/telecom 三个域的完整策略摘录和格式分析。
+  path: projects/policy_ambiguity_safety/artifacts/_project/report/taubench_policy_format.md
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:20:08.767554+00:00'
+  tags:
+  - taubench
+  - policy
+  - benchmark
+  - literature-review
+- id: art_20260520_94b7a1
+  name: harness.py
+  type: intermediate
+  description: Agent execution harness — runs LLM agents against ambiguous/unambiguous
+    policy clauses, records full conversation trajectories as JSONL. Supports Anthropic
+    + OpenAI APIs, asyncio concurrency, resume.
+  path: projects/policy_ambiguity_safety/artifacts/_project/intermediate/harness.py
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:42:33.604372+00:00'
+  tags:
+  - code
+  - experiment
+  - agent
+- id: art_20260520_45708f
+  name: judge.py
+  type: intermediate
+  description: LLM-as-Judge evaluation module — assesses policy violations (critical/moderate/minor/none)
+    against ground-truth clauses, with automatic scopal bias check.
+  path: projects/policy_ambiguity_safety/artifacts/_project/intermediate/judge.py
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:42:36.433087+00:00'
+  tags:
+  - code
+  - evaluation
+  - judge
+- id: art_20260520_58e516
+  name: analyze.py
+  type: intermediate
+  description: Statistical analysis module — dual-track analysis (cross-type χ²/Fisher/Cramér's
+    V + within-type McNemar/Wilcoxon), automatic pass/fail judgment.
+  path: projects/policy_ambiguity_safety/artifacts/_project/intermediate/analyze.py
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:42:38.777619+00:00'
+  tags:
+  - code
+  - statistics
+  - analysis
+- id: art_20260520_cb2ace
+  name: config.py
+  type: intermediate
+  description: Shared configuration — model definitions, prompt templates (τ²-bench
+    format), violation levels, statistical thresholds.
+  path: projects/policy_ambiguity_safety/artifacts/_project/intermediate/config.py
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:42:41.189603+00:00'
+  tags:
+  - code
+  - config
+- id: art_20260520_0f57d7
+  name: experiment_requirements
+  type: intermediate
+  description: Python dependencies for the experiment pipeline (anthropic, openai,
+    scipy, pandas, numpy).
+  path: projects/policy_ambiguity_safety/artifacts/_project/intermediate/requirements.txt
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:42:43.075937+00:00'
+  tags:
+  - dependencies
+- id: art_20260520_1456b8
+  name: experiment_readme
+  type: report
+  description: Usage documentation for the 3-module experiment pipeline (harness →
+    judge → analyze).
+  path: projects/policy_ambiguity_safety/artifacts/_project/report/README.md
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:42:44.891208+00:00'
+  tags:
+  - docs
+- id: art_20260520_6d8bf0
+  name: clause_templates
+  type: data
+  description: '90 matched ambiguity pairs for policy_ambiguity_safety: 30 scopal,
+    30 lexical, 30 incompleteness. Each entry includes clause_id, ambiguity_type,
+    domain, source_clause, ambiguous_version, unambiguous_version, ambiguity_point,
+    possible_interpretations, expected_agent_behavior_diff, stripped_tool_desc, annotation_rationale.
+    Covers retail and airline τ²-bench domains with ~50/50 split per type.'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/clause_templates.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:17:38.694716+00:00'
+  tags:
+  - clause_templates
+  - ambiguity
+  - scopal
+  - lexical
+  - incompleteness
+  - retail
+  - airline
+- id: art_20260520_291834
+  name: injection_pipeline
+  type: data
+  description: 'Ambiguity injection pipeline — loads τ²-bench clause templates, optionally
+    refines via LLM, validates and outputs structured JSON. CLI: python injection_pipeline.py
+    --output clauses.json [--refine --api-key KEY]'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/injection_pipeline.py
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:19:55.978939+00:00'
+  tags:
+  - pipeline
+  - ambiguity
+  - injection
+  - code
+- id: art_20260520_776c25
+  name: clause_templates
+  type: data
+  description: 90 matched pairs (30 scopal + 30 lexical + 30 incompleteness) of ambiguous/unambiguous
+    policy clauses derived from τ²-bench retail + airline policies. Each entry includes
+    stripped tool descriptions per D005.
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/clause_templates_776c25.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:19:59.245984+00:00'
+  tags:
+  - data
+  - ambiguity
+  - matched-pairs
+  - taubench
+- id: art_20260520_ext6ty
+  name: ambiguity_taxonomy_extended
+  type: report
+  description: 6类歧义完整操作定义（Scopal/Lexical/Incompleteness + Coreferential/Conditional
+    Precedence/Authorization Scope），含文献综述、cross-walk表、判定标准、18个matched pair示例、τ²-bench注入模式、6类violation
+    rate排序预测、6类标注指南决策流程
+  path: projects/policy_ambiguity_safety/artifacts/_project/report/ambiguity_taxonomy_extended.md
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T10:30:00.000000+00:00'
+  tags:
+  - taxonomy
+  - ambiguity
+  - annotation
+  - matched-pairs
+  - coreferential
+  - conditional-precedence
+  - authorization-scope
+  - extended
+- id: art_20260520_34aa7c
+  name: validate_clauses
+  type: data
+  description: 'Validation script for clause JSON — checks schema, counts, type distribution,
+    unique IDs, D004 minimal-addition heuristic, and content quality. CLI: python
+    validate_clauses.py clauses.json [--strict]'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/validate_clauses.py
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:20:01.395584+00:00'
+  tags:
+  - validation
+  - quality
+  - code
+- id: art_20260520_ee5f80
+  name: API Fallback Comparison
+  type: report
+  description: API endpoint fallback方案对比：OpenRouter官方 vs 直连Anthropic+OpenAI vs Together/Fireworks，含成本估算和代码改动量分析
+  path: projects/policy_ambiguity_safety/artifacts/_project/report/api_fallback_comparison.md
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T09:25:42.497005+00:00'
+  tags:
+  - api
+  - mvp
+  - infrastructure
+- id: art_20260520_6ef950
+  name: clause_templates_diag001
+  type: data
+  description: 'Diagnostic experiment diag_001 clause templates: 50 conditional_precedence
+    + 50 scopal matched pairs (100 total). CP covers lex specialis, temporal priority,
+    authority-level, and exception-vs-exception conflicts across retail/airline domains.'
+  path: projects/policy_ambiguity_safety/artifacts/diag_001/data/clause_templates_diag001.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: diag_001
+  skill: ''
+  created_at: '2026-05-20T10:48:53.879718+00:00'
+  tags:
+  - diag_001
+  - conditional_precedence
+  - scopal
+  - clause_templates
+- id: art_20260520_97cdbc
+  name: clauses_perturbation_control
+  type: data
+  description: 30 perturbation control pairs (15 synonym substitution + 15 clause
+    reordering) for causal validation that violation rate differences stem from ambiguity,
+    not surface-level text variation.
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/clauses_perturbation_control.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T13:02:12.823461+00:00'
+  tags:
+  - perturbation
+  - control
+  - clauses
+  - causal-validation
+- id: art_20260520_88ae59
+  name: clause_templates_full
+  type: data
+  description: 'Merged 250 clauses (5 types × 50: authorization_scope, conditional_precedence,
+    incompleteness, lexical, scopal) with unified schema, sorted by type then clause_id.'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/clause_templates_full.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T13:02:14.787317+00:00'
+  tags:
+  - clauses
+  - merged
+  - full-dataset
+- id: art_20260520_1d7656
+  name: run_full_study.py
+  type: data
+  description: Full study execution script - 3-phase pipeline (episodes → judgments
+    → analysis) for 1,200 episodes across 2 models × 300 clauses × 2 conditions
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/run_full_study.py
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T13:18:18.556994+00:00'
+  tags:
+  - plan_002
+  - code
+  - pipeline
+- id: art_20260520_cbccac
+  name: clauses_perturbation_control.json
+  type: data
+  description: 30 perturbation control pairs (15 synonym + 15 reorder) for causal
+    validation - surface-level changes without semantic difference
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/clauses_perturbation_control_cbccac.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T13:18:41.406443+00:00'
+  tags:
+  - plan_010
+  - perturbation
+  - causal_validation
+- id: art_20260520_72e3a5
+  name: clause_templates_full.json (250, pre-coreferential)
+  type: data
+  description: 250 merged clauses (5 types × 50, excluding coreferential pending three-layer
+    fix). Schema unified, sorted by type then clause_id.
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/clause_templates_full_72e3a5.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T13:18:43.689863+00:00'
+  tags:
+  - plan_001
+  - clauses
+  - merge
+- id: art_20260520_276064
+  name: tool_response_supplement_log.json
+  type: intermediate
+  description: 'Change log for tool_response supplementation: 57 MVP-era clauses (scopal/lexical/incompleteness)
+    supplemented from <3 to ≥3 tool_responses'
+  path: projects/policy_ambiguity_safety/artifacts/_project/intermediate/tool_response_supplement_log.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T13:19:16.852249+00:00'
+  tags:
+  - tool_response
+  - quality_fix
+- id: art_20260520_04e97b
+  name: plan003 local inference infra (3 files)
+  type: data
+  description: 'Qwen3 local inference infrastructure: serve_qwen3.sh (vLLM serving),
+    download_models.sh (model download with HF/ModelScope fallback), local_model_client.py
+    (OpenAI-compatible client wrapper)'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/local_model_client.py
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T13:47:06.256135+00:00'
+  tags:
+  - plan_003
+  - local_inference
+  - qwen3
+  - vllm
+- id: art_20260520_c9d40d
+  name: clauses_mini_pilot_coref_v3.json
+  type: data
+  description: 'Mini-pilot v3 results: 3/5 ambiguous violations, 0/5 unambiguous —
+    PASS. Three-layer fix validated.'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/clauses_mini_pilot_coref_v3.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T14:19:31.773774+00:00'
+  tags:
+  - coreferential
+  - mini_pilot
+  - validation
+- id: art_20260520_28b249
+  name: clause_templates_full.json (final 300)
+  type: data
+  description: Final 300 clauses (6 types × 50). Includes tool_response supplement
+    (all ≥3) and coreferential three-layer fix. Ready for plan_002 full study.
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/clause_templates_full_28b249.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T14:20:36.094304+00:00'
+  tags:
+  - plan_001
+  - plan_002
+  - clauses
+  - final
+- id: art_20260520_0ab01d
+  name: plan_010 verdict.json
+  type: data
+  description: 'Perturbation control verdict: PASS. 0% violation both conditions,
+    Δ=0.0pp. Confirms ambiguity effect is not attributable to surface-level text changes.'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/verdict.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T14:30:16.281112+00:00'
+  tags:
+  - plan_010
+  - perturbation
+  - causal_validation
+  - verdict
+- id: art_20260520_b8d3c9
+  name: plan_010_verdict
+  type: data
+  description: Plan 010 Perturbation Control verdict — PASS. Perturbation Δ=3.33pp
+    (CI [-5.0, 13.33]), ratio=0.0877 vs ambiguity Δ=38.0pp. 120 episodes, 0 errors.
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/verdict_b8d3c9.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T14:47:26.019040+00:00'
+  tags:
+  - plan_010
+  - perturbation_control
+  - verdict
+- id: art_20260520_581a42
+  name: plan_002 full study results
+  type: data
+  description: 'Full study: 1,200 episodes (300 clauses × 2 conditions × 2 models),
+    0 errors. Binary effect +36.5pp (p<0.0001). Type effect V=0.207 (p=0.0001). 7
+    analysis JSON files.'
+  path: projects/policy_ambiguity_safety/artifacts/plan_002/data/full_statistics.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_002
+  skill: ''
+  created_at: '2026-05-20T15:16:51.308830+00:00'
+  tags:
+  - plan_002
+  - full_study
+  - P0
+  - results
+- id: art_20260520_64d8b9
+  name: plan_005_failure_modes
+  type: data
+  description: LLM-based failure mode annotations for 123 ambiguous violation episodes
+    (gpt-5.4), classifying failure modes and resolution strategies
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/failure_modes.jsonl
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T15:30:31.294563+00:00'
+  tags:
+  - plan_005
+  - error_analysis
+  - failure_modes
+- id: art_20260520_eb4673
+  name: plan_005_summary
+  type: report
+  description: 'Aggregate statistics for plan_005 failure mode analysis: per-type
+    distributions, disambiguation awareness rates, cross-type comparisons'
+  path: projects/policy_ambiguity_safety/artifacts/_project/report/summary.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T15:30:33.293439+00:00'
+  tags:
+  - plan_005
+  - error_analysis
+  - summary
+- id: art_20260520_f4ff6e
+  name: plan_005_failure_modes
+  type: data
+  description: 'LLM-annotated failure mode classifications for 123 violation traces
+    from plan_002. Per-trace: failure_mode, disambiguation_behavior, resolution_strategy.'
+  path: projects/policy_ambiguity_safety/artifacts/plan_005/data/failure_modes.jsonl
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_005
+  skill: ''
+  created_at: '2026-05-20T15:31:42.418934+00:00'
+  tags:
+  - error_analysis
+  - C5
+  - failure_modes
+- id: art_20260520_60da21
+  name: plan_005_summary
+  type: report
+  description: 'Cross-type failure mode summary: per-type distributions, resolution
+    strategies, disambiguation awareness rates, cross-type comparison highlights.'
+  path: projects/policy_ambiguity_safety/artifacts/plan_005/report/summary.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_005
+  skill: ''
+  created_at: '2026-05-20T15:31:44.356465+00:00'
+  tags:
+  - error_analysis
+  - C5
+  - summary
+- id: art_20260520_7b46fe
+  name: plan_005_gpt41_failure_modes
+  type: data
+  description: gpt-4.1 failure mode annotations (122 episodes, ambiguous+violation),
+    classified by gpt-5.4 using same taxonomy as plan_005
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/failure_modes_gpt41.jsonl
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T16:13:38.498210+00:00'
+  tags:
+  - plan_005
+  - gpt-4.1
+  - failure_mode
+- id: art_20260520_9abebf
+  name: plan_005_gpt41_summary
+  type: report
+  description: gpt-4.1 failure mode aggregate statistics (per-type distributions,
+    awareness rates, cross-type highlights)
+  path: projects/policy_ambiguity_safety/artifacts/_project/report/summary_gpt41.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T16:13:39.033087+00:00'
+  tags:
+  - plan_005
+  - gpt-4.1
+  - summary
+- id: art_20260520_683178
+  name: plan_005_model_comparison
+  type: report
+  description: 'gpt-5.4 vs gpt-4.1 failure mode comparison: per-type divergences,
+    overall distribution, awareness rates'
+  path: projects/policy_ambiguity_safety/artifacts/_project/report/model_comparison.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T16:13:39.728603+00:00'
+  tags:
+  - plan_005
+  - comparison
+  - gpt-5.4
+  - gpt-4.1
+- id: art_20260520_8f13b5
+  name: plan_005_domain_analysis
+  type: report
+  description: Per-domain (airline/retail) failure mode breakdown across both models,
+    with cross-domain highlights
+  path: projects/policy_ambiguity_safety/artifacts/_project/report/domain_analysis.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T16:13:41.538720+00:00'
+  tags:
+  - plan_005
+  - domain
+  - airline
+  - retail
+- id: art_20260520_243217
+  name: plan_009_sampled_episodes
+  type: data
+  description: 100 stratified-sampled episodes for judge calibration (6 types × 2
+    conditions × 2 models, seed=42)
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/sampled_episodes.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T16:22:57.999885+00:00'
+  tags:
+  - plan_009
+  - calibration
+  - sampling
+- id: art_20260520_9d94a2
+  name: plan_009_annotation_guidelines
+  type: report
+  description: Annotation guidelines for policy violation labeling with 8 gold examples
+    (2 per violation level)
+  path: projects/policy_ambiguity_safety/artifacts/_project/report/annotation_guidelines.md
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T16:23:00.158468+00:00'
+  tags:
+  - plan_009
+  - calibration
+  - annotation
+- id: art_20260520_eaa5f1
+  name: plan_009_annotation_sheet
+  type: data
+  description: 100-entry annotation sheet (JSONL) with episode data, trajectories,
+    and hidden LLM labels for human annotation
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/annotation_sheet.jsonl
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T16:23:02.565496+00:00'
+  tags:
+  - plan_009
+  - calibration
+  - annotation
+- id: art_20260520_318c4f
+  name: plan_009_llm_agreement
+  type: data
+  description: 'Inter-judge agreement metrics: weighted κ=0.685, binary agreement=0.90,
+    confusion matrix, per-type breakdown'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/llm_agreement.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T16:23:04.429258+00:00'
+  tags:
+  - plan_009
+  - calibration
+  - agreement
+- id: art_20260520_1d2368
+  name: plan_009_annotation_guidelines
+  type: report
+  description: 'Human annotation guidelines for judge calibration: 4-level violation
+    taxonomy with 8 gold examples, annotation procedure, edge case guidance.'
+  path: projects/policy_ambiguity_safety/artifacts/plan_009/report/annotation_guidelines.md
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_009
+  skill: ''
+  created_at: '2026-05-20T16:47:19.127143+00:00'
+  tags:
+  - judge_calibration
+  - annotation
+  - C5
+- id: art_20260520_0bc322
+  name: plan_009_annotation_sheet
+  type: data
+  description: '100 stratified-sampled episodes for human annotation: episode traces,
+    clauses, hidden LLM labels, blank human_label fields.'
+  path: projects/policy_ambiguity_safety/artifacts/plan_009/data/annotation_sheet.jsonl
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_009
+  skill: ''
+  created_at: '2026-05-20T16:47:21.482838+00:00'
+  tags:
+  - judge_calibration
+  - annotation
+- id: art_20260520_cdefae
+  name: plan_009_llm_agreement
+  type: report
+  description: 'LLM inter-judge agreement: weighted κ=0.685, binary κ=0.74, per-type
+    breakdown, confusion matrix.'
+  path: projects/policy_ambiguity_safety/artifacts/plan_009/report/llm_agreement.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_009
+  skill: ''
+  created_at: '2026-05-20T16:47:23.280894+00:00'
+  tags:
+  - judge_calibration
+  - agreement
+  - kappa
+- id: art_20260520_fe633f
+  name: c3_layer_effect_test
+  type: report
+  description: 'C3 formal layer effect test: specification-layer (47.3%) vs linguistic-layer
+    (34.3%) violation rates, χ²=10.49, p=0.0012, OR=1.72.'
+  path: projects/policy_ambiguity_safety/artifacts/plan_002/report/layer_effect_test.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_002
+  skill: ''
+  created_at: '2026-05-20T16:48:00.828981+00:00'
+  tags:
+  - C3
+  - layer_effect
+  - statistics
+- id: art_20260520_eaa246
+  name: plan_009_annotation_sheet_clean
+  type: data
+  description: 'Annotator-facing version of annotation sheet: 100 episodes WITHOUT
+    llm_judge_label/confidence fields to prevent anchoring bias.'
+  path: projects/policy_ambiguity_safety/artifacts/plan_009/data/annotation_sheet_clean.jsonl
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_009
+  skill: ''
+  created_at: '2026-05-20T16:48:34.810202+00:00'
+  tags:
+  - judge_calibration
+  - annotation
+  - clean
+- id: art_20260520_f63ca2
+  name: plan_006_icc_results
+  type: report
+  description: 'Reliability ICC results: overall ICC=0.919 (excellent), binary ICC=0.847
+    (good), per-type and per-model breakdowns. 30 clauses × 3 replicates × 2 models
+    × 2 conditions = 360 episodes.'
+  path: projects/policy_ambiguity_safety/artifacts/plan_006/report/icc_results.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_006
+  skill: ''
+  created_at: '2026-05-20T16:49:13.639732+00:00'
+  tags:
+  - reliability
+  - ICC
+  - C1
+- id: art_20260520_8e0dbb
+  name: info_delta_analysis
+  type: data
+  description: 'MF-1 per-clause info delta analysis: logistic regression controlling
+    for info delta confound, sensitivity test excluding incompleteness'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/info_delta_analysis.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T17:13:43.480180+00:00'
+  tags:
+  - MF-1
+  - info_delta
+  - confound
+  - logistic_regression
+  - sensitivity
+- id: art_20260520_93fb85
+  name: MF-6 Cross-Coding Agreement
+  type: data
+  description: 'Automated inter-coder agreement for plan_005 failure mode taxonomy:
+    Cohen''s κ=0.5352 (moderate), 66.7% agreement between gpt-5.4 and gpt-4.1 on 60
+    sampled episodes. 5/6 ambiguity types show consistent dominant failure modes across
+    models.'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/cross_coding_agreement.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T17:15:53.987371+00:00'
+  tags:
+  - MF-6
+  - cross-coding
+  - agreement
+  - plan_005
+- id: art_20260520_64d3b1
+  name: merged_agreement
+  type: data
+  description: Inter-coder agreement with merged failure mode categories (6→4). Cohen's
+    κ = 0.594, percent agreement = 80.0%.
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/merged_agreement.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T17:33:15.645228+00:00'
+  tags:
+  - cross-coding
+  - kappa
+  - inter-coder-agreement
+  - plan_005
+- id: art_20260520_9f7f77
+  name: citation_verification
+  type: report
+  description: 全量引用验证报告：11条引用的真实性和准确性检查，发现3条可疑（疑似虚构）、5条需修正、3条已验证
+  path: projects/policy_ambiguity_safety/artifacts/_project/report/citation_verification.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T17:36:25.002136+00:00'
+  tags:
+  - citation
+  - verification
+  - quality-check
+- id: art_20260520_76872b
+  name: fig1_overview
+  type: chart
+  description: 'Figure 1: Experimental pipeline overview — 3-panel conceptual diagram
+    (Ambiguity Taxonomy → Matched-Pair Design → Evaluation & Analysis) for Introduction
+    §1'
+  path: projects/policy_ambiguity_safety/artifacts/_project/chart/fig1_overview.pdf
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T17:36:35.687108+00:00'
+  tags:
+  - figure
+  - paper
+  - conceptual
+  - pipeline
+- id: art_20260520_664423
+  name: fig1_overview
+  type: chart
+  description: 'Figure 1: Experimental pipeline overview — 3-panel conceptual diagram
+    (taxonomy / matched-pair design / evaluation). Corrected: τ-bench (not τ²-bench),
+    4-tier severity (none/minor/moderate/critical). Matplotlib fallback (no GOOGLE_API_KEY
+    for PaperBanana).'
+  path: projects/policy_ambiguity_safety/artifacts/_project/chart/fig1_overview_664423.pdf
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-20T17:42:10.261454+00:00'
+  tags:
+  - paper
+  - introduction
+  - conceptual
+- id: art_20260520_6aa2cb
+  name: fig2_forest_plot
+  type: chart
+  description: 'Figure 2: Forest plot of per-type ambiguity effect sizes (Δ violation
+    rate) with Newcombe CIs. Spec-layer types (Authorization Scope +53pp, Incompleteness
+    +49pp, Cond. Precedence +35pp) cluster higher than ling-layer types (Scopal +36pp,
+    Lexical +30pp, Coreferential +16pp). Overall pooled Δ=+36.5pp. All p<0.001 except
+    Coreferential (p<0.01).'
+  path: projects/policy_ambiguity_safety/artifacts/_project/chart/fig2_forest_plot.pdf
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-20T17:54:11.043424+00:00'
+  tags:
+  - figure
+  - paper
+  - forest_plot
+  - plan_002
+  - effect_size
+- id: art_20260520_53b7dd
+  name: fig2_forest_plot
+  type: chart
+  description: 'Figure 2 (HERO): Forest plot — per-type effect sizes (Δpp) with Newcombe
+    CI, layer regime bands (spec vermillion / ling blue), overall pooled diamond.
+    Data: plan_002 full_statistics.json. 7 rows (6 types + overall).'
+  path: projects/policy_ambiguity_safety/artifacts/_project/chart/fig2_forest_plot_53b7dd.pdf
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-20T17:58:40.477399+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - hero
+- id: art_20260520_c6fcb7
+  name: fig3_failure_modes
+  type: chart
+  description: 'Figure 3: Failure Mode × Ambiguity Type heatmap (6×5, OrRd colormap,
+    averaged over GPT-5.4 and GPT-4.1). Shows diagnostic failure signatures per ambiguity
+    type with spec/ling layer grouping.'
+  path: projects/policy_ambiguity_safety/artifacts/_project/chart/fig3_failure_modes.pdf
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T18:00:49.525804+00:00'
+  tags:
+  - figure
+  - paper
+  - section6
+  - failure-modes
+  - heatmap
+- id: art_20260520_c3b383
+  name: fig3_failure_modes
+  type: chart
+  description: 'Figure 3: Failure mode × ambiguity type heatmap (5 fine-grained categories,
+    2-model average). Key signatures: auth_scope→unauthorized_escalation 77.2%, scopal→scope_misapplication
+    75.0%. Data: plan_005 summary.json + summary_gpt41.json.'
+  path: projects/policy_ambiguity_safety/artifacts/_project/chart/fig3_failure_modes_c3b383.pdf
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-20T18:04:55.695957+00:00'
+  tags:
+  - paper
+  - analysis
+  - statistical
+  - failure_modes
+- id: art_20260520_cef968
+  name: fig3_heatmap_5model
+  type: chart
+  description: '5-model × 6-type violation rate heatmap (ambiguous condition). Data
+    from plan_004 (n=2997). Shows model×type interaction: auth_scope 12-64% range,
+    incompleteness universally high 46-62%.'
+  path: projects/policy_ambiguity_safety/artifacts/_project/chart/fig3_heatmap_5model.pdf
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-20T19:40:10.449779+00:00'
+  tags:
+  - paper
+  - experiments
+  - heatmap
+  - 5model
+- id: art_20260520_60bdef
+  name: fig2_forest_plot_5model
+  type: chart
+  description: 'Forest plot of per-type binary effect sizes with Newcombe 95% CI.
+    5-model pooled (plan_004, n=2997). Shows 3-tier: incompleteness +49pp >> mid cluster
+    +31-36pp >> coreferential +19pp. Overall +34.0pp.'
+  path: projects/policy_ambiguity_safety/artifacts/_project/chart/fig2_forest_plot_60bdef.pdf
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-20T19:41:05.438063+00:00'
+  tags:
+  - paper
+  - experiments
+  - forest_plot
+  - 5model
+- id: art_20260521_268362
+  name: 5-model error analysis report
+  type: data
+  description: Failure mode classification for 614 violation traces across 5 models.
+    3/6 types have unanimous dominant FM; inter-coder kappa=0.517; disambiguation
+    awareness=4.6%.
+  path: projects/policy_ambiguity_safety/artifacts/plan_010/data/error_analysis_5model.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_010
+  skill: ''
+  created_at: '2026-05-21T05:13:24.672330+00:00'
+  tags:
+  - error_analysis
+  - failure_modes
+  - 5_model
+- id: art_20260521_71ae0e
+  name: mitigation experiment results
+  type: data
+  description: 'Disambiguation instruction mitigation experiment: 1256 mitigated episodes
+    across 5 models × 5 types. Overall Δ=-6.6pp, auth_scope Δ=-18pp (most responsive),
+    incompleteness Δ=-3.4pp (least responsive).'
+  path: projects/policy_ambiguity_safety/artifacts/plan_011/data/mitigation_results.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_011
+  skill: ''
+  created_at: '2026-05-21T05:58:56.166394+00:00'
+  tags:
+  - mitigation
+  - disambiguation
+  - system_prompt
+- id: art_20260521_e64df2
+  name: detection_tool_results
+  type: data
+  description: 'Ambiguity type detection tool 5-fold CV results: macro F1=0.6322,
+    binary F1=0.8055, FPR=0.044'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/detection_results.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T08:21:43.887421+00:00'
+  tags:
+  - detection_tool
+  - plan_012
+  - evaluation
+- id: art_20260521_c5bc2b
+  name: detection_tool_predictions
+  type: data
+  description: Per-sample predictions from ambiguity detection tool (500 samples,
+    5-fold CV)
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/predictions.jsonl
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T08:21:45.767694+00:00'
+  tags:
+  - detection_tool
+  - plan_012
+  - predictions
+- id: art_20260521_3db633
+  name: detection_tool_confusion_matrix
+  type: data
+  description: 'Confusion matrix for ambiguity type detection (6x6: 5 types + none)'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/confusion_matrix.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T08:21:47.668457+00:00'
+  tags:
+  - detection_tool
+  - plan_012
+- id: art_20260521_59288f
+  name: detection_tool_paper_paragraph
+  type: paper
+  description: LaTeX paragraph describing the ambiguity detection tool and its evaluation
+    results
+  path: projects/policy_ambiguity_safety/artifacts/_project/paper/paper_paragraph.tex
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T08:21:49.235445+00:00'
+  tags:
+  - detection_tool
+  - plan_012
+  - paper
+- id: art_20260521_d5507c
+  name: model_expansion_gemini_analysis
+  type: data
+  description: 'Model expansion analysis for Gemini-2.5-Flash: C1 replicates (p<0.0001,
+    delta=+33.6pp), C2 rank correlation=0.700'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/analysis.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T08:34:15.243803+00:00'
+  tags:
+  - model_expansion
+  - gemini
+  - plan_013
+- id: art_20260521_cdca17
+  name: model_expansion_llama_analysis
+  type: data
+  description: 'Model expansion analysis for LLaMA-4-Scout: C1 replicates (p<0.0001,
+    delta=+20.0pp), C2 rank correlation=-0.200'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/analysis_cdca17.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T08:34:16.714643+00:00'
+  tags:
+  - model_expansion
+  - llama
+  - plan_013
+- id: art_20260521_fcfb40
+  name: run_model_expansion_script
+  type: intermediate
+  description: 'Model expansion experiment script: Phase 1 (episodes) + Phase 2 (judge)
+    + Phase 3 (analysis) for Gemini-2.5-Flash and LLaMA-4-Scout'
+  path: projects/policy_ambiguity_safety/artifacts/_project/intermediate/run_model_expansion.py
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T08:34:19.016202+00:00'
+  tags:
+  - model_expansion
+  - plan_013
+- id: art_20260521_8c7e5d
+  name: auth_scope_direction
+  type: data
+  description: 'Authorization scope escalation vs restriction direction analysis:
+    69.2% escalation rate (72/104), 0% restriction, binomial p<.001, 4/5 models with
+    majority escalation'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/auth_scope_direction.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:59:20.811671+00:00'
+  tags:
+  - plan_015
+  - auth_scope
+  - escalation
+  - error_analysis
+- id: art_20260521_1fd333
+  name: plan_014_extended_perturbation_results
+  type: data
+  description: 'Plan 014: Extended Perturbation Control results (n=300). Δ_perturb=-0.67pp,
+    95% CI=[-8.0, 6.67], verdict=PASS. CI width reduced from 18.33pp (plan_010) to
+    14.67pp.'
+  path: projects/policy_ambiguity_safety/artifacts/plan_014/data/results.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_014
+  skill: ''
+  created_at: '2026-05-21T11:09:24.513966+00:00'
+  tags:
+  - perturbation_control
+  - plan_014
+  - sesoi
+  - causal_inference
+- id: art_20260521_02e366
+  name: plan_014_perturbation_clauses_extended
+  type: data
+  description: 150 perturbation clause pairs (30 original + 120 new) for extended
+    perturbation control. 75 synonym substitution + 75 clause reordering, balanced
+    across 6 ambiguity types.
+  path: projects/policy_ambiguity_safety/artifacts/plan_014/data/clauses_perturbation_extended.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_014
+  skill: ''
+  created_at: '2026-05-21T11:09:27.292397+00:00'
+  tags:
+  - perturbation_control
+  - plan_014
+  - clauses
+- id: art_20260521_5aa0ce
+  name: plan_014_run_script
+  type: intermediate
+  description: Execution script for plan_014 extended perturbation control. Generates
+    perturbation pairs, runs GPT-4.1 episodes, GPT-5.4 cross-judge, and statistical
+    analysis.
+  path: projects/policy_ambiguity_safety/artifacts/plan_014/intermediate/run_plan014.py
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_014
+  skill: ''
+  created_at: '2026-05-21T11:09:29.452426+00:00'
+  tags:
+  - perturbation_control
+  - plan_014
+  - script
+- id: art_20260521_04a67f
+  name: C4 Logistic Regression Robustness Check
+  type: data
+  description: Logistic regression LR test validating ANOVA-based model×type interaction
+    (C4). χ²(20)=47.20, p=0.00055, consistent with ANOVA F(20)=1.97, p=0.006.
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/logistic_interaction_results.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T15:31:03.565598+00:00'
+  tags:
+  - round6
+  - robustness
+  - logistic-regression
+  - C4
+  - reviewer-response
+- id: art_20260521_a42123
+  name: C4 Logistic Regression Script
+  type: intermediate
+  description: Python script computing logistic regression robustness check for C4
+    model×type interaction.
+  path: projects/policy_ambiguity_safety/artifacts/_project/intermediate/compute_logistic_interaction.py
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T15:31:05.263473+00:00'
+  tags:
+  - round6
+  - script
+  - logistic-regression
+- id: art_20260522_89277b
+  name: inter_model_nocuity_analysis
+  type: data
+  description: 'Inter-model nocuity quantitative analysis: per-clause model agreement
+    distribution, 5-level nocuity classification, per-type profiles, clause-level
+    vs model-level variance decomposition (50.8% vs 1.6%), top-10 universal nocuity
+    clauses, χ² and binomial CI tests'
+  path: projects/policy_ambiguity_safety/artifacts/_project/data/nocuity_analysis_results.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T05:55:55.571608+00:00'
+  tags:
+  - nocuity
+  - systematic_nocuity
+  - variance_decomposition
+  - round11
+- id: art_20260522_66fb9e
+  name: mitigation_experiment_v2_script
+  type: intermediate
+  description: 'Type-specific vs generic mitigation experiment script (v2): 4 conditions
+    (generic_awareness + 3 type-specific) × gpt-5.4, 450 episodes. Includes episode
+    execution, cross-judge evaluation, McNemar analysis. Dry-run verified.'
+  path: projects/policy_ambiguity_safety/artifacts/_project/intermediate/run_mitigation_v2.py
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T06:02:17.562888+00:00'
+  tags:
+  - mitigation
+  - experiment_script
+  - round11
+- id: art_20260522_ee806a
+  name: mitigation_v2_results
+  type: data
+  description: 'Mitigation v2 experiment results: type-specific vs generic awareness
+    prompts for reducing policy violations. 450 episodes + 450 judge calls. Conclusion:
+    negative - no condition reached p<0.05; auth_scope type-specific showed marginal
+    improvement (-12pp, p=0.07) but incompleteness backfired (+14pp).'
+  path: projects/policy_ambiguity_safety/artifacts/plan_016/data/mitigation_v2_results.json
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: plan_016
+  skill: ''
+  created_at: '2026-05-22T06:21:38.669340+00:00'
+  tags:
+  - mitigation
+  - type-specific
+  - experiment
+  - negative
+- id: art_20260522_24952a
+  name: fig1_overview
+  type: chart
+  description: 'Figure 1: Experiment overview diagram — three-stage pipeline (Ambiguity
+    Taxonomy → τ²-bench Evaluation → Cross-Judge Assessment). Generated via matplotlib
+    fallback after Paper Banana/Gemini API failure.'
+  path: projects/policy_ambiguity_safety/artifacts/_project/chart/fig1_overview_24952a.pdf
+  url: null
+  project: policy_ambiguity_safety
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T07:17:14.497991+00:00'
+  tags:
+  - figure
+  - paper
+  - overview
+  - matplotlib

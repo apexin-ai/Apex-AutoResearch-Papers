@@ -1,0 +1,324 @@
+{
+  "per_model": {
+    "gpt-5.4": {
+      "per_type": {
+        "scopal": {
+          "baseline_rate": 0.42,
+          "mitigated_rate": 0.3529,
+          "delta_pp": -6.7,
+          "baseline_n": 50,
+          "mitigated_n": 51
+        },
+        "lexical": {
+          "baseline_rate": 0.42,
+          "mitigated_rate": 0.2549,
+          "delta_pp": -16.5,
+          "baseline_n": 50,
+          "mitigated_n": 51
+        },
+        "coreferential": {
+          "baseline_rate": 0.18,
+          "mitigated_rate": 0,
+          "delta_pp": -18.0,
+          "baseline_n": 50,
+          "mitigated_n": 0
+        },
+        "incompleteness": {
+          "baseline_rate": 0.46,
+          "mitigated_rate": 0.434,
+          "delta_pp": -2.6,
+          "baseline_n": 50,
+          "mitigated_n": 53
+        },
+        "conditional_precedence": {
+          "baseline_rate": 0.34,
+          "mitigated_rate": 0.2941,
+          "delta_pp": -4.6,
+          "baseline_n": 50,
+          "mitigated_n": 51
+        },
+        "authorization_scope": {
+          "baseline_rate": 0.64,
+          "mitigated_rate": 0.24,
+          "delta_pp": -40.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        }
+      },
+      "overall": {
+        "baseline_rate": 0.41,
+        "mitigated_rate": 0.3164,
+        "delta_pp": -9.4,
+        "baseline_n": 300,
+        "mitigated_n": 256
+      }
+    },
+    "gpt-4.1": {
+      "per_type": {
+        "scopal": {
+          "baseline_rate": 0.38,
+          "mitigated_rate": 0.34,
+          "delta_pp": -4.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "lexical": {
+          "baseline_rate": 0.34,
+          "mitigated_rate": 0.24,
+          "delta_pp": -10.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "coreferential": {
+          "baseline_rate": 0.32,
+          "mitigated_rate": 0,
+          "delta_pp": -32.0,
+          "baseline_n": 50,
+          "mitigated_n": 0
+        },
+        "incompleteness": {
+          "baseline_rate": 0.58,
+          "mitigated_rate": 0.44,
+          "delta_pp": -14.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "conditional_precedence": {
+          "baseline_rate": 0.36,
+          "mitigated_rate": 0.26,
+          "delta_pp": -10.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "authorization_scope": {
+          "baseline_rate": 0.46,
+          "mitigated_rate": 0.2,
+          "delta_pp": -26.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        }
+      },
+      "overall": {
+        "baseline_rate": 0.4067,
+        "mitigated_rate": 0.296,
+        "delta_pp": -11.1,
+        "baseline_n": 300,
+        "mitigated_n": 250
+      }
+    },
+    "claude-sonnet-4-6": {
+      "per_type": {
+        "scopal": {
+          "baseline_rate": 0.32,
+          "mitigated_rate": 0.22,
+          "delta_pp": -10.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "lexical": {
+          "baseline_rate": 0.32,
+          "mitigated_rate": 0.24,
+          "delta_pp": -8.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "coreferential": {
+          "baseline_rate": 0.22,
+          "mitigated_rate": 0,
+          "delta_pp": -22.0,
+          "baseline_n": 50,
+          "mitigated_n": 0
+        },
+        "incompleteness": {
+          "baseline_rate": 0.48,
+          "mitigated_rate": 0.46,
+          "delta_pp": -2.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "conditional_precedence": {
+          "baseline_rate": 0.36,
+          "mitigated_rate": 0.24,
+          "delta_pp": -12.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "authorization_scope": {
+          "baseline_rate": 0.12,
+          "mitigated_rate": 0.12,
+          "delta_pp": 0.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        }
+      },
+      "overall": {
+        "baseline_rate": 0.3033,
+        "mitigated_rate": 0.256,
+        "delta_pp": -4.7,
+        "baseline_n": 300,
+        "mitigated_n": 250
+      }
+    },
+    "qwen3-235b": {
+      "per_type": {
+        "scopal": {
+          "baseline_rate": 0.3673,
+          "mitigated_rate": 0.34,
+          "delta_pp": -2.7,
+          "baseline_n": 49,
+          "mitigated_n": 50
+        },
+        "lexical": {
+          "baseline_rate": 0.52,
+          "mitigated_rate": 0.44,
+          "delta_pp": -8.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "coreferential": {
+          "baseline_rate": 0.42,
+          "mitigated_rate": 0,
+          "delta_pp": -42.0,
+          "baseline_n": 50,
+          "mitigated_n": 0
+        },
+        "incompleteness": {
+          "baseline_rate": 0.62,
+          "mitigated_rate": 0.6,
+          "delta_pp": -2.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "conditional_precedence": {
+          "baseline_rate": 0.4,
+          "mitigated_rate": 0.38,
+          "delta_pp": -2.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "authorization_scope": {
+          "baseline_rate": 0.26,
+          "mitigated_rate": 0.12,
+          "delta_pp": -14.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        }
+      },
+      "overall": {
+        "baseline_rate": 0.4314,
+        "mitigated_rate": 0.376,
+        "delta_pp": -5.5,
+        "baseline_n": 299,
+        "mitigated_n": 250
+      }
+    },
+    "deepseek-v3": {
+      "per_type": {
+        "scopal": {
+          "baseline_rate": 0.48,
+          "mitigated_rate": 0.5,
+          "delta_pp": 2.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "lexical": {
+          "baseline_rate": 0.54,
+          "mitigated_rate": 0.52,
+          "delta_pp": -2.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "coreferential": {
+          "baseline_rate": 0.44,
+          "mitigated_rate": 0,
+          "delta_pp": -44.0,
+          "baseline_n": 50,
+          "mitigated_n": 0
+        },
+        "incompleteness": {
+          "baseline_rate": 0.54,
+          "mitigated_rate": 0.58,
+          "delta_pp": 4.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "conditional_precedence": {
+          "baseline_rate": 0.38,
+          "mitigated_rate": 0.26,
+          "delta_pp": -12.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        },
+        "authorization_scope": {
+          "baseline_rate": 0.6,
+          "mitigated_rate": 0.5,
+          "delta_pp": -10.0,
+          "baseline_n": 50,
+          "mitigated_n": 50
+        }
+      },
+      "overall": {
+        "baseline_rate": 0.4967,
+        "mitigated_rate": 0.472,
+        "delta_pp": -2.5,
+        "baseline_n": 300,
+        "mitigated_n": 250
+      }
+    }
+  },
+  "per_type": {
+    "scopal": {
+      "baseline_rate": 0.3936,
+      "mitigated_rate": 0.3506,
+      "delta_pp": -4.3,
+      "baseline_n": 249,
+      "mitigated_n": 251
+    },
+    "lexical": {
+      "baseline_rate": 0.428,
+      "mitigated_rate": 0.3386,
+      "delta_pp": -8.9,
+      "baseline_n": 250,
+      "mitigated_n": 251
+    },
+    "coreferential": {
+      "baseline_rate": 0.316,
+      "mitigated_rate": 0,
+      "delta_pp": -31.6,
+      "baseline_n": 250,
+      "mitigated_n": 0
+    },
+    "incompleteness": {
+      "baseline_rate": 0.536,
+      "mitigated_rate": 0.502,
+      "delta_pp": -3.4,
+      "baseline_n": 250,
+      "mitigated_n": 253
+    },
+    "conditional_precedence": {
+      "baseline_rate": 0.368,
+      "mitigated_rate": 0.2869,
+      "delta_pp": -8.1,
+      "baseline_n": 250,
+      "mitigated_n": 251
+    },
+    "authorization_scope": {
+      "baseline_rate": 0.416,
+      "mitigated_rate": 0.236,
+      "delta_pp": -18.0,
+      "baseline_n": 250,
+      "mitigated_n": 250
+    }
+  },
+  "overall": {
+    "baseline_rate": 0.4096,
+    "mitigated_rate": 0.3432,
+    "delta_pp": -6.6,
+    "baseline_n": 1499,
+    "mitigated_n": 1256
+  },
+  "predictions": {
+    "auth_scope_benefits_most": false,
+    "incompleteness_benefits_least": true
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "analysis_name": "Severity Threshold Sensitivity (moderate+critical vs any-violation)",
+  "motivation": "Response to reviewer W3: verify results hold across violation thresholds",
+  "note": "IMPORTANT: full_statistics.json already uses moderate+critical threshold (verified by matching rates). This analysis provides both thresholds for comparison.",
+  "thresholds_compared": {
+    "any_violation": "minor + moderate + critical (relaxed)",
+    "moderate_plus": "moderate + critical (current paper baseline)"
+  },
+  "total_episodes": 2997,
+  "violation_level_distribution": {
+    "none": 2081,
+    "minor": 198,
+    "moderate": 499,
+    "critical": 219
+  },
+  "C1": {
+    "any_violation": {
+      "delta_pp": 0.381511,
+      "ambiguous_rate": 0.496331,
+      "unambiguous_rate": 0.11482,
+      "chi2": 513.8627,
+      "p": 9.158370327500453e-114
+    },
+    "moderate_plus": {
+      "delta_pp": 0.340181,
+      "ambiguous_rate": 0.409606,
+      "unambiguous_rate": 0.069426,
+      "chi2": 475.9379,
+      "p": 1.6355468166288319e-105
+    },
+    "per_model_moderate_plus": {
+      "gpt-5.4": {
+        "ambiguous_rate": 0.41,
+        "unambiguous_rate": 0.026667,
+        "difference": 0.383333,
+        "fisher_p": 1.0048118439745542e-33
+      },
+      "gpt-4.1": {
+        "ambiguous_rate": 0.406667,
+        "unambiguous_rate": 0.06,
+        "difference": 0.346667,
+        "fisher_p": 2.7893032733457185e-25
+      },
+      "claude-sonnet-4-6": {
+        "ambiguous_rate": 0.303333,
+        "unambiguous_rate": 0.046667,
+        "difference": 0.256667,
+        "fisher_p": 1.3848989214769361e-17
+      },
+      "qwen3-235b": {
+        "ambiguous_rate": 0.431438,
+        "unambiguous_rate": 0.107383,
+        "difference": 0.324056,
+        "fisher_p": 1.0865567803098688e-19
+      },
+      "deepseek-v3": {
+        "ambiguous_rate": 0.496667,
+        "unambiguous_rate": 0.106667,
+        "difference": 0.39,
+        "fisher_p": 2.1639609488577362e-26
+      }
+    },
+    "comparison": "NOTE: full_statistics.json already uses moderate+critical threshold (verified: its amb_rate=0.410 matches moderate+ rate, not any-violation rate 0.496). Any-violation (including minor) delta is 38.2%, moderate+critical delta is 34.0%. Both highly significant (p < 1e-50). The 198 minor violations (6.6% of episodes) slightly inflate rates but do not change the qualitative finding. Effect is robust across thresholds."
+  },
+  "C2": {
+    "any_violation": {
+      "chi2": 43.0173,
+      "p": 3.665405209540481e-08,
+      "cramers_v": 0.169403,
+      "ranking": [
+        "incompleteness",
+        "authorization_scope",
+        "lexical",
+        "scopal",
+        "coreferential",
+        "conditional_precedence"
+      ]
+    },
+    "moderate_plus": {
+      "chi2": 28.0196,
+      "p": 3.607924753351464e-05,
+      "cramers_v": 0.136719,
+      "ranking": [
+        "incompleteness",
+        "lexical",
+        "authorization_scope",
+        "scopal",
+        "conditional_precedence",
+        "coreferential"
+      ],
+      "rates": {
+        "authorization_scope": {
+          "violation_rate": 0.416,
+          "n_violations": 104,
+          "n_total": 250
+        },
+        "conditional_precedence": {
+          "violation_rate": 0.368,
+          "n_violations": 92,
+          "n_total": 250
+        },
+        "coreferential": {
+          "violation_rate": 0.316,
+          "n_violations": 79,
+          "n_total": 250
+        },
+        "incompleteness": {
+          "violation_rate": 0.536,
+          "n_violations": 134,
+          "n_total": 250
+        },
+        "lexical": {
+          "violation_rate": 0.428,
+          "n_violations": 107,
+          "n_total": 250
+        },
+        "scopal": {
+          "violation_rate": 0.393574,
+          "n_violations": 98,
+          "n_total": 249
+        }
+      }
+    },
+    "ranking_kendall_tau": 0.7333,
+    "ranking_kendall_p": 0.05555555555555555,
+    "comparison": "Ranking Kendall tau=0.7333 (p=0.0556). Any-violation ranking: ['incompleteness', 'authorization_scope', 'lexical', 'scopal', 'coreferential', 'conditional_precedence']. Moderate+critical ranking (=paper baseline): ['incompleteness', 'lexical', 'authorization_scope', 'scopal', 'conditional_precedence', 'coreferential']. Rankings are concordant. Incompleteness remains the top type under both thresholds."
+  },
+  "C3": {
+    "any_violation": {
+      "spec_rate": 0.533333,
+      "ling_rate": 0.459279,
+      "delta_pp": 0.074054,
+      "chi2": 8.221,
+      "p": 0.004140808298139854
+    },
+    "moderate_plus": {
+      "spec_rate": 0.44,
+      "ling_rate": 0.379172,
+      "delta_pp": 0.060828,
+      "chi2": 5.7337,
+      "p": 0.016642144567246994
+    },
+    "comparison": "Spec-ling gap: 7.4% (any) vs 6.1% (moderate+critical). Both significant. Specification types consistently produce more violations than linguistic types."
+  },
+  "C4": {
+    "any_violation": {
+      "chi2": 28.4625,
+      "p": 1.0050329519431458e-05,
+      "cramers_v": 0.097453
+    },
+    "moderate_plus": {
+      "chi2": 31.0159,
+      "p": 3.0385581957794123e-06,
+      "cramers_v": 0.10173,
+      "rates": {
+        "gpt-5.4": {
+          "violation_rate": 0.218333,
+          "n_violations": 131,
+          "n_total": 600
+        },
+        "gpt-4.1": {
+          "violation_rate": 0.233333,
+          "n_violations": 140,
+          "n_total": 600
+        },
+        "claude-sonnet-4-6": {
+          "violation_rate": 0.175,
+          "n_violations": 105,
+          "n_total": 600
+        },
+        "qwen3-235b": {
+          "violation_rate": 0.269682,
+          "n_violations": 161,
+          "n_total": 597
+        },
+        "deepseek-v3": {
+          "violation_rate": 0.301667,
+          "n_violations": 181,
+          "n_total": 600
+        }
+      }
+    },
+    "comparison": "Model effect chi2: 28.5 (any) vs 31.0 (moderate+critical). Cram\u00e9r's V: 0.097 vs 0.102. Both significant. Model ranking is preserved: claude-sonnet-4-6 safest, deepseek-v3 most violation-prone."
+  },
+  "conclusion": "Verification confirms full_statistics.json already uses moderate+critical threshold. Comparing both thresholds: any-violation C1 delta=38.2% vs moderate+critical delta=34.0%; all four claims (C1-C4) are statistically significant under BOTH thresholds. The 198 minor violations (6.6%) do not qualitatively change any finding. Results are robust to threshold choice."
+}

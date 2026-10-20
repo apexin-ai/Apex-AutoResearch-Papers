@@ -1,0 +1,117 @@
+{
+  "authorization_scope": {
+    "n_clauses": 50,
+    "ambiguous": {
+      "mean": 18.96,
+      "sd": 3.34,
+      "min": 9,
+      "max": 27
+    },
+    "unambiguous": {
+      "mean": 55.02,
+      "sd": 8.05,
+      "min": 35,
+      "max": 73
+    },
+    "delta_unambiguous_minus_ambiguous": {
+      "mean": 36.06,
+      "sd": 8.55,
+      "min": 13,
+      "max": 55
+    }
+  },
+  "conditional_precedence": {
+    "n_clauses": 50,
+    "ambiguous": {
+      "mean": 41.06,
+      "sd": 6.95,
+      "min": 29,
+      "max": 60
+    },
+    "unambiguous": {
+      "mean": 58.58,
+      "sd": 8.55,
+      "min": 43,
+      "max": 82
+    },
+    "delta_unambiguous_minus_ambiguous": {
+      "mean": 17.52,
+      "sd": 9.84,
+      "min": -3,
+      "max": 45
+    }
+  },
+  "incompleteness": {
+    "n_clauses": 50,
+    "ambiguous": {
+      "mean": 12.24,
+      "sd": 2.36,
+      "min": 8,
+      "max": 18
+    },
+    "unambiguous": {
+      "mean": 46.8,
+      "sd": 9.06,
+      "min": 32,
+      "max": 71
+    },
+    "delta_unambiguous_minus_ambiguous": {
+      "mean": 34.56,
+      "sd": 8.4,
+      "min": 19,
+      "max": 56
+    }
+  },
+  "lexical": {
+    "n_clauses": 50,
+    "ambiguous": {
+      "mean": 11.38,
+      "sd": 2.28,
+      "min": 7,
+      "max": 16
+    },
+    "unambiguous": {
+      "mean": 37.04,
+      "sd": 5.81,
+      "min": 20,
+      "max": 50
+    },
+    "delta_unambiguous_minus_ambiguous": {
+      "mean": 25.66,
+      "sd": 5.2,
+      "min": 9,
+      "max": 34
+    }
+  },
+  "scopal": {
+    "n_clauses": 50,
+    "ambiguous": {
+      "mean": 15.74,
+      "sd": 2.97,
+      "min": 10,
+      "max": 27
+    },
+    "unambiguous": {
+      "mean": 33.5,
+      "sd": 8.49,
+      "min": 17,
+      "max": 52
+    },
+    "delta_unambiguous_minus_ambiguous": {
+      "mean": 17.76,
+      "sd": 7.66,
+      "min": 4,
+      "max": 39
+    }
+  },
+  "_overall": {
+    "n_clauses": 250,
+    "delta_unambiguous_minus_ambiguous": {
+      "mean": 26.31,
+      "sd": 11.28,
+      "min": -3,
+      "max": 56
+    }
+  },
+  "_note": "Token count uses whitespace splitting (len(text.split())). Since clauses are single sentences/short paragraphs and tokenization is whitespace-based, A2 (per-type token delta) and A4 (per-type sentence length) are equivalent analyses. A4 output is a symlink/copy referencing A2."
+}

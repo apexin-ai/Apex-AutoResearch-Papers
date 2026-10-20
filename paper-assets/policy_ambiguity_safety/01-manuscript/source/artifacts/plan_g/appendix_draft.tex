@@ -1,0 +1,27 @@
+\subsection{Disambiguation Awareness by Model and Ambiguity Type}
+\label{app:awareness-breakdown}
+
+Table~\ref{tab:awareness-matrix} disaggregates the overall disambiguation awareness rate (4.6\%, \S\ref{sec:disambiguation}) by model and ambiguity type. Awareness is coded as the agent explicitly acknowledging policy ambiguity or requesting clarification before acting, among episodes where the agent violated the intended policy interpretation.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Type} & \textbf{GPT-5.4} & \textbf{GPT-4.1} & \textbf{Claude S4.6} & \textbf{Qwen3-235B} & \textbf{DeepSeek-V3} & \textbf{All} \\
+\midrule
+Auth. Scope & 1/32 & 1/23 & 0/6 & 0/13 & 0/30 & 2/104 \\
+Cond. Prec. & 2/17 & 3/18 & 8/18 & 0/20 & 0/19 & 13/92 \\
+Coref. & 0/9 & 4/16 & 1/11 & 0/21 & 0/22 & 5/79 \\
+Incompl. & 1/23 & 4/29 & 0/24 & 0/31 & 0/27 & 5/134 \\
+Lexical & 1/21 & 1/17 & 1/16 & 0/26 & 0/27 & 3/107 \\
+Scopal & 0/21 & 0/19 & 0/16 & 0/18 & 0/24 & 0/98 \\
+\midrule
+\textbf{All} & 5/123 (4\%) & 13/122 (11\%) & 10/91 (11\%) & 0/129 (0\%) & 0/149 (0\%) & 28/614 (5\%) \\
+\bottomrule
+\end{tabular}
+\caption{Disambiguation awareness counts (aware/total violations) by model and ambiguity type. Awareness denotes the agent explicitly recognizing policy ambiguity before acting. Rates in the margin row are percentages of each model's total violations.}
+\label{tab:awareness-matrix}
+\end{table}
+
+Awareness clusters sharply by model family. GPT-4.1 and Claude Sonnet~4.6 show non-trivial awareness rates (10.7\% and 11.0\%, respectively), while Qwen3-235B and DeepSeek-V3 exhibit zero awareness across all 278 combined violation episodes (Fisher's exact $p = 2.2 \times 10^{-9}$, two-tailed). GPT-5.4 occupies an intermediate position at 4.1\% (uncorrected Fisher's $p = 0.003$ vs.\ the zero cluster, $p = 0.039$ vs.\ the high cluster), though neither comparison survives Holm--Bonferroni correction at the pairwise level. Across ambiguity types, conditional precedence elicits the highest awareness (13/92 = 14.1\%), driven primarily by Claude Sonnet~4.6 (8/18), while scopal ambiguity elicits zero awareness across all models (0/98). The remaining types fall between 1.9\% and 6.3\%; small per-cell counts preclude reliable type-level inference beyond this ordering.

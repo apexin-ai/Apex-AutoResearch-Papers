@@ -1,0 +1,40 @@
+# Source: https://www.apple.com/legal/internet-services/itunes/us/terms.html
+# Fetched: 2026-05-23
+# Type: Media Services Terms (Refunds/Cancellations/Complaints)
+
+# Apple Media Services: Refunds, Returns, Cancellations, and Complaint Handling
+
+## REFUNDS AND RETURNS
+
+General Policy:
+Apple states that all transactions are final. However, the company provides limited remedies for delivery issues: If technical problems prevent or unreasonably delay delivery of Content, the exclusive and sole remedy is either replacement of the Content or refund of the price paid, as determined by Apple.
+
+Apple reserves discretionary refusal rights: Apple may suspend or cancel payment or refuse a refund request if they find evidence of fraud, abuse, or unlawful or other manipulative behavior that entitles Apple to a corresponding counterclaim.
+
+## SUBSCRIPTION CANCELLATIONS
+
+Automatic Renewal:
+Subscriptions automatically renew until cancelled in the Manage Subscriptions section of the account settings. Users must act to prevent recurring charges.
+
+Cancellation Timing:
+For free trials, customers should cancel the Subscription at least twenty-four (24) hours before the free trial ends to avoid being charged.
+
+Price Increase Notification:
+Customers will be notified if the price of a Subscription increases and, if required, consent will be required to continue.
+
+Subscription Termination Rights:
+Apple reserves authority to cancel subscriptions if customers do not agree to material changes for which consent is required, or if Apple is unable to successfully charge the payment method to renew the subscription.
+
+## CONTENT AVAILABILITY AND REMOVAL
+
+Apple addresses content removal scenarios: Content may be removed from services at any time (for instance, because Apple loses its right from the Content provider to make it available), after which it cannot be downloaded, redownloaded, or otherwise accessed from Apple.
+
+The company disclaims ongoing availability guarantees: Apple has no responsibility to continue making Content available through its Services.
+
+## COMPLAINT REPORTING
+
+User-Generated Content Issues:
+For problematic submissions, customers should report at reportaproblem.apple.com or by contacting Apple Support regarding materials violating submission guidelines.
+
+Copyright Complaints:
+Apple directs infringement claims to their Copyright Agent at copyrightnotices@apple.com or by mail to their Cupertino headquarters.

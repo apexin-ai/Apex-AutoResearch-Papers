@@ -1,0 +1,117 @@
+# Source: https://www.southwest.com/swa-resources/pdfs/corporate-commitments/contract-of-carriage.pdf
+# Date: 2026-05-23
+# Policy Type: Contract of Carriage (55th Revised, Effective 01/27/2026)
+
+Southwest Airlines Contract of Carriage - Passenger (English Version)
+
+## 1. Introduction
+
+### a. Application of Conditions of Contract
+
+(1) Reservations, purchase, ticketing, and transportation by Southwest Airlines Co. ("Carrier" or "Southwest Airlines" or "Southwest") are subject to this Contract of Carriage in effect on the earliest of the date on which the Ticket is reserved, purchased, or issued, and as amended through the date of travel, in addition to any terms, conditions, and restrictions applicable to your booking channel and included on any Ticket, except as otherwise provided within specific fare rules. The terms and conditions contained in this Contract of Carriage shall govern all published routes and services provided by Southwest as well as all fares and charges published by Southwest. This Contract of Carriage is subject to applicable tariffs on file with the U.S. Department of Transportation and laws, regulations, and rules imposed by U.S. or foreign governmental agencies; however, such tariffs, laws, regulations, and rules do not create any contractual or other obligations by Southwest that are owed to the Passenger, the Customer, or any other person or entity, or any right of action as against Southwest. If any portion of this Contract of Carriage conflicts with applicable laws, rules, or security directives from U.S. or foreign government agencies, the applicable laws, rules, or security directives shall govern. Southwest shall not be liable for any damage arising out of its compliance with any laws, government regulations, orders, rules, requirements, or security directives.
+
+By making a reservation, purchasing a Ticket, or accepting Carriage, the Passenger and Customer agree to adhere to, be bound by, and comply with all of the terms, conditions, and requirements set forth herein and applicable laws and regulations, including but not limited to federal laws protecting federal, airport, and air carrier employees who have security duties from assault and interference with the performance of their duties. Carriage offered by Southwest under this Contract of Carriage is subject to the Passenger's and Customer's compliance with these obligations, and a failure to comply shall constitute a material breach of this Contract of Carriage.
+
+(2) Southwest Airlines reserves the right, in its sole discretion and to the extent not prohibited by law, to change, delete, or add to any of the terms of this Contract of Carriage without prior notice. All changes must be in writing and approved by an authorized representative of Southwest Airlines.
+
+(3) If (i) this Contract of Carriage is amended after a Ticket is reserved, purchased, or issued but before commencement of travel, (ii) the amendment substantially affects the terms and conditions of a Passenger's Carriage, and (iii) the Passenger does not agree to be bound by the Contract of Carriage as amended, then the Passenger's sole recourse is to request a refund of the fare paid for unused travel. Such request for a refund must be made prior to the date on which travel was to commence.
+
+(4) Southwest's obligations hereunder extend only to the Passenger, and as expressly set forth herein, to the Customer. In the event of a refund payment, Southwest may, in its sole discretion, refund all or a portion of the payment to the Customer but such payment shall not create a contractual relationship between Southwest and such third-party payor.
+
+(5) This Contract of Carriage does not create, and shall not be construed to create, any right or cause of action based on any state, local, federal or international law, statute, regulation, rule, policy, guidance, treatise, convention, or other form of legal statements or requirements, and Southwest Airlines does not, in this Contract of Carriage, expressly or implicitly incorporate any such law, statute, regulation, rule, policy, guidance, treatise, convention, or other form of legal statements or requirements by reference.
+
+(6) The Customer and Passenger waive any right of a travel insurer to exercise rights and remedies under this Contract of Carriage against Southwest with respect to any loss covered by a travel insurance policy.
+
+(7) The invalidity of any provision herein shall not affect the validity of any other provision that shall remain in full force and effect.
+
+(8) Unless specifically stated otherwise herein or where any limitation would expressly violate any applicable law, Southwest shall not be liable for any consequential, compensatory, indirect, incidental, or punitive damages arising out of or in connection with the performance of its obligations under this Contract of Carriage.
+
+(9) For Interline Transportation, please refer to Section 10 for additional information, terms and conditions.
+
+### b. Definitions
+
+Baggage means all luggage and contents contained inside, including but not limited to, suitcases, garment bags, tote bags, packages, camera and electronics bags, computer and equipment cases, briefcases, musical instruments, and similar articles, whether carried by the Passenger in the cabin or carried in the aircraft cargo compartments. Coats and wraps, when carried by the Passenger in the passenger cabin, will not be considered as Baggage.
+
+Boarding Pass means a document (paper or electronic) issued by Southwest that bears the title Boarding Pass, the Passenger's first and last name, the flight number and date, the departure and destination airports, and a seat and boarding group assignment.
+
+Carriage means the transportation of Passengers and/or Baggage by air, gratuitously or for hire, and all services of Southwest related thereto.
+
+Checked Baggage means Baggage of which Southwest takes sole custody and for which Southwest has issued a baggage claim check and to which Southwest or Passenger affixed a baggage tag.
+
+Customer means the person, agent, or entity who held a reservation or paid for, changed, or canceled a Ticket for the Passenger. For clarity, if the Passenger holds a reservation or purchases, changes, or cancels a Ticket, the Passenger is the Customer.
+
+Flight Credit means a credit in a specified U.S. dollar amount, which has no cash value and may be redeemed solely for the purchase of Tickets. Flight Credits created from Tickets issued or changed on or after May 28, 2025, have an expiration date by which travel must be booked and flown. You may not transfer a Flight Credit for any reason unless expressly stated otherwise in this contract.
+
+Force Majeure Event means any event outside of Southwest's control, including, without limitation, acts of God, and meteorological events, such as storms, polar vortex, rain, wind, fire, fog, flooding, earthquakes, haze, or volcanic eruption. It also includes, without limitation, a pandemic, public health emergency, catastrophe, government action, disturbance, or potentially volatile international condition, armed conflict, civil unrest or commotion, riot, embargo, war, or hostility, whether actual, threatened, or reported, strike, work stoppage, slowdown, lockout, or any other labor related dispute involving or affecting Southwest's service, mechanical difficulties by entities other than Southwest, Air Traffic Control, or the inability to obtain fuel, supplies, components, parts, fluids, airport gates, labor, landing facilities, or other items which Carrier, in its unilateral discretion, decides is reasonably necessary for the flight in question, or any fact or situation that was not foreseen, anticipated, or predicted by Southwest.
+
+Significantly Delayed or Changed Flight means because of a Southwest-imposed flight delay or change:
+A. The Passenger is scheduled to depart from the origination airport three hours or more for domestic itineraries and six hours or more for international itineraries earlier than the original scheduled departure time;
+B. The Passenger is scheduled to arrive at the destination airport three hours or more for domestic itineraries or six hours or more for international itineraries later than the original scheduled arrival time;
+C. The Passenger is scheduled to depart from a different origination airport or arrive at a different destination airport;
+D. The Passenger is scheduled to travel on an itinerary with more connection points than that of the original itinerary; or
+E. The Passenger is downgraded to a lower class of service; or
+F. The Passenger is an Individual with a Disability and is scheduled to travel through one or more connecting airports that are different from the original itinerary.
+
+## 2. Reservations
+
+### a. Reservations
+
+(1) Confirmation of Reservations. A reservation on a given flight is confirmed by the issuance of a Ticket.
+
+(2) Cancellation of Reservations.
+(i) Passenger or Customer Initiated Cancellation Prior to Travel. If a Passenger or Customer cancels a Ticket at least ten (10) minutes prior to the scheduled departure time, eligible refunds will be provided consistent with Section 4.c. if affirmatively requested within one year from the date the Ticket was issued. If a Passenger does not travel and either the Passenger or Customer fails to cancel a Ticket at least ten (10) minutes prior to the scheduled departure time, the fare paid for such unused travel will be handled in accordance with the procedures specified in Section 2.a.(2)(iii).
+
+(ii) Southwest has the right to cancel reservations (whether or not confirmed) due to the Customer's or Passenger's failure to comply with the rules set forth herein, including but not limited to, the failure to pay for the applicable Ticket under the conditions applicable to the fare for such travel and the failure to meet our check-in requirements as described in Section 5.
+
+(iii) No-Show Policy.
+(a) If a Basic fare segment on a Ticket is not canceled at least ten minutes prior to the scheduled departure time and the Passenger does not travel, then all segments associated with the Ticket are canceled, and the Rapid Rewards points and/or funds used to purchase the Basic fare segment(s), including taxes and government fees associated with those segments, are forfeited.
+(b) If a Choice fare segment on a Ticket is not canceled or changed at least ten minutes prior to the scheduled departure time and the Passenger does not travel, then all segments associated with the Ticket are canceled, and Rapid Reward points and/or funds used to purchase the Choice fare segment(s), including the taxes and government fees associated with those segments, are forfeited.
+(c) If a Choice Extra fare or Choice Preferred fare segment on a Ticket is not changed or canceled at least ten minutes prior to the scheduled departure time and the Passenger does not travel, all segments associated with the Ticket are canceled, and funds (including taxes and government fees) associated with the Choice Extra Fare or Choice Preferred Fare segment(s) are returned as a Transferable Flight Credit. Any Rapid Rewards points used to purchase the Choice Extra fare or Choice Preferred fare segment(s) will be returned to the account used to purchase the fare segment.
+
+(vi) Prohibited Booking Practices.
+(a) Fraudulent, fictitious, and/or abusive bookings violate Southwest Airlines rules. Reservations made by Passengers or Customers, or Tickets issued to Passengers, must be made and issued only in respect of a Passenger's genuine travel requirements. Reservations made to exploit or circumvent fare and Ticket rules are strictly prohibited. Examples include (but are not limited to):
+- Purchasing a Ticket without intending to fly all flights to gain lower fares (hidden cities);
+- Purchasing a Ticket without intent to travel, including to gain access to facilities;
+- Combining two or more roundtrip excursion fares end-to-end to circumvent minimum stay requirements (back-to-back ticketing);
+- Reserving a Ticket in someone's name without the person's consent; and
+- Reserving duplicate or impossible trips.
+
+(b) If Southwest finds evidence that the Passenger or Customer is using a prohibited practice, then without advance notice to the Passenger or Customer, Southwest reserves the right to the following:
+- Cancel any unused part of the Ticket;
+- Cancel any other reservations that it believes, in its sole discretion, were made without intent to travel;
+- Refuse to let the Passenger and Passenger's Checked Baggage fly;
+- Not refund an otherwise refundable Ticket;
+- Charge the Customer for what the Ticket would have cost if the Customer hadn't engaged in a prohibited practice; and
+- Require the Passenger or Customer to refund to Southwest Airlines any compensation Southwest Airlines provided to the Passenger or Customer.
+
+## 3. Fares
+
+### a. Application of Fares
+
+(1) Transportation is subject to the fares and charges in effect when the Ticket is purchased. The fare is guaranteed once a reservation is purchased and a Ticket is issued. If a Ticket is purchased before an increase in the fare becomes effective, the Ticket shall be honored for transportation between the airports and at the fare for which it was purchased.
+
+(2) Changes to any portion of a Ticket initiated by the Customer or the Passenger after its original issue will be subject to the fares, fare rules, tax increases, and charges in effect on the date the change is initiated. For these purposes, a change constitutes a change in flight number, origin, destination, intermediate points, flight date, flight time, or fare product. A Basic fare segment on a Ticket can only be canceled or upgraded to a higher fare product.
+
+(4) All published fares and charges are stated in U.S. currency ("dollars" or "U.S. dollars").
+
+### e. Basic fares and Choice fares
+(1) Basic fares and Choice fares are discounted, restricted, and nonrefundable fares.
+
+## 4. Tickets
+
+### a. Tickets
+(1) No person shall be entitled to Carriage except upon presentation of a valid Ticket or proof of identification acceptable to Southwest to confirm that Carriage has been purchased. Such Ticket shall entitle the Passenger to Carriage subject to this Contract of Carriage and, in particular, certain terms and conditions as follows:
+(i) Such Ticket is valid between the points of origin and destination via the specific routing designated on the Passenger's itinerary only.
+(ii) The Passenger is in compliance with fare requirements.
+(iii) The Passenger is in compliance with any other requirements of the Passenger's fare rules.
+(iv) The Passenger's Ticket is in the Passenger's own name.
+(v) The Ticket has not been altered or improperly issued.
+
+(2) Tickets are Nontransferable. Tickets are nontransferable unless specified explicitly on the Ticket.
+
+(4) Purchase of Adjacent Seat. The purchase of more than one seat for use by a single Passenger is required in three situations. First, the purchase of an adjacent seat is required when necessary to transport large musical instruments or electronic audio/video, medical, or otherwise sensitive equipment unsuitable for Carriage as Checked Baggage. Second, the purchase of more than one seat for use by a single Passenger may sometimes be necessary to accommodate the pet of a Passenger with unique seating needs. Third, the purchase of an adjacent seat is required for Passengers who, at the Carrier's discretion, cannot be safely accommodated in a single seat, whether because of a disability or because the Passenger would encroach upon the neighboring seat.
+
+### c. Refunds
+(1) Refundable Tickets. The fare paid for unused travel by Customers who purchase fully refundable, fare segments, including taxes and government fees, may, for any reason and upon surrender or cancellation of the unused fare segments, be refunded in accordance with Section 4.c.(3). A Passenger may instead choose to hold the funds as a Flight Credit or Transferable Flight Credit (depending on the fare purchased).
+
+(2) Changes, Exchanges, and No Show. Ticket changes and exchanges within the same reservation will result in the initial Ticket being applied as the form of payment for the new Ticket. Southwest Airlines' unrestricted fares are fully refundable if canceled and then refunded instead of exchanging or changing your Ticket.

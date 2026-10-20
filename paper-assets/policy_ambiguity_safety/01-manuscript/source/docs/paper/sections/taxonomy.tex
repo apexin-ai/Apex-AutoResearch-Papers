@@ -1,0 +1,41 @@
+\section{Ambiguity Taxonomy}
+\label{sec:taxonomy}
+
+We adopt an inclusive definition of ambiguity that encompasses phenomena sometimes distinguished as underspecification or vagueness \citep{poesio_artstein_2005,vandeemter_semantic_1996}: a policy clause is ambiguous when it admits multiple distinct interpretations available to a competent reader, including cases where the boundary between interpretations is gradient rather than discrete \citep{wasow_ambiguity_2005,kennedy_vagueness_2007}. In the policy specification domain, these distinctions are less salient than the shared property of admitting multiple operationally distinct agent behaviors.
+
+Traditional NLP ambiguity classification focuses on within-sentence phenomena \citep{wasow_ambiguity_2005}; our specification layer captures document-level policy gaps unstudied in the agent context. Our taxonomy provides an organizational framework of six types organized into two layers (Table~\ref{tab:taxonomy}), selected from \citet{li_ambiguity_taxonomy_2024}'s NLP taxonomy (11 types; full mapping in Appendix~\ref{app:li_mapping}) based on three design criteria: (1)~theoretical attestation in prior RE literature \citep{massey_ambiguity_re_2014,berry_kamsties_2004,drip_r_2026}, (2)~amenability to minimal-pair construction without altering clause semantics beyond the target ambiguity, and (3)~mutual exclusivity for unambiguous IV assignment. Types such as ellipsis and pragmatic implicature were excluded because they resist minimal-pair construction within the single-clause policy format.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Six-type ambiguity taxonomy. Disambiguation channel indicates the primary mechanism required to resolve the ambiguity.}
+\label{tab:taxonomy}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Type} & \textbf{Layer} & \textbf{Definition} & \textbf{Disambig.} \\
+\midrule
+Lexical & Ling. & Multiple senses & Context \\
+Scopal & Ling. & Scope underdet. & Bracketing \\
+Coreferential & Ling. & Referent ambig. & Resolution \\
+Auth.\ Scope & Spec. & Boundary vague & Bound.\ def. \\
+Incompl. & Spec. & Info absent & Content add. \\
+Cond.\ Prec. & Spec. & Rules conflict & Priority rule \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Linguistic layer.} These types operate at the syntactic or semantic level and can, in principle, be resolved by contextual cues within the text.
+\emph{Scopal} ambiguity involves quantifier, negation, or modal scope interactions (e.g., ``all items may not be returned'' admits universal-negation and negation-of-universal readings).
+\emph{Lexical} ambiguity covers polysemy or homonymy (e.g., ``charge'' as financial cost vs.\ penalty).
+\emph{Coreferential} ambiguity involves unclear pronoun or NP reference (e.g., ``\ldots which must be approved by a supervisor'' where ``which'' could refer to the verification or the refund).
+
+\paragraph{Specification layer.} These types arise from pragmatic or discourse-level gaps requiring domain knowledge to resolve.
+\emph{Authorization scope} covers vague permission or role boundaries (e.g., ``authorized personnel may issue refunds'' without specifying which personnel).
+\emph{Incompleteness} denotes missing conditions or boundary cases (e.g., a return policy silent on damaged items); we control for its information-addition confound via logistic regression (\S\ref{sec:results}).
+\emph{Conditional precedence} involves conflicting rules without priority ordering (e.g., ``premium customers receive free shipping'' vs.\ ``orders under \$50 require a shipping fee'').
+
+The layer distinction reflects a design hypothesis motivated by prior typologies \citep{massey_ambiguity_re_2014,berry_kamsties_2004}: linguistic ambiguity can in principle be partially resolved through tool responses or world knowledge, while specification ambiguity has no external resolution channel. This hypothesis motivates systematic coverage across both sources; its empirical status is reported in \S\ref{sec:results} (inconclusive after correction).
+
+\paragraph{Epistemological status.}
+Our taxonomy uses \emph{ambiguity} as a policy specification umbrella term encompassing two epistemologically distinct operations. We acknowledge that incompleteness occupies a contested boundary between ambiguity and underspecification in the RE literature; however, \citet{berry_kamsties_2004}'s nocuous ambiguity taxonomy itself includes specification-level gaps, and \citet{gleich_ambiguity_2010} treat missing information as ``implicit ambiguity.'' Five types involve \emph{interpretation selection}: the text admits multiple readings and the agent commits to one. Incompleteness involves \emph{information addition}: the text lacks necessary content entirely, and the agent confabulates it. This distinction manifests empirically: incompleteness is the only type unresponsive to prompt-based disambiguation ($-$3.4\,pp, n.s.; \S\ref{sec:analysis}) because prompts cannot supply absent domain knowledge. We retain both under a single umbrella because agents process all six types identically (committing without flagging uncertainty) and the resulting violations produce comparable safety impact (\S\ref{sec:results}). This inclusive scope aligns with RE usage, where ambiguity and incompleteness frequently co-occur \citep{dalpiaz_pinpointing_2018}.

@@ -1,0 +1,2352 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{berry_kamsties_2004}
+\citation{drip_r_2026,li_ambiguity_taxonomy_2024}
+\citation{policybank_2026}
+\citation{tau2_bench_2025}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN@col{2}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\citation{li_ambiguity_taxonomy_2024}
+\citation{kamath_scope_2024}
+\citation{massey_ambiguity_re_2014}
+\citation{berry_kamsties_2004}
+\citation{chantree_2006}
+\citation{ferrari_ambiguity_2019}
+\citation{ezzini_taphsir_2022}
+\citation{ferreira_good_enough_2002}
+\citation{li_garden_path_llm_2024}
+\citation{liu_ambiguity_2023}
+\citation{gur_arieh_ambiguity_collapse_2026}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Experimental overview. (a)~Six-type ambiguity taxonomy (two layers) with 300 matched clause pairs. (b)~Matched-pair causal design: each clause pair is injected into $\tau ^2$-bench policy documents; five models interact under both ambiguous and unambiguous conditions across 2,997 episodes. (c)~Convergent nocuity: models independently converge on the same permissive interpretation, producing unanimous agreement that passes consensus-based safety monitors---a blind spot invisible to multi-agent checks.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:overview}{{1}{2}{Experimental overview. (a)~Six-type ambiguity taxonomy (two layers) with 300 matched clause pairs. (b)~Matched-pair causal design: each clause pair is injected into $\tau ^2$-bench policy documents; five models interact under both ambiguous and unambiguous conditions across 2,997 episodes. (c)~Convergent nocuity: models independently converge on the same permissive interpretation, producing unanimous agreement that passes consensus-based safety monitors---a blind spot invisible to multi-agent checks}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{80}{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{2}{Related Work}{section.2}{}}
+\@LN{104}{1}
+\@writefile{toc}{\contentsline {paragraph}{Ambiguity in NLP and requirements engineering.}{2}{section*.2}\protected@file@percent }
+\@LN{105}{1}
+\@LN@col{2}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@writefile{toc}{\contentsline {paragraph}{Psycholinguistics of ambiguity processing.}{2}{section*.3}\protected@file@percent }
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\citation{rjudge_2024}
+\citation{toolemu_2024}
+\citation{yin_safeagentbench_2025,phantompolicy_2026}
+\citation{drip_r_2026}
+\citation{li_sopbench_2025}
+\citation{tau_bench_2024}
+\citation{tau2_bench_2025}
+\citation{policybank_2026}
+\citation{krakovna2020specification}
+\citation{poesio_artstein_2005,vandeemter_semantic_1996}
+\citation{wasow_ambiguity_2005,kennedy_vagueness_2007}
+\citation{wasow_ambiguity_2005}
+\citation{li_ambiguity_taxonomy_2024}
+\citation{massey_ambiguity_re_2014,berry_kamsties_2004,drip_r_2026}
+\citation{massey_ambiguity_re_2014,berry_kamsties_2004}
+\citation{berry_kamsties_2004}
+\citation{gleich_ambiguity_2010}
+\citation{dalpiaz_pinpointing_2018}
+\@LN@col{1}
+\@LN{133}{2}
+\@LN{134}{2}
+\@LN{135}{2}
+\@writefile{toc}{\contentsline {paragraph}{Agent safety and policy specification.}{3}{section*.4}\protected@file@percent }
+\@LN{136}{2}
+\@LN{137}{2}
+\@LN{138}{2}
+\@LN{139}{2}
+\@LN{140}{2}
+\@LN{141}{2}
+\@LN{142}{2}
+\@LN{143}{2}
+\@LN{144}{2}
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Ambiguity Taxonomy}{3}{section.3}\protected@file@percent }
+\newlabel{sec:taxonomy}{{3}{3}{Ambiguity Taxonomy}{section.3}{}}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Six-type ambiguity taxonomy. Disambiguation channel indicates the primary mechanism required to resolve the ambiguity.}}{3}{table.caption.5}\protected@file@percent }
+\newlabel{tab:taxonomy}{{1}{3}{Six-type ambiguity taxonomy. Disambiguation channel indicates the primary mechanism required to resolve the ambiguity}{table.caption.5}{}}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@writefile{toc}{\contentsline {paragraph}{Linguistic layer.}{3}{section*.6}\protected@file@percent }
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@writefile{toc}{\contentsline {paragraph}{Specification layer.}{3}{section*.7}\protected@file@percent }
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\@LN{222}{2}
+\@LN{223}{2}
+\citation{tau2_bench_2025}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Evaluated models. Selection spans frontier and mid-tier proprietary models alongside open-source alternatives with different training philosophies.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:models}{{2}{4}{Evaluated models. Selection spans frontier and mid-tier proprietary models alongside open-source alternatives with different training philosophies}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Epistemological status.}{4}{section*.8}\protected@file@percent }
+\@LN{224}{3}
+\@LN{225}{3}
+\@LN{226}{3}
+\@LN{227}{3}
+\@LN{228}{3}
+\@LN{229}{3}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{4}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{4}{Method}{section.4}{}}
+\@LN{250}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Platform}{4}{subsection.4.1}\protected@file@percent }
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Representative clause pairs. Ambiguous variants introduce a single ambiguity type; disambiguated variants resolve it through minimal edits (bold highlights key differences). Full set: Appendix~\ref {app:clause_examples}.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:clause_examples_main}{{3}{4}{Representative clause pairs. Ambiguous variants introduce a single ambiguity type; disambiguated variants resolve it through minimal edits (bold highlights key differences). Full set: Appendix~\ref {app:clause_examples}}{table.caption.10}{}}
+\@LN{265}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Matched-Pair Design}{4}{subsection.4.2}\protected@file@percent }
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN{285}{3}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@LN{290}{3}
+\@LN{291}{3}
+\@LN{292}{3}
+\@LN{293}{3}
+\@LN{294}{3}
+\@LN{295}{3}
+\@LN{296}{3}
+\@LN{297}{3}
+\@LN{298}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation}{4}{subsection.4.3}\protected@file@percent }
+\@LN{299}{3}
+\@LN{300}{3}
+\citation{zheng_llm_judge_2024}
+\citation{lakens_2017}
+\citation{anvari_lakens_2021}
+\citation{tjur_2009}
+\@LN@col{1}
+\@LN{301}{4}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN{315}{4}
+\@writefile{toc}{\contentsline {paragraph}{Human validation.}{5}{section*.11}\protected@file@percent }
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Controls}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Perturbation control.}{5}{section*.12}\protected@file@percent }
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@writefile{toc}{\contentsline {paragraph}{Within-family replicability.}{5}{section*.13}\protected@file@percent }
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Statistical Analysis}{5}{subsection.4.5}\protected@file@percent }
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Variance decomposition of violation rates (temperature $= 0$). Clause identity: 22.4\% (0.4\% between types); condition: 15.8\%; model: 1.0\%; residual: 60.8\%. Clause wording---not type membership---is the primary risk factor among measured predictors.}}{5}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:variance_decomposition}{{2}{5}{Variance decomposition of violation rates (temperature $= 0$). Clause identity: 22.4\% (0.4\% between types); condition: 15.8\%; model: 1.0\%; residual: 60.8\%. Clause wording---not type membership---is the primary risk factor among measured predictors}{figure.caption.14}{}}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN{359}{4}
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\@LN{363}{4}
+\@LN{364}{4}
+\@LN{365}{4}
+\@LN{366}{4}
+\@LN{367}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{5}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{5}{Results}{section.5}{}}
+\@LN{368}{4}
+\@LN{369}{4}
+\@LN{370}{4}
+\@LN{371}{4}
+\@LN{372}{4}
+\@LN{373}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Binary Ambiguity Effect (C1)}{5}{subsection.5.1}\protected@file@percent }
+\@LN{374}{4}
+\@LN{375}{4}
+\@LN{376}{4}
+\@LN{377}{4}
+\@LN{378}{4}
+\@LN{379}{4}
+\@LN{380}{4}
+\@LN{381}{4}
+\@LN{382}{4}
+\@LN{383}{4}
+\@LN{384}{4}
+\citation{li_sopbench_2025}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Violation rates (\%) by model and type under ambiguous conditions. Authorization scope shows the widest cross-model spread, reflecting differential safety training; incompleteness remains uniformly high (46--62\%) across all models.}}{6}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:heatmap}{{3}{6}{Violation rates (\%) by model and type under ambiguous conditions. Authorization scope shows the widest cross-model spread, reflecting differential safety training; incompleteness remains uniformly high (46--62\%) across all models}{figure.caption.15}{}}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Cross-benchmark generalization. The ambiguity effect replicates across benchmarks ($n = 19$ model--benchmark data points). Diamonds: pooled effect with 95\% CIs; circles: per-model effects showing cross-model spread (Appendix~\ref {app:sopbench}, \ref {app:healthcare}, \ref {app:model_expansion}).}}{6}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:cross_benchmark}{{4}{6}{Cross-benchmark generalization. The ambiguity effect replicates across benchmarks ($n = 19$ model--benchmark data points). Diamonds: pooled effect with 95\% CIs; circles: per-model effects showing cross-model spread (Appendix~\ref {app:sopbench}, \ref {app:healthcare}, \ref {app:model_expansion})}{figure.caption.16}{}}
+\@LN{417}{5}
+\@LN{418}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Type Partial Ordering (C2)}{6}{subsection.5.2}\protected@file@percent }
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\@LN{426}{5}
+\@LN{427}{5}
+\@LN{428}{5}
+\@LN{429}{5}
+\@LN{430}{5}
+\@LN{431}{5}
+\@LN{432}{5}
+\@LN{433}{5}
+\@LN{434}{5}
+\@LN{435}{5}
+\@LN{436}{5}
+\@LN{437}{5}
+\@LN{438}{5}
+\@LN{439}{5}
+\@LN{440}{5}
+\@LN{441}{5}
+\@LN{442}{5}
+\@LN{443}{5}
+\@LN{444}{5}
+\@LN{445}{5}
+\@LN{446}{5}
+\@LN{447}{5}
+\@LN{448}{5}
+\@LN{449}{5}
+\@LN{450}{5}
+\@LN{451}{5}
+\@LN{452}{5}
+\citation{cohen_1960}
+\citation{gwet_2014}
+\citation{liu_ambiguity_2023,hu_ambiguity_2025}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Violation rates (\%) under ambiguous policy clauses by type and model (5.4 = GPT-5.4, 4.1 = GPT-4.1, Cla.\ = Claude, Qw3 = Qwen3, DS = DeepSeek). $\Delta $pp: pooled difference (ambiguous $-$ unambiguous) with Newcombe 95\% CIs. Cluster: TOST equivalence cluster at $\pm 15$\,pp---U = upper bound (separated at all margins), M = mid-tier (6/6 pairwise equivalent), L = lower (separates at $\pm 12$\,pp). Layer grouping (Spec./Ling.) did not survive correction (C3, inconclusive; \S  \ref {sec:results}). All per-type $p < 10^{-5}$ (Fisher's exact).}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:main_results}{{4}{7}{Violation rates (\%) under ambiguous policy clauses by type and model (5.4 = GPT-5.4, 4.1 = GPT-4.1, Cla.\ = Claude, Qw3 = Qwen3, DS = DeepSeek). $\Delta $pp: pooled difference (ambiguous $-$ unambiguous) with Newcombe 95\% CIs. Cluster: TOST equivalence cluster at $\pm 15$\,pp---U = upper bound (separated at all margins), M = mid-tier (6/6 pairwise equivalent), L = lower (separates at $\pm 12$\,pp). Layer grouping (Spec./Ling.) did not survive correction (C3, inconclusive; \S \ref {sec:results}). All per-type $p < 10^{-5}$ (Fisher's exact)}{table.caption.17}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces TOST equivalence sensitivity across margins. Mid-tier = fraction of the six within-cluster pairs (lexical, auth.\ scope, scopal, cond.\ prec.) that are equivalent. Inc.\ and Cor.\ columns indicate separation from the mid-tier cluster.}}{7}{table.caption.18}\protected@file@percent }
+\newlabel{tab:tost_sensitivity}{{5}{7}{TOST equivalence sensitivity across margins. Mid-tier = fraction of the six within-cluster pairs (lexical, auth.\ scope, scopal, cond.\ prec.) that are equivalent. Inc.\ and Cor.\ columns indicate separation from the mid-tier cluster}{table.caption.18}{}}
+\@LN{453}{6}
+\@LN{454}{6}
+\@LN{455}{6}
+\@LN{456}{6}
+\@LN{457}{6}
+\@LN{458}{6}
+\@LN{459}{6}
+\newlabel{sec:c4}{{5.2}{7}{Type Partial Ordering (C2)}{table.caption.18}{}}
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN{462}{6}
+\@LN{463}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Error Analysis}{7}{section.6}\protected@file@percent }
+\newlabel{sec:analysis}{{6}{7}{Error Analysis}{section.6}{}}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@LN{470}{6}
+\@LN{471}{6}
+\@LN{472}{6}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Type--mechanism association ($N = 614$ traces, percentage per type). Each type maps to a dominant mechanism ($\geq $3/5 model consistency), supporting the taxonomy's diagnostic value (NMI $= 0.23$, $V = 0.45$ [0.41, 0.50]; human collapsed $\kappa = 0.41$).}}{7}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:type_mechanism}{{5}{7}{Type--mechanism association ($N = 614$ traces, percentage per type). Each type maps to a dominant mechanism ($\geq $3/5 model consistency), supporting the taxonomy's diagnostic value (NMI $= 0.23$, $V = 0.45$ [0.41, 0.50]; human collapsed $\kappa = 0.41$)}{figure.caption.19}{}}
+\@LN{475}{6}
+\@LN{476}{6}
+\@LN{477}{6}
+\@LN{478}{6}
+\@LN{479}{6}
+\@LN{480}{6}
+\@LN{481}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Type-Specific Failure Mechanisms}{7}{subsection.6.1}\protected@file@percent }
+\@LN{482}{6}
+\@LN{483}{6}
+\@LN{484}{6}
+\@LN{485}{6}
+\@LN{486}{6}
+\@LN{487}{6}
+\@LN{488}{6}
+\@LN{489}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Disambiguation Neglect}{7}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:dn}{{6.2}{7}{Disambiguation Neglect}{subsection.6.2}{}}
+\@LN{490}{6}
+\@LN{491}{6}
+\citation{berry_kamsties_2004}
+\citation{berry_kamsties_2004}
+\@LN@col{1}
+\@LN{492}{7}
+\@LN{493}{7}
+\@LN{494}{7}
+\@LN{495}{7}
+\@LN{496}{7}
+\@LN{497}{7}
+\@LN{498}{7}
+\@LN{499}{7}
+\@LN{500}{7}
+\@LN{501}{7}
+\@LN{502}{7}
+\@LN{503}{7}
+\@LN{504}{7}
+\@LN{505}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Convergent Nocuity}{8}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:nocuity}{{6.3}{8}{Convergent Nocuity}{subsection.6.3}{}}
+\@LN{506}{7}
+\@LN{507}{7}
+\@LN{508}{7}
+\@LN{509}{7}
+\@LN{510}{7}
+\@LN{511}{7}
+\@LN{512}{7}
+\@LN{513}{7}
+\@LN{514}{7}
+\@LN{515}{7}
+\@LN{516}{7}
+\@LN{517}{7}
+\@LN{518}{7}
+\@LN{519}{7}
+\@LN{520}{7}
+\@LN{521}{7}
+\@LN{522}{7}
+\@LN{523}{7}
+\@LN{524}{7}
+\@LN{525}{7}
+\@LN{526}{7}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{8}{Discussion and Conclusion}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Disambiguation neglect and prompt-level safety.}{8}{section*.21}\protected@file@percent }
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@LN{538}{7}
+\@LN{539}{7}
+\@LN{540}{7}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Convergent nocuity. (a)~Among majority-convergent violations ($\geq $3/5 models), 77\% reflect permissive interpretation; authorization scope shows near-universal permissive bias (99\%), while conditional precedence splits between permissive and restrictive. (b)~Pairwise Jaccard similarity of violation clause sets: cross-family mean (0.46) approaches within-family levels (0.54; dashed box), convergence reflects shared architectural biases rather than training-data overlap.}}{8}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:convergent_nocuity}{{6}{8}{Convergent nocuity. (a)~Among majority-convergent violations ($\geq $3/5 models), 77\% reflect permissive interpretation; authorization scope shows near-universal permissive bias (99\%), while conditional precedence splits between permissive and restrictive. (b)~Pairwise Jaccard similarity of violation clause sets: cross-family mean (0.46) approaches within-family levels (0.54; dashed box), convergence reflects shared architectural biases rather than training-data overlap}{figure.caption.20}{}}
+\@LN{541}{7}
+\@LN{542}{7}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\@LN{548}{7}
+\@writefile{toc}{\contentsline {paragraph}{Conclusion.}{8}{section*.22}\protected@file@percent }
+\@LN{549}{7}
+\@LN{550}{7}
+\@LN{551}{7}
+\@LN{552}{7}
+\@LN{553}{7}
+\@LN{554}{7}
+\@LN{555}{7}
+\@LN{556}{7}
+\@LN{557}{7}
+\newlabel{sec:limitations}{{7}{8}{Limitations}{section*.23}{}}
+\@LN{558}{7}
+\@LN{559}{7}
+\@LN{560}{7}
+\@LN{561}{7}
+\@LN{562}{7}
+\@LN{563}{7}
+\@LN{564}{7}
+\@LN{565}{7}
+\@LN{566}{7}
+\@LN{567}{7}
+\@LN{568}{7}
+\@LN{569}{7}
+\@LN{570}{7}
+\@LN{571}{7}
+\@LN{572}{7}
+\bibdata{references}
+\bibcite{anvari_lakens_2021}{{1}{2021}{{Anvari and Lakens}}{{}}}
+\bibcite{tau2_bench_2025}{{2}{2025}{{Barres et~al.}}{{Barres, Dong, Ray, Si, and Narasimhan}}}
+\bibcite{berry_kamsties_2004}{{3}{2003}{{Berry et~al.}}{{Berry, Kamsties, and Krieger}}}
+\bibcite{drip_r_2026}{{4}{2026}{{Borkakoty et~al.}}{{Borkakoty, Pohl, Wang, Chen, and Hou}}}
+\bibcite{chantree_2006}{{5}{2006}{{Chantree et~al.}}{{Chantree, Nuseibeh, de~Roeck, and Willis}}}
+\bibcite{policybank_2026}{{6}{2026}{{Choi et~al.}}{{Choi, Yoon, Le, Jha, and Pfister}}}
+\bibcite{cohen_1960}{{7}{1960}{{Cohen}}{{}}}
+\bibcite{dalpiaz_pinpointing_2018}{{8}{2018}{{Dalpiaz et~al.}}{{Dalpiaz, van~der Schalk, and Lucassen}}}
+\bibcite{ezzini_taphsir_2022}{{9}{2022}{{Ezzini et~al.}}{{Ezzini, Abualhaija, Arora, and Sabetzadeh}}}
+\bibcite{ferrari_ambiguity_2019}{{10}{2019}{{Ferrari and Esuli}}{{}}}
+\bibcite{ferreira_good_enough_2002}{{11}{2002}{{Ferreira et~al.}}{{Ferreira, Bailey, and Ferraro}}}
+\bibcite{frazier_rayner_1982}{{12}{1982}{{Frazier and Rayner}}{{}}}
+\bibcite{gleich_ambiguity_2010}{{13}{2010}{{Gleich et~al.}}{{Gleich, Creighton, and Kof}}}
+\bibcite{gur_arieh_ambiguity_collapse_2026}{{14}{2026}{{Gur-Arieh et~al.}}{{Gur-Arieh, Wang, and Fazelpour}}}
+\bibcite{gwet_2014}{{15}{2014}{{Gwet}}{{}}}
+\bibcite{hu_ambiguity_2025}{{16}{2025}{{Hu et~al.}}{{Hu, Wang, Shu, Paik, and Zhu}}}
+\bibcite{kamath_scope_2024}{{17}{2024}{{Kamath et~al.}}{{Kamath, Schuster, Vajjala, and Reddy}}}
+\bibcite{kennedy_vagueness_2007}{{18}{2007}{{Kennedy}}{{}}}
+\bibcite{krakovna2020specification}{{19}{2020}{{Krakovna et~al.}}{{Krakovna, Uesato, Mikulik, Rahtz, Everitt, Kumar, Kenton, Leike, and Legg}}}
+\@LN@col{1}
+\@LN{573}{8}
+\@LN{574}{8}
+\@LN{575}{8}
+\@LN{576}{8}
+\@LN{577}{8}
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\newlabel{sec:ethics}{{7}{9}{Ethical Considerations}{section*.24}{}}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN@col{2}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\@LN{668}{8}
+\@LN{669}{8}
+\@LN{670}{8}
+\@LN{671}{8}
+\@LN{672}{8}
+\@LN{673}{8}
+\@LN{674}{8}
+\bibcite{lakens_2017}{{20}{2017}{{Lakens}}{{}}}
+\bibcite{landis_koch_1977}{{21}{1977}{{Landis and Koch}}{{}}}
+\bibcite{li_garden_path_llm_2024}{{22}{2024{a}}{{Li et~al.}}{{Li, Feng, Narang, Peng, Cai, Shah, and Varma}}}
+\bibcite{li_ambiguity_taxonomy_2024}{{23}{2024{b}}{{Li et~al.}}{{Li, Liu, Wu, and Smith}}}
+\bibcite{li_sopbench_2025}{{24}{2025}{{Li et~al.}}{{Li, Huang, Wang, Zhang, Antoniades, Hua, Zhu, Zeng, Wang, Wang, and Yan}}}
+\bibcite{liu_ambiguity_2023}{{25}{2023}{{Liu et~al.}}{{Liu, Wu, Michael, Suhr, West, Koller, Swayamdipta, Smith, and Choi}}}
+\bibcite{massey_ambiguity_re_2014}{{26}{2014}{{Massey et~al.}}{{Massey, Rutledge, Ant{\'o}n, and Swire}}}
+\bibcite{poesio_artstein_2005}{{27}{2005}{{Poesio and Artstein}}{{}}}
+\bibcite{toolemu_2024}{{28}{2024}{{Ruan et~al.}}{{Ruan, Dong, Wang, Pitis, Zhou, Ba, Dubois, Maddison, and Hashimoto}}}
+\bibcite{tjur_2009}{{29}{2009}{{Tjur}}{{}}}
+\bibcite{vandeemter_semantic_1996}{{30}{1996}{{van Deemter and Peters}}{{}}}
+\bibcite{wasow_ambiguity_2005}{{31}{2005}{{Wasow et~al.}}{{Wasow, Perfors, and Beaver}}}
+\bibcite{phantompolicy_2026}{{32}{2026}{{Wu and Gong}}{{}}}
+\bibcite{tau_bench_2024}{{33}{2025}{{Yao et~al.}}{{Yao, Shinn, Razavi, and Narasimhan}}}
+\bibcite{yin_safeagentbench_2025}{{34}{2025}{{Yin et~al.}}{{Yin, Pang, Ding, Chen, Bi, Xiong, Huang, Xiang, Shao, and Chen}}}
+\bibcite{rjudge_2024}{{35}{2024}{{Yuan et~al.}}{{Yuan, He, Dong, Wang, Zhao, Xia, Xu, Zhou, Li, Zhang, Wang, and Liu}}}
+\bibcite{zheng_llm_judge_2024}{{36}{2024}{{Zheng et~al.}}{{Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li, Li, Xing, Zhang, Gonzalez, and Stoica}}}
+\citation{lakens_2017}
+\@LN@col{1}
+\@LN{675}{9}
+\@LN{676}{9}
+\@LN{677}{9}
+\@LN{678}{9}
+\@LN{679}{9}
+\@LN{680}{9}
+\@LN{681}{9}
+\@LN{682}{9}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN@col{2}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Data and Code Availability}{10}{appendix.A}\protected@file@percent }
+\newlabel{app:data_code}{{A}{10}{Data and Code Availability}{appendix.A}{}}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\@LN{768}{9}
+\@writefile{toc}{\contentsline {section}{\numberline {B}TOST Equivalence Sensitivity}{10}{appendix.B}\protected@file@percent }
+\newlabel{app:tost}{{B}{10}{TOST Equivalence Sensitivity}{appendix.B}{}}
+\@LN{769}{9}
+\@LN{770}{9}
+\@LN{771}{9}
+\@LN{772}{9}
+\@LN{773}{9}
+\@LN{774}{9}
+\@LN{775}{9}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Cost anchoring.}{11}{section*.26}\protected@file@percent }
+\@LN{776}{10}
+\@LN{777}{10}
+\@LN{778}{10}
+\@LN{779}{10}
+\@LN{780}{10}
+\@LN{781}{10}
+\@LN{782}{10}
+\@LN{783}{10}
+\@LN{784}{10}
+\@LN{785}{10}
+\@LN{786}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Mitigation Experiment}{11}{appendix.C}\protected@file@percent }
+\newlabel{app:mitigation}{{C}{11}{Mitigation Experiment}{appendix.C}{}}
+\@LN{787}{10}
+\@LN{788}{10}
+\@LN{789}{10}
+\@LN{790}{10}
+\@LN{791}{10}
+\@LN{792}{10}
+\@LN{793}{10}
+\@LN{794}{10}
+\@LN{795}{10}
+\@LN{796}{10}
+\@LN{797}{10}
+\@LN{798}{10}
+\@LN{799}{10}
+\@LN{800}{10}
+\@LN{801}{10}
+\@LN{802}{10}
+\@LN{803}{10}
+\@LN{804}{10}
+\@LN{805}{10}
+\@writefile{toc}{\contentsline {paragraph}{Prompt text.}{11}{section*.27}\protected@file@percent }
+\@LN{806}{10}
+\@LN{807}{10}
+\@LN{808}{10}
+\@LN{809}{10}
+\@LN{810}{10}
+\@LN{811}{10}
+\@LN{812}{10}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN{817}{10}
+\@LN{818}{10}
+\@writefile{toc}{\contentsline {paragraph}{Generic vs.\ type-specific prompts.}{11}{section*.29}\protected@file@percent }
+\@LN{819}{10}
+\@LN{820}{10}
+\@LN{821}{10}
+\@LN{822}{10}
+\@LN{823}{10}
+\@LN{824}{10}
+\@LN@col{2}
+\@LN{825}{10}
+\@LN{826}{10}
+\@LN{827}{10}
+\@LN{828}{10}
+\@LN{829}{10}
+\@LN{830}{10}
+\@LN{831}{10}
+\@LN{832}{10}
+\@LN{833}{10}
+\@LN{834}{10}
+\@LN{835}{10}
+\@LN{836}{10}
+\@LN{837}{10}
+\@LN{838}{10}
+\@LN{839}{10}
+\@LN{840}{10}
+\@LN{841}{10}
+\@LN{842}{10}
+\@LN{843}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Severity Threshold Comparison}{11}{appendix.D}\protected@file@percent }
+\newlabel{app:severity}{{D}{11}{Severity Threshold Comparison}{appendix.D}{}}
+\@LN{844}{10}
+\@LN{845}{10}
+\@LN{846}{10}
+\@LN{847}{10}
+\@LN{848}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Ambiguity Type Detection Experiment}{11}{appendix.E}\protected@file@percent }
+\newlabel{app:detection}{{E}{11}{Ambiguity Type Detection Experiment}{appendix.E}{}}
+\@LN{849}{10}
+\@LN{850}{10}
+\@LN{851}{10}
+\@LN{852}{10}
+\@LN{853}{10}
+\@LN{854}{10}
+\@LN{855}{10}
+\@LN{856}{10}
+\@LN{857}{10}
+\@LN{858}{10}
+\@LN{859}{10}
+\@LN{860}{10}
+\@LN{861}{10}
+\@LN{862}{10}
+\@LN{863}{10}
+\@LN{864}{10}
+\@LN{865}{10}
+\@LN{866}{10}
+\@LN{867}{10}
+\@LN{868}{10}
+\@LN{869}{10}
+\@LN{870}{10}
+\@LN{871}{10}
+\@LN{872}{10}
+\@LN{873}{10}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Violation rate change ($\Delta $pp) after adding type-specific disambiguation instructions. Negative values indicate reduction. Baseline violation rates are shown in parentheses. Coreferential was excluded because it was not included in the mitigation experiment.}}{12}{table.caption.28}\protected@file@percent }
+\newlabel{tab:mitigation}{{6}{12}{Violation rate change ($\Delta $pp) after adding type-specific disambiguation instructions. Negative values indicate reduction. Baseline violation rates are shown in parentheses. Coreferential was excluded because it was not included in the mitigation experiment}{table.caption.28}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Generic vs.\ type-specific disambiguation prompts (GPT-5.4, $n = 50$ per cell). $\Delta $pp relative to baseline (ambiguous, no prompt). All McNemar $p > 0.05$.}}{12}{table.caption.30}\protected@file@percent }
+\newlabel{tab:generic_vs_specific}{{7}{12}{Generic vs.\ type-specific disambiguation prompts (GPT-5.4, $n = 50$ per cell). $\Delta $pp relative to baseline (ambiguous, no prompt). All McNemar $p > 0.05$}{table.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Claim-level comparison under two severity thresholds. C1--C4 denote the binary effect, type partial ordering, layer grouping, and model$\times $type interaction, respectively (\S  \ref {sec:results}).}}{12}{table.caption.31}\protected@file@percent }
+\newlabel{tab:severity_comparison}{{8}{12}{Claim-level comparison under two severity thresholds. C1--C4 denote the binary effect, type partial ordering, layer grouping, and model$\times $type interaction, respectively (\S \ref {sec:results})}{table.caption.31}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Proof-of-concept detection classifier (GPT-4.1, zero-shot, 5-fold CV). Binary ambiguity detection: F1\,=\,0.81, FPR\,=\,4.4\%. Six-class macro F1\,=\,0.63.}}{12}{table.caption.32}\protected@file@percent }
+\newlabel{tab:detection}{{9}{12}{Proof-of-concept detection classifier (GPT-4.1, zero-shot, 5-fold CV). Binary ambiguity detection: F1\,=\,0.81, FPR\,=\,4.4\%. Six-class macro F1\,=\,0.63}{table.caption.32}{}}
+\@LN{874}{11}
+\@LN{875}{11}
+\@LN{876}{11}
+\@LN{877}{11}
+\@LN@col{2}
+\@LN{878}{11}
+\@LN{879}{11}
+\@LN{880}{11}
+\@LN{881}{11}
+\@LN{882}{11}
+\@LN{883}{11}
+\@LN{884}{11}
+\@LN{885}{11}
+\@LN{886}{11}
+\@LN{887}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Replication on Additional Model Families}{12}{appendix.F}\protected@file@percent }
+\newlabel{app:model_expansion}{{F}{12}{Replication on Additional Model Families}{appendix.F}{}}
+\@LN{888}{11}
+\@LN{889}{11}
+\@LN{890}{11}
+\@LN{891}{11}
+\@LN{892}{11}
+\@LN{893}{11}
+\@LN{894}{11}
+\@LN{895}{11}
+\@LN{896}{11}
+\@LN{897}{11}
+\@LN{898}{11}
+\@LN{899}{11}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Replication results on two additional model families. C2 rank $\rho $ is computed against the original five-model pooled type ranking.}}{12}{table.caption.33}\protected@file@percent }
+\newlabel{tab:expansion_overall}{{10}{12}{Replication results on two additional model families. C2 rank $\rho $ is computed against the original five-model pooled type ranking}{table.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Per-type ambiguous violation rates (\%) for replication models vs.\ original five-model pooled rates.}}{12}{table.caption.34}\protected@file@percent }
+\newlabel{tab:expansion_pertype}{{11}{12}{Per-type ambiguous violation rates (\%) for replication models vs.\ original five-model pooled rates}{table.caption.34}{}}
+\@writefile{toc}{\contentsline {paragraph}{C1 replication.}{12}{section*.35}\protected@file@percent }
+\@LN{900}{11}
+\@LN{901}{11}
+\@LN{902}{11}
+\@LN@col{1}
+\@LN{903}{12}
+\@LN{904}{12}
+\@LN{905}{12}
+\@LN{906}{12}
+\@LN{907}{12}
+\@LN{908}{12}
+\@LN{909}{12}
+\@LN{910}{12}
+\@LN{911}{12}
+\@LN{912}{12}
+\@LN{913}{12}
+\@LN{914}{12}
+\@LN{915}{12}
+\@writefile{toc}{\contentsline {paragraph}{C2 replication.}{13}{section*.36}\protected@file@percent }
+\@LN{916}{12}
+\@LN{917}{12}
+\@LN{918}{12}
+\@LN{919}{12}
+\@LN{920}{12}
+\@LN{921}{12}
+\@LN{922}{12}
+\@LN{923}{12}
+\@LN{924}{12}
+\@LN{925}{12}
+\@LN{926}{12}
+\@LN{927}{12}
+\@LN{928}{12}
+\@LN{929}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Incompleteness Confound Analysis}{13}{appendix.G}\protected@file@percent }
+\newlabel{app:confound}{{G}{13}{Incompleteness Confound Analysis}{appendix.G}{}}
+\@LN{930}{12}
+\@LN{931}{12}
+\@LN{932}{12}
+\@LN{933}{12}
+\@LN{934}{12}
+\@LN{935}{12}
+\@LN{936}{12}
+\@LN{937}{12}
+\@LN{938}{12}
+\@LN{939}{12}
+\@LN{940}{12}
+\@LN{941}{12}
+\@LN{942}{12}
+\@LN{943}{12}
+\@LN{944}{12}
+\@LN{945}{12}
+\@LN{946}{12}
+\@LN{947}{12}
+\@LN{948}{12}
+\@LN{949}{12}
+\@LN{950}{12}
+\@LN{951}{12}
+\@LN{952}{12}
+\@LN@col{2}
+\@LN{953}{12}
+\@LN{954}{12}
+\@LN{955}{12}
+\@LN{956}{12}
+\@LN{957}{12}
+\@LN{958}{12}
+\@LN{959}{12}
+\@LN{960}{12}
+\@LN{961}{12}
+\@LN{962}{12}
+\@LN{963}{12}
+\@LN{964}{12}
+\@LN{965}{12}
+\@LN{966}{12}
+\@LN{967}{12}
+\@LN{968}{12}
+\@LN{969}{12}
+\@LN{970}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Per-Type Judge Reliability}{13}{appendix.H}\protected@file@percent }
+\newlabel{app:per_type_agreement}{{H}{13}{Per-Type Judge Reliability}{appendix.H}{}}
+\@LN{971}{12}
+\@LN{972}{12}
+\@LN{973}{12}
+\@LN{974}{12}
+\@LN{975}{12}
+\@LN{976}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Per-type human--LLM binary agreement (moderate-or-above threshold). CI: bootstrap 95\% confidence interval.}}{13}{table.caption.37}\protected@file@percent }
+\newlabel{tab:per_type_agreement}{{12}{13}{Per-type human--LLM binary agreement (moderate-or-above threshold). CI: bootstrap 95\% confidence interval}{table.caption.37}{}}
+\@LN{977}{12}
+\@LN{978}{12}
+\@LN{979}{12}
+\@LN{980}{12}
+\@LN{981}{12}
+\@LN{982}{12}
+\@LN{983}{12}
+\@LN{984}{12}
+\@LN{985}{12}
+\@LN{986}{12}
+\@LN{987}{12}
+\@LN{988}{12}
+\@LN{989}{12}
+\@LN{990}{12}
+\@LN{991}{12}
+\citation{tjur_2009}
+\citation{tjur_2009}
+\@LN@col{1}
+\@LN{992}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Information Delta Logistic Regression}{14}{appendix.I}\protected@file@percent }
+\newlabel{app:regression}{{I}{14}{Information Delta Logistic Regression}{appendix.I}{}}
+\@LN{993}{13}
+\@LN{994}{13}
+\@LN{995}{13}
+\@LN{996}{13}
+\@LN{997}{13}
+\@LN{998}{13}
+\@LN{999}{13}
+\@LN{1000}{13}
+\@LN{1001}{13}
+\@LN{1002}{13}
+\@LN{1003}{13}
+\@LN{1004}{13}
+\@LN{1005}{13}
+\@LN{1006}{13}
+\@LN{1007}{13}
+\@LN{1008}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Logistic regression predicting violation (moderate+). Reference: authorization scope, Claude Sonnet 4.6. $N = 2{,}997$, Tjur's pseudo-$R^2 = 0.175$ \citep  {tjur_2009}.}}{14}{table.caption.38}\protected@file@percent }
+\newlabel{tab:logistic_regression}{{13}{14}{Logistic regression predicting violation (moderate+). Reference: authorization scope, Claude Sonnet 4.6. $N = 2{,}997$, Tjur's pseudo-$R^2 = 0.175$ \citep {tjur_2009}}{table.caption.38}{}}
+\@LN{1009}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {J}Mantel-Haenszel Stratified Analysis}{14}{appendix.J}\protected@file@percent }
+\newlabel{app:mantel_haenszel}{{J}{14}{Mantel-Haenszel Stratified Analysis}{appendix.J}{}}
+\@LN{1010}{13}
+\@LN{1011}{13}
+\@LN{1012}{13}
+\@LN{1013}{13}
+\@LN{1014}{13}
+\@LN{1015}{13}
+\@LN{1016}{13}
+\@LN{1017}{13}
+\@LN{1018}{13}
+\@LN{1019}{13}
+\@LN{1020}{13}
+\@LN{1021}{13}
+\@LN{1022}{13}
+\@LN{1023}{13}
+\@LN{1024}{13}
+\@LN@col{2}
+\@LN{1025}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Token-Length Sensitivity Analysis}{14}{appendix.K}\protected@file@percent }
+\newlabel{app:token_sensitivity}{{K}{14}{Token-Length Sensitivity Analysis}{appendix.K}{}}
+\@LN{1026}{13}
+\@LN{1027}{13}
+\@LN{1028}{13}
+\@LN{1029}{13}
+\@LN{1030}{13}
+\@LN{1031}{13}
+\@LN{1032}{13}
+\@LN{1033}{13}
+\@LN{1034}{13}
+\@LN{1035}{13}
+\@LN{1036}{13}
+\@LN{1037}{13}
+\@LN{1038}{13}
+\@LN{1039}{13}
+\@LN{1040}{13}
+\@LN{1041}{13}
+\@LN{1042}{13}
+\@LN{1043}{13}
+\@LN{1044}{13}
+\@LN{1045}{13}
+\@LN{1046}{13}
+\@LN{1047}{13}
+\@LN{1048}{13}
+\@LN{1049}{13}
+\@LN{1050}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Bootstrap Cluster Analysis}{14}{appendix.L}\protected@file@percent }
+\newlabel{app:cluster}{{L}{14}{Bootstrap Cluster Analysis}{appendix.L}{}}
+\@LN{1051}{13}
+\@LN{1052}{13}
+\@LN{1053}{13}
+\@LN{1054}{13}
+\@LN{1055}{13}
+\@LN{1056}{13}
+\@LN{1057}{13}
+\@LN{1058}{13}
+\@LN{1059}{13}
+\@LN{1060}{13}
+\@LN{1061}{13}
+\@LN{1062}{13}
+\@LN{1063}{13}
+\@LN{1064}{13}
+\@LN{1065}{13}
+\@LN{1066}{13}
+\@LN{1067}{13}
+\@LN{1068}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Clause-Level Variance}{14}{appendix.M}\protected@file@percent }
+\newlabel{app:clause_variance}{{M}{14}{Clause-Level Variance}{appendix.M}{}}
+\@LN{1069}{13}
+\@LN{1070}{13}
+\@LN{1071}{13}
+\@LN{1072}{13}
+\@LN{1073}{13}
+\citation{li_ambiguity_taxonomy_2024}
+\@LN@col{1}
+\@LN{1074}{14}
+\@LN{1075}{14}
+\@LN{1076}{14}
+\@LN{1077}{14}
+\@LN{1078}{14}
+\@LN{1079}{14}
+\@LN{1080}{14}
+\@LN{1081}{14}
+\@LN{1082}{14}
+\@LN{1083}{14}
+\@LN{1084}{14}
+\@LN{1085}{14}
+\@LN{1086}{14}
+\@LN{1087}{14}
+\@LN{1088}{14}
+\@LN{1089}{14}
+\@LN{1090}{14}
+\@LN{1091}{14}
+\@LN{1092}{14}
+\@LN{1093}{14}
+\@LN{1094}{14}
+\@LN{1095}{14}
+\@LN{1096}{14}
+\@LN{1097}{14}
+\@writefile{toc}{\contentsline {paragraph}{Concordant pair decomposition.}{15}{section*.39}\protected@file@percent }
+\@LN{1098}{14}
+\@LN{1099}{14}
+\@LN{1100}{14}
+\@LN{1101}{14}
+\@LN{1102}{14}
+\@LN{1103}{14}
+\@LN{1104}{14}
+\@LN{1105}{14}
+\@LN{1106}{14}
+\@LN{1107}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Multiple Comparison Correction}{15}{appendix.N}\protected@file@percent }
+\newlabel{app:multiple_comparison}{{N}{15}{Multiple Comparison Correction}{appendix.N}{}}
+\@LN{1108}{14}
+\@LN{1109}{14}
+\@LN{1110}{14}
+\@LN{1111}{14}
+\@LN{1112}{14}
+\@LN{1113}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {O}DRIP-R Category Mapping}{15}{appendix.O}\protected@file@percent }
+\newlabel{app:drip_mapping}{{O}{15}{DRIP-R Category Mapping}{appendix.O}{}}
+\@LN{1114}{14}
+\@LN{1115}{14}
+\@LN{1116}{14}
+\@LN{1117}{14}
+\@LN{1118}{14}
+\@LN{1119}{14}
+\@LN{1120}{14}
+\@LN{1121}{14}
+\@LN@col{2}
+\@LN{1122}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {P}Li et al.\ (2024) Taxonomy Mapping}{15}{appendix.P}\protected@file@percent }
+\newlabel{app:li_mapping}{{P}{15}{Li et al.\ (2024) Taxonomy Mapping}{appendix.P}{}}
+\@LN{1123}{14}
+\@LN{1124}{14}
+\@LN{1125}{14}
+\@LN{1126}{14}
+\@LN{1127}{14}
+\@LN{1128}{14}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Mapping from Li et al.'s 11-type NLP taxonomy to our 6-type policy ambiguity taxonomy. Criteria: (1) RE attestation, (2) minimal-pair constructibility, (3) mutual exclusivity.}}{15}{table.caption.40}\protected@file@percent }
+\newlabel{tab:li_mapping}{{14}{15}{Mapping from Li et al.'s 11-type NLP taxonomy to our 6-type policy ambiguity taxonomy. Criteria: (1) RE attestation, (2) minimal-pair constructibility, (3) mutual exclusivity}{table.caption.40}{}}
+\@LN{1129}{14}
+\@LN{1130}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}Cross-Model Type Ranking Concordance}{15}{appendix.Q}\protected@file@percent }
+\newlabel{app:kendall_w}{{Q}{15}{Cross-Model Type Ranking Concordance}{appendix.Q}{}}
+\@LN{1131}{14}
+\@LN{1132}{14}
+\@LN{1133}{14}
+\@LN{1134}{14}
+\@LN{1135}{14}
+\@LN{1136}{14}
+\@LN{1137}{14}
+\@LN{1138}{14}
+\@LN{1139}{14}
+\@LN{1140}{14}
+\@LN{1141}{14}
+\@LN{1142}{14}
+\@LN{1143}{14}
+\@LN{1144}{14}
+\@LN{1145}{14}
+\@LN{1146}{14}
+\@LN{1147}{14}
+\@LN{1148}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {R}C4 Interaction Without Authorization Scope}{15}{appendix.R}\protected@file@percent }
+\newlabel{app:c4_sans_auth}{{R}{15}{C4 Interaction Without Authorization Scope}{appendix.R}{}}
+\@LN{1149}{14}
+\@LN{1150}{14}
+\@LN{1151}{14}
+\@LN@col{1}
+\@LN{1152}{15}
+\@LN{1153}{15}
+\@LN{1154}{15}
+\@LN{1155}{15}
+\@LN{1156}{15}
+\@LN{1157}{15}
+\@LN{1158}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {S}Core Analysis Excluding Authorization Scope}{16}{appendix.S}\protected@file@percent }
+\newlabel{app:sans_auth}{{S}{16}{Core Analysis Excluding Authorization Scope}{appendix.S}{}}
+\@LN{1159}{15}
+\@LN{1160}{15}
+\@LN{1161}{15}
+\@LN{1162}{15}
+\@LN{1163}{15}
+\@LN{1164}{15}
+\@LN{1165}{15}
+\@LN{1166}{15}
+\@LN{1167}{15}
+\@LN{1168}{15}
+\@LN{1169}{15}
+\@LN{1170}{15}
+\@LN{1171}{15}
+\@LN{1172}{15}
+\@LN{1173}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {T}Per-Type Clause Length Analysis}{16}{appendix.T}\protected@file@percent }
+\newlabel{app:clause_length}{{T}{16}{Per-Type Clause Length Analysis}{appendix.T}{}}
+\@LN{1174}{15}
+\@LN{1175}{15}
+\@LN{1176}{15}
+\@LN{1177}{15}
+\@LN{1178}{15}
+\@LN{1179}{15}
+\@LN{1180}{15}
+\@LN{1181}{15}
+\@LN{1182}{15}
+\@LN{1183}{15}
+\@LN{1184}{15}
+\@LN{1185}{15}
+\@LN{1186}{15}
+\@LN{1187}{15}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Per-type clause length (words). Coreferential excluded (identical surface forms).}}{16}{table.caption.41}\protected@file@percent }
+\newlabel{tab:token_delta}{{15}{16}{Per-type clause length (words). Coreferential excluded (identical surface forms)}{table.caption.41}{}}
+\@LN{1188}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {U}Within-Judge-Group Type Rankings}{16}{appendix.U}\protected@file@percent }
+\newlabel{app:judge_group_ranking}{{U}{16}{Within-Judge-Group Type Rankings}{appendix.U}{}}
+\@LN{1189}{15}
+\@LN{1190}{15}
+\@LN{1191}{15}
+\@LN{1192}{15}
+\@LN@col{2}
+\@LN{1193}{15}
+\@LN{1194}{15}
+\@LN{1195}{15}
+\@LN{1196}{15}
+\@LN{1197}{15}
+\@LN{1198}{15}
+\@LN{1199}{15}
+\@LN{1200}{15}
+\@LN{1201}{15}
+\@LN{1202}{15}
+\@LN{1203}{15}
+\@LN{1204}{15}
+\@LN{1205}{15}
+\@LN{1206}{15}
+\@LN{1207}{15}
+\@LN{1208}{15}
+\@LN{1209}{15}
+\@LN{1210}{15}
+\@LN{1211}{15}
+\@LN{1212}{15}
+\@LN{1213}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Binary Effect Excluding Incompleteness}{16}{appendix.V}\protected@file@percent }
+\newlabel{app:sans_incompleteness}{{V}{16}{Binary Effect Excluding Incompleteness}{appendix.V}{}}
+\@LN{1214}{15}
+\@LN{1215}{15}
+\@LN{1216}{15}
+\@LN{1217}{15}
+\@LN{1218}{15}
+\@LN{1219}{15}
+\@LN{1220}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {W}Clause Pair Construction}{16}{appendix.W}\protected@file@percent }
+\newlabel{app:pipeline}{{W}{16}{Clause Pair Construction}{appendix.W}{}}
+\@LN{1221}{15}
+\@LN{1222}{15}
+\@LN{1223}{15}
+\@LN{1224}{15}
+\@LN{1225}{15}
+\@LN{1226}{15}
+\@LN{1227}{15}
+\@LN{1228}{15}
+\@writefile{toc}{\contentsline {paragraph}{Quality control.}{16}{section*.42}\protected@file@percent }
+\@LN{1229}{15}
+\@LN{1230}{15}
+\@LN{1231}{15}
+\@LN{1232}{15}
+\@LN{1233}{15}
+\@LN{1234}{15}
+\@LN{1235}{15}
+\@writefile{toc}{\contentsline {paragraph}{Annotator training.}{16}{section*.43}\protected@file@percent }
+\@LN{1236}{15}
+\@LN{1237}{15}
+\@LN{1238}{15}
+\@LN{1239}{15}
+\@LN{1240}{15}
+\@LN@col{1}
+\@LN{1241}{16}
+\@LN{1242}{16}
+\@LN{1243}{16}
+\@LN{1244}{16}
+\@LN{1245}{16}
+\@LN{1246}{16}
+\@LN{1247}{16}
+\@LN{1248}{16}
+\@LN{1249}{16}
+\@writefile{toc}{\contentsline {paragraph}{Policy injection.}{17}{section*.44}\protected@file@percent }
+\@LN{1250}{16}
+\@LN{1251}{16}
+\@LN{1252}{16}
+\@LN{1253}{16}
+\@LN{1254}{16}
+\@LN{1255}{16}
+\@LN{1256}{16}
+\@LN{1257}{16}
+\@LN{1258}{16}
+\@LN{1259}{16}
+\@LN{1260}{16}
+\@LN{1261}{16}
+\@LN{1262}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {X}Clause Pair Examples}{17}{appendix.X}\protected@file@percent }
+\newlabel{app:clause_examples}{{X}{17}{Clause Pair Examples}{appendix.X}{}}
+\@LN{1263}{16}
+\@LN{1264}{16}
+\@LN{1265}{16}
+\@LN{1266}{16}
+\@LN{1267}{16}
+\@LN{1268}{16}
+\@writefile{toc}{\contentsline {paragraph}{Additional scopal examples.}{17}{section*.46}\protected@file@percent }
+\@LN{1269}{16}
+\@LN{1270}{16}
+\@LN{1271}{16}
+\@LN{1272}{16}
+\@LN{1273}{16}
+\@LN{1274}{16}
+\@LN{1275}{16}
+\@LN{1276}{16}
+\@LN{1277}{16}
+\@LN{1278}{16}
+\@LN{1279}{16}
+\@LN{1280}{16}
+\@LN{1281}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {Y}Type--Mechanism Mutual Information}{17}{appendix.Y}\protected@file@percent }
+\newlabel{app:type_mechanism}{{Y}{17}{Type--Mechanism Mutual Information}{appendix.Y}{}}
+\@LN{1282}{16}
+\@LN{1283}{16}
+\@LN{1284}{16}
+\@LN{1285}{16}
+\@LN{1286}{16}
+\@LN{1287}{16}
+\@LN{1288}{16}
+\@LN@col{2}
+\@LN{1289}{16}
+\@LN{1290}{16}
+\@LN{1291}{16}
+\@LN{1292}{16}
+\@LN{1293}{16}
+\@LN{1294}{16}
+\@LN{1295}{16}
+\@LN{1296}{16}
+\@LN{1297}{16}
+\@LN{1298}{16}
+\@LN{1299}{16}
+\@LN{1300}{16}
+\@LN{1301}{16}
+\@LN{1302}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {Z}Disambiguation Awareness by Model and Type}{17}{appendix.Z}\protected@file@percent }
+\newlabel{app:awareness_breakdown}{{Z}{17}{Disambiguation Awareness by Model and Type}{appendix.Z}{}}
+\@LN{1303}{16}
+\@LN{1304}{16}
+\@LN{1305}{16}
+\@LN{1306}{16}
+\@LN{1307}{16}
+\@LN{1308}{16}
+\@LN{1309}{16}
+\@LN{1310}{16}
+\@LN{1311}{16}
+\@LN{1312}{16}
+\@LN{1313}{16}
+\@LN{1314}{16}
+\@LN{1315}{16}
+\@LN{1316}{16}
+\@LN{1317}{16}
+\@LN{1318}{16}
+\@LN{1319}{16}
+\@LN{1320}{16}
+\@LN{1321}{16}
+\@LN{1322}{16}
+\@LN{1323}{16}
+\@LN{1324}{16}
+\@LN{1325}{16}
+\@LN{1326}{16}
+\@LN{1327}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {AA}Convergent Violation Direction}{17}{appendix.Alph27}\protected@file@percent }
+\newlabel{app:attractor}{{AA}{17}{Convergent Violation Direction}{appendix.Alph27}{}}
+\@LN{1328}{16}
+\@LN{1329}{16}
+\@LN{1330}{16}
+\@LN{1331}{16}
+\@LN{1332}{16}
+\@LN{1333}{16}
+\@writefile{toc}{\contentsline {paragraph}{Overall distribution.}{17}{section*.51}\protected@file@percent }
+\@LN{1334}{16}
+\@LN{1335}{16}
+\@LN{1336}{16}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Representative clause pairs from the matched-pair stimulus set (one per ambiguity type). Full set of 300 pairs available in supplementary materials.}}{18}{table.caption.45}\protected@file@percent }
+\newlabel{tab:clause_examples}{{16}{18}{Representative clause pairs from the matched-pair stimulus set (one per ambiguity type). Full set of 300 pairs available in supplementary materials}{table.caption.45}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Additional scopal clause pair examples showing quantifier/modifier scope interactions.}}{18}{table.caption.47}\protected@file@percent }
+\newlabel{tab:scopal_examples}{{17}{18}{Additional scopal clause pair examples showing quantifier/modifier scope interactions}{table.caption.47}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Type--mechanism association strength. MI = mutual information (bits). NMI = normalized MI.}}{18}{table.caption.48}\protected@file@percent }
+\newlabel{tab:type_mechanism_mi}{{18}{18}{Type--mechanism association strength. MI = mutual information (bits). NMI = normalized MI}{table.caption.48}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Type--mechanism confusion matrix (3-mechanism + other). Cell values are trace counts across all five models ($N = 614$).}}{18}{table.caption.49}\protected@file@percent }
+\newlabel{tab:type_mechanism_confusion}{{19}{18}{Type--mechanism confusion matrix (3-mechanism + other). Cell values are trace counts across all five models ($N = 614$)}{table.caption.49}{}}
+\@LN{1337}{17}
+\@LN{1338}{17}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Disambiguation awareness counts (aware/total violations) by model and ambiguity type. Rates in the margin row are percentages of each model's total violations.}}{18}{table.caption.50}\protected@file@percent }
+\newlabel{tab:awareness_matrix}{{20}{18}{Disambiguation awareness counts (aware/total violations) by model and ambiguity type. Rates in the margin row are percentages of each model's total violations}{table.caption.50}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Convergent violation direction by ambiguity type. PERM = permissive, REST = restrictive, LIT = literal.}}{18}{table.caption.52}\protected@file@percent }
+\newlabel{tab:attractor_type}{{21}{18}{Convergent violation direction by ambiguity type. PERM = permissive, REST = restrictive, LIT = literal}{table.caption.52}{}}
+\@LN{1339}{17}
+\@LN{1340}{17}
+\@LN{1341}{17}
+\@LN{1342}{17}
+\@LN{1343}{17}
+\@LN{1344}{17}
+\@LN{1345}{17}
+\citation{li_sopbench_2025}
+\@LN@col{1}
+\@LN{1346}{18}
+\@writefile{toc}{\contentsline {paragraph}{Cross-domain stability.}{19}{section*.53}\protected@file@percent }
+\@LN{1347}{18}
+\@LN{1348}{18}
+\@LN{1349}{18}
+\@LN{1350}{18}
+\@LN{1351}{18}
+\@LN{1352}{18}
+\@LN{1353}{18}
+\@writefile{toc}{\contentsline {paragraph}{By convergence level.}{19}{section*.54}\protected@file@percent }
+\@LN{1354}{18}
+\@LN{1355}{18}
+\@LN{1356}{18}
+\@LN{1357}{18}
+\@writefile{toc}{\contentsline {paragraph}{Mechanism group comparison.}{19}{section*.55}\protected@file@percent }
+\@LN{1358}{18}
+\@LN{1359}{18}
+\@LN{1360}{18}
+\@LN{1361}{18}
+\@LN{1362}{18}
+\@LN{1363}{18}
+\@LN{1364}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {AB}Clause-Level Risk Predictors}{19}{appendix.Alph28}\protected@file@percent }
+\newlabel{app:clause_predictors}{{AB}{19}{Clause-Level Risk Predictors}{appendix.Alph28}{}}
+\@LN{1365}{18}
+\@LN{1366}{18}
+\@LN{1367}{18}
+\@LN{1368}{18}
+\@LN{1369}{18}
+\@LN{1370}{18}
+\@LN{1371}{18}
+\@LN{1372}{18}
+\@LN{1373}{18}
+\@LN{1374}{18}
+\@LN{1375}{18}
+\@LN{1376}{18}
+\@LN{1377}{18}
+\@LN{1378}{18}
+\@LN{1379}{18}
+\@LN{1380}{18}
+\@LN{1381}{18}
+\@LN{1382}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {AC}Cross-Domain Analysis}{19}{appendix.Alph29}\protected@file@percent }
+\newlabel{app:cross_domain}{{AC}{19}{Cross-Domain Analysis}{appendix.Alph29}{}}
+\@LN{1383}{18}
+\@LN{1384}{18}
+\@LN{1385}{18}
+\@LN{1386}{18}
+\@LN{1387}{18}
+\@LN{1388}{18}
+\@LN{1389}{18}
+\@LN{1390}{18}
+\@LN{1391}{18}
+\@LN{1392}{18}
+\@LN{1393}{18}
+\@LN@col{2}
+\@LN{1394}{18}
+\@LN{1395}{18}
+\@LN{1396}{18}
+\@LN{1397}{18}
+\@LN{1398}{18}
+\@LN{1399}{18}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Per-type ambiguous violation rates (\%) by domain.}}{19}{table.caption.56}\protected@file@percent }
+\newlabel{tab:cross_domain}{{22}{19}{Per-type ambiguous violation rates (\%) by domain}{table.caption.56}{}}
+\@LN{1400}{18}
+\@LN{1401}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {AD}Cross-Benchmark Evaluation (SOPBench)}{19}{appendix.Alph30}\protected@file@percent }
+\newlabel{app:sopbench}{{AD}{19}{Cross-Benchmark Evaluation (SOPBench)}{appendix.Alph30}{}}
+\@LN{1402}{18}
+\@LN{1403}{18}
+\@LN{1404}{18}
+\@LN{1405}{18}
+\@LN{1406}{18}
+\@LN{1407}{18}
+\@LN{1408}{18}
+\@LN{1409}{18}
+\@LN{1410}{18}
+\@LN{1411}{18}
+\@LN{1412}{18}
+\@LN{1413}{18}
+\@writefile{toc}{\contentsline {paragraph}{Results.}{19}{section*.57}\protected@file@percent }
+\@LN{1414}{18}
+\@LN{1415}{18}
+\@LN{1416}{18}
+\@LN{1417}{18}
+\@LN{1418}{18}
+\@LN{1419}{18}
+\@LN{1420}{18}
+\@LN{1421}{18}
+\@LN{1422}{18}
+\@LN{1423}{18}
+\@writefile{toc}{\contentsline {paragraph}{Effect size difference.}{19}{section*.58}\protected@file@percent }
+\@LN{1424}{18}
+\@LN{1425}{18}
+\@LN{1426}{18}
+\@LN{1427}{18}
+\@LN{1428}{18}
+\@LN{1429}{18}
+\@LN{1430}{18}
+\@LN{1431}{18}
+\@LN{1432}{18}
+\@LN{1433}{18}
+\@LN@col{1}
+\@LN{1434}{19}
+\@LN{1435}{19}
+\@LN{1436}{19}
+\@writefile{toc}{\contentsline {paragraph}{Structured attribution.}{20}{section*.59}\protected@file@percent }
+\@LN{1437}{19}
+\@LN{1438}{19}
+\@LN{1439}{19}
+\@LN{1440}{19}
+\@LN{1441}{19}
+\@LN{1442}{19}
+\@LN{1443}{19}
+\@LN{1444}{19}
+\@LN{1445}{19}
+\@LN{1446}{19}
+\@LN{1447}{19}
+\@LN{1448}{19}
+\@LN{1449}{19}
+\@LN{1450}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces SOPBench cross-benchmark evaluation. All five models show directionally consistent ambiguity effects ($\Delta > 0$). $^\dagger $Power-expanded from $n = 139$. $p$: Fisher's exact, two-sided.}}{20}{table.caption.60}\protected@file@percent }
+\newlabel{tab:sopbench}{{23}{20}{SOPBench cross-benchmark evaluation. All five models show directionally consistent ambiguity effects ($\Delta > 0$). $^\dagger $Power-expanded from $n = 139$. $p$: Fisher's exact, two-sided}{table.caption.60}{}}
+\@writefile{toc}{\contentsline {paragraph}{Combined significance.}{20}{section*.61}\protected@file@percent }
+\@LN{1451}{19}
+\@LN{1452}{19}
+\@LN{1453}{19}
+\@LN{1454}{19}
+\@LN{1455}{19}
+\@LN{1456}{19}
+\@LN{1457}{19}
+\@LN{1458}{19}
+\@LN{1459}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {AE}Healthcare Domain Cross-Validation}{20}{appendix.Alph31}\protected@file@percent }
+\newlabel{app:healthcare}{{AE}{20}{Healthcare Domain Cross-Validation}{appendix.Alph31}{}}
+\@LN{1460}{19}
+\@LN{1461}{19}
+\@LN{1462}{19}
+\@LN{1463}{19}
+\@LN{1464}{19}
+\@LN{1465}{19}
+\@LN{1466}{19}
+\@LN{1467}{19}
+\@LN{1468}{19}
+\@LN{1469}{19}
+\@LN{1470}{19}
+\@LN{1471}{19}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{Results.}{20}{section*.62}\protected@file@percent }
+\@LN{1472}{19}
+\@LN{1473}{19}
+\@LN{1474}{19}
+\@LN{1475}{19}
+\@LN{1476}{19}
+\@LN{1477}{19}
+\@LN{1478}{19}
+\@LN{1479}{19}
+\@writefile{toc}{\contentsline {paragraph}{Effect size difference.}{20}{section*.63}\protected@file@percent }
+\@LN{1480}{19}
+\@LN{1481}{19}
+\@LN{1482}{19}
+\@LN{1483}{19}
+\@LN{1484}{19}
+\@LN{1485}{19}
+\@LN{1486}{19}
+\@LN{1487}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Healthcare domain cross-validation. Per-model violation rates under ambiguous vs.\ unambiguous policy clauses ($n = 50$ per model).}}{20}{table.caption.64}\protected@file@percent }
+\newlabel{tab:healthcare}{{24}{20}{Healthcare domain cross-validation. Per-model violation rates under ambiguous vs.\ unambiguous policy clauses ($n = 50$ per model)}{table.caption.64}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-domain convergent nocuity.}{20}{section*.65}\protected@file@percent }
+\@LN{1488}{19}
+\@LN{1489}{19}
+\@LN{1490}{19}
+\@LN{1491}{19}
+\@LN{1492}{19}
+\@LN{1493}{19}
+\@LN{1494}{19}
+\@LN{1495}{19}
+\@LN{1496}{19}
+\@LN{1497}{19}
+\@LN{1498}{19}
+\@LN{1499}{19}
+\@LN{1500}{19}
+\@LN{1501}{19}
+\@LN{1502}{19}
+\@LN{1503}{19}
+\@LN{1504}{19}
+\@LN{1505}{19}
+\@LN{1506}{19}
+\@LN{1507}{19}
+\@LN{1508}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {AF}Cross-Judge Validation}{20}{appendix.Alph32}\protected@file@percent }
+\newlabel{app:cross_judge}{{AF}{20}{Cross-Judge Validation}{appendix.Alph32}{}}
+\@LN{1509}{19}
+\@LN{1510}{19}
+\@LN@col{1}
+\@LN{1511}{20}
+\@LN{1512}{20}
+\@LN{1513}{20}
+\@LN{1514}{20}
+\@LN{1515}{20}
+\@writefile{toc}{\contentsline {paragraph}{Inter-judge agreement.}{21}{section*.66}\protected@file@percent }
+\@LN{1516}{20}
+\@LN{1517}{20}
+\@LN{1518}{20}
+\@LN{1519}{20}
+\@LN{1520}{20}
+\@LN{1521}{20}
+\@LN{1522}{20}
+\@writefile{toc}{\contentsline {paragraph}{Model ranking concordance.}{21}{section*.67}\protected@file@percent }
+\@LN{1523}{20}
+\@LN{1524}{20}
+\@LN{1525}{20}
+\@LN{1526}{20}
+\@LN{1527}{20}
+\@LN{1528}{20}
+\@LN{1529}{20}
+\@LN{1530}{20}
+\@writefile{toc}{\contentsline {paragraph}{Type ranking concordance.}{21}{section*.68}\protected@file@percent }
+\@LN{1531}{20}
+\@LN{1532}{20}
+\@LN{1533}{20}
+\@LN{1534}{20}
+\@LN{1535}{20}
+\@LN{1536}{20}
+\@LN{1537}{20}
+\@LN{1538}{20}
+\@LN{1539}{20}
+\@writefile{toc}{\contentsline {paragraph}{Same-family bias.}{21}{section*.69}\protected@file@percent }
+\@LN{1540}{20}
+\@LN{1541}{20}
+\@LN{1542}{20}
+\@LN{1543}{20}
+\@LN{1544}{20}
+\@LN{1545}{20}
+\@LN{1546}{20}
+\@LN{1547}{20}
+\@writefile{toc}{\contentsline {paragraph}{Authorization scope range by judge.}{21}{section*.70}\protected@file@percent }
+\@LN{1548}{20}
+\@LN{1549}{20}
+\@LN{1550}{20}
+\@LN{1551}{20}
+\@LN{1552}{20}
+\@LN{1553}{20}
+\@LN{1554}{20}
+\@LN{1555}{20}
+\@LN{1556}{20}
+\@writefile{toc}{\contentsline {paragraph}{Implication for main results.}{21}{section*.72}\protected@file@percent }
+\@LN{1557}{20}
+\@LN{1558}{20}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Violation rates (\%) by judge family and model on the same 2,997 episodes. $|\Delta |$: maximum absolute difference across judges for each model.}}{21}{table.caption.71}\protected@file@percent }
+\newlabel{tab:cross_judge}{{25}{21}{Violation rates (\%) by judge family and model on the same 2,997 episodes. $|\Delta |$: maximum absolute difference across judges for each model}{table.caption.71}{}}
+\@LN{1559}{20}
+\@LN{1560}{20}
+\@LN{1561}{20}
+\@LN{1562}{20}
+\@LN{1563}{20}
+\@LN{1564}{20}
+\@LN{1565}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {AG}Variance Decomposition}{21}{appendix.Alph33}\protected@file@percent }
+\newlabel{app:variance_fig}{{AG}{21}{Variance Decomposition}{appendix.Alph33}{}}
+\newlabel{app:residual}{{AG}{21}{Variance Decomposition}{appendix.Alph33}{}}
+\@LN{1566}{20}
+\@LN{1567}{20}
+\@LN{1568}{20}
+\@LN{1569}{20}
+\@LN{1570}{20}
+\@LN{1571}{20}
+\@LN{1572}{20}
+\@LN{1573}{20}
+\@LN{1574}{20}
+\@LN{1575}{20}
+\@LN{1576}{20}
+\@LN{1577}{20}
+\@LN{1578}{20}
+\@LN{1579}{20}
+\@writefile{toc}{\contentsline {paragraph}{Overall ICC.}{21}{section*.73}\protected@file@percent }
+\@LN{1580}{20}
+\@LN{1581}{20}
+\@LN{1582}{20}
+\@LN{1583}{20}
+\@LN{1584}{20}
+\@LN{1585}{20}
+\@writefile{toc}{\contentsline {paragraph}{Mapping to residual.}{21}{section*.74}\protected@file@percent }
+\@LN{1586}{20}
+\@LN{1587}{20}
+\@LN{1588}{20}
+\@LN{1589}{20}
+\@LN{1590}{20}
+\@LN{1591}{20}
+\@LN{1592}{20}
+\@LN{1593}{20}
+\@writefile{toc}{\contentsline {paragraph}{Cell unanimity.}{21}{section*.75}\protected@file@percent }
+\@LN{1594}{20}
+\@LN{1595}{20}
+\@LN{1596}{20}
+\@LN{1597}{20}
+\@LN@col{1}
+\@LN{1598}{21}
+\@LN{1599}{21}
+\@LN{1600}{21}
+\@writefile{toc}{\contentsline {paragraph}{Per-type ICC.}{22}{section*.76}\protected@file@percent }
+\@LN{1601}{21}
+\@LN{1602}{21}
+\@LN{1603}{21}
+\@LN{1604}{21}
+\@LN{1605}{21}
+\@LN{1606}{21}
+\@LN{1607}{21}
+\@LN{1608}{21}
+\@LN{1609}{21}
+\@LN{1610}{21}
+\@LN{1611}{21}
+\@LN{1612}{21}
+\@LN{1613}{21}
+\@writefile{toc}{\contentsline {section}{\numberline {AH}Real-World Policy Ambiguity Prevalence}{22}{appendix.Alph34}\protected@file@percent }
+\newlabel{app:prevalence}{{AH}{22}{Real-World Policy Ambiguity Prevalence}{appendix.Alph34}{}}
+\@LN{1614}{21}
+\@LN{1615}{21}
+\@LN{1616}{21}
+\@LN{1617}{21}
+\@LN{1618}{21}
+\@writefile{toc}{\contentsline {subsection}{\numberline {AH.1}Data Collection}{22}{subsection.Alph34.1}\protected@file@percent }
+\@LN{1619}{21}
+\@LN{1620}{21}
+\@LN{1621}{21}
+\@LN{1622}{21}
+\@LN{1623}{21}
+\@LN{1624}{21}
+\@LN{1625}{21}
+\@LN{1626}{21}
+\@LN{1627}{21}
+\@writefile{toc}{\contentsline {paragraph}{Selection bias.}{22}{section*.77}\protected@file@percent }
+\@LN{1628}{21}
+\@LN{1629}{21}
+\@LN{1630}{21}
+\@LN{1631}{21}
+\@LN{1632}{21}
+\@LN{1633}{21}
+\@LN{1634}{21}
+\@LN{1635}{21}
+\@LN{1636}{21}
+\@LN{1637}{21}
+\@LN{1638}{21}
+\@LN{1639}{21}
+\@LN{1640}{21}
+\@LN{1641}{21}
+\@writefile{toc}{\contentsline {subsection}{\numberline {AH.2}Clause Extraction}{22}{subsection.Alph34.2}\protected@file@percent }
+\@LN{1642}{21}
+\@LN{1643}{21}
+\@LN{1644}{21}
+\@LN@col{2}
+\@LN{1645}{21}
+\@LN{1646}{21}
+\@LN{1647}{21}
+\@LN{1648}{21}
+\@LN{1649}{21}
+\@writefile{toc}{\contentsline {subsection}{\numberline {AH.3}Dual-Judge Annotation}{22}{subsection.Alph34.3}\protected@file@percent }
+\@LN{1650}{21}
+\@LN{1651}{21}
+\@LN{1652}{21}
+\@LN{1653}{21}
+\@LN{1654}{21}
+\@LN{1655}{21}
+\@LN{1656}{21}
+\@LN{1657}{21}
+\@LN{1658}{21}
+\@writefile{toc}{\contentsline {paragraph}{Inter-annotator agreement.}{22}{section*.78}\protected@file@percent }
+\@LN{1659}{21}
+\@LN{1660}{21}
+\@LN{1661}{21}
+\@LN{1662}{21}
+\@LN{1663}{21}
+\@LN{1664}{21}
+\@LN{1665}{21}
+\@LN{1666}{21}
+\@LN{1667}{21}
+\@writefile{toc}{\contentsline {subsection}{\numberline {AH.4}Results}{22}{subsection.Alph34.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Document-level prevalence.}{22}{section*.79}\protected@file@percent }
+\@LN{1668}{21}
+\@LN{1669}{21}
+\@LN{1670}{21}
+\@LN{1671}{21}
+\@writefile{toc}{\contentsline {paragraph}{Clause-level prevalence.}{22}{section*.80}\protected@file@percent }
+\@LN{1672}{21}
+\@LN{1673}{21}
+\@LN{1674}{21}
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces Clause-level ambiguity prevalence. Union: flagged by either judge. Intersection: flagged by both.}}{22}{table.caption.81}\protected@file@percent }
+\newlabel{tab:clause_prevalence}{{26}{22}{Clause-level ambiguity prevalence. Union: flagged by either judge. Intersection: flagged by both}{table.caption.81}{}}
+\@writefile{toc}{\contentsline {paragraph}{Company-level analysis.}{22}{section*.82}\protected@file@percent }
+\@LN{1675}{21}
+\@LN{1676}{21}
+\@LN{1677}{21}
+\@writefile{toc}{\contentsline {paragraph}{Type distribution.}{22}{section*.84}\protected@file@percent }
+\@LN{1678}{21}
+\@LN{1679}{21}
+\@LN{1680}{21}
+\@writefile{toc}{\contentsline {subsection}{\numberline {AH.5}Pilot Scope and Constraints}{22}{subsection.Alph34.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-generated annotations.}{22}{section*.86}\protected@file@percent }
+\@LN{1681}{21}
+\@LN{1682}{21}
+\@LN{1683}{21}
+\@LN{1684}{21}
+\@LN{1685}{21}
+\citation{landis_koch_1977}
+\citation{frazier_rayner_1982,ferreira_good_enough_2002}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces Company-level ambiguity rates (union). Bootstrap 95\% CI uses company (N=9) as clustering unit.}}{23}{table.caption.83}\protected@file@percent }
+\newlabel{tab:company_prevalence}{{27}{23}{Company-level ambiguity rates (union). Bootstrap 95\% CI uses company (N=9) as clustering unit}{table.caption.83}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {28}{\ignorespaces Distribution of ambiguity types across all flagged clauses (union criterion).}}{23}{table.caption.85}\protected@file@percent }
+\newlabel{tab:type_distribution}{{28}{23}{Distribution of ambiguity types across all flagged clauses (union criterion)}{table.caption.85}{}}
+\@LN{1686}{22}
+\@LN{1687}{22}
+\@LN{1688}{22}
+\@LN{1689}{22}
+\@LN{1690}{22}
+\@LN{1691}{22}
+\@writefile{toc}{\contentsline {paragraph}{Sample coverage.}{23}{section*.87}\protected@file@percent }
+\@LN{1692}{22}
+\@LN{1693}{22}
+\@LN{1694}{22}
+\@LN{1695}{22}
+\@LN{1696}{22}
+\@LN{1697}{22}
+\@LN{1698}{22}
+\@writefile{toc}{\contentsline {section}{\numberline {AI}Human Validation of LLM Judge Annotations}{23}{appendix.Alph35}\protected@file@percent }
+\newlabel{app:human_validation}{{AI}{23}{Human Validation of LLM Judge Annotations}{appendix.Alph35}{}}
+\@LN{1699}{22}
+\@LN{1700}{22}
+\@LN{1701}{22}
+\@LN{1702}{22}
+\@LN{1703}{22}
+\@LN{1704}{22}
+\@writefile{toc}{\contentsline {paragraph}{Violation-level agreement.}{23}{section*.88}\protected@file@percent }
+\@LN{1705}{22}
+\@LN{1706}{22}
+\@LN{1707}{22}
+\@LN{1708}{22}
+\@LN{1709}{22}
+\@LN{1710}{22}
+\@writefile{toc}{\contentsline {paragraph}{Failure-mode agreement.}{23}{section*.89}\protected@file@percent }
+\@LN{1711}{22}
+\@LN{1712}{22}
+\@LN{1713}{22}
+\@LN@col{2}
+\@LN{1714}{22}
+\@LN{1715}{22}
+\@LN{1716}{22}
+\@LN{1717}{22}
+\@LN{1718}{22}
+\@LN{1719}{22}
+\@LN{1720}{22}
+\@writefile{toc}{\contentsline {paragraph}{Collapsed-category analysis.}{23}{section*.90}\protected@file@percent }
+\@LN{1721}{22}
+\@LN{1722}{22}
+\@LN{1723}{22}
+\@LN{1724}{22}
+\@LN{1725}{22}
+\@LN{1726}{22}
+\@LN{1727}{22}
+\@LN{1728}{22}
+\@LN{1729}{22}
+\@LN{1730}{22}
+\@LN{1731}{22}
+\@LN{1732}{22}
+\@LN{1733}{22}
+\@LN{1734}{22}
+\@writefile{toc}{\contentsline {paragraph}{Re-annotation with improved guidelines.}{23}{section*.91}\protected@file@percent }
+\@LN{1735}{22}
+\@LN{1736}{22}
+\@LN{1737}{22}
+\@LN{1738}{22}
+\@LN{1739}{22}
+\@LN{1740}{22}
+\@LN{1741}{22}
+\@LN{1742}{22}
+\@LN{1743}{22}
+\@LN{1744}{22}
+\@LN{1745}{22}
+\@LN{1746}{22}
+\@LN{1747}{22}
+\@writefile{toc}{\contentsline {paragraph}{Implications.}{23}{section*.92}\protected@file@percent }
+\@LN{1748}{22}
+\@LN{1749}{22}
+\@LN{1750}{22}
+\@LN{1751}{22}
+\@LN{1752}{22}
+\@LN{1753}{22}
+\@LN{1754}{22}
+\@LN{1755}{22}
+\@LN{1756}{22}
+\@LN{1757}{22}
+\@LN{1758}{22}
+\@writefile{toc}{\contentsline {section}{\numberline {AJ}Type-Specific Failure Mechanism Details}{23}{appendix.Alph36}\protected@file@percent }
+\newlabel{app:failure_details}{{AJ}{23}{Type-Specific Failure Mechanism Details}{appendix.Alph36}{}}
+\@LN{1759}{22}
+\@LN{1760}{22}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Structural misparse.}{24}{section*.93}\protected@file@percent }
+\@LN{1761}{23}
+\@LN{1762}{23}
+\@LN{1763}{23}
+\@LN{1764}{23}
+\@LN{1765}{23}
+\@LN{1766}{23}
+\@LN{1767}{23}
+\@LN{1768}{23}
+\@LN{1769}{23}
+\@LN{1770}{23}
+\@LN{1771}{23}
+\@writefile{toc}{\contentsline {paragraph}{Information gap-filling.}{24}{section*.94}\protected@file@percent }
+\@LN{1772}{23}
+\@LN{1773}{23}
+\@LN{1774}{23}
+\@LN{1775}{23}
+\@LN{1776}{23}
+\@LN{1777}{23}
+\@LN{1778}{23}
+\@writefile{toc}{\contentsline {paragraph}{Boundary violation.}{24}{section*.95}\protected@file@percent }
+\@LN{1779}{23}
+\@LN{1780}{23}
+\@LN{1781}{23}
+\@LN{1782}{23}
+\@LN{1783}{23}
+\@LN{1784}{23}
+\@LN{1785}{23}
+\@LN{1786}{23}
+\@LN{1787}{23}
+\@writefile{toc}{\contentsline {section}{\numberline {AK}Cross-Family Convergence Analysis}{24}{appendix.Alph37}\protected@file@percent }
+\newlabel{app:cross_family}{{AK}{24}{Cross-Family Convergence Analysis}{appendix.Alph37}{}}
+\@LN{1788}{23}
+\@LN{1789}{23}
+\@LN{1790}{23}
+\@LN{1791}{23}
+\@LN{1792}{23}
+\@LN{1793}{23}
+\@LN{1794}{23}
+\@LN{1795}{23}
+\@LN{1796}{23}
+\@LN{1797}{23}
+\@LN{1798}{23}
+\@LN{1799}{23}
+\@LN{1800}{23}
+\@LN{1801}{23}
+\@LN{1802}{23}
+\@LN{1803}{23}
+\@writefile{toc}{\contentsline {paragraph}{Bootstrap confidence intervals.}{24}{section*.97}\protected@file@percent }
+\@LN{1804}{23}
+\@LN{1805}{23}
+\@LN{1806}{23}
+\@LN{1807}{23}
+\@LN{1808}{23}
+\@LN{1809}{23}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {29}{\ignorespaces Pairwise Jaccard similarity of violation clause sets across model pairs. Within-family pair (GPT-5.4/GPT-4.1) shown first; remaining nine pairs are cross-family.}}{24}{table.caption.96}\protected@file@percent }
+\newlabel{tab:cross_family}{{29}{24}{Pairwise Jaccard similarity of violation clause sets across model pairs. Within-family pair (GPT-5.4/GPT-4.1) shown first; remaining nine pairs are cross-family}{table.caption.96}{}}
+\@LN{1810}{23}
+\@LN{1811}{23}
+\@LN{1812}{23}
+\@LN{1813}{23}
+\@LN{1814}{23}
+\@LN{1815}{23}
+\@LN{1816}{23}
+\@writefile{toc}{\contentsline {paragraph}{Judge independence.}{24}{section*.98}\protected@file@percent }
+\@LN{1817}{23}
+\@LN{1818}{23}
+\@LN{1819}{23}
+\@LN{1820}{23}
+\@LN{1821}{23}
+\@LN{1822}{23}
+\@LN{1823}{23}
+\@LN{1824}{23}
+\@LN{1825}{23}
+\@LN{1826}{23}
+\@LN{1827}{23}
+\@LN{1828}{23}
+\@LN{1829}{23}
+\@LN{1830}{23}
+\@LN{1831}{23}
+\@LN{1832}{23}
+\@writefile{toc}{\contentsline {section}{\numberline {AL}Convergent Nocuity Excluding Incompleteness}{24}{appendix.Alph38}\protected@file@percent }
+\newlabel{app:nocuity_sans_incomp}{{AL}{24}{Convergent Nocuity Excluding Incompleteness}{appendix.Alph38}{}}
+\@LN{1833}{23}
+\@LN{1834}{23}
+\@LN{1835}{23}
+\@LN{1836}{23}
+\@LN{1837}{23}
+\@LN{1838}{23}
+\@LN{1839}{23}
+\@LN{1840}{23}
+\@LN{1841}{23}
+\@LN{1842}{23}
+\@LN@col{1}
+\@LN{1843}{24}
+\@LN{1844}{24}
+\@LN{1845}{24}
+\@LN{1846}{24}
+\@LN{1847}{24}
+\@LN{1848}{24}
+\@LN{1849}{24}
+\@writefile{toc}{\contentsline {section}{\numberline {AM}Judge Prompt Template}{25}{appendix.Alph39}\protected@file@percent }
+\newlabel{app:judge_prompt}{{AM}{25}{Judge Prompt Template}{appendix.Alph39}{}}
+\@LN{1850}{24}
+\@LN{1851}{24}
+\@LN{1852}{24}
+\@LN{1853}{24}
+\@LN{1854}{24}
+\@LN{1855}{24}
+\@LN{1856}{24}
+\@LN{1857}{24}
+\@LN{1858}{24}
+\@LN{1859}{24}
+\@LN{1860}{24}
+\@LN{1861}{24}
+\@LN{1862}{24}
+\@LN{1863}{24}
+\@LN{1864}{24}
+\@LN{1865}{24}
+\@LN{1866}{24}
+\@LN{1867}{24}
+\@LN{1868}{24}
+\@LN{1869}{24}
+\@LN{1870}{24}
+\@LN{1871}{24}
+\@LN{1872}{24}
+\@LN{1873}{24}
+\@LN{1874}{24}
+\@LN{1875}{24}
+\@LN{1876}{24}
+\@LN{1877}{24}
+\@LN{1878}{24}
+\@LN{1879}{24}
+\@LN{1880}{24}
+\@LN{1881}{24}
+\@LN{1882}{24}
+\@LN{1883}{24}
+\@LN{1884}{24}
+\@LN{1885}{24}
+\@LN{1886}{24}
+\@LN{1887}{24}
+\@LN{1888}{24}
+\@LN{1889}{24}
+\@LN{1890}{24}
+\@writefile{toc}{\contentsline {section}{\numberline {AN}Temperature Robustness Pilot}{25}{appendix.Alph40}\protected@file@percent }
+\newlabel{app:temperature}{{AN}{25}{Temperature Robustness Pilot}{appendix.Alph40}{}}
+\@LN{1891}{24}
+\@LN{1892}{24}
+\@LN{1893}{24}
+\@LN{1894}{24}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{Design.}{25}{section*.99}\protected@file@percent }
+\@LN{1895}{24}
+\@LN{1896}{24}
+\@LN{1897}{24}
+\@LN{1898}{24}
+\@LN{1899}{24}
+\@LN{1900}{24}
+\@writefile{toc}{\contentsline {paragraph}{API default validation.}{25}{section*.100}\protected@file@percent }
+\@LN{1901}{24}
+\@LN{1902}{24}
+\@LN{1903}{24}
+\@LN{1904}{24}
+\@LN{1905}{24}
+\@writefile{toc}{\contentsline {paragraph}{Treatment effect.}{25}{section*.101}\protected@file@percent }
+\@LN{1906}{24}
+\@LN{1907}{24}
+\@LN{1908}{24}
+\@LN{1909}{24}
+\@LN{1910}{24}
+\@LN{1911}{24}
+\@writefile{toc}{\contentsline {paragraph}{Clause-level agreement.}{25}{section*.102}\protected@file@percent }
+\@LN{1912}{24}
+\@LN{1913}{24}
+\@LN{1914}{24}
+\@LN{1915}{24}
+\@LN{1916}{24}
+\@LN{1917}{24}
+\@LN{1918}{24}
+\@LN{1919}{24}
+\@LN{1920}{24}
+\@LN{1921}{24}
+\@writefile{toc}{\contentsline {paragraph}{Cross-model extension.}{25}{section*.103}\protected@file@percent }
+\@LN{1922}{24}
+\@LN{1923}{24}
+\@LN{1924}{24}
+\@LN{1925}{24}
+\@LN{1926}{24}
+\@writefile{lot}{\contentsline {table}{\numberline {30}{\ignorespaces Temperature robustness across three models. $\Delta _{t=0}$ uses the main experiment (greedy) results for the same 50 clauses; $\Delta _{t=0.7}$ is the mean across independent runs.}}{25}{table.caption.104}\protected@file@percent }
+\newlabel{tab:temp_models}{{30}{25}{Temperature robustness across three models. $\Delta _{t=0}$ uses the main experiment (greedy) results for the same 50 clauses; $\Delta _{t=0.7}$ is the mean across independent runs}{table.caption.104}{}}
+\@LN{1927}{24}
+\@LN{1928}{24}
+\@LN{1929}{24}
+\@LN{1930}{24}
+\@LN{1931}{24}
+\@LN{1932}{24}
+\@LN{1933}{24}
+\@LN{1934}{24}
+\@LN{1935}{24}
+\@LN{1936}{24}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Power analysis.}{26}{section*.105}\protected@file@percent }
+\@LN{1937}{25}
+\@LN{1938}{25}
+\@LN{1939}{25}
+\@LN{1940}{25}
+\@LN{1941}{25}
+\@LN{1942}{25}
+\@LN{1943}{25}
+\@LN{1944}{25}
+\@LN{1945}{25}
+\@LN{1946}{25}
+\@LN{1947}{25}
+\@LN{1948}{25}
+\@writefile{toc}{\contentsline {section}{\numberline {AO}Use of AI Assistance}{26}{appendix.Alph41}\protected@file@percent }
+\@LN{1949}{25}
+\@LN{1950}{25}
+\@LN@col{2}
+\gdef \@abspage@last{26}

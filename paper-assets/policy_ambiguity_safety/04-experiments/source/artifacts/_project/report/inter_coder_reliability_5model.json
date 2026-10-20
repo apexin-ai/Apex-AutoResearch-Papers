@@ -1,0 +1,56 @@
+{
+  "method": "Gwet AC1 (Gwet 2008) for 2 raters",
+  "data": "3 new models dual-coded: GPT-4.1 primary, GPT-5.4 secondary",
+  "n_pairs": 369,
+  "n_categories": 9,
+  "categories": [
+    "arbitrary_rule_selection",
+    "assumption_based_action",
+    "conservative_refusal",
+    "other",
+    "referent_misidentification",
+    "scope_misapplication",
+    "surface_adoption",
+    "surface_misapplication",
+    "unauthorized_escalation"
+  ],
+  "observed_agreement": 0.6558,
+  "gwet_ac1": 0.623,
+  "gwet_pe": 0.0868,
+  "cohens_kappa": 0.517,
+  "cohen_pe": 0.287,
+  "formula": "AC1 = (po - pe) / (1 - pe), pe = sum(pi_k * (1 - pi_k)) / (K - 1)",
+  "category_marginals": {
+    "arbitrary_rule_selection": 0.0122,
+    "assumption_based_action": 0.3266,
+    "conservative_refusal": 0.0379,
+    "other": 0.0108,
+    "referent_misidentification": 0.0081,
+    "scope_misapplication": 0.393,
+    "surface_adoption": 0.0014,
+    "surface_misapplication": 0.0027,
+    "unauthorized_escalation": 0.2073
+  },
+  "primary_distribution": {
+    "arbitrary_rule_selection": 3,
+    "assumption_based_action": 111,
+    "conservative_refusal": 12,
+    "other": 1,
+    "referent_misidentification": 2,
+    "scope_misapplication": 188,
+    "surface_adoption": 0,
+    "surface_misapplication": 0,
+    "unauthorized_escalation": 52
+  },
+  "secondary_distribution": {
+    "arbitrary_rule_selection": 6,
+    "assumption_based_action": 130,
+    "conservative_refusal": 16,
+    "other": 7,
+    "referent_misidentification": 4,
+    "scope_misapplication": 102,
+    "surface_adoption": 1,
+    "surface_misapplication": 2,
+    "unauthorized_escalation": 101
+  }
+}

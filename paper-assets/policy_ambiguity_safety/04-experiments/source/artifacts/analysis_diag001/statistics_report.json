@@ -1,0 +1,74 @@
+{
+  "primary": {
+    "overall_rates": {
+      "conditional_precedence": {
+        "violation_rate": 0.34,
+        "n_violations": 34,
+        "n_total": 100
+      },
+      "scopal": {
+        "violation_rate": 0.4,
+        "n_violations": 40,
+        "n_total": 100
+      }
+    },
+    "omnibus_chi2": {
+      "chi2": 0.5362505362505362,
+      "p": 0.46399079325196035,
+      "dof": 1
+    },
+    "pairwise": [
+      {
+        "type_1": "conditional_precedence",
+        "type_2": "scopal",
+        "fisher_p": 0.4641113326701593,
+        "bonferroni_p": 0.4641113326701593,
+        "cramers_v": 0.05178081383343333
+      }
+    ],
+    "per_model": {
+      "gpt-4.1": {
+        "conditional_precedence": {
+          "violation_rate": 0.36,
+          "n_violations": 18,
+          "n_total": 50
+        },
+        "scopal": {
+          "violation_rate": 0.4,
+          "n_violations": 20,
+          "n_total": 50
+        }
+      },
+      "gpt-5.4": {
+        "conditional_precedence": {
+          "violation_rate": 0.32,
+          "n_violations": 16,
+          "n_total": 50
+        },
+        "scopal": {
+          "violation_rate": 0.4,
+          "n_violations": 20,
+          "n_total": 50
+        }
+      }
+    }
+  },
+  "secondary": {
+    "scopal": {
+      "ambiguous_violation_rate": 0.4,
+      "unambiguous_violation_rate": 0.03,
+      "rate_difference": 0.37,
+      "n_pairs": 100,
+      "mcnemar": {
+        "b_amb_only": 38,
+        "c_unamb_only": 1,
+        "statistic": 33.23076923076923,
+        "p": 8.1845166199912e-09
+      },
+      "wilcoxon": {
+        "statistic": 16.5,
+        "p": 1.4936217436221602e-08
+      }
+    }
+  }
+}

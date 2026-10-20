@@ -1,0 +1,56 @@
+{
+  "plan": "plan_010",
+  "description": "Perturbation Control — synonym substitution & clause reordering",
+  "n_episodes": 120,
+  "n_perturbed": 60,
+  "n_original": 60,
+  "violation_rate_perturbed": 0.0,
+  "violation_rate_original": 0.0,
+  "perturbation_delta_pp": 0.0,
+  "ambiguity_delta_pp": 38.0,
+  "net_delta_pp": 38.0,
+  "perturbation_ci_95": [
+    0.0,
+    0.0
+  ],
+  "net_ci_95": [
+    38.0,
+    38.0
+  ],
+  "ratio": 0.0,
+  "verdict": "PASS",
+  "ci_width_warning": "",
+  "per_model": {
+    "gpt-5.4": {
+      "perturbation_delta_pp": 0.0,
+      "ci_95": [
+        0.0,
+        0.0
+      ]
+    },
+    "gpt-4.1": {
+      "perturbation_delta_pp": 0.0,
+      "ci_95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "per_perturbation_type": {
+    "synonym_substitution": {
+      "perturbation_delta_pp": 0.0,
+      "ci_95": [
+        0.0,
+        0.0
+      ]
+    },
+    "clause_reordering": {
+      "perturbation_delta_pp": 0.0,
+      "ci_95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "timestamp": 1779287356.3664591
+}

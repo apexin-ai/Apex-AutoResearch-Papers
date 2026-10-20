@@ -1,0 +1,100 @@
+\section{Real-World Policy Ambiguity Prevalence}
+\label{app:prevalence}
+
+To ground our taxonomy in real-world policy documents, we conduct a prevalence audit measuring how frequently each ambiguity type occurs in operational policies from major companies.
+
+\subsection{Data Collection}
+
+We collected 24 publicly available policy documents from 9 companies spanning two domains: retail (5 companies: Target, IKEA, Nordstrom, Zappos, Apple; 11 documents) and airlines (4 companies: Delta, Emirates, Frontier, Southwest; 13 documents). Documents include return policies, shipping policies, terms of service, contracts of carriage, and customer service plans. All documents were retrieved from official company websites on May 23, 2026.
+
+\paragraph{Selection bias.}
+We attempted to collect policies from 19 companies total. Ten companies blocked automated retrieval: Amazon (HTTP 503), Walmart (CAPTCHA), Costco (timeout), Best Buy (timeout), REI (timeout), Home Depot (HTTP 403), Macy's (HTTP 403), Sephora (HTTP 403), Nike (HTTP 403), and Lowe's (HTTP 403).
+The direction of selection bias is uncertain: larger companies may maintain more professionally drafted policies (reducing ambiguity) or more complex policy structures (increasing it). Our sample is therefore a convenience sample of accessible policies, not a representative sample of all corporate policies.
+
+\subsection{Clause Extraction}
+
+From each document, we extracted all \emph{operational clauses}---sentences or multi-sentence blocks that prescribe, constrain, or condition a specific agent action or decision. This yielded \textbf{407 clauses} across the 24 documents (mean 17.0 per document; range 5--75). Each clause was assigned a unique identifier for annotation.
+
+\subsection{Dual-Judge Annotation}
+
+Each clause was independently annotated by two LLM judges: Claude Sonnet 4.6 (Anthropic) and GPT-5.4 (OpenAI). For each clause, judges determined: (1)~whether the clause is ambiguous in a way that could cause an LLM agent to misinterpret the intended policy, and (2)~which of our six ambiguity types best describes the ambiguity (scopal, lexical, coreferential, incompleteness, authorization scope, or conditional precedence).
+
+\paragraph{Inter-annotator agreement.}
+Cohen's $\kappa$ for the binary ambiguous/not-ambiguous decision was \textbf{0.295} (fair agreement). Claude flagged 83.8\% of clauses as ambiguous versus GPT's 58.5\%, reflecting Claude's more conservative threshold for ``unambiguous.'' Among the 226 clauses both judges marked as ambiguous, type-level agreement was $\kappa = 0.382$ with 58.4\% exact match.
+
+\subsection{Results}
+
+\paragraph{Document-level prevalence.}
+All 24/24 documents (100\%) contained at least one clause flagged as ambiguous by either judge; all 24/24 also contained at least one clause flagged by \emph{both} judges.
+
+\paragraph{Clause-level prevalence.}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Union} & \textbf{Intersection} \\
+\midrule
+Raw (ambiguous / total) & 353/407 (86.7\%) & 226/407 (55.5\%) \\
+Document-weighted mean  & 89.1\%  & 58.7\% \\
+\bottomrule
+\end{tabular}
+\caption{Clause-level ambiguity prevalence. Union: flagged by either judge. Intersection: flagged by both.}
+\label{tab:clause_prevalence}
+\end{table}
+
+\paragraph{Company-level analysis.}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llrrr}
+\toprule
+\textbf{Company} & \textbf{Domain} & \textbf{Clauses} & \textbf{Ambig.\ (union)} & \textbf{Rate} \\
+\midrule
+Apple & Retail & 43 & 39 & 90.7\% \\
+Delta & Airline & 65 & 57 & 87.7\% \\
+Emirates & Airline & 19 & 19 & 100.0\% \\
+Frontier & Airline & 85 & 73 & 85.9\% \\
+IKEA & Retail & 71 & 60 & 84.5\% \\
+Nordstrom & Retail & 11 & 7 & 63.6\% \\
+Southwest & Airline & 81 & 68 & 84.0\% \\
+Target & Retail & 12 & 11 & 91.7\% \\
+Zappos & Retail & 20 & 19 & 95.0\% \\
+\midrule
+\multicolumn{3}{l}{Company-level mean (N=9)} & \multicolumn{2}{c}{87.0\%, 95\% CI [80.0\%, 92.5\%]} \\
+\bottomrule
+\end{tabular}
+\caption{Company-level ambiguity rates. Bootstrap 95\% CI uses company (N=9) as the clustering unit (B=10{,}000).}
+\label{tab:company_prevalence}
+\end{table}
+
+\paragraph{Type distribution.}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lrr}
+\toprule
+\textbf{Ambiguity Type} & \textbf{Count} & \textbf{\% of Ambiguous} \\
+\midrule
+Incompleteness          & 221 & 62.6\% \\
+Scopal                  & 47 & 13.3\% \\
+Lexical                 & 36 & 10.2\% \\
+Conditional precedence  & 33 & 9.3\% \\
+Coreferential           & 9 & 2.5\% \\
+Authorization scope     & 7 & 2.0\% \\
+\bottomrule
+\end{tabular}
+\caption{Distribution of ambiguity types across all flagged clauses (union criterion).}
+\label{tab:type_distribution}
+\end{table}
+
+\subsection{Limitations of This Pilot}
+
+\paragraph{LLM-generated annotations.}
+Ambiguity annotations are LLM-generated ($\kappa = 0.295$); human validation of a stratified 50-clause subset is planned for the camera-ready version. Neither judge's labels should be treated as ground truth. The moderate inter-judge disagreement (Claude flags 83.8\% vs.\ GPT 58.5\%) likely reflects differing ambiguity thresholds rather than random noise, as type agreement among agreed-ambiguous clauses is substantially higher (58.4\% exact match).
+
+\paragraph{Sample coverage.}
+Our corpus covers 9 of 19 targeted companies; 10 companies blocked automated retrieval. Generalization to other languages, jurisdictions, or industry domains requires further study.

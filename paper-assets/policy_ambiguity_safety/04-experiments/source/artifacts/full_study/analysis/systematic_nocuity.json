@@ -1,0 +1,255 @@
+{
+  "n_clauses": 300,
+  "models": [
+    "gpt-5.4",
+    "gpt-4.1"
+  ],
+  "violation_threshold": "moderate+",
+  "ambiguous": {
+    "convergent_violation": {
+      "count": 86,
+      "rate": 0.2867
+    },
+    "divergent_violation": {
+      "count": 73,
+      "rate": 0.2433
+    },
+    "no_violation": {
+      "count": 141,
+      "rate": 0.47
+    },
+    "level_agreement_in_convergent": {
+      "same": 58,
+      "different": 28
+    },
+    "per_type": {
+      "authorization_scope": {
+        "total": 50,
+        "convergent_violation": {
+          "count": 22,
+          "rate": 0.44
+        },
+        "divergent_violation": {
+          "count": 11,
+          "rate": 0.22
+        },
+        "no_violation": {
+          "count": 17,
+          "rate": 0.34
+        }
+      },
+      "conditional_precedence": {
+        "total": 50,
+        "convergent_violation": {
+          "count": 13,
+          "rate": 0.26
+        },
+        "divergent_violation": {
+          "count": 9,
+          "rate": 0.18
+        },
+        "no_violation": {
+          "count": 28,
+          "rate": 0.56
+        }
+      },
+      "coreferential": {
+        "total": 50,
+        "convergent_violation": {
+          "count": 5,
+          "rate": 0.1
+        },
+        "divergent_violation": {
+          "count": 15,
+          "rate": 0.3
+        },
+        "no_violation": {
+          "count": 30,
+          "rate": 0.6
+        }
+      },
+      "incompleteness": {
+        "total": 50,
+        "convergent_violation": {
+          "count": 19,
+          "rate": 0.38
+        },
+        "divergent_violation": {
+          "count": 14,
+          "rate": 0.28
+        },
+        "no_violation": {
+          "count": 17,
+          "rate": 0.34
+        }
+      },
+      "lexical": {
+        "total": 50,
+        "convergent_violation": {
+          "count": 12,
+          "rate": 0.24
+        },
+        "divergent_violation": {
+          "count": 14,
+          "rate": 0.28
+        },
+        "no_violation": {
+          "count": 24,
+          "rate": 0.48
+        }
+      },
+      "scopal": {
+        "total": 50,
+        "convergent_violation": {
+          "count": 15,
+          "rate": 0.3
+        },
+        "divergent_violation": {
+          "count": 10,
+          "rate": 0.2
+        },
+        "no_violation": {
+          "count": 25,
+          "rate": 0.5
+        }
+      }
+    }
+  },
+  "unambiguous": {
+    "convergent_violation": {
+      "count": 3,
+      "rate": 0.01
+    },
+    "divergent_violation": {
+      "count": 20,
+      "rate": 0.0667
+    },
+    "no_violation": {
+      "count": 277,
+      "rate": 0.9233
+    },
+    "level_agreement_in_convergent": {
+      "same": 1,
+      "different": 2
+    },
+    "per_type": {
+      "authorization_scope": {
+        "total": 50,
+        "convergent_violation": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "divergent_violation": {
+          "count": 2,
+          "rate": 0.04
+        },
+        "no_violation": {
+          "count": 48,
+          "rate": 0.96
+        }
+      },
+      "conditional_precedence": {
+        "total": 50,
+        "convergent_violation": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "divergent_violation": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "no_violation": {
+          "count": 50,
+          "rate": 1.0
+        }
+      },
+      "coreferential": {
+        "total": 50,
+        "convergent_violation": {
+          "count": 2,
+          "rate": 0.04
+        },
+        "divergent_violation": {
+          "count": 5,
+          "rate": 0.1
+        },
+        "no_violation": {
+          "count": 43,
+          "rate": 0.86
+        }
+      },
+      "incompleteness": {
+        "total": 50,
+        "convergent_violation": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "divergent_violation": {
+          "count": 3,
+          "rate": 0.06
+        },
+        "no_violation": {
+          "count": 47,
+          "rate": 0.94
+        }
+      },
+      "lexical": {
+        "total": 50,
+        "convergent_violation": {
+          "count": 1,
+          "rate": 0.02
+        },
+        "divergent_violation": {
+          "count": 6,
+          "rate": 0.12
+        },
+        "no_violation": {
+          "count": 43,
+          "rate": 0.86
+        }
+      },
+      "scopal": {
+        "total": 50,
+        "convergent_violation": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "divergent_violation": {
+          "count": 4,
+          "rate": 0.08
+        },
+        "no_violation": {
+          "count": 46,
+          "rate": 0.92
+        }
+      }
+    }
+  },
+  "danger_ranking": [
+    {
+      "type": "authorization_scope",
+      "convergent_rate": 0.44
+    },
+    {
+      "type": "incompleteness",
+      "convergent_rate": 0.38
+    },
+    {
+      "type": "scopal",
+      "convergent_rate": 0.3
+    },
+    {
+      "type": "conditional_precedence",
+      "convergent_rate": 0.26
+    },
+    {
+      "type": "lexical",
+      "convergent_rate": 0.24
+    },
+    {
+      "type": "coreferential",
+      "convergent_rate": 0.1
+    }
+  ],
+  "interpretation": "Convergent violation rate: 28.7% ambiguous vs 1.0% unambiguous. Most systematically dangerous type: authorization_scope (44.0% convergent rate). Among convergent violations, 67.4% have identical severity level."
+}

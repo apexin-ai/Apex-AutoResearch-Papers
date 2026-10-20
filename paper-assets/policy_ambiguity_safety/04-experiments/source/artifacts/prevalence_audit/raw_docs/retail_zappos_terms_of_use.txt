@@ -1,0 +1,29 @@
+# Source: https://www.zappos.com/c/terms-of-use
+# Fetched: 2026-05-23
+# Type: Terms of Use / Customer Service Terms
+
+# Zappos.com Conditions of Use
+
+## LICENSE AND ACCESS
+
+Zappos grants customers a limited, non-exclusive, non-transferable license for personal shopping only. Commercial use, resale, data mining, and automated scraping are prohibited. The company reserves the right to refuse service and terminate accounts.
+
+## YOUR ACCOUNT
+
+Users are solely responsible for maintaining password confidentiality. Customers must notify Zappos immediately of unauthorized account access. The platform does not serve minors under 18 without parental permission.
+
+## RISK OF LOSS, RETURNS & REFUNDS
+
+Title and risk transfer to customers upon carrier delivery. For returns, Zappos takes title only upon receipt at its fulfillment center. Refunds may be issued without requiring returns at the company's discretion.
+
+## PRODUCT DESCRIPTIONS & ACCURACY
+
+Zappos makes no warranty that product descriptions are 100% accurate, complete, reliable, current, or error-free. If products don't match descriptions, customers' sole remedy is returning unused items for refunds. The company reserves the right to cancel orders with incorrect pricing due to errors.
+
+## DISPUTE RESOLUTION
+
+Disputes must follow mandatory binding arbitration, not class actions. Customers must first send a formal Notice of Dispute and attempt 60-day good-faith negotiation. Only after this period can arbitration proceed through JAMS. Small claims court remains available for eligible disputes.
+
+## WARRANTY DISCLAIMER
+
+Zappos provides services "as is" with no warranties. The company disclaims responsibility for data accuracy, data security, viruses, or uninterrupted access. Total liability is capped at amounts customers paid for applicable products or services.

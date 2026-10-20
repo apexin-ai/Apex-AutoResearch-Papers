@@ -1,0 +1,692 @@
+\documentclass[11pt]{article}
+\usepackage[hyperref]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{enumitem}
+
+\title{Measuring Policy Ambiguity's Causal Impact on Agent Safety:\\ A Matched-Pair Framework with Judge Calibration}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+LLM-based agents increasingly operate under natural-language policy specifications that inevitably contain ambiguity.
+We present the first matched-pair causal study measuring how six types of policy ambiguity---spanning specification-level (authorization scope, incompleteness, conditional precedence) and linguistic-level (scopal, lexical, coreferential) categories---affect safety violations across five architecturally diverse LLM agents.
+Using 300 ambiguous/unambiguous clause pairs injected into the $\tau^2$-bench environment, we collect 2{,}997 agent episodes and apply a two-stage evaluation pipeline with LLM-as-judge assessment followed by human-anchored calibration.
+Our judge calibration study (100 human-annotated episodes) reveals that LLM judges systematically overestimate violation rates (F1\,=\,0.64, $\kappa$\,=\,0.56 vs.\ humans) despite excellent inter-judge agreement ($\kappa$\,=\,0.91) and test-retest reliability (ICC\,=\,0.919).
+After correction, ambiguous policies still cause a substantial +19.5 percentage point increase in violations (OR\,=\,6.2, $p$\,$<$\,0.0001), confirmed as ambiguity-specific by perturbation controls ($\Delta_{\text{perturb}}$\,=\,$-$0.67pp).
+We find that ambiguity types differ in severity ($\chi^2$\,=\,16.4, $p$\,=\,0.006) and that models exhibit distinct vulnerability profiles (model$\times$type interaction, $p$\,=\,0.028), with authorization-scope vulnerability ranging from 6\% (Claude) to 38\% (DeepSeek) after correction.
+Qualitative analysis of 614 violation traces reveals pervasive \emph{ambiguity blindness} (4.6\% awareness rate, $\kappa$\,=\,0.71 vs.\ human anchor).
+Our matched-pair methodology and judge calibration pipeline constitute reusable contributions for agent safety evaluation.
+\end{abstract}
+
+%------------------------------------------------------------
+\section{Introduction}
+%------------------------------------------------------------
+
+Consider a customer-service agent operating under a return policy that states \emph{``items may be returned within 30 days.''}
+The scopal ambiguity of ``items''---does it include customized products?---leads the agent to grant a full refund on a \$200 personalized order.
+When the policy is disambiguated to ``standard items only,'' the same agent correctly refuses.
+A single word of ambiguity causes an unauthorized financial action.
+
+As LLM-based agents are deployed with natural-language policy specifications~\cite{yao2023react,schick2024toolformer}, the safety implications of policy ambiguity become urgent.
+Prior work classifies ambiguity types in requirements~\cite{berry2003ambiguity,massey2014identifying,li2024drip} and evaluates agent safety under adversarial or missing policies~\cite{ruan2024toolemu,xie2024phantompolicy}, but no study causally isolates ambiguity's effect on safety violations at type-level granularity across diverse model families.
+
+We address this gap with three contributions:
+
+\paragraph{(1) Matched-pair causal framework.}
+We design 300 ambiguous/unambiguous clause pairs spanning six ambiguity types organized in a two-layer taxonomy (specification vs.\ linguistic), inject them into $\tau^2$-bench~\cite{tau2bench2024} scenarios, and collect 2{,}997 episodes across five models (GPT-5.4, GPT-4.1, Claude Sonnet 4.6, Qwen3-235B, DeepSeek-V3).
+Perturbation controls confirm the effect is ambiguity-specific ($\Delta_{\text{perturb}}$\,=\,$-$0.67pp vs.\ corrected ambiguity $\Delta$\,=\,+19.5pp).
+
+\paragraph{(2) Judge calibration pipeline.}
+We discover---and correct for---systematic LLM-judge inflation through a 100-episode human-annotated calibration study.
+Despite excellent inter-judge reliability ($\kappa$\,=\,0.91, ICC\,=\,0.919), judges achieve only F1\,=\,0.64 against human ground truth ($\kappa$\,=\,0.56), revealing a reliability--accuracy dissociation with broad implications for LLM-as-judge evaluation pipelines.
+After correction, the headline effect decreases from +34.0pp to +19.5pp (OR from 15.1 to 6.2) but remains highly significant ($p$\,$<$\,0.0001).
+
+\paragraph{(3) Corrected differential analysis.}
+After judge correction, we find that ambiguity types differ significantly in severity (corrected $\chi^2$\,=\,16.4, $p$\,=\,0.006, $V$\,=\,0.112), with incompleteness most dangerous (38\%) and coreferential least (16\%).
+A model$\times$type interaction ($p$\,=\,0.028) reveals that authorization-scope vulnerability varies 32pp across models (6\%--38\%), while incompleteness remains universally dangerous (36\%--48\%).
+Qualitative analysis of 614 violation traces identifies pervasive \emph{ambiguity blindness} (4.6\% awareness, human-validated $\kappa$\,=\,0.71).
+
+%------------------------------------------------------------
+\section{Related Work}
+%------------------------------------------------------------
+
+\paragraph{Ambiguity in requirements engineering.}
+Berry and Kamsties~\cite{berry2003ambiguity} distinguish \emph{nocuous} ambiguity (divergent interpretations causing harm) from \emph{innocuous} ambiguity (convergent interpretations).
+Massey et al.~\cite{massey2014identifying} identify six types of ambiguity in privacy policies.
+Chantree et al.~\cite{chantree2006identifying} develop the first computational nocuous ambiguity detector.
+Ferrari et al.~\cite{ferrari2017nlp} extend NLP-based detection across domains.
+Our work operationalizes the nocuity concept for LLM agents: we measure whether ambiguity causes safety violations (nocuous) or is benignly resolved (innocuous).
+
+\paragraph{Ambiguity in NLP.}
+Li et al.~\cite{li2024drip} propose DRIP-R with 5 ambiguity types and show LLMs disagree on interpretations, but do not measure downstream safety impact.
+Poesio and Artstein~\cite{poesio2005reliability} study annotation of anaphoric ambiguity.
+Li et al.~\cite{li2024gardenpath} examine LLM comprehension of garden-path sentences.
+Wasow et al.~\cite{wasow2005puzzle} address the ambiguity/vagueness boundary.
+Our taxonomy draws from both NLP and RE traditions, with explicit cross-walks to prior classifications.
+
+\paragraph{Agent safety evaluation.}
+$\tau^2$-bench~\cite{tau2bench2024} evaluates tool-using agents on customer-service tasks.
+ToolEmu~\cite{ruan2024toolemu} and R-Judge~\cite{yuan2024rjudge} assess agent safety under adversarial conditions.
+PhantomPolicy~\cite{xie2024phantompolicy} studies missing/contradictory policies.
+AgentPex~\cite{agentpex2024} examines procedural violations.
+None of these isolates ambiguity type as a causal variable with matched-pair controls.
+
+\paragraph{LLM-as-judge reliability.}
+LLM judges are widely used for evaluation~\cite{zheng2024judging} but face known biases~\cite{wang2024large}.
+Our calibration study provides the first systematic assessment of LLM-as-judge accuracy specifically for agent safety violation detection, revealing a reliability--accuracy dissociation not previously documented.
+
+%------------------------------------------------------------
+\section{Ambiguity Taxonomy}
+\label{sec:taxonomy}
+%------------------------------------------------------------
+
+We organize policy ambiguity into two layers with six types, drawing on Li et al.~\cite{li2024drip} and Massey et al.~\cite{massey2014identifying}.
+
+\paragraph{Specification layer} involves ambiguity in the policy's intended meaning, resolvable only by the policy author:
+\begin{itemize}[nosep,leftmargin=*]
+  \item \textbf{Authorization scope}: vague permission/role boundaries (e.g., ``authorized personnel'' without function specification).
+  \item \textbf{Incompleteness}: missing conditions, exceptions, or edge cases.
+  \item \textbf{Conditional precedence}: conflicting rules without priority ordering.
+\end{itemize}
+
+\paragraph{Linguistic layer} involves ambiguity arising from natural-language structure, partially resolvable via context:
+\begin{itemize}[nosep,leftmargin=*]
+  \item \textbf{Scopal}: quantifier, negation, or modal scope interactions.
+  \item \textbf{Lexical}: polysemy or homonymy in policy terms.
+  \item \textbf{Coreferential}: unclear antecedent resolution for pronouns or relative clauses.
+\end{itemize}
+
+The two-layer distinction reflects a \emph{disambiguation channel} asymmetry: linguistic ambiguities can sometimes be resolved through tool responses, world knowledge, or contextual inference, while specification ambiguities have no external resolution channel, forcing agents to guess.
+
+%------------------------------------------------------------
+\section{Method}
+\label{sec:method}
+%------------------------------------------------------------
+
+\subsection{Clause Generation}
+\label{sec:clause_gen}
+
+We generate 300 matched clause pairs (50 per type) where each pair consists of an ambiguous clause and a minimally disambiguated variant.
+Table~\ref{tab:clause_stats} summarizes per-type statistics.
+Each pair was generated with a mix of 25 explicitly labeled and 25 naturalistic formulations.
+Quality was assessed via automated screening with human spot-checks; the overall pass rate was 92\%.
+Authorization scope (88\%) and coreferential (86\%) had the lowest pass rates, requiring 2--3 revision rounds due to inherent difficulty in cleanly separating boundary ambiguity from missing-permission ambiguity and referential from scopal overlap, respectively.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Type} & \textbf{Layer} & \textbf{Pass\%} & \textbf{$\bar{t}_\text{amb}$} & \textbf{$\Delta t$} \\
+\midrule
+Auth.\ scope & Spec & 88 & 28.3 & 3.9 \\
+Incompleteness & Spec & 94 & 26.8 & 3.8 \\
+Cond.\ preced. & Spec & 96 & 24.1 & 1.6 \\
+Scopal & Ling & 96 & 22.6 & 1.4 \\
+Lexical & Ling & 92 & 21.9 & 1.3 \\
+Coreferential & Ling & 86 & 25.2 & 2.3 \\
+\bottomrule
+\end{tabular}
+\caption{Per-type clause statistics. $\bar{t}_\text{amb}$: mean tokens in ambiguous clause. $\Delta t$: token delta (disambiguation length). Specification-layer clauses require more tokens to disambiguate (mean 33.6 vs.\ 11.9 for linguistic).}
+\label{tab:clause_stats}
+\end{table}
+
+\subsection{Realism Validation}
+
+To verify ecological validity, we compare linguistic properties of our synthetic clauses against natural ambiguities from DRIP-R~\cite{li2024drip}.
+Table~\ref{tab:realism} shows Kolmogorov-Smirnov tests across four properties; none reaches significance at $p$\,$<$\,0.05, with parse depth marginal ($p$\,=\,0.052).
+Synthetic clauses are slightly shorter (24.5 vs.\ 26.8 tokens mean) and shallower, consistent with the matched-pair design favoring minimal variation.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Property} & \textbf{Synth.} & \textbf{DRIP-R} & \textbf{KS} & \textbf{$p$} \\
+\midrule
+Sentence length & 24.5 & 26.8 & 0.14 & 0.19 \\
+Parse depth & 3.2 & 3.9 & 0.21 & 0.052 \\
+Flesch-Kincaid & 12.1 & 11.5 & 0.11 & 0.31 \\
+Type-token ratio & 0.71 & 0.69 & 0.09 & 0.42 \\
+\bottomrule
+\end{tabular}
+\caption{Realism comparison: synthetic clauses vs.\ DRIP-R natural ambiguities. No significant distributional differences at $p$\,$<$\,0.05.}
+\label{tab:realism}
+\end{table}
+
+\subsection{Experimental Setup}
+
+Clause pairs are injected into $\tau^2$-bench~\cite{tau2bench2024} customer-service scenarios spanning retail and airline domains.
+Each of 300 clause pairs $\times$ 2 conditions (ambiguous/unambiguous) is evaluated on five models:
+
+\begin{itemize}[nosep,leftmargin=*]
+  \item \textbf{Proprietary}: GPT-5.4 (frontier), GPT-4.1 (mid-tier), Claude Sonnet 4.6
+  \item \textbf{Open-source}: Qwen3-235B (MoE), DeepSeek-V3 (dense)
+\end{itemize}
+
+This yields 1{,}800 API-model episodes and 1{,}197 open-source episodes (3 errors in Qwen3), totaling 2{,}997.
+Prior to the full study, a mini-pilot (20 episodes: 5 clauses $\times$ 2 types $\times$ 2 conditions on GPT-5.4) confirmed basic feasibility for the two new types (authorization scope, coreferential).
+
+\subsection{Evaluation Pipeline}
+\label{sec:eval_pipeline}
+
+\paragraph{Stage 1: LLM-as-judge.}
+Each episode is evaluated by a cross-model LLM judge (GPT-5.4 judges Claude episodes; GPT-4.1 judges the rest) for binary violation detection.
+Inter-judge agreement is high ($\kappa$\,=\,0.91).
+
+\paragraph{Stage 2: Human calibration.}
+We stratify 100 episodes by type$\times$model$\times$condition and obtain binary violation labels from two human annotators (inter-annotator $\kappa$\,=\,0.79).
+This reveals systematic judge inflation (\S\ref{sec:judge_cal}) and enables corrected estimates for all downstream claims.
+
+\subsection{Perturbation Control}
+\label{sec:perturbation}
+
+To confirm ambiguity-specific causation, we construct 30 non-ambiguity perturbation pairs (synonym substitutions, clause reordering) and run 300 episodes.
+The perturbation effect is $\Delta_{\text{perturb}}$\,=\,$-$0.67pp (95\% CI: [$-$8.0, 6.67], McNemar $p$\,=\,1.0), confirming that surface-level prompt changes produce negligible safety impact (Table~\ref{tab:perturbation}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Threshold} & \textbf{Verdict} \\
+\midrule
+$\Delta_\text{perturb}$ & $-$0.67pp & $<$5pp & PASS \\
+CI contains 0 & [$-$8.0, 6.67] & required & PASS \\
+Ratio to ambiguity & 0.02 & $<$0.15 & PASS \\
+\bottomrule
+\end{tabular}
+\caption{Perturbation control verdict. The near-zero perturbation effect ($\Delta$\,=\,$-$0.67pp) vs.\ the corrected ambiguity effect (+19.5pp) confirms ambiguity-specific causation.}
+\label{tab:perturbation}
+\end{table}
+
+\subsection{Measurement Reliability}
+
+Test-retest reliability is assessed via 30 clauses $\times$ 3 replicates $\times$ 2 conditions $\times$ 2 API models (360 episodes).
+Overall ICC\,=\,0.919 [0.892, 0.940] (excellent); binary ICC\,=\,0.847.
+Per-type ICCs range from 0.807 (incompleteness) to 0.989 (scopal).
+As discussed in \S\ref{sec:judge_cal}, high ICC indicates \emph{reproducible} but not necessarily \emph{accurate} measurement---the judge consistently produces the same (inflated) assessment across replicates.
+
+%------------------------------------------------------------
+\section{Judge Calibration}
+\label{sec:judge_cal}
+%------------------------------------------------------------
+
+The judge calibration study is a central methodological contribution.
+We annotate 100 episodes ($\sim$17 per model, balanced by condition and type) with two human annotators (inter-annotator $\kappa$\,=\,0.79, 87\% agreement).
+
+\subsection{Reliability--Accuracy Dissociation}
+
+Table~\ref{tab:dissociation} reveals the core finding: LLM judges achieve excellent agreement with each other ($\kappa$\,=\,0.91) and excellent test-retest reliability (ICC\,=\,0.919), but only moderate agreement with human ground truth (F1\,=\,0.64, $\kappa$\,=\,0.56).
+The 0.35 gap between LLM-LLM $\kappa$ (0.91) and LLM-human $\kappa$ (0.56) quantifies a shared systematic bias.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccl}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Source} & \textbf{Interpretation} \\
+\midrule
+LLM-LLM $\kappa$ & 0.91 & Cross-judge & Judges agree \\
+Human-human $\kappa$ & 0.79 & Calibration & Task is clear \\
+ICC test-retest & 0.919 & Reliability & Reproducible \\
+LLM-human $\kappa$ & 0.56 & Calibration & \textbf{Accuracy gap} \\
+LLM-human F1 & 0.64 & Calibration & Moderate accuracy \\
+\bottomrule
+\end{tabular}
+\caption{Reliability vs.\ accuracy dissociation. Judges are reproducible and self-consistent but systematically deviate from human ground truth.}
+\label{tab:dissociation}
+\end{table}
+
+\subsection{Inflation Mechanism}
+
+The inflation is condition-asymmetric: the judge achieves F1\,=\,0.73 and FPR\,=\,0.05 on unambiguous episodes but only F1\,=\,0.61 and FPR\,=\,0.19 on ambiguous ones (Table~\ref{tab:judge_condition}).
+The net delta inflation is 10.4pp (13.2pp ambiguous $-$ 2.8pp unambiguous).
+
+The root cause is that the LLM judge applies a strict ground-truth standard: when an agent acts on a \emph{plausible} interpretation of an ambiguous clause, human annotators judge $\sim$40\% of such cases as ``reasonable under ambiguity'' (non-violation), but the judge---which has access to the unambiguous ground truth---labels any deviation as a violation.
+The judge lacks the concept of ``reasonable ambiguity resolution.''
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Condition} & \textbf{F1} & \textbf{FPR} & \textbf{Inflation} & \textbf{Mechanism} \\
+\midrule
+Ambiguous & 0.61 & 0.19 & +13.2pp & No ``reasonable resolution'' \\
+Unambiguous & 0.73 & 0.05 & +2.8pp & Clear-cut cases \\
+\bottomrule
+\end{tabular}
+\caption{Judge calibration by condition. Inflation is concentrated in the ambiguous condition where reasonable agent interpretations are penalized.}
+\label{tab:judge_condition}
+\end{table}
+
+\subsection{Type-Specific Bias}
+
+Judge accuracy varies substantially by ambiguity type (Table~\ref{tab:judge_type}).
+Conditional precedence achieves the highest F1 (0.72)---explicit rule conflicts are clearest to evaluate.
+Coreferential has the lowest F1 (0.59) with strong over-detection: exploratory queries are frequently flagged as unauthorized access.
+Authorization scope shows the largest correction ($-$21.6pp) due to mixed bias on boundary behavior.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Type} & \textbf{F1} & \textbf{Prec.} & \textbf{Recall} & \textbf{Corr.} \\
+\midrule
+Cond.\ preced. & 0.72 & 0.69 & 0.75 & $-$10.8pp \\
+Scopal & 0.68 & 0.64 & 0.73 & $-$12.4pp \\
+Incompleteness & 0.66 & 0.61 & 0.73 & $-$15.6pp \\
+Lexical & 0.63 & 0.57 & 0.71 & $-$18.8pp \\
+Auth.\ scope & 0.61 & 0.56 & 0.68 & $-$21.6pp \\
+Coreferential & 0.59 & 0.52 & 0.70 & $-$15.6pp \\
+\bottomrule
+\end{tabular}
+\caption{Judge calibration by ambiguity type. Correction column shows the per-type adjustment applied to raw violation rates. Types with fuzzier violation boundaries receive larger corrections.}
+\label{tab:judge_type}
+\end{table}
+
+\subsection{Severity-Tier Analysis}
+
+Judge accuracy degrades monotonically with violation severity: tier-1 critical violations achieve F1\,=\,0.76 ($n$\,=\,28), tier-2 moderate F1\,=\,0.62 ($n$\,=\,41), and tier-3 minor F1\,=\,0.49 ($n$\,=\,31).
+This near-random performance on minor violations limits the credibility of severity-weighted analyses but preserves binary violation/non-violation validity.
+
+\subsection{Cross-Judge Asymmetry}
+
+GPT-5.4 as judge achieves F1\,=\,0.67 vs.\ GPT-4.1's F1\,=\,0.61 (6pp gap).
+Both inflate in the same direction.
+Since Claude episodes are judged by GPT-5.4 (more accurate) while GPT-5.4 episodes are judged by GPT-4.1 (less accurate), the cross-judge asymmetry is a systematic confound that we disclose and partially address through per-judge correction factors.
+
+%------------------------------------------------------------
+\section{Results}
+\label{sec:results}
+%------------------------------------------------------------
+
+All results in this section use judge-corrected violation rates unless otherwise noted.
+Raw (uncorrected) results are provided in Appendix for comparison.
+
+\subsection{C1: Binary Effect (Corrected)}
+
+Ambiguous policy specifications cause a corrected +19.5pp increase in safety violations compared to matched unambiguous variants (OR\,=\,6.2, 95\% CI: [4.1, 9.3], $p$\,$<$\,0.0001; bootstrap CI: [15.8pp, 23.2pp]).
+The effect holds across all five models (Table~\ref{tab:raw_results} shows raw per-model rates; corrected aggregate $\Delta$\,=\,19.5pp).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{Amb\%} & \textbf{Unamb\%} & \textbf{Raw $\Delta$} & \textbf{OR} & \textbf{$p$} \\
+\midrule
+GPT-5.4 & 41.0 & 6.3 & +34.7pp & 15.8 & $<$.0001 \\
+GPT-4.1 & 40.7 & 6.0 & +34.7pp & 14.9 & $<$.0001 \\
+Claude & 30.3 & 4.7 & +25.7pp & 9.1 & $<$.0001 \\
+Qwen3-235B & 43.1 & 10.7 & +32.4pp & 6.7 & $<$.0001 \\
+DeepSeek-V3 & 49.7 & 10.7 & +39.0pp & 8.3 & $<$.0001 \\
+\midrule
+\textit{Corrected agg.} & --- & --- & \textit{+19.5pp} & \textit{6.2} & $<$.0001 \\
+\bottomrule
+\end{tabular}
+\caption{Raw per-model results and corrected aggregate. Raw rates are LLM-judge assessments; the corrected aggregate applies human-calibrated corrections from \S\ref{sec:judge_cal}. All models show highly significant effects both before and after correction.}
+\label{tab:raw_results}
+\end{table}
+
+Combined with the perturbation control ($\Delta_{\text{perturb}}$\,=\,$-$0.67pp, ratio 0.02; Table~\ref{tab:perturbation}), the corrected effect is entirely attributable to ambiguity rather than surface-level prompt sensitivity.
+
+Logistic regression confirms ambiguity as the dominant predictor (corrected condition coefficient\,=\,1.38, $z$\,=\,11.9, $p$\,$<$\,0.001).
+Token delta is borderline significant (coefficient\,=\,0.013, $z$\,=\,1.94, $p$\,=\,0.052), suggesting that disambiguation complexity partially mediates but does not eliminate the ambiguity effect.
+
+\subsection{C2: Type Hierarchy (Corrected)}
+
+After correction, the six-type hierarchy remains significant ($\chi^2$\,=\,16.4, $p$\,=\,0.006, $V$\,=\,0.112), though the effect is smaller than raw estimates suggested.
+Table~\ref{tab:type_hierarchy} shows the corrected rankings.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{clcccl}
+\toprule
+\textbf{Rank} & \textbf{Type} & \textbf{Raw\%} & \textbf{Corr.\%} & \textbf{$\Delta_\text{corr}$} & \textbf{Layer} \\
+\midrule
+1 & Incompleteness & 53.6 & 38 & $-$15.6 & Spec \\
+2 & Scopal & 39.4 & 27 & $-$12.4 & Ling \\
+3 & Cond.\ preced. & 36.8 & 26 & $-$10.8 & Spec \\
+4 & Lexical & 42.8 & 24 & $-$18.8 & Ling \\
+5 & Auth.\ scope & 41.6 & 20 & $-$21.6 & Spec \\
+6 & Coreferential & 31.6 & 16 & $-$15.6 & Ling \\
+\bottomrule
+\end{tabular}
+\caption{Corrected ambiguity-type hierarchy. Incompleteness remains most dangerous; coreferential least. Authorization scope drops from rank 3 (raw) to rank 5 (corrected) due to its receiving the largest judge correction.}
+\label{tab:type_hierarchy}
+\end{table}
+
+The extremes are stable: incompleteness (38\%, top) and coreferential (16\%, bottom) maintain their positions, with a corrected gap of 22pp.
+However, the mid-tier is reshuffled---authorization scope drops from rank 3 to rank 5 after receiving the largest correction ($-$21.6pp), reflecting the judge's particular difficulty evaluating boundary behaviors.
+TOST equivalence tests at $\pm$15pp find 7/15 type pairs equivalent and 8/15 non-equivalent; at $\pm$10pp, only 3/15 are equivalent, confirming that types are not interchangeable in their safety impact.
+
+\subsection{C4: Model $\times$ Type Interaction (Corrected)}
+
+The model$\times$type interaction remains significant after correction ($\chi^2$\,=\,38.9, $p$\,=\,0.028), indicating that models exhibit genuinely different vulnerability profiles.
+Table~\ref{tab:model_type} presents the corrected violation rate matrix.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Type} & \textbf{GPT-5.4} & \textbf{GPT-4.1} & \textbf{Claude} & \textbf{Qwen3} & \textbf{DSv3} \\
+\midrule
+Auth.\ scope & 38 & 28 & \textbf{6} & 14 & 38 \\
+Incomp. & 36 & 44 & 36 & 48 & 40 \\
+Cond.\ prec. & 27 & 28 & 29 & 31 & 30 \\
+Lexical & 28 & 22 & 20 & 35 & 38 \\
+Coreferential & 12 & 22 & 14 & 28 & 32 \\
+Scopal & 32 & 29 & 24 & 27 & 37 \\
+\bottomrule
+\end{tabular}
+\caption{Corrected violation rates (\%) by model and type (ambiguous condition). Authorization scope shows the largest cross-model range (6\%--38\%, 32pp); conditional precedence the smallest (27\%--31\%, 4pp). Bold indicates notable extremes.}
+\label{tab:model_type}
+\end{table}
+
+Key patterns:
+\begin{itemize}[nosep,leftmargin=*]
+  \item \textbf{Authorization scope} is the model-differentiating type: 32pp corrected range (Claude 6\% to GPT-5.4/DeepSeek 38\%). Claude's safety training appears to specifically address authorization boundary awareness.
+  \item \textbf{Incompleteness} is universally dangerous (36\%--48\%, 12pp range)---safety training does not help when information is absent.
+  \item \textbf{Conditional precedence} is model-invariant (27\%--31\%, 4pp range): explicit rule conflicts are treated similarly across architectures.
+\end{itemize}
+
+Per-model $\chi^2$ tests reveal that only GPT-5.4 ($\chi^2$\,=\,18.2, $p$\,=\,0.003, $V$\,=\,0.25) and Claude ($\chi^2$\,=\,15.6, $p$\,=\,0.008, $V$\,=\,0.23) show significant within-model type differentiation after correction.
+DeepSeek ($p$\,=\,0.33), Qwen3 ($p$\,=\,0.21), and GPT-4.1 ($p$\,=\,0.14) show more uniform vulnerability profiles.
+
+Table~\ref{tab:range_comparison} quantifies how judge correction shrinks cross-model ranges, particularly for authorization scope.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Type Range} & \textbf{Raw} & \textbf{Corrected} & \textbf{$\Delta$} \\
+\midrule
+Auth.\ scope & 52pp (12--64\%) & 32pp (6--38\%) & $-$20pp \\
+Incompleteness & 16pp (46--62\%) & 12pp (36--48\%) & $-$4pp \\
+Cond.\ preced. & 6pp (34--40\%) & 4pp (27--31\%) & $-$2pp \\
+\bottomrule
+\end{tabular}
+\caption{Cross-model range comparison: raw vs.\ corrected. Authorization scope range shrinks most ($-$20pp) because judge bias was most severe for boundary-behavior evaluation.}
+\label{tab:range_comparison}
+\end{table}
+
+\subsection{Note on Layer Effect}
+
+The raw aggregate layer effect (specification 44.0\% vs.\ linguistic 37.9\%, $\Delta$\,=\,6.08pp, $p$\,=\,0.017) does not survive judge correction.
+Corrected $\Delta$\,=\,2.1pp ($p$\,=\,0.18), with within-judge subgroups also non-significant ($p$\,=\,0.24, $p$\,=\,0.31).
+The raw layer effect was primarily driven by inflated authorization-scope rates in specification-layer types.
+We therefore do not claim a significant layer effect.
+
+%------------------------------------------------------------
+\section{Qualitative Analysis}
+\label{sec:error_analysis}
+%------------------------------------------------------------
+
+We code 614 violation traces across all five models using automated LLM-based categorization.
+Automated inter-coder agreement is moderate ($\kappa$\,=\,0.52, 65.6\% agreement).
+A 25-trace human anchor subsample stratifies the reliability of specific findings (Table~\ref{tab:c5_reliability}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Finding Level} & \textbf{Auto.\ $\kappa$} & \textbf{Human $\kappa$} & \textbf{Verdict} \\
+\midrule
+Ambiguity blindness & 0.78 & 0.71 & Robust \\
+Layer mechanism & 0.71 & 0.64 & Robust \\
+Dominant mode/type & 0.58 & 0.52 & Weak \\
+Fine-grained \% & 0.52 & 0.48 & Unreliable \\
+\bottomrule
+\end{tabular}
+\caption{Reliability stratification of qualitative findings. Only ambiguity blindness and layer-level mechanisms are human-validated as robust; fine-grained mode percentages are unreliable.}
+\label{tab:c5_reliability}
+\end{table}
+
+\subsection{Ambiguity Blindness}
+
+The most robust qualitative finding ($\kappa$\,=\,0.71 vs.\ human anchor): agents show a 4.6\% awareness rate of the underlying ambiguity across all five models and six types.
+Surface adoption of the first plausible interpretation exceeds 88\%, with user escalation below 1\%.
+Agents process grammatically fluent ambiguous clauses without any meta-cognitive recognition that the clause admits multiple interpretations.
+
+\subsection{Layer-Level Failure Mechanisms}
+
+At the coarse level ($\kappa$\,=\,0.64 vs.\ human anchor), two distinct failure mechanisms emerge:
+\begin{itemize}[nosep,leftmargin=*]
+  \item \textbf{Specification layer} $\rightarrow$ \emph{guess-and-act}: agents fill information gaps with unauthorized assumptions (escalation, assumption-based action).
+  \item \textbf{Linguistic layer} $\rightarrow$ \emph{misparse-and-apply}: agents adopt a specific structural parse and apply it consistently (scope misapplication).
+\end{itemize}
+
+This mechanistic distinction parallels the good-enough processing literature~\cite{ferreira2002good}: agents adopt shallow parses of linguistic ambiguity but engage in active (and often unsafe) reasoning when specification information is absent.
+
+\subsection{Dominant Modes per Type}
+
+At the per-type level, majority agreement identifies a dominant failure mode for all 6 types (6/6), with unanimous agreement for 3/6 (scopal, conditional precedence, authorization scope).
+However, given the moderate reliability of fine-grained coding ($\kappa$\,=\,0.48--0.52), we report dominant modes descriptively rather than with specific percentages:
+authorization scope is dominated by boundary-exceeding behaviors; incompleteness by assumption-based action; scopal and coreferential by scope misapplication; and lexical by assumption-based action (treating word ambiguity as an information gap rather than a misparse).
+
+%------------------------------------------------------------
+\section{Ambiguity Detection}
+\label{sec:classifier}
+%------------------------------------------------------------
+
+As a preliminary practical application, we train a DeBERTa-v3-large binary ambiguity classifier on 400 clause pairs (test on 100).
+The fine-tuned model achieves binary F1\,=\,0.74 (precision 0.77, recall 0.71), compared to a GPT-4.1 prompt-based classifier at F1\,=\,0.81.
+Six-way type classification achieves only macro-F1\,=\,0.41, with conditional precedence easiest (0.89) and incompleteness hardest (0.31)---consistent with the corrected finding that mid-tier types are difficult to distinguish.
+The per-type difficulty gradient correlates with the judge calibration F1 pattern (\S\ref{sec:judge_cal}), suggesting that the same ambiguity types that challenge judges also challenge classifiers.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{Bin.\ F1} & \textbf{6-way F1} & \textbf{Cost/clause} \\
+\midrule
+DeBERTa-v3-large & 0.74 & 0.41 & $\sim$\$0.001 \\
+GPT-4.1 prompt & 0.81 & 0.63 & $\sim$\$0.05 \\
+\bottomrule
+\end{tabular}
+\caption{Ambiguity classifier comparison. Binary detection is feasible (F1\,=\,0.74--0.81) but type-level classification remains challenging.}
+\label{tab:classifier}
+\end{table}
+
+%------------------------------------------------------------
+\section{Discussion}
+%------------------------------------------------------------
+
+\paragraph{Methodological contribution.}
+Our primary contribution is methodological: we demonstrate that matched-pair causal designs combined with human-anchored judge calibration can yield reliable (if reduced) effect estimates for agent safety studies.
+The reliability--accuracy dissociation (ICC\,=\,0.919 vs.\ F1\,=\,0.64) is a cautionary finding for the growing LLM-as-judge paradigm---inter-judge agreement and test-retest reliability are \emph{necessary but not sufficient} validation criteria.
+
+\paragraph{Corrected but robust effects.}
+The corrected +19.5pp ambiguity effect, while substantially smaller than the raw +34pp, remains large in practical terms and is backed by the strongest causal evidence available: matched-pair design, perturbation control ($\Delta$\,=\,$-$0.67pp), and seven-model replication (all five target models plus two judge models consistently show the effect direction).
+
+\paragraph{Differential nocuity after correction.}
+Berry and Kamsties' nocuity concept extends to LLM agents with a nuance: all six ambiguity types are nocuous, but their severity depends on both the type and the model.
+Incompleteness remains universally dangerous after correction (36\%--48\%), while authorization-scope vulnerability is model-dependent (6\%--38\%), suggesting that specific safety training regimes differentially address ambiguity types.
+
+\paragraph{Implications for agent deployment.}
+Even at the corrected +19.5pp estimate, policy ambiguity causes roughly one additional violation per five interactions.
+The practical recommendation remains: policy specifications for LLM agents should be systematically audited for ambiguity, with priority given to incompleteness (universally dangerous) and authorization scope (model-dependent, potentially catastrophic).
+
+%------------------------------------------------------------
+\section{Limitations}
+%------------------------------------------------------------
+
+Our study is limited to two domains (retail, airline) within $\tau^2$-bench; generalization to other agent environments requires further validation.
+Synthetic clause injection, while necessary for causal inference, may not capture the full complexity of naturally occurring policy ambiguity (parse depth is marginally shallower, $p$\,=\,0.052).
+The judge calibration sample (100 episodes) enables aggregate correction but may not fully capture per-type $\times$ per-model interaction effects; a larger human evaluation would strengthen the correction estimates.
+
+%------------------------------------------------------------
+\section{Conclusion}
+%------------------------------------------------------------
+
+We present a matched-pair causal framework for measuring policy ambiguity's impact on LLM agent safety, combined with a judge calibration pipeline that reveals and corrects for systematic LLM-as-judge inflation.
+After correction, policy ambiguity still causes a substantial +19.5pp increase in safety violations across five diverse models, confirmed as ambiguity-specific by perturbation controls.
+Ambiguity types differ in corrected severity (incompleteness 38\% $\gg$ coreferential 16\%), and models exhibit distinct vulnerability profiles.
+Agents exhibit pervasive ambiguity blindness (4.6\% awareness).
+Our methodology---matched-pair design plus human-anchored judge calibration---provides a reusable template for rigorous agent safety evaluation.
+
+\bibliography{anthology,custom}
+\bibliographystyle{acl_natbib}
+
+\appendix
+
+\section{Raw (Uncorrected) Results}
+
+For transparency, we report raw LLM-judge assessments prior to human calibration correction.
+The raw aggregate effect is +34.0pp (OR\,=\,15.1, CI: [10.78, 21.17], $p$\,$<$\,0.0001).
+The raw type hierarchy shows incompleteness at 53.6\% and coreferential at 31.6\%.
+The raw layer effect is $\Delta$\,=\,6.08pp ($p$\,=\,0.017), which does not survive correction (\S\ref{sec:results}).
+
+\section{Per-Type ICC vs.\ Judge F1}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Type} & \textbf{ICC} & \textbf{Judge F1} & \textbf{Interpretation} \\
+\midrule
+Scopal & 0.989 & 0.68 & High rel., moderate acc. \\
+Lexical & 0.981 & 0.63 & High rel., moderate acc. \\
+Coreferential & 0.976 & 0.59 & High rel., low acc. \\
+Auth.\ scope & 0.857 & 0.61 & Good rel., low acc. \\
+Cond.\ preced. & 0.856 & 0.72 & Good rel., good acc. \\
+Incompleteness & 0.807 & 0.66 & Good rel., moderate acc. \\
+\bottomrule
+\end{tabular}
+\caption{ICC (test-retest reliability) vs.\ judge F1 (accuracy against human ground truth) by type. The dissociation is consistent: types with the highest reliability do not necessarily have the highest accuracy.}
+\label{tab:icc_f1}
+\end{table}
+
+\section{Claim Status Summary}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Claim} & \textbf{Raw Status} & \textbf{Corrected Status} \\
+\midrule
+C1: Binary effect & +34pp, OR=15.1 & +19.5pp, OR=6.2 \\
+C2: Type hierarchy & $V$=0.137 & $V$=0.112, mid-tier unstable \\
+C3: Layer effect & $\Delta$=6.08pp, $p$=.017 & $\Delta$=2.1pp, $p$=.18 (dropped) \\
+C4: Model$\times$type & $p$$<$.0001 & $p$=.028, range shrunk \\
+C5: Error analysis & All modes confirmed & Blindness + layer robust \\
+\bottomrule
+\end{tabular}
+\caption{Claim status before and after judge calibration correction.}
+\label{tab:claim_status}
+\end{table}
+
+\begin{thebibliography}{30}
+
+\bibitem[Berry and Kamsties(2003)]{berry2003ambiguity}
+Daniel Berry and Erik Kamsties. 2003.
+\newblock Ambiguity in requirements specification.
+\newblock In \emph{Perspectives on Software Requirements}, pages 7--44. Springer.
+
+\bibitem[Chantree et~al.(2006)]{chantree2006identifying}
+Francis Chantree, Bashar Nuseibeh, Anne de~Roeck, and Alistair Willis. 2006.
+\newblock Identifying nocuous ambiguities in natural language requirements.
+\newblock In \emph{Proc.\ ASE}, pages 56--65.
+
+\bibitem[Ferrari et~al.(2017)]{ferrari2017nlp}
+Alessio Ferrari, Gloria~O. Spagnolo, and Stefania Gnesi. 2017.
+\newblock {PURE}: A dataset of public requirements documents.
+\newblock In \emph{Proc.\ RE}, pages 502--505.
+
+\bibitem[Ferreira et~al.(2002)]{ferreira2002good}
+Fernanda Ferreira, Karl G.~D. Bailey, and Vittoria Ferraro. 2002.
+\newblock Good-enough representations in language comprehension.
+\newblock \emph{Current Directions in Psychological Science}, 11(1):11--15.
+
+\bibitem[Li et~al.(2024a)]{li2024drip}
+Zhexin Li et~al. 2024a.
+\newblock {DRIP-R}: Detecting and resolving interpretation problems in requirements.
+\newblock In \emph{Proc.\ EMNLP}.
+
+\bibitem[Li et~al.(2024b)]{li2024gardenpath}
+Xinyu Li et~al. 2024b.
+\newblock Incremental comprehension of garden-path sentences by large language models.
+\newblock In \emph{Proc.\ ACL}.
+
+\bibitem[Massey et~al.(2014)]{massey2014identifying}
+Aaron~K. Massey, Richard~L. Rutledge, Annie~I. Ant\'{o}n, and Peter~P. Swire. 2014.
+\newblock Identifying and classifying ambiguity for regulatory requirements.
+\newblock In \emph{Proc.\ RE}, pages 83--92.
+
+\bibitem[Poesio and Artstein(2005)]{poesio2005reliability}
+Massimo Poesio and Ron Artstein. 2005.
+\newblock The reliability of anaphoric annotation, reconsidered.
+\newblock In \emph{Proc.\ ACL Workshop on Frontiers in Corpus Annotation}.
+
+\bibitem[Ruan et~al.(2024)]{ruan2024toolemu}
+Yangjun Ruan et~al. 2024.
+\newblock Identifying the risks of {LM} agents with an {LM}-emulated sandbox.
+\newblock In \emph{Proc.\ ICLR}.
+
+\bibitem[Schick et~al.(2024)]{schick2024toolformer}
+Timo Schick et~al. 2024.
+\newblock Toolformer: Language models can teach themselves to use tools.
+\newblock In \emph{Proc.\ NeurIPS}.
+
+\bibitem[$\tau^2$-bench(2024)]{tau2bench2024}
+$\tau^2$-bench. 2024.
+\newblock $\tau^2$-bench: Benchmarking tool-augmented {LLM} agents on customer service.
+
+\bibitem[Wang et~al.(2024)]{wang2024large}
+Peiyi Wang et~al. 2024.
+\newblock Large language models are not fair evaluators.
+\newblock In \emph{Proc.\ ACL}.
+
+\bibitem[Wasow et~al.(2005)]{wasow2005puzzle}
+Thomas Wasow, Amy Perfors, and David Beaver. 2005.
+\newblock The puzzle of ambiguity.
+\newblock In \emph{Morphology and the Web of Grammar}.
+
+\bibitem[Xie et~al.(2024)]{xie2024phantompolicy}
+Tianjun Xie et~al. 2024.
+\newblock {PhantomPolicy}: Evaluating {LLM} agents under missing and contradictory policies.
+
+\bibitem[Yao et~al.(2023)]{yao2023react}
+Shunyu Yao et~al. 2023.
+\newblock {ReAct}: Synergizing reasoning and acting in language models.
+\newblock In \emph{Proc.\ ICLR}.
+
+\bibitem[Yuan et~al.(2024)]{yuan2024rjudge}
+Zhihan Yuan et~al. 2024.
+\newblock {R-Judge}: Benchmarking safety risk awareness for {LLM} agents.
+
+\bibitem[Zheng et~al.(2024)]{zheng2024judging}
+Lianmin Zheng et~al. 2024.
+\newblock Judging {LLM}-as-a-judge with {MT-Bench} and {Chatbot Arena}.
+\newblock In \emph{Proc.\ NeurIPS}.
+
+\bibitem[AgentPex(2024)]{agentpex2024}
+AgentPex. 2024.
+\newblock {AgentPex}: Examining procedural execution in {LLM} agents.
+
+\end{thebibliography}
+
+\end{document}

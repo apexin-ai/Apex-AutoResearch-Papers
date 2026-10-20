@@ -1,0 +1,169 @@
+{
+  "analysis": "kendall_w_type_concordance",
+  "description": "Kendall's W concordance coefficient measuring agreement among models on relative violation rates across ambiguity types",
+  "violation_rate_matrix": {
+    "five_model": {
+      "models": [
+        "gpt-4.1",
+        "gpt-5.4",
+        "claude-sonnet-4-6",
+        "qwen3-235b",
+        "deepseek-v3"
+      ],
+      "types": [
+        "incompleteness",
+        "lexical",
+        "scopal",
+        "conditional_precedence",
+        "authorization_scope",
+        "coreferential"
+      ],
+      "rates": {
+        "gpt-4.1": {
+          "incompleteness": 0.58,
+          "lexical": 0.34,
+          "scopal": 0.38,
+          "conditional_precedence": 0.36,
+          "authorization_scope": 0.46,
+          "coreferential": 0.32
+        },
+        "gpt-5.4": {
+          "incompleteness": 0.46,
+          "lexical": 0.42,
+          "scopal": 0.42,
+          "conditional_precedence": 0.34,
+          "authorization_scope": 0.64,
+          "coreferential": 0.18
+        },
+        "claude-sonnet-4-6": {
+          "incompleteness": 0.48,
+          "lexical": 0.32,
+          "scopal": 0.32,
+          "conditional_precedence": 0.36,
+          "authorization_scope": 0.12,
+          "coreferential": 0.22
+        },
+        "qwen3-235b": {
+          "incompleteness": 0.62,
+          "lexical": 0.52,
+          "scopal": 0.3673469387755102,
+          "conditional_precedence": 0.4,
+          "authorization_scope": 0.26,
+          "coreferential": 0.42
+        },
+        "deepseek-v3": {
+          "incompleteness": 0.54,
+          "lexical": 0.54,
+          "scopal": 0.48,
+          "conditional_precedence": 0.38,
+          "authorization_scope": 0.6,
+          "coreferential": 0.44
+        }
+      }
+    },
+    "seven_model": {
+      "models": [
+        "gpt-4.1",
+        "gpt-5.4",
+        "claude-sonnet-4-6",
+        "qwen3-235b",
+        "deepseek-v3",
+        "gemini-2.5-flash",
+        "llama-4-scout"
+      ],
+      "types": [
+        "incompleteness",
+        "lexical",
+        "scopal",
+        "conditional_precedence",
+        "authorization_scope"
+      ],
+      "note": "coreferential excluded (not in replication models)",
+      "rates": {
+        "gpt-4.1": {
+          "incompleteness": 0.58,
+          "lexical": 0.34,
+          "scopal": 0.38,
+          "conditional_precedence": 0.36,
+          "authorization_scope": 0.46
+        },
+        "gpt-5.4": {
+          "incompleteness": 0.46,
+          "lexical": 0.42,
+          "scopal": 0.42,
+          "conditional_precedence": 0.34,
+          "authorization_scope": 0.64
+        },
+        "claude-sonnet-4-6": {
+          "incompleteness": 0.48,
+          "lexical": 0.32,
+          "scopal": 0.32,
+          "conditional_precedence": 0.36,
+          "authorization_scope": 0.12
+        },
+        "qwen3-235b": {
+          "incompleteness": 0.62,
+          "lexical": 0.52,
+          "scopal": 0.3673469387755102,
+          "conditional_precedence": 0.4,
+          "authorization_scope": 0.26
+        },
+        "deepseek-v3": {
+          "incompleteness": 0.54,
+          "lexical": 0.54,
+          "scopal": 0.48,
+          "conditional_precedence": 0.38,
+          "authorization_scope": 0.6
+        },
+        "gemini-2.5-flash": {
+          "incompleteness": 0.48,
+          "lexical": 0.5,
+          "scopal": 0.34,
+          "conditional_precedence": 0.34,
+          "authorization_scope": 0.22
+        },
+        "llama-4-scout": {
+          "incompleteness": 0.52,
+          "lexical": 0.38,
+          "scopal": 0.3,
+          "conditional_precedence": 0.28,
+          "authorization_scope": 0.4
+        }
+      }
+    }
+  },
+  "five_model": {
+    "n_models": 5,
+    "n_types": 6,
+    "W": 0.3977,
+    "chi2": 9.9429,
+    "df": 5,
+    "p": 0.07200678111341634
+  },
+  "seven_model": {
+    "n_models": 7,
+    "n_types": 5,
+    "note": "coreferential type excluded (not available for Gemini/LLaMA replication models)",
+    "W": 0.3531,
+    "chi2": 9.8857,
+    "df": 4,
+    "p": 0.0375576938557623
+  },
+  "type_mean_ranks": {
+    "five_model_6types": {
+      "incompleteness": 5.5,
+      "lexical": 3.7,
+      "scopal": 3.2,
+      "conditional_precedence": 2.8,
+      "authorization_scope": 3.8,
+      "coreferential": 2.0
+    },
+    "seven_model_5types": {
+      "incompleteness": 4.5,
+      "lexical": 3.071,
+      "scopal": 2.357,
+      "conditional_precedence": 2.071,
+      "authorization_scope": 3.0
+    }
+  }
+}

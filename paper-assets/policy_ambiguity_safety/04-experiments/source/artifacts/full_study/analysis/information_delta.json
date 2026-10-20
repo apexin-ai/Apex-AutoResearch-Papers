@@ -1,0 +1,156 @@
+{
+  "per_type_token_delta": {
+    "authorization_scope": {
+      "mean": 36.06,
+      "median": 36.0,
+      "std": 8.55,
+      "min": 13,
+      "max": 55,
+      "n_clauses": 50
+    },
+    "conditional_precedence": {
+      "mean": 17.52,
+      "median": 16.0,
+      "std": 9.84,
+      "min": -3,
+      "max": 45,
+      "n_clauses": 50
+    },
+    "coreferential": {
+      "mean": 7.76,
+      "median": 8.0,
+      "std": 4.74,
+      "min": -2,
+      "max": 25,
+      "n_clauses": 50
+    },
+    "incompleteness": {
+      "mean": 34.56,
+      "median": 34.0,
+      "std": 8.4,
+      "min": 19,
+      "max": 56,
+      "n_clauses": 50
+    },
+    "lexical": {
+      "mean": 25.66,
+      "median": 25.5,
+      "std": 5.2,
+      "min": 9,
+      "max": 34,
+      "n_clauses": 50
+    },
+    "scopal": {
+      "mean": 17.76,
+      "median": 16.0,
+      "std": 7.66,
+      "min": 4,
+      "max": 39,
+      "n_clauses": 50
+    }
+  },
+  "logistic_regression": {
+    "converged": true,
+    "n_obs": 2997,
+    "pseudo_r2": 0.1752,
+    "llr_p": 0.0,
+    "coefficients": {
+      "const": {
+        "coef": -3.914,
+        "se": 0.2984,
+        "z": -13.1164,
+        "p": 0.0,
+        "ci_lower": -4.4989,
+        "ci_upper": -3.3291
+      },
+      "condition_amb": {
+        "coef": 2.2776,
+        "se": 0.1159,
+        "z": 19.6511,
+        "p": 0.0,
+        "ci_lower": 2.0504,
+        "ci_upper": 2.5047
+      },
+      "token_delta": {
+        "coef": 0.0218,
+        "se": 0.0063,
+        "z": 3.4875,
+        "p": 0.000488,
+        "ci_lower": 0.0096,
+        "ci_upper": 0.0341
+      },
+      "type_conditional_precedence": {
+        "coef": 0.2507,
+        "se": 0.202,
+        "z": 1.241,
+        "p": 0.214595,
+        "ci_lower": -0.1452,
+        "ci_upper": 0.6466
+      },
+      "type_coreferential": {
+        "coef": 0.5282,
+        "se": 0.2439,
+        "z": 2.1657,
+        "p": 0.030333,
+        "ci_lower": 0.0502,
+        "ci_upper": 1.0062
+      },
+      "type_incompleteness": {
+        "coef": 0.3791,
+        "se": 0.1609,
+        "z": 2.3557,
+        "p": 0.018486,
+        "ci_lower": 0.0637,
+        "ci_upper": 0.6945
+      },
+      "type_lexical": {
+        "coef": 0.3361,
+        "se": 0.1761,
+        "z": 1.909,
+        "p": 0.056261,
+        "ci_lower": -0.009,
+        "ci_upper": 0.6812
+      },
+      "type_scopal": {
+        "coef": 0.3106,
+        "se": 0.2015,
+        "z": 1.5413,
+        "p": 0.123232,
+        "ci_lower": -0.0843,
+        "ci_upper": 0.7055
+      },
+      "model_deepseek-v3": {
+        "coef": 0.8544,
+        "se": 0.1528,
+        "z": 5.59,
+        "p": 0.0,
+        "ci_lower": 0.5548,
+        "ci_upper": 1.154
+      },
+      "model_gpt-4.1": {
+        "coef": 0.4234,
+        "se": 0.1564,
+        "z": 2.7077,
+        "p": 0.006776,
+        "ci_lower": 0.1169,
+        "ci_upper": 0.7298
+      },
+      "model_gpt-5.4": {
+        "coef": 0.3209,
+        "se": 0.1576,
+        "z": 2.0363,
+        "p": 0.041725,
+        "ci_lower": 0.012,
+        "ci_upper": 0.6299
+      },
+      "model_qwen3-235b": {
+        "coef": 0.6561,
+        "se": 0.1543,
+        "z": 4.2532,
+        "p": 2.1e-05,
+        "ci_lower": 0.3537,
+        "ci_upper": 0.9584
+      }
+    }
+  }
+}

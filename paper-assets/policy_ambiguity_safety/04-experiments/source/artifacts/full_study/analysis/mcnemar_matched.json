@@ -1,0 +1,104 @@
+{
+  "n_pairs": 1497,
+  "n_concordant": 917,
+  "n_discordant": 580,
+  "b_amb_only": 544,
+  "c_una_only": 36,
+  "mcnemar": {
+    "method": "chi-square (continuity corrected)",
+    "statistic": 443.1879,
+    "p": 0.0
+  },
+  "odds_ratio": {
+    "or": 15.1111,
+    "ci_95_lower": 10.7847,
+    "ci_95_upper": 21.1731
+  },
+  "mantel_haenszel": {
+    "or": 160.6945,
+    "correction": "haldane_0.5",
+    "note": "Primary OR=44.8 (non-stratified); MH OR is supplementary",
+    "strata": [
+      {
+        "stratum": "authorization_scope",
+        "n": 250,
+        "a": 8,
+        "b": 96,
+        "c": 6,
+        "d": 140
+      },
+      {
+        "stratum": "conditional_precedence",
+        "n": 250,
+        "a": 10,
+        "b": 82,
+        "c": 5,
+        "d": 153
+      },
+      {
+        "stratum": "coreferential",
+        "n": 248,
+        "a": 22,
+        "b": 55,
+        "c": 10,
+        "d": 161
+      },
+      {
+        "stratum": "incompleteness",
+        "n": 250,
+        "a": 7,
+        "b": 127,
+        "c": 4,
+        "d": 112
+      },
+      {
+        "stratum": "lexical",
+        "n": 250,
+        "a": 12,
+        "b": 95,
+        "c": 7,
+        "d": 136
+      },
+      {
+        "stratum": "scopal",
+        "n": 249,
+        "a": 9,
+        "b": 89,
+        "c": 4,
+        "d": 147
+      }
+    ]
+  },
+  "per_model": {
+    "claude-sonnet-4-6": {
+      "n_pairs": 300,
+      "b_amb_only": 81,
+      "c_una_only": 4,
+      "mcnemar_p": 0.0
+    },
+    "deepseek-v3": {
+      "n_pairs": 300,
+      "b_amb_only": 130,
+      "c_una_only": 13,
+      "mcnemar_p": 0.0
+    },
+    "gpt-4.1": {
+      "n_pairs": 300,
+      "b_amb_only": 106,
+      "c_una_only": 2,
+      "mcnemar_p": 0.0
+    },
+    "gpt-5.4": {
+      "n_pairs": 300,
+      "b_amb_only": 118,
+      "c_una_only": 3,
+      "mcnemar_p": 0.0
+    },
+    "qwen3-235b": {
+      "n_pairs": 297,
+      "b_amb_only": 109,
+      "c_una_only": 14,
+      "mcnemar_p": 0.0
+    }
+  }
+}
