@@ -1027,6 +1027,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39390795265"
+    },
+    "simgate-modular-routing/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 319124021,
+        "etag": "\"c3fdf07ca5e32e22074d86897759fe9f-39\"",
+        "modified": "2026-05-31T17:34:11+00:00"
+      },
+      "archive_sha256": "ea4cc60be9b7e3bc8f51fdff939cac2646c3f913a858fb25e67d912d4a7a6baf",
+      "projects": [
+        "ec_hte_codex_b",
+        "simgate-modular-routing"
+      ],
+      "counts": [
+        {
+          "project": "ec_hte_codex_b",
+          "title": "ec hte codex b",
+          "paper_pdf": null,
+          "code_count": 38,
+          "data_count": 92,
+          "trace_count": 9
+        },
+        {
+          "project": "simgate-modular-routing",
+          "title": "Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld",
+          "paper_pdf": "paper.pdf",
+          "code_count": 336,
+          "data_count": 806,
+          "trace_count": 2025
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39396020640"
     }
   }
 }

@@ -363,6 +363,19 @@
       }
     },
     {
+      "project": "ec_hte_codex_b",
+      "title": "ec hte codex b",
+      "catalog": "../paper-assets/ec_hte_codex_b/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 9,
+        "messages": 2848,
+        "user_turns": 60,
+        "tool_calls": 1367,
+        "unparsed_lines": 0,
+        "conversation": 9
+      }
+    },
+    {
       "project": "ec_hte_llm_annotation",
       "title": "When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects",
       "catalog": "../paper-assets/ec_hte_llm_annotation/05-generation-trace/catalog.json",
@@ -823,6 +836,22 @@
         "worker": 1048,
         "conversation": 447,
         "history": 107
+      }
+    },
+    {
+      "project": "simgate-modular-routing",
+      "title": "Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld",
+      "catalog": "../paper-assets/simgate-modular-routing/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2025,
+        "messages": 177700,
+        "user_turns": 6266,
+        "tool_calls": 71098,
+        "unparsed_lines": 794,
+        "result": 742,
+        "worker": 789,
+        "conversation": 359,
+        "history": 135
       }
     },
     {
