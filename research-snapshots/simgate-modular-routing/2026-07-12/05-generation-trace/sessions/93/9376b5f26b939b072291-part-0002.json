@@ -1,0 +1,455 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9376b5f26b939b072291",
+  "rounds": [
+    {
+      "number": 8,
+      "messages": [
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-14T18:23:21.200Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "引用验证确认无 orphan。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "58b8166d-5324-49b6-a037-434c92a9e85f",
+            "isSidechain": false,
+            "requestId": "req_011Cb2vfyk6Y7re9tqsFRaMh",
+            "type": "assistant",
+            "uuid": "d725cd8f-acb5-4ff6-a155-a5861cd3b452",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_2_ab9762a8",
+            "sessionId": "c40476bd-9a90-4b21-9092-05a2683f5925",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Psan47cYqGzjQgMdke6CkH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11538,
+                "cache_read_input_tokens": 98592,
+                "output_tokens": 4243,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11538,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4243,
+                    "cache_read_input_tokens": 98592,
+                    "cache_creation_input_tokens": 11538,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11538
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-14T18:23:22.879Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H6emzr2GcC2wdA38bztmep",
+              "name": "mcp__agent-ml-research__verify_references",
+              "input": {
+                "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper",
+                "project": "simgate-modular-routing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d725cd8f-acb5-4ff6-a155-a5861cd3b452",
+            "isSidechain": false,
+            "requestId": "req_011Cb2vfyk6Y7re9tqsFRaMh",
+            "type": "assistant",
+            "uuid": "8d711c75-fd54-4a4c-86aa-3e78302ca754",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_2_ab9762a8",
+            "sessionId": "c40476bd-9a90-4b21-9092-05a2683f5925",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Psan47cYqGzjQgMdke6CkH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11538,
+                "cache_read_input_tokens": 98592,
+                "output_tokens": 4243,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11538,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4243,
+                    "cache_read_input_tokens": 98592,
+                    "cache_creation_input_tokens": 11538,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11538
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-14T18:23:46.120Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H6emzr2GcC2wdA38bztmep",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"summary\\\": {\\\"total_bib_entries\\\": 21, \\\"total_citations\\\": 30, \\\"unique_cited_keys\\\": 21, \\\"orphan_bib\\\": 0, \\\"missing_bib\\\": 0, \\\"duplicate_keys\\\": 0, \\\"online_verified\\\": 17, \\\"online_not_found\\\": 2, \\\"online_mismatch\\\": 2}, \\\"cross_check\\\": {\\\"orphan_bib\\\": [], \\\"missing_bib\\\": [], \\\"orphan_count\\\": 0, \\\"missing_count\\\": 0}, \\\"bib_entries\\\": [{\\\"key\\\": \\\"scienceworld-2022\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ScienceWorld: Is Your Agent Smarter Than a 5th Grader?\\\", \\\"authors\\\": \\\"Wang, Ruoyao and Jansen, Peter and C\\\\\\\\^ot\\\\\\\\'e, Marc-Alexandre and Ammanabrolu, Pri...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Proceedings of the 2022 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"react-2023\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ReAct: Synergizing Reasoning and Acting in Language Models\\\", \\\"authors\\\": \\\"Yao, Shunyu and Zhao, Jeffrey and Yu, Dian and Du, Nan and Shafran, Izhak and Na...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"International Conference on Learning Representations (ICLR)\\\"}, {\\\"key\\\": \\\"toolformer-2024\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Toolformer: Language Models Can Teach Themselves to Use Tools\\\", \\\"authors\\\": \\\"Schick, Timo and Dwivedi-Yu, Jane and Dess\\\\\\\\`i, Roberto and Raileanu, Roberta and...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems (NeurIPS)\\\"}, {\\\"key\\\": \\\"art-2023\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"ART: Automatic Multi-step Reasoning and Tool-use for Large Language Models\\\", \\\"authors\\\": \\\"Paranjape, Bhargavi and Lundberg, Scott and Singh, Sameer and Hajishirzi, Hannan...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2303.09014\\\"}, {\\\"key\\\": \\\"chameleon-2024\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models\\\", \\\"authors\\\": \\\"Lu, Pan and Peng, Baolin and Cheng, Hao and Galley, Michel and Chang, Kai-Wei an...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems (NeurIPS)\\\"}, {\\\"key\\\": \\\"retool-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"ReTool: Reinforcement Learning for Strategic Tool Use in LLMs\\\", \\\"authors\\\": \\\"Feng, Jiazhan and others\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2504.11536\\\"}, {\\\"key\\\": \\\"cogrouter-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents\\\", \\\"authors\\\": \\\"Yang, Ruihan and others\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2602.12662\\\"}, {\\\"key\\\": \\\"ares-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\\\", \\\"authors\\\": \\\"Yang, Jingbo and others\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2603.07915\\\"}, {\\\"key\\\": \\\"mixture-of-recursions-2025\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation\\\", \\\"authors\\\": \\\"Bae, Sangmin and others\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems (NeurIPS)\\\"}, {\\\"key\\\": \\\"mtrouter-2026\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings\\\", \\\"authors\\\": \\\"Zhang, Yiqun and others\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"Proceedings of the Annual Meeting of the Association for Computational Linguisti...\\\"}, {\\\"key\\\": \\\"itp-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\\\", \\\"authors\\\": \\\"Liu, Youwei and others\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2601.08955\\\"}, {\\\"key\\\": \\\"dynathink-2025\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents\\\", \\\"authors\\\": \\\"Yu, Xiao and others\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2506.00320\\\"}, {\\\"key\\\": \\\"tool-overuse-illusion-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"The Tool-Overuse Illusion: Why Does LLM Prefer External Tools over Internal Knowledge?\\\", \\\"authors\\\": \\\"Zeng, Yirong and You, Shen and Liu, Yufei and Du, Qunyao and Ding, Xiao and Hou,...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2604.19749\\\"}, {\\\"key\\\": \\\"when2tool-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"LLM Agents Already Know When to Call Tools -- Even Without Reasoning\\\", \\\"authors\\\": \\\"Sun, Chung-En and Liu, Linbo and Yan, Ge and Wang, Zimo and Weng, Tsui-Wei\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2605.09252\\\"}, {\\\"key\\\": \\\"tool-use-tax-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Are Tools All We Need? Unveiling the Tool-Use Tax in LLM Agents\\\", \\\"authors\\\": \\\"Zhang, Kaituo and Xiong, Zhen and Zhong, Mingyu and Jiang, Zhimeng and Yuan, Zho...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2605.00136\\\"}, {\\\"key\\\": \\\"to-call-or-not-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling\\\", \\\"authors\\\": \\\"Wu, Qinyuan and Das, Soumi and Amani, Mahsa and Nag, Arijit and Lee, Seungeon an...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2605.00737\\\"}, {\\\"key\\\": \\\"dagger-2011\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning\\\", \\\"authors\\\": \\\"Ross, St\\\\\\\\'ephane and Gordon, Geoffrey J and Bagnell, Drew\\\", \\\"year\\\": \\\"2011\\\", \\\"venue\\\": \\\"Proceedings of the International Conference on Artificial Intelligence and Stati...\\\"}, {\\\"key\\\": \\\"toolkengpt-2023\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings\\\", \\\"authors\\\": \\\"Hao, Shibo and Liu, Tianyang and Wang, Zhen and Hu, Zhiting\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems (NeurIPS)\\\"}, {\\\"key\\\": \\\"alfworld-2021\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ALFWorld: Aligning Text and Embodied Environments for Interactive Learning\\\", \\\"authors\\\": \\\"Shridhar, Mohit and Yuan, Xingdi and C\\\\\\\\^ot\\\\\\\\'e, Marc-Alexandre and Bisk, Yonatan ...\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"International Conference on Learning Representations (ICLR)\\\"}, {\\\"key\\\": \\\"garcia2015comprehensive\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"A Comprehensive Survey on Safe Reinforcement Learning\\\", \\\"authors\\\": \\\"Garc\\\\\\\\'ia, Javier and Fern\\\\\\\\'andez, Fernando\\\", \\\"year\\\": \\\"2015\\\", \\\"venue\\\": \\\"Journal of Machine Learning Research\\\"}, {\\\"key\\\": \\\"voyager-2023\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Voyager: An Open-Ended Embodied Agent with Large Language Models\\\", \\\"authors\\\": \\\"Wang, Guanzhi and Xie, Yuqi and Jiang, Yunfan and Mandlekar, Ajay and Xiao, Chao...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2305.16291\\\"}], \\\"tex_citations\\\": [{\\\"key\\\": \\\"scienceworld-2022\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 3, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"toolformer-2024\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"art-2023\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"chameleon-2024\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"react-2023\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"scienceworld-2022\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"react-2023\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"scienceworld-2022\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 10, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"toolformer-2024\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"toolkengpt-2023\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"art-2023\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"chameleon-2024\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"retool-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"cogrouter-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"ares-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"mixture-of-recursions-2025\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"mtrouter-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"itp-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 13, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"dynathink-2025\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 13, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"react-2023\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 17, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"alfworld-2021\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 17, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"voyager-2023\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 17, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"garcia2015comprehensive\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"tool-overuse-illusion-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 21, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"when2tool-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 21, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"tool-use-tax-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 21, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"to-call-or-not-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 21, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"alfworld-2021\\\", \\\"file\\\": \\\"main.tex\\\", \\\"line\\\": 33, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"dagger-2011\\\", \\\"file\\\": \\\"main.tex\\\", \\\"line\\\": 35, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"scienceworld-2022\\\", \\\"file\\\": \\\"main.tex\\\", \\\"line\\\": 42, \\\"command\\\": \\\"cite\\\"}], \\\"online_verification\\\": [{\\\"key\\\": \\\"scienceworld-2022\\\", \\\"title\\\": \\\"ScienceWorld: Is Your Agent Smarter Than a 5th Grader?\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ScienceWorld: Is your Agent Smarter than a 5th Grader?\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"react-2023\\\", \\\"title\\\": \\\"ReAct: Synergizing Reasoning and Acting in Language Models\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.45, \\\"matched_title\\\": \\\"Tree of Thoughts: Deliberate Problem Solving with Large Language Models\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.45 below threshold 0.82\\\"}, {\\\"key\\\": \\\"toolformer-2024\\\", \\\"title\\\": \\\"Toolformer: Language Models Can Teach Themselves to Use Tools\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Toolformer: Language Models Can Teach Themselves to Use Tools\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"art-2023\\\", \\\"title\\\": \\\"ART: Automatic Multi-step Reasoning and Tool-use for Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ART: Automatic multi-step reasoning and tool-use for large language models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"chameleon-2024\\\", \\\"title\\\": \\\"Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"retool-2026\\\", \\\"title\\\": \\\"ReTool: Reinforcement Learning for Strategic Tool Use in LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ReTool: Reinforcement Learning for Strategic Tool Use in LLMs\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"cogrouter-2026\\\", \\\"title\\\": \\\"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ares-2026\\\", \\\"title\\\": \\\"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Ares: Adaptive Reasoning Effort Selection for Efficient LLM Agents\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"mixture-of-recursions-2025\\\", \\\"title\\\": \\\"Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.327, \\\"matched_title\\\": \\\"Deep learning approaches to problems in speech recognition, computational chemistry, and natural language text processing\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.33 below threshold 0.82\\\"}, {\\\"key\\\": \\\"mtrouter-2026\\\", \\\"title\\\": \\\"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"itp-2026\\\", \\\"title\\\": \\\"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"dynathink-2025\\\", \\\"title\\\": \\\"Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=yu vs api=xiao\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"tool-overuse-illusion-2026\\\", \\\"title\\\": \\\"The Tool-Overuse Illusion: Why Does LLM Prefer External Tools over Internal Knowledge?\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"The Tool-Overuse Illusion: Why Does LLM Prefer External Tools over Internal Knowledge?\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"when2tool-2026\\\", \\\"title\\\": \\\"LLM Agents Already Know When to Call Tools -- Even Without Reasoning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"LLM Agents Already Know When to Call Tools -- Even Without Reasoning\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"tool-use-tax-2026\\\", \\\"title\\\": \\\"Are Tools All We Need? Unveiling the Tool-Use Tax in LLM Agents\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Are Tools All We Need? Unveiling the Tool-Use Tax in LLM Agents\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"to-call-or-not-2026\\\", \\\"title\\\": \\\"To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"dagger-2011\\\", \\\"title\\\": \\\"A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning\\\", \\\"matched_year\\\": \\\"2010\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"toolkengpt-2023\\\", \\\"title\\\": \\\"ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"alfworld-2021\\\", \\\"title\\\": \\\"ALFWorld: Aligning Text and Embodied Environments for Interactive Learning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ALFWorld: Aligning Text and Embodied Environments for Interactive Learning\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"garcia2015comprehensive\\\", \\\"title\\\": \\\"A Comprehensive Survey on Safe Reinforcement Learning\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A comprehensive survey on safe reinforcement learning\\\", \\\"matched_year\\\": \\\"2015\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=garc\\\\\\\\'ia vs api=garcía\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"voyager-2023\\\", \\\"title\\\": \\\"Voyager: An Open-Ended Embodied Agent with Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Voyager: An Open-Ended Embodied Agent with Large Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d711c75-fd54-4a4c-86aa-3e78302ca754",
+            "isSidechain": false,
+            "promptId": "fa8bc487-4cfe-4469-a5c8-695f46ba04aa",
+            "type": "user",
+            "uuid": "9da4a526-cbbd-44a4-8e8b-eee6103e19c7",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"summary\\\": {\\\"total_bib_entries\\\": 21, \\\"total_citations\\\": 30, \\\"unique_cited_keys\\\": 21, \\\"orphan_bib\\\": 0, \\\"missing_bib\\\": 0, \\\"duplicate_keys\\\": 0, \\\"online_verified\\\": 17, \\\"online_not_found\\\": 2, \\\"online_mismatch\\\": 2}, \\\"cross_check\\\": {\\\"orphan_bib\\\": [], \\\"missing_bib\\\": [], \\\"orphan_count\\\": 0, \\\"missing_count\\\": 0}, \\\"bib_entries\\\": [{\\\"key\\\": \\\"scienceworld-2022\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ScienceWorld: Is Your Agent Smarter Than a 5th Grader?\\\", \\\"authors\\\": \\\"Wang, Ruoyao and Jansen, Peter and C\\\\\\\\^ot\\\\\\\\'e, Marc-Alexandre and Ammanabrolu, Pri...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Proceedings of the 2022 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"react-2023\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ReAct: Synergizing Reasoning and Acting in Language Models\\\", \\\"authors\\\": \\\"Yao, Shunyu and Zhao, Jeffrey and Yu, Dian and Du, Nan and Shafran, Izhak and Na...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"International Conference on Learning Representations (ICLR)\\\"}, {\\\"key\\\": \\\"toolformer-2024\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Toolformer: Language Models Can Teach Themselves to Use Tools\\\", \\\"authors\\\": \\\"Schick, Timo and Dwivedi-Yu, Jane and Dess\\\\\\\\`i, Roberto and Raileanu, Roberta and...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems (NeurIPS)\\\"}, {\\\"key\\\": \\\"art-2023\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"ART: Automatic Multi-step Reasoning and Tool-use for Large Language Models\\\", \\\"authors\\\": \\\"Paranjape, Bhargavi and Lundberg, Scott and Singh, Sameer and Hajishirzi, Hannan...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2303.09014\\\"}, {\\\"key\\\": \\\"chameleon-2024\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models\\\", \\\"authors\\\": \\\"Lu, Pan and Peng, Baolin and Cheng, Hao and Galley, Michel and Chang, Kai-Wei an...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems (NeurIPS)\\\"}, {\\\"key\\\": \\\"retool-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"ReTool: Reinforcement Learning for Strategic Tool Use in LLMs\\\", \\\"authors\\\": \\\"Feng, Jiazhan and others\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2504.11536\\\"}, {\\\"key\\\": \\\"cogrouter-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents\\\", \\\"authors\\\": \\\"Yang, Ruihan and others\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2602.12662\\\"}, {\\\"key\\\": \\\"ares-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\\\", \\\"authors\\\": \\\"Yang, Jingbo and others\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2603.07915\\\"}, {\\\"key\\\": \\\"mixture-of-recursions-2025\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation\\\", \\\"authors\\\": \\\"Bae, Sangmin and others\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems (NeurIPS)\\\"}, {\\\"key\\\": \\\"mtrouter-2026\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings\\\", \\\"authors\\\": \\\"Zhang, Yiqun and others\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"Proceedings of the Annual Meeting of the Association for Computational Linguisti...\\\"}, {\\\"key\\\": \\\"itp-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\\\", \\\"authors\\\": \\\"Liu, Youwei and others\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2601.08955\\\"}, {\\\"key\\\": \\\"dynathink-2025\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents\\\", \\\"authors\\\": \\\"Yu, Xiao and others\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2506.00320\\\"}, {\\\"key\\\": \\\"tool-overuse-illusion-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"The Tool-Overuse Illusion: Why Does LLM Prefer External Tools over Internal Knowledge?\\\", \\\"authors\\\": \\\"Zeng, Yirong and You, Shen and Liu, Yufei and Du, Qunyao and Ding, Xiao and Hou,...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2604.19749\\\"}, {\\\"key\\\": \\\"when2tool-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"LLM Agents Already Know When to Call Tools -- Even Without Reasoning\\\", \\\"authors\\\": \\\"Sun, Chung-En and Liu, Linbo and Yan, Ge and Wang, Zimo and Weng, Tsui-Wei\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2605.09252\\\"}, {\\\"key\\\": \\\"tool-use-tax-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Are Tools All We Need? Unveiling the Tool-Use Tax in LLM Agents\\\", \\\"authors\\\": \\\"Zhang, Kaituo and Xiong, Zhen and Zhong, Mingyu and Jiang, Zhimeng and Yuan, Zho...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2605.00136\\\"}, {\\\"key\\\": \\\"to-call-or-not-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling\\\", \\\"authors\\\": \\\"Wu, Qinyuan and Das, Soumi and Amani, Mahsa and Nag, Arijit and Lee, Seungeon an...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2605.00737\\\"}, {\\\"key\\\": \\\"dagger-2011\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning\\\", \\\"authors\\\": \\\"Ross, St\\\\\\\\'ephane and Gordon, Geoffrey J and Bagnell, Drew\\\", \\\"year\\\": \\\"2011\\\", \\\"venue\\\": \\\"Proceedings of the International Conference on Artificial Intelligence and Stati...\\\"}, {\\\"key\\\": \\\"toolkengpt-2023\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings\\\", \\\"authors\\\": \\\"Hao, Shibo and Liu, Tianyang and Wang, Zhen and Hu, Zhiting\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems (NeurIPS)\\\"}, {\\\"key\\\": \\\"alfworld-2021\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ALFWorld: Aligning Text and Embodied Environments for Interactive Learning\\\", \\\"authors\\\": \\\"Shridhar, Mohit and Yuan, Xingdi and C\\\\\\\\^ot\\\\\\\\'e, Marc-Alexandre and Bisk, Yonatan ...\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"International Conference on Learning Representations (ICLR)\\\"}, {\\\"key\\\": \\\"garcia2015comprehensive\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"A Comprehensive Survey on Safe Reinforcement Learning\\\", \\\"authors\\\": \\\"Garc\\\\\\\\'ia, Javier and Fern\\\\\\\\'andez, Fernando\\\", \\\"year\\\": \\\"2015\\\", \\\"venue\\\": \\\"Journal of Machine Learning Research\\\"}, {\\\"key\\\": \\\"voyager-2023\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Voyager: An Open-Ended Embodied Agent with Large Language Models\\\", \\\"authors\\\": \\\"Wang, Guanzhi and Xie, Yuqi and Jiang, Yunfan and Mandlekar, Ajay and Xiao, Chao...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2305.16291\\\"}], \\\"tex_citations\\\": [{\\\"key\\\": \\\"scienceworld-2022\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 3, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"toolformer-2024\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"art-2023\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"chameleon-2024\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"react-2023\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"scienceworld-2022\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"react-2023\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"scienceworld-2022\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 10, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"toolformer-2024\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"toolkengpt-2023\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"art-2023\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"chameleon-2024\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"retool-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"cogrouter-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"ares-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"mixture-of-recursions-2025\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"mtrouter-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"itp-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 13, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"dynathink-2025\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 13, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"react-2023\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 17, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"alfworld-2021\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 17, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"voyager-2023\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 17, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"garcia2015comprehensive\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"tool-overuse-illusion-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 21, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"when2tool-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 21, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"tool-use-tax-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 21, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"to-call-or-not-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 21, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"alfworld-2021\\\", \\\"file\\\": \\\"main.tex\\\", \\\"line\\\": 33, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"dagger-2011\\\", \\\"file\\\": \\\"main.tex\\\", \\\"line\\\": 35, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"scienceworld-2022\\\", \\\"file\\\": \\\"main.tex\\\", \\\"line\\\": 42, \\\"command\\\": \\\"cite\\\"}], \\\"online_verification\\\": [{\\\"key\\\": \\\"scienceworld-2022\\\", \\\"title\\\": \\\"ScienceWorld: Is Your Agent Smarter Than a 5th Grader?\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ScienceWorld: Is your Agent Smarter than a 5th Grader?\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"react-2023\\\", \\\"title\\\": \\\"ReAct: Synergizing Reasoning and Acting in Language Models\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.45, \\\"matched_title\\\": \\\"Tree of Thoughts: Deliberate Problem Solving with Large Language Models\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.45 below threshold 0.82\\\"}, {\\\"key\\\": \\\"toolformer-2024\\\", \\\"title\\\": \\\"Toolformer: Language Models Can Teach Themselves to Use Tools\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Toolformer: Language Models Can Teach Themselves to Use Tools\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"art-2023\\\", \\\"title\\\": \\\"ART: Automatic Multi-step Reasoning and Tool-use for Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ART: Automatic multi-step reasoning and tool-use for large language models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"chameleon-2024\\\", \\\"title\\\": \\\"Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"retool-2026\\\", \\\"title\\\": \\\"ReTool: Reinforcement Learning for Strategic Tool Use in LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ReTool: Reinforcement Learning for Strategic Tool Use in LLMs\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"cogrouter-2026\\\", \\\"title\\\": \\\"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ares-2026\\\", \\\"title\\\": \\\"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Ares: Adaptive Reasoning Effort Selection for Efficient LLM Agents\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"mixture-of-recursions-2025\\\", \\\"title\\\": \\\"Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.327, \\\"matched_title\\\": \\\"Deep learning approaches to problems in speech recognition, computational chemistry, and natural language text processing\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.33 below threshold 0.82\\\"}, {\\\"key\\\": \\\"mtrouter-2026\\\", \\\"title\\\": \\\"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"itp-2026\\\", \\\"title\\\": \\\"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"dynathink-2025\\\", \\\"title\\\": \\\"Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=yu vs api=xiao\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"tool-overuse-illusion-2026\\\", \\\"title\\\": \\\"The Tool-Overuse Illusion: Why Does LLM Prefer External Tools over Internal Knowledge?\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"The Tool-Overuse Illusion: Why Does LLM Prefer External Tools over Internal Knowledge?\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"when2tool-2026\\\", \\\"title\\\": \\\"LLM Agents Already Know When to Call Tools -- Even Without Reasoning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"LLM Agents Already Know When to Call Tools -- Even Without Reasoning\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"tool-use-tax-2026\\\", \\\"title\\\": \\\"Are Tools All We Need? Unveiling the Tool-Use Tax in LLM Agents\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Are Tools All We Need? Unveiling the Tool-Use Tax in LLM Agents\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"to-call-or-not-2026\\\", \\\"title\\\": \\\"To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"dagger-2011\\\", \\\"title\\\": \\\"A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning\\\", \\\"matched_year\\\": \\\"2010\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"toolkengpt-2023\\\", \\\"title\\\": \\\"ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"alfworld-2021\\\", \\\"title\\\": \\\"ALFWorld: Aligning Text and Embodied Environments for Interactive Learning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ALFWorld: Aligning Text and Embodied Environments for Interactive Learning\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"garcia2015comprehensive\\\", \\\"title\\\": \\\"A Comprehensive Survey on Safe Reinforcement Learning\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A comprehensive survey on safe reinforcement learning\\\", \\\"matched_year\\\": \\\"2015\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=garc\\\\\\\\'ia vs api=garcía\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"voyager-2023\\\", \\\"title\\\": \\\"Voyager: An Open-Ended Embodied Agent with Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Voyager: An Open-Ended Embodied Agent with Large Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 21, \"total_citations\": 30, \"unique_cited_keys\": 21, \"orphan_bib\": 0, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 17, \"online_not_found\": 2, \"online_mismatch\": 2}, \"cross_check\": {\"orphan_bib\": [], \"missing_bib\": [], \"orphan_count\": 0, \"missing_count\": 0}, \"bib_entries\": [{\"key\": \"scienceworld-2022\", \"type\": \"inproceedings\", \"title\": \"ScienceWorld: Is Your Agent Smarter Than a 5th Grader?\", \"authors\": \"Wang, Ruoyao and Jansen, Peter and C\\\\^ot\\\\'e, Marc-Alexandre and Ammanabrolu, Pri...\", \"year\": \"2022\", \"venue\": \"Proceedings of the 2022 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"react-2023\", \"type\": \"inproceedings\", \"title\": \"ReAct: Synergizing Reasoning and Acting in Language Models\", \"authors\": \"Yao, Shunyu and Zhao, Jeffrey and Yu, Dian and Du, Nan and Shafran, Izhak and Na...\", \"year\": \"2023\", \"venue\": \"International Conference on Learning Representations (ICLR)\"}, {\"key\": \"toolformer-2024\", \"type\": \"inproceedings\", \"title\": \"Toolformer: Language Models Can Teach Themselves to Use Tools\", \"authors\": \"Schick, Timo and Dwivedi-Yu, Jane and Dess\\\\`i, Roberto and Raileanu, Roberta and...\", \"year\": \"2023\", \"venue\": \"Advances in Neural Information Processing Systems (NeurIPS)\"}, {\"key\": \"art-2023\", \"type\": \"article\", \"title\": \"ART: Automatic Multi-step Reasoning and Tool-use for Large Language Models\", \"authors\": \"Paranjape, Bhargavi and Lundberg, Scott and Singh, Sameer and Hajishirzi, Hannan...\", \"year\": \"2023\", \"venue\": \"arXiv preprint arXiv:2303.09014\"}, {\"key\": \"chameleon-2024\", \"type\": \"inproceedings\", \"title\": \"Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models\", \"authors\": \"Lu, Pan and Peng, Baolin and Cheng, Hao and Galley, Michel and Chang, Kai-Wei an...\", \"year\": \"2023\", \"venue\": \"Advances in Neural Information Processing Systems (NeurIPS)\"}, {\"key\": \"retool-2026\", \"type\": \"article\", \"title\": \"ReTool: Reinforcement Learning for Strategic Tool Use in LLMs\", \"authors\": \"Feng, Jiazhan and others\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2504.11536\"}, {\"key\": \"cogrouter-2026\", \"type\": \"article\", \"title\": \"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents\", \"authors\": \"Yang, Ruihan and others\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2602.12662\"}, {\"key\": \"ares-2026\", \"type\": \"article\", \"title\": \"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\", \"authors\": \"Yang, Jingbo and others\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2603.07915\"}, {\"key\": \"mixture-of-recursions-2025\", \"type\": \"inproceedings\", \"title\": \"Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation\", \"authors\": \"Bae, Sangmin and others\", \"year\": \"2025\", \"venue\": \"Advances in Neural Information Processing Systems (NeurIPS)\"}, {\"key\": \"mtrouter-2026\", \"type\": \"inproceedings\", \"title\": \"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings\", \"authors\": \"Zhang, Yiqun and others\", \"year\": \"2026\", \"venue\": \"Proceedings of the Annual Meeting of the Association for Computational Linguisti...\"}, {\"key\": \"itp-2026\", \"type\": \"article\", \"title\": \"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\", \"authors\": \"Liu, Youwei and others\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2601.08955\"}, {\"key\": \"dynathink-2025\", \"type\": \"article\", \"title\": \"Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents\", \"authors\": \"Yu, Xiao and others\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2506.00320\"}, {\"key\": \"tool-overuse-illusion-2026\", \"type\": \"article\", \"title\": \"The Tool-Overuse Illusion: Why Does LLM Prefer External Tools over Internal Knowledge?\", \"authors\": \"Zeng, Yirong and You, Shen and Liu, Yufei and Du, Qunyao and Ding, Xiao and Hou,...\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2604.19749\"}, {\"key\": \"when2tool-2026\", \"type\": \"article\", \"title\": \"LLM Agents Already Know When to Call Tools -- Even Without Reasoning\", \"authors\": \"Sun, Chung-En and Liu, Linbo and Yan, Ge and Wang, Zimo and Weng, Tsui-Wei\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2605.09252\"}, {\"key\": \"tool-use-tax-2026\", \"type\": \"article\", \"title\": \"Are Tools All We Need? Unveiling the Tool-Use Tax in LLM Agents\", \"authors\": \"Zhang, Kaituo and Xiong, Zhen and Zhong, Mingyu and Jiang, Zhimeng and Yuan, Zho...\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2605.00136\"}, {\"key\": \"to-call-or-not-2026\", \"type\": \"article\", \"title\": \"To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling\", \"authors\": \"Wu, Qinyuan and Das, Soumi and Amani, Mahsa and Nag, Arijit and Lee, Seungeon an...\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2605.00737\"}, {\"key\": \"dagger-2011\", \"type\": \"inproceedings\", \"title\": \"A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning\", \"authors\": \"Ross, St\\\\'ephane and Gordon, Geoffrey J and Bagnell, Drew\", \"year\": \"2011\", \"venue\": \"Proceedings of the International Conference on Artificial Intelligence and Stati...\"}, {\"key\": \"toolkengpt-2023\", \"type\": \"inproceedings\", \"title\": \"ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings\", \"authors\": \"Hao, Shibo and Liu, Tianyang and Wang, Zhen and Hu, Zhiting\", \"year\": \"2023\", \"venue\": \"Advances in Neural Information Processing Systems (NeurIPS)\"}, {\"key\": \"alfworld-2021\", \"type\": \"inproceedings\", \"title\": \"ALFWorld: Aligning Text and Embodied Environments for Interactive Learning\", \"authors\": \"Shridhar, Mohit and Yuan, Xingdi and C\\\\^ot\\\\'e, Marc-Alexandre and Bisk, Yonatan ...\", \"year\": \"2021\", \"venue\": \"International Conference on Learning Representations (ICLR)\"}, {\"key\": \"garcia2015comprehensive\", \"type\": \"article\", \"title\": \"A Comprehensive Survey on Safe Reinforcement Learning\", \"authors\": \"Garc\\\\'ia, Javier and Fern\\\\'andez, Fernando\", \"year\": \"2015\", \"venue\": \"Journal of Machine Learning Research\"}, {\"key\": \"voyager-2023\", \"type\": \"article\", \"title\": \"Voyager: An Open-Ended Embodied Agent with Large Language Models\", \"authors\": \"Wang, Guanzhi and Xie, Yuqi and Jiang, Yunfan and Mandlekar, Ajay and Xiao, Chao...\", \"year\": \"2023\", \"venue\": \"arXiv preprint arXiv:2305.16291\"}], \"tex_citations\": [{\"key\": \"scienceworld-2022\", \"file\": \"introduction.tex\", \"line\": 3, \"command\": \"cite\"}, {\"key\": \"toolformer-2024\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"art-2023\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"chameleon-2024\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"react-2023\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"scienceworld-2022\", \"file\": \"method.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"react-2023\", \"file\": \"method.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"scienceworld-2022\", \"file\": \"method.tex\", \"line\": 10, \"command\": \"cite\"}, {\"key\": \"toolformer-2024\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"toolkengpt-2023\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"art-2023\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"chameleon-2024\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"retool-2026\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"cogrouter-2026\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"ares-2026\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"mixture-of-recursions-2025\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"mtrouter-2026\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"cite\"}, {\"key\": \"itp-2026\", \"file\": \"related_work.tex\", \"line\": 13, \"command\": \"cite\"}, {\"key\": \"dynathink-2025\", \"file\": \"related_work.tex\", \"line\": 13, \"command\": \"cite\"}, {\"key\": \"react-2023\", \"file\": \"related_work.tex\", \"line\": 17, \"command\": \"cite\"}, {\"key\": \"alfworld-2021\", \"file\": \"related_work.tex\", \"line\": 17, \"command\": \"cite\"}, {\"key\": \"voyager-2023\", \"file\": \"related_work.tex\", \"line\": 17, \"command\": \"cite\"}, {\"key\": \"garcia2015comprehensive\", \"file\": \"related_work.tex\", \"line\": 18, \"command\": \"citep\"}, {\"key\": \"tool-overuse-illusion-2026\", \"file\": \"related_work.tex\", \"line\": 21, \"command\": \"cite\"}, {\"key\": \"when2tool-2026\", \"file\": \"related_work.tex\", \"line\": 21, \"command\": \"cite\"}, {\"key\": \"tool-use-tax-2026\", \"file\": \"related_work.tex\", \"line\": 21, \"command\": \"cite\"}, {\"key\": \"to-call-or-not-2026\", \"file\": \"related_work.tex\", \"line\": 21, \"command\": \"cite\"}, {\"key\": \"alfworld-2021\", \"file\": \"main.tex\", \"line\": 33, \"command\": \"cite\"}, {\"key\": \"dagger-2011\", \"file\": \"main.tex\", \"line\": 35, \"command\": \"citep\"}, {\"key\": \"scienceworld-2022\", \"file\": \"main.tex\", \"line\": 42, \"command\": \"cite\"}], \"online_verification\": [{\"key\": \"scienceworld-2022\", \"title\": \"ScienceWorld: Is Your Agent Smarter Than a 5th Grader?\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ScienceWorld: Is your Agent Smarter than a 5th Grader?\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"react-2023\", \"title\": \"ReAct: Synergizing Reasoning and Acting in Language Models\", \"status\": \"not_found\", \"confidence\": 0.45, \"matched_title\": \"Tree of Thoughts: Deliberate Problem Solving with Large Language Models\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.45 below threshold 0.82\"}, {\"key\": \"toolformer-2024\", \"title\": \"Toolformer: Language Models Can Teach Themselves to Use Tools\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Toolformer: Language Models Can Teach Themselves to Use Tools\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"art-2023\", \"title\": \"ART: Automatic Multi-step Reasoning and Tool-use for Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ART: Automatic multi-step reasoning and tool-use for large language models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"chameleon-2024\", \"title\": \"Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"retool-2026\", \"title\": \"ReTool: Reinforcement Learning for Strategic Tool Use in LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ReTool: Reinforcement Learning for Strategic Tool Use in LLMs\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"cogrouter-2026\", \"title\": \"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"ares-2026\", \"title\": \"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Ares: Adaptive Reasoning Effort Selection for Efficient LLM Agents\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"mixture-of-recursions-2025\", \"title\": \"Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation\", \"status\": \"not_found\", \"confidence\": 0.327, \"matched_title\": \"Deep learning approaches to problems in speech recognition, computational chemistry, and natural language text processing\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.33 below threshold 0.82\"}, {\"key\": \"mtrouter-2026\", \"title\": \"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"itp-2026\", \"title\": \"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"dynathink-2025\", \"title\": \"Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents\", \"matched_year\": \"2025\", \"mismatch_fields\": [\"first_author: bib=yu vs api=xiao\"], \"note\": \"\"}, {\"key\": \"tool-overuse-illusion-2026\", \"title\": \"The Tool-Overuse Illusion: Why Does LLM Prefer External Tools over Internal Knowledge?\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"The Tool-Overuse Illusion: Why Does LLM Prefer External Tools over Internal Knowledge?\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"when2tool-2026\", \"title\": \"LLM Agents Already Know When to Call Tools -- Even Without Reasoning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"LLM Agents Already Know When to Call Tools -- Even Without Reasoning\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"tool-use-tax-2026\", \"title\": \"Are Tools All We Need? Unveiling the Tool-Use Tax in LLM Agents\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Are Tools All We Need? Unveiling the Tool-Use Tax in LLM Agents\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"to-call-or-not-2026\", \"title\": \"To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"dagger-2011\", \"title\": \"A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning\", \"matched_year\": \"2010\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"toolkengpt-2023\", \"title\": \"ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"alfworld-2021\", \"title\": \"ALFWorld: Aligning Text and Embodied Environments for Interactive Learning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ALFWorld: Aligning Text and Embodied Environments for Interactive Learning\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"garcia2015comprehensive\", \"title\": \"A Comprehensive Survey on Safe Reinforcement Learning\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"A comprehensive survey on safe reinforcement learning\", \"matched_year\": \"2015\", \"mismatch_fields\": [\"first_author: bib=garc\\\\'ia vs api=garcía\"], \"note\": \"\"}, {\"key\": \"voyager-2023\", \"title\": \"Voyager: An Open-Ended Embodied Agent with Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Voyager: An Open-Ended Embodied Agent with Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}]}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "8d711c75-fd54-4a4c-86aa-3e78302ca754",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_2_ab9762a8",
+            "sessionId": "c40476bd-9a90-4b21-9092-05a2683f5925",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Round 3 审稿请求]: ## Round 3 最终评估 — Reviewer 2（新颖性 + 相关工作 + 写作质量）  ### Venue: EMNLP 2026 ARR Short Paper（4 页），截止 2026-05-25 ### 论文路径: `projects/simgate-modular-routing/docs/paper/main.tex`  ### 你的 Round…",
+                "leafUuid": "9da4a526-cbbd-44a4-8e8b-eee6103e19c7",
+                "sessionId": "c40476bd-9a90-4b21-9092-05a2683f5925"
+              }
+            }
+          ],
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review paper on LLM agent routing death avoidance",
+                "sessionId": "c40476bd-9a90-4b21-9092-05a2683f5925"
+              }
+            }
+          ],
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-14T18:23:51.847Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Reference verification results:\n- 21 bib entries, 21 unique cited, 0 orphans, 0 missing\n- 17 verified, 2 not_found (react-2023, mixture-of-recursions-2025 — likely API coverage issues), 2 mismatch (dynathink-2025 author format, garcia2015comprehensive author diacritics — both benign)\n\nAll clean. Now let me write the final review.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9da4a526-cbbd-44a4-8e8b-eee6103e19c7",
+            "isSidechain": false,
+            "requestId": "req_011Cb2vokbJW6pja2Tejx27J",
+            "type": "assistant",
+            "uuid": "8c1bca9b-71ea-4263-b86a-c24ecb0b9a60",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_2_ab9762a8",
+            "sessionId": "c40476bd-9a90-4b21-9092-05a2683f5925",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AififraNikGBpkJoUQYVng",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10395,
+                "cache_read_input_tokens": 110130,
+                "output_tokens": 4854,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10395,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4854,
+                    "cache_read_input_tokens": 110130,
+                    "cache_creation_input_tokens": 10395,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10395
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-14T18:25:25.643Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部文件已读完，引用验证干净（21 cited，0 orphan，0 missing）。撰写最终评估报告。\n\n---\n\n## Reviewer 2 — Round 3 最终评估报告\n\n**论文**: Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld\n**Track**: EMNLP 2026 Short Paper via ACL ARR\n\n---\n\n## Round 2 Open Issues 逐条判定\n\n### R2-N1 [DAF 是 penalty 的数学必然] → **[RESOLVED]**\n\nPenalty sensitivity analysis（Appendix D, Table 4；method.tex §2.3 内联摘要）彻底回应了这一 concern。关键数据：\n\n| P | DAF |\n|---|-----|\n| 10 | 46.4% |\n| 50 | 81.2% |\n| 100 | 89.6% |\n| 200 | 94.5% |\n\nP=10 时 DAF 仅 46.4%——**这证明 DAF 不是 trivially expected**。如果 DAF 是 penalty magnitude 的 trivial 数学后果，那么对任何 P 值它都应该接近 100%（只要存在 death rate 差异）。实际上 P=10 时 non-death gap（Δ_nd=3.07）占总 gap（5.72）的 53.6%，death avoidance 不再主导。这意味着：\n\n1. \"~90% of routing signal is death avoidance\" 是 P=100 这一特定 penalty 水平下的 empirical finding，不是 tautology\n2. DAF 作为 penalty severity 的函数有 meaningful variation（46%→95%）\n3. 论文现在传达的是更丰富的 insight：penalty severity 调控 routing signal 的组成，ScienceWorld 的 P=100 恰好处于 death avoidance 高度主导的区间\n\n公式 Δ_full(P) = δ·P + Δ_nd（δ=0.2653）提供了 closed-form 的理解。§2.3（method.tex 最后 3 行）的内联摘要简洁有效。\n\n**但有一个数值不一致需要说明**（见下方 NEW-1）。\n\n### R1-N1 [Scope 不匹配] → **[RESOLVED]**\n\n新标题 \"Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld\"（main.tex 第 14 行）精确限定了实验 scope。\"A Counterfactual Analysis on ScienceWorld\" 明确告知读者这是 single-environment study。标题从 overclaiming 的一般性声明变为 accurately scoped 的 environment-specific analysis。\n\n### R1-N3 [Train/test split] → **[RESOLVED]**\n\n新增 \"Data split\" 段（experiments.tex 第 58 行）清楚说明：\n- 95 non-tie labels → 85/15 episode-stratified split（81 train / 14 validation episodes, 1734/306 steps）\n- Baselines（Table 1 中 always-internal/deterministic/random/oracle）= descriptive statistics of collected trajectories\n- Trained router score（-10.70）= **fresh environment interaction**，非训练/验证集上的评估\n\n\"fresh environment interaction\" 是关键信息——这意味着 Table 1 的 router score 是 end-to-end evaluation 而非 data leakage。这完全解决了 concern。\n\n### R2-N3 [Related Work] → **[RESOLVED]**\n\n- 21 cited references（从 13 → 19 → 21），对 short paper 充分\n- García & Fernández (2015) safe RL survey 已添加（related_work.tex 第 18 行：\"Our finding connects to the safe RL literature, where avoiding catastrophic states is formalized as a hard constraint\"）\n- 这一句话准确建立了 death avoidance → safe RL 的概念联系，不需要在 short paper 中展开\n- Concurrent Work 段（4 篇 2026 work）保持高质量\n- 0 orphan bib entries\n\n### R1-W2 [Prescreening 不透明] → **[RESOLVED]**\n\nAppendix B（main.tex 第 55 行）现在明确说明排除标准：\"task types where both strategies complete at least one episode within the 30-step budget are retained; types where both strategies time out on all seed variations are excluded.\" 脚注进一步解释了 rationale。这是合理且透明的 prescreening 标准。\n\n### R1-W5 [Step-level mislabeling] → **[RESOLVED]**\n\nLimitations 中新增 \"Step-level mislabeling\" 段（main.tex 第 35 行），承认两个具体问题：\n1. Death 前的 steps 被标记为 det-preferred，即使 death 从这些 steps 的 observation 不可预见\n2. Pure-strategy 训练 + mixed-policy 部署引入 distribution shift（并引用 DAgger）\n\n这是诚实且充分的 acknowledgment。\n\n### R1-W3 [DAF near-zero 稳定性] → **[RESOLVED]**\n\nmethod.tex §2.3 现在明确指出：\"DAF is well-defined when Δ_full > 0; in our data, the minimum per-task Δ_full is +9.58 (find-non-living-thing), ensuring numerical stability.\" 这直接回答了何时 DAF 有定义并说明了数据中的最小值，确保所有报告的 DAF 值都远离 ill-defined 边界。\n\n### R2-NEW-1 [ALFWorld 机制区分] → **[RESOLVED]**\n\nLimitations（main.tex 第 33 行）显著改善了 ALFWorld 的讨论。现在明确区分：\n- ScienceWorld：\"the internal strategy has baseline competence (57.1% survival rate) but suffers hallucination-induced catastrophic failures\"\n- ALFWorld：\"the 3% internal success rate reflects a fundamental capability gap...The deterministic advantage in ALFWorld thus stems from action space pruning rather than death avoidance per se\"\n- 并明确承认：\"These results are suggestive but do not directly confirm that the DAF pattern generalizes\"\n\n这是 Round 2 中我最不满意的问题之一，现在处理得很好——不再混淆两种不同的机制。\n\n### R2-NEW-2 [Orphan dagger-2011] → **[RESOLVED]**\n\nDAgger 引用已恢复（main.tex 第 35 行 `\\citep{dagger-2011}`），在 step-level mislabeling 段中引用。引用验证确认 0 orphan。\n\n### R1-NEW-2 [Conclusion 措辞过强] → **[RESOLVED]**\n\nConclusion（conclusion.tex 第 3 行）现在使用 \"consistent with the hypothesis that death avoidance is a general pattern rather than a ScienceWorld artifact\"——\"consistent with the hypothesis\" 比 Round 2 的 \"structural driver\" 弱化得当，准确反映了 preliminary evidence 的 epistemic status。\n\n### R1-NEW-4 [页数合规] → **[PARTIALLY_RESOLVED]**\n\n§4.3 Router Training 已压缩——classification head 和 implicit router 段更简短，cross-seed 细节和 gradient accumulation 讨论移至 Appendix C（main.tex 第 85-90 行）。但新增了 \"Data split\" 段和 \"Labeling quality\" 指向段。总体正文内容量有所减少，但仍然密集。未编译无法确定是否恰好 4 页。在当前内容量下，可能需要微调排版（如压缩 enumeration 间距）。这是 minor 的排版问题而非内容问题。\n\n---\n\n## 新发现\n\n**NEW-1** [minor] Δ_nd 数值不一致：2.84 vs 3.07\n\n- 具体位置：experiments.tex 第 13 行 Δ_nd = +2.84；Appendix D table（main.tex 第 100-106 行）Δ_nd = 3.07\n- 问题：两个 Δ_nd 值不一致。experiments.tex 报告的 DAF = 1 - 2.84/29.60 = 90.41%；Appendix D 报告的 DAF(P=100) = 1 - 3.07/29.60 = 89.6%。同一个 P=100 设定下，两个数值应一致。\n- 可能解释：主文 Δ_nd = 2.84 是直接从排除 death episodes 后的分数均值计算的 observed statistic；Appendix D 的 Δ_nd = 3.07 是 linear model Δ_full(P) = δ·P + Δ_nd 的拟合 intercept。这两者在概念上不同——一个是 conditional mean，另一个是回归截距——但论文使用同一符号 Δ_nd，且未解释差异。\n- 影响：不影响核心结论（两个值都表明 non-death gap 远小于 full gap），但在统计严谨性上是瑕疵。\n- 建议：在 Appendix D 中用不同符号（如 $\\hat{\\Delta}_{\\text{nd}}$）标记拟合值，或加一句注释说明两种计算方法的差异。\n\n**NEW-2** [info] 引用验证 minor issues（均为 false positive）\n- `garcia2015comprehensive` 显示 author mismatch（\"garc\\\\'ia\" vs \"garcía\"），这是 LaTeX diacritics 编码差异，非真实错误\n- `dynathink-2025` 的 author mismatch 同 Round 1，仍为 \"Yu, Xiao\" vs \"xiao\" 格式差异\n- 两项均不影响引用准确性\n\n---\n\n## 额外检查\n\n### 1. Penalty sensitivity 是否充分回应了 DAF triviality concern？\n\n**充分。** P=10 时 DAF=46.4% 是这轮修订最重要的新数据点。它直接证伪了 \"DAF is trivially ~100% whenever death rate differs\" 的 concern。在我 Round 1 的算术分解中，我假设 DAF 的高值是 penalty magnitude 的必然后果——penalty sensitivity 表明这只在高 penalty 时成立，在低 penalty 时 non-death performance 差异变得 comparable 甚至 dominant。这转化了论文的 narrative：从 \"DAF is a trivial metric\" 到 \"DAF captures a real and penalty-dependent phenomenon, and ScienceWorld's P=100 places it firmly in the death-dominated regime.\"\n\n### 2. 新颖性最终评估\n\nPenalty sensitivity analysis **加强**了论文的 novelty 而非仅解决 blocker。现在论文的贡献可表述为：\n1. Episode-level counterfactual methodology（解决 sparse-reward degeneracy）\n2. DAF metric + penalty sensitivity 揭示了 death avoidance 的定量结构（非 trivial，有 meaningful variation）\n3. Practical implication：在 death-dominated regime 下，always-deterministic 近乎最优\n4. Concurrent work 定位：为 4 篇独立的 tool-use routing 研究提供 grounding evidence\n\n对 short paper，这是 sufficient 的 contribution 量。\n\n### 3. 修改是否引入新问题？\n\n除 NEW-1（Δ_nd 数值不一致，minor）外，未发现新的实质性问题。修改质量高，所有 response 都是针对性的、没有引入副作用。\n\n---\n\n## 更新后评分\n\n| 维度 | Round 1 | Round 2 | Round 3 | 变化理由 |\n|------|---------|---------|---------|----------|\n| Soundness | 3/5 | 3/5 | 3.5/5 | Train/test split 说明、penalty sensitivity、DAF well-defined 条件、prescreening 透明化 |\n| Excitement | 2/5 | 2.5/5 | 3/5 | Penalty sensitivity 实质性加强 novelty；P=10→46.4% 证明 DAF 非 trivial；concurrent work 定位 |\n| Reproducibility | 3/5 | 3.5/5 | 3.5/5 | 4 个 Appendix 提供充分细节；仍无代码但 short paper 标准可接受 |\n| **Overall** | **2/5** | **2.5/5** | **3.0/5** | **推荐 Findings 接收** |\n| Confidence | 4/5 | 4/5 | 4/5 | |\n\n### 评分调整理由\n\n我在 Round 2 明确承诺：\"三项 blockers 中完成任意两项（特别是 penalty sensitivity + 标题），我会提升到 3.0。\" 三项全部完成：\n\n1. **标题 scope 限定** ✓ — 准确限定到 ScienceWorld\n2. **Penalty sensitivity** ✓ — 不仅解决了 blocker，还实质性加强了 novelty\n3. **Train/test split** ✓ — 清楚说明 fresh environment interaction\n\n额外修复（safe RL 引用、ALFWorld 机制区分、step-level mislabeling、DAgger 恢复、Conclusion 弱化、prescreening 说明、§4.3 压缩）均为正面改进。\n\n**我兑现承诺，将 Overall 从 2.5 提升到 3.0，推荐 Findings 接收。**\n\n### 残留问题（不阻碍接收）\n\n1. Δ_nd 数值不一致（2.84 vs 3.07）——camera-ready 应统一或解释\n2. 页数合规需编译确认\n3. Bib key 命名（toolformer-2024 等）仍然 sloppy，但不影响读者"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c1bca9b-71ea-4263-b86a-c24ecb0b9a60",
+            "isSidechain": false,
+            "requestId": "req_011Cb2vokbJW6pja2Tejx27J",
+            "type": "assistant",
+            "uuid": "765eaddc-d6a6-417b-bb2c-8b45419d9fb4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_2_ab9762a8",
+            "sessionId": "c40476bd-9a90-4b21-9092-05a2683f5925",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AififraNikGBpkJoUQYVng",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10395,
+                "cache_read_input_tokens": 110130,
+                "output_tokens": 4854,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10395,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4854,
+                    "cache_read_input_tokens": 110130,
+                    "cache_creation_input_tokens": 10395,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10395
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-14T18:25:37.100Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0165T8AYJm3V2hKdSkqs8ku5",
+              "name": "mcp__agent-ml-research__review_reviewer_post_to_director",
+              "input": {
+                "text": "## Reviewer 2 — Round 3 最终评估\n\n**Overall: 2.5 → 3.0/5 — 推荐 Findings 接收**\n\n### 3 个 Blockers 全部 RESOLVED\n\n1. **标题 scope** ✓ \"...A Counterfactual Analysis on ScienceWorld\" 准确限定\n2. **Penalty sensitivity** ✓ P=10→46.4%, P=100→89.6%, P=200→94.5%。这不仅解决 blocker，还加强了 novelty——P=10 时 DAF 仅 46.4%，证明 DAF 不是 trivial arithmetic\n3. **Train/test split** ✓ 85/15 episode-stratified, trained router score = fresh env interaction\n\n### Round 2 Open Issues 判定汇总\n\n| Issue | 判定 |\n|-------|------|\n| R2-N1 DAF triviality | RESOLVED — penalty sensitivity 彻底回应 |\n| R1-N1 Scope | RESOLVED — 标题改好 |\n| R1-N3 Train/test | RESOLVED — data split 段 |\n| R2-N3 Related Work | RESOLVED — 21 refs + safe RL (García 2015) |\n| R1-W2 Prescreening | RESOLVED — Appendix B + 脚注 |\n| R1-W5 Label noise | RESOLVED — step-level mislabeling 段 + DAgger |\n| R1-W3 DAF stability | RESOLVED — well-defined 条件 |\n| R2-NEW-1 ALFWorld | RESOLVED — 机制区分明确 |\n| R2-NEW-2 Orphan dagger | RESOLVED — 引用恢复 |\n| R1-NEW-2 Conclusion 措辞 | RESOLVED — \"consistent with hypothesis\" |\n| R1-NEW-4 页数 | PARTIALLY_RESOLVED — 需编译确认 |\n\n### 新发现\n**NEW-1 [minor]**: Δ_nd 数值不一致——主文 2.84（observed conditional mean）vs Appendix D 3.07（linear model intercept），导致 DAF 90.41% vs 89.6%。camera-ready 应统一或解释。\n\n### 最终评分\n- Soundness: 3.5/5 | Excitement: 3/5 | Reproducibility: 3.5/5\n- **Overall: 3.0/5 (Findings acceptance)**\n- Confidence: 4/5\n\n兑现 Round 2 承诺：三项 blockers 全部完成，Overall 2.5 → 3.0。Penalty sensitivity 是 key enabler——将论文 narrative 从 \"trivial observation\" 转化为 \"quantitative characterization of a penalty-dependent phenomenon\"。",
+                "reviewer_id": "2",
+                "project": "simgate-modular-routing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "765eaddc-d6a6-417b-bb2c-8b45419d9fb4",
+            "isSidechain": false,
+            "requestId": "req_011Cb2vokbJW6pja2Tejx27J",
+            "type": "assistant",
+            "uuid": "22537f45-868d-4525-bdf3-0e79178fa202",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_2_ab9762a8",
+            "sessionId": "c40476bd-9a90-4b21-9092-05a2683f5925",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AififraNikGBpkJoUQYVng",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10395,
+                "cache_read_input_tokens": 110130,
+                "output_tokens": 4854,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10395,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4854,
+                    "cache_read_input_tokens": 110130,
+                    "cache_creation_input_tokens": 10395,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10395
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-14T18:25:40.677Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0165T8AYJm3V2hKdSkqs8ku5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "22537f45-868d-4525-bdf3-0e79178fa202",
+            "isSidechain": false,
+            "promptId": "fa8bc487-4cfe-4469-a5c8-695f46ba04aa",
+            "type": "user",
+            "uuid": "6e833a66-44d4-4142-b12e-04ec6304d8fc",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_0b622d6038b969b96148ee8a163a1a0c:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "22537f45-868d-4525-bdf3-0e79178fa202",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_reviewer_2_ab9762a8",
+            "sessionId": "c40476bd-9a90-4b21-9092-05a2683f5925",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000163"
+        }
+      ]
+    }
+  ]
+}

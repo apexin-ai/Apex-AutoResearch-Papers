@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "89d4d4d85479628d89e5",
+  "project": "simgate-modular-routing--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> plan-012 全量结果（registry）：11 tasks / 245 episodes, Δ_full=29.60, Δ_nd=2.84, death_avoidance_fraction=0.904",
+  "task_key": "9cedadb4-21be-4f08-b6ab-15bbafc118e6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/9cedadb4-21be-4f08-b6ab-15bbafc118e6.jsonl",
+    "occurrence": 1,
+    "bytes": 609526,
+    "sha256": "fb1f54f7d15e8d7d62c523d1291f6eecc67a8a85570aa6f857836e1b0113c7c9"
+  },
+  "statistics": {
+    "messages": 107,
+    "user_turns": 1,
+    "tool_calls": 25,
+    "roles": {
+      "record": 33,
+      "user": 1,
+      "assistant": 23,
+      "tool_call": 25,
+      "tool_result": 25
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "89d4d4d85479628d89e5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 105,
+      "chunks": [
+        {
+          "path": "89d4d4d85479628d89e5-part-0001.json",
+          "message_count": 100
+        },
+        {
+          "path": "89d4d4d85479628d89e5-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-plan-012-registry-11-tasks-245-episodes-full-29-60-nd-2-84-death.md"
+}

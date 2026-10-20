@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a29562d380b011bccb51",
+  "project": "simgate-modular-routing--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 执行项目轨迹扫描，将报告写入 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/scan_reports/layer2_202",
+  "task_key": "fd32eea3-aa1a-47c7-a370-f2e12128de2b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/fd32eea3-aa1a-47c7-a370-f2e12128de2b.jsonl",
+    "occurrence": 1,
+    "bytes": 981579,
+    "sha256": "cb2fb4a3ef27c447eba94425f95f9127d0ed0d2a425ee9a4a91dd4975becb6fa"
+  },
+  "statistics": {
+    "messages": 166,
+    "user_turns": 1,
+    "tool_calls": 64,
+    "roles": {
+      "record": 28,
+      "user": 1,
+      "assistant": 9,
+      "tool_call": 64,
+      "tool_result": 64
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a29562d380b011bccb51-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 164,
+      "chunks": [
+        {
+          "path": "a29562d380b011bccb51-part-0001.json",
+          "message_count": 72
+        },
+        {
+          "path": "a29562d380b011bccb51-part-0002.json",
+          "message_count": 92
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-home-ubuntu-agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routin.md"
+}

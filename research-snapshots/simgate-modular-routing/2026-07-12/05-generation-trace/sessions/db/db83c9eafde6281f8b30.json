@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "db83c9eafde6281f8b30",
+  "project": "simgate-modular-routing--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> seed-robustness-core 4-seed 结果（已验证）： - seeds: [42, 43, 44, 45] - balanced_acc: [0.5761, 0.4852, 0.6074, ",
+  "task_key": "46b0d7af-ddc4-4472-ae1c-d168b2443a0a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/46b0d7af-ddc4-4472-ae1c-d168b2443a0a.jsonl",
+    "occurrence": 1,
+    "bytes": 602640,
+    "sha256": "330779c9c8a64b852e12f66437e9502a1d9055d1a6b155fd2ad9738bc7e8fa43"
+  },
+  "statistics": {
+    "messages": 300,
+    "user_turns": 1,
+    "tool_calls": 103,
+    "roles": {
+      "record": 55,
+      "user": 1,
+      "assistant": 38,
+      "tool_call": 103,
+      "tool_result": 103
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "db83c9eafde6281f8b30-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 298,
+      "chunks": [
+        {
+          "path": "db83c9eafde6281f8b30-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "db83c9eafde6281f8b30-part-0002.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-seed-robustness-core-4-seed-seeds-42-43-44-45-balanced-acc-0-576.md"
+}

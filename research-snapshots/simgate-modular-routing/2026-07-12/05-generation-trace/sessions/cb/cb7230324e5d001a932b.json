@@ -1,0 +1,1734 @@
+{
+  "schema_version": "1.0",
+  "id": "cb7230324e5d001a932b",
+  "project": "simgate-modular-routing--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to understand the existing counterfactual labeling code patterns in the simgate-modular-routing project so I can ",
+  "task_key": "agent-aaafa5e9203d8d469",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-aaafa5e9203d8d469.jsonl",
+    "occurrence": 1,
+    "bytes": 126220,
+    "sha256": "c26565a3325678c3ba002dac9767ed50d4c75fac8eb64ab782d9a9a98cb5383e"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "assistant": 8,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T13:30:15.531Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to understand the existing counterfactual labeling code patterns in the simgate-modular-routing project so I can build a consistent ALFWorld counterfactual pipeline.\n\nThe project is at /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/\n\nPlease read and summarize the key patterns from these files:\n1. src/counterfactual_labeling.py - the ScienceWorld counterfactual labeling code\n2. src/math_counterfactual.py - the MATH counterfactual labeling code\n3. src/llm_agent.py - the LLM agent interface\n\nFor each file, I need:\n- The overall structure and main functions\n- How \"internal\" vs \"deterministic\" modes are implemented\n- How episodes are run and labeled\n- The output JSONL format\n- How the LLM is called (local vLLM? transformers? API?)\n- Any state forking mechanism used\n\nRead these files thoroughly - I need enough detail to write consistent ALFWorld code."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "8953b5fc-ee7b-4310-804a-a08ef0713895",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T13:30:16.975Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you understand the counterfactual labeling patterns in this project. Let me start by exploring the project structure and reading those three key files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8953b5fc-ee7b-4310-804a-a08ef0713895",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YRbmZ9pf7Sbuo4zrGK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1de363f6-319f-4550-990e-e7e7691f6365",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01EuKBpWb4frJH4RxUuMDa6o",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17128,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17128,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T13:30:17.126Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WEVMVxEiXzvy8ra795FndU",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing -type f -name \"*.py\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1de363f6-319f-4550-990e-e7e7691f6365",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YRbmZ9pf7Sbuo4zrGK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4c9333ca-93e4-4fac-ad3f-8d4daa6a5779",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01EuKBpWb4frJH4RxUuMDa6o",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17128,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 127,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17128
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 127,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 17128,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17128,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T13:30:17.353Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WEVMVxEiXzvy8ra795FndU",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/phase1_signal.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/alfworld_counterfactual.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/ablation_implicit_1_7b.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/eval_implicit_router.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/scienceworld_utils.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/llm_agent.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/evaluation/ablation_comparison.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/evaluation/prompt_routing_eval.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/ablation_eval_common.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/episode_level_collection.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/rule_based_accuracy.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/router_sft_eval.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/eval_end_to_end.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/phase0_validate_forking.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/counterfactual_labeling.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/death_decomposition.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/training/format_implicit_data.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/training/router_sft.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/training/implicit_router_sft.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c9333ca-93e4-4fac-ad3f-8d4daa6a5779",
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "92a51afa-4638-4c1a-9b9e-27584bc85c77",
+            "sourceToolAssistantUUID": "4c9333ca-93e4-4fac-ad3f-8d4daa6a5779",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T13:30:18.717Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the three key files you mentioned:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92a51afa-4638-4c1a-9b9e-27584bc85c77",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YRjfp2e9trXg8FfTCu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d81a915d-8e3e-494c-97bd-242611220001",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012q5EDVRG3tAcogatXYgdUk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1788,
+                "cache_read_input_tokens": 17128,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1788,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T13:30:18.968Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012PeV6FUysi8t3YRixqv1pv",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/counterfactual_labeling.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d81a915d-8e3e-494c-97bd-242611220001",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YRjfp2e9trXg8FfTCu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "18461534-89fa-45b9-b414-ee02c3609d7d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012q5EDVRG3tAcogatXYgdUk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1788,
+                "cache_read_input_tokens": 17128,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1788,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T13:30:18.987Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012PeV6FUysi8t3YRixqv1pv",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Episode-terminal counterfactual labeling for SimGate routing.\n2\t\n3\tProblem: 1-step oracle labeling (phase1_signal.py) yields 98.2% tie rate because\n4\tsingle-step score deltas are almost always 0. This script instead forks the\n5\tenvironment at action-diverge points and continues for K steps, using the\n6\tfinal score difference as the label signal.\n7\t\n8\tPipeline per episode:\n9\t  1. Run main episode step-by-step\n10\t  2. At each step, get internal_action (ReAct) and det_action (fork-evaluate candidates)\n11\t  3. If they agree → tie, advance\n12\t  4. If they differ → fork twice (one per action), continue K steps with base policy,\n13\t     compare final scores → label = deterministic / internal / tie\n14\t  5. Advance main env with the oracle-chosen action\n15\t\n16\tInputs:  task type, LLM agent (Qwen2.5-7B on GPU)\n17\tOutputs: {output_dir}/{task_type}/cf_labels.jsonl\n18\t\n19\tRelation to phase1_signal.py:\n20\t  - Reuses the same ScienceWorldEnv / LLMAgent / fork_and_lookahead infra\n21\t  - Replaces the 1-step oracle with K-step counterfactual evaluation\n22\t\"\"\"\n23\t\n24\timport argparse\n25\timport json\n26\timport os\n27\timport random\n28\timport sys\n29\timport time\n30\tfrom typing import List, Dict, Any, Optional, Tuple\n31\t\n32\tsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n33\tfrom scienceworld_utils import (\n34\t    create_env, reset_env, get_valid_actions, get_score,\n35\t    step_env, close_env, fork_and_lookahead, get_task_types,\n36\t    get_max_variations,\n37\t)\n38\tfrom llm_agent import LLMAgent, find_model_path\n39\t\n40\t\n41\tdef resolve_task_type(name: str) -> str:\n42\t    try:\n43\t        available = get_task_types()\n44\t    except Exception:\n45\t        return name\n46\t    if name in available:\n47\t        return name\n48\t    matches = [t for t in available if name.lower() in t.lower()]\n49\t    if matches:\n50\t        return matches[0]\n51\t    return name\n52\t\n53\t\n54\tdef is_lethal(fr: Dict[str, Any]) -> bool:\n55\t    if fr[\"done\"] and fr[\"score\"] < 0:\n56\t        return True\n57\t    if fr[\"score\"] <= -100:\n58\t        return True\n59\t    return False\n60\t\n61\t\n62\tdef get_deterministic_action(\n63\t    agent: LLMAgent,\n64\t    task_name: str,\n65\t    variation_idx: int,\n66\t    obs: str,\n67\t    valid_actions: List[str],\n68\t    action_history: List[str],\n69\t    history_dicts: List[dict],\n70\t    n_candidates: int = 3,\n71\t) -> Tuple[str, float, List[dict]]:\n72\t    \"\"\"Generate candidates via LLM, fork-evaluate each with 1-step lookahead,\n73\t    return (best_action, best_delta, fork_results). Filters lethal actions.\"\"\"\n74\t    candidates, _ = agent.generate_candidate_actions(\n75\t        obs, valid_actions, history_dicts, n=n_candidates\n76\t    )\n77\t\n78\t    best_action = None\n79\t    best_delta = float(\"-inf\")\n80\t    best_fallback = None\n81\t    best_delta_fb = float(\"-inf\")\n82\t    fork_results = []\n83\t\n84\t    for cand in candidates:\n85\t        fr = fork_and_lookahead(task_name, variation_idx, action_history, cand)\n86\t        lethal = is_lethal(fr)\n87\t        fork_results.append({\n88\t            \"action\": cand, \"score_delta\": fr[\"score_delta\"],\n89\t            \"score\": fr[\"score\"], \"lethal\": lethal,\n90\t        })\n91\t        if fr[\"score_delta\"] > best_delta_fb:\n92\t            best_delta_fb = fr[\"score_delta\"]\n93\t            best_fallback = cand\n94\t        if not lethal and fr[\"score_delta\"] > best_delta:\n95\t            best_delta = fr[\"score_delta\"]\n96\t            best_action = cand\n97\t\n98\t    if best_action is None:\n99\t        best_action = best_fallback if best_fallback else valid_actions[0]\n100\t        best_delta = best_delta_fb\n101\t\n102\t    return best_action, best_delta, fork_results\n103\t\n104\t\n105\tdef fork_and_continue(\n106\t    agent: LLMAgent,\n107\t    task_name: str,\n108\t    variation_idx: int,\n109\t    action_history: List[str],\n110\t    first_action: str,\n111\t    continuation_steps: int = 10,\n112\t) -> float:\n113\t    \"\"\"Fork env, execute first_action, then continue K steps with base policy\n114\t    (always-internal ReAct). Returns final score. Always closes the forked env.\"\"\"\n115\t    fork_env = None\n116\t    try:\n117\t        fork_env = create_env(task_name, variation_idx)\n118\t        reset_env(fork_env)\n119\t\n120\t        for past_action in action_history:\n121\t            step_env(fork_env, past_action)\n122\t\n123\t        obs, reward, done, info = step_env(fork_env, first_action)\n124\t\n125\t        history_dicts = []\n126\t        for k in range(continuation_steps):\n127\t            if done:\n128\t                break\n129\t            valid = get_valid_actions(fork_env)\n130\t            if not valid:\n131\t                break\n132\t            action, _ = agent.select_action_react(obs, valid, history_dicts)\n133\t            obs, reward, done, info = step_env(fork_env, action)\n134\t            history_dicts.append({\"action\": action, \"observation\": obs[:200], \"score\": get_score(fork_env)})\n135\t\n136\t        return get_score(fork_env)\n137\t    except Exception as e:\n138\t        print(f\"  [WARN] fork_and_continue failed: {e}\")\n139\t        return 0.0\n140\t    finally:\n141\t        if fork_env is not None:\n142\t            close_env(fork_env)\n143\t\n144\t\n145\tdef run_episode(\n146\t    agent: LLMAgent,\n147\t    task_name: str,\n148\t    variation_idx: int,\n149\t    max_steps: int,\n150\t    continuation_steps: int,\n151\t    n_candidates: int = 3,\n152\t) -> Dict[str, Any]:\n153\t    env = create_env(task_name, variation_idx)\n154\t    obs, _ = reset_env(env)\n155\t\n156\t    labels = []\n157\t    action_history = []\n158\t    history_dicts = []\n159\t    fork_times = []\n160\t    t0 = time.time()\n161\t\n162\t    for step_idx in range(max_steps):\n163\t        valid_actions = get_valid_actions(env)\n164\t        if not valid_actions:\n165\t            break\n166\t\n167\t        # Internal action (ReAct)\n168\t        internal_action, react_raw = agent.select_action_react(obs, valid_actions, history_dicts)\n169\t\n170\t        # Death filter for internal action\n171\t        _remaining = list(valid_actions)\n172\t        for _retry in range(3):\n173\t            fr = fork_and_lookahead(task_name, variation_idx, action_history, internal_action)\n174\t            if not is_lethal(fr):\n175\t                break\n176\t            _remaining = [a for a in _remaining if a != internal_action]\n177\t            if not _remaining:\n178\t                break\n179\t            internal_action, react_raw = agent.select_action_react(obs, _remaining, history_dicts)\n180\t\n181\t        # Deterministic action\n182\t        det_action, det_delta, det_forks = get_deterministic_action(\n183\t            agent, task_name, variation_idx, obs, valid_actions,\n184\t            action_history, history_dicts, n_candidates,\n185\t        )\n186\t\n187\t        if internal_action == det_action:\n188\t            labels.append({\"step\": step_idx, \"label\": \"tie\", \"score_diff\": 0.0})\n189\t            chosen = internal_action\n190\t        else:\n191\t            # Fork both and continue K steps\n192\t            t_fork = time.time()\n193\t            fork_int_score = fork_and_continue(\n194\t                agent, task_name, variation_idx, action_history,\n195\t                internal_action, continuation_steps,\n196\t            )\n197\t            fork_det_score = fork_and_continue(\n198\t                agent, task_name, variation_idx, action_history,\n199\t                det_action, continuation_steps,\n200\t            )\n201\t            fork_elapsed = time.time() - t_fork\n202\t            fork_times.append(fork_elapsed)\n203\t\n204\t            score_diff = fork_det_score - fork_int_score\n205\t            if score_diff > 0:\n206\t                best = \"deterministic\"\n207\t            elif score_diff < 0:\n208\t                best = \"internal\"\n209\t            else:\n210\t                best = \"tie\"\n211\t\n212\t            labels.append({\n213\t                \"step\": step_idx,\n214\t                \"obs\": obs[:500],\n215\t                \"internal_action\": internal_action,\n216\t                \"det_action\": det_action,\n217\t                \"fork_internal_score\": fork_int_score,\n218\t                \"fork_det_score\": fork_det_score,\n219\t                \"score_diff\": score_diff,\n220\t                \"label\": best,\n221\t                \"fork_time_s\": round(fork_elapsed, 2),\n222\t            })\n223\t\n224\t            chosen = det_action if score_diff > 0 else internal_action\n225\t\n226\t        score_before = get_score(env)\n227\t        obs_new, reward, done, info = step_env(env, chosen)\n228\t        score_after = get_score(env)\n229\t\n230\t        action_history.append(chosen)\n231\t        history_dicts.append({\"action\": chosen, \"observation\": obs_new[:200], \"score\": score_after})\n232\t        obs = obs_new\n233\t\n234\t        diverge_tag = \"\" if internal_action == det_action else f\" DIVERGE→{labels[-1]['label']}\"\n235\t        print(f\"    step {step_idx}: score {score_before:.0f}→{score_after:.0f} \"\n236\t              f\"action='{chosen[:40]}'{diverge_tag}\")\n237\t\n238\t        if done:\n239\t            break\n240\t\n241\t    final_score = get_score(env)\n242\t    close_env(env)\n243\t\n244\t    label_counts = {\"deterministic\": 0, \"internal\": 0, \"tie\": 0}\n245\t    for lb in labels:\n246\t        label_counts[lb[\"label\"]] += 1\n247\t    diverge_steps = label_counts[\"deterministic\"] + label_counts[\"internal\"]\n248\t\n249\t    return {\n250\t        \"episode\": -1,  # filled by caller\n251\t        \"variation\": variation_idx,\n252\t        \"total_steps\": len(labels),\n253\t        \"diverge_steps\": diverge_steps,\n254\t        \"tie_steps\": label_counts[\"tie\"],\n255\t        \"labels\": labels,\n256\t        \"final_score\": final_score,\n257\t        \"label_summary\": label_counts,\n258\t        \"total_time_s\": round(time.time() - t0, 1),\n259\t        \"avg_fork_time_s\": round(sum(fork_times) / len(fork_times), 2) if fork_times else 0.0,\n260\t    }\n261\t\n262\t\n263\tdef main():\n264\t    parser = argparse.ArgumentParser(\n265\t        description=\"Episode-terminal counterfactual labeling for SimGate routing\"\n266\t    )\n267\t    parser.add_argument(\"--task_type\", type=str, required=True,\n268\t                        help=\"ScienceWorld task name (e.g. boil, melt)\")\n269\t    parser.add_argument(\"--episodes\", type=int, default=20)\n270\t    parser.add_argument(\"--gpu_id\", type=int, default=0)\n271\t    parser.add_argument(\"--max_steps\", type=int, default=30)\n272\t    parser.add_argument(\"--continuation_steps\", type=int, default=10,\n273\t                        help=\"K: steps to continue after fork\")\n274\t    parser.add_argument(\"--output_dir\", type=str, default=\"results/cf_labels/\")\n275\t    parser.add_argument(\"--model_path\", type=str, default=None)\n276\t    parser.add_argument(\"--use_vllm\", action=\"store_true\", default=True)\n277\t    parser.add_argument(\"--no_vllm\", action=\"store_true\", default=False)\n278\t    parser.add_argument(\"--n_candidates\", type=int, default=3)\n279\t    parser.add_argument(\"--seed\", type=int, default=42)\n280\t    args = parser.parse_args()\n281\t\n282\t    if args.no_vllm:\n283\t        args.use_vllm = False\n284\t\n285\t    random.seed(args.seed)\n286\t    task_name = resolve_task_type(args.task_type)\n287\t\n288\t    print(f\"=== CF LABELING SETUP ===\")\n289\t    print(f\"Task: {task_name} | Episodes: {args.episodes} | Max steps: {args.max_steps}\")\n290\t    print(f\"Continuation K={args.continuation_steps} | GPU: {args.gpu_id} | Seed: {args.seed}\")\n291\t\n292\t    agent = LLMAgent(\n293\t        model_path=args.model_path,\n294\t        use_vllm=args.use_vllm,\n295\t        gpu_id=args.gpu_id,\n296\t    )\n297\t\n298\t    max_var = get_max_variations(task_name)\n299\t    task_dir = os.path.join(args.output_dir, task_name.replace(\" \", \"_\"))\n300\t    os.makedirs(task_dir, exist_ok=True)\n301\t    out_file = os.path.join(task_dir, \"cf_labels.jsonl\")\n302\t\n303\t    all_diverge = 0\n304\t    all_steps = 0\n305\t    all_labels = {\"deterministic\": 0, \"internal\": 0, \"tie\": 0}\n306\t    all_fork_times = []\n307\t\n308\t    for ep_idx in range(args.episodes):\n309\t        variation_idx = ep_idx % max_var\n310\t        print(f\"\\n--- Episode {ep_idx}/{args.episodes} (variation={variation_idx}) ---\")\n311\t\n312\t        result = run_episode(\n313\t            agent, task_name, variation_idx,\n314\t            args.max_steps, args.continuation_steps, args.n_candidates,\n315\t        )\n316\t        result[\"episode\"] = ep_idx\n317\t\n318\t        with open(out_file, \"a\") as f:\n319\t            f.write(json.dumps(result, default=str) + \"\\n\")\n320\t\n321\t        all_steps += result[\"total_steps\"]\n322\t        all_diverge += result[\"diverge_steps\"]\n323\t        for k in (\"deterministic\", \"internal\", \"tie\"):\n324\t            all_labels[k] += result[\"label_summary\"][k]\n325\t        if result[\"avg_fork_time_s\"] > 0:\n326\t            all_fork_times.append(result[\"avg_fork_time_s\"])\n327\t\n328\t        print(f\"  → score={result['final_score']:.1f} | \"\n329\t              f\"diverge={result['diverge_steps']}/{result['total_steps']} | \"\n330\t              f\"labels: det={result['label_summary']['deterministic']} \"\n331\t              f\"int={result['label_summary']['internal']} \"\n332\t              f\"tie={result['label_summary']['tie']} | \"\n333\t              f\"{result['total_time_s']:.0f}s\")\n334\t\n335\t    # Summary\n336\t    diverge_pct = 100.0 * all_diverge / all_steps if all_steps > 0 else 0\n337\t    avg_fork = sum(all_fork_times) / len(all_fork_times) if all_fork_times else 0\n338\t    print(f\"\\n{'='*50}\")\n339\t    print(f\"=== CF LABELING: {task_name} ===\")\n340\t    print(f\"Episodes: {args.episodes}\")\n341\t    print(f\"Total steps: {all_steps}\")\n342\t    print(f\"Diverge steps: {all_diverge} ({diverge_pct:.1f}%)\")\n343\t    print(f\"Labels: det={all_labels['deterministic']}, int={all_labels['internal']}, tie={all_labels['tie']}\")\n344\t    print(f\"Avg continuation time per fork: {avg_fork:.1f}s\")\n345\t    print(f\"Output: {out_file}\")\n346\t    print(f\"{'='*50}\")\n347\t\n348\t\n349\tif __name__ == \"__main__\":\n350\t    main()\n351\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18461534-89fa-45b9-b414-ee02c3609d7d",
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "a21970c5-5ce0-4496-aa53-a9d951c4ba42",
+            "sourceToolAssistantUUID": "18461534-89fa-45b9-b414-ee02c3609d7d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T13:30:19.171Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WevThMFCZhFerqj6BknnsR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/math_counterfactual.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a21970c5-5ce0-4496-aa53-a9d951c4ba42",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YRjfp2e9trXg8FfTCu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8000c723-f085-415c-aa1b-6a850a6fd0e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012q5EDVRG3tAcogatXYgdUk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1788,
+                "cache_read_input_tokens": 17128,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1788,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T13:30:19.187Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing.",
+              "is_error": true,
+              "tool_use_id": "toolu_01WevThMFCZhFerqj6BknnsR"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8000c723-f085-415c-aa1b-6a850a6fd0e8",
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "d3085dfd-a046-4805-921d-3e3b1c149c9c",
+            "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing.",
+            "sourceToolAssistantUUID": "8000c723-f085-415c-aa1b-6a850a6fd0e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T13:30:19.453Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CgzF1Fw1Vu4dTFwrC8AHLR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/llm_agent.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3085dfd-a046-4805-921d-3e3b1c149c9c",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YRjfp2e9trXg8FfTCu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "90409e72-a041-4aed-98a2-82ef6c6a21e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012q5EDVRG3tAcogatXYgdUk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1788,
+                "cache_read_input_tokens": 17128,
+                "output_tokens": 253,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1788
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 253,
+                    "cache_read_input_tokens": 17128,
+                    "cache_creation_input_tokens": 1788,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1788,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T13:30:19.459Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CgzF1Fw1Vu4dTFwrC8AHLR",
+              "type": "tool_result",
+              "content": "1\t\"\"\"LLM Agent: Qwen2.5-7B-Instruct ReAct agent for ScienceWorld.\n2\t\n3\tSupports vLLM serving (default) or HuggingFace transformers local inference.\n4\tProvides:\n5\t  - select_action_react(): standard ReAct single-action selection\n6\t  - generate_candidate_actions(): top-n candidate generation for deterministic routing\n7\t\n8\tUsage:\n9\t  agent = LLMAgent(model_path=\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\", gpu_id=0)\n10\t  action = agent.select_action_react(obs, valid_actions, history)\n11\t\"\"\"\n12\t\n13\timport os\n14\timport re\n15\timport glob\n16\timport json\n17\timport time\n18\tfrom typing import List, Optional, Tuple\n19\t\n20\t# Detect model path: ModelScope or HuggingFace naming conventions\n21\tMODEL_SEARCH_PATHS = [\n22\t    \"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\",\n23\t    \"/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct\",\n24\t    \"/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct\",\n25\t    \"/root/autodl-tmp/models/qwen/Qwen2.5-7B-Instruct\",\n26\t    \"/root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-7B-Instruct\",\n27\t]\n28\t\n29\t\n30\tdef find_model_path(hint: Optional[str] = None) -> str:\n31\t    \"\"\"Find Qwen2.5-7B-Instruct model path on disk.\"\"\"\n32\t    if hint and os.path.isdir(hint):\n33\t        return hint\n34\t    for p in MODEL_SEARCH_PATHS:\n35\t        if os.path.isdir(p):\n36\t            return p\n37\t    # Glob fallback\n38\t    for pattern in [\"/root/autodl-tmp/models/**/Qwen2*7B*Instruct\",\n39\t                    \"/root/autodl-tmp/.hf_cache/**/Qwen2*7B*\"]:\n40\t        matches = glob.glob(pattern, recursive=True)\n41\t        if matches:\n42\t            return matches[0]\n43\t    raise FileNotFoundError(\n44\t        \"Cannot find Qwen2.5-7B-Instruct. Searched: \" + str(MODEL_SEARCH_PATHS)\n45\t    )\n46\t\n47\t\n48\t# ---------------------------------------------------------------------------\n49\t# Prompt templates\n50\t# ---------------------------------------------------------------------------\n51\t\n52\tSYSTEM_PROMPT = \"\"\"You are an agent interacting with a ScienceWorld text environment. Your goal is to complete the given task by choosing actions from the available action list.\n53\t\n54\tUse the following format for each step:\n55\tThought: <your reasoning about what to do next>\n56\tAction: <exact action string from the valid actions list>\n57\t\n58\tRules:\n59\t- You MUST choose an action from the valid actions list. Do not invent actions.\n60\t- Think step by step about what physical/scientific process is needed.\n61\t- Pay attention to the current observation for clues about object states.\"\"\"\n62\t\n63\tREACT_USER_TEMPLATE = \"\"\"Current observation:\n64\t{observation}\n65\t\n66\tValid actions:\n67\t{valid_actions_str}\n68\t\n69\tPrevious actions taken: {history_str}\n70\t\n71\tChoose your next action.\"\"\"\n72\t\n73\tCANDIDATE_USER_TEMPLATE = \"\"\"Current observation:\n74\t{observation}\n75\t\n76\tValid actions:\n77\t{valid_actions_str}\n78\t\n79\tPrevious actions taken: {history_str}\n80\t\n81\tGenerate the top {n} most promising actions from the valid actions list, ranked by how likely they are to make progress on the task. Output exactly {n} actions, one per line, in this format:\n82\t1. <action>\n83\t2. <action>\n84\t3. <action>\"\"\"\n85\t\n86\t\n87\tdef _format_history(history: List[dict], last_k: int = 10) -> str:\n88\t    \"\"\"Format recent action history for prompt.\"\"\"\n89\t    if not history:\n90\t        return \"(none)\"\n91\t    recent = history[-last_k:]\n92\t    parts = []\n93\t    for h in recent:\n94\t        if isinstance(h, dict):\n95\t            parts.append(f\"- {h.get('action', str(h))}\")\n96\t        else:\n97\t            parts.append(f\"- {h}\")\n98\t    return \"\\n\".join(parts)\n99\t\n100\t\n101\tdef _format_valid_actions(actions: List[str], max_show: int = 50) -> str:\n102\t    \"\"\"Format valid actions list, truncating if too long.\"\"\"\n103\t    if len(actions) <= max_show:\n104\t        return \"\\n\".join(f\"  [{i}] {a}\" for i, a in enumerate(actions))\n105\t    shown = actions[:max_show]\n106\t    return \"\\n\".join(f\"  [{i}] {a}\" for i, a in enumerate(shown)) + \\\n107\t           f\"\\n  ... and {len(actions) - max_show} more actions\"\n108\t\n109\t\n110\tdef parse_action(text: str, valid_actions: List[str]) -> Optional[str]:\n111\t    \"\"\"Parse LLM output to extract action. Tries multiple patterns.\"\"\"\n112\t    # Pattern 1: \"Action: <action>\"\n113\t    m = re.search(r\"Action:\\s*(.+?)(?:\\n|$)\", text, re.IGNORECASE)\n114\t    if m:\n115\t        action_str = m.group(1).strip().strip('\"').strip(\"'\")\n116\t        if action_str in valid_actions:\n117\t            return action_str\n118\t        # Fuzzy match: case-insensitive\n119\t        for va in valid_actions:\n120\t            if va.lower() == action_str.lower():\n121\t                return va\n122\t\n123\t    # Pattern 2: Exact match anywhere in text\n124\t    for va in valid_actions:\n125\t        if va in text:\n126\t            return va\n127\t\n128\t    # Pattern 3: Bracketed index \"[0]\", \"[1]\" etc.\n129\t    m = re.search(r\"\\[(\\d+)\\]\", text)\n130\t    if m:\n131\t        idx = int(m.group(1))\n132\t        if 0 <= idx < len(valid_actions):\n133\t            return valid_actions[idx]\n134\t\n135\t    return None\n136\t\n137\t\n138\tdef parse_candidates(text: str, valid_actions: List[str], n: int) -> List[str]:\n139\t    \"\"\"Parse top-n candidates from LLM output.\"\"\"\n140\t    candidates = []\n141\t    # Pattern: \"1. <action>\" or \"1: <action>\"\n142\t    for line in text.split(\"\\n\"):\n143\t        m = re.match(r\"\\d+[.):\\s]+(.+)\", line.strip())\n144\t        if m:\n145\t            action_str = m.group(1).strip().strip('\"').strip(\"'\")\n146\t            matched = None\n147\t            if action_str in valid_actions:\n148\t                matched = action_str\n149\t            else:\n150\t                for va in valid_actions:\n151\t                    if va.lower() == action_str.lower():\n152\t                        matched = va\n153\t                        break\n154\t            if matched and matched not in candidates:\n155\t                candidates.append(matched)\n156\t\n157\t    # If we didn't get enough, try Action: pattern\n158\t    if len(candidates) < n:\n159\t        for va in valid_actions:\n160\t            if va in text and va not in candidates:\n161\t                candidates.append(va)\n162\t                if len(candidates) >= n:\n163\t                    break\n164\t\n165\t    return candidates[:n]\n166\t\n167\t\n168\tclass LLMAgent:\n169\t    \"\"\"ReAct agent using Qwen2.5-7B-Instruct.\"\"\"\n170\t\n171\t    def __init__(\n172\t        self,\n173\t        model_path: Optional[str] = None,\n174\t        use_vllm: bool = True,\n175\t        gpu_id: int = 0,\n176\t        max_new_tokens: int = 256,\n177\t        temperature: float = 0.3,\n178\t    ):\n179\t        self.model_path = find_model_path(model_path)\n180\t        self.use_vllm = use_vllm\n181\t        self.gpu_id = gpu_id\n182\t        self.max_new_tokens = max_new_tokens\n183\t        self.temperature = temperature\n184\t        self._model = None\n185\t        self._tokenizer = None\n186\t        self._llm = None  # vLLM engine\n187\t\n188\t        print(f\"[LLMAgent] Model path: {self.model_path}\")\n189\t        print(f\"[LLMAgent] Backend: {'vLLM' if use_vllm else 'HF transformers'}, GPU: {gpu_id}\")\n190\t\n191\t    def _load_vllm(self):\n192\t        if self._llm is not None:\n193\t            return\n194\t        from vllm import LLM, SamplingParams\n195\t        os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(self.gpu_id)\n196\t        self._llm = LLM(\n197\t            model=self.model_path,\n198\t            tensor_parallel_size=1,\n199\t            gpu_memory_utilization=0.85,\n200\t            max_model_len=4096,\n201\t            trust_remote_code=True,\n202\t        )\n203\t        self._SamplingParams = SamplingParams\n204\t\n205\t    def _load_hf(self):\n206\t        if self._model is not None:\n207\t            return\n208\t        import torch\n209\t        from transformers import AutoModelForCausalLM, AutoTokenizer\n210\t        self._tokenizer = AutoTokenizer.from_pretrained(\n211\t            self.model_path, trust_remote_code=True\n212\t        )\n213\t        self._model = AutoModelForCausalLM.from_pretrained(\n214\t            self.model_path,\n215\t            torch_dtype=torch.float16,\n216\t            device_map=f\"cuda:{self.gpu_id}\",\n217\t            trust_remote_code=True,\n218\t        )\n219\t        self._model.eval()\n220\t\n221\t    def _generate(self, messages: List[dict], temperature: Optional[float] = None) -> str:\n222\t        \"\"\"Generate text from chat messages.\"\"\"\n223\t        temp = temperature if temperature is not None else self.temperature\n224\t        if self.use_vllm:\n225\t            return self._generate_vllm(messages, temp)\n226\t        else:\n227\t            return self._generate_hf(messages, temp)\n228\t\n229\t    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\n230\t        self._load_vllm()\n231\t        from vllm import SamplingParams\n232\t        # Build prompt from messages using chat template\n233\t        from transformers import AutoTokenizer\n234\t        if self._tokenizer is None:\n235\t            self._tokenizer = AutoTokenizer.from_pretrained(\n236\t                self.model_path, trust_remote_code=True\n237\t            )\n238\t        prompt = self._tokenizer.apply_chat_template(\n239\t            messages, tokenize=False, add_generation_prompt=True\n240\t        )\n241\t        params = SamplingParams(\n242\t            temperature=max(temperature, 0.01),\n243\t            max_tokens=self.max_new_tokens,\n244\t            stop=[\"Observation:\", \"\\nObservation\"],\n245\t        )\n246\t        outputs = self._llm.generate([prompt], params)\n247\t        return outputs[0].outputs[0].text.strip()\n248\t\n249\t    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\n250\t        self._load_hf()\n251\t        import torch\n252\t        text = self._tokenizer.apply_chat_template(\n253\t            messages, tokenize=False, add_generation_prompt=True\n254\t        )\n255\t        inputs = self._tokenizer(text, return_tensors=\"pt\").to(self._model.device)\n256\t        with torch.no_grad():\n257\t            outputs = self._model.generate(\n258\t                **inputs,\n259\t                max_new_tokens=self.max_new_tokens,\n260\t                temperature=max(temperature, 0.01),\n261\t                do_sample=temperature > 0,\n262\t                top_p=0.9,\n263\t            )\n264\t        new_tokens = outputs[0][inputs[\"input_ids\"].shape[1]:]\n265\t        return self._tokenizer.decode(new_tokens, skip_special_tokens=True).strip()\n266\t\n267\t    def select_action_react(\n268\t        self,\n269\t        observation: str,\n270\t        valid_actions: List[str],\n271\t        history: List[dict],\n272\t    ) -> Tuple[str, str]:\n273\t        \"\"\"Standard ReAct: LLM picks one action.\n274\t\n275\t        Returns (action, raw_llm_output).\n276\t        Falls back to first valid action if parsing fails.\n277\t        \"\"\"\n278\t        messages = [\n279\t            {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n280\t            {\"role\": \"user\", \"content\": REACT_USER_TEMPLATE.format(\n281\t                observation=observation,\n282\t                valid_actions_str=_format_valid_actions(valid_actions),\n283\t                history_str=_format_history(history),\n284\t            )},\n285\t        ]\n286\t        raw = self._generate(messages)\n287\t        action = parse_action(raw, valid_actions)\n288\t        if action is None:\n289\t            action = valid_actions[0]  # fallback\n290\t        return action, raw\n291\t\n292\t    def generate_candidate_actions(\n293\t        self,\n294\t        observation: str,\n295\t        valid_actions: List[str],\n296\t        history: List[dict],\n297\t        n: int = 3,\n298\t    ) -> Tuple[List[str], str]:\n299\t        \"\"\"Generate top-n candidate actions for deterministic evaluation.\n300\t\n301\t        Returns (list of actions, raw_llm_output).\n302\t        Pads with random valid actions if fewer than n parsed.\n303\t        \"\"\"\n304\t        messages = [\n305\t            {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n306\t            {\"role\": \"user\", \"content\": CANDIDATE_USER_TEMPLATE.format(\n307\t                observation=observation,\n308\t                valid_actions_str=_format_valid_actions(valid_actions),\n309\t                history_str=_format_history(history),\n310\t                n=n,\n311\t            )},\n312\t        ]\n313\t        raw = self._generate(messages, temperature=0.5)\n314\t        candidates = parse_candidates(raw, valid_actions, n)\n315\t\n316\t        # Pad if needed\n317\t        import random\n318\t        remaining = [a for a in valid_actions if a not in candidates]\n319\t        while len(candidates) < n and remaining:\n320\t            pick = random.choice(remaining)\n321\t            candidates.append(pick)\n322\t            remaining.remove(pick)\n323\t\n324\t        return candidates, raw\n325\t\n326\t\n327\tdef build_agent(args) -> LLMAgent:\n328\t    \"\"\"Build LLMAgent from argparse namespace.\"\"\"\n329\t    return LLMAgent(\n330\t        model_path=getattr(args, \"model_path\", None),\n331\t        use_vllm=getattr(args, \"use_vllm\", True),\n332\t        gpu_id=getattr(args, \"gpu_id\", 0),\n333\t    )\n334\t\n335\t\n336\tif __name__ == \"__main__\":\n337\t    import argparse\n338\t    parser = argparse.ArgumentParser()\n339\t    parser.add_argument(\"--model_path\", type=str, default=None)\n340\t    parser.add_argument(\"--use_vllm\", type=bool, default=True)\n341\t    parser.add_argument(\"--gpu_id\", type=int, default=0)\n342\t    args = parser.parse_args()\n343\t    agent = build_agent(args)\n344\t    print(f\"Agent initialized. Model: {agent.model_path}\")\n345\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90409e72-a041-4aed-98a2-82ef6c6a21e5",
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "e39aa4b8-6975-4bb2-ad51-32f826b4195c",
+            "sourceToolAssistantUUID": "90409e72-a041-4aed-98a2-82ef6c6a21e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T13:30:21.331Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The math_counterfactual.py file doesn't exist. Let me search for files related to MATH counterfactual and also check for any existing ALFWorld code:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e39aa4b8-6975-4bb2-ad51-32f826b4195c",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YRtnVtSYaDKnAo1GLF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bc39cef1-dd6a-4c91-8f18-30f2d7c6f53b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HDfyrJQcLrX6kF18JoaGm3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 9310,
+                "cache_read_input_tokens": 18916,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9310,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T13:30:22.239Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AA46a8g5HVUoN1s4U13WhG",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*counterfactual*.py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc39cef1-dd6a-4c91-8f18-30f2d7c6f53b",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YRtnVtSYaDKnAo1GLF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9b5a4c8b-3b53-4b43-8a03-ce001e0a107a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HDfyrJQcLrX6kF18JoaGm3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 9310,
+                "cache_read_input_tokens": 18916,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9310,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T13:30:22.260Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AA46a8g5HVUoN1s4U13WhG",
+              "type": "tool_result",
+              "content": "src/counterfactual_labeling.py\nsrc/alfworld_counterfactual.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b5a4c8b-3b53-4b43-8a03-ce001e0a107a",
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "228c7831-8920-4270-926b-428bd4d611a4",
+            "sourceToolAssistantUUID": "9b5a4c8b-3b53-4b43-8a03-ce001e0a107a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T13:30:22.443Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MkLy4YLDG5VAbqEmPSiS8M",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*math*.py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "228c7831-8920-4270-926b-428bd4d611a4",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YRtnVtSYaDKnAo1GLF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8582de77-d5f2-41f1-adfd-4397d9560de4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HDfyrJQcLrX6kF18JoaGm3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 9310,
+                "cache_read_input_tokens": 18916,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9310,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T13:30:22.456Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MkLy4YLDG5VAbqEmPSiS8M",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8582de77-d5f2-41f1-adfd-4397d9560de4",
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "8dd2e8df-a8b4-4637-a08e-56c24cf00968",
+            "sourceToolAssistantUUID": "8582de77-d5f2-41f1-adfd-4397d9560de4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T13:30:22.710Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FHkozoQon1ZL2r4L2Nd4Wx",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*alfworld*.py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8dd2e8df-a8b4-4637-a08e-56c24cf00968",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YRtnVtSYaDKnAo1GLF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8e04bb18-6692-4fac-9d39-68169032f02f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HDfyrJQcLrX6kF18JoaGm3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 9310,
+                "cache_read_input_tokens": 18916,
+                "output_tokens": 312,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9310
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 312,
+                    "cache_read_input_tokens": 18916,
+                    "cache_creation_input_tokens": 9310,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9310,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T13:30:22.730Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FHkozoQon1ZL2r4L2Nd4Wx",
+              "type": "tool_result",
+              "content": "src/alfworld_counterfactual.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e04bb18-6692-4fac-9d39-68169032f02f",
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "f5525d6a-a9b4-43a9-a131-14e2de94d171",
+            "sourceToolAssistantUUID": "8e04bb18-6692-4fac-9d39-68169032f02f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T13:30:24.270Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Great! There's an ALFWorld counterfactual file. Let me read it and also check scienceworld_utils.py to understand the environment forking mechanism:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5525d6a-a9b4-43a9-a131-14e2de94d171",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YS8WFHyVEAL6B38X6q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "467162d9-10fc-4a9f-8014-7bb7371a545e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MEHT4Lk3S4jiRcuuy2Gn4Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 434,
+                "cache_read_input_tokens": 28226,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 434,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T13:30:24.425Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QFHb6fzgfam42dWpEU56nu",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/alfworld_counterfactual.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "467162d9-10fc-4a9f-8014-7bb7371a545e",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YS8WFHyVEAL6B38X6q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d6ec1a22-0263-47e4-a6e1-f7a13274cf48",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MEHT4Lk3S4jiRcuuy2Gn4Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 434,
+                "cache_read_input_tokens": 28226,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 434,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T13:30:24.431Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QFHb6fzgfam42dWpEU56nu",
+              "type": "tool_result",
+              "content": "1\t\"\"\"ALFWorld counterfactual labeling pipeline.\n2\t\n3\tRuns two agents per task:\n4\t  - Internal: Qwen2.5-7B ReAct agent (LLM-only decision making)\n5\t  - Deterministic: ALFWorld HandCodedTWAgent (heuristic PDDL-based expert)\n6\t\n7\tProduces episode-level labels: det-preferred / internal-preferred / no-preference.\n8\tOutput: JSONL with unified format for multi-env router training.\n9\t\"\"\"\n10\t\n11\timport argparse\n12\timport json\n13\timport os\n14\timport random\n15\timport sys\n16\timport time\n17\tfrom collections import Counter\n18\tfrom typing import List, Dict, Any, Optional, Tuple\n19\t\n20\timport textworld\n21\timport textworld.gym\n22\tfrom alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos\n23\tfrom alfworld.agents.expert.handcoded_expert_tw import HandCodedTWAgent\n24\t\n25\tsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n26\tfrom llm_agent import LLMAgent, find_model_path\n27\t\n28\t# ---------------------------------------------------------------------------\n29\t# ALFWorld-specific prompts\n30\t# ---------------------------------------------------------------------------\n31\t\n32\tALFWORLD_SYSTEM_PROMPT = \"\"\"You are an agent in a household environment (ALFWorld). You must complete a given task by choosing actions from the available action list.\n33\t\n34\tUse the following format for each step:\n35\tThought: <your reasoning about what to do next>\n36\tAction: <exact action string from the valid actions list>\n37\t\n38\tRules:\n39\t- You MUST choose an action from the valid actions list. Do not invent actions.\n40\t- Common actions: go to <receptacle>, take <obj> from <receptacle>, put <obj> in/on <receptacle>, open/close <receptacle>, use <obj>, clean/heat/cool <obj> with <receptacle>, examine <obj/receptacle>, look, inventory.\n41\t- Think step by step: first locate the target object, then perform required operations (clean/heat/cool if needed), then place it at the destination.\"\"\"\n42\t\n43\tALFWORLD_REACT_TEMPLATE = \"\"\"Current observation:\n44\t{observation}\n45\t\n46\tYour task: {task_desc}\n47\t\n48\tValid actions:\n49\t{valid_actions_str}\n50\t\n51\tPrevious actions taken: {history_str}\n52\t\n53\tChoose your next action.\"\"\"\n54\t\n55\t# ---------------------------------------------------------------------------\n56\t# Task type constants\n57\t# ---------------------------------------------------------------------------\n58\t\n59\tTASK_TYPES = [\n60\t    \"pick_and_place\",\n61\t    \"pick_clean_then_place\",\n62\t    \"pick_heat_then_place\",\n63\t    \"pick_cool_then_place\",\n64\t    \"look_at_obj_in_light\",\n65\t    \"pick_two_obj_and_place\",\n66\t]\n67\t\n68\t\n69\tdef extract_task_type(game_dir: str) -> str:\n70\t    \"\"\"Extract task type from game directory name.\"\"\"\n71\t    dirname = os.path.basename(os.path.dirname(game_dir))\n72\t    for tt in TASK_TYPES:\n73\t        if dirname.startswith(tt):\n74\t            return tt\n75\t    return \"unknown\"\n76\t\n77\t\n78\tdef extract_task_desc(obs: str) -> str:\n79\t    \"\"\"Extract task description from initial observation.\"\"\"\n80\t    if \"Your task is to:\" in obs:\n81\t        return obs.split(\"Your task is to:\")[-1].strip().rstrip(\".\")\n82\t    return \"\"\n83\t\n84\t\n85\tdef collect_game_files(data_root: str, split: str = \"valid_seen\",\n86\t                       task_types: Optional[List[str]] = None,\n87\t                       max_per_type: int = 0) -> List[Dict[str, str]]:\n88\t    \"\"\"Collect game files from ALFWorld data directory.\n89\t\n90\t    Returns list of dicts with keys: game_path, task_type, task_id, game_dir.\n91\t    \"\"\"\n92\t    split_path = os.path.join(data_root, split)\n93\t    if not os.path.exists(split_path):\n94\t        raise FileNotFoundError(f\"Split path not found: {split_path}\")\n95\t\n96\t    games = []\n97\t    type_counts = Counter()\n98\t\n99\t    for task_dir in sorted(os.listdir(split_path)):\n100\t        task_type = None\n101\t        for tt in TASK_TYPES:\n102\t            if task_dir.startswith(tt):\n103\t                task_type = tt\n104\t                break\n105\t        if task_type is None:\n106\t            continue\n107\t        if task_types and task_type not in task_types:\n108\t            continue\n109\t        if max_per_type > 0 and type_counts[task_type] >= max_per_type:\n110\t            continue\n111\t\n112\t        full_dir = os.path.join(split_path, task_dir)\n113\t        trials = [d for d in os.listdir(full_dir) if d.startswith(\"trial_\")]\n114\t        if not trials:\n115\t            continue\n116\t\n117\t        trial_dir = os.path.join(full_dir, trials[0])\n118\t        game_path = os.path.join(trial_dir, \"game.tw-pddl\")\n119\t        if not os.path.exists(game_path):\n120\t            continue\n121\t\n122\t        games.append({\n123\t            \"game_path\": game_path,\n124\t            \"task_type\": task_type,\n125\t            \"task_id\": f\"{task_dir}/{trials[0]}\",\n126\t            \"game_dir\": trial_dir,\n127\t        })\n128\t        type_counts[task_type] += 1\n129\t\n130\t    return games\n131\t\n132\t\n133\t# ---------------------------------------------------------------------------\n134\t# Environment helpers\n135\t# ---------------------------------------------------------------------------\n136\t\n137\tdef make_env(game_path: str, max_steps: int = 50):\n138\t    \"\"\"Create a TextWorld gym env for a single ALFWorld game.\"\"\"\n139\t    request_infos = textworld.EnvInfos(\n140\t        won=True,\n141\t        admissible_commands=True,\n142\t        facts=True,\n143\t        extras=[\"gamefile\"],\n144\t    )\n145\t    env_id = textworld.gym.register_games(\n146\t        [game_path],\n147\t        request_infos,\n148\t        batch_size=1,\n149\t        max_episode_steps=max_steps,\n150\t        wrappers=[AlfredDemangler, AlfredInfos],\n151\t    )\n152\t    return textworld.gym.make(env_id)\n153\t\n154\t\n155\tdef unpack_obs(obs, infos) -> Tuple[str, List[str], list, bool]:\n156\t    \"\"\"Unpack batched gym output to single-game values.\"\"\"\n157\t    obs_text = obs[0] if isinstance(obs, (tuple, list)) else obs\n158\t    admissible = infos[\"admissible_commands\"][0]\n159\t    facts = infos.get(\"facts\", [[]])[0]\n160\t    won = infos[\"won\"][0] if isinstance(infos[\"won\"], list) else infos[\"won\"]\n161\t    return obs_text, admissible, facts, won\n162\t\n163\t\n164\tdef make_game_state(obs_text: str, admissible: List[str], facts: list) -> dict:\n165\t    \"\"\"Construct game_state dict expected by HandCodedTWAgent.\"\"\"\n166\t    return {\n167\t        \"feedback\": obs_text,\n168\t        \"admissible_commands\": admissible,\n169\t        \"facts\": facts,\n170\t    }\n171\t\n172\t\n173\t# ---------------------------------------------------------------------------\n174\t# LLM agent wrapper for ALFWorld\n175\t# ---------------------------------------------------------------------------\n176\t\n177\tdef _format_history(history: List[dict], last_k: int = 10) -> str:\n178\t    if not history:\n179\t        return \"(none)\"\n180\t    recent = history[-last_k:]\n181\t    return \"\\n\".join(f\"- {h.get('action', str(h))}\" for h in recent)\n182\t\n183\t\n184\tdef _format_valid_actions(actions: List[str], max_show: int = 40) -> str:\n185\t    if len(actions) <= max_show:\n186\t        return \"\\n\".join(f\"  [{i}] {a}\" for i, a in enumerate(actions))\n187\t    shown = actions[:max_show]\n188\t    return \"\\n\".join(f\"  [{i}] {a}\" for i, a in enumerate(shown)) + \\\n189\t           f\"\\n  ... and {len(actions) - max_show} more actions\"\n190\t\n191\t\n192\tdef parse_action_alfworld(text: str, valid_actions: List[str]) -> Optional[str]:\n193\t    \"\"\"Parse LLM output to extract action for ALFWorld.\"\"\"\n194\t    import re\n195\t    # Pattern: \"Action: <action>\"\n196\t    m = re.search(r\"Action:\\s*(.+?)(?:\\n|$)\", text, re.IGNORECASE)\n197\t    if m:\n198\t        action_str = m.group(1).strip().strip('\"').strip(\"'\")\n199\t        if action_str in valid_actions:\n200\t            return action_str\n201\t        # Fuzzy match\n202\t        action_lower = action_str.lower()\n203\t        for va in valid_actions:\n204\t            if va.lower() == action_lower:\n205\t                return va\n206\t        # Substring match\n207\t        for va in valid_actions:\n208\t            if action_lower in va.lower() or va.lower() in action_lower:\n209\t                return va\n210\t\n211\t    # Fallback: check if any valid action appears in the text\n212\t    for va in valid_actions:\n213\t        if va in text:\n214\t            return va\n215\t\n216\t    return None\n217\t\n218\t\n219\tdef llm_select_action(agent: LLMAgent, obs: str, valid_actions: List[str],\n220\t                       history: List[dict], task_desc: str) -> Tuple[str, str]:\n221\t    \"\"\"Use LLM to select an action via ReAct prompting.\"\"\"\n222\t    messages = [\n223\t        {\"role\": \"system\", \"content\": ALFWORLD_SYSTEM_PROMPT},\n224\t        {\"role\": \"user\", \"content\": ALFWORLD_REACT_TEMPLATE.format(\n225\t            observation=obs,\n226\t            task_desc=task_desc,\n227\t            valid_actions_str=_format_valid_actions(valid_actions),\n228\t            history_str=_format_history(history),\n229\t        )},\n230\t    ]\n231\t    raw = agent._generate(messages)\n232\t    action = parse_action_alfworld(raw, valid_actions)\n233\t    if action is None:\n234\t        action = valid_actions[0]\n235\t    return action, raw\n236\t\n237\t\n238\t# ---------------------------------------------------------------------------\n239\t# Episode runners\n240\t# ---------------------------------------------------------------------------\n241\t\n242\tdef run_internal_episode(game_info: dict, agent: LLMAgent,\n243\t                         max_steps: int = 50) -> dict:\n244\t    \"\"\"Run an episode with LLM ReAct agent.\"\"\"\n245\t    env = make_env(game_info[\"game_path\"], max_steps)\n246\t    trajectory = []\n247\t    try:\n248\t        obs, infos = env.reset()\n249\t        obs_text, admissible, facts, won = unpack_obs(obs, infos)\n250\t        task_desc = extract_task_desc(obs_text)\n251\t        history = []\n252\t\n253\t        for step in range(max_steps):\n254\t            action, raw_output = llm_select_action(\n255\t                agent, obs_text, admissible, history, task_desc\n256\t            )\n257\t            trajectory.append({\n258\t                \"step\": step,\n259\t                \"observation\": obs_text[:500],\n260\t                \"thought\": raw_output[:300],\n261\t                \"action\": action,\n262\t                \"reward\": 0,\n263\t            })\n264\t            history.append({\"action\": action, \"obs\": obs_text[:200]})\n265\t\n266\t            obs, score, done, infos = env.step([action])\n267\t            obs_text, admissible, facts, won = unpack_obs(obs, infos)\n268\t            trajectory[-1][\"reward\"] = score\n269\t\n270\t            if done or won:\n271\t                break\n272\t\n273\t        return {\n274\t            \"trajectory\": trajectory,\n275\t            \"success\": bool(won),\n276\t            \"n_steps\": len(trajectory),\n277\t            \"score\": 1.0 if won else 0.0,\n278\t        }\n279\t    finally:\n280\t        env.close()\n281\t\n282\t\n283\tdef run_deterministic_episode(game_info: dict, max_steps: int = 50) -> dict:\n284\t    \"\"\"Run an episode with HandCodedTWAgent (heuristic expert).\"\"\"\n285\t    env = make_env(game_info[\"game_path\"], max_steps)\n286\t    expert = HandCodedTWAgent(max_steps=max_steps)\n287\t    trajectory = []\n288\t\n289\t    try:\n290\t        obs, infos = env.reset()\n291\t        obs_text, admissible, facts, won = unpack_obs(obs, infos)\n292\t\n293\t        expert.reset(game=game_info[\"game_path\"])\n294\t        game_state = make_game_state(obs_text, admissible, facts)\n295\t\n296\t        last_action = \"\"\n297\t        reward = 0\n298\t        done = False\n299\t\n300\t        for step in range(max_steps):\n301\t            try:\n302\t                action = expert.act(game_state, reward, done, last_action)\n303\t            except Exception:\n304\t                # Expert failed or timed out - pick random admissible action\n305\t                action = random.choice(admissible) if admissible else \"look\"\n306\t\n307\t            if action not in admissible:\n308\t                action = random.choice(admissible) if admissible else \"look\"\n309\t\n310\t            trajectory.append({\n311\t                \"step\": step,\n312\t                \"observation\": obs_text[:500],\n313\t                \"thought\": f\"[expert-heuristic] {action}\",\n314\t                \"action\": action,\n315\t                \"reward\": 0,\n316\t            })\n317\t\n318\t            obs, score, done, infos = env.step([action])\n319\t            obs_text, admissible, facts, won = unpack_obs(obs, infos)\n320\t            game_state = make_game_state(obs_text, admissible, facts)\n321\t\n322\t            trajectory[-1][\"reward\"] = score\n323\t            last_action = action\n324\t            reward = score\n325\t\n326\t            if done or won:\n327\t                break\n328\t\n329\t        return {\n330\t            \"trajectory\": trajectory,\n331\t            \"success\": bool(won),\n332\t            \"n_steps\": len(trajectory),\n333\t            \"score\": 1.0 if won else 0.0,\n334\t        }\n335\t    finally:\n336\t        env.close()\n337\t\n338\t\n339\t# ---------------------------------------------------------------------------\n340\t# Labeling\n341\t# ---------------------------------------------------------------------------\n342\t\n343\tdef compute_label(internal: dict, deterministic: dict) -> str:\n344\t    if deterministic[\"success\"] and not internal[\"success\"]:\n345\t        return \"det-preferred\"\n346\t    elif internal[\"success\"] and not deterministic[\"success\"]:\n347\t        return \"internal-preferred\"\n348\t    else:\n349\t        return \"no-preference\"\n350\t\n351\t\n352\t# ---------------------------------------------------------------------------\n353\t# Main pipeline\n354\t# ---------------------------------------------------------------------------\n355\t\n356\tdef run_pipeline(args):\n357\t    data_root = os.path.expanduser(args.data_root)\n358\t    games = collect_game_files(\n359\t        data_root,\n360\t        split=args.split,\n361\t        task_types=args.task_types.split(\",\") if args.task_types else None,\n362\t        max_per_type=args.max_per_type,\n363\t    )\n364\t\n365\t    if args.n_tasks > 0:\n366\t        games = games[:args.n_tasks]\n367\t\n368\t    print(f\"=== ALFWorld CF Labeling ===\")\n369\t    print(f\"Split: {args.split} | Tasks: {len(games)} | Max steps: {args.max_steps}\")\n370\t    print(f\"GPU: {args.gpu_id} | vLLM: {not args.no_vllm}\")\n371\t\n372\t    agent = LLMAgent(\n373\t        model_path=args.model_path,\n374\t        use_vllm=not args.no_vllm,\n375\t        gpu_id=args.gpu_id,\n376\t    )\n377\t\n378\t    os.makedirs(os.path.dirname(args.output) or \".\", exist_ok=True)\n379\t\n380\t    label_counts = Counter()\n381\t    total_time = 0\n382\t    results = []\n383\t\n384\t    for i, game in enumerate(games):\n385\t        t0 = time.time()\n386\t        print(f\"\\n--- [{i+1}/{len(games)}] {game['task_type']}: {game['task_id'][:60]} ---\")\n387\t\n388\t        # Run internal (LLM)\n389\t        internal_result = run_internal_episode(game, agent, args.max_steps)\n390\t        print(f\"  Internal: {'SUCCESS' if internal_result['success'] else 'FAIL'} \"\n391\t              f\"({internal_result['n_steps']} steps)\")\n392\t\n393\t        # Run deterministic (expert)\n394\t        det_result = run_deterministic_episode(game, args.max_steps)\n395\t        print(f\"  Deterministic: {'SUCCESS' if det_result['success'] else 'FAIL'} \"\n396\t              f\"({det_result['n_steps']} steps)\")\n397\t\n398\t        label = compute_label(internal_result, det_result)\n399\t        label_counts[label] += 1\n400\t        elapsed = round(time.time() - t0, 1)\n401\t        total_time += elapsed\n402\t\n403\t        task_desc = extract_task_desc(\n404\t            internal_result[\"trajectory\"][0][\"observation\"] if internal_result[\"trajectory\"] else \"\"\n405\t        )\n406\t\n407\t        record = {\n408\t            \"episode_id\": f\"alfworld_{game['task_type']}_{i:03d}\",\n409\t            \"environment\": \"alfworld\",\n410\t            \"task_type\": game[\"task_type\"],\n411\t            \"task_id\": game[\"task_id\"],\n412\t            \"task_desc\": task_desc,\n413\t            \"internal\": internal_result,\n414\t            \"deterministic\": det_result,\n415\t            \"label\": label,\n416\t            \"metadata\": {\n417\t                \"subtask_type\": game[\"task_type\"],\n418\t                \"split\": args.split,\n419\t                \"time_s\": elapsed,\n420\t            },\n421\t        }\n422\t        results.append(record)\n423\t\n424\t        with open(args.output, \"a\") as f:\n425\t            f.write(json.dumps(record, default=str) + \"\\n\")\n426\t\n427\t        print(f\"  Label: {label} | Time: {elapsed}s\")\n428\t\n429\t    # Summary\n430\t    print(f\"\\n{'='*50}\")\n431\t    print(f\"=== ALFWorld CF Labeling Summary ===\")\n432\t    print(f\"Tasks: {len(games)}\")\n433\t    print(f\"Labels: {dict(label_counts)}\")\n434\t    int_success = sum(1 for r in results if r[\"internal\"][\"success\"])\n435\t    det_success = sum(1 for r in results if r[\"deterministic\"][\"success\"])\n436\t    print(f\"Internal success rate: {int_success}/{len(results)} \"\n437\t          f\"({100*int_success/len(results):.1f}%)\" if results else \"\")\n438\t    print(f\"Deterministic success rate: {det_success}/{len(results)} \"\n439\t          f\"({100*det_success/len(results):.1f}%)\" if results else \"\")\n440\t    print(f\"Total time: {total_time:.0f}s\")\n441\t    print(f\"Output: {args.output}\")\n442\t    print(f\"{'='*50}\")\n443\t\n444\t    return results\n445\t\n446\t\n447\tdef main():\n448\t    parser = argparse.ArgumentParser(\n449\t        description=\"ALFWorld counterfactual labeling pipeline\"\n450\t    )\n451\t    parser.add_argument(\"--data_root\", type=str,\n452\t                        default=\"/root/.cache/alfworld/json_2.1.1\",\n453\t                        help=\"ALFWorld data root\")\n454\t    parser.add_argument(\"--split\", type=str, default=\"valid_seen\")\n455\t    parser.add_argument(\"--task_types\", type=str, default=None,\n456\t                        help=\"Comma-separated task types to include\")\n457\t    parser.add_argument(\"--max_per_type\", type=int, default=0,\n458\t                        help=\"Max tasks per type (0=all)\")\n459\t    parser.add_argument(\"--n_tasks\", type=int, default=0,\n460\t                        help=\"Total tasks to run (0=all)\")\n461\t    parser.add_argument(\"--max_steps\", type=int, default=50)\n462\t    parser.add_argument(\"--gpu_id\", type=int, default=1)\n463\t    parser.add_argument(\"--model_path\", type=str, default=None)\n464\t    parser.add_argument(\"--no_vllm\", action=\"store_true\", default=False)\n465\t    parser.add_argument(\"--output\", type=str,\n466\t                        default=\"data/alfworld-counterfactual/episodes.jsonl\")\n467\t    parser.add_argument(\"--seed\", type=int, default=42)\n468\t    args = parser.parse_args()\n469\t\n470\t    random.seed(args.seed)\n471\t    run_pipeline(args)\n472\t\n473\t\n474\tif __name__ == \"__main__\":\n475\t    main()\n476\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6ec1a22-0263-47e4-a6e1-f7a13274cf48",
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "711cc434-bb32-4937-8284-6339201e5604",
+            "sourceToolAssistantUUID": "d6ec1a22-0263-47e4-a6e1-f7a13274cf48",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T13:30:24.596Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019gSgztNgBqMSZf6jHodnqG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/scienceworld_utils.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "711cc434-bb32-4937-8284-6339201e5604",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YS8WFHyVEAL6B38X6q",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0ca4d36a-5823-41af-b965-78c8091c02b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MEHT4Lk3S4jiRcuuy2Gn4Z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 434,
+                "cache_read_input_tokens": 28226,
+                "output_tokens": 204,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 434
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 204,
+                    "cache_read_input_tokens": 28226,
+                    "cache_creation_input_tokens": 434,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 434,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T13:30:24.600Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019gSgztNgBqMSZf6jHodnqG",
+              "type": "tool_result",
+              "content": "1\t\"\"\"ScienceWorld environment utilities: creation, forking via action-replay, episode logging.\n2\t\n3\tDependencies: scienceworld (pip install scienceworld)\n4\tKey constraint: ScienceWorld uses py4j → each env is a separate JVM process.\n5\tFork = new JVM instance + replay all historical actions.\n6\t\"\"\"\n7\t\n8\timport time\n9\timport os\n10\timport traceback\n11\tfrom typing import List, Tuple, Optional, Dict, Any\n12\t\n13\timport scienceworld\n14\t\n15\t# ---------------------------------------------------------------------------\n16\t# Task type constants — update after running get_task_types() on the server\n17\t# ---------------------------------------------------------------------------\n18\tSTRONG_TASKS = [\n19\t    \"boil\",\n20\t    \"melt\",\n21\t    \"change-the-state-of-matter-of\",\n22\t]\n23\tMEDIUM_TASKS = [\n24\t    \"chemistry-mix-paint-secondary-color\",\n25\t]\n26\tWEAK_TASKS = [\n27\t    \"grow-plant\",\n28\t]\n29\tALL_MVP_TASKS = STRONG_TASKS + MEDIUM_TASKS + WEAK_TASKS\n30\t\n31\t\n32\tdef get_task_types() -> List[str]:\n33\t    \"\"\"Return all ScienceWorld task type names.\"\"\"\n34\t    env = scienceworld.ScienceWorldEnv(\"\")\n35\t    try:\n36\t        names = env.get_task_names()\n37\t    finally:\n38\t        env.close()\n39\t    return list(names)\n40\t\n41\t\n42\tdef get_max_variations(task_name: str) -> int:\n43\t    \"\"\"Return the number of available variations for a task type.\"\"\"\n44\t    env = scienceworld.ScienceWorldEnv(\"\")\n45\t    try:\n46\t        n = env.get_max_variations(task_name)\n47\t        return int(n)\n48\t    except Exception:\n49\t        return 100\n50\t    finally:\n51\t        env.close()\n52\t\n53\t\n54\tdef create_env(task_name: str, variation_idx: int = 0,\n55\t               simplification_str: str = \"\") -> scienceworld.ScienceWorldEnv:\n56\t    \"\"\"Create and initialize a ScienceWorld environment.\"\"\"\n57\t    env = scienceworld.ScienceWorldEnv(task_name, envStepLimit=100)\n58\t    env.load(task_name, variation_idx, simplificationStr=simplification_str)\n59\t    return env\n60\t\n61\t\n62\tdef reset_env(env: scienceworld.ScienceWorldEnv) -> Tuple[str, dict]:\n63\t    \"\"\"Reset environment, return (observation, info). Tracks score via info dict.\"\"\"\n64\t    result = env.reset()\n65\t    if isinstance(result, tuple):\n66\t        obs = str(result[0])\n67\t        info = result[1] if len(result) > 1 else {}\n68\t    else:\n69\t        obs = str(result)\n70\t        info = {}\n71\t    env._last_score = float(info.get(\"score\", 0))\n72\t    return obs, info\n73\t\n74\t\n75\tdef get_valid_actions(env: scienceworld.ScienceWorldEnv) -> List[str]:\n76\t    \"\"\"Get current valid action list.\"\"\"\n77\t    actions = env.get_valid_action_object_combinations()\n78\t    if isinstance(actions, list):\n79\t        return actions\n80\t    return list(actions)\n81\t\n82\t\n83\tdef get_score(env: scienceworld.ScienceWorldEnv) -> float:\n84\t    \"\"\"Get score cached from last step()/reset() info dict.\"\"\"\n85\t    return getattr(env, \"_last_score\", 0.0)\n86\t\n87\t\n88\tdef step_env(env: scienceworld.ScienceWorldEnv, action: str\n89\t             ) -> Tuple[str, float, bool, dict]:\n90\t    \"\"\"Execute action, return (observation, reward, done, info). Updates cached score.\"\"\"\n91\t    result = env.step(action)\n92\t    if isinstance(result, tuple) and len(result) >= 3:\n93\t        obs = str(result[0])\n94\t        reward = float(result[1])\n95\t        done = bool(result[2])\n96\t        info = result[3] if len(result) > 3 else {}\n97\t        env._last_score = float(info.get(\"score\", 0))\n98\t        return obs, reward, done, info\n99\t    return str(result), 0.0, False, {}\n100\t\n101\t\n102\tdef close_env(env: scienceworld.ScienceWorldEnv) -> None:\n103\t    \"\"\"Safely close environment and release JVM resources.\"\"\"\n104\t    try:\n105\t        env.close()\n106\t    except Exception:\n107\t        pass\n108\t\n109\t\n110\t# ---------------------------------------------------------------------------\n111\t# State forking via action-replay\n112\t# ---------------------------------------------------------------------------\n113\t\n114\tdef fork_and_lookahead(\n115\t    task_name: str,\n116\t    variation_idx: int,\n117\t    action_history: List[str],\n118\t    candidate_action: str,\n119\t    simplification_str: str = \"\",\n120\t) -> Dict[str, Any]:\n121\t    \"\"\"Fork environment state and evaluate a candidate action.\n122\t\n123\t    Creates a fresh JVM instance, replays action_history, then executes\n124\t    candidate_action. Returns dict with observation, score, score_delta,\n125\t    replay_success, and timing info. Always closes the forked env.\n126\t    \"\"\"\n127\t    t0 = time.time()\n128\t    fork_env = None\n129\t    try:\n130\t        fork_env = create_env(task_name, variation_idx, simplification_str)\n131\t        reset_env(fork_env)\n132\t\n133\t        # Replay history\n134\t        replay_ok = True\n135\t        replay_errors = []\n136\t        score_before_candidate = 0.0\n137\t        for i, past_action in enumerate(action_history):\n138\t            try:\n139\t                step_env(fork_env, past_action)\n140\t            except Exception as e:\n141\t                replay_ok = False\n142\t                replay_errors.append({\"step\": i, \"action\": past_action, \"error\": str(e)})\n143\t\n144\t        score_before_candidate = get_score(fork_env)\n145\t\n146\t        # Execute candidate\n147\t        obs, reward, done, info = step_env(fork_env, candidate_action)\n148\t        score_after = get_score(fork_env)\n149\t        score_delta = score_after - score_before_candidate\n150\t\n151\t        elapsed = time.time() - t0\n152\t        return {\n153\t            \"observation\": obs,\n154\t            \"score\": score_after,\n155\t            \"score_delta\": score_delta,\n156\t            \"score_before\": score_before_candidate,\n157\t            \"reward\": reward,\n158\t            \"done\": done,\n159\t            \"replay_success\": replay_ok,\n160\t            \"replay_errors\": replay_errors,\n161\t            \"elapsed_seconds\": elapsed,\n162\t        }\n163\t    except Exception as e:\n164\t        elapsed = time.time() - t0\n165\t        return {\n166\t            \"observation\": \"\",\n167\t            \"score\": 0.0,\n168\t            \"score_delta\": 0.0,\n169\t            \"score_before\": 0.0,\n170\t            \"reward\": 0.0,\n171\t            \"done\": False,\n172\t            \"replay_success\": False,\n173\t            \"replay_errors\": [{\"step\": -1, \"action\": \"fork_init\", \"error\": str(e)}],\n174\t            \"elapsed_seconds\": elapsed,\n175\t        }\n176\t    finally:\n177\t        if fork_env is not None:\n178\t            close_env(fork_env)\n179\t\n180\t\n181\tdef run_episode_with_logging(\n182\t    task_name: str,\n183\t    variation_idx: int = 0,\n184\t    max_steps: int = 100,\n185\t    action_selector=None,\n186\t    simplification_str: str = \"\",\n187\t) -> Dict[str, Any]:\n188\t    \"\"\"Run a full episode, recording (action, obs, score) at each step.\n189\t\n190\t    Args:\n191\t        action_selector: callable(obs, valid_actions, history) -> action string.\n192\t            If None, picks first valid action (for testing).\n193\t\n194\t    Returns dict with steps list, final_score, total_time, etc.\n195\t    \"\"\"\n196\t    env = create_env(task_name, variation_idx, simplification_str)\n197\t    obs, info = reset_env(env)\n198\t    initial_score = get_score(env)\n199\t\n200\t    steps = []\n201\t    action_history = []\n202\t    t0 = time.time()\n203\t\n204\t    for step_idx in range(max_steps):\n205\t        valid_actions = get_valid_actions(env)\n206\t        if not valid_actions:\n207\t            break\n208\t\n209\t        if action_selector is not None:\n210\t            action = action_selector(obs, valid_actions, action_history)\n211\t        else:\n212\t            action = valid_actions[0]\n213\t\n214\t        obs_new, reward, done, step_info = step_env(env, action)\n215\t        score = get_score(env)\n216\t\n217\t        steps.append({\n218\t            \"step\": step_idx,\n219\t            \"action\": action,\n220\t            \"observation\": obs_new,\n221\t            \"score\": score,\n222\t            \"reward\": reward,\n223\t            \"done\": done,\n224\t        })\n225\t        action_history.append(action)\n226\t        obs = obs_new\n227\t\n228\t        if done:\n229\t            break\n230\t\n231\t    total_time = time.time() - t0\n232\t    final_score = get_score(env)\n233\t    close_env(env)\n234\t\n235\t    return {\n236\t        \"task_name\": task_name,\n237\t        \"variation_idx\": variation_idx,\n238\t        \"steps\": steps,\n239\t        \"action_history\": action_history,\n240\t        \"final_score\": final_score,\n241\t        \"initial_score\": initial_score,\n242\t        \"num_steps\": len(steps),\n243\t        \"total_time_seconds\": total_time,\n244\t    }\n245\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0ca4d36a-5823-41af-b965-78c8091c02b6",
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "b89c968d-078a-4784-9fd3-f59c9d1c6065",
+            "sourceToolAssistantUUID": "0ca4d36a-5823-41af-b965-78c8091c02b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T13:30:26.923Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me also check if there are any other related files that might show how the data is used for training:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b89c968d-078a-4784-9fd3-f59c9d1c6065",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YSHPHhK2szvFohnwMS",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a7a1c768-3230-4c49-8441-b9c629a71066",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019QFAuFHk1w5vH8mQWh2GKW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 8793,
+                "cache_read_input_tokens": 28660,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8793,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T13:30:27.783Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014beGbY1sKi6fgopqLWoHBF",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/ | head -30"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7a1c768-3230-4c49-8441-b9c629a71066",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YSHPHhK2szvFohnwMS",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dd6655a6-d393-48d5-8d01-041d59df5be3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019QFAuFHk1w5vH8mQWh2GKW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 8793,
+                "cache_read_input_tokens": 28660,
+                "output_tokens": 116,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8793
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 116,
+                    "cache_read_input_tokens": 28660,
+                    "cache_creation_input_tokens": 8793,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8793,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T13:30:27.887Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014beGbY1sKi6fgopqLWoHBF",
+              "type": "tool_result",
+              "content": "total 360\ndrwxr-xr-x  5 ubuntu ubuntu  4096 May 14 13:29 .\ndrwxr-xr-x 10 ubuntu ubuntu  4096 May 14 13:19 ..\n-rw-r--r--  1 ubuntu ubuntu  5063 May 13 22:17 ablation_data_converter.py\n-rw-r--r--  1 ubuntu ubuntu 10996 May 13 22:16 ablation_eval_common.py\n-rw-r--r--  1 ubuntu ubuntu 12195 May 13 22:18 ablation_implicit_1_7b.py\n-rw-r--r--  1 ubuntu ubuntu  8067 May 13 22:18 ablation_implicit_7b.py\n-rw-r--r--  1 ubuntu ubuntu  5005 May 13 17:12 action_divergence_analysis.py\n-rw-r--r--  1 ubuntu ubuntu 16531 May 14 13:29 alfworld_counterfactual.py\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 14 04:17 analysis\n-rw-r--r--  1 ubuntu ubuntu  7237 May 13 05:02 analysis.py\n-rw-r--r--  1 ubuntu ubuntu 12373 May 13 17:12 counterfactual_labeling.py\n-rw-r--r--  1 ubuntu ubuntu  9794 May 14 00:46 death_aware_labeling.py\n-rw-r--r--  1 ubuntu ubuntu 22053 May 13 20:50 death_decomposition.py\n-rw-r--r--  1 ubuntu ubuntu 21371 May 13 21:01 episode_level_collection.py\n-rw-r--r--  1 ubuntu ubuntu 26244 May 14 07:22 eval_end_to_end.py\n-rw-r--r--  1 ubuntu ubuntu 17224 May 14 08:51 eval_implicit_router.py\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 14 04:31 evaluation\n-rw-r--r--  1 ubuntu ubuntu 11969 May 13 04:54 llm_agent.py\n-rw-r--r--  1 ubuntu ubuntu  9974 May 13 05:05 phase0_validate_forking.py\n-rw-r--r--  1 ubuntu ubuntu 17609 May 13 07:46 phase1_signal.py\n-rw-r--r--  1 ubuntu ubuntu 10267 May 13 22:15 plot_death_decomposition.py\n-rw-r--r--  1 ubuntu ubuntu 10513 May 14 00:47 router_sft_eval.py\n-rw-r--r--  1 ubuntu ubuntu 19589 May 13 22:16 router_sft_train.py\n-rw-r--r--  1 ubuntu ubuntu 17754 May 13 23:36 routing_pattern_analysis.py\n-rw-r--r--  1 ubuntu ubuntu 10610 May 13 21:21 rule_based_accuracy.py\n-rw-r--r--  1 ubuntu ubuntu   156 May 14 04:17 rule_based_keywords.json\n-rw-r--r--  1 ubuntu ubuntu   673 May 13 21:21 rule_based_keywords_v2.json\n-rwxr-xr-x  1 ubuntu ubuntu  2773 May 13 05:05 run_all.sh\n-rw-r--r--  1 ubuntu ubuntu  7516 May 13 05:05 scienceworld_utils.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd6655a6-d393-48d5-8d01-041d59df5be3",
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "c0f3f167-bd07-43bf-ae8e-f3f5bf5c636f",
+            "sourceToolAssistantUUID": "dd6655a6-d393-48d5-8d01-041d59df5be3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T13:30:29.365Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check a few more related files to understand the full pipeline better:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0f3f167-bd07-43bf-ae8e-f3f5bf5c636f",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YSWdGKo2QaMctTnBFz",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "886dc4e3-244a-48ea-b469-063a9735f437",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UuoDA5s8h3eGkFQBkBuN9a",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1083,
+                "cache_read_input_tokens": 37453,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1083,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T13:30:30.499Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0154sjgtWTV51E2FZkbz7iqe",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/phase1_signal.py",
+                "limit": 150
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "886dc4e3-244a-48ea-b469-063a9735f437",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YSWdGKo2QaMctTnBFz",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ad06d3d1-cc4c-440f-988a-0ba07f2aedee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UuoDA5s8h3eGkFQBkBuN9a",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1083,
+                "cache_read_input_tokens": 37453,
+                "output_tokens": 215,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1083
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 215,
+                    "cache_read_input_tokens": 37453,
+                    "cache_creation_input_tokens": 1083,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1083,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T13:30:30.506Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017uTDCRpS8jcfPXvtXDQWTX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/death_aware_labeling.py",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad06d3d1-cc4c-440f-988a-0ba07f2aedee",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YSWdGKo2QaMctTnBFz",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dda71cca-fe3f-4cc2-8132-a711a11bd8ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UuoDA5s8h3eGkFQBkBuN9a",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1083,
+                "cache_read_input_tokens": 37453,
+                "output_tokens": 215,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1083
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 215,
+                    "cache_read_input_tokens": 37453,
+                    "cache_creation_input_tokens": 1083,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1083,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T13:30:30.513Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0154sjgtWTV51E2FZkbz7iqe",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Phase 1: 3-way signal detection — always-internal vs always-deterministic vs oracle-routing.\n2\t\n3\tFor each task type × episode:\n4\t  A) always-internal: ReAct LLM picks every action\n5\t  B) always-deterministic: LLM generates candidates, fork evaluates each, pick best score_delta\n6\t  C) oracle-routing: run both A and B, pick whichever has higher score_delta\n7\t\n8\tUsage:\n9\t  python src/phase1_signal.py --task_types \"boil,melt\" --episodes 20 --gpu_id 0\n10\t\"\"\"\n11\t\n12\timport argparse\n13\timport json\n14\timport os\n15\timport random\n16\timport sys\n17\timport time\n18\tfrom typing import List, Dict, Any, Optional\n19\t\n20\tsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n21\tfrom scienceworld_utils import (\n22\t    create_env, reset_env, get_valid_actions, get_score,\n23\t    step_env, close_env, fork_and_lookahead, get_task_types,\n24\t    get_max_variations,\n25\t    STRONG_TASKS, MEDIUM_TASKS, WEAK_TASKS, ALL_MVP_TASKS,\n26\t)\n27\tfrom llm_agent import LLMAgent, find_model_path\n28\t\n29\t\n30\tdef resolve_task_type(name: str) -> str:\n31\t    \"\"\"Resolve a short task name to the actual ScienceWorld task name.\"\"\"\n32\t    try:\n33\t        available = get_task_types()\n34\t    except Exception:\n35\t        return name\n36\t    if name in available:\n37\t        return name\n38\t    matches = [t for t in available if name.lower() in t.lower()]\n39\t    if matches:\n40\t        return matches[0]\n41\t    return name\n42\t\n43\t\n44\tdef is_lethal(fr: Dict[str, Any]) -> bool:\n45\t    \"\"\"Check if a fork result indicates a lethal action.\"\"\"\n46\t    if fr[\"done\"] and fr[\"score\"] < 0:\n47\t        return True\n48\t    if fr[\"score\"] <= -100:\n49\t        return True\n50\t    return False\n51\t\n52\t\n53\tdef run_episode_always_internal(\n54\t    agent: LLMAgent,\n55\t    task_name: str,\n56\t    variation_idx: int,\n57\t    max_steps: int,\n58\t) -> Dict[str, Any]:\n59\t    \"\"\"Mode A: LLM ReAct picks every action.\"\"\"\n60\t    env = create_env(task_name, variation_idx)\n61\t    obs, _ = reset_env(env)\n62\t    initial_score = get_score(env)\n63\t\n64\t    steps = []\n65\t    action_history = []\n66\t    history_dicts = []\n67\t    t0 = time.time()\n68\t\n69\t    for step_idx in range(max_steps):\n70\t        valid_actions = get_valid_actions(env)\n71\t        if not valid_actions:\n72\t            break\n73\t\n74\t        action, raw_output = agent.select_action_react(obs, valid_actions, history_dicts)\n75\t        _remaining = list(valid_actions)\n76\t        for _retry in range(3):\n77\t            fr = fork_and_lookahead(task_name, variation_idx, action_history, action)\n78\t            if not is_lethal(fr):\n79\t                break\n80\t            _remaining = [a for a in _remaining if a != action]\n81\t            if not _remaining:\n82\t                break\n83\t            action, raw_output = agent.select_action_react(obs, _remaining, history_dicts)\n84\t\n85\t        score_before = get_score(env)\n86\t        obs_new, reward, done, info = step_env(env, action)\n87\t        score_after = get_score(env)\n88\t\n89\t        step_record = {\n90\t            \"step\": step_idx,\n91\t            \"action\": action,\n92\t            \"modality\": \"internal\",\n93\t            \"score_before\": score_before,\n94\t            \"score_after\": score_after,\n95\t            \"score_delta\": score_after - score_before,\n96\t            \"observation\": obs_new[:500],\n97\t            \"llm_output\": raw_output[:300],\n98\t        }\n99\t        steps.append(step_record)\n100\t        action_history.append(action)\n101\t        history_dicts.append({\"action\": action, \"observation\": obs_new[:200], \"score\": score_after})\n102\t        obs = obs_new\n103\t\n104\t        if done:\n105\t            break\n106\t\n107\t    final_score = get_score(env)\n108\t    close_env(env)\n109\t\n110\t    return {\n111\t        \"mode\": \"always-internal\",\n112\t        \"task_name\": task_name,\n113\t        \"variation_idx\": variation_idx,\n114\t        \"final_score\": final_score,\n115\t        \"initial_score\": initial_score,\n116\t        \"num_steps\": len(steps),\n117\t        \"total_time_s\": time.time() - t0,\n118\t        \"steps\": steps,\n119\t        \"action_history\": action_history,\n120\t    }\n121\t\n122\t\n123\tdef run_episode_always_deterministic(\n124\t    agent: LLMAgent,\n125\t    task_name: str,\n126\t    variation_idx: int,\n127\t    max_steps: int,\n128\t    n_candidates: int = 3,\n129\t) -> Dict[str, Any]:\n130\t    \"\"\"Mode B: LLM generates candidates, fork evaluates each, pick best.\"\"\"\n131\t    env = create_env(task_name, variation_idx)\n132\t    obs, _ = reset_env(env)\n133\t    initial_score = get_score(env)\n134\t\n135\t    steps = []\n136\t    action_history = []\n137\t    history_dicts = []\n138\t    t0 = time.time()\n139\t\n140\t    for step_idx in range(max_steps):\n141\t        valid_actions = get_valid_actions(env)\n142\t        if not valid_actions:\n143\t            break\n144\t\n145\t        candidates, raw_output = agent.generate_candidate_actions(\n146\t            obs, valid_actions, history_dicts, n=n_candidates\n147\t        )\n148\t\n149\t        # Fork-evaluate each candidate (filter lethal)\n150\t        best_action = None"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad06d3d1-cc4c-440f-988a-0ba07f2aedee",
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "d63cce0d-37a4-4c72-ad1e-c13a6bdbd379",
+            "sourceToolAssistantUUID": "ad06d3d1-cc4c-440f-988a-0ba07f2aedee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T13:30:30.516Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017uTDCRpS8jcfPXvtXDQWTX",
+              "type": "tool_result",
+              "content": "1\t# Death-aware 3-label labeling for router SFT training.\n2\t# Reads episode JSONL files, classifies each episode as det-preferred / internal-preferred / no-preference\n3\t# based on death asymmetry (primary signal) and score comparison (secondary signal).\n4\t# Outputs step-level SFT triples: (observation, action_history) → label.\n5\t\n6\timport argparse\n7\timport json\n8\timport os\n9\timport sys\n10\tfrom collections import defaultdict\n11\tfrom typing import Dict, List, Any, Tuple\n12\t\n13\tDEATH_THRESHOLD = -100\n14\t\n15\t\n16\tdef is_dead(final_score: float) -> bool:\n17\t    return final_score <= DEATH_THRESHOLD\n18\t\n19\t\n20\tdef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\n21\t    \"\"\"Returns (label, reason, signal_source). Never discards.\"\"\"\n22\t    int_died = is_dead(int_score)\n23\t    det_died = is_dead(det_score)\n24\t\n25\t    if int_died and not det_died:\n26\t        return \"det-preferred\", \"int_died_det_alive\", \"death_asymmetry\"\n27\t    if det_died and not int_died:\n28\t        return \"internal-preferred\", \"det_died_int_alive\", \"death_asymmetry\"\n29\t    if int_died and det_died:\n30\t        return \"no-preference\", \"both_died\", \"both_dead\"\n31\t    if det_score > int_score:\n32\t        return \"det-preferred\", \"both_alive_det_wins\", \"score_comparison\"\n33\t    if int_score > det_score:\n34\t        return \"internal-preferred\", \"both_alive_int_wins\", \"score_comparison\"\n35\t    return \"no-preference\", \"tie\", \"tied_alive\"\n36\t\n37\t\n38\tdef extract_steps(episode_data: Dict, label: str, reason: str,\n39\t                  signal_source: str,\n40\t                  task_type: str, episode_idx: int, variation_idx: int,\n41\t                  int_score: float, det_score: float,\n42\t                  int_died: bool, det_died: bool) -> List[Dict]:\n43\t    if label == \"internal-preferred\":\n44\t        source_key = \"always_internal\"\n45\t    elif label == \"det-preferred\":\n46\t        source_key = \"always_deterministic\"\n47\t    else:\n48\t        source_key = \"always_internal\"\n49\t\n50\t    source_ep = episode_data[source_key]\n51\t    steps = source_ep.get(\"steps\", [])\n52\t    action_history = []\n53\t    triples = []\n54\t\n55\t    for s in steps:\n56\t        triples.append({\n57\t            \"task_type\": task_type,\n58\t            \"episode_id\": episode_idx,\n59\t            \"variation\": variation_idx,\n60\t            \"step_idx\": s[\"step\"],\n61\t            \"observation\": s.get(\"observation\", \"\"),\n62\t            \"action\": s[\"action\"],\n63\t            \"action_history\": list(action_history),\n64\t            \"label\": label,\n65\t            \"signal_source\": signal_source,\n66\t            \"labeling_reason\": reason,\n67\t            \"episode_score_internal\": int_score,\n68\t            \"episode_score_det\": det_score,\n69\t            \"internal_died\": int_died,\n70\t            \"det_died\": det_died,\n71\t        })\n72\t        action_history.append(s[\"action\"])\n73\t\n74\t    return triples\n75\t\n76\t\n77\tdef process_dir(input_dir: str) -> Tuple[List[Dict], Dict[str, int]]:\n78\t    \"\"\"Process a single task directory containing episodes.jsonl.\"\"\"\n79\t    task_type = os.path.basename(input_dir.rstrip(\"/\"))\n80\t    episodes_path = os.path.join(input_dir, \"episodes.jsonl\")\n81\t    if not os.path.exists(episodes_path):\n82\t        print(f\"  SKIP {task_type}: no episodes.jsonl\")\n83\t        return [], {}\n84\t\n85\t    stats = defaultdict(int)\n86\t    all_triples = []\n87\t\n88\t    with open(episodes_path) as f:\n89\t        for line in f:\n90\t            line = line.strip()\n91\t            if not line:\n92\t                continue\n93\t            ep = json.loads(line)\n94\t\n95\t            episode_idx = ep.get(\"episode_idx\", stats[\"total_episodes\"])\n96\t            variation_idx = ep.get(\"variation_idx\", 0)\n97\t\n98\t            if \"always_internal\" in ep and \"always_deterministic\" in ep:\n99\t                int_score = ep[\"always_internal\"][\"final_score\"]\n100\t                det_score = ep[\"always_deterministic\"][\"final_score\"]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dda71cca-fe3f-4cc2-8132-a711a11bd8ec",
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "8379e7f6-189e-4875-b2a5-2c2cd4c5fb84",
+            "sourceToolAssistantUUID": "dda71cca-fe3f-4cc2-8132-a711a11bd8ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T13:30:32.728Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me create a comprehensive summary document. Let me read one more file to understand training data format:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8379e7f6-189e-4875-b2a5-2c2cd4c5fb84",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YSi56f85xuQwGfR6XR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fcaccae4-8d57-4520-b8b5-616e3ae13776",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NunjvAEeKH1RGnzmWXgH7u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 3241,
+                "cache_read_input_tokens": 38536,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3241,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T13:30:33.796Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HYQN8ePRRq2mjFJXMwbXUm",
+              "name": "Bash",
+              "input": {
+                "command": "head -100 /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/router_sft_train.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fcaccae4-8d57-4520-b8b5-616e3ae13776",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YSi56f85xuQwGfR6XR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5c9b5052-7df8-4485-8b2f-598ccfe22047",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NunjvAEeKH1RGnzmWXgH7u",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 3241,
+                "cache_read_input_tokens": 38536,
+                "output_tokens": 120,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3241
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 120,
+                    "cache_read_input_tokens": 38536,
+                    "cache_creation_input_tokens": 3241,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3241,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T13:30:33.856Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HYQN8ePRRq2mjFJXMwbXUm",
+              "type": "tool_result",
+              "content": "# Router SFT training script for SimGate modular routing.\n# Finetunes Qwen3-1.7B (or fallback) on episode-level labeled data\n# from Plan C (labeled_steps.jsonl) for 2-way classification: internal vs deterministic.\n#\n# Data dependency: results/plan_c/{task_type}/labeled_steps.jsonl\n# Usage: python src/router_sft_train.py --help\n\nimport argparse\nimport json\nimport os\nimport glob\nimport random\nimport warnings\nfrom collections import Counter\nfrom typing import List, Dict, Any, Optional, Tuple\n\nimport numpy as np\nimport torch\nfrom torch.utils.data import Dataset, DataLoader, WeightedRandomSampler\nfrom sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix\nfrom transformers import (\n    AutoTokenizer,\n    AutoModelForSequenceClassification,\n    TrainingArguments,\n    Trainer,\n    EarlyStoppingCallback,\n)\nfrom peft import LoraConfig, get_peft_model, TaskType\n\nLABEL2ID = {\"internal\": 0, \"deterministic\": 1}\nID2LABEL = {0: \"internal\", 1: \"deterministic\"}\n\nRAW_LABEL_MAP = {\n    \"internal-preferred\": \"internal\",\n    \"det-preferred\": \"deterministic\",\n    \"internal\": \"internal\",\n    \"deterministic\": \"deterministic\",\n}\n\nSYSTEM_PROMPT = (\n    \"You are a routing classifier. Given the current observation and action history, \"\n    \"predict which reasoning modality will lead to a better outcome.\"\n)\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Router SFT: finetune LLM for 2-way routing classification\")\n    p.add_argument(\"--data_path\", type=str, default=None,\n                    help=\"Single JSONL file (e.g. sft_triples.jsonl from death_aware_labeling)\")\n    p.add_argument(\"--data_dir\", type=str, default=None,\n                    help=\"Directory containing {task_type}/labeled_steps.jsonl (legacy)\")\n    p.add_argument(\"--model_name\", type=str, default=\"Qwen/Qwen3-1.7B\",\n                    help=\"HuggingFace model name or local path\")\n    p.add_argument(\"--output_dir\", type=str, default=\"results/router_sft/\",\n                    help=\"Output directory for checkpoints and reports\")\n    p.add_argument(\"--epochs\", type=int, default=3)\n    p.add_argument(\"--batch_size\", type=int, default=32)\n    p.add_argument(\"--eval_batch_size\", type=int, default=32)\n    p.add_argument(\"--lr\", type=float, default=2e-5)\n    p.add_argument(\"--lora_r\", type=int, default=16)\n    p.add_argument(\"--lora_alpha\", type=int, default=32)\n    p.add_argument(\"--lora_dropout\", type=float, default=0.05)\n    p.add_argument(\"--max_seq_len\", type=int, default=2048)\n    p.add_argument(\"--gpu_id\", type=int, default=0)\n    p.add_argument(\"--wandb_project\", type=str, default=\"simgate-router-sft\")\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--eval_split\", type=float, default=0.2)\n    p.add_argument(\"--warmup_ratio\", type=float, default=0.1)\n    p.add_argument(\"--weight_decay\", type=float, default=0.01)\n    p.add_argument(\"--early_stopping_patience\", type=int, default=2)\n    p.add_argument(\"--dry_run\", action=\"store_true\", help=\"Only validate imports and args, skip training\")\n    p.add_argument(\"--class_weights\", type=str, default=None,\n                    help='\"auto\" for inverse-frequency weights, or \"w0,w1\" (internal:w0, det:w1)')\n    p.add_argument(\"--min_internal_samples\", type=int, default=10,\n                    help=\"Warn if internal samples < this threshold (default: 10)\")\n    p.add_argument(\"--upsample_minority\", action=\"store_true\",\n                    help=\"Use WeightedRandomSampler to oversample minority class\")\n    return p.parse_args()\n\n\n# ---------------------------------------------------------------------------\n# Data loading\n# ---------------------------------------------------------------------------\n\ndef summarize_action_history(action_history: List[str], max_actions: int = 5) -> str:\n    \"\"\"Keep the most recent N actions as a summary.\"\"\"\n    recent = action_history[-max_actions:] if action_history else []\n    if not recent:\n        return \"(none)\"\n    return \" → \".join(recent)\n\n\ndef build_prompt(observation: str, action_history: List[str]) -> str:\n    history_summary = summarize_action_history(action_history)\n    return (\n        f\"<|im_start|>system\\n{SYSTEM_PROMPT}<|im_end|>\\n\"\n        f\"<|im_start|>user\\n\"\n        f\"Observation: {observation}\\n\"\n        f\"Action history: {history_summary}<|im_end|>\"\n    )",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5c9b5052-7df8-4485-8b2f-598ccfe22047",
+            "isSidechain": true,
+            "promptId": "873d52d2-4b2b-4bc2-850b-aec21329b090",
+            "agentId": "aaafa5e9203d8d469",
+            "type": "user",
+            "uuid": "444f5c0b-eb36-46f0-a477-e9cc75d22a48",
+            "sourceToolAssistantUUID": "5c9b5052-7df8-4485-8b2f-598ccfe22047",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T13:31:10.767Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have a comprehensive understanding. Let me create a detailed summary:\n\n## Counterfactual Labeling Code Patterns Analysis\n\nBased on my review of the codebase, here's a detailed breakdown of the key patterns for building a consistent ALFWorld counterfactual pipeline:\n\n---\n\n## 1. **Overall Architecture & Patterns**\n\n### File Structure\n- **`counterfactual_labeling.py`** (ScienceWorld): Step-level divergence detection with K-step continuation\n- **`alfworld_counterfactual.py`** (ALFWorld): Episode-level success comparison\n- **`llm_agent.py`** (Shared LLM interface): Qwen2.5-7B ReAct & candidate generation\n- **`scienceworld_utils.py`** (Shared environment utilities): Environment forking via action-replay\n\n### Fundamental Design\nThe project uses a **2-modality routing** approach:\n1. **Internal**: Pure LLM reasoning (ReAct format)\n2. **Deterministic**: Heuristic/expert policy (fork-evaluated candidates or HandCodedTWAgent)\n\n---\n\n## 2. **Internal vs Deterministic Modes**\n\n### How They're Implemented\n\n**Internal Mode (LLM-based)**\n- Uses `agent.select_action_react(observation, valid_actions, history)` \n- Returns single action via ReAct prompt: `Thought:... Action:...`\n- Deterministic temperature = 0.3 (low randomness)\n- In ScienceWorld: Direct ReAct selection\n- In ALFWorld: Direct ReAct selection via `llm_select_action()`\n\n**Deterministic Mode (Heuristic)**\n- **ScienceWorld**: Uses `agent.generate_candidate_actions(n=3)` + fork evaluation\n  - Generates n=3 candidates via higher-temp (0.5) LLM prompt\n  - Fork-evaluates each with 1-step lookahead via `fork_and_lookahead()`\n  - Picks action with highest `score_delta` (filters lethal actions)\n  - See `get_deterministic_action()` in counterfactual_labeling.py\n  \n- **ALFWorld**: Uses `HandCodedTWAgent` (PDDL-based expert)\n  - Calls `expert.act(game_state, reward, done, last_action)`\n  - Fallback to random admissible action if expert fails\n\n---\n\n## 3. **Episode Execution & Labeling**\n\n### ScienceWorld Pattern (counterfactual_labeling.py)\n\n**Per-Step Flow:**\n```\nFor each step:\n  1. Get internal_action via ReAct\n  2. Apply death filter (retry if lethal)\n  3. Get det_action via candidate generation + fork-eval\n  4. If actions match → label=\"tie\", advance with that action\n  5. If actions differ → FORK BOTH (K-step continuation):\n     - Fork 1: Execute internal_action, continue 10 steps with ReAct\n     - Fork 2: Execute det_action, continue 10 steps with ReAct\n     - Compare final scores → label = \"deterministic\" / \"internal\" / \"tie\"\n     - Advance main env with oracle-chosen action (score_diff > 0 → det, else internal)\n```\n\n**Output Format (JSONL per episode):**\n```json\n{\n  \"episode\": 0,\n  \"variation\": 0,\n  \"total_steps\": 15,\n  \"diverge_steps\": 3,\n  \"tie_steps\": 12,\n  \"labels\": [\n    {\n      \"step\": 0,\n      \"label\": \"tie\",\n      \"score_diff\": 0.0\n    },\n    {\n      \"step\": 5,\n      \"obs\": \"observation text\",\n      \"internal_action\": \"action_str\",\n      \"det_action\": \"different_action_str\",\n      \"fork_internal_score\": 45.0,\n      \"fork_det_score\": 52.0,\n      \"score_diff\": 7.0,\n      \"label\": \"deterministic\",\n      \"fork_time_s\": 2.45\n    }\n  ],\n  \"final_score\": 100.0,\n  \"label_summary\": {\"deterministic\": 2, \"internal\": 1, \"tie\": 12},\n  \"total_time_s\": 45.2,\n  \"avg_fork_time_s\": 2.35\n}\n```\n\n### ALFWorld Pattern (alfworld_counterfactual.py)\n\n**Episode-Level Flow:**\n```\nFor each game:\n  1. Run internal_episode: LLM ReAct for full episode → final_score\n  2. Run deterministic_episode: HandCodedTWAgent for full episode → final_score\n  3. Compare final scores:\n     - det_success=True, int_success=False → \"det-preferred\"\n     - int_success=True, det_success=False → \"internal-preferred\"\n     - Otherwise → \"no-preference\"\n```\n\n**Output Format (JSONL per episode):**\n```json\n{\n  \"episode_id\": \"alfworld_pick_and_place_000\",\n  \"environment\": \"alfworld\",\n  \"task_type\": \"pick_and_place\",\n  \"task_id\": \"pick_and_place.f5ea3c1d.trial_0\",\n  \"task_desc\": \"your task is to put a papered paperweights in/on a desk\",\n  \"internal\": {\n    \"trajectory\": [\n      {\n        \"step\": 0,\n        \"observation\": \"...\",\n        \"thought\": \"...\",\n        \"action\": \"go to desk\",\n        \"reward\": 0\n      }\n    ],\n    \"success\": true,\n    \"n_steps\": 8,\n    \"score\": 1.0\n  },\n  \"deterministic\": {\n    \"trajectory\": [...],\n    \"success\": false,\n    \"n_steps\": 12,\n    \"score\": 0.0\n  },\n  \"label\": \"internal-preferred\",\n  \"metadata\": {\n    \"subtask_type\": \"pick_and_place\",\n    \"split\": \"valid_seen\",\n    \"time_s\": 42.5\n  }\n}\n```\n\n---\n\n## 4. **LLM Inference Backend (llm_agent.py)**\n\n### Dual Backend Support\n\n**vLLM (Default, Production)**\n- Loads via `LLM()` with tensor parallelism\n- GPU memory utilization: 0.85\n- Max model length: 4096 tokens\n- Fast batch inference\n- Enabled by: `--use_vllm` (default True)\n\n**HuggingFace Transformers (Fallback)**\n- AutoModelForCausalLM with torch.float16\n- device_map=f\"cuda:{gpu_id}\"\n- Single inference at a time\n- Enabled by: `--no_vllm` flag\n\n### Prompt Templates\n\n**ReAct Template (both envs, temperature=0.3):**\n```\nSystem: You are an agent interacting with a [ScienceWorld|ALFWorld] environment...\nUser: Current observation:\n{observation}\n\nValid actions:\n{formatted_list}\n\nPrevious actions taken: {history}\n\nChoose your next action.\n```\n\n**Candidate Generation (ScienceWorld only, temperature=0.5):**\n```\nSystem: [same]\nUser: ...Valid actions...\nGenerate the top 3 most promising actions... Output exactly 3 actions, one per line:\n1. <action>\n2. <action>\n3. <action>\n```\n\n### Action Parsing\n- **Pattern 1**: Extract `Action: <text>` via regex\n- **Pattern 2**: Fuzzy case-insensitive matching\n- **Pattern 3**: Substring matching (for ALFWorld)\n- **Fallback**: Return first valid action\n\n### Return Values\n- `select_action_react()` → `(action: str, raw_llm_output: str)`\n- `generate_candidate_actions()` → `(candidates: List[str], raw_llm_output: str)`\n\n---\n\n## 5. **State Forking Mechanism (scienceworld_utils.py)**\n\n### Core Forking Principle\n**Each fork is a new JVM instance** (due to py4j) that replays historical actions:\n\n```python\nfork_and_lookahead(task_name, variation_idx, action_history, candidate_action):\n  1. Create fresh env instance\n  2. Reset to initial state\n  3. Replay all actions in action_history sequentially\n  4. Execute candidate_action\n  5. Return {\"score\", \"score_delta\", \"done\", \"observation\", \"replay_errors\"}\n  6. Close env (cleanup JVM)\n```\n\n### Key Properties\n- **Deterministic**: Same action_history → same state\n- **Expensive**: Each fork = new JVM + full replay (O(n) for n historical actions)\n- **Robust**: Returns `replay_errors` if any action fails\n- **Score Tracking**: Cached via `env._last_score` in info dict\n\n### Continuation Pattern (fork_and_continue)\n```python\nfork_and_continue(agent, task_name, variation_idx, action_history, first_action, K=10):\n  1. Fork env with action_history\n  2. Execute first_action\n  3. Continue K steps with base policy (always ReAct)\n  4. Return final_score\n```\n\n---\n\n## 6. **Output JSONL Formats**\n\n### ScienceWorld CF Labels (counterfactual_labeling.py)\n- **File**: `results/cf_labels/{task_type}/cf_labels.jsonl`\n- **One line per episode**\n- **Contains**: Divergence labels (deterministic/internal/tie) at step level\n- **Key fields**: `episode`, `variation`, `total_steps`, `labels[]` (with fork scores)\n\n### ALFWorld CF Labels (alfworld_counterfactual.py)\n- **File**: `data/alfworld-counterfactual/episodes.jsonl`\n- **One line per episode**\n- **Contains**: Episode-level labels (episode_id, internal result, deterministic result, final label)\n- **Key fields**: `internal.success`, `deterministic.success`, `label`\n\n### Router SFT Training Data (death_aware_labeling.py)\n- **File**: `sft_triples.jsonl` or `{task_type}/labeled_steps.jsonl`\n- **One line per step** (converted from episode data)\n- **Used for**: Fine-tuning router LLM on 2-way classification\n- **Labels**: Internal vs Deterministic (binary)\n- **Signal sources**: Death asymmetry (primary) or score comparison (secondary)\n\n---\n\n## 7. **Death Filtering & Lethal Actions**\n\n### Definition\n```python\nis_lethal(fork_result):\n  return fork_result[\"done\"] and fork_result[\"score\"] < 0\n         or fork_result[\"score\"] <= -100\n```\n\n### Application\n- **Deterministic mode**: Skip lethal candidates, pick best non-lethal\n- **Internal mode**: Retry LLM up to 3 times if selected action is lethal\n- **Fallback**: If all actions lethal, pick least-bad option\n\n---\n\n## 8. **Key Implementation Details for ALFWorld**\n\n### Environment Setup\n```python\nmake_env(game_path):\n  - Uses textworld.gym.register_games()\n  - Wraps with AlfredDemangler, AlfredInfos\n  - Returns TextWorld gym interface\n```\n\n### Game State Management\n```python\ngame_state = {\n  \"feedback\": observation_text,\n  \"admissible_commands\": valid_actions,\n  \"facts\": world_state_facts\n}\nexpert.act(game_state, reward, done, last_action)\n```\n\n### Episode Data Collection\n```python\nrun_internal_episode():\n  - LLM drives every action via ReAct\n  - Trajectory: list of {step, observation, thought, action, reward}\n  - Returns: {trajectory, success, n_steps, score}\n\nrun_deterministic_episode():\n  - HandCodedTWAgent drives every action\n  - Same trajectory format\n  - Returns: {trajectory, success, n_steps, score}\n```\n\n---\n\n## 9. **Key Configuration Parameters**\n\n| Parameter | ScienceWorld | ALFWorld | Notes |\n|-----------|--------------|----------|-------|\n| `max_steps` | 30 (default) | 50 (default) | Episode length |\n| `continuation_steps` / `K` | 10 | N/A | Steps to continue after fork |\n| `n_candidates` | 3 | N/A | Candidates for deterministic eval |\n| `temperature` | 0.3 (ReAct), 0.5 (candidates) | 0.3 | LLM sampling |\n| `max_new_tokens` | 256 | 256 | LLM generation limit |\n| `gpu_id` | 0 (default) | 1 (default) | CUDA device |\n| `use_vllm` | True (default) | True (default) | Backend |\n| `episodes` / `n_tasks` | 20 (default) | 10 (implied) | Number of runs |\n\n---\n\n## 10. **Patterns to Replicate for ALFWorld Pipeline**\n\nTo build a **consistent ALFWorld counterfactual pipeline**, replicate:\n\n1. **Agent initialization** (llm_agent.py):\n   ```python\n   agent = LLMAgent(model_path=..., use_vllm=True, gpu_id=0)\n   ```\n\n2. **Episode runners** (alfworld_counterfactual.py pattern):\n   - `run_internal_episode()` → LLM-only trajectory\n   - `run_deterministic_episode()` → Expert-only trajectory\n   - Compare final scores/success\n\n3. **Labeling logic** (episode-level, not step-level):\n   - Success ratio or final score comparison\n   - Asymmetric signals preferred (success diff)\n\n4. **Output format**:\n   - JSONL with `episode_id`, `environment`, `task_type`, `label`\n   - Include both `internal` and `deterministic` full trajectories\n   - Optional: add step-level divergence tracking\n\n5. **Configuration interface**:\n   - Use argparse with task selection, output path, GPU ID, vLLM toggle\n   - Support filtering by task types and max-per-type\n\n---\n\n## 11. **Critical Differences: ScienceWorld vs ALFWorld**\n\n| Aspect | ScienceWorld | ALFWorld |\n|--------|--------------|----------|\n| **Forking** | Action-replay (py4j JVM) | No forking (sequential episodes) |\n| **Deterministic** | LLM candidates + fork-eval | HandCodedTWAgent (PDDL expert) |\n| **Labeling** | Step-level (K-step continuation) | Episode-level (final score/success) |\n| **Score** | Continuous (0-100+) | Binary success (0.0 or 1.0) |\n| **Fork cost** | ~1-2s per fork | N/A |\n| **Tie rate** | Expected high (~65%) | Expected lower (binary outcomes) |\n| **History size** | Typical 5-15 actions | Typical 5-12 steps |\n\n---\n\n## Summary for Your ALFWorld Pipeline\n\n**Key implementation points:**\n1. Keep the **episode-level labeling** (not step-level) like ALFWorld original\n2. Use **LLMAgent for internal**, **expert/heuristic for deterministic**\n3. **No forking needed** — run two full independent episodes and compare\n4. Output **unified JSONL** with both trajectories + label\n5. Support **task selection & filtering** like the existing pipeline\n6. Use **vLLM backend** for fast inference on Qwen2.5-7B\n7. Track **success/score metrics** for labeling (death asymmetry preferred)\n\nThe `alfworld_counterfactual.py` file is already a complete reference implementation — you can adapt it by adjusting task collection, expert policy, or labeling logic as needed."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "444f5c0b-eb36-46f0-a477-e9cc75d22a48",
+            "isSidechain": true,
+            "agentId": "aaafa5e9203d8d469",
+            "requestId": "req_011Cb2YSx5xYdeupkHybvhUJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e2495d8d-8856-4c5f-8f02-1c74f1540bf3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "ee553895-1021-4931-aae1-4600fac1ac8a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XA1U2nChctbGYUa5r7kdwC",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1470,
+                "cache_read_input_tokens": 41777,
+                "output_tokens": 3955,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1470
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 3955,
+                    "cache_read_input_tokens": 41777,
+                    "cache_creation_input_tokens": 1470,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1470,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-understand-the-existing-counterfactual-labeling-code-patterns-in-the.md"
+}

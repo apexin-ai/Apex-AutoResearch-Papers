@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f95b7d56166514410aa1",
+  "project": "simgate-modular-routing--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> Director 指令：预筛完成后提交 plan-001b 方案审批。方案中必须注明 pipeline-format-fix 状态。Blocking gate: pipeline-format-fix wor",
+  "task_key": "c5bce161-fef6-4650-9b10-1a4df5cfb759",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/c5bce161-fef6-4650-9b10-1a4df5cfb759.jsonl",
+    "occurrence": 1,
+    "bytes": 702159,
+    "sha256": "724ab4b11b4d550183223639f961f6c3bd2c19da5b205d85d36591dce2441697"
+  },
+  "statistics": {
+    "messages": 265,
+    "user_turns": 1,
+    "tool_calls": 91,
+    "roles": {
+      "record": 32,
+      "user": 1,
+      "assistant": 50,
+      "tool_call": 91,
+      "tool_result": 91
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "f95b7d56166514410aa1-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 263,
+      "chunks": [
+        {
+          "path": "f95b7d56166514410aa1-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "f95b7d56166514410aa1-part-0002.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-director-plan-001b-pipeline-format-fix-blocking-gate-pipeline-fo.md"
+}

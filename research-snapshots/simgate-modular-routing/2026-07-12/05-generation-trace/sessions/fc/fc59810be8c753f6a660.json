@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "fc59810be8c753f6a660",
+  "project": "simgate-modular-routing--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> Server: westb-13313, RTX 5090 cuda:0 Project: /root/autodl-tmp/simgate-modular-routing Python env: conda",
+  "task_key": "09e7078e-b2eb-4ceb-8231-b455d7c5ef01",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/09e7078e-b2eb-4ceb-8231-b455d7c5ef01.jsonl",
+    "occurrence": 1,
+    "bytes": 879951,
+    "sha256": "3ea41dfe6c577bca61a76a3cb0d81c9eb0183e3e32fd756e2aa045db5b010faf"
+  },
+  "statistics": {
+    "messages": 482,
+    "user_turns": 1,
+    "tool_calls": 165,
+    "roles": {
+      "record": 77,
+      "user": 1,
+      "assistant": 74,
+      "tool_call": 165,
+      "tool_result": 165
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "fc59810be8c753f6a660-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 480,
+      "chunks": [
+        {
+          "path": "fc59810be8c753f6a660-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "fc59810be8c753f6a660-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fc59810be8c753f6a660-part-0003.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-server-westb-13313-rtx-5090-cuda-0-project-root-autodl-tmp-simga.md"
+}

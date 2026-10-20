@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "deccff46735bde0593d3",
+  "project": "simgate-modular-routing--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: simgate-modular-routing ## 运行环境 - 服务器名: autodl-simgate - SSH 账户: root（调用 ssh_execute / submit_tr",
+  "task_key": "e39fe446-4a04-4e21-b1b6-d77fa6e28547",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/e39fe446-4a04-4e21-b1b6-d77fa6e28547.jsonl",
+    "occurrence": 1,
+    "bytes": 529961,
+    "sha256": "21f426504999bceae48b433ffd8c254dd377bafe6bddc6791b7bc19e6fc9757a"
+  },
+  "statistics": {
+    "messages": 243,
+    "user_turns": 1,
+    "tool_calls": 69,
+    "roles": {
+      "record": 45,
+      "user": 1,
+      "assistant": 59,
+      "tool_call": 69,
+      "tool_result": 69
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "deccff46735bde0593d3-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 241,
+      "chunks": [
+        {
+          "path": "deccff46735bde0593d3-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "deccff46735bde0593d3-part-0002.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-simgate-modular-routing-autodl-simgate-ssh-root-ssh-execute-su-copy-21.md"
+}

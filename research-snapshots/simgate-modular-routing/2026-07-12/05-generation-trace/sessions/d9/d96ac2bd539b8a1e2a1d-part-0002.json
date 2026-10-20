@@ -1,0 +1,1118 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d96ac2bd539b8a1e2a1d",
+  "rounds": [
+    {
+      "number": 7,
+      "messages": [
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-22T08:55:58.557Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-22T08:55:58.557Z",
+                "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+                "content": "[Reviewer 2 审稿结果]:\n逐条回应 Reviewer 1 的审稿意见。\n\n---\n\n## Must-Fix 回应\n\n**[REBUT] R1-N1**: Episode-level vs step-level 粒度失配，claim scope 被高估\n\nR1 认为标题和 abstract 暗示了 step-level routing 的通用发现，但证据仅在 episode level。我认为这个批评部分有道理但力度偏重，原因如下：\n\n1. 论文标题说的是 \"Routing **Signal**\" 而非 \"Routing Decision\"。论文的核心 claim 恰恰是：在 sparse-reward 环境中，可供 routing 学习的 signal 被 death avoidance 主导——这是一个关于 signal 组成的分析发现，不是关于 step-level 最优决策的 claim。\n2. 论文在 §2.2 明确论证了为什么 episode-level 是此类环境的 principled granularity（97.4% step-level ties，per-step oracle degenerates），而非 fallback。这不是粒度\"失配\"，而是作者 deliberately 选择了唯一有信息量的分析粒度。\n3. §3.6 Router Training 和 §5 Discussion paragraph 1 已经详细讨论了 step-level 路由器为何失败（episode-level 信号无法投射到 step level），且论文将此作为 negative result 完整报告。\n4. 38.8% non-tie rate（95/245）不意味着 claim 只适用于这 38.8%——61.2% no-preference episodes 同样是诊断信息（两种策略无差异 = 无需路由），这是 framework 的正常输出。\n\n但我同意 R1 一个子观点：Abstract 的表述可以更明确地标注这是 episode-level outcome analysis。当前 Abstract 说\"78.9% of non-tie routing labels arise from death asymmetry\"，可以加一个限定词使 scope 更清晰。这是 framing 层面的微调，不是 claim validity 问题。\n\n---\n\n**[AGREE] R1-N2**: DAF 的 P-dependence 使跨环境比较缺乏稳健性\n\n完全同意。这与我自己的 N1 高度一致。DAF = δP/(δP + Δ_nd) 随 P 单调递增是数学必然（§2.4 Eq. 5），Appendix K Table 8 清楚展示了 P=10 时 DAF 仅 50.4%，P=0 时 7.4%。论文在 Appendix K 最后一段自己承认了 \"this is a mathematical consequence of the decomposition, not evidence of mechanism robustness\"，但这个关键 caveat 没有出现在主文。\n\n补充一点 R1 未提到的：论文在 §2.4 最后一段\"Relationship between DAF and label fraction\"已经解释了为什么 DAF (90.4%) > label fraction (78.9%)——因为 death episodes 的 score gap 被 P 放大。这段文字实际上提供了降级 DAF 的论据，但叙事结构没有跟进这个逻辑。建议正文明确将 label fraction 78.9% 定为 primary metric，DAF 90.4% 定为 secondary / supplementary，并在 §2.4 加入 penalty sensitivity 的核心数字（至少 P=10 和 P=50 的 DAF）。\n\n---\n\n## Should-Fix 回应\n\n**[AGREE] R1-W1**: K=11 cluster bootstrap 处于文献推荐下限\n\n同意。论文在 Appendix E 和 Limitations (Statistical limitations 段) 确实承认了 K<20 的局限，并报告了 wild cluster bootstrap (p<0.001) 和 exact permutation (p=0.002) 作为补充（Table 4, Appendix E）。Cohen's d=3.02 说明效应量极大。但 Limitations 正文中没有显式引用 Cameron et al. (2008) 的 K≥20-50 建议作为对标，这是一个遗漏。\n\n不过，这个问题的实际影响有限：100% 方向一致性（10/10 death-prone tasks 均显示 internal DR > deterministic DR）加上 per-task CI 分析（Appendix F, 28/28 death-prone tasks 方向一致）提供了不依赖 cluster bootstrap 的补充证据。\n\n---\n\n**[AGREE] R1-W2**: 63% task type 排除率和 selection bias 风险\n\n同意，但认为论文已提供了充分的缓解证据。R1 指出 \"taxonomic redundancy\" 缺乏操作定义——这确实是一个弱点。论文 Appendix C 只说了 \"taxonomically redundant with a retained family representative\" 但没给出 taxonomy 标准。\n\n关于 \"agent floor tasks 被排除意味着框架只适用于有进展的 tasks\"——这一点需要区分：这些 tasks 被排除的原因是两种策略都不工作（near-zero progress），此时确实没有 routing signal 可 decompose（因为两者都失败了）。这不是框架的局限，而是 signal 不存在的正确诊断。论文在 §5 Discussion paragraph 3 最后一句提到了这一点（\"The 7 excluded agent-floor tasks... represent a symmetric failure regime that the framework correctly diagnoses as 'no signal'\"）。\n\n但我同意主文应更完整地 justify 排除标准——至少把 Table 2 (Appendix C) 的关键数字（excluded mean ΔDR=+38.2 > included +28.7 pp）提到正文中。\n\n---\n\n**[REBUT] R1-W3**: Router training 负结论受限于架构简单性\n\n部分不同意。R1 建议测试更强 backbone 或更丰富的 feature（observation history, task-type 特征），但论文的 evidence 比 R1 认为的更全面：\n\n1. **六种 router 变体收敛于同一结论**（§3.6, §5 paragraph 1）：0.6B/1.7B/4B × classification/generative，step-level accuracy 一致在 56-59% 范围。这排除了单一架构偶然失败的解释。\n2. **Task-type 特征已测试**（Appendix P, \"Leave-one-task-type-out routing\"段）：keyword-based variant 通过 task-identity leakage 达到 62.9%，但 LOTO 下降到 50.0%——这证明唯一可学习的 routing feature IS task-type identity，不是 step-level observation。\n3. **4B 的 episode-level 59.0% 也被 LOTO 打回**（Appendix P）：无 task-type identifiers 时降到 50.0%，有 task name 时升到 62.9%。\n4. **Capacity scaling**（Appendix P Table 9）显示 step-level accuracy 在 0.6B-4B 范围内是 flat 的（56-59%），增加容量无帮助。\n\n但我同意 R1 的一个子观点：负结论的 scope 确实应更精确地限定。论文说 \"no step-level learnable signal exists under current architectures and data regime\"（§3.6 最后段），这已经加了限定词，但 \"current architectures\" 的范围可以更明确（Qwen3 family with LoRA, max 4B）。\n\n---\n\n**[AGREE] R1-W4**: 72B 仅做 scaling probe 不够完整\n\n同意。72B 数据（§3.4, Table 1）只收集了 episode pairs 并计算 death rate 和 DAF，没有运行：\n- Router training（72B 作为 backbone 或 72B episodes 作为训练数据）\n- SCI 分析\n- Per-task decomposition（虽然 Appendix M Table 6 有 cross-model summary，但 72B 的 per-task 细节缺失）\n\nR1 的推理也成立：72B death rate 降到 30.6%（vs 7B 的 42.9%），意味着更多 episodes 双方都存活，Δ_nd 的信号量可能增加。如果 non-death signal 在更强模型上更 prominent，那 \"death dominance\" 的结论可能在 scale-up 后需要修正。不过，72B 的 DAF=92.4% 反而更高（因为 deterministic 也更安全了），所以至少在当前数据上 death dominance 是 scale-robust 的。\n\n---\n\n## Minor 回应\n\n**[AGREE] R1-M1**: Figure 2 仅 11 点无 task name label。同意，scatter plot 加 task name 标签会增加可读性，且论文自己说 r=0.97 是 \"a structural consequence of death dominance, not an independent finding\"（Figure 2 caption 末尾），加 label 可以帮助读者理解每个点对应什么。\n\n**[REBUT] R1-M2**: Eq. 4 decomposition 精确定义依赖 appendix。部分不同意——§2.4 的 Eq. 4 和 Eq. 5 在正文中已给出完整的数学定义（δ = E[d^int] - E[d^det], Δ_nd, DAF = 1 - Δ_nd/Δ_full），approximation residual 也在正文报告（0.23, 0.8%）。Appendix K 提供的是 penalty sensitivity 扩展分析，不是核心定义的补充。\n\n**[AGREE] R1-M3**: ALFWorld 分析仅一段话。同意。ALFWorld 有 135 games、6 task types（Appendix L Table 5 有 per-task breakdown），但主文只在 §3.4 用一段话总结。考虑到 ALFWorld 是论文三个 cross-environment probes 之一，且展示了一个质性不同的 routing mechanism (information asymmetry, DAF=0%)，主文至少应引用 Table 5 或 Figure 4 (signal_reversal.pdf)。\n\n**[AGREE] R1-M4**: Table 1 caption \"Top\"/\"Bottom\" 对比不直观。同意，Table 1 的上半部分是全 11 tasks，下半部分是 10 death-prone tasks only，两部分的 N 不同（245 vs 200），baseline 也不同。这种 layout 容易导致误读。\n\n**[AGREE] R1-M5**: Limitations 未提及 Cameron et al. K 建议。同意，与 W1 一致。Limitations \"Statistical limitations\" 段引用了 cameron-2008 和 webb-2023，但没有显式说\"推荐 K≥20-50 而我们只有 11\"。\n\n**[AGREE] R1-M6**: Related Work 缺 non-agent 场景的 adaptive computation。同意。论文引用了 Graves (2016, ACT) 和 Mixture-of-Recursions (2025)，但缺少 early exit（如 Schuster et al. 2022, CALM）和 speculative decoding 方向。这些方法虽然不在 agent 场景，但与 \"adaptive computation routing\" 这个更大的 framing 直接相关。\n\n---\n\n## Missing References 回应\n\n**[AGREE]** Schuster et al. (2022), \"Confident Adaptive Language Modeling\" — 直接相关于 adaptive computation routing 的 non-agent baseline。论文引用了 Graves (2016) 但跳过了 CALM 这个更近的 milestone。\n\n**[AGREE]** Raposo et al. (2024), \"Mixture-of-Depths\" — token-level 计算资源分配，与论文的 step-level routing 在 granularity 上有对应关系，值得引用。\n\n---\n\n## Questions 回应\n\n**Q1**: P=10 时 label distribution 是否变化？78.9% death-asymmetric label fraction 是否仍成立？\n\n回答：78.9% label fraction 不随 P 变化。这是论文的一个关键设计——Algorithm 1 (Appendix B) 的 labeling function 先比较 death status（lines 5-10），再比较 score（lines 11-16）。death-asymmetric labels（75/95）由 death status 决定，与 P 无关。P 只影响 DAF 的数值（因为 DAF 是 score-weighted 度量）。论文在 §2.4 倒数第二段明确说了：\"In ScienceWorld, P affects only post-hoc score calculation; the agent's policy (ReAct prompting) does not include P in its observation, so death rates and Δ_nd are P-invariant by design.\"\n\n但这里有一个微妙点：P=10 时，75 个 death-asymmetric labels 中有 54 个是 \"sole-signal labels\"（§3.1 第一段），即两策略在 non-death 维度上无差异，仅靠 death status 区分。在 P=0 时，这 54 个 label 会变成 no-preference（因为 score 相同）。所以虽然 labeling function 本身是 P-independent 的，但 Algorithm 1 的 death-first priority 实际上等价于给 death 一个隐式的无穷大 penalty——这与\"penalty-independent\"的叙事有微妙张力。论文在 §3.1 提到了 \"at P=0 these reduce to ties\"，但没有展开讨论这个 implication。这是一个值得作者回应的精妙问题。\n\n**Q2**: 150 个 no_pref episodes 中两策略 per-step action sequence 是否相似？\n\n回答：论文未直接分析 no_pref episodes 的 action sequence 相似度。但可从现有数据推断：§2.2 报告 97.4% step-level ties（5,935/6,094 steps），这意味着绝大多数 steps 的 intermediate score 相同，但不能推出 action sequence 相同（因为不同 actions 可能导致相同 intermediate score）。Appendix N 的 failure mode analysis 只覆盖了 death episodes。这是一个有价值的分析方向——如果 no_pref episodes 的 action sequences 高度相似，说明两种策略在非致命场景中行为趋同；如果差异大但结果相同，说明 ScienceWorld 的 evaluation function 有多解。\n\n**Q3**: 如果用 step-level heuristic labels（仅标记 death episode 最后 k 步），router 是否改善？\n\n回答：论文在 Appendix P \"Death-proximal labeling\" 段已经测试了这个想法。结果是：仅用 death event 前 k 步训练 router，step balanced accuracy 50.0%, episode balanced accuracy 50.0%, internal recall 0%——完全 collapse to majority class。这直接回答了 R1 的 Q3，且结论是否定的。论文的解释是 \"the absence of step-level signal is not an artifact of label dilution across long episodes\"（Appendix P 最后一段）。\n\n---\n\n**总结**：R1 的审稿意见整体合理。N2（DAF P-dependence）与我的 N1 高度一致，是最需要作者回应的 critical issue。N1（granularity mismatch claim scope）我认为 R1 略有过度解读，论文的 claim 实际上是关于 signal composition 而非 step-level decision。W1-W4 中 W3 的证据比 R1 认为的更充分（六种 router 变体 + LOTO），W4（72B 不完整）是一个 valid 但 scope-limited 的 concern。"
+              }
+            }
+          ],
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-22T08:55:58.558Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-22T08:55:58.558Z",
+                "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb"
+              }
+            }
+          ],
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-22T08:55:58.546Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5ff4984e-6804-4f9e-b4fa-6ddb812989b0",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "2bf29d1a-1701-46a2-966f-4b6728cdbc35",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "cbb2ba8a-2142-4839-8f62-66fd3cc95d93",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000119"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "messages": [
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-22T08:55:58.651Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n逐条回应 Reviewer 1 的审稿意见。\n\n---\n\n## Must-Fix 回应\n\n**[REBUT] R1-N1**: Episode-level vs step-level 粒度失配，claim scope 被高估\n\nR1 认为标题和 abstract 暗示了 step-level routing 的通用发现，但证据仅在 episode level。我认为这个批评部分有道理但力度偏重，原因如下：\n\n1. 论文标题说的是 \"Routing **Signal**\" 而非 \"Routing Decision\"。论文的核心 claim 恰恰是：在 sparse-reward 环境中，可供 routing 学习的 signal 被 death avoidance 主导——这是一个关于 signal 组成的分析发现，不是关于 step-level 最优决策的 claim。\n2. 论文在 §2.2 明确论证了为什么 episode-level 是此类环境的 principled granularity（97.4% step-level ties，per-step oracle degenerates），而非 fallback。这不是粒度\"失配\"，而是作者 deliberately 选择了唯一有信息量的分析粒度。\n3. §3.6 Router Training 和 §5 Discussion paragraph 1 已经详细讨论了 step-level 路由器为何失败（episode-level 信号无法投射到 step level），且论文将此作为 negative result 完整报告。\n4. 38.8% non-tie rate（95/245）不意味着 claim 只适用于这 38.8%——61.2% no-preference episodes 同样是诊断信息（两种策略无差异 = 无需路由），这是 framework 的正常输出。\n\n但我同意 R1 一个子观点：Abstract 的表述可以更明确地标注这是 episode-level outcome analysis。当前 Abstract 说\"78.9% of non-tie routing labels arise from death asymmetry\"，可以加一个限定词使 scope 更清晰。这是 framing 层面的微调，不是 claim validity 问题。\n\n---\n\n**[AGREE] R1-N2**: DAF 的 P-dependence 使跨环境比较缺乏稳健性\n\n完全同意。这与我自己的 N1 高度一致。DAF = δP/(δP + Δ_nd) 随 P 单调递增是数学必然（§2.4 Eq. 5），Appendix K Table 8 清楚展示了 P=10 时 DAF 仅 50.4%，P=0 时 7.4%。论文在 Appendix K 最后一段自己承认了 \"this is a mathematical consequence of the decomposition, not evidence of mechanism robustness\"，但这个关键 caveat 没有出现在主文。\n\n补充一点 R1 未提到的：论文在 §2.4 最后一段\"Relationship between DAF and label fraction\"已经解释了为什么 DAF (90.4%) > label fraction (78.9%)——因为 death episodes 的 score gap 被 P 放大。这段文字实际上提供了降级 DAF 的论据，但叙事结构没有跟进这个逻辑。建议正文明确将 label fraction 78.9% 定为 primary metric，DAF 90.4% 定为 secondary / supplementary，并在 §2.4 加入 penalty sensitivity 的核心数字（至少 P=10 和 P=50 的 DAF）。\n\n---\n\n## Should-Fix 回应\n\n**[AGREE] R1-W1**: K=11 cluster bootstrap 处于文献推荐下限\n\n同意。论文在 Appendix E 和 Limitations (Statistical limitations 段) 确实承认了 K<20 的局限，并报告了 wild cluster bootstrap (p<0.001) 和 exact permutation (p=0.002) 作为补充（Table 4, Appendix E）。Cohen's d=3.02 说明效应量极大。但 Limitations 正文中没有显式引用 Cameron et al. (2008) 的 K≥20-50 建议作为对标，这是一个遗漏。\n\n不过，这个问题的实际影响有限：100% 方向一致性（10/10 death-prone tasks 均显示 internal DR > deterministic DR）加上 per-task CI 分析（Appendix F, 28/28 death-prone tasks 方向一致）提供了不依赖 cluster bootstrap 的补充证据。\n\n---\n\n**[AGREE] R1-W2**: 63% task type 排除率和 selection bias 风险\n\n同意，但认为论文已提供了充分的缓解证据。R1 指出 \"taxonomic redundancy\" 缺乏操作定义——这确实是一个弱点。论文 Appendix C 只说了 \"taxonomically redundant with a retained family representative\" 但没给出 taxonomy 标准。\n\n关于 \"agent floor tasks 被排除意味着框架只适用于有进展的 tasks\"——这一点需要区分：这些 tasks 被排除的原因是两种策略都不工作（near-zero progress），此时确实没有 routing signal 可 decompose（因为两者都失败了）。这不是框架的局限，而是 signal 不存在的正确诊断。论文在 §5 Discussion paragraph 3 最后一句提到了这一点（\"The 7 excluded agent-floor tasks... represent a symmetric failure regime that the framework correctly diagnoses as 'no signal'\"）。\n\n但我同意主文应更完整地 justify 排除标准——至少把 Table 2 (Appendix C) 的关键数字（excluded mean ΔDR=+38.2 > included +28.7 pp）提到正文中。\n\n---\n\n**[REBUT] R1-W3**: Router training 负结论受限于架构简单性\n\n部分不同意。R1 建议测试更强 backbone 或更丰富的 feature（observation history, task-type 特征），但论文的 evidence 比 R1 认为的更全面：\n\n1. **六种 router 变体收敛于同一结论**（§3.6, §5 paragraph 1）：0.6B/1.7B/4B × classification/generative，step-level accuracy 一致在 56-59% 范围。这排除了单一架构偶然失败的解释。\n2. **Task-type 特征已测试**（Appendix P, \"Leave-one-task-type-out routing\"段）：keyword-based variant 通过 task-identity leakage 达到 62.9%，但 LOTO 下降到 50.0%——这证明唯一可学习的 routing feature IS task-type identity，不是 step-level observation。\n3. **4B 的 episode-level 59.0% 也被 LOTO 打回**（Appendix P）：无 task-type identifiers 时降到 50.0%，有 task name 时升到 62.9%。\n4. **Capacity scaling**（Appendix P Table 9）显示 step-level accuracy 在 0.6B-4B 范围内是 flat 的（56-59%），增加容量无帮助。\n\n但我同意 R1 的一个子观点：负结论的 scope 确实应更精确地限定。论文说 \"no step-level learnable signal exists under current architectures and data regime\"（§3.6 最后段），这已经加了限定词，但 \"current architectures\" 的范围可以更明确（Qwen3 family with LoRA, max 4B）。\n\n---\n\n**[AGREE] R1-W4**: 72B 仅做 scaling probe 不够完整\n\n同意。72B 数据（§3.4, Table 1）只收集了 episode pairs 并计算 death rate 和 DAF，没有运行：\n- Router training（72B 作为 backbone 或 72B episodes 作为训练数据）\n- SCI 分析\n- Per-task decomposition（虽然 Appendix M Table 6 有 cross-model summary，但 72B 的 per-task 细节缺失）\n\nR1 的推理也成立：72B death rate 降到 30.6%（vs 7B 的 42.9%），意味着更多 episodes 双方都存活，Δ_nd 的信号量可能增加。如果 non-death signal 在更强模型上更 prominent，那 \"death dominance\" 的结论可能在 scale-up 后需要修正。不过，72B 的 DAF=92.4% 反而更高（因为 deterministic 也更安全了），所以至少在当前数据上 death dominance 是 scale-robust 的。\n\n---\n\n## Minor 回应\n\n**[AGREE] R1-M1**: Figure 2 仅 11 点无 task name label。同意，scatter plot 加 task name 标签会增加可读性，且论文自己说 r=0.97 是 \"a structural consequence of death dominance, not an independent finding\"（Figure 2 caption 末尾），加 label 可以帮助读者理解每个点对应什么。\n\n**[REBUT] R1-M2**: Eq. 4 decomposition 精确定义依赖 appendix。部分不同意——§2.4 的 Eq. 4 和 Eq. 5 在正文中已给出完整的数学定义（δ = E[d^int] - E[d^det], Δ_nd, DAF = 1 - Δ_nd/Δ_full），approximation residual 也在正文报告（0.23, 0.8%）。Appendix K 提供的是 penalty sensitivity 扩展分析，不是核心定义的补充。\n\n**[AGREE] R1-M3**: ALFWorld 分析仅一段话。同意。ALFWorld 有 135 games、6 task types（Appendix L Table 5 有 per-task breakdown），但主文只在 §3.4 用一段话总结。考虑到 ALFWorld 是论文三个 cross-environment probes 之一，且展示了一个质性不同的 routing mechanism (information asymmetry, DAF=0%)，主文至少应引用 Table 5 或 Figure 4 (signal_reversal.pdf)。\n\n**[AGREE] R1-M4**: Table 1 caption \"Top\"/\"Bottom\" 对比不直观。同意，Table 1 的上半部分是全 11 tasks，下半部分是 10 death-prone tasks only，两部分的 N 不同（245 vs 200），baseline 也不同。这种 layout 容易导致误读。\n\n**[AGREE] R1-M5**: Limitations 未提及 Cameron et al. K 建议。同意，与 W1 一致。Limitations \"Statistical limitations\" 段引用了 cameron-2008 和 webb-2023，但没有显式说\"推荐 K≥20-50 而我们只有 11\"。\n\n**[AGREE] R1-M6**: Related Work 缺 non-agent 场景的 adaptive computation。同意。论文引用了 Graves (2016, ACT) 和 Mixture-of-Recursions (2025)，但缺少 early exit（如 Schuster et al. 2022, CALM）和 speculative decoding 方向。这些方法虽然不在 agent 场景，但与 \"adaptive computation routing\" 这个更大的 framing 直接相关。\n\n---\n\n## Missing References 回应\n\n**[AGREE]** Schuster et al. (2022), \"Confident Adaptive Language Modeling\" — 直接相关于 adaptive computation routing 的 non-agent baseline。论文引用了 Graves (2016) 但跳过了 CALM 这个更近的 milestone。\n\n**[AGREE]** Raposo et al. (2024), \"Mixture-of-Depths\" — token-level 计算资源分配，与论文的 step-level routing 在 granularity 上有对应关系，值得引用。\n\n---\n\n## Questions 回应\n\n**Q1**: P=10 时 label distribution 是否变化？78.9% death-asymmetric label fraction 是否仍成立？\n\n回答：78.9% label fraction 不随 P 变化。这是论文的一个关键设计——Algorithm 1 (Appendix B) 的 labeling function 先比较 death status（lines 5-10），再比较 score（lines 11-16）。death-asymmetric labels（75/95）由 death status 决定，与 P 无关。P 只影响 DAF 的数值（因为 DAF 是 score-weighted 度量）。论文在 §2.4 倒数第二段明确说了：\"In ScienceWorld, P affects only post-hoc score calculation; the agent's policy (ReAct prompting) does not include P in its observation, so death rates and Δ_nd are P-invariant by design.\"\n\n但这里有一个微妙点：P=10 时，75 个 death-asymmetric labels 中有 54 个是 \"sole-signal labels\"（§3.1 第一段），即两策略在 non-death 维度上无差异，仅靠 death status 区分。在 P=0 时，这 54 个 label 会变成 no-preference（因为 score 相同）。所以虽然 labeling function 本身是 P-independent 的，但 Algorithm 1 的 death-first priority 实际上等价于给 death 一个隐式的无穷大 penalty——这与\"penalty-independent\"的叙事有微妙张力。论文在 §3.1 提到了 \"at P=0 these reduce to ties\"，但没有展开讨论这个 implication。这是一个值得作者回应的精妙问题。\n\n**Q2**: 150 个 no_pref episodes 中两策略 per-step action sequence 是否相似？\n\n回答：论文未直接分析 no_pref episodes 的 action sequence 相似度。但可从现有数据推断：§2.2 报告 97.4% step-level ties（5,935/6,094 steps），这意味着绝大多数 steps 的 intermediate score 相同，但不能推出 action sequence 相同（因为不同 actions 可能导致相同 intermediate score）。Appendix N 的 failure mode analysis 只覆盖了 death episodes。这是一个有价值的分析方向——如果 no_pref episodes 的 action sequences 高度相似，说明两种策略在非致命场景中行为趋同；如果差异大但结果相同，说明 ScienceWorld 的 evaluation function 有多解。\n\n**Q3**: 如果用 step-level heuristic labels（仅标记 death episode 最后 k 步），router 是否改善？\n\n回答：论文在 Appendix P \"Death-proximal labeling\" 段已经测试了这个想法。结果是：仅用 death event 前 k 步训练 router，step balanced accuracy 50.0%, episode balanced accuracy 50.0%, internal recall 0%——完全 collapse to majority class。这直接回答了 R1 的 Q3，且结论是否定的。论文的解释是 \"the absence of step-level signal is not an artifact of label dilution across long episodes\"（Appendix P 最后一段）。\n\n---\n\n**总结**：R1 的审稿意见整体合理。N2（DAF P-dependence）与我的 N1 高度一致，是最需要作者回应的 critical issue。N1（granularity mismatch claim scope）我认为 R1 略有过度解读，论文的 claim 实际上是关于 signal composition 而非 step-level decision。W1-W4 中 W3 的证据比 R1 认为的更充分（六种 router 变体 + LOTO），W4（72B 不完整）是一个 valid 但 scope-limited 的 concern。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2bf29d1a-1701-46a2-966f-4b6728cdbc35",
+            "isSidechain": false,
+            "promptId": "07525e83-7c39-41f7-8c3e-e6057c516d5c",
+            "type": "user",
+            "uuid": "560f9d25-5278-4d39-a374-e5fa93e36f00",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review simgate-modular-routing paper for EMNLP 2026",
+                "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb"
+              }
+            }
+          ],
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-22T08:56:10.154Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-22T08:56:10.154Z",
+                "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+                "content": "[Reviewer 1 审稿意见]:\n\n## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应\n\n---\n\n### Must-Fix\n\n**[AGREE] R2-N1: DAF 的数学必然性与主文叙述存在张力**\n\n完全同意。这与我的 N2 高度一致。Appendix K 明确写道 DAF \"increases monotonically with P\" 且是 \"a mathematical consequence rather than an empirical finding\"（§2.4 末尾），但 Abstract 仍将 DAF=90.4% 作为核心数字呈现（\"DAF reaches 90.4%\"）。R2 提供的具体数值（P=0 时 DAF=7.4%, P=10 时 50.4%）进一步量化了这一问题的严重性——DAF 从 7.4% 到 90.4% 的变化完全由 P 值驱动。论文应将 P-invariant 的 label fraction（78.9%）作为叙事主线，DAF 仅作为辅助度量。这一修改不需要改变任何实验结果，只需调整叙述重心。\n\n**[AGREE] R2-N2: \"Deterministic\" 在三环境中含义截然不同**\n\n这是我审稿时未充分关注的重要问题。§2.1 定义 deterministic strategy 为 \"a privileged information strategy that eliminates computation uncertainty\"，但具体实现差异很大：ScienceWorld 的 oracle simulator 可以直接获取环境真实状态（§2.1），MATH 的 code interpreter 是确定性计算工具（§3.4），ALFWorld 的 admissible-action enumeration 是动作空间约束（§3.4）。这三者对 \"eliminating computation uncertainty\" 的方式和程度完全不同——oracle 消除了所有不确定性，code interpreter 只消除计算错误，admissible-action 只消除无效动作。Conclusion（§6）写 \"the framework's diagnostic utility and the robustness of the finding\"（p8），这一表述暗示了跨环境的一致性，但实际上应区分 \"diagnostic procedure is transferable\"（框架可以应用）和 \"the same phenomenon is observed\"（同一现象被观察到——实际上 MATH 没有 death mechanism，不存在 death avoidance）。建议在 Conclusion 中增加一句限定：框架的 transferability 不意味着 death dominance 在所有环境中都成立。\n\n---\n\n### Should-Fix\n\n**[AGREE] R2-W1: 63% task type 排除率需在主文更充分 justify**\n\n与我的 W2 一致。主文仅在 §3 第一段用一句话说明排除原因（\"the 19 excluded types (63%) lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7)\"），对于一篇 analysis 论文来说过于简略。Table 4（p14, Appendix C）提供了详细的 per-task exclusion rationale，但这些信息应在正文中有更充分的展示——至少需要一段话讨论排除标准的操作定义和对结论泛化性的影响。\n\n**[AGREE with nuance] R2-W2: 路由器负面结果的 alternative explanations 未充分排除**\n\n同意核心论点，但需补充两点 nuance：\n\n(1) R2 指出 internal-preferred 仅 9/245 = 3.7%，这确实是极端不平衡。但论文的 text augmentation ablation（Appendix I, Table 11）从 25% 到 800% 数据量均未改善 episode-level balanced accuracy（始终 ≤50.0%），且 balanced accuracy 本身对 class imbalance 是 robust 的（它分别计算每个类的 recall 再平均）。这部分论证是有效的。\n\n(2) 但 R2 关于 \"augmentation 只是 paraphrase\" 的批评成立——paraphrase augmentation 不增加新的 routing signal，只增加了相同 signal 的语言变体。如果问题是 signal 在文本中不可见（hidden in environment dynamics rather than text surface），paraphrase 不能解决。论文需要更清晰地区分 \"data-limited\"（样本数不足）和 \"feature-limited\"（文本表面特征无法捕获 routing-relevant information）——当前的 text augmentation 只排除了前者。\n\nR2 提到的 \"~1,350 episodes needed\"（Appendix I 提及 internal-preferred rate 3.7% 意味着需要 ~1,350 episodes 才能收集 50 个 internal-preferred 样本）与 \"diminishing return\" 之间的张力是合理的——论文应承认在当前 class imbalance 下，signal-limited vs data-limited 的区分尚不完全 conclusive。\n\n**[REBUT] R2-W3: Limitations 过长**\n\n不同意。EMNLP 2026 格式要求明确规定 \"Mandatory limitations and optional ethical considerations do not count towards this page limit, provided they do not contain excessive additional content\"。论文的 Limitations section（p9）覆盖 4 个维度（Environmental scope, Statistical limitations, Methodological constraints, Diagnostic scope），每个维度 3-5 句话，总计约 0.8 页。对于一篇以 methodological rigor 为核心卖点的 analysis 论文，这些限制讨论是必要的，而非冗余的：\n\n- Environmental scope 限定了单环境结论的适用范围\n- Statistical limitations 诚实报告了 K=11 和 n=20 的功效问题\n- Methodological constraints 讨论了 episode-level 方法论的固有局限\n- Diagnostic scope 区分了 diagnostic framework 和 prescriptive optimization\n\n压缩可能导致重要 caveats 被省略。我在自己的 S4 中将此列为论文优势（\"论文诚实地讨论了 scope limitations\"）。如果要修改，建议合并 Methodological constraints 和 Diagnostic scope 为一段，但不建议删减内容。\n\n**[AGREE partially] R2-W4: 缺少与同期路由方法的直接比较**\n\n同意应增加定性讨论，但不同意需要实证比较。本文是 diagnostic/analysis 论文而非 method 论文，要求实证比较 CogRouter/ARES/MTRouter 超出了论文 scope。但 R2 建议的定性讨论——\"这些方法在 death-dominated 环境中是否会遇到 signal collapse\"——是 Related Work（§4）中一个有价值的补充。具体来说：CogRouter（Yang et al., 2026b）使用 per-step routing，如果 step-level signal 如本文所示是 uninformative 的（97.4% steps uninformative, §2.3），CogRouter 在此类环境中可能面临同样的 signal collapse。这类讨论可以用 2-3 句话完成，不需要新实验。\n\n**[AGREE] R2-W5: \"Death\" 术语可能限制 generality perception**\n\n同意。论文框架依赖 binary death/alive 区分（Algorithm 1, line 3-9）。当 failure 是 graded（如 partial score loss, degraded performance）而非 catastrophic 时，Algorithm 1 的 death-first priority 逻辑不再适用——没有明确的 \"death\" 阈值。§5 Discussion 中 \"Practical implications and actionability\"（p8）提到 \"The penalty-invariant label fraction (78.9%) is the primary diagnostic; DAF varies with P\"，但未讨论 death 概念本身是否可以 generalize 到 non-binary failure modes。建议在 Discussion 或 Limitations 中增加一段讨论 graded failure 的情况，例如：可以设定 failure 阈值将 graded failure 二值化，但阈值选择引入新的自由度。\n\n---\n\n### Minor\n\n- **[AGREE]** \"signal diversity can collapse\" 重复——minor writing issue\n- **[REBUT]** \"degenerates\" 用词：这是标准数学/统计用语（\"the approach degenerates to...\"），在 NLP 论文中常见，无需修改\n- **[AGREE]** Figure 2 仅 11 点：与我的 M1 一致，建议加 task name label\n- **[AGREE]** Table 2 Trained Router 仅 1 seed：Appendix J（Table 10）报告了 8 seeds 的 cross-split evaluation，但 Table 2 仅展示 1 seed 结果。建议在 Table 2 中报告 mean ± std across seeds\n- **[AGREE]** Algorithm 1 注释问题：minor formatting，但可能导致误解\n- **[REBUT partially]** arXiv preprint 占比高：2024-2026 年的 LLM agent 领域 fast-moving，许多重要工作尚未正式发表（如 CogRouter, SafeRoute, SALT 等均为 2025-2026 preprints），高 arXiv 比例在此领域是正常的\n- **[AGREE]** Gemma-2 描述不足：§3.2 仅提 sliding window attention，但 Gemma-2-9B 的 architecture 差异（如不同的 normalization, vocabulary size）也可能影响 routing signal，值得补充\n\n### Missing References\n\n- **[AGREE]** Alshiekh et al. (AAAI 2018) Safe RL via Shielding — 与 Appendix O (Grounding Ablation) 的 action-space filtering 直接相关，应引用\n- **[AGREE]** Geifman & El-Yaniv (NeurIPS 2017) Selective Classification — 与 routing/abstention decision 有概念关联，且是 selective prediction 的经典工作\n- **[NEUTRAL]** Pan et al. (2024) LLM agent failure taxonomy — 如果存在公开版本，可以增加引用；但 failure taxonomy 与 routing signal decomposition 的关联不够直接\n- **[NEUTRAL]** Devlin & Kudenko (AAMAS 2012) Dynamic reward shaping — 与 penalty sensitivity（Appendix K）有间接关联，但本文不做 reward shaping，引用必要性不高\n- **[NEUTRAL]** AppAgent / OS-Copilot — 这些是 agent system 论文，与本文的 diagnostic focus 关联较弱\n\n---\n\n### 对 R2 Strengths 的回应\n\n全部同意（S1–S6）。特别支持 S3（双轨度量报告）和 S5（Track fit）——本文确实非常适合 Interpretability and Analysis track，分析深度在该 track 中属于上乘。\n\n\n---\n\n[Reviewer 1 审稿结果]:\n交叉回应已提交。总结：\n\n- **R2 的 2 个 Must-Fix 均 AGREE**：N1（DAF P-dependence）与我的 N2 高度一致；N2（\"deterministic\" 跨环境含义不同）是我审稿时遗漏的重要问题\n- **5 个 Should-Fix 中 AGREE 3 个、部分 AGREE 1 个、REBUT 1 个**：W3（Limitations 过长）我反驳——对 analysis 论文来说诚实的 limitations 是优势而非缺陷，且不占页数限制\n- **7 个 Minor 中 AGREE 4 个、REBUT 2 个、AGREE 1 个**：\"degenerates\" 是标准数学用语，arXiv 高占比在 fast-moving 领域正常\n- **5 个 Missing References 中 AGREE 2 个、NEUTRAL 3 个**"
+              }
+            }
+          ],
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-22T08:56:10.155Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-22T08:56:10.155Z",
+                "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb"
+              }
+            }
+          ],
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-22T08:56:10.142Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "560f9d25-5278-4d39-a374-e5fa93e36f00",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "fb7b1f05-d6c9-4968-9171-baae7fe1a95f",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "c51d4ce2-baa4-4e1a-94e1-678a8ed3d379",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000124"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "messages": [
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-22T08:56:10.245Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n\n## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应\n\n---\n\n### Must-Fix\n\n**[AGREE] R2-N1: DAF 的数学必然性与主文叙述存在张力**\n\n完全同意。这与我的 N2 高度一致。Appendix K 明确写道 DAF \"increases monotonically with P\" 且是 \"a mathematical consequence rather than an empirical finding\"（§2.4 末尾），但 Abstract 仍将 DAF=90.4% 作为核心数字呈现（\"DAF reaches 90.4%\"）。R2 提供的具体数值（P=0 时 DAF=7.4%, P=10 时 50.4%）进一步量化了这一问题的严重性——DAF 从 7.4% 到 90.4% 的变化完全由 P 值驱动。论文应将 P-invariant 的 label fraction（78.9%）作为叙事主线，DAF 仅作为辅助度量。这一修改不需要改变任何实验结果，只需调整叙述重心。\n\n**[AGREE] R2-N2: \"Deterministic\" 在三环境中含义截然不同**\n\n这是我审稿时未充分关注的重要问题。§2.1 定义 deterministic strategy 为 \"a privileged information strategy that eliminates computation uncertainty\"，但具体实现差异很大：ScienceWorld 的 oracle simulator 可以直接获取环境真实状态（§2.1），MATH 的 code interpreter 是确定性计算工具（§3.4），ALFWorld 的 admissible-action enumeration 是动作空间约束（§3.4）。这三者对 \"eliminating computation uncertainty\" 的方式和程度完全不同——oracle 消除了所有不确定性，code interpreter 只消除计算错误，admissible-action 只消除无效动作。Conclusion（§6）写 \"the framework's diagnostic utility and the robustness of the finding\"（p8），这一表述暗示了跨环境的一致性，但实际上应区分 \"diagnostic procedure is transferable\"（框架可以应用）和 \"the same phenomenon is observed\"（同一现象被观察到——实际上 MATH 没有 death mechanism，不存在 death avoidance）。建议在 Conclusion 中增加一句限定：框架的 transferability 不意味着 death dominance 在所有环境中都成立。\n\n---\n\n### Should-Fix\n\n**[AGREE] R2-W1: 63% task type 排除率需在主文更充分 justify**\n\n与我的 W2 一致。主文仅在 §3 第一段用一句话说明排除原因（\"the 19 excluded types (63%) lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7)\"），对于一篇 analysis 论文来说过于简略。Table 4（p14, Appendix C）提供了详细的 per-task exclusion rationale，但这些信息应在正文中有更充分的展示——至少需要一段话讨论排除标准的操作定义和对结论泛化性的影响。\n\n**[AGREE with nuance] R2-W2: 路由器负面结果的 alternative explanations 未充分排除**\n\n同意核心论点，但需补充两点 nuance：\n\n(1) R2 指出 internal-preferred 仅 9/245 = 3.7%，这确实是极端不平衡。但论文的 text augmentation ablation（Appendix I, Table 11）从 25% 到 800% 数据量均未改善 episode-level balanced accuracy（始终 ≤50.0%），且 balanced accuracy 本身对 class imbalance 是 robust 的（它分别计算每个类的 recall 再平均）。这部分论证是有效的。\n\n(2) 但 R2 关于 \"augmentation 只是 paraphrase\" 的批评成立——paraphrase augmentation 不增加新的 routing signal，只增加了相同 signal 的语言变体。如果问题是 signal 在文本中不可见（hidden in environment dynamics rather than text surface），paraphrase 不能解决。论文需要更清晰地区分 \"data-limited\"（样本数不足）和 \"feature-limited\"（文本表面特征无法捕获 routing-relevant information）——当前的 text augmentation 只排除了前者。\n\nR2 提到的 \"~1,350 episodes needed\"（Appendix I 提及 internal-preferred rate 3.7% 意味着需要 ~1,350 episodes 才能收集 50 个 internal-preferred 样本）与 \"diminishing return\" 之间的张力是合理的——论文应承认在当前 class imbalance 下，signal-limited vs data-limited 的区分尚不完全 conclusive。\n\n**[REBUT] R2-W3: Limitations 过长**\n\n不同意。EMNLP 2026 格式要求明确规定 \"Mandatory limitations and optional ethical considerations do not count towards this page limit, provided they do not contain excessive additional content\"。论文的 Limitations section（p9）覆盖 4 个维度（Environmental scope, Statistical limitations, Methodological constraints, Diagnostic scope），每个维度 3-5 句话，总计约 0.8 页。对于一篇以 methodological rigor 为核心卖点的 analysis 论文，这些限制讨论是必要的，而非冗余的：\n\n- Environmental scope 限定了单环境结论的适用范围\n- Statistical limitations 诚实报告了 K=11 和 n=20 的功效问题\n- Methodological constraints 讨论了 episode-level 方法论的固有局限\n- Diagnostic scope 区分了 diagnostic framework 和 prescriptive optimization\n\n压缩可能导致重要 caveats 被省略。我在自己的 S4 中将此列为论文优势（\"论文诚实地讨论了 scope limitations\"）。如果要修改，建议合并 Methodological constraints 和 Diagnostic scope 为一段，但不建议删减内容。\n\n**[AGREE partially] R2-W4: 缺少与同期路由方法的直接比较**\n\n同意应增加定性讨论，但不同意需要实证比较。本文是 diagnostic/analysis 论文而非 method 论文，要求实证比较 CogRouter/ARES/MTRouter 超出了论文 scope。但 R2 建议的定性讨论——\"这些方法在 death-dominated 环境中是否会遇到 signal collapse\"——是 Related Work（§4）中一个有价值的补充。具体来说：CogRouter（Yang et al., 2026b）使用 per-step routing，如果 step-level signal 如本文所示是 uninformative 的（97.4% steps uninformative, §2.3），CogRouter 在此类环境中可能面临同样的 signal collapse。这类讨论可以用 2-3 句话完成，不需要新实验。\n\n**[AGREE] R2-W5: \"Death\" 术语可能限制 generality perception**\n\n同意。论文框架依赖 binary death/alive 区分（Algorithm 1, line 3-9）。当 failure 是 graded（如 partial score loss, degraded performance）而非 catastrophic 时，Algorithm 1 的 death-first priority 逻辑不再适用——没有明确的 \"death\" 阈值。§5 Discussion 中 \"Practical implications and actionability\"（p8）提到 \"The penalty-invariant label fraction (78.9%) is the primary diagnostic; DAF varies with P\"，但未讨论 death 概念本身是否可以 generalize 到 non-binary failure modes。建议在 Discussion 或 Limitations 中增加一段讨论 graded failure 的情况，例如：可以设定 failure 阈值将 graded failure 二值化，但阈值选择引入新的自由度。\n\n---\n\n### Minor\n\n- **[AGREE]** \"signal diversity can collapse\" 重复——minor writing issue\n- **[REBUT]** \"degenerates\" 用词：这是标准数学/统计用语（\"the approach degenerates to...\"），在 NLP 论文中常见，无需修改\n- **[AGREE]** Figure 2 仅 11 点：与我的 M1 一致，建议加 task name label\n- **[AGREE]** Table 2 Trained Router 仅 1 seed：Appendix J（Table 10）报告了 8 seeds 的 cross-split evaluation，但 Table 2 仅展示 1 seed 结果。建议在 Table 2 中报告 mean ± std across seeds\n- **[AGREE]** Algorithm 1 注释问题：minor formatting，但可能导致误解\n- **[REBUT partially]** arXiv preprint 占比高：2024-2026 年的 LLM agent 领域 fast-moving，许多重要工作尚未正式发表（如 CogRouter, SafeRoute, SALT 等均为 2025-2026 preprints），高 arXiv 比例在此领域是正常的\n- **[AGREE]** Gemma-2 描述不足：§3.2 仅提 sliding window attention，但 Gemma-2-9B 的 architecture 差异（如不同的 normalization, vocabulary size）也可能影响 routing signal，值得补充\n\n### Missing References\n\n- **[AGREE]** Alshiekh et al. (AAAI 2018) Safe RL via Shielding — 与 Appendix O (Grounding Ablation) 的 action-space filtering 直接相关，应引用\n- **[AGREE]** Geifman & El-Yaniv (NeurIPS 2017) Selective Classification — 与 routing/abstention decision 有概念关联，且是 selective prediction 的经典工作\n- **[NEUTRAL]** Pan et al. (2024) LLM agent failure taxonomy — 如果存在公开版本，可以增加引用；但 failure taxonomy 与 routing signal decomposition 的关联不够直接\n- **[NEUTRAL]** Devlin & Kudenko (AAMAS 2012) Dynamic reward shaping — 与 penalty sensitivity（Appendix K）有间接关联，但本文不做 reward shaping，引用必要性不高\n- **[NEUTRAL]** AppAgent / OS-Copilot — 这些是 agent system 论文，与本文的 diagnostic focus 关联较弱\n\n---\n\n### 对 R2 Strengths 的回应\n\n全部同意（S1–S6）。特别支持 S3（双轨度量报告）和 S5（Track fit）——本文确实非常适合 Interpretability and Analysis track，分析深度在该 track 中属于上乘。\n\n\n---\n\n[Reviewer 1 审稿结果]:\n交叉回应已提交。总结：\n\n- **R2 的 2 个 Must-Fix 均 AGREE**：N1（DAF P-dependence）与我的 N2 高度一致；N2（\"deterministic\" 跨环境含义不同）是我审稿时遗漏的重要问题\n- **5 个 Should-Fix 中 AGREE 3 个、部分 AGREE 1 个、REBUT 1 个**：W3（Limitations 过长）我反驳——对 analysis 论文来说诚实的 limitations 是优势而非缺陷，且不占页数限制\n- **7 个 Minor 中 AGREE 4 个、REBUT 2 个、AGREE 1 个**：\"degenerates\" 是标准数学用语，arXiv 高占比在 fast-moving 领域正常\n- **5 个 Missing References 中 AGREE 2 个、NEUTRAL 3 个**"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb7b1f05-d6c9-4968-9171-baae7fe1a95f",
+            "isSidechain": false,
+            "promptId": "d07a860e-8b7c-4d7b-a794-8647dc5e903d",
+            "type": "user",
+            "uuid": "08e85e4c-1bda-4bfd-bf73-4caa99cf59f7",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-22T08:56:32.134Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Both reviewers have completed their initial reviews and cross-responses. Let me now analyze the convergence and proceed to Step 3 (convergence judgment) and then Step 4 (synthesize the final report).\n\nLet me analyze the cross-responses:\n\n**R1's cross-response to R2:**\n- R2-N1 (DAF mathematical inevitability): [AGREE] - aligns with R1's own N2\n- R2-N2 (deterministic meaning differs across environments): [AGREE] - R1 acknowledged this was missed in own review\n\n\n- R2-W1 (63% exclusion rate): [AGREE]\n- R2-W2 (router negative result alternative explanations): [AGREE with nuance]\n- R2-W3 (Limitations too long): [REBUT] - R1 argues it's a strength for an analysis paper\n- R2-W4 (missing comparison with concurrent routing methods): [AGREE partially] - qualitative discussion yes, empirical no\n- R2-W5 (\"Death\" terminology limits generality): [AGREE]\n\n**R2's cross-response to R1:**\n- R1-N1 (episode-level vs step-level granularity mismatch): [REBUT] - R2 argues the claim is about \"routing signal\" and that the distinction doesn't undermine the core finding\n\n, though the language could be tightened\n- R1-N2 (DAF P-dependence): [AGREE] - aligns with R2's own N1\n- R1-W1 (K=11 cluster bootstrap): [AGREE]\n- R1-W2 (63% task exclusion): [AGREE]\n- R1-W3 (Router training limited by simple architecture): [REBUT] - R2 contends the experimental scope is broader than R1 acknowledges, spanning multiple router variants, leave-one-task-out analysis, and proximity-based labeling strategies\n- R1-W4 (72B only a probe): [AGREE]\n\n**Convergence analysis:**\n\nThe strongest point of agreement emerges around DAF's dependence on the preference parameter—both reviewers independently flagged this as a critical limitation, suggesting it's the most robust consensus finding.\n\n**Key divergences:**\n\nThe granularity mismatch between episode and step-level routing signals remains contested, with R2 defending the episode-level framing as principled while acknowledging the abstract could benefit from explicit clarification. R1 and R2 also split on whether the limitations section's length represents thoroughness or excess, and they disagree on how comprehensively the router architecture was tested—R2 points to the breadth of experimental variants as evidence against R1's simplicity critique.\n\nMost concerns align across reviewers, particularly around the DAF P-dependence, task exclusion rate, bootstrap limitations, and 72B scope. The convergence is strong enough to move forward without additional review rounds. Now I need to check the visual validation and external review status before finalizing the synthesis.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08e85e4c-1bda-4bfd-bf73-4caa99cf59f7",
+            "isSidechain": false,
+            "requestId": "req_011CbHKzg7iAMWsA8h7eB5hd",
+            "type": "assistant",
+            "uuid": "02c64ece-0c7a-43ed-ab01-912e35e5847a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ja44odwmTW1dUjVdfhF9VX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3309,
+                "cache_read_input_tokens": 108754,
+                "output_tokens": 1454,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3309,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1454,
+                    "cache_read_input_tokens": 108754,
+                    "cache_creation_input_tokens": 3309,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3309
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-22T08:56:38.166Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉分享完成。分析收敛情况。\n\n**Step 3 收敛判断**：\n\n关键共识达成：\n- **DAF P-dependence**（R1-N2 ≡ R2-N1）：双方完全同意，最强共识点\n- **\"Deterministic\" 跨环境含义不同**（R2-N2）：R1 交叉时 AGREE\n- **63% task 排除率**：双方 AGREE 需更充分 justify\n- **K=11 cluster bootstrap**：双方 AGREE\n- **72B 不完整**：双方 AGREE\n\n存在分歧但不需下一轮：\n- **R1-N1 episode→step 粒度失配**：R2 REBUT（认为论文 claim 是关于 signal 而非 decision），但同意 Abstract 应加 \"episode-level\" 限定词——分歧在 severity 而非方向\n- **R2-W3 Limitations 过长**：R1 REBUT（analysis 论文的 limitations 是优势）——合理分歧\n- **R1-W3 Router 架构简单**：R2 REBUT（6 变体 + LOTO 已足够）——证据充分\n\n**结论**：关键问题已达成共识，剩余分歧各方理由充分且已记录，无需进入 Round 2。进入 Step 4 汇总报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02c64ece-0c7a-43ed-ab01-912e35e5847a",
+            "isSidechain": false,
+            "requestId": "req_011CbHKzg7iAMWsA8h7eB5hd",
+            "type": "assistant",
+            "uuid": "4ef73b83-dfab-4ef9-a4d5-4511c70b7db9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ja44odwmTW1dUjVdfhF9VX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3309,
+                "cache_read_input_tokens": 108754,
+                "output_tokens": 1454,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3309,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1454,
+                    "cache_read_input_tokens": 108754,
+                    "cache_creation_input_tokens": 3309,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3309
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-22T08:56:39.045Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Rf8Kmy3snFd7XRxoSk42At",
+              "name": "mcp__agent-ml-research__get_visual_check_status",
+              "input": {
+                "project": "simgate-modular-routing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ef73b83-dfab-4ef9-a4d5-4511c70b7db9",
+            "isSidechain": false,
+            "requestId": "req_011CbHKzg7iAMWsA8h7eB5hd",
+            "type": "assistant",
+            "uuid": "feec7347-5c90-4748-8443-75bb7027a138",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ja44odwmTW1dUjVdfhF9VX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3309,
+                "cache_read_input_tokens": 108754,
+                "output_tokens": 1454,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3309,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1454,
+                    "cache_read_input_tokens": 108754,
+                    "cache_creation_input_tokens": 3309,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3309
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-22T08:56:39.062Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Rf8Kmy3snFd7XRxoSk42At",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-22T08:46:52.839773+00:00\\\", \\\"completed_at\\\": \\\"2026-05-22T08:50:24.194190+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1\\\", \\\"message\\\": \\\"首页无 display item，第一个视觉锚点（Figure 1）出现在 page 2。Title/Abstract/Intro 排版干净整洁，ACL 双栏格式规范。Figure 1 在 page 2 是可接受的，但审稿人翻开第一页只看到纯文字。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1（counterfactual pipeline 图）作为首个视觉锚点，能传达核心方法流程（episode collection → death decomposition）。但图较小，图内文字偏小（尤其是公式 Δ_dd = ΔP × Δ_death 部分），建议适当放大或改为 figure* 全宽展示。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 3\\\", \\\"message\\\": \\\"纯文本+公式页（§2.3-2.4，方程 3-5）。数学推导密集段属于合理例外，无问题。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 4\\\", \\\"message\\\": \\\"Figure 2（scatter plot）位置合理，紧随 §3.1 统计推断讨论。图较小但数据点和回归线清晰可辨。相关系数标注文字偏小。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Table 1 使用 booktabs 风格，格式规范。列对齐和数字精度统一。最优值有加粗标注。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 6\\\", \\\"message\\\": \\\"Figure 3 + Table 2 同页，视觉密度好。Figure 3 使用误差带（shaded region）展示置信区间，是好的可视化实践。颜色区分度可接受。\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"pages 7-8\\\", \\\"message\\\": \\\"连续两页纯文本无任何 display item。Page 7 包含 §3.6（Router Training 负向结果）和 §4（Related Work）；Page 8 包含 Related Work 续、§5 Discussion、§6 Conclusion。虽然这些章节传统上文本密集，但连续两整页纯文字会让审稿人阅读节奏变得单调。建议：§3.6 的 router 训练结果可考虑用一个小 table 呈现而非纯文字描述。\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 9\\\", \\\"message\\\": \\\"Limitations 章节过长，几乎填满整页，包含 5 个子章节（Environmental scope / Statistical limitations / Methodological constraints / Pure-strategy upper bound / Diagnostic scope）。EMNLP 指南建议 Limitations 简短覆盖 ~3 个要点即可。当前篇幅可能给审稿人\\\\\\\"防御性过强\\\\\\\"的印象。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 10\\\", \\\"message\\\": \\\"Ethics Statement 简洁得体。References 开始，格式统一，无 [?] 未解析引用。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 13\\\", \\\"message\\\": \\\"Algorithm 1 伪代码框清晰，Table 3（per-task decomposition）列数多但格式规范。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 14\\\", \\\"message\\\": \\\"Tables 4-6 密度高但排版合理，均使用 booktabs 风格。Table 5（leave-one-out Pearson r）紧凑清晰。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 18\\\", \\\"message\\\": \\\"Tables 12-13 字号偏小，列数较多。在打印时可能边缘可读性下降。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 20\\\", \\\"message\\\": \\\"Figure 5（action distribution bar chart）使用蓝/橙等高对比色，色盲友好。Figure 6（step-by-step action sequences）用彩色方块标注不同 action 类型，创意好，但方块内 monospace 文字非常小，打印后可能难以辨读。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 21\\\", \\\"message\\\": \\\"Figure 7 与 Figure 5 风格一致，颜色语义保持统一（同一 action 类型跨图用同色）。Table 18-19 排版正常。\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 24\\\", \\\"message\\\": \\\"末页仅约 1/4 面积有内容（prompt 模板结尾 + 一小段说明文字），剩余 ~3/4 为空白。虽然是附录末页且为 prompt 展示，但空间利用率低。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全局\\\", \\\"message\\\": \\\"主体正文 8 页含 5 个 display items（Figure 1-3, Table 1-2），对于诊断/分析型论文属于合理范围下限。附录极为丰富（Tables 3-21, Figures 5-7, Algorithm 1），补充了大量实证支撑。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全局\\\", \\\"message\\\": \\\"全文无可见的 LaTeX 渲染错误、margin 溢出、section heading 孤悬、或公式渲染异常。双栏排版间距均匀，行号完整（submission 格式正确）。\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 3, \\\"info\\\": 14}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "feec7347-5c90-4748-8443-75bb7027a138",
+            "isSidechain": false,
+            "promptId": "d07a860e-8b7c-4d7b-a794-8647dc5e903d",
+            "type": "user",
+            "uuid": "e64caffd-1851-4604-87d5-af8364f3d9d4",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-22T08:46:52.839773+00:00\\\", \\\"completed_at\\\": \\\"2026-05-22T08:50:24.194190+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1\\\", \\\"message\\\": \\\"首页无 display item，第一个视觉锚点（Figure 1）出现在 page 2。Title/Abstract/Intro 排版干净整洁，ACL 双栏格式规范。Figure 1 在 page 2 是可接受的，但审稿人翻开第一页只看到纯文字。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1（counterfactual pipeline 图）作为首个视觉锚点，能传达核心方法流程（episode collection → death decomposition）。但图较小，图内文字偏小（尤其是公式 Δ_dd = ΔP × Δ_death 部分），建议适当放大或改为 figure* 全宽展示。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 3\\\", \\\"message\\\": \\\"纯文本+公式页（§2.3-2.4，方程 3-5）。数学推导密集段属于合理例外，无问题。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 4\\\", \\\"message\\\": \\\"Figure 2（scatter plot）位置合理，紧随 §3.1 统计推断讨论。图较小但数据点和回归线清晰可辨。相关系数标注文字偏小。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Table 1 使用 booktabs 风格，格式规范。列对齐和数字精度统一。最优值有加粗标注。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 6\\\", \\\"message\\\": \\\"Figure 3 + Table 2 同页，视觉密度好。Figure 3 使用误差带（shaded region）展示置信区间，是好的可视化实践。颜色区分度可接受。\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"pages 7-8\\\", \\\"message\\\": \\\"连续两页纯文本无任何 display item。Page 7 包含 §3.6（Router Training 负向结果）和 §4（Related Work）；Page 8 包含 Related Work 续、§5 Discussion、§6 Conclusion。虽然这些章节传统上文本密集，但连续两整页纯文字会让审稿人阅读节奏变得单调。建议：§3.6 的 router 训练结果可考虑用一个小 table 呈现而非纯文字描述。\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 9\\\", \\\"message\\\": \\\"Limitations 章节过长，几乎填满整页，包含 5 个子章节（Environmental scope / Statistical limitations / Methodological constraints / Pure-strategy upper bound / Diagnostic scope）。EMNLP 指南建议 Limitations 简短覆盖 ~3 个要点即可。当前篇幅可能给审稿人\\\\\\\"防御性过强\\\\\\\"的印象。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 10\\\", \\\"message\\\": \\\"Ethics Statement 简洁得体。References 开始，格式统一，无 [?] 未解析引用。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 13\\\", \\\"message\\\": \\\"Algorithm 1 伪代码框清晰，Table 3（per-task decomposition）列数多但格式规范。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 14\\\", \\\"message\\\": \\\"Tables 4-6 密度高但排版合理，均使用 booktabs 风格。Table 5（leave-one-out Pearson r）紧凑清晰。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 18\\\", \\\"message\\\": \\\"Tables 12-13 字号偏小，列数较多。在打印时可能边缘可读性下降。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 20\\\", \\\"message\\\": \\\"Figure 5（action distribution bar chart）使用蓝/橙等高对比色，色盲友好。Figure 6（step-by-step action sequences）用彩色方块标注不同 action 类型，创意好，但方块内 monospace 文字非常小，打印后可能难以辨读。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 21\\\", \\\"message\\\": \\\"Figure 7 与 Figure 5 风格一致，颜色语义保持统一（同一 action 类型跨图用同色）。Table 18-19 排版正常。\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 24\\\", \\\"message\\\": \\\"末页仅约 1/4 面积有内容（prompt 模板结尾 + 一小段说明文字），剩余 ~3/4 为空白。虽然是附录末页且为 prompt 展示，但空间利用率低。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全局\\\", \\\"message\\\": \\\"主体正文 8 页含 5 个 display items（Figure 1-3, Table 1-2），对于诊断/分析型论文属于合理范围下限。附录极为丰富（Tables 3-21, Figures 5-7, Algorithm 1），补充了大量实证支撑。\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全局\\\", \\\"message\\\": \\\"全文无可见的 LaTeX 渲染错误、margin 溢出、section heading 孤悬、或公式渲染异常。双栏排版间距均匀，行号完整（submission 格式正确）。\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 3, \\\"info\\\": 14}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-22T08:46:52.839773+00:00\", \"completed_at\": \"2026-05-22T08:50:24.194190+00:00\", \"findings\": [{\"severity\": \"info\", \"dimension\": \"page 1\", \"message\": \"首页无 display item，第一个视觉锚点（Figure 1）出现在 page 2。Title/Abstract/Intro 排版干净整洁，ACL 双栏格式规范。Figure 1 在 page 2 是可接受的，但审稿人翻开第一页只看到纯文字。\"}, {\"severity\": \"info\", \"dimension\": \"page 2\", \"message\": \"Figure 1（counterfactual pipeline 图）作为首个视觉锚点，能传达核心方法流程（episode collection → death decomposition）。但图较小，图内文字偏小（尤其是公式 Δ_dd = ΔP × Δ_death 部分），建议适当放大或改为 figure* 全宽展示。\"}, {\"severity\": \"info\", \"dimension\": \"page 3\", \"message\": \"纯文本+公式页（§2.3-2.4，方程 3-5）。数学推导密集段属于合理例外，无问题。\"}, {\"severity\": \"info\", \"dimension\": \"page 4\", \"message\": \"Figure 2（scatter plot）位置合理，紧随 §3.1 统计推断讨论。图较小但数据点和回归线清晰可辨。相关系数标注文字偏小。\"}, {\"severity\": \"info\", \"dimension\": \"page 5\", \"message\": \"Table 1 使用 booktabs 风格，格式规范。列对齐和数字精度统一。最优值有加粗标注。\"}, {\"severity\": \"info\", \"dimension\": \"page 6\", \"message\": \"Figure 3 + Table 2 同页，视觉密度好。Figure 3 使用误差带（shaded region）展示置信区间，是好的可视化实践。颜色区分度可接受。\"}, {\"severity\": \"warning\", \"dimension\": \"pages 7-8\", \"message\": \"连续两页纯文本无任何 display item。Page 7 包含 §3.6（Router Training 负向结果）和 §4（Related Work）；Page 8 包含 Related Work 续、§5 Discussion、§6 Conclusion。虽然这些章节传统上文本密集，但连续两整页纯文字会让审稿人阅读节奏变得单调。建议：§3.6 的 router 训练结果可考虑用一个小 table 呈现而非纯文字描述。\"}, {\"severity\": \"warning\", \"dimension\": \"page 9\", \"message\": \"Limitations 章节过长，几乎填满整页，包含 5 个子章节（Environmental scope / Statistical limitations / Methodological constraints / Pure-strategy upper bound / Diagnostic scope）。EMNLP 指南建议 Limitations 简短覆盖 ~3 个要点即可。当前篇幅可能给审稿人\\\"防御性过强\\\"的印象。\"}, {\"severity\": \"info\", \"dimension\": \"page 10\", \"message\": \"Ethics Statement 简洁得体。References 开始，格式统一，无 [?] 未解析引用。\"}, {\"severity\": \"info\", \"dimension\": \"page 13\", \"message\": \"Algorithm 1 伪代码框清晰，Table 3（per-task decomposition）列数多但格式规范。\"}, {\"severity\": \"info\", \"dimension\": \"page 14\", \"message\": \"Tables 4-6 密度高但排版合理，均使用 booktabs 风格。Table 5（leave-one-out Pearson r）紧凑清晰。\"}, {\"severity\": \"info\", \"dimension\": \"page 18\", \"message\": \"Tables 12-13 字号偏小，列数较多。在打印时可能边缘可读性下降。\"}, {\"severity\": \"info\", \"dimension\": \"page 20\", \"message\": \"Figure 5（action distribution bar chart）使用蓝/橙等高对比色，色盲友好。Figure 6（step-by-step action sequences）用彩色方块标注不同 action 类型，创意好，但方块内 monospace 文字非常小，打印后可能难以辨读。\"}, {\"severity\": \"info\", \"dimension\": \"page 21\", \"message\": \"Figure 7 与 Figure 5 风格一致，颜色语义保持统一（同一 action 类型跨图用同色）。Table 18-19 排版正常。\"}, {\"severity\": \"warning\", \"dimension\": \"page 24\", \"message\": \"末页仅约 1/4 面积有内容（prompt 模板结尾 + 一小段说明文字），剩余 ~3/4 为空白。虽然是附录末页且为 prompt 展示，但空间利用率低。\"}, {\"severity\": \"info\", \"dimension\": \"全局\", \"message\": \"主体正文 8 页含 5 个 display items（Figure 1-3, Table 1-2），对于诊断/分析型论文属于合理范围下限。附录极为丰富（Tables 3-21, Figures 5-7, Algorithm 1），补充了大量实证支撑。\"}, {\"severity\": \"info\", \"dimension\": \"全局\", \"message\": \"全文无可见的 LaTeX 渲染错误、margin 溢出、section heading 孤悬、或公式渲染异常。双栏排版间距均匀，行号完整（submission 格式正确）。\"}], \"counts\": {\"critical\": 0, \"warning\": 3, \"info\": 14}}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "feec7347-5c90-4748-8443-75bb7027a138",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-22T08:56:39.147Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012GquELkBChSAnKYs6AZ3CN",
+              "name": "mcp__agent-ml-research__get_external_review_status",
+              "input": {
+                "project": "simgate-modular-routing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e64caffd-1851-4604-87d5-af8364f3d9d4",
+            "isSidechain": false,
+            "requestId": "req_011CbHKzg7iAMWsA8h7eB5hd",
+            "type": "assistant",
+            "uuid": "cf0c033e-9336-4569-9245-5d8b8d04e537",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ja44odwmTW1dUjVdfhF9VX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3309,
+                "cache_read_input_tokens": 108754,
+                "output_tokens": 1454,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3309,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1454,
+                    "cache_read_input_tokens": 108754,
+                    "cache_creation_input_tokens": 3309,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3309
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-22T08:56:39.182Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012GquELkBChSAnKYs6AZ3CN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf0c033e-9336-4569-9245-5d8b8d04e537",
+            "isSidechain": false,
+            "promptId": "d07a860e-8b7c-4d7b-a794-8647dc5e903d",
+            "type": "user",
+            "uuid": "c4eae72f-eacd-4c73-8d12-244eb52093a5",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "cf0c033e-9336-4569-9245-5d8b8d04e537",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 1 审稿意见]:  ## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应  ---  ### Must-Fix  **[AGREE] R2-N1: DAF 的数学必然性与主文叙述存在张力**  完全同意。这与我的 N2 高度一致。Appendix K 明确写道 DAF \"increases monotonically with P\" 且是 \"a mathem…",
+                "leafUuid": "c4eae72f-eacd-4c73-8d12-244eb52093a5",
+                "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb"
+              }
+            }
+          ],
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review simgate-modular-routing paper for EMNLP 2026",
+                "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb"
+              }
+            }
+          ],
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-22T08:57:31.736Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I have:\n- Visual check: done, 3 warnings, 14 info\n- External review: not requested (as expected)\n\nNow let me compose the final review report and update the issue tracker.\n\nLet me first read the current review_issues.yaml to understand what exists, then compose the report.\n\nI already have the review_issues.yaml content from earlier. Now I need to:\n1. Compose the full review report\n2. Update the issue tracker (merge new findings with existing issues)\n3. Submit the report via submit_review_report_to_research_director\n\n\nNow I'm organizing the findings from this round. I need to separate the critical issues that require fixes from the ones already resolved or marked as won't-fix in previous rounds. Since this is a fresh review, I'm treating the new findings as a separate set, but I should check how they map to any existing tracked issues to avoid duplication.\n\nLooking at the DAF P-dependence issue specifically, both reviewers flagged it again in round 28 even though there was an attempted resolution in round 27. R2-N1 notes that the main text and abstract still center on the 90.4% figure, while R1-N2 points out that this percentage stems directly from the P=100 choice and needs discussion in the main text rather than just in the appendix. This suggests the previous resolution didn't fully address the underlying concern. The reviewer in round 28 is pointing out that despite the reordering, the abstract still presents both numbers with similar prominence—label fraction first at 78.9%, then DAF at 90.4%—when DAF should be clearly secondary. I'm tracking this as a recurring issue since the R27 fix didn't fully address the concern. Now I'm mapping out which issues are truly new versus recurring across review rounds: the DAF prominence problem connects back to R27-N2, the deterministic semantics issue to R27-N3, and the granularity mismatch has roots in earlier feedback.\n\nI'm also noting that several issues like the 63% task exclusion, K=11 bootstrap, and router scope problems all trace back to R27 findings, confirming they're persistent. A few items are genuinely new—the 72B model incompleteness, the concurrent routing methods discussion, and the \"death\" terminology generality. There's also a divergence on limitations length where round 1 rebutted the concern but round 2 is raising it again. Beyond the content issues, I'm seeing formatting problems: text walls on pages 7-8, the limitations section running too long on page 9, and whitespace issues on page 24. I'll compile all this into the full report and update the issue tracker accordingly.\n\nBoth reviewers landed on 3.5 (Borderline Conference) with aligned soundness scores—R1 at 3.5, R2 at 4—and matching excitement at 3 across the board. The paper demonstrates solid methodological execution with thorough robustness checks and honest reporting of negative results, but the novelty is limited and everything's confined to a single environment. My own read is that the core finding feels somewhat predictable given the death penalty setup, and the DAF metric blurs the line between mathematical inevitability and empirical discovery. The cross-environment validation is really just testing boundary conditions rather than true generalization. This lands squarely in the Findings track, though it's borderline for the main conference track.\n\nGiven the strong convergence at 3.5 and that the main issues are framing problems rather than fundamental flaws, I'm settling on 3.0 (Findings). The excitement gap is structural—both reviewers identified it and it's not something that can be easily resolved. The fixable items like DAF framing, the cross-environment semantics, and the task exclusion rationale are all addressable through text revisions, but they don't change the underlying limitation that the work lacks the novelty or breadth needed for a stronger acceptance. Both reviewers independently converged on the same strengths (exhaustive robustness, honest negatives, strong writing) and fixable weaknesses (framing issues around the DAF metric, cross-environment semantics, task exclusion justification). The structural limitation—that the core finding lacks novelty excitement—is what both capped at 3/5, making 3.0 (Findings) the appropriate overall score since the text-level fixes won't address the fundamental contribution's limited scope.\n\nI'm noting that both reviewers completed cross-responses, so I'll track that for the report. The single environment with boundary probes doesn't fully support the generality the framework claims, which reinforces why this lands at Findings rather than a higher tier. Now I'll draft the complete assessment.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4eae72f-eacd-4c73-8d12-244eb52093a5",
+            "isSidechain": false,
+            "requestId": "req_011CbHL2oz3H3Vr3Aw2CPUQS",
+            "type": "assistant",
+            "uuid": "ca0cb452-5615-467d-8d40-13c5773a93fe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MgTmwTCi92TsTrpHVVNeHF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3301,
+                "cache_read_input_tokens": 112063,
+                "output_tokens": 11390,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3301,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11390,
+                    "cache_read_input_tokens": 112063,
+                    "cache_creation_input_tokens": 3301,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3301
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-22T08:57:31.849Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "视觉审查已完成（3 warnings, 14 info），外部审稿未请求。现在合成最终报告并更新 Issue Tracker。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca0cb452-5615-467d-8d40-13c5773a93fe",
+            "isSidechain": false,
+            "requestId": "req_011CbHL2oz3H3Vr3Aw2CPUQS",
+            "type": "assistant",
+            "uuid": "f2f8d2c3-35e6-487d-8fce-5c9592a23256",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MgTmwTCi92TsTrpHVVNeHF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3301,
+                "cache_read_input_tokens": 112063,
+                "output_tokens": 11390,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3301,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11390,
+                    "cache_read_input_tokens": 112063,
+                    "cache_creation_input_tokens": 3301,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3301
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-22T09:00:12.219Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AsnK7vWvaahS4LEHfHc3EP",
+              "name": "mcp__agent-ml-research__update_review_issues",
+              "input": {
+                "project": "simgate-modular-routing",
+                "issues_yaml": "# Round 28 Review Issues (fresh review, 2026-05-22)\n# Two reviewers: R1 (方法严谨性+实验设计), R2 (新颖性+完整性+写作)\n\n# =============================================\n# Carried-over resolved issues (from prior rounds)\n# =============================================\n\n- id: \"R13-W1\"\n  summary: \"正文篇幅严重不足 long paper 要求\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 14\n  resolution: \"正文已扩展至 8 页\"\n  resolution_round: 14\n\n- id: \"R13-W2\"\n  summary: \"Router 训练实验存在多个 confound\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: \"1.7B dip 有可检验假说，augmentation 术语修正，N 统一\"\n  resolution_round: 15\n\n- id: \"R13-W3\"\n  summary: \"Episode-level label → step-level training 的 mislabeling 未被量化\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 14\n  resolution: \"Limitations 和 Appendix B 已充分量化\"\n  resolution_round: 14\n\n- id: \"R13-W4\"\n  summary: \"SCI 方法贡献与实际使用不成比例\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 14\n  resolution: \"SCI 已降级到 Appendix A\"\n  resolution_round: 14\n\n- id: \"R13-W7\"\n  summary: \"Router negative results 解释不完整\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: \"Router 实验定位为 diagnostic probe\"\n  resolution_round: 15\n\n- id: \"R13-m2\"\n  summary: \"Figure 3 仅含 ScienceWorld 和 MATH，缺少 ALFWorld\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 16\n  resolution: \"Figure 3 已移除，数据在 Table 2 和正文中完整呈现\"\n  resolution_round: 16\n\n- id: \"R13-m3\"\n  summary: \"Reference 格式不统一 + orphan entries\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 15\n  resolution: \"Orphan entries 清理完毕，格式统一\"\n  resolution_round: 15\n\n- id: \"R14-W2\"\n  summary: \"Concurrent work 讨论过于压缩\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"Concurrent work 展开讨论，各有明确 positioning\"\n  resolution_round: 15\n\n- id: \"R14-W3\"\n  summary: \"Selection bias from prescreening 11/30 task types\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"Anti-cherry-picking analysis 到位\"\n  resolution_round: 15\n\n- id: \"R14-M1\"\n  summary: \"Table 2 caption 'Single seed' 需澄清\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"Caption 已修正\"\n  resolution_round: 15\n\n- id: \"R14-M2\"\n  summary: \"Limitations section 组织松散\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  resolution: \"三个 paragraph headers 结构清晰\"\n  resolution_round: 15\n\n- id: \"R14-M3\"\n  summary: \"Appendix F minority-class diversity caveat 应在正文提及\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 16\n  resolution: \"§3.7 和 Appendix F 均明确提及\"\n  resolution_round: 16\n\n- id: \"R13-N2\"\n  summary: \"统计推断可靠性不足：cluster bootstrap K=11 CI 反常收窄\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 24\n  resolution: \"Wild cluster CI 修正且降级为 sensitivity analysis；non-clustered bootstrap 为主推断\"\n  resolution_round: 24\n\n- id: \"R13-W5\"\n  summary: \"Abstract 数字堆砌\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 24\n  resolution: \"Abstract concept-first 重组，数字从 10+ 精简至 3-4 个\"\n  resolution_round: 24\n\n- id: \"R13-W6\"\n  summary: \"Safe RL 和 LLM agent failure mode 相关引用覆盖不足\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 13\n  last_seen_round: 24\n  resolution: \"Ng 1999, Northcutt 2021, DivideMix 已添加并在正确位置引用\"\n  resolution_round: 24\n\n- id: \"R14-W1\"\n  summary: \"核心发现存在 obvious-in-hindsight triviality 风险\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 24\n  resolution: \"§5 Non-triviality 段有效回应 novelty 质疑\"\n  resolution_round: 24\n\n- id: \"R15-N1\"\n  summary: \"'Structural' claim 推断基础不足\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"Discussion 已弱化为 'robust under tested interventions'\"\n  resolution_round: 16\n\n- id: \"R15-N3\"\n  summary: \"Contribution 1 'any environment' generalizability claim 过宽\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"Contribution 1 措辞已收窄\"\n  resolution_round: 16\n\n- id: \"R15-W1\"\n  summary: \"§3.7 Augmentation scaling 措辞易误读为 data scaling\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"§3.7 明确标注为 paraphrase-based augmentation\"\n  resolution_round: 16\n\n- id: \"R15-W3\"\n  summary: \"72B 缺完整 DAF decomposition\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 16\n  resolution: \"72B DAF decomposition 完整呈现\"\n  resolution_round: 16\n\n- id: \"R17-W4\"\n  summary: \"Related Work 第一段论文罗列\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 17\n  resolution: \"§4 已按功能类别重组（Self-supervised, Token-level, Task-level, RL-based）\"\n  resolution_round: 19\n\n- id: \"R17-W1\"\n  summary: \"Pure-strategy 设计高估 death asymmetry 对 realistic routing 的影响\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"Limitations 新增 pure-strategy upper bound 段落\"\n  resolution_round: 24\n\n- id: \"R17-W3\"\n  summary: \"Data scaling 'structural failure' 措辞\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"术语全局修正为 text augmentation\"\n  resolution_round: 24\n\n- id: \"R17-N2\"\n  summary: \"penalty-independent 表述误导：P=0 时 72% labels 退化为 ties\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"P-invariance 适用范围明确量化\"\n  resolution_round: 24\n\n- id: \"R18-N1\"\n  summary: \"Episode→step granularity gap 削弱框架实用性\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"4B router 结论 qualified；完整统计处理\"\n  resolution_round: 24\n\n- id: \"R18-W1\"\n  summary: \"Router 实验 confounds: compounding errors + train/val split 不清晰\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Router claim 从绝对否定改为有条件否定\"\n  resolution_round: 24\n\n- id: \"R18-W2\"\n  summary: \"Agent improvement 实验统计功效不足\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"措辞软化 + effect size detection threshold 完整报告\"\n  resolution_round: 24\n\n- id: \"R20-N1\"\n  summary: \"正文超出 8 页限制——§6 Conclusion 起始于 page 9，有 desk reject 风险\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"正文收入 8 页\"\n  resolution_round: 24\n\n- id: \"R20-N2\"\n  summary: \"4B router episode-level 59.0% 与 'fundamental non-learnability' 结论矛盾\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"合并 R18-N1 解决\"\n  resolution_round: 24\n\n- id: \"R20-N3\"\n  summary: \"'Structurally determined' overclaim — r=0.97 correlation ≠ causal/structural\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"'structurally determined' → 'empirically dominated'\"\n  resolution_round: 24\n\n- id: \"R20-W2\"\n  summary: \"Per-task n=20 导致 13/28 tasks 不显著，主文未标注为 exploratory\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"Per-task 结果标注为 exploratory，power caveat 完整\"\n  resolution_round: 24\n\n- id: \"R17-M1\"\n  summary: \"Orphan bib entry + Webb 年份待核实\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"huang2022inner, selfcheckgpt-2023, wang2023voyager 已清理；Webb 2023 (CJE vol.56 no.3) 年份正确\"\n  resolution_round: 24\n\n- id: \"R19-M2\"\n  summary: \"Missing references: Altman 1999, Mihatsch 2002, Natarajan 2013\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 24\n  resolution: \"所有缺失引用已补充\"\n  resolution_round: 24\n\n- id: \"R18-M3\"\n  summary: \"Appendix 缺索引（17 个 appendices A-R）\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Appendix Overview with hyperlinks 已存在\"\n  resolution_round: 24\n\n- id: \"R18-M4\"\n  summary: \"§3.1 '54 sole-identified labels' 首次出现未定义\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"术语已修正并定义\"\n  resolution_round: 24\n\n- id: \"R18-M5\"\n  summary: \"Appendix N failure categories 缺 inter-annotator agreement 声明\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Single annotator caveat 已存在\"\n  resolution_round: 24\n\n- id: \"R18-M2\"\n  summary: \"100% internal deaths 来自 single action pattern — implication 未讨论\"\n  category: framing\n  severity: info\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"§5 已讨论 focus on [object] 单一模式\"\n  resolution_round: 24\n\n- id: \"R20-M1\"\n  summary: \"Orphan bib entries: huang2022inner, selfcheckgpt-2023, wang2023voyager\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"合并 R17-M1 解决\"\n  resolution_round: 24\n\n- id: \"R15-N2\"\n  summary: \"跨环境模态定义不一致——三个环境的 deterministic 含义不同\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 24\n  resolution: \"§5.4 cross-env 段加交叉引用指向 §2.1 operationalization\"\n  resolution_round: 24\n\n- id: \"R15-W2\"\n  summary: \"Oracle margin vs mislabeling 逻辑层级未明确\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 24\n  resolution: \"Appendix B 加 circularity caveat; Limitations 量化 0.3% 方向冲突 + 60.3% pre-event neutral\"\n  resolution_round: 24\n\n- id: \"R20-W1\"\n  summary: \"Noisy label learning 引用和讨论深度不足\"\n  category: writing\n  severity: info\n  status: wont_fix\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"引用已补全；额外解释句因 8 页限制无法加入，现有措辞部分覆盖\"\n  resolution_round: 24\n\n- id: \"R18-M1\"\n  summary: \"'modality' 术语在 NLP 语境下有歧义\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 18\n  last_seen_round: 24\n  resolution: \"Algorithm 1 术语修正为 computation modes\"\n  resolution_round: 24\n\n- id: \"R17-N1\"\n  summary: \"78.9% label fraction binary per-task structure\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 17\n  last_seen_round: 24\n  resolution: \"§3.1 binary structure 讨论充分\"\n  resolution_round: 24\n\n- id: \"R16-W1\"\n  summary: \"72B vs 7B DAF 对比基于不同 task population 且缺少实验细节\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 24\n  resolution: \"72B decomposition 完整报告\"\n  resolution_round: 24\n\n- id: \"R16-W2\"\n  summary: \"Router 1.7B non-monotonic dip 解释缺乏 per-class evidence\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 24\n  resolution: \"被 R20-N2 取代并解决\"\n  resolution_round: 24\n\n- id: \"R16-W3\"\n  summary: \"signal_reversal.pdf 存在于 figures/ 但未被任何 .tex 引用\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 16\n  last_seen_round: 24\n  resolution: \"Appendix L 已引用\"\n  resolution_round: 24\n\n- id: \"R19-W1\"\n  summary: \"缺少 penalty magnitude 的实际实验验证\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 24\n  resolution: \"P-invariance by design 论证逻辑覆盖\"\n  resolution_round: 24\n\n- id: \"R27-N1\"\n  summary: \"正文超出 8 页限制——Conclusion 溢出到 page 9（R20-N1 复发）\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 27\n  resolution: \"§5 重组为 3 段，Figure 2 缩小，§3.1 correlation/sensitivity 压缩。Conclusion 在 page 8。\"\n  resolution_round: 27\n\n- id: \"R27-N2\"\n  summary: \"DAF=90.4% 部分是 P=100 penalty 的数学必然，Abstract/Title framing 过度突出\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 13\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：Abstract 78.9% 为 headline，DAF 降为 derived measure\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] R27 修复部分有效——78.9% 确实是 headline，但 DAF=90.4% 仍在 Abstract 和 §3.1 中以核心数字出现。§2.4 将 DAF 标记为 derived penalty-dependent measure，但 P-sensitivity 的核心数字（P=10→50.4%, P=50→82.6%）仅在 Appendix K 中出现，主文未展示。\"\n  action_items:\n    - round: 28\n      action: \"§2.4 在定义 DAF 后增加 1-2 句正文讨论 P-sensitivity（至少引用 P=10 和 P=50 数值）；Abstract/Conclusion 进一步降低 DAF 的 prominence\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-N3\"\n  summary: \"Deterministic strategy 实为 oracle access，跨环境含义不统一，oracle confound 未分离\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 15\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：§2.1 inline 三环境 operationalization，§5 ¶2 双论据\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] §2.1 已描述差异但 Conclusion 仍写 'the diagnostic procedure transfers'，未区分 procedure transferability vs operationalization consistency。三环境 'deterministic' 的信息优势程度差异巨大（oracle > code interpreter > admissible actions），当前表述暗示跨环境一致性高于实际水平。\"\n  action_items:\n    - round: 28\n      action: \"§3.4 开头或 Conclusion 增加限定：cross-environment probes 验证 diagnostic procedure 的可复用性，不是 'deterministic' 概念的一致性\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-N4\"\n  summary: \"环境覆盖过窄，generalization claims 超出证据——1 个主环境 + 2 个 boundary probes\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 15\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：Abstract/Conclusion 'preliminary evidence' + 区分 methodological vs empirical generality\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"本轮未单独提出，但 R2-N2 间接涉及——cross-env claims 需更精确限定。R27 修复基本有效。\"\n\n- id: \"R28-N1\"\n  summary: \"Episode-level labeling 与 step-level routing 的粒度失配——title/abstract scope 超出方法论覆盖范围\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[DIVERGENCE] R1 认为 critical（title 暗示 step-level routing 发现，实际是 episode-level outcome）；R2 REBUT 认为 'routing signal' ≠ 'routing decision'，episode-level 是 principled granularity，但同意 Abstract 应加 'episode-level' 限定词。双方最终共识：不影响 claim validity，但 framing 需更精确。\"\n  action_items:\n    - round: 28\n      action: \"Abstract 中在 '78.9% of non-tie routing labels' 前增加 'episode-level' 限定词\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-W1\"\n  summary: \"Router negative result framing: signal-limited vs data-limited 未区分\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 13\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：§5 ¶1 双解释 + 1,350 估算\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[DIVERGENCE on severity] R1 认为架构简单性是主要限制（仅 Qwen3 0.6B-4B），R2 REBUT 认为 6 种 router 变体 + LOTO + death-proximal labeling 已足够。但双方 AGREE：paraphrase augmentation 不增加新 routing signal，signal-limited vs data-limited vs feature-limited 的区分尚不完全 conclusive。\"\n  action_items:\n    - round: 28\n      action: \"§3.6 或 §5 更对称地呈现两种解释，明确当前数据量不足以完全区分 signal-limited vs data-limited\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-W2\"\n  summary: \"Actionability 有限——诊断出问题但'然后怎么办'回答不足\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 25\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：§5 ¶3 actionability 段完成\"\n    - round: 28\n      reviewers: [2]\n      note: \"R2-W4：缺少与 concurrent routing methods 的定性讨论——CogRouter/ARES/MTRouter 在 death-dominated 环境中是否遇到 signal collapse。R1 AGREE partially（定性讨论有价值，不需实验）。\"\n  action_items:\n    - round: 28\n      action: \"§5 或 §4 增加 2-3 句定性讨论 concurrent routing methods 在 death-dominated 环境中的预期表现\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-W4\"\n  summary: \"Excluded tasks (63%) n=5 prescreening 样本量极小\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 16\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：§3 加 n=5 limitation 标注\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] 主文仅一句话。对 analysis 论文 63% 排除率需更充分正文 justify。缺 taxonomic redundancy 的操作定义。建议至少在 §3 增加一段展示 Table 4 的 key numbers（excluded ΔDR=+38.2 > included +28.7 pp）。\"\n  action_items:\n    - round: 28\n      action: \"§3 增加一段：排除 tasks 的 ΔDR 更高 + taxonomic redundancy 操作定义\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R27-W5\"\n  summary: \"K=11 cluster bootstrap: primary CI [81.1%, 99.0%] 可能 anti-conservative\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 13\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"R27 修复：§3.1 并列报告 clustered CI [73.3%, 100.0%]\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] 论文处理得当（non-clustered 为主推断），但 Limitations 正文缺 Cameron et al. K≥20-50 建议的显式引用。Effect size d=3.02 缓解但不消除。\"\n  action_items:\n    - round: 28\n      action: \"Limitations Statistical limitations 段显式引用 Cameron et al. K≥20-50 建议\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R28-W1\"\n  summary: \"72B scaling 仅做 probe 而非完整 replication——缺 router training 和 SCI 分析\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] 72B death rate 降到 30.6%，non-death signal 可能更 prominent。DAF=92.4% 反而更高（deterministic 也更安全），但未运行 router training 或 per-task decomposition 验证。\"\n  action_items:\n    - round: 28\n      action: \"Limitations 中明确 72B 实验 scope 限制；讨论更强模型下 non-death signal 是否可能超过 death signal\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R28-W2\"\n  summary: \"'Death' 术语限制 generality perception——binary failure vs graded failure 适用性未讨论\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] Algorithm 1 依赖 binary death/alive 区分。当 failure 是 graded 时，death-first priority 不适用。Discussion/Limitations 缺少对 graded failure 的讨论。\"\n  action_items:\n    - round: 28\n      action: \"§5 或 Limitations 增加 1-2 句讨论 graded failure 场景下 framework 的调整（如设 failure threshold 二值化）\"\n      assigned_to: main_agent\n      status: open\n\n- id: \"R28-M1\"\n  summary: \"Missing references: Alshiekh et al. (2018) Safe RL via Shielding, Geifman & El-Yaniv (2017) Selective Classification, Schuster et al. (2022) CALM, Raposo et al. (2024) Mixture-of-Depths\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"Alshiekh 与 Appendix O action-space filtering 直接相关；Geifman 是 selective prediction 经典；Schuster CALM 和 Raposo MoD 是 non-agent adaptive computation baseline。\"\n\n- id: \"R28-M2\"\n  summary: \"Pages 7-8 连续两页纯文本无 display item\"\n  category: format\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: []\n      note: \"视觉审查发现。§3.6 Router Training 结果可考虑用小 table 呈现。\"\n\n- id: \"R28-M3\"\n  summary: \"§1 Introduction 'signal diversity can collapse' 重复出现\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [2]\n      note: \"§1 para 5 和 contributions list item 2 措辞几乎相同。\"\n\n- id: \"R28-M4\"\n  summary: \"Figure 2 仅 11 点无 task name label，r=0.97 caveat 不够明确\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] 建议加 task name label 增加可读性。\"\n\n- id: \"R28-M5\"\n  summary: \"Related Work 缺 non-agent adaptive computation（early exit, speculative decoding, Mixture-of-Depths）\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 28\n  last_seen_round: 28\n  mentions:\n    - round: 28\n      reviewers: [1, 2]\n      note: \"[AGREE x2] 论文引用 Graves (2016) 但跳过 CALM、Mixture-of-Depths 等更近的 non-agent adaptive computation 工作。\"\n\n# --- Structural / Long-standing ---\n\n- id: \"R16-N1\"\n  summary: \"核心发现 novelty/excitement deficit——方向可预期\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 16\n  last_seen_round: 28\n  mentions:\n    - round: 27\n      reviewers: [1, 2]\n      note: \"Excitement 仍 2.5/5。结构性限制不可通过 writing fix 解决。Findings 定位确定。\"\n    - round: 28\n      reviewers: [1, 2]\n      note: \"R1 Excitement 3/5, R2 Excitement 3/5。核心发现（death dominance in death-penalized env）具有可预测性。结构性限制持续存在。\"\n\n- id: \"R19-N1\"\n  summary: \"Framing 内在张力：framework vs finding 定位不清\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 27\n  resolution: \"N2+N4 修复间接解决——Abstract/Conclusion 统一为 empirical analysis + reusable diagnostic methodology。\"\n  resolution_round: 27\n\n- id: \"R26-N3\"\n  summary: \"'Contradicting the routing literature's implicit assumption' 是 strawman framing\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 27\n  resolution: \"R27 验收确认修复完好。\"\n  resolution_round: 27"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f2f8d2c3-35e6-487d-8fce-5c9592a23256",
+            "isSidechain": false,
+            "requestId": "req_011CbHL2oz3H3Vr3Aw2CPUQS",
+            "type": "assistant",
+            "uuid": "b2512d4a-ba17-456b-a251-19a9f490d064",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MgTmwTCi92TsTrpHVVNeHF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3301,
+                "cache_read_input_tokens": 112063,
+                "output_tokens": 11390,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3301,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11390,
+                    "cache_read_input_tokens": 112063,
+                    "cache_creation_input_tokens": 3301,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3301
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-22T09:00:12.294Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AsnK7vWvaahS4LEHfHc3EP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 21693}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2512d4a-ba17-456b-a251-19a9f490d064",
+            "isSidechain": false,
+            "promptId": "d07a860e-8b7c-4d7b-a794-8647dc5e903d",
+            "type": "user",
+            "uuid": "911eb929-408b-4645-bbcc-f7ce8d378a4a",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 21693}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/review_issues.yaml\", \"bytes\": 21693}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "b2512d4a-ba17-456b-a251-19a9f490d064",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-22T09:00:12.300Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "911eb929-408b-4645-bbcc-f7ce8d378a4a",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "8d8b00b1-64ef-4feb-9c8a-b2826d829a04",
+                "timestamp": "2026-05-22T09:00:12.300Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+                "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 1 审稿意见]:  ## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应  ---  ### Must-Fix  **[AGREE] R2-N1: DAF 的数学必然性与主文叙述存在张力**  完全同意。这与我的 N2 高度一致。Appendix K 明确写道 DAF \"increases monotonically with P\" 且是 \"a mathem…",
+                "leafUuid": "8d8b00b1-64ef-4feb-9c8a-b2826d829a04",
+                "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb"
+              }
+            }
+          ],
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review simgate-modular-routing paper for EMNLP 2026",
+                "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb"
+              }
+            }
+          ],
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-22T09:00:16.701Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Issue Tracker 已更新。现在提交最终审稿报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d8b00b1-64ef-4feb-9c8a-b2826d829a04",
+            "isSidechain": false,
+            "requestId": "req_011CbHLJWqrWqwh4pdnpaiB1",
+            "type": "assistant",
+            "uuid": "f41ba787-b995-4308-ae48-e2d54f2f21c7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016n5jWYWjeooJ9yTcSSkgbS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11570,
+                "cache_read_input_tokens": 115364,
+                "output_tokens": 6051,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11570,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6051,
+                    "cache_read_input_tokens": 115364,
+                    "cache_creation_input_tokens": 11570,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11570
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-22T09:02:25.430Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AsqWzuweJGhDnzt5e3REBj",
+              "name": "mcp__agent-ml-research__submit_review_report_to_research_director",
+              "input": {
+                "report": "# Round 28 审稿报告 — simgate-modular-routing\n\n**论文**: Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld\n**Venue**: EMNLP 2026 (ARR May cycle), Interpretability and Analysis track\n**审稿模式**: Fresh（重新审稿）\n**Reviewer 编排**: 2 人（R1 方法严谨性+实验设计, R2 新颖性+完整性+写作）\n**交叉轮次**: 1 轮（关键问题达成共识，无需 Round 2）\n\n---\n\n## Summary\n\n论文提出 episode-level counterfactual diagnostic framework，通过对比 pure-strategy（internal-only vs deterministic-only）的 episode outcomes 来 decompose routing signal 的组成。应用于 ScienceWorld（11 task types, 245 episodes），发现 78.9% 的 non-tie routing labels 源于 death asymmetry（内部策略触发 -100 死亡惩罚而确定性策略存活）。Cross-model replication（Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B-it）确认 DAF 88-90%（spread 2.2pp）。Router training（Qwen3 0.6B-4B）在 episode level 降至 chance 以下，报告为 diagnostic negative result。Cross-environment probes（MATH, ALFWorld）展示框架在无 death 环境中诊断不同 routing mechanism 的能力。\n\n---\n\n## Strengths\n\n1. **极其详尽的鲁棒性验证**（R1-S2, R2-S1）：20 个 appendix 覆盖 LOO、cluster bootstrap、wild bootstrap、penalty sensitivity、cross-model、cross-environment、capacity scaling、augmentation ablation 等——在 analysis track 论文中属顶级水平。\n2. **诚实的负面结果报告**（R1-S3, R2-S2）：Router training failure（episode-level balanced accuracy 47.1% < 50% chance）被完整报告而非隐藏，提供两种可能解释（signal-limited vs data-limited），附带 text augmentation、capacity scaling、death-proximal labeling 等排除实验。\n3. **Cross-model convergence**（R1-S4, R2-S4）：三个架构差异显著的 7-9B 模型家族 + 72B scaling 给出 DAF 88-92%（spread 2.2pp），有力排除模型特异性解释。\n4. **Penalty-independent 与 penalty-dependent 度量双轨报告**（R2-S3）：区分 label fraction (78.9%, P-invariant) 和 DAF (90.4%, P-dependent)，展示完整 P-sensitivity 曲线（Appendix K）。\n5. **Track fit 优秀**（R2-S5）：\"先诊断 routing signal 再决定是否训练 router\" 的理念与 Interpretability and Analysis track 高度匹配。\n6. **研究问题定义清晰**（R1-S1）：填补了 routing literature 中\"routing signal 到底由什么组成\"这一方法论空白。\n\n---\n\n## Weaknesses\n\n### Must-Fix（2 项，双方共识）\n\n**[AGREE x2] W-Critical-1: DAF 度量的 P-dependence 在主文中讨论不足**\n- 来源：R1-N2 + R2-N1（完全共识）\n- 问题：DAF = δP/(δP + Δ_nd) 随 P 单调递增（P=10→50.4%, P=50→82.6%, P=100→90.4%, P=200→94.9%），是数学必然而非纯实证发现。Appendix K 承认\"mathematical consequence\"，但主文 §2.4 仅标记 DAF 为 \"derived penalty-dependent measure\"，未展示 P-sensitivity 的任何数值。Abstract 虽以 78.9% 为 headline，但 DAF=90.4% 仍以核心数字地位出现。\n- 影响：Analysis track 论文的核心度量之一有数学 artifact 成分但主文透明度不足，可能导致读者高估 finding 的实证强度。\n- 建议：(1) §2.4 定义 DAF 后增加 1-2 句正文讨论 P-sensitivity（至少引用 P=10 和 P=50）；(2) Abstract/Conclusion 进一步降低 DAF 的 prominence。\n\n**[AGREE x2] W-Critical-2: \"Deterministic\" 跨环境含义不统一，transfer claim 需更精确限定**\n- 来源：R2-N2（R1 交叉时 AGREE）\n- 问题：三环境 \"deterministic\" 实现差异巨大（oracle simulator / code interpreter / admissible-action enumeration），信息优势程度不可比。§2.1 描述了差异但 Conclusion 仍写 \"the diagnostic procedure transfers\"，暗示跨环境一致性高于实际水平。\n- 影响：读者可能期望比论文实际提供的更强的泛化性。\n- 建议：Conclusion 或 §3.4 增加限定：cross-env probes 验证 diagnostic procedure 的可复用性，不是 \"deterministic computation\" 概念的一致性。\n\n### Should-Fix（7 项）\n\n**[AGREE x2] W1: 63% task type 排除率需在主文更充分 justify**\n- 来源：R1-W2 + R2-W1\n- 问题：主文 §3 仅一句话说明排除原因。缺 taxonomic redundancy 的操作定义。Anti-cherry-picking 数据（excluded ΔDR=+38.2 > included +28.7 pp）全在 appendix。\n- 建议：§3 增加一段展示 key numbers + taxonomic redundancy 定义。\n\n**[DIVERGENCE → warning] W2: Episode→step 粒度失配的 framing 精确性**\n- 来源：R1-N1（critical）vs R2 REBUT（warning）\n- R1 主张：Title/Abstract 暗示 step-level routing 发现，实际证据限于 episode-level outcome。\n- R2 反驳：\"Routing Signal\" ≠ \"Routing Decision\"；episode-level 是 sparse-reward 环境的 principled granularity（97.4% step ties）。但同意 Abstract 应加 \"episode-level\" 限定词。\n- 最终判定：降为 warning。Claim validity 不受影响，但 framing 可更精确。\n- 建议：Abstract 中 \"78.9% of non-tie routing labels\" 前增加 \"episode-level\"。\n\n**[AGREE with nuance x2] W3: Router negative result 的 signal-limited vs data-limited 区分不完全**\n- 来源：R1-W3 + R2-W2\n- R2 REBUT R1 的 \"架构简单\" 批评（6 种变体 + LOTO + death-proximal labeling），但 AGREE paraphrase augmentation 不增加新 routing signal，真实 episode-level scaling 未测试。\n- 建议：§5 更对称呈现两种解释，明确当前数据量不足以完全区分。\n\n**[AGREE x2] W4: K=11 cluster bootstrap 局限性未在主文充分标注**\n- 来源：R1-W1\n- 建议：Limitations 显式引用 Cameron et al. K≥20-50 建议。\n\n**[AGREE x2] W5: 72B scaling 仅做 probe 不够完整**\n- 来源：R1-W4\n- 建议：Limitations 中标注 72B scope 限制；讨论更强模型下 non-death signal 是否可能超过 death signal。\n\n**[AGREE x2] W6: \"Death\" 术语限制 generality — graded failure 适用性未讨论**\n- 来源：R2-W5\n- 建议：Discussion 增加 1-2 句讨论 graded failure 场景。\n\n**[AGREE partially] W7: 缺与 concurrent routing methods 的定性讨论**\n- 来源：R2-W4\n- 建议：§5 或 §4 增加 2-3 句讨论 CogRouter/ARES/MTRouter 在 death-dominated 环境中的预期表现。\n\n### Minor（5 项）\n\n- **M1**: Figure 2 仅 11 点无 task name label [AGREE x2]\n- **M2**: §1 Introduction \"signal diversity can collapse\" 重复出现 [R2]\n- **M3**: Pages 7-8 连续两页纯文本无 display item [视觉审查]\n- **M4**: Missing references: Alshiekh et al. (2018) Safe RL via Shielding, Geifman & El-Yaniv (2017) Selective Classification, Schuster et al. (2022) CALM, Raposo et al. (2024) Mixture-of-Depths [R1+R2 共 4 条]\n- **M5**: Related Work 缺 non-agent adaptive computation (early exit, speculative decoding) [R1-M6, R2 AGREE]\n\n---\n\n## Reviewer Consensus\n\n以下问题双方达成完全共识 [AGREE x2]：\n1. DAF P-dependence 是最需要作者回应的 critical issue（label fraction 应为 primary metric）\n2. \"Deterministic\" 跨环境语义不同需更精确限定 transfer claim\n3. 63% task 排除率需更充分正文 justify\n4. K=11 cluster bootstrap 局限需显式标注\n5. 72B 实验 scope 有限\n6. 论文鲁棒性验证水平在 analysis track 中属上乘（20 appendices）\n7. 负面结果报告（router failure）诚实且有价值\n8. Cross-model convergence（3 family, DAF 88-90%）有力排除模型特异性\n\n## Reviewer Divergence\n\n**Episode→step 粒度失配的严重程度**：\n- R1 评为 critical：Title/Abstract scope 超出方法论覆盖范围\n- R2 评为 minor framing issue：论文 claim 是关于 \"signal composition\" 而非 \"step-level decision\"，episode-level 是 principled granularity\n- R2 提供的反驳依据：(1) §2.2 论证了 97.4% step ties 使 episode-level 成为唯一有效粒度；(2) 61.2% no-preference 也是诊断信息；(3) §3.6 和 §5 已详细讨论 step-level router failure\n- **最终判定**：降为 warning —— claim validity 不受影响，但 Abstract 应加 \"episode-level\" 限定词\n\n**Limitations 长度**：\n- R2 评为 warning（5 段过长，建议压缩到 3 点）\n- R1 REBUT（analysis 论文的诚实 limitations 是优势而非缺陷，且不占页数限制）\n- **最终判定**：不列入 weakness — R1 理由充分，Limitations 内容均为必要 caveats\n\n**Router 架构简单性是否是负结论的主要限制**：\n- R1 评为 warning（仅测试 Qwen3 0.6B-4B + LoRA）\n- R2 REBUT（6 种变体收敛、LOTO 打回、death-proximal labeling 无效），但 AGREE scope 限定可更精确\n- **最终判定**：保留为 W3 的子问题，建议更对称呈现双解释\n\n---\n\n## Questions to Authors\n\n1. **P=0 下 78.9% label fraction 的稳定性**：论文声称 label fraction 是 P-invariant 的，但 §3.1 提到 54 个 \"sole-signal labels\" 在 P=0 时退化为 ties——这意味着 P=0 下 label fraction 会从 78.9% 降低。Algorithm 1 的 death-first priority 等价于隐式无穷大 penalty，这与 \"penalty-independent\" 叙事存在微妙张力。请澄清。\n2. **150 个 no_pref episodes 的 action sequence 相似度**：两策略在相同 outcome 下是否采取了相似路径？如果路径不同但结果相同，可能存在被 episode-level aggregation 掩盖的 step-level routing signal。\n3. **72B 条件下 non-death signal 是否增强**：72B 的 death rate 降至 30.6%，意味着更多 episodes 双方存活。$\\Delta_{\\text{nd}}$ 是否在 72B 上显著增大？如果是，death dominance 的 scale-robustness 结论是否需要 qualify？\n\n---\n\n## Missing References\n\n- Alshiekh et al., \"Safe Reinforcement Learning via Shielding\" (AAAI 2018) — Appendix O action-space filtering 本质是简化版 shield [R2, R1 AGREE]\n- Geifman & El-Yaniv, \"Selective Classification for Deep Neural Networks\" (NeurIPS 2017) — selective prediction 经典，与 routing/abstention 概念关联 [R2, R1 AGREE]\n- Schuster et al., \"Confident Adaptive Language Modeling\" (NeurIPS 2022) — non-agent adaptive computation baseline [R1, R2 AGREE]\n- Raposo et al., \"Mixture-of-Depths\" (ICML 2024) — per-token computation allocation [R1, R2 AGREE]\n\n---\n\n## External Review\n\n未请求（项目未配置 `external_review.paperreview_ai.enabled`）。\n\n---\n\n## Visual Layout Check（非评分项）\n\n视觉审查已完成。3 warnings, 14 info。\n\n**Warnings**:\n1. **Pages 7-8 连续两页纯文本**：§3.6 (Router Training) + §4 (Related Work) + §5 (Discussion) + §6 (Conclusion) 无任何 display item，阅读节奏单调。建议 §3.6 router 结果可用小 table 呈现。\n2. **Page 9 Limitations 篇幅较大**：5 个子段落几乎填满整页。（但 Reviewer 圆桌讨论认为此内容均为必要 caveats，不建议删减。）\n3. **Page 24 末页空白**：附录末页仅约 1/4 内容，空间利用率低。\n\n**正面发现**：\n- 全文无 LaTeX 渲染错误、margin 溢出或 section heading 孤悬\n- 双栏排版间距均匀，行号完整（submission 格式正确）\n- 主体正文 8 页含 5 个 display items（Figure 1-3, Table 1-2），对诊断型论文属合理范围\n- 所有 table 使用 booktabs 风格，格式规范\n- Figure 3 使用 shaded error bands，可视化实践良好\n- 颜色语义跨图一致\n\n---\n\n## Overall Assessment\n\n**Overall Score: 3.0 (Findings)**\n**Confidence: 4/5**\n\n**评分理由**：\n\n论文在 ScienceWorld 环境内做了一项极其详尽的诊断分析——20 个 appendix 的鲁棒性验证、3 个模型家族的 cross-model replication、router training 负结论的多层论证——在 methodological rigor 上无可挑剔。78.9% death-asymmetric label fraction 作为 penalty-independent 的核心发现是可靠的，cross-model convergence（spread 2.2pp）有力排除了模型特异性。\n\n但以下结构性限制将论文定位在 Findings 而非 main conference：\n\n1. **Excitement deficit（R1 3/5, R2 3/5）**：核心发现——在有 catastrophic failure 的环境中 death avoidance 主导 routing signal——具有一定的 a priori 可预测性。当一种策略有 oracle access 而另一种策略会\"死\"时，oracle 更安全是 expected 的。论文的贡献在于量化了这一直觉（78.9%）并系统排除了 alternative explanations，但 insight 的 surprise value 有限。\n2. **DAF 度量的数学 artifact**：核心度量之一（DAF=90.4%）部分由 P=100 的选择决定（P=10 时仅 50.4%），虽然 label fraction 提供了 P-invariant 的补充，但主文对 P-sensitivity 的透明度不足。\n3. **单环境主体验证**：完整验证仅在 ScienceWorld 上完成，MATH 和 ALFWorld 只是 boundary probes（且 \"deterministic\" 含义不可比）。框架的 methodological generality 合理，但 empirical generality 证据不足。\n4. **Actionability gap**：框架是 diagnostic 而非 prescriptive——诊断出 death dominance 后的 practical next step（除了 \"用 always-deterministic\"）不够清晰。\n\n综合两位 Reviewer 独立评分均为 3.5 (Borderline Conference)，考虑到 excitement deficit 是持续存在的结构性限制（从 Round 16 至今），且 Must-Fix 问题均为 framing 层面（可修但不改变核心 contribution 的 novelty），判定为 **3.0 (Findings)**——论文质量足以被 Findings 接收，但核心 contribution 的 novelty 和 generality 尚不足以推荐 main conference。\n\n---\n\n## Detailed Comments\n\n### §1 Introduction\n- \"signal diversity can collapse to a single dominant mechanism\" 在 para 5 和 contributions list item 2 中重复出现，措辞几乎相同——合并或删除一处。\n- Contributions 列表三项，每项内容过长（item 2 跨 3 行），建议精简。\n\n### §2 Method\n- §2.4 DAF 定义后应立即讨论 P-sensitivity，至少引用 P=10 (50.4%) 和 P=50 (82.6%)。当前叙事在此处建立了 DAF 的重要性，但读者要翻到 Appendix K 才发现 90.4% 有数学 artifact 成分。\n- §2.1 \"deterministic\" operationalization 差异已描述，但应更明确标注\"这些定性差异影响框架能检测到的 routing signal 类型\"不仅是 caveat，而是 cross-env 分析的核心前提。\n\n### §3 Experiments\n- §3 第一段 63% 排除率应展开。建议增加一段：(1) excluded tasks ΔDR=+38.2 > included +28.7 pp；(2) taxonomic redundancy 操作定义；(3) agent-floor tasks 排除的合理性。\n- §3.1 Figure 2 scatter plot：11 点 + r=0.97 的 structural consequence caveat 可以更 prominent（当前在 caption 末尾）。建议加 task name label。\n- §3.4 ALFWorld 分析仅一段话，作为三个 cross-env probes 之一显得单薄。至少应引用 Appendix L 的 Table/Figure。\n- §3.6 Router training 负结论 scope 可更精确——\"no step-level learnable signal exists under current architectures and data regime\" 中 \"current architectures\" 应明确列出（Qwen3 0.6B-4B with LoRA）。\n\n### §4 Related Work\n- 缺 non-agent adaptive computation 方向（early exit: CALM; per-token allocation: Mixture-of-Depths）。\n- Appendix O 的 action-space filtering 本质是 shielding——应引用 Alshiekh et al. (2018)。\n\n### §5 Discussion\n- Paragraph 1 \"signal-limited\" 解释应与 \"data-limited\" 更对称呈现。当前叙事倾向 signal-limited（Interpretation B），但 9 个 internal-preferred 样本 + paraphrase-only augmentation 不足以完全排除 data-limited。\n- 增加 2-3 句讨论 concurrent routing methods（CogRouter, ARES, MTRouter）在 death-dominated 环境中的预期表现。\n- 增加 1-2 句讨论 graded failure（非 binary death/alive）场景下框架的适用性。\n\n### §6 Conclusion\n- \"the diagnostic procedure transfers\" 需加限定：transfer 的是 procedure 而非 operationalization。\n\n### Limitations\n- Statistical limitations 段应显式引用 Cameron et al. (2008) K≥20-50 建议。\n- 增加 72B 实验 scope 限制的说明。",
+                "project": "simgate-modular-routing",
+                "reviewer_ids_acknowledged": "[\"1\", \"2\"]",
+                "cross_response_reviewer_ids": "[\"1\", \"2\"]",
+                "overall_score": "3.0"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f41ba787-b995-4308-ae48-e2d54f2f21c7",
+            "isSidechain": false,
+            "requestId": "req_011CbHLJWqrWqwh4pdnpaiB1",
+            "type": "assistant",
+            "uuid": "8f7c0074-f5d9-4a53-929c-75ba50493a5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016n5jWYWjeooJ9yTcSSkgbS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11570,
+                "cache_read_input_tokens": 115364,
+                "output_tokens": 6051,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11570,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6051,
+                    "cache_read_input_tokens": 115364,
+                    "cache_creation_input_tokens": 11570,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11570
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-22T09:02:29.788Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AsqWzuweJGhDnzt5e3REBj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f7c0074-f5d9-4a53-929c-75ba50493a5f",
+            "isSidechain": false,
+            "promptId": "d07a860e-8b7c-4d7b-a794-8647dc5e903d",
+            "type": "user",
+            "uuid": "999aa3d9-e987-4911-9f07-08146b6db934",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "8f7c0074-f5d9-4a53-929c-75ba50493a5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/review_director_19d7e797",
+            "sessionId": "fc7de88d-b287-4160-a1e3-a5b7f7e2aadb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000143"
+        }
+      ]
+    }
+  ]
+}
