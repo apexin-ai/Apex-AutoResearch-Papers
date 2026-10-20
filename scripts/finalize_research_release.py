@@ -156,10 +156,10 @@ def main():
                 excluded_files.add((p, relative, int(row['source_bytes'])))
         for row in objects:
             identifier = (row['project'], row['relative_path'], int(row['source_bytes']))
-            if '.hf_cache' in Path(row['relative_path']).parts:
+            if identifier in source_files or identifier in excluded_files: mirror_checked += 1
+            elif '.hf_cache' in Path(row['relative_path']).parts:
                 cache_excluded += 1
                 cache_excluded_bytes += int(row['source_bytes'])
-            elif identifier in source_files or identifier in excluded_files: mirror_checked += 1
             elif row['s3_key'] in supplement_by_key:
                 extra = supplement_by_key[row['s3_key']]
                 assert extra['archive_key'] == key and extra['project'] == row['project']
