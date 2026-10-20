@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "28814d83274f274c321f",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Director 指令] 确认，按 Phase 1 计划推进。几点补充： 1. Method section 中 MAX-SAT 公式必须明确写出 cross-answer evaluation 的具体实现（约束 c_i 是否对所有候选答",
+  "task_key": "a0045264-d6c9-4dba-95e7-7d01269c6590",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/a0045264-d6c9-4dba-95e7-7d01269c6590.jsonl",
+    "occurrence": 1,
+    "bytes": 744497,
+    "sha256": "72769c2cbc3cc5059228343b90737ca3e43b02cb529241f3f848309ad52db6bf"
+  },
+  "statistics": {
+    "messages": 236,
+    "user_turns": 1,
+    "tool_calls": 66,
+    "roles": {
+      "record": 48,
+      "user": 1,
+      "assistant": 56,
+      "tool_call": 66,
+      "tool_result": 65
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "28814d83274f274c321f-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 234,
+      "chunks": [
+        {
+          "path": "28814d83274f274c321f-part-0001.json",
+          "message_count": 175
+        },
+        {
+          "path": "28814d83274f274c321f-part-0002.json",
+          "message_count": 59
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-director-phase-1-1-method-section-max-sat-cross-answer-evaluation-c-i.md"
+}

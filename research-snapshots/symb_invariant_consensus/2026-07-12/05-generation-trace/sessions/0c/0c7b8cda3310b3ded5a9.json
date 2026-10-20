@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "0c7b8cda3310b3ded5a9",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: cross_representation_disagreement_diagno ## 运行环境 - 服务器名: autodl-rtx6000pro - SSH 账户: root（调用 ssh",
+  "task_key": "6bac9a57-281a-48d9-924b-d2bb8307b637",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/6bac9a57-281a-48d9-924b-d2bb8307b637.jsonl",
+    "occurrence": 1,
+    "bytes": 570972,
+    "sha256": "9983035ce632179fe9069a2adc53903bad44379475a9be0bb04032076d49b058"
+  },
+  "statistics": {
+    "messages": 209,
+    "user_turns": 1,
+    "tool_calls": 67,
+    "roles": {
+      "record": 39,
+      "user": 1,
+      "assistant": 35,
+      "tool_call": 67,
+      "tool_result": 67
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "0c7b8cda3310b3ded5a9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 207,
+      "chunks": [
+        {
+          "path": "0c7b8cda3310b3ded5a9-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "0c7b8cda3310b3ded5a9-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-cross-representation-disagreement-diagno-autodl-rtx6000pro-ssh-copy-67.md"
+}

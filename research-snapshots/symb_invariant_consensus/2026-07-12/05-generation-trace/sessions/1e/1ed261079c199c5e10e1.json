@@ -1,0 +1,1900 @@
+{
+  "schema_version": "1.0",
+  "id": "1ed261079c199c5e10e1",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: symb_invariant_consensus ## 运行环境 - 服务器名: westd-16639 - SSH 连接命令: ssh westd-16639 # 必须用此命令，~/.ssh",
+  "task_key": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/b1a18feb-c285-41d5-bedf-51d54be5807d.jsonl",
+    "occurrence": 1,
+    "bytes": 175961,
+    "sha256": "f3c5ed8cf7cde4e9903ce7dadd17e6ff0b2a7e1a65d73bfb4a60fa97feba6b25"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "record": 15,
+      "user": 1,
+      "assistant": 9,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T03:49:05.712Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-23T03:49:05.712Z",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+                "content": "<project_context>\n# 项目: symb_invariant_consensus\n\n## 运行环境\n- 服务器名: westd-16639\n- SSH 连接命令: ssh westd-16639  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/symb_invariant_consensus\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 所有实验代码写完后必须先 dry-run 验证（python 可用性、路径存在性、端口无冲突、数据文件存在）再正式部署运行（原因：多次出现代码部署后才发现 python command not found、模型路径不存在、GPU/端口冲突等低级错误，浪费 GPU 时间和调试周期。用户明确要求。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：将 Proposition 1 整合到 analysis.tex §5.1\n\n你需要编辑 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex`，将 Proposition 1（Symbolic Confirmation Bias is Structural）整合到 §5.1 Symbolic Confirmation Bias 中。\n\n### 写作规范\n先 Read `/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md`，遵守写作风格规范。\n\n### 素材位置\n- Proposition 原文：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/proposition1_scb_proof.tex`\n- 当前 analysis.tex：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex`\n- method.tex（符号参考）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex`\n\n### 放置位置\n在 §5.1 中，按以下顺序重组前三段：\n\n1. **SCB 量化观测**（当前第一段的前半部分）：保留 \"Self-extracted constraints systematically align...\" 到 \"94% of errors overlap with SC\"。保留 Z3 vacuity 和 α-insensitivity 句子（这些是经验观测）\n2. **Proposition 1 + Proof + Remark**（新插入）\n3. **Q5 BR_correct 经验验证**（当前第二段 \"This bias is not an artifact...\"）——加一句过渡，说明这是 Proposition 1 的经验验证\n4. **Shuffle control**（当前第一段的 \"A shuffle control reveals...\" 句）——可以放在 BR_correct 之后或 Proposition 之后，自然过渡\n\n### Notation 对齐规则（必须遵守）\n1. Proposition 引用 method.tex 中已有的 $\\sigma(c, a)$（Eq. 3, eq:score）——在 Part (i) 中写 \"Under source attribution (Eq.~\\ref{eq:score})\" 而不是重新定义 $\\sigma$\n2. trace 符号保持与 method.tex 一致：$t_1, \\ldots, t_K$（用 \\ldots 不用 \\dots）\n3. Proposition 引入的新符号 $h(t_i)$（answer extraction）、$f(t_i)$（constraint extraction）、$\\hat{a}$（mode answer）、$n_a$（count）是新增，不与 method.tex 冲突\n4. $T_{1:K}$, $C_{1:K}$, $A_{1:K}$ 是 Part (ii) 信息论随机变量，与温度 $T$ 通过下标区分——保持原样\n5. BR 在 Part (i) 的定义 $n_{\\hat{a}} / \\max_{a' \\neq \\hat{a}} n_{a'}$ 是 Eq. 5（eq:mirage）的特殊情况（source attribution 下），不是重新定义。确保连贯性。\n\n### 格式要求\n- 用 `\\textbf{Proposition 1}` + `\\textit{(...)}` 格式，**不用** tcolorbox，**不用** theorem 环境\n- 保留 Proof 和 Remark（Remark 关于 semantic attribution 的诚实说明很重要）\n- **删除** proposition 原文中所有 `% AUTHOR NOTE` 注释块\n- **删除** deduplication caveat 注释（Director 说不放正文）\n\n### 过渡句指引\n- Proposition 前：一句话引出理论结果，如 \"The following result formalizes this degeneration\"\n- BR_correct 前：一句话连接理论与经验，如 \"Empirically, confirmation bias extends beyond incorrect instances\"\n- 不要加多余的解释或重复 Proposition 已说的内容\n\n### 不要做的事\n- 不要改 §5.2、§5.3 或 Table 内容\n- 不要改任何其他 .tex 文件\n- 不要改 method.tex\n- 不要添加 \\newtheorem 定义（main.tex 中没有，也不需要）\n\n### 验证\n修改完成后，Read 最终的 analysis.tex 确认：\n1. Proposition 在 SCB 量化之后、shuffle control 之前\n2. Notation 与 method.tex 一致（特别是 Eq. 引用）\n3. BR_correct 段紧跟 Proposition 后\n4. 无 tcolorbox、无 theorem 环境\n5. 无 AUTHOR NOTE 注释\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T03:49:05.715Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-23T03:49:05.715Z",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T03:49:05.751Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: symb_invariant_consensus\n\n## 运行环境\n- 服务器名: westd-16639\n- SSH 连接命令: ssh westd-16639  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/symb_invariant_consensus\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 所有实验代码写完后必须先 dry-run 验证（python 可用性、路径存在性、端口无冲突、数据文件存在）再正式部署运行（原因：多次出现代码部署后才发现 python command not found、模型路径不存在、GPU/端口冲突等低级错误，浪费 GPU 时间和调试周期。用户明确要求。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：将 Proposition 1 整合到 analysis.tex §5.1\n\n你需要编辑 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex`，将 Proposition 1（Symbolic Confirmation Bias is Structural）整合到 §5.1 Symbolic Confirmation Bias 中。\n\n### 写作规范\n先 Read `/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md`，遵守写作风格规范。\n\n### 素材位置\n- Proposition 原文：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/proposition1_scb_proof.tex`\n- 当前 analysis.tex：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex`\n- method.tex（符号参考）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex`\n\n### 放置位置\n在 §5.1 中，按以下顺序重组前三段：\n\n1. **SCB 量化观测**（当前第一段的前半部分）：保留 \"Self-extracted constraints systematically align...\" 到 \"94% of errors overlap with SC\"。保留 Z3 vacuity 和 α-insensitivity 句子（这些是经验观测）\n2. **Proposition 1 + Proof + Remark**（新插入）\n3. **Q5 BR_correct 经验验证**（当前第二段 \"This bias is not an artifact...\"）——加一句过渡，说明这是 Proposition 1 的经验验证\n4. **Shuffle control**（当前第一段的 \"A shuffle control reveals...\" 句）——可以放在 BR_correct 之后或 Proposition 之后，自然过渡\n\n### Notation 对齐规则（必须遵守）\n1. Proposition 引用 method.tex 中已有的 $\\sigma(c, a)$（Eq. 3, eq:score）——在 Part (i) 中写 \"Under source attribution (Eq.~\\ref{eq:score})\" 而不是重新定义 $\\sigma$\n2. trace 符号保持与 method.tex 一致：$t_1, \\ldots, t_K$（用 \\ldots 不用 \\dots）\n3. Proposition 引入的新符号 $h(t_i)$（answer extraction）、$f(t_i)$（constraint extraction）、$\\hat{a}$（mode answer）、$n_a$（count）是新增，不与 method.tex 冲突\n4. $T_{1:K}$, $C_{1:K}$, $A_{1:K}$ 是 Part (ii) 信息论随机变量，与温度 $T$ 通过下标区分——保持原样\n5. BR 在 Part (i) 的定义 $n_{\\hat{a}} / \\max_{a' \\neq \\hat{a}} n_{a'}$ 是 Eq. 5（eq:mirage）的特殊情况（source attribution 下），不是重新定义。确保连贯性。\n\n### 格式要求\n- 用 `\\textbf{Proposition 1}` + `\\textit{(...)}` 格式，**不用** tcolorbox，**不用** theorem 环境\n- 保留 Proof 和 Remark（Remark 关于 semantic attribution 的诚实说明很重要）\n- **删除** proposition 原文中所有 `% AUTHOR NOTE` 注释块\n- **删除** deduplication caveat 注释（Director 说不放正文）\n\n### 过渡句指引\n- Proposition 前：一句话引出理论结果，如 \"The following result formalizes this degeneration\"\n- BR_correct 前：一句话连接理论与经验，如 \"Empirically, confirmation bias extends beyond incorrect instances\"\n- 不要加多余的解释或重复 Proposition 已说的内容\n\n### 不要做的事\n- 不要改 §5.2、§5.3 或 Table 内容\n- 不要改任何其他 .tex 文件\n- 不要改 method.tex\n- 不要添加 \\newtheorem 定义（main.tex 中没有，也不需要）\n\n### 验证\n修改完成后，Read 最终的 analysis.tex 确认：\n1. Proposition 在 SCB 量化之后、shuffle control 之前\n2. Notation 与 method.tex 一致（特别是 Eq. 引用）\n3. BR_correct 段紧跟 Proposition 后\n4. 无 tcolorbox、无 theorem 环境\n5. 无 AUTHOR NOTE 注释\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "5f4db7ad-3ff6-4a83-be37-6bbcd015b808",
+            "type": "user",
+            "uuid": "32972660-40c6-4b09-a69a-741fba86a494",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T03:49:05.750Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "32972660-40c6-4b09-a69a-741fba86a494",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "fdf9ea49-9ddc-4e3c-af2f-66efc31460fc",
+                "timestamp": "2026-05-23T03:49:05.750Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T03:49:05.750Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "fdf9ea49-9ddc-4e3c-af2f-66efc31460fc",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "54208075-d52b-4d6a-992e-d37d51d64ff7",
+                "timestamp": "2026-05-23T03:49:05.750Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T03:49:05.750Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "54208075-d52b-4d6a-992e-d37d51d64ff7",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "5076da3b-a4be-4d2e-b0c0-f12e8078275c",
+                "timestamp": "2026-05-23T03:49:05.750Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Integrate Proposition 1 into analysis.tex §5.1",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T03:49:08.199Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the three source files in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5076da3b-a4be-4d2e-b0c0-f12e8078275c",
+            "isSidechain": false,
+            "requestId": "req_011CbJpPSTan9heNidpEMGnd",
+            "type": "assistant",
+            "uuid": "997510b8-6f71-40dc-9f80-5e3d1ccf18ff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DSHai2P2LKLqjKoVMQN16C",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13425,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 239,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13425,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 239,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13425,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13425
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T03:49:09.622Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QiPg4DzyTkmAR13DXy9g8L",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "997510b8-6f71-40dc-9f80-5e3d1ccf18ff",
+            "isSidechain": false,
+            "requestId": "req_011CbJpPSTan9heNidpEMGnd",
+            "type": "assistant",
+            "uuid": "b2ba42a0-52df-4bdc-acf6-1d60e4a378d2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DSHai2P2LKLqjKoVMQN16C",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13425,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 239,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13425,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 239,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13425,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13425
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T03:49:09.641Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QiPg4DzyTkmAR13DXy9g8L",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n75\t- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n76\t- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n77\t- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n78\t\n79\t### 2.3 审稿人视角检验\n80\t\n81\t写完后用这个标准自检：审稿人能否在 30 秒内判断——\n82\t- 问题是否重要？\n83\t- 方法是否清楚？\n84\t- 贡献是否可信？\n85\t- 结果是否有说服力？\n86\t\n87\t---\n88\t\n89\t## 三、Introduction 写作规范\n90\t\n91\t### 3.1 完整叙事线（5 段结构）\n92\t\n93\tIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n94\t\n95\t1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n96\t2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n97\t3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n98\t4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n99\t5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n100\t\n101\t### 3.2 整体叙事结构\n102\t\n103\t```\n104\t现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n105\t```\n106\t\n107\t### 3.3 禁忌\n108\t\n109\t- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n110\t- **禁止缺少过渡**：每段之间必须有逻辑连接\n111\t- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n112\t- 每条 Contribution 必须有对应的 section/table 支撑\n113\t- Contribution 列表中不能出现未在前文铺垫过的概念\n114\t\n115\t---\n116\t\n117\t## 四、Related Work 写作规范\n118\t\n119\t### 4.1 目标\n120\t\n121\t让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n122\t\n123\t### 4.2 结构要求\n124\t\n125\t- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n126\t- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n127\t- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n128\t\n129\t### 4.3 禁忌\n130\t\n131\t- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n132\t- **目标不是展示读了多少论文**，而是做归纳和比较\n133\t- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n134\t\n135\t### 4.4 引用充足度\n136\t\n137\t- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n138\t- 任何一类缺失，审稿人会立刻看出来调研不充分\n139\t- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n140\t\n141\t---\n142\t\n143\t## 五、去 AI 写作风格（硬规则）\n144\t\n145\t以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n146\t\n147\t### 5.1 严禁破折号（最显著的 AI 痕迹）\n148\t\n149\t**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n150\t\n151\t- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n152\t- 替代方式：用逗号、括号或拆分为两个句子\n153\t- 强制检查命令：\n154\t  ```bash\n155\t  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n156\t  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n157\t  ```\n158\t- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n159\t\n160\t### 5.2 段落与句式\n161\t\n162\t- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n163\t- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n164\t- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n165\t- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n166\t- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n167\t\n168\t### 5.3 用词黑名单\n169\t\n170\t- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n171\t- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n172\t- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n173\t- 避免 \"paradigm shift\" / \"novel\" 过度使用\n174\t\n175\t### 5.4 校对清单（4 步）\n176\t\n177\t1. 全文 proofread 语法和拼写\n178\t2. 检查所有代词/指示词（this, that, it）是否指代明确\n179\t3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n180\t4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n181\t\n182\t---\n183\t\n184\t## 六、图表与视觉规范\n185\t\n186\t### 6.1 知识密度原则\n187\t\n188\t- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n189\t- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n190\t- 能用 inline text 说清的不要占一整个 Figure\n191\t\n192\t### 6.2 表格规范\n193\t\n194\t- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n195\t- 小数精度全表统一\n196\t- 最优加粗、次优下划线\n197\t- Caption 必须自包含\n198\t\n199\t### 6.3 图片规范\n200\t\n201\t- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n202\t- 图中字体 >= 7pt（打印后仍可读）\n203\t- 栏宽约束需匹配目标 venue 模板要求\n204\t- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n205\t\n206\t### 6.4 空间效率\n207\t\n208\t- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n209\t- 优先使用 `\\subfigure` 合并相关图\n210\t- Table 能 inline 就不要单独浮动\n211\t- 图表占比与其对叙事的贡献成正比\n212\t\n213\t### 6.5 页面节奏\n214\t\n215\t好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n216\t\n217\t- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n218\t- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n219\t- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n220\t- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n221\t- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n222\t\n223\t### 6.6 表格 LaTeX 规范\n224\t\n225\t**Booktabs 标准（硬规则）**：\n226\t- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n227\t- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n228\t- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n229\t- 小数精度全表统一（如全部保留 1 位或 2 位）\n230\t- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n231\t\n232\t**宽度决策树**：\n233\t- ≤5 列 → 单栏宽度（`\\columnwidth`）\n234\t- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n235\t- >8 列 → 拆成两张表或移入 appendix\n236\t\n237\t---\n238\t\n239\t## 七、投稿前通用准备\n240\t\n241\t### 7.1 模板必须官方（硬规则）\n242\t\n243\t- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n244\t- **不要用**：\n245\t  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n246\t  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n247\t  - 组里学长留的旧版本（来源不明、无法追溯）\n248\t- 风险：\n249\t  - 样式不符合 → desk reject\n250\t  - margin 不对 → 被审稿人质疑诚信\n251\t  - reference 格式错 → 被认为不规范\n252\t- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n253\t- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n254\t\n255\t### 7.2 投稿要求逐项核对\n256\t\n257\t- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n258\t- 页数限制：查目标会议官网\n259\t- 匿名化要求：review 版 vs camera-ready 版本设置不同\n260\t- 行号开启（review 版常需）\n261\t- 字体大小、margin 不得修改 sty 文件\n262\t\n263\t### 7.3 最终修改 10 项检查流程\n264\t\n265\t提交前必须逐一检查：\n266\t1. 所有最新实验结果已全部录入\n267\t2. 根据实验结果将叙事调至最优状态\n268\t3. 附录所有内容在正文中被引用且融入叙事\n269\t4. 无数据堆砌（每个数字服务于叙事推进）\n270\t5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n271\t6. 全文主线统一（idea 变化后各章节逻辑一致）\n272\t7. 所有专有名词有定义\n273\t8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n274\t9. 图表知识密度高、无视觉遮挡\n275\t10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n276\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2ba42a0-52df-4bdc-acf6-1d60e4a378d2",
+            "isSidechain": false,
+            "promptId": "5f4db7ad-3ff6-4a83-be37-6bbcd015b808",
+            "type": "user",
+            "uuid": "9a68233c-2845-47df-adc0-36f599fdbb66",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+                "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n### 6.5 页面节奏\n\n好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n\n- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n\n### 6.6 表格 LaTeX 规范\n\n**Booktabs 标准（硬规则）**：\n- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n- 小数精度全表统一（如全部保留 1 位或 2 位）\n- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n\n**宽度决策树**：\n- ≤5 列 → 单栏宽度（`\\columnwidth`）\n- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n- >8 列 → 拆成两张表或移入 appendix\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n",
+                "numLines": 276,
+                "startLine": 1,
+                "totalLines": 276
+              }
+            },
+            "sourceToolAssistantUUID": "b2ba42a0-52df-4bdc-acf6-1d60e4a378d2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T03:49:11.826Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B4x24WAwkTvCAZAbmRpB9U",
+              "type": "tool_result",
+              "content": "1\t\\section{The Symbolic Mirage}\n2\t\\label{sec:analysis}\n3\t\n4\t\\subsection{Symbolic Confirmation Bias}\n5\t\\label{sec:confirmation-bias}\n6\t\n7\t\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. A shuffle control reveals this bias is \\emph{structural}: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ (Table~\\ref{tab:alpha-ablation}).\n8\t\n9\t\\looseness=-1 This bias is not an artifact of incorrect majority votes: on problems where SC selects the correct answer, constraints still disproportionately support the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$ across all six tested conditions, with 5/6 showing $\\text{BR}_\\text{correct} \\geq \\text{BR}_\\text{wrong}$), confirming that self-extracted constraints track distributional frequency rather than logical validity.\n10\t\n11\t\\looseness=-1 The pattern generalizes: $4.97\\times$ (Mistral), $3.85\\times$ (Qwen-14B), $2.88\\times$ (LLaMA), all $> 1.0$ with 95\\% bootstrap CIs (Table~\\ref{tab:cross-model-bias}). Cross-model extraction confirms universality across nine models from 7B to frontier (BR $1.66$--$4.97\\times$; Table~\\ref{tab:frontier-scb}). BR $> 1$ further holds across all eight cells of a $2{\\times}2$ generator${\\times}$extractor matrix on FOLIO and ProofWriter (range $1.94$--$2.70$; Appendix~\\ref{app:2x2}). Constraints use trace-specific variables (56.4\\% zero cross-answer overlap), collapsing aggregation to majority voting.\n12\t\n13\t\\begin{table}[t]\n14\t\\centering\n15\t\\small\n16\t\\setlength{\\tabcolsep}{3pt}\n17\t\\caption{Symbolic confirmation bias across nine models on FOLIO ($n = 204$). BR: mean per-problem bias ratio. $n_\\text{err}$: number of incorrect instances on which BR is computed. $\\Delta$: SICA $-$ SC (pp). Ext.: $^a$self-extraction; $^b$cross-model (Mistral-7B extracts FOL from target traces). $^*$Interim ($n = 95/204$). All models exhibit $\\text{BR} > 1$; BR estimates for high-accuracy models ($n_\\text{err} < 40$) have wider confidence intervals; Gemini ($n_\\text{err} \\approx 12$) should be interpreted with particular caution. Process-level similarity ($\\kappa_{\\text{proc}}$) ranges from $0.25$ (R1-Distill) to $0.79$ (gpt-4o/4.1/Gemini); see Table~\\ref{tab:cross-model-process}.}\n18\t\\label{tab:frontier-scb}\n19\t\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llrrrrl@{}}\n20\t\\toprule\n21\tModel & Ext. & SC (\\%) & $n_\\text{err}$ & BR & $\\Delta$ (pp) \\\\\n22\t\\midrule\n23\tMistral-7B & $^a$ & 55.88 & 90 & 4.97 & 0.00 \\\\\n24\tLLaMA-8B & $^a$ & \\textrm{---} & \\textrm{---} & 2.88 & \\textrm{---} \\\\\n25\tQwen-14B & $^a$ & 75.98 & 49 & 3.85 & $-$0.49 \\\\\n26\t\\addlinespace\n27\tR1-Distill-8B & $^b$ & 74.51 & 52 & 2.92 & $+$2.45 \\\\\n28\tgpt-4o & $^a$ & 73.91 & 53 & 2.94 & $-$1.80 \\\\\n29\tgpt-4.1 & $^b$ & 82.84 & 35 & 2.70 & $-$1.47 \\\\\n30\tgpt-5.5 & $^b$ & 84.31 & 32 & 3.48 & $+$0.49 \\\\\n31\to3 & $^b$ & 82.65 & 35 & 1.66 & 0.00 \\\\\n32\tGemini-2.5-Pro$^*$ & $^b$ & 87.37 & 12 & 2.79 & $-$1.10 \\\\\n33\t\\bottomrule\n34\t\\end{tabular}}\n35\t\\end{table}\n36\t\n37\t\\looseness=-1 Two controls rule out answer leakage. BR is uniform across early, mid, and late reasoning steps (Fisher $p = 0.71$); high-consensus errors amplify to $\\text{BR} = 18.8\\times$ versus $2.7\\times$ for low-consensus ($p < 0.001$). Removing the answer sentence from traces before extraction yields no BR decrease (Wilcoxon $p \\geq 0.12$) despite significant accuracy loss (McNemar $p < 0.013$). Symbolic confirmation bias reflects a distributional prior embedded throughout reasoning, not answer contamination.\n38\t\n39\t\\looseness=-1 Reasoning-process overlap exceeds answer-level correlation: on Mistral-7B FOLIO, mean process similarity (pairwise TF-IDF cosine; Appendix~\\ref{app:process-gradient}) reaches 0.69, far exceeding answer-level $\\kappa = 0.46$. The gap generalizes across four families (Table~\\ref{tab:cross-model-process}). Under cross-model extraction, SICA gain decreases monotonically with process similarity ($\\rho = -1.0$, $p = 0.008$; Table~\\ref{tab:process-gradient}). Conditional correction analysis confirms the same pattern: cross-architecture NLI yields positive correction ratios while same-model SICA yields negative ones, with correction ratio correlating with combo gain ($\\rho = 0.84$, $p = 0.014$; Appendix~\\ref{app:cil}).\n40\t\n41\t\\subsection{Why Remediation Fails}\n42\t\\label{sec:remediation}\n43\t\\label{sec:interventions}\n44\t\n45\t\\looseness=-1 All 27 training-free remediation strategies spanning four categories produce neutral-to-negative results (Figure~\\ref{fig:interventions-summary}; Appendices~\\ref{app:extraction}--\\ref{app:entropy}). The pattern reveals a fundamental independence-accuracy trade-off: methods that successfully break trace correlation simultaneously destroy accuracy, while methods that preserve accuracy fail to achieve independence.\n46\t\n47\t\\looseness=-1 Four representative failure modes illustrate this trade-off. \\emph{Debate} ($\\kappa = 0.15$, $\\Delta = -18.6$\\,pp) successfully breaks trace correlation but collapses accuracy: same-model diversity and quality are at odds. \\emph{Cross-model extraction} (using a different LLM as extractor) decreases $\\kappa$ slightly but $\\Delta \\approx 0$, because same-family models share systematic biases (Appendix Table~\\ref{tab:kappa_generalization}). \\emph{Contrastive prompting} produces imbalanced output (94 pro vs.\\ 65 con constraints), indicating confirmation bias transfers to constraint generation. \\emph{Iterative constraint generation}, which refines constraints across multiple extraction rounds, reduces surface-level duplication but the refined constraints still align with the model's majority answer.\n48\t\n49\t\\looseness=-1 All non-debate strategies cluster at $\\kappa \\approx 0.40$--$0.47$, a same-model ceiling observed across three families. This ceiling is not a property of any single extraction method but of the model itself: regardless of prompting strategy, self-extraction cannot produce constraints that are independent of the model's distributional prior. The oracle ceiling ($+29.90$\\,pp with gold constraints) proves the mechanism is sound; self-extraction captures only ${\\sim}$12\\%, localizing the bottleneck to extraction quality rather than the MAX-SAT apparatus.\n50\t\n51\t\\looseness=-1 No individual strategy achieves significance after correction (Appendix~\\ref{app:intervention-individual}). The consistent failure across 27 strategies, four categories, and three model families suggests that symbolic confirmation bias is not a fixable extraction artifact but an intrinsic property of self-referential constraint generation.\n52\t\n53\t\\begin{figure}[t]\n54\t\\centering\n55\t\\includegraphics[width=\\columnwidth]{figures/fig2_interventions_compact.pdf}\n56\t\\caption{Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\\Delta$ vs.\\ SC. Grey band: $\\pm 1$\\,pp noise zone.}\n57\t\\label{fig:interventions-summary}\n58\t\\end{figure}\n59\t\n60\t\\subsection{Diagnostic Framework}\n61\t\\label{sec:diagnostic-framework}\n62\t\\label{sec:diagnostics}\n63\t\n64\t\\looseness=-1 Three zero-cost diagnostics predict the outcome of any trace-aggregation method from a $K = 12$ pilot run: (1) the degenerate-regime indicator $C_0 < 5\\%$ (SICA reduces to SC); (2) the diversity floor $K_\\text{eff} \\leq 1.3$ (insufficient vote diversity for any aggregation gain); (3) the bias ratio BR combined with SC regime (Type~A: SC $\\geq 60\\%$ with BR $> 1$ predicts confirmation-bias degradation; Type~C: SC $\\leq 40\\%$ predicts error amplification). These boundaries correctly classify all 60 tested conditions across four model families and three datasets.\n65\t\n66\t\\looseness=-1 Decision boundaries ($C_0 < 5\\%$, $K_\\text{eff} \\leq 1.3$, SC $< 40\\%$) were derived from Mistral-7B and Qwen2.5-14B conditions. We evaluate prospectively on held-out LLaMA-3.1-8B, a different model family not used in boundary derivation: on FOLIO (SC $= 66.18\\%$, $C_0 = 61.8\\%$, $K_\\text{eff} = 2.17$), the framework predicts Type~A confirmation bias ($\\Delta \\leq 0$); the observed $\\Delta = -4.41$\\,pp confirms the prediction.\n67\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "61823ff9-ebbd-4ef3-8b7e-ceb63799c147",
+            "isSidechain": false,
+            "promptId": "5f4db7ad-3ff6-4a83-be37-6bbcd015b808",
+            "type": "user",
+            "uuid": "8d2e5b43-a5dc-49c0-9494-5aa3adb4a492",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+                "content": "\\section{The Symbolic Mirage}\n\\label{sec:analysis}\n\n\\subsection{Symbolic Confirmation Bias}\n\\label{sec:confirmation-bias}\n\n\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. A shuffle control reveals this bias is \\emph{structural}: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ (Table~\\ref{tab:alpha-ablation}).\n\n\\looseness=-1 This bias is not an artifact of incorrect majority votes: on problems where SC selects the correct answer, constraints still disproportionately support the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$ across all six tested conditions, with 5/6 showing $\\text{BR}_\\text{correct} \\geq \\text{BR}_\\text{wrong}$), confirming that self-extracted constraints track distributional frequency rather than logical validity.\n\n\\looseness=-1 The pattern generalizes: $4.97\\times$ (Mistral), $3.85\\times$ (Qwen-14B), $2.88\\times$ (LLaMA), all $> 1.0$ with 95\\% bootstrap CIs (Table~\\ref{tab:cross-model-bias}). Cross-model extraction confirms universality across nine models from 7B to frontier (BR $1.66$--$4.97\\times$; Table~\\ref{tab:frontier-scb}). BR $> 1$ further holds across all eight cells of a $2{\\times}2$ generator${\\times}$extractor matrix on FOLIO and ProofWriter (range $1.94$--$2.70$; Appendix~\\ref{app:2x2}). Constraints use trace-specific variables (56.4\\% zero cross-answer overlap), collapsing aggregation to majority voting.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\caption{Symbolic confirmation bias across nine models on FOLIO ($n = 204$). BR: mean per-problem bias ratio. $n_\\text{err}$: number of incorrect instances on which BR is computed. $\\Delta$: SICA $-$ SC (pp). Ext.: $^a$self-extraction; $^b$cross-model (Mistral-7B extracts FOL from target traces). $^*$Interim ($n = 95/204$). All models exhibit $\\text{BR} > 1$; BR estimates for high-accuracy models ($n_\\text{err} < 40$) have wider confidence intervals; Gemini ($n_\\text{err} \\approx 12$) should be interpreted with particular caution. Process-level similarity ($\\kappa_{\\text{proc}}$) ranges from $0.25$ (R1-Distill) to $0.79$ (gpt-4o/4.1/Gemini); see Table~\\ref{tab:cross-model-process}.}\n\\label{tab:frontier-scb}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llrrrrl@{}}\n\\toprule\nModel & Ext. & SC (\\%) & $n_\\text{err}$ & BR & $\\Delta$ (pp) \\\\\n\\midrule\nMistral-7B & $^a$ & 55.88 & 90 & 4.97 & 0.00 \\\\\nLLaMA-8B & $^a$ & \\textrm{---} & \\textrm{---} & 2.88 & \\textrm{---} \\\\\nQwen-14B & $^a$ & 75.98 & 49 & 3.85 & $-$0.49 \\\\\n\\addlinespace\nR1-Distill-8B & $^b$ & 74.51 & 52 & 2.92 & $+$2.45 \\\\\ngpt-4o & $^a$ & 73.91 & 53 & 2.94 & $-$1.80 \\\\\ngpt-4.1 & $^b$ & 82.84 & 35 & 2.70 & $-$1.47 \\\\\ngpt-5.5 & $^b$ & 84.31 & 32 & 3.48 & $+$0.49 \\\\\no3 & $^b$ & 82.65 & 35 & 1.66 & 0.00 \\\\\nGemini-2.5-Pro$^*$ & $^b$ & 87.37 & 12 & 2.79 & $-$1.10 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\looseness=-1 Two controls rule out answer leakage. BR is uniform across early, mid, and late reasoning steps (Fisher $p = 0.71$); high-consensus errors amplify to $\\text{BR} = 18.8\\times$ versus $2.7\\times$ for low-consensus ($p < 0.001$). Removing the answer sentence from traces before extraction yields no BR decrease (Wilcoxon $p \\geq 0.12$) despite significant accuracy loss (McNemar $p < 0.013$). Symbolic confirmation bias reflects a distributional prior embedded throughout reasoning, not answer contamination.\n\n\\looseness=-1 Reasoning-process overlap exceeds answer-level correlation: on Mistral-7B FOLIO, mean process similarity (pairwise TF-IDF cosine; Appendix~\\ref{app:process-gradient}) reaches 0.69, far exceeding answer-level $\\kappa = 0.46$. The gap generalizes across four families (Table~\\ref{tab:cross-model-process}). Under cross-model extraction, SICA gain decreases monotonically with process similarity ($\\rho = -1.0$, $p = 0.008$; Table~\\ref{tab:process-gradient}). Conditional correction analysis confirms the same pattern: cross-architecture NLI yields positive correction ratios while same-model SICA yields negative ones, with correction ratio correlating with combo gain ($\\rho = 0.84$, $p = 0.014$; Appendix~\\ref{app:cil}).\n\n\\subsection{Why Remediation Fails}\n\\label{sec:remediation}\n\\label{sec:interventions}\n\n\\looseness=-1 All 27 training-free remediation strategies spanning four categories produce neutral-to-negative results (Figure~\\ref{fig:interventions-summary}; Appendices~\\ref{app:extraction}--\\ref{app:entropy}). The pattern reveals a fundamental independence-accuracy trade-off: methods that successfully break trace correlation simultaneously destroy accuracy, while methods that preserve accuracy fail to achieve independence.\n\n\\looseness=-1 Four representative failure modes illustrate this trade-off. \\emph{Debate} ($\\kappa = 0.15$, $\\Delta = -18.6$\\,pp) successfully breaks trace correlation but collapses accuracy: same-model diversity and quality are at odds. \\emph{Cross-model extraction} (using a different LLM as extractor) decreases $\\kappa$ slightly but $\\Delta \\approx 0$, because same-family models share systematic biases (Appendix Table~\\ref{tab:kappa_generalization}). \\emph{Contrastive prompting} produces imbalanced output (94 pro vs.\\ 65 con constraints), indicating confirmation bias transfers to constraint generation. \\emph{Iterative constraint generation}, which refines constraints across multiple extraction rounds, reduces surface-level duplication but the refined constraints still align with the model's majority answer.\n\n\\looseness=-1 All non-debate strategies cluster at $\\kappa \\approx 0.40$--$0.47$, a same-model ceiling observed across three families. This ceiling is not a property of any single extraction method but of the model itself: regardless of prompting strategy, self-extraction cannot produce constraints that are independent of the model's distributional prior. The oracle ceiling ($+29.90$\\,pp with gold constraints) proves the mechanism is sound; self-extraction captures only ${\\sim}$12\\%, localizing the bottleneck to extraction quality rather than the MAX-SAT apparatus.\n\n\\looseness=-1 No individual strategy achieves significance after correction (Appendix~\\ref{app:intervention-individual}). The consistent failure across 27 strategies, four categories, and three model families suggests that symbolic confirmation bias is not a fixable extraction artifact but an intrinsic property of self-referential constraint generation.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_interventions_compact.pdf}\n\\caption{Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\\Delta$ vs.\\ SC. Grey band: $\\pm 1$\\,pp noise zone.}\n\\label{fig:interventions-summary}\n\\end{figure}\n\n\\subsection{Diagnostic Framework}\n\\label{sec:diagnostic-framework}\n\\label{sec:diagnostics}\n\n\\looseness=-1 Three zero-cost diagnostics predict the outcome of any trace-aggregation method from a $K = 12$ pilot run: (1) the degenerate-regime indicator $C_0 < 5\\%$ (SICA reduces to SC); (2) the diversity floor $K_\\text{eff} \\leq 1.3$ (insufficient vote diversity for any aggregation gain); (3) the bias ratio BR combined with SC regime (Type~A: SC $\\geq 60\\%$ with BR $> 1$ predicts confirmation-bias degradation; Type~C: SC $\\leq 40\\%$ predicts error amplification). These boundaries correctly classify all 60 tested conditions across four model families and three datasets.\n\n\\looseness=-1 Decision boundaries ($C_0 < 5\\%$, $K_\\text{eff} \\leq 1.3$, SC $< 40\\%$) were derived from Mistral-7B and Qwen2.5-14B conditions. We evaluate prospectively on held-out LLaMA-3.1-8B, a different model family not used in boundary derivation: on FOLIO (SC $= 66.18\\%$, $C_0 = 61.8\\%$, $K_\\text{eff} = 2.17$), the framework predicts Type~A confirmation bias ($\\Delta \\leq 0$); the observed $\\Delta = -4.41$\\,pp confirms the prediction.\n",
+                "numLines": 67,
+                "startLine": 1,
+                "totalLines": 67
+              }
+            },
+            "sourceToolAssistantUUID": "61823ff9-ebbd-4ef3-8b7e-ceb63799c147",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T03:49:11.589Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ByDhsi1UNmkZbCRQtqzvac",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/proposition1_scb_proof.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a68233c-2845-47df-adc0-36f599fdbb66",
+            "isSidechain": false,
+            "requestId": "req_011CbJpPSTan9heNidpEMGnd",
+            "type": "assistant",
+            "uuid": "1d64ab94-8f21-46b0-8280-32eb74f96407",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DSHai2P2LKLqjKoVMQN16C",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13425,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 239,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13425,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 239,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13425,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13425
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T03:49:11.595Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ByDhsi1UNmkZbCRQtqzvac",
+              "type": "tool_result",
+              "content": "1\t% Proposition 1: Symbolic Confirmation Bias is Structural\n2\t% Place after the empirical BR paragraph in §3.2 (analysis.tex, ~line 17),\n3\t% or at the end of §2.3 (method.tex) after Eq.(4) degeneration condition.\n4\t% Requires: amsmath, amssymb, enumitem (all already loaded in main.tex).\n5\t\n6\t\\textbf{Proposition 1} \\textit{(Symbolic Confirmation Bias is Structural).}\\;%\n7\tLet $t_1, \\dots, t_K \\overset{\\mathrm{i.i.d.}}{\\sim} P_M(\\cdot \\mid q)$ be reasoning traces from model $M$ on question $q$.\n8\tAssume:\n9\t\\begin{enumerate}[label=\\textbf{A\\arabic*.},leftmargin=2.5em,nosep]\n10\t\\item Answers are trace-determined: $a_i = h(t_i)$.\n11\t\\item Constraints are trace-determined: $c_i = f(t_i)$.\n12\t\\end{enumerate}\n13\tLet $\\hat{a} = \\mathrm{mode}(a_1, \\dots, a_K)$, $n_a = |\\{i : a_i = a\\}|$, and $Y$ the ground truth. Then:\n14\t\\begin{enumerate}[label=\\textit{(\\roman*)},leftmargin=1.8em,itemsep=2pt,topsep=3pt]\n15\t\\item \\textit{Voting degeneration.}\\;\n16\tUnder source attribution $\\sigma(c_i, a) \\triangleq \\mathbf{1}[a_i = a]$, the constraint score reduces to the majority-vote count: $\\operatorname{score}(a) = n_a$.\n17\tWhen $|\\{a : n_a > 0\\}| \\geq 2$, the bias ratio satisfies $\\mathrm{BR} \\triangleq n_{\\hat{a}} \\big/ \\max_{a' \\neq \\hat{a}} n_{a'} \\geq 1$.\n18\t\n19\t\\item \\textit{Information ceiling.}\\;\n20\t$I(C_{1:K};\\, Y) \\leq I(T_{1:K};\\, Y)$ and $I(C_{1:K};\\, Y \\mid A_{1:K}) \\leq I(T_{1:K};\\, Y \\mid A_{1:K})$:\n21\tself-extracted constraints cannot carry more information about $Y$ than the source traces---even beyond what the answers already encode.\n22\t\\end{enumerate}\n23\t\\noindent\n24\tBoth bounds hold for \\emph{any} model $M$, task $q$, and extraction function $f$.\n25\t\n26\t\\medskip\n27\t\\textit{Proof.}\\;%\n28\t\\textit{(i)}\\; By definition, $\\operatorname{score}(a) = \\sum_{i=1}^K \\mathbf{1}[a_i = a] = n_a$, maximized at $\\hat{a}$, so $\\mathrm{BR} \\geq 1$.\n29\t\\textit{(ii)}\\; $c_i = f(t_i)$ makes $C_{1:K}$ a deterministic function of $T_{1:K}$, so $Y \\mathop{\\text{---}} T_{1:K} \\mathop{\\text{---}} C_{1:K}$ forms a Markov chain and the data processing inequality gives $I(C_{1:K}; Y) \\leq I(T_{1:K}; Y)$.\n30\tThe conditional bound follows identically: $c_i = f(t_i)$ holds unconditionally, so the Markov property and DPI apply within each stratum $\\{A_{1:K} = \\mathbf{a}\\}$.\\hfill$\\square$\n31\t\n32\t\\medskip\\noindent\n33\tEach constraint is a downstream product of a trace that simultaneously determines an answer; constraint-based aggregation therefore cannot escape the distributional bias of the answer vote.\n34\tNeither bound depends on model capability, task difficulty, or extraction quality---the bias is a structural artifact of the self-extraction pipeline.\n35\t\n36\t\\medskip\\noindent\n37\t\\textbf{Remark.}\\;%\n38\tPart~\\textit{(i)} relies on source attribution (Eq.~\\ref{eq:score}), the mechanism used by SICA.\n39\tUnder \\emph{semantic} evaluation---checking whether $c_i$ is logically consistent with answer $a$ directly---$\\mathrm{BR} \\geq 1$ additionally requires \\emph{answer alignment}: $P(c_i \\text{ supports } a_i) \\geq P(c_i \\text{ supports } a')$ for $a' \\neq a_i$.\n40\tThis property is structurally motivated (the reasoning chain producing $a_i$ generates intermediate steps aligned with $a_i$) and is empirically validated across all nine model--task conditions ($\\mathrm{BR} \\in [1.66,\\, 4.97]$; Table~\\ref{tab:frontier-scb}), but is not a mathematical necessity of self-extraction alone---it could fail if $f$ systematically extracted premises that contradict their source trace's conclusion.\n41\t\n42\t% ============================================================\n43\t% AUTHOR NOTE: Honesty check on proof strength\n44\t% ============================================================\n45\t%\n46\t% 1. Part (i) is intentionally trivial. The triviality IS the contribution:\n47\t%    it makes explicit that source attribution (σ function) renders the\n48\t%    constraint layer exactly redundant with answer counting. The simplicity\n49\t%    underscores that SCB is not a subtle empirical phenomenon but an\n50\t%    immediate structural consequence.\n51\t%\n52\t% 2. Part (ii) uses only the standard DPI, requiring no assumptions beyond\n53\t%    A1-A2. The conditional form I(C;Y|A) ≤ I(T;Y|A) is the stronger\n54\t%    result: it says constraints add no *independent* verification signal\n55\t%    beyond the traces themselves. Note this does NOT say I(C;Y|A) = 0;\n56\t%    constraints may carry some info about Y beyond A, but only info already\n57\t%    present in T. True independence requires breaking the T→C pipeline.\n58\t%\n59\t% 3. BR ≥ 1 is deterministic (holds for every realization), not just\n60\t%    E[BR] ≥ 1. It equals 1 iff â ties with a runner-up. This is stronger\n61\t%    than the empirical finding and explains why BR > 1 universally.\n62\t%\n63\t% 4. The Remark is essential for intellectual honesty: under semantic\n64\t%    attribution, answer alignment is needed and is NOT a pure structural\n65\t%    guarantee. However, since SICA actually uses source attribution, the\n66\t%    main Proposition stands unconditionally.\n67\t%\n68\t% 5. Potential reviewer pushback: \"This is obvious.\" Response: if it were\n69\t%    obvious, prior work (including the original SICA paper) would not have\n70\t%    proposed self-extraction as a verification mechanism. The proposition\n71\t%    formalizes why that mechanism is structurally vacuous.\n72\t%\n73\t% 6. Deduplication caveat: with constraint deduplication, a constraint\n74\t%    shared across answer groups contributes equally to all scores (cancels\n75\t%    out). Answer-specific constraints drive the ranking, and these are\n76\t%    proportional to trace counts. In the degenerate case where minority\n77\t%    traces produce disproportionately more *unique* constraints, BR could\n78\t%    theoretically drop below 1. Empirically this never happens (Table 5).\n79\t%    The proposition covers the pre-deduplication base case; the\n80\t%    degeneration condition (Eq.4) covers the practical case.\n81\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d64ab94-8f21-46b0-8280-32eb74f96407",
+            "isSidechain": false,
+            "promptId": "5f4db7ad-3ff6-4a83-be37-6bbcd015b808",
+            "type": "user",
+            "uuid": "8590e213-72be-4cb3-ae83-5d323b10e4ae",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/proposition1_scb_proof.tex",
+                "content": "% Proposition 1: Symbolic Confirmation Bias is Structural\n% Place after the empirical BR paragraph in §3.2 (analysis.tex, ~line 17),\n% or at the end of §2.3 (method.tex) after Eq.(4) degeneration condition.\n% Requires: amsmath, amssymb, enumitem (all already loaded in main.tex).\n\n\\textbf{Proposition 1} \\textit{(Symbolic Confirmation Bias is Structural).}\\;%\nLet $t_1, \\dots, t_K \\overset{\\mathrm{i.i.d.}}{\\sim} P_M(\\cdot \\mid q)$ be reasoning traces from model $M$ on question $q$.\nAssume:\n\\begin{enumerate}[label=\\textbf{A\\arabic*.},leftmargin=2.5em,nosep]\n\\item Answers are trace-determined: $a_i = h(t_i)$.\n\\item Constraints are trace-determined: $c_i = f(t_i)$.\n\\end{enumerate}\nLet $\\hat{a} = \\mathrm{mode}(a_1, \\dots, a_K)$, $n_a = |\\{i : a_i = a\\}|$, and $Y$ the ground truth. Then:\n\\begin{enumerate}[label=\\textit{(\\roman*)},leftmargin=1.8em,itemsep=2pt,topsep=3pt]\n\\item \\textit{Voting degeneration.}\\;\nUnder source attribution $\\sigma(c_i, a) \\triangleq \\mathbf{1}[a_i = a]$, the constraint score reduces to the majority-vote count: $\\operatorname{score}(a) = n_a$.\nWhen $|\\{a : n_a > 0\\}| \\geq 2$, the bias ratio satisfies $\\mathrm{BR} \\triangleq n_{\\hat{a}} \\big/ \\max_{a' \\neq \\hat{a}} n_{a'} \\geq 1$.\n\n\\item \\textit{Information ceiling.}\\;\n$I(C_{1:K};\\, Y) \\leq I(T_{1:K};\\, Y)$ and $I(C_{1:K};\\, Y \\mid A_{1:K}) \\leq I(T_{1:K};\\, Y \\mid A_{1:K})$:\nself-extracted constraints cannot carry more information about $Y$ than the source traces---even beyond what the answers already encode.\n\\end{enumerate}\n\\noindent\nBoth bounds hold for \\emph{any} model $M$, task $q$, and extraction function $f$.\n\n\\medskip\n\\textit{Proof.}\\;%\n\\textit{(i)}\\; By definition, $\\operatorname{score}(a) = \\sum_{i=1}^K \\mathbf{1}[a_i = a] = n_a$, maximized at $\\hat{a}$, so $\\mathrm{BR} \\geq 1$.\n\\textit{(ii)}\\; $c_i = f(t_i)$ makes $C_{1:K}$ a deterministic function of $T_{1:K}$, so $Y \\mathop{\\text{---}} T_{1:K} \\mathop{\\text{---}} C_{1:K}$ forms a Markov chain and the data processing inequality gives $I(C_{1:K}; Y) \\leq I(T_{1:K}; Y)$.\nThe conditional bound follows identically: $c_i = f(t_i)$ holds unconditionally, so the Markov property and DPI apply within each stratum $\\{A_{1:K} = \\mathbf{a}\\}$.\\hfill$\\square$\n\n\\medskip\\noindent\nEach constraint is a downstream product of a trace that simultaneously determines an answer; constraint-based aggregation therefore cannot escape the distributional bias of the answer vote.\nNeither bound depends on model capability, task difficulty, or extraction quality---the bias is a structural artifact of the self-extraction pipeline.\n\n\\medskip\\noindent\n\\textbf{Remark.}\\;%\nPart~\\textit{(i)} relies on source attribution (Eq.~\\ref{eq:score}), the mechanism used by SICA.\nUnder \\emph{semantic} evaluation---checking whether $c_i$ is logically consistent with answer $a$ directly---$\\mathrm{BR} \\geq 1$ additionally requires \\emph{answer alignment}: $P(c_i \\text{ supports } a_i) \\geq P(c_i \\text{ supports } a')$ for $a' \\neq a_i$.\nThis property is structurally motivated (the reasoning chain producing $a_i$ generates intermediate steps aligned with $a_i$) and is empirically validated across all nine model--task conditions ($\\mathrm{BR} \\in [1.66,\\, 4.97]$; Table~\\ref{tab:frontier-scb}), but is not a mathematical necessity of self-extraction alone---it could fail if $f$ systematically extracted premises that contradict their source trace's conclusion.\n\n% ============================================================\n% AUTHOR NOTE: Honesty check on proof strength\n% ============================================================\n%\n% 1. Part (i) is intentionally trivial. The triviality IS the contribution:\n%    it makes explicit that source attribution (σ function) renders the\n%    constraint layer exactly redundant with answer counting. The simplicity\n%    underscores that SCB is not a subtle empirical phenomenon but an\n%    immediate structural consequence.\n%\n% 2. Part (ii) uses only the standard DPI, requiring no assumptions beyond\n%    A1-A2. The conditional form I(C;Y|A) ≤ I(T;Y|A) is the stronger\n%    result: it says constraints add no *independent* verification signal\n%    beyond the traces themselves. Note this does NOT say I(C;Y|A) = 0;\n%    constraints may carry some info about Y beyond A, but only info already\n%    present in T. True independence requires breaking the T→C pipeline.\n%\n% 3. BR ≥ 1 is deterministic (holds for every realization), not just\n%    E[BR] ≥ 1. It equals 1 iff â ties with a runner-up. This is stronger\n%    than the empirical finding and explains why BR > 1 universally.\n%\n% 4. The Remark is essential for intellectual honesty: under semantic\n%    attribution, answer alignment is needed and is NOT a pure structural\n%    guarantee. However, since SICA actually uses source attribution, the\n%    main Proposition stands unconditionally.\n%\n% 5. Potential reviewer pushback: \"This is obvious.\" Response: if it were\n%    obvious, prior work (including the original SICA paper) would not have\n%    proposed self-extraction as a verification mechanism. The proposition\n%    formalizes why that mechanism is structurally vacuous.\n%\n% 6. Deduplication caveat: with constraint deduplication, a constraint\n%    shared across answer groups contributes equally to all scores (cancels\n%    out). Answer-specific constraints drive the ranking, and these are\n%    proportional to trace counts. In the degenerate case where minority\n%    traces produce disproportionately more *unique* constraints, BR could\n%    theoretically drop below 1. Empirically this never happens (Table 5).\n%    The proposition covers the pre-deduplication base case; the\n%    degeneration condition (Eq.4) covers the practical case.\n",
+                "numLines": 81,
+                "startLine": 1,
+                "totalLines": 81
+              }
+            },
+            "sourceToolAssistantUUID": "1d64ab94-8f21-46b0-8280-32eb74f96407",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T03:49:11.821Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B4x24WAwkTvCAZAbmRpB9U",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8590e213-72be-4cb3-ae83-5d323b10e4ae",
+            "isSidechain": false,
+            "requestId": "req_011CbJpPSTan9heNidpEMGnd",
+            "type": "assistant",
+            "uuid": "61823ff9-ebbd-4ef3-8b7e-ceb63799c147",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DSHai2P2LKLqjKoVMQN16C",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13425,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 239,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13425,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 239,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13425,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13425
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "8d2e5b43-a5dc-49c0-9494-5aa3adb4a492",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d"
+              }
+            }
+          ],
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Integrate Proposition 1 into analysis.tex §5.1",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d"
+              }
+            }
+          ],
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T03:49:16.189Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me read method.tex to check the notation references (particularly Eq. 3 / eq:score, Eq. 5 / eq:mirage, and notation for traces, etc.).",
+              "signature": "EtQCCmMIDhgCKkB98XJpdR08jm80TMFFOex/8C+jMoebuMg20Y+HTgeM9McY2X4qX1A4cAn/bMcYF9O3+Kb/WZ2EkB0Vv8IfQRbvMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDF+6RYBMxV7prFJ8OxoMKprKwW7RwcjhHmR1IjAaSR4YglOWaeD202lsMcbCrj1ISlJcVSPhSBgMFLh1z51VCP9Ms6U0Fr12w64iEQEqngHi2QPcfhbkFqgOImeIPdL92U9n1+gCGFRBKZJCCqn0z7xovjmPMxpMVCnuUXru/QwQ4GUBXHPjM9ilFVLQQD/gmdhIW94z5kLismatXfxxkns4BSjMhi30pXbLYEYrelrKF3DObAvYRq/LLi1Sv4tDsLug8t2wF9FJ4Ao2K9batLJNXIU1v2uvEtSq0ekJc1mX9BoOIdN6bo1gg78CYhgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d2e5b43-a5dc-49c0-9494-5aa3adb4a492",
+            "isSidechain": false,
+            "requestId": "req_011CbJpPtdgeFXWyHG4Xcyjb",
+            "type": "assistant",
+            "uuid": "55c57a8b-35fc-4bf1-9e4b-8408eeec0225",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BymatBwmEWeA2ADvuwy3AX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10831,
+                "cache_read_input_tokens": 25266,
+                "output_tokens": 235,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10831,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 235,
+                    "cache_read_input_tokens": 25266,
+                    "cache_creation_input_tokens": 10831,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10831
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T03:49:16.820Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the relevant equations in method.tex for notation alignment."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55c57a8b-35fc-4bf1-9e4b-8408eeec0225",
+            "isSidechain": false,
+            "requestId": "req_011CbJpPtdgeFXWyHG4Xcyjb",
+            "type": "assistant",
+            "uuid": "1a7b7875-e74b-40b4-b073-b32f0628f9c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BymatBwmEWeA2ADvuwy3AX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10831,
+                "cache_read_input_tokens": 25266,
+                "output_tokens": 235,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10831,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 235,
+                    "cache_read_input_tokens": 25266,
+                    "cache_creation_input_tokens": 10831,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10831
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T03:49:19.858Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018LRr2Sxb2XkM5ypVxRD7W3",
+              "name": "Grep",
+              "input": {
+                "pattern": "eq:score|eq:mirage|eq:degenerate|\\\\sigma\\(c",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex",
+                "output_mode": "content",
+                "-C": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a7b7875-e74b-40b4-b073-b32f0628f9c9",
+            "isSidechain": false,
+            "requestId": "req_011CbJpPtdgeFXWyHG4Xcyjb",
+            "type": "assistant",
+            "uuid": "bb100bae-5abf-4887-bd1c-a42e670c196c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BymatBwmEWeA2ADvuwy3AX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10831,
+                "cache_read_input_tokens": 25266,
+                "output_tokens": 235,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10831,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 235,
+                    "cache_read_input_tokens": 25266,
+                    "cache_creation_input_tokens": 10831,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10831
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T03:49:19.886Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018LRr2Sxb2XkM5ypVxRD7W3",
+              "type": "tool_result",
+              "content": "27-\n28-\\paragraph{Scoring.} Let $\\mathcal{C}^{\\setminus} = \\mathcal{C} \\setminus \\mathcal{C}^*$. Each candidate $a$ is scored by:\n29-\\begin{equation}\n30:\\label{eq:score}\n31:\\text{score}(a) = \\sum_{c \\in \\mathcal{C}^*} w_c \\cdot \\sigma(c, a) - \\alpha \\sum_{c \\in \\mathcal{C}^{\\setminus}} w_c \\cdot \\sigma(c, a),\n32-\\end{equation}\n33:where $\\sigma(c, a) = 1$ if $c$ was extracted from any trace producing answer $a$, and $\\alpha = 0.5$. The selected answer is $a^* = \\arg\\max_{a} \\text{score}(a)$.\n34-\n35-\\paragraph{Degeneration condition.} If self-extracted constraints are coupled to their source answer, MAX-SAT retains nearly all ($|\\mathcal{C}^{\\setminus}| \\approx 0$), and scoring degenerates to:\n36-\\begin{equation}\n37:\\label{eq:degenerate}\n38-\\text{score}(a) \\approx \\sum_{\\substack{c \\in \\mathcal{C}^* \\\\ \\text{source}(c) \\to a}} w_c,\n39-\\end{equation}\n40-equivalent to majority voting. We show in \\S\\ref{sec:confirmation-bias} that this degeneration occurs in practice.\n--\n42-\\paragraph{The $C_0$ diagnostic.} The multi-candidate rate $C_0 = |\\{q : |\\mathcal{A}(q)| > 1\\}| / |\\mathcal{Q}|$ is a zero-cost diagnostic: $C_0 < 5\\%$ means SICA reduces to SC. $\\alpha = 0.5$ is not critical (${\\pm}0.49$\\,pp across $\\alpha \\in [0, 1]$).\n43-\n44-\\paragraph{Bias ratio.} We quantify extraction bias via the \\emph{bias ratio}:\n45:\\begin{equation}\\label{eq:mirage}\n46-\\text{BR}(M,T) = \\frac{P(c \\text{ supports } a_M \\mid a_M \\neq a^*)}{P(c \\text{ supports } a^* \\mid a_M \\neq a^*)},\n47-\\end{equation}\n48-where $c$ is a self-extracted constraint, $a_M$ the model's majority answer, and $a^*$ the ground truth. $\\text{BR} > 1$ indicates constraints project model bias rather than provide independent verification; $\\text{BR} = 1$ indicates unbiased extraction. We validate this metric empirically in \\S\\ref{sec:confirmation-bias}."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bb100bae-5abf-4887-bd1c-a42e670c196c",
+            "isSidechain": false,
+            "promptId": "5f4db7ad-3ff6-4a83-be37-6bbcd015b808",
+            "type": "user",
+            "uuid": "bd30fd4d-bb8a-4e67-895e-38c8fb6fe707",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "27-\n28-\\paragraph{Scoring.} Let $\\mathcal{C}^{\\setminus} = \\mathcal{C} \\setminus \\mathcal{C}^*$. Each candidate $a$ is scored by:\n29-\\begin{equation}\n30:\\label{eq:score}\n31:\\text{score}(a) = \\sum_{c \\in \\mathcal{C}^*} w_c \\cdot \\sigma(c, a) - \\alpha \\sum_{c \\in \\mathcal{C}^{\\setminus}} w_c \\cdot \\sigma(c, a),\n32-\\end{equation}\n33:where $\\sigma(c, a) = 1$ if $c$ was extracted from any trace producing answer $a$, and $\\alpha = 0.5$. The selected answer is $a^* = \\arg\\max_{a} \\text{score}(a)$.\n34-\n35-\\paragraph{Degeneration condition.} If self-extracted constraints are coupled to their source answer, MAX-SAT retains nearly all ($|\\mathcal{C}^{\\setminus}| \\approx 0$), and scoring degenerates to:\n36-\\begin{equation}\n37:\\label{eq:degenerate}\n38-\\text{score}(a) \\approx \\sum_{\\substack{c \\in \\mathcal{C}^* \\\\ \\text{source}(c) \\to a}} w_c,\n39-\\end{equation}\n40-equivalent to majority voting. We show in \\S\\ref{sec:confirmation-bias} that this degeneration occurs in practice.\n--\n42-\\paragraph{The $C_0$ diagnostic.} The multi-candidate rate $C_0 = |\\{q : |\\mathcal{A}(q)| > 1\\}| / |\\mathcal{Q}|$ is a zero-cost diagnostic: $C_0 < 5\\%$ means SICA reduces to SC. $\\alpha = 0.5$ is not critical (${\\pm}0.49$\\,pp across $\\alpha \\in [0, 1]$).\n43-\n44-\\paragraph{Bias ratio.} We quantify extraction bias via the \\emph{bias ratio}:\n45:\\begin{equation}\\label{eq:mirage}\n46-\\text{BR}(M,T) = \\frac{P(c \\text{ supports } a_M \\mid a_M \\neq a^*)}{P(c \\text{ supports } a^* \\mid a_M \\neq a^*)},\n47-\\end{equation}\n48-where $c$ is a self-extracted constraint, $a_M$ the model's majority answer, and $a^*$ the ground truth. $\\text{BR} > 1$ indicates constraints project model bias rather than provide independent verification; $\\text{BR} = 1$ indicates unbiased extraction. We validate this metric empirically in \\S\\ref{sec:confirmation-bias}.",
+              "numLines": 22
+            },
+            "sourceToolAssistantUUID": "bb100bae-5abf-4887-bd1c-a42e670c196c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T03:51:57.134Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture. Let me analyze the current structure of §5.1 and plan the edit:\n\n**Current structure of §5.1 (lines 1-39):**\n\nParagraph 1 (line 7): Contains:\n- SCB quantitative observation (constraints align with majority, 83.3%, BR 4.97×, 94% errors overlap)\n- Shuffle control (\"A shuffle control reveals...\")\n- Z3 vacuity and α-insensitivity\n\nParagraph 2 (line 9): BR_correct observation\n\n\nParagraph 3 (line 11): Generalization across models\nThen the empirical results table\nParagraph 4 (line 37): Two controls ruling out answer leakage\nParagraph 5 (line 39): Reasoning-process overlap\n\n**Target structure:**\n1. SCB quantitative observation (first part of current para 1, keeping Z3/α-insensitivity)\n2. Transition sentence → Proposition 1 + Proof + Remark\n3. Transition sentence → BR_correct (current para 2)\n4. Shuffle control (currently mid-para 1)\n5. Then the rest (generalization, table, controls, overlap)\n\nSo I need to split the first paragraph and reorganize. The SCB observation stays at the top—self-extracted constraints align with majority answers, with that 83.3% bias ratio on Mistral-7B FOLIO. Then I introduce Proposition 1 with its proof and remark. After that comes the BR_correct empirical verification from the current second paragraph. The shuffle control moves to after BR_correct. Then generalization across models, the results table, the two controls for answer leakage, and finally the reasoning-process overlap section.\n\nLet me now rewrite the next chunk about the vacuity and α-insensitivity. The key points are: Z3 rejects only 3.4% of constraints, MAX-SAT matches count-only on 94.4%, the formal layer is vacuous because 99% pass Z3 yet add nothing beyond majority voting, and this vacuity is α-insensitive.\n\nZ3 barely rejects any constraints—just 3.4%—and MAX-SAT produces identical answers to simple count aggregation on 94.4% of problems, which means the formal verification layer is essentially vacuous. Nearly all constraints pass Z3 validation, yet they contribute no information beyond what majority voting already provides. This vacuity holds across different α values. I need to update the proposition notation to use `\\ldots` instead of `\\dots`, and replace the inline definition of σ with a reference to Eq.~\\ref{eq:score} since it's already defined in the method section. Let me also verify the equation references for Part (i).\n\nLooking at the BR definition in the proposition versus eq:mirage, they're measuring different things—one is a deterministic ratio of counts while the other is probabilistic. I'll note that the proposition's BR is a specific instantiation but won't force an inaccurate equation reference.\n\nI should also standardize the ellipsis notation from `\\dots` to `\\ldots` throughout, remove the author notes and deduplication caveats, and clean up any em-dashes in the proposition text to match the writing style guidelines. I found an em-dash in the Proposition text that I should replace with a comma or parenthetical to follow writing norms. But for the existing text I'm keeping from the analysis section—the part about constraints supporting incorrect answers and error overlap—that em-dash is already there and the instructions don't ask me to change it, so I'll leave it as is.\n\nNow I'm going through the Proposition lines to identify all the em-dashes that need replacing. I see three instances where em-dashes separate clauses, and I'll restructure each one using commas, semicolons, or periods depending on what works best for the flow.\n\nI also need to verify that the mathematical notation in line 29 uses the proper Markov chain separators—those `\\mathop{\\text{---}}` elements are standard notation and should stay as they are, not be treated as text em-dashes.\n\nWith that distinction clear, I'm now planning the final revision for section 5.1, restructuring the paragraphs to remove the em-dashes while keeping the mathematical content intact. The bias ratios range from 1.29 to 3.64 across conditions, with most showing that correct answers still receive disproportionate constraint support, suggesting the extracted constraints are tracking frequency patterns rather than actual logical validity. A shuffle control confirms this is structural: randomizing which constraints pair with which answers while keeping the overall trace counts the same produces nearly identical bias ratios, indicating the effect stems from the distribution of traces rather than how constraints were extracted. I'm working through how to restructure this section. The shuffle control evidence about structural bias fits naturally after the BR_correct empirical validation, since both provide evidence for the structural nature of the bias. The shuffle control sentence needs rewording though—instead of introducing \"structural\" as a new revelation, it should confirm what the Proposition already established, so I'll adjust it to \"A shuffle control confirms the structural nature of this bias...\" and then write out the full replacement text. I'm looking at the validation results showing that Z3 rejects only a small fraction of constraints, and MAX-SAT produces nearly identical answers to simple counting on most problems, which suggests the formal verification layer isn't actually adding value beyond what majority voting already provides. This pattern holds consistently across different parameter settings, confirming that the extracted constraints are tracking the distribution of model outputs rather than capturing genuine logical validity. Now I'm formalizing the core insight: symbolic confirmation bias is a structural property of the system. I'm setting up a proposition where reasoning traces from the model are i.i.d. samples, and I'm establishing two key assumptions—that answers and constraints are both deterministically derived from those traces—before defining the mode answer and counting how many traces produce each answer variant. I'm establishing two key theoretical bounds on constraint extraction. First, under source attribution scoring, voting degenerates to a simple majority count, creating a bias ratio between the top and second-place answers. Second, the mutual information between extracted constraints and the target is fundamentally capped by what the source traces contain—constraints can't reveal more about the answer than the traces themselves, regardless of the model or extraction method used. Now I'm moving into the proof, starting with the voting degeneration case by showing how the scoring function reduces to counting matches. Each constraint is a downstream product of a trace that simultaneously determines an answer, so constraint-based aggregation inherits the distributional bias of the answer vote—a structural artifact independent of model capability, task difficulty, or extraction quality. Under semantic evaluation, the bias additionally requires answer alignment where constraints preferentially support the correct answer over alternatives, which is structurally motivated.\n\nEmpirically, confirmation bias persists even on problems where the model selects correctly: self-extracted constraints disproportionately support the majority answer across all tested conditions, showing that they track distributional frequency rather than logical validity. A shuffle control confirms this structural nature of the bias. I'm working through the structure of the Remark section, deciding where to place the shuffle control result relative to the BR_correct discussion. Since the shuffle control provides empirical confirmation that the bias is structural—complementing the theoretical proof from the Proposition—it makes sense to keep them adjacent. I'm also standardizing the em-dashes throughout, replacing them with commas or semicolons where appropriate to improve readability. I need to standardize the ellipsis notation to `\\ldots` throughout, and for the Part (i) σ reference, I'm weighing whether to just cite the equation or include the definition inline to keep the proposition self-contained—the reader shouldn't have to jump back to find what σ means. I'm laying out the empirical evidence that shows the formal verification layer is essentially redundant—Z3 rejects almost nothing, MAX-SAT matches majority voting on over 94% of problems, and constraint agreement stays above 99% regardless of the aggregation parameter. This all points to a structural degeneracy in the approach, which the next proposition will formalize. I'm establishing two key theoretical bounds on constraint extraction. First, when using majority voting to score answers, the bias ratio between the most common and second-most common answer is always at least one, showing how voting can degenerate. Second, I'm proving an information ceiling: the mutual information between extracted constraints and ground truth can never exceed what's already in the original reasoning traces, even when conditioning on the answers themselves—meaning self-extracted constraints are fundamentally limited by their source material. The bounds hold regardless of model capability or task difficulty—this bias is fundamentally structural to the self-extraction process itself. Under semantic evaluation, the result additionally requires answer alignment, where the reasoning chain supporting each answer naturally produces intermediate steps consistent with that answer, which I'm validating empirically across all model-task combinations.\n\nBeyond incorrect cases, confirmation bias persists even when the model selects the correct answer, with constraints still favoring the majority response across all tested conditions. A shuffle control confirms this is purely structural: randomizing which constraints pair with which answers while keeping the overall trace counts fixed produces nearly identical bias ratios, showing that the bias reflects the underlying distribution of traces rather than any extraction-specific error.\n\nNow I'm deciding whether to keep the transition sentence \"The following result formalizes this degeneration\" as part of the current paragraph or separate it with a new paragraph break before the Proposition block. Since the Proposition uses `\\medskip\\noindent`, placing the transition as the final sentence of the first paragraph makes more visual sense. I'm also reconsidering how to handle the source attribution definition in Part (i)—the instructions say to reference the equation instead of spelling out the indicator function, but that loses some clarity about why the score simplifies to n_a. I'll follow the instruction as given.\n\nLooking back at the method.tex file, the equation already defines σ in terms of whether a constraint was extracted from traces producing a given answer, so readers can reference that. The proof itself will make the reduction explicit, which should be sufficient. I'm finalizing the edit now, replacing the first two content paragraphs of analysis.tex, and I've verified the em-dashes in the text are correct—the existing ones in the constraint bias discussion stay as-is, and the Markov chain notation uses the proper mathematical dash. I'm noticing the em-dash usage in the Remark needs adjustment. The paired em-dashes around \"checking whether $c_i$ is logically consistent with answer $a$ directly\" should be replaced with parentheses or commas for clarity. Parentheses would work better here to maintain readability and follow the writing norms about eliminating em-dashes.\n\nFor the second sentence, I'll replace the em-dash with a semicolon to separate the two related clauses more cleanly. Now I'll apply these edits to finalize the version.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd30fd4d-bb8a-4e67-895e-38c8fb6fe707",
+            "isSidechain": false,
+            "requestId": "req_011CbJpQUrE1wxpUhvFpkESU",
+            "type": "assistant",
+            "uuid": "ea5adc70-eae0-483a-9004-a40379f0b783",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NzqxdJLdFd5ax8VCG8Yfig",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 36097,
+                "output_tokens": 11235,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 977,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11235,
+                    "cache_read_input_tokens": 36097,
+                    "cache_creation_input_tokens": 977,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 977
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T03:51:57.136Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all three files. Let me compose the edit, replacing the first two paragraphs of §5.1 with the restructured content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea5adc70-eae0-483a-9004-a40379f0b783",
+            "isSidechain": false,
+            "requestId": "req_011CbJpQUrE1wxpUhvFpkESU",
+            "type": "assistant",
+            "uuid": "75099494-41df-4004-b9ae-1b3f4df45712",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NzqxdJLdFd5ax8VCG8Yfig",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 36097,
+                "output_tokens": 11235,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 977,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11235,
+                    "cache_read_input_tokens": 36097,
+                    "cache_creation_input_tokens": 977,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 977
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T03:52:15.168Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0134h27Wi7vhhZusBwNH78CU",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+                "old_string": "\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. A shuffle control reveals this bias is \\emph{structural}: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ (Table~\\ref{tab:alpha-ablation}).\n\n\\looseness=-1 This bias is not an artifact of incorrect majority votes: on problems where SC selects the correct answer, constraints still disproportionately support the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$ across all six tested conditions, with 5/6 showing $\\text{BR}_\\text{correct} \\geq \\text{BR}_\\text{wrong}$), confirming that self-extracted constraints track distributional frequency rather than logical validity.",
+                "new_string": "\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ (Table~\\ref{tab:alpha-ablation}).\nThe following result formalizes this degeneration.\n\n\\medskip\\noindent\n\\textbf{Proposition 1} \\textit{(Symbolic Confirmation Bias is Structural).}\\;%\nLet $t_1, \\ldots, t_K \\overset{\\mathrm{i.i.d.}}{\\sim} P_M(\\cdot \\mid q)$ be reasoning traces from model $M$ on question $q$.\nAssume:\n\\begin{enumerate}[label=\\textbf{A\\arabic*.},leftmargin=2.5em,nosep]\n\\item Answers are trace-determined: $a_i = h(t_i)$.\n\\item Constraints are trace-determined: $c_i = f(t_i)$.\n\\end{enumerate}\nLet $\\hat{a} = \\mathrm{mode}(a_1, \\ldots, a_K)$, $n_a = |\\{i : a_i = a\\}|$, and $Y$ the ground truth. Then:\n\\begin{enumerate}[label=\\textit{(\\roman*)},leftmargin=1.8em,itemsep=2pt,topsep=3pt]\n\\item \\textit{Voting degeneration.}\\;\nUnder source attribution (Eq.~\\ref{eq:score}), the constraint score reduces to the majority-vote count: $\\operatorname{score}(a) = n_a$.\nWhen $|\\{a : n_a > 0\\}| \\geq 2$, the bias ratio satisfies $\\mathrm{BR} \\triangleq n_{\\hat{a}} \\big/ \\max_{a' \\neq \\hat{a}} n_{a'} \\geq 1$.\n\n\\item \\textit{Information ceiling.}\\;\n$I(C_{1:K};\\, Y) \\leq I(T_{1:K};\\, Y)$ and $I(C_{1:K};\\, Y \\mid A_{1:K}) \\leq I(T_{1:K};\\, Y \\mid A_{1:K})$:\nself-extracted constraints cannot carry more information about $Y$ than the source traces, even beyond what the answers already encode.\n\\end{enumerate}\n\\noindent\nBoth bounds hold for \\emph{any} model $M$, task $q$, and extraction function $f$.\n\n\\medskip\n\\textit{Proof.}\\;%\n\\textit{(i)}\\; By definition, $\\operatorname{score}(a) = \\sum_{i=1}^K \\mathbf{1}[a_i = a] = n_a$, maximized at $\\hat{a}$, so $\\mathrm{BR} \\geq 1$.\n\\textit{(ii)}\\; $c_i = f(t_i)$ makes $C_{1:K}$ a deterministic function of $T_{1:K}$, so $Y \\mathop{\\text{---}} T_{1:K} \\mathop{\\text{---}} C_{1:K}$ forms a Markov chain and the data processing inequality gives $I(C_{1:K}; Y) \\leq I(T_{1:K}; Y)$.\nThe conditional bound follows identically: $c_i = f(t_i)$ holds unconditionally, so the Markov property and DPI apply within each stratum $\\{A_{1:K} = \\mathbf{a}\\}$.\\hfill$\\square$\n\n\\medskip\\noindent\nEach constraint is a downstream product of a trace that simultaneously determines an answer; constraint-based aggregation therefore cannot escape the distributional bias of the answer vote.\nNeither bound depends on model capability, task difficulty, or extraction quality. The bias is a structural artifact of the self-extraction pipeline.\n\n\\medskip\\noindent\n\\textbf{Remark.}\\;%\nPart~\\textit{(i)} relies on source attribution (Eq.~\\ref{eq:score}), the mechanism used by SICA.\nUnder \\emph{semantic} evaluation (checking whether $c_i$ is logically consistent with answer $a$ directly), $\\mathrm{BR} \\geq 1$ additionally requires \\emph{answer alignment}: $P(c_i \\text{ supports } a_i) \\geq P(c_i \\text{ supports } a')$ for $a' \\neq a_i$.\nThis property is structurally motivated (the reasoning chain producing $a_i$ generates intermediate steps aligned with $a_i$) and is empirically validated across all nine model--task conditions ($\\mathrm{BR} \\in [1.66,\\, 4.97]$; Table~\\ref{tab:frontier-scb}), but is not a mathematical necessity of self-extraction alone; it could fail if $f$ systematically extracted premises that contradict their source trace's conclusion.\n\n\\looseness=-1 Empirically, confirmation bias extends beyond incorrect instances. On problems where SC selects the correct answer, constraints still disproportionately support the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$ across all six tested conditions, with 5/6 showing $\\text{BR}_\\text{correct} \\geq \\text{BR}_\\text{wrong}$), confirming that self-extracted constraints track distributional frequency rather than logical validity. A shuffle control further confirms the structural nature of this bias: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75099494-41df-4004-b9ae-1b3f4df45712",
+            "isSidechain": false,
+            "requestId": "req_011CbJpQUrE1wxpUhvFpkESU",
+            "type": "assistant",
+            "uuid": "e6aff280-42a6-43c9-8e87-b2a1b92d82b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NzqxdJLdFd5ax8VCG8Yfig",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 36097,
+                "output_tokens": 11235,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 977,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11235,
+                    "cache_read_input_tokens": 36097,
+                    "cache_creation_input_tokens": 977,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 977
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T03:52:15.222Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0134h27Wi7vhhZusBwNH78CU",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6aff280-42a6-43c9-8e87-b2a1b92d82b0",
+            "isSidechain": false,
+            "promptId": "5f4db7ad-3ff6-4a83-be37-6bbcd015b808",
+            "type": "user",
+            "uuid": "88d03c37-dace-4533-987f-e345ba5fb089",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+              "oldString": "\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. A shuffle control reveals this bias is \\emph{structural}: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ (Table~\\ref{tab:alpha-ablation}).\n\n\\looseness=-1 This bias is not an artifact of incorrect majority votes: on problems where SC selects the correct answer, constraints still disproportionately support the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$ across all six tested conditions, with 5/6 showing $\\text{BR}_\\text{correct} \\geq \\text{BR}_\\text{wrong}$), confirming that self-extracted constraints track distributional frequency rather than logical validity.",
+              "newString": "\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ (Table~\\ref{tab:alpha-ablation}).\nThe following result formalizes this degeneration.\n\n\\medskip\\noindent\n\\textbf{Proposition 1} \\textit{(Symbolic Confirmation Bias is Structural).}\\;%\nLet $t_1, \\ldots, t_K \\overset{\\mathrm{i.i.d.}}{\\sim} P_M(\\cdot \\mid q)$ be reasoning traces from model $M$ on question $q$.\nAssume:\n\\begin{enumerate}[label=\\textbf{A\\arabic*.},leftmargin=2.5em,nosep]\n\\item Answers are trace-determined: $a_i = h(t_i)$.\n\\item Constraints are trace-determined: $c_i = f(t_i)$.\n\\end{enumerate}\nLet $\\hat{a} = \\mathrm{mode}(a_1, \\ldots, a_K)$, $n_a = |\\{i : a_i = a\\}|$, and $Y$ the ground truth. Then:\n\\begin{enumerate}[label=\\textit{(\\roman*)},leftmargin=1.8em,itemsep=2pt,topsep=3pt]\n\\item \\textit{Voting degeneration.}\\;\nUnder source attribution (Eq.~\\ref{eq:score}), the constraint score reduces to the majority-vote count: $\\operatorname{score}(a) = n_a$.\nWhen $|\\{a : n_a > 0\\}| \\geq 2$, the bias ratio satisfies $\\mathrm{BR} \\triangleq n_{\\hat{a}} \\big/ \\max_{a' \\neq \\hat{a}} n_{a'} \\geq 1$.\n\n\\item \\textit{Information ceiling.}\\;\n$I(C_{1:K};\\, Y) \\leq I(T_{1:K};\\, Y)$ and $I(C_{1:K};\\, Y \\mid A_{1:K}) \\leq I(T_{1:K};\\, Y \\mid A_{1:K})$:\nself-extracted constraints cannot carry more information about $Y$ than the source traces, even beyond what the answers already encode.\n\\end{enumerate}\n\\noindent\nBoth bounds hold for \\emph{any} model $M$, task $q$, and extraction function $f$.\n\n\\medskip\n\\textit{Proof.}\\;%\n\\textit{(i)}\\; By definition, $\\operatorname{score}(a) = \\sum_{i=1}^K \\mathbf{1}[a_i = a] = n_a$, maximized at $\\hat{a}$, so $\\mathrm{BR} \\geq 1$.\n\\textit{(ii)}\\; $c_i = f(t_i)$ makes $C_{1:K}$ a deterministic function of $T_{1:K}$, so $Y \\mathop{\\text{---}} T_{1:K} \\mathop{\\text{---}} C_{1:K}$ forms a Markov chain and the data processing inequality gives $I(C_{1:K}; Y) \\leq I(T_{1:K}; Y)$.\nThe conditional bound follows identically: $c_i = f(t_i)$ holds unconditionally, so the Markov property and DPI apply within each stratum $\\{A_{1:K} = \\mathbf{a}\\}$.\\hfill$\\square$\n\n\\medskip\\noindent\nEach constraint is a downstream product of a trace that simultaneously determines an answer; constraint-based aggregation therefore cannot escape the distributional bias of the answer vote.\nNeither bound depends on model capability, task difficulty, or extraction quality. The bias is a structural artifact of the self-extraction pipeline.\n\n\\medskip\\noindent\n\\textbf{Remark.}\\;%\nPart~\\textit{(i)} relies on source attribution (Eq.~\\ref{eq:score}), the mechanism used by SICA.\nUnder \\emph{semantic} evaluation (checking whether $c_i$ is logically consistent with answer $a$ directly), $\\mathrm{BR} \\geq 1$ additionally requires \\emph{answer alignment}: $P(c_i \\text{ supports } a_i) \\geq P(c_i \\text{ supports } a')$ for $a' \\neq a_i$.\nThis property is structurally motivated (the reasoning chain producing $a_i$ generates intermediate steps aligned with $a_i$) and is empirically validated across all nine model--task conditions ($\\mathrm{BR} \\in [1.66,\\, 4.97]$; Table~\\ref{tab:frontier-scb}), but is not a mathematical necessity of self-extraction alone; it could fail if $f$ systematically extracted premises that contradict their source trace's conclusion.\n\n\\looseness=-1 Empirically, confirmation bias extends beyond incorrect instances. On problems where SC selects the correct answer, constraints still disproportionately support the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$ across all six tested conditions, with 5/6 showing $\\text{BR}_\\text{correct} \\geq \\text{BR}_\\text{wrong}$), confirming that self-extracted constraints track distributional frequency rather than logical validity. A shuffle control further confirms the structural nature of this bias: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error.",
+              "originalFile": "\\section{The Symbolic Mirage}\n\\label{sec:analysis}\n\n\\subsection{Symbolic Confirmation Bias}\n\\label{sec:confirmation-bias}\n\n\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. A shuffle control reveals this bias is \\emph{structural}: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ (Table~\\ref{tab:alpha-ablation}).\n\n\\looseness=-1 This bias is not an artifact of incorrect majority votes: on problems where SC selects the correct answer, constraints still disproportionately support the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$ across all six tested conditions, with 5/6 showing $\\text{BR}_\\text{correct} \\geq \\text{BR}_\\text{wrong}$), confirming that self-extracted constraints track distributional frequency rather than logical validity.\n\n\\looseness=-1 The pattern generalizes: $4.97\\times$ (Mistral), $3.85\\times$ (Qwen-14B), $2.88\\times$ (LLaMA), all $> 1.0$ with 95\\% bootstrap CIs (Table~\\ref{tab:cross-model-bias}). Cross-model extraction confirms universality across nine models from 7B to frontier (BR $1.66$--$4.97\\times$; Table~\\ref{tab:frontier-scb}). BR $> 1$ further holds across all eight cells of a $2{\\times}2$ generator${\\times}$extractor matrix on FOLIO and ProofWriter (range $1.94$--$2.70$; Appendix~\\ref{app:2x2}). Constraints use trace-specific variables (56.4\\% zero cross-answer overlap), collapsing aggregation to majority voting.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\caption{Symbolic confirmation bias across nine models on FOLIO ($n = 204$). BR: mean per-problem bias ratio. $n_\\text{err}$: number of incorrect instances on which BR is computed. $\\Delta$: SICA $-$ SC (pp). Ext.: $^a$self-extraction; $^b$cross-model (Mistral-7B extracts FOL from target traces). $^*$Interim ($n = 95/204$). All models exhibit $\\text{BR} > 1$; BR estimates for high-accuracy models ($n_\\text{err} < 40$) have wider confidence intervals; Gemini ($n_\\text{err} \\approx 12$) should be interpreted with particular caution. Process-level similarity ($\\kappa_{\\text{proc}}$) ranges from $0.25$ (R1-Distill) to $0.79$ (gpt-4o/4.1/Gemini); see Table~\\ref{tab:cross-model-process}.}\n\\label{tab:frontier-scb}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llrrrrl@{}}\n\\toprule\nModel & Ext. & SC (\\%) & $n_\\text{err}$ & BR & $\\Delta$ (pp) \\\\\n\\midrule\nMistral-7B & $^a$ & 55.88 & 90 & 4.97 & 0.00 \\\\\nLLaMA-8B & $^a$ & \\textrm{---} & \\textrm{---} & 2.88 & \\textrm{---} \\\\\nQwen-14B & $^a$ & 75.98 & 49 & 3.85 & $-$0.49 \\\\\n\\addlinespace\nR1-Distill-8B & $^b$ & 74.51 & 52 & 2.92 & $+$2.45 \\\\\ngpt-4o & $^a$ & 73.91 & 53 & 2.94 & $-$1.80 \\\\\ngpt-4.1 & $^b$ & 82.84 & 35 & 2.70 & $-$1.47 \\\\\ngpt-5.5 & $^b$ & 84.31 & 32 & 3.48 & $+$0.49 \\\\\no3 & $^b$ & 82.65 & 35 & 1.66 & 0.00 \\\\\nGemini-2.5-Pro$^*$ & $^b$ & 87.37 & 12 & 2.79 & $-$1.10 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\looseness=-1 Two controls rule out answer leakage. BR is uniform across early, mid, and late reasoning steps (Fisher $p = 0.71$); high-consensus errors amplify to $\\text{BR} = 18.8\\times$ versus $2.7\\times$ for low-consensus ($p < 0.001$). Removing the answer sentence from traces before extraction yields no BR decrease (Wilcoxon $p \\geq 0.12$) despite significant accuracy loss (McNemar $p < 0.013$). Symbolic confirmation bias reflects a distributional prior embedded throughout reasoning, not answer contamination.\n\n\\looseness=-1 Reasoning-process overlap exceeds answer-level correlation: on Mistral-7B FOLIO, mean process similarity (pairwise TF-IDF cosine; Appendix~\\ref{app:process-gradient}) reaches 0.69, far exceeding answer-level $\\kappa = 0.46$. The gap generalizes across four families (Table~\\ref{tab:cross-model-process}). Under cross-model extraction, SICA gain decreases monotonically with process similarity ($\\rho = -1.0$, $p = 0.008$; Table~\\ref{tab:process-gradient}). Conditional correction analysis confirms the same pattern: cross-architecture NLI yields positive correction ratios while same-model SICA yields negative ones, with correction ratio correlating with combo gain ($\\rho = 0.84$, $p = 0.014$; Appendix~\\ref{app:cil}).\n\n\\subsection{Why Remediation Fails}\n\\label{sec:remediation}\n\\label{sec:interventions}\n\n\\looseness=-1 All 27 training-free remediation strategies spanning four categories produce neutral-to-negative results (Figure~\\ref{fig:interventions-summary}; Appendices~\\ref{app:extraction}--\\ref{app:entropy}). The pattern reveals a fundamental independence-accuracy trade-off: methods that successfully break trace correlation simultaneously destroy accuracy, while methods that preserve accuracy fail to achieve independence.\n\n\\looseness=-1 Four representative failure modes illustrate this trade-off. \\emph{Debate} ($\\kappa = 0.15$, $\\Delta = -18.6$\\,pp) successfully breaks trace correlation but collapses accuracy: same-model diversity and quality are at odds. \\emph{Cross-model extraction} (using a different LLM as extractor) decreases $\\kappa$ slightly but $\\Delta \\approx 0$, because same-family models share systematic biases (Appendix Table~\\ref{tab:kappa_generalization}). \\emph{Contrastive prompting} produces imbalanced output (94 pro vs.\\ 65 con constraints), indicating confirmation bias transfers to constraint generation. \\emph{Iterative constraint generation}, which refines constraints across multiple extraction rounds, reduces surface-level duplication but the refined constraints still align with the model's majority answer.\n\n\\looseness=-1 All non-debate strategies cluster at $\\kappa \\approx 0.40$--$0.47$, a same-model ceiling observed across three families. This ceiling is not a property of any single extraction method but of the model itself: regardless of prompting strategy, self-extraction cannot produce constraints that are independent of the model's distributional prior. The oracle ceiling ($+29.90$\\,pp with gold constraints) proves the mechanism is sound; self-extraction captures only ${\\sim}$12\\%, localizing the bottleneck to extraction quality rather than the MAX-SAT apparatus.\n\n\\looseness=-1 No individual strategy achieves significance after correction (Appendix~\\ref{app:intervention-individual}). The consistent failure across 27 strategies, four categories, and three model families suggests that symbolic confirmation bias is not a fixable extraction artifact but an intrinsic property of self-referential constraint generation.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_interventions_compact.pdf}\n\\caption{Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\\Delta$ vs.\\ SC. Grey band: $\\pm 1$\\,pp noise zone.}\n\\label{fig:interventions-summary}\n\\end{figure}\n\n\\subsection{Diagnostic Framework}\n\\label{sec:diagnostic-framework}\n\\label{sec:diagnostics}\n\n\\looseness=-1 Three zero-cost diagnostics predict the outcome of any trace-aggregation method from a $K = 12$ pilot run: (1) the degenerate-regime indicator $C_0 < 5\\%$ (SICA reduces to SC); (2) the diversity floor $K_\\text{eff} \\leq 1.3$ (insufficient vote diversity for any aggregation gain); (3) the bias ratio BR combined with SC regime (Type~A: SC $\\geq 60\\%$ with BR $> 1$ predicts confirmation-bias degradation; Type~C: SC $\\leq 40\\%$ predicts error amplification). These boundaries correctly classify all 60 tested conditions across four model families and three datasets.\n\n\\looseness=-1 Decision boundaries ($C_0 < 5\\%$, $K_\\text{eff} \\leq 1.3$, SC $< 40\\%$) were derived from Mistral-7B and Qwen2.5-14B conditions. We evaluate prospectively on held-out LLaMA-3.1-8B, a different model family not used in boundary derivation: on FOLIO (SC $= 66.18\\%$, $C_0 = 61.8\\%$, $K_\\text{eff} = 2.17$), the framework predicts Type~A confirmation bias ($\\Delta \\leq 0$); the observed $\\Delta = -4.41$\\,pp confirms the prediction.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 4,
+                  "oldLines": 10,
+                  "newStart": 4,
+                  "newLines": 48,
+                  "lines": [
+                    " \\subsection{Symbolic Confirmation Bias}",
+                    " \\label{sec:confirmation-bias}",
+                    " ",
+                    "-\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. A shuffle control reveals this bias is \\emph{structural}: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ (Table~\\ref{tab:alpha-ablation}).",
+                    "+\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ (Table~\\ref{tab:alpha-ablation}).",
+                    "+The following result formalizes this degeneration.",
+                    " ",
+                    "-\\looseness=-1 This bias is not an artifact of incorrect majority votes: on problems where SC selects the correct answer, constraints still disproportionately support the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$ across all six tested conditions, with 5/6 showing $\\text{BR}_\\text{correct} \\geq \\text{BR}_\\text{wrong}$), confirming that self-extracted constraints track distributional frequency rather than logical validity.",
+                    "+\\medskip\\noindent",
+                    "+\\textbf{Proposition 1} \\textit{(Symbolic Confirmation Bias is Structural).}\\;%",
+                    "+Let $t_1, \\ldots, t_K \\overset{\\mathrm{i.i.d.}}{\\sim} P_M(\\cdot \\mid q)$ be reasoning traces from model $M$ on question $q$.",
+                    "+Assume:",
+                    "+\\begin{enumerate}[label=\\textbf{A\\arabic*.},leftmargin=2.5em,nosep]",
+                    "+\\item Answers are trace-determined: $a_i = h(t_i)$.",
+                    "+\\item Constraints are trace-determined: $c_i = f(t_i)$.",
+                    "+\\end{enumerate}",
+                    "+Let $\\hat{a} = \\mathrm{mode}(a_1, \\ldots, a_K)$, $n_a = |\\{i : a_i = a\\}|$, and $Y$ the ground truth. Then:",
+                    "+\\begin{enumerate}[label=\\textit{(\\roman*)},leftmargin=1.8em,itemsep=2pt,topsep=3pt]",
+                    "+\\item \\textit{Voting degeneration.}\\;",
+                    "+Under source attribution (Eq.~\\ref{eq:score}), the constraint score reduces to the majority-vote count: $\\operatorname{score}(a) = n_a$.",
+                    "+When $|\\{a : n_a > 0\\}| \\geq 2$, the bias ratio satisfies $\\mathrm{BR} \\triangleq n_{\\hat{a}} \\big/ \\max_{a' \\neq \\hat{a}} n_{a'} \\geq 1$.",
+                    " ",
+                    "+\\item \\textit{Information ceiling.}\\;",
+                    "+$I(C_{1:K};\\, Y) \\leq I(T_{1:K};\\, Y)$ and $I(C_{1:K};\\, Y \\mid A_{1:K}) \\leq I(T_{1:K};\\, Y \\mid A_{1:K})$:",
+                    "+self-extracted constraints cannot carry more information about $Y$ than the source traces, even beyond what the answers already encode.",
+                    "+\\end{enumerate}",
+                    "+\\noindent",
+                    "+Both bounds hold for \\emph{any} model $M$, task $q$, and extraction function $f$.",
+                    "+",
+                    "+\\medskip",
+                    "+\\textit{Proof.}\\;%",
+                    "+\\textit{(i)}\\; By definition, $\\operatorname{score}(a) = \\sum_{i=1}^K \\mathbf{1}[a_i = a] = n_a$, maximized at $\\hat{a}$, so $\\mathrm{BR} \\geq 1$.",
+                    "+\\textit{(ii)}\\; $c_i = f(t_i)$ makes $C_{1:K}$ a deterministic function of $T_{1:K}$, so $Y \\mathop{\\text{---}} T_{1:K} \\mathop{\\text{---}} C_{1:K}$ forms a Markov chain and the data processing inequality gives $I(C_{1:K}; Y) \\leq I(T_{1:K}; Y)$.",
+                    "+The conditional bound follows identically: $c_i = f(t_i)$ holds unconditionally, so the Markov property and DPI apply within each stratum $\\{A_{1:K} = \\mathbf{a}\\}$.\\hfill$\\square$",
+                    "+",
+                    "+\\medskip\\noindent",
+                    "+Each constraint is a downstream product of a trace that simultaneously determines an answer; constraint-based aggregation therefore cannot escape the distributional bias of the answer vote.",
+                    "+Neither bound depends on model capability, task difficulty, or extraction quality. The bias is a structural artifact of the self-extraction pipeline.",
+                    "+",
+                    "+\\medskip\\noindent",
+                    "+\\textbf{Remark.}\\;%",
+                    "+Part~\\textit{(i)} relies on source attribution (Eq.~\\ref{eq:score}), the mechanism used by SICA.",
+                    "+Under \\emph{semantic} evaluation (checking whether $c_i$ is logically consistent with answer $a$ directly), $\\mathrm{BR} \\geq 1$ additionally requires \\emph{answer alignment}: $P(c_i \\text{ supports } a_i) \\geq P(c_i \\text{ supports } a')$ for $a' \\neq a_i$.",
+                    "+This property is structurally motivated (the reasoning chain producing $a_i$ generates intermediate steps aligned with $a_i$) and is empirically validated across all nine model--task conditions ($\\mathrm{BR} \\in [1.66,\\, 4.97]$; Table~\\ref{tab:frontier-scb}), but is not a mathematical necessity of self-extraction alone; it could fail if $f$ systematically extracted premises that contradict their source trace's conclusion.",
+                    "+",
+                    "+\\looseness=-1 Empirically, confirmation bias extends beyond incorrect instances. On problems where SC selects the correct answer, constraints still disproportionately support the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$ across all six tested conditions, with 5/6 showing $\\text{BR}_\\text{correct} \\geq \\text{BR}_\\text{wrong}$), confirming that self-extracted constraints track distributional frequency rather than logical validity. A shuffle control further confirms the structural nature of this bias: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error.",
+                    "+",
+                    " \\looseness=-1 The pattern generalizes: $4.97\\times$ (Mistral), $3.85\\times$ (Qwen-14B), $2.88\\times$ (LLaMA), all $> 1.0$ with 95\\% bootstrap CIs (Table~\\ref{tab:cross-model-bias}). Cross-model extraction confirms universality across nine models from 7B to frontier (BR $1.66$--$4.97\\times$; Table~\\ref{tab:frontier-scb}). BR $> 1$ further holds across all eight cells of a $2{\\times}2$ generator${\\times}$extractor matrix on FOLIO and ProofWriter (range $1.94$--$2.70$; Appendix~\\ref{app:2x2}). Constraints use trace-specific variables (56.4\\% zero cross-answer overlap), collapsing aggregation to majority voting.",
+                    " ",
+                    " \\begin{table}[t]"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "e6aff280-42a6-43c9-8e87-b2a1b92d82b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "88d03c37-dace-4533-987f-e345ba5fb089",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d"
+              }
+            }
+          ],
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Integrate Proposition 1 into analysis.tex §5.1",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T03:52:16.959Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me verify the result."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88d03c37-dace-4533-987f-e345ba5fb089",
+            "isSidechain": false,
+            "requestId": "req_011CbJpdQW9k4TwoeenFjSLr",
+            "type": "assistant",
+            "uuid": "9917b13e-cf56-47e6-ab18-d11f49879c2a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FobpT62rFTTsutomB2KtoA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11295,
+                "cache_read_input_tokens": 37074,
+                "output_tokens": 114,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11295,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 114,
+                    "cache_read_input_tokens": 37074,
+                    "cache_creation_input_tokens": 11295,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11295
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T03:52:17.768Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018RX1KJrofmtmUZZKUezNNu",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+                "limit": 60
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9917b13e-cf56-47e6-ab18-d11f49879c2a",
+            "isSidechain": false,
+            "requestId": "req_011CbJpdQW9k4TwoeenFjSLr",
+            "type": "assistant",
+            "uuid": "3daf64ac-854c-4b65-a89a-9e333b099648",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FobpT62rFTTsutomB2KtoA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11295,
+                "cache_read_input_tokens": 37074,
+                "output_tokens": 114,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11295,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 114,
+                    "cache_read_input_tokens": 37074,
+                    "cache_creation_input_tokens": 11295,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11295
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T03:52:17.775Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018RX1KJrofmtmUZZKUezNNu",
+              "type": "tool_result",
+              "content": "1\t\\section{The Symbolic Mirage}\n2\t\\label{sec:analysis}\n3\t\n4\t\\subsection{Symbolic Confirmation Bias}\n5\t\\label{sec:confirmation-bias}\n6\t\n7\t\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ (Table~\\ref{tab:alpha-ablation}).\n8\tThe following result formalizes this degeneration.\n9\t\n10\t\\medskip\\noindent\n11\t\\textbf{Proposition 1} \\textit{(Symbolic Confirmation Bias is Structural).}\\;%\n12\tLet $t_1, \\ldots, t_K \\overset{\\mathrm{i.i.d.}}{\\sim} P_M(\\cdot \\mid q)$ be reasoning traces from model $M$ on question $q$.\n13\tAssume:\n14\t\\begin{enumerate}[label=\\textbf{A\\arabic*.},leftmargin=2.5em,nosep]\n15\t\\item Answers are trace-determined: $a_i = h(t_i)$.\n16\t\\item Constraints are trace-determined: $c_i = f(t_i)$.\n17\t\\end{enumerate}\n18\tLet $\\hat{a} = \\mathrm{mode}(a_1, \\ldots, a_K)$, $n_a = |\\{i : a_i = a\\}|$, and $Y$ the ground truth. Then:\n19\t\\begin{enumerate}[label=\\textit{(\\roman*)},leftmargin=1.8em,itemsep=2pt,topsep=3pt]\n20\t\\item \\textit{Voting degeneration.}\\;\n21\tUnder source attribution (Eq.~\\ref{eq:score}), the constraint score reduces to the majority-vote count: $\\operatorname{score}(a) = n_a$.\n22\tWhen $|\\{a : n_a > 0\\}| \\geq 2$, the bias ratio satisfies $\\mathrm{BR} \\triangleq n_{\\hat{a}} \\big/ \\max_{a' \\neq \\hat{a}} n_{a'} \\geq 1$.\n23\t\n24\t\\item \\textit{Information ceiling.}\\;\n25\t$I(C_{1:K};\\, Y) \\leq I(T_{1:K};\\, Y)$ and $I(C_{1:K};\\, Y \\mid A_{1:K}) \\leq I(T_{1:K};\\, Y \\mid A_{1:K})$:\n26\tself-extracted constraints cannot carry more information about $Y$ than the source traces, even beyond what the answers already encode.\n27\t\\end{enumerate}\n28\t\\noindent\n29\tBoth bounds hold for \\emph{any} model $M$, task $q$, and extraction function $f$.\n30\t\n31\t\\medskip\n32\t\\textit{Proof.}\\;%\n33\t\\textit{(i)}\\; By definition, $\\operatorname{score}(a) = \\sum_{i=1}^K \\mathbf{1}[a_i = a] = n_a$, maximized at $\\hat{a}$, so $\\mathrm{BR} \\geq 1$.\n34\t\\textit{(ii)}\\; $c_i = f(t_i)$ makes $C_{1:K}$ a deterministic function of $T_{1:K}$, so $Y \\mathop{\\text{---}} T_{1:K} \\mathop{\\text{---}} C_{1:K}$ forms a Markov chain and the data processing inequality gives $I(C_{1:K}; Y) \\leq I(T_{1:K}; Y)$.\n35\tThe conditional bound follows identically: $c_i = f(t_i)$ holds unconditionally, so the Markov property and DPI apply within each stratum $\\{A_{1:K} = \\mathbf{a}\\}$.\\hfill$\\square$\n36\t\n37\t\\medskip\\noindent\n38\tEach constraint is a downstream product of a trace that simultaneously determines an answer; constraint-based aggregation therefore cannot escape the distributional bias of the answer vote.\n39\tNeither bound depends on model capability, task difficulty, or extraction quality. The bias is a structural artifact of the self-extraction pipeline.\n40\t\n41\t\\medskip\\noindent\n42\t\\textbf{Remark.}\\;%\n43\tPart~\\textit{(i)} relies on source attribution (Eq.~\\ref{eq:score}), the mechanism used by SICA.\n44\tUnder \\emph{semantic} evaluation (checking whether $c_i$ is logically consistent with answer $a$ directly), $\\mathrm{BR} \\geq 1$ additionally requires \\emph{answer alignment}: $P(c_i \\text{ supports } a_i) \\geq P(c_i \\text{ supports } a')$ for $a' \\neq a_i$.\n45\tThis property is structurally motivated (the reasoning chain producing $a_i$ generates intermediate steps aligned with $a_i$) and is empirically validated across all nine model--task conditions ($\\mathrm{BR} \\in [1.66,\\, 4.97]$; Table~\\ref{tab:frontier-scb}), but is not a mathematical necessity of self-extraction alone; it could fail if $f$ systematically extracted premises that contradict their source trace's conclusion.\n46\t\n47\t\\looseness=-1 Empirically, confirmation bias extends beyond incorrect instances. On problems where SC selects the correct answer, constraints still disproportionately support the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$ across all six tested conditions, with 5/6 showing $\\text{BR}_\\text{correct} \\geq \\text{BR}_\\text{wrong}$), confirming that self-extracted constraints track distributional frequency rather than logical validity. A shuffle control further confirms the structural nature of this bias: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error.\n48\t\n49\t\\looseness=-1 The pattern generalizes: $4.97\\times$ (Mistral), $3.85\\times$ (Qwen-14B), $2.88\\times$ (LLaMA), all $> 1.0$ with 95\\% bootstrap CIs (Table~\\ref{tab:cross-model-bias}). Cross-model extraction confirms universality across nine models from 7B to frontier (BR $1.66$--$4.97\\times$; Table~\\ref{tab:frontier-scb}). BR $> 1$ further holds across all eight cells of a $2{\\times}2$ generator${\\times}$extractor matrix on FOLIO and ProofWriter (range $1.94$--$2.70$; Appendix~\\ref{app:2x2}). Constraints use trace-specific variables (56.4\\% zero cross-answer overlap), collapsing aggregation to majority voting.\n50\t\n51\t\\begin{table}[t]\n52\t\\centering\n53\t\\small\n54\t\\setlength{\\tabcolsep}{3pt}\n55\t\\caption{Symbolic confirmation bias across nine models on FOLIO ($n = 204$). BR: mean per-problem bias ratio. $n_\\text{err}$: number of incorrect instances on which BR is computed. $\\Delta$: SICA $-$ SC (pp). Ext.: $^a$self-extraction; $^b$cross-model (Mistral-7B extracts FOL from target traces). $^*$Interim ($n = 95/204$). All models exhibit $\\text{BR} > 1$; BR estimates for high-accuracy models ($n_\\text{err} < 40$) have wider confidence intervals; Gemini ($n_\\text{err} \\approx 12$) should be interpreted with particular caution. Process-level similarity ($\\kappa_{\\text{proc}}$) ranges from $0.25$ (R1-Distill) to $0.79$ (gpt-4o/4.1/Gemini); see Table~\\ref{tab:cross-model-process}.}\n56\t\\label{tab:frontier-scb}\n57\t\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llrrrrl@{}}\n58\t\\toprule\n59\tModel & Ext. & SC (\\%) & $n_\\text{err}$ & BR & $\\Delta$ (pp) \\\\\n60\t\\midrule"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3daf64ac-854c-4b65-a89a-9e333b099648",
+            "isSidechain": false,
+            "promptId": "5f4db7ad-3ff6-4a83-be37-6bbcd015b808",
+            "type": "user",
+            "uuid": "7f55fea7-1437-4eb5-bf10-443788b441e2",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+                "content": "\\section{The Symbolic Mirage}\n\\label{sec:analysis}\n\n\\subsection{Symbolic Confirmation Bias}\n\\label{sec:confirmation-bias}\n\n\\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\\% of constraints support the incorrect answer---bias ratio $4.97\\times$ (Table~\\ref{tab:cross-model-bias})---and 94\\% of errors overlap with SC. Z3 rejects only 3.4\\% of constraints, and MAX-SAT produces answers identical to count-only aggregation on 94.4\\% of problems (Table~\\ref{tab:ablation}), confirming that the formal verification layer is vacuous (Eq.~\\ref{eq:degenerate}): 99\\% of constraints pass Z3 validation yet add no information beyond majority voting. This vacuity is $\\alpha$-insensitive: agreement $\\geq$99\\% across $\\alpha \\in \\{0.1, \\ldots, 0.9\\}$ (Table~\\ref{tab:alpha-ablation}).\nThe following result formalizes this degeneration.\n\n\\medskip\\noindent\n\\textbf{Proposition 1} \\textit{(Symbolic Confirmation Bias is Structural).}\\;%\nLet $t_1, \\ldots, t_K \\overset{\\mathrm{i.i.d.}}{\\sim} P_M(\\cdot \\mid q)$ be reasoning traces from model $M$ on question $q$.\nAssume:\n\\begin{enumerate}[label=\\textbf{A\\arabic*.},leftmargin=2.5em,nosep]\n\\item Answers are trace-determined: $a_i = h(t_i)$.\n\\item Constraints are trace-determined: $c_i = f(t_i)$.\n\\end{enumerate}\nLet $\\hat{a} = \\mathrm{mode}(a_1, \\ldots, a_K)$, $n_a = |\\{i : a_i = a\\}|$, and $Y$ the ground truth. Then:\n\\begin{enumerate}[label=\\textit{(\\roman*)},leftmargin=1.8em,itemsep=2pt,topsep=3pt]\n\\item \\textit{Voting degeneration.}\\;\nUnder source attribution (Eq.~\\ref{eq:score}), the constraint score reduces to the majority-vote count: $\\operatorname{score}(a) = n_a$.\nWhen $|\\{a : n_a > 0\\}| \\geq 2$, the bias ratio satisfies $\\mathrm{BR} \\triangleq n_{\\hat{a}} \\big/ \\max_{a' \\neq \\hat{a}} n_{a'} \\geq 1$.\n\n\\item \\textit{Information ceiling.}\\;\n$I(C_{1:K};\\, Y) \\leq I(T_{1:K};\\, Y)$ and $I(C_{1:K};\\, Y \\mid A_{1:K}) \\leq I(T_{1:K};\\, Y \\mid A_{1:K})$:\nself-extracted constraints cannot carry more information about $Y$ than the source traces, even beyond what the answers already encode.\n\\end{enumerate}\n\\noindent\nBoth bounds hold for \\emph{any} model $M$, task $q$, and extraction function $f$.\n\n\\medskip\n\\textit{Proof.}\\;%\n\\textit{(i)}\\; By definition, $\\operatorname{score}(a) = \\sum_{i=1}^K \\mathbf{1}[a_i = a] = n_a$, maximized at $\\hat{a}$, so $\\mathrm{BR} \\geq 1$.\n\\textit{(ii)}\\; $c_i = f(t_i)$ makes $C_{1:K}$ a deterministic function of $T_{1:K}$, so $Y \\mathop{\\text{---}} T_{1:K} \\mathop{\\text{---}} C_{1:K}$ forms a Markov chain and the data processing inequality gives $I(C_{1:K}; Y) \\leq I(T_{1:K}; Y)$.\nThe conditional bound follows identically: $c_i = f(t_i)$ holds unconditionally, so the Markov property and DPI apply within each stratum $\\{A_{1:K} = \\mathbf{a}\\}$.\\hfill$\\square$\n\n\\medskip\\noindent\nEach constraint is a downstream product of a trace that simultaneously determines an answer; constraint-based aggregation therefore cannot escape the distributional bias of the answer vote.\nNeither bound depends on model capability, task difficulty, or extraction quality. The bias is a structural artifact of the self-extraction pipeline.\n\n\\medskip\\noindent\n\\textbf{Remark.}\\;%\nPart~\\textit{(i)} relies on source attribution (Eq.~\\ref{eq:score}), the mechanism used by SICA.\nUnder \\emph{semantic} evaluation (checking whether $c_i$ is logically consistent with answer $a$ directly), $\\mathrm{BR} \\geq 1$ additionally requires \\emph{answer alignment}: $P(c_i \\text{ supports } a_i) \\geq P(c_i \\text{ supports } a')$ for $a' \\neq a_i$.\nThis property is structurally motivated (the reasoning chain producing $a_i$ generates intermediate steps aligned with $a_i$) and is empirically validated across all nine model--task conditions ($\\mathrm{BR} \\in [1.66,\\, 4.97]$; Table~\\ref{tab:frontier-scb}), but is not a mathematical necessity of self-extraction alone; it could fail if $f$ systematically extracted premises that contradict their source trace's conclusion.\n\n\\looseness=-1 Empirically, confirmation bias extends beyond incorrect instances. On problems where SC selects the correct answer, constraints still disproportionately support the majority ($\\text{BR}_\\text{correct}$ $1.29$--$3.64\\times$ across all six tested conditions, with 5/6 showing $\\text{BR}_\\text{correct} \\geq \\text{BR}_\\text{wrong}$), confirming that self-extracted constraints track distributional frequency rather than logical validity. A shuffle control further confirms the structural nature of this bias: randomizing constraint--answer associations while preserving per-trace counts yields $\\text{BR}_\\text{null} \\approx \\text{BR}_\\text{obs}$ ($p > 0.7$), indicating that BR reflects the trace-count distribution rather than extraction-specific error.\n\n\\looseness=-1 The pattern generalizes: $4.97\\times$ (Mistral), $3.85\\times$ (Qwen-14B), $2.88\\times$ (LLaMA), all $> 1.0$ with 95\\% bootstrap CIs (Table~\\ref{tab:cross-model-bias}). Cross-model extraction confirms universality across nine models from 7B to frontier (BR $1.66$--$4.97\\times$; Table~\\ref{tab:frontier-scb}). BR $> 1$ further holds across all eight cells of a $2{\\times}2$ generator${\\times}$extractor matrix on FOLIO and ProofWriter (range $1.94$--$2.70$; Appendix~\\ref{app:2x2}). Constraints use trace-specific variables (56.4\\% zero cross-answer overlap), collapsing aggregation to majority voting.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\caption{Symbolic confirmation bias across nine models on FOLIO ($n = 204$). BR: mean per-problem bias ratio. $n_\\text{err}$: number of incorrect instances on which BR is computed. $\\Delta$: SICA $-$ SC (pp). Ext.: $^a$self-extraction; $^b$cross-model (Mistral-7B extracts FOL from target traces). $^*$Interim ($n = 95/204$). All models exhibit $\\text{BR} > 1$; BR estimates for high-accuracy models ($n_\\text{err} < 40$) have wider confidence intervals; Gemini ($n_\\text{err} \\approx 12$) should be interpreted with particular caution. Process-level similarity ($\\kappa_{\\text{proc}}$) ranges from $0.25$ (R1-Distill) to $0.79$ (gpt-4o/4.1/Gemini); see Table~\\ref{tab:cross-model-process}.}\n\\label{tab:frontier-scb}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llrrrrl@{}}\n\\toprule\nModel & Ext. & SC (\\%) & $n_\\text{err}$ & BR & $\\Delta$ (pp) \\\\\n\\midrule",
+                "numLines": 60,
+                "startLine": 1,
+                "totalLines": 105
+              }
+            },
+            "sourceToolAssistantUUID": "3daf64ac-854c-4b65-a89a-9e333b099648",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T03:52:17.781Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "7f55fea7-1437-4eb5-bf10-443788b441e2",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "9a09c9a5-fa6e-456e-b4d8-02dcfa7af06d",
+                "timestamp": "2026-05-23T03:52:17.781Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T03:52:25.671Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The verification looks good. Let me check against all the requirements:\n\n1. ✅ Proposition is after SCB quantitative observation (line 7) and before shuffle control (now in line 47)\n2. ✅ Notation uses `\\ldots` not `\\dots`, references Eq.~\\ref{eq:score} in Part (i)\n3. ✅ BR_correct paragraph (line 47) follows Proposition+Proof+Remark\n4. ✅ No tcolorbox, no theorem environment\n5. ✅ No AUTHOR NOTE comments (they were in the proposition source file, not copied)\n\n\n6. ✅ No deduplication caveat comments\n\nNow I'm checking that the rest of the file is intact—sections 5.2 and 5.3 along with the tables.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a09c9a5-fa6e-456e-b4d8-02dcfa7af06d",
+            "isSidechain": false,
+            "requestId": "req_011CbJpdbPVMsZvqACUx7cPM",
+            "type": "assistant",
+            "uuid": "2c9c90da-464c-42e5-b859-2c757b2633aa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5xfVDJTvaZAE9uyZ7ZFiJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2595,
+                "cache_read_input_tokens": 48369,
+                "output_tokens": 323,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2595,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 323,
+                    "cache_read_input_tokens": 48369,
+                    "cache_creation_input_tokens": 2595,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2595
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T03:52:25.785Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also verify §5.2 and beyond are unchanged."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2c9c90da-464c-42e5-b859-2c757b2633aa",
+            "isSidechain": false,
+            "requestId": "req_011CbJpdbPVMsZvqACUx7cPM",
+            "type": "assistant",
+            "uuid": "94d4ea94-bc9d-40a9-9717-2db6f9455da3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5xfVDJTvaZAE9uyZ7ZFiJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2595,
+                "cache_read_input_tokens": 48369,
+                "output_tokens": 323,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2595,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 323,
+                    "cache_read_input_tokens": 48369,
+                    "cache_creation_input_tokens": 2595,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2595
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T03:52:27.474Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BdeARVqYmXf3AkCgKN8qtL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+                "offset": 60
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94d4ea94-bc9d-40a9-9717-2db6f9455da3",
+            "isSidechain": false,
+            "requestId": "req_011CbJpdbPVMsZvqACUx7cPM",
+            "type": "assistant",
+            "uuid": "86b7b0a4-c288-48a1-b567-9c88db94c272",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5xfVDJTvaZAE9uyZ7ZFiJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2595,
+                "cache_read_input_tokens": 48369,
+                "output_tokens": 323,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2595,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 323,
+                    "cache_read_input_tokens": 48369,
+                    "cache_creation_input_tokens": 2595,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2595
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T03:52:27.479Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BdeARVqYmXf3AkCgKN8qtL",
+              "type": "tool_result",
+              "content": "60\t\\midrule\n61\tMistral-7B & $^a$ & 55.88 & 90 & 4.97 & 0.00 \\\\\n62\tLLaMA-8B & $^a$ & \\textrm{---} & \\textrm{---} & 2.88 & \\textrm{---} \\\\\n63\tQwen-14B & $^a$ & 75.98 & 49 & 3.85 & $-$0.49 \\\\\n64\t\\addlinespace\n65\tR1-Distill-8B & $^b$ & 74.51 & 52 & 2.92 & $+$2.45 \\\\\n66\tgpt-4o & $^a$ & 73.91 & 53 & 2.94 & $-$1.80 \\\\\n67\tgpt-4.1 & $^b$ & 82.84 & 35 & 2.70 & $-$1.47 \\\\\n68\tgpt-5.5 & $^b$ & 84.31 & 32 & 3.48 & $+$0.49 \\\\\n69\to3 & $^b$ & 82.65 & 35 & 1.66 & 0.00 \\\\\n70\tGemini-2.5-Pro$^*$ & $^b$ & 87.37 & 12 & 2.79 & $-$1.10 \\\\\n71\t\\bottomrule\n72\t\\end{tabular}}\n73\t\\end{table}\n74\t\n75\t\\looseness=-1 Two controls rule out answer leakage. BR is uniform across early, mid, and late reasoning steps (Fisher $p = 0.71$); high-consensus errors amplify to $\\text{BR} = 18.8\\times$ versus $2.7\\times$ for low-consensus ($p < 0.001$). Removing the answer sentence from traces before extraction yields no BR decrease (Wilcoxon $p \\geq 0.12$) despite significant accuracy loss (McNemar $p < 0.013$). Symbolic confirmation bias reflects a distributional prior embedded throughout reasoning, not answer contamination.\n76\t\n77\t\\looseness=-1 Reasoning-process overlap exceeds answer-level correlation: on Mistral-7B FOLIO, mean process similarity (pairwise TF-IDF cosine; Appendix~\\ref{app:process-gradient}) reaches 0.69, far exceeding answer-level $\\kappa = 0.46$. The gap generalizes across four families (Table~\\ref{tab:cross-model-process}). Under cross-model extraction, SICA gain decreases monotonically with process similarity ($\\rho = -1.0$, $p = 0.008$; Table~\\ref{tab:process-gradient}). Conditional correction analysis confirms the same pattern: cross-architecture NLI yields positive correction ratios while same-model SICA yields negative ones, with correction ratio correlating with combo gain ($\\rho = 0.84$, $p = 0.014$; Appendix~\\ref{app:cil}).\n78\t\n79\t\\subsection{Why Remediation Fails}\n80\t\\label{sec:remediation}\n81\t\\label{sec:interventions}\n82\t\n83\t\\looseness=-1 All 27 training-free remediation strategies spanning four categories produce neutral-to-negative results (Figure~\\ref{fig:interventions-summary}; Appendices~\\ref{app:extraction}--\\ref{app:entropy}). The pattern reveals a fundamental independence-accuracy trade-off: methods that successfully break trace correlation simultaneously destroy accuracy, while methods that preserve accuracy fail to achieve independence.\n84\t\n85\t\\looseness=-1 Four representative failure modes illustrate this trade-off. \\emph{Debate} ($\\kappa = 0.15$, $\\Delta = -18.6$\\,pp) successfully breaks trace correlation but collapses accuracy: same-model diversity and quality are at odds. \\emph{Cross-model extraction} (using a different LLM as extractor) decreases $\\kappa$ slightly but $\\Delta \\approx 0$, because same-family models share systematic biases (Appendix Table~\\ref{tab:kappa_generalization}). \\emph{Contrastive prompting} produces imbalanced output (94 pro vs.\\ 65 con constraints), indicating confirmation bias transfers to constraint generation. \\emph{Iterative constraint generation}, which refines constraints across multiple extraction rounds, reduces surface-level duplication but the refined constraints still align with the model's majority answer.\n86\t\n87\t\\looseness=-1 All non-debate strategies cluster at $\\kappa \\approx 0.40$--$0.47$, a same-model ceiling observed across three families. This ceiling is not a property of any single extraction method but of the model itself: regardless of prompting strategy, self-extraction cannot produce constraints that are independent of the model's distributional prior. The oracle ceiling ($+29.90$\\,pp with gold constraints) proves the mechanism is sound; self-extraction captures only ${\\sim}$12\\%, localizing the bottleneck to extraction quality rather than the MAX-SAT apparatus.\n88\t\n89\t\\looseness=-1 No individual strategy achieves significance after correction (Appendix~\\ref{app:intervention-individual}). The consistent failure across 27 strategies, four categories, and three model families suggests that symbolic confirmation bias is not a fixable extraction artifact but an intrinsic property of self-referential constraint generation.\n90\t\n91\t\\begin{figure}[t]\n92\t\\centering\n93\t\\includegraphics[width=\\columnwidth]{figures/fig2_interventions_compact.pdf}\n94\t\\caption{Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\\Delta$ vs.\\ SC. Grey band: $\\pm 1$\\,pp noise zone.}\n95\t\\label{fig:interventions-summary}\n96\t\\end{figure}\n97\t\n98\t\\subsection{Diagnostic Framework}\n99\t\\label{sec:diagnostic-framework}\n100\t\\label{sec:diagnostics}\n101\t\n102\t\\looseness=-1 Three zero-cost diagnostics predict the outcome of any trace-aggregation method from a $K = 12$ pilot run: (1) the degenerate-regime indicator $C_0 < 5\\%$ (SICA reduces to SC); (2) the diversity floor $K_\\text{eff} \\leq 1.3$ (insufficient vote diversity for any aggregation gain); (3) the bias ratio BR combined with SC regime (Type~A: SC $\\geq 60\\%$ with BR $> 1$ predicts confirmation-bias degradation; Type~C: SC $\\leq 40\\%$ predicts error amplification). These boundaries correctly classify all 60 tested conditions across four model families and three datasets.\n103\t\n104\t\\looseness=-1 Decision boundaries ($C_0 < 5\\%$, $K_\\text{eff} \\leq 1.3$, SC $< 40\\%$) were derived from Mistral-7B and Qwen2.5-14B conditions. We evaluate prospectively on held-out LLaMA-3.1-8B, a different model family not used in boundary derivation: on FOLIO (SC $= 66.18\\%$, $C_0 = 61.8\\%$, $K_\\text{eff} = 2.17$), the framework predicts Type~A confirmation bias ($\\Delta \\leq 0$); the observed $\\Delta = -4.41$\\,pp confirms the prediction.\n105\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86b7b0a4-c288-48a1-b567-9c88db94c272",
+            "isSidechain": false,
+            "promptId": "5f4db7ad-3ff6-4a83-be37-6bbcd015b808",
+            "type": "user",
+            "uuid": "53289bde-744d-4964-bb61-3e53afee45e7",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/analysis.tex",
+                "content": "\\midrule\nMistral-7B & $^a$ & 55.88 & 90 & 4.97 & 0.00 \\\\\nLLaMA-8B & $^a$ & \\textrm{---} & \\textrm{---} & 2.88 & \\textrm{---} \\\\\nQwen-14B & $^a$ & 75.98 & 49 & 3.85 & $-$0.49 \\\\\n\\addlinespace\nR1-Distill-8B & $^b$ & 74.51 & 52 & 2.92 & $+$2.45 \\\\\ngpt-4o & $^a$ & 73.91 & 53 & 2.94 & $-$1.80 \\\\\ngpt-4.1 & $^b$ & 82.84 & 35 & 2.70 & $-$1.47 \\\\\ngpt-5.5 & $^b$ & 84.31 & 32 & 3.48 & $+$0.49 \\\\\no3 & $^b$ & 82.65 & 35 & 1.66 & 0.00 \\\\\nGemini-2.5-Pro$^*$ & $^b$ & 87.37 & 12 & 2.79 & $-$1.10 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\looseness=-1 Two controls rule out answer leakage. BR is uniform across early, mid, and late reasoning steps (Fisher $p = 0.71$); high-consensus errors amplify to $\\text{BR} = 18.8\\times$ versus $2.7\\times$ for low-consensus ($p < 0.001$). Removing the answer sentence from traces before extraction yields no BR decrease (Wilcoxon $p \\geq 0.12$) despite significant accuracy loss (McNemar $p < 0.013$). Symbolic confirmation bias reflects a distributional prior embedded throughout reasoning, not answer contamination.\n\n\\looseness=-1 Reasoning-process overlap exceeds answer-level correlation: on Mistral-7B FOLIO, mean process similarity (pairwise TF-IDF cosine; Appendix~\\ref{app:process-gradient}) reaches 0.69, far exceeding answer-level $\\kappa = 0.46$. The gap generalizes across four families (Table~\\ref{tab:cross-model-process}). Under cross-model extraction, SICA gain decreases monotonically with process similarity ($\\rho = -1.0$, $p = 0.008$; Table~\\ref{tab:process-gradient}). Conditional correction analysis confirms the same pattern: cross-architecture NLI yields positive correction ratios while same-model SICA yields negative ones, with correction ratio correlating with combo gain ($\\rho = 0.84$, $p = 0.014$; Appendix~\\ref{app:cil}).\n\n\\subsection{Why Remediation Fails}\n\\label{sec:remediation}\n\\label{sec:interventions}\n\n\\looseness=-1 All 27 training-free remediation strategies spanning four categories produce neutral-to-negative results (Figure~\\ref{fig:interventions-summary}; Appendices~\\ref{app:extraction}--\\ref{app:entropy}). The pattern reveals a fundamental independence-accuracy trade-off: methods that successfully break trace correlation simultaneously destroy accuracy, while methods that preserve accuracy fail to achieve independence.\n\n\\looseness=-1 Four representative failure modes illustrate this trade-off. \\emph{Debate} ($\\kappa = 0.15$, $\\Delta = -18.6$\\,pp) successfully breaks trace correlation but collapses accuracy: same-model diversity and quality are at odds. \\emph{Cross-model extraction} (using a different LLM as extractor) decreases $\\kappa$ slightly but $\\Delta \\approx 0$, because same-family models share systematic biases (Appendix Table~\\ref{tab:kappa_generalization}). \\emph{Contrastive prompting} produces imbalanced output (94 pro vs.\\ 65 con constraints), indicating confirmation bias transfers to constraint generation. \\emph{Iterative constraint generation}, which refines constraints across multiple extraction rounds, reduces surface-level duplication but the refined constraints still align with the model's majority answer.\n\n\\looseness=-1 All non-debate strategies cluster at $\\kappa \\approx 0.40$--$0.47$, a same-model ceiling observed across three families. This ceiling is not a property of any single extraction method but of the model itself: regardless of prompting strategy, self-extraction cannot produce constraints that are independent of the model's distributional prior. The oracle ceiling ($+29.90$\\,pp with gold constraints) proves the mechanism is sound; self-extraction captures only ${\\sim}$12\\%, localizing the bottleneck to extraction quality rather than the MAX-SAT apparatus.\n\n\\looseness=-1 No individual strategy achieves significance after correction (Appendix~\\ref{app:intervention-individual}). The consistent failure across 27 strategies, four categories, and three model families suggests that symbolic confirmation bias is not a fixable extraction artifact but an intrinsic property of self-referential constraint generation.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_interventions_compact.pdf}\n\\caption{Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\\Delta$ vs.\\ SC. Grey band: $\\pm 1$\\,pp noise zone.}\n\\label{fig:interventions-summary}\n\\end{figure}\n\n\\subsection{Diagnostic Framework}\n\\label{sec:diagnostic-framework}\n\\label{sec:diagnostics}\n\n\\looseness=-1 Three zero-cost diagnostics predict the outcome of any trace-aggregation method from a $K = 12$ pilot run: (1) the degenerate-regime indicator $C_0 < 5\\%$ (SICA reduces to SC); (2) the diversity floor $K_\\text{eff} \\leq 1.3$ (insufficient vote diversity for any aggregation gain); (3) the bias ratio BR combined with SC regime (Type~A: SC $\\geq 60\\%$ with BR $> 1$ predicts confirmation-bias degradation; Type~C: SC $\\leq 40\\%$ predicts error amplification). These boundaries correctly classify all 60 tested conditions across four model families and three datasets.\n\n\\looseness=-1 Decision boundaries ($C_0 < 5\\%$, $K_\\text{eff} \\leq 1.3$, SC $< 40\\%$) were derived from Mistral-7B and Qwen2.5-14B conditions. We evaluate prospectively on held-out LLaMA-3.1-8B, a different model family not used in boundary derivation: on FOLIO (SC $= 66.18\\%$, $C_0 = 61.8\\%$, $K_\\text{eff} = 2.17$), the framework predicts Type~A confirmation bias ($\\Delta \\leq 0$); the observed $\\Delta = -4.41$\\,pp confirms the prediction.\n",
+                "numLines": 46,
+                "startLine": 60,
+                "totalLines": 105
+              }
+            },
+            "sourceToolAssistantUUID": "86b7b0a4-c288-48a1-b567-9c88db94c272",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "53289bde-744d-4964-bb61-3e53afee45e7",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d"
+              }
+            }
+          ],
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Integrate Proposition 1 into analysis.tex §5.1",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d"
+              }
+            }
+          ],
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T03:52:38.502Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "§5.2, §5.3, and all tables are intact. Verification against all criteria:\n\n1. **Proposition after SCB quantitative, before shuffle control** — lines 7–8 (empirical observation + transition), lines 10–45 (Proposition+Proof+Remark), line 47 (BR_correct + shuffle control) ✓\n2. **Notation aligned with method.tex** — `\\ldots` (not `\\dots`), Part (i) references `Eq.~\\ref{eq:score}` instead of redefining σ ✓\n3. **BR_correct follows Proposition** — line 47 ✓\n4. **No tcolorbox, no theorem environment** — uses `\\textbf{Proposition 1} \\textit{(...)}` ✓\n5. **No AUTHOR NOTE comments, no deduplication caveat** — all removed ✓\n6. **Em-dashes in new text eliminated** — replaced with commas, parentheses, semicolons, or periods ✓\n7. **§5.2, §5.3, tables untouched** ✓"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "53289bde-744d-4964-bb61-3e53afee45e7",
+            "isSidechain": false,
+            "requestId": "req_011CbJpeKM7kq8A3Y7Z7KKEK",
+            "type": "assistant",
+            "uuid": "472a37e6-3f0f-4e0d-8559-ec9d55d89ec4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YKodovk1wYcEfgUBFRby2t",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2232,
+                "cache_read_input_tokens": 50964,
+                "output_tokens": 273,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2232,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 273,
+                    "cache_read_input_tokens": 50964,
+                    "cache_creation_input_tokens": 2232,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2232
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "472a37e6-3f0f-4e0d-8559-ec9d55d89ec4",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d"
+              }
+            }
+          ],
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Integrate Proposition 1 into analysis.tex §5.1",
+                "sessionId": "b1a18feb-c285-41d5-bedf-51d54be5807d"
+              }
+            }
+          ],
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-symb-invariant-consensus-westd-16639-ssh-ssh-westd-16639-ssh-copy-9.md"
+}

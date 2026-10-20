@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "04ae5380fd631533c158",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to extract the latest versions of two Python files from worker logs. These files were on a remote server that's n",
+  "task_key": "agent-a0b43674802c497b9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a0b43674802c497b9.jsonl",
+    "occurrence": 1,
+    "bytes": 551005,
+    "sha256": "4f0750e288a89c7e90dc504cef87e4b1d4e1268764a31ac1d84e86879790d44d"
+  },
+  "statistics": {
+    "messages": 247,
+    "user_turns": 1,
+    "tool_calls": 88,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 69,
+      "tool_call": 88,
+      "tool_result": 88
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 247,
+      "chunks": [
+        {
+          "path": "04ae5380fd631533c158-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "04ae5380fd631533c158-part-0002.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-extract-the-latest-versions-of-two-python-files-from-worker-logs-the.md"
+}

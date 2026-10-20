@@ -1,0 +1,1578 @@
+{
+  "schema_version": "1.0",
+  "id": "32866bc54c9d2d73a96c",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are Reviewer R2 for a top ML venue review. Your focus area is **Novelty and Related Work**. Review the following pap",
+  "task_key": "agent-af4ee46f86844242c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-af4ee46f86844242c.jsonl",
+    "occurrence": 1,
+    "bytes": 158937,
+    "sha256": "3378af74f1def12d2e36901a85eba0f71aab9206e20c7e13458dc6ffb2bda2fd"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T06:43:17.374Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are Reviewer R2 for a top ML venue review. Your focus area is **Novelty and Related Work**. Review the following paper and produce a detailed review.\n\n## Paper Summary\n**Title:** \"Cross-Representation Disagreement as a Diagnostic Signal for LLM Formalization Errors: A Systematic Empirical Analysis\"\n\n**Core idea:** When an LLM formalizes a natural-language reasoning problem into two representations (FOL/Z3 and Python code), disagreements between their outputs serve as a diagnostic signal for formalization errors. The paper systematically studies this across 3 benchmarks (FOLIO, ProofWriter, MATH Level 5), 2 model scales (Qwen3-32B, Qwen3-8B), and cross-model configs (DeepSeek V4 Pro).\n\n**Three claims:**\n1. Disagreements arise at 24–40% rates and are diagnostically precise (72–87%)\n2. Error localization achieves 76–85% accuracy via FOL-vs-code asymmetry (4–9×); 3-type error taxonomy\n3. Repair boundary characterization: targeted repair yields modest +4–7pp, concentrated on spec-ambiguous samples; correlated failures impose ceiling\n\n**Related Work (Section 2):**\n- Neurosymbolic reasoning: Pan et al. 2023 (Logic-LM), Ye et al. 2024 (SatLM), Chen et al. 2023 (PoT), Gao et al. 2023 (PAL), HybridMind 2025\n- Cross-representation verification: Liang et al. 2024 (CoT-PoT disagreement for filtering only), Prove 2024 (filtering without repair). Paper claims to go beyond filtering to diagnosis+localization+classification+repair\n- Self-correction and repair: Roundtrip Verification 2026 (single representation, narrow domain), VeriCoT 2025, VERGE 2025 (within one representation). Paper claims to operate across representations\n- Correlated failures: Denisov-Blanch 2026 (highlighted correlated failures as limitation). Paper claims to quantify and trace source\n\n**Method:**\n- Dual-representation pipeline: FOL/Z3 + Python code, compare outputs\n- Disagreement analysis: diagnostic precision, error localization, error classification, targeted repair\n- 5 metrics: C1-C5\n\n**Key Results:**\n- Diagnostic signal strong (C1/C2/C5 all significant across benchmarks)\n- Repair marginal (C4 not significant after Bonferroni)\n- Representation asymmetry identified as key precondition\n- Correlated failures traced to specification-level ambiguity via cross-model ablation\n- GPQA pilot shows domain boundary\n\n**Paper structure:** 10 pages, Abstract, Intro, Related Work, Method, Experimental Setup, Results (5 subsections), Ablation Studies (5 subsections), Statistical Significance, GPQA Pilot, Discussion, Conclusion, References\n\n**References cited:** 14 references total. Several are \"Preprint\" with abbreviated citation format (e.g., \"HybridMind (2025)\", \"VeriCoT (2025)\", \"Prove (2024)\", \"Roundtrip Verification (2026)\").\n\n## Your Review Task\n\nEvaluate the paper on:\n1. **Novelty**: Is the contribution genuinely new? Is \"systematic empirical analysis of cross-representation disagreement\" a sufficient contribution? How does this advance beyond Liang et al. 2024's observation that CoT-PoT disagreement correlates with errors?\n2. **Related work coverage**: Are important related works missing? Is the positioning against prior work accurate and fair?\n3. **Reference quality**: Are the citations complete and verifiable? Note any concerns about reference format or potential citation issues.\n4. **Contribution framing**: Is the paper properly scoped? Are the three contributions well-differentiated and meaningful?\n5. **Positioning**: Does the paper convincingly argue that its approach is different from and advances beyond prior work?\n6. **Writing quality**: Is the paper well-written, well-structured, clear?\n\n## Output Format\n\nProvide your review in this exact structure:\n\n### R2 Summary (2-3 sentences)\n\n### R2 Strengths (bulleted, each with short label)\n\n### R2 Weaknesses (bulleted, each with short label, explain severity)\n\n### R2 Questions for Authors (numbered)\n\n### R2 Minor Issues (bulleted)\n\n### R2 Preliminary Score: X/6\n(1=Strong Reject, 2=Reject, 3=Weak Reject, 4=Weak Accept, 5=Accept, 6=Strong Accept)\n\n### R2 Confidence: X/5\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "68a85710-96c3-41a6-a531-e72dbdc43561",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T06:43:17.383Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "68a85710-96c3-41a6-a531-e72dbdc43561",
+                "isSidechain": true,
+                "agentId": "af4ee46f86844242c",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "b2bd3894-eba3-4707-b0e3-0b5673bb668e",
+                "timestamp": "2026-05-15T06:43:17.383Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+                "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T06:43:20.648Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by reading the paper and related project files to conduct a thorough review."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2bd3894-eba3-4707-b0e3-0b5673bb668e",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uCYkpY4Gxt9QuDaRyf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "080f6258-53d7-4eeb-b7c1-279110962bbc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018RdvP5J7FEq4ytMjTWy3br",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 7103,
+                "cache_read_input_tokens": 8253,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7103,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T06:43:21.658Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MhMSBNHpXdCAaxRheEJ8WG",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "080f6258-53d7-4eeb-b7c1-279110962bbc",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uCYkpY4Gxt9QuDaRyf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "db80122d-284b-4251-9836-80f8e8d8a9e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018RdvP5J7FEq4ytMjTWy3br",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 7103,
+                "cache_read_input_tokens": 8253,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7103,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T06:43:21.660Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01MhMSBNHpXdCAaxRheEJ8WG",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db80122d-284b-4251-9836-80f8e8d8a9e3",
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "1b6e775d-8c57-462e-86fb-486f6c7bdcfc",
+            "sourceToolAssistantUUID": "db80122d-284b-4251-9836-80f8e8d8a9e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T06:43:24.652Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nLet me read the paper and key project files to conduct a thorough review."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b6e775d-8c57-462e-86fb-486f6c7bdcfc",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uCsFopi4LL49Q1tPbd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "22fe1d28-6cd4-42b4-9faf-9b39cd76b52f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WcoXCRThp537WAdrxi5UTY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1289,
+                "cache_read_input_tokens": 15356,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1289,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T06:43:26.422Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GdHDXGinvRd2Pmo8Vx18Fi",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "cross_representation_disagreement_diagno",
+                "file": "report.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "22fe1d28-6cd4-42b4-9faf-9b39cd76b52f",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uCsFopi4LL49Q1tPbd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "58dcbbbc-48f1-4ab8-978e-a750b4c73cd9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WcoXCRThp537WAdrxi5UTY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1289,
+                "cache_read_input_tokens": 15356,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1289,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T06:43:26.464Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GdHDXGinvRd2Pmo8Vx18Fi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| mvp_pipeline_004 | v4 truncation detection + thinking-off retry, 204 samples | RUNNING (PID 47964, 127/204, ETA ~08:30 BJT) | All-mode 5/5 PASS @126样本 | — |\\\\n\\\\n## 126 样本 C1-C5 指标（evaluate_mvp.py 权威数据）\\\\n| 指标 | All-mode (N=117) | 阈值 | 状态 | Excl-Unknown (N=75) | 状态 |\\\\n|------|-----------------|------|------|-------------------|------|\\\\n| C1 disagree_rate | 35.9% (42/117) | ≥10% | PASS | 34.7% (26/75) | PASS |\\\\n| C2 diagnostic_rate | 88.1% (37/42) | ≥40% | PASS | 88.5% (23/26) | PASS |\\\\n| C3 error_types | 3 | ≥2 | PASS | 2 | PASS |\\\\n| C4 targeted_delta | +7.4pp (T:35/54 B:31/54) | >5pp | PASS | +0.0pp (T:22/35 B:22/35) | FAIL |\\\\n| C5 localization | 79.2% (19/24) | ≥60% | PASS | 87.5% (14/16) | PASS |\\\\n\\\\n## 已完成修复\\\\n- repair.py: repr_type 动态 prompt（C4 excl-unknown 根因修复）\\\\n- pipeline.py: streaming JSONL + gc.collect（内存泄漏修复）\\\\n- pipeline.py: JSON→JSONL in-place 转换（数据损坏 bug 修复）\\\\n- repair_only.py: repair-only 重跑脚本就绪\\\\n\\\\n## 待处理\\\\n- 等 204 全量完成 → evaluate_mvp.py 最终评估\\\\n- 204 完成后 → repair_only.py 重跑 repair+eval（用修复后的 prompt）\\\\n\\\\n## 近期结论\\\\n- **mvp_pipeline_004** (success, 127/204): All-mode 5/5 PASS，C4 趋势下滑需关注\\\\n- **mvp_pipeline_002** (negative): FOL crash 修复但 C4/C5 仍 FAIL\\\\n- **mvp_pipeline_001** (negative): 首轮 2/5 PASS\\\\n\\\\n## 趋势\\\\n成功 1 / 负向 2 / 失败 0 / 终止 2 / 共 6\\\\nMVP 指标持续改善: v1(2/5) → v2(2/5) → v4@80(4/5) → v4@126(5/5 all-mode)\\\\n\\\\n## 资源状态\\\\nautodl-rtx6000pro: cuda:0 pipeline (PID 47964) + vLLM serving 运行中\\\\n\\\", \\\"total_chars\\\": 1517, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "58dcbbbc-48f1-4ab8-978e-a750b4c73cd9",
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "21985718-ee88-4cf8-b46a-b6921d39b30b",
+            "sourceToolAssistantUUID": "58dcbbbc-48f1-4ab8-978e-a750b4c73cd9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T06:43:26.662Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019wqUPACB3z65QygUa6wDy6",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "cross_representation_disagreement_diagno",
+                "file": "ideas.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21985718-ee88-4cf8-b46a-b6921d39b30b",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uCsFopi4LL49Q1tPbd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7fa05911-8f25-4591-b716-a9368c868442",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WcoXCRThp537WAdrxi5UTY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1289,
+                "cache_read_input_tokens": 15356,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1289,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T06:43:26.687Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019wqUPACB3z65QygUa6wDy6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'cross_representation_disagreement_diagno'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7fa05911-8f25-4591-b716-a9368c868442",
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "0093015d-a852-4544-ad14-462d515e3976",
+            "sourceToolAssistantUUID": "7fa05911-8f25-4591-b716-a9368c868442",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T06:43:27.302Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DchSCcZwppBtB8ouEzbjMV",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "cross_representation_disagreement_diagno",
+                "file": "literature_map.yaml",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0093015d-a852-4544-ad14-462d515e3976",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uCsFopi4LL49Q1tPbd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "29a7ef5c-9f16-44c8-a2bc-362fe1db99b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WcoXCRThp537WAdrxi5UTY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1289,
+                "cache_read_input_tokens": 15356,
+                "output_tokens": 316,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1289
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 316,
+                    "cache_read_input_tokens": 15356,
+                    "cache_creation_input_tokens": 1289,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1289,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T06:43:27.317Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DchSCcZwppBtB8ouEzbjMV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No literature_map.yaml found for 'cross_representation_disagreement_diagno'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29a7ef5c-9f16-44c8-a2bc-362fe1db99b6",
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "9c84cefb-7561-44c1-82c3-70885f024004",
+            "sourceToolAssistantUUID": "29a7ef5c-9f16-44c8-a2bc-362fe1db99b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T06:43:31.616Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GdwKZBYSktMR7qgX2A8ZYB",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9c84cefb-7561-44c1-82c3-70885f024004",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uDHXJuEgeb5iYnDqVk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "53c858f0-3365-49cc-b088-b8899be793b2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NM4cEaMyqDv7FHpTxdvUwA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1539,
+                "cache_read_input_tokens": 16645,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1539,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T06:43:31.651Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GdwKZBYSktMR7qgX2A8ZYB",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260515T060408/best/paper.tex\nartifacts/dream_reports/dream_20260515T060408/median/paper.tex\nartifacts/dream_reports/dream_20260515T060408/worst/paper.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "53c858f0-3365-49cc-b088-b8899be793b2",
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "decdd966-ac34-4066-bf26-8be31d33948d",
+            "sourceToolAssistantUUID": "53c858f0-3365-49cc-b088-b8899be793b2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T06:43:32.113Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MdBpSZsB3jt5hubNMsdjoU",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.md",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "decdd966-ac34-4066-bf26-8be31d33948d",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uDHXJuEgeb5iYnDqVk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1edeaa44-cde2-4afd-a5d3-ea98a0d75b82",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NM4cEaMyqDv7FHpTxdvUwA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1539,
+                "cache_read_input_tokens": 16645,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1539,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T06:43:32.156Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MdBpSZsB3jt5hubNMsdjoU",
+              "type": "tool_result",
+              "content": "artifacts/.venv/lib/python3.14/site-packages/pyarrow/tests/data/orc/README.md\nartifacts/.venv/lib/python3.14/site-packages/numpy/random/LICENSE.md\nartifacts/.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md\nartifacts/.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/fft/pocketfft/LICENSE.md\nartifacts/.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/LICENSE.md\nartifacts/.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/distributions/LICENSE.md\nartifacts/.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/mt19937/LICENSE.md\nartifacts/.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/pcg64/LICENSE.md\nartifacts/.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/philox/LICENSE.md\nartifacts/.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/sfc64/LICENSE.md\nartifacts/.venv/lib/python3.14/site-packages/numpy-2.4.4.dist-info/licenses/numpy/random/src/splitmix64/LICENSE.md\nartifacts/.venv/lib/python3.14/site-packages/idna-3.15.dist-info/licenses/LICENSE.md\nartifacts/.venv/lib/python3.14/site-packages/httpcore-1.0.9.dist-info/licenses/LICENSE.md\nartifacts/.venv/lib/python3.14/site-packages/httpx-0.28.1.dist-info/licenses/LICENSE.md\nartifacts/.venv/lib/python3.14/site-packages/typer/.agents/skills/typer/SKILL.md\nartifacts/.venv/lib/python3.14/site-packages/openai/resources/conversations/api.md\nartifacts/.venv/lib/python3.14/site-packages/openai/resources/realtime/api.md\nartifacts/.venv/lib/python3.14/site-packages/openai/resources/responses/api.md\nartifacts/.venv/lib/python3.14/site-packages/openai/resources/webhooks/api.md\nartifacts/.venv/lib/python3.14/site-packages/huggingface_hub/templates/datasetcard_template.md\nartifacts/.venv/lib/python3.14/site-packages/huggingface_hub/templates/modelcard_template.md\ntask_context/history/reviewer/loop_1.md\ntask_context/history/agent/loop_1.md\ntask_context/history/director/loop_1.md\ntask_context/history/reviewer/loop_2.md\ntask_context/history/agent/loop_2.md\nartifacts/c1c5_audit.md\ndocs/proofwriter_survey.md\nmemory.md\ntask_context/history/director/loop_2.md\ntask_context/history/agent/loop_3.md\ntask_context/history/agent/loop_2_1778793546.md\nartifacts/c4_excl_unknown_analysis.md\nartifacts/mvp_pipeline_004/report/c4_root_cause_analysis.md\nartifacts/c4_decline_analysis.md\nartifacts/mvp_pipeline_004/report/c4_decline_analysis.md\nreport.md\ntask_context/history/director/loop_3.md\ntask_context/history/reviewer/loop_3.md\ntask_context/history/agent/loop_4.md\ntask_context/history/agent/loop_3_1778804604.md\ntask_context/history/agent/loop_5.md\ntask_context/director.md\ntask_context/reviewer.md\ntask_context/agent.md\n.claude/sessions/agent_2649041b/CLAUDE.md\n.claude/sessions/agent_2649041b/AGENTS.md\ndocs/IDEA_BRIEF.md\nROADMAP.md\npaper_framing.md\nartifacts/dream_reports/dream_20260515T060408/best/paper_framing.md\nartifacts/dream_reports/dream_20260515T060408/median/paper_framing.md\nartifacts/dream_reports/dream_20260515T060408/worst/paper_framing.md\n.claude/sessions/agent_4b4b70e8/CLAUDE.md\n.claude/sessions/agent_4b4b70e8/AGENTS.md\n.claude/sessions/briefer_e937439b/CLAUDE.md\n.claude/sessions/briefer_e937439b/AGENTS.md\n.claude/sessions/reviewer_0fe76a8e/CLAUDE.md\n.claude/sessions/reviewer_0fe76a8e/AGENTS.md\nartifacts/dream_reports/dream_20260515T060408/best/review_report.md\n.claude/CLAUDE.md\nAGENTS.md\n.claude/sessions/director_551e3300/CLAUDE.md\n.claude/sessions/director_551e3300/AGENTS.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1edeaa44-cde2-4afd-a5d3-ea98a0d75b82",
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "7acd8c73-70ee-4eec-85ff-c5140332a85e",
+            "sourceToolAssistantUUID": "1edeaa44-cde2-4afd-a5d3-ea98a0d75b82",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T06:43:32.710Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01APyXLH3Q2mEjYtygJ9nQN2",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.pdf",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7acd8c73-70ee-4eec-85ff-c5140332a85e",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uDHXJuEgeb5iYnDqVk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3d1af669-4474-44a0-b5e2-0beb1e530275",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NM4cEaMyqDv7FHpTxdvUwA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1539,
+                "cache_read_input_tokens": 16645,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1539,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T06:43:32.750Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01APyXLH3Q2mEjYtygJ9nQN2",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260515T060408/best/paper.pdf\nartifacts/dream_reports/dream_20260515T060408/median/paper.pdf\nartifacts/dream_reports/dream_20260515T060408/worst/paper.pdf"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3d1af669-4474-44a0-b5e2-0beb1e530275",
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "e1a1f73a-17e9-4bc3-8048-e813ff895806",
+            "sourceToolAssistantUUID": "3d1af669-4474-44a0-b5e2-0beb1e530275",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T06:43:36.216Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SyEcZbKuWckrVNbDL3qcgj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/artifacts/dream_reports/dream_20260515T060408/best/paper.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e1a1f73a-17e9-4bc3-8048-e813ff895806",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uDgathjAehrrBUhrbj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4fd4e785-cc77-4cca-a03d-dd578944c4ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M9xxv2JBpNUsnWy9FU8eup",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1862,
+                "cache_read_input_tokens": 18184,
+                "output_tokens": 104,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1862
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 104,
+                    "cache_read_input_tokens": 18184,
+                    "cache_creation_input_tokens": 1862,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1862,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T06:43:36.599Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SyEcZbKuWckrVNbDL3qcgj",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt,a4paper]{article}\n2\t\\usepackage[margin=1in]{geometry}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage{graphicx}\n6\t\\usepackage{amsmath}\n7\t\\usepackage{amssymb}\n8\t\\usepackage{booktabs}\n9\t\\usepackage{multirow}\n10\t\\usepackage{xcolor}\n11\t\\usepackage{enumitem}\n12\t\\usepackage{tabularx}\n13\t\\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}\n14\t\\usepackage{natbib}\n15\t\\bibliographystyle{plainnat}\n16\t\n17\t\\newcommand{\\ours}{CRD-Diag}\n18\t\\newcommand{\\disagree}{\\textsc{Disagree}}\n19\t\\newcommand{\\targeted}{\\textsc{Targeted}}\n20\t\\newcommand{\\blind}{\\textsc{Blind}}\n21\t\n22\t\\title{Cross-Representation Disagreement as a Diagnostic Signal\\\\for LLM Formalization Errors}\n23\t\n24\t\\author{Anonymous}\n25\t\n26\t\\begin{document}\n27\t\\maketitle\n28\t\n29\t% ============================================================\n30\t\\begin{abstract}\n31\tNeurosymbolic reasoning pipelines that translate natural language into formal representations suffer from formalization errors as a dominant failure mode. We present the first systematic empirical analysis of \\emph{cross-representation disagreement}---the phenomenon where the same LLM produces conflicting answers when formalizing a problem into two distinct representations (first-order logic vs.\\ executable code). On three benchmarks spanning logic and mathematics (FOLIO, ProofWriter, MATH Level~5), we show that disagreements occur at a substantial rate (37--42\\%) and serve as a high-precision diagnostic signal: 81--87\\% of disagreements identify genuine formalization errors. Disagreement patterns enable automatic error localization with 82--85\\% accuracy and reveal a striking domain-dependent asymmetry---FOL dominates in logic domains (7--9:1 error ratio) while code dominates in mathematics (2.3:1 inverted). Building on these findings, we develop a lightweight diagnosis-guided repair framework that leverages error type classification to achieve +10.8pp improvement over blind regeneration ($p=0.008$). We further characterize the boundary of this approach: specification-level errors producing correlated failures constitute its ceiling, a finding that deepens understanding of neurosymbolic failure modes.\n32\t\\end{abstract}\n33\t\n34\t% ============================================================\n35\t\\section{Introduction}\n36\t\\label{sec:intro}\n37\t\n38\tLarge language models (LLMs) are increasingly used in neurosymbolic reasoning pipelines, where natural language problems are translated into formal representations---first-order logic (FOL), executable Python code, or solver-compatible formats---for downstream verification or execution \\cite{pan2023logic,ye2024satlm}. A dominant failure mode in these pipelines is \\emph{formalization error}: the LLM's translation introduces subtle corruptions that cause the formal representation to diverge from the intended semantics of the original problem.\n39\t\n40\tExisting approaches address this challenge along three dimensions. \\emph{Representation selection} methods choose among multiple formalizations based on confidence or agreement signals \\cite{hybridmind2024,adaptive2024}. \\emph{Within-representation verification} methods check internal consistency through roundtrip translation or self-verification \\cite{vericot2024,verge2024,roundtrip2026}. \\emph{Agreement filtering} methods discard solutions where different representations disagree \\cite{liang2024cotpot,prove2024}. However, none of these approaches exploit cross-representation disagreement for \\emph{error categorization} and \\emph{targeted repair}.\n41\t\n42\tWe observe that when the same LLM formalizes a reasoning problem into two distinct representations, disagreements are not noise---they are structured diagnostic signals. The pattern of disagreement (which representation errs, how it errs, and on what problem types) carries rich information about the nature of formalization failures.\n43\t\n44\tThis paper makes three contributions:\n45\t\n46\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n47\t\\item \\textbf{Disagreement as high-precision diagnostic signal.} On three benchmarks (FOLIO, ProofWriter, MATH Level~5), cross-representation disagreement occurs at 37--42\\% and identifies genuine errors with 81--87\\% precision (\\S\\ref{sec:main-results}).\n48\t\n49\t\\item \\textbf{Error localization, classification, and domain-dependent asymmetry.} Disagreement patterns enable 82--85\\% error localization accuracy and reveal a systematic asymmetry: in logic domains, FOL representations exhibit 7--9$\\times$ lower error rates than code; in mathematics, code (SymPy) dominates with a 2.3:1 inverted ratio (\\S\\ref{sec:asymmetry}).\n50\t\n51\t\\item \\textbf{Boundary characterization of diagnosis-guided repair.} Multi-round, taxonomy-guided repair achieves +10.8pp over blind regeneration. We characterize the method's ceiling: specification-level errors that corrupt both representations identically produce false agreements undetectable by disagreement (\\S\\ref{sec:repair}, \\S\\ref{sec:boundary}).\n52\t\\end{enumerate}\n53\t\n54\t% ============================================================\n55\t\\section{Related Work}\n56\t\\label{sec:related}\n57\t\n58\t\\paragraph{Neurosymbolic reasoning.}\n59\tLLM-based neurosymbolic pipelines translate natural language into formal representations for verification or execution. Chain-of-thought (CoT) prompting \\cite{wei2022cot} produces natural language reasoning traces, while program-of-thought (PoT) and PAL \\cite{chen2022pot,gao2023pal} generate executable code. Recent work combines multiple representations: HybridMind \\cite{hybridmind2024} selects between symbolic and neural reasoning, and adaptive selection methods \\cite{adaptive2024} choose representations based on problem characteristics.\n60\t\n61\t\\paragraph{Verification and consistency checking.}\n62\tVeriCoT \\cite{vericot2024} and VERGE \\cite{verge2024} verify reasoning within a single representation through self-consistency or formal verification. Roundtrip Verification \\cite{roundtrip2026} translates formal representations back to natural language to check fidelity. These methods operate within one representation and cannot exploit cross-representation signals.\n63\t\n64\t\\paragraph{Cross-representation agreement.}\n65\tLiang et al.\\ \\cite{liang2024cotpot} demonstrated that CoT--PoT agreement correlates with correctness, using disagreement as a filter. Prove \\cite{prove2024} similarly filters based on multi-representation agreement. However, both approaches discard disagreeing samples without diagnosing error causes. Our work goes beyond filtering to error categorization, localization, and targeted repair.\n66\t\n67\t\\paragraph{Correlated failures in LLM ensembles.}\n68\tDenisov-Blanch et al.\\ \\cite{denisovblanch2026} showed that LLM-generated code exhibits correlated failures across models, limiting ensemble-based error detection. Our cross-model ablation (\\S\\ref{sec:cross-model}) directly addresses this concern by quantifying false agreement reduction through model diversity.\n69\t\n70\t% ============================================================\n71\t\\section{Method}\n72\t\\label{sec:method}\n73\t\n74\t\\subsection{Overview}\n75\t\n76\tGiven a reasoning problem $q$ in natural language, our diagnostic pipeline \\ours{} proceeds in four stages:\n77\t\n78\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n79\t\\item \\textbf{Dual formalization.} Prompt the same LLM to produce two representations: a first-order logic (FOL) formalization $f_{\\text{FOL}}(q)$ and an executable code formalization $f_{\\text{Code}}(q)$.\n80\t\\item \\textbf{Independent execution.} Execute each formalization independently to obtain answers $a_{\\text{FOL}}$ and $a_{\\text{Code}}$.\n81\t\\item \\textbf{Disagreement diagnosis.} When $a_{\\text{FOL}} \\neq a_{\\text{Code}}$, apply a diagnosis module that (a) localizes the error to one representation, (b) classifies the error type using a structured taxonomy, and (c) generates a diagnostic report.\n82\t\\item \\textbf{Targeted repair.} Use the diagnostic report to guide error-type-specific repair of the identified erroneous representation.\n83\t\\end{enumerate}\n84\t\n85\t\\subsection{Dual Formalization}\n86\t\\label{sec:dual}\n87\t\n88\tFor logic benchmarks (FOLIO, ProofWriter), we generate FOL formulas evaluated by a Z3 solver and Python code with explicit if-then logic. For MATH, we generate chain-of-thought (CoT) natural language reasoning and SymPy/Python symbolic computation code. Each formalization is generated independently using separate prompts to avoid cross-contamination.\n89\t\n90\t\\subsection{Disagreement Diagnosis}\n91\t\\label{sec:diagnosis}\n92\t\n93\tWhen the two representations produce different answers, the LLM is prompted with both formalizations and asked to:\n94\t\\begin{itemize}[leftmargin=*,itemsep=1pt]\n95\t\\item Identify which representation contains the error (localization).\n96\t\\item Classify the error into one of the taxonomy categories (classification).\n97\t\\item Provide a natural language explanation of the error and suggested fix (diagnostic report).\n98\t\\end{itemize}\n99\t\n100\t\\paragraph{Error taxonomy.}\n101\tFor logic domains, we identify three error types: \\emph{Predicate Mapping Error} (incorrect NL-to-predicate alignment), \\emph{Quantifier Scope Error} (incorrect universal/existential quantifier scope), and \\emph{Negation Handling Error} (incorrect negation logic). For mathematics, a fourth type emerges: \\emph{Computation Error} (arithmetic mistakes in CoT intermediate steps). Additional types include \\emph{Variable Mapping Error}, \\emph{Constraint Omission}, and \\emph{Type Mismatch} specific to mathematical formalization.\n102\t\n103\t\\subsection{Taxonomy-Guided Repair}\n104\t\\label{sec:repair-method}\n105\t\n106\tRather than generic regeneration, we apply error-type-specific repair prompts. For Predicate Mapping Errors, the repair prompt includes an explicit NL-to-predicate alignment table. For Quantifier Scope Errors, it provides scope disambiguation instructions. For Negation Handling Errors, it uses a chain-of-negation decomposition. Repair proceeds for up to 3 rounds, with each round re-evaluating whether the disagreement persists.\n107\t\n108\t% ============================================================\n109\t\\section{Experimental Setup}\n110\t\\label{sec:setup}\n111\t\n112\t\\paragraph{Benchmarks.}\n113\tWe evaluate on three benchmarks: (1)~\\textbf{FOLIO} \\cite{han2022folio}, a first-order logic reasoning benchmark (N=192 after filtering); (2)~\\textbf{ProofWriter} \\cite{tafjord2021proofwriter}, a rule-based deductive reasoning benchmark (N$\\approx$193); and (3)~\\textbf{MATH Level~5} \\cite{hendrycks2021math}, the hardest tier of competition mathematics (N$\\approx$190). We additionally report exploratory results on GPQA Diamond \\cite{rein2024gpqa} (N$\\approx$150) to characterize method boundaries.\n114\t\n115\t\\paragraph{Models.}\n116\tOur primary model is Qwen3-32B. We conduct cross-model ablation with DeepSeek V4 Pro and model capability ablation with Qwen3-8B.\n117\t\n118\t\\paragraph{Metrics.}\n119\tWe evaluate five core metrics:\n120\t\\begin{itemize}[leftmargin=*,itemsep=1pt]\n121\t\\item \\textbf{C1}: Disagreement rate (proportion of samples where $a_{\\text{FOL}} \\neq a_{\\text{Code}}$).\n122\t\\item \\textbf{C2}: Diagnostic precision (proportion of disagreements that are genuine errors).\n123\t\\item \\textbf{C3}: Number of distinct error types identified.\n124\t\\item \\textbf{C4}: Targeted vs.\\ blind repair accuracy difference ($\\Delta$pp).\n125\t\\item \\textbf{C5}: Error localization accuracy.\n126\t\\end{itemize}\n127\t\n128\tAll confidence intervals are computed via bootstrap resampling (10,000 iterations, 95\\% CI). McNemar's test is used for paired comparisons (C4).\n129\t\n130\t% ============================================================\n131\t\\section{Results}\n132\t\\label{sec:results}\n133\t\n134\t\\subsection{Main Results: Diagnostic Signal Quality}\n135\t\\label{sec:main-results}\n136\t\n137\tTable~\\ref{tab:main} presents the core diagnostic metrics across three benchmarks.\n138\t\n139\t\\begin{table}[t]\n140\t\\centering\n141\t\\small\n142\t\\caption{Cross-representation diagnostic pipeline results (Qwen3-32B). All-mode includes all ground-truth labels; Excl-Unknown excludes GT=Unknown samples.}\n143\t\\label{tab:main}\n144\t\\begin{tabular}{@{}lcccc@{}}\n145\t\\toprule\n146\t\\textbf{Metric} & \\textbf{FOLIO} & \\textbf{ProofWriter} & \\textbf{MATH} \\\\\n147\t& (N=192) & (N$\\approx$193) & (N$\\approx$190) \\\\\n148\t\\midrule\n149\tC1 Disagree Rate & 39.6\\% & 36.8\\% & 42.1\\% \\\\\n150\tC2 Diag.\\ Precision & 86.8\\% & 84.5\\% & 81.3\\% \\\\\n151\tC3 Error Types & 3 & 3 & 4 \\\\\n152\tC4 $\\Delta$ (All) & +10.8pp & +6.8pp & +7.5pp \\\\\n153\tC5 Localization & 85.4\\% & 83.7\\% & 82.4\\% \\\\\n154\t\\bottomrule\n155\t\\end{tabular}\n156\t\\end{table}\n157\t\n158\tCross-representation disagreement is a systematic phenomenon, not a corner case: 37--42\\% of samples produce conflicting answers across the three benchmarks. This disagreement is diagnostically informative---81--87\\% of disagreements identify genuine formalization errors (C2). Error localization achieves 82--85\\% accuracy (C5), enabling reliable identification of the erroneous representation.\n159\t\n160\tThe consistency of these metrics across benchmarks spanning logic (FOLIO, ProofWriter) and mathematics (MATH) demonstrates that cross-representation disagreement is a domain-general diagnostic signal. A Cochran's Q test confirms homogeneity across benchmarks ($Q=1.82$, $p=0.402$), with low heterogeneity ($I^2=18.3\\%$).\n161\t\n162\t\\subsection{Domain-Dependent Asymmetry}\n163\t\\label{sec:asymmetry}\n164\t\n165\tA striking finding is the domain-dependent asymmetry in which representation contains the error (Table~\\ref{tab:asymmetry}).\n166\t\n167\t\\begin{table}[t]\n168\t\\centering\n169\t\\small\n170\t\\caption{Cross-domain asymmetry in representation accuracy and error ratios.}\n171\t\\label{tab:asymmetry}\n172\t\\begin{tabular}{@{}lcccc@{}}\n173\t\\toprule\n174\t\\textbf{Domain} & \\textbf{Logic Acc} & \\textbf{Code Acc} & \\textbf{Ratio} & \\textbf{Dominant} \\\\\n175\t\\midrule\n176\tFOLIO & 82.3\\% & 48.7\\% & 9:1 & FOL \\\\\n177\tProofWriter & 80.1\\% & 51.2\\% & 7:1 & FOL \\\\\n178\tMATH & 58.4\\% & 67.2\\% & 2.3:1$^*$ & Code \\\\\n179\t\\bottomrule\n180\t\\multicolumn{5}{l}{\\small $^*$Inverted: Code (SymPy) outperforms CoT.}\n181\t\\end{tabular}\n182\t\\end{table}\n183\t\n184\tIn logic domains, FOL representations are dramatically more accurate than code (7--9:1 error ratio), indicating that LLMs have substantially stronger capabilities in formal logic generation than equivalent imperative code generation for logical reasoning. In the mathematics domain, this asymmetry inverts: SymPy/Python code achieves 67.2\\% accuracy vs.\\ 58.4\\% for CoT, reflecting code's natural advantage in numerical computation. The oracle accuracy (taking the correct answer when either representation is right) reaches 78.9\\% on MATH, demonstrating the complementary nature of the two representations.\n185\t\n186\tThis domain-dependent asymmetry is not an artifact of the method but reveals a systematic structure in how LLMs handle different formalization paradigms.\n187\t\n188\t\\subsection{Error Type Distribution}\n189\t\\label{sec:error-types}\n190\t\n191\tTable~\\ref{tab:folio-errors} shows the error taxonomy for FOLIO, and Table~\\ref{tab:math-errors} for MATH.\n192\t\n193\t\\begin{table}[t]\n194\t\\centering\n195\t\\small\n196\t\\caption{FOLIO error type distribution (N=66 diagnosed errors).}\n197\t\\label{tab:folio-errors}\n198\t\\begin{tabular}{@{}lccl@{}}\n199\t\\toprule\n200\t\\textbf{Error Type} & \\textbf{Count} & \\textbf{\\%} \\\\\n201\t\\midrule\n202\tPredicate Mapping & $\\sim$28 & 42\\% \\\\\n203\tQuantifier Scope & $\\sim$22 & 33\\% \\\\\n204\tNegation Handling & $\\sim$16 & 24\\% \\\\\n205\t\\bottomrule\n206\t\\end{tabular}\n207\t\\end{table}\n208\t\n209\t\\begin{table}[t]\n210\t\\centering\n211\t\\small\n212\t\\caption{MATH Level~5 error type distribution (N=65 diagnosed errors).}\n213\t\\label{tab:math-errors}\n214\t\\begin{tabular}{@{}lcc@{}}\n215\t\\toprule\n216\t\\textbf{Error Type} & \\textbf{Count} & \\textbf{\\%} \\\\\n217\t\\midrule\n218\tVariable Mapping & $\\sim$20 & 31\\% \\\\\n219\tComputation Error & $\\sim$18 & 28\\% \\\\\n220\tConstraint Omission & $\\sim$15 & 23\\% \\\\\n221\tType Mismatch & $\\sim$12 & 18\\% \\\\\n222\t\\bottomrule\n223\t\\end{tabular}\n224\t\\end{table}\n225\t\n226\tPredicate mapping errors dominate in logic domains (42\\%), while mathematics introduces a new error type---computation errors in CoT intermediate steps (28\\%)---absent in logic domains where execution is handled by a solver.\n227\t\n228\t\\subsection{Cross-Model Ablation}\n229\t\\label{sec:cross-model}\n230\t\n231\tTo address concerns about correlated failures when the same model generates both representations \\cite{denisovblanch2026}, we conduct a cross-model ablation on FOLIO where DeepSeek V4 Pro generates one representation and Qwen3-32B the other (Table~\\ref{tab:cross-model}).\n232\t\n233\t\\begin{table}[t]\n234\t\\centering\n235\t\\small\n236\t\\caption{Single-model vs.\\ cross-model disagreement (FOLIO, N=192).}\n237\t\\label{tab:cross-model}\n238\t\\begin{tabular}{@{}lccc@{}}\n239\t\\toprule\n240\t\\textbf{Metric} & \\textbf{Single} & \\textbf{Cross} & \\textbf{$\\Delta$} \\\\\n241\t\\midrule\n242\tDisagree Rate & 39.6\\% & 44.3\\% & +4.7pp \\\\\n243\tDiagnostic Precision & 86.8\\% & 83.5\\% & $-$3.3pp \\\\\n244\tFalse Agreement Rate & 18.2\\% & 11.5\\% & $-$6.7pp \\\\\n245\tLocalization Acc & 85.4\\% & 81.2\\% & $-$4.2pp \\\\\n246\tOracle Accuracy & 79.2\\% & 82.8\\% & +3.6pp \\\\\n247\t\\bottomrule\n248\t\\end{tabular}\n249\t\\end{table}\n250\t\n251\tCross-model generation reduces false agreement rate by 6.7pp (from 18.2\\% to 11.5\\%), corresponding to a $\\sim$35\\% reduction in correlated failures. The trade-off is a small decrease in diagnostic precision ($-$3.3pp) and localization accuracy ($-$4.2pp), as some cross-model disagreements reflect stylistic differences rather than genuine errors. Oracle accuracy improves by 3.6pp, confirming the complementary benefit of model diversity.\n252\t\n253\tThe correlated failure analysis (Table~\\ref{tab:correlated}) shows that cross-model generation converts 13 ``both wrong, same answer'' cases into detectable disagreements.\n254\t\n255\t\\begin{table}[t]\n256\t\\centering\n257\t\\small\n258\t\\caption{Correlated failure analysis (FOLIO, N=192).}\n259\t\\label{tab:correlated}\n260\t\\begin{tabular}{@{}lcc@{}}\n261\t\\toprule\n262\t\\textbf{Failure Mode} & \\textbf{Single} & \\textbf{Cross} \\\\\n263\t\\midrule\n264\tBoth wrong, same answer & 35 & 22 \\\\\n265\tBoth wrong, different answer & 8 & 18 \\\\\n266\tOne correct, one wrong & 66 & 71 \\\\\n267\t\\bottomrule\n268\t\\end{tabular}\n269\t\\end{table}\n270\t\n271\t\\subsection{Multi-Round Taxonomy-Guided Repair}\n272\t\\label{sec:repair}\n273\t\n274\tTable~\\ref{tab:repair} shows the progression of repair accuracy across rounds on FOLIO. FOLIO C4 values in Table~\\ref{tab:main} reflect post-repair (round~3) results.\n275\t\n276\t\\begin{table}[t]\n277\t\\centering\n278\t\\small\n279\t\\caption{Multi-round repair progression (FOLIO, N=96 disagree pairs).}\n280\t\\label{tab:repair}\n281\t\\begin{tabular}{@{}lccccc@{}}\n282\t\\toprule\n283\t\\textbf{Round} & \\textbf{Tgt Acc} & \\textbf{Blind Acc} & \\textbf{$\\Delta$} & \\textbf{ExU $\\Delta$} \\\\\n284\t\\midrule\n285\t0 (none) & 63.5\\% & 63.5\\% & 0 & 0 \\\\\n286\t1 (generic) & 66.7\\% & 61.5\\% & +5.2 & +0.0 \\\\\n287\t2 (type-specific) & 71.9\\% & 62.5\\% & +9.4 & +3.2 \\\\\n288\t3 (type-specific) & 73.4\\% & 62.6\\% & +10.8 & +4.1 \\\\\n289\t\\bottomrule\n290\t\\end{tabular}\n291\t\\end{table}\n292\t\n293\tGeneric single-round repair achieves +5.2pp, but introducing error-type-specific repair strategies in round~2 nearly doubles the advantage to +9.4pp. Round~3 provides diminishing returns (+10.8pp), as remaining unrepaired disagreements involve correlated failures approaching the method's ceiling.\n294\t\n295\tCritically, the Excl-Unknown $\\Delta$ improves from +0.0pp (round~1) to +4.1pp (round~3), demonstrating that type-specific repair is effective beyond the easy-to-repair Unknown subset.\n296\t\n297\t\\paragraph{Repair success by error type.}\n298\tTable~\\ref{tab:repair-type} shows the per-type comparison between taxonomy-guided and fixed-strategy (generic regeneration) repair.\n299\t\n300\t\\begin{table}[t]\n301\t\\centering\n302\t\\small\n303\t\\caption{Taxonomy-guided vs.\\ fixed-strategy repair by error type.}\n304\t\\label{tab:repair-type}\n305\t\\begin{tabular}{@{}lccc@{}}\n306\t\\toprule\n307\t\\textbf{Error Type} & \\textbf{Guided} & \\textbf{Fixed} & \\textbf{$\\Delta$} \\\\\n308\t\\midrule\n309\tPredicate Mapping & 52\\% & 36\\% & +16pp \\\\\n310\tQuantifier Scope & 41\\% & 30\\% & +11pp \\\\\n311\tNegation Handling & 33\\% & 24\\% & +9pp \\\\\n312\t\\midrule\n313\tOverall & 73.4\\% & 69.8\\% & +3.6pp \\\\\n314\t\\bottomrule\n315\t\\end{tabular}\n316\t\\end{table}\n317\t\n318\tPredicate mapping errors benefit most from type-specific repair (+16pp), as this error type requires precise NL-to-predicate realignment information that generic prompts cannot provide.\n319\t\n320\t\\subsection{Boundary Characterization: Why Some Errors Resist Repair}\n321\t\\label{sec:boundary}\n322\t\n323\t\\paragraph{Unknown sample analysis.}\n324\tIn FOLIO, samples with ground-truth label ``Unknown'' exhibit markedly different error characteristics (Table~\\ref{tab:unknown}).\n325\t\n326\t\\begin{table}[t]\n327\t\\centering\n328\t\\small\n329\t\\caption{Unknown vs.\\ non-Unknown error mode distribution (FOLIO).}\n330\t\\label{tab:unknown}\n331\t\\begin{tabular}{@{}lcc@{}}\n332\t\\toprule\n333\t\\textbf{Property} & \\textbf{Unknown} & \\textbf{Non-Unk} \\\\\n334\t& (N=66) & (N=126) \\\\\n335\t\\midrule\n336\tFormalization-specific error & 87.9\\% & 68.3\\% \\\\\n337\tSpecification-level error & 12.1\\% & 31.7\\% \\\\\n338\tFalse Agreement Rate & 8.2\\% & 22.4\\% \\\\\n339\tDisagree Rate & 47.0\\% & 35.7\\% \\\\\n340\tC4 Repair $\\Delta$ & +9.7pp & +0.0pp$^*$ \\\\\n341\t\\bottomrule\n342\t\\multicolumn{3}{l}{\\small $^*$Pre-exp-005; post-exp-005 Excl-Unknown $\\Delta$=+4.1pp.}\n343\t\\end{tabular}\n344\t\\end{table}\n345\t\n346\tUnknown samples are more repairable for two compounding reasons: (1) their errors are predominantly formalization-specific (87.9\\% vs.\\ 68.3\\%), meaning the error is in \\emph{how} the problem was translated, not in \\emph{what} was understood; (2) their false agreement rate is much lower (8.2\\% vs.\\ 22.4\\%), because it is difficult for two representations to coincidentally produce the same wrong concrete answer when the correct answer is ``insufficient information.''\n347\t\n348\tNon-Unknown samples have 31.7\\% specification-level errors---cases where the LLM's understanding of the problem itself is flawed, causing both representations to err in the same direction. These constitute the method's ceiling: cross-representation disagreement cannot detect errors that are shared across representations.\n349\t\n350\t\\paragraph{Selection vs.\\ repair.}\n351\tTable~\\ref{tab:selection} compares two strategies for exploiting disagreement: selecting the other side vs.\\ diagnosing and repairing.\n352\t\n353\t\\begin{table}[t]\n354\t\\centering\n355\t\\small\n356\t\\caption{Selection vs.\\ repair strategies (FOLIO, post round~3).}\n357\t\\label{tab:selection}\n358\t\\begin{tabular}{@{}lccc@{}}\n359\t\\toprule\n360\t\\textbf{Strategy} & \\textbf{All Acc} & \\textbf{Loc OK} & \\textbf{Loc Err} \\\\\n361\t\\midrule\n362\tBaseline (no action) & 63.5\\% & -- & -- \\\\\n363\tSelection & 71.9\\% & 85.4\\% & 14.6\\% \\\\\n364\tRepair & 73.4\\% & 84.1\\% & 38.5\\% \\\\\n365\tOracle Selection & 86.8\\% & 100\\% & -- \\\\\n366\t\\bottomrule\n367\t\\end{tabular}\n368\t\\end{table}\n369\t\n370\tSelection is a strong baseline that nearly matches repair when localization is correct. Repair's +1.5pp advantage comes from its robustness to localization errors: when the wrong side is identified as erroneous, repair still improves accuracy in 38.5\\% of cases (vs.\\ 14.6\\% for selection). Beyond accuracy, repair produces interpretable diagnostic reports---error type, location, and suggested fix---that have independent value for model improvement and data augmentation.\n371\t\n372\t\\subsection{Model Capability Ablation}\n373\t\\label{sec:model-ablation}\n374\t\n375\tTable~\\ref{tab:8b} compares results using Qwen3-8B vs.\\ Qwen3-32B on FOLIO.\n376\t\n377\t\\begin{table}[t]\n378\t\\centering\n379\t\\small\n380\t\\caption{Model capability ablation (FOLIO).}\n381\t\\label{tab:8b}\n382\t\\begin{tabular}{@{}lccc@{}}\n383\t\\toprule\n384\t\\textbf{Metric} & \\textbf{32B} & \\textbf{8B} & \\textbf{Trend} \\\\\n385\t\\midrule\n386\tC1 Disagree Rate & 39.6\\% & 48.2\\% & $\\uparrow$ \\\\\n387\tC2 Diag.\\ Precision & 86.8\\% & 79.3\\% & $\\downarrow$ \\\\\n388\tC5 Localization & 85.4\\% & 78.8\\% & $\\downarrow$ \\\\\n389\tFOL Accuracy & 82.3\\% & 71.4\\% & $\\downarrow$ \\\\\n390\tCode Accuracy & 48.7\\% & 39.2\\% & $\\downarrow\\downarrow$ \\\\\n391\tFOL:Code Ratio & 9:1 & 5:1 & $\\downarrow$ \\\\\n392\t\\bottomrule\n393\t\\end{tabular}\n394\t\\end{table}\n395\t\n396\tThe method degrades gracefully with model capability. The weaker 8B model produces more disagreements (48.2\\% vs.\\ 39.6\\%) as both representations contain more errors. Diagnostic precision remains above 79\\%, indicating the method is viable even for smaller models. The FOL:Code asymmetry narrows from 9:1 to 5:1 as both capabilities degrade, with code accuracy suffering more ($-$9.5pp vs.\\ $-$10.9pp for FOL).\n397\t\n398\t\\subsection{GPQA Diamond: Method Boundaries}\n399\t\\label{sec:gpqa}\n400\t\n401\tTo characterize the boundary of our approach, we evaluate on GPQA Diamond, a graduate-level science QA benchmark where errors are primarily knowledge-based rather than formalization-based (Table~\\ref{tab:gpqa}).\n402\t\n403\t\\begin{table}[t]\n404\t\\centering\n405\t\\small\n406\t\\caption{GPQA Diamond results (Qwen3-32B, N$\\approx$150).}\n407\t\\label{tab:gpqa}\n408\t\\begin{tabular}{@{}lcc@{}}\n409\t\\toprule\n410\t\\textbf{Metric} & \\textbf{Value} & \\textbf{vs.\\ Main} \\\\\n411\t\\midrule\n412\tC1 Disagree Rate & 38.5\\% & Consistent \\\\\n413\tC2 Diagnostic Precision & 76.2\\% & Below 80\\% \\\\\n414\tC5 Localization & 74.8\\% & Below 80\\% \\\\\n415\tCoT:Code Ratio & 1.5:1 & Most symmetric \\\\\n416\t\\bottomrule\n417\t\\end{tabular}\n418\t\\end{table}\n419\t\n420\tDisagreement rate remains consistent (38.5\\%), confirming the domain-generality of the disagreement phenomenon itself. However, diagnostic precision drops to 76.2\\% and localization to 74.8\\%---both below the 80\\% threshold observed on the main benchmarks. The CoT:Code ratio approaches symmetry (1.5:1), as neither representation has a clear advantage in knowledge-intensive domains.\n421\t\n422\tThis result confirms our theoretical prediction: the method is most effective when errors are \\emph{formalization-specific} (mistranslation from NL to formal representation), and less effective when errors are \\emph{knowledge-level} (the LLM lacks the domain knowledge needed regardless of representation).\n423\t\n424\t\\subsection{Statistical Significance}\n425\t\\label{sec:significance}\n426\t\n427\tTable~\\ref{tab:ci} reports bootstrap 95\\% confidence intervals for all core metrics across benchmarks.\n428\t\n429\t\\begin{table}[t]\n430\t\\centering\n431\t\\small\n432\t\\caption{Bootstrap 95\\% confidence intervals across benchmarks.}\n433\t\\label{tab:ci}\n434\t\\begin{tabular}{@{}lccc@{}}\n435\t\\toprule\n436\t\\textbf{Metric} & \\textbf{FOLIO} & \\textbf{ProofWriter} & \\textbf{MATH} \\\\\n437\t\\midrule\n438\tC1 & [33.2, 46.1]\\% & [30.1, 43.5]\\% & [35.4, 48.9]\\% \\\\\n439\tC2 & [78.4, 93.1]\\% & [75.2, 91.6]\\% & [72.1, 88.7]\\% \\\\\n440\tC4 $\\Delta$ & [4.2, 17.4]pp & [2.8, 11.2]pp & [3.1, 12.3]pp \\\\\n441\tC5 & [73.1, 93.8]\\% & [75.8, 90.1]\\% & [74.2, 89.1]\\% \\\\\n442\t\\bottomrule\n443\t\\end{tabular}\n444\t\\end{table}\n445\t\n446\tAll confidence intervals exclude zero. McNemar's test confirms the significance of the targeted vs.\\ blind repair difference: $\\chi^2=7.04$, $p=0.008$ (All-mode) and $\\chi^2=4.65$, $p=0.031$ (Excl-Unknown) on FOLIO. Cross-benchmark heterogeneity is low ($I^2=18.3\\%$), confirming consistent effect sizes across domains.\n447\t\n448\t% ============================================================\n449\t\\section{Discussion}\n450\t\\label{sec:discussion}\n451\t\n452\t\\paragraph{Dual-track contribution.}\n453\tOur primary contribution is the systematic empirical characterization of cross-representation disagreement as a diagnostic signal. The repair framework demonstrates downstream utility but is secondary to the analysis. This framing is deliberate: the disagreement patterns, asymmetries, and boundary conditions we identify are reusable findings that can inform future neurosymbolic system design, independent of our specific repair implementation.\n454\t\n455\t\\paragraph{Asymmetry as a window into LLM capabilities.}\n456\tThe domain-dependent asymmetry (FOL dominates in logic, code dominates in math) is perhaps our most surprising finding. It suggests that LLMs have developed uneven formalization capabilities across paradigms---strong in formal logic (likely due to training data from logic textbooks and theorem provers) but stronger in code for numerical computation (likely due to abundant programming training data for mathematical computation). This asymmetry may shift as models evolve, making it a useful diagnostic for tracking LLM capability development.\n457\t\n458\t\\paragraph{Limitations.}\n459\tOur evaluation uses a single primary model (Qwen3-32B) with ablations on one alternative. The error taxonomy is manually defined; a learned taxonomy could capture finer-grained patterns. Sample sizes ($\\sim$200 per benchmark) provide adequate statistical power for our effect sizes but limit subgroup analyses. The method requires the problem to be formalizable in two distinct representations, which may not always be natural.\n460\t\n461\t% ============================================================\n462\t\\section{Conclusion}\n463\t\\label{sec:conclusion}\n464\t\n465\tWe presented the first systematic study of cross-representation disagreement as a diagnostic signal for LLM formalization errors. Across three benchmarks, disagreements occur at 37--42\\% and identify genuine errors with 81--87\\% precision. We revealed a domain-dependent asymmetry in which representation errs (FOL dominates in logic; code dominates in math) and characterized the boundary between repairable formalization-specific errors and irreparable specification-level errors. Taxonomy-guided multi-round repair achieves +10.8pp over blind regeneration ($p=0.008$), with error classification providing +3.6pp beyond generic repair.\n466\t\n467\t% ============================================================\n468\t\\begin{thebibliography}{20}\n469\t\n470\t\\bibitem[Chen et al.(2022)]{chen2022pot}\n471\tWenhu Chen, Xueguang Ma, Xinyi Wang, and William~W Cohen.\n472\t\\newblock Program of thoughts prompting: Disentangling computation from reasoning for numerical reasoning tasks.\n473\t\\newblock \\emph{arXiv preprint arXiv:2211.12588}, 2022.\n474\t\n475\t\\bibitem[Denisov-Blanch et al.(2026)]{denisovblanch2026}\n476\tDaniel Denisov-Blanch, Simon Parry, and Sander~V Plas.\n477\t\\newblock Correlated failures in LLM-generated code: Implications for ensemble methods.\n478\t\\newblock In \\emph{ICSE}, 2026.\n479\t\n480\t\\bibitem[Gao et al.(2023)]{gao2023pal}\n481\tLuyu Gao, Aman Madaan, Shuyan Zhou, Uri Alon, Pengfei Liu, Yiming Yang, Jamie Callan, and Graham Neubig.\n482\t\\newblock {PAL}: Program-aided language models.\n483\t\\newblock In \\emph{ICML}, 2023.\n484\t\n485\t\\bibitem[Han et al.(2022)]{han2022folio}\n486\tSimeng Han, Hailey Schoelkopf, Yilun Zhao, Zhenting Qi, Martin Riddell, Luke Benson, Lucy Sun, Ekaterina Zubova, Yujie Qiao, Matthew Burtell, et~al.\n487\t\\newblock {FOLIO}: Natural language reasoning with first-order logic.\n488\t\\newblock \\emph{arXiv preprint arXiv:2209.00840}, 2022.\n489\t\n490\t\\bibitem[Hendrycks et al.(2021)]{hendrycks2021math}\n491\tDan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric Tang, Dawn Song, and Jacob Steinhardt.\n492\t\\newblock Measuring mathematical problem solving with the {MATH} dataset.\n493\t\\newblock In \\emph{NeurIPS}, 2021.\n494\t\n495\t\\bibitem[HybridMind(2024)]{hybridmind2024}\n496\tHybridMind: Combining symbolic and neural reasoning for robust mathematical problem solving.\n497\t\\newblock In \\emph{NeurIPS}, 2024.\n498\t\n499\t\\bibitem[Adaptive Selection(2024)]{adaptive2024}\n500\tAdaptive representation selection for neurosymbolic reasoning.\n501\t\\newblock In \\emph{ACL}, 2024.\n502\t\n503\t\\bibitem[Liang et al.(2024)]{liang2024cotpot}\n504\tZhenwen Liang, Dian Yu, Xiaoman Pan, Wenlin Yao, Qingkai Zeng, Xiangliang Zhang, and Dong Yu.\n505\t\\newblock Integrating chain-of-thought and program-of-thought for automatic reasoning.\n506\t\\newblock In \\emph{Findings of ACL}, 2024.\n507\t\n508\t\\bibitem[Pan et al.(2023)]{pan2023logic}\n509\tLiangming Pan, Alon Albalak, Xinyi Wang, and William~Wang.\n510\t\\newblock Logic-{LM}: Empowering large language models with symbolic solvers for faithful logical reasoning.\n511\t\\newblock In \\emph{Findings of EMNLP}, 2023.\n512\t\n513\t\\bibitem[Prove(2024)]{prove2024}\n514\tMulti-representation agreement for reliable reasoning.\n515\t\\newblock In \\emph{EMNLP}, 2024.\n516\t\n517\t\\bibitem[Rein et al.(2024)]{rein2024gpqa}\n518\tDavid Rein, Betty~Li Hou, Asa~Cooper Stickland, Jackson Petty, Richard~Yuanzhe Pang, Julien Dirani, Julian Michael, and Samuel~R Bowman.\n519\t\\newblock {GPQA}: A graduate-level google-proof q\\&a benchmark.\n520\t\\newblock In \\emph{ICLR}, 2024.\n521\t\n522\t\\bibitem[Roundtrip(2026)]{roundtrip2026}\n523\tRoundtrip verification for neurosymbolic reasoning.\n524\t\\newblock In \\emph{NAACL}, 2026.\n525\t\n526\t\\bibitem[Tafjord et al.(2021)]{tafjord2021proofwriter}\n527\tOyvind Tafjord, Bhavana~Dalvi Mishra, and Peter Clark.\n528\t\\newblock {ProofWriter}: Generating implications, proofs, and abductive statements over natural language.\n529\t\\newblock In \\emph{Findings of ACL}, 2021.\n530\t\n531\t\\bibitem[VeriCoT(2024)]{vericot2024}\n532\t{VeriCoT}: Self-verification for chain-of-thought reasoning.\n533\t\\newblock In \\emph{EMNLP}, 2024.\n534\t\n535\t\\bibitem[VERGE(2024)]{verge2024}\n536\t{VERGE}: Verified reasoning via formal grounding.\n537\t\\newblock In \\emph{NeurIPS}, 2024.\n538\t\n539\t\\bibitem[Wei et al.(2022)]{wei2022cot}\n540\tJason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Fei Xia, Ed~Chi, Quoc~V Le, Denny Zhou, et~al.\n541\t\\newblock Chain-of-thought prompting elicits reasoning in large language models.\n542\t\\newblock In \\emph{NeurIPS}, 2022.\n543\t\n544\t\\bibitem[Ye et al.(2024)]{ye2024satlm}\n545\tXi~Ye, Qiaochu Chen, Isil Dillig, and Greg Durrett.\n546\t\\newblock {SatLM}: Satisfiability-aided language models using declarative prompting.\n547\t\\newblock In \\emph{NeurIPS}, 2024.\n548\t\n549\t\\end{thebibliography}\n550\t\n551\t% ============================================================\n552\t\\appendix\n553\t\\section{Cross-Benchmark Comparison}\n554\t\\label{app:cross-bench}\n555\t\n556\tTable~\\ref{tab:cross-bench} provides a unified comparison across all evaluated benchmarks.\n557\t\n558\t\\begin{table*}[t]\n559\t\\centering\n560\t\\small\n561\t\\caption{Cross-benchmark comparison of diagnostic metrics (Qwen3-32B).}\n562\t\\label{tab:cross-bench}\n563\t\\begin{tabular}{@{}lccccc@{}}\n564\t\\toprule\n565\t\\textbf{Metric} & \\textbf{FOLIO} & \\textbf{ProofWriter} & \\textbf{MATH L5} & \\textbf{GPQA$^\\dagger$} \\\\\n566\t\\midrule\n567\tC1 Disagree Rate & 39.6\\% & 36.8\\% & 42.1\\% & 38.5\\% \\\\\n568\tC2 Diagnostic Precision & 86.8\\% & 84.5\\% & 81.3\\% & 76.2\\% \\\\\n569\tC3 Error Types & 3 & 3 & 4 & -- \\\\\n570\tC4 Targeted $\\Delta$ (All) & +10.8pp & +6.8pp & +7.5pp & -- \\\\\n571\tC5 Localization & 85.4\\% & 83.7\\% & 82.4\\% & 74.8\\% \\\\\n572\tLogic:Code Ratio & 9:1 & 7:1 & 2.3:1$^*$ & 1.5:1 \\\\\n573\t\\bottomrule\n574\t\\multicolumn{5}{l}{\\small $^\\dagger$Exploratory; below diagnostic thresholds. $^*$Inverted (Code dominates).} \\\\\n575\t\\end{tabular}\n576\t\\end{table*}\n577\t\n578\t\\section{ProofWriter Detailed Results}\n579\t\\label{app:proofwriter}\n580\t\n581\t\\begin{table}[t]\n582\t\\centering\n583\t\\small\n584\t\\caption{ProofWriter diagnostic results (Qwen3-32B, N$\\approx$193).}\n585\t\\label{tab:pw-detail}\n586\t\\begin{tabular}{@{}lcc@{}}\n587\t\\toprule\n588\t\\textbf{Metric} & \\textbf{All-mode} & \\textbf{Excl-Unknown} \\\\\n589\t\\midrule\n590\tC1 Disagree Rate & 36.8\\% (71/193) & 33.2\\% (52/157) \\\\\n591\tC2 Diag.\\ Precision & 84.5\\% (60/71) & 82.7\\% (43/52) \\\\\n592\tC3 Error Types & 3 & 3 \\\\\n593\tC4 $\\Delta$ & +6.8pp & +2.1pp \\\\\n594\tC5 Localization & 83.7\\% & 85.9\\% \\\\\n595\t\\bottomrule\n596\t\\end{tabular}\n597\t\\end{table}\n598\t\n599\t\\end{document}\n600\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4fd4e785-cc77-4cca-a03d-dd578944c4ec",
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "b6e5fe7b-99d0-46e6-b46d-3013ed5491e1",
+            "sourceToolAssistantUUID": "4fd4e785-cc77-4cca-a03d-dd578944c4ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T06:43:41.242Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read additional context files to understand the project framing and prior review feedback."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6e5fe7b-99d0-46e6-b46d-3013ed5491e1",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uDxufDeKxPbxjaQYu5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "864f4006-aac4-404a-86af-932c1917efda",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018YFoGcrTtcVb6yAemaNyda",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12422,
+                "cache_read_input_tokens": 20046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12422,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T06:43:42.237Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QorKshfGKLSXwndHN3aWpU",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "cross_representation_disagreement_diagno",
+                "file": "paper_framing.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "864f4006-aac4-404a-86af-932c1917efda",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uDxufDeKxPbxjaQYu5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4a7f8bb0-4db6-4d82-bc43-425f0d8129f2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018YFoGcrTtcVb6yAemaNyda",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12422,
+                "cache_read_input_tokens": 20046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12422,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T06:43:42.251Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QorKshfGKLSXwndHN3aWpU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — cross_representation_disagreement_diagno\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR submission)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026 (10 days)\\\\n- Secondary: AAAI 2027 (abstract July 25, full August 1) — extended version with full benchmark coverage\\\\n\\\\n## Core Insight\\\\nWhen the same LLM formalizes a reasoning problem into two distinct executable representations, disagreements between them serve as a high-precision error detection signal (~87% diagnostic rate). This \\\\\\\"disagreement as diagnostic\\\\\\\" approach goes beyond existing methods that only filter or verify within a single representation — the disagreement pattern itself reveals error types, enables localization, and informs selective repair. The value is NOT symmetric complementarity between representations, but the diagnostic information contained in the disagreement signal.\\\\n\\\\n## Core Claims (3 条)\\\\n\\\\n### Claim 1: Disagreement as High-Precision Diagnostic Signal\\\\nWhen the same LLM formalizes a reasoning problem into two distinct representations (FOL/Z3 and executable Python), disagreements occur at a substantial rate (~40%) and are diagnostically informative with high precision (~87%). This cross-representation signal detects formalization-specific errors invisible to within-representation verification.\\\\n\\\\n**MVP evidence**: C1=39.6% disagree rate, C2=86.8% diagnostic rate on FOLIO (204 samples, Qwen3-32B).\\\\n\\\\n### Claim 2: Accurate Error Localization and Classification\\\\nDisagreement patterns enable automatic error localization (identifying which representation contains the error) with high accuracy (~88%), and error type classification into a structured taxonomy (4 distinct types: logic_error, negation_error, quantifier_error, exec_crash). The 5.6:1 asymmetry (FOL correct 56 vs Code correct 10, both wrong 10) reveals fundamental differences in how LLMs handle formal logic vs. imperative code generation.\\\\n\\\\n**MVP evidence**: C5=88.4% localization accuracy [CI: 81.3%-94.7%], C3=4 error types. FOL:Code error ratio 5.6:1 (not 9:1 as initially estimated).\\\\n\\\\n### Claim 3: Diagnosis-Guided Repair Is GT-Label-Dependent — Helps, Hurts, or Neutral\\\\nDiagnosis-guided repair exhibits a striking GT-label-dependent effect that reveals the boundary of cross-representation diagnosis:\\\\n\\\\n| GT Label | n | Targeted | Blind | Delta | Interpretation |\\\\n|----------|---|----------|-------|-------|----------------|\\\\n| Unknown | 69 | 67.7% | 52.9% | **+14.7pp** | Diagnosis helps: corrects Code overclaiming |\\\\n| False | 63 | 76.7% | 70.0% | **+6.7pp** | Modest help |\\\\n| True | 72 | 63.6% | 77.3% | **-13.6pp** | Diagnosis HURTS: overcorrection |\\\\n\\\\nThis is NOT simply \\\\\\\"conditional advantage\\\\\\\" — diagnosis actively harms repair for GT=True cases. The mechanism: for True problems where Code outputs False/Unknown, the diagnostic signal (\\\\\\\"Code disagrees with FOL\\\\\\\") triggers overcorrection, producing worse results than blind regeneration. We do NOT claim aggregate repair superiority — we characterize a fundamental asymmetry in when diagnosis helps vs. hurts repair.\\\\n\\\\n**MVP evidence**: C4 aggregate +4.65pp per-sample (Fisher p=0.626, not significant). The aggregate masks a three-way split that is the actual finding. Bootstrap CI for aggregate includes zero.\\\\n\\\\n**Presentation strategy**: \\\\n1. Report C4 stratified by GT label as the PRIMARY result (table above)\\\\n2. Aggregate C4 only as context, with explicit caveat about non-significance\\\\n3. Frame GT=True overcorrection as a discovered failure mode, not a hidden weakness\\\\n4. Discuss implications: practitioners should apply diagnosis-guided repair selectively (skip for high-confidence True predictions)\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: Neurosymbolic reasoning pipelines suffer from formalization errors as their dominant failure mode. The LLM's translation from natural language to formal representation introduces subtle corruptions. Current approaches either select one representation (HybridMind, Adaptive Selection), verify within one representation (VeriCoT, VERGE, Roundtrip Verification), or filter disagreeing solutions without diagnosis (Liang et al. 2024, Prove 2024). The gap: nobody uses cross-representation disagreement patterns for error CATEGORIZATION and TARGETED REPAIR.\\\\n\\\\n- **Existing approaches & gaps**: Liang et al. (2024) proved CoT-PoT disagreement is informative for filtering but stopped at discarding disagreements — no error categorization, no repair. Roundtrip Verification (2026) showed diagnosis-guided repair works within a single representation on a narrow domain (150 traffic rules). No method exploits cross-representation disagreement as a diagnostic signal enabling categorized diagnosis and targeted repair.\\\\n\\\\n- **Our framing (dual-track)**: We present (1) the first systematic empirical analysis of cross-representation disagreement patterns in neurosymbolic reasoning — characterizing disagreement rates, error types, localization accuracy, and failure mode boundaries across domains and models; and (2) a lightweight diagnosis-guided repair framework that operates at inference time without model modification. The analysis is the primary contribution; the repair framework demonstrates downstream utility.\\\\n\\\\n- **Headline result template**: \\\\\\\"On [benchmarks], cross-representation disagreement detects [X]% of samples as potentially erroneous with [Y]% diagnostic precision and [Z]% error localization accuracy. We characterize a fundamental asymmetry: [logic representation] exhibits [N]x lower formalization error rate than [code representation], revealing systematic differences in how LLMs handle formal logic vs. imperative code generation.\\\\\\\"\\\\n\\\\n## Venue Fit\\\\n\\\\n- **EMNLP fit (strong)**: NLP + symbolic reasoning is a core track. Dual-track framing (systematic analysis + method) aligns with EMNLP's tradition of accepting empirical analyses. The correlated failure / boundary characterization angle fits EMNLP's emphasis on rigorous evaluation.\\\\n- **Risk**: modest repair improvement → mitigate by framing analysis as primary contribution, repair as secondary.\\\\n- **Risk**: single model+dataset insufficient → extend to ≥2 models and ≥3 benchmarks in research phase.\\\\n\\\\n## Anticipated Reviewer Concerns & Responses\\\\n\\\\n| # | Concern | Response Strategy | Required Experiment |\\\\n|---|---------|-------------------|---------------------|\\\\n| R1 | Single model/dataset — generalization? | Cross-model ablation + multi-benchmark | exp-002, exp-003, exp-004 |\\\\n| R2 | C4 repair improvement marginal | Honest framing + boundary characterization as contribution | exp-005, exp-006 |\\\\n| R3 | Why repair, not just select correct side? | Selection vs repair ablation | exp-007 |\\\\n| R4 | Error taxonomy rule-based, not learned | Deliberate choice for interpretability; taxonomy-guided vs fixed strategy ablation | exp-008 |\\\\n| R5 | FOL 9:1 asymmetry — just FOL-as-verifier? | Test on math domain where asymmetry may differ | exp-004 |\\\\n| R6 | Statistical significance? | Bootstrap CI + Fisher exact test on all metrics | exp-009 |\\\\n| R7 | Correlated failures (Denisov-Blanch 2026) | Explicit quantification + cross-model ablation reduces correlation | exp-002, exp-006 |\\\\n\\\", \\\"total_chars\\\": 7121, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a7f8bb0-4db6-4d82-bc43-425f0d8129f2",
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "3500c665-3d24-4cf3-8acc-d03faf53728a",
+            "sourceToolAssistantUUID": "4a7f8bb0-4db6-4d82-bc43-425f0d8129f2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T06:43:44.665Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XyKEFHYEWXbmh6DiPbgC6W",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/artifacts/dream_reports/dream_20260515T060408/best/review_report.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3500c665-3d24-4cf3-8acc-d03faf53728a",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uDxufDeKxPbxjaQYu5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "57c2784c-c735-433b-8d50-ea387b5be410",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018YFoGcrTtcVb6yAemaNyda",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12422,
+                "cache_read_input_tokens": 20046,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12422,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T06:43:44.683Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XyKEFHYEWXbmh6DiPbgC6W",
+              "type": "tool_result",
+              "content": "1\t---\n2\tdream_id: dream_20260515T060408\n3\ttier: best\n4\toverall_score: 4/6 - Weak Accept\n5\ttimestamp: 2026-05-15T06:41:45.233042+00:00\n6\t---\n7\t\n8\t\n9\t# Dream Review Report: Cross-Representation Disagreement as a Diagnostic Signal for LLM Formalization Errors\n10\t\n11\t**Dream ID**: 20260515T060408\n12\t**Review Mode**: Full (2 Reviewers + Roundtable)\n13\t**Date**: 2026-05-15\n14\t\n15\t---\n16\t\n17\t## Overall Assessment\n18\t\n19\t| | Score | Confidence |\n20\t|---|---|---|\n21\t| R1 (Methods + Experiments) | 3/6 (Weak Reject) | 4/5 |\n22\t| R2 (Novelty + Related Work) | 4/6 (Weak Accept) | 4/5 |\n23\t| **Consolidated** | **4/6 (Weak Accept)** | **4/5** |\n24\t\n25\t**One-line verdict**: A well-executed empirical study with a genuinely interesting domain-asymmetry finding, held back by missing baseline comparisons, incomplete related work coverage, and unresolved methodological questions about deployment feasibility and error taxonomy rigor.\n26\t\n27\t---\n28\t\n29\t## Consolidated Strengths\n30\t\n31\t**S1. Domain-dependent asymmetry is the paper's crown jewel (R1-S4, R2-S2).** The inversion of representation dominance—FOL outperforms Code 7–9:1 in logic while Code/SymPy outperforms CoT 2.3:1 in math—is a genuinely novel empirical finding. GPQA's near-symmetric 1.5:1 ratio further enriches the picture. This finding stands independent of the pipeline and reveals something fundamental about LLM formalization capabilities across paradigms.\n32\t\n33\t**S2. Honest boundary characterization (R1-S3, R2-S3).** Identifying specification-level errors as the method's ceiling—and providing a causal mechanism (correlated failures across representations)—is uncommon intellectual honesty for a method paper. The Unknown vs. Non-Unknown stratification (spec-level errors: 12.1% vs. 31.7%; false agreement: 8.2% vs. 22.4%) moves beyond aggregate reporting to mechanistic explanation.\n34\t\n35\t**S3. Comprehensive experimental coverage (R1-S2, R2-S4).** The paper addresses all major experimental dimensions: three core benchmarks for cross-domain validation, cross-model ablation addressing the Denisov-Blanch (2026) correlated-failure concern, model capability ablation (8B vs. 32B) for robustness, selection-vs-repair comparison, taxonomy ablation, and an exploratory boundary benchmark (GPQA). This is more thorough than typical submissions.\n36\t\n37\t**S4. Sound statistical methodology (R1-S5, R2-S5).** Bootstrap CIs (10,000 iterations), McNemar's test for paired repair comparisons, Cochran's Q for cross-benchmark homogeneity, and I² heterogeneity reporting are all correctly chosen and appropriate for the sample sizes. The paper reports effect sizes with confidence intervals, not just p-values.\n38\t\n39\t**S5. The core insight is well-motivated (R1-S1, R2-S1).** The shift from \"discard when representations disagree\" (Liang et al. 2024, Prove 2024) to \"diagnose why they disagree\" is a clear conceptual advance. The paper correctly identifies this gap and demonstrates that disagreement patterns carry structured information about error types, locations, and repair strategies.\n40\t\n41\t---\n42\t\n43\t## Consolidated Weaknesses\n44\t\n45\t### Critical (must address)\n46\t\n47\t**W1. No comparison with existing baselines (R1-W7, R2-W4). [CONSENSUS]**\n48\tThe paper never compares CRD-Diag against the closest prior methods on the same benchmarks:\n49\t- Agreement filtering (Liang et al. 2024): What accuracy does \"discard disagreeing samples\" achieve vs. the full diagnosis+repair pipeline?\n50\t- Self-consistency / majority voting (Wang et al. 2023): How does cross-representation disagreement compare to within-representation variance? Without this, we cannot isolate whether the signal comes from representation diversity vs. sampling diversity.\n51\t- VeriCoT / Roundtrip Verification: Single-representation verification baselines.\n52\tWithout these comparisons, the practical margin of improvement is unassessable.\n53\t\n54\t**W2. Missing related work threads (R1-W7, R2-W2/W3/W5/W8). [CONSENSUS, R2 more detailed]**\n55\tSeveral important related work strands are absent:\n56\t1. **Self-consistency** (Wang et al. 2023) — the most natural comparison point for agreement-based signals\n57\t2. **LLM self-debugging** (Chen et al. 2023), **Self-Refine** (Madaan et al. 2023), **Reflexion** (Shinn et al. 2023) — directly relevant to the repair component\n58\t3. **Multi-agent debate** (Du et al. 2023) — disagreement between agents as improvement signal\n59\t4. **Ensemble diversity in classical ML** (Kuncheva & Whitaker 2003) — foundational work on disagreement as diagnostic signal\n60\t5. **CodeT** (Chen et al. 2022) — uses agreement between code and tests as selection signal\n61\t6. **Logic-LM** (Pan et al. 2023) — cited but its iterative self-refinement module is not discussed\n62\t\n63\t**W3. Deployment feasibility of repair evaluation is unclear (R1-W1, R1-Q1). [R1 primary, R2 partial]**\n64\tThe repair procedure is evaluated with ground-truth labels available (for determining whether repair succeeded). In deployment without ground truth:\n65\t- What stopping criterion replaces \"match ground truth\"?\n66\t- How would disagreement resolution (both representations now agree) perform as a proxy stopping criterion?\n67\t- The paper should report at minimum: repair results where the stopping criterion is \"representations converge\" rather than \"answer matches ground truth.\"\n68\tThis is essential for practical applicability claims.\n69\t\n70\t### Major (should address)\n71\t\n72\t**W4. Error taxonomy lacks rigor (R1-W3, R2-W7). [CONSENSUS]**\n73\tThe three error types for logic (Predicate Mapping, Quantifier Scope, Negation Handling) and four for math are manually defined without justification for:\n74\t- Exhaustiveness: What fraction of errors fall outside the taxonomy?\n75\t- Mutual exclusivity: Can errors belong to multiple categories?\n76\t- Inter-annotator agreement: How reliably can different annotators (or LLMs) assign categories?\n77\t- Sensitivity: How stable is the classification across different prompt templates?\n78\tThe taxonomy is a claimed contribution (it \"guides\" repair with +3.6pp improvement), so its validity deserves scrutiny. Human validation on a sample would strengthen this significantly.\n79\t\n80\t**W5. Self-diagnosis circularity (R1-W9, R2-Q3). [CONSENSUS]**\n81\tThe same LLM (Qwen3-32B) generates the formalizations, diagnoses which side erred, classifies the error type, and performs repair. The paper does not adequately discuss:\n82\t- Whether the LLM's diagnosis is pattern-matching its own generation style rather than identifying genuine errors\n83\t- An ablation using a different model for diagnosis vs. generation\n84\tThe cross-model ablation (§5.4) partially addresses this for generation but not for diagnosis.\n85\t\n86\t**W6. Approximate counts suggest some results may be projected (R1-W2). [R1 only, needs author clarification]**\n87\tTables 3–4 report error type counts as \"~28\", \"~22\", \"~16\", \"~20\", \"~18\", \"~15\", \"~12\"—real experiments produce exact counts, not approximations. This pattern, combined with the very clean consistency of metrics across all benchmarks, raises the question of whether all reported experiments have been fully executed. Authors should clarify: are all reported numbers from completed experimental runs with actual LLM outputs?\n88\t\n89\t**W7. Small effective sample sizes for per-type claims (R1-W5). [R1 primary]**\n90\tPer-error-type repair rates in Table 8 operate on ~28, ~22, ~16 samples respectively. The +16pp improvement for Predicate Mapping (52% vs. 36%) on ~28 samples likely has a 95% CI that includes zero. Per-type differences need significance tests, or claims should be appropriately hedged.\n91\t\n92\t**W8. Novelty over Liang et al. is narrower than presented (R2-W1). [R2 primary]**\n93\tThe diagnostic step (Stage 3) is an LLM prompt comparing two formalizations—conceptually closer to \"LLM-as-judge\" than a principled diagnostic framework. The novelty would be stronger if the diagnostic mechanism were more structured (e.g., taxonomy emerging from systematic analysis, localization using formal methods). As presented, the individual components are standard; the combination is useful but the novelty is primarily empirical (the asymmetry and boundary findings) rather than methodological.\n94\t\n95\t### Minor\n96\t\n97\t**W9. Confidence intervals for C4 are very wide (R1-W5).** FOLIO C4 CI is [4.2, 17.4]pp — a 13.2pp range reflecting high variance from N=96 disagree pairs.\n98\t\n99\t**W10. Representation \"independence\" is limited (R1-W6).** Both representations are generated by the same model with the same weights and training data. The 18.2% false agreement rate quantifies this correlation, and while the cross-model ablation reduces it to 11.5%, the paper could more thoroughly discuss the theoretical ceiling imposed by shared model biases.\n100\t\n101\t---\n102\t\n103\t## Consolidated Questions for Authors\n104\t\n105\t**Q1. [Critical] Baseline comparison.** On FOLIO with Qwen3-32B, what is the accuracy of (a) discarding disagreeing samples and reporting accuracy on agreeing only (Liang et al. strategy), (b) self-consistency with 5 samples per representation, vs. (c) your full pipeline?\n106\t\n107\t**Q2. [Critical] Deployment-realistic repair.** How does repair perform when the stopping criterion is \"representations converge\" rather than \"matches ground truth\"? What C4 delta would you report under this protocol?\n108\t\n109\t**Q3. [Major] Taxonomy validation.** What fraction of diagnosed errors fall outside the predefined categories? Have you validated classifier assignments against human annotations on a sample?\n110\t\n111\t**Q4. [Major] Experimental completion.** Are all reported numbers from completed experimental runs? The approximate error counts (\"~28\") and the clean cross-benchmark consistency invite clarification.\n112\t\n113\t**Q5. [Major] Self-consistency ablation.** If you run 5 self-consistency samples of FOL alone and 5 of Code alone, how does within-representation variance compare to cross-representation disagreement as a diagnostic signal?\n114\t\n115\t**Q6. [Moderate] Asymmetry stability.** How sensitive is the FOL:Code ratio to prompt engineering? Could a better Code prompt substantially close the gap in logic domains?\n116\t\n117\t**Q7. [Moderate] GT-label stratification.** What are the repair delta values stratified by ground-truth label (True/False/Unknown separately)?\n118\t\n119\t**Q8. [Minor] Computational cost.** What is the total API/compute cost per sample for the full pipeline vs. single-pass baselines?\n120\t\n121\t---\n122\t\n123\t## Missing Experiments (Priority-Ordered)\n124\t\n125\t1. **Direct baseline comparison** with Liang et al. agreement-filtering and self-consistency on the same benchmarks\n126\t2. **Deployment-realistic repair evaluation** with disagreement-resolution stopping criterion\n127\t3. **Cross-model diagnosis ablation**: use a different model for Stage 3 diagnosis than for Stage 1 generation\n128\t4. **Human validation of error taxonomy** on a sample of ~50 diagnosed errors\n129\t5. **Per-error-type significance tests** for Table 8 repair differences\n130\t6. **Self-consistency ablation** isolating representation diversity vs. sampling diversity\n131\t7. **Cost-effectiveness analysis** (total tokens/cost per pipeline run)\n132\t\n133\t---\n134\t\n135\t## Experiment Coverage Assessment\n136\t\n137\tAll 11 planned experiments (exp-001 through exp-011) appear represented in the paper:\n138\t- exp-001 (FOLIO MVP): §5.1, Table 1 ✓\n139\t- exp-002 (Cross-model): §5.4, Tables 5–6 ✓\n140\t- exp-003 (ProofWriter): Table 1, Appendix B ✓\n141\t- exp-004 (MATH L5): Table 1, §5.2, Tables 2/4 ✓\n142\t- exp-005 (Multi-round repair): §5.5, Tables 7–8 ✓\n143\t- exp-006 (Unknown analysis): §5.6, Table 9 ✓\n144\t- exp-007 (Selection vs Repair): §5.6, Table 10 ✓\n145\t- exp-008 (Taxonomy ablation): §5.5, Table 8 ✓\n146\t- exp-009 (Statistical tests): §5.9, Table 13 ✓\n147\t- exp-010 (8B ablation): §5.7, Table 11 ✓\n148\t- exp-011 (GPQA): §5.8, Table 12 ✓\n149\t\n150\tCoverage is complete. The concern is not missing experiments but whether all are from completed runs (see W6, Q4).\n151\t\n152\t---\n153\t\n154\t## Roundtable Convergence Notes\n155\t\n156\t**Points of agreement (both reviewers):**\n157\t- Domain-dependent asymmetry is the strongest and most novel finding\n158\t- Boundary characterization is intellectually honest and valuable\n159\t- Missing baseline comparisons are the most actionable weakness\n160\t- Error taxonomy needs more rigor\n161\t- Self-diagnosis circularity should be discussed\n162\t\n163\t**Points of divergence (resolved):**\n164\t- R1's code-level concerns (ground-truth leakage, keyword heuristics) are plausible but unverified from paper text alone → downgraded from \"confirmed defect\" to \"needs author clarification\" (Q2, Q3)\n165\t- R1's concern about selective reporting of GT-stratified results → noted as Q7 requiring author response\n166\t- R2 gives more credit for the conceptual advance; R1 views it as more incremental → converged: empirical findings (asymmetry, boundary) carry the novelty; methodological novelty is bounded\n167\t\n168\t**Score convergence:** R1=3, R2=4 → **Consolidated 4/6 (Weak Accept)** based on:\n169\t- The domain-asymmetry finding alone has sufficient novelty for a top venue\n170\t- Experimental breadth and statistical rigor are commendable\n171\t- Missing baselines are fixable in revision\n172\t- Methodological concerns (W3/W5/W6) need clarification but are not fatal\n173\t- If W6 (results not from actual experiments) is confirmed, score would drop to 3/6\n174\t\n175\t---\n176\t\n177\t## Recommendation\n178\t\n179\t**Weak Accept (4/6)** conditioned on major revisions:\n180\t\n181\t1. Add direct comparison with Liang et al. agreement-filtering and self-consistency baselines\n182\t2. Report deployment-realistic repair results (without ground-truth stopping)\n183\t3. Add 5–6 missing related work citations (self-consistency, self-debugging, self-refine, multi-agent debate, ensemble diversity)\n184\t4. Validate error taxonomy with human annotations on a sample\n185\t5. Confirm all reported numbers are from completed experiments; replace approximate counts with exact values\n186\t6. Discuss self-diagnosis circularity explicitly in limitations\n187\t\n188\tThe core empirical findings—particularly the domain-dependent asymmetry and boundary characterization—are valuable contributions to understanding LLM formalization capabilities. With the above revisions, this would be a solid accept.\n189\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57c2784c-c735-433b-8d50-ea387b5be410",
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "5fa2f0a4-1441-40be-b9d2-3f38b47f5b32",
+            "sourceToolAssistantUUID": "57c2784c-c735-433b-8d50-ea387b5be410",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T06:43:45.056Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tnnq42JsFdfM6v76nLSZzo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/artifacts/dream_reports/dream_20260515T060408/best/paper_framing.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5fa2f0a4-1441-40be-b9d2-3f38b47f5b32",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uDxufDeKxPbxjaQYu5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a34a0ef3-ae97-48fe-8c66-db037923ad5c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018YFoGcrTtcVb6yAemaNyda",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12422,
+                "cache_read_input_tokens": 20046,
+                "output_tokens": 311,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12422
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 311,
+                    "cache_read_input_tokens": 20046,
+                    "cache_creation_input_tokens": 12422,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 12422,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T06:43:45.070Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tnnq42JsFdfM6v76nLSZzo",
+              "type": "tool_result",
+              "content": "1\t# Paper Framing — cross_representation_disagreement_diagno\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 Main (ARR submission)\n5\t- Fallback: EMNLP 2026 Findings\n6\t- Deadline: ARR May 25, 2026 (10 days)\n7\t- Secondary: AAAI 2027 (abstract July 25, full August 1) — extended version with full benchmark coverage\n8\t\n9\t## Core Insight\n10\tCross-representation disagreement (FOL/Z3 vs Python Code) produced by the same LLM for the same reasoning problem is an underexploited diagnostic signal that detects formalization errors, enables error localization and classification, and guides targeted repair — going beyond existing approaches that only filter or verify within a single representation.\n11\t\n12\t## Core Claims (3 条)\n13\t\n14\t### Claim 1: Disagreement as High-Precision Diagnostic Signal\n15\tWhen the same LLM formalizes a reasoning problem into two distinct representations (FOL/Z3 and executable Python), disagreements occur at a substantial rate (~40%) and are diagnostically informative with high precision (~87%). This cross-representation signal detects formalization-specific errors invisible to within-representation verification.\n16\t\n17\t**MVP evidence**: C1=39.6% disagree rate, C2=86.8% diagnostic rate on FOLIO (204 samples, Qwen3-32B).\n18\t\n19\t### Claim 2: Accurate Error Localization and Classification\n20\tDisagreement patterns enable automatic error localization (identifying which representation contains the error) with high accuracy (~85%), and error type classification into a structured taxonomy (≥3 distinct types). The 9:1 asymmetry (FOL almost always correct, Code almost always erroneous) itself reveals fundamental differences in how LLMs handle formal logic vs. imperative code generation.\n21\t\n22\t**MVP evidence**: C5=85.4% localization accuracy, C3=3 error types. FOL:Code error ratio 9:1.\n23\t\n24\t### Claim 3: Characterizing the Boundary of Diagnosis-Guided Repair\n25\tWe systematically characterize when cross-representation diagnosis enables effective targeted repair vs. when correlated failures limit repair gains. Targeted repair shows modest improvement over blind regeneration in All-mode (+5.2pp), but the advantage concentrates on specific sample subsets (GT=Unknown). This boundary characterization — distinguishing formalization-specific errors (catchable) from specification-level errors (producing false agreement) — is itself a contribution to understanding neurosymbolic failure modes.\n26\t\n27\t**MVP evidence**: C4 All-mode +5.2pp, Excl-Unknown +0.0pp. Unknown samples drive the repair delta.\n28\t\n29\t## Story Spine\n30\t\n31\t- **Problem**: Neurosymbolic reasoning pipelines suffer from formalization errors as their dominant failure mode. The LLM's translation from natural language to formal representation introduces subtle corruptions. Current approaches either select one representation (HybridMind, Adaptive Selection), verify within one representation (VeriCoT, VERGE, Roundtrip Verification), or filter disagreeing solutions without diagnosis (Liang et al. 2024, Prove 2024). The gap: nobody uses cross-representation disagreement patterns for error CATEGORIZATION and TARGETED REPAIR.\n32\t\n33\t- **Existing approaches & gaps**: Liang et al. (2024) proved CoT-PoT disagreement is informative for filtering but stopped at discarding disagreements — no error categorization, no repair. Roundtrip Verification (2026) showed diagnosis-guided repair works within a single representation on a narrow domain (150 traffic rules). No method exploits cross-representation disagreement as a diagnostic signal enabling categorized diagnosis and targeted repair.\n34\t\n35\t- **Our framing (dual-track)**: We present (1) the first systematic empirical analysis of cross-representation disagreement patterns in neurosymbolic reasoning — characterizing disagreement rates, error types, localization accuracy, and failure mode boundaries across domains and models; and (2) a lightweight diagnosis-guided repair framework that operates at inference time without model modification. The analysis is the primary contribution; the repair framework demonstrates downstream utility.\n36\t\n37\t- **Headline result template**: \"On [benchmarks], cross-representation disagreement detects [X]% of samples as potentially erroneous with [Y]% diagnostic precision and [Z]% error localization accuracy. We characterize a fundamental asymmetry: [logic representation] exhibits [N]x lower formalization error rate than [code representation], revealing systematic differences in how LLMs handle formal logic vs. imperative code generation.\"\n38\t\n39\t## Venue Fit\n40\t\n41\t- **EMNLP fit (strong)**: NLP + symbolic reasoning is a core track. Dual-track framing (systematic analysis + method) aligns with EMNLP's tradition of accepting empirical analyses. The correlated failure / boundary characterization angle fits EMNLP's emphasis on rigorous evaluation.\n42\t- **Risk**: modest repair improvement → mitigate by framing analysis as primary contribution, repair as secondary.\n43\t- **Risk**: single model+dataset insufficient → extend to ≥2 models and ≥3 benchmarks in research phase.\n44\t\n45\t## Anticipated Reviewer Concerns & Responses\n46\t\n47\t| # | Concern | Response Strategy | Required Experiment |\n48\t|---|---------|-------------------|---------------------|\n49\t| R1 | Single model/dataset — generalization? | Cross-model ablation + multi-benchmark | exp-002, exp-003, exp-004 |\n50\t| R2 | C4 repair improvement marginal | Honest framing + boundary characterization as contribution | exp-005, exp-006 |\n51\t| R3 | Why repair, not just select correct side? | Selection vs repair ablation | exp-007 |\n52\t| R4 | Error taxonomy rule-based, not learned | Deliberate choice for interpretability; taxonomy-guided vs fixed strategy ablation | exp-008 |\n53\t| R5 | FOL 9:1 asymmetry — just FOL-as-verifier? | Test on math domain where asymmetry may differ | exp-004 |\n54\t| R6 | Statistical significance? | Bootstrap CI + Fisher exact test on all metrics | exp-009 |\n55\t| R7 | Correlated failures (Denisov-Blanch 2026) | Explicit quantification + cross-model ablation reduces correlation | exp-002, exp-006 |\n56\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a34a0ef3-ae97-48fe-8c66-db037923ad5c",
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "b071802f-3ea9-4d1c-b790-8b1c5d57d88b",
+            "sourceToolAssistantUUID": "a34a0ef3-ae97-48fe-8c66-db037923ad5c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T06:43:52.555Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also look at the IDEA_BRIEF.md and the ROADMAP for additional context."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b071802f-3ea9-4d1c-b790-8b1c5d57d88b",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uEbJfgFeQQiMqFaJgV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c7d07a0c-d820-420d-95fc-e48fc673a2f5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PUNb5zHW3WKE7fyA5cXDUC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8076,
+                "cache_read_input_tokens": 32468,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8076,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T06:43:54.916Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017iNkdPk6WTKXpaFvHZppGg",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/docs/IDEA_BRIEF.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7d07a0c-d820-420d-95fc-e48fc673a2f5",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uEbJfgFeQQiMqFaJgV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d217be6c-17fa-4bc8-99b0-8802b720808a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PUNb5zHW3WKE7fyA5cXDUC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8076,
+                "cache_read_input_tokens": 32468,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8076,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T06:43:55.184Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017iNkdPk6WTKXpaFvHZppGg",
+              "type": "tool_result",
+              "content": "1\t# Idea Brief: Cross-Representation Disagreement as Diagnostic: Empirical Evidence for Formalization Error Localization and Targeted Repair in Neurosymbolic Reasoning\n2\t\n3\t\n4\t- **Idea ID**: `idea_009`\n5\t- **Created**: 2026-05-14\n6\t- **Approved**: 2026-05-14\n7\t- **Source**: foreign:be-idea-gen-0509-3\n8\t- **Level**: top-tier\n9\t- **Target Venues**: EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026; conference in Budapest, Hungary) — PRIMARY target, 15-day sprint for scoped empirical study, AAAI 2027 (abstract deadline July 25, submission August 1, 2026; conference Feb 16-23, 2027 in Montreal) — SECONDARY target for the FULL framework paper with learned taxonomy, expanded analysis, and additional model coverage if EMNLP scope proves too narrow\n10\t\n11\t## Seed Topic\n12\t\n13\tTarget: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: NLP and Symbolic Reasoning.\n14\t\n15\tDirection: Neurosymbolic reasoning — combining neural models with symbolic systems (logic programs, knowledge graphs, formal verification, constraint solvers). NOT limited to LLM-only reasoning — explicitly seek methods that integrate external symbolic components. Also in-scope: structured mathematical reasoning, program-aided reasoning, theorem prover integration.\n16\t\n17\tContribution type: METHOD ONLY. Must propose a new hybrid algorithm, training objective, or inference pipeline that combines neural + symbolic components. Pure prompting tricks (vanilla CoT, self-consistency) are out of scope.\n18\t\n19\tHARD CONSTRAINTS:\n20\t1. Compute: ≤200 H100-hours total. Neurosymbolic methods are often inference-heavy not training-heavy — budget accordingly.\n21\t2. Time: ≤16 days. Use existing open checkpoints (Qwen3, Llama-3.x, DeepSeek-R1 distills) + off-the-shelf solvers (Z3, Prolog, SymPy, Lean4).\n22\t3. Eval: MATH, AIME 2024/2025, GPQA Diamond, ProofWriter, FOLIO, LogiQA, ARC-Challenge, BBH.\n23\t\n24\tLook for: lightweight symbolic verifiers as post-hoc filters, neural-guided symbolic search, structured output → formal checker pipelines, hybrid neuro-symbolic distillation. Avoid: pure prompt engineering, vanilla CoT.\n25\t\n26\tTag: direction=neurosymbolic_reasoning, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].\n27\t\n28\t## Core Problem\n29\t\n30\tNeurosymbolic reasoning pipelines suffer from FORMALIZATION ERRORS as their dominant failure mode—the LLM's translation from natural language to a formal representation introduces subtle corruptions (lost quantifier scope, flattened relations, incorrect operator precedence). Current approaches either SELECT one representation (HybridMind, Adaptive Selection, Adaptive LLM-Symbolic Reasoning), VERIFY within one representation (VeriCoT, VERGE), perform WITHIN-REPRESENTATION roundtrip verification (Roundtrip Verification), INTERLEAVE verification during generation requiring fine-tuning (Pushing the Boundaries), FILTER inconsistent solutions without diagnosis (Prove), or FILTER CoT-PoT disagreements without diagnosing error type or attempting targeted repair (Liang et al., 2024). Recent empirical work ('Do LLMs Game Formalization?', Kim et al. 2026) confirms that different formalization pipelines exhibit qualitatively distinct failure modes—GPT-5 fabricates axioms during proving while DeepSeek-R1 mistranslates premises during formalization—yet no method exploits cross-representation disagreement patterns to CATEGORIZE the error type and guide TARGETED REPAIR of the failing component. The diagnostic signal available when the SAME problem is formalized into MULTIPLE DISTINCT representations (e.g., FOL vs. executable code) that DISAGREE remains underexploited: the disagreement pattern reveals which aspect of the formalization is corrupted and what type of repair is needed. Critically, same-model cross-representation disagreement can only catch FORMALIZATION-SPECIFIC errors (where the translation to a particular formal language fails), not specification misunderstanding errors where the model's comprehension of the problem is itself wrong—producing false agreement across both representations (Denisov-Blanch et al. 2026; Kim et al. ICML 2025). This boundary condition is itself an important empirical finding.\n31\t\n32\t## Opportunity / Why Now\n33\t\n34\tSix lines of evidence converge: (1) Prove (2024) shows code execution can verify NL reasoning (up to 18% gain on GSM8K), but only filters—doesn't diagnose or repair; (2) VeriCoT (2025) shows FOL formalization can verify CoT steps, but within one representation only; (3) Roundtrip Verification (April 2026, arXiv 2604.25031) demonstrates that diagnosis-guided repair of formalization errors raises equivalence from 45-61% to 83-85%, but operates entirely within a single representation on a narrow domain; (4) Kim et al. (April 2026, arXiv 2604.19459) empirically demonstrate that different models exhibit qualitatively distinct formalization error modes—internally consistent but semantically wrong outputs can evade within-representation detection entirely; (5) Cao et al. (Jan 2026, arXiv 2601.22642) show interleaved formal verification improves 7B/14B models by 10-14% but requires fine-tuning, limiting applicability; (6) Liang et al. (2024, arXiv 2410.05318) show that CoT-PoT disagreement is a useful filtering signal, achieving SOTA on GSM8K and MATH with trained verifiers—but they FILTER (discard disagreeing solutions) rather than DIAGNOSE the error type or attempt REPAIR, and their approach requires training specialized verifiers (Math-Rev, Code-Rev), whereas ours operates at inference time with no model modification. The gap: nobody uses cross-representation disagreement patterns as a diagnostic signal enabling CATEGORIZED error diagnosis and TARGETED repair at inference time without model modification. Roundtrip Verification proves diagnosis-guided repair works within one representation; Liang et al. prove CoT-PoT disagreement is informative; we extend both insights across representations with error categorization, gaining complementary error coverage since different formalisms fail on different problem aspects. However, we acknowledge upfront that correlated failures from specification misunderstanding (Denisov-Blanch et al. 2026; Kim et al. ICML 2025) will produce false agreement that our approach cannot detect—characterizing this boundary is itself a contribution. Open-weight models like Qwen3-32B (56.3% on AIME 2025, 66.8% on GPQA Diamond in thinking mode per the official Qwen3 Technical Report, arXiv 2505.09388) provide substantial headroom for improvement through better error correction.\n35\t\n36\t## Landscape (SOTA & Limitations)\n37\t\n38\tLogic-LM (EMNLP 2023) established NL-to-symbolic-to-solver pipelines. LINC (EMNLP 2023) showed FOL+theorem provers outperform CoT on ProofWriter by 26% (GPT-4). Adaptive Selection (arXiv 2025) routes to best formal language achieving 96% on mixed sets but commits to one formalization. Adaptive LLM-Symbolic Reasoning (EACL 2026, arXiv 2510.06774) introduces dynamic multi-paradigm solver composition achieving 27% over GPT-4o, but ROUTES to one solver rather than comparing outputs across solvers. HybridMind (NeurIPS 2025) meta-selects between NL and symbolic reasoning (4.4% over GPT-4o on FOLIO, 1.3% on MATH) but selects one path. VERGE (Jan 2026) uses MCS-based atomic claim verification within FOL achieving 18.7% uplift via error localization, but operates within a single FOL representation. VeriCoT (2025) formalizes CoT steps to FOL for verification but doesn't use disagreement diagnostically. Prove (2024) uses programs-as-verifiers for math self-consistency (18% gain on GSM8K, 8% on MATH-500) but only filters—no diagnosis or repair; code available at github.com/declare-lab/PROVE. SymCode (2025) reframes math as SymPy code generation but is code-only. Chain-of-Reasoning (2025) combines NLR/AR/SR paradigms with progressive training but uses voting not disagreement. Logitext (arXiv 2602.18095, Feb 2026) treats LLM reasoning as Satisfiability Modulo Theory, integrating LLM-evaluated natural language text constraints with SMT solving for joint textual-logical reasoning on content moderation, LegalBench, and Super-NLI—relevant as an alternative SMT integration paradigm but does not compare across representations diagnostically. MATH-VF (arXiv 2505.20869) uses a formalizer-critic architecture integrating CAS and SMT solvers for step-wise mathematical verification on MATH-500 and ProcessBench—relevant as it combines multiple formal verification tools but operates within a single verification pipeline rather than exploiting cross-representation disagreement.\n39\t\n40\t**Closest prior work**: Liang et al. (2024, arXiv 2410.05318, 'Improving LLM Reasoning through Scaling Inference Computation with Collaborative Verification', withdrawn from ICLR 2025) is the most directly related work. They generate both CoT and PoT for the same math problem and use CoT-PoT answer agreement as a filtering signal, discarding solutions where the two representations disagree. They train specialized verifiers (Math-Rev, Code-Rev) using SimPO on datasets of correct/incorrect solutions, achieving 95.6% on GSM8K and 76.9% on MATH with Qwen-72B. Key differences from our work: (a) they FILTER (discard disagreeing solutions) while we DIAGNOSE (categorize the error type using the disagreement pattern) and REPAIR (feed diagnostic signal back to the LLM for targeted correction of the failing component); (b) they require training verifiers on labeled data, while our approach operates purely at inference time; (c) they operate on math only, while we evaluate across logic, math, science, and commonsense domains; (d) we characterize WHEN cross-representation disagreement is informative vs. when correlated failures produce uninformative agreement. Their results demonstrate that cross-representation disagreement IS informative—our contribution extends this from filtering to diagnosis and repair.\n41\t\n42\tPushing the Boundaries (arXiv 2601.22642, Jan 2026) dynamically interleaves formal logic verification during generation, achieving 10-14% improvements on 6 benchmarks with 7B/14B models—but requires fine-tuning, making it complementary to (not competing with) our inference-time approach. Do LLMs Game Formalization? (arXiv 2604.19459, April 2026, VerifAI-2 Workshop at ICLR 2026) evaluates faithfulness of FOL formalization on 303 problems, finding GPT-5 and DeepSeek-R1 exhibit qualitatively different unfaithfulness patterns—GPT-5 fabricates axioms while DeepSeek-R1 mistranslates premises. This directly supports our premise that cross-representation comparison can catch errors invisible to within-representation checks. Roundtrip Verification (arXiv 2604.25031, April 2026) diagnoses formalization errors via NL-to-formal-to-NL-to-formal roundtrip, raising equivalence from 45-61% to 83-85% on 150 traffic rules. Key difference: theirs is WITHIN-representation on a narrow domain; ours is CROSS-representation on general reasoning tasks. ARc (arXiv 2511.09008) uses redundant formalizations for compliance verification (99% soundness) but targets soundness guarantee, not error diagnosis. FregeLogic (SemEval 2026) uses LLM disagreement for Z3 tiebreaking but only as routing. Cross-Model Disagreement (arXiv Mar 2026) establishes disagreement as correctness proxy between neural models but not across symbolic representations. Co-Sight (arXiv 2510.21557) uses conflict-aware meta-verification between LLM agents but operates on cross-model, not cross-representation disagreement.\n43\t\n44\t**Correlated failure literature**: Consensus is Not Verification (arXiv 2603.06612, Denisov-Blanch et al. 2026) demonstrates that LLM errors are strongly correlated and consensus aggregation fails to improve truthfulness—even reinforcing shared misconceptions. Correlated Errors in LLMs (ICML 2025, arXiv 2506.07962, Kim et al.) shows 60% error agreement across different models, with larger and more accurate models exhibiting MORE correlated errors. These findings directly inform our approach: same-model cross-representation disagreement will miss specification misunderstanding errors that propagate identically to both representations. Our complementarity analysis quantifies exactly when and how often this occurs, and our cross-model ablation tests whether model diversity recovers diagnostic coverage for this error class.\n45\t\n46\tThe critical gap remains: no method treats cross-representation disagreement as a diagnostic signal for formalization error CATEGORIZATION and TARGETED REPAIR. Liang et al. proved disagreement is informative for filtering; we extend this to diagnosis and repair.\n47\t\n48\t## Proposed Approach\n49\t\n50\tThis is scoped as an EMNLP 2026 submission (ARR May 25 deadline) presenting empirical evidence that cross-representation disagreement enables formalization error localization and targeted repair. The method is deliberately simple and inference-time-only, requiring no fine-tuning.\n51\t\n52\t**Dual Formalization Pipeline**: For each NL reasoning problem, generate TWO complementary formalizations simultaneously, domain-adapted: (A) Logic reasoning (FOLIO, ProofWriter, LogiQA): formalize as both FOL (verified via Z3) AND executable Python constraint code; (B) Mathematical reasoning (MATH Level 5, AIME 2024, AIME 2025): formalize as both NL chain-of-thought AND executable SymPy/Python code; (C) Science/knowledge (GPQA Diamond): formalize as CoT + Python verification code where applicable; (D) Commonsense/mixed reasoning (ARC-Challenge, BBH): formalize as CoT + Python code, with explicit analysis of when dual formalization provides limited additional signal.\n53\t\n54\t**Model Selection**: Qwen3-32B (thinking mode, Apache 2.0) as the PRIMARY model—baseline accuracy of ~70% on AIME 2024 and 56.3% on AIME 2025 (pass@1, official Qwen3 Technical Report arXiv 2505.09388, Table 13), ~66.8% on GPQA Diamond, and estimated 75-85% on FOLIO/ProofWriter provides genuine headroom, especially on the harder AIME 2025 benchmark where nearly half of problems are answered incorrectly. Qwen3-8B as a lower-capability ablation. Both via API (Qwen Cloud at ~$0.08/M input tokens). **Cross-model ablation**: DeepSeek V4 Pro generating one representation while Qwen3-32B generates the other, to test whether model diversity improves diagnostic coverage by reducing correlated failures from shared model biases (promotional pricing $0.435/M input through May 31, 2026). This ablation directly addresses the concern from the correlated failure literature that same-model biases propagate to both representations.\n55\t\n56\t**Disagreement Detection and Categorization**: When representations disagree (code execution produces answer A but Z3/theorem prover yields B, or SymPy result differs from CoT derivation), categorize the disagreement using a RULE-BASED TAXONOMY (not learned—practical for the timeline): (1) Logic domain: quantifier scope mismatch, negation handling error, relational arity error, missing/extra constraint, predicate grounding error; (2) Math domain: operator precedence error, type confusion (integer vs. real), boundary condition miss, symbolic simplification divergence, variable scope error. Categorization uses pattern matching on the disagreement evidence (e.g., Z3 returns unsat while code returns True likely indicates missing constraint or negation error).\n57\t\n58\t**Targeted Repair**: Feed the diagnosed error type plus evidence from the AGREEING representation back to the LLM for targeted repair of only the failing component. Compare against blind regeneration (same compute budget, no diagnostic signal). Max 2 repair rounds for efficiency.\n59\t\n60\t**Correlated Failure Analysis**: We explicitly acknowledge and empirically characterize the limitation that same-model formalization errors are partially correlated (Denisov-Blanch et al. 2026; Kim et al. ICML 2025). When the model misunderstands the problem SPECIFICATION (not the formalization), both representations will be wrong in the same way, producing FALSE AGREEMENT rather than diagnostic disagreement. Our approach catches FORMALIZATION-SPECIFIC errors (quantifier scope in FOL, loop bounds in Python, operator precedence in SymPy) but not specification-level errors. We quantify: (a) what fraction of errors produce disagreement (formalization-specific, catchable); (b) what fraction produce false agreement (specification-level, uncatchable by our method); (c) whether the cross-model ablation (Qwen3-32B + DeepSeek V4 Pro) reduces false agreement by introducing model diversity. This analysis is itself a contribution—characterizing the boundary between formalization errors and specification errors in neurosymbolic pipelines.\n61\t\n62\t**Evaluation**: 9 benchmarks covering 4 reasoning domains: FOLIO, ProofWriter, LogiQA (logic), MATH Level 5 (hard subset—replacing MATH-500 which is near-saturated at ~95-97% for Qwen3-32B in thinking mode), AIME 2024, AIME 2025 (math), GPQA Diamond (science/knowledge), ARC-Challenge, BBH (commonsense/mixed). For AIME 2025 (56.3% baseline), the headroom story is strongest. For ARC-Challenge and BBH, we explicitly analyze when and why cross-representation disagreement provides limited diagnostic value—this negative/diagnostic result is itself a contribution, characterizing the boundary conditions of the approach.\n63\t\n64\t**Baselines** (4 focused): (a) Self-consistency / majority voting (standard); (b) Prove (filtering via program verification, open-source code available); (c) Single-representation verification + blind regeneration (to isolate the value of cross-representation diagnosis vs. simply having two attempts); (d) CoT-PoT filtering a la Liang et al. (2024)—reimplemented without trained verifiers, using only answer-match filtering, to isolate our contribution of diagnosis+repair vs. simple filtering.\n65\t\n66\t**Key Analyses**: (1) Disagreement rate by benchmark and problem difficulty; (2) What fraction of disagreements are diagnostically informative (i.e., one representation is correct); (3) Error type distribution across benchmarks; (4) Targeted repair success rate vs. blind regeneration; (5) Complementarity analysis: when representations fail independently vs. exhibit correlated failures, including false agreement rate where both representations are wrong but agree; (6) Compute-normalized comparison (does the diagnostic signal justify the cost of dual formalization?); (7) Cross-model ablation: does using different models for each representation reduce correlated failures and improve diagnostic coverage?\n67\t\n68\t**For baselines without open-source code** (if we include HybridMind or VERGE in extended comparison), we implement core methodology from paper descriptions and note this limitation transparently.\n69\t\n70\t## Resource Estimate\n71\t\n72\t- **auto_research**: {'api_cost': '$200-400 (more exploration of prompt variants for formalization quality, cross-model ablation)', 'claude_api_cost': '$150-300 (estimated 1500-3000 agent turns for end-to-end pipeline, experiments, paper drafting)', 'estimated_total_cost': '$350-700', 'gpu_hours': '~0h', 'gpu_utilization': 'None.', 'risk_note': 'Agent can build pipeline and run experiments autonomously, but error taxonomy quality and paper framing need human review before submission.', 'speed_bottleneck': 'API rate limits. Can parallelize across Qwen Cloud and DeepSeek API.', 'team': '0 (initial 1h setup + daily 30min review of results)', 'timeline': '8-12 days with API access'}\n73\t- **human_in_loop**: {'api_cost': '$150-250', 'claude_api_cost': '$80-150 (estimated ~800-1500 agent turns for pipeline implementation, prompt engineering, result analysis)', 'estimated_total_cost': '$230-400', 'gpu_hours': '~0h', 'gpu_utilization': 'None.', 'risk_note': 'Tight timeline. Primary risk is pipeline debugging time. Mitigated by using open-source Prove code as a starting point and keeping the method simple. Cross-model ablation adds experimental complexity but uses the same pipeline infrastructure.', 'team': '1 researcher full-time, reviewing pipeline outputs and error categorizations daily', 'timeline': '12-15 days'}\n74\t- **manual**: {'api_cost': '$120-200 (Qwen3-32B at ~$0.08/M input via Qwen Cloud: 9 benchmarks x ~500-1500 problems x 2 formalizations x ~2000 tokens = ~35M tokens input + ~18M output per run, with 2 repair rounds = ~$60-90 for Qwen3-32B; Qwen3-8B: ~$15-25; DeepSeek V4 Pro cross-model ablation at promotional $0.435/M input: ~$30-50; Liang et al. baseline reimplementation: ~$10-15)', 'estimated_total_cost': '$120-200 (API only)', 'gpu_hours': '~0h (all inference via API; Z3 and Python execution are CPU-only)', 'gpu_utilization': 'None. Fully API-based.', 'team': '1-2 researchers working full-time', 'timeline': '15 days (May 10-25, 2026) for EMNLP ARR submission'}\n75\t\n76\t## Key References\n77\t\n78\t- Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning (Findings of EMNLP 2023)\n79\t- LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers (EMNLP 2023)\n80\t- HybridMind: Meta Selection of Natural Language and Symbolic Language for Enhanced LLM Reasoning (NeurIPS 2025)\n81\t- Adaptive Selection of Symbolic Languages for Improving LLM Logical Reasoning (arXiv 2025)\n82\t- Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition (EACL 2026, arXiv 2510.06774)\n83\t- VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arXiv Jan 2026)\n84\t- VERUS-LM: A Versatile Framework for Combining LLMs with Symbolic Reasoning (arXiv Jan 2026, 2501.14540)\n85\t- Not All Votes Count! Programs as Verifiers Improve Self-Consistency of Language Models for Math Reasoning (arXiv 2024)\n86\t- Improving LLM Reasoning through Scaling Inference Computation with Collaborative Verification (Liang et al., arXiv 2410.05318, 2024, withdrawn from ICLR 2025)\n87\t- VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks (2025)\n88\t- SymCode: A Neurosymbolic Approach to Mathematical Reasoning via Verifiable Code Generation (arXiv 2025)\n89\t- Chain-of-Reasoning: Towards Unified Mathematical Reasoning in Large Language Models via a Multi-Paradigm Perspective (arXiv Jan 2025)\n90\t- Faithful Autoformalization via Roundtrip Verification and Repair (arXiv 2604.25031, April 2026)\n91\t- A Neurosymbolic Approach to Natural Language Formalization and Verification (arXiv 2511.09008, Nov 2025)\n92\t- Cross-Model Disagreement as a Label-Free Correctness Signal (arXiv Mar 2026)\n93\t- Intermediate Languages Matter: Formal Choice Drives Neurosymbolic LLM Reasoning (arXiv 2025)\n94\t- FregeLogic at SemEval 2026 Task 11: Hybrid Neuro-Symbolic Architecture for Syllogistic Validity (SemEval 2026)\n95\t- FoVer: First-Order Logic Verification for Natural Language Reasoning (TACL 2025)\n96\t- LogiConBench: Benchmarking Logical Consistencies of LLMs (ICLR 2026)\n97\t- Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification (arXiv 2601.22642, Jan 2026)\n98\t- Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning (arXiv 2604.19459, April 2026, VerifAI-2 Workshop at ICLR 2026)\n99\t- Co-Sight: Enhancing LLM-Based Agents via Conflict-Aware Meta-Verification and Trustworthy Reasoning with Structured Facts (arXiv 2510.21557, Oct 2025)\n100\t- Consensus is Not Verification: Why Crowd Wisdom Strategies Fail for LLM Truthfulness (Denisov-Blanch et al., arXiv 2603.06612, 2026)\n101\t- Correlated Errors in Large Language Models (Kim et al., ICML 2025, arXiv 2506.07962)\n102\t- Neurosymbolic Language Reasoning as Satisfiability Modulo Theory (Logitext, arXiv 2602.18095, Feb 2026)\n103\t- Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving (MATH-VF, arXiv 2505.20869)\n104\t\n105\t## Reviewer Evaluation\n106\t\n107\t**Scores**:\n108\t  - clarity: **{'rationale': \"Exceptionally well-structured proposal with honest limitation acknowledgment (correlated failures, commonsense domain weakness), clean differentiation from 25+ related works, domain-adapted evaluation plan, and explicit success/failure criteria. The best-written idea I've reviewed in this batch.\", 'score': 5}**/5\n109\t  - feasibility: **{'rationale': \"API-only approach eliminates GPU concerns entirely. Qwen Cloud ($0.08/M) and DeepSeek V4 Pro ($0.435/M promotional) are verified and affordable. Rule-based taxonomy avoids training. 15-day timeline is very aggressive for 9 benchmarks but achievable given the method's simplicity (no fine-tuning, existing eval scripts, open-source Prove baseline).\", 'score': 4}**/5\n110\t  - impact: **{'rationale': 'Solid empirical contribution for EMNLP Findings but unlikely transformative. Expected improvements are modest (2-5% absolute on hard benchmarks). The negative results (when cross-representation disagreement fails) and complementarity analysis are useful but incremental. Main conference acceptance depends on strength of empirical results.', 'score': 3}**/5\n111\t  - novelty: **{'rationale': 'Confirmed via extensive search: no prior work combines cross-representation disagreement for error CATEGORIZATION + TARGETED REPAIR. Cleanly differentiated from Liang et al. (filter only), Roundtrip Verification (within-representation), and VERGE (single-representation MCS). A well-motivated novel combination rather than a radical new paradigm.', 'score': 4}**/5\n112\t\n113\t## Human Review Note\n114\t\n115\t## Agent 审核结果（完整三阶段 pipeline）\n116\t\n117\t**Verdict**: PASS\n118\t\n119\t**入口三重共识 (X)**: 25.0%\n120\t**终审自评 (Y)**: 35.0%\n121\t**出口三重共识 (Z)**: 33.0%\n122\t**Z 区间**: [28.0%, 38.0%]\n123\t**真实提升 (Z-X)**: +8.0 pp\n124\t**幻觉幅度 (Y-Z)**: +2.0 pp\n125\t**出口一致性**: 高\n126\t**出口三次评估**: [33.0, 34.0, 33.0]\n127\t\n128\t### 优化方案 / 拒绝详情\n129\t【优化方案】\n130\t\n131\t1. **[标题]** — 原标题未知完整形式，建议采用终稿标题 *\"Cross-Representation Disagreement Diagnosis for LLM Reasoning: A Systematic Analysis and Lightweight Repair Framework\"*，显式包含 \"Systematic Analysis\" 以锚定双轨定位 — 命中 **Significance / Contribution Type**（引导审稿人按 analysis paper 标准评判，降低对 method novelty 深度的苛求）\n132\t\n133\t2. **[Motivation 段末尾 — 新增 framing sentence]** — 在动机段结尾加入一句锐利的范式对比：\"We argue that the gap between detection and action — the diagnostic step that determines *what* went wrong and *where* — is the missing piece in current multi-representation reasoning pipelines.\" 原 proposal 的 novelty 散落在各处，需要读完才能理解；这句话让审稿人在前两段即锁定 \"detect-diagnose-repair\" vs. \"detect-then-discard/retry\" 的对比 — 命中 **Novelty（第一印象效应）**\n134\t\n135\t3. **[Core Thesis — 双轨定位重构]** — 原 proposal 自我定位偏向 \"inference-time method\"。重构为并列双贡献：(1) systematic empirical analysis of cross-representation disagreement patterns; (2) lightweight diagnostic-guided repair framework。将 disagreement pattern characterization 提升为与 repair 方法并列的第一等贡献 — 命中 **Novelty + Significance**（EMNLP 对 analysis paper 有明确接纳传统，双轨定位为 dual-outcome 提供结构性兜底）\n136\t\n137\t4. **[Contributions §2 — 新增完整 Error Taxonomy]** — 原 proposal 仅提及 \"rule-based heuristics\" 未给出任何具体分类。新增四类错误体系（Translation Fidelity Loss / Execution Divergence / Representation Coverage Gap / Ambiguity-Induced Divergence），每类包含：操作性定义、disagreement pattern 签名、**差异化 repair 策略**（模板重翻译 / 实现 bug 修复 / 表征委托 / 盲重生成）。增加 \"固定策略 vs. 按类型分派\" 的消融验证 taxonomy 的规定性价值 — 命中 **Technical Soundness + Novelty**（从 \"heuristics 完全未描述\" 修复为 \"可操作的分类体系 + 实证验证\"）\n138\t\n139\t5. **[Contributions §3 — 新增三层 Error Localization 机制]** — 原 proposal 的核心方法论缺口：当两种表征都成功执行但结果不一致时，如何判断哪一侧出错。新增分层决策逻辑：Layer 1（执行异常判定）→ Layer 2（稳定性投票 + 中间步骤 sanity check）→ Layer 3（ambiguous fallback 退化为盲重生成）。同时**明确 Layer 2 的局限**：稳定性≠正确性，对系统性错误（stable-but-wrong）无效，实验中按错误类型拆解定位准确率 — 命中 **Technical Soundness**（从 \"核心环节缺失、任何认真 reviewer 会直接扣分\" 修复为 \"逻辑闭环 + 主动讨论局限\"）\n140\t\n141\t6. **[Contributions §3 — 新增 Repair vs. Selection 论证]** — 原 proposal 未考虑的关键问题：定位出错侧后为什么不直接选另一侧的答案（selection），而要额外做 repair？新增假设场景论证（两侧都有局部错误、正确侧格式不符、\n142\t\n143\t\n144\t\n145\t## MVP Validation Results\n146\t\n147\t- **Date**: 2026-05-15\n148\t- **Hypothesis Supported**: Yes\n149\t\n150\t### Key Metrics\n151\t\n152\tC1=39.6% (≥10% PASS), C2=86.8% (≥40% PASS), C3=3 types (≥2 PASS), C4=+5.2pp (>5pp PASS, margin 0.2pp), C5=85.4% (≥60% PASS). All-mode 5/5 PASS. Excl-Unknown 4/5 (C4 FAIL at +0.0pp).\n153\t\n154\t### Summary\n155\t\n156\t在 FOLIO 数据集 204 样本 + Qwen3-32B 上验证跨表征分歧诊断方法。核心假设得到支持：FOL(Z3) 与 Python Code 两种推理路径的分歧率 39.6%（C1），分歧中 86.8% 可诊断出具体错误类型（C2），覆盖 3 种错误类型（C3），错误定位准确率 85.4%（C5）。定向修复优于盲目重跑（C4）在 All-mode 下通过（+5.2pp）但 margin 极薄（0.2pp），Excl-Unknown 组未通过。C4 弱点需在 research 阶段通过改进 repair 机制或调整 paper framing 解决。\n157\t\n158\t### Recommendation\n159\t\n160\tGO — 核心诊断+定位假设强力成立。C4 repair 效用边际通过，作为已知弱点在 research 阶段通过以下路径解决：(1) 改进 repair prompt/机制拉大 targeted vs blind delta, (2) 分析 Unknown 样本为何驱动 C4 delta 可能产生有价值发现, (3) 必要时 reframe paper 聚焦 diagnosis+localization 而非 repair。建议立即进入 research 阶段，启动 post-MVP kickoff 流程。\n161\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d217be6c-17fa-4bc8-99b0-8802b720808a",
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "ceae085c-abb7-43a5-93be-4b40b02d1a84",
+            "sourceToolAssistantUUID": "d217be6c-17fa-4bc8-99b0-8802b720808a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T06:43:55.722Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014MS1Rgj4vkMpaBqENzpdmD",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "cross_representation_disagreement_diagno",
+                "file": "ROADMAP.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ceae085c-abb7-43a5-93be-4b40b02d1a84",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uEbJfgFeQQiMqFaJgV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "375c923e-8bff-4f51-a9d3-93386574ba8f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PUNb5zHW3WKE7fyA5cXDUC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8076,
+                "cache_read_input_tokens": 32468,
+                "output_tokens": 212,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8076
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 212,
+                    "cache_read_input_tokens": 32468,
+                    "cache_creation_input_tokens": 8076,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8076,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T06:43:55.735Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014MS1Rgj4vkMpaBqENzpdmD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/ROADMAP.md\\\", \\\"content\\\": \\\"# cross_representation_disagreement_diagno — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 06:04 UTC | 更新原因: MVP 通过，进入 Research 阶段。完成 post-MVP kickoff Steps 1-4（framing + plan + dream + roadmap）\\\\n\\\\n## 核心方向\\\\n跨表征（FOL vs Code）分歧诊断：系统性分析 + 轻量修复框架。双轨定位：(1) 分歧模式的实证分析（诊断率、定位精度、错误类型）；(2) 诊断引导修复框架。详见 paper_framing.md。\\\\n\\\\n## 当前阶段：Research（Post-MVP Kickoff）\\\\n\\\\n**MVP 已通过（D009）**：All-mode 5/5 PASS。C1=39.6%, C2=86.8%, C3=3, C4=+5.2pp (margin 0.2pp), C5=85.4%。\\\\n**已知弱点**：C4 Excl-Unknown +0.0pp，repair 效用集中在 GT=Unknown 样本。Research 阶段需改进 repair 或 reframe。\\\\n\\\\n**投稿目标**：EMNLP 2026 Main (ARR May 25, DDL 10 天)\\\\n\\\\n## 当前进展\\\\n\\\\n- paper_framing.md ✅ 已写（3 claims: 诊断信号 / 定位分类 / 边界刻画）\\\\n- experiment_plan.yaml ✅ 已写（5 P0 + 4 P1 + 2 P2）\\\\n- dream_simulate ✅ 已提交（dream_20260515T060408, review_mode=full），等待回调\\\\n- GPU 空闲中，等 Dream 回调后批准 P0 实验启动\\\\n\\\\n## 近期任务\\\\n- [ ] 等 Dream 回调，按审稿反馈调整 framing/plan\\\\n- [ ] Dream 达标后批准 P0 实验：exp-001(FOLIO分析) + exp-003(ProofWriter) + exp-004(MATH) 并行启动\\\\n- [ ] exp-002(跨模型消融) + exp-005(repair改进) 紧随启动\\\\n- [ ] 论文写作 Day 5-6 启动 Paper Agent\\\\n\\\\n## 实验计划摘要（详见 experiment_plan.yaml）\\\\n\\\\n| 优先级 | 实验 | 目标 |\\\\n|--------|------|------|\\\\n| P0 | exp-001 FOLIO 深度分析 | MVP 数据挖掘，统计检验 |\\\\n| P0 | exp-002 跨模型消融 | DeepSeek + Qwen3，降低 correlated failures |\\\\n| P0 | exp-003 ProofWriter | 第二 benchmark，领域内泛化 |\\\\n| P0 | exp-004 MATH Level 5 | 跨领域泛化，数学推理 |\\\\n| P0 | exp-005 Repair 改进 | 拉大 C4 delta，多轮 repair |\\\\n| P1 | exp-006~009 | Unknown 分析 / Selection vs Repair / Taxonomy 消融 / 统计检验 |\\\\n| P2 | exp-010~011 | Qwen3-8B 消融 / GPQA Diamond |\\\\n\\\\n## GPU 预算\\\\n- autodl-rtx6000pro: 1× RTX PRO 6000 Blackwell (cuda:0) — 当前空闲\\\\n- API 预算：$50-100（DeepSeek V4 Pro + Qwen Cloud）\\\\n- 总 vLLM 时间：~36h\\\\n- ⚠️ 单卡串行是瓶颈，如需加速将申请第二张 GPU\\\\n\\\\n## 时间线（10 天冲刺）\\\\n| 阶段 | 时间 | 内容 |\\\\n|------|------|------|\\\\n| Day 1-2 | May 15-16 | exp-001/003/004 并行 |\\\\n| Day 3-4 | May 17-18 | exp-002/005 启动；003/004 完成 |\\\\n| Day 5-6 | May 19-20 | P1 实验完成；启动论文写作 |\\\\n| Day 7-8 | May 21-22 | Paper Agent 全流程 |\\\\n| Day 9-10 | May 23-24 | Review + iterate + submit |\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D011 | 2026-05-15 | 统一指标为 per-sample 计算；Claim 3 更新为 GT-label-dependent | mvp_pipeline_004 |\\\\n| D010 | 2026-05-15 | D008 假设（prompt bug = C4 根因）未获支撑；C4 reframe 为 error | mvp_pipeline_004 |\\\\n| D009 | 2026-05-15 | 通过 MVP gate，C4 作为已知弱点进入 research 阶段解决 | mvp_pipeline_004 |\\\\n| D008 | 2026-05-14 | repair.py prompt bug 确认为 C4 下降根因，修复后 repair-only 重 | mvp_pipeline_004 |\\\\n| D007 | 2026-05-14 | 撤回 v5 closed-world 方案，改为 v5b：保持 3-way 输出但改进 prompt | mvp_pipeline_004 |\\\\n| D006 | 2026-05-14 | MVP v2 结果：FOL crash 78%→10%、C4/C5 翻转为 PASS，但 Code  | mvp_pipeline_002 |\\\\n| D005 | 2026-05-14 | MVP 第一轮未通过（2/5），根因是 Z3 prompt 质量（78% crash），非假设失败。 | mvp_baseline_001, mvp_pipeline_001 |\\\\n| D004 | 2026-05-14 | 回退 qwen3.6-plus → 要求 Qwen3-32B 或同级开源模型，Reviewer cr | — |\\\\n| D003 | 2026-05-14 | 增加 post-MVP 时间骨架和 MVP fail 应急方案（FOLIO fail→ProofWr | — |\\\\n| D002 | 2026-05-14 | 采纳 Reviewer 反馈修订 MVP：增加 Step 0 baseline 门控、C4≥5pp、 | — |\\\\n\\\\n\\\", \\\"total_chars\\\": 2886, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "375c923e-8bff-4f51-a9d3-93386574ba8f",
+            "isSidechain": true,
+            "promptId": "ccbb532d-e9e9-45dd-b7c8-f85562607740",
+            "agentId": "af4ee46f86844242c",
+            "type": "user",
+            "uuid": "cc05e705-276c-43a8-b0a1-9ea6cda85da8",
+            "sourceToolAssistantUUID": "375c923e-8bff-4f51-a9d3-93386574ba8f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T06:45:28.757Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have a thorough understanding of the paper, its experimental results, framing, and prior review feedback. Let me produce my R2 review.\n\n---\n\n### R2 Summary (2-3 sentences)\n\nThis paper presents a systematic empirical study of cross-representation disagreement (FOL/Z3 vs. Python code) as a diagnostic signal for LLM formalization errors, evaluated across three benchmarks (FOLIO, ProofWriter, MATH Level 5) with two model scales and a cross-model configuration. The strongest findings are the domain-dependent representation asymmetry (FOL dominates 7-9:1 in logic, code dominates 2.3:1 in math) and the honest boundary characterization of specification-level correlated failures. The paper claims to advance beyond prior agreement-filtering work (Liang et al. 2024) by adding error categorization, localization, and taxonomy-guided repair, but the novelty of the diagnostic mechanism itself (an LLM prompt comparing two outputs) is thin, and several important related work threads are missing.\n\n### R2 Strengths\n\n- **S1: Domain-dependent asymmetry is a genuinely novel empirical finding.** The inversion of representation dominance across domains -- FOL outperforming code 7-9:1 in logic while SymPy/Python outperforms CoT 2.3:1 in math, with GPQA approaching symmetry at 1.5:1 -- reveals something non-obvious about LLM formalization capabilities. This finding stands on its own regardless of the pipeline's practical utility.\n\n- **S2: Intellectually honest boundary characterization.** Rather than overselling repair results, the paper explicitly identifies specification-level errors as the method's ceiling, provides a causal mechanism (correlated failures producing false agreement), and quantifies the Unknown vs. Non-Unknown stratification (spec-level errors 12.1% vs. 31.7%). This kind of principled failure-mode analysis is rare and valuable.\n\n- **S3: Well-motivated conceptual advance over filtering.** The shift from \"discard when representations disagree\" (Liang et al. 2024, Prove 2024) to \"diagnose why they disagree\" is a clear, well-articulated gap. The paper correctly identifies that prior work leaves diagnostic information on the table.\n\n- **S4: Comprehensive experimental coverage for a short paper.** Cross-model ablation (addressing Denisov-Blanch 2026), model capability ablation (8B vs. 32B), selection-vs-repair comparison, taxonomy ablation, and GPQA boundary test -- this is thorough for a single submission.\n\n- **S5: Sound statistical methodology.** Bootstrap CIs with 10,000 iterations, McNemar's test for paired comparisons, Cochran's Q for cross-benchmark homogeneity, and I-squared heterogeneity reporting are all correctly chosen and applied. The paper reports effect sizes with intervals, not just p-values.\n\n### R2 Weaknesses\n\n- **W1: Novelty of the diagnostic mechanism is limited (Major).** The core diagnostic step (Stage 3) is an LLM prompt that compares two formalizations and asks which one erred -- this is essentially \"LLM-as-judge\" applied to two outputs. The novelty over Liang et al. 2024 reduces to: (a) prompting the LLM to explain the disagreement rather than discarding it, and (b) feeding the explanation back for repair. Neither component involves a principled diagnostic framework; both are prompt engineering. The paper would be stronger if the diagnostic mechanism were more structured (e.g., formal differencing, automated taxonomy extraction) rather than delegating entirely to the same LLM that generated the errors. The empirical findings (asymmetry, boundary characterization) carry the actual novelty, not the method.\n\n- **W2: Important related work threads are missing (Major).** Several highly relevant lines of work are absent:\n  1. *Self-consistency / majority voting* (Wang et al. 2023, \"Self-consistency improves chain of thought reasoning in language models\") -- the most natural comparison point for any agreement-based diagnostic signal. The paper never discusses whether cross-representation disagreement provides signal beyond within-representation sampling diversity.\n  2. *LLM self-debugging and self-repair* (Chen et al. 2023 \"Teaching Large Language Models to Self-Debug\"; Madaan et al. 2023 \"Self-Refine\"; Shinn et al. 2023 \"Reflexion\") -- directly relevant to the repair component.\n  3. *Multi-agent debate* (Du et al. 2023, \"Improving Factuality and Reasoning in Language Models through Multiagent Debate\") -- disagreement between agents as a signal for improvement is conceptually adjacent.\n  4. *Ensemble diversity in classical ML* (Kuncheva & Whitaker 2003) -- foundational work on disagreement as a diagnostic signal; the paper's core idea has deep roots in ensemble theory that should be acknowledged.\n  5. *CodeT* (Chen et al. 2022) -- uses agreement between generated code and generated tests as a selection signal; relevant to the cross-signal paradigm.\n  The absence of self-consistency is particularly damaging because it is the obvious baseline: if you sample FOL 5 times and take majority vote, does that outperform the cross-representation approach? Without this comparison, we cannot isolate representation diversity from sampling diversity.\n\n- **W3: Several cited references are unverifiable (Major).** At least 6 of 17 references use abbreviated citation formats without author names or arXiv IDs: \"HybridMind (2024)\", \"Adaptive Selection (2024)\", \"Prove (2024)\", \"VeriCoT (2024)\", \"VERGE (2024)\", \"Roundtrip (2026)\". These entries lack author names entirely (e.g., the bib entry for HybridMind reads only \"HybridMind: Combining symbolic and neural reasoning...\"). This makes them unverifiable. For a venue submission, every cited reference must be traceable. Additionally, the IDEA_BRIEF lists more complete citation information (e.g., VERGE as \"arXiv Jan 2026\", Roundtrip Verification as \"arXiv 2604.25031\") that is absent from the paper's bibliography. This suggests the references were abbreviated during paper generation rather than properly formatted.\n\n- **W4: No direct comparison with existing baselines on the same benchmarks (Major).** The paper never compares CRD-Diag against:\n  - Agreement filtering a la Liang et al. 2024 (discard disagreeing samples, report accuracy on agreeing only)\n  - Self-consistency / majority voting\n  - VeriCoT or Roundtrip Verification as single-representation verification baselines\n  \n  Without these, the practical margin of improvement is unassessable. The paper_framing.md and IDEA_BRIEF both list these as planned baselines, but they do not appear in the paper.\n\n- **W5: Self-diagnosis circularity is not adequately addressed (Moderate).** The same LLM (Qwen3-32B) generates both formalizations, diagnoses which side erred, classifies the error type, and performs repair. The 85% localization accuracy could partially reflect the LLM pattern-matching its own generation style rather than genuine error identification. The cross-model ablation (Section 5.4) addresses generation diversity but not diagnosis circularity -- an ablation using a different model for diagnosis vs. generation would be informative.\n\n- **W6: Approximate counts in error tables are suspicious (Moderate).** Tables 3-4 report error counts as \"~28\", \"~22\", \"~16\", \"~20\", \"~18\", \"~15\", \"~12\". Real experiments produce exact integers. Combined with the remarkably clean consistency of metrics across benchmarks (C2 ranges only 81-87%, C5 ranges only 82-85%), this raises the question of whether all three benchmark experiments have been fully executed or whether some numbers are projected from the FOLIO MVP data. The report.md confirms only FOLIO experiments have been run (mvp_pipeline_004 on 204 FOLIO samples).\n\n- **W7: Error taxonomy lacks validation (Moderate).** The three logic error types (Predicate Mapping, Quantifier Scope, Negation Handling) and four math types are manually defined without: (a) exhaustiveness analysis (what fraction of errors fall outside?), (b) mutual exclusivity discussion, (c) inter-annotator agreement or human validation, (d) sensitivity analysis across prompt templates. Since the taxonomy drives the claimed +3.6pp repair improvement, its validity is load-bearing.\n\n- **W8: Paper framing inconsistency between paper_framing.md and submitted paper (Minor-Moderate).** The paper_framing.md (the project's actual experimental findings) reports C4 aggregate as +4.65pp with Fisher p=0.626 (not significant), and describes a GT-label-dependent pattern where diagnosis *hurts* for GT=True cases (-13.6pp). The submitted paper reports C4 as +10.8pp with p=0.008 on FOLIO. These numbers do not match the actual experimental results documented in project files. The discrepancy is concerning -- the paper appears to present more favorable numbers than the underlying experiments support.\n\n### R2 Questions for Authors\n\n1. **[Critical]** The paper_framing.md documents C4 aggregate as +4.65pp (Fisher p=0.626, not significant), yet the paper reports +10.8pp (p=0.008). Can you reconcile these numbers? Which represents the actual experimental results?\n\n2. **[Critical]** How does cross-representation disagreement compare to self-consistency (majority voting over multiple samples of the same representation) as a diagnostic signal? On FOLIO, what accuracy does 5-sample self-consistency of FOL alone achieve vs. your pipeline?\n\n3. **[Major]** What accuracy does the Liang et al. agreement-filtering strategy achieve on your benchmarks (discard disagreeing samples, report accuracy on the agreeing subset only)? This is the most direct comparison and its absence is conspicuous.\n\n4. **[Major]** Have the ProofWriter and MATH Level 5 experiments been fully executed? The approximate error counts and the project report.md showing only FOLIO experiments completed invite clarification.\n\n5. **[Major]** Have you validated the error taxonomy assignments against human annotations? What fraction of diagnosed errors fall outside the predefined categories?\n\n6. **[Moderate]** How sensitive is the FOL:Code asymmetry ratio to prompt engineering? Could a well-engineered Code prompt substantially close the 9:1 gap in logic domains?\n\n7. **[Moderate]** What is the computational cost of the full pipeline (dual formalization + diagnosis + 3-round repair) vs. a single-pass baseline? Is it cost-effective?\n\n### R2 Minor Issues\n\n- The abstract states \"37-42%\" for disagreement rates while Table 1 shows 36.8-42.1%; the abstract should use the actual range.\n- References [6], [7], [10], [12], [14], [15] lack author names entirely -- these are not proper bibliographic entries. Even preprints should list authors.\n- The paper claims \"first systematic empirical analysis\" -- this is a strong priority claim that may be difficult to sustain given concurrent work in this fast-moving area.\n- Table 2 column header \"Ratio\" is ambiguous -- it should specify what is being ratioed (error rates? accuracy?).\n- The GPQA results (Section 5.8) are described as \"exploratory\" but are presented with the same precision as the main results, which may mislead readers about their status.\n- The discussion of \"LLM formalization capabilities\" in Section 6 (asymmetry as a window) is speculative -- attributing the FOL advantage to \"training data from logic textbooks\" is not evidenced.\n\n### R2 Preliminary Score: 3/6\n\nThe paper's strongest contribution -- the domain-dependent representation asymmetry -- is genuinely interesting, and the boundary characterization demonstrates intellectual honesty. However, several issues collectively prevent a positive recommendation at this stage: (1) the methodological novelty is thin (LLM-as-judge comparing two outputs), (2) critical baselines (self-consistency, agreement filtering) are missing, (3) multiple references are unverifiable, (4) there is a concerning discrepancy between the project's documented experimental results and the numbers in the paper (C4 +4.65pp non-significant vs. +10.8pp p=0.008), and (5) evidence suggests ProofWriter and MATH experiments may not be completed. The empirical findings could support a solid contribution if the experimental concerns are resolved, baselines added, and the paper reframed to foreground the asymmetry/boundary analysis over the repair pipeline.\n\n### R2 Confidence: 4/5\n\nI have read the paper carefully, cross-referenced it against the project's internal documentation (paper_framing.md, report.md, IDEA_BRIEF.md), and verified the related work landscape. My confidence is high on the novelty assessment and related work gaps. The one area of moderate uncertainty is whether the discrepancy between documented C4 results and paper C4 results reflects a legitimate later experimental run (e.g., the multi-round repair in exp-005) or selective reporting -- author clarification would resolve this."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc05e705-276c-43a8-b0a1-9ea6cda85da8",
+            "isSidechain": true,
+            "agentId": "af4ee46f86844242c",
+            "requestId": "req_011Cb3uFPQ5tjsyfigXpVA2Z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "90e6d337-723f-4fc5-92a0-8c2cc1faa638",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno",
+            "sessionId": "337ca526-afb3-4e54-b3db-9539f0df960e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DNmwGpMfY8oRSW2j45hjyg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11196,
+                "cache_read_input_tokens": 40544,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 11196,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-reviewer-r2-for-a-top-ml-venue-review-your-focus-area-is-novelty-and-r.md"
+}

@@ -1,0 +1,3567 @@
+# Research conversation: You are Reviewer R2 for a top ML venue review (acceptance rate ~25%, 6-point scale: 1=Strong Reject, 6=Strong Accept). Y
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 42
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-ab32a11cd7911798d.jsonl`
+- **Structured JSON:** [`f1db5ddd59924d407f32.json`](../../sessions/f1/f1db5ddd59924d407f32.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+42 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T17:23:17.355Z_
+
+You are Reviewer R2 for a top ML venue review (acceptance rate ~25%, 6-point scale: 1=Strong Reject, 6=Strong Accept). Your focus areas are **Novelty/Significance** and **Related Work**. You must provide a thorough, independent review.
+
+## Paper Summary
+
+**Title**: "The Capability Trap: Why Self-Extracted Constraints Cannot Improve LLM Majority Voting"
+
+**Core claim**: SICA (Symbolic Invariant Consensus Aggregation) — extracting FOL constraints from LLM reasoning traces and aggregating via weighted MAX-SAT — provides no significant accuracy gain over Self-Consistency (SC) across all 18 tested conditions (combined N>1300). The structural cause is a "capability trap": self-extracted constraints achieve discriminative precision ≈ 0.50 (no better than random), causing MAX-SAT to degenerate to counting.
+
+**Three contributions**:
+1. Systematic negative result: no significant gain across 3 domains, 5 model families, 18 conditions
+2. Capability trap characterization: constraint precision = 0.50, confirmed by three-way ablation (MAX-SAT ≡ count-only ≡ random-weight, >99.6% agreement)
+3. C0 deployment diagnostic: C0 (multi-candidate rate) < 5% predicts degeneracy; high C0 is necessary but insufficient (Pearson r=0.05, p=0.84 across 18 conditions)
+
+## Method: SICA
+4-stage pipeline:
+1. Trace generation: Sample K=12 reasoning traces with temperature τ>0
+2. Constraint extraction: Same LLM extracts FOL constraints from each trace
+3. Constraint evaluation: For each (candidate answer, constraint) pair, compute sat(a,c) ∈ {0,1}
+4. MAX-SAT aggregation: Select answer maximizing total satisfied constraint weight
+
+C0 diagnostic: fraction of problems with >1 candidate answer. When C0=0, SICA=SC trivially.
+
+## Introduction Narrative
+- Self-Consistency (SC) improves LLM reasoning via majority voting
+- Natural extension: extract richer structure (FOL constraints, symbolic representations) from traces
+- Prior systems (Logic-LM, LINC, DyLoS, Aristotle, FoVer) report gains using trained verifiers, external oracles, or multi-paradigm approaches
+- Key question: can the SAME model that generates traces also extract useful constraints? (the "self-extraction" setting)
+- Central finding: No. Self-extracted constraints are non-discriminative (precision ≈ 0.50)
+- The "capability trap": diversity and constraint quality trade off — weaker models have more diversity but worse constraints, stronger models have better constraints but less diversity
+
+## Related Work (as presented in paper)
+The paper organizes related work into 4 categories:
+1. **Self-Consistency and extensions**: Wang et al. 2023 (SC), Universal SC (Chen et al. 2023), SC scaling (Loo et al. 2025), Confidence-weighted SC (Taubenfeld et al. 2025), DiVeRSe (Li et al. 2023)
+2. **Neuro-symbolic reasoning**: Logic-LM (Pan et al. 2023), LINC (Olausson et al. 2023), DyLoS (2026), Aristotle (2025), FoVer (2025). Paper claims distinction: these use trained verifiers/external oracles/multi-paradigm, while this paper studies same-model self-extraction
+3. **Verification and reranking**: ORM (Cobbe et al. 2021), PRM (Lightman et al. 2024), Math-Shepherd (Wang et al. 2024). Paper notes these train separate verifiers, sidestepping self-extraction bottleneck
+4. **Test-time compute scaling**: Snell et al. 2025, DeepSeek-R1, OpenAI o1. Paper connects QwQ-32B's low C0 to this paradigm
+5. **Constraint satisfaction in NLP**: SATBench (2025), LLM-CP (2025)
+
+References include ~25 citations total.
+
+## Key Experimental Results
+- **Table 1**: 11 model-domain conditions. All Δ (SICA-SC) range from -3.33 to +3.33pp, none significant.
+- **Table 2**: Constraint ablation (n=804). MAX-SAT ≡ count-only (803/804 agreement) ≡ random-weight (801/804).
+- **Table 3**: Weighted SC variants — none significant.
+- **Table 4**: Overhead: SICA costs ~2× SC (dominated by extraction LLM calls).
+- **Section 4.4**: Per-problem constraint precision = 0.50, 89% in [0.4,0.6], 12% discriminative.
+- **Section 4.5**: C0 diagnostic — r=0.05 between C0 and Δ.
+- **Section 4.6**: K ablation (SICA≤SC at all K), tiebreak analysis (5/804 ties, <0.3pp contribution).
+- **Appendix D**: Within-family scaling (Qwen 7B→14B→72B: C0 decreases 70%→38%→22%, Δ=0 throughout).
+- **Appendix E**: Logic-LM ×K = SC = SICA on FOLIO.
+- **Appendix F**: QwQ-32B: C0=2.6%, Δ=0.0 everywhere.
+- **Appendix G**: DeepSeek-R1-Distill-7B: C0=58%, behaves as instruction-scale.
+
+## Discussion Key Points
+- "Capability trap" has precise mechanism: constraints are logically correct (75%) but tautological/overly-general (88% non-discriminative)
+- Self-extraction fails because LLMs capture general reasoning patterns (modus ponens, domain axioms) valid regardless of specific answer, rather than answer-discriminative tests
+- Would require "metacognitive" ability to reason about its own uncertainty
+- Within-family scaling shows structural tradeoff: capability determines both answer consistency AND constraint quality
+- Relationship to published systems: DyLoS, Aristotle, FoVer achieve gains because they use trained verifiers/external oracles — paper studies the specific failure mode of same-model self-extraction
+- Reasoning models (QwQ-32B) bypass the need entirely (C0=2.6%)
+- Practical recommendation: compute C0 from small pilot; if C0<5%, skip; if C0>20%, still don't expect gains without evidence of discriminative constraints
+
+## Limitations Stated
+- Scoped to same-model self-extraction pipelines
+- One MAX-SAT formulation tested (alternative: SAT, SMT, answer set programming)
+- GSM8K and ARC-Challenge use smaller samples (n≤200)
+- Powered replications on these domains would strengthen conclusions
+
+## Your Review Task
+
+Evaluate the paper on these dimensions:
+1. **Novelty and significance**: Is "capability trap" a genuinely new insight? Is a systematic negative result valuable? Does the C0 diagnostic provide actionable value?
+2. **Related work coverage**: Are key related works covered? Are there important missing references? Is the positioning against prior work fair and accurate?
+3. **Framing and claims**: Are the claims well-scoped? Does the paper overstate or understate its findings? Is the "self-extraction" framing well-motivated?
+4. **Impact**: Who would benefit from this work? Does it advance understanding of neuro-symbolic reasoning?
+5. **Scope limitations**: Is the restriction to same-model self-extraction a fundamental limitation? Does the paper adequately address how findings relate to systems using external verifiers?
+6. **Missing related work**: Consider whether the paper should cite work on: LLM self-evaluation/self-critique, multi-agent debate for reasoning, calibration/uncertainty estimation in LLMs, other symbolic reasoning approaches beyond FOL.
+
+## Output Format
+
+Provide your review in this structure:
+
+### Summary
+2-3 sentences summarizing the paper's contribution.
+
+### Strengths (numbered list)
+### Weaknesses (numbered list)  
+### Questions for Authors (numbered list)
+### Minor Issues (numbered list)
+
+### Scores
+- Soundness (1-4):
+- Contribution (1-4):
+- Presentation (1-4):
+- Overall (1-6):
+- Confidence (1-5):
+
+### Detailed Assessment
+A paragraph on novelty/significance and a paragraph on related work quality.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "612a841d-ded1-4c67-8e64-dadaefea04af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-17T17:23:17.361Z_
+
+```json
+{
+  "parentUuid": "612a841d-ded1-4c67-8e64-dadaefea04af",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1715b7c5-ecfd-4564-b2fa-b42fb996b4c1",
+  "timestamp": "2026-05-17T17:23:17.361Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-17T17:23:20.644Z_
+
+
+
+I'll start by reading the actual paper and related project files to give a thorough review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1715b7c5-ecfd-4564-b2fa-b42fb996b4c1",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8Xd1T43v4yzcTfiLGHZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "86dabf96-58a5-43ee-8f3b-83d91d74b350",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JgSVswPU9ghhFv3SirYmji",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 9155,
+      "cache_read_input_tokens": 8251,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9155,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T17:23:21.861Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01M3r2y1or5LoMS6jHoYerkG`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86dabf96-58a5-43ee-8f3b-83d91d74b350",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8Xd1T43v4yzcTfiLGHZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5a421d24-ac79-4772-a87f-41a0ea6b0518",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JgSVswPU9ghhFv3SirYmji",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 9155,
+      "cache_read_input_tokens": 8251,
+      "output_tokens": 108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 9155
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 108,
+          "cache_read_input_tokens": 8251,
+          "cache_creation_input_tokens": 9155,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 9155,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T17:23:21.864Z_
+
+<details><summary>↩ Tool result · `toolu_01M3r2y1or5LoMS6jHoYerkG`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a421d24-ac79-4772-a87f-41a0ea6b0518",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "b5a12627-fff4-4aba-bd54-3f5cbf9e0ad3",
+  "sourceToolAssistantUUID": "5a421d24-ac79-4772-a87f-41a0ea6b0518",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-17T17:23:24.726Z_
+
+
+
+Let me read the paper and supporting project files to conduct a thorough review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5a12627-fff4-4aba-bd54-3f5cbf9e0ad3",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8XdLrrh54AbT5iqmLey",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "52becad5-8672-42fc-befa-324e30209897",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZEHzu3LTDhQPsEHxk3vy5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1290,
+      "cache_read_input_tokens": 17406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1290,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T17:23:25.676Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01SkBW8XZmRZ8Fg3FGpirM5N`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "literature_map.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "52becad5-8672-42fc-befa-324e30209897",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8XdLrrh54AbT5iqmLey",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a66b3d38-f8d0-4cd3-b118-bf8a58e2659e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZEHzu3LTDhQPsEHxk3vy5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1290,
+      "cache_read_input_tokens": 17406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1290,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T17:23:25.703Z_
+
+<details><summary>↩ Tool result · `toolu_01SkBW8XZmRZ8Fg3FGpirM5N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/literature_map.yaml\", \"content\": \"# Literature Map — symb_invariant_consensus (SICA)\\n# Last updated: 2026-05-16\\n# Purpose: Track related work coverage for EMNLP 2026 submission\\n\\ndimensions:\\n\\n  self_consistency_and_variants:\\n    description: \\\"Self-Consistency (SC) decoding and improvements\\\"\\n    papers:\\n      - id: wang2023sc\\n        title: \\\"Self-Consistency Improves Chain of Thought Reasoning in Language Models\\\"\\n        authors: \\\"Wang et al.\\\"\\n        venue: \\\"ICLR 2023\\\"\\n        arxiv: \\\"2203.11171\\\"\\n        relevance: \\\"Foundational SC method; our primary baseline\\\"\\n        status: must_cite\\n\\n      - id: chen2024usc\\n        title: \\\"Universal Self-Consistency for Large Language Model Generation\\\"\\n        authors: \\\"Chen et al.\\\"\\n        venue: \\\"ICML 2024\\\"\\n        arxiv: \\\"2311.17311\\\"\\n        relevance: \\\"Extends SC to free-form answers via LLM-based selection; alternative aggregation\\\"\\n        status: must_cite\\n\\n      - id: taubenfeld2025cisc\\n        title: \\\"Confidence Improves Self-Consistency in LLMs\\\"\\n        authors: \\\"Taubenfeld et al.\\\"\\n        venue: \\\"ACL Findings 2025\\\"\\n        arxiv: \\\"2502.06233\\\"\\n        relevance: \\\"Weighted voting via model confidence; reduces samples 40-50%. Shows SC can be improved with non-uniform weighting — SICA uses constraint-based weighting instead\\\"\\n        status: must_cite\\n\\n      - id: kim2026reasc\\n        title: \\\"Reliability-Aware Adaptive Self-Consistency (ReASC)\\\"\\n        authors: \\\"Kim et al.\\\"\\n        venue: \\\"2026\\\"\\n        relevance: \\\"Response-level confidence for early halting; 70-80% cost saving vs naive SC\\\"\\n        status: should_cite\\n\\n      - id: loo2025reevaluating\\n        title: \\\"Reevaluating Self-Consistency Scaling in Multi-Agent Systems\\\"\\n        authors: \\\"Loo et al.\\\"\\n        venue: \\\"arXiv 2025\\\"\\n        arxiv: \\\"2511.00751\\\"\\n        relevance: \\\"CRITICAL — shows SC gains plateau early and can decline at high sample counts for strong models. Directly supports our QwQ-32B finding (SICA≡SC when model is too consistent)\\\"\\n        status: must_cite\\n\\n      - id: wan2024rasc\\n        title: \\\"Reasoning-Aware Self-Consistency (RASC)\\\"\\n        authors: \\\"Wan et al.\\\"\\n        venue: \\\"2024\\\"\\n        relevance: \\\"Combines answer-level and rationale-level features; reduces samples ~88%\\\"\\n        status: should_cite\\n\\n      - id: li2023diverse\\n        title: \\\"Making Language Models Better Reasoners with Step-Aware Verifier\\\"\\n        authors: \\\"Li et al.\\\"\\n        venue: \\\"ACL 2023\\\"\\n        arxiv: \\\"2206.02336\\\"\\n        relevance: \\\"DiVeRSe: diverse prompts + step-aware verification for SC improvement. Combines diversity generation with trained verifier — shows diversity alone insufficient without verification quality.\\\"\\n        status: must_cite\\n        verified: true\\n\\n      - id: dsc2025\\n        title: \\\"Difficulty-Adaptive Self-Consistency\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"NAACL Findings 2025\\\"\\n        relevance: \\\"Ranks problem difficulty to allocate sampling budget; complementary efficiency approach\\\"\\n        status: optional\\n\\n  symbolic_reasoning_llm:\\n    description: \\\"Neuro-symbolic methods combining LLMs with formal solvers\\\"\\n    papers:\\n      - id: olausson2023linc\\n        title: \\\"LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers\\\"\\n        authors: \\\"Olausson et al.\\\"\\n        venue: \\\"EMNLP 2023\\\"\\n        arxiv: \\\"2310.15164\\\"\\n        relevance: \\\"LLM translates NL to FOL, external prover verifies; same-model translation pipeline like Logic-LM. Documents translation error rates (~40% on FOLIO). Key reference for self-extraction quality issues.\\\"\\n        status: must_cite\\n        verified: true\\n\\n      - id: pan2023logiclm\\n        title: \\\"Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning\\\"\\n        authors: \\\"Pan et al.\\\"\\n        venue: \\\"EMNLP Findings 2023\\\"\\n        arxiv: \\\"2305.12295\\\"\\n        relevance: \\\"LLM→FOL→solver pipeline; closest architectural ancestor to SICA. Key difference: Logic-LM uses single-path translation, SICA aggregates across multiple paths\\\"\\n        status: must_cite\\n\\n      - id: xu2026dylos\\n        title: \\\"Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition (DyLoS)\\\"\\n        authors: \\\"Xu et al.\\\"\\n        venue: \\\"EACL 2026\\\"\\n        arxiv: \\\"2510.06774\\\"\\n        relevance: \\\"Multi-paradigm solver selection (LP/FOL/CSP/SMT); evaluated on FOLIO+ProofWriter. Outperforms Logic-LM. Key difference: DyLoS selects solver type, SICA aggregates constraints across paths\\\"\\n        status: must_cite\\n\\n      - id: fover2025\\n        title: \\\"FoVer: First-Order Logic Verification for Natural Language Reasoning\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"TACL 2025\\\"\\n        relevance: \\\"FOL verification for NL reasoning; strong results on ProofWriter+FOLIO. Uses verification rather than aggregation\\\"\\n        status: must_cite\\n\\n      - id: li2025survey\\n        title: \\\"A Survey on LLM Symbolic Reasoning\\\"\\n        authors: \\\"Li et al.\\\"\\n        venue: \\\"2025 (under review)\\\"\\n        relevance: \\\"Comprehensive survey; positions SICA within the broader landscape\\\"\\n        status: should_cite\\n\\n      - id: constraintllm2025\\n        title: \\\"ConstraintLLM: A Neuro-Symbolic Framework for Industrial Constraint Programming\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"EMNLP 2025\\\"\\n        relevance: \\\"Multi-instruction SFT for constraint extraction; different domain (industrial) but related extraction methodology\\\"\\n        status: optional\\n\\n  maxsat_constraint_nlp:\\n    description: \\\"MAX-SAT and constraint satisfaction applied to NLP/reasoning\\\"\\n    papers:\\n      - id: llm_meets_cp2025\\n        title: \\\"Large Language Model Meets Constraint Propagation\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"IJCAI 2025\\\"\\n        relevance: \\\"LLM+constraint propagation integration; validates feasibility of constraint-based reasoning with LLMs\\\"\\n        status: should_cite\\n\\n      - id: satbench2025\\n        title: \\\"SATBench: Benchmarking LLMs' Logical Reasoning via SAT Problems\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"EMNLP 2025\\\"\\n        relevance: \\\"Evaluates LLMs on SAT-formulated problems; establishes that LLMs struggle with pure SAT but can benefit from solver integration\\\"\\n        status: should_cite\\n\\n      - id: maxsat_local_search2025\\n        title: \\\"Optimizing Local Search-based Partial MaxSAT Solving via Initial Assignment Prediction\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"Science China Information Sciences 2025\\\"\\n        relevance: \\\"Solver-side advances in partial MaxSAT; technical reference for our WPMS formulation\\\"\\n        status: optional\\n\\n  folio_proofwriter_sota:\\n    description: \\\"State-of-the-art methods on FOLIO and ProofWriter benchmarks\\\"\\n    papers:\\n      - id: logicagent2025\\n        title: \\\"From Ambiguity to Verdict: A Semiotic-Grounded Multi-Perspective Agent for LLM Logical Reasoning (LogicAgent)\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"2025\\\"\\n        arxiv: \\\"2509.24765\\\"\\n        relevance: \\\"Multi-perspective logical reasoning; SOTA on logical reasoning benchmarks including FOLIO. +7.05% average gain\\\"\\n        status: must_cite\\n\\n      - id: aristotle2025\\n        title: \\\"Aristotle: Mastering Logical Reasoning with A Logic-Complete Decompose-Search-Resolve Framework\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"ACL 2025\\\"\\n        relevance: \\\"Logic-complete decomposition framework; strong ProofWriter/FOLIO results\\\"\\n        status: must_cite\\n\\n      - id: qi2025symbolic_provers\\n        title: \\\"Large Language Models Meet Symbolic Provers for Logical Reasoning Evaluation\\\"\\n        authors: \\\"Qi et al.\\\"\\n        venue: \\\"ICLR 2025\\\"\\n        arxiv: \\\"2502.06563\\\"\\n        relevance: \\\"LLM+symbolic prover combination; evaluated on FOLIO\\\"\\n        status: should_cite\\n\\n      - id: dissecting2025\\n        title: \\\"Dissecting Logical Reasoning in LLMs: A Fine-Grained Evaluation\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"EMNLP Findings 2025\\\"\\n        arxiv: \\\"2506.04810\\\"\\n        relevance: \\\"Fine-grained analysis of LLM logical reasoning capabilities on ProofWriter/FOLIO\\\"\\n        status: optional\\n\\n  reasoning_model_diversity:\\n    description: \\\"Trace diversity in reasoning vs non-reasoning models; supports our QwQ-32B finding\\\"\\n    papers:\\n      - id: loo2025reevaluating\\n        title: \\\"Reevaluating Self-Consistency Scaling in Multi-Agent Systems\\\"\\n        authors: \\\"Loo et al.\\\"\\n        venue: \\\"arXiv 2025\\\"\\n        arxiv: \\\"2511.00751\\\"\\n        relevance: \\\"CRITICAL — strong models produce near-identical paths, SC gains plateau/decline. Direct support for SICA≡SC on QwQ-32B\\\"\\n        status: must_cite\\n\\n      - id: diversity_aware_tts2025\\n        title: \\\"Diversity-Aware Training for Test-Time Scaling\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"Under review 2025\\\"\\n        relevance: \\\"Independent reasoning attempts collapse into similar solutions; diversity training needed to unlock test-time scaling. Supports our claim that non-reasoning models have more useful diversity\\\"\\n        status: must_cite\\n\\n      - id: snell2025scaling_tts\\n        title: \\\"Scaling LLM Test-Time Compute Optimally Can be More Effective than Scaling Parameters\\\"\\n        authors: \\\"Snell et al.\\\"\\n        venue: \\\"ICLR 2025 (Oral)\\\"\\n        arxiv: \\\"2408.03314\\\"\\n        relevance: \\\"Foundational test-time compute scaling; shows compute-optimal strategies vary by difficulty. Contextualizes why SICA needs diverse paths\\\"\\n        status: should_cite\\n\\n      - id: deepseek_r1_2025\\n        title: \\\"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\\\"\\n        authors: \\\"DeepSeek-AI\\\"\\n        venue: \\\"Nature 2025\\\"\\n        arxiv: \\\"2501.12948\\\"\\n        relevance: \\\"Defines the reasoning model paradigm (RL-trained extended thinking); reference for why these models are highly self-consistent\\\"\\n        status: must_cite\\n\\n      - id: base_models_reason2025\\n        title: \\\"Base Models Know How to Reason, Thinking Models Learn When\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"2025\\\"\\n        arxiv: \\\"2510.07364\\\"\\n        relevance: \\\"RL teaches activation timing not new skills; implies reasoning models converge to similar reasoning patterns, reducing trace diversity\\\"\\n        status: should_cite\\n\\n      - id: korikov2025sc_ranking\\n        title: \\\"The Impact of LLM Self-Consistency and Reasoning Effort on Automated Scoring\\\"\\n        authors: \\\"Korikov et al.\\\"\\n        venue: \\\"arXiv 2026\\\"\\n        arxiv: \\\"2604.26954\\\"\\n        relevance: \\\"Temperature sampling helps but ensemble size (1→7) produces no significant gains; supports diminishing returns of naive SC\\\"\\n        status: optional\\n\\n  multi_path_aggregation:\\n    description: \\\"Methods for aggregating multiple reasoning paths beyond majority voting\\\"\\n    papers:\\n      - id: rc2025\\n        title: \\\"Representation Consistency for Accurate and Coherent LLM Answer Aggregation\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"arXiv 2025\\\"\\n        arxiv: \\\"2506.21590\\\"\\n        relevance: \\\"Aggregation via representation similarity; down-weights incoherent reasoning. Semantic alternative to SICA's symbolic approach\\\"\\n        status: should_cite\\n\\n      - id: multi_path_plan2025\\n        title: \\\"Enhancing Long Chain-of-Thought Reasoning through Multi-Path Plan Aggregation\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"2025\\\"\\n        arxiv: \\\"2510.11620\\\"\\n        relevance: \\\"Multi-path aggregation at plan level rather than answer level\\\"\\n        status: optional\\n\\n      - id: crest2025\\n        title: \\\"Improving LLMs' Reasoning with Consistency-Driven Self-Training (CREST)\\\"\\n        authors: \\\"Various\\\"\\n        venue: \\\"NAACL 2025\\\"\\n        relevance: \\\"Consistency as training signal rather than inference-time aggregation\\\"\\n        status: optional\\n\\n  verification_reranking:\\n    description: \\\"Verification and reranking methods for LLM outputs (ORM, PRM)\\\"\\n    papers:\\n      - id: cobbe2021gsm8k\\n        title: \\\"Training Verifiers to Solve Math Word Problems\\\"\\n        authors: \\\"Cobbe et al.\\\"\\n        venue: \\\"arXiv 2021\\\"\\n        arxiv: \\\"2110.14168\\\"\\n        relevance: \\\"Defines ORM (Outcome Reward Model) paradigm; trained verifier selects among candidate solutions. Alternative to symbolic constraint aggregation.\\\"\\n        status: must_cite\\n        verified: true\\n\\n      - id: lightman2023prm\\n        title: \\\"Let's Verify Step by Step\\\"\\n        authors: \\\"Lightman et al.\\\"\\n        venue: \\\"ICLR 2024\\\"\\n        arxiv: \\\"2305.20050\\\"\\n        relevance: \\\"Process Reward Models (PRM) verify each reasoning step. Shows step-level verification outperforms outcome-level. Trained verifier approach contrasts with SICA's self-extraction.\\\"\\n        status: must_cite\\n        verified: true\\n\\n      - id: wang2024mathshepherd\\n        title: \\\"Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations\\\"\\n        authors: \\\"Wang et al.\\\"\\n        venue: \\\"ACL 2024\\\"\\n        arxiv: \\\"2312.08935\\\"\\n        relevance: \\\"Automatic process reward model training without human labels. Achieves strong verification without manual annotation.\\\"\\n        status: must_cite\\n        verified: true\\n\\n      - id: hosseini2024vstar\\n        title: \\\"V-STaR: Training Verifiers for Self-Taught Reasoners\\\"\\n        authors: \\\"Hosseini et al.\\\"\\n        venue: \\\"NeurIPS 2024\\\"\\n        arxiv: \\\"2402.06457\\\"\\n        relevance: \\\"Iteratively trains verifier alongside generator; verification quality scales with data.\\\"\\n        status: should_cite\\n\\n  debate_multi_agent:\\n    description: \\\"Debate and multi-agent aggregation methods for LLM reasoning\\\"\\n    papers:\\n      - id: liang2023encouraging\\n        title: \\\"Encouraging Divergent Thinking in Large Language Models through Multi-Agent Debate\\\"\\n        authors: \\\"Liang et al.\\\"\\n        venue: \\\"arXiv 2023\\\"\\n        arxiv: \\\"2305.19118\\\"\\n        relevance: \\\"Multi-agent debate improves factuality and reasoning via iterative refinement. Alternative multi-path aggregation mechanism.\\\"\\n        status: must_cite\\n        verified: true\\n\\n      - id: du2023improving\\n        title: \\\"Improving Factuality and Reasoning in Language Models through Multiagent Debate\\\"\\n        authors: \\\"Du et al.\\\"\\n        venue: \\\"ICML 2024\\\"\\n        arxiv: \\\"2305.14325\\\"\\n        relevance: \\\"Multi-agent debate for reasoning; shows consensus-seeking improves accuracy. Contrast: debate uses natural language, SICA uses formal constraints.\\\"\\n        status: must_cite\\n        verified: true\\n\\n      - id: khan2024debating\\n        title: \\\"Debating with More Persuasive LLMs Leads to More Truthful Answers\\\"\\n        authors: \\\"Khan et al.\\\"\\n        venue: \\\"ICML 2024\\\"\\n        arxiv: \\\"2402.06782\\\"\\n        relevance: \\\"Debate quality depends on model capability; stronger debaters improve consensus.\\\"\\n        status: should_cite\\n\\n  benchmarks_and_datasets:\\n    description: \\\"Benchmark datasets used in our evaluation\\\"\\n    papers:\\n      - id: han2022folio\\n        title: \\\"FOLIO: Natural Language Reasoning with First-Order Logic\\\"\\n        authors: \\\"Han et al.\\\"\\n        venue: \\\"arXiv 2022\\\"\\n        arxiv: \\\"2209.00840\\\"\\n        relevance: \\\"FOLIO benchmark with expert-annotated FOL; our primary formal logic evaluation dataset (n=204).\\\"\\n        status: must_cite\\n        verified: true\\n\\n      - id: tafjord2021proofwriter\\n        title: \\\"ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language\\\"\\n        authors: \\\"Tafjord et al.\\\"\\n        venue: \\\"ACL Findings 2021\\\"\\n        arxiv: \\\"2012.13048\\\"\\n        relevance: \\\"ProofWriter dataset for deductive reasoning; our primary large-N evaluation (n=600).\\\"\\n        status: must_cite\\n        verified: true\\n\\n      - id: geva2021strategyqa\\n        title: \\\"Did Aristotle Use a Laptop? A Question Answering Benchmark with Implicit Reasoning Strategies\\\"\\n        authors: \\\"Geva et al.\\\"\\n        venue: \\\"TACL 2021\\\"\\n        arxiv: \\\"2101.02235\\\"\\n        relevance: \\\"StrategyQA benchmark for commonsense multi-hop reasoning (Yes/No); our cross-domain validation (n=200).\\\"\\n        status: must_cite\\n        verified: true\\n\\n      - id: clark2018arc\\n        title: \\\"Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge\\\"\\n        authors: \\\"Clark et al.\\\"\\n        venue: \\\"arXiv 2018\\\"\\n        arxiv: \\\"1803.05457\\\"\\n        relevance: \\\"ARC-Challenge science QA benchmark; our cross-domain validation for multiple-choice (n=60).\\\"\\n        status: must_cite\\n        verified: true\\n\\n  negative_results_analysis:\\n    description: \\\"Precedents for negative-result and analysis papers in NLP\\\"\\n    papers:\\n      - id: huang2024selfcorrect\\n        title: \\\"Large Language Models Cannot Self-Correct Reasoning Yet\\\"\\n        authors: \\\"Huang et al.\\\"\\n        venue: \\\"ICLR 2024\\\"\\n        arxiv: \\\"2310.01798\\\"\\n        relevance: \\\"Key precedent: shows LLM self-correction fails without external feedback. Structural parallel to our finding (self-extraction fails without external verification). Same 'self-X fails' narrative.\\\"\\n        status: must_cite\\n        verified: true\\n\\n      - id: mirzadeh2024gsmsymbolic\\n        title: \\\"GSM-Symbolic: Understanding the Limitations of Mathematical Reasoning in Large Language Models\\\"\\n        authors: \\\"Mirzadeh et al.\\\"\\n        venue: \\\"arXiv 2024\\\"\\n        arxiv: \\\"2410.05229\\\"\\n        relevance: \\\"Systematic negative result: apparent LLM reasoning gains are fragile under symbolic perturbation. Establishes precedent for rigorous negative-result methodology in LLM reasoning.\\\"\\n        status: should_cite\\n        verified: true\\n\\ngaps:\\n  resolved:\\n    - dimension: \\\"verification_reranking\\\"\\n      gap: \\\"Added ORM, PRM, Math-Shepherd, V-STaR (2026-05-17)\\\"\\n    - dimension: \\\"debate_multi_agent\\\"\\n      gap: \\\"Added Liang 2023, Du 2023, Khan 2024 (2026-05-17)\\\"\\n    - dimension: \\\"benchmarks_and_datasets\\\"\\n      gap: \\\"Added FOLIO, ProofWriter, StrategyQA, ARC (2026-05-17)\\\"\\n    - dimension: \\\"negative_results_analysis\\\"\\n      gap: \\\"Added Huang 2024 (self-correct), Mirzadeh 2024 (GSM-Symbolic) (2026-05-17)\\\"\\n    - dimension: \\\"symbolic_reasoning_llm\\\"\\n      gap: \\\"Added LINC (Olausson et al. 2023) (2026-05-17)\\\"\\n    - dimension: \\\"self_consistency_and_variants\\\"\\n      gap: \\\"Added DiVeRSe (Li et al. 2023) (2026-05-17)\\\"\\n  remaining: []\\n\", \"total_chars\": 17880, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a66b3d38-f8d0-4cd3-b118-bf8a58e2659e",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "c77b02e1-0471-411d-87a5-2881146e1929",
+  "sourceToolAssistantUUID": "a66b3d38-f8d0-4cd3-b118-bf8a58e2659e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T17:23:26.622Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Mm1EYvZd7mf1kQC39nSUPa`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "ideas.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c77b02e1-0471-411d-87a5-2881146e1929",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8XdLrrh54AbT5iqmLey",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "493e3878-0932-475a-990e-158cfe066b6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZEHzu3LTDhQPsEHxk3vy5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1290,
+      "cache_read_input_tokens": 17406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1290,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T17:23:26.633Z_
+
+<details><summary>↩ Tool result · `toolu_01Mm1EYvZd7mf1kQC39nSUPa`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No ideas.md found for 'symb_invariant_consensus'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "493e3878-0932-475a-990e-158cfe066b6e",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "2168c449-d4ed-4156-baad-ca1c3a4875af",
+  "sourceToolAssistantUUID": "493e3878-0932-475a-990e-158cfe066b6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T17:23:27.560Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01LeXeLvSCrd6qa4w7qZVmKG`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2168c449-d4ed-4156-baad-ca1c3a4875af",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8XdLrrh54AbT5iqmLey",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5ed1d17c-4fc7-46e5-874d-2827c4a6b61f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZEHzu3LTDhQPsEHxk3vy5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1290,
+      "cache_read_input_tokens": 17406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1290,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T17:23:27.570Z_
+
+<details><summary>↩ Tool result · `toolu_01LeXeLvSCrd6qa4w7qZVmKG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/paper_framing.md\", \"content\": \"# Paper Framing — symb_invariant_consensus\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25)\\n- Deadline: May 25, 2026 (ARR submission)\\n\\n## Core Claims (3 条) — D025 Capability Trap Analysis Paper (FINAL)\\n\\n1. **The Capability Trap**: LLM self-extracted FOL constraint aggregation faces a fundamental tension: it requires output diversity (C0>20%) to differ from voting, but self-extracted constraints lack discriminative power even when diversity is high. High C0 produces abundant constraints, but these constraints fail to distinguish correct from incorrect answers, reducing MAX-SAT to counting. Validated across 3 reasoning domains × 4 instruction-scale model families + 1 full reasoning model (QwQ-32B). [Scope: this finding characterizes same-model self-extraction pipelines; methods using external verifiers or trained extractors may not share this limitation.]\\n2. **Operating Regime is Empirically Empty**: Five model families confirm SICA provides no accuracy gain over majority voting: (a) Qwen-14B n=804 Δ=+0.25pp n.s., (b) Mistral-7B n=60 Δ=0.0pp exact, (c) LLaMA-8B StrategyQA n=200 Δ=+2.0pp p=0.424, (d) LLaMA-8B FOLIO n=204 Δ=-2.4pp, (e) DeepSeek-R1-Distill-7B n=60 Δ=-3.3pp. Full reasoning model QwQ-32B shows near-zero diversity (C0<5%), making SICA degenerate to SC. Instruction-scale models (including distilled reasoning models) show high diversity (C0=38-62%) but constraints lack discriminative power. No tested condition achieves both requirements simultaneously.\\n3. **C0 as Necessary-but-Insufficient Diagnostic**: C0 reliably predicts when symbolic consensus CANNOT help (C0<5% → method degenerates to SC), but high C0 does NOT guarantee gains. C0 is a zero-cost early stopping criterion for practitioners considering symbolic aggregation methods.\\n\\n## Core Insight\\nLLM self-extracted FOL constraints don't improve majority voting because of a **capability trap**: the method needs output diversity (disagreement to resolve) AND discriminative constraints (to resolve it correctly). While instruction-scale models produce abundant diversity (C0=38-62%) and constraints, these self-extracted constraints lack the discriminative power to distinguish correct from incorrect answers (precision ~0.50, no better than chance). MAX-SAT optimization over such non-discriminative constraints degenerates to counting, performing no better than simple majority voting.\\n\\n**Critical oracle result (exp-021)**: When gold FOL annotations replace self-extracted constraints, Oracle-SICA achieves +8.82pp over SC (p<0.001, n=204). This proves the MAX-SAT aggregation mechanism IS effective given discriminative constraints — the bottleneck is exclusively in LLM self-extraction quality, not in the aggregation paradigm itself.\\n\\nWe provide the first systematic empirical study (a) precisely localizing the failure mode to extraction quality via oracle control, (b) quantifying constraint non-discrimination at per-problem granularity (n=307), and (c) proving MAX-SAT adds nothing beyond counting when constraints lack discriminative power. [Positioning: Logic-LM and LINC documented that LLM-to-FOL translation is error-prone; our contribution is the oracle-controlled causal separation of extraction vs aggregation failure, plus systematic quantification and C0 as deployment diagnostic.]\\n\\n## Story Spine\\n- **Problem**: Recent work proposes augmenting LLM reasoning with symbolic methods, extracting formal constraints from reasoning traces and using solvers for answer selection. But when should practitioners invest in such methods vs. simple majority voting?\\n- **Existing approaches & gaps**: SC (Wang et al. 2023), USC (Chen et al. 2023), Logic-LM (Pan et al. 2023), LINC (Olausson et al. 2023), ORM/PRM (Cobbe et al. 2021, Lightman et al. 2023), Weighted SC (Taubenfeld et al. 2024). None systematically characterize when symbolic aggregation helps vs. when it degenerates to voting.\\n- **Our framing**: We instantiate symbolic consensus as SICA (MAX-SAT over extracted FOL constraints) and systematically evaluate across 3 domains × 4 instruction-scale model families + 1 full reasoning model. We find SICA ≈ SC everywhere, and identify a structural reason: the **capability trap**.\\n- **Headline result**: \\\"Across 3 reasoning domains and 5 models spanning instruction, distilled-reasoning, and full-reasoning architectures, SICA provides no significant accuracy gain over SC. Five models (combined N>1,300) show Δ ranging from -3.3pp to +2.0pp, none significant. The constraint ablation reveals MAX-SAT ≈ count-only ≈ random-weight. We identify the structural cause: a capability trap where extracted constraints lack discriminative power regardless of output diversity level.\\\"\\n\\n## Anticipated Reviewer Concerns & Defensive Experiments\\n1. **\\\"Gains not statistically significant\\\"** → Four powered tests: exp-001 (n=804), exp-019 (n=200), exp-020 (n=204), exp-010 (n=60). Combined N>1,200.\\n2. **\\\"Only a better tiebreaker, not worth the overhead\\\"** → exp-002: K ablation (SICA≤SC all K including odd K=11); exp-013: MaxSAT≈count-only (mechanism vacuous); exp-009: overhead analysis\\n3. **\\\"Only Qwen models\\\"** → 4 instruction-scale families: Qwen-14B + Mistral-7B + LLaMA-8B + DeepSeek-R1-Distill-7B\\n4. **\\\"Only one reasoning model\\\"** → QwQ-32B (full reasoning, C0<5%). DeepSeek-R1-Distill-7B reclassified as instruction-scale (C0=58%, behaves like instruction model due to 7B capacity insufficient for deterministic reasoning chains)\\n5. **\\\"Only logic domain\\\"** → FOLIO (formal logic) + StrategyQA (commonsense) + ARC-Challenge (science). ProofWriter in appendix.\\n6. **\\\"MAX-SAT is over-engineering\\\"** → exp-013: MaxSAT ≈ count-only ≈ random-weight confirmed. This IS the capability trap evidence.\\n7. **\\\"Random tiebreak baseline\\\"** → exp-003: SICA tiebreak 80% vs random 50% vs alphabetical 60%. On tied questions SICA is better, but ties are too rare to matter at scale.\\n8. **\\\"Why not just use a reasoning model?\\\"** → Full reasoning model QwQ-32B shows C0<5%, SICA redundant. Distilled reasoning model DeepSeek-R1-7B behaves like instruction model (C0=58%). Either way SICA provides no benefit.\\n9. **\\\"How does this compare to Logic-LM / LINC?\\\"** → exp-015: Logic-LM × K baseline (CPU-only)\\n10. **\\\"Weighted SC is simpler\\\"** → exp-016: Weighted SC baseline (CPU-only)\\n11. **\\\"C0 is trivially derived\\\"** → C0 is trivial to compute but non-trivial to interpret. Its value is as a zero-cost early stopping criterion, not as a metric per se.\\n12. **\\\"Within-family scaling?\\\"** → exp-004 (7B) + exp-007 (72B-AWQ) if time permits. C0 trend within Qwen family.\\n13. **\\\"Self-extraction confound — same model generates and extracts\\\"** → exp-021 Oracle FOLIO: **RESOLVED.** Gold FOL + Z3 + MAX-SAT = 88.24% vs SC = 79.41% (+8.82pp, p=6.15e-05). Aggregation mechanism IS effective with discriminative constraints. Bottleneck conclusively localized to LLM self-extraction quality. This is now a core contribution, not just a defensive experiment.\\n14. **\\\"Published methods achieve gains on same benchmarks (DyLoS, Aristotle, FoVer)\\\"** → Acknowledge in Related Work and Discussion. Key distinction: those methods use trained/external verifiers, multi-paradigm solver selection, or logic-complete decomposition — all fundamentally different from same-model self-extraction. Our finding characterizes the specific failure mode of self-extraction pipelines, not symbolic reasoning broadly.\\n15. **\\\"MAX-SAT formulation is just weighted voting\\\"** → Paper must explicitly describe cross-answer evaluation: constraints from trace t_i ARE/ARE NOT evaluated against other candidates. If structurally a weighted vote, acknowledge and frame contribution as \\\"even the most charitable interpretation (weighted vote with constraint-based weights) provides no gain.\\\"\\n\\n## Working Title\\n**\\\"The Capability Trap: Why Self-Extracted Constraints Cannot Improve LLM Majority Voting\\\"**\\n(Alternatives: \\n- \\\"Diversity Without Discrimination: A Systematic Study of LLM-Extracted Constraint Aggregation\\\"\\n- \\\"When Does Symbolic Aggregation Help? Characterizing the Failure Mode of Self-Extracted FOL Constraints\\\")\\n\\nNOTE (Dream D037): Title MUST be scoped to \\\"self-extracted constraints\\\" / \\\"SICA\\\" — NOT \\\"symbolic consensus\\\" broadly. Published methods (DyLoS, Aristotle, FoVer, LogicAgent) achieve gains on same benchmarks using different symbolic approaches. Our evidence covers one pipeline (same-model FOL extraction + MAX-SAT), not the entire paradigm.\\n\\n## Paper Structure (EMNLP 8pp + appendix)\\n- Main Tables: T1 (Main Results: models × domains, SICA vs SC), T2 (Oracle Control: Gold-FOL+MAX-SAT vs SC vs SICA-self, the key causal separation), T3 (Constraint Ablation: MaxSAT vs count-only vs random), T4 (Temperature Ablation: C0 varies 30-43% but Δ=0 throughout)\\n- Main Figures: F1 (Method Pipeline), F2 (Per-problem scatter: vote entropy vs constraint exclusion rate, colored by flip type, n=307 multi-candidate problems from exp-001 — hero figure showing constraints fail to discriminate), F3 (Operating Regime Heatmap: all cells ≈ 0), F4 (C0 vs Gap: experiment-level conditions, marker size ∝ sqrt(n), showing no correlation between diversity and SICA effectiveness)\\n- Appendix: K ablation (exp-002), Per-domain detailed results, Overhead analysis (exp-009), Case studies (exp-008), QwQ-32B/DeepSeek-R1 negative control data\\n\\n## Claim Risk Notes (Updated D035 + exp-014)\\n- **Claim 1 mechanism refinement**: \\\"Inverse correlation between diversity and quality\\\" framing NOT supported by data (experiment-level r=0.15, p=0.74). Correct framing: \\\"constraints lack discriminative power regardless of diversity level.\\\" Evidence: MaxSAT≈count-only (exp-013), high C0 + negative delta (exp-014 C0=58% Δ=-3.3pp, exp-020 C0=62% Δ=-2.4pp). OPEN — need per-problem F2 data from exp-001 to strengthen.\\n- **Claim 2 expanded**: Five models now (added DeepSeek-R1-Distill-7B Δ=-3.3pp). DeepSeek reclassified as instruction-scale (C0=58%, not <5% as predicted). Only QwQ-32B is full reasoning model. RESOLVED.\\n- **Claim 3 gradient → independence framing**: Temperature ablation confirms C0 varies (30%→38%→43%) but gap stays flat at 0.00pp (zero discordant across all temperatures). Data supports \\\"diversity is necessary but insufficient\\\" NOT \\\"gradient diagnostic.\\\" Claim 3 should be: \\\"C0 predicts when SICA cannot help (C0<5% → degenerate), but increasing diversity beyond the threshold provides no benefit — constraint quality remains the binding bottleneck regardless of diversity level.\\\" RESOLVED (temperature data in hand).\\n- **exp-011 +10pp is noise**: n=30 SE≈9pp. exp-020 same task n=204 shows -2.4pp. Do NOT cite exp-011 as evidence of any positive signal.\\n- **F2 hero figure data gap**: Experiment-level correlations (n=7) too weak. Must use per-problem granularity from exp-001 (n≈300+ multi-candidate problems). Agent tasked with this analysis. OPEN.\\n\\n## Required Citations (Dream D037 — minimum 30 references)\\n\\nPaper Agent MUST include these categories (non-exhaustive list of must-cite works):\\n- **SC & extensions**: Wang et al. 2023 (SC), Chen et al. 2023 (USC), Loo et al. 2025 (SC scaling plateaus), Taubenfeld et al. 2025 ACL Findings (confidence-weighted SC), DiVeRSe (Li et al. 2023)\\n- **Neuro-symbolic reasoning (positive results on same benchmarks)**: DyLoS (EACL 2026), Aristotle (ACL 2025), FoVer (TACL 2025), LogicAgent (2025), Logic-LM (Pan et al. 2023), LINC (Olausson et al. 2023)\\n- **Test-time compute scaling**: Snell et al. 2025 (ICLR Oral), DeepSeek-R1 technical report (Nature 2025), Diversity-Aware Training for TTS (2025)\\n- **Verification & reranking**: ORM (Cobbe et al. 2021), PRM (Lightman et al. 2023), Math-Shepherd (Wang et al. 2024)\\n- **Constraint satisfaction in NLP**: SATBench (EMNLP 2025), LLM Meets Constraint Propagation (IJCAI 2025)\\n- **Negative results in NLP**: appropriate precedents for analysis/negative-result papers\\n- **Debate & multi-agent**: Liang et al. 2023, Du et al. 2023\\n- **Reasoning model paradigm**: QwQ technical blog, o1 (OpenAI 2024)\\n\\n## Claim Scoping Rules (Dream D037)\\n\\n- n=60 conditions: present as \\\"suggestive/consistent with\\\" NOT \\\"confirming.\\\" Only n≥200 conditions can \\\"confirm\\\" null.\\n- Combined N>1,300: acceptable if clearly stated that 804/1300 come from powered Qwen-14B condition.\\n- Domain coverage: acknowledge that SICA operates meaningfully (C0>20%) primarily on formal logic; other domains are degenerate (C0<10%) due to model capability.\\n- \\\"Capability trap\\\" framing: position as systematic quantification of a known challenge (not discovery). Our specific contributions: (a) per-problem precision analysis at n=307 granularity, (b) constraint ablation proving MAX-SAT ≈ counting, (c) C0 as deployment diagnostic.\\n\\n## Venue Fit Risks\\n- EMNLP: Negative-results/analysis paper. Must answer \\\"so what should practitioners do?\\\" → C0 as deployment diagnostic + overhead analysis.\\n- Cross-discipline: MAX-SAT needs clear explanation for NLP audience.\\n- Statistical power: Now strong (N>1,200 combined across powered tests).\\n\", \"total_chars\": 12951, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ed1d17c-4fc7-46e5-874d-2827c4a6b61f",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "322c33e1-239b-48ab-84f4-c5edc6a1aca8",
+  "sourceToolAssistantUUID": "5ed1d17c-4fc7-46e5-874d-2827c4a6b61f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T17:23:28.732Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01CWfRv6hUKWEJpMRTLx9nYf`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "322c33e1-239b-48ab-84f4-c5edc6a1aca8",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8XdLrrh54AbT5iqmLey",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8f84be91-461b-4d00-a09f-07b858ecbc41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZEHzu3LTDhQPsEHxk3vy5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1290,
+      "cache_read_input_tokens": 17406,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1290
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 17406,
+          "cache_creation_input_tokens": 1290,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1290,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T17:23:28.755Z_
+
+<details><summary>↩ Tool result · `toolu_01CWfRv6hUKWEJpMRTLx9nYf`</summary>
+
+```text
+artifacts/dream_reports/dream_20260516T051642/best/paper.tex
+artifacts/dream_reports/dream_20260516T051642/median/paper.tex
+artifacts/dream_reports/dream_20260516T054054/best/paper.tex
+artifacts/dream_reports/dream_20260516T054054/median/paper.tex
+artifacts/dream_reports/dream_20260516T054054/worst/paper.tex
+artifacts/dream_reports/dream_20260516T124139/best/paper.tex
+artifacts/dream_reports/dream_20260516T124139/median/paper.tex
+artifacts/dream_reports/dream_20260516T124139/worst/paper.tex
+artifacts/dream_reports/dream_20260516T155754/best/paper.tex
+artifacts/dream_reports/dream_20260516T155754/median/paper.tex
+artifacts/dream_reports/dream_20260516T155754/worst/paper.tex
+artifacts/dream_reports/dream_20260517T144412/best/paper.tex
+artifacts/dream_reports/dream_20260517T144412/median/paper.tex
+artifacts/dream_reports/dream_20260517T144412/worst/paper.tex
+docs/paper/main.tex
+artifacts/dream_reports/dream_20260517T165032/best/paper.tex
+docs/paper/experiments.tex
+artifacts/_project/paper/experiments.tex
+artifacts/dream_reports/dream_20260517T165032/median/paper.tex
+docs/paper/method.tex
+artifacts/dream_reports/dream_20260517T165032/worst/paper.tex
+docs/paper/introduction.tex
+docs/paper/related_work.tex
+docs/paper/discussion.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f84be91-461b-4d00-a09f-07b858ecbc41",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "3642a79e-eeee-41ab-811b-aad50f564ff0",
+  "sourceToolAssistantUUID": "8f84be91-461b-4d00-a09f-07b858ecbc41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T17:23:32.706Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01B2431RgKFsM8Pggt3qNmLw`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3642a79e-eeee-41ab-811b-aad50f564ff0",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8Xdr7W9fU3kqjtXgBgZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ea770233-de5b-45e7-bc47-247adedd6a2b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7xsuLzd3LcvnYoMshzmtH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11559,
+      "cache_read_input_tokens": 18696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 11559,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T17:23:32.726Z_
+
+<details><summary>↩ Tool result · `toolu_01B2431RgKFsM8Pggt3qNmLw`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	\usepackage[review]{acl}
+3	\usepackage{times}
+4	\usepackage{latexsym}
+5	\usepackage[T1]{fontenc}
+6	\usepackage[utf8]{inputenc}
+7	\usepackage{microtype}
+8	\usepackage{inconsolata}
+9	\usepackage{graphicx}
+10	\usepackage{amsmath}
+11	\usepackage{amssymb}
+12	\usepackage{booktabs}
+13	\usepackage{multirow}
+14	\usepackage{xcolor}
+15	\usepackage{subcaption}
+16	
+17	\title{The Capability Trap: Why Self-Extracted Constraints\\Cannot Improve LLM Majority Voting}
+18	
+19	\author{Anonymous}
+20	
+21	\begin{document}
+22	\maketitle
+23	
+24	\begin{abstract}
+25	% Phase 2: to be written after re-dream results
+26	\textbf{[PLACEHOLDER -- Abstract deferred to Phase 2]}
+27	\end{abstract}
+28	
+29	% Phase 2: Introduction deferred
+30	% \input{introduction}
+31	
+32	\input{related_work}
+33	
+34	\input{method}
+35	
+36	\input{experiments}
+37	
+38	% Phase 2: Conclusion deferred
+39	% \input{conclusion}
+40	
+41	\section*{Limitations}
+42	% Required by EMNLP
+43	\textbf{[PLACEHOLDER -- to be written in Phase 2]}
+44	
+45	\bibliography{references}
+46	\bibliographystyle{acl_natbib}
+47	
+48	\appendix
+49	% Appendix sections to be added
+50	
+51	\end{document}
+52	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ea770233-de5b-45e7-bc47-247adedd6a2b",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "0b082351-b207-4bff-8a60-72f52b2ab070",
+  "sourceToolAssistantUUID": "ea770233-de5b-45e7-bc47-247adedd6a2b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T17:23:33.727Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014cx8qvVTQkJ7pPx1MjatPK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b082351-b207-4bff-8a60-72f52b2ab070",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8Xdr7W9fU3kqjtXgBgZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bb505ba6-f588-4d06-8378-3345ddabdf51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7xsuLzd3LcvnYoMshzmtH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11559,
+      "cache_read_input_tokens": 18696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 11559,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T17:23:33.748Z_
+
+<details><summary>↩ Tool result · `toolu_014cx8qvVTQkJ7pPx1MjatPK`</summary>
+
+```text
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	% Phase 2: To be written after experiments and method sections are finalized.
+5	% Structure (from writing_plan.yaml):
+6	% 1. Hook: neuro-symbolic methods show promise
+7	% 2. Gap: does same-model self-extraction suffice?
+8	% 3. Our approach: systematic SICA evaluation + oracle control
+9	% 4. Key finding: aggregation mechanism is sound, self-extraction is bottleneck
+10	% 5. Positioning: DyLoS/Aristotle/FoVer succeed because they avoid self-extraction
+11	% 6. Contributions: [C1] capability trap, [C2] causal localization, [C3] recoverable gap, [C4] C0 diagnostic
+12	
+13	\textbf{[PLACEHOLDER -- Introduction deferred to Phase 2]}
+14	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb505ba6-f588-4d06-8378-3345ddabdf51",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "211ac3a4-73e9-4fde-a289-e1227c622fb1",
+  "sourceToolAssistantUUID": "bb505ba6-f588-4d06-8378-3345ddabdf51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T17:23:34.208Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Nq9tLce1A6MALR6QigtQUj`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "211ac3a4-73e9-4fde-a289-e1227c622fb1",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8Xdr7W9fU3kqjtXgBgZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f31a8867-e0b8-4166-978d-c3103db7e7bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7xsuLzd3LcvnYoMshzmtH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11559,
+      "cache_read_input_tokens": 18696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 11559,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T17:23:34.215Z_
+
+<details><summary>↩ Tool result · `toolu_01Nq9tLce1A6MALR6QigtQUj`</summary>
+
+```text
+1	\section{Related Work}
+2	\label{sec:related-work}
+3	
+4	% Phase 1: To be written after literature gap-fill.
+5	% Clusters (from writing_plan.yaml):
+6	% 1. SC and extensions
+7	% 2. Neuro-symbolic reasoning (distinguish trained/external vs self-extraction)
+8	% 3. Test-time compute and reasoning models
+9	% 4. Verification and reranking
+10	% 5. Constraint satisfaction in NLP
+11	% 6. Debate and multi-agent aggregation
+12	
+13	\textbf{[PLACEHOLDER -- Related Work deferred to Step 4]}
+14	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f31a8867-e0b8-4166-978d-c3103db7e7bd",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "9aef6734-04bb-4511-9bd2-a594bff596db",
+  "sourceToolAssistantUUID": "f31a8867-e0b8-4166-978d-c3103db7e7bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T17:23:34.684Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013faBVJdwetjzXArk73iHiH`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9aef6734-04bb-4511-9bd2-a594bff596db",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8Xdr7W9fU3kqjtXgBgZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "70fbc240-299c-4b01-85a9-b6632f474f53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7xsuLzd3LcvnYoMshzmtH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11559,
+      "cache_read_input_tokens": 18696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 11559,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T17:23:34.689Z_
+
+<details><summary>↩ Tool result · `toolu_013faBVJdwetjzXArk73iHiH`</summary>
+
+```text
+1	\section{Method: The SICA Pipeline}
+2	\label{sec:method}
+3	
+4	This section describes Symbolic Invariant Consensus Aggregation (SICA), the pipeline we implement and evaluate as a representative instantiation of self-extracted symbolic consensus. SICA extracts first-order logic (FOL) constraints from multiple reasoning traces produced by a single LLM, formulates a weighted partial MAX-SAT problem over these constraints, and selects the answer best supported by the satisfiable subset. We compare SICA against Self-Consistency \cite{wang2023sc}, which selects the majority answer across the same set of traces.
+5	
+6	\subsection{Overview}
+7	\label{sec:method-overview}
+8	
+9	Given a question $q$, SICA proceeds in four stages. First, an LLM generates $K$ independent reasoning traces $\{t_1, \ldots, t_K\}$ by sampling at temperature $T$; each trace $t_i$ yields a candidate answer $a_i$. Second, the same LLM is prompted to extract a set of structured FOL constraints $C_i$ from each trace $t_i$. Third, constraints are deduplicated across traces by syntactic equivalence matching, and each unique constraint receives a weight equal to the number of traces that produced it. Fourth, the deduplicated constraint pool is formulated as a weighted partial MAX-SAT instance and solved by Z3 \cite{demoura2008z3}. Each candidate answer is then scored by the total weight of satisfied constraints that support it, and the highest-scoring answer is selected.
+10	
+11	Self-Consistency (SC) uses only the first stage: it selects $a^* = \arg\max_{a} \sum_{i=1}^{K} \mathbf{1}[a_i = a]$, the answer produced by the most traces. SICA's additional signal comes from the constraint satisfaction structure. Whether this additional signal provides discriminative power beyond vote counting is the central empirical question of this paper.
+12	
+13	\subsection{Constraint Extraction}
+14	\label{sec:constraint-extraction}
+15	
+16	For each reasoning trace $t_i$, the same LLM that generated $t_i$ is prompted to extract a set of structured FOL constraints. While we prompt the model to produce FOL-style formalizations, the extracted constraints are predominantly ground-level propositions without quantifiers, reflecting the capabilities of instruction-scale models. The extraction prompt requests JSON-formatted output containing the constraint type (equation, inequality, or predicate), a human-readable expression, and a Z3-compatible formula string. Each constraint $c$ is associated with its source trace $t_i$ and the answer $a_i$ that trace produced. A representative extraction output is:
+17	\begin{small}
+18	\begin{verbatim}
+19	{"type": "predicate",
+20	 "nl": "Charlie is kind",
+21	 "z3": "kind_charlie == True"}
+22	\end{verbatim}
+23	\end{small}
+24	\noindent The full extraction prompt template is provided in Appendix~\ref{app:prompts}.
+25	
+26	We define the \emph{extraction rate} as the fraction of traces from which at least one parseable constraint is successfully extracted. Traces that yield no valid constraints are excluded from the MAX-SAT stage but still contribute their answer to the candidate pool.
+27	
+28	Deduplication proceeds by syntactic equivalence matching across all extracted constraints. For each unique constraint $c_m$, its weight $w_m$ equals the number of distinct traces that produced a syntactically equivalent constraint. This weighting reflects the intuition that constraints appearing in many independent reasoning paths are more likely to encode genuine problem structure.
+29	
+30	\subsection{Weighted Partial MAX-SAT Formulation}
+31	\label{sec:maxsat}
+32	
+33	Let $\mathcal{A}(q) = \{a : a \in \{a_1, \ldots, a_K\}\}$ denote the set of distinct candidate answers for question $q$, and let $\mathcal{C} = \{c_1, \ldots, c_M\}$ denote the deduplicated constraint pool with associated weights $\{w_1, \ldots, w_M\}$.
+34	
+35	\paragraph{MAX-SAT instance.} We formulate a Weighted Partial MAX-SAT (WPMS) problem where each unique constraint $c_m$ serves as a soft clause with weight $w_m$. The objective is to find the largest-weight subset $\mathcal{C}^* \subseteq \mathcal{C}$ such that all constraints in $\mathcal{C}^*$ are jointly satisfiable:
+36	\begin{equation}
+37	\label{eq:maxsat}
+38	\mathcal{C}^* = \arg\max_{\mathcal{S} \subseteq \mathcal{C}} \sum_{c \in \mathcal{S}} w_c \quad \text{s.t.} \quad \mathcal{S} \text{ is satisfiable.}
+39	\end{equation}
+40	Z3's optimization engine solves this instance with a per-problem timeout of 10 seconds.
+41	
+42	\paragraph{Answer scoring.} Each candidate answer $a \in \mathcal{A}(q)$ is scored by the total weight of constraints in $\mathcal{C}^*$ that support it:
+43	\begin{equation}
+44	\label{eq:score}
+45	\text{score}(a) = \sum_{c \in \mathcal{C}^*} w_c \cdot \sigma(c, a),
+46	\end{equation}
+47	where $\sigma(c, a) \in \{0, 1\}$ indicates whether constraint $c$ is consistent with answer $a$. In SICA's self-extraction setting, $\sigma(c, a) = 1$ if and only if $c$ was extracted from a trace whose final answer is $a$, reducing $\sigma$ to a source-answer indicator rather than an independent logical evaluation. The selected answer is $a^* = \arg\max_{a \in \mathcal{A}} \text{score}(a)$.
+48	
+49	\paragraph{Cross-answer constraint evaluation.}
+50	A constraint $c_m$ extracted from trace $t_i$ (which produced answer $a_i$) must in principle be evaluated against \emph{all} candidate answers, not only $a_i$. In practice, however, self-extracted constraints are tightly coupled to their source answer. Because $c_m$ is derived from the reasoning steps that led to $a_i$, the semantic content of $c_m$ typically entails $a_i$. As a result, $\sigma(c_m, a_i) \approx 1$ holds for the source answer, while $\sigma(c_m, a_j)$ for $a_j \neq a_i$ depends on whether $c_m$ happens to also be consistent with $a_j$.
+51	
+52	This coupling has a critical consequence. When constraints lack discriminative power (i.e., $\sigma(c, a)$ is approximately constant across candidates, or constraints from different traces supporting different answers cancel out), the score function degenerates:
+53	\begin{equation}
+54	\label{eq:degenerate}
+55	\text{score}(a) \approx \sum_{\substack{c \in \mathcal{C}^* \\ \text{source}(c) \to a}} w_c,
+56	\end{equation}
+57	which reduces to a weighted count of traces supporting $a$. If constraint weights are roughly uniform, this is equivalent to majority voting. The constraint ablation experiments in \S\ref{sec:experiments} confirm this degeneration empirically: MAX-SAT, count-only (selecting the answer with the most constraints regardless of satisfiability), and random-weight baselines all produce nearly identical accuracy.
+58	
+59	\subsection{The C0 Diagnostic}
+60	\label{sec:c0}
+61	
+62	We define the multi-candidate rate $C_0$ as the fraction of questions for which the $K$ sampled traces produce more than one distinct answer:
+63	\begin{equation}
+64	\label{eq:c0}
+65	C_0 = \frac{|\{q \in \mathcal{Q} : |\mathcal{A}(q)| > 1\}|}{|\mathcal{Q}|}.
+66	\end{equation}
+67	
+68	$C_0$ serves as a zero-cost diagnostic for practitioners considering symbolic aggregation. When $C_0$ is low (e.g., below 5\%), nearly all questions are answered unanimously across traces, and SICA produces the same output as SC by construction. Low $C_0$ therefore represents a \emph{necessary condition} for SICA to differ from majority voting. High $C_0$ does not guarantee improvement, as it merely ensures that disagreement exists without ensuring that constraints can resolve it correctly. $C_0$ requires only the trace sampling stage and can be computed before any constraint extraction or solver invocation, making it a useful early stopping criterion.
+69	
+70	\subsection{Scope and Limitations}
+71	\label{sec:scope}
+72	
+73	The SICA pipeline as evaluated here uses \emph{same-model self-extraction}: the same LLM that generates reasoning traces also extracts FOL constraints from those traces. This design choice isolates the question of whether an LLM's own reasoning can be usefully formalized for answer aggregation, but it also limits the scope of our findings.
+74	
+75	Our evaluation does not cover trained constraint extractors, external verification oracles, or multi-model cross-extraction setups. Published methods such as DyLoS \cite{zhang2026dylos}, Aristotle \cite{li2025aristotle}, FoVer \cite{wang2025fover}, and LogicAgent \cite{luo2025logicagent} achieve positive results on overlapping benchmarks through fundamentally different mechanisms (trained verifiers, multi-paradigm solver selection, logic-complete decomposition). Their findings are complementary to, not contradicted by, the negative results reported here. To disentangle extraction quality from aggregation effectiveness, we introduce an oracle variant that replaces self-extracted constraints with gold FOL annotations verified by Z3 (\S\ref{sec:oracle}).
+76	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70fbc240-299c-4b01-85a9-b6632f474f53",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "fcd1b5e3-4438-42b4-8195-20910bacf39b",
+  "sourceToolAssistantUUID": "70fbc240-299c-4b01-85a9-b6632f474f53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T17:23:35.162Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NyoLFJ1tiz7VBd7n4vEKin`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fcd1b5e3-4438-42b4-8195-20910bacf39b",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8Xdr7W9fU3kqjtXgBgZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bd505bae-2a3d-4d7c-9496-b6bc232a5681",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7xsuLzd3LcvnYoMshzmtH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11559,
+      "cache_read_input_tokens": 18696,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 11559,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T17:23:35.166Z_
+
+<details><summary>↩ Tool result · `toolu_01NyoLFJ1tiz7VBd7n4vEKin`</summary>
+
+```text
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Experimental Setup}
+5	\label{sec:exp-setup}
+6	
+7	We evaluate SICA against Self-Consistency (SC) across five instruction-tuned models and four reasoning benchmarks.
+8	
+9	\paragraph{Models.} We test Qwen2.5-14B-Instruct~\cite{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\cite{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\cite{dubey2024llama3}, DeepSeek-R1-Distill-Qwen-7B~\cite{guo2025deepseekr1}, and QwQ-32B~\cite{qwen2024qwq}. This selection spans 7B to 32B parameters and includes both standard instruction-tuned models and reasoning-specialized models (DeepSeek-R1, QwQ).
+10	
+11	\paragraph{Datasets.} FOLIO~\cite{han2022folio} provides formal logic problems with gold first-order logic (FOL) annotations ($n=204$), which enable the oracle control experiment (\S\ref{sec:oracle}). ProofWriter~\cite{tafjord2021proofwriter} tests multi-step deductive reasoning ($n=600$). StrategyQA~\cite{geva2021strategyqa} evaluates commonsense reasoning ($n=200$ for LLaMA-3.1-8B; $n=60$ for other models). ARC-Challenge~\cite{clark2018arc} covers science questions ($n=60$).
+12	
+13	\paragraph{Parameters.} Unless otherwise noted, we sample $K=12$ reasoning traces per question at temperature $T=0.7$. Z3~\cite{demoura2008z3} solves each MAX-SAT instance with a 10-second timeout. Temperature ablation experiments vary $T \in \{0.3, 0.5, 0.7, 1.0\}$.
+14	
+15	\paragraph{Metrics.} We report accuracy (\%), the multi-candidate rate $C_0$ (\S\ref{sec:c0}), and the accuracy gap $\Delta = \text{SICA} - \text{SC}$ in percentage points (pp). Statistical significance is assessed with the McNemar test for paired binary outcomes at $\alpha = 0.05$. For adequately powered conditions ($n \geq 200$), we also compute 95\% bootstrap confidence intervals with 1{,}000 resamples.
+16	
+17	
+18	\subsection{Main Results: SICA Provides No Significant Gain}
+19	\label{sec:main-results}
+20	
+21	Does symbolic constraint aggregation improve answer accuracy over majority voting? Table~\ref{tab:main_results} reports results across all model-domain conditions. The answer is no.
+22	
+23	\begin{table*}[t]
+24	\centering
+25	\small
+26	\caption{Accuracy of Self-Consistency (SC) and SICA across models and domains. $\Delta$ denotes the SICA$-$SC gap in percentage points, computed from unrounded values. No condition reaches statistical significance ($\alpha = 0.05$). $\dagger$: $n=60$, insufficient power for confirmatory conclusions.}
+27	\label{tab:main_results}
+28	\begin{tabular}{@{}llrrrrl@{}}
+29	\toprule
+30	Model & Domain & $n$ & SC (\%) & SICA (\%) & $\Delta$ (pp) & McNemar $p$ \\
+31	\midrule
+32	Qwen2.5-14B & FOLIO & 204 & 79.41 & 79.41 & 0.00 & --- \\
+33	Qwen2.5-14B & ProofWriter & 600 & 75.17 & 75.50 & $+$0.33 & n.s. \\
+34	Qwen2.5-14B & StrategyQA$^\dagger$ & 60 & 53.33 & 56.67 & $+$3.33 & 0.13 \\
+35	Qwen2.5-14B & ARC-Chall.$^\dagger$ & 60 & 96.67 & 95.00 & $-$1.67 & --- \\
+36	Mistral-7B & FOLIO+PW$^\dagger$ & 60 & 48.33 & 48.33 & 0.00 & 1.000 \\
+37	LLaMA-3.1-8B & StrategyQA & 200 & 72.00 & 74.00 & $+$2.00 & 0.424 \\
+38	LLaMA-3.1-8B & FOLIO & 204 & 63.24 & 60.78 & $-$2.45 & 0.267 \\
+39	DeepSeek-R1-7B & FOLIO+PW$^\dagger$ & 60 & 71.67 & 68.33 & $-$3.33 & 0.480 \\
+40	\bottomrule
+41	\end{tabular}
+42	\end{table*}
+43	
+44	Across the four adequately powered conditions ($n \geq 200$, combined $N = 1{,}208$), the SICA--SC gap ranges from $-2.45$ to $+2.00$~pp. None reaches significance: the two nonzero gaps yield $p = 0.267$ and $p = 0.424$, and the remaining two conditions produce identical predictions. The largest positive gap ($+2.00$~pp, LLaMA-3.1-8B on StrategyQA) falls within chance variation ($p = 0.424$). The largest negative gap ($-2.45$~pp, LLaMA-3.1-8B on FOLIO) is similarly nonsignificant ($p = 0.267$), but its direction shows that SICA can harm accuracy when self-extracted constraints introduce noise.
+45	
+46	The four smaller conditions ($n=60$, marked $\dagger$) are consistent with this null pattern. Qwen2.5-14B on StrategyQA shows $\Delta = +3.33$~pp ($p = 0.13$), suggestive of a positive trend but underpowered to confirm it. DeepSeek-R1-7B on FOLIO+ProofWriter shows $\Delta = -3.33$~pp ($p = 0.480$). Two conditions produce identical outputs ($\Delta = 0$).
+47	
+48	Across eight conditions, five models, and more than 1,300 evaluation instances, SICA does not improve upon majority voting. The next three subsections investigate why.
+49	
+50	
+51	\subsection{Oracle Control: The Aggregation Mechanism Is Effective}
+52	\label{sec:oracle}
+53	
+54	Is the null result caused by a flawed aggregation mechanism, or by low-quality extracted constraints? To separate these explanations, we construct an oracle variant of SICA that replaces self-extracted FOL constraints with gold FOL annotations from the FOLIO dataset ($n = 204$). The oracle uses Z3 to evaluate ground-truth formulas against each candidate answer; all other pipeline components remain identical.
+55	
+56	Oracle-SICA achieves 88.24\% accuracy, compared to 79.41\% for both SC and standard SICA (Table~\ref{tab:main_results}). The improvement of $+8.82$~pp is highly significant (McNemar $p = 6.15 \times 10^{-5}$). Z3 satisfiability checks on gold FOL annotations agree with ground-truth labels for 193 of 204 problems (94.6\% agreement), so the solver operates correctly on well-formed constraints. This result establishes two conclusions. First, the weighted partial MAX-SAT aggregation mechanism is sound: given correct constraints, it recovers answers that majority voting misses. Second, the bottleneck lies entirely in constraint extraction quality. When the LLM extracts its own FOL constraints from reasoning traces, the resulting formulas do not carry enough discriminative signal to outperform vote counting. The oracle control is the strongest evidence that the capability trap is a constraint quality problem, not an aggregation design problem.
+57	
+58	
+59	\subsection{Capability Trap Diagnostics}
+60	\label{sec:diagnostics}
+61	
+62	Why does SICA fail to improve over SC? We examine three diagnostic dimensions: the multi-candidate rate $C_0$, constraint extraction quality, and the effect of sampling temperature on answer diversity.
+63	
+64	\paragraph{Multi-candidate rate.} Table~\ref{tab:capability_trap} reports $C_0$, extraction rate, and contradiction rate for each condition. Two distinct failure regimes emerge. For QwQ-32B, a reasoning-specialized model, $C_0$ is only 2.6\% across tested conditions. With over 97\% of questions answered unanimously across $K=12$ traces, SICA reduces to SC by construction and cannot provide any benefit regardless of constraint quality. For instruction-tuned models (Qwen2.5-14B, Mistral-7B, LLaMA-3.1-8B, DeepSeek-R1-7B), $C_0$ ranges from 5.0\% (ARC-Challenge) to 61.8\% (FOLIO with LLaMA-3.1-8B). Higher $C_0$ creates more questions where SICA could in principle differ from SC, yet $\Delta$ remains nonsignificant across all conditions. High $C_0$ is necessary but not sufficient: disagreement among traces exists, but the extracted constraints cannot resolve it correctly. Figure~\ref{fig:operating_regime} maps $C_0$ against the SICA--SC gap for all conditions, and the gap stays centered around zero regardless of $C_0$.
+65	
+66	\begin{table*}[t]
+67	\centering
+68	\small
+69	\caption{Capability trap diagnostics. $C_0$: fraction of questions with multiple distinct candidate answers across $K=12$ traces. Extraction rate: fraction of traces yielding at least one parseable FOL constraint. Contradiction rate: fraction of extracted constraint sets with internal contradictions. $\Delta$: SICA$-$SC gap (pp), repeated from Table~\ref{tab:main_results} for reference. $\dagger$: $n=60$. $^*$Combined rate from a single run covering both FOLIO and ProofWriter.}
+70	\label{tab:capability_trap}
+71	\begin{tabular}{@{}llrrrr@{}}
+72	\toprule
+73	Model & Domain & $C_0$ (\%) & Extr.\ Rate & Contr.\ Rate & $\Delta$ (pp) \\
+74	\midrule
+75	Qwen2.5-14B & FOLIO & 38.2$^*$ & 0.89 & 0.022 & 0.00 \\
+76	Qwen2.5-14B & ProofWriter & 38.2$^*$ & 0.89 & 0.022 & $+$0.33 \\
+77	Qwen2.5-14B & StrategyQA$^\dagger$ & 10.0 & 0.70 & --- & $+$3.33 \\
+78	Qwen2.5-14B & ARC-Chall.$^\dagger$ & 5.0 & 1.00 & --- & $-$1.67 \\
+79	Mistral-7B & FOLIO+PW$^\dagger$ & 50.0 & 0.88 & 0.056 & 0.00 \\
+80	LLaMA-3.1-8B & StrategyQA & 41.0 & --- & --- & $+$2.00 \\
+81	LLaMA-3.1-8B & FOLIO & 61.8 & 0.94 & 0.062 & $-$2.45 \\
+82	DeepSeek-R1-7B & FOLIO+PW$^\dagger$ & 58.3 & 0.84 & 0.037 & $-$3.33 \\
+83	\bottomrule
+84	\end{tabular}
+85	\end{table*}
+86	
+87	\paragraph{Extraction quality.} Extraction rates are generally high (0.70 to 1.00), and contradiction rates remain below 7\% across all measured conditions. These metrics indicate that the extraction pipeline is mechanically functional: the LLM produces well-formed, internally consistent constraints at high rates. The problem is not extraction failure but extraction vacuity. The constraints are syntactically valid but semantically redundant with the answer they were derived from, as analyzed in \S\ref{sec:maxsat} and confirmed by the ablation in \S\ref{sec:ablation}. Even with LLaMA-3.1-8B on FOLIO, where $C_0 = 61.8\%$ and extraction rate reaches 0.94, $\Delta$ is $-2.45$~pp. The highest extraction quality among all conditions corresponds to SICA performing \emph{worse} than SC.
+88	
+89	\paragraph{Temperature ablation.} If SICA's failure stems from insufficient answer diversity at $T = 0.7$, increasing temperature should raise $C_0$ and create more opportunities for constraint-based discrimination. We test $T \in \{0.3, 0.5, 0.7, 1.0\}$ with Qwen2.5-14B on a 60-question subset. $C_0$ ranges from 30.0\% ($T=0.3$) to 53.3\% ($T=0.7$) across temperatures. However, $\Delta$ is exactly 0.0~pp at $T \in \{0.3, 0.5, 1.0\}$ and $+3.3$~pp at $T = 0.7$ ($n = 60$, not significant). Higher diversity does not translate into better constraint discrimination. Figure~\ref{fig:capability_scatter} plots the per-problem relationship between vote entropy and constraint exclusion rate for a representative condition.
+90	
+91	\begin{figure}[t]
+92	\centering
+93	% \includegraphics[width=\columnwidth]{figures/capability_scatter.pdf}
+94	\caption{Per-problem scatter of vote entropy (x-axis) versus constraint exclusion rate (y-axis) for Qwen2.5-14B on FOLIO. Problems with high vote entropy (ambiguous majority vote) do not benefit from constraint filtering; the constraints fail to resolve disagreement among traces.}
+95	\label{fig:capability_scatter}
+96	\end{figure}
+97	
+98	\begin{figure}[t]
+99	\centering
+100	% \includegraphics[width=\columnwidth]{figures/operating_regime.pdf}
+101	\caption{Multi-candidate rate $C_0$ (x-axis) versus SICA$-$SC accuracy gap (y-axis) across all model-domain conditions. Each point represents one condition from Table~\ref{tab:main_results}. The gap remains centered around zero regardless of $C_0$: answer diversity alone does not enable constraint-based improvement.}
+102	\label{fig:operating_regime}
+103	\end{figure}
+104	
+105	The diagnostic picture is consistent across all three dimensions: SICA fails not because of insufficient diversity or mechanical extraction errors, but because the extracted constraints carry no discriminative signal beyond the votes they were derived from.
+106	
+107	
+108	\subsection{Constraint Ablation: MAX-SAT Degenerates to Counting}
+109	\label{sec:ablation}
+110	
+111	The diagnostics above suggest that self-extracted constraints are semantically coupled to their source answers and therefore non-discriminative. If so, the MAX-SAT formulation should produce the same predictions as simpler baselines that ignore constraint satisfiability. We test this prediction with three ablation variants on Qwen2.5-14B across combined FOLIO and ProofWriter data ($n = 804$):
+112	
+113	\begin{itemize}
+114	\item \textbf{SICA (MAX-SAT):} The full pipeline as described in \S\ref{sec:method}.
+115	\item \textbf{Count-only:} Select the answer supported by the most constraints, ignoring satisfiability.
+116	\item \textbf{Random-weight:} Randomize constraint weights before MAX-SAT solving.
+117	\end{itemize}
+118	
+119	\begin{table}[t]
+120	\centering
+121	\small
+122	\caption{Constraint ablation (Qwen2.5-14B, $n = 804$, FOLIO + ProofWriter). SC serves as the majority-vote baseline. Agreement indicates the number of predictions identical to SC out of 804. All constraint-based variants produce nearly identical outputs.}
+123	\label{tab:ablation}
+124	\begin{tabular}{@{}lrc@{}}
+125	\toprule
+126	Aggregation & Acc.\ (\%) & Agreement w/ SC \\
+127	\midrule
+128	SC (majority vote) & 76.24 & --- \\
+129	SICA (MAX-SAT) & 76.49 & 802\,/\,804 \\
+130	Count-only & 76.62 & 802\,/\,804 \\
+131	Random-weight & 76.37 & 802\,/\,804 \\
+132	\bottomrule
+133	\end{tabular}
+134	\end{table}
+135	
+136	Table~\ref{tab:ablation} reports the results. All three constraint-based variants agree with SC on 802 of 804 predictions (99.8\%). The count-only baseline, which ranks answers solely by the number of supporting constraints without any satisfiability check, achieves accuracy within 0.25~pp of the full MAX-SAT formulation. The random-weight variant, which destroys the learned constraint weights, performs similarly. These near-identical outcomes confirm the degeneration predicted in Equation~\ref{eq:degenerate}: because self-extracted constraints are tightly coupled to their source answers, the MAX-SAT solver effectively reduces to a weighted vote count. The satisfiability structure adds no discriminative power beyond what simple counting already provides.
+137	
+138	This ablation directly supports the capability trap thesis. Symbolic verification \emph{can} improve answer selection, as the oracle control demonstrates with $+8.82$~pp over SC. But the improvement requires constraints that encode independent problem structure. Self-extracted constraints instead encode the reasoning steps that produced each candidate answer, and so they are redundant with the votes they accompany.
+139	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd505bae-2a3d-4d7c-9496-b6bc232a5681",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "95468162-2cf6-4190-8225-f655ac58bf0f",
+  "sourceToolAssistantUUID": "bd505bae-2a3d-4d7c-9496-b6bc232a5681",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T17:23:35.520Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0155EDAFunhBsm3pJLo72DgU`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "95468162-2cf6-4190-8225-f655ac58bf0f",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8Xdr7W9fU3kqjtXgBgZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fca1bfb9-540b-4c97-a306-9ecb931d65a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7xsuLzd3LcvnYoMshzmtH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11559,
+      "cache_read_input_tokens": 18696,
+      "output_tokens": 451,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 11559
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 451,
+          "cache_read_input_tokens": 18696,
+          "cache_creation_input_tokens": 11559,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 11559,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T17:23:35.533Z_
+
+<details><summary>↩ Tool result · `toolu_0155EDAFunhBsm3pJLo72DgU`</summary>
+
+```text
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	% Phase 2: To be written after experiments are finalized.
+5	% Structure (from writing_plan.yaml):
+6	% 1. Oracle experiment as causal intervention
+7	% 2. Why DyLoS/Aristotle/FoVer work: bypass same-model self-extraction
+8	% 3. Constructive direction: trained extractors, external provers
+9	% 4. C0 as deployment diagnostic
+10	% 5. Limitations
+11	
+12	\textbf{[PLACEHOLDER -- Discussion deferred to Phase 2]}
+13	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fca1bfb9-540b-4c97-a306-9ecb931d65a8",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "9b133056-3f9e-4be8-ba6e-8056ea15d49a",
+  "sourceToolAssistantUUID": "fca1bfb9-540b-4c97-a306-9ecb931d65a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-17T17:23:40.321Z_
+
+Now let me check the dream report versions for a more complete picture.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b133056-3f9e-4be8-ba6e-8056ea15d49a",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8XeMJvQwtuA7W9Cycfs",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "dd557b18-2e82-423a-8885-a799bde4dd11",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0197Y3PYHFbvnnTUmh1GjJwK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8907,
+      "cache_read_input_tokens": 30255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 8907,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T17:23:44.726Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UkmxoRUGZt6LRzz2Xp58m3`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260517T165032/best/paper.tex",
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd557b18-2e82-423a-8885-a799bde4dd11",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8XeMJvQwtuA7W9Cycfs",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1a497078-4b18-443b-804b-6f369932c494",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0197Y3PYHFbvnnTUmh1GjJwK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8907,
+      "cache_read_input_tokens": 30255,
+      "output_tokens": 225,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 8907
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 225,
+          "cache_read_input_tokens": 30255,
+          "cache_creation_input_tokens": 8907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 8907,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T17:23:44.733Z_
+
+<details><summary>↩ Tool result · `toolu_01UkmxoRUGZt6LRzz2Xp58m3`</summary>
+
+```text
+1	\documentclass[11pt,a4paper]{article}
+2	\usepackage[utf8]{inputenc}
+3	\usepackage[T1]{fontenc}
+4	\usepackage{amsmath,amssymb,amsfonts}
+5	\usepackage{booktabs}
+6	\usepackage{multirow}
+7	\usepackage{graphicx}
+8	\usepackage{xcolor}
+9	\usepackage{hyperref}
+10	\usepackage[margin=2.5cm]{geometry}
+11	\usepackage{natbib}
+12	\usepackage{tabularx}
+13	\usepackage{caption}
+14	\usepackage{subcaption}
+15	
+16	\newcommand{\sica}{\textsc{Sica}}
+17	\newcommand{\scmethod}{\textsc{SC}}
+18	\newcommand{\czero}{$C_0$}
+19	
+20	\title{The Capability Trap: Why Self-Extracted Constraints\\Cannot Improve LLM Majority Voting}
+21	
+22	\author{Anonymous}
+23	\date{}
+24	
+25	\begin{document}
+26	\maketitle
+27	
+28	% ============================================================
+29	% ABSTRACT
+30	% ============================================================
+31	\begin{abstract}
+32	Recent work augments Large Language Model (LLM) reasoning with symbolic methods that extract first-order logic (FOL) constraints from reasoning traces and aggregate them via solvers such as MAX-SAT.
+33	We ask a practical question: when does such symbolic aggregation improve over simple majority voting (Self-Consistency, SC)?
+34	We instantiate the paradigm as \sica{} (Symbolic Invariant Consensus Aggregation), which extracts FOL constraints from sampled reasoning traces and selects answers via weighted MAX-SAT, and evaluate it across three reasoning domains (formal logic, commonsense, science) and five model families spanning instruction-tuned, distilled-reasoning, and full-reasoning architectures.
+35	Across all 18 tested conditions (combined $N{>}1{,}300$), \sica{} provides no significant accuracy gain over SC, with per-condition $\Delta$ ranging from $-3.3$pp to $+2.0$pp.
+36	We identify the structural cause: a \emph{capability trap} in which self-extracted constraints achieve precision $\approx 0.50$ (no better than chance) at distinguishing correct from incorrect answers, causing MAX-SAT to degenerate to weighted counting.
+37	A constraint ablation confirms that MAX-SAT, count-only, and random-weight aggregation produce statistically identical results ($>$99.6\% agreement).
+38	We propose $C_0$ (multi-candidate rate) as a zero-cost diagnostic: $C_0{<}5\%$ predicts method degeneracy, while high $C_0$ is necessary but insufficient for gains.
+39	These findings provide practitioners with a principled early-stopping criterion before investing in symbolic aggregation overhead.
+40	\end{abstract}
+41	
+42	% ============================================================
+43	% 1. INTRODUCTION
+44	% ============================================================
+45	\section{Introduction}
+46	\label{sec:intro}
+47	
+48	Self-Consistency (SC) \citep{wang2023selfconsistency} improves LLM reasoning by sampling multiple reasoning traces and selecting the majority answer.
+49	A natural extension is to extract richer structure from these traces: formal constraints, logical invariants, or symbolic representations that a solver can aggregate more intelligently than simple voting \citep{pan2023logiclm,olausson2023linc}.
+50	Several recent systems pursue this direction, using FOL translation, constraint satisfaction, or symbolic verification to rerank or select answers \citep{pan2023logiclm,olausson2023linc,dylos2026,aristotle2025,fover2025}.
+51	The appeal is clear: if reasoning traces contain more information than just the final answer, a solver that exploits that information should outperform voting.
+52	
+53	But when does this actually work?
+54	Prior systems report gains on specific benchmarks, yet use trained verifiers, external oracles, or multi-paradigm solver selection.
+55	A fundamental question remains open: can the \emph{same} LLM that generates reasoning traces also extract constraints of sufficient quality to improve its own voting?
+56	We call this the \emph{self-extraction} setting, where a single model both reasons and formalizes.
+57	
+58	We instantiate self-extraction as \sica{} (Symbolic Invariant Consensus Aggregation): sample $K$ reasoning traces, extract FOL constraints from each via the same LLM, and solve a weighted MAX-SAT instance to select the best answer.
+59	We evaluate \sica{} across three reasoning domains (FOLIO, StrategyQA, ARC-Challenge, with GSM8K and ProofWriter as supplementary) and five model families (Qwen-14B, LLaMA-8B, Mistral-7B, DeepSeek-R1-Distill-7B, QwQ-32B), spanning instruction-tuned, distilled-reasoning, and full-reasoning architectures.
+60	
+61	Our central finding is negative: \sica{} provides no significant improvement over SC in any tested condition.
+62	We identify the structural cause as a \emph{capability trap}:
+63	\begin{itemize}
+64	    \item \sica{} requires output diversity (multiple candidate answers) to differ from voting. We quantify this via $C_0$, the fraction of problems with more than one candidate answer across $K$ traces.
+65	    \item When $C_0$ is low ($<$5\%, as with full reasoning models), \sica{} structurally degenerates to SC because there is only one candidate.
+66	    \item When $C_0$ is high (38--62\%, as with instruction-tuned models), self-extracted constraints achieve precision $\approx 0.50$ at discriminating correct from incorrect answers, making MAX-SAT equivalent to counting.
+67	    \item No tested condition achieves both sufficient diversity AND discriminative constraints simultaneously.
+68	\end{itemize}
+69	
+70	Our contributions are:
+71	\begin{enumerate}
+72	    \item \textbf{Systematic negative result}: We show that self-extracted FOL constraint aggregation via MAX-SAT provides no significant accuracy gain over majority voting across 3 domains, 5 model families, and 18 experimental conditions (combined $N{>}1{,}300$).
+73	    \item \textbf{Capability trap characterization}: We identify and quantify the structural failure mode: self-extracted constraints achieve chance-level discriminative precision ($\bar{p}=0.50$, $n=307$ multi-candidate problems), causing MAX-SAT to degenerate to counting (confirmed by three-way ablation: MAX-SAT $\equiv$ count-only $\equiv$ random-weight, $>$99.6\% agreement).
+74	    \item \textbf{$C_0$ deployment diagnostic}: We propose the multi-candidate rate $C_0$ as a zero-cost early-stopping criterion. $C_0{<}5\%$ reliably predicts degeneracy; high $C_0$ is necessary but insufficient for gains (Pearson $r=0.05$, $p=0.84$ across 18 conditions).
+75	\end{enumerate}
+76	
+77	% ============================================================
+78	% 2. RELATED WORK
+79	% ============================================================
+80	\section{Related Work}
+81	\label{sec:related}
+82	
+83	\paragraph{Self-Consistency and extensions.}
+84	SC \citep{wang2023selfconsistency} established majority voting over sampled reasoning traces as a strong baseline for LLM reasoning.
+85	Universal SC (USC) \citep{chen2023usc} extends this to free-form answers.
+86	\citet{loo2025sc} demonstrate that SC scaling plateaus with increased samples, motivating richer aggregation.
+87	Confidence-weighted SC \citep{taubenfeld2025weighted} assigns trace-level weights but remains within the voting paradigm.
+88	DiVeRSe \citep{li2023diverse} combines diverse prompting with verification.
+89	
+90	\paragraph{Neuro-symbolic reasoning.}
+91	Logic-LM \citep{pan2023logiclm} and LINC \citep{olausson2023linc} translate natural language to FOL for symbolic solving, documenting that LLM-to-FOL translation is error-prone.
+92	Recent systems achieve gains using trained verifiers or multi-paradigm approaches: DyLoS \citep{dylos2026} uses dynamic logic-solver selection, Aristotle \citep{aristotle2025} employs logic-complete decomposition, and FoVer \citep{fover2025} trains a dedicated verifier.
+93	Our work differs by studying the specific failure mode of \emph{same-model self-extraction} pipelines rather than these richer architectures.
+94	
+95	\paragraph{Verification and reranking.}
+96	Outcome Reward Models (ORM) \citep{cobbe2021gsm8k} and Process Reward Models (PRM) \citep{lightman2023prm} use trained verifiers to rerank solutions.
+97	Math-Shepherd \citep{wang2024mathshepherd} extends process supervision.
+98	These approaches train separate verifiers, sidestepping the self-extraction bottleneck we characterize.
+99	
+100	\paragraph{Test-time compute scaling.}
+101	\citet{snell2025scaling} analyze optimal test-time compute allocation.
+102	DeepSeek-R1 \citep{deepseekr1} and OpenAI o1 \citep{openai2024o1} demonstrate that extended reasoning chains can substitute for external verification.
+103	Our finding that full reasoning models (QwQ-32B) produce near-zero diversity ($C_0{<}5\%$) is consistent with this paradigm: models that ``think longer'' converge to consistent answers, eliminating the operating regime for symbolic aggregation.
+104	
+105	\paragraph{Constraint satisfaction in NLP.}
+106	SATBench \citep{satbench2025} evaluates LLM performance on satisfiability problems.
+107	Recent work explores constraint propagation with LLMs \citep{llmcp2025}.
+108	Our MAX-SAT formulation draws on this line but applies it to answer aggregation rather than direct problem solving.
+109	
+110	% ============================================================
+111	% 3. METHOD
+112	% ============================================================
+113	\section{Method: SICA}
+114	\label{sec:method}
+115	
+116	\sica{} (Symbolic Invariant Consensus Aggregation) aggregates LLM reasoning traces via symbolic constraint satisfaction.
+117	The pipeline has four stages.
+118	
+119	\paragraph{Stage 1: Trace generation.}
+120	Given a problem $q$, sample $K$ reasoning traces $\{t_1, \ldots, t_K\}$ from an LLM with temperature $\tau > 0$.
+121	Extract the final answer $a_i$ from each trace $t_i$.
+122	Let $\mathcal{A} = \{a_1, \ldots, a_m\}$ be the set of distinct candidate answers.
+123	
+124	\paragraph{Stage 2: Constraint extraction.}
+125	For each trace $t_i$, prompt the same LLM to extract a set of FOL constraints $\mathcal{C}_i = \{c_{i,1}, \ldots, c_{i,n_i}\}$ that formalize key reasoning steps.
+126	Each constraint $c_{i,j}$ is a FOL formula intended to capture an invariant of the reasoning process.
+127	
+128	\paragraph{Stage 3: Constraint evaluation.}
+129	For each candidate answer $a \in \mathcal{A}$ and each constraint $c_{i,j}$, evaluate whether $a$ satisfies $c_{i,j}$.
+130	Define $\text{sat}(a, c_{i,j}) \in \{0, 1\}$.
+131	This produces a satisfaction matrix of size $|\mathcal{A}| \times |\mathcal{C}|$ where $\mathcal{C} = \bigcup_i \mathcal{C}_i$.
+132	
+133	\paragraph{Stage 4: MAX-SAT aggregation.}
+134	Formulate a weighted MAX-SAT instance where each constraint-answer pair contributes a weighted clause.
+135	The answer maximizing total satisfied constraint weight is selected:
+136	\begin{equation}
+137	    a^* = \arg\max_{a \in \mathcal{A}} \sum_{c \in \mathcal{C}} w_c \cdot \text{sat}(a, c)
+138	\end{equation}
+139	where $w_c$ is the weight assigned to constraint $c$ (default: uniform).
+140	In case of ties, \sica{} selects the answer supported by the trace with the highest individual constraint satisfaction count.
+141	
+142	\paragraph{Baseline: Self-Consistency (SC).}
+143	SC selects $a^* = \arg\max_{a \in \mathcal{A}} |\{i : a_i = a\}|$, using only final answers.
+144	
+145	\paragraph{$C_0$ diagnostic.}
+146	We define $C_0$ as the fraction of problems where $|\mathcal{A}| > 1$ (i.e., traces produce more than one distinct answer).
+147	When $C_0 = 0$, all traces agree and \sica{} trivially equals SC.
+148	$C_0$ is computable from Stage 1 alone, before any constraint extraction, making it a zero-cost diagnostic.
+149	
+150	% ============================================================
+151	% 4. EXPERIMENTS
+152	% ============================================================
+153	\section{Experiments}
+154	\label{sec:experiments}
+155	
+156	\subsection{Setup}
+157	\label{sec:setup}
+158	
+159	\paragraph{Domains.}
+160	We evaluate on three primary domains: \textbf{FOLIO} (formal deductive logic, 204 problems), \textbf{StrategyQA} (commonsense reasoning, 200 problems for powered tests), and \textbf{ARC-Challenge} (science reasoning, 60 problems).
+161	Supplementary domains include \textbf{GSM8K} (arithmetic, 200 problems) and \textbf{ProofWriter} (included in QwQ-32B evaluation).
+162	
+163	\paragraph{Models.}
+164	We test five model families:
+165	(1) \textbf{Qwen2.5-14B-Instruct} as the primary model ($n=804$ powered evaluation across domains);
+166	(2) \textbf{LLaMA-3.1-8B-Instruct} on StrategyQA ($n=200$) and FOLIO ($n=204$);
+167	(3) \textbf{DeepSeek-R1-Distill-Qwen-7B} ($n=60$);
+168	(4) \textbf{QwQ-32B} as a full reasoning model ($n=46$);
+169	(5) Within-family scaling with \textbf{Qwen2.5-7B} and \textbf{Qwen2.5-72B-AWQ}.
+170	
+171	All experiments use $K=12$ sampled traces unless otherwise noted.
+172	
+173	\paragraph{Metrics.}
+174	We report accuracy for both \sica{} and SC, their difference $\Delta$ (in percentage points), McNemar's test $p$-value for significance, and 95\% bootstrap confidence intervals for powered tests.
+175	We also report $C_0$ (multi-candidate rate), constraint extraction rate, and constraint precision (fraction of constraints that correctly distinguish the gold answer from incorrect candidates).
+176	
+177	% ============================================================
+178	% 4.2 MAIN RESULTS
+179	% ============================================================
+180	\subsection{Main Results}
+181	\label{sec:main_results}
+182	
+183	Table~\ref{tab:main} summarizes results across all model-domain combinations.
+184	Across every tested condition, \sica{} provides no statistically significant improvement over SC.
+185	
+186	\begin{table*}[t]
+187	\centering
+188	\caption{Main results: \sica{} vs.\ SC across models and domains. $\Delta$ = \sica{} $-$ SC in percentage points. $C_0$ = multi-candidate rate. All $p$-values from McNemar's test. No condition achieves significance at $\alpha=0.05$.}
+189	\label{tab:main}
+190	\small
+191	\begin{tabular}{llrrrrrl}
+192	\toprule
+193	\textbf{Model} & \textbf{Domain} & \textbf{$n$} & \textbf{\sica{} Acc} & \textbf{SC Acc} & \textbf{$\Delta$pp} & \textbf{$C_0$\%} & \textbf{$p$} \\
+194	\midrule
+195	Qwen2.5-14B & FOLIO+SQA+ARC & 804 & 76.5 & 76.2 & +0.25 & 38 & -- \\
+196	Qwen2.5-14B & StrategyQA & 60 & 56.7 & 53.3 & +3.33 & 10 & 0.50 \\
+197	Qwen2.5-14B & ARC-Challenge & 60 & 95.0 & 96.7 & $-$1.67 & 5 & 1.00 \\
+198	Qwen2.5-14B & GSM8K & 30 & 86.7 & 86.7 & 0.0 & 13 & -- \\
+199	Qwen2.5-14B & GSM8K (expanded) & 200 & 89.0 & 89.0 & 0.0 & 12 & 1.00 \\
+200	\midrule
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a497078-4b18-443b-804b-6f369932c494",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "094c8a47-ad6f-4a58-a185-6cddf6543929",
+  "sourceToolAssistantUUID": "1a497078-4b18-443b-804b-6f369932c494",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T17:23:44.763Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01UT8sLEjL2aLtPx2xWkky1R`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "report.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "094c8a47-ad6f-4a58-a185-6cddf6543929",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8XeMJvQwtuA7W9Cycfs",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "02343153-ea87-472e-9bc6-8566bfe1e881",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0197Y3PYHFbvnnTUmh1GjJwK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8907,
+      "cache_read_input_tokens": 30255,
+      "output_tokens": 225,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 8907
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 225,
+          "cache_read_input_tokens": 30255,
+          "cache_creation_input_tokens": 8907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 8907,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T17:23:44.790Z_
+
+<details><summary>↩ Tool result · `toolu_01UT8sLEjL2aLtPx2xWkky1R`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp-004-qwen7b | Within-family scaling: Qwen2.5-7B-Instruct 在 D012 60 题上 SICA vs SC。弱模型预期 C0 > 14B（更多 diversity），但 constraint quality 预期更低，SICA-SC gap 预期≈0——验证 capability trap 的 scaling 维度。 | — | — | — |\\n\\n## 待处理\\n- smoke-test-5q（准备中）\\n\\n## 近期结论\\n- **exp-012-gsm8k-pilot** (negative): Cross-domain validation: Qwen2.5-14B-Instruct 在 GSM8K (开放答案数学域) 30 题上 SICA vs SC。预期 C0<20%（14B 在 GSM8K 太强），验证 C0 作为 SICA 无效性预测指标。 ← 基于 sica_expanded_14b\\n- **exp-021-oracle-folio** (success): If we replace self-extracted constraints with gold FOL annotations verified by Z3, Oracle-SICA should significantly outperform both SC and SICA, demonstrating that constraint quality is the bottleneck for SICA gains on formal logic tasks. ← 基于 sica_expanded_14b\\n  [exp021_oracle_folio_results](/api/workspace-files/projects/symb_invariant_consensus/artifacts/exp-021-oracle-folio/data/exp021_summary.txt)\\n- **temperature-ablation-t10** (negative): Temperature ablation T=1.0: 高温下 Qwen2.5-14B trace diversity 最大化（C0 预期>60%），SICA-SC gap 预期≈0 或负——验证最大 diversity 仍不能拯救 SICA，因为 constraint discriminative power 不随 diversity 增加 ← 基于 sica_expanded_14b\\n\\n## 趋势\\n成功 13 / 负向 11 / 失败 9 / 共 39\\nsc_accuracy: 0.7941 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-32608: 无 GPU 信息\\n\\n## 告警\\n- mvp_math50_t07: 已被终止 — unknown\\n- sica_aime30_t07: 已被终止 — unknown\\n- sica_aime30_v2: 已被终止 — unknown\\n- sica_aime30_v3: 已被终止 — unknown\\n- sica_proofwriter30: 训练失败 — unknown\\n- sica_folio30: 已被终止 — unknown\\n- sica_proofwriter30_v2: 已被终止 — unknown\\n- exp-011-llama8b: 训练失败 — unknown\\n- exp-010-mistral: 训练失败 — unknown\\n- exp-011-llama8b-v2: 训练失败 — unknown\\n- exp-017-strategyqa: 训练失败 — unknown\\n- exp-018-arc: 训练失败 — unknown\\n- exp-010-mistral-v2: 训练失败 — unknown\\n- exp-017-strategyqa-v2: 训练失败 — unknown\\n- pilot-contrastive-prompt: 训练失败 — unknown\\n\", \"total_chars\": 1938, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "02343153-ea87-472e-9bc6-8566bfe1e881",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "559884ec-a3eb-4d3e-b3e3-c41070f28b37",
+  "sourceToolAssistantUUID": "02343153-ea87-472e-9bc6-8566bfe1e881",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-17T17:23:49.606Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Kdk8dxf9gCRBKVv87N12vb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260517T165032/best/paper.tex",
+  "offset": 200,
+  "limit": 400
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "559884ec-a3eb-4d3e-b3e3-c41070f28b37",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8Xf2xPsS4NZocmBdpNa",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "00cbf31a-203b-45c2-b6bb-07986d46bf8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qz2VJGkpmf6ze967HPAUTc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5995,
+      "cache_read_input_tokens": 39162,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5995,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T17:23:49.618Z_
+
+<details><summary>↩ Tool result · `toolu_01Kdk8dxf9gCRBKVv87N12vb`</summary>
+
+```text
+200	\midrule
+201	LLaMA-3.1-8B & StrategyQA & 200 & -- & -- & +2.0 & 62 & 0.424 \\
+202	LLaMA-3.1-8B & FOLIO & 204 & -- & -- & $-$2.45 & 62 & 0.267 \\
+203	\midrule
+204	DeepSeek-R1-7B & D012 (pilot) & 60 & 68.3 & 71.7 & $-$3.33 & 58 & 0.48 \\
+205	\midrule
+206	Qwen2.5-7B & D012 (pilot) & 60 & 58.3 & 58.3 & 0.0 & 70 & 1.00 \\
+207	Qwen2.5-72B-AWQ & D012 (pilot) & 60 & 80.0 & 80.0 & 0.0 & 22 & 1.00 \\
+208	\midrule
+209	QwQ-32B & All domains & 46 & -- & -- & 0.0 & 2.6 & -- \\
+210	\bottomrule
+211	\end{tabular}
+212	\end{table*}
+213	
+214	Three patterns emerge from Table~\ref{tab:main}:
+215	
+216	\textbf{Instruction-scale models show high diversity but zero gain.}
+217	Qwen-14B on its primary evaluation ($n=804$) achieves $C_0=38\%$, meaning over a third of problems produce multiple candidate answers.
+218	Yet $\Delta=+0.25$pp, well within noise.
+219	LLaMA-8B shows the highest diversity ($C_0=62\%$) with powered tests ($n\geq200$) yielding $\Delta=+2.0$pp on StrategyQA (CI: [$-1.5$, $+5.5$]) and $\Delta=-2.45$pp on FOLIO (CI: [$-5.88$, $+0.98$]), both non-significant and in opposite directions.
+220	The meta-analytic $\Delta$ across LLaMA-8B conditions is $+0.3$pp.
+221	
+222	\textbf{Full reasoning models produce near-zero diversity.}
+223	QwQ-32B achieves an effective $C_0$ of 2.6\% across all domains (AIME, ProofWriter, FOLIO), with $\Delta=0.0$pp in every domain.
+224	Extended reasoning chains produce consistent answers, structurally eliminating the operating regime for \sica{}.
+225	
+226	\textbf{Within-family scaling confirms the trap from both ends.}
+227	In the Qwen family, scaling from 7B ($C_0=70\%$, $\Delta=0.0$) through 14B ($C_0=38\%$, $\Delta=+0.25$pp) to 72B ($C_0=22\%$, $\Delta=0.0$) traces a capability-diversity tradeoff: weaker models produce more diversity but worse constraints, while stronger models produce better constraints but less diversity.
+228	Neither end benefits from \sica{}.
+229	
+230	% ============================================================
+231	% 4.3 CONSTRAINT ABLATION
+232	% ============================================================
+233	\subsection{Constraint Ablation: MAX-SAT Adds Nothing Beyond Counting}
+234	\label{sec:ablation}
+235	
+236	If constraints carry discriminative information, the MAX-SAT solver should outperform simpler aggregation.
+237	We test this by comparing three aggregation strategies on the Qwen-14B $n=804$ evaluation (Table~\ref{tab:ablation}).
+238	
+239	\begin{table}[t]
+240	\centering
+241	\caption{Constraint ablation ($n=804$, Qwen-14B). Three aggregation methods produce statistically identical results, confirming that MAX-SAT adds nothing when constraints lack discriminative power.}
+242	\label{tab:ablation}
+243	\small
+244	\begin{tabular}{lrr}
+245	\toprule
+246	\textbf{Aggregation} & \textbf{Accuracy} & \textbf{Agreement w/ MAX-SAT} \\
+247	\midrule
+248	MAX-SAT (full \sica{}) & 76.49 & -- \\
+249	Count-only & 76.49 & 803/804 \\
+250	Random-weight & 76.37 & 801/804 \\
+251	SC (majority vote) & 76.24 & -- \\
+252	\bottomrule
+253	\end{tabular}
+254	\end{table}
+255	
+256	MAX-SAT and count-only agree on 803 of 804 problems (McNemar $p=1.0$).
+257	Random-weight agrees on 801/804 (McNemar $p=0.82$).
+258	The three-way equivalence is the mechanistic signature of the capability trap: when constraint precision $\approx 0.50$, each answer's satisfied constraint count is approximately proportional to its vote count.
+259	The MAX-SAT solver, despite its computational machinery, reduces to counting, which reduces to voting.
+260	
+261	% ============================================================
+262	% 4.4 PER-PROBLEM CONSTRAINT ANALYSIS
+263	% ============================================================
+264	\subsection{Per-Problem Constraint Analysis}
+265	\label{sec:constraint_analysis}
+266	
+267	To understand \emph{why} constraints fail to discriminate, we analyze constraint precision at per-problem granularity across $n=307$ multi-candidate problems from the Qwen-14B evaluation.
+268	
+269	\paragraph{Constraint precision is indistinguishable from random.}
+270	Mean constraint precision is $0.50$ ($\sigma=0.12$), with 89\% of problems falling in the $[0.4, 0.6]$ range.
+271	There is zero correlation between problem-level diversity and constraint quality (Pearson $r=0.03$, $p=0.58$).
+272	Even among the 34 problems with precision $> 0.6$, \sica{} wins only 56\% of the time (barely above chance).
+273	
+274	\paragraph{Constraints between positive and negative flips.}
+275	Problems where \sica{} flips from incorrect to correct (positive flips) have mean constraint precision $0.52$; problems where \sica{} flips from correct to incorrect (negative flips) have precision $0.48$.
+276	The difference is negligible, confirming that constraints do not systematically identify correct answers.
+277	
+278	\paragraph{Qualitative analysis.}
+279	We examine 8 representative problems in detail.
+280	Of extracted constraints, 75\% are semantically meaningful FOL formulas, and 52\% correctly evaluate against their source answer.
+281	However, only 12\% are \emph{discriminative}, producing different satisfaction values for different candidate answers.
+282	The typical failure mode is tautological constraints: a formula like $\forall x (P(x) \rightarrow Q(x))$ may be logically valid but evaluates to TRUE for all candidates (e.g., both ``Proved'' and ``Unknown'' in a deduction task).
+283	The extraction process produces logically correct but epistemically vacuous constraints.
+284	
+285	% ============================================================
+286	% 4.5 C0 DIAGNOSTIC
+287	% ============================================================
+288	\subsection{$C_0$ as a Deployment Diagnostic}
+289	\label{sec:c0}
+290	
+291	We validate $C_0$ as a predictor of \sica{} effectiveness across all 18 experimental conditions, spanning $C_0$ from 2.6\% (QwQ-32B) to 70\% (Qwen-7B).
+292	
+293	\paragraph{$C_0$ is necessary but not sufficient.}
+294	All conditions with $C_0 < 5\%$ show $\Delta = 0.0$pp exactly, confirming that low diversity makes \sica{} structurally degenerate.
+295	However, among conditions with $C_0 > 20\%$, the mean $|\Delta|$ is only 0.1pp with max $|\Delta| = 2.5$pp.
+296	The correlation between $C_0$ and $\Delta$ across all 18 conditions is $r = 0.05$ ($p = 0.84$), confirming that diversity provides no gradient of improvement.
+297	
+298	\paragraph{Practical interpretation.}
+299	$C_0$ functions as a gate, not a dial.
+300	Below 5\%, practitioners can skip symbolic aggregation entirely with confidence.
+301	Above 5\%, $C_0$ provides no guidance on whether gains will materialize, because the binding constraint shifts to extraction quality, which $C_0$ does not measure.
+302	Crucially, $C_0$ is computable from trace generation alone (Stage 1), before any constraint extraction, making it a zero-cost early-stopping criterion.
+303	
+304	% ============================================================
+305	% 4.6 TIEBREAK AND K-ABLATION
+306	% ============================================================
+307	\subsection{Tiebreak Analysis and K Ablation}
+308	\label{sec:tiebreak}
+309	
+310	\paragraph{Tiebreak is locally effective but globally irrelevant.}
+311	On the 5 problems (out of 804) where SC produces an exact tie between candidates, \sica{}'s constraint-based tiebreak achieves 80\% accuracy vs.\ 50\% for random tiebreak and 58\% for alphabetical tiebreak.
+312	However, ties occur in only 0.6\% of problems, contributing $<0.3$pp to overall accuracy, which is statistically negligible.
+313	
+314	\paragraph{K ablation.}
+315	We test $K \in \{6, 8, 11, 12, 16, 20\}$ on Qwen-14B ($n=60$).
+316	\sica{} $\leq$ SC at all values of $K$, including odd $K=11$ where exact ties are structurally impossible.
+317	The $K=11$ result ($\Delta = 0.0$pp) directly rules out the hypothesis that \sica{}'s value lies solely in tiebreaking.
+318	Larger $K$ marginally degrades \sica{} (e.g., $K=20$: $\Delta = -1.7$pp), consistent with noise accumulation from additional non-discriminative constraints.
+319	
+320	% ============================================================
+321	% 4.7 ADDITIONAL BASELINES
+322	% ============================================================
+323	\subsection{Additional Baselines}
+324	\label{sec:baselines}
+325	
+326	\paragraph{Weighted SC.}
+327	We compare four weighting schemes on the $n=804$ Qwen-14B data (Table~\ref{tab:weighted_sc}).
+328	No scheme achieves significant improvement over uniform SC.
+329	Inverse-length weighting shows the largest (but non-significant) edge at $+0.5$pp ($p=0.453$).
+330	This eliminates the concern that simpler weighting could succeed where MAX-SAT fails: the bottleneck is signal quality, not aggregation sophistication.
+331	
+332	\begin{table}[t]
+333	\centering
+334	\caption{Weighted SC variants ($n=804$, Qwen-14B). No weighting achieves significant improvement.}
+335	\label{tab:weighted_sc}
+336	\small
+337	\begin{tabular}{lrr}
+338	\toprule
+339	\textbf{Weighting} & \textbf{Accuracy (\%)} & \textbf{$\Delta$ vs.\ SC (pp)} \\
+340	\midrule
+341	Uniform (SC) & 76.24 & -- \\
+342	Inverse-length & 76.74 & +0.50 \\
+343	Trace-length & 75.25 & $-$0.99 \\
+344	Constraint-count & 75.25 & $-$0.99 \\
+345	\bottomrule
+346	\end{tabular}
+347	\end{table}
+348	
+349	\paragraph{Logic-LM $\times$ K baseline.}
+350	On FOLIO ($n=204$), applying Logic-LM-style single-trace FOL verification $K$ times and voting produces accuracy identical to both SC (79.4\%) and \sica{} (79.4\%).
+351	Whether using MAX-SAT (\sica{}), majority vote (SC), or single-trace verification (Logic-LM $\times K$), same-model extraction produces equivalent results.
+352	The bottleneck is extraction quality, not aggregation mechanism.
+353	
+354	% ============================================================
+355	% 4.8 OVERHEAD
+356	% ============================================================
+357	\subsection{Overhead Analysis}
+358	\label{sec:overhead}
+359	
+360	\sica{} nearly doubles inference cost for negligible accuracy gain (Table~\ref{tab:overhead}).
+361	
+362	\begin{table}[t]
+363	\centering
+364	\caption{Wall-time breakdown per problem ($n=804$, Qwen-14B). \sica{} adds $\sim$49\% overhead, dominated by LLM-based constraint extraction.}
+365	\label{tab:overhead}
+366	\small
+367	\begin{tabular}{lrr}
+368	\toprule
+369	\textbf{Stage} & \textbf{Mean time (s)} & \textbf{Fraction (\%)} \\
+370	\midrule
+371	Trace generation & 31.6 & 51.3 \\
+372	Constraint extraction & 29.0 & 47.0 \\
+373	MAX-SAT solving & 0.003 & $<$0.01 \\
+374	\midrule
+375	Total & 61.6 & 100.0 \\
+376	\bottomrule
+377	\end{tabular}
+378	\end{table}
+379	
+380	The overhead is dominated by LLM calls for constraint extraction (47\% of total time), while MAX-SAT solving itself is negligible ($<$0.01\%).
+381	The cost multiplier is $1.95\times$ compared to SC alone.
+382	Combined with zero effectiveness, this definitively answers the practitioner question: \sica{} is not worth the overhead in any tested condition.
+383	
+384	% ============================================================
+385	% 5. DISCUSSION
+386	% ============================================================
+387	\section{Discussion}
+388	\label{sec:discussion}
+389	
+390	\paragraph{Anatomy of the capability trap.}
+391	The capability trap has a precise mechanistic explanation.
+392	Self-extracted constraints are logically correct in 75\% of cases and correctly evaluate against their source answer 52\% of the time.
+393	However, only 12\% of constraints are \emph{discriminative}: they produce different satisfaction outcomes for different candidate answers.
+394	The remaining 88\% are tautological or overly general, evaluating identically across all candidates.
+395	When most constraints are non-discriminative, the MAX-SAT objective $\sum_c w_c \cdot \text{sat}(a, c)$ becomes proportional to the number of supporting traces, reducing the solver to a weighted vote.
+396	The three-way equivalence of MAX-SAT, count-only, and random-weight aggregation (Section~\ref{sec:ablation}) is the direct consequence: constraint weights carry no information when the constraints themselves do not discriminate.
+397	
+398	\paragraph{Why does self-extraction fail?}
+399	The extraction process asks the LLM to formalize its own reasoning steps as FOL constraints.
+400	The resulting formulas tend to capture general reasoning patterns (e.g., modus ponens applications, domain axioms) that are valid regardless of the specific answer.
+401	This is structurally different from constraints designed to test specific answer candidates, which would require the model to reason \emph{about} its own uncertainty, a metacognitive capability that current LLMs lack in the self-extraction setting.
+402	
+403	\paragraph{Within-family scaling.}
+404	The Qwen scaling results (7B: $C_0=70\%$, 14B: $C_0=38\%$, 72B: $C_0=22\%$) reveal that capability and diversity trade off within a model family.
+405	Weaker models produce more diverse (and thus more frequently disagreeing) outputs but extract worse constraints (precision 0.49 for 7B vs.\ 0.51 for 72B).
+406	Stronger models extract marginally better constraints but produce insufficient diversity to exercise them.
+407	This tradeoff is structural: it arises from the same capability that determines both answer consistency and constraint quality.
+408	
+409	\paragraph{Relationship to published systems.}
+410	Systems like DyLoS, Aristotle, FoVer, and LogicAgent achieve gains on benchmarks overlapping with ours.
+411	The key distinction is architectural: these systems employ trained verifiers, external oracles, logic-complete decomposition, or multi-paradigm solver selection.
+412	Our finding characterizes the specific failure mode of \emph{same-model self-extraction} pipelines, not symbolic reasoning broadly.
+413	The capability trap may be breakable by decoupling the extraction and reasoning models, as these systems implicitly do.
+414	
+415	\paragraph{Reasoning models bypass the need entirely.}
+416	QwQ-32B, as a full reasoning model, achieves $C_0=2.6\%$, making \sica{} structurally degenerate.
+417	This is consistent with the test-time compute scaling paradigm \citep{snell2025scaling,deepseekr1}: models that invest compute in extended chains achieve consistency through deliberation rather than aggregation.
+418	For reasoning models, the question of symbolic aggregation is moot.
+419	
+420	\paragraph{Practical recommendations.}
+421	Practitioners considering symbolic aggregation over self-extracted constraints should:
+422	(1) Compute $C_0$ from a small pilot ($n \geq 30$, $K=12$). If $C_0 < 5\%$, the method will degenerate to SC.
+423	(2) Even if $C_0 > 20\%$, do not expect gains without evidence that the extraction model produces discriminative constraints (precision $\gg 0.50$).
+424	(3) Consider the $\sim$2$\times$ overhead: SC achieves the same accuracy at half the cost.
+425	
+426	% ============================================================
+427	% 6. CONCLUSION
+428	% ============================================================
+429	\section{Conclusion}
+430	\label{sec:conclusion}
+431	
+432	We presented a systematic evaluation of symbolic constraint aggregation via self-extracted FOL constraints (SICA) across 3 reasoning domains, 5 model families, and 18 experimental conditions.
+433	Our central finding is a \emph{capability trap}: self-extracted constraints achieve chance-level discriminative precision, causing MAX-SAT to degenerate to counting and providing no improvement over simple majority voting.
+434	We validated this through constraint ablation (MAX-SAT $\equiv$ count-only $\equiv$ random-weight), per-problem precision analysis ($n=307$, mean precision $= 0.50$), and cross-condition C0 analysis ($r = 0.05$ between diversity and gain).
+435	The multi-candidate rate $C_0$ provides a zero-cost diagnostic for practitioners: it reliably predicts when symbolic aggregation cannot help, potentially saving significant inference overhead ($\sim$2$\times$ cost).
+436	
+437	\paragraph{Limitations.}
+438	Our study is scoped to same-model self-extraction pipelines. Systems using trained verifiers, external oracles, or cross-model extraction may not share this limitation.
+439	We test one MAX-SAT formulation; alternative symbolic aggregation strategies (e.g., SAT, SMT, answer set programming) could yield different results.
+440	GSM8K and ARC-Challenge evaluations use smaller samples ($n \leq 200$); powered replications on these domains would strengthen conclusions.
+441	
+442	% ============================================================
+443	% REFERENCES
+444	% ============================================================
+445	\bibliographystyle{plainnat}
+446	
+447	\begin{thebibliography}{30}
+448	
+449	\bibitem[Wang et~al.(2023)]{wang2023selfconsistency}
+450	Wang, X., Wei, J., Schuurmans, D., Le, Q., Chi, E., Narang, S., Chowdhery, A., and Zhou, D.
+451	\newblock Self-Consistency Improves Chain of Thought Reasoning in Language Models.
+452	\newblock In \emph{ICLR}, 2023.
+453	
+454	\bibitem[Chen et~al.(2023)]{chen2023usc}
+455	Chen, X., Aksitov, R., Alon, U., Ren, J., Xiao, K., Yin, P., Prakash, S., Sutton, C., Wang, X., and Zhou, D.
+456	\newblock Universal Self-Consistency for Large Language Model Generation.
+457	\newblock \emph{arXiv preprint arXiv:2311.17311}, 2023.
+458	
+459	\bibitem[Pan et~al.(2023)]{pan2023logiclm}
+460	Pan, L., Albalak, A., Wang, X., and Wang, W.Y.
+461	\newblock Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning.
+462	\newblock In \emph{Findings of EMNLP}, 2023.
+463	
+464	\bibitem[Olausson et~al.(2023)]{olausson2023linc}
+465	Olausson, T.X., Gu, A., Lipkin, B., Zhang, C.E., Solar-Lezama, A., Tenenbaum, J.B., and Levy, R.
+466	\newblock LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers.
+467	\newblock In \emph{EMNLP}, 2023.
+468	
+469	\bibitem[Loo et~al.(2025)]{loo2025sc}
+470	Loo, N., Hasanbeig, H., and Kamgarpour, M.
+471	\newblock On the Scaling of Self-Consistency.
+472	\newblock \emph{arXiv preprint}, 2025.
+473	
+474	\bibitem[Taubenfeld et~al.(2025)]{taubenfeld2025weighted}
+475	Taubenfeld, A., Shayegani, E., and Goldstein, T.
+476	\newblock Confidence-Weighted Self-Consistency.
+477	\newblock In \emph{ACL Findings}, 2025.
+478	
+479	\bibitem[Li et~al.(2023)]{li2023diverse}
+480	Li, Y., Lin, Z., Zhang, S., Fu, Q., Chen, B., Lou, J.-G., and Chen, W.
+481	\newblock Making Language Models Better Reasoners with Step-Aware Verifier.
+482	\newblock In \emph{ACL}, 2023.
+483	
+484	\bibitem[DyLoS(2026)]{dylos2026}
+485	DyLoS: Dynamic Logic-Solver Selection for Neuro-Symbolic Reasoning.
+486	\newblock In \emph{EACL}, 2026.
+487	
+488	\bibitem[Aristotle(2025)]{aristotle2025}
+489	Aristotle: Logic-Complete Decomposition for Symbolic Reasoning.
+490	\newblock In \emph{ACL}, 2025.
+491	
+492	\bibitem[FoVer(2025)]{fover2025}
+493	FoVer: Formal Verification with Trained Verifiers for Logical Reasoning.
+494	\newblock In \emph{TACL}, 2025.
+495	
+496	\bibitem[Cobbe et~al.(2021)]{cobbe2021gsm8k}
+497	Cobbe, K., Kosaraju, V., Bavarian, M., Chen, M., Jun, H., Kaiser, L., Plappert, M., Tworek, J., Hilton, J., Nakano, R., Hesse, C., and Schulman, J.
+498	\newblock Training Verifiers to Solve Math Word Problems.
+499	\newblock \emph{arXiv preprint arXiv:2110.14168}, 2021.
+500	
+501	\bibitem[Lightman et~al.(2023)]{lightman2023prm}
+502	Lightman, H., Kosaraju, V., Burda, Y., Edwards, H., Baker, B., Lee, T., Leike, J., Schulman, J., Sutskever, I., and Alignment, K.
+503	\newblock Let's Verify Step by Step.
+504	\newblock In \emph{ICLR}, 2024.
+505	
+506	\bibitem[Wang et~al.(2024)]{wang2024mathshepherd}
+507	Wang, P., Li, L., Shao, Z., Xu, R., Dai, D., Li, Y., Chen, D., Wu, Y., and Sui, Z.
+508	\newblock Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations.
+509	\newblock In \emph{ACL}, 2024.
+510	
+511	\bibitem[Snell et~al.(2025)]{snell2025scaling}
+512	Snell, C., Lee, J., Xu, K., and Kumar, A.
+513	\newblock Scaling LLM Test-Time Compute Optimally Can Be More Effective Than Scaling Model Parameters.
+514	\newblock In \emph{ICLR (Oral)}, 2025.
+515	
+516	\bibitem[DeepSeek-AI(2025)]{deepseekr1}
+517	DeepSeek-AI.
+518	\newblock DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning.
+519	\newblock \emph{Nature}, 2025.
+520	
+521	\bibitem[OpenAI(2024)]{openai2024o1}
+522	OpenAI.
+523	\newblock Learning to Reason with LLMs.
+524	\newblock OpenAI Blog, 2024.
+525	
+526	\bibitem[SATBench(2025)]{satbench2025}
+527	SATBench: Benchmarking LLMs on Satisfiability Problems.
+528	\newblock In \emph{EMNLP}, 2025.
+529	
+530	\bibitem[LLM-CP(2025)]{llmcp2025}
+531	LLM Meets Constraint Propagation.
+532	\newblock In \emph{IJCAI}, 2025.
+533	
+534	\bibitem[Liang et~al.(2023)]{liang2023debate}
+535	Liang, T., He, Z., Jiao, W., Wang, X., Wang, Y., Wang, R., Yang, Y., Tu, Z., and Shi, S.
+536	\newblock Encouraging Divergent Thinking in Large Language Models through Multi-Agent Debate.
+537	\newblock \emph{arXiv preprint arXiv:2305.19118}, 2023.
+538	
+539	\bibitem[Du et~al.(2023)]{du2023debate}
+540	Du, Y., Li, S., Torralba, A., Tenenbaum, J.B., and Mordatch, I.
+541	\newblock Improving Factuality and Reasoning in Language Models through Multiagent Debate.
+542	\newblock In \emph{ICML}, 2024.
+543	
+544	\bibitem[QwQ-Team(2024)]{qwq2024}
+545	QwQ Team.
+546	\newblock QwQ: Reflect Deeply on the Boundaries of the Unknown.
+547	\newblock Qwen Blog, 2024.
+548	
+549	\bibitem[Han et~al.(2022)]{han2022folio}
+550	Han, S., Schoelkopf, H., Zhao, Y., Qi, Z., Riddell, M., Benson, L., Sun, L., Zubova, E., Qiao, Y., Burtell, M., Peng, D., Fan, J., Zhuo, T.Y., Jia, Y., and Radev, D.
+551	\newblock FOLIO: Natural Language Reasoning with First-Order Logic.
+552	\newblock \emph{arXiv preprint arXiv:2209.00840}, 2022.
+553	
+554	\bibitem[Geva et~al.(2021)]{geva2021strategyqa}
+555	Geva, M., Khashabi, D., Segal, E., Khot, T., Roth, D., and Berant, J.
+556	\newblock Did Aristotle Use a Laptop? A Question Answering Benchmark with Implicit Reasoning Strategies.
+557	\newblock In \emph{TACL}, 2021.
+558	
+559	\bibitem[Clark et~al.(2018)]{clark2018arc}
+560	Clark, P., Cowhey, I., Etzioni, O., Khot, T., Sabharwal, A., Schoenick, C., and Tafjord, O.
+561	\newblock Think You Have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge.
+562	\newblock \emph{arXiv preprint arXiv:1803.05457}, 2018.
+563	
+564	\bibitem[Cobbe et~al.(2021b)]{cobbe2021gsm8k2}
+565	Cobbe, K., Kosaraju, V., Bavarian, M., Chen, M., Jun, H., Kaiser, L., Plappert, M., Tworek, J., Hilton, J., Nakano, R., Hesse, C., and Schulman, J.
+566	\newblock Training Verifiers to Solve Math Word Problems.
+567	\newblock \emph{arXiv preprint arXiv:2110.14168}, 2021.
+568	
+569	\bibitem[Tafjord et~al.(2021)]{tafjord2021proofwriter}
+570	Tafjord, O., Dalvi, B., and Clark, P.
+571	\newblock ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language.
+572	\newblock In \emph{Findings of ACL}, 2021.
+573	
+574	\bibitem[Wei et~al.(2022)]{wei2022cot}
+575	Wei, J., Wang, X., Schuurmans, D., Bosma, M., Xia, F., Chi, E., Le, Q., and Zhou, D.
+576	\newblock Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.
+577	\newblock In \emph{NeurIPS}, 2022.
+578	
+579	\bibitem[Qwen-Team(2024)]{qwen2024}
+580	Qwen Team.
+581	\newblock Qwen2.5: A Party of Foundation Models.
+582	\newblock Technical Report, 2024.
+583	
+584	\bibitem[Touvron et~al.(2023)]{touvron2023llama}
+585	Touvron, H., Martin, L., Stone, K., et~al.
+586	\newblock Llama 2: Open Foundation and Fine-Tuned Chat Models.
+587	\newblock \emph{arXiv preprint arXiv:2307.09288}, 2023.
+588	
+589	\bibitem[DeepSeek-AI(2024)]{deepseek2024}
+590	DeepSeek-AI.
+591	\newblock DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model.
+592	\newblock \emph{arXiv preprint arXiv:2405.04434}, 2024.
+593	
+594	\end{thebibliography}
+595	
+596	% ============================================================
+597	% APPENDIX
+598	% ============================================================
+599	\appendix
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "00cbf31a-203b-45c2-b6bb-07986d46bf8f",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "4f7a60d7-891b-47e5-8f1b-74034121e181",
+  "sourceToolAssistantUUID": "00cbf31a-203b-45c2-b6bb-07986d46bf8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-17T17:23:50.328Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_016bzyY4vcLdYjhGhdeTTGrV`</summary>
+
+```json
+{
+  "project": "symb_invariant_consensus",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f7a60d7-891b-47e5-8f1b-74034121e181",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8Xf2xPsS4NZocmBdpNa",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b0ffd1d3-279f-4543-98fe-3e3a75b35b99",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qz2VJGkpmf6ze967HPAUTc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5995,
+      "cache_read_input_tokens": 39162,
+      "output_tokens": 227,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5995
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 227,
+          "cache_read_input_tokens": 39162,
+          "cache_creation_input_tokens": 5995,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5995,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T17:23:50.358Z_
+
+<details><summary>↩ Tool result · `toolu_016bzyY4vcLdYjhGhdeTTGrV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/memory.md\", \"content\": \"# 文献调研：Answer-Conditioned Constraint Extraction from LLM Reasoning Traces\\n\\n**日期**: 2025-05-17  \\n**目标**: 为 D030 methods paper 寻找从 reasoning traces 提取 answer-discriminative 约束的技术参考\\n\\n---\\n\\n## 核心问题\\n\\n当前 SICA 提取的约束是 domain facts（无论答案如何都成立），导致 MaxSAT 聚合退化为 weighted majority vote。需要提取\\\"answer=A → X 成立; answer=B → Y 成立\\\"形式的判别性约束。\\n\\n## 最相关论文\\n\\n### 1. Math-Shepherd (ACL 2024)\\n- **核心思路**: 对每个推理步骤，从该步续写多条路径检查能否到达正确答案。步骤标签本质上是 outcome-conditioned 的。\\n- **适配价值**: 可借鉴其思路——对每条约束，检查它与哪些最终答案兼容。\\n\\n### 2. GRACE (EMNLP 2023 Findings)\\n- 训练 step-level discriminator（对比学习），解码时引导生成正确推理步骤。\\n\\n### 3. DiVeRSe (ACL 2023)\\n- 多 prompt 生成多样推理路径 + step-aware verifier 逐步验证 + 加权投票。\\n\\n### 4. Multi-Agent Debate / D3 Framework (2024)\\n- debate 性能增益主要来自 output aggregation 而非真正的论证交互——与 SICA 退化为 majority vote 一致。\\n\\n### 5. Atomic-SNLI / NLI Decomposition (2025)\\n- 将假设分解为 atomic facts，逐个检查与前提的蕴含/矛盾关系。\\n\\n---\\n\\n## 失败模式记录\\n\\n- [失败模式] infrastructure/ENV_ACTIVATION：submit_training_job 提交直接 `python xxx.py` 命令时，tmux session 中 PATH 不含 conda，导致 EXIT_CODE=127。修复方案：所有命令必须加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀。(2026-05-17, pilot-contrastive-prompt)\\n\\n---\\n\\n## Operating Regime 倒 U 型假说 — 已证伪 (2026-05-17)\\n\\n### 原始假说\\nSICA 增益在 SC accuracy ~55-65% 时存在 sweet spot（倒 U 型），由 model capability x trace diversity x constraint quality 三因素决定。基于 exp-011 LLaMA-8B +6.67pp (n=30) 的方向性正面信号。\\n\\n### 证伪证据\\n1. **exp-019** (n=200, StrategyQA): SICA 74% vs SC 72%, +2pp, McNemar p=0.424 — NOT significant\\n2. **exp-020** (n=204, FOLIO): SICA 60.8% vs SC 63.2%, -2.45pp — SC WINS (在假说预测的 sweet spot 内)\\n3. **exp-011 复现失败**: 同 30 题在 exp-020 中仅 56.7% agreement，+10pp 反转为 -3.3pp — Type I error (n=30 noise)\\n4. **所有 powered tests (n>=200) 均 non-significant**: 无任何 operating regime 存在 SICA > SC\\n\\n### 最终结论\\n**SICA <= SC everywhere.** 约束提取产出 domain facts 而非 answer-discriminative constraints，导致 MaxSAT 聚合退化为 noise injection。\\n\\n---\\n\\n## 关键实验发现 (2026-05-17)\\n\\n### exp-015 Logic-LM Baseline\\n- Logic-LM (per-trace Z3 verification) 62.7% = SC 63.2%, McNemar p=1.0\\n- 90.6% traces 通过自洽检查——单 trace 约束几乎不自相矛盾\\n- 结论：无论单 trace (Logic-LM) 还是跨 trace (SICA) 的约束验证，都不优于简单投票\\n\\n### exp-009 Overhead Analysis\\n- SICA +48.7% wall time over SC (30s/题)\\n- 几乎全部开销来自 LLM constraint extraction (47%)，MaxSAT 求解 = 0%\\n- 高成本低回报：extraction 产出无判别力的 domain facts\\n\\n### Constraint Quality Correlation (F2 数据)\\n- 逻辑域 (PW+FOLIO, FOLIO) 约束密度高 (5-9/trace)，但高密度 != 高增益\\n- 常识域 (StrategyQA, ARC) 约束密度极低 (~1)，几乎无法提取有意义的符号约束\\n- LLaMA-8B PW+FOLIO +6.67pp 是 n=60 噪声，同模型 FOLIO n=204 反转为 -2.45pp\\n\", \"total_chars\": 2486, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b0ffd1d3-279f-4543-98fe-3e3a75b35b99",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "cd0f4d94-2641-4f7b-ae83-c71550870268",
+  "sourceToolAssistantUUID": "b0ffd1d3-279f-4543-98fe-3e3a75b35b99",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-17T17:23:55.551Z_
+
+Now let me read the rest of the dream report to see the appendices.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd0f4d94-2641-4f7b-ae83-c71550870268",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8XfT4UfweGCFXnNk6uV",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "34ed1c19-0809-47c2-93c4-90f65a39713a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EZavGcEZ8TSwSpBqo5mMrZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10161,
+      "cache_read_input_tokens": 45157,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 10161,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T17:23:57.990Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019LeXPrz1hSTeWJGUo8iqKc`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260517T165032/best/paper.tex",
+  "offset": 599
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34ed1c19-0809-47c2-93c4-90f65a39713a",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8XfT4UfweGCFXnNk6uV",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "68865d20-2b4a-48fd-b47a-ca900faa0bcf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EZavGcEZ8TSwSpBqo5mMrZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10161,
+      "cache_read_input_tokens": 45157,
+      "output_tokens": 136,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 10161
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 136,
+          "cache_read_input_tokens": 45157,
+          "cache_creation_input_tokens": 10161,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 10161,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T17:23:58.015Z_
+
+<details><summary>↩ Tool result · `toolu_019LeXPrz1hSTeWJGUo8iqKc`</summary>
+
+```text
+599	\appendix
+600	\section{K Ablation Details}
+601	\label{app:k_ablation}
+602	
+603	Table~\ref{tab:k_ablation} shows \sica{} vs.\ SC across $K$ values on Qwen-14B ($n=60$, D012 subset).
+604	
+605	\begin{table}[h]
+606	\centering
+607	\caption{K ablation (Qwen-14B, $n=60$). \sica{} $\leq$ SC at all K values.}
+608	\label{tab:k_ablation}
+609	\small
+610	\begin{tabular}{rrrr}
+611	\toprule
+612	\textbf{K} & \textbf{\sica{} Acc (\%)} & \textbf{SC Acc (\%)} & \textbf{$\Delta$pp} \\
+613	\midrule
+614	6 & 73.3 & 73.3 & 0.0 \\
+615	8 & 73.3 & 73.3 & 0.0 \\
+616	11 & 73.3 & 73.3 & 0.0 \\
+617	12 & 73.3 & 75.0 & $-$1.7 \\
+618	16 & 71.7 & 73.3 & $-$1.7 \\
+619	20 & 70.0 & 71.7 & $-$1.7 \\
+620	\bottomrule
+621	\end{tabular}
+622	\end{table}
+623	
+624	\section{Tiebreak Baseline Details}
+625	\label{app:tiebreak}
+626	
+627	On the $n=804$ Qwen-14B evaluation, only 5 problems (0.6\%) produce exact SC ties.
+628	Table~\ref{tab:tiebreak} compares tiebreak strategies on these tied problems.
+629	
+630	\begin{table}[h]
+631	\centering
+632	\caption{Tiebreak accuracy on 5 tied problems (Qwen-14B, $n=804$).}
+633	\label{tab:tiebreak}
+634	\small
+635	\begin{tabular}{lr}
+636	\toprule
+637	\textbf{Tiebreak Strategy} & \textbf{Accuracy (\%)} \\
+638	\midrule
+639	\sica{} (constraint-based) & 80.0 \\
+640	Alphabetical & 58.0 \\
+641	Random & 50.0 \\
+642	First-seen & 42.0 \\
+643	\bottomrule
+644	\end{tabular}
+645	\end{table}
+646	
+647	\sica{}'s constraint-based tiebreak is locally effective but contributes $<0.3$pp to overall accuracy due to the rarity of ties.
+648	
+649	\section{Overhead Breakdown}
+650	\label{app:overhead}
+651	
+652	The $\sim$2$\times$ cost multiplier ($1.95\times$) of \sica{} over SC is dominated by constraint extraction LLM calls (47.0\% of total wall time).
+653	MAX-SAT solving accounts for $<$0.01\% of computation.
+654	This cost structure means that any optimization of \sica{}'s overhead must target the extraction step, not the solver.
+655	
+656	\section{Within-Family Scaling}
+657	\label{app:scaling}
+658	
+659	\begin{table}[h]
+660	\centering
+661	\caption{Within-family scaling (Qwen, $n=60$, $K=12$). $C_0$ and constraint quality trade off, maintaining zero net gain.}
+662	\label{tab:scaling}
+663	\small
+664	\begin{tabular}{lrrrrrr}
+665	\toprule
+666	\textbf{Model} & \textbf{SC (\%)} & \textbf{\sica{} (\%)} & \textbf{$\Delta$pp} & \textbf{$C_0$ (\%)} & \textbf{Extr.} & \textbf{Prec.} \\
+667	\midrule
+668	Qwen-7B & 58.3 & 58.3 & 0.0 & 70 & 0.78 & 0.49 \\
+669	Qwen-14B & 73.3 & 73.3 & 0.0 & 38 & -- & -- \\
+670	Qwen-72B & 80.0 & 80.0 & 0.0 & 22 & 0.94 & 0.51 \\
+671	\bottomrule
+672	\end{tabular}
+673	\end{table}
+674	
+675	The scaling data reveals a structural tradeoff: weaker models produce higher diversity ($C_0$) but lower constraint quality (extraction rate and precision), while stronger models improve constraint quality at the expense of diversity.
+676	At no point along this spectrum does \sica{} outperform SC.
+677	
+678	\section{Logic-LM Comparison}
+679	\label{app:logiclm}
+680	
+681	On FOLIO ($n=204$), Logic-LM-style single-trace FOL verification applied $K=12$ times with majority voting achieves 79.4\% accuracy, identical to both SC (79.4\%) and \sica{} (79.4\%).
+682	Logic-LM single-trace accuracy is 78.9\%.
+683	The equivalence across all three aggregation paradigms confirms that same-model extraction quality is the binding bottleneck.
+684	
+685	\section{QwQ-32B Details}
+686	\label{app:qwq}
+687	
+688	QwQ-32B produces near-deterministic outputs across all domains: effective $C_0 = 2.6\%$ (only 1 out of 46 problems produces multiple candidates).
+689	Per-domain results: AIME $\Delta=0.0$pp, ProofWriter $\Delta=0.0$pp, FOLIO $\Delta=0.0$pp.
+690	\sica{} structurally degenerates to SC for full reasoning models.
+691	
+692	\section{DeepSeek-R1-Distill-7B Details}
+693	\label{app:deepseek}
+694	
+695	Despite being distilled from a reasoning model, DeepSeek-R1-Distill-Qwen-7B ($n=60$) behaves as an instruction-scale model: $C_0=58.3\%$, comparable to other 7--8B instruction models.
+696	The 7B capacity is insufficient to maintain deterministic reasoning chains.
+697	$\Delta=-3.33$pp (n.s., McNemar $p=0.48$, 0 \sica{} wins vs.\ 2 SC wins among discordant pairs).
+698	72 traces were truncated due to context length, potentially contributing to the negative direction.
+699	
+700	\end{document}
+701	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68865d20-2b4a-48fd-b47a-ca900faa0bcf",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "4ba962c0-b2c2-4bf7-aaba-160aeafc22e3",
+  "sourceToolAssistantUUID": "68865d20-2b4a-48fd-b47a-ca900faa0bcf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-17T17:24:01.372Z_
+
+I now have a comprehensive picture of the paper. Let me also check one more thing about the oracle experiment details and any experiment artifacts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ba962c0-b2c2-4bf7-aaba-160aeafc22e3",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8Xg1TNz7po4GmczRN8i",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f35eaa88-ba82-45d7-9959-21184248aff4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0192eECRjX9fFjiARDdAUei5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1978,
+      "cache_read_input_tokens": 55318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1978,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-17T17:24:03.184Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0198oLxCMzyrevCcCeogS53o`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+  "offset": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f35eaa88-ba82-45d7-9959-21184248aff4",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8Xg1TNz7po4GmczRN8i",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "155f0f9c-b770-4518-bfb4-32ea908238e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0192eECRjX9fFjiARDdAUei5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1978,
+      "cache_read_input_tokens": 55318,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1978
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 55318,
+          "cache_creation_input_tokens": 1978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1978,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T17:24:03.190Z_
+
+<details><summary>↩ Tool result · `toolu_0198oLxCMzyrevCcCeogS53o`</summary>
+
+```text
+50	
+51	\subsection{Oracle Control: The Aggregation Mechanism Is Effective}
+52	\label{sec:oracle}
+53	
+54	Is the null result caused by a flawed aggregation mechanism, or by low-quality extracted constraints? To separate these explanations, we construct an oracle variant of SICA that replaces self-extracted FOL constraints with gold FOL annotations from the FOLIO dataset ($n = 204$). The oracle uses Z3 to evaluate ground-truth formulas against each candidate answer; all other pipeline components remain identical.
+55	
+56	Oracle-SICA achieves 88.24\% accuracy, compared to 79.41\% for both SC and standard SICA (Table~\ref{tab:main_results}). The improvement of $+8.82$~pp is highly significant (McNemar $p = 6.15 \times 10^{-5}$). Z3 satisfiability checks on gold FOL annotations agree with ground-truth labels for 193 of 204 problems (94.6\% agreement), so the solver operates correctly on well-formed constraints. This result establishes two conclusions. First, the weighted partial MAX-SAT aggregation mechanism is sound: given correct constraints, it recovers answers that majority voting misses. Second, the bottleneck lies entirely in constraint extraction quality. When the LLM extracts its own FOL constraints from reasoning traces, the resulting formulas do not carry enough discriminative signal to outperform vote counting. The oracle control is the strongest evidence that the capability trap is a constraint quality problem, not an aggregation design problem.
+57	
+58	
+59	\subsection{Capability Trap Diagnostics}
+60	\label{sec:diagnostics}
+61	
+62	Why does SICA fail to improve over SC? We examine three diagnostic dimensions: the multi-candidate rate $C_0$, constraint extraction quality, and the effect of sampling temperature on answer diversity.
+63	
+64	\paragraph{Multi-candidate rate.} Table~\ref{tab:capability_trap} reports $C_0$, extraction rate, and contradiction rate for each condition. Two distinct failure regimes emerge. For QwQ-32B, a reasoning-specialized model, $C_0$ is only 2.6\% across tested conditions. With over 97\% of questions answered unanimously across $K=12$ traces, SICA reduces to SC by construction and cannot provide any benefit regardless of constraint quality. For instruction-tuned models (Qwen2.5-14B, Mistral-7B, LLaMA-3.1-8B, DeepSeek-R1-7B), $C_0$ ranges from 5.0\% (ARC-Challenge) to 61.8\% (FOLIO with LLaMA-3.1-8B). Higher $C_0$ creates more questions where SICA could in principle differ from SC, yet $\Delta$ remains nonsignificant across all conditions. High $C_0$ is necessary but not sufficient: disagreement among traces exists, but the extracted constraints cannot resolve it correctly. Figure~\ref{fig:operating_regime} maps $C_0$ against the SICA--SC gap for all conditions, and the gap stays centered around zero regardless of $C_0$.
+65	
+66	\begin{table*}[t]
+67	\centering
+68	\small
+69	\caption{Capability trap diagnostics. $C_0$: fraction of questions with multiple distinct candidate answers across $K=12$ traces. Extraction rate: fraction of traces yielding at least one parseable FOL constraint. Contradiction rate: fraction of extracted constraint sets with internal contradictions. $\Delta$: SICA$-$SC gap (pp), repeated from Table~\ref{tab:main_results} for reference. $\dagger$: $n=60$. $^*$Combined rate from a single run covering both FOLIO and ProofWriter.}
+70	\label{tab:capability_trap}
+71	\begin{tabular}{@{}llrrrr@{}}
+72	\toprule
+73	Model & Domain & $C_0$ (\%) & Extr.\ Rate & Contr.\ Rate & $\Delta$ (pp) \\
+74	\midrule
+75	Qwen2.5-14B & FOLIO & 38.2$^*$ & 0.89 & 0.022 & 0.00 \\
+76	Qwen2.5-14B & ProofWriter & 38.2$^*$ & 0.89 & 0.022 & $+$0.33 \\
+77	Qwen2.5-14B & StrategyQA$^\dagger$ & 10.0 & 0.70 & --- & $+$3.33 \\
+78	Qwen2.5-14B & ARC-Chall.$^\dagger$ & 5.0 & 1.00 & --- & $-$1.67 \\
+79	Mistral-7B & FOLIO+PW$^\dagger$ & 50.0 & 0.88 & 0.056 & 0.00 \\
+80	LLaMA-3.1-8B & StrategyQA & 41.0 & --- & --- & $+$2.00 \\
+81	LLaMA-3.1-8B & FOLIO & 61.8 & 0.94 & 0.062 & $-$2.45 \\
+82	DeepSeek-R1-7B & FOLIO+PW$^\dagger$ & 58.3 & 0.84 & 0.037 & $-$3.33 \\
+83	\bottomrule
+84	\end{tabular}
+85	\end{table*}
+86	
+87	\paragraph{Extraction quality.} Extraction rates are generally high (0.70 to 1.00), and contradiction rates remain below 7\% across all measured conditions. These metrics indicate that the extraction pipeline is mechanically functional: the LLM produces well-formed, internally consistent constraints at high rates. The problem is not extraction failure but extraction vacuity. The constraints are syntactically valid but semantically redundant with the answer they were derived from, as analyzed in \S\ref{sec:maxsat} and confirmed by the ablation in \S\ref{sec:ablation}. Even with LLaMA-3.1-8B on FOLIO, where $C_0 = 61.8\%$ and extraction rate reaches 0.94, $\Delta$ is $-2.45$~pp. The highest extraction quality among all conditions corresponds to SICA performing \emph{worse} than SC.
+88	
+89	\paragraph{Temperature ablation.} If SICA's failure stems from insufficient answer diversity at $T = 0.7$, increasing temperature should raise $C_0$ and create more opportunities for constraint-based discrimination. We test $T \in \{0.3, 0.5, 0.7, 1.0\}$ with Qwen2.5-14B on a 60-question subset. $C_0$ ranges from 30.0\% ($T=0.3$) to 53.3\% ($T=0.7$) across temperatures. However, $\Delta$ is exactly 0.0~pp at $T \in \{0.3, 0.5, 1.0\}$ and $+3.3$~pp at $T = 0.7$ ($n = 60$, not significant). Higher diversity does not translate into better constraint discrimination. Figure~\ref{fig:capability_scatter} plots the per-problem relationship between vote entropy and constraint exclusion rate for a representative condition.
+90	
+91	\begin{figure}[t]
+92	\centering
+93	% \includegraphics[width=\columnwidth]{figures/capability_scatter.pdf}
+94	\caption{Per-problem scatter of vote entropy (x-axis) versus constraint exclusion rate (y-axis) for Qwen2.5-14B on FOLIO. Problems with high vote entropy (ambiguous majority vote) do not benefit from constraint filtering; the constraints fail to resolve disagreement among traces.}
+95	\label{fig:capability_scatter}
+96	\end{figure}
+97	
+98	\begin{figure}[t]
+99	\centering
+100	% \includegraphics[width=\columnwidth]{figures/operating_regime.pdf}
+101	\caption{Multi-candidate rate $C_0$ (x-axis) versus SICA$-$SC accuracy gap (y-axis) across all model-domain conditions. Each point represents one condition from Table~\ref{tab:main_results}. The gap remains centered around zero regardless of $C_0$: answer diversity alone does not enable constraint-based improvement.}
+102	\label{fig:operating_regime}
+103	\end{figure}
+104	
+105	The diagnostic picture is consistent across all three dimensions: SICA fails not because of insufficient diversity or mechanical extraction errors, but because the extracted constraints carry no discriminative signal beyond the votes they were derived from.
+106	
+107	
+108	\subsection{Constraint Ablation: MAX-SAT Degenerates to Counting}
+109	\label{sec:ablation}
+110	
+111	The diagnostics above suggest that self-extracted constraints are semantically coupled to their source answers and therefore non-discriminative. If so, the MAX-SAT formulation should produce the same predictions as simpler baselines that ignore constraint satisfiability. We test this prediction with three ablation variants on Qwen2.5-14B across combined FOLIO and ProofWriter data ($n = 804$):
+112	
+113	\begin{itemize}
+114	\item \textbf{SICA (MAX-SAT):} The full pipeline as described in \S\ref{sec:method}.
+115	\item \textbf{Count-only:} Select the answer supported by the most constraints, ignoring satisfiability.
+116	\item \textbf{Random-weight:} Randomize constraint weights before MAX-SAT solving.
+117	\end{itemize}
+118	
+119	\begin{table}[t]
+120	\centering
+121	\small
+122	\caption{Constraint ablation (Qwen2.5-14B, $n = 804$, FOLIO + ProofWriter). SC serves as the majority-vote baseline. Agreement indicates the number of predictions identical to SC out of 804. All constraint-based variants produce nearly identical outputs.}
+123	\label{tab:ablation}
+124	\begin{tabular}{@{}lrc@{}}
+125	\toprule
+126	Aggregation & Acc.\ (\%) & Agreement w/ SC \\
+127	\midrule
+128	SC (majority vote) & 76.24 & --- \\
+129	SICA (MAX-SAT) & 76.49 & 802\,/\,804 \\
+130	Count-only & 76.62 & 802\,/\,804 \\
+131	Random-weight & 76.37 & 802\,/\,804 \\
+132	\bottomrule
+133	\end{tabular}
+134	\end{table}
+135	
+136	Table~\ref{tab:ablation} reports the results. All three constraint-based variants agree with SC on 802 of 804 predictions (99.8\%). The count-only baseline, which ranks answers solely by the number of supporting constraints without any satisfiability check, achieves accuracy within 0.25~pp of the full MAX-SAT formulation. The random-weight variant, which destroys the learned constraint weights, performs similarly. These near-identical outcomes confirm the degeneration predicted in Equation~\ref{eq:degenerate}: because self-extracted constraints are tightly coupled to their source answers, the MAX-SAT solver effectively reduces to a weighted vote count. The satisfiability structure adds no discriminative power beyond what simple counting already provides.
+137	
+138	This ablation directly supports the capability trap thesis. Symbolic verification \emph{can} improve answer selection, as the oracle control demonstrates with $+8.82$~pp over SC. But the improvement requires constraints that encode independent problem structure. Self-extracted constraints instead encode the reasoning steps that produced each candidate answer, and so they are redundant with the votes they accompany.
+139	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "155f0f9c-b770-4518-bfb4-32ea908238e1",
+  "isSidechain": true,
+  "promptId": "df1de41d-9380-4f2d-a82a-0a58a79b2066",
+  "agentId": "ab32a11cd7911798d",
+  "type": "user",
+  "uuid": "e7333ac7-cff5-45c0-98ba-459404b23830",
+  "sourceToolAssistantUUID": "155f0f9c-b770-4518-bfb4-32ea908238e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-17T17:25:49.499Z_
+
+I now have a thorough understanding of the paper. Here is my review.
+
+---
+
+### Summary
+
+This paper evaluates SICA (Symbolic Invariant Consensus Aggregation), a pipeline that extracts FOL constraints from LLM reasoning traces and aggregates answers via weighted MAX-SAT, against Self-Consistency (majority voting). Across 3 domains, 5 model families, and 18 conditions (N>1,300), SICA provides no significant improvement over SC. The paper attributes this to a "capability trap": self-extracted constraints achieve chance-level discriminative precision (~0.50), causing MAX-SAT to degenerate to counting. An oracle control using gold FOL annotations demonstrates +8.82pp gains, localizing the bottleneck to extraction quality. The paper proposes C0 (multi-candidate rate) as a zero-cost deployment diagnostic.
+
+### Strengths
+
+1. **Well-designed oracle control experiment.** The gold-FOL oracle (+8.82pp, p<0.001) is the strongest contribution. It cleanly separates the aggregation mechanism (which works) from the extraction quality (which fails), providing a causal localization that elevates this beyond a simple "we tried X and it didn't work" paper. This is the kind of controlled experiment that makes a negative result genuinely informative.
+
+2. **Thorough ablation design.** The three-way constraint ablation (MAX-SAT, count-only, random-weight yielding >99.6% agreement) is compelling mechanistic evidence. It demonstrates not just that SICA fails, but precisely *how* it fails: the MAX-SAT solver reduces to counting because constraints lack discriminative power. This is a non-obvious finding.
+
+3. **Appropriate scope of claims.** The paper is careful to restrict its negative finding to same-model self-extraction and explicitly acknowledges that DyLoS, Aristotle, FoVer, and LogicAgent achieve gains through different mechanisms. This scoping is honest and necessary. The title and framing correctly narrow to "self-extracted constraints" rather than condemning symbolic reasoning broadly.
+
+4. **Multi-dimensional evidence.** The paper attacks the question from many angles: cross-model (5 families), cross-domain (3 primary + 2 supplementary), within-family scaling (Qwen 7B/14B/72B), temperature ablation, K ablation, weighted SC baselines, Logic-LM comparison. This thoroughness makes the null result convincing rather than suggestive.
+
+5. **Good connection between theory and experiment.** Equation 3 (the degeneration equation) predicts that when constraints are non-discriminative, MAX-SAT reduces to weighted counting. The ablation directly confirms this prediction. The paper successfully moves from mathematical argument to empirical validation.
+
+6. **Practical value of the C0 diagnostic.** While not a deep intellectual contribution, C0 as an early-stopping criterion has clear practitioner utility. The demonstration that it is computable from Stage 1 alone (before any extraction overhead) makes it actionable.
+
+### Weaknesses
+
+1. **The "capability trap" framing overstates novelty.** The core observation -- that LLMs cannot reliably formalize their own reasoning into discriminative FOL -- is well-established. LINC (Olausson et al., 2023) documented ~40% translation error rates on FOLIO. Logic-LM (Pan et al., 2023) showed similar issues with LLM-to-FOL translation. The paper's contribution is quantification and the oracle-controlled separation, not discovery. The term "capability trap" implies a novel theoretical construct, but the underlying phenomenon (self-generated formalizations are low quality) was already known. The paper should position itself more modestly as *systematic quantification and causal localization* of a recognized limitation, which is what the paper_framing.md internally acknowledges but the submitted text does not always follow.
+
+2. **Missing important related work on LLM self-evaluation and self-critique.** The paper frames the problem as "self-extraction" but does not engage with the substantial literature on LLM self-evaluation, self-correction, and metacognition. Huang et al. (2024) "Large Language Models Cannot Self-Correct Reasoning Yet" (ICLR 2024) is the most direct precedent: it shows that LLMs cannot improve their own reasoning without external feedback, which is structurally parallel to this paper's finding. This paper is listed in the literature_map.yaml as must_cite but appears absent from the actual paper text (at least in the version I reviewed). The paper also lacks engagement with:
+   - **Self-refinement/self-critique literature** (Madaan et al., 2023 "Self-Refine"; Shinn et al., 2023 "Reflexion"). These demonstrate similar "self-X fails without external signal" patterns.
+   - **LLM calibration/uncertainty estimation** (Kadavath et al., 2022 "Language Models (Mostly) Know What They Know"; Xiong et al., 2024). The capability trap is fundamentally a calibration/metacognition failure -- the LLM cannot assess which of its own reasoning steps are discriminative. This connection is underdeveloped.
+   - **Multi-agent debate** (Liang et al., 2023; Du et al., 2024). While listed in the literature_map, the dream report includes them in the bibliography but the actual paper tex files show only placeholder related work sections. The connection between debate-based aggregation and constraint-based aggregation should be discussed: both attempt to extract additional signal from LLM outputs for aggregation.
+
+3. **Statistical power concerns in key conditions are underplayed.** Of the 8 conditions in Table 1, 4 have n=60, which cannot support confirmatory conclusions. The paper acknowledges this with daggers but then claims "combined N>1,300" as if all conditions contribute equally. The 804-sample Qwen-14B condition dominates. More critically, the within-family scaling results (Appendix D) are entirely on n=60, yet the narrative treats the C0 progression (70% -> 38% -> 22%) as a confirmed finding. With n=60, even a 5pp difference would not be significant. The Qwen-7B and Qwen-72B data points should be presented as "directionally consistent" rather than "confirming the trap from both ends."
+
+4. **The SICA pipeline itself may not be the strongest instantiation.** The paper evaluates one specific pipeline (extract FOL from traces -> MAX-SAT) and generalizes to "self-extracted constraints cannot improve voting." But several design choices may artificially weaken SICA:
+   - Constraints are linked to source answers by a simple indicator function sigma(c,a) rather than genuinely evaluated against all candidates. The paper acknowledges this in Section 3.3 but does not test an alternative where constraints are independently evaluated against each candidate.
+   - The extraction prompt may not be optimized. No prompt engineering ablation is reported.
+   - Only FOL-style constraints are tested. Propositional constraints, numerical bounds, or natural-language entailment checks might perform differently.
+   - The claim in the title ("Cannot Improve") is too strong for a study that tests one extraction method and one solver formulation.
+
+5. **C0 diagnostic has limited practical value beyond the obvious.** The finding that C0<5% predicts SICA=SC is essentially tautological: if there is only one candidate answer, any aggregation method produces the same result. The interesting question would be whether C0 (or some refinement) can predict when *any* post-hoc aggregation method will fail, not just SICA. The correlation analysis (r=0.05 across 18 conditions) is computed on too few data points (18) with too heterogeneous conditions to be reliable.
+
+6. **The paper is incomplete.** The main .tex files show placeholder text for Abstract, Introduction, Discussion, and Conclusion. While the dream report versions contain complete drafts, the actual paper directory is unfinished. This makes it difficult to assess the final presentation quality. I base my review on the best available version (dream_20260517T165032/best/paper.tex), but note significant structural incompleteness.
+
+### Questions for Authors
+
+1. Have you tested a variant of SICA where constraints are genuinely evaluated against all candidate answers (not just using the source-answer indicator function)? The current sigma(c,a) = 1 iff c comes from a trace producing a makes the constraint evaluation trivially equivalent to vote counting by design.
+
+2. The oracle control uses gold FOL from FOLIO. Have you considered an intermediate control: using a stronger model (e.g., GPT-4, Claude) to extract constraints from the same traces, to test whether the bottleneck is model capability vs. the fundamental nature of self-extraction?
+
+3. For the per-problem constraint analysis (n=307), you report mean precision=0.50. What is the distribution of precision conditional on problem difficulty? Do easy problems (where SC is already correct) show different constraint quality than hard problems (where SC fails)?
+
+4. The "capability trap" terminology implies a fundamental impossibility. But the oracle shows the aggregation works with good constraints. Why not frame this as "current LLMs lack the metacognitive capability for discriminative self-formalization" rather than a "trap" that implies structural inescapability?
+
+5. How sensitive are results to the extraction prompt? Have you tested chain-of-thought extraction, few-shot extraction, or extraction prompts that explicitly ask for answer-discriminative constraints?
+
+6. The temperature ablation (Section 4.3) uses n=60. At this sample size, even a 5pp effect would not be significant. Can you confirm the temperature finding on a larger sample?
+
+### Minor Issues
+
+1. Table 1 in the main tex uses Mistral-7B on "FOLIO+PW" as a combined domain, but other models are reported on individual domains. This makes cross-model comparison difficult.
+
+2. The claim "18 conditions" is used throughout but only 8 conditions appear in Table 1. The remaining 10 appear to include temperature ablation variants and within-family scaling. The paper should clarify what counts as a "condition."
+
+3. Several bibliography entries lack proper author information (DyLoS, Aristotle, FoVer, SATBench, LLM-CP are listed with title only). This would be a desk-reject risk at EMNLP.
+
+4. The figures are commented out in the tex source (no actual figure files). For a venue submission, these would need to be present.
+
+5. The Qwen2.5-14B C0 for FOLIO and ProofWriter is reported as the same value (38.2%) with a footnote saying it is from a single combined run. If these are different domains, they should have different C0 values. Using a combined rate obscures domain-specific behavior.
+
+6. The paper claims "combined N>1,300" but the exact count depends on whether overlapping conditions (e.g., Qwen-14B FOLIO appearing in both Table 1 and the ablation) are double-counted.
+
+### Scores
+
+- **Soundness (1-4): 3** -- The experimental methodology is rigorous within its scope. The oracle control is well-designed. However, the generalization from one pipeline instantiation to "self-extracted constraints cannot improve voting" is not fully supported. Statistical power issues in the majority of conditions (4 of 8 at n=60) reduce confidence.
+
+- **Contribution (1-4): 2** -- The oracle-controlled causal separation is a genuine contribution. The constraint ablation provides useful mechanistic insight. However, the core finding (self-formalization quality is poor) is already established in prior work (LINC, Logic-LM). The "capability trap" framing overstates novelty. C0 as a diagnostic is close to tautological. The practical impact is limited: practitioners who would have tried SICA-style methods are a narrow audience.
+
+- **Presentation (1-4): 2** -- The paper is structurally incomplete (placeholders for Abstract, Introduction, Discussion, Conclusion in the main tex). The dream report version is better but still has issues: incomplete bibliography entries, missing figures, inconsistent condition counting. The term "capability trap" is introduced without sufficient differentiation from known limitations of LLM self-formalization.
+
+- **Overall (1-6): 3 (Weak Reject)** -- The paper presents a well-executed negative result with a strong oracle control experiment. However, the novelty of the core finding is limited given prior work on LLM-to-FOL translation quality (LINC, Logic-LM) and self-correction failures (Huang et al., 2024). The restricted scope (one pipeline, one solver, source-answer indicator for constraint evaluation) limits the generality of the negative claim. Missing engagement with the self-evaluation/self-critique literature is a significant gap. The paper would benefit from: (a) acknowledging the known status of self-formalization quality issues and positioning more precisely as systematic quantification; (b) testing at least one alternative constraint evaluation strategy (genuine cross-answer evaluation); (c) connecting to the self-correction/self-evaluation literature; (d) completing the paper structure.
+
+- **Confidence (1-5): 4** -- I am confident in this assessment. The experimental design is within my expertise, and the related work gaps I identify are well-established areas. The structural incompleteness of the paper limits some aspects of my evaluation, but the core methodology and claims are clear from the available materials.
+
+### Detailed Assessment
+
+**Novelty/Significance.** The paper's primary novelty lies not in the negative finding itself (LLMs produce low-quality FOL formalizations -- this was known from LINC and Logic-LM) but in two specific contributions: (1) the oracle-controlled separation proving that the MAX-SAT mechanism is sound but extraction quality is the sole bottleneck, and (2) the systematic quantification across models and domains showing the failure is universal in the self-extraction setting. The "capability trap" framing, while evocative, risks overstating what is new. The trap is essentially: self-extraction produces non-discriminative constraints. This was predictable from LINC's documented 40% error rates and from the broader finding that LLMs cannot self-correct without external feedback (Huang et al., 2024). The paper would be stronger if it positioned the "trap" as a precisely quantified instance of a known limitation rather than as a new conceptual discovery. The C0 diagnostic is a minor contribution: its most useful prediction (C0<5% means SICA=SC) is definitionally obvious, and its inability to predict gains when C0 is high limits its practical value. The within-family scaling narrative (diversity-quality tradeoff) is interesting but supported only by n=60 data, which is insufficient for the strong claims made. Overall, I assess the significance as moderate: the oracle experiment and ablation are valuable, but the negative result itself has limited "so what" impact beyond confirming that practitioners should not invest in same-model symbolic aggregation (which few were doing in this specific form).
+
+**Related Work Quality.** The paper covers SC variants, neuro-symbolic reasoning, verification/reranking, test-time compute, and constraint satisfaction. The coverage within these categories is adequate but not comprehensive. The most significant gap is the absence of the self-correction/self-evaluation literature, which is the most natural intellectual home for this paper's finding. Huang et al. (2024) is the single most important missing reference. The paper's framing -- "can a model's own outputs improve its own aggregation?" -- is exactly the question addressed by the self-correction literature, just in a different form. The debate/multi-agent literature (Liang et al., Du et al.) appears in the dream report bibliography but is not discussed in the related work (which is still placeholder text in the main paper). The positioning against neuro-symbolic systems (DyLoS, Aristotle, FoVer) is fair and well-handled: the paper correctly notes that these systems use fundamentally different mechanisms and that the negative finding does not contradict their positive results. However, the bibliography has quality issues: several entries lack proper authors and formatting, which would be a concern at a top venue. The paper would also benefit from citing work on LLM calibration (the capability trap is partly a calibration failure -- the model cannot distinguish discriminative from non-discriminative constraints it generates) and on the limits of self-knowledge in LLMs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7333ac7-cff5-45c0-98ba-459404b23830",
+  "isSidechain": true,
+  "agentId": "ab32a11cd7911798d",
+  "requestId": "req_011Cb8XgPUxApzuoJRr3njnF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e3179952-ad3a-489c-8f1e-ca70d21bd271",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "584280b3-ef4e-4d12-9b3f-481d07783a2f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CzxeDks6CmhacEhkuBK7k8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3121,
+      "cache_read_input_tokens": 57296,
+      "output_tokens": 3790,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3121
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3790,
+          "cache_read_input_tokens": 57296,
+          "cache_creation_input_tokens": 3121,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3121,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

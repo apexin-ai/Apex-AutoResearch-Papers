@@ -1,0 +1,2348 @@
+{
+  "schema_version": "1.0",
+  "session_id": "1a449ec4d0302d2d3c29",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-22T19:49:16.914Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Found `docs/paper/diagnosis.tex` locally. Let me check its contents and also `docs/paper/experiments.tex` for the main table.",
+              "signature": "EsMCCmMIDRgCKkCOWnCNE6X7hS2hp0gsBaoFzrIQnUZW52JfzmrvaSbH9punXV3rpDhIZ3u6W+cw57up12hr1F6IEslU3oQ6WPUyMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDMk7kSroEGuUrWxSxRoMbBrEeT0Fvcqa1rF+IjCGgLY0cNxtwYsfN45c03+nAOR7/1XYItv6wifuyMgeT7LUQpcLlrPOOzRyRc8wZkEqjQELqQbGkvkUSfeLj9yR5xjvsT6ljneDMZR/ywuNuIO0iun+6FxqV5KibUJ+K79YnSD2OmtyXbRuxcBC4zVtgaZopuUfMT2J+5R2H/2Joqz4E/kUMOaKPN5NXa8DXQWOP7RMPNX87sl7d3/2xw9A19oMe4Ipvtqp/9cCnVSXP1dV7RL/v0VP8UV0Aiq2vHIYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8db59f3f-679a-4927-9f6d-757d1525b197",
+            "isSidechain": false,
+            "requestId": "req_011CbJBnLeAqptXgS53iWB3p",
+            "type": "assistant",
+            "uuid": "7db88a09-247b-45b0-bb3e-8c3a21b2bca7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NrHJB8rKWZL7JgQHmcETdq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1277,
+                "cache_read_input_tokens": 87829,
+                "output_tokens": 288,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1277,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 288,
+                    "cache_read_input_tokens": 87829,
+                    "cache_creation_input_tokens": 1277,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1277
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-22T19:49:17.643Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found the paper LaTeX locally. Let me check the diagnosis table and experiments table."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7db88a09-247b-45b0-bb3e-8c3a21b2bca7",
+            "isSidechain": false,
+            "requestId": "req_011CbJBnLeAqptXgS53iWB3p",
+            "type": "assistant",
+            "uuid": "899ec7f3-a2ad-4817-8297-459658d532fe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NrHJB8rKWZL7JgQHmcETdq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1277,
+                "cache_read_input_tokens": 87829,
+                "output_tokens": 288,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1277,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 288,
+                    "cache_read_input_tokens": 87829,
+                    "cache_creation_input_tokens": 1277,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1277
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-22T19:49:18.161Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016H3UYyvV9VUyWWSV5cLCfH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "899ec7f3-a2ad-4817-8297-459658d532fe",
+            "isSidechain": false,
+            "requestId": "req_011CbJBnLeAqptXgS53iWB3p",
+            "type": "assistant",
+            "uuid": "a813acd7-eb3a-4f53-bca6-2492cfbd1fbc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NrHJB8rKWZL7JgQHmcETdq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1277,
+                "cache_read_input_tokens": 87829,
+                "output_tokens": 288,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1277,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 288,
+                    "cache_read_input_tokens": 87829,
+                    "cache_creation_input_tokens": 1277,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1277
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-22T19:49:19.470Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PJJpn81AjqDJjVRsr7G1mz",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (29.3KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-3-projects-symb-invariant-consensus/fd71ab37-f5a0-4a2f-8af0-c261f4354c96/tool-results/toolu_01PJJpn81AjqDJjVRsr7G1mz.txt\n\nPreview (first 2KB):\ndocs/paper/analysis.tex:9:[Omitted long matching line]\ndocs/paper/analysis.tex:15:[Omitted long matching line]\ndocs/paper/analysis.tex:17:[Omitted long matching line]\ndocs/paper/analysis.tex:23:[Omitted long matching line]\ndocs/paper/analysis.tex:27:Model & Ext. & SC (\\%) & $n_\\text{err}$ & BR & $\\Delta$ (pp) \\\\\ndocs/paper/analysis.tex:33:R1-Distill-8B & $^b$ & 74.51 & 52 & 2.92 & $+$2.45 \\\\\ndocs/paper/analysis.tex:43:\\looseness=-1 Two controls rule out answer leakage. BR is uniform across early, mid, and late reasoning steps (Fisher $p = 0.71$); high-consensus errors amplify to $\\text{BR} = 18.8\\times$ versus $2.7\\times$ for low-consensus ($p < 0.001$). Removing the answer sentence from traces before extraction yields no BR decrease (Wilcoxon $p \\geq 0.12$) despite significant accuracy loss (McNemar $p < 0.013$). SCB reflects a distributional prior embedded throughout reasoning, not answer contamination.\ndocs/paper/analysis.tex:63:\\caption{Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\\Delta$ vs.\\ SC. Grey band: $\\pm 1$\\,pp noise zone.}\ndocs/paper/analysis.tex:68:\\looseness=-1 Decision boundaries ($C_0 < 5\\%$, $K_\\text{eff} \\leq 1.3$, SC $< 40\\%$) were derived from Mistral-7B and Qwen2.5-14B conditions. We evaluate prospectively on held-out LLaMA-3.1-8B, a different model family not used in boundary derivation: on FOLIO (SC $= 66.18\\%$, $C_0 = 61.8\\%$, $K_\\text{eff} = 2.17$), the framework predicts Type~A confirmation bias ($\\Delta \\leq 0$); the observed $\\Delta = -4.41$\\,pp confirms the prediction.\ndocs/paper/analysis.tex:71:[Omitted long matching line]\ndocs/paper/related_work.tex:5:[Omitted long matching line]\ndocs/paper/related_work.tex:11:[Omitted long matching line]\ndocs/paper/related_work.tex:14:[Omitted long matching line]\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43946a99-bfc5-4a7c-8d8a-85832ff4e0bd",
+            "isSidechain": false,
+            "promptId": "86d61ff3-fd69-4a80-9d4d-b42202e900fc",
+            "type": "user",
+            "uuid": "c948f96f-a09c-418c-bc66-4cf2afe05972",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "docs/paper/analysis.tex:9:[Omitted long matching line]\ndocs/paper/analysis.tex:15:[Omitted long matching line]\ndocs/paper/analysis.tex:17:[Omitted long matching line]\ndocs/paper/analysis.tex:23:[Omitted long matching line]\ndocs/paper/analysis.tex:27:Model & Ext. & SC (\\%) & $n_\\text{err}$ & BR & $\\Delta$ (pp) \\\\\ndocs/paper/analysis.tex:33:R1-Distill-8B & $^b$ & 74.51 & 52 & 2.92 & $+$2.45 \\\\\ndocs/paper/analysis.tex:43:\\looseness=-1 Two controls rule out answer leakage. BR is uniform across early, mid, and late reasoning steps (Fisher $p = 0.71$); high-consensus errors amplify to $\\text{BR} = 18.8\\times$ versus $2.7\\times$ for low-consensus ($p < 0.001$). Removing the answer sentence from traces before extraction yields no BR decrease (Wilcoxon $p \\geq 0.12$) despite significant accuracy loss (McNemar $p < 0.013$). SCB reflects a distributional prior embedded throughout reasoning, not answer contamination.\ndocs/paper/analysis.tex:63:\\caption{Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\\Delta$ vs.\\ SC. Grey band: $\\pm 1$\\,pp noise zone.}\ndocs/paper/analysis.tex:68:\\looseness=-1 Decision boundaries ($C_0 < 5\\%$, $K_\\text{eff} \\leq 1.3$, SC $< 40\\%$) were derived from Mistral-7B and Qwen2.5-14B conditions. We evaluate prospectively on held-out LLaMA-3.1-8B, a different model family not used in boundary derivation: on FOLIO (SC $= 66.18\\%$, $C_0 = 61.8\\%$, $K_\\text{eff} = 2.17$), the framework predicts Type~A confirmation bias ($\\Delta \\leq 0$); the observed $\\Delta = -4.41$\\,pp confirms the prediction.\ndocs/paper/analysis.tex:71:[Omitted long matching line]\ndocs/paper/related_work.tex:5:[Omitted long matching line]\ndocs/paper/related_work.tex:11:[Omitted long matching line]\ndocs/paper/related_work.tex:14:[Omitted long matching line]\ndocs/paper/experiments.tex:7:We evaluate SICA against Self-Consistency (SC) across six models, three reasoning domains, and over 3,000 condition-evaluations (${\\sim}$1,250 unique instances), with diagnostic analyses of confirmation bias and process-level independence (\\S\\ref{sec:analysis}).\ndocs/paper/experiments.tex:9:[Omitted long matching line]\ndocs/paper/experiments.tex:13:\\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$, extraction at $T_{\\text{ext}}{=}0.3$, $\\alpha{=}0.5$, Z3 timeout 10s. McNemar exact test ($\\alpha{=}0.05$); 95\\% bootstrap CIs ($10{,}000$ resamples) for $n \\geq 200$. SICA incurs $4.5{\\times}$ SC wall-clock; extraction accounts for 76\\% of overhead.\ndocs/paper/experiments.tex:19:Table~\\ref{tab:main_results} reports accuracy across all conditions sorted by SC baseline, revealing three observation-driven accuracy regimes.\ndocs/paper/experiments.tex:24:[Omitted long matching line]\ndocs/paper/experiments.tex:28:Model & Domain & $n$ & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) & $p$ \\\\\ndocs/paper/experiments.tex:30:\\multicolumn{7}{l}{\\textit{Type C: error amplification (SC $\\leq$ 40\\%)}} \\\\\ndocs/paper/experiments.tex:31:Mistral-7B & PW-D5 & 600 & 39.33 & 36.50 & $\\mathbf{-2.83}$ & 0.014{*} \\\\\ndocs/paper/experiments.tex:33:\\multicolumn{7}{l}{\\textit{Intermediate SC (SC $\\sim$50--60\\%, Mistral-7B only)}} \\\\\ndocs/paper/experiments.tex:40:\\multicolumn{7}{l}{\\textit{Type A: confirmation bias (SC $\\geq$ 60\\%)}} \\\\\ndocs/paper/experiments.tex:42:LLaMA-3.1-8B & StrategyQA & 200 & 72.00 & 74.00 & $+$2.00 & 0.424 \\\\\ndocs/paper/experiments.tex:44:Qwen2.5-14B & FOLIO (ICL)$^b$ & 199 & 74.37 & 74.87 & $+$0.50 & 1.000 \\\\\ndocs/paper/experiments.tex:45:Qwen2.5-14B & PW-D5 & 600 & 74.00 & 71.50 & $\\mathbf{-2.50}$ & 0.011{*} \\\\\ndocs/paper/experiments.tex:46:Qwen2.5-14B$^{4s}$ & FOLIO & 204 & 75.49 & 74.51 & $-$0.98 & 1.000 \\\\\ndocs/paper/experiments.tex:51:Qwen3-14B & PW-D5 & 600 & 85.00 & 85.67 & $+$0.67 & 1.000 \\\\\ndocs/paper/experiments.tex:57:[Omitted long matching line]\ndocs/paper/conclusion.tex:4:[Omitted long matching line]\ndocs/paper/discussion.tex:10:[Omitted long matching line]\ndocs/paper/diagnosis.tex:4:Table~\\ref{tab:main_results} reports SICA vs.\\ SC accuracy across all conditions. None of fifteen non-degenerate conditions shows a significant positive effect ($p < 0.05$); two show significant degradation. We trace this failure to three interconnected mechanisms.\ndocs/paper/diagnosis.tex:9:\\caption{SICA vs.\\ SC across all conditions sorted by SC accuracy. $\\Delta$ = SICA $-$ SC (pp). $^b$In-context learning with gold logical examples. $\\dagger$\\,$n < 100$ (suggestive only). \\textbf{Bold $\\Delta$}: $p < 0.05$ (McNemar). {*}\\,$p < 0.05$;\\enspace{**}\\,$p < 0.01$;\\enspace{***}\\,$p < 0.001$. Failure modes detailed in Appendix~\\ref{app:failure-modes}.}\ndocs/paper/diagnosis.tex:13:Model & Domain & $n$ & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) & $p$ \\\\\ndocs/paper/diagnosis.tex:15:\\multicolumn{7}{l}{\\textit{Type C: error amplification (SC $\\leq$ 40\\%)}} \\\\\ndocs/paper/diagnosis.tex:16:Mistral-7B & PW-D5 & 600 & 39.33 & 36.50 & $\\mathbf{-2.83}$ & 0.014{*} \\\\\ndocs/paper/diagnosis.tex:18:\\multicolumn{7}{l}{\\textit{Intermediate SC (SC $\\sim$50--60\\%, Mistral-7B only)}} \\\\\ndocs/paper/diagnosis.tex:25:\\multicolumn{7}{l}{\\textit{Type A: confirmation bias (SC $\\geq$ 60\\%)}} \\\\\ndocs/paper/diagnosis.tex:27:LLaMA-3.1-8B & StrategyQA & 200 & 72.00 & 74.00 & $+$2.00 & 0.424 \\\\\ndocs/paper/diagnosis.tex:28:Qwen2.5-14B & FOLIO (ICL)$^b$ & 199 & 74.37 & 74.87 & $+$0.50 & 1.000 \\\\\ndocs/paper/diagnosis.tex:29:Qwen2.5-14B & PW-D5 & 600 & 74.00 & 71.50 & $\\mathbf{-2.50}$ & 0.011{*} \\\\\ndocs/paper/diagnosis.tex:30:Qwen2.5-14B & FOLIO & 204 & 75.49 & 74.51 & $-$0.98 & 1.000 \\\\\ndocs/paper/diagnosis.tex:34:Qwen3-14B & PW-D5 & 600 & 85.00 & 85.67 & $+$0.67 & 1.000 \\\\\ndocs/paper/diagnosis.tex:37:QwQ-32B & AIME 2024$^\\dagger$ & 22 & 72.70 & 72.70 & 0.00 & \\textrm{---} \\\\\ndocs/paper/diagnosis.tex:42:Qwen2.5-14B & ProofWriter & 600 & 74.00 & \\textbf{91.17} & $\\mathbf{+17.17}$ & $9.21{\\times}10^{-15}${***} \\\\\ndocs/paper/diagnosis.tex:51:[Omitted long matching line]\ndocs/paper/diagnosis.tex:53:This correlation manifests through a specific mechanism: self-extracted constraints systematically confirm the model's majority answer regardless of correctness. On Mistral-7B FOLIO ($n = 204$), when SICA errs, 83.3\\% of extracted constraints support the incorrect majority answer---a bias ratio of $4.97\\times$ compared to correct problems. Consequently, 94\\% of SICA errors overlap with SC errors: symbolic aggregation adds no independent corrective signal.\ndocs/paper/diagnosis.tex:60:\\caption{Trace independence metrics ($K = 12$, sorted by $\\kappa$ descending). $\\kappa$: Fleiss' Kappa. $K_{\\text{eff}}$: Effective-K (Eq.~\\ref{eq:effk}). SC: Self-Consistency baseline. $\\Delta$: SICA $-$ SC (pp). {*}\\,$p < 0.05$; positive $\\Delta$ values do not reach significance. multi-T $= T \\in \\{0.3, 0.7, 1.2\\}$, 4 traces each.}\ndocs/paper/diagnosis.tex:64:Model & Condition & $\\kappa$ & $K_{\\text{eff}}$ & SC (\\%) & $\\Delta$ (pp) \\\\\ndocs/paper/diagnosis.tex:81:Mistral-7B & PW-D5 & 0.21 & 3.62 & 39.33 & $\\mathbf{-2.83}${*} \\\\\ndocs/paper/diagnosis.tex:112:[Omitted long matching line]\ndocs/paper/diagnosis.tex:114:\\paragraph{Type A (SC $\\geq$ 60\\%).} All nine Type~A conditions produce no significant positive effects. Even in-context learning with gold logical examples yields $\\Delta = +0.50$\\,pp (n.s.). Qwen2.5-14B on ProofWriter shows significant degradation ($\\Delta = -2.50$\\,pp, $p = 0.011$).\ndocs/paper/diagnosis.tex:116:\\paragraph{Type C (SC $\\leq$ 40\\%).} Mistral-7B on ProofWriter ($n = 600$, SC $= 39.33\\%$) shows $\\Delta = -2.83$\\,pp ($p = 0.014$): SICA \\emph{significantly hurts} by formalizing incorrect reasoning. When $C_0 < 5\\%$, nearly all traces agree and SICA reduces to SC by construction.\ndocs/paper/diagnosis.tex:118:Four supporting analyses confirm the mechanism: constraint ablation shows MAX-SAT and count-only agree on 94.4\\% of predictions ($n = 804$); 91.8\\% of constraints are discriminative but mirror the majority; effects concentrate in high-entropy problems ($+12.8$\\,pp) with direction determined by accuracy regime; and hyperparameter peaks coincide with low SC baselines (Appendices~\\ref{app:extraction}--\\ref{app:entropy}).\ndocs/paper/diagnosis.tex:123:\\caption{SICA $\\Delta$ (pp) vs.\\ SC baseline. Filled: $n \\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: significant degradation ($p = 0.014$).}\ndocs/paper/diagnosis.tex:138:[Omitted long matching line]\ndocs/paper/diagnosis.tex:143:\\caption{Independence-accuracy trade-off (FOLIO, $n = 204$). Top: aggregation methods on Mistral-7B; bottom: SC across three model families. All families produce $\\kappa \\geq 0.41$, confirming an architecture-independent ceiling. $\\kappa$: Fleiss' kappa on raw answers.}\ndocs/paper/method.tex:7:Self-Consistency (SC) \\citep{wang2023sc} samples $K$ reasoning traces and selects the majority answer. The Condorcet Jury Theorem (CJT) \\citep{condorcet1785} guarantees majority convergence under independent voters \\citep{austensmith1996}, but LLM traces violate this independence. Following \\citet{ladha1992correlated} and \\citet{kish1965survey}, we define effective sample size using Fleiss' $\\kappa$ \\citep{fleiss1971kappa} as proxy for intraclass correlation:\ndocs/paper/method.tex:16:Symbolic Invariant Consensus Aggregation (SICA) extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset (Figure~\\ref{fig:pipeline}).\ndocs/paper/method.tex:27:Z3 \\citep{demoura2008z3} solves this with a 10-second timeout. Answer assertion constraints ($\\texttt{answer\\_a} == \\texttt{True}$, weight 1) ensure every candidate receives a nonzero base score, making SICA a strict generalization of SC.\ndocs/paper/method.tex:43:\\paragraph{The $C_0$ diagnostic.} The multi-candidate rate $C_0 = |\\{q : |\\mathcal{A}(q)| > 1\\}| / |\\mathcal{Q}|$ is a zero-cost diagnostic: $C_0 < 5\\%$ means SICA reduces to SC. $\\alpha = 0.5$ is not critical (${\\pm}0.49$\\,pp across $\\alpha \\in [0, 1]$).\ndocs/paper/method.tex:53:[Omitted long matching line]\ndocs/paper/method.tex:57:For generator $M$ with $\\text{BR}(M) > 1$ and oracle improvement $\\Delta_\\text{oracle}$, self-extracted constraints improve SC by at most $\\Delta_\\text{max}^\\text{self}$, empirically bounded by $\\Delta_\\text{oracle} / \\text{BR}(M)$.\ndocs/paper/method.tex:62:Let $G$ be a generator with SC accuracy $\\text{SC}_G$ and let $V$ be an external verifier with standalone accuracy $V_\\text{acc}$ and inter-system correlation $\\rho_{GV} < \\rho_{GG}$. Combo gain $\\Delta_\\text{combo} - \\Delta_\\text{SC}$ decreases monotonically with $\\text{SC}_G$, with significant gains observed up to $\\text{SC}_G \\approx 70\\%$.\ndocs/paper/method.tex:65:\\textit{Empirical support.} From Finding~1, adding $V$ with $\\rho_{GV} < \\rho_{GG}$ increases $K_\\text{eff}^\\text{combo}$. Empirically, combo gain decreases monotonically with $\\text{SC}_G$ ($\\rho = 1.0$, $p = 0.003$, $n{=}6$; \\S\\ref{sec:cross-arch}), with significant improvements even when $\\text{SC}_G > V_\\text{acc}$.\ndocs/paper/limitations_content.tex:1:[Omitted long matching line]\ndocs/paper/abstract.tex:1:Self-Consistency (SC) majority voting over chain-of-thought traces saturates as sample count grows because same-model traces are correlated voters.\ndocs/paper/abstract.tex:4:[Omitted long matching line]\ndocs/paper/abstract.tex:5:Cross-model extraction confirms SCB universality across nine models from 7B to frontier (BR $1.66$--$4.97\\times$), though frontier models use cross-model rather than self-extraction.\ndocs/paper/appendix.tex:7:\\caption{SICA $\\Delta$ (pp) vs.\\ SC baseline. Filled: $n \\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: nominally significant degradation (raw $p = 0.014$; BH adj.\\ $p = 0.112$).}\ndocs/paper/appendix.tex:211:$\\text{CCR} > 0$ means $V$ preferentially corrects $G$'s errors; $\\text{CCR} < 0$ indicates shared bias. CCR links our findings: (1)~SCB corresponds to $\\text{CCR}(\\text{self}, G) \\approx 0$; (2)~Finding~2 predicts $\\text{CCR}(V, G) > 0$ when $V$ is independent and capable.\ndocs/paper/appendix.tex:250:Qwen2.5-14B & ProofWriter & 39.2 & 0.89 & 0.022 & $+$0.33 \\\\\ndocs/paper/appendix.tex:262:[Omitted long matching line]\ndocs/paper/appendix.tex:294:We compute 95\\% confidence intervals for $\\Delta(\\text{SICA} - \\text{SC})$ via 10{,}000 bootstrap resamples (percentile method, seed 42). Table~\\ref{tab:bootstrap} reports the results for the three confirmatory conditions.\ndocs/paper/appendix.tex:308:\\caption{Bootstrap 95\\% confidence intervals for $\\Delta(\\text{SICA} - \\text{SC})$ in percentage points. All intervals include zero, consistent with no reliable accuracy difference.}\ndocs/paper/appendix.tex:318:[Omitted long matching line]\ndocs/paper/appendix.tex:324:[Omitted long matching line]\ndocs/paper/appendix.tex:326:\\paragraph{Case 2: SC Wins (ProofWriter-1066\\_Q6, ProofWriter).}\ndocs/paper/appendix.tex:330:[Omitted long matching line]\ndocs/paper/appendix.tex:336:[Omitted long matching line]\ndocs/paper/appendix.tex:349:Case & ID & Gold & SC & SICA & \\#Constr. & Excl.\\ (\\%) \\\\\ndocs/paper/appendix.tex:352:2 (SC win) & PW-1066\\_Q6 & False & False $\\checkmark$ & True $\\times$ & 17 & 2 (11.8\\%) \\\\\ndocs/paper/appendix.tex:378:Subtype & $n$ & SC Acc (\\%) & Oracle Acc (\\%) & $\\Delta$ (pp) \\\\\ndocs/paper/appendix.tex:381:AttNeg & 160 & 85.00 & \\textbf{91.90} & +6.90 \\\\\ndocs/paper/appendix.tex:385:Overall & 600 & 74.00 & \\textbf{91.17} & +17.17 \\\\\ndocs/paper/appendix.tex:398:\\caption{Constraint ablation (Qwen2.5-14B, $n = 804$). Agreement: predictions identical to SC. MAX-SAT and count-only produce nearly identical predictions, confirming that self-extracted constraints carry no signal beyond vote counts.}\ndocs/paper/appendix.tex:402:Aggregation & Acc.\\ (\\%) & Agreement w/ SC \\\\\ndocs/paper/appendix.tex:404:SC (majority vote) & 76.24 & --- \\\\\ndocs/paper/appendix.tex:437:\\caption{Nine prompt-level remediation strategies. Baseline: Qwen2.5-14B FOLIO, SC $= 75.49\\%$, $\\Delta = -0.98$\\,pp. None reaches significance. Three method-level strategies are reported in Table~\\ref{tab:method_interventions}.}\ndocs/paper/appendix.tex:447:Cons.\\ filtering & Noise & 0.00 & $T{\\geq}4 \\to$ SC \\\\\ndocs/paper/appendix.tex:454:{\\footnotesize $^a$\\,$n{=}182$ (extraction failures excluded). $^b$\\,Weak$\\to$strong: Mistral-7B extracts from Qwen2.5-14B traces. Strong$\\to$weak: Qwen3-14B (60.29\\%) and Qwen2.5-14B (58.33\\%) extract from Mistral-7B FOLIO traces ($n{=}204$); self-extraction baseline 59.31\\%. $^c$\\,$n{=}204$, SC $= 84.80\\%$. $^d$\\,Mistral-7B FOLIO, $n{=}204$. $^e$\\,Mistral-7B FOLIO, $T \\in \\{0.3, 0.7, 1.2\\}$, 4 traces each, $n{=}204$. $^f$\\,Qwen2.5-14B, $n{=}804$; removing non-discriminative constraints.}\ndocs/paper/appendix.tex:469:SC baseline & --- & 0.00 & --- & 0.00 & --- \\\\\ndocs/paper/appendix.tex:495:19 & $\\kappa$-aware SC & Voting rule & Weighted voting & 0.0 & 11/11 conditions $\\Delta = 0$ \\\\\ndocs/paper/appendix.tex:499:23 & ASCII perturbation & Input diversity & Format diversity & 0.0 & $\\kappa$: $0.39 \\to 0.36$ (negligible) \\\\\ndocs/paper/appendix.tex:522:[Omitted long matching line]\ndocs/paper/appendix.tex:524:[Omitted long matching line]\ndocs/paper/appendix.tex:536:[Omitted long matching line]\ndocs/paper/appendix.tex:541:\\caption{SICA $\\Delta$ (pp) vs.\\ number of traces $K$ for Mistral-7B on FOLIO ($n = 204$, default seed, $T = 0.7$). Non-monotonic pattern: SICA accuracy plateaus at 59.31\\% for $K \\geq 12$; the apparent $\\Delta$ peak at $K = 12$ partly reflects a relatively low SC baseline (55.88\\%) at that point. Error bars: 95\\% bootstrap CI.}\ndocs/paper/appendix.tex:547:[Omitted long matching line]\ndocs/paper/appendix.tex:549:The parallel between $K$ and $T$ sensitivity points to a common underlying variable. In both sweeps, the setting that produces the largest SICA gain also produces a relatively low SC baseline (55.88\\%), which places it in the intermediate-SC region. The hyperparameters themselves ($K$, $T$) are not the causal driver; they modulate SC level, and it is the SC level that determines whether SICA has operating room.\ndocs/paper/appendix.tex:561:\\caption{Entropy decomposition of SICA $\\Delta$ (pp). High-entropy: majority count $\\leq 8$; low-entropy: majority count $\\geq 9$. $^\\dagger$Partial data (180/600). Pre-tiebreaking SC values; pattern robust to D064 correction.}\ndocs/paper/appendix.tex:583:[Omitted long matching line]\ndocs/paper/appendix.tex:592:[Omitted long matching line]\ndocs/paper/appendix.tex:594:[Omitted long matching line]\ndocs/paper/appendix.tex:596:[Omitted long matching line]\ndocs/paper/appendix.tex:602:Table~\\ref{tab:cross-model-bias} reports MaxSAT-weighted confirmation bias metrics across three model families on FOLIO ($n = 204$). Weighted bias ratio and wrong-supporting constraint percentage both decrease with model capability, while SICA's accuracy effect shifts from positive (Mistral, intermediate-SC regime) to negative (LLaMA, high-SC regime). Raw bias ratios ($4.97\\times$, $3.93\\times$, $2.88\\times$) are reported in \\S\\ref{sec:confirmation-bias}. LLaMA weighted BR CI: [2.19, 3.28].\ndocs/paper/appendix.tex:607:\\caption{Cross-model confirmation bias on FOLIO ($n = 204$, $K = 12$). BR (wtd.): MaxSAT-weighted ratio of error-supporting constraints on incorrect vs.\\ correct problems. Wrong \\%: weighted fraction of constraints supporting the incorrect majority on error problems. $\\Delta$: SICA $-$ SC (pp).}\ndocs/paper/appendix.tex:615:LLaMA-3.1-8B & $2.66\\times$ & 72.7 & $-$4.41 \\\\\ndocs/paper/appendix.tex:640:\\caption{Process-$\\kappa$ gradient under cross-model extraction (Mistral-7B $\\rightarrow$ target model traces, FOLIO). $\\kappa_{\\text{proc}}$: process-level cosine similarity. $\\Delta$: SICA $-$ SC (pp). Spearman $\\rho(\\kappa_{\\text{proc}} \\rightarrow \\Delta) = -1.0$, $p = 0.0083$. $^*$Interim ($n = 95/204$).}\ndocs/paper/appendix.tex:662:\\caption{Independence-accuracy trade-off across aggregation methods (Mistral-7B, filled markers) and model families (LLaMA-3.1-8B, Qwen2.5-7B, Qwen2.5-14B; open markers) on FOLIO ($n = 204$). Same-model methods cluster at $\\kappa \\approx 0.40$--$0.47$ (gray band), while cross-model SC shows stronger correlations ($\\kappa = 0.41$--$0.74$) at higher accuracy. Debate breaks correlation ($\\kappa = 0.15$) at catastrophic accuracy cost. Dashed line: Mistral-7B SC baseline.}\ndocs/paper/appendix.tex:669:\\caption{Independence-accuracy trade-off (FOLIO, $n = 204$). Top: aggregation methods on Mistral-7B; bottom: SC across three model families. All families produce $\\kappa \\geq 0.41$, confirming an architecture-independent ceiling. $\\kappa$: Fleiss' kappa on raw answers.}\ndocs/paper/appendix.tex:697:\\caption{Trace independence metrics ($K = 12$, sorted by $\\kappa$ descending). $\\kappa$: Fleiss' Kappa. $K_{\\text{eff}}$: Effective-K (Eq.~\\ref{eq:effk}). SC: Self-Consistency baseline. $\\Delta$: SICA $-$ SC (pp). {*}\\,$p < 0.05$ (uncorrected; BH adj.\\ $p = 0.112$, $m{=}16$); positive $\\Delta$ values do not reach significance. multi-T $= T \\in \\{0.3, 0.7, 1.2\\}$, 4 traces each.}\ndocs/paper/appendix.tex:701:Model & Condition & $\\kappa$ & $K_{\\text{eff}}$ & SC (\\%) & $\\Delta$ (pp) \\\\\ndocs/paper/appendix.tex:718:Mistral-7B & PW-D5 & 0.21 & 3.62 & 39.33 & $\\mathbf{-2.83}${*} \\\\\ndocs/paper/appendix.tex:731:\\caption{Cross-model trace independence ($K = 12$, SC aggregation, FOLIO + ProofWriter). Higher $\\kappa$ indicates stronger correlation and lower effective sample size.}\ndocs/paper/appendix.tex:735:Model & Dataset & $\\kappa$ & $K_{\\text{eff}}$ & SC (\\%) \\\\\ndocs/paper/appendix.tex:743:Mistral-7B & PW-D5 & 0.21 & 3.62 & 39.33 \\\\\ndocs/paper/appendix.tex:776:[Omitted long matching line]\ndocs/paper/appendix.tex:787:Standard SICA & 97.1\\% & 96.5\\% & 39.3 & 42.9\\% & 81.4\\% & --- \\\\\ndocs/paper/appendix.tex:788:ICG & 74.6\\% & 99.4\\% & 24.9 & 32.3\\% & 77.0\\% & --- \\\\\ndocs/paper/appendix.tex:789:Contrastive & 74.0\\% & 94.4\\% & 9.2 & 0.0\\% & 51.0\\% & 62.7\\% \\\\\ndocs/paper/appendix.tex:798:We categorize discordant predictions (where the method and SC disagree) for Debate and Contrastive on FOLIO ($n = 204$) to understand why these interventions degrade accuracy.\ndocs/paper/appendix.tex:800:[Omitted long matching line]\ndocs/paper/appendix.tex:804:[Omitted long matching line]\ndocs/paper/appendix.tex:810:[Omitted long matching line]\ndocs/paper/appendix.tex:832:[Omitted long matching line]\ndocs/paper/appendix.tex:863:DRC invokes NLI only when SC consensus falls below threshold $\\tau$, avoiding unnecessary verifier calls on high-agreement problems. Gains concentrate on weak generators (SC $< 40\\%$), consistent with the capability-gap hypothesis (\\S\\ref{sec:cross-arch}). Regime-dependent bottleneck analysis appears in Appendix~\\ref{app:2x2}.\ndocs/paper/appendix.tex:875:\\multirow{3}{*}{PW-D5} & SC only & 39.33\\% & 0/600 & 0\\% & --- \\\\\ndocs/paper/appendix.tex:879:\\multirow{3}{*}{FOLIO} & SC only & 55.88\\% & 0/204 & 0\\% & --- \\\\\ndocs/paper/appendix.tex:892:\\caption{Cross-architecture NLI combo on ProofWriter depth-5 ($n{=}600$, Mistral-7B traces, SC $= 39.33\\%$). Three NLI verifiers $\\times$ three weight settings. {*}\\,$p < 0.05$;\\enspace{**}\\,$p < 0.01$;\\enspace{***}\\,$p < 0.001$ (McNemar).}\ndocs/paper/appendix.tex:942:\\caption{Combo gain vs.\\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Gain decreases monotonically (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n{=}6$; four of six conditions share the DeBERTa verifier---see Limitations); significant gains occur for generators with SC $\\leq 70\\%$. Stars: domain-adapted DeBERTa (99.67\\% standalone; ${\\sim}$values, Table~\\ref{tab:finetuned-nli}).}\ndocs/paper/appendix.tex:948:[Omitted long matching line]\ndocs/paper/appendix.tex:965:\\multirow{3}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize SC\\,39.33\\%, gap\\,$+$15.67}}}\ndocs/paper/appendix.tex:970:\\multirow{3}{*}{\\shortstack[l]{LLaMA-3.1-8B\\\\{\\scriptsize SC\\,70.00\\%, gap\\,$-$15.00}}}\ndocs/paper/appendix.tex:975:\\multirow{3}{*}{\\shortstack[l]{Qwen2.5-14B\\\\{\\scriptsize SC\\,73.50\\%, gap\\,$-$18.50}}}\ndocs/paper/appendix.tex:976:  & 1 & 74.17 & $+$0.67 & .344 & .4943 & \\\\\ndocs/paper/appendix.tex:977:  & 3 & 74.67 & $+$1.17 & .405 & .4943 & \\\\\ndocs/paper/appendix.tex:980:\\multirow{3}{*}{\\shortstack[l]{Qwen3-14B\\\\{\\scriptsize SC\\,85.83\\%, gap\\,$-$30.83}}}\ndocs/paper/appendix.tex:994:\\caption{Domain-adapted NLI combo on ProofWriter depth-5 ($n{=}600$). DeBERTa-large fine-tuned on ProofWriter OWA (99.67\\% standalone). All $p < 0.0001$. Complementarity: ratio of NLI-correct$\\cap$SC-incorrect to SC-correct$\\cap$NLI-incorrect. Numbers are preliminary (${\\sim}$); final values may differ by ${\\pm}1$--$2$\\,pp after tiebreaking correction.}\ndocs/paper/appendix.tex:1001:\\multirow{3}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize SC\\,${\\sim}$39\\%}}}\ndocs/paper/appendix.tex:1006:\\multirow{3}{*}{\\shortstack[l]{LLaMA-3.1-8B\\\\{\\scriptsize SC\\,${\\sim}$72\\%}}}\ndocs/paper/appendix.tex:1017:[Omitted long matching line]\ndocs/paper/appendix.tex:1022:\\caption{FOLIO $2{\\times}2$ generator${\\times}$extractor matrix ($n{=}204$). SC: Self-Consistency baseline. $\\kappa$: answer-level Fleiss' kappa. BR: bias ratio.}\ndocs/paper/appendix.tex:1027:Generator & Extractor & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) & BR \\\\\ndocs/paper/appendix.tex:1046:\\caption{Single-trace accuracy (mean $\\pm$ std over $K{=}12$ traces) and SC@12 majority vote on FOLIO ($n{=}204$). Aggregation gain = SC@12 $-$ single-trace mean. SC@12 uses alphabetical tiebreaking (consistent with Table~\\ref{tab:main_results}).}\ndocs/paper/appendix.tex:1050:Model & Single (\\%) & Std & SC@12 (\\%) & Gain (pp) \\\\\ndocs/paper/appendix.tex:1054:Qwen3-14B (think) & 85.42 & 0.99 & 86.27 & $+$0.86 \\\\\ndocs/paper/appendix.tex:1066:\\caption{Effect of extraction temperature $T_{\\text{ext}}$ on SICA accuracy (Mistral-7B, FOLIO $n{=}204$). $^\\dagger$\\,Uses a different trace set (SC $= 54.41\\%$); all other conditions share the same traces (SC $= 55.88\\%$).}\ndocs/paper/appendix.tex:1070:$T_{\\text{ext}}$ & SICA (\\%) & $\\Delta$ vs.\\ SC (pp) & Avg.\\ \\#Constr. \\\\\ndocs/paper/appendix.tex:1093:Seed & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) \\\\\ndocs/paper/appendix.tex:1104:123 & 74.51 & 73.04 & $-$1.47 \\\\\ndocs/paper/appendix.tex:1105:456 & 74.02 & 74.02 & 0.00 \\\\\ndocs/paper/appendix.tex:1106:789 & 74.02 & 72.55 & $-$1.47 \\\\\ndocs/paper/appendix.tex:1121:\\caption{SICA vs.\\ SC accuracy by gold-label type (Mistral-7B). Corrected SC baseline uses alphabetical tiebreaking. $\\Delta$\\,pp = SICA $-$ SC. $p$-values from exact McNemar test (two-sided).}\ndocs/paper/appendix.tex:1125:\\textbf{Dataset} & \\textbf{Label} & $n$ & \\textbf{SC} & \\textbf{SICA} & $\\Delta$\\,pp & $p$ \\\\\ndocs/paper/appendix.tex:1137: & \\textit{Overall} & 600 & 39.3 & 36.5 & $-$2.8 & .014\\rlap{*} \\\\\ndocs/paper/appendix.tex:1145:\\caption{SICA vs.\\ SC accuracy by extracted constraint count tertile (Mistral-7B). Corrected SC baseline (alphabetical tiebreaking). Constraint counts are unique deduplicated constraints per problem.}\ndocs/paper/appendix.tex:1149:\\textbf{Dataset} & \\textbf{Tertile} & $n$ & $\\bar{c}$ & \\textbf{SC} & \\textbf{SICA} & $\\Delta$\\,pp & $p$ \\\\\ndocs/paper/appendix.tex:1153: & Mid \\scriptsize{[33--47]}  &  64 & 39.7 & 50.0 & 59.4 & $+$9.4 & .031\\rlap{*} \\\\\ndocs/paper/appendix.tex:1157: & Low \\scriptsize{[0--39]}   & 212 & 28.8 & 43.9 & 39.6 & $-$4.3 & .078 \\\\\ndocs/paper/appendix.tex:1164:On FOLIO-204 with the corrected SC baseline (alphabetical tiebreaking), SICA improves over SC by $+$3.4\\,pp overall (55.9\\% $\\to$ 59.3\\%), though the aggregate McNemar test is marginally non-significant ($p{=}.092$).\ndocs/paper/appendix.tex:1177:\\paragraph{SCB versus CoT unfaithfulness.}\ndocs/paper/appendix.tex:1178:[Omitted long matching line]\ndocs/paper/appendix.tex:1181:[Omitted long matching line]\ndocs/paper/appendix.tex:1186:\\paragraph{SCB diagnostic toolkit.}\ndocs/paper/appendix.tex:1192:\\emph{ProcessSim} (Eq.~\\ref{eq:process-sim}): mean pairwise cosine similarity of TF-IDF trace vectors. $\\text{ProcessSim} > 0.6$ indicates homogeneous reasoning; combined with $\\text{BR} > 2$, this predicts SCB will dominate.\ndocs/paper/appendix.tex:1197:Our oracle controls reveal that perfect extraction would yield $+29.90$\\,pp over SC on Mistral-7B FOLIO---self-extraction captures only ${\\sim}12\\%$ of this ceiling. This gap motivates several future directions.\ndocs/paper/appendix.tex:1200:\\emph{External knowledge grounding}: connecting to knowledge bases (Wikidata, domain ontologies) could inject verification signal absent from any model's parameters. This avoids SCB entirely by grounding constraints in external facts rather than self-generated traces.\ndocs/paper/appendix.tex:1201:\\emph{SCB-aware aggregation}: current MAX-SAT aggregation treats all constraints equally. Weighting constraints by estimated independence (e.g., inverse ProcessSim with other traces' constraints) or by discriminative power (e.g., cross-validation on held-out traces) could partially mitigate SCB without requiring external verifiers.\ndocs/paper/appendix.tex:1203:\\paragraph{SCB as an evaluation framework.}\ndocs/paper/appendix.tex:1205:[Omitted long matching line]\ndocs/paper/appendix.tex:1209:[Omitted long matching line]\ndocs/paper/solutions.tex:6:\\looseness=-1 We test with DeBERTa-large \\citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \\citep{williams2018mnli}, classifying (premise, conclusion) pairs as entailment, contradiction, or neutral. In combo mode, each NLI-supporting vote counts $w$ times alongside SC's $K$ votes. We evaluate on Mistral-7B FOLIO ($n = 204$) and ProofWriter depth-5 ($n = 600$).\ndocs/paper/solutions.tex:9:[Omitted long matching line]\ndocs/paper/solutions.tex:12:[Omitted long matching line]\ndocs/paper/solutions.tex:21:Generator & Family & SC & Gap & Combo $\\Delta$ ($w{=}3$) & $p$ \\\\\ndocs/paper/solutions.tex:23:Mistral-7B & Mistral & 39.33\\% & $+$15.67 & $+$6.67\\,pp & $<$0.001 \\\\\ndocs/paper/solutions.tex:26:Qwen3-14B & Qwen & 85.83\\% & $-$30.83 & $+$0.50\\,pp & 0.45 \\\\\ndocs/paper/solutions.tex:32:\\looseness=-1 Fine-tuning DeBERTa on ProofWriter depth-5 OWA (99.67\\% standalone) amplifies the escape: combo gains reach ${\\sim}$$+$13\\,pp (Mistral-7B, $w{=}3$) and ${\\sim}$$+$12\\,pp (LLaMA-8B), $2$--$3.5\\times$ the zero-shot result, with near-total error complementarity ($365{:}2$ and $164{:}1$ NLI-correct/SC-incorrect vs.\\ reverse; Table~\\ref{tab:finetuned-nli}, Appendix). A cost-aware cascade variant recovers 90\\% of full-combo gain at ${\\sim}$35\\% NLI cost (Appendix~\\ref{app:drc}).\ndocs/paper/introduction.tex:4:The dominant aggregation strategy, Self-Consistency (SC) \\citep{wang2023sc}, samples $K$ chain-of-thought traces and selects the majority answer.\ndocs/paper/introduction.tex:5:SC is simple, model-agnostic, and effective---but it is hitting a ceiling.\ndocs/paper/introduction.tex:7:The gap between SC's theoretical promise (independent correct voters converge to truth) and its practical behavior (saturating gains) points to a structural mismatch: same-model traces carry correlated errors, and majority voting has no mechanism to correct shared bias.\ndocs/paper/introduction.tex:18:When the same model extracts logical constraints from these correlated traces, the constraints exhibit \\emph{symbolic confirmation bias} (SCB): on problems where the model errs, 83.3\\% of self-extracted constraints support the wrong majority answer (bias ratios $1.66$--$4.97\\times$ across nine models), and 94\\% of errors overlap with SC (\\S\\ref{sec:confirmation-bias}).\ndocs/paper/introduction.tex:66:\\draw[arr] (sample) -- node[lbl, right, yshift=0pt] {SC} (sc);\ndocs/paper/introduction.tex:74:\\caption{The SICA pipeline. SC selects the majority answer from $K$ traces. SICA extracts logical constraints, deduplicates, and solves MAX-SAT via Z3. Red dashed box: the independence bottleneck. Dashed arrow: oracle variant with gold FOL.}",
+              "numLines": 185
+            },
+            "sourceToolAssistantUUID": "43946a99-bfc5-4a7c-8d8a-85832ff4e0bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-22T19:49:18.167Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016H3UYyvV9VUyWWSV5cLCfH",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Setup}\n5\t\\label{sec:exp-setup}\n6\t\n7\tWe evaluate SICA against Self-Consistency (SC) across six models, three reasoning domains, and over 3,000 condition-evaluations (${\\sim}$1,250 unique instances), with diagnostic analyses of confirmation bias and process-level independence (\\S\\ref{sec:analysis}).\n8\t\n9\t\\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, Qwen3-14B (non-thinking mode)~\\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\citep{dubey2024llama3}, and QwQ-32B~\\citep{qwen2024qwq} (7B--32B). We additionally evaluate SCB universality via cross-model extraction on five frontier models (gpt-4o, gpt-4.1, gpt-5.5, o3, Gemini-2.5-Pro; Table~\\ref{tab:frontier-scb}), where Mistral-7B extracts constraints from the target model's traces since closed-source APIs do not expose internals suitable for self-extraction.\n10\t\n11\t\\paragraph{Datasets.} FOLIO~\\citep{han2022folio} ($n{=}204$, with gold logical annotations), ProofWriter depth-5~\\citep{tafjord2021proofwriter} ($n{=}600$), LogiQA~\\citep{liu2020logiqa} ($n{=}200$). StrategyQA~\\citep{geva2021strategyqa} ($n{=}200$) serves as a domain-formalizability diagnostic. GSM8K~\\citep{cobbe2021gsm8k} (exploratory, $n{=}30$) and AIME 2024 ($n{=}22$) probe the degenerate regime ($C_0 < 5\\%$).\n12\t\n13\t\\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$, extraction at $T_{\\text{ext}}{=}0.3$, $\\alpha{=}0.5$, Z3 timeout 10s. McNemar exact test ($\\alpha{=}0.05$); 95\\% bootstrap CIs ($10{,}000$ resamples) for $n \\geq 200$. SICA incurs $4.5{\\times}$ SC wall-clock; extraction accounts for 76\\% of overhead.\n14\t\n15\t\n16\t\\subsection{Main Results}\n17\t\\label{sec:main-results}\n18\t\n19\tTable~\\ref{tab:main_results} reports accuracy across all conditions sorted by SC baseline, revealing three observation-driven accuracy regimes.\n20\t\n21\t\\begin{table*}[t]\n22\t\\centering\n23\t\\small\n24\t\\caption{SICA vs.\\ SC across all non-degenerate self-extraction conditions (sorted by SC). No condition shows a significant gain after BH correction ($m{=}16$). $\\Delta$ = SICA $-$ SC (pp). Symbols: $^b$gold ICL; \\textbf{bold}: $p < 0.05$; {*}\\,uncorrected $p < 0.05$ (BH adj.\\ $p = 0.112$); $^{3s}$\\,3-seed; $^{4s}$\\,4-seed confirmatory (unmarked: single-seed exploratory). Degenerate conditions ($C_0 < 5\\%$: QwQ-32B AIME, Qwen2.5-14B GSM8K) yield $\\Delta = 0$; oracle upper bounds are reported in Appendix~\\ref{app:oracle}.}\n25\t\\label{tab:main_results}\n26\t\\begin{tabular}{@{}llrrrrl@{}}\n27\t\\toprule\n28\tModel & Domain & $n$ & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) & $p$ \\\\\n29\t\\midrule\n30\t\\multicolumn{7}{l}{\\textit{Type C: error amplification (SC $\\leq$ 40\\%)}} \\\\\n31\tMistral-7B & PW-D5 & 600 & 39.33 & 36.50 & $\\mathbf{-2.83}$ & 0.014{*} \\\\\n32\t\\midrule\n33\t\\multicolumn{7}{l}{\\textit{Intermediate SC (SC $\\sim$50--60\\%, Mistral-7B only)}} \\\\\n34\tMistral-7B & LogiQA & 200 & 51.00 & 51.50 & $+$0.50 & 1.000 \\\\\n35\tMistral-7B & FOLIO (s123) & 204 & 54.41 & 57.35 & $+$2.94 & 0.070 \\\\\n36\tMistral-7B$^{3s}$ & FOLIO & 204 & 56.53 & 56.70 & $+$0.16 & 1.000 \\\\\n37\tMistral-7B & FOLIO (s456) & 204 & 55.88 & 55.88 & 0.00 & 1.000 \\\\\n38\tMistral-7B & FOLIO (s789) & 204 & 59.31 & 56.86 & $-$2.45 & 0.267 \\\\\n39\t\\midrule\n40\t\\multicolumn{7}{l}{\\textit{Type A: confirmation bias (SC $\\geq$ 60\\%)}} \\\\\n41\tLLaMA-3.1-8B & FOLIO & 204 & 66.18 & 61.76 & $-$4.41 & 0.093 \\\\\n42\tLLaMA-3.1-8B & StrategyQA & 200 & 72.00 & 74.00 & $+$2.00 & 0.424 \\\\\n43\t\\addlinespace\n44\tQwen2.5-14B & FOLIO (ICL)$^b$ & 199 & 74.37 & 74.87 & $+$0.50 & 1.000 \\\\\n45\tQwen2.5-14B & PW-D5 & 600 & 74.00 & 71.50 & $\\mathbf{-2.50}$ & 0.011{*} \\\\\n46\tQwen2.5-14B$^{4s}$ & FOLIO & 204 & 75.49 & 74.51 & $-$0.98 & 1.000 \\\\\n47\tQwen2.5-7B & FOLIO & 204 & 75.98 & 76.47 & $+$0.49 & 1.000 \\\\\n48\tQwen2.5-14B & LogiQA & 200 & 78.50 & 78.00 & $-$0.50 & 1.000 \\\\\n49\t\\addlinespace\n50\tQwen3-14B & FOLIO & 204 & 84.80 & 84.31 & $-$0.49 & 1.000 \\\\\n51\tQwen3-14B & PW-D5 & 600 & 85.00 & 85.67 & $+$0.67 & 1.000 \\\\\n52\tQwen3-14B (think) & FOLIO & 204 & 86.27 & 86.76 & $+$0.49 & 1.000 \\\\\n53\t\\bottomrule\n54\t\\end{tabular}\n55\t\\end{table*}\n56\t\n57\t\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 5 positive and 10 negative $\\Delta$ values ($p = 0.30$, two-sided); including all conditions gives 8+/15$-$ ($p = 0.21$). Three-seed replication on Mistral-7B confirms seed-level noise: two of three seeds produce null or negative $\\Delta$ (mean $+0.16 \\pm 2.70$\\,pp; Table~\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\times$ FOLIO confirms the single-seed pattern: $\\Delta \\in [0.00, -2.01]$\\,pp (mean $-1.24 \\pm 0.86$; Table~\\ref{tab:multi-seed}). TOST equivalence tests \\citep{lakens2017equivalence} with margin $\\pm 2$\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\,pp at 80\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\,pp (Appendix~\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\pm 1$\\,pp, 0/16 equivalent; at $\\pm 3$\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\ref{tab:tost-sensitivity}). We adopt $\\pm 2$\\,pp based on the lower bound of SC literature gains (2--5\\,pp \\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\n58\t\n59\t\n60\t\\looseness=-1 Oracle controls replacing self-extracted constraints with gold annotations confirm the MAX-SAT mechanism is sound ($+29.90$/$+14.22$\\,pp FOLIO, $+17.17$\\,pp ProofWriter; $p < 0.001$), yet self-extraction captures only ${\\sim}$12\\% of this ceiling (Appendix~\\ref{app:oracle}).\n61\t\n62\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a813acd7-eb3a-4f53-bca6-2492cfbd1fbc",
+            "isSidechain": false,
+            "promptId": "86d61ff3-fd69-4a80-9d4d-b42202e900fc",
+            "type": "user",
+            "uuid": "384df860-ee24-468c-9562-4940cf1e2a19",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/experiments.tex",
+                "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Setup}\n\\label{sec:exp-setup}\n\nWe evaluate SICA against Self-Consistency (SC) across six models, three reasoning domains, and over 3,000 condition-evaluations (${\\sim}$1,250 unique instances), with diagnostic analyses of confirmation bias and process-level independence (\\S\\ref{sec:analysis}).\n\n\\paragraph{Models.} Qwen2.5-14B-Instruct, Qwen2.5-7B-Instruct, Qwen3-14B (non-thinking mode)~\\citep{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\\citep{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\\citep{dubey2024llama3}, and QwQ-32B~\\citep{qwen2024qwq} (7B--32B). We additionally evaluate SCB universality via cross-model extraction on five frontier models (gpt-4o, gpt-4.1, gpt-5.5, o3, Gemini-2.5-Pro; Table~\\ref{tab:frontier-scb}), where Mistral-7B extracts constraints from the target model's traces since closed-source APIs do not expose internals suitable for self-extraction.\n\n\\paragraph{Datasets.} FOLIO~\\citep{han2022folio} ($n{=}204$, with gold logical annotations), ProofWriter depth-5~\\citep{tafjord2021proofwriter} ($n{=}600$), LogiQA~\\citep{liu2020logiqa} ($n{=}200$). StrategyQA~\\citep{geva2021strategyqa} ($n{=}200$) serves as a domain-formalizability diagnostic. GSM8K~\\citep{cobbe2021gsm8k} (exploratory, $n{=}30$) and AIME 2024 ($n{=}22$) probe the degenerate regime ($C_0 < 5\\%$).\n\n\\paragraph{Parameters.} $K{=}12$ traces at $T{=}0.7$, extraction at $T_{\\text{ext}}{=}0.3$, $\\alpha{=}0.5$, Z3 timeout 10s. McNemar exact test ($\\alpha{=}0.05$); 95\\% bootstrap CIs ($10{,}000$ resamples) for $n \\geq 200$. SICA incurs $4.5{\\times}$ SC wall-clock; extraction accounts for 76\\% of overhead.\n\n\n\\subsection{Main Results}\n\\label{sec:main-results}\n\nTable~\\ref{tab:main_results} reports accuracy across all conditions sorted by SC baseline, revealing three observation-driven accuracy regimes.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{SICA vs.\\ SC across all non-degenerate self-extraction conditions (sorted by SC). No condition shows a significant gain after BH correction ($m{=}16$). $\\Delta$ = SICA $-$ SC (pp). Symbols: $^b$gold ICL; \\textbf{bold}: $p < 0.05$; {*}\\,uncorrected $p < 0.05$ (BH adj.\\ $p = 0.112$); $^{3s}$\\,3-seed; $^{4s}$\\,4-seed confirmatory (unmarked: single-seed exploratory). Degenerate conditions ($C_0 < 5\\%$: QwQ-32B AIME, Qwen2.5-14B GSM8K) yield $\\Delta = 0$; oracle upper bounds are reported in Appendix~\\ref{app:oracle}.}\n\\label{tab:main_results}\n\\begin{tabular}{@{}llrrrrl@{}}\n\\toprule\nModel & Domain & $n$ & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) & $p$ \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Type C: error amplification (SC $\\leq$ 40\\%)}} \\\\\nMistral-7B & PW-D5 & 600 & 39.33 & 36.50 & $\\mathbf{-2.83}$ & 0.014{*} \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Intermediate SC (SC $\\sim$50--60\\%, Mistral-7B only)}} \\\\\nMistral-7B & LogiQA & 200 & 51.00 & 51.50 & $+$0.50 & 1.000 \\\\\nMistral-7B & FOLIO (s123) & 204 & 54.41 & 57.35 & $+$2.94 & 0.070 \\\\\nMistral-7B$^{3s}$ & FOLIO & 204 & 56.53 & 56.70 & $+$0.16 & 1.000 \\\\\nMistral-7B & FOLIO (s456) & 204 & 55.88 & 55.88 & 0.00 & 1.000 \\\\\nMistral-7B & FOLIO (s789) & 204 & 59.31 & 56.86 & $-$2.45 & 0.267 \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Type A: confirmation bias (SC $\\geq$ 60\\%)}} \\\\\nLLaMA-3.1-8B & FOLIO & 204 & 66.18 & 61.76 & $-$4.41 & 0.093 \\\\\nLLaMA-3.1-8B & StrategyQA & 200 & 72.00 & 74.00 & $+$2.00 & 0.424 \\\\\n\\addlinespace\nQwen2.5-14B & FOLIO (ICL)$^b$ & 199 & 74.37 & 74.87 & $+$0.50 & 1.000 \\\\\nQwen2.5-14B & PW-D5 & 600 & 74.00 & 71.50 & $\\mathbf{-2.50}$ & 0.011{*} \\\\\nQwen2.5-14B$^{4s}$ & FOLIO & 204 & 75.49 & 74.51 & $-$0.98 & 1.000 \\\\\nQwen2.5-7B & FOLIO & 204 & 75.98 & 76.47 & $+$0.49 & 1.000 \\\\\nQwen2.5-14B & LogiQA & 200 & 78.50 & 78.00 & $-$0.50 & 1.000 \\\\\n\\addlinespace\nQwen3-14B & FOLIO & 204 & 84.80 & 84.31 & $-$0.49 & 1.000 \\\\\nQwen3-14B & PW-D5 & 600 & 85.00 & 85.67 & $+$0.67 & 1.000 \\\\\nQwen3-14B (think) & FOLIO & 204 & 86.27 & 86.76 & $+$0.49 & 1.000 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\looseness=-1 No non-degenerate condition shows a significant SICA effect after FDR control (BH, $m{=}16$). Two show nominally significant degradation: Mistral-7B on ProofWriter ($-2.83$\\,pp, raw $p = 0.014$) and Qwen2.5-14B on ProofWriter ($-2.50$\\,pp, raw $p = 0.011$); adjusted $p = 0.112$ for both. The intermediate-SC region (50--60\\%) contains the only positive trends, none reaching $p < 0.05$. An aggregate sign test across self-extraction conditions yields 5 positive and 10 negative $\\Delta$ values ($p = 0.30$, two-sided); including all conditions gives 8+/15$-$ ($p = 0.21$). Three-seed replication on Mistral-7B confirms seed-level noise: two of three seeds produce null or negative $\\Delta$ (mean $+0.16 \\pm 2.70$\\,pp; Table~\\ref{tab:multi-seed}). Four-seed replication on Qwen2.5-14B $\\times$ FOLIO confirms the single-seed pattern: $\\Delta \\in [0.00, -2.01]$\\,pp (mean $-1.24 \\pm 0.86$; Table~\\ref{tab:multi-seed}). TOST equivalence tests \\citep{lakens2017equivalence} with margin $\\pm 2$\\,pp confirm 4 equivalent, 2 genuinely different (both negative), 10 underpowered. For the 10 underpowered conditions, our tests cannot rule out effects smaller than 1.86--4.84\\,pp at 80\\% power; the largest study ($n{=}804$) achieves MDE $= 1.86$\\,pp (Appendix~\\ref{app:power}). Absence of evidence is not evidence of absence for small effects. Margin sensitivity is robust: at $\\pm 1$\\,pp, 0/16 equivalent; at $\\pm 3$\\,pp, 10/16 equivalent; no margin yields a significant positive effect (Appendix Table~\\ref{tab:tost-sensitivity}). We adopt $\\pm 2$\\,pp based on the lower bound of SC literature gains (2--5\\,pp \\citep{wang2023sc}), acknowledging this choice is anchored to SC effect sizes. We trace the failure below.\n\n\n\\looseness=-1 Oracle controls replacing self-extracted constraints with gold annotations confirm the MAX-SAT mechanism is sound ($+29.90$/$+14.22$\\,pp FOLIO, $+17.17$\\,pp ProofWriter; $p < 0.001$), yet self-extraction captures only ${\\sim}$12\\% of this ceiling (Appendix~\\ref{app:oracle}).\n\n",
+                "numLines": 62,
+                "startLine": 1,
+                "totalLines": 62
+              }
+            },
+            "sourceToolAssistantUUID": "a813acd7-eb3a-4f53-bca6-2492cfbd1fbc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-22T19:49:19.450Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PJJpn81AjqDJjVRsr7G1mz",
+              "name": "Grep",
+              "input": {
+                "pattern": "39\\.|72\\.|74\\.|85\\.|SC",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+                "output_mode": "content",
+                "glob": "*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "384df860-ee24-468c-9562-4940cf1e2a19",
+            "isSidechain": false,
+            "requestId": "req_011CbJBnLeAqptXgS53iWB3p",
+            "type": "assistant",
+            "uuid": "43946a99-bfc5-4a7c-8d8a-85832ff4e0bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NrHJB8rKWZL7JgQHmcETdq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1277,
+                "cache_read_input_tokens": 87829,
+                "output_tokens": 288,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1277,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 288,
+                    "cache_read_input_tokens": 87829,
+                    "cache_creation_input_tokens": 1277,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1277
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-22T19:49:19.797Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "c948f96f-a09c-418c-bc66-4cf2afe05972",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "9b74fa91-704d-4e33-b31a-df9a8feda5e3",
+                "timestamp": "2026-05-22T19:49:19.797Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "9b74fa91-704d-4e33-b31a-df9a8feda5e3",
+                "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96"
+              }
+            }
+          ],
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit tiebreaking consistency in combo and main table",
+                "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96"
+              }
+            }
+          ],
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-22T19:50:29.254Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the full picture. Let me check the Table 1 SC values against the stored vs recomputed values.\n\nTable 1 SC values:\n- Mistral-7B PW-D5: 39.33%\n- Qwen2.5-14B PW-D5: 74.00%\n- Qwen3-14B PW-D5: 85.00%\n\nFrom my verification:\n- Mistral (exp046): stored=39.33% — need to verify if this matches\n- LLaMA (exp048): stored=420/600=70.00%, recomputed=435/600=72.50%\n\n\n- Qwen14B (exp032): stored=441/600=73.50%, recomputed=444/600=74.00%\n- Qwen3 (exp033): stored=510/600=85.00%, recomputed=515/600=85.83%\n\nI'm seeing an interesting pattern here. The Table 1 value for Qwen2.5-14B matches the recomputed value (74.00%), not the stored value (73.50%), while Qwen3-14B matches the stored value (85.00%), not the recomputed (85.83%).\n\nThis inconsistency suggests they might be using different tiebreaking methods or pulling from different sources. Let me check if the SICA pipeline is applying a consistent tiebreaking strategy across both models.\n\nThe trace files store sc_answer values that were computed through a different code path than the baseline pipeline, which could explain why they're using the old tiebreaking method. I need to find where these sc_answer values actually come from in the experiment runner to understand which tiebreaking approach was used when they were generated. So I'm seeing a pattern across three different implementations: the finetuned DeBERTa combo uses consistent D061 tiebreaking throughout, but the zero-shot variants have a mismatch where the SC baselines are reading old tiebreaking logic from stored results while the combo voting was fixed to use D061, and the D116 script hasn't been updated at all—it's still using the old `max(votes, key=votes.get)` approach instead of D061.\n\nLooking at the main pipeline and Table 1 results, the scorer and self_consistency module both implement D061, but the Table 1 SC values seem inconsistent—some match the stored old results while others match the recomputed D061 values, which suggests they might be coming from different computation sources or there's something off with how they were generated. The stored values in the result files are from the original trace generation runs and haven't been updated since the D061 fix was applied. Table 1's SC values might actually come from multi-seed experiments or aggregated computations rather than the single-run files, which would explain the discrepancies. Let me focus on writing up the report with what I've found. I'm working through the logic of how `max()` handles ties when selecting the most common answer. When there's a tie between \"False\" and \"True\" with equal counts, `max(sorted(keys), key=count)` returns \"False\" since it picks the first maximum encountered. The recomputed approach using `sorted(tied)[0]` also returns \"False\" for the same tie, so they should produce identical results. Let me trace through different tie scenarios to see where they might actually diverge.\n\nActually, I'm realizing the discrepancy between stored and recomputed `sc_answer` values might not stem from the self_consistency.py logic at all—it could be that the original trace generation scripts used entirely different code to compute `sc_answer` in the first place. I need to look at how the main experiment runner actually generates these answers and what the results.json structure reveals about the computation method.\n\nLet me step back and verify the actual Table 1 values by checking the tex file directly. Looking at the experiments.tex entries, I see Qwen2.5-14B with PW-D5 shows 74.00% and Qwen3-14B with PW-D5 shows 85.00%, so those baseline numbers are confirmed.\n\nNow comparing against the deberta_ft_combo_all.json file, I'm finding a discrepancy for Qwen3-14B—the table reports 85.00% but the JSON file shows 85.83%, which is a meaningful difference that needs explaining. I notice that LLaMA-3.1-8B with PW-D5 only appears in the combo results, not in Table 1, so there's no direct comparison to validate the self-consistency baseline across tables. Let me locate Table 3 to see what the combo data shows for this condition.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b74fa91-704d-4e33-b31a-df9a8feda5e3",
+            "isSidechain": false,
+            "requestId": "req_011CbJBoW8TRiMEJkvY7Vom8",
+            "type": "assistant",
+            "uuid": "6b79e9c5-6f48-4c1b-859a-2ffbb0eea277",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016un9TP9EHqmyeCB7n21n7f",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4023,
+                "cache_read_input_tokens": 89106,
+                "output_tokens": 3460,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4023,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3460,
+                    "cache_read_input_tokens": 89106,
+                    "cache_creation_input_tokens": 4023,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4023
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-22T19:50:29.255Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me find the NLI combo table (Table 3) in the paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6b79e9c5-6f48-4c1b-859a-2ffbb0eea277",
+            "isSidechain": false,
+            "requestId": "req_011CbJBoW8TRiMEJkvY7Vom8",
+            "type": "assistant",
+            "uuid": "398f80e4-16b0-441c-a3c3-2bdf9e1ecb74",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016un9TP9EHqmyeCB7n21n7f",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4023,
+                "cache_read_input_tokens": 89106,
+                "output_tokens": 3460,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4023,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3460,
+                    "cache_read_input_tokens": 89106,
+                    "cache_creation_input_tokens": 4023,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4023
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-22T19:50:31.089Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012a69WmdMYDBgWgbM7KgCwh",
+              "name": "Grep",
+              "input": {
+                "pattern": "NLI|combo|DeBERTa|verif",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+                "output_mode": "content",
+                "glob": "*.tex",
+                "head_limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "398f80e4-16b0-441c-a3c3-2bdf9e1ecb74",
+            "isSidechain": false,
+            "requestId": "req_011CbJBoW8TRiMEJkvY7Vom8",
+            "type": "assistant",
+            "uuid": "08bea175-e88e-4f27-81e8-05039e90a368",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016un9TP9EHqmyeCB7n21n7f",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4023,
+                "cache_read_input_tokens": 89106,
+                "output_tokens": 3460,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4023,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3460,
+                    "cache_read_input_tokens": 89106,
+                    "cache_creation_input_tokens": 4023,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4023
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-22T19:50:31.110Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012a69WmdMYDBgWgbM7KgCwh",
+              "type": "tool_result",
+              "content": "docs/paper/analysis.tex:15:[Omitted long matching line]\ndocs/paper/analysis.tex:51:CCR analysis confirms the same pattern: cross-architecture NLI yields $\\text{CCR} > 0$ while same-model SICA yields $\\text{CCR} < 0$, with CCR correlating with combo gain ($\\rho = 0.84$, $p = 0.014$; Appendix~\\ref{app:cil}).\ndocs/paper/analysis.tex:70:\\paragraph{Symbolic Mirage Hypothesis: verification.}\ndocs/paper/analysis.tex:71:[Omitted long matching line]\ndocs/paper/related_work.tex:5:[Omitted long matching line]\ndocs/paper/related_work.tex:8:[Omitted long matching line]\ndocs/paper/related_work.tex:10:\\paragraph{Test-time compute and verification.}\ndocs/paper/related_work.tex:11:[Omitted long matching line]\ndocs/paper/related_work.tex:17:[Omitted long matching line]\ndocs/paper/conclusion.tex:4:[Omitted long matching line]\ndocs/paper/discussion.tex:10:[Omitted long matching line]\ndocs/paper/diagnosis.tex:136:\\paragraph{Method-level interventions.} ICG ($\\Delta \\approx 0$, $p = .206$), Contrastive ($\\Delta = -9.31$\\,pp, $p < 0.01$), and Debate ($\\Delta = -18.63$/$-23.00$\\,pp, $p < 0.001$) all fail (Table~\\ref{tab:method_interventions}, Appendix~\\ref{app:remediation}). Ten further experiments (code verification, iterative refinement, logprob filtering, cross-model ensembles) produce neutral-to-negative results (Appendix Table~\\ref{tab:additional_interventions}).\ndocs/paper/method.tex:48:[Omitted long matching line]\ndocs/paper/method.tex:53:[Omitted long matching line]\ndocs/paper/method.tex:62:Let $G$ be a generator with SC accuracy $\\text{SC}_G$ and let $V$ be an external verifier with standalone accuracy $V_\\text{acc}$ and inter-system correlation $\\rho_{GV} < \\rho_{GG}$. Combo gain $\\Delta_\\text{combo} - \\Delta_\\text{SC}$ decreases monotonically with $\\text{SC}_G$, with significant gains observed up to $\\text{SC}_G \\approx 70\\%$.\ndocs/paper/method.tex:65:\\textit{Empirical support.} From Finding~1, adding $V$ with $\\rho_{GV} < \\rho_{GG}$ increases $K_\\text{eff}^\\text{combo}$. Empirically, combo gain decreases monotonically with $\\text{SC}_G$ ($\\rho = 1.0$, $p = 0.003$, $n{=}6$; \\S\\ref{sec:cross-arch}), with significant improvements even when $\\text{SC}_G > V_\\text{acc}$.\ndocs/paper/limitations_content.tex:1:[Omitted long matching line]\ndocs/paper/abstract.tex:4:[Omitted long matching line]\ndocs/paper/abstract.tex:8:Cross-architecture NLI verification on propositional-logic benchmarks escapes the bottleneck ($+3.33$--$6.67$\\,pp zero-shot, ${\\sim}$$+$13--26\\,pp with domain adaptation; $p < 0.001$), with gain decreasing monotonically with generator capability ($\\rho = 1.0$, $p = 0.003$, $n{=}6$).\ndocs/paper/appendix.tex:76:- Do NOT verify whether the trace's reasoning is\ndocs/paper/appendix.tex:206:We define the \\textit{Conditional Correction Ratio} (CCR) to summarize verifier--generator complementarity:\ndocs/paper/appendix.tex:213:\\paragraph{Empirical CCR across verifier--generator pairs.}\ndocs/paper/appendix.tex:214:[Omitted long matching line]\ndocs/paper/appendix.tex:219:\\caption{Empirical CCR across eight verifier--generator conditions (sorted by CCR descending). $\\text{CCR} > 0$: cross-architecture NLI verifiers on ProofWriter. $\\text{CCR} < 0$: same-model SICA or mismatched capability gap.}\ndocs/paper/appendix.tex:225:Mistral-7B & BART-MNLI & PW-600 & $+$1.86 & $+$5.17 \\\\\ndocs/paper/appendix.tex:226:Mistral-7B & DeBERTa-MNLI & PW-600 & $+$1.67 & $+$6.67 \\\\\ndocs/paper/appendix.tex:227:Mistral-7B & RoBERTa-MNLI & PW-600 & $+$1.42 & $+$4.17 \\\\\ndocs/paper/appendix.tex:229:Qwen2.5-14B & DeBERTa-MNLI & PW-600 & $-$0.21 & $+$0.33 \\\\\ndocs/paper/appendix.tex:230:Mistral-7B & DeBERTa-MNLI & FOLIO-204 & $-$0.47 & $+$2.94 \\\\\ndocs/paper/appendix.tex:489:13 & PROVE (code verif.) & Paradigm & Formal proof & $-$1.9 & 15.2\\% compilable; conclusive acc.\\ = 50\\% \\\\\ndocs/paper/appendix.tex:841:\\caption{Conditional Correction Ratio across eight verifier--generator conditions. $\\text{CCR} > 0$: cross-arch NLI on ProofWriter. $\\text{CCR} < 0$: same-model SICA or weak capability gap.}\ndocs/paper/appendix.tex:847:Mistral $\\times$ BART-NLI & PW & $+$1.86 & $+$5.17 \\\\\ndocs/paper/appendix.tex:848:Mistral $\\times$ DeBERTa-NLI & PW & $+$1.67 & $+$6.67 \\\\\ndocs/paper/appendix.tex:849:Mistral $\\times$ RoBERTa-NLI & PW & $+$1.42 & $+$4.17 \\\\\ndocs/paper/appendix.tex:851:Qwen-14B $\\times$ DeBERTa-NLI & PW & $-$0.21 & $+$0.33 \\\\\ndocs/paper/appendix.tex:852:Mistral $\\times$ DeBERTa-NLI & FOLIO & $-$0.47 & $+$2.94 \\\\\ndocs/paper/appendix.tex:863:DRC invokes NLI only when SC consensus falls below threshold $\\tau$, avoiding unnecessary verifier calls on high-agreement problems. Gains concentrate on weak generators (SC $< 40\\%$), consistent with the capability-gap hypothesis (\\S\\ref{sec:cross-arch}). Regime-dependent bottleneck analysis appears in Appendix~\\ref{app:2x2}.\ndocs/paper/appendix.tex:868:\\caption{DRC on Mistral-7B ($K{=}12$, DeBERTa-large-mnli, $w{=}3$). $\\tau{=}0.7$ recovers 83--90\\% of full-combo gain at 35--39\\% NLI cost across both datasets.}\ndocs/paper/appendix.tex:873:Dataset & Method & Acc.\\ & NLI Calls & Cost & Recovery \\\\\ndocs/paper/appendix.tex:877:& Full combo & 46.00\\% & 600/600 & 100\\% & 100\\% \\\\\ndocs/paper/appendix.tex:881:& Full combo & 58.82\\% & 204/204 & 100\\% & 100\\% \\\\\ndocs/paper/appendix.tex:886:\\section{Multi-Verifier NLI Results}\ndocs/paper/appendix.tex:892:\\caption{Cross-architecture NLI combo on ProofWriter depth-5 ($n{=}600$, Mistral-7B traces, SC $= 39.33\\%$). Three NLI verifiers $\\times$ three weight settings. {*}\\,$p < 0.05$;\\enspace{**}\\,$p < 0.01$;\\enspace{***}\\,$p < 0.001$ (McNemar).}\ndocs/paper/appendix.tex:898:DeBERTa-MNLI & 55.00\\% & 1 & $+$0.83 & n.s. \\\\\ndocs/paper/appendix.tex:902:RoBERTa-MNLI & 37.67\\% & 1 & $-$0.17 & n.s. \\\\\ndocs/paper/appendix.tex:906:BART-MNLI & 46.17\\% & 1 & 0.00 & n.s. \\\\\ndocs/paper/appendix.tex:911:{\\footnotesize All verifiers fine-tuned on MultiNLI. Unknown recall ${<}3.5\\%$ across all verifiers.}\ndocs/paper/appendix.tex:914:\\paragraph{Three-verifier BH correction.}\ndocs/paper/appendix.tex:915:\\label{app:3verifier-bh}\ndocs/paper/appendix.tex:916:Table~\\ref{tab:3verifier-bh} applies Benjamini--Hochberg correction across all 15 Mistral-7B verifier--weight conditions ($m{=}15$, $\\alpha{=}0.05$; distinct from the $m{=}12$ cross-generator analysis in \\S\\ref{sec:cross-arch}). Ten of 15 conditions remain significant after correction, confirming that multi-verifier NLI gains are robust to multiple testing.\n\n[Showing results with pagination = limit: 50]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08bea175-e88e-4f27-81e8-05039e90a368",
+            "isSidechain": false,
+            "promptId": "86d61ff3-fd69-4a80-9d4d-b42202e900fc",
+            "type": "user",
+            "uuid": "4f809607-be8c-403e-bec2-a4bce8f6fa95",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "docs/paper/analysis.tex:15:[Omitted long matching line]\ndocs/paper/analysis.tex:51:CCR analysis confirms the same pattern: cross-architecture NLI yields $\\text{CCR} > 0$ while same-model SICA yields $\\text{CCR} < 0$, with CCR correlating with combo gain ($\\rho = 0.84$, $p = 0.014$; Appendix~\\ref{app:cil}).\ndocs/paper/analysis.tex:70:\\paragraph{Symbolic Mirage Hypothesis: verification.}\ndocs/paper/analysis.tex:71:[Omitted long matching line]\ndocs/paper/related_work.tex:5:[Omitted long matching line]\ndocs/paper/related_work.tex:8:[Omitted long matching line]\ndocs/paper/related_work.tex:10:\\paragraph{Test-time compute and verification.}\ndocs/paper/related_work.tex:11:[Omitted long matching line]\ndocs/paper/related_work.tex:17:[Omitted long matching line]\ndocs/paper/conclusion.tex:4:[Omitted long matching line]\ndocs/paper/discussion.tex:10:[Omitted long matching line]\ndocs/paper/diagnosis.tex:136:\\paragraph{Method-level interventions.} ICG ($\\Delta \\approx 0$, $p = .206$), Contrastive ($\\Delta = -9.31$\\,pp, $p < 0.01$), and Debate ($\\Delta = -18.63$/$-23.00$\\,pp, $p < 0.001$) all fail (Table~\\ref{tab:method_interventions}, Appendix~\\ref{app:remediation}). Ten further experiments (code verification, iterative refinement, logprob filtering, cross-model ensembles) produce neutral-to-negative results (Appendix Table~\\ref{tab:additional_interventions}).\ndocs/paper/method.tex:48:[Omitted long matching line]\ndocs/paper/method.tex:53:[Omitted long matching line]\ndocs/paper/method.tex:62:Let $G$ be a generator with SC accuracy $\\text{SC}_G$ and let $V$ be an external verifier with standalone accuracy $V_\\text{acc}$ and inter-system correlation $\\rho_{GV} < \\rho_{GG}$. Combo gain $\\Delta_\\text{combo} - \\Delta_\\text{SC}$ decreases monotonically with $\\text{SC}_G$, with significant gains observed up to $\\text{SC}_G \\approx 70\\%$.\ndocs/paper/method.tex:65:\\textit{Empirical support.} From Finding~1, adding $V$ with $\\rho_{GV} < \\rho_{GG}$ increases $K_\\text{eff}^\\text{combo}$. Empirically, combo gain decreases monotonically with $\\text{SC}_G$ ($\\rho = 1.0$, $p = 0.003$, $n{=}6$; \\S\\ref{sec:cross-arch}), with significant improvements even when $\\text{SC}_G > V_\\text{acc}$.\ndocs/paper/limitations_content.tex:1:[Omitted long matching line]\ndocs/paper/abstract.tex:4:[Omitted long matching line]\ndocs/paper/abstract.tex:8:Cross-architecture NLI verification on propositional-logic benchmarks escapes the bottleneck ($+3.33$--$6.67$\\,pp zero-shot, ${\\sim}$$+$13--26\\,pp with domain adaptation; $p < 0.001$), with gain decreasing monotonically with generator capability ($\\rho = 1.0$, $p = 0.003$, $n{=}6$).\ndocs/paper/appendix.tex:76:- Do NOT verify whether the trace's reasoning is\ndocs/paper/appendix.tex:206:We define the \\textit{Conditional Correction Ratio} (CCR) to summarize verifier--generator complementarity:\ndocs/paper/appendix.tex:213:\\paragraph{Empirical CCR across verifier--generator pairs.}\ndocs/paper/appendix.tex:214:[Omitted long matching line]\ndocs/paper/appendix.tex:219:\\caption{Empirical CCR across eight verifier--generator conditions (sorted by CCR descending). $\\text{CCR} > 0$: cross-architecture NLI verifiers on ProofWriter. $\\text{CCR} < 0$: same-model SICA or mismatched capability gap.}\ndocs/paper/appendix.tex:225:Mistral-7B & BART-MNLI & PW-600 & $+$1.86 & $+$5.17 \\\\\ndocs/paper/appendix.tex:226:Mistral-7B & DeBERTa-MNLI & PW-600 & $+$1.67 & $+$6.67 \\\\\ndocs/paper/appendix.tex:227:Mistral-7B & RoBERTa-MNLI & PW-600 & $+$1.42 & $+$4.17 \\\\\ndocs/paper/appendix.tex:229:Qwen2.5-14B & DeBERTa-MNLI & PW-600 & $-$0.21 & $+$0.33 \\\\\ndocs/paper/appendix.tex:230:Mistral-7B & DeBERTa-MNLI & FOLIO-204 & $-$0.47 & $+$2.94 \\\\\ndocs/paper/appendix.tex:489:13 & PROVE (code verif.) & Paradigm & Formal proof & $-$1.9 & 15.2\\% compilable; conclusive acc.\\ = 50\\% \\\\\ndocs/paper/appendix.tex:841:\\caption{Conditional Correction Ratio across eight verifier--generator conditions. $\\text{CCR} > 0$: cross-arch NLI on ProofWriter. $\\text{CCR} < 0$: same-model SICA or weak capability gap.}\ndocs/paper/appendix.tex:847:Mistral $\\times$ BART-NLI & PW & $+$1.86 & $+$5.17 \\\\\ndocs/paper/appendix.tex:848:Mistral $\\times$ DeBERTa-NLI & PW & $+$1.67 & $+$6.67 \\\\\ndocs/paper/appendix.tex:849:Mistral $\\times$ RoBERTa-NLI & PW & $+$1.42 & $+$4.17 \\\\\ndocs/paper/appendix.tex:851:Qwen-14B $\\times$ DeBERTa-NLI & PW & $-$0.21 & $+$0.33 \\\\\ndocs/paper/appendix.tex:852:Mistral $\\times$ DeBERTa-NLI & FOLIO & $-$0.47 & $+$2.94 \\\\\ndocs/paper/appendix.tex:863:DRC invokes NLI only when SC consensus falls below threshold $\\tau$, avoiding unnecessary verifier calls on high-agreement problems. Gains concentrate on weak generators (SC $< 40\\%$), consistent with the capability-gap hypothesis (\\S\\ref{sec:cross-arch}). Regime-dependent bottleneck analysis appears in Appendix~\\ref{app:2x2}.\ndocs/paper/appendix.tex:868:\\caption{DRC on Mistral-7B ($K{=}12$, DeBERTa-large-mnli, $w{=}3$). $\\tau{=}0.7$ recovers 83--90\\% of full-combo gain at 35--39\\% NLI cost across both datasets.}\ndocs/paper/appendix.tex:873:Dataset & Method & Acc.\\ & NLI Calls & Cost & Recovery \\\\\ndocs/paper/appendix.tex:877:& Full combo & 46.00\\% & 600/600 & 100\\% & 100\\% \\\\\ndocs/paper/appendix.tex:881:& Full combo & 58.82\\% & 204/204 & 100\\% & 100\\% \\\\\ndocs/paper/appendix.tex:886:\\section{Multi-Verifier NLI Results}\ndocs/paper/appendix.tex:892:\\caption{Cross-architecture NLI combo on ProofWriter depth-5 ($n{=}600$, Mistral-7B traces, SC $= 39.33\\%$). Three NLI verifiers $\\times$ three weight settings. {*}\\,$p < 0.05$;\\enspace{**}\\,$p < 0.01$;\\enspace{***}\\,$p < 0.001$ (McNemar).}\ndocs/paper/appendix.tex:898:DeBERTa-MNLI & 55.00\\% & 1 & $+$0.83 & n.s. \\\\\ndocs/paper/appendix.tex:902:RoBERTa-MNLI & 37.67\\% & 1 & $-$0.17 & n.s. \\\\\ndocs/paper/appendix.tex:906:BART-MNLI & 46.17\\% & 1 & 0.00 & n.s. \\\\\ndocs/paper/appendix.tex:911:{\\footnotesize All verifiers fine-tuned on MultiNLI. Unknown recall ${<}3.5\\%$ across all verifiers.}\ndocs/paper/appendix.tex:914:\\paragraph{Three-verifier BH correction.}\ndocs/paper/appendix.tex:915:\\label{app:3verifier-bh}\ndocs/paper/appendix.tex:916:Table~\\ref{tab:3verifier-bh} applies Benjamini--Hochberg correction across all 15 Mistral-7B verifier--weight conditions ($m{=}15$, $\\alpha{=}0.05$; distinct from the $m{=}12$ cross-generator analysis in \\S\\ref{sec:cross-arch}). Ten of 15 conditions remain significant after correction, confirming that multi-verifier NLI gains are robust to multiple testing.",
+              "numLines": 50,
+              "appliedLimit": 50
+            },
+            "sourceToolAssistantUUID": "08bea175-e88e-4f27-81e8-05039e90a368",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "4f809607-be8c-403e-bec2-a4bce8f6fa95",
+                "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96"
+              }
+            }
+          ],
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit tiebreaking consistency in combo and main table",
+                "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96"
+              }
+            }
+          ],
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-22T19:50:35.494Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me look for the specific cross-architecture NLI section (the Table 3 equivalent with DeBERTa combo results) and the diagnosis table.",
+              "signature": "Es4CCmMIDRgCKkCjTnRgFZvsSYmc7pGORjXqPgN93eFnxdgw9ytxbUnH2YTHxxU/Soy0UuSgZ1/ccSLTYHadV8YMoaHL/dADGP/FMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDFMCztEQHlrcMw/mHxoMJl3fLNG3ZsUEN04lIjBqLB5zhb7APcCPLgUQbB36EGfZnbHB1S1+14jvHtEgTc96fdw6GkNzCok8HOf/vGcqmAHPTUhlUj9jMVO2p9pLLGi1tpxIwm6G4Z8dbCTppHsgZ9huwcQS+a2NefihbQaz4Se1LMgqLWSnwo7gr6Hmu7ASlTaMoZexjkwbhJtpAAUWk/g/S6czh1Qvez7xgImTOWE1tI2n7146A7Ps5fJPUCUziR/yEZ5bEp3g02RT3UjhfL8DLfpLY65ofwdmy4w1iA/YGPw5+6XkoxgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f809607-be8c-403e-bec2-a4bce8f6fa95",
+            "isSidechain": false,
+            "requestId": "req_011CbJBtmChkYj6gzSHDGmmK",
+            "type": "assistant",
+            "uuid": "b80c19b5-5e0f-4458-b115-ab2720f6515d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DLCdE1uQcbNLhkeU9MZMK8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6040,
+                "cache_read_input_tokens": 93129,
+                "output_tokens": 296,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6040,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 296,
+                    "cache_read_input_tokens": 93129,
+                    "cache_creation_input_tokens": 6040,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6040
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-22T19:50:36.429Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me find the cross-architecture NLI combo table with the FT DeBERTa results."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b80c19b5-5e0f-4458-b115-ab2720f6515d",
+            "isSidechain": false,
+            "requestId": "req_011CbJBtmChkYj6gzSHDGmmK",
+            "type": "assistant",
+            "uuid": "bb79317b-1e45-4b8b-9bf0-3ccd222cf1ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DLCdE1uQcbNLhkeU9MZMK8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6040,
+                "cache_read_input_tokens": 93129,
+                "output_tokens": 296,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6040,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 296,
+                    "cache_read_input_tokens": 93129,
+                    "cache_creation_input_tokens": 6040,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6040
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-22T19:50:40.512Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bey5cRoiXDsPefR2kZBBDT",
+              "name": "Grep",
+              "input": {
+                "pattern": "cross-arch|tab:cross_arch|DeBERTa-FT|FT-PW|finetuned|fine-tuned.*DeBERTa|99\\\\.67|domain.adapt",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+                "output_mode": "content",
+                "glob": "*.tex",
+                "-i": true,
+                "head_limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bb79317b-1e45-4b8b-9bf0-3ccd222cf1ce",
+            "isSidechain": false,
+            "requestId": "req_011CbJBtmChkYj6gzSHDGmmK",
+            "type": "assistant",
+            "uuid": "29801845-32f3-43b5-a36e-c00be7a77f17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DLCdE1uQcbNLhkeU9MZMK8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6040,
+                "cache_read_input_tokens": 93129,
+                "output_tokens": 296,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6040,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 296,
+                    "cache_read_input_tokens": 93129,
+                    "cache_creation_input_tokens": 6040,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6040
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-22T19:50:40.550Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bey5cRoiXDsPefR2kZBBDT",
+              "type": "tool_result",
+              "content": "docs/paper/analysis.tex:51:CCR analysis confirms the same pattern: cross-architecture NLI yields $\\text{CCR} > 0$ while same-model SICA yields $\\text{CCR} < 0$, with CCR correlating with combo gain ($\\rho = 0.84$, $p = 0.014$; Appendix~\\ref{app:cil}).\ndocs/paper/analysis.tex:71:[Omitted long matching line]\ndocs/paper/related_work.tex:11:[Omitted long matching line]\ndocs/paper/conclusion.tex:4:[Omitted long matching line]\ndocs/paper/discussion.tex:10:[Omitted long matching line]\ndocs/paper/method.tex:53:[Omitted long matching line]\ndocs/paper/method.tex:65:\\textit{Empirical support.} From Finding~1, adding $V$ with $\\rho_{GV} < \\rho_{GG}$ increases $K_\\text{eff}^\\text{combo}$. Empirically, combo gain decreases monotonically with $\\text{SC}_G$ ($\\rho = 1.0$, $p = 0.003$, $n{=}6$; \\S\\ref{sec:cross-arch}), with significant improvements even when $\\text{SC}_G > V_\\text{acc}$.\ndocs/paper/limitations_content.tex:1:[Omitted long matching line]\ndocs/paper/abstract.tex:8:Cross-architecture NLI verification on propositional-logic benchmarks escapes the bottleneck ($+3.33$--$6.67$\\,pp zero-shot, ${\\sim}$$+$13--26\\,pp with domain adaptation; $p < 0.001$), with gain decreasing monotonically with generator capability ($\\rho = 1.0$, $p = 0.003$, $n{=}6$).\ndocs/paper/appendix.tex:214:[Omitted long matching line]\ndocs/paper/appendix.tex:219:\\caption{Empirical CCR across eight verifier--generator conditions (sorted by CCR descending). $\\text{CCR} > 0$: cross-architecture NLI verifiers on ProofWriter. $\\text{CCR} < 0$: same-model SICA or mismatched capability gap.}\ndocs/paper/appendix.tex:841:\\caption{Conditional Correction Ratio across eight verifier--generator conditions. $\\text{CCR} > 0$: cross-arch NLI on ProofWriter. $\\text{CCR} < 0$: same-model SICA or weak capability gap.}\ndocs/paper/appendix.tex:863:DRC invokes NLI only when SC consensus falls below threshold $\\tau$, avoiding unnecessary verifier calls on high-agreement problems. Gains concentrate on weak generators (SC $< 40\\%$), consistent with the capability-gap hypothesis (\\S\\ref{sec:cross-arch}). Regime-dependent bottleneck analysis appears in Appendix~\\ref{app:2x2}.\ndocs/paper/appendix.tex:892:\\caption{Cross-architecture NLI combo on ProofWriter depth-5 ($n{=}600$, Mistral-7B traces, SC $= 39.33\\%$). Three NLI verifiers $\\times$ three weight settings. {*}\\,$p < 0.05$;\\enspace{**}\\,$p < 0.01$;\\enspace{***}\\,$p < 0.001$ (McNemar).}\ndocs/paper/appendix.tex:916:Table~\\ref{tab:3verifier-bh} applies Benjamini--Hochberg correction across all 15 Mistral-7B verifier--weight conditions ($m{=}15$, $\\alpha{=}0.05$; distinct from the $m{=}12$ cross-generator analysis in \\S\\ref{sec:cross-arch}). Ten of 15 conditions remain significant after correction, confirming that multi-verifier NLI gains are robust to multiple testing.\ndocs/paper/appendix.tex:942:\\caption{Combo gain vs.\\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Gain decreases monotonically (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n{=}6$; four of six conditions share the DeBERTa verifier---see Limitations); significant gains occur for generators with SC $\\leq 70\\%$. Stars: domain-adapted DeBERTa (99.67\\% standalone; ${\\sim}$values, Table~\\ref{tab:finetuned-nli}).}\ndocs/paper/appendix.tex:988:\\paragraph{Domain-adapted verifier results.}\ndocs/paper/appendix.tex:989:\\label{app:finetuned-nli}\ndocs/paper/appendix.tex:994:\\caption{Domain-adapted NLI combo on ProofWriter depth-5 ($n{=}600$). DeBERTa-large fine-tuned on ProofWriter OWA (99.67\\% standalone). All $p < 0.0001$. Complementarity: ratio of NLI-correct$\\cap$SC-incorrect to SC-correct$\\cap$NLI-incorrect. Numbers are preliminary (${\\sim}$); final values may differ by ${\\pm}1$--$2$\\,pp after tiebreaking correction.}\ndocs/paper/appendix.tex:995:\\label{tab:finetuned-nli}\ndocs/paper/appendix.tex:1057:{\\footnotesize Inter-trace standard deviation shrinks $2.8\\times$ from Mistral-7B to Qwen3-14B thinking mode, reflecting the diversity compression that underlies the aggregation ceiling (\\S\\ref{sec:cross-arch}).}\ndocs/paper/appendix.tex:1181:[Omitted long matching line]\ndocs/paper/appendix.tex:1184:[Omitted long matching line]\ndocs/paper/appendix.tex:1198:\\emph{Trained constraint extractors}: fine-tuning a small model (e.g., encoder-only) on human-annotated FOL from logic benchmarks could produce genuinely discriminative constraints that break the distributional prior. The key design constraint is structural independence---the extractor should not share training data or architecture with the generator, mirroring the cross-architecture NLI escape (\\S\\ref{sec:cross-arch}).\ndocs/paper/appendix.tex:1199:\\emph{Multi-model ensembles}: rather than single cross-architecture pairs, combining $M$ structurally independent verifiers could further reduce correlated errors. The capability-gap condition (\\S\\ref{sec:cross-arch}) predicts that each verifier must exceed the generator on the target task to contribute positively; empirical verification across heterogeneous verifier pools is needed.\ndocs/paper/solutions.tex:1:\\section{Cross-Architecture Proof-of-Concept}\ndocs/paper/solutions.tex:3:\\label{sec:cross-arch}\ndocs/paper/solutions.tex:31:\\paragraph{Domain-adapted verifier.}\ndocs/paper/solutions.tex:32:\\looseness=-1 Fine-tuning DeBERTa on ProofWriter depth-5 OWA (99.67\\% standalone) amplifies the escape: combo gains reach ${\\sim}$$+$13\\,pp (Mistral-7B, $w{=}3$) and ${\\sim}$$+$12\\,pp (LLaMA-8B), $2$--$3.5\\times$ the zero-shot result, with near-total error complementarity ($365{:}2$ and $164{:}1$ NLI-correct/SC-incorrect vs.\\ reverse; Table~\\ref{tab:finetuned-nli}, Appendix). A cost-aware cascade variant recovers 90\\% of full-combo gain at ${\\sim}$35\\% NLI cost (Appendix~\\ref{app:drc}).\ndocs/paper/introduction.tex:28:A cross-architecture proof-of-concept escapes the bottleneck: zero-shot DeBERTa NLI yields $+3.33$--$6.67$\\,pp on ProofWriter ($p \\leq 0.001$) across two generator families; domain-adapted NLI amplifies gains to ${\\sim}$$+$13--26\\,pp ($p < 0.0001$), confirmed across three NLI architectures (\\S\\ref{sec:cross-arch}).\ndocs/paper/introduction.tex:34:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29801845-32f3-43b5-a36e-c00be7a77f17",
+            "isSidechain": false,
+            "promptId": "86d61ff3-fd69-4a80-9d4d-b42202e900fc",
+            "type": "user",
+            "uuid": "33c2d7cb-3faf-4e03-a075-95c87b4926d7",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "docs/paper/analysis.tex:51:CCR analysis confirms the same pattern: cross-architecture NLI yields $\\text{CCR} > 0$ while same-model SICA yields $\\text{CCR} < 0$, with CCR correlating with combo gain ($\\rho = 0.84$, $p = 0.014$; Appendix~\\ref{app:cil}).\ndocs/paper/analysis.tex:71:[Omitted long matching line]\ndocs/paper/related_work.tex:11:[Omitted long matching line]\ndocs/paper/conclusion.tex:4:[Omitted long matching line]\ndocs/paper/discussion.tex:10:[Omitted long matching line]\ndocs/paper/method.tex:53:[Omitted long matching line]\ndocs/paper/method.tex:65:\\textit{Empirical support.} From Finding~1, adding $V$ with $\\rho_{GV} < \\rho_{GG}$ increases $K_\\text{eff}^\\text{combo}$. Empirically, combo gain decreases monotonically with $\\text{SC}_G$ ($\\rho = 1.0$, $p = 0.003$, $n{=}6$; \\S\\ref{sec:cross-arch}), with significant improvements even when $\\text{SC}_G > V_\\text{acc}$.\ndocs/paper/limitations_content.tex:1:[Omitted long matching line]\ndocs/paper/abstract.tex:8:Cross-architecture NLI verification on propositional-logic benchmarks escapes the bottleneck ($+3.33$--$6.67$\\,pp zero-shot, ${\\sim}$$+$13--26\\,pp with domain adaptation; $p < 0.001$), with gain decreasing monotonically with generator capability ($\\rho = 1.0$, $p = 0.003$, $n{=}6$).\ndocs/paper/appendix.tex:214:[Omitted long matching line]\ndocs/paper/appendix.tex:219:\\caption{Empirical CCR across eight verifier--generator conditions (sorted by CCR descending). $\\text{CCR} > 0$: cross-architecture NLI verifiers on ProofWriter. $\\text{CCR} < 0$: same-model SICA or mismatched capability gap.}\ndocs/paper/appendix.tex:841:\\caption{Conditional Correction Ratio across eight verifier--generator conditions. $\\text{CCR} > 0$: cross-arch NLI on ProofWriter. $\\text{CCR} < 0$: same-model SICA or weak capability gap.}\ndocs/paper/appendix.tex:863:DRC invokes NLI only when SC consensus falls below threshold $\\tau$, avoiding unnecessary verifier calls on high-agreement problems. Gains concentrate on weak generators (SC $< 40\\%$), consistent with the capability-gap hypothesis (\\S\\ref{sec:cross-arch}). Regime-dependent bottleneck analysis appears in Appendix~\\ref{app:2x2}.\ndocs/paper/appendix.tex:892:\\caption{Cross-architecture NLI combo on ProofWriter depth-5 ($n{=}600$, Mistral-7B traces, SC $= 39.33\\%$). Three NLI verifiers $\\times$ three weight settings. {*}\\,$p < 0.05$;\\enspace{**}\\,$p < 0.01$;\\enspace{***}\\,$p < 0.001$ (McNemar).}\ndocs/paper/appendix.tex:916:Table~\\ref{tab:3verifier-bh} applies Benjamini--Hochberg correction across all 15 Mistral-7B verifier--weight conditions ($m{=}15$, $\\alpha{=}0.05$; distinct from the $m{=}12$ cross-generator analysis in \\S\\ref{sec:cross-arch}). Ten of 15 conditions remain significant after correction, confirming that multi-verifier NLI gains are robust to multiple testing.\ndocs/paper/appendix.tex:942:\\caption{Combo gain vs.\\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Gain decreases monotonically (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n{=}6$; four of six conditions share the DeBERTa verifier---see Limitations); significant gains occur for generators with SC $\\leq 70\\%$. Stars: domain-adapted DeBERTa (99.67\\% standalone; ${\\sim}$values, Table~\\ref{tab:finetuned-nli}).}\ndocs/paper/appendix.tex:988:\\paragraph{Domain-adapted verifier results.}\ndocs/paper/appendix.tex:989:\\label{app:finetuned-nli}\ndocs/paper/appendix.tex:994:\\caption{Domain-adapted NLI combo on ProofWriter depth-5 ($n{=}600$). DeBERTa-large fine-tuned on ProofWriter OWA (99.67\\% standalone). All $p < 0.0001$. Complementarity: ratio of NLI-correct$\\cap$SC-incorrect to SC-correct$\\cap$NLI-incorrect. Numbers are preliminary (${\\sim}$); final values may differ by ${\\pm}1$--$2$\\,pp after tiebreaking correction.}\ndocs/paper/appendix.tex:995:\\label{tab:finetuned-nli}\ndocs/paper/appendix.tex:1057:{\\footnotesize Inter-trace standard deviation shrinks $2.8\\times$ from Mistral-7B to Qwen3-14B thinking mode, reflecting the diversity compression that underlies the aggregation ceiling (\\S\\ref{sec:cross-arch}).}\ndocs/paper/appendix.tex:1181:[Omitted long matching line]\ndocs/paper/appendix.tex:1184:[Omitted long matching line]\ndocs/paper/appendix.tex:1198:\\emph{Trained constraint extractors}: fine-tuning a small model (e.g., encoder-only) on human-annotated FOL from logic benchmarks could produce genuinely discriminative constraints that break the distributional prior. The key design constraint is structural independence---the extractor should not share training data or architecture with the generator, mirroring the cross-architecture NLI escape (\\S\\ref{sec:cross-arch}).\ndocs/paper/appendix.tex:1199:\\emph{Multi-model ensembles}: rather than single cross-architecture pairs, combining $M$ structurally independent verifiers could further reduce correlated errors. The capability-gap condition (\\S\\ref{sec:cross-arch}) predicts that each verifier must exceed the generator on the target task to contribute positively; empirical verification across heterogeneous verifier pools is needed.\ndocs/paper/solutions.tex:1:\\section{Cross-Architecture Proof-of-Concept}\ndocs/paper/solutions.tex:3:\\label{sec:cross-arch}\ndocs/paper/solutions.tex:31:\\paragraph{Domain-adapted verifier.}\ndocs/paper/solutions.tex:32:\\looseness=-1 Fine-tuning DeBERTa on ProofWriter depth-5 OWA (99.67\\% standalone) amplifies the escape: combo gains reach ${\\sim}$$+$13\\,pp (Mistral-7B, $w{=}3$) and ${\\sim}$$+$12\\,pp (LLaMA-8B), $2$--$3.5\\times$ the zero-shot result, with near-total error complementarity ($365{:}2$ and $164{:}1$ NLI-correct/SC-incorrect vs.\\ reverse; Table~\\ref{tab:finetuned-nli}, Appendix). A cost-aware cascade variant recovers 90\\% of full-combo gain at ${\\sim}$35\\% NLI cost (Appendix~\\ref{app:drc}).\ndocs/paper/introduction.tex:28:A cross-architecture proof-of-concept escapes the bottleneck: zero-shot DeBERTa NLI yields $+3.33$--$6.67$\\,pp on ProofWriter ($p \\leq 0.001$) across two generator families; domain-adapted NLI amplifies gains to ${\\sim}$$+$13--26\\,pp ($p < 0.0001$), confirmed across three NLI architectures (\\S\\ref{sec:cross-arch}).\ndocs/paper/introduction.tex:34:[Omitted long matching line]",
+              "numLines": 31
+            },
+            "sourceToolAssistantUUID": "29801845-32f3-43b5-a36e-c00be7a77f17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": "2026-05-22T19:50:49.236Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I can see the full picture. Let me read the actual Table 3 (tab:finetuned-nli) and the cross-arch section more carefully.\n\nKey note from appendix.tex line 994:\n> \"Numbers are preliminary (${\\sim}$); final values may differ by ${\\pm}1$--$2$\\,pp after tiebreaking correction.\"\n\nThis is a caveat the paper already includes! But let me check the actual table values.\n\nAlso from solutions.tex:\n\n\nThe paper notes that fine-tuning DeBERTa on ProofWriter depth-5 OWA produces substantial gains when combined with language models—around 13 percentage points with Mistral-7B and 12 percentage points with LLaMA-8B—though these figures are marked as approximate. Let me look at the actual table to verify the exact numbers.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33c2d7cb-3faf-4e03-a075-95c87b4926d7",
+            "isSidechain": false,
+            "requestId": "req_011CbJBuTVNYiYjT1gDDv1X9",
+            "type": "assistant",
+            "uuid": "d3a60b08-9b3f-4bbb-94de-52c4b1610329",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VPU7bA7ecdLj8sx6qAn1dA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2416,
+                "cache_read_input_tokens": 99169,
+                "output_tokens": 443,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2416,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 443,
+                    "cache_read_input_tokens": 99169,
+                    "cache_creation_input_tokens": 2416,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2416
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": "2026-05-22T19:50:50.176Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PTaveuTVzT6U7LHFQZfUbv",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+                "offset": 988,
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3a60b08-9b3f-4bbb-94de-52c4b1610329",
+            "isSidechain": false,
+            "requestId": "req_011CbJBuTVNYiYjT1gDDv1X9",
+            "type": "assistant",
+            "uuid": "06284c83-4a1c-4185-b8dd-9d37f4ca8f7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VPU7bA7ecdLj8sx6qAn1dA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2416,
+                "cache_read_input_tokens": 99169,
+                "output_tokens": 443,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2416,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 443,
+                    "cache_read_input_tokens": 99169,
+                    "cache_creation_input_tokens": 2416,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2416
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-22T19:50:50.189Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PTaveuTVzT6U7LHFQZfUbv",
+              "type": "tool_result",
+              "content": "988\t\\paragraph{Domain-adapted verifier results.}\n989\t\\label{app:finetuned-nli}\n990\t\n991\t\\begin{table}[h]\n992\t\\centering\n993\t\\small\n994\t\\caption{Domain-adapted NLI combo on ProofWriter depth-5 ($n{=}600$). DeBERTa-large fine-tuned on ProofWriter OWA (99.67\\% standalone). All $p < 0.0001$. Complementarity: ratio of NLI-correct$\\cap$SC-incorrect to SC-correct$\\cap$NLI-incorrect. Numbers are preliminary (${\\sim}$); final values may differ by ${\\pm}1$--$2$\\,pp after tiebreaking correction.}\n995\t\\label{tab:finetuned-nli}\n996\t\\setlength{\\tabcolsep}{3.5pt}\n997\t\\begin{tabular}{@{}lrrrc@{}}\n998\t\\toprule\n999\tGenerator & $w$ & $\\Delta$ (pp) & Compl.\\ ratio \\\\\n1000\t\\midrule\n1001\t\\multirow{3}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize SC\\,${\\sim}$39\\%}}}\n1002\t  & 1 & ${\\sim}$$+$3.17 & \\multirow{3}{*}{365:2} \\\\\n1003\t  & 3 & ${\\sim}$$+$13.00 & \\\\\n1004\t  & 5 & ${\\sim}$$+$26.33 & \\\\\n1005\t\\addlinespace\n1006\t\\multirow{3}{*}{\\shortstack[l]{LLaMA-3.1-8B\\\\{\\scriptsize SC\\,${\\sim}$72\\%}}}\n1007\t  & 1 & ${\\sim}$$+$3.50 & \\multirow{3}{*}{164:1} \\\\\n1008\t  & 3 & ${\\sim}$$+$11.67 & \\\\\n1009\t  & 5 & ${\\sim}$$+$19.17 & \\\\\n1010\t\\bottomrule\n1011\t\\end{tabular}\n1012\t\\end{table}\n1013\t\n1014\t\\paragraph{Generator$\\times$Extractor 2$\\times$2 Matrix.}\n1015\t\\label{app:2x2}\n1016\t\n1017\tTable~\\ref{tab:2x2-folio} reports the full $2{\\times}2$ generator${\\times}$extractor matrix on FOLIO ($n{=}204$). The generator dominates accuracy (row difference ${\\sim}25$\\,pp vs.\\ column difference ${\\sim}3$\\,pp), contrasting with ProofWriter where the extractor dominates ($\\Delta$ range ${\\pm}40$--$50$\\,pp). Cross-extractor McNemar tests: Mistral-7B gen, $\\Delta = +2.94$\\,pp, $p = 0.143$ (n.s.); Qwen3-14B gen, $\\Delta = +2.94$\\,pp, $p = 0.021$ (statistically significant but practically small: 6/204 problems changed). The identical net $\\Delta$ is coincidental---the two generators have different discordant-pair distributions that happen to yield the same net advantage. BR $> 1$ in all eight cells across both datasets (range $1.94$--$2.70$), confirming SCB universality under cross-model extraction.\n1018\t\n1019\t\\begin{table}[h]\n1020\t\\centering\n1021\t\\small\n1022\t\\caption{FOLIO $2{\\times}2$ generator${\\times}$extractor matrix ($n{=}204$). SC: Self-Consistency baseline. $\\kappa$: answer-level Fleiss' kappa. BR: bias ratio.}\n1023\t\\label{tab:2x2-folio}\n1024\t\\setlength{\\tabcolsep}{3pt}\n1025\t\\begin{tabular}{@{}llcccc@{}}\n1026\t\\toprule\n1027\tGenerator & Extractor & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) & BR \\\\\n1028\t\\midrule\n1029\t\\multirow{2}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize $\\kappa{=}0.46$}}}\n1030\t  & Mistral & 55.88 & 56.86 & $+$0.98 & 2.70 \\\\\n1031\t  & Qwen3 & 55.88 & 59.80 & $+$3.92 & 1.94 \\\\\n1032\t\\addlinespace\n1033\t\\multirow{2}{*}{\\shortstack[l]{Qwen3-14B\\\\{\\scriptsize $\\kappa{=}0.79$}}}\n1034\t  & Qwen3 & 83.33 & 84.80 & $+$1.47 & 2.35 \\\\\n1035\t  & Mistral & 83.33 & 81.86 & $-$1.47 & 2.66 \\\\\n1036\t\\bottomrule\n1037\t\\end{tabular}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06284c83-4a1c-4185-b8dd-9d37f4ca8f7e",
+            "isSidechain": false,
+            "promptId": "86d61ff3-fd69-4a80-9d4d-b42202e900fc",
+            "type": "user",
+            "uuid": "d520cc07-84e2-46d6-baba-426604952af4",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/appendix.tex",
+                "content": "\\paragraph{Domain-adapted verifier results.}\n\\label{app:finetuned-nli}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Domain-adapted NLI combo on ProofWriter depth-5 ($n{=}600$). DeBERTa-large fine-tuned on ProofWriter OWA (99.67\\% standalone). All $p < 0.0001$. Complementarity: ratio of NLI-correct$\\cap$SC-incorrect to SC-correct$\\cap$NLI-incorrect. Numbers are preliminary (${\\sim}$); final values may differ by ${\\pm}1$--$2$\\,pp after tiebreaking correction.}\n\\label{tab:finetuned-nli}\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}lrrrc@{}}\n\\toprule\nGenerator & $w$ & $\\Delta$ (pp) & Compl.\\ ratio \\\\\n\\midrule\n\\multirow{3}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize SC\\,${\\sim}$39\\%}}}\n  & 1 & ${\\sim}$$+$3.17 & \\multirow{3}{*}{365:2} \\\\\n  & 3 & ${\\sim}$$+$13.00 & \\\\\n  & 5 & ${\\sim}$$+$26.33 & \\\\\n\\addlinespace\n\\multirow{3}{*}{\\shortstack[l]{LLaMA-3.1-8B\\\\{\\scriptsize SC\\,${\\sim}$72\\%}}}\n  & 1 & ${\\sim}$$+$3.50 & \\multirow{3}{*}{164:1} \\\\\n  & 3 & ${\\sim}$$+$11.67 & \\\\\n  & 5 & ${\\sim}$$+$19.17 & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Generator$\\times$Extractor 2$\\times$2 Matrix.}\n\\label{app:2x2}\n\nTable~\\ref{tab:2x2-folio} reports the full $2{\\times}2$ generator${\\times}$extractor matrix on FOLIO ($n{=}204$). The generator dominates accuracy (row difference ${\\sim}25$\\,pp vs.\\ column difference ${\\sim}3$\\,pp), contrasting with ProofWriter where the extractor dominates ($\\Delta$ range ${\\pm}40$--$50$\\,pp). Cross-extractor McNemar tests: Mistral-7B gen, $\\Delta = +2.94$\\,pp, $p = 0.143$ (n.s.); Qwen3-14B gen, $\\Delta = +2.94$\\,pp, $p = 0.021$ (statistically significant but practically small: 6/204 problems changed). The identical net $\\Delta$ is coincidental---the two generators have different discordant-pair distributions that happen to yield the same net advantage. BR $> 1$ in all eight cells across both datasets (range $1.94$--$2.70$), confirming SCB universality under cross-model extraction.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{FOLIO $2{\\times}2$ generator${\\times}$extractor matrix ($n{=}204$). SC: Self-Consistency baseline. $\\kappa$: answer-level Fleiss' kappa. BR: bias ratio.}\n\\label{tab:2x2-folio}\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nGenerator & Extractor & SC (\\%) & SICA (\\%) & $\\Delta$ (pp) & BR \\\\\n\\midrule\n\\multirow{2}{*}{\\shortstack[l]{Mistral-7B\\\\{\\scriptsize $\\kappa{=}0.46$}}}\n  & Mistral & 55.88 & 56.86 & $+$0.98 & 2.70 \\\\\n  & Qwen3 & 55.88 & 59.80 & $+$3.92 & 1.94 \\\\\n\\addlinespace\n\\multirow{2}{*}{\\shortstack[l]{Qwen3-14B\\\\{\\scriptsize $\\kappa{=}0.79$}}}\n  & Qwen3 & 83.33 & 84.80 & $+$1.47 & 2.35 \\\\\n  & Mistral & 83.33 & 81.86 & $-$1.47 & 2.66 \\\\\n\\bottomrule\n\\end{tabular}",
+                "numLines": 50,
+                "startLine": 988,
+                "totalLines": 1210
+              }
+            },
+            "sourceToolAssistantUUID": "06284c83-4a1c-4185-b8dd-9d37f4ca8f7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": "2026-05-22T19:50:50.533Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015xuTzq5nJYjK9hUrCji5ov",
+              "type": "tool_result",
+              "content": "1\t\\section{Cross-Architecture Proof-of-Concept}\n2\t\\label{sec:solutions}\n3\t\\label{sec:cross-arch}\n4\t\n5\t\\paragraph{Method.}\n6\t\\looseness=-1 We test with DeBERTa-large \\citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \\citep{williams2018mnli}, classifying (premise, conclusion) pairs as entailment, contradiction, or neutral. In combo mode, each NLI-supporting vote counts $w$ times alongside SC's $K$ votes. We evaluate on Mistral-7B FOLIO ($n = 204$) and ProofWriter depth-5 ($n = 600$).\n7\t\n8\t\\paragraph{Main result.}\n9\t\\looseness=-1 DeBERTa NLI alone achieves 49.51\\% on FOLIO (below SC's 55.88\\%) and 55.00\\% on ProofWriter (above SC's 39.33\\%). On FOLIO ($n = 204$), combo $w{=}3$ yields $+2.94$\\,pp (n.s.). On ProofWriter ($n{=}600$), combo $w{=}3$ achieves a significant gain for Mistral-7B ($+6.67$\\,pp, $p < 0.001$); LLaMA-8B gains $+3.33$\\,pp at $w{=}3$ (n.s.)\\ but reaches significance at $w{=}1$ ($p = 0.001$). Stronger generators show no improvement---while same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution (\\S\\ref{sec:mirage}). After BH correction ($m{=}12$), three conditions remain significant (Appendix~\\ref{app:capability-gap}).\n10\t\n11\t\\paragraph{Capability gap hypothesis.}\n12\t\\looseness=-1 Four generators spanning a 46-point SC range on ProofWriter ($n{=}600$), all paired with DeBERTa-large-mnli (55.00\\% standalone; Table~\\ref{tab:cross_generator_nli}): Mistral-7B (SC 39.33\\%, below the verifier) gains $+6.67$\\,pp ($p < 0.001$) and LLaMA-8B (SC 70.00\\%, above the verifier) gains $+3.33$\\,pp at $w{=}3$ (significant at $w{=}1$, $p = 0.001$); generators above SC $\\approx 74\\%$ show no improvement. Per-label analysis confirms complementary error patterns that diminish as the generator improves (Appendix~\\ref{app:multi-nli}). The monotonic relationship holds across three NLI architectures and six verifier-generator pairs (Spearman $\\rho = 1.0$, $p = 0.003$, $n{=}6$; Figure~\\ref{fig:capability-gap}; Appendix~\\ref{app:capability-gap}).\n13\t\n14\t\\begin{table}[t]\n15\t\\centering\n16\t\\small\n17\t\\caption{Cross-generator NLI escape with DeBERTa-large-mnli verifier (55.00\\% standalone, ProofWriter $n{=}600$). Combo gain decreases monotonically with generator capability. LLaMA-8B reaches significance at $w{=}1$ ($p = 0.001$) rather than $w{=}3$.}\n18\t\\label{tab:cross_generator_nli}\n19\t\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llcccc@{}}\n20\t\\toprule\n21\tGenerator & Family & SC & Gap & Combo $\\Delta$ ($w{=}3$) & $p$ \\\\\n22\t\\midrule\n23\tMistral-7B & Mistral & 39.33\\% & $+$15.67 & $+$6.67\\,pp & $<$0.001 \\\\\n24\tLLaMA-3.1-8B & LLaMA & 70.00\\% & $-$15.00 & $+$3.33\\,pp & 0.052 \\\\\n25\tQwen2.5-14B & Qwen & 73.50\\% & $-$18.50 & $+$1.17\\,pp & 0.405 \\\\\n26\tQwen3-14B & Qwen & 85.83\\% & $-$30.83 & $+$0.50\\,pp & 0.45 \\\\\n27\t\\bottomrule\n28\t\\end{tabular}}\n29\t\\end{table}\n30\t\n31\t\\paragraph{Domain-adapted verifier.}\n32\t\\looseness=-1 Fine-tuning DeBERTa on ProofWriter depth-5 OWA (99.67\\% standalone) amplifies the escape: combo gains reach ${\\sim}$$+$13\\,pp (Mistral-7B, $w{=}3$) and ${\\sim}$$+$12\\,pp (LLaMA-8B), $2$--$3.5\\times$ the zero-shot result, with near-total error complementarity ($365{:}2$ and $164{:}1$ NLI-correct/SC-incorrect vs.\\ reverse; Table~\\ref{tab:finetuned-nli}, Appendix). A cost-aware cascade variant recovers 90\\% of full-combo gain at ${\\sim}$35\\% NLI cost (Appendix~\\ref{app:drc}).\n33\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38f721d7-4d0e-4c77-bbd3-38c3ad33b274",
+            "isSidechain": false,
+            "promptId": "86d61ff3-fd69-4a80-9d4d-b42202e900fc",
+            "type": "user",
+            "uuid": "297a5955-a5c5-4c25-af96-5e7f11ceb0de",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex",
+                "content": "\\section{Cross-Architecture Proof-of-Concept}\n\\label{sec:solutions}\n\\label{sec:cross-arch}\n\n\\paragraph{Method.}\n\\looseness=-1 We test with DeBERTa-large \\citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \\citep{williams2018mnli}, classifying (premise, conclusion) pairs as entailment, contradiction, or neutral. In combo mode, each NLI-supporting vote counts $w$ times alongside SC's $K$ votes. We evaluate on Mistral-7B FOLIO ($n = 204$) and ProofWriter depth-5 ($n = 600$).\n\n\\paragraph{Main result.}\n\\looseness=-1 DeBERTa NLI alone achieves 49.51\\% on FOLIO (below SC's 55.88\\%) and 55.00\\% on ProofWriter (above SC's 39.33\\%). On FOLIO ($n = 204$), combo $w{=}3$ yields $+2.94$\\,pp (n.s.). On ProofWriter ($n{=}600$), combo $w{=}3$ achieves a significant gain for Mistral-7B ($+6.67$\\,pp, $p < 0.001$); LLaMA-8B gains $+3.33$\\,pp at $w{=}3$ (n.s.)\\ but reaches significance at $w{=}1$ ($p = 0.001$). Stronger generators show no improvement---while same-model SICA \\emph{degrades} ProofWriter ($-2.83$\\,pp; Table~\\ref{tab:main_results}), illustrating that corrective signal must originate outside the model's distribution (\\S\\ref{sec:mirage}). After BH correction ($m{=}12$), three conditions remain significant (Appendix~\\ref{app:capability-gap}).\n\n\\paragraph{Capability gap hypothesis.}\n\\looseness=-1 Four generators spanning a 46-point SC range on ProofWriter ($n{=}600$), all paired with DeBERTa-large-mnli (55.00\\% standalone; Table~\\ref{tab:cross_generator_nli}): Mistral-7B (SC 39.33\\%, below the verifier) gains $+6.67$\\,pp ($p < 0.001$) and LLaMA-8B (SC 70.00\\%, above the verifier) gains $+3.33$\\,pp at $w{=}3$ (significant at $w{=}1$, $p = 0.001$); generators above SC $\\approx 74\\%$ show no improvement. Per-label analysis confirms complementary error patterns that diminish as the generator improves (Appendix~\\ref{app:multi-nli}). The monotonic relationship holds across three NLI architectures and six verifier-generator pairs (Spearman $\\rho = 1.0$, $p = 0.003$, $n{=}6$; Figure~\\ref{fig:capability-gap}; Appendix~\\ref{app:capability-gap}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-generator NLI escape with DeBERTa-large-mnli verifier (55.00\\% standalone, ProofWriter $n{=}600$). Combo gain decreases monotonically with generator capability. LLaMA-8B reaches significance at $w{=}1$ ($p = 0.001$) rather than $w{=}3$.}\n\\label{tab:cross_generator_nli}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}llcccc@{}}\n\\toprule\nGenerator & Family & SC & Gap & Combo $\\Delta$ ($w{=}3$) & $p$ \\\\\n\\midrule\nMistral-7B & Mistral & 39.33\\% & $+$15.67 & $+$6.67\\,pp & $<$0.001 \\\\\nLLaMA-3.1-8B & LLaMA & 70.00\\% & $-$15.00 & $+$3.33\\,pp & 0.052 \\\\\nQwen2.5-14B & Qwen & 73.50\\% & $-$18.50 & $+$1.17\\,pp & 0.405 \\\\\nQwen3-14B & Qwen & 85.83\\% & $-$30.83 & $+$0.50\\,pp & 0.45 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Domain-adapted verifier.}\n\\looseness=-1 Fine-tuning DeBERTa on ProofWriter depth-5 OWA (99.67\\% standalone) amplifies the escape: combo gains reach ${\\sim}$$+$13\\,pp (Mistral-7B, $w{=}3$) and ${\\sim}$$+$12\\,pp (LLaMA-8B), $2$--$3.5\\times$ the zero-shot result, with near-total error complementarity ($365{:}2$ and $164{:}1$ NLI-correct/SC-incorrect vs.\\ reverse; Table~\\ref{tab:finetuned-nli}, Appendix). A cost-aware cascade variant recovers 90\\% of full-combo gain at ${\\sim}$35\\% NLI cost (Appendix~\\ref{app:drc}).\n",
+                "numLines": 33,
+                "startLine": 1,
+                "totalLines": 33
+              }
+            },
+            "sourceToolAssistantUUID": "38f721d7-4d0e-4c77-bbd3-38c3ad33b274",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": "2026-05-22T19:50:50.523Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015xuTzq5nJYjK9hUrCji5ov",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/solutions.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d520cc07-84e2-46d6-baba-426604952af4",
+            "isSidechain": false,
+            "requestId": "req_011CbJBuTVNYiYjT1gDDv1X9",
+            "type": "assistant",
+            "uuid": "38f721d7-4d0e-4c77-bbd3-38c3ad33b274",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VPU7bA7ecdLj8sx6qAn1dA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2416,
+                "cache_read_input_tokens": 99169,
+                "output_tokens": 443,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2416,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 443,
+                    "cache_read_input_tokens": 99169,
+                    "cache_creation_input_tokens": 2416,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2416
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "297a5955-a5c5-4c25-af96-5e7f11ceb0de",
+                "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96"
+              }
+            }
+          ],
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit tiebreaking consistency in combo and main table",
+                "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96"
+              }
+            }
+          ],
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": "2026-05-22T19:51:33.224Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a complete picture. Let me look at Table `tab:cross_generator_nli` in solutions.tex:\n\n| Generator | SC | Combo Δ (w=3) |\n|---|---|---|\n| Mistral-7B | 39.33% | +6.67 |\n| LLaMA-3.1-8B | 70.00% | +3.33 |\n\n\n| Qwen2.5-14B | 73.50% | +1.17 |\n| Qwen3-14B | 85.83% | +0.50 |\n\nI'm noticing some inconsistencies in these SC values — some appear to be the stored answers rather than the D061-recomputed values. Mistral needs verification since I haven't checked its trace file, while LLaMA and Qwen14B are showing their stored values instead of the D061 recomputed ones.\n\nWait, there's a bigger problem here. Table 1 shows Qwen3 at 85.00% but the cross-generator table has it at 85.83%, and similarly Qwen2.5-14B is listed as 74.00% in Table 1 but 73.50% in the cross-generator table. I need to track down where these discrepancies are coming from — checking the actual line references in experiments.tex and solutions.tex to see which values are correct.\n\nLooking at the recompute JSON data, the LLaMA combo calculation shows a baseline of 70.00% with a +3.33pp delta giving 73.33%, which matches what's in the solutions file but seems to be using an older baseline value. I'm trying to figure out if the recompute is using the original SC values or if there's been an update that wasn't reflected everywhere. I see the issue now—the cross-generator table is mixing tiebreaking methods. The SC baseline comes from the old tiebreaking (70.00%), but the combo delta is computed with D061 tiebreaking, so the +3.33pp delta is really comparing 73.33% (D061) against 70.00% (old method). Meanwhile, in the deberta_ft_combo_all.json output, both SC and combo use D061 consistently, giving different absolute values but the same relative improvement. Let me map out which script uses which tiebreaking approach to untangle this.\n\nGenerating comparison table... Generating comparison table... Looking at the Qwen3 results more carefully, Table 1 shows 85.00% but D061 has 85.83%, which suggests the trace generation might have used a different self-consistency computation that happens to match the stored values. The real issue is that the zero-shot DeBERTa combo tiebreaking was already patched in the exp092 and qwen14b scripts, but the SC baselines in those same scripts are still reading the old stored sc_answer values instead of the D061-corrected ones.\n\nThe cross-generator table in solutions.tex is mixing old and D061 values across different models—LLaMA-3.1-8B and Qwen2.5-14B show the old percentages while Qwen3-14B shows the D061 version—so I need to make these consistent. I also need to apply the D061 fix to d116_qwen3_pw_deberta_large.py before finalizing the report.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "297a5955-a5c5-4c25-af96-5e7f11ceb0de",
+            "isSidechain": false,
+            "requestId": "req_011CbJBvCGrgfKRjfv2Ti738",
+            "type": "assistant",
+            "uuid": "2c298ee6-7906-4bb2-a82d-294ecbddab49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KPAyiNB7bu7mki1ZzU8KC8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3291,
+                "cache_read_input_tokens": 101585,
+                "output_tokens": 2664,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3291,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2664,
+                    "cache_read_input_tokens": 101585,
+                    "cache_creation_input_tokens": 3291,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3291
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": "2026-05-22T19:51:33.508Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Let me check Mistral stored SC to complete the comparison."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2c298ee6-7906-4bb2-a82d-294ecbddab49",
+            "isSidechain": false,
+            "requestId": "req_011CbJBvCGrgfKRjfv2Ti738",
+            "type": "assistant",
+            "uuid": "b254c9e6-fe2e-4bd2-8927-b66283f11177",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KPAyiNB7bu7mki1ZzU8KC8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3291,
+                "cache_read_input_tokens": 101585,
+                "output_tokens": 2664,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3291,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2664,
+                    "cache_read_input_tokens": 101585,
+                    "cache_creation_input_tokens": 3291,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3291
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": "2026-05-22T19:51:42.148Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EA7M8SjamkyJaYMNnYC7N3",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16639",
+                "command": "cd /root/symb_invariant_consensus && python3 -c \"\nimport json\nCLASSES = sorted(['True', 'False', 'Unknown'])\n# Mistral uses vote_dict format in data/\nwith open('data/mistral_pw600_sc_votes.json') as f:\n    raw = json.load(f)\nwith open('data/proofwriter_full.json') as f:\n    pw = json.load(f)\ngt_map = {q['id']: q['answer'] for q in pw}\nstored_correct = 0\nrecomputed_correct = 0\ndiff_count = 0\ntotal = 0\nfor pid, counts in raw.items():\n    vd = {'True': counts[0], 'False': counts[1], 'Unknown': counts[2]}\n    max_v = max(vd.get(c, 0) for c in CLASSES)\n    tied = [c for c in CLASSES if vd.get(c, 0) == max_v]\n    recomputed_sc = sorted(tied)[0]\n    # old tiebreaking: max with insertion order (True first)\n    old_sc = max(vd, key=vd.get)\n    gold = gt_map.get(pid, '')\n    if old_sc == gold: stored_correct += 1\n    if recomputed_sc == gold: recomputed_correct += 1\n    if old_sc != recomputed_sc: diff_count += 1\n    total += 1\nprint('Mistral PW-600: N=%d' % total)\nprint('old_tiebreak=%d/%d (%.2f%%)' % (stored_correct, total, stored_correct/total*100))\nprint('D061_recomputed=%d/%d (%.2f%%)' % (recomputed_correct, total, recomputed_correct/total*100))\nprint('diffs=%d' % diff_count)\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b254c9e6-fe2e-4bd2-8927-b66283f11177",
+            "isSidechain": false,
+            "requestId": "req_011CbJBvCGrgfKRjfv2Ti738",
+            "type": "assistant",
+            "uuid": "1dd9caef-ad82-4a01-9bdf-f858c5c46e1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KPAyiNB7bu7mki1ZzU8KC8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3291,
+                "cache_read_input_tokens": 101585,
+                "output_tokens": 2664,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3291,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2664,
+                    "cache_read_input_tokens": 101585,
+                    "cache_creation_input_tokens": 3291,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3291
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": "2026-05-22T19:51:42.617Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EA7M8SjamkyJaYMNnYC7N3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mistral PW-600: N=600\\\\nold_tiebreak=234/600 (39.00%)\\\\nD061_recomputed=235/600 (39.17%)\\\\ndiffs=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1dd9caef-ad82-4a01-9bdf-f858c5c46e1a",
+            "isSidechain": false,
+            "promptId": "86d61ff3-fd69-4a80-9d4d-b42202e900fc",
+            "type": "user",
+            "uuid": "03d0838d-0dac-4cec-b963-06e8ceafb314",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mistral PW-600: N=600\\\\nold_tiebreak=234/600 (39.00%)\\\\nD061_recomputed=235/600 (39.17%)\\\\ndiffs=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Mistral PW-600: N=600\\nold_tiebreak=234/600 (39.00%)\\nD061_recomputed=235/600 (39.17%)\\ndiffs=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            },
+            "sourceToolAssistantUUID": "1dd9caef-ad82-4a01-9bdf-f858c5c46e1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": "2026-05-22T19:52:01.129Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Mistral: old=39.00%, D061=39.17%, only 1 diff. The paper says 39.33% for Table 1 and cross-gen table, which matches neither.\n\nWait, 39.33% = 236/600. But old=234/600=39.00% and D061=235/600=39.17%. Neither matches 39.33%.\n\nThe paper's Mistral SC baseline might come from a different source. The Mistral traces in the SICA pipeline might have been re-run or computed differently. Let me check if there's another Mistral result file.\n\n\nActually, the Mistral PW-600 traces might be stored elsewhere. The eval script reads Mistral from a votes file that only contains vote counts without problem-level ground truth, while the ground truth I'm using from the full dataset might have a different answer set. I need to check what answer format the ground truth file uses—whether it's True/False/Unknown or Proved/Disproved.\n\nLooking at the eval script, it references the same gold data file, so the discrepancy might be in how the votes are formatted or how the labels are encoded. Checking Table 1 against my recomputed numbers: the table shows 39.33% for Mistral-7B, but my calculations give either 39.17% or 39.00% depending on which trace I use. The 39.33% might come from a different Mistral run that computes the self-consistency answer differently. The combo JSON confirms 39.17% with 235 correct answers, which matches my D061 recomputation.\n\nSo the discrepancy is likely that Table 1 uses exp046 traces rather than the vote dictionary file, and exp046 produces the 39.33% result. I need to locate and check the exp046 Mistral results, but the expected path doesn't seem to exist.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03d0838d-0dac-4cec-b963-06e8ceafb314",
+            "isSidechain": false,
+            "requestId": "req_011CbJBz2rBZD5X6QCefc4dE",
+            "type": "assistant",
+            "uuid": "c3d35167-e50b-4d0c-9663-0ccf20cc0910",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UkJM6aM695N7aUHxSemWok",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2787,
+                "cache_read_input_tokens": 104876,
+                "output_tokens": 1022,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2787,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1022,
+                    "cache_read_input_tokens": 104876,
+                    "cache_creation_input_tokens": 2787,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2787
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": "2026-05-22T19:52:01.354Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Mistral only 1 diff. But paper says 39.33%, my recompute gives 39.17%. Let me check the Mistral traces source."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c3d35167-e50b-4d0c-9663-0ccf20cc0910",
+            "isSidechain": false,
+            "requestId": "req_011CbJBz2rBZD5X6QCefc4dE",
+            "type": "assistant",
+            "uuid": "c4c03aff-263d-4a39-bda4-9a014f557783",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UkJM6aM695N7aUHxSemWok",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2787,
+                "cache_read_input_tokens": 104876,
+                "output_tokens": 1022,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2787,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1022,
+                    "cache_read_input_tokens": 104876,
+                    "cache_creation_input_tokens": 2787,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2787
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": "2026-05-22T19:52:02.223Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EnDADmpoAwVcLzvKFDEPAq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "find /root/symb_invariant_consensus/results/ -name \"*mistral*pw*\" -maxdepth 2"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4c03aff-263d-4a39-bda4-9a014f557783",
+            "isSidechain": false,
+            "requestId": "req_011CbJBz2rBZD5X6QCefc4dE",
+            "type": "assistant",
+            "uuid": "eaf3e93f-8bed-4779-9d43-0add5219f46b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UkJM6aM695N7aUHxSemWok",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2787,
+                "cache_read_input_tokens": 104876,
+                "output_tokens": 1022,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2787,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1022,
+                    "cache_read_input_tokens": 104876,
+                    "cache_creation_input_tokens": 2787,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2787
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": "2026-05-22T19:52:02.681Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EnDADmpoAwVcLzvKFDEPAq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/multi_seed/dryrun_mistral_pw.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed42\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed123\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed456\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed789\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eaf3e93f-8bed-4779-9d43-0add5219f46b",
+            "isSidechain": false,
+            "promptId": "86d61ff3-fd69-4a80-9d4d-b42202e900fc",
+            "type": "user",
+            "uuid": "01db4e97-0825-42db-9b02-cce25f539b68",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/multi_seed/dryrun_mistral_pw.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed42\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed123\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed456\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed789\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/multi_seed/dryrun_mistral_pw.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed42\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed123\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed456\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed789\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            },
+            "sourceToolAssistantUUID": "eaf3e93f-8bed-4779-9d43-0add5219f46b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": "2026-05-22T19:52:03.255Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019XcXoihtSD1CUberfWBTEm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "find /root/symb_invariant_consensus/results/ -name \"*046*\" -maxdepth 2"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "01db4e97-0825-42db-9b02-cce25f539b68",
+            "isSidechain": false,
+            "requestId": "req_011CbJBz2rBZD5X6QCefc4dE",
+            "type": "assistant",
+            "uuid": "c47cbd86-0dc1-47cb-b226-27e5e50220d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UkJM6aM695N7aUHxSemWok",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2787,
+                "cache_read_input_tokens": 104876,
+                "output_tokens": 1022,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2787,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1022,
+                    "cache_read_input_tokens": 104876,
+                    "cache_creation_input_tokens": 2787,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2787
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": "2026-05-22T19:52:03.704Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019XcXoihtSD1CUberfWBTEm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c47cbd86-0dc1-47cb-b226-27e5e50220d3",
+            "isSidechain": false,
+            "promptId": "86d61ff3-fd69-4a80-9d4d-b42202e900fc",
+            "type": "user",
+            "uuid": "f9e3de26-6c99-4011-bb85-e4c535d3d53b",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            },
+            "sourceToolAssistantUUID": "c47cbd86-0dc1-47cb-b226-27e5e50220d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000213"
+        },
+        {
+          "source_line": 214,
+          "timestamp": "2026-05-22T19:52:03.869Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S2KF8tSfxpPHVKi7b6ZPzz",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16639",
+                "command": "find /root/symb_invariant_consensus/ -path \"*/multi_seed/*mistral*pw*\" -name \"*.json\" -maxdepth 4"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f9e3de26-6c99-4011-bb85-e4c535d3d53b",
+            "isSidechain": false,
+            "requestId": "req_011CbJBz2rBZD5X6QCefc4dE",
+            "type": "assistant",
+            "uuid": "2dad617b-c465-4006-842c-866fef2d3249",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UkJM6aM695N7aUHxSemWok",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2787,
+                "cache_read_input_tokens": 104876,
+                "output_tokens": 1022,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2787,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1022,
+                    "cache_read_input_tokens": 104876,
+                    "cache_creation_input_tokens": 2787,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2787
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000214"
+        },
+        {
+          "source_line": 215,
+          "timestamp": "2026-05-22T19:52:04.329Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S2KF8tSfxpPHVKi7b6ZPzz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/multi_seed/dryrun_mistral_pw.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed42/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed123/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed456/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed789/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2dad617b-c465-4006-842c-866fef2d3249",
+            "isSidechain": false,
+            "promptId": "86d61ff3-fd69-4a80-9d4d-b42202e900fc",
+            "type": "user",
+            "uuid": "27c25c55-381c-47d9-8bc0-eeee34bfcf4d",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/symb_invariant_consensus/results/multi_seed/dryrun_mistral_pw.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed42/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed123/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed456/results.json\\\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed789/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/symb_invariant_consensus/results/multi_seed/dryrun_mistral_pw.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed42/results.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed123/results.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed456/results.json\\n/root/symb_invariant_consensus/results/multi_seed/mistral_pw_seed789/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            },
+            "sourceToolAssistantUUID": "2dad617b-c465-4006-842c-866fef2d3249",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000215"
+        },
+        {
+          "source_line": 216,
+          "timestamp": "2026-05-22T19:52:04.333Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "27c25c55-381c-47d9-8bc0-eeee34bfcf4d",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "55c10fd4-0b27-4fcd-bb67-7a12343e794f",
+                "timestamp": "2026-05-22T19:52:04.333Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000216"
+        },
+        {
+          "source_line": 217,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "55c10fd4-0b27-4fcd-bb67-7a12343e794f",
+                "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96"
+              }
+            }
+          ],
+          "id": "event-000217"
+        },
+        {
+          "source_line": 218,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit tiebreaking consistency in combo and main table",
+                "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96"
+              }
+            }
+          ],
+          "id": "event-000218"
+        },
+        {
+          "source_line": 219,
+          "timestamp": "2026-05-22T19:52:10.091Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "exp046 doesn't exist anymore. The Mistral PW traces might come from the multi_seed directory. Let me check the seed42 run since that's the default.\n\nThe important thing is that Table 1 says 39.33% for Mistral. Let me check the multi_seed/mistral_pw_seed42 results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55c10fd4-0b27-4fcd-bb67-7a12343e794f",
+            "isSidechain": false,
+            "requestId": "req_011CbJC1dhx8zo1HHPL64iGg",
+            "type": "assistant",
+            "uuid": "299856d1-e796-41a4-a177-675a37978301",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B4mnApp6ZAbRxpSWK5iZRq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1711,
+                "cache_read_input_tokens": 107663,
+                "output_tokens": 541,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1711,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 541,
+                    "cache_read_input_tokens": 107663,
+                    "cache_creation_input_tokens": 1711,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1711
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000219"
+        },
+        {
+          "source_line": 220,
+          "timestamp": "2026-05-22T19:52:15.917Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eq8ycomUUWMqv4vb3mGfhv",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16639",
+                "command": "cd /root/symb_invariant_consensus && python3 -c \"\nimport json\nCLASSES = sorted(['True', 'False', 'Unknown'])\nwith open('results/multi_seed/mistral_pw_seed42/results.json') as f:\n    data = json.load(f)\nresults = data.get('results', [])\nprint('N =', len(results))\nstored_correct = 0; recomputed_correct = 0; diff_count = 0\nfor r in results:\n    gt = r['ground_truth']\n    stored_sc = r['sc_answer']\n    vd = r['sc_vote_distribution']\n    max_v = max(vd.get(c, 0) for c in CLASSES)\n    tied = [c for c in CLASSES if vd.get(c, 0) == max_v]\n    recomputed_sc = sorted(tied)[0]\n    if stored_sc == gt: stored_correct += 1\n    if recomputed_sc == gt: recomputed_correct += 1\n    if stored_sc != recomputed_sc: diff_count += 1\nprint('stored=%d/%d (%.2f%%)' % (stored_correct, len(results), stored_correct/len(results)*100))\nprint('recomputed=%d/%d (%.2f%%)' % (recomputed_correct, len(results), recomputed_correct/len(results)*100))\nprint('diffs=%d' % diff_count)\n\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "299856d1-e796-41a4-a177-675a37978301",
+            "isSidechain": false,
+            "requestId": "req_011CbJC1dhx8zo1HHPL64iGg",
+            "type": "assistant",
+            "uuid": "7b6b246d-94f8-4213-a053-3c44a1745408",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B4mnApp6ZAbRxpSWK5iZRq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1711,
+                "cache_read_input_tokens": 107663,
+                "output_tokens": 541,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1711,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 541,
+                    "cache_read_input_tokens": 107663,
+                    "cache_creation_input_tokens": 1711,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1711
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000220"
+        },
+        {
+          "source_line": 221,
+          "timestamp": "2026-05-22T19:52:16.404Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Eq8ycomUUWMqv4vb3mGfhv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"N = 600\\\\nstored=240/600 (40.00%)\\\\nrecomputed=240/600 (40.00%)\\\\ndiffs=2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b6b246d-94f8-4213-a053-3c44a1745408",
+            "isSidechain": false,
+            "promptId": "86d61ff3-fd69-4a80-9d4d-b42202e900fc",
+            "type": "user",
+            "uuid": "0f8ddc01-29c2-4dff-8b93-cea59fd1d211",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"N = 600\\\\nstored=240/600 (40.00%)\\\\nrecomputed=240/600 (40.00%)\\\\ndiffs=2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"N = 600\\nstored=240/600 (40.00%)\\nrecomputed=240/600 (40.00%)\\ndiffs=2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+              }
+            },
+            "sourceToolAssistantUUID": "7b6b246d-94f8-4213-a053-3c44a1745408",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000221"
+        },
+        {
+          "source_line": 222,
+          "timestamp": "2026-05-22T19:52:47.886Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "multi_seed/mistral_pw_seed42 shows stored=40.00% = 240/600, recomputed=40.00%. This is different from Table 1's 39.33%. So Table 1's Mistral PW data comes from yet another run.\n\nThe key source of the Mistral PW data for the combo and cross-gen tables is `data/mistral_pw600_sc_votes.json`. Let me check if there's a results.json in one of the older experiment directories.\n\nActually, let me also check the combo table value. The cross-gen table in solutions.tex shows Mistral SC = 39.33%. \n\nLooking at the combo JSON, I see Mistral sc_baseline = 39.17%, which doesn't match. But wait—the cross-gen table is actually about zero-shot DeBERTa combo, not Mistral. Reading line 23 of solutions.tex more carefully, the Mistral row shows SC = 39.33% with a gap of +15.67, which means the verifier standalone performance is 55.00%—matching DeBERTa-large.\n\nNow I'm realizing the 39.33% is the SC baseline for Mistral PW in the zero-shot combo, but my recomputation from vote_dict gives either 39.17% or 39.00%, neither of which matches. I need to figure out if vote_dict is even the right source here. The eval_finetuned_nli.py script pulls Mistral votes from a specific JSON file, but the zero-shot combo uses per-model trace files instead. The solutions.tex Table 3 might be pulling results from a completely different pipeline—I should track down which script actually generated the Mistral NLI combo results.\n\nLooking at the appendix.tex, the multi-verifier NLI table explicitly states the Mistral SC baseline as 39.33%, which equals 236/600. That specific count doesn't match any of my sources so far—not the vote dict, not the multi_seed results. I'm searching for a main Mistral PW results file that might contain this exact number.\n\nThe 39.33% likely comes from the original pipeline run using the self-consistency baseline script, which is compatible with D061. The vote dict file probably contains different votes than what the pipeline traces produced, which would explain the mismatch.\n\nI'm noting this discrepancy and moving forward with the report. The key findings are clear: the stored SC answers in trace files use insertion-order tiebreaking rather than D061, the eval script recomputes SC with D061 from vote distributions creating a different baseline, the zero-shot combo scripts were patched for tiebreaking but still read old SC baselines, the D116 script remains completely unpatched, and the cross-gen table values are inconsistent between stored and D061 versions. Table 1 and the cross-gen table also show different SC values for Qwen14B.\n\nI'm wondering if Table 1 values might come from a fresh pipeline run that generated new traces rather than using stored results, which could explain why some models show D061-compatible tiebreaking while others don't. Let me check when the key result files were generated and then I can write up the comprehensive report.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0f8ddc01-29c2-4dff-8b93-cea59fd1d211",
+            "isSidechain": false,
+            "requestId": "req_011CbJC2XEo4wHUbSjsq3m8n",
+            "type": "assistant",
+            "uuid": "0b09258a-a471-472d-9b51-6951a160f41a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JSV6FQDVkx1WYoW6RGc9P4",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 654,
+                "cache_read_input_tokens": 109374,
+                "output_tokens": 2899,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 654,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2899,
+                    "cache_read_input_tokens": 109374,
+                    "cache_creation_input_tokens": 654,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 654
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000222"
+        },
+        {
+          "source_line": 223,
+          "timestamp": "2026-05-22T19:53:22.748Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have enough data for a complete report. Here's the audit:\n\n---\n\n## 审计报告\n\n### 1. deberta_ft_combo_all.json 完整内容\n\n```\nverifier: DeBERTa-large-FT-PW-OWA (99.67% standalone)\ntiebreaking: D061 (sorted alphabetical first)\ndataset: ProofWriter-D5-600\n\nGenerator       | SC baseline | w=1 (Δ)   | w=3 (Δ)    | w=5 (Δ)     | Compl.\nMistral-7B      | 39.17%      | 42.33(+3.17)| 52.17(+13.0)| 65.50(+26.33)| 365:2\nLLaMA-3.1-8B    | 72.50%      | 76.00(+3.5) | 84.17(+11.67)| 91.67(+19.17)| 164:1\nQwen2.5-14B     | 74.00%      | 75.00(+1.0) | 78.50(+4.5) | 83.00(+9.0) | 155:1\nQwen3-14B       | 85.83%      | 86.50(+0.67)| 88.00(+2.17)| 90.00(+4.17)| 85:2\n```\n\n### 2. 各脚本 Tiebreaking 实现\n\n| 脚本 | SC baseline | Combo tiebreaking | 状态 |\n|------|------------|-------------------|------|\n| `eval_finetuned_nli.py` | D061 (recomputes from votes) | D061 `sorted(tied)[0]` | ✓ 一致 |\n| `exp092_llama8b_pw_nli_combo.py` | **OLD** (reads stored `sc_answer`) | D061 (patched) | ⚠️ SC baseline 用旧值 |\n| `qwen14b_pw_nli_combo.py` | **OLD** (reads stored `sc_answer`) | D061 (patched) | ⚠️ SC baseline 用旧值 |\n| `d116_qwen3_pw_deberta_large.py` | **OLD** (reads stored `sc_answer`) | **OLD** `max(votes, key=votes.get)` | ❌ 完全未修复 |\n| `dir_k_nli_qwen3_pw600.py` | **OLD** (reads stored `sc_answer`) | D061 (patched) | ⚠️ SC baseline 用旧值 |\n| `baselines/self_consistency.py` | D061 `max(sorted(keys), key=count)` | N/A | ✓ |\n| `sica/scorer.py` | N/A | D061 `sorted(top)[0]` | ✓ |\n\n**根因**: 原始 trace 文件里的 `sc_answer` 是用 insertion-order tiebreaking 计算的（非 D061）。实测验证：\n\n| 模型 | stored sc_answer | D061 recomputed | 差异样本 |\n|------|-----------------|----------------|---------|\n| LLaMA-3.1-8B | 420/600 (70.00%) | 435/600 (72.50%) | 18 |\n| Qwen2.5-14B | 441/600 (73.50%) | 444/600 (74.00%) | 12 |\n| Qwen3-14B | 510/600 (85.00%) | 515/600 (85.83%) | 9 |\n| Mistral (vote_dict) | 234/600 (39.00%) | 235/600 (39.17%) | 1 |\n\n差异全部来自 True/False/Unknown 的两路或三路 tie，旧代码偏向 \"Unknown\"（dict insertion order），D061 偏向 \"False\"（alphabetical first）。\n\n### 3. Table 1 主表 SC vs Cross-gen Table SC vs Combo SC 的不一致\n\n| 模型 | Table 1 SC | Cross-gen表 SC | deberta_ft_combo SC (D061) |\n|------|-----------|---------------|--------------------------|\n| Mistral-7B PW | 39.33% | 39.33% | 39.17% |\n| LLaMA-3.1-8B PW | (不在 Table 1) | 70.00% (stored) | 72.50% (D061) |\n| Qwen2.5-14B PW | 74.00% | **73.50%** (stored) | 74.00% (D061) |\n| Qwen3-14B PW | 85.00% | **85.83%** (D061) | 85.83% (D061) |\n\n**三个不一致**:\n1. **Qwen2.5-14B**: Table 1 = 74.00% (D061), cross-gen table = 73.50% (stored) — 差 0.50pp\n2. **Qwen3-14B**: Table 1 = 85.00% (stored), cross-gen table = 85.83% (D061) — 差 0.83pp\n3. **Mistral**: Table 1 和 cross-gen = 39.33%, combo JSON = 39.17% — 差 0.16pp (可能来自不同的 trace 文件)\n\nCross-gen table (solutions.tex) 内部也不一致：LLaMA/Qwen14B 用 stored SC，Qwen3 用 D061 recomputed SC。\n\n### 4. Zero-shot DeBERTa combo 是否需要 D061 更新\n\n**需要**，三处问题：\n\n1. **d116_qwen3_pw_deberta_large.py line 158**: `combo_answer = max(votes, key=votes.get)` — 完全没有 D061 修复。`_fix_tiebreaking.py` 遗漏了这个脚本。但 D116 的 combo 结果不直接被 paper 引用（exp092/qwen14b 只读 D116 的 `deberta_pred`，combo 自己算），所以 **对 paper 数据无影响**。\n\n2. **exp092/qwen14b SC baseline**: combo 脚本读取 stored `sc_answer`（old tiebreaking），导致 SC baseline 偏低。但这些脚本的输出不直接用于 paper 的 main tables — cross-gen table 的数值似乎来自 `nli_recompute_exp091_exp092.json` 或手工计算。\n\n3. **跨表一致性**: 需要统一所有 SC baseline 到 D061 recomputed 值，或者明确标注哪个 tiebreaking convention。当前 paper 在不同 table 之间混用了两种 tiebreaking 的 SC 值。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b09258a-a471-472d-9b51-6951a160f41a",
+            "isSidechain": false,
+            "requestId": "req_011CbJC2XEo4wHUbSjsq3m8n",
+            "type": "assistant",
+            "uuid": "5b300b47-5cf2-456e-8a53-2106e9764915",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JSV6FQDVkx1WYoW6RGc9P4",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 654,
+                "cache_read_input_tokens": 109374,
+                "output_tokens": 2899,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 654,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2899,
+                    "cache_read_input_tokens": 109374,
+                    "cache_creation_input_tokens": 654,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 654
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000223"
+        },
+        {
+          "source_line": 224,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "5b300b47-5cf2-456e-8a53-2106e9764915",
+                "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96"
+              }
+            }
+          ],
+          "id": "event-000224"
+        },
+        {
+          "source_line": 225,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit tiebreaking consistency in combo and main table",
+                "sessionId": "fd71ab37-f5a0-4a2f-8af0-c261f4354c96"
+              }
+            }
+          ],
+          "id": "event-000225"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,747 @@
+{
+  "schema_version": "1.0",
+  "id": "21f8f425cc5f9ac2374e",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T051642 tier=worst 生成一篇完整的模拟论文。 ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源",
+  "task_key": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/95afbd4e-c8d6-467e-8e66-e9555da5b3a1.jsonl",
+    "occurrence": 1,
+    "bytes": 101297,
+    "sha256": "22bed6221b2714f8efc14a260e8ab823a9160a4482c96fc6e971e2a5fd43ea11"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "record": 9,
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T05:37:05.460Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-16T05:37:05.460Z",
+                "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1",
+                "content": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T051642 tier=worst 生成一篇完整的模拟论文。\n\n## 关键规则\n1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst/paper.tex`\n2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`\n3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst/`，禁止写入其他目录\n4. 直接写完整 LaTeX 全文（\\documentclass ... \\end{document}），不要输出 YAML/JSON/Markdown\n5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完\n6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table\n7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引\n\n## 输入\n- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst/experiment_data.json`（先 Read 此文件）\n- Venue：默认\n- Narrative guidance：三条原始claim全部不成立。+3.3pp是60q小样本噪声，扩展后gap蒸发。Tiebreaking win rate回归50%—— 无系统性优势。C0与SICA增益无相关性——高diversity带来的是更多噪声而非更多信号。必须完全reframe为 negative result paper：\"The Limits of Post-hoc Symbolic Verification in LLM Reasoning\"。 核心论点：从reasoning traces中提取的FOL constraints质量不足以支撑系统性改进，constraint extraction 是对LLM reasoning traces的category error。用exp-008的failure mode taxonomy作为主要贡献。 仍冲EMNLP——negative/analysis papers有先例（需extremely strong writing），同时准备AAAI 2027。\n\n- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst/paper_framing.md`（先 Read 此文件）\n\n## 质量目标\n\"够审\"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T05:37:05.467Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-16T05:37:05.467Z",
+                "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T05:37:05.496Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T051642 tier=worst 生成一篇完整的模拟论文。\n\n## 关键规则\n1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst/paper.tex`\n2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`\n3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst/`，禁止写入其他目录\n4. 直接写完整 LaTeX 全文（\\documentclass ... \\end{document}），不要输出 YAML/JSON/Markdown\n5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完\n6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table\n7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引\n\n## 输入\n- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst/experiment_data.json`（先 Read 此文件）\n- Venue：默认\n- Narrative guidance：三条原始claim全部不成立。+3.3pp是60q小样本噪声，扩展后gap蒸发。Tiebreaking win rate回归50%—— 无系统性优势。C0与SICA增益无相关性——高diversity带来的是更多噪声而非更多信号。必须完全reframe为 negative result paper：\"The Limits of Post-hoc Symbolic Verification in LLM Reasoning\"。 核心论点：从reasoning traces中提取的FOL constraints质量不足以支撑系统性改进，constraint extraction 是对LLM reasoning traces的category error。用exp-008的failure mode taxonomy作为主要贡献。 仍冲EMNLP——negative/analysis papers有先例（需extremely strong writing），同时准备AAAI 2027。\n\n- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst/paper_framing.md`（先 Read 此文件）\n\n## 质量目标\n\"够审\"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "8e8764bf-6eae-4ef1-8f89-3790fa343de1",
+            "type": "user",
+            "uuid": "5205cfe2-7f4a-4b94-8909-906c758253ab",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T05:37:05.495Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "5205cfe2-7f4a-4b94-8909-906c758253ab",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "8c2e8aa4-fd9b-4a24-92ce-0d745d6e7dba",
+                "timestamp": "2026-05-16T05:37:05.495Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T05:37:05.495Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "8c2e8aa4-fd9b-4a24-92ce-0d745d6e7dba",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "4ad27a7c-cd33-468c-a8ef-2d9049e5df92",
+                "timestamp": "2026-05-16T05:37:05.495Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate negative results paper on symbolic verification limits",
+                "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T05:37:11.991Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the experiment data and paper framing files to understand what I'm working with.",
+              "signature": "EqMCClkIDRgCKkBvPlrhozq5sMe1JyM2SQukMW/z0LVVvXRA94vwM56NcrK2UrgzMsXADZbQzweQmkS/zvjFLSbLiRdW9bEB7P8AMg9jbGF1ZGUtb3B1cy00LTY4ABIM03SK4FkdF6vJU60bGgzYKv8V+kz2+Qz5hJgiMJ9AHzjcodiS9NB7LSKYn2DDMY0HvjWsYgB3RI8UZF/UkkTuCCO2naTOOePcFWUn0yp4JDtuyGUDq0OkXoVoPDh3xQ9a59HChJBUkbZGmxKmkbPUzgywi80BMdd0Wv1XRtSXXuf7CFGjml8egNaLVipQgU7c3ypD/5wa67WYDwb4vak8qmSTLBKO5tcpFm+VVjYkhrpIyFZ36yTRCKoRHkM68lgYAmFfZZ5yGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ad27a7c-cd33-468c-a8ef-2d9049e5df92",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hxgTWYQx8poBeDeuYj",
+            "type": "assistant",
+            "uuid": "1e2bab80-4add-4403-943b-db8fb1da7657",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012txVuBhSZLkeWTxjkosiEJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11269,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 229,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11269,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 229,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11269,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11269
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T05:37:12.474Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017sXRBprQahwP2GajSViysQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst/experiment_data.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1e2bab80-4add-4403-943b-db8fb1da7657",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hxgTWYQx8poBeDeuYj",
+            "type": "assistant",
+            "uuid": "6cf68fbe-2e87-4e63-8464-0ee976007f1d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012txVuBhSZLkeWTxjkosiEJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11269,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 229,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11269,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 229,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11269,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11269
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T05:37:12.843Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017sXRBprQahwP2GajSViysQ",
+              "type": "tool_result",
+              "content": "1\t[\n2\t  {\n3\t    \"name\": \"sica_expanded_14b\",\n4\t    \"description\": \"Qwen2.5-14B-Instruct在扩展数据集上运行SICA vs SC。FOLIO扩展至104题，ProofWriter扩展至108题， 合计212题。与原60题D012数据合并分析。\\n\",\n5\t    \"results\": {\n6\t      \"n_folio\": 104,\n7\t      \"n_proofwriter\": 108,\n8\t      \"n_combined\": 212,\n9\t      \"folio_sica_acc\": 0.788,\n10\t      \"folio_sc_acc\": 0.769,\n11\t      \"folio_gap_pp\": 1.9,\n12\t      \"folio_new_74q_sica_acc\": 0.784,\n13\t      \"folio_new_74q_sc_acc\": 0.784,\n14\t      \"folio_new_74q_gap_pp\": 0.0,\n15\t      \"proofwriter_sica_acc\": 0.63,\n16\t      \"proofwriter_sc_acc\": 0.639,\n17\t      \"proofwriter_gap_pp\": -0.9,\n18\t      \"combined_sica_acc\": 0.708,\n19\t      \"combined_sc_acc\": 0.703,\n20\t      \"combined_gap_pp\": 0.5,\n21\t      \"bootstrap_p_combined\": 0.38,\n22\t      \"bootstrap_p_folio\": 0.31,\n23\t      \"bootstrap_p_proofwriter\": 0.62,\n24\t      \"c0_combined\": 0.47,\n25\t      \"c0_folio\": 0.43,\n26\t      \"c0_proofwriter\": 0.51,\n27\t      \"tie_questions_total\": 10,\n28\t      \"tie_sica_wins\": 5,\n29\t      \"tie_sc_wins\": 5,\n30\t      \"tiebreak_win_rate\": 0.5,\n31\t      \"c1_extraction_rate\": 0.98,\n32\t      \"total_constraints_raw\": 18740,\n33\t      \"total_constraints_unique\": 4820,\n34\t      \"maxsat_exclusion_rate\": 0.031,\n35\t      \"wall_time_min\": 195\n36\t    },\n37\t    \"tables\": [\n38\t      {\n39\t        \"caption\": \"Table 1: SICA vs SC accuracy on expanded benchmarks (K=10, T=0.7, Qwen2.5-14B-Instruct)\",\n40\t        \"columns\": [\n41\t          \"Dataset\",\n42\t          \"N\",\n43\t          \"SICA_Acc\",\n44\t          \"SC_Acc\",\n45\t          \"Gap_pp\",\n46\t          \"p_bootstrap\",\n47\t          \"C0\"\n48\t        ],\n49\t        \"rows\": [\n50\t          [\n51\t            \"FOLIO (original 30)\",\n52\t            30,\n53\t            80.0,\n54\t            73.3,\n55\t            \"+6.7\",\n56\t            0.14,\n57\t            0.53\n58\t          ],\n59\t          [\n60\t            \"FOLIO (new 74)\",\n61\t            74,\n62\t            78.4,\n63\t            78.4,\n64\t            \"0.0\",\n65\t            0.5,\n66\t            0.39\n67\t          ],\n68\t          [\n69\t            \"FOLIO (all)\",\n70\t            104,\n71\t            78.8,\n72\t            76.9,\n73\t            \"+1.9\",\n74\t            0.31,\n75\t            0.43\n76\t          ],\n77\t          [\n78\t            \"ProofWriter (original 30)\",\n79\t            30,\n80\t            66.7,\n81\t            66.7,\n82\t            \"0.0\",\n83\t            0.5,\n84\t            0.53\n85\t          ],\n86\t          [\n87\t            \"ProofWriter (new 78)\",\n88\t            78,\n89\t            61.5,\n90\t            62.8,\n91\t            \"-1.3\",\n92\t            0.58,\n93\t            0.5\n94\t          ],\n95\t          [\n96\t            \"ProofWriter (all)\",\n97\t            108,\n98\t            63.0,\n99\t            63.9,\n100\t            \"-0.9\",\n101\t            0.62,\n102\t            0.51\n103\t          ],\n104\t          [\n105\t            \"Combined (original 60)\",\n106\t            60,\n107\t            73.3,\n108\t            70.0,\n109\t            \"+3.3\",\n110\t            0.23,\n111\t            0.53\n112\t          ],\n113\t          [\n114\t            \"Combined (all)\",\n115\t            212,\n116\t            70.8,\n117\t            70.3,\n118\t            \"+0.5\",\n119\t            0.38,\n120\t            0.47\n121\t          ]\n122\t        ]\n123\t      },\n124\t      {\n125\t        \"caption\": \"Table 2: Tiebreak analysis — original vs expanded\",\n126\t        \"columns\": [\n127\t          \"Dataset\",\n128\t          \"N_ties\",\n129\t          \"SICA_wins\",\n130\t          \"SC_wins\",\n131\t          \"Win_rate\"\n132\t        ],\n133\t        \"rows\": [\n134\t          [\n135\t            \"Original 60q\",\n136\t            6,\n137\t            4,\n138\t            2,\n139\t            0.67\n140\t          ],\n141\t          [\n142\t            \"New 152q\",\n143\t            4,\n144\t            1,\n145\t            3,\n146\t            0.25\n147\t          ],\n148\t          [\n149\t            \"All 212q\",\n150\t            10,\n151\t            5,\n152\t            5,\n153\t            0.5\n154\t          ]\n155\t        ]\n156\t      }\n157\t    ],\n158\t    \"figures\": [],\n159\t    \"analysis\": \"扩展后的核心发现：SICA和SC在绝大多数题目上（93%）给出完全相同的答案——MAX-SAT reweighting 几乎从不改变majority vote结果。仅在tie situations下有区别，而SICA的tie resolution 并不优于随机。原始+3.3pp是6个tie中碰巧赢了4个的结果（p(≥4|6, 0.5)=0.34）， 完全在随机波动范围内。Claim 1（principled tiebreaking）不成立。\\n\\n\\n原60题的+3.3pp完全来自4个6:6 tie的SICA胜出（4/6=67% win rate）。扩展后新增152题中， tie出现频率符合预期（~5%），但SICA在新tie上的win rate回归到50%——与随机无异。 关键现象：原30道FOLIO的+6.7pp保持（这是历史数据），但新74道FOLIO上SICA与SC完全相同（0pp）。 这说明原始gap是小样本中tiebreak碰巧对了几道题，而非SICA有系统性优势。 ProofWriter扩展后出现轻微负向（-0.9pp），因为constraint extraction在ProofWriter的 closed-world assumption下引入噪声——提取的FOL约束有时将正确trace降权。 合并后+0.5pp，p=0.38，远不显著。连方向都不确定。\\n\"\n160\t  },\n161\t  {\n162\t    \"name\": \"sica_k_ablation_14b\",\n163\t    \"description\": \"K sensitivity实验，在原60题上测试K=6,8,12,16,20（K=10为已有baseline）。 检验SICA benefit是否随K变化呈现系统性pattern。\\n\",\n164\t    \"results\": {\n165\t      \"k_values\": [\n166\t        6,\n167\t        8,\n168\t        10,\n169\t        12,\n170\t        16,\n171\t        20\n172\t      ],\n173\t      \"sica_acc_by_k\": [\n174\t        0.717,\n175\t        0.733,\n176\t        0.733,\n177\t        0.717,\n178\t        0.7,\n179\t        0.717\n180\t      ],\n181\t      \"sc_acc_by_k\": [\n182\t        0.7,\n183\t        0.717,\n184\t        0.7,\n185\t        0.717,\n186\t        0.717,\n187\t        0.7\n188\t      ],\n189\t      \"gap_pp_by_k\": [\n190\t        1.7,\n191\t        1.7,\n192\t        3.3,\n193\t        0.0,\n194\t        -1.7,\n195\t        1.7\n196\t      ],\n197\t      \"tie_freq_by_k\": [\n198\t        0.25,\n199\t        0.13,\n200\t        0.1,\n201\t        0.08,\n202\t        0.05,\n203\t        0.03\n204\t      ],\n205\t      \"tie_win_rate_by_k\": [\n206\t        0.53,\n207\t        0.5,\n208\t        0.67,\n209\t        0.4,\n210\t        0.33,\n211\t        0.5\n212\t      ],\n213\t      \"c0_by_k\": [\n214\t        0.6,\n215\t        0.55,\n216\t        0.53,\n217\t        0.5,\n218\t        0.45,\n219\t        0.42\n220\t      ],\n221\t      \"correlation_k_vs_gap_r\": 0.08,\n222\t      \"correlation_k_vs_gap_p\": 0.88,\n223\t      \"correlation_tiefreq_vs_gap_r\": 0.35,\n224\t      \"correlation_tiefreq_vs_gap_p\": 0.5,\n225\t      \"k_ablation_correlation_r\": 0.18,\n226\t      \"wall_time_hours_total\": 4.8\n227\t    },\n228\t    \"tables\": [\n229\t      {\n230\t        \"caption\": \"Table 3: SICA vs SC across K values (60q, Qwen2.5-14B-Instruct)\",\n231\t        \"columns\": [\n232\t          \"K\",\n233\t          \"SICA_Acc\",\n234\t          \"SC_Acc\",\n235\t          \"Gap_pp\",\n236\t          \"N_ties\",\n237\t          \"Tie_Win_Rate\",\n238\t          \"C0\"\n239\t        ],\n240\t        \"rows\": [\n241\t          [\n242\t            6,\n243\t            71.7,\n244\t            70.0,\n245\t            \"+1.7\",\n246\t            15,\n247\t            0.53,\n248\t            0.6\n249\t          ],\n250\t          [\n251\t            8,\n252\t            73.3,\n253\t            71.7,\n254\t            \"+1.7\",\n255\t            8,\n256\t            0.5,\n257\t            0.55\n258\t          ],\n259\t          [\n260\t            10,\n261\t            73.3,\n262\t            70.0,\n263\t            \"+3.3\",\n264\t            6,\n265\t            0.67,\n266\t            0.53\n267\t          ],\n268\t          [\n269\t            12,\n270\t            71.7,\n271\t            71.7,\n272\t            \"0.0\",\n273\t            5,\n274\t            0.4,\n275\t            0.5\n276\t          ],\n277\t          [\n278\t            16,\n279\t            70.0,\n280\t            71.7,\n281\t            \"-1.7\",\n282\t            3,\n283\t            0.33,\n284\t            0.45\n285\t          ],\n286\t          [\n287\t            20,\n288\t            71.7,\n289\t            70.0,\n290\t            \"+1.7\",\n291\t            2,\n292\t            0.5,\n293\t            0.42\n294\t          ]\n295\t        ]\n296\t      }\n297\t    ],\n298\t    \"figures\": [],\n299\t    \"analysis\": \"K消融彻底否定了\\\"SICA benefit随K系统性变化\\\"的假设。Gap序列[+1.7, +1.7, +3.3, 0.0, -1.7, +1.7] 看起来就是围绕0的随机游走。K=10的+3.3pp是最大值纯属偶然。 更致命的是：如果SICA真的通过constraint quality提供了principled tiebreaking， 那么在tie更频繁的低K下（K=6, 15个tie），win rate应该收敛到一个>0.5的稳定值—— 但实际观察到的0.53与0.5无显著差异（p=0.65, one-sided binomial test）。 Claim 1的tiebreaking机制在足够多的tie样本下仍然无法展示系统性优势。\\n\\n\\nK增大时tie频率按预期下降（偶数K在K=6时~25%的题有tie，K=20时仅~3%），但SICA在tie上的 win rate完全无pattern：K=10碰巧最高（67%=4/6 wins），K=16最低（33%=1/3）。 这恰好说明win rate受极小样本量支配——每个K值下tie数量仅3-15个，任何单个K的win rate 都无统计意义。Gap在-1.7到+3.3pp之间随机波动，与K无单调关系（r=0.08）。 奇数K测试（如K=9,11）可完全消除ties，但本实验设计中未包含——这本身就暗示了 SICA的整个contribution可以被\\\"用奇数K\\\"这个trivial baseline替代。\\n\"\n300\t  },\n301\t  {\n302\t    \"name\": \"tiebreak_baseline_analysis\",\n303\t    \"description\": \"CPU-only reanalysis。在所有可用数据上比较SICA vs SC-random-tiebreak vs SC-deterministic。 量化SICA的gain中有多少survives against fair random baseline。\\n\",\n304\t    \"results\": {\n305\t      \"orig60_sc_det_acc\": 0.7,\n306\t      \"orig60_sc_random_acc_mean\": 0.711,\n307\t      \"orig60_sc_random_acc_std\": 0.018,\n308\t      \"orig60_sica_acc\": 0.733,\n309\t      \"orig60_sica_vs_random_gap_pp\": 2.2,\n310\t      \"orig60_sica_vs_random_p\": 0.29,\n311\t      \"exp212_sc_det_acc\": 0.703,\n312\t      \"exp212_sc_random_acc_mean\": 0.706,\n313\t      \"exp212_sc_random_acc_std\": 0.008,\n314\t      \"exp212_sica_acc\": 0.708,\n315\t      \"exp212_sica_vs_random_gap_pp\": 0.2,\n316\t      \"exp212_sica_vs_random_p\": 0.46,\n317\t      \"tie_n\": 10,\n318\t      \"tie_sica_correct\": 5,\n319\t      \"tie_random_expected_correct\": 5.0,\n320\t      \"tie_random_std\": 1.1,\n321\t      \"tiebreak_win_rate_vs_random\": 0.5\n322\t    },\n323\t    \"tables\": [\n324\t      {\n325\t        \"caption\": \"Table 4: Three-way comparison — SICA vs SC-random vs SC-deterministic\",\n326\t        \"columns\": [\n327\t          \"Dataset\",\n328\t          \"N\",\n329\t          \"SC_Det\",\n330\t          \"SC_Random_Mean\",\n331\t          \"SICA\",\n332\t          \"SICA_vs_Random_pp\",\n333\t          \"p\"\n334\t        ],\n335\t        \"rows\": [\n336\t          [\n337\t            \"Original 60q\",\n338\t            60,\n339\t            70.0,\n340\t            71.1,\n341\t            73.3,\n342\t            \"+2.2\",\n343\t            0.29\n344\t          ],\n345\t          [\n346\t            \"Expanded 212q\",\n347\t            212,\n348\t            70.3,\n349\t            70.6,\n350\t            70.8,\n351\t            \"+0.2\",\n352\t            0.46\n353\t          ],\n354\t          [\n355\t            \"FOLIO 104q\",\n356\t            104,\n357\t            76.9,\n358\t            77.4,\n359\t            78.8,\n360\t            \"+1.4\",\n361\t            0.35\n362\t          ],\n363\t          [\n364\t            \"ProofWriter 108q\",\n365\t            108,\n366\t            63.9,\n367\t            64.0,\n368\t            63.0,\n369\t            \"-1.0\",\n370\t            0.67\n371\t          ]\n372\t        ]\n373\t      }\n374\t    ],\n375\t    \"figures\": [],\n376\t    \"analysis\": \"引入SC-random baseline后，SICA的gain进一步缩水。在212q上+0.2pp vs random—— 这意味着整个constraint extraction + MAX-SAT pipeline（额外30%计算开销）的净效果 等价于掷硬币。SC-deterministic之所以低，是因为alphabetical tie rule在FOLIO上 系统性偏向\\\"False\\\"（而正确答案分布略偏\\\"True\\\"）。这是一个baseline artifact， 不应归功于SICA的\\\"principled\\\"机制。\\n\\n\\nSC-deterministic的tiebreak规则（alphabetical/first-encountered）在某些题上系统性偏差 （比如\\\"True\\\"排在\\\"False\\\"前面），导致它在60q上比random低1.1pp。SICA看起来比SC-det 好3.3pp，但其中~1pp来自\\\"不用deterministic tiebreak\\\"这个trivial改进。 对比SC-random（公平baseline），SICA在60q上仅+2.2pp（p=0.29），在212q上仅+0.2pp（p=0.46）。 换言之，SICA的实际contribution在扩展后与random tiebreak无法区分。 这是最具破坏性的结果：SICA的整个pipeline（constraint extraction + MAX-SAT） 在统计上不优于一个coin flip。\\n\"\n377\t  },\n378\t  {\n379\t    \"name\": \"sica_7b_scaling\",\n380\t    \"description\": \"Qwen2.5-7B-Instruct在60题上运行SICA。测试弱模型→高C0→更大SICA gain的假设。\\n\",\n381\t    \"results\": {\n382\t      \"n_combined\": 60,\n383\t      \"n_folio\": 30,\n384\t      \"n_proofwriter\": 30,\n385\t      \"c0_combined\": 0.65,\n386\t      \"c0_folio\": 0.6,\n387\t      \"c0_proofwriter\": 0.7,\n388\t      \"sc_acc_combined\": 0.583,\n389\t      \"sc_acc_folio\": 0.667,\n390\t      \"sc_acc_proofwriter\": 0.5,\n391\t      \"sica_acc_combined\": 0.567,\n392\t      \"sica_acc_folio\": 0.633,\n393\t      \"sica_acc_proofwriter\": 0.5,\n394\t      \"sica_sc_gap_pp\": -1.7,\n395\t      \"folio_gap_pp\": -3.3,\n396\t      \"proofwriter_gap_pp\": 0.0,\n397\t      \"bootstrap_p\": 0.72,\n398\t      \"c1_extraction_rate\": 0.92,\n399\t      \"constraint_quality_issues\": 0.34,\n400\t      \"total_constraints_raw\": 4200,\n401\t      \"total_constraints_unique\": 1950,\n402\t      \"maxsat_exclusion_rate\": 0.068,\n403\t      \"wall_time_min\": 35\n404\t    },\n405\t    \"tables\": [\n406\t      {\n407\t        \"caption\": \"Table 5: Model scaling — SICA effectiveness across model sizes\",\n408\t        \"columns\": [\n409\t          \"Model\",\n410\t          \"Params\",\n411\t          \"C0\",\n412\t          \"SC_Acc\",\n413\t          \"SICA_Acc\",\n414\t          \"Gap_pp\",\n415\t          \"p\"\n416\t        ],\n417\t        \"rows\": [\n418\t          [\n419\t            \"QwQ-32B\",\n420\t            \"32B\",\n421\t            0.036,\n422\t            73.3,\n423\t            73.3,\n424\t            \"0.0\",\n425\t            0.5\n426\t          ],\n427\t          [\n428\t            \"Qwen2.5-14B-Instruct\",\n429\t            \"14B\",\n430\t            0.53,\n431\t            70.0,\n432\t            73.3,\n433\t            \"+3.3\",\n434\t            0.23\n435\t          ],\n436\t          [\n437\t            \"Qwen2.5-7B-Instruct\",\n438\t            \"7B\",\n439\t            0.65,\n440\t            58.3,\n441\t            56.7,\n442\t            \"-1.7\",\n443\t            0.72\n444\t          ]\n445\t        ]\n446\t      }\n447\t    ],\n448\t    \"figures\": [],\n449\t    \"analysis\": \"7B实验是worst tier最致命的证据。它揭示了SICA方法论的根本缺陷： constraint extraction假设reasoning traces是formal proof的noisy version， 但7B的traces根本不是——它们是pattern matching的output，其中的\\\"logical structure\\\" 是superficial的。提取出的FOL constraints看起来像逻辑公式，但语义上经常是错的。 MAX-SAT在garbage-in时给出garbage-out，甚至worse-than-garbage因为它给noisy constraints 赋予了undeserved的confidence。这支持worst tier的核心reframing： symbolic extraction是category error。\\n\\n\\n7B模型的C0=0.65（显著高于14B的0.53），验证了\\\"弱模型更多样\\\"的预测。 但SICA反而亏了1.7pp。原因：高diversity来自reasoning errors而非legitimate alternative reasoning paths。7B的reasoning traces质量更低——FOL extraction的语义准确率仅~66% （vs 14B的~82%），导致constraint weighting将错误trace与正确trace等权对待甚至偏好错误trace。 具体机制：7B在FOLIO上经常生成plausible-looking但logically flawed的推理链， 这些链产生internally consistent但semantically wrong的constraints，MAX-SAT反而将 它们的权重提升。这直接否定了\\\"C0 as predictor\\\"——高C0伴随的是constraint noise， 不是constraint signal。Claim 2和Claim 3同时失败。\\n\"\n450\t  },\n451\t  {\n452\t    \"name\": \"c0_diagnostic_validation\",\n453\t    \"description\": \"跨所有模型和K值绘制C0 vs SICA-SC gap。验证C0作为SICA部署决策predictor的有效性。\\n\",\n454\t    \"results\": {\n455\t      \"data_points\": 9,\n456\t      \"scatter_data\": [\n457\t        {\n458\t          \"model\": \"14B\",\n459\t          \"k\": 6,\n460\t          \"c0\": 0.6,\n461\t          \"gap_pp\": 1.7\n462\t        },\n463\t        {\n464\t          \"model\": \"14B\",\n465\t          \"k\": 8,\n466\t          \"c0\": 0.55,\n467\t          \"gap_pp\": 1.7\n468\t        },\n469\t        {\n470\t          \"model\": \"14B\",\n471\t          \"k\": 10,\n472\t          \"c0\": 0.53,\n473\t          \"gap_pp\": 3.3\n474\t        },\n475\t        {\n476\t          \"model\": \"14B\",\n477\t          \"k\": 12,\n478\t          \"c0\": 0.5,\n479\t          \"gap_pp\": 0.0\n480\t        },\n481\t        {\n482\t          \"model\": \"14B\",\n483\t          \"k\": 16,\n484\t          \"c0\": 0.45,\n485\t          \"gap_pp\": -1.7\n486\t        },\n487\t        {\n488\t          \"model\": \"14B\",\n489\t          \"k\": 20,\n490\t          \"c0\": 0.42,\n491\t          \"gap_pp\": 1.7\n492\t        },\n493\t        {\n494\t          \"model\": \"7B\",\n495\t          \"k\": 10,\n496\t          \"c0\": 0.65,\n497\t          \"gap_pp\": -1.7\n498\t        },\n499\t        {\n500\t          \"model\": \"QwQ-32B\",\n501\t          \"k\": 10,\n502\t          \"c0\": 0.036,\n503\t          \"gap_pp\": 0.0\n504\t        },\n505\t        {\n506\t          \"model\": \"14B-expanded\",\n507\t          \"k\": 10,\n508\t          \"c0\": 0.47,\n509\t          \"gap_pp\": 0.5\n510\t        }\n511\t      ],\n512\t      \"pearson_r\": 0.22,\n513\t      \"pearson_p\": 0.57,\n514\t      \"spearman_rho\": 0.18,\n515\t      \"spearman_p\": 0.64,\n516\t      \"linear_fit_r2\": 0.05,\n517\t      \"c0_threshold_analysis\": \"No threshold of C0 cleanly separates positive from negative SICA gaps. C0>0.5 includes both the best (+3.3pp at C0=0.53) and worst (-1.7pp at C0=0.65) outcomes.\\n\"\n518\t    },\n519\t    \"tables\": [\n520\t      {\n521\t        \"caption\": \"Table 6: C0 vs SICA-SC gap across all conditions\",\n522\t        \"columns\": [\n523\t          \"Model\",\n524\t          \"K\",\n525\t          \"N\",\n526\t          \"C0\",\n527\t          \"SICA_Gap_pp\",\n528\t          \"Constraint_Quality_Est\"\n529\t        ],\n530\t        \"rows\": [\n531\t          [\n532\t            \"Qwen2.5-14B\",\n533\t            6,\n534\t            60,\n535\t            0.6,\n536\t            \"+1.7\",\n537\t            0.81\n538\t          ],\n539\t          [\n540\t            \"Qwen2.5-14B\",\n541\t            8,\n542\t            60,\n543\t            0.55,\n544\t            \"+1.7\",\n545\t            0.82\n546\t          ],\n547\t          [\n548\t            \"Qwen2.5-14B\",\n549\t            10,\n550\t            60,\n551\t            0.53,\n552\t            \"+3.3\",\n553\t            0.82\n554\t          ],\n555\t          [\n556\t            \"Qwen2.5-14B\",\n557\t            12,\n558\t            60,\n559\t            0.5,\n560\t            \"0.0\",\n561\t            0.8\n562\t          ],\n563\t          [\n564\t            \"Qwen2.5-14B\",\n565\t            16,\n566\t            60,\n567\t            0.45,\n568\t            \"-1.7\",\n569\t            0.79\n570\t          ],\n571\t          [\n572\t            \"Qwen2.5-14B\",\n573\t            20,\n574\t            60,\n575\t            0.42,\n576\t            \"+1.7\",\n577\t            0.78\n578\t          ],\n579\t          [\n580\t            \"Qwen2.5-14B\",\n581\t            10,\n582\t            212,\n583\t            0.47,\n584\t            \"+0.5\",\n585\t            0.8\n586\t          ],\n587\t          [\n588\t            \"Qwen2.5-7B\",\n589\t            10,\n590\t            60,\n591\t            0.65,\n592\t            \"-1.7\",\n593\t            0.66\n594\t          ],\n595\t          [\n596\t            \"QwQ-32B\",\n597\t            10,\n598\t            60,\n599\t            0.036,\n600\t            \"0.0\",\n601\t            0.91\n602\t          ]\n603\t        ]\n604\t      }\n605\t    ],\n606\t    \"figures\": [],\n607\t    \"analysis\": \"C0 diagnostic的失败有一个deeper insight：C0是一个necessary but not sufficient condition。 C0≈0（QwQ）时SICA确实degenerates to SC（这部分成立），但C0>0时SICA是否有益 取决于diversity的来源——是reasoning quality variation还是reasoning error variation。 C0无法区分这两者。要做到这一点需要实际运行constraint extraction评估quality， 但那样C0就不再是\\\"zero-cost predictor\\\"了。Claim 3的formulation从根本上有缺陷。\\n\\n\\nC0测量的是vote diversity，但SICA gain需要的不仅是diversity——还需要constraint quality。 C0无法区分\\\"diverse because multiple valid reasoning paths\\\"（SICA能帮忙的情况） 和\\\"diverse because model is confused\\\"（SICA帮倒忙的情况）。 在9个data points上，Pearson r=0.22（p=0.57），完全不显著。R²=0.05意味着C0仅解释 5%的SICA gap方差。即使增加更多data points，趋势方向都不确定—— 7B的(C0=0.65, gap=-1.7)是一个强力反例，直接打破了C0→gain的单调假设。 Claim 3（C0 as practical diagnostic）彻底不成立。\\n\"\n608\t  },\n609\t  {\n610\t    \"name\": \"sica_72b_awq\",\n611\t    \"description\": \"Qwen2.5-72B-Instruct AWQ 4-bit在60题上运行。Scaling analysis的最高点。\\n\",\n612\t    \"results\": {\n613\t      \"n_combined\": 60,\n614\t      \"c0_combined\": 0.35,\n615\t      \"c0_folio\": 0.3,\n616\t      \"c0_proofwriter\": 0.4,\n617\t      \"sc_acc_combined\": 0.783,\n618\t      \"sica_acc_combined\": 0.783,\n619\t      \"sica_sc_gap_pp\": 0.0,\n620\t      \"folio_sica\": 0.867,\n621\t      \"folio_sc\": 0.867,\n622\t      \"folio_gap_pp\": 0.0,\n623\t      \"proofwriter_sica\": 0.7,\n624\t      \"proofwriter_sc\": 0.7,\n625\t      \"proofwriter_gap_pp\": 0.0,\n626\t      \"tie_questions\": 2,\n627\t      \"tie_sica_wins\": 1,\n628\t      \"tie_sc_wins\": 1,\n629\t      \"tiebreak_win_rate\": 0.5,\n630\t      \"c1_extraction_rate\": 0.98,\n631\t      \"maxsat_exclusion_rate\": 0.018,\n632\t      \"wall_time_min\": 82\n633\t    },\n634\t    \"tables\": [\n635\t      {\n636\t        \"caption\": \"Table 7: Full model scaling analysis\",\n637\t        \"columns\": [\n638\t          \"Model\",\n639\t          \"Params\",\n640\t          \"Type\",\n641\t          \"C0\",\n642\t          \"SC_Acc\",\n643\t          \"SICA_Acc\",\n644\t          \"Gap_pp\",\n645\t          \"N_ties\"\n646\t        ],\n647\t        \"rows\": [\n648\t          [\n649\t            \"QwQ-32B\",\n650\t            \"32B\",\n651\t            \"Reasoning\",\n652\t            0.036,\n653\t            73.3,\n654\t            73.3,\n655\t            \"0.0\",\n656\t            0\n657\t          ],\n658\t          [\n659\t            \"Qwen2.5-72B-AWQ\",\n660\t            \"72B\",\n661\t            \"Instruction\",\n662\t            0.35,\n663\t            78.3,\n664\t            78.3,\n665\t            \"0.0\",\n666\t            2\n667\t          ],\n668\t          [\n669\t            \"Qwen2.5-14B\",\n670\t            \"14B\",\n671\t            \"Instruction\",\n672\t            0.53,\n673\t            70.0,\n674\t            73.3,\n675\t            \"+3.3\",\n676\t            6\n677\t          ],\n678\t          [\n679\t            \"Qwen2.5-7B\",\n680\t            \"7B\",\n681\t            \"Instruction\",\n682\t            0.65,\n683\t            58.3,\n684\t            56.7,\n685\t            \"-1.7\",\n686\t            18\n687\t          ]\n688\t        ]\n689\t      }\n690\t    ],\n691\t    \"figures\": [],\n692\t    \"analysis\": \"72B数据加上7B形成了一个完整的反驳叙事： 7B（C0=0.65）→ gap=-1.7pp（constraints太noisy，SICA反而有害） 14B（C0=0.53）→ gap=+3.3pp（60q上看起来有效，212q上缩减到+0.5pp） 72B（C0=0.35）→ gap=0.0pp（constraints好但tie太少，无施展空间） QwQ（C0=0.04）→ gap=0.0pp（无diversity，SICA≡SC） 不存在任何model regime where SICA systematically helps。14B在60q上的+3.3pp 是四个model中唯一的正值，且已被exp-001证明是noise。\\n\\n\\n72B是最强的instruction model，baseline accuracy最高（78.3% vs 14B的70.0%）。 C0=0.35——比14B低（0.53），因为更强的模型更自洽，但仍远高于QwQ（0.036）。 尽管C0>0且constraint quality应该最高（最强的instruction model），gap仍然精确为0pp。 仅2个tie，1:1 split。这个结果对SICA特别不利：即使在constraint quality最好的条件下 （72B的traces最接近\\\"formal proof的noisy version\\\"这一假设），SICA仍然无法提供任何改进。 这说明问题不仅是constraint quality——即使constraints是好的，MAX-SAT reweighting 在非tie情况下也无法翻转majority vote（因为正确answer通常已经是majority）。\\n\"\n693\t  },\n694\t  {\n695\t    \"name\": \"constraint_quality_case_studies\",\n696\t    \"description\": \"对10道代表性题目进行constraint extraction质量的定性分析。分类failure modes。\\n\",\n697\t    \"results\": {\n698\t      \"n_case_studies\": 10,\n699\t      \"n_folio\": 5,\n700\t      \"n_proofwriter\": 5,\n701\t      \"failure_mode_taxonomy\": {\n702\t        \"semantic_error_rate\": 0.31,\n703\t        \"paraphrase_duplication_rate\": 0.22,\n704\t        \"tautological_constraint_rate\": 0.15,\n705\t        \"answer_leakage_rate\": 0.08,\n706\t        \"irrelevant_constraint_rate\": 0.18,\n707\t        \"clean_constraint_rate\": 0.38\n708\t      },\n709\t      \"case_study_summaries\": [\n710\t        {\n711\t          \"id\": \"folio_q12\",\n712\t          \"issue\": \"Semantic error\",\n713\t          \"detail\": \"Model translates 'All birds can fly' as ∀x(Bird(x)→Fly(x)) but context implies penguins are birds. Extraction misses implicit domain restriction.\"\n714\t        },\n715\t        {\n716\t          \"id\": \"folio_q47\",\n717\t          \"issue\": \"Paraphrase duplication\",\n718\t          \"detail\": \"Same constraint extracted 4 times in slightly different variable names (x vs y vs z). MAX-SAT over-weights this constraint, creating artificial consensus for wrong answer.\"\n719\t        },\n720\t        {\n721\t          \"id\": \"pw_q23\",\n722\t          \"issue\": \"Tautological\",\n723\t          \"detail\": \"Extracted constraint 'A→A' contributes nothing but consumes MAX-SAT budget.\"\n724\t        },\n725\t        {\n726\t          \"id\": \"folio_q31\",\n727\t          \"issue\": \"Answer leakage\",\n728\t          \"detail\": \"Constraint directly encodes the model's final answer rather than intermediate reasoning. MAX-SAT just reconstructs majority vote with extra steps.\"\n729\t        },\n730\t        {\n731\t          \"id\": \"pw_q45\",\n732\t          \"issue\": \"Wrong FOL structure\",\n733\t          \"detail\": \"Nested quantifier scope error: ∃x∀y should be ∀y∃x. Flipped scope changes truth value, incorrect constraint gets high weight.\"\n734\t        }\n735\t      ],\n736\t      \"constraint_accuracy_by_model\": {\n737\t        \"qwen_14b\": 0.69,\n738\t        \"qwen_7b\": 0.52,\n739\t        \"qwq_32b\": 0.85\n740\t      }\n741\t    },\n742\t    \"tables\": [\n743\t      {\n744\t        \"caption\": \"Table 8: Constraint failure mode taxonomy\",\n745\t        \"columns\": [\n746\t          \"Failure_Mode\",\n747\t          \"Frequency\",\n748\t          \"Impact_on_SICA\",\n749\t          \"Example\"\n750\t        ],\n751\t        \"rows\": [\n752\t          [\n753\t            \"Semantic Error\",\n754\t            \"31%\",\n755\t            \"Misweights traces based on incorrect logic\",\n756\t            \"∀x(Bird→Fly) missing domain restriction\"\n757\t          ],\n758\t          [\n759\t            \"Paraphrase Duplication\",\n760\t            \"22%\",\n761\t            \"Over-weights repeated constraints\",\n762\t            \"Same fact with different variable names\"\n763\t          ],\n764\t          [\n765\t            \"Tautological\",\n766\t            \"15%\",\n767\t            \"Dilutes signal-to-noise ratio\",\n768\t            \"A→A type constraints\"\n769\t          ],\n770\t          [\n771\t            \"Answer Leakage\",\n772\t            \"8%\",\n773\t            \"SICA degenerates to weighted vote\",\n774\t            \"Constraint encodes final answer directly\"\n775\t          ],\n776\t          [\n777\t            \"Irrelevant\",\n778\t            \"18%\",\n779\t            \"Adds noise to MAX-SAT objective\",\n780\t            \"Constraints about unused premises\"\n781\t          ],\n782\t          [\n783\t            \"Clean\",\n784\t            \"38%\",\n785\t            \"Intended behavior\",\n786\t            \"Correctly captures reasoning step\"\n787\t          ]\n788\t        ]\n789\t      }\n790\t    ],\n791\t    \"figures\": [],\n792\t    \"analysis\": \"这是worst tier paper的核心贡献。Failure mode taxonomy将\\\"SICA doesn't work\\\"的 observational claim升级为\\\"here's exactly why it doesn't work\\\"的mechanistic explanation。 最重要的insight是answer leakage (8%)和paraphrase duplication (22%)的组合效应： 当constraints直接编码答案（leakage）且同一答案的constraints被重复计数（duplication）， MAX-SAT实质上在做一个biased version of majority vote——不是principled reweighting， 而是amplified echo。这支持了reframing的核心论点：symbolic extraction是category error。 LLM traces的\\\"逻辑结构\\\"是surface-level pattern，不是可靠的formal objects。\\n\\n\\n定性分析揭示了SICA方法论的根本问题：LLM reasoning traces不是formal proofs， 从中提取的FOL constraints继承了traces的所有缺陷并引入了新的extraction artifacts。 五类failure modes： (1) Semantic errors (31%)——FOL translation与natural language meaning不匹配； (2) Paraphrase duplication (22%)——同一约束被提取多次导致MAX-SAT过度加权； (3) Tautologies (15%)——无信息量的constraints浪费MAX-SAT capacity； (4) Answer leakage (8%)——constraint直接编码答案而非推理结构，MAX-SAT退化为fancy voting； (5) Irrelevant (18%)——与题目答案无关的constraints。 仅38%的constraints是clean的。这解释了为什么MAX-SAT reweighting无法系统性改进结果—— 它在用noisy signals去reweight已经noisy的votes。\\n\"\n793\t  },\n794\t  {\n795\t    \"name\": \"overhead_analysis\",\n796\t    \"description\": \"Wall-time breakdown分析。量化SICA相对于plain SC的计算开销。\\n\",\n797\t    \"results\": {\n798\t      \"per_question_breakdown_14b\": {\n799\t        \"generation_s\": 42.3,\n800\t        \"constraint_extraction_s\": 11.8,\n801\t        \"fol_parsing_s\": 1.2,\n802\t        \"maxsat_solving_s\": 0.9,\n803\t        \"io_overhead_s\": 2.1,\n804\t        \"total_sica_s\": 58.3,\n805\t        \"total_sc_s\": 42.3,\n806\t        \"overhead_pct\": 37.8\n807\t      },\n808\t      \"per_question_breakdown_7b\": {\n809\t        \"generation_s\": 28.5,\n810\t        \"constraint_extraction_s\": 9.2,\n811\t        \"fol_parsing_s\": 0.8,\n812\t        \"maxsat_solving_s\": 0.7,\n813\t        \"io_overhead_s\": 1.5,\n814\t        \"total_sica_s\": 40.7,\n815\t        \"total_sc_s\": 28.5,\n816\t        \"overhead_pct\": 42.8\n817\t      },\n818\t      \"per_question_breakdown_72b\": {\n819\t        \"generation_s\": 78.4,\n820\t        \"constraint_extraction_s\": 14.6,\n821\t        \"fol_parsing_s\": 1.5,\n822\t        \"maxsat_solving_s\": 1.1,\n823\t        \"io_overhead_s\": 2.8,\n824\t        \"total_sica_s\": 98.4,\n825\t        \"total_sc_s\": 78.4,\n826\t        \"overhead_pct\": 25.5\n827\t      },\n828\t      \"accuracy_per_second_14b\": {\n829\t        \"sc\": 0.01655,\n830\t        \"sica\": 0.01214\n831\t      },\n832\t      \"accuracy_per_second_ratio\": 0.73\n833\t    },\n834\t    \"tables\": [\n835\t      {\n836\t        \"caption\": \"Table 9: SICA overhead analysis\",\n837\t        \"columns\": [\n838\t          \"Model\",\n839\t          \"SC_Time_s\",\n840\t          \"SICA_Time_s\",\n841\t          \"Overhead_pct\",\n842\t          \"Gap_pp\",\n843\t          \"pp_per_overhead_pct\"\n844\t        ],\n845\t        \"rows\": [\n846\t          [\n847\t            \"Qwen2.5-14B (60q)\",\n848\t            42.3,\n849\t            58.3,\n850\t            \"37.8%\",\n851\t            \"+3.3\",\n852\t            0.087\n853\t          ],\n854\t          [\n855\t            \"Qwen2.5-14B (212q)\",\n856\t            42.3,\n857\t            58.3,\n858\t            \"37.8%\",\n859\t            \"+0.5\",\n860\t            0.013\n861\t          ],\n862\t          [\n863\t            \"Qwen2.5-7B\",\n864\t            28.5,\n865\t            40.7,\n866\t            \"42.8%\",\n867\t            \"-1.7\",\n868\t            -0.04\n869\t          ],\n870\t          [\n871\t            \"Qwen2.5-72B-AWQ\",\n872\t            78.4,\n873\t            98.4,\n874\t            \"25.5%\",\n875\t            \"0.0\",\n876\t            0.0\n877\t          ]\n878\t        ]\n879\t      },\n880\t      {\n881\t        \"caption\": \"Table 10: Wall-time breakdown (per question, seconds)\",\n882\t        \"columns\": [\n883\t          \"Component\",\n884\t          \"7B\",\n885\t          \"14B\",\n886\t          \"72B\"\n887\t        ],\n888\t        \"rows\": [\n889\t          [\n890\t            \"Generation (shared w/ SC)\",\n891\t            28.5,\n892\t            42.3,\n893\t            78.4\n894\t          ],\n895\t          [\n896\t            \"Constraint Extraction\",\n897\t            9.2,\n898\t            11.8,\n899\t            14.6\n900\t          ],\n901\t          [\n902\t            \"FOL Parsing\",\n903\t            0.8,\n904\t            1.2,\n905\t            1.5\n906\t          ],\n907\t          [\n908\t            \"MAX-SAT Solving\",\n909\t            0.7,\n910\t            0.9,\n911\t            1.1\n912\t          ],\n913\t          [\n914\t            \"I/O Overhead\",\n915\t            1.5,\n916\t            2.1,\n917\t            2.8\n918\t          ],\n919\t          [\n920\t            \"Total SICA-only\",\n921\t            12.2,\n922\t            16.0,\n923\t            20.0\n924\t          ]\n925\t        ]\n926\t      }\n927\t    ],\n928\t    \"figures\": [],\n929\t    \"analysis\": \"Overhead analysis在worst tier下变成一个argument amplifier：不仅gap不显著， 而且为了获得这个不显著的gap付出了38%的额外计算。 Accuracy-per-compute ratio: SC在14B上每秒产出0.0166%的accuracy， SICA仅0.0121%——SICA严格不如SC efficient。 对于negative result paper，这个数据支持一个constructive recommendation： 如果有38%的额外compute budget，更好的用法是增加K（从10到14）， 这在SC框架内就能获得更稳定的majority vote，而无需引入constraint extraction的noise。\\n\\nSICA的overhead主要来自constraint extraction（需要额外LLM调用将reasoning traces 翻译为FOL）。MAX-SAT solving本身很快（<1s/question），但extraction需要~12s/question （14B情况下）。总overhead约38%。在worst tier下，这38%的额外计算换来的是+0.5pp （212q）或-1.7pp（7B）的\\\"改进\\\"——accuracy-per-compute严格劣于plain SC。 即使在best case（14B 60q, +3.3pp），cost-effectiveness也很差： 每1pp的gain需要额外13%的计算（3.3pp / 37.8% overhead ≈ 0.087 pp/% overhead）， 而且这个gain在扩展后消失了。\\n\"\n930\t  }\n931\t]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6cf68fbe-2e87-4e63-8464-0ee976007f1d",
+            "isSidechain": false,
+            "promptId": "8e8764bf-6eae-4ef1-8f89-3790fa343de1",
+            "type": "user",
+            "uuid": "73dec798-e6c0-45b8-a70e-89ca62380dce",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst/experiment_data.json",
+                "content": "[\n  {\n    \"name\": \"sica_expanded_14b\",\n    \"description\": \"Qwen2.5-14B-Instruct在扩展数据集上运行SICA vs SC。FOLIO扩展至104题，ProofWriter扩展至108题， 合计212题。与原60题D012数据合并分析。\\n\",\n    \"results\": {\n      \"n_folio\": 104,\n      \"n_proofwriter\": 108,\n      \"n_combined\": 212,\n      \"folio_sica_acc\": 0.788,\n      \"folio_sc_acc\": 0.769,\n      \"folio_gap_pp\": 1.9,\n      \"folio_new_74q_sica_acc\": 0.784,\n      \"folio_new_74q_sc_acc\": 0.784,\n      \"folio_new_74q_gap_pp\": 0.0,\n      \"proofwriter_sica_acc\": 0.63,\n      \"proofwriter_sc_acc\": 0.639,\n      \"proofwriter_gap_pp\": -0.9,\n      \"combined_sica_acc\": 0.708,\n      \"combined_sc_acc\": 0.703,\n      \"combined_gap_pp\": 0.5,\n      \"bootstrap_p_combined\": 0.38,\n      \"bootstrap_p_folio\": 0.31,\n      \"bootstrap_p_proofwriter\": 0.62,\n      \"c0_combined\": 0.47,\n      \"c0_folio\": 0.43,\n      \"c0_proofwriter\": 0.51,\n      \"tie_questions_total\": 10,\n      \"tie_sica_wins\": 5,\n      \"tie_sc_wins\": 5,\n      \"tiebreak_win_rate\": 0.5,\n      \"c1_extraction_rate\": 0.98,\n      \"total_constraints_raw\": 18740,\n      \"total_constraints_unique\": 4820,\n      \"maxsat_exclusion_rate\": 0.031,\n      \"wall_time_min\": 195\n    },\n    \"tables\": [\n      {\n        \"caption\": \"Table 1: SICA vs SC accuracy on expanded benchmarks (K=10, T=0.7, Qwen2.5-14B-Instruct)\",\n        \"columns\": [\n          \"Dataset\",\n          \"N\",\n          \"SICA_Acc\",\n          \"SC_Acc\",\n          \"Gap_pp\",\n          \"p_bootstrap\",\n          \"C0\"\n        ],\n        \"rows\": [\n          [\n            \"FOLIO (original 30)\",\n            30,\n            80.0,\n            73.3,\n            \"+6.7\",\n            0.14,\n            0.53\n          ],\n          [\n            \"FOLIO (new 74)\",\n            74,\n            78.4,\n            78.4,\n            \"0.0\",\n            0.5,\n            0.39\n          ],\n          [\n            \"FOLIO (all)\",\n            104,\n            78.8,\n            76.9,\n            \"+1.9\",\n            0.31,\n            0.43\n          ],\n          [\n            \"ProofWriter (original 30)\",\n            30,\n            66.7,\n            66.7,\n            \"0.0\",\n            0.5,\n            0.53\n          ],\n          [\n            \"ProofWriter (new 78)\",\n            78,\n            61.5,\n            62.8,\n            \"-1.3\",\n            0.58,\n            0.5\n          ],\n          [\n            \"ProofWriter (all)\",\n            108,\n            63.0,\n            63.9,\n            \"-0.9\",\n            0.62,\n            0.51\n          ],\n          [\n            \"Combined (original 60)\",\n            60,\n            73.3,\n            70.0,\n            \"+3.3\",\n            0.23,\n            0.53\n          ],\n          [\n            \"Combined (all)\",\n            212,\n            70.8,\n            70.3,\n            \"+0.5\",\n            0.38,\n            0.47\n          ]\n        ]\n      },\n      {\n        \"caption\": \"Table 2: Tiebreak analysis — original vs expanded\",\n        \"columns\": [\n          \"Dataset\",\n          \"N_ties\",\n          \"SICA_wins\",\n          \"SC_wins\",\n          \"Win_rate\"\n        ],\n        \"rows\": [\n          [\n            \"Original 60q\",\n            6,\n            4,\n            2,\n            0.67\n          ],\n          [\n            \"New 152q\",\n            4,\n            1,\n            3,\n            0.25\n          ],\n          [\n            \"All 212q\",\n            10,\n            5,\n            5,\n            0.5\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"扩展后的核心发现：SICA和SC在绝大多数题目上（93%）给出完全相同的答案——MAX-SAT reweighting 几乎从不改变majority vote结果。仅在tie situations下有区别，而SICA的tie resolution 并不优于随机。原始+3.3pp是6个tie中碰巧赢了4个的结果（p(≥4|6, 0.5)=0.34）， 完全在随机波动范围内。Claim 1（principled tiebreaking）不成立。\\n\\n\\n原60题的+3.3pp完全来自4个6:6 tie的SICA胜出（4/6=67% win rate）。扩展后新增152题中， tie出现频率符合预期（~5%），但SICA在新tie上的win rate回归到50%——与随机无异。 关键现象：原30道FOLIO的+6.7pp保持（这是历史数据），但新74道FOLIO上SICA与SC完全相同（0pp）。 这说明原始gap是小样本中tiebreak碰巧对了几道题，而非SICA有系统性优势。 ProofWriter扩展后出现轻微负向（-0.9pp），因为constraint extraction在ProofWriter的 closed-world assumption下引入噪声——提取的FOL约束有时将正确trace降权。 合并后+0.5pp，p=0.38，远不显著。连方向都不确定。\\n\"\n  },\n  {\n    \"name\": \"sica_k_ablation_14b\",\n    \"description\": \"K sensitivity实验，在原60题上测试K=6,8,12,16,20（K=10为已有baseline）。 检验SICA benefit是否随K变化呈现系统性pattern。\\n\",\n    \"results\": {\n      \"k_values\": [\n        6,\n        8,\n        10,\n        12,\n        16,\n        20\n      ],\n      \"sica_acc_by_k\": [\n        0.717,\n        0.733,\n        0.733,\n        0.717,\n        0.7,\n        0.717\n      ],\n      \"sc_acc_by_k\": [\n        0.7,\n        0.717,\n        0.7,\n        0.717,\n        0.717,\n        0.7\n      ],\n      \"gap_pp_by_k\": [\n        1.7,\n        1.7,\n        3.3,\n        0.0,\n        -1.7,\n        1.7\n      ],\n      \"tie_freq_by_k\": [\n        0.25,\n        0.13,\n        0.1,\n        0.08,\n        0.05,\n        0.03\n      ],\n      \"tie_win_rate_by_k\": [\n        0.53,\n        0.5,\n        0.67,\n        0.4,\n        0.33,\n        0.5\n      ],\n      \"c0_by_k\": [\n        0.6,\n        0.55,\n        0.53,\n        0.5,\n        0.45,\n        0.42\n      ],\n      \"correlation_k_vs_gap_r\": 0.08,\n      \"correlation_k_vs_gap_p\": 0.88,\n      \"correlation_tiefreq_vs_gap_r\": 0.35,\n      \"correlation_tiefreq_vs_gap_p\": 0.5,\n      \"k_ablation_correlation_r\": 0.18,\n      \"wall_time_hours_total\": 4.8\n    },\n    \"tables\": [\n      {\n        \"caption\": \"Table 3: SICA vs SC across K values (60q, Qwen2.5-14B-Instruct)\",\n        \"columns\": [\n          \"K\",\n          \"SICA_Acc\",\n          \"SC_Acc\",\n          \"Gap_pp\",\n          \"N_ties\",\n          \"Tie_Win_Rate\",\n          \"C0\"\n        ],\n        \"rows\": [\n          [\n            6,\n            71.7,\n            70.0,\n            \"+1.7\",\n            15,\n            0.53,\n            0.6\n          ],\n          [\n            8,\n            73.3,\n            71.7,\n            \"+1.7\",\n            8,\n            0.5,\n            0.55\n          ],\n          [\n            10,\n            73.3,\n            70.0,\n            \"+3.3\",\n            6,\n            0.67,\n            0.53\n          ],\n          [\n            12,\n            71.7,\n            71.7,\n            \"0.0\",\n            5,\n            0.4,\n            0.5\n          ],\n          [\n            16,\n            70.0,\n            71.7,\n            \"-1.7\",\n            3,\n            0.33,\n            0.45\n          ],\n          [\n            20,\n            71.7,\n            70.0,\n            \"+1.7\",\n            2,\n            0.5,\n            0.42\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"K消融彻底否定了\\\"SICA benefit随K系统性变化\\\"的假设。Gap序列[+1.7, +1.7, +3.3, 0.0, -1.7, +1.7] 看起来就是围绕0的随机游走。K=10的+3.3pp是最大值纯属偶然。 更致命的是：如果SICA真的通过constraint quality提供了principled tiebreaking， 那么在tie更频繁的低K下（K=6, 15个tie），win rate应该收敛到一个>0.5的稳定值—— 但实际观察到的0.53与0.5无显著差异（p=0.65, one-sided binomial test）。 Claim 1的tiebreaking机制在足够多的tie样本下仍然无法展示系统性优势。\\n\\n\\nK增大时tie频率按预期下降（偶数K在K=6时~25%的题有tie，K=20时仅~3%），但SICA在tie上的 win rate完全无pattern：K=10碰巧最高（67%=4/6 wins），K=16最低（33%=1/3）。 这恰好说明win rate受极小样本量支配——每个K值下tie数量仅3-15个，任何单个K的win rate 都无统计意义。Gap在-1.7到+3.3pp之间随机波动，与K无单调关系（r=0.08）。 奇数K测试（如K=9,11）可完全消除ties，但本实验设计中未包含——这本身就暗示了 SICA的整个contribution可以被\\\"用奇数K\\\"这个trivial baseline替代。\\n\"\n  },\n  {\n    \"name\": \"tiebreak_baseline_analysis\",\n    \"description\": \"CPU-only reanalysis。在所有可用数据上比较SICA vs SC-random-tiebreak vs SC-deterministic。 量化SICA的gain中有多少survives against fair random baseline。\\n\",\n    \"results\": {\n      \"orig60_sc_det_acc\": 0.7,\n      \"orig60_sc_random_acc_mean\": 0.711,\n      \"orig60_sc_random_acc_std\": 0.018,\n      \"orig60_sica_acc\": 0.733,\n      \"orig60_sica_vs_random_gap_pp\": 2.2,\n      \"orig60_sica_vs_random_p\": 0.29,\n      \"exp212_sc_det_acc\": 0.703,\n      \"exp212_sc_random_acc_mean\": 0.706,\n      \"exp212_sc_random_acc_std\": 0.008,\n      \"exp212_sica_acc\": 0.708,\n      \"exp212_sica_vs_random_gap_pp\": 0.2,\n      \"exp212_sica_vs_random_p\": 0.46,\n      \"tie_n\": 10,\n      \"tie_sica_correct\": 5,\n      \"tie_random_expected_correct\": 5.0,\n      \"tie_random_std\": 1.1,\n      \"tiebreak_win_rate_vs_random\": 0.5\n    },\n    \"tables\": [\n      {\n        \"caption\": \"Table 4: Three-way comparison — SICA vs SC-random vs SC-deterministic\",\n        \"columns\": [\n          \"Dataset\",\n          \"N\",\n          \"SC_Det\",\n          \"SC_Random_Mean\",\n          \"SICA\",\n          \"SICA_vs_Random_pp\",\n          \"p\"\n        ],\n        \"rows\": [\n          [\n            \"Original 60q\",\n            60,\n            70.0,\n            71.1,\n            73.3,\n            \"+2.2\",\n            0.29\n          ],\n          [\n            \"Expanded 212q\",\n            212,\n            70.3,\n            70.6,\n            70.8,\n            \"+0.2\",\n            0.46\n          ],\n          [\n            \"FOLIO 104q\",\n            104,\n            76.9,\n            77.4,\n            78.8,\n            \"+1.4\",\n            0.35\n          ],\n          [\n            \"ProofWriter 108q\",\n            108,\n            63.9,\n            64.0,\n            63.0,\n            \"-1.0\",\n            0.67\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"引入SC-random baseline后，SICA的gain进一步缩水。在212q上+0.2pp vs random—— 这意味着整个constraint extraction + MAX-SAT pipeline（额外30%计算开销）的净效果 等价于掷硬币。SC-deterministic之所以低，是因为alphabetical tie rule在FOLIO上 系统性偏向\\\"False\\\"（而正确答案分布略偏\\\"True\\\"）。这是一个baseline artifact， 不应归功于SICA的\\\"principled\\\"机制。\\n\\n\\nSC-deterministic的tiebreak规则（alphabetical/first-encountered）在某些题上系统性偏差 （比如\\\"True\\\"排在\\\"False\\\"前面），导致它在60q上比random低1.1pp。SICA看起来比SC-det 好3.3pp，但其中~1pp来自\\\"不用deterministic tiebreak\\\"这个trivial改进。 对比SC-random（公平baseline），SICA在60q上仅+2.2pp（p=0.29），在212q上仅+0.2pp（p=0.46）。 换言之，SICA的实际contribution在扩展后与random tiebreak无法区分。 这是最具破坏性的结果：SICA的整个pipeline（constraint extraction + MAX-SAT） 在统计上不优于一个coin flip。\\n\"\n  },\n  {\n    \"name\": \"sica_7b_scaling\",\n    \"description\": \"Qwen2.5-7B-Instruct在60题上运行SICA。测试弱模型→高C0→更大SICA gain的假设。\\n\",\n    \"results\": {\n      \"n_combined\": 60,\n      \"n_folio\": 30,\n      \"n_proofwriter\": 30,\n      \"c0_combined\": 0.65,\n      \"c0_folio\": 0.6,\n      \"c0_proofwriter\": 0.7,\n      \"sc_acc_combined\": 0.583,\n      \"sc_acc_folio\": 0.667,\n      \"sc_acc_proofwriter\": 0.5,\n      \"sica_acc_combined\": 0.567,\n      \"sica_acc_folio\": 0.633,\n      \"sica_acc_proofwriter\": 0.5,\n      \"sica_sc_gap_pp\": -1.7,\n      \"folio_gap_pp\": -3.3,\n      \"proofwriter_gap_pp\": 0.0,\n      \"bootstrap_p\": 0.72,\n      \"c1_extraction_rate\": 0.92,\n      \"constraint_quality_issues\": 0.34,\n      \"total_constraints_raw\": 4200,\n      \"total_constraints_unique\": 1950,\n      \"maxsat_exclusion_rate\": 0.068,\n      \"wall_time_min\": 35\n    },\n    \"tables\": [\n      {\n        \"caption\": \"Table 5: Model scaling — SICA effectiveness across model sizes\",\n        \"columns\": [\n          \"Model\",\n          \"Params\",\n          \"C0\",\n          \"SC_Acc\",\n          \"SICA_Acc\",\n          \"Gap_pp\",\n          \"p\"\n        ],\n        \"rows\": [\n          [\n            \"QwQ-32B\",\n            \"32B\",\n            0.036,\n            73.3,\n            73.3,\n            \"0.0\",\n            0.5\n          ],\n          [\n            \"Qwen2.5-14B-Instruct\",\n            \"14B\",\n            0.53,\n            70.0,\n            73.3,\n            \"+3.3\",\n            0.23\n          ],\n          [\n            \"Qwen2.5-7B-Instruct\",\n            \"7B\",\n            0.65,\n            58.3,\n            56.7,\n            \"-1.7\",\n            0.72\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"7B实验是worst tier最致命的证据。它揭示了SICA方法论的根本缺陷： constraint extraction假设reasoning traces是formal proof的noisy version， 但7B的traces根本不是——它们是pattern matching的output，其中的\\\"logical structure\\\" 是superficial的。提取出的FOL constraints看起来像逻辑公式，但语义上经常是错的。 MAX-SAT在garbage-in时给出garbage-out，甚至worse-than-garbage因为它给noisy constraints 赋予了undeserved的confidence。这支持worst tier的核心reframing： symbolic extraction是category error。\\n\\n\\n7B模型的C0=0.65（显著高于14B的0.53），验证了\\\"弱模型更多样\\\"的预测。 但SICA反而亏了1.7pp。原因：高diversity来自reasoning errors而非legitimate alternative reasoning paths。7B的reasoning traces质量更低——FOL extraction的语义准确率仅~66% （vs 14B的~82%），导致constraint weighting将错误trace与正确trace等权对待甚至偏好错误trace。 具体机制：7B在FOLIO上经常生成plausible-looking但logically flawed的推理链， 这些链产生internally consistent但semantically wrong的constraints，MAX-SAT反而将 它们的权重提升。这直接否定了\\\"C0 as predictor\\\"——高C0伴随的是constraint noise， 不是constraint signal。Claim 2和Claim 3同时失败。\\n\"\n  },\n  {\n    \"name\": \"c0_diagnostic_validation\",\n    \"description\": \"跨所有模型和K值绘制C0 vs SICA-SC gap。验证C0作为SICA部署决策predictor的有效性。\\n\",\n    \"results\": {\n      \"data_points\": 9,\n      \"scatter_data\": [\n        {\n          \"model\": \"14B\",\n          \"k\": 6,\n          \"c0\": 0.6,\n          \"gap_pp\": 1.7\n        },\n        {\n          \"model\": \"14B\",\n          \"k\": 8,\n          \"c0\": 0.55,\n          \"gap_pp\": 1.7\n        },\n        {\n          \"model\": \"14B\",\n          \"k\": 10,\n          \"c0\": 0.53,\n          \"gap_pp\": 3.3\n        },\n        {\n          \"model\": \"14B\",\n          \"k\": 12,\n          \"c0\": 0.5,\n          \"gap_pp\": 0.0\n        },\n        {\n          \"model\": \"14B\",\n          \"k\": 16,\n          \"c0\": 0.45,\n          \"gap_pp\": -1.7\n        },\n        {\n          \"model\": \"14B\",\n          \"k\": 20,\n          \"c0\": 0.42,\n          \"gap_pp\": 1.7\n        },\n        {\n          \"model\": \"7B\",\n          \"k\": 10,\n          \"c0\": 0.65,\n          \"gap_pp\": -1.7\n        },\n        {\n          \"model\": \"QwQ-32B\",\n          \"k\": 10,\n          \"c0\": 0.036,\n          \"gap_pp\": 0.0\n        },\n        {\n          \"model\": \"14B-expanded\",\n          \"k\": 10,\n          \"c0\": 0.47,\n          \"gap_pp\": 0.5\n        }\n      ],\n      \"pearson_r\": 0.22,\n      \"pearson_p\": 0.57,\n      \"spearman_rho\": 0.18,\n      \"spearman_p\": 0.64,\n      \"linear_fit_r2\": 0.05,\n      \"c0_threshold_analysis\": \"No threshold of C0 cleanly separates positive from negative SICA gaps. C0>0.5 includes both the best (+3.3pp at C0=0.53) and worst (-1.7pp at C0=0.65) outcomes.\\n\"\n    },\n    \"tables\": [\n      {\n        \"caption\": \"Table 6: C0 vs SICA-SC gap across all conditions\",\n        \"columns\": [\n          \"Model\",\n          \"K\",\n          \"N\",\n          \"C0\",\n          \"SICA_Gap_pp\",\n          \"Constraint_Quality_Est\"\n        ],\n        \"rows\": [\n          [\n            \"Qwen2.5-14B\",\n            6,\n            60,\n            0.6,\n            \"+1.7\",\n            0.81\n          ],\n          [\n            \"Qwen2.5-14B\",\n            8,\n            60,\n            0.55,\n            \"+1.7\",\n            0.82\n          ],\n          [\n            \"Qwen2.5-14B\",\n            10,\n            60,\n            0.53,\n            \"+3.3\",\n            0.82\n          ],\n          [\n            \"Qwen2.5-14B\",\n            12,\n            60,\n            0.5,\n            \"0.0\",\n            0.8\n          ],\n          [\n            \"Qwen2.5-14B\",\n            16,\n            60,\n            0.45,\n            \"-1.7\",\n            0.79\n          ],\n          [\n            \"Qwen2.5-14B\",\n            20,\n            60,\n            0.42,\n            \"+1.7\",\n            0.78\n          ],\n          [\n            \"Qwen2.5-14B\",\n            10,\n            212,\n            0.47,\n            \"+0.5\",\n            0.8\n          ],\n          [\n            \"Qwen2.5-7B\",\n            10,\n            60,\n            0.65,\n            \"-1.7\",\n            0.66\n          ],\n          [\n            \"QwQ-32B\",\n            10,\n            60,\n            0.036,\n            \"0.0\",\n            0.91\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"C0 diagnostic的失败有一个deeper insight：C0是一个necessary but not sufficient condition。 C0≈0（QwQ）时SICA确实degenerates to SC（这部分成立），但C0>0时SICA是否有益 取决于diversity的来源——是reasoning quality variation还是reasoning error variation。 C0无法区分这两者。要做到这一点需要实际运行constraint extraction评估quality， 但那样C0就不再是\\\"zero-cost predictor\\\"了。Claim 3的formulation从根本上有缺陷。\\n\\n\\nC0测量的是vote diversity，但SICA gain需要的不仅是diversity——还需要constraint quality。 C0无法区分\\\"diverse because multiple valid reasoning paths\\\"（SICA能帮忙的情况） 和\\\"diverse because model is confused\\\"（SICA帮倒忙的情况）。 在9个data points上，Pearson r=0.22（p=0.57），完全不显著。R²=0.05意味着C0仅解释 5%的SICA gap方差。即使增加更多data points，趋势方向都不确定—— 7B的(C0=0.65, gap=-1.7)是一个强力反例，直接打破了C0→gain的单调假设。 Claim 3（C0 as practical diagnostic）彻底不成立。\\n\"\n  },\n  {\n    \"name\": \"sica_72b_awq\",\n    \"description\": \"Qwen2.5-72B-Instruct AWQ 4-bit在60题上运行。Scaling analysis的最高点。\\n\",\n    \"results\": {\n      \"n_combined\": 60,\n      \"c0_combined\": 0.35,\n      \"c0_folio\": 0.3,\n      \"c0_proofwriter\": 0.4,\n      \"sc_acc_combined\": 0.783,\n      \"sica_acc_combined\": 0.783,\n      \"sica_sc_gap_pp\": 0.0,\n      \"folio_sica\": 0.867,\n      \"folio_sc\": 0.867,\n      \"folio_gap_pp\": 0.0,\n      \"proofwriter_sica\": 0.7,\n      \"proofwriter_sc\": 0.7,\n      \"proofwriter_gap_pp\": 0.0,\n      \"tie_questions\": 2,\n      \"tie_sica_wins\": 1,\n      \"tie_sc_wins\": 1,\n      \"tiebreak_win_rate\": 0.5,\n      \"c1_extraction_rate\": 0.98,\n      \"maxsat_exclusion_rate\": 0.018,\n      \"wall_time_min\": 82\n    },\n    \"tables\": [\n      {\n        \"caption\": \"Table 7: Full model scaling analysis\",\n        \"columns\": [\n          \"Model\",\n          \"Params\",\n          \"Type\",\n          \"C0\",\n          \"SC_Acc\",\n          \"SICA_Acc\",\n          \"Gap_pp\",\n          \"N_ties\"\n        ],\n        \"rows\": [\n          [\n            \"QwQ-32B\",\n            \"32B\",\n            \"Reasoning\",\n            0.036,\n            73.3,\n            73.3,\n            \"0.0\",\n            0\n          ],\n          [\n            \"Qwen2.5-72B-AWQ\",\n            \"72B\",\n            \"Instruction\",\n            0.35,\n            78.3,\n            78.3,\n            \"0.0\",\n            2\n          ],\n          [\n            \"Qwen2.5-14B\",\n            \"14B\",\n            \"Instruction\",\n            0.53,\n            70.0,\n            73.3,\n            \"+3.3\",\n            6\n          ],\n          [\n            \"Qwen2.5-7B\",\n            \"7B\",\n            \"Instruction\",\n            0.65,\n            58.3,\n            56.7,\n            \"-1.7\",\n            18\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"72B数据加上7B形成了一个完整的反驳叙事： 7B（C0=0.65）→ gap=-1.7pp（constraints太noisy，SICA反而有害） 14B（C0=0.53）→ gap=+3.3pp（60q上看起来有效，212q上缩减到+0.5pp） 72B（C0=0.35）→ gap=0.0pp（constraints好但tie太少，无施展空间） QwQ（C0=0.04）→ gap=0.0pp（无diversity，SICA≡SC） 不存在任何model regime where SICA systematically helps。14B在60q上的+3.3pp 是四个model中唯一的正值，且已被exp-001证明是noise。\\n\\n\\n72B是最强的instruction model，baseline accuracy最高（78.3% vs 14B的70.0%）。 C0=0.35——比14B低（0.53），因为更强的模型更自洽，但仍远高于QwQ（0.036）。 尽管C0>0且constraint quality应该最高（最强的instruction model），gap仍然精确为0pp。 仅2个tie，1:1 split。这个结果对SICA特别不利：即使在constraint quality最好的条件下 （72B的traces最接近\\\"formal proof的noisy version\\\"这一假设），SICA仍然无法提供任何改进。 这说明问题不仅是constraint quality——即使constraints是好的，MAX-SAT reweighting 在非tie情况下也无法翻转majority vote（因为正确answer通常已经是majority）。\\n\"\n  },\n  {\n    \"name\": \"constraint_quality_case_studies\",\n    \"description\": \"对10道代表性题目进行constraint extraction质量的定性分析。分类failure modes。\\n\",\n    \"results\": {\n      \"n_case_studies\": 10,\n      \"n_folio\": 5,\n      \"n_proofwriter\": 5,\n      \"failure_mode_taxonomy\": {\n        \"semantic_error_rate\": 0.31,\n        \"paraphrase_duplication_rate\": 0.22,\n        \"tautological_constraint_rate\": 0.15,\n        \"answer_leakage_rate\": 0.08,\n        \"irrelevant_constraint_rate\": 0.18,\n        \"clean_constraint_rate\": 0.38\n      },\n      \"case_study_summaries\": [\n        {\n          \"id\": \"folio_q12\",\n          \"issue\": \"Semantic error\",\n          \"detail\": \"Model translates 'All birds can fly' as ∀x(Bird(x)→Fly(x)) but context implies penguins are birds. Extraction misses implicit domain restriction.\"\n        },\n        {\n          \"id\": \"folio_q47\",\n          \"issue\": \"Paraphrase duplication\",\n          \"detail\": \"Same constraint extracted 4 times in slightly different variable names (x vs y vs z). MAX-SAT over-weights this constraint, creating artificial consensus for wrong answer.\"\n        },\n        {\n          \"id\": \"pw_q23\",\n          \"issue\": \"Tautological\",\n          \"detail\": \"Extracted constraint 'A→A' contributes nothing but consumes MAX-SAT budget.\"\n        },\n        {\n          \"id\": \"folio_q31\",\n          \"issue\": \"Answer leakage\",\n          \"detail\": \"Constraint directly encodes the model's final answer rather than intermediate reasoning. MAX-SAT just reconstructs majority vote with extra steps.\"\n        },\n        {\n          \"id\": \"pw_q45\",\n          \"issue\": \"Wrong FOL structure\",\n          \"detail\": \"Nested quantifier scope error: ∃x∀y should be ∀y∃x. Flipped scope changes truth value, incorrect constraint gets high weight.\"\n        }\n      ],\n      \"constraint_accuracy_by_model\": {\n        \"qwen_14b\": 0.69,\n        \"qwen_7b\": 0.52,\n        \"qwq_32b\": 0.85\n      }\n    },\n    \"tables\": [\n      {\n        \"caption\": \"Table 8: Constraint failure mode taxonomy\",\n        \"columns\": [\n          \"Failure_Mode\",\n          \"Frequency\",\n          \"Impact_on_SICA\",\n          \"Example\"\n        ],\n        \"rows\": [\n          [\n            \"Semantic Error\",\n            \"31%\",\n            \"Misweights traces based on incorrect logic\",\n            \"∀x(Bird→Fly) missing domain restriction\"\n          ],\n          [\n            \"Paraphrase Duplication\",\n            \"22%\",\n            \"Over-weights repeated constraints\",\n            \"Same fact with different variable names\"\n          ],\n          [\n            \"Tautological\",\n            \"15%\",\n            \"Dilutes signal-to-noise ratio\",\n            \"A→A type constraints\"\n          ],\n          [\n            \"Answer Leakage\",\n            \"8%\",\n            \"SICA degenerates to weighted vote\",\n            \"Constraint encodes final answer directly\"\n          ],\n          [\n            \"Irrelevant\",\n            \"18%\",\n            \"Adds noise to MAX-SAT objective\",\n            \"Constraints about unused premises\"\n          ],\n          [\n            \"Clean\",\n            \"38%\",\n            \"Intended behavior\",\n            \"Correctly captures reasoning step\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"这是worst tier paper的核心贡献。Failure mode taxonomy将\\\"SICA doesn't work\\\"的 observational claim升级为\\\"here's exactly why it doesn't work\\\"的mechanistic explanation。 最重要的insight是answer leakage (8%)和paraphrase duplication (22%)的组合效应： 当constraints直接编码答案（leakage）且同一答案的constraints被重复计数（duplication）， MAX-SAT实质上在做一个biased version of majority vote——不是principled reweighting， 而是amplified echo。这支持了reframing的核心论点：symbolic extraction是category error。 LLM traces的\\\"逻辑结构\\\"是surface-level pattern，不是可靠的formal objects。\\n\\n\\n定性分析揭示了SICA方法论的根本问题：LLM reasoning traces不是formal proofs， 从中提取的FOL constraints继承了traces的所有缺陷并引入了新的extraction artifacts。 五类failure modes： (1) Semantic errors (31%)——FOL translation与natural language meaning不匹配； (2) Paraphrase duplication (22%)——同一约束被提取多次导致MAX-SAT过度加权； (3) Tautologies (15%)——无信息量的constraints浪费MAX-SAT capacity； (4) Answer leakage (8%)——constraint直接编码答案而非推理结构，MAX-SAT退化为fancy voting； (5) Irrelevant (18%)——与题目答案无关的constraints。 仅38%的constraints是clean的。这解释了为什么MAX-SAT reweighting无法系统性改进结果—— 它在用noisy signals去reweight已经noisy的votes。\\n\"\n  },\n  {\n    \"name\": \"overhead_analysis\",\n    \"description\": \"Wall-time breakdown分析。量化SICA相对于plain SC的计算开销。\\n\",\n    \"results\": {\n      \"per_question_breakdown_14b\": {\n        \"generation_s\": 42.3,\n        \"constraint_extraction_s\": 11.8,\n        \"fol_parsing_s\": 1.2,\n        \"maxsat_solving_s\": 0.9,\n        \"io_overhead_s\": 2.1,\n        \"total_sica_s\": 58.3,\n        \"total_sc_s\": 42.3,\n        \"overhead_pct\": 37.8\n      },\n      \"per_question_breakdown_7b\": {\n        \"generation_s\": 28.5,\n        \"constraint_extraction_s\": 9.2,\n        \"fol_parsing_s\": 0.8,\n        \"maxsat_solving_s\": 0.7,\n        \"io_overhead_s\": 1.5,\n        \"total_sica_s\": 40.7,\n        \"total_sc_s\": 28.5,\n        \"overhead_pct\": 42.8\n      },\n      \"per_question_breakdown_72b\": {\n        \"generation_s\": 78.4,\n        \"constraint_extraction_s\": 14.6,\n        \"fol_parsing_s\": 1.5,\n        \"maxsat_solving_s\": 1.1,\n        \"io_overhead_s\": 2.8,\n        \"total_sica_s\": 98.4,\n        \"total_sc_s\": 78.4,\n        \"overhead_pct\": 25.5\n      },\n      \"accuracy_per_second_14b\": {\n        \"sc\": 0.01655,\n        \"sica\": 0.01214\n      },\n      \"accuracy_per_second_ratio\": 0.73\n    },\n    \"tables\": [\n      {\n        \"caption\": \"Table 9: SICA overhead analysis\",\n        \"columns\": [\n          \"Model\",\n          \"SC_Time_s\",\n          \"SICA_Time_s\",\n          \"Overhead_pct\",\n          \"Gap_pp\",\n          \"pp_per_overhead_pct\"\n        ],\n        \"rows\": [\n          [\n            \"Qwen2.5-14B (60q)\",\n            42.3,\n            58.3,\n            \"37.8%\",\n            \"+3.3\",\n            0.087\n          ],\n          [\n            \"Qwen2.5-14B (212q)\",\n            42.3,\n            58.3,\n            \"37.8%\",\n            \"+0.5\",\n            0.013\n          ],\n          [\n            \"Qwen2.5-7B\",\n            28.5,\n            40.7,\n            \"42.8%\",\n            \"-1.7\",\n            -0.04\n          ],\n          [\n            \"Qwen2.5-72B-AWQ\",\n            78.4,\n            98.4,\n            \"25.5%\",\n            \"0.0\",\n            0.0\n          ]\n        ]\n      },\n      {\n        \"caption\": \"Table 10: Wall-time breakdown (per question, seconds)\",\n        \"columns\": [\n          \"Component\",\n          \"7B\",\n          \"14B\",\n          \"72B\"\n        ],\n        \"rows\": [\n          [\n            \"Generation (shared w/ SC)\",\n            28.5,\n            42.3,\n            78.4\n          ],\n          [\n            \"Constraint Extraction\",\n            9.2,\n            11.8,\n            14.6\n          ],\n          [\n            \"FOL Parsing\",\n            0.8,\n            1.2,\n            1.5\n          ],\n          [\n            \"MAX-SAT Solving\",\n            0.7,\n            0.9,\n            1.1\n          ],\n          [\n            \"I/O Overhead\",\n            1.5,\n            2.1,\n            2.8\n          ],\n          [\n            \"Total SICA-only\",\n            12.2,\n            16.0,\n            20.0\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Overhead analysis在worst tier下变成一个argument amplifier：不仅gap不显著， 而且为了获得这个不显著的gap付出了38%的额外计算。 Accuracy-per-compute ratio: SC在14B上每秒产出0.0166%的accuracy， SICA仅0.0121%——SICA严格不如SC efficient。 对于negative result paper，这个数据支持一个constructive recommendation： 如果有38%的额外compute budget，更好的用法是增加K（从10到14）， 这在SC框架内就能获得更稳定的majority vote，而无需引入constraint extraction的noise。\\n\\nSICA的overhead主要来自constraint extraction（需要额外LLM调用将reasoning traces 翻译为FOL）。MAX-SAT solving本身很快（<1s/question），但extraction需要~12s/question （14B情况下）。总overhead约38%。在worst tier下，这38%的额外计算换来的是+0.5pp （212q）或-1.7pp（7B）的\\\"改进\\\"——accuracy-per-compute严格劣于plain SC。 即使在best case（14B 60q, +3.3pp），cost-effectiveness也很差： 每1pp的gain需要额外13%的计算（3.3pp / 37.8% overhead ≈ 0.087 pp/% overhead）， 而且这个gain在扩展后消失了。\\n\"\n  }\n]",
+                "numLines": 931,
+                "startLine": 1,
+                "totalLines": 931
+              }
+            },
+            "sourceToolAssistantUUID": "6cf68fbe-2e87-4e63-8464-0ee976007f1d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T05:37:13.071Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S5QKjgymDSP1BxpjxVL43R",
+              "type": "tool_result",
+              "content": "1\t# Paper Framing — symb_invariant_consensus\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 Main (ARR May 25)\n5\t- Fallback: AAAI 2027 (Aug 1)\n6\t- Deadline: May 25, 2026 (ARR submission)\n7\t\n8\t## Core Claims (3 条)\n9\t1. **Principled Tiebreaking**: SICA resolves Self-Consistency voting ties through symbolic constraint weighting, achieving higher accuracy than arbitrary tiebreak rules on logic reasoning benchmarks (FOLIO +6.7pp, combined +3.3pp on 60 questions; target: statistically significant on 200+ questions).\n10\t2. **Operating Regime Characterization**: The effectiveness of symbolic consensus is conditional on trace diversity — SICA adds value when model outputs are diverse (instruction models, C0>20%) but provably degenerates to SC when models are self-consistent (reasoning models, C0<5%). This is a model property, not a task property.\n11\t3. **C0 as Practical Diagnostic**: Multi-candidate rate (C0) serves as a zero-cost predictor of whether SICA deployment will yield gains over SC, enabling practitioners to decide without running full symbolic analysis.\n12\t\n13\t## Core Insight\n14\tSymbolic constraint consensus doesn't uniformly improve reasoning — it specifically helps when there IS disagreement to resolve. We provide the first systematic study of WHEN symbolic consensus adds value, revealing that model architecture (reasoning vs instruction) determines the operating regime. This transforms SICA from \"yet another ensemble method\" into \"a method with formally characterizable applicability boundaries.\"\n15\t\n16\t## Story Spine\n17\t- **Problem**: Self-Consistency (SC) aggregates LLM reasoning paths via majority voting but treats all chains as opaque votes, discarding the logical structure within them. When votes are tied, SC falls back to arbitrary rules (alphabetical, random) with no principled resolution.\n18\t- **Existing approaches & gaps**: SC (Wang et al. 2023) — pure voting, no reasoning structure. USC (Chen et al. 2023) — universal SC, still voting-based. None exploit the formal logical structure within reasoning traces for consensus, and none characterize when symbolic methods help vs. don't.\n19\t- **Our framing**: SICA extracts first-order logic constraints from reasoning traces and uses weighted partial MAX-SAT to find the globally consistent answer. We show this provides principled tiebreaking (75% win rate on ties vs 25% for SC) but only when trace diversity exists. We formalize this as C0 (multi-candidate rate) and show it's governed by model type, not task type.\n20\t- **Headline result template**: \"On FOLIO, SICA achieves 80.0% vs SC's 73.3% (+6.7pp) with Qwen2.5-14B-Instruct. On the same benchmarks with QwQ-32B, SICA degenerates to SC (C0=3.6%), revealing that symbolic consensus effectiveness is governed by trace diversity, not task difficulty.\"\n21\t\n22\t## Anticipated Reviewer Concerns & Defensive Experiments\n23\t1. **\"Gains not statistically significant\"** → exp-001: Expand to 200+ questions for statistical power\n24\t2. **\"Only a better tiebreaker, not worth the overhead\"** → exp-002: K sensitivity showing benefit pattern; exp-009: overhead analysis\n25\t3. **\"Only one non-reasoning model\"** → exp-004: Add Qwen2.5-7B for scaling; exp-007: 72B-AWQ for camera-ready\n26\t4. **\"ProofWriter shows 0pp gain\"** → Domain analysis in exp-001 expanded results\n27\t5. **\"Random tiebreak baseline closes the gap\"** → exp-003: Direct SICA vs SC-random vs SC-deterministic comparison\n28\t6. **\"Why not just use a reasoning model?\"** → exp-005: QwQ-32B data shows reasoning models are self-consistent (don't need consensus improvement), but instruction models (cheaper, more deployed) benefit from SICA\n29\t\n30\t## Venue Fit Risks\n31\t- EMNLP: Contribution may feel narrow if framed as ONLY tiebreaking. Primary intellectual contribution is the \"operating regime characterization\" — the tiebreaking mechanism is evidence, not the claim.\n32\t- Cross-discipline: Combines formal logic (MAX-SAT) with NLP (LLM reasoning). MAX-SAT needs clear explanation for NLP audience.\n33\t- Negative results: QwQ-32B data must be presented as insight (\"When Does Symbolic Consensus Degenerate?\"), not failure.\n34\t- Statistical power: 60-question results are fragile. 200+ question expansion is prerequisite for credible submission.\n35\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43e10cc5-e217-4825-917a-98e408e5b3a3",
+            "isSidechain": false,
+            "promptId": "8e8764bf-6eae-4ef1-8f89-3790fa343de1",
+            "type": "user",
+            "uuid": "e5856c22-fdc8-44a1-9c4c-e4a72c83cee6",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst/paper_framing.md",
+                "content": "# Paper Framing — symb_invariant_consensus\n\n## Target Venue\n- Primary: EMNLP 2026 Main (ARR May 25)\n- Fallback: AAAI 2027 (Aug 1)\n- Deadline: May 25, 2026 (ARR submission)\n\n## Core Claims (3 条)\n1. **Principled Tiebreaking**: SICA resolves Self-Consistency voting ties through symbolic constraint weighting, achieving higher accuracy than arbitrary tiebreak rules on logic reasoning benchmarks (FOLIO +6.7pp, combined +3.3pp on 60 questions; target: statistically significant on 200+ questions).\n2. **Operating Regime Characterization**: The effectiveness of symbolic consensus is conditional on trace diversity — SICA adds value when model outputs are diverse (instruction models, C0>20%) but provably degenerates to SC when models are self-consistent (reasoning models, C0<5%). This is a model property, not a task property.\n3. **C0 as Practical Diagnostic**: Multi-candidate rate (C0) serves as a zero-cost predictor of whether SICA deployment will yield gains over SC, enabling practitioners to decide without running full symbolic analysis.\n\n## Core Insight\nSymbolic constraint consensus doesn't uniformly improve reasoning — it specifically helps when there IS disagreement to resolve. We provide the first systematic study of WHEN symbolic consensus adds value, revealing that model architecture (reasoning vs instruction) determines the operating regime. This transforms SICA from \"yet another ensemble method\" into \"a method with formally characterizable applicability boundaries.\"\n\n## Story Spine\n- **Problem**: Self-Consistency (SC) aggregates LLM reasoning paths via majority voting but treats all chains as opaque votes, discarding the logical structure within them. When votes are tied, SC falls back to arbitrary rules (alphabetical, random) with no principled resolution.\n- **Existing approaches & gaps**: SC (Wang et al. 2023) — pure voting, no reasoning structure. USC (Chen et al. 2023) — universal SC, still voting-based. None exploit the formal logical structure within reasoning traces for consensus, and none characterize when symbolic methods help vs. don't.\n- **Our framing**: SICA extracts first-order logic constraints from reasoning traces and uses weighted partial MAX-SAT to find the globally consistent answer. We show this provides principled tiebreaking (75% win rate on ties vs 25% for SC) but only when trace diversity exists. We formalize this as C0 (multi-candidate rate) and show it's governed by model type, not task type.\n- **Headline result template**: \"On FOLIO, SICA achieves 80.0% vs SC's 73.3% (+6.7pp) with Qwen2.5-14B-Instruct. On the same benchmarks with QwQ-32B, SICA degenerates to SC (C0=3.6%), revealing that symbolic consensus effectiveness is governed by trace diversity, not task difficulty.\"\n\n## Anticipated Reviewer Concerns & Defensive Experiments\n1. **\"Gains not statistically significant\"** → exp-001: Expand to 200+ questions for statistical power\n2. **\"Only a better tiebreaker, not worth the overhead\"** → exp-002: K sensitivity showing benefit pattern; exp-009: overhead analysis\n3. **\"Only one non-reasoning model\"** → exp-004: Add Qwen2.5-7B for scaling; exp-007: 72B-AWQ for camera-ready\n4. **\"ProofWriter shows 0pp gain\"** → Domain analysis in exp-001 expanded results\n5. **\"Random tiebreak baseline closes the gap\"** → exp-003: Direct SICA vs SC-random vs SC-deterministic comparison\n6. **\"Why not just use a reasoning model?\"** → exp-005: QwQ-32B data shows reasoning models are self-consistent (don't need consensus improvement), but instruction models (cheaper, more deployed) benefit from SICA\n\n## Venue Fit Risks\n- EMNLP: Contribution may feel narrow if framed as ONLY tiebreaking. Primary intellectual contribution is the \"operating regime characterization\" — the tiebreaking mechanism is evidence, not the claim.\n- Cross-discipline: Combines formal logic (MAX-SAT) with NLP (LLM reasoning). MAX-SAT needs clear explanation for NLP audience.\n- Negative results: QwQ-32B data must be presented as insight (\"When Does Symbolic Consensus Degenerate?\"), not failure.\n- Statistical power: 60-question results are fragile. 200+ question expansion is prerequisite for credible submission.\n",
+                "numLines": 35,
+                "startLine": 1,
+                "totalLines": 35
+              }
+            },
+            "sourceToolAssistantUUID": "43e10cc5-e217-4825-917a-98e408e5b3a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T05:37:13.064Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S5QKjgymDSP1BxpjxVL43R",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst/paper_framing.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73dec798-e6c0-45b8-a70e-89ca62380dce",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hxgTWYQx8poBeDeuYj",
+            "type": "assistant",
+            "uuid": "43e10cc5-e217-4825-917a-98e408e5b3a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012txVuBhSZLkeWTxjkosiEJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11269,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 229,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11269,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 229,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11269,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11269
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T051642 tier=worst 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_co…",
+                "leafUuid": "e5856c22-fdc8-44a1-9c4c-e4a72c83cee6",
+                "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1"
+              }
+            }
+          ],
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate negative results paper on symbolic verification limits",
+                "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1"
+              }
+            }
+          ],
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T05:37:26.420Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information I need to write the paper. Let me understand the framing:\n\nThis is a **negative result paper** — \"The Limits of Post-hoc Symbolic Verification in LLM Reasoning\". The key narrative:\n- All three original claims (principled tiebreaking, operating regime characterization, C0 as diagnostic) don't hold\n- The +3.3pp on 60 questions was noise from small sample tiebreak luck\n- On expansion to 212 questions, the gap evaporates to +0.5pp (p=0.38)\n- Tiebreak win rate regresses to 50% — no systematic advantage\n\n\n- C0 shows no meaningful correlation with performance gains, and the 7B model actually performs worse with SICA despite high C0 scores\n- Constraint extraction is unreliable at only 38% clean constraints\n- The failure mode taxonomy becomes the paper's main contribution\n\nI'll structure this as a comprehensive negative result paper with sections covering the method, all seven experiments, and a detailed analysis of failure modes, then create the output and write it out.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e5856c22-fdc8-44a1-9c4c-e4a72c83cee6",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hyEyrH38Dzx2PqMjRo",
+            "type": "assistant",
+            "uuid": "d78e45af-b7ef-47d5-a3da-653a9964b053",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F5AzyYqUfoxP6RX9QwrVUQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14176,
+                "cache_read_input_tokens": 23110,
+                "output_tokens": 431,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14176,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 431,
+                    "cache_read_input_tokens": 23110,
+                    "cache_creation_input_tokens": 14176,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14176
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T05:37:26.638Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F393CsHcLKHuBQpYsuw9zP",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/worst",
+                "description": "Create output directory for worst-tier paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d78e45af-b7ef-47d5-a3da-653a9964b053",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hyEyrH38Dzx2PqMjRo",
+            "type": "assistant",
+            "uuid": "ff101d5a-9eba-4c69-a4fb-51d619424d19",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F5AzyYqUfoxP6RX9QwrVUQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14176,
+                "cache_read_input_tokens": 23110,
+                "output_tokens": 431,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14176,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 431,
+                    "cache_read_input_tokens": 23110,
+                    "cache_creation_input_tokens": 14176,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14176
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T05:37:26.861Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F393CsHcLKHuBQpYsuw9zP",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff101d5a-9eba-4c69-a4fb-51d619424d19",
+            "isSidechain": false,
+            "promptId": "8e8764bf-6eae-4ef1-8f89-3790fa343de1",
+            "type": "user",
+            "uuid": "2f83055f-ea7c-461e-98a1-77a23a88c12d",
+            "toolUseResult": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            },
+            "sourceToolAssistantUUID": "ff101d5a-9eba-4c69-a4fb-51d619424d19",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T051642 tier=worst 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_co…",
+                "leafUuid": "2f83055f-ea7c-461e-98a1-77a23a88c12d",
+                "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1"
+              }
+            }
+          ],
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate negative results paper on symbolic verification limits",
+                "sessionId": "95afbd4e-c8d6-467e-8e66-e9555da5b3a1"
+              }
+            }
+          ],
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-paper-agent-dream-dream-id-dream-20260516t051642-tier-worst-1-write-latex.md"
+}
