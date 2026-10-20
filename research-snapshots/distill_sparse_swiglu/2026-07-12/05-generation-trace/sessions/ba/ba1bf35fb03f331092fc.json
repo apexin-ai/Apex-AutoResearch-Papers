@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "id": "ba1bf35fb03f331092fc",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> AutoDL 实例 westd-34887。conda base 环境, 激活命令 source /root/miniconda3/etc/profile.d/conda.sh && conda activa",
+  "task_key": "6df8cb70-69b9-4666-bd0f-a1358a3e104b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/6df8cb70-69b9-4666-bd0f-a1358a3e104b.jsonl",
+    "occurrence": 1,
+    "bytes": 3113949,
+    "sha256": "c8a9fe4db2de4f8cca35d6645b75186f34a3c07bb0e9d715026d4dcc1b181f58"
+  },
+  "statistics": {
+    "messages": 2066,
+    "user_turns": 2,
+    "tool_calls": 750,
+    "roles": {
+      "record": 273,
+      "user": 2,
+      "assistant": 290,
+      "tool_call": 750,
+      "tool_result": 750,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ba1bf35fb03f331092fc-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1071,
+      "chunks": [
+        {
+          "path": "ba1bf35fb03f331092fc-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "ba1bf35fb03f331092fc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ba1bf35fb03f331092fc-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ba1bf35fb03f331092fc-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "ba1bf35fb03f331092fc-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "ba1bf35fb03f331092fc-part-0006.json",
+          "message_count": 173
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 993,
+      "chunks": [
+        {
+          "path": "ba1bf35fb03f331092fc-part-0006.json",
+          "message_count": 7
+        },
+        {
+          "path": "ba1bf35fb03f331092fc-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "ba1bf35fb03f331092fc-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "ba1bf35fb03f331092fc-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "ba1bf35fb03f331092fc-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "ba1bf35fb03f331092fc-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "ba1bf35fb03f331092fc-part-0012.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-autodl-westd-34887conda-base-source-root-miniconda3-etc-profile-copy-2.md"
+}

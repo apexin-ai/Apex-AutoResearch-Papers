@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "id": "9e0c35242e4fb127a394",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: perlayer_kl_",
+  "task_key": "ca67bfef-2880-4e60-90c5-73cf6619a134",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/ca67bfef-2880-4e60-90c5-73cf6619a134.jsonl",
+    "occurrence": 1,
+    "bytes": 931754,
+    "sha256": "9305566a3cc7befcf23245e08747cd7f5d7841bb38b995dc1f200bd998c8a2c7"
+  },
+  "statistics": {
+    "messages": 112,
+    "user_turns": 3,
+    "tool_calls": 28,
+    "roles": {
+      "record": 26,
+      "user": 3,
+      "assistant": 27,
+      "tool_call": 28,
+      "tool_result": 28
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9e0c35242e4fb127a394-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 107,
+      "chunks": [
+        {
+          "path": "9e0c35242e4fb127a394-part-0001.json",
+          "message_count": 13
+        },
+        {
+          "path": "9e0c35242e4fb127a394-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "9e0c35242e4fb127a394-part-0003.json",
+          "message_count": 93
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9e0c35242e4fb127a394-part-0003.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "9e0c35242e4fb127a394-part-0003.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-analyzing-done-process-exited-cleanly-w-b-data-available-exp-id-perlayer-copy-2.md"
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "7e0d1d9b18aafc71482d",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: c4_kl30_s42 - project: distill_spars",
+  "task_key": "a49cfb72-10f9-40bb-9dae-cad9312cfb94",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/a49cfb72-10f9-40bb-9dae-cad9312cfb94.jsonl",
+    "occurrence": 1,
+    "bytes": 739038,
+    "sha256": "5a60ea3921b876d62982f1e6d007586b06de1b10aa2c9a23e50d971c0159e95f"
+  },
+  "statistics": {
+    "messages": 46,
+    "user_turns": 1,
+    "tool_calls": 14,
+    "roles": {
+      "record": 11,
+      "user": 1,
+      "assistant": 8,
+      "tool_call": 14,
+      "tool_result": 12
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7e0d1d9b18aafc71482d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 44,
+      "chunks": [
+        {
+          "path": "7e0d1d9b18aafc71482d-part-0001.json",
+          "message_count": 14
+        },
+        {
+          "path": "7e0d1d9b18aafc71482d-part-0002.json",
+          "message_count": 2
+        },
+        {
+          "path": "7e0d1d9b18aafc71482d-part-0003.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-process-exited-without-valid-w-b-metrics-exp-id-c4-kl30-s42-project-disti.md"
+}

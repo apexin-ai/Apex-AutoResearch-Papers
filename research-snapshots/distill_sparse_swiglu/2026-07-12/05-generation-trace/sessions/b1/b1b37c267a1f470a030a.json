@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "b1b37c267a1f470a030a",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #12。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd-34887:cuda:0,1 + westd-41",
+  "task_key": "56a4a92e-4fa7-4531-8048-cfd149b51a07",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/56a4a92e-4fa7-4531-8048-cfd149b51a07.jsonl",
+    "occurrence": 1,
+    "bytes": 579881,
+    "sha256": "3eddf309b3f77cea31f3130f49bbad32486f705ca022557cab5322cf4292d168"
+  },
+  "statistics": {
+    "messages": 162,
+    "user_turns": 1,
+    "tool_calls": 42,
+    "roles": {
+      "record": 35,
+      "user": 1,
+      "assistant": 42,
+      "tool_call": 42,
+      "tool_result": 42
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b1b37c267a1f470a030a-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 160,
+      "chunks": [
+        {
+          "path": "b1b37c267a1f470a030a-part-0001.json",
+          "message_count": 156
+        },
+        {
+          "path": "b1b37c267a1f470a030a-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-main-agent-loop-12-task-context-1-gpu-westd-34887-cuda-0-1-westd-41-copy-2.md"
+}

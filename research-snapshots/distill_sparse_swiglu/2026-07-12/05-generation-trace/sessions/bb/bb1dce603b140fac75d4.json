@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "bb1dce603b140fac75d4",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: distill_sparse_swiglu ## 运行环境 - 服务器名: westd-34887 - SSH 账户: root（调用 ssh_execute / submit_trainin",
+  "task_key": "25c2b46c-d801-46c2-86f6-e0788aa27b01",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/25c2b46c-d801-46c2-86f6-e0788aa27b01.jsonl",
+    "occurrence": 1,
+    "bytes": 923690,
+    "sha256": "21ac26a68584436bc73ac7d93c4eaccefa1f1c140deef993fc57e9c06ac7393e"
+  },
+  "statistics": {
+    "messages": 102,
+    "user_turns": 1,
+    "tool_calls": 28,
+    "roles": {
+      "record": 27,
+      "user": 1,
+      "assistant": 18,
+      "tool_call": 28,
+      "tool_result": 28
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "bb1dce603b140fac75d4-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 100,
+      "chunks": [
+        {
+          "path": "bb1dce603b140fac75d4-part-0001.json",
+          "message_count": 25
+        },
+        {
+          "path": "bb1dce603b140fac75d4-part-0002.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-distill-sparse-swiglu-westd-34887-ssh-root-ssh-execute-submit-copy-585.md"
+}

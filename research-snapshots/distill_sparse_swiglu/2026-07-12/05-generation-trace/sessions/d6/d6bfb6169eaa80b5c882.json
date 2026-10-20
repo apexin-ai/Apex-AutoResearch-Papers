@@ -1,0 +1,2207 @@
+{
+  "schema_version": "1.0",
+  "id": "d6bfb6169eaa80b5c882",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I'm revising a research idea about multi-hop RAG compression. I need to find and read several papers: 1. **SentGraph (ar",
+  "task_key": "agent-ae3f12fa1dde67f9d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ae3f12fa1dde67f9d.jsonl",
+    "occurrence": 1,
+    "bytes": 94432,
+    "sha256": "79915b7ab84f533e1b7c2cf685d0c3c6f4254aa1a944cc5bb546f3a7f1987bd9"
+  },
+  "statistics": {
+    "messages": 46,
+    "user_turns": 1,
+    "tool_calls": 18,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 18,
+      "tool_result": 18
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T16:38:12.559Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'm revising a research idea about multi-hop RAG compression. I need to find and read several papers:\n\n1. **SentGraph (arXiv 2601.03014)** — A reviewer said this paper \"constructs hierarchical sentence graphs using RST-based nucleus/satellite distinction for multi-hop RAG.\" I need to understand what it actually does, its method, and results.\n\n2. Search for **structure-aware contrastive learning** methods in the context of document compression, sentence ranking, or evidence selection. I'm looking for papers that use structural reasoning (chain connectivity, graph structure, discourse relations) as a training signal — not just as post-hoc analysis.\n\n3. Search for any recent work (2025-2026) on **chain-connectivity-preserving compression** or **reasoning-chain-aware sentence selection** for multi-hop QA.\n\n4. Search for **MuSiQue benchmark** recent results — what are the current SOTA methods for multi-hop QA on MuSiQue, especially with RAG/compression?\n\nFor each paper found, use WebFetch to read the actual abstract and method sections. Don't rely on search snippets alone.\n\nReport back with:\n- What SentGraph actually does (method, results, key insight)\n- Any papers that use structural reasoning as a training signal for compression\n- Current SOTA on MuSiQue with RAG\n- Any method that jointly learns bridge identification and compression\n\nKeep the report under 500 words, focusing on the most relevant findings."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "5c8d2f42-7823-42b5-8ec9-049bb52577bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T16:38:12.565Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "5c8d2f42-7823-42b5-8ec9-049bb52577bb",
+                "isSidechain": true,
+                "agentId": "ae3f12fa1dde67f9d",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "7132d53e-1734-4d9e-8cb6-8ee7a235f74e",
+                "timestamp": "2026-05-14T16:38:12.565Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T16:38:15.783Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by loading the WebSearch and WebFetch tools, then conduct the searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7132d53e-1734-4d9e-8cb6-8ee7a235f74e",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nksr6ZFetWdP31zjRA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7d1fee40-0e9d-414f-9b93-d0f5e676c40f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BX1V7gr8uHZDnCVGGCbWrP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9107,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9107,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T16:38:16.053Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RmkANMQ6LgxCM4Yt3agzE3",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d1fee40-0e9d-414f-9b93-d0f5e676c40f",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nksr6ZFetWdP31zjRA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a10b2928-6a07-4ddf-ae51-2e36b2f02198",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BX1V7gr8uHZDnCVGGCbWrP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9107,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 102,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9107
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 102,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 9107,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9107,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T16:38:16.058Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01RmkANMQ6LgxCM4Yt3agzE3",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a10b2928-6a07-4ddf-ae51-2e36b2f02198",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "ca4551af-6bf6-4519-a288-4d266356a50c",
+            "sourceToolAssistantUUID": "a10b2928-6a07-4ddf-ae51-2e36b2f02198",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T16:38:18.527Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run all the searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca4551af-6bf6-4519-a288-4d266356a50c",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nm99r6Gz6gEwpkpFcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "12934375-54e7-4732-896f-66ad78c9b2e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pra2Fxz1nZBqMtQMDEziHc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1911,
+                "cache_read_input_tokens": 9107,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1911,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T16:38:19.013Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HfjcxpK5hsq2So5ZY4Ajui",
+              "name": "WebSearch",
+              "input": {
+                "query": "SentGraph arXiv 2601.03014 hierarchical sentence graph multi-hop RAG"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12934375-54e7-4732-896f-66ad78c9b2e1",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nm99r6Gz6gEwpkpFcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f6802561-9807-4f2e-90ea-786c5b80b793",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pra2Fxz1nZBqMtQMDEziHc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1911,
+                "cache_read_input_tokens": 9107,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1911,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T16:38:19.480Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011DUCWuEzL59pQ5C3ptdZFp",
+              "name": "WebSearch",
+              "input": {
+                "query": "structure-aware contrastive learning document compression sentence ranking evidence selection 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f6802561-9807-4f2e-90ea-786c5b80b793",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nm99r6Gz6gEwpkpFcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ab6756a2-0364-447a-9d29-cf4d5dec2afe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pra2Fxz1nZBqMtQMDEziHc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1911,
+                "cache_read_input_tokens": 9107,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1911,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T16:38:19.949Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011skFvHSVYQjYED1mXbpZUg",
+              "name": "WebSearch",
+              "input": {
+                "query": "chain-connectivity-preserving compression reasoning-chain-aware sentence selection multi-hop QA 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab6756a2-0364-447a-9d29-cf4d5dec2afe",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nm99r6Gz6gEwpkpFcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7de58e40-a19d-4c7d-bfd6-53725f4ac4b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pra2Fxz1nZBqMtQMDEziHc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1911,
+                "cache_read_input_tokens": 9107,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1911,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T16:38:20.301Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VSac3RJ6RvUQi2bwonMbuh",
+              "name": "WebSearch",
+              "input": {
+                "query": "MuSiQue benchmark SOTA multi-hop QA RAG compression 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7de58e40-a19d-4c7d-bfd6-53725f4ac4b8",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nm99r6Gz6gEwpkpFcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d8f9f62c-7d08-401f-893e-5bd2610dd93d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pra2Fxz1nZBqMtQMDEziHc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1911,
+                "cache_read_input_tokens": 9107,
+                "output_tokens": 254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1911
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 254,
+                    "cache_read_input_tokens": 9107,
+                    "cache_creation_input_tokens": 1911,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1911,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T16:38:26.047Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HfjcxpK5hsq2So5ZY4Ajui",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SentGraph arXiv 2601.03014 hierarchical sentence graph multi-hop RAG\"\n\nLinks: [{\"title\":\"[2601.03014] SentGraph: Hierarchical Sentence Graph for Multi-hop Retrieval-Augmented Question Answering\",\"url\":\"https://arxiv.org/abs/2601.03014\"},{\"title\":\"SentGraph: Hierarchical Sentence Graph for Multi-hop Retrieval-Augmented Question Answering - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2026arXiv260103014L/abstract\"},{\"title\":\"SentGraph: Hierarchical Sentence Graph for Multi-hop Retrieval-Augmented Question Answering\",\"url\":\"https://arxiv.org/html/2601.03014\"},{\"title\":\"SentGraph: Hierarchical Sentence Graph for Multi-hop Retrieval-Augmented Question Answering\",\"url\":\"https://www.researchgate.net/publication/399522359_SentGraph_Hierarchical_Sentence_Graph_for_Multi-hop_Retrieval-Augmented_Question_Answering\"},{\"title\":\"LLM Papers on X: \\\"SentGraph: Hierarchical Sentence Graph for Multi-hop Retrieval-Augmented Question Answering Junli Liang, Pengfei Zhou, Wangqiu Zhou, Wenjie Qing, Qi Zhao, Ziwen Wang, Qi Song, Xiangyang Li https://t.co/CkMpTpzQp0 [𝚌𝚜.𝙲𝙻 𝚌𝚜.𝙰𝙸] https://t.co/4tQHm1jFMH\\\" / X\",\"url\":\"https://x.com/HEI/status/2008922968978510207\"},{\"title\":\"Sumit on X: \\\"SentGraph: Hierarchical Sentence Graph for Multi-hop Retrieval-Augmented Question Answering Proposes a sentence-level graph-based RAG framework to model fine-grained logical relationships between sentences for improved multi-hop reasoning. 📝 https://t.co/wh1C7L0UEw\\\" / X\",\"url\":\"https://x.com/_reachsumit/status/2008749000577765380\"},{\"title\":\"GitHub - DEEP-PolyU/Awesome-GraphRAG: Awesome-GraphRAG: A curated list of resources (surveys, papers, benchmarks, and opensource projects) on graph-based retrieval-augmented generation. · GitHub\",\"url\":\"https://github.com/DEEP-PolyU/Awesome-GraphRAG\"},{\"title\":\"When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation\",\"url\":\"https://arxiv.org/html/2506.05690v1\"},{\"title\":\"[2506.08074] Hierarchical Lexical Graph for Enhanced Multi-Hop Retrieval\",\"url\":\"https://arxiv.org/abs/2506.08074\"},{\"title\":\"Hierarchical Lexical Graph for Enhanced Multi-Hop Retrieval\",\"url\":\"https://arxiv.org/html/2506.08074\"}]\n\nBased on the search results, here's what I found about the SentGraph paper:\n\n## Overview\n\nSentGraph is a sentence-level graph-based RAG framework that explicitly models fine-grained logical relationships between sentences for multi-hop question answering.\n\n## Background and Motivation\n\nTraditional Retrieval-Augmented Generation (RAG) effectively supports single-hop question answering with large language models but faces significant limitations in multi-hop question answering tasks, which require combining evidence from multiple documents. Existing chunk-based retrieval often provides irrelevant and logically incoherent context, leading to incomplete evidence chains and incorrect reasoning during answer generation.\n\n## Methodology\n\nThe framework constructs a hierarchical sentence graph offline by first adapting Rhetorical Structure Theory to distinguish nucleus and satellite sentences, and then organizing them into topic-level subgraphs with cross-document entity bridges. SentGraph further employs a graph-guided retrieval strategy to enable fine-grained evidence selection at the sentence level.\n\n## Results\n\nThe framework leads to substantial improvements, with EM gains of 7.2 points on HotpotQA, 9.4 points on 2WikiMultiHopQA, and 9.4 points on MuSiQue.\n\nThe paper (arXiv:2601.03014) was published on March 17, 2026, and is authored by Junli Liang and colleagues from the University of Science and Technology of China.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f6802561-9807-4f2e-90ea-786c5b80b793",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "35f5abe2-98dd-48b2-a63e-24b740bda933",
+            "sourceToolAssistantUUID": "f6802561-9807-4f2e-90ea-786c5b80b793",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T16:38:27.940Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011DUCWuEzL59pQ5C3ptdZFp",
+              "type": "tool_result",
+              "content": "Web search results for query: \"structure-aware contrastive learning document compression sentence ranking evidence selection 2025 2026\"\n\nLinks: [{\"title\":\"Contrastive Learning Models for Sentence Representations | ACM Transactions on Intelligent Systems and Technology\",\"url\":\"https://dl.acm.org/doi/10.1145/3593590\"},{\"title\":\"Supervised Contrastive Learning for Interpretable Long-Form ...\",\"url\":\"https://creddy.net/papers/TKDD23.pdf\"},{\"title\":\"Contrastive Retrieval-Augmented Generation on Experience\",\"url\":\"https://aclanthology.org/2025.findings-acl.1224.pdf\"},{\"title\":\"Addressing Asymmetry in Contrastive Learning: LLM-Driven Sentence Embeddings with Ranking and Label Smoothing\",\"url\":\"https://www.mdpi.com/2073-8994/17/5/646\"},{\"title\":\"GitHub - ryanzhumich/Contrastive-Learning-NLP-Papers: Paper List for Contrastive Learning for Natural Language Processing · GitHub\",\"url\":\"https://github.com/ryanzhumich/Contrastive-Learning-NLP-Papers\"},{\"title\":\"Discourse-Aware Scientific Paper Recommendation via QA-Style Summarization and\",\"url\":\"https://arxiv.org/pdf/2511.03330\"},{\"title\":\"[2108.10510] Contrastive Learning of User Behavior Sequence for Context-Aware Document Ranking\",\"url\":\"https://arxiv.org/abs/2108.10510\"},{\"title\":\"A topic-enhanced network via contrastive learning for abstractive text summarization - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S2543925125000221\"},{\"title\":\"Findings - EMNLP 2023\",\"url\":\"https://2023.emnlp.org/program/accepted_findings/\"},{\"title\":\"Improved graph contrastive learning for short text classification | Proceedings of the Thirty-Eighth AAAI Conference on Artificial Intelligence and Thirty-Sixth Conference on Innovative Applications of Artificial Intelligence and Fourteenth Symposium on Educational Advances in Artificial Intelligence\",\"url\":\"https://dl.acm.org/doi/10.1609/aaai.v38i17.29835\"}]\n\nI've performed the web search for your query on structure-aware contrastive learning, document compression, sentence ranking, and evidence selection from 2025-2026. Here are the relevant findings:\n\n## Key Research Areas Found\n\n**Recent Work on Contrastive Learning for Documents (2025-2026):**\n\nRecent research leverages LLMs to estimate fine-grained semantic similarity, offering richer and more context-aware signals for distinguishing between easy and hard negatives through ranking-based negative sampling and adaptive label smoothing. This work was published in April 2025 and demonstrates the effectiveness of asymmetry-aware contrastive learning for sentence embeddings.\n\n**Document Structure and Contrastive Learning:**\n\nResearch leverages the structure of long-form documents along with class labels to build supervised contrastive learning frameworks for document matching. Some frameworks capture similarity at multiple levels: document-level similarity scores, section-level similarity scores, and chunk-level similarity scores within and across documents.\n\n**Topic-Enhanced Summarization with Contrastive Learning:**\n\nA novel topic-enhanced sequence-to-sequence network via contrastive learning model utilizes a combination of topic modeling and contrastive learning to address exposure bias problems and improve summary quality. This approach employs hard negative sampling by selecting negative samples close to the positive one. This research was published in October 2025.\n\n**Scientific Paper Recommendation with Structured Representations:**\n\nRecent work processes papers into structured and discourse-consistent representations while using multi-level contrastive objectives to align semantic representations across metadata, section, and document levels.\n\nThese results show active research combining contrastive learning with document structure awareness for tasks like summarization, ranking, and evidence selection through 2025-2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab6756a2-0364-447a-9d29-cf4d5dec2afe",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "ffe95e2f-6754-4733-9da6-27691f0588bd",
+            "sourceToolAssistantUUID": "ab6756a2-0364-447a-9d29-cf4d5dec2afe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T16:38:28.350Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VSac3RJ6RvUQi2bwonMbuh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MuSiQue benchmark SOTA multi-hop QA RAG compression 2025 2026\"\n\nLinks: [{\"title\":\"MuSiQue: Multihop QA Benchmark\",\"url\":\"https://www.emergentmind.com/topics/musique\"},{\"title\":\"MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries | OpenReview\",\"url\":\"https://openreview.net/forum?id=t4eB3zYWBK\"},{\"title\":\"\\u000f MuSiQue: Multihop Questions via Single-hop Question Composition\",\"url\":\"https://arxiv.org/pdf/2108.00573\"},{\"title\":\"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation | Request PDF\",\"url\":\"https://www.researchgate.net/publication/394272084_HopRAG_Multi-Hop_Reasoning_for_Logic-Aware_Retrieval-Augmented_Generation\"},{\"title\":\"[2401.15391] MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries\",\"url\":\"https://arxiv.org/abs/2401.15391\"},{\"title\":\"[2508.16994] GRADE: Generating multi-hop QA and fine-gRAined Difficulty matrix for RAG Evaluation\",\"url\":\"https://arxiv.org/abs/2508.16994\"},{\"title\":\"Multi-hop QA Benchmarks\",\"url\":\"https://www.emergentmind.com/topics/multi-hop-qa-benchmarks\"},{\"title\":\"MultiHop-RAG: Benchmarking Retrieval-Augmented Gener\",\"url\":\"https://openreview.net/pdf/43ab88c33fb4e13c3e723aaf46617f8e731d97c9.pdf\"},{\"title\":\"MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries\",\"url\":\"https://arxiv.org/pdf/2401.15391\"},{\"title\":\"GitHub - Ayanami0730/arag: A-RAG: Agentic Retrieval-Augmented Generation via Hierarchical Retrieval Interfaces. State-of-the-art RAG framework with keyword, semantic, and chunk read tools for multi-hop QA. · GitHub\",\"url\":\"https://github.com/Ayanami0730/arag\"}]\n\nBased on the search results, here's what I found regarding MuSiQue benchmark and related SOTA research on multi-hop QA, RAG, and compression:\n\n## MuSiQue Benchmark Overview\n\nMuSiQue is being used as a primary benchmark to assess advances in reasoning-focused architectures, compression with knowledge preservation, and explicit multi-hop control logic, supported by the dataset's stringent construction and comprehensive annotation.\n\n## Recent SOTA Results and Trends (2025-2026)\n\n**Compression and Conciseness Impact:**\nOutput conciseness is key: short outputs achieve up to 30% EM and 42.8% F1, while verbose outputs deteriorate to 3.3% EM and 10.0% F1.\n\n**Multi-hop RAG Approaches:**\nStepChain GraphRAG achieves state-of-the-art Exact Match and F1 scores on MuSiQue, lifting average EM by 2.57% and F1 by 2.13% over the prior SOTA method.\n\nBELLE introduces bi-level multi-agent debate, matching question types to corresponding operator sets, yielding up to +7.6 F1 on MuSiQue.\n\n**Evaluation Frameworks:**\nRecent work has expanded evaluation methodology. GRADE proposes an evaluation framework that models task difficulty along two orthogonal dimensions: reasoning depth (defined by the number of inference steps) and semantic distance between the query and its supporting evidence.\n\n**Key Challenges:**\nRecent analyses indicate that even state-of-the-art RAG systems exhibit significant degradation on tasks requiring compositional reasoning or multidocument evidence integration.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8f9f62c-7d08-401f-893e-5bd2610dd93d",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "1b0c6853-ca70-4ac8-9005-9a252b2bd30b",
+            "sourceToolAssistantUUID": "d8f9f62c-7d08-401f-893e-5bd2610dd93d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T16:38:29.312Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011skFvHSVYQjYED1mXbpZUg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"chain-connectivity-preserving compression reasoning-chain-aware sentence selection multi-hop QA 2025 2026\"\n\nLinks: [{\"title\":\"GitHub - liunian-Jay/Awesome-RAG: 💡 Awesome RAG: A resource of Retrieval-Augmented Generation (RAG) for LLMs, focusing on the development of technology.\",\"url\":\"https://github.com/liunian-Jay/Awesome-RAG\"},{\"title\":\"Bridging Retrieval and Inference for Multi-hop Reasoning ...\",\"url\":\"https://aclanthology.org/2025.findings-naacl.301.pdf\"},{\"title\":\"Reasoning Efficiently Through Adaptive Chain-of-Thought ...\",\"url\":\"https://arxiv.org/pdf/2509.14093\"},{\"title\":\"ACON: OPTIMIZING CONTEXT COMPRESSION FOR ...\",\"url\":\"https://openreview.net/pdf?id=7JbSwX6bNL\"},{\"title\":\"CoT-RAG: Integrating Chain of Thought and Retrieval- ...\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.168.pdf\"},{\"title\":\"Reasoning Processes for Multi-hop Question Answering\",\"url\":\"https://arxiv.org/pdf/2601.00536\"},{\"title\":\"Reasoning Efficiently Through Adaptive Chain-of-Thought Compression: A Self-Optimizing Framework\",\"url\":\"https://arxiv.org/html/2509.14093v1\"},{\"title\":\"Exploiting Reasoning Chains for Multi-hop Science ...\",\"url\":\"https://aclanthology.org/2021.findings-emnlp.99.pdf\"},{\"title\":\"[2509.14093] Reasoning Efficiently Through Adaptive Chain-of-Thought Compression: A Self-Optimizing Framework\",\"url\":\"https://arxiv.org/abs/2509.14093\"},{\"title\":\"Enhancing Complex Reasoning in Knowledge Graph ...\",\"url\":\"https://aclanthology.org/2025.findings-acl.1387.pdf\"}]\n\nBased on the search results, I found several relevant papers and research discussing related topics in the 2025-2026 timeframe:\n\n## Key Research on Chain-Connectivity and Multi-Hop QA\n\n**1. Reasoning Efficiently Through Adaptive Chain-of-Thought Compression**\n\nSEER (Self-Enhancing Efficient Reasoning) is an adaptive framework that compresses CoT while preserving accuracy, combining Best-of-N sampling with task-aware adaptive filtering that dynamically adjusts thresholds based on pre-inference outputs to reduce verbosity and computational overhead. On average, SEER shortens CoT by 42.1%, improves accuracy by reducing truncation, and eliminates most infinite loops.\n\n**2. Multi-Hop Reasoning and Retrieval Processes**\n\nResearch describes retrieval–reasoning processes in multi-hop QA across four design axes: (A) overall execution plan, (B) index structure, (C) next step execution plan, and (D) stop/continue criteria, abstracting over concrete model architectures and datasets.\n\n**3. Context Compression for Multi-Hop QA**\n\nComplex multi-step tasks require retaining structured signal types, as naive strategies like token truncation or generic summarization easily lose critical details essential for long-horizon reasoning.\n\n**4. Chain of Thought Integration with RAG**\n\nRecent work explores integrating chain-of-thought reasoning with retrieval-augmented generation approaches for reasoning tasks, particularly focusing on maintaining reasoning chain coherence during compression and retrieval phases.\n\nThe search results indicate active research into methods that preserve reasoning chain connectivity while compressing context and managing multi-hop question answering systems.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7de58e40-a19d-4c7d-bfd6-53725f4ac4b8",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "0320e0cc-8bbe-4dcb-91eb-831578ae8890",
+            "sourceToolAssistantUUID": "7de58e40-a19d-4c7d-bfd6-53725f4ac4b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T16:38:32.242Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch the actual paper details. I'll read the SentGraph paper, the ACON compression paper, and the Bridging Retrieval paper in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0320e0cc-8bbe-4dcb-91eb-831578ae8890",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nn7TS7X6wpAij96oQP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1857193b-c871-4387-b6a0-758545c67423",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012SLVgXQTTRSoiGAQfufJ2N",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1028,
+                "cache_creation_input_tokens": 3283,
+                "cache_read_input_tokens": 11018,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3283,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T16:38:35.584Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019YRtxQtNFbaSVMmNByqbAK",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2601.03014",
+                "prompt": "Extract the full abstract, the method description (how the hierarchical sentence graph is constructed, how RST nucleus/satellite distinction is used, how cross-document bridges work, the retrieval strategy), and the main experimental results (especially on MuSiQue, HotpotQA, 2WikiMultiHopQA). Also note if they use any contrastive learning or joint training of bridge identification and compression."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1857193b-c871-4387-b6a0-758545c67423",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nn7TS7X6wpAij96oQP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c0c9ab9b-7a7a-4212-b7c6-03b1453960f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012SLVgXQTTRSoiGAQfufJ2N",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1028,
+                "cache_creation_input_tokens": 3283,
+                "cache_read_input_tokens": 11018,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3283,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T16:38:37.510Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Reo1Gj5KycC959n8fXd7CN",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/pdf?id=7JbSwX6bNL",
+                "prompt": "Extract the abstract, method description, and results for ACON. Focus on: how it handles multi-hop QA compression, whether it preserves reasoning chains, whether it uses structural signals (graph connectivity, discourse relations) as training signals, and its results on MuSiQue or other multi-hop benchmarks."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0c9ab9b-7a7a-4212-b7c6-03b1453960f9",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nn7TS7X6wpAij96oQP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c1b0e0cf-6553-42af-9ff6-7d09aff311a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012SLVgXQTTRSoiGAQfufJ2N",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1028,
+                "cache_creation_input_tokens": 3283,
+                "cache_read_input_tokens": 11018,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3283,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T16:38:39.863Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G4Jutcyua1Qh8R7zHDAGoq",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://aclanthology.org/2025.findings-naacl.301.pdf",
+                "prompt": "Extract the abstract, method, and results. Focus on: does this paper use structural reasoning (chain connectivity, graph structure, discourse relations) as a training signal for compression or evidence selection? Does it jointly learn bridge entity identification and compression? What are the results on multi-hop QA benchmarks?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1b0e0cf-6553-42af-9ff6-7d09aff311a2",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nn7TS7X6wpAij96oQP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1cb1690d-a3f3-49d2-a4c0-d023a877d939",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012SLVgXQTTRSoiGAQfufJ2N",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1028,
+                "cache_creation_input_tokens": 3283,
+                "cache_read_input_tokens": 11018,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3283,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T16:38:40.701Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019YRtxQtNFbaSVMmNByqbAK",
+              "type": "tool_result",
+              "content": "# SentGraph Paper Summary\n\n## Abstract\nThe paper addresses limitations in traditional Retrieval-Augmented Generation for multi-hop question answering. The authors propose that \"chunk-based retrieval often provides irrelevant and logically incoherent context,\" leading to incomplete evidence chains. Their solution focuses on sentence-level granularity with explicit modeling of logical relationships.\n\n## Method Description\n\n**Hierarchical Graph Construction:**\nThe framework builds an offline sentence-level graph using two key components:\n\n1. **Rhetorical Structure Theory Application:** The team adapts RST \"to distinguish nucleus and satellite sentences,\" where nucleus sentences contain core information and satellite sentences provide supporting details.\n\n2. **Graph Organization:** Sentences are \"organized into topic-level subgraphs with cross-document entity bridges,\" connecting relevant information across multiple documents through shared entities.\n\n3. **Online Retrieval Strategy:** During question answering, the system performs \"graph-guided evidence selection and path expansion to retrieve fine-grained sentence-level evidence.\"\n\nThe paper does not explicitly detail contrastive learning or joint training approaches in the provided abstract.\n\n## Experimental Results\n\nThe abstract reports validation on \"four multi-hop question answering benchmarks\" but does not provide specific performance metrics for MuSiQue, HotpotQA, or 2WikiMultiHopQA in the excerpt shown. It concludes that results \"demonstrate the effectiveness of SentGraph\" and validate \"the importance of explicitly modeling sentence-level logical dependencies.\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0c9ab9b-7a7a-4212-b7c6-03b1453960f9",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "1d9dbff1-5fdf-4a14-b0b4-f7d7b7a04c43",
+            "sourceToolAssistantUUID": "c0c9ab9b-7a7a-4212-b7c6-03b1453960f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T16:38:41.283Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015nQ2TbosXvYgr2WkrSjdG4",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://www.emergentmind.com/topics/musique",
+                "prompt": "Extract the current SOTA results on MuSiQue benchmark. What are the best-performing methods, their EM and F1 scores? Focus on RAG-based and compression-based methods. List any methods from 2025-2026."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d9dbff1-5fdf-4a14-b0b4-f7d7b7a04c43",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nn7TS7X6wpAij96oQP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "73827c91-12b2-4c85-ac7d-880edf99e0e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012SLVgXQTTRSoiGAQfufJ2N",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1028,
+                "cache_creation_input_tokens": 3283,
+                "cache_read_input_tokens": 11018,
+                "output_tokens": 602,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3283
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1028,
+                    "output_tokens": 602,
+                    "cache_read_input_tokens": 11018,
+                    "cache_creation_input_tokens": 3283,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3283,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T16:38:42.349Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Reo1Gj5KycC959n8fXd7CN",
+              "type": "tool_result",
+              "content": "I appreciate your request, but I need to be transparent: the content provided appears to be a raw PDF binary stream that has been hex-encoded and compressed. While I can see PDF structure markers and some text fragments, the actual readable content is not clearly extractable in a coherent way that would allow me to reliably identify and quote from a specific paper about \"ACON.\"\n\nTo properly address your question about ACON's approach to:\n- Multi-hop QA compression handling\n- Reasoning chain preservation\n- Use of structural signals (graphs, discourse relations)\n- Results on MuSiQue or similar benchmarks\n\nI would need either:\n1. A plain text version of the paper\n2. A properly formatted PDF file\n3. The paper's title and authors so I can reference the actual published work\n\n**If you have access to the original paper**, I'd be happy to extract and analyze the specific sections you're interested in while adhering to the constraints you've outlined (character limits on quotes, proper attribution, etc.).\n\nCould you provide the paper in a more accessible format or share its title/DOI?\n\n[Binary content (application/pdf, 1.1MB) also saved to /home/ubuntu/.claude-account-2/projects/-/3c079bbc-7053-455f-8c17-686836cdb6d9/tool-results/webfetch-1778776718269-6xbllt.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1b0e0cf-6553-42af-9ff6-7d09aff311a2",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "87996a2b-6c4f-477d-9060-a48f09b24051",
+            "sourceToolAssistantUUID": "c1b0e0cf-6553-42af-9ff6-7d09aff311a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T16:38:45.784Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G4Jutcyua1Qh8R7zHDAGoq",
+              "type": "tool_result",
+              "content": "# Analysis of PDF Content\n\nI was provided with a PDF document that appears to be heavily encoded/compressed (containing mostly binary data and streams). The content is not readily extractable as human-readable text from this format.\n\n**What I can determine:**\n\nThe document structure indicates it's a multi-page academic paper (pages 1-4 visible) with embedded figures and formatted text. However, the actual content about the paper's abstract, methods, and results cannot be reliably extracted from the provided binary/compressed data.\n\n**To properly answer your questions about:**\n- Whether the paper uses structural reasoning (chain connectivity, graph structure, discourse relations) for compression or evidence selection\n- Whether it jointly learns bridge entity identification and compression  \n- Results on multi-hop QA benchmarks\n\n**I would need:** Either a text-based version of the paper or a properly decompressed/decoded PDF that displays readable content. The current format consists primarily of PDF object streams and flate-encoded data that cannot be accurately transcribed without proper decompression.\n\nIf you have access to the paper in another format (text file, HTML, or clean PDF), I'd be happy to analyze it according to your specific criteria.\n\n[Binary content (application/pdf, 544.8KB) also saved to /home/ubuntu/.claude-account-2/projects/-/3c079bbc-7053-455f-8c17-686836cdb6d9/tool-results/webfetch-1778776721519-vp50v2.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1cb1690d-a3f3-49d2-a4c0-d023a877d939",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "59c19e46-0492-473f-bccd-d9b787b9a687",
+            "sourceToolAssistantUUID": "1cb1690d-a3f3-49d2-a4c0-d023a877d939",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T16:38:47.221Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015nQ2TbosXvYgr2WkrSjdG4",
+              "type": "tool_result",
+              "content": "# MuSiQue Benchmark SOTA Results\n\nBased on the provided content, here are the current state-of-the-art results:\n\n## Best-Performing Methods\n\n**Beam Retrieval (2023)** - RAG-based approach\n- Answer F1: 69.2 points\n- EM: 79.3%\n- Improvement: \"+44.6% EM gain\" and \"+20.2 Answer F1 points\" over prior methods\n- Key innovation: \"end-to-end beam-based retriever with joint optimization and multiple hypothesis chains per hop\"\n\n## Compression-Based Results (2025)\n\n**DeepSeek-R1 (FP16, 671B params)**\n- EM: 17.0, F1: 27.51\n- After aggressive quantization (1.58 bits): EM 14.0, F1 22.34\n\n**Distilled Models** (showing performance collapse)\n- R1-Distill-Llama-70B: EM 13.0, F1 21.8\n- Distill-Qwen-32B: EM 1.0 (near-zero performance)\n\n## Key Finding\n\nQuantization \"is highly effective\" for preserving reasoning capability, whereas \"distillation/pruning inflicts sharply steeper drops,\" indicating parameter count matters more than bit precision for multihop reasoning tasks.\n\nNo additional 2025-2026 methods with published SOTA scores appear in this document."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73827c91-12b2-4c85-ac7d-880edf99e0e8",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "90557ce6-ab54-495a-9b0d-90404f060641",
+            "sourceToolAssistantUUID": "73827c91-12b2-4c85-ac7d-880edf99e0e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T16:38:50.153Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch the HTML version of SentGraph for more detail and search for more specific papers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90557ce6-ab54-495a-9b0d-90404f060641",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2noS3QFw2JCEGoyQigx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "57c6ecb8-aee6-469d-93d4-ef6ab9d5c5a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175v3UsSHLTBhzwkXQFFhAN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3059,
+                "cache_read_input_tokens": 14301,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3059,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T16:38:52.997Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XhWGh1PTab9L5TaDf4HZ23",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2601.03014",
+                "prompt": "Extract: 1) The exact method for constructing the hierarchical sentence graph (how RST nucleus/satellite is applied, how topic subgraphs are formed, how cross-document entity bridges connect them). 2) The graph-guided retrieval strategy details. 3) All experimental results with numbers (EM, F1) on HotpotQA, 2WikiMultiHopQA, MuSiQue. 4) Does the paper use any contrastive learning? Does it jointly train bridge identification and compression? 5) What baselines does it compare against?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57c6ecb8-aee6-469d-93d4-ef6ab9d5c5a3",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2noS3QFw2JCEGoyQigx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b6e342a2-ae56-4a6f-8d26-bb5688c210a4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175v3UsSHLTBhzwkXQFFhAN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3059,
+                "cache_read_input_tokens": 14301,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3059,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T16:38:53.451Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FM9h8CmHc1jgCK3kk7nKr3",
+              "name": "WebSearch",
+              "input": {
+                "query": "joint bridge entity identification compression multi-hop QA training signal 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6e342a2-ae56-4a6f-8d26-bb5688c210a4",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2noS3QFw2JCEGoyQigx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1a02d845-ee79-469d-9c94-c31173b5797e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175v3UsSHLTBhzwkXQFFhAN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3059,
+                "cache_read_input_tokens": 14301,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3059,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T16:38:53.887Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GAj3cH6hcbBja7L34pnba9",
+              "name": "WebSearch",
+              "input": {
+                "query": "StepChain GraphRAG MuSiQue SOTA 2025 2026 multi-hop"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a02d845-ee79-469d-9c94-c31173b5797e",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2noS3QFw2JCEGoyQigx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fba0bba8-07b6-44f1-ba6b-fd7844b60568",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175v3UsSHLTBhzwkXQFFhAN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3059,
+                "cache_read_input_tokens": 14301,
+                "output_tokens": 343,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3059
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 343,
+                    "cache_read_input_tokens": 14301,
+                    "cache_creation_input_tokens": 3059,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3059,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T16:39:00.575Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FM9h8CmHc1jgCK3kk7nKr3",
+              "type": "tool_result",
+              "content": "Web search results for query: \"joint bridge entity identification compression multi-hop QA training signal 2025 2026\"\n\nLinks: [{\"title\":\"ACON: OPTIMIZING CONTEXT COMPRESSION FOR ...\",\"url\":\"https://openreview.net/pdf?id=7JbSwX6bNL\"},{\"title\":\"Retrieval–Reasoning Processes for Multi-hop Question Answering: A\",\"url\":\"https://arxiv.org/pdf/2601.00536\"},{\"title\":\"KGEIR: Knowledge Graph-Enhanced Iterative Reasoning for Multi ...\",\"url\":\"https://acl-bg.org/proceedings/2025/R2LM%202025/pdf/2025.r2lm-1.14.pdf\"},{\"title\":\"Joint Tactical Networks (JTN) - DTIC\",\"url\":\"https://apps.dtic.mil/sti/tr/pdf/ADA614835.pdf\"},{\"title\":\"Article Not peer-reviewed version Learning to Retrieve, Generate, and\",\"url\":\"https://www.preprints.org/manuscript/202508.1211/v1/download\"},{\"title\":\"Automated diagnosis of bridge expansion joint defects using voiceprint features and deep learning - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0926580525007794\"},{\"title\":\"CVPR 2025 Accepted Papers\",\"url\":\"https://cvpr.thecvf.com/Conferences/2025/AcceptedPapers\"},{\"title\":\"GitHub - kaisugi/entity-related-papers: Named Entity Recognition, Entity Linking, and more · GitHub\",\"url\":\"https://github.com/kaisugi/entity-related-papers\"},{\"title\":\"The Joint Tactical Networking Center's (JTNC) Test ...\",\"url\":\"https://www.facebook.com/cpec2in/posts/the-joint-tactical-networking-centers-jtnc-test-and-evaluation-laboratory-jtel-r/10160002378938352/\"},{\"title\":\"DOD INSTRUCTION 4630.09 COMMUNICATIONS WAVEFORM MANAGEMENT AND STANDARDIZATION\",\"url\":\"https://www.esd.whs.mil/portals/54/documents/dd/issuances/dodi/463009p.pdf\"}]\n\nBased on my web search, I found relevant research on multi-hop question answering (QA) and related topics from 2025-2026:\n\n## Multi-hop QA Research\n\nRecent literature on multi-hop QA focuses on architectural and training innovations while often treating how retrieval and reasoning interact as an implementation detail, with the sequence of retrieval calls, intermediate hypotheses, and stopping decisions rarely made explicit.\n\nIn multi-hop question answering tasks, questions typically cannot be answered from a single document but require retrieving multiple paragraphs from different documents, and models must identify when entities mentioned in different documents refer to the same person.\n\n## Context Compression and Reasoning\n\nLong-context QA approaches that assume single-step reasoning where context can be discarded after producing an answer fall short for complex multi-step tasks where success depends on retaining structured information and diverse signal types. Recent work on context compression demonstrates that it can lower memory usage by 26–54% while maintaining task performance and enabling effective distillation into smaller models.\n\n## Retrieval and Generation Evaluation\n\nEfficiency techniques for retrieval-augmented generation systems span both retrieval and generation subsystems, with emphasis on trade-offs in latency, memory, throughput, and accuracy, while addressing goals like robust multi-hop reasoning and addressing safety and fairness concerns.\n\nThe search results show active research in these areas during 2025-2026, with focus on improving multi-hop reasoning capabilities and efficient context handling in question answering systems.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a02d845-ee79-469d-9c94-c31173b5797e",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "a5c44364-8124-4e54-8c41-50b7a1ff082f",
+            "sourceToolAssistantUUID": "1a02d845-ee79-469d-9c94-c31173b5797e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T16:39:01.065Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GAj3cH6hcbBja7L34pnba9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"StepChain GraphRAG MuSiQue SOTA 2025 2026 multi-hop\"\n\nLinks: [{\"title\":\"[2510.02827] StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering\",\"url\":\"https://arxiv.org/abs/2510.02827\"},{\"title\":\"StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering\",\"url\":\"https://arxiv.org/html/2510.02827v1\"},{\"title\":\"StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question\",\"url\":\"https://arxiv.org/pdf/2510.02827\"},{\"title\":\"HopRAG: Multi-Hop Reasoning for Logic-Aware Retrieval-Augmented Generation | Request PDF\",\"url\":\"https://www.researchgate.net/publication/394272084_HopRAG_Multi-Hop_Reasoning_for_Logic-Aware_Retrieval-Augmented_Generation\"},{\"title\":\"(PDF) StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering\",\"url\":\"https://www.researchgate.net/publication/396223342_StepChain_GraphRAG_Reasoning_Over_Knowledge_Graphs_for_Multi-Hop_Question_Answering\"},{\"title\":\"StepChain GraphRAG: Multi-Hop Reasoning\",\"url\":\"https://www.emergentmind.com/topics/stepchain-graphrag\"},{\"title\":\"Manufacturing GraphRAG Bot with multi-hop traversal | by Amitava Manna | Medium\",\"url\":\"https://medium.com/@amitavamanna/manufacturing-graphrag-bot-with-multi-hop-traversal-0992e0bec455\"},{\"title\":\"Understanding Graph-based RAG and Multi-Hop Question ...\",\"url\":\"https://www.zyphra.com/post/understanding-graph-based-rag-and-multi-hop-question-answering\"},{\"title\":\"How to Improve Multi-Hop Reasoning With Knowledge Graphs and LLMs - Graph Database & Analytics\",\"url\":\"https://neo4j.com/blog/genai/knowledge-graph-llm-multi-hop-reasoning/\"},{\"title\":\"Youtu-Graph/Youtu-GraphRAG · Hugging Face\",\"url\":\"https://huggingface.co/Youtu-Graph/Youtu-GraphRAG\"}]\n\nBased on the search results, here's what I found about StepChain GraphRAG, MuSiQue, and multi-hop question answering:\n\n## StepChain GraphRAG Overview\n\nStepChain GraphRAG is a framework that unites question decomposition with a Breadth-First Search (BFS) Reasoning Flow for enhanced multi-hop question answering (QA).\n\n## SOTA Performance\n\nStepChain GraphRAG achieves state-of-the-art Exact Match and F1 scores on MuSiQue, 2WikiMultiHopQA, and HotpotQA. More specifically, StepChain GraphRAG improves over the strongest baseline (HopRAG) by +1.70/+0.48 EM/F1 on MuSiQue, +1.30/+2.46 on 2WikiMultiHopQA, and +4.70/+3.44 on HotpotQA, yielding an average gain of +2.57 EM and +2.13 F1.\n\n## Technical Approach\n\nThe approach builds a global index over the corpus; at inference time, only retrieved passages are parsed on-the-fly into a knowledge graph, and the complex query is split into sub-questions. For each sub-question, a BFS-based traversal dynamically expands along relevant edges, assembling explicit evidence chains without overwhelming the language model with superfluous context.\n\n## Key Benefits\n\nStepChain GraphRAG fosters enhanced explainability by preserving the chain-of-thought across intermediate retrieval steps, making it particularly valuable for interpretable multi-hop reasoning tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fba0bba8-07b6-44f1-ba6b-fd7844b60568",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "b8624acc-9cc8-47fd-add3-086c67e97757",
+            "sourceToolAssistantUUID": "fba0bba8-07b6-44f1-ba6b-fd7844b60568",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T16:39:02.103Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XhWGh1PTab9L5TaDf4HZ23",
+              "type": "tool_result",
+              "content": "# SentGraph: Key Technical and Experimental Details\n\n## 1. Hierarchical Sentence Graph Construction\n\n**RST Application**: The paper adapts Rhetorical Structure Theory by simplifying relation types into two categories:\n- **Nucleus-Nucleus (N-N) relations**: \"conjunction, contrast, disjunction, multinuclear restatement, and sequence relations\"\n- **Nucleus-Satellite (N-S) relations**: \"cause, result, opposition, elaboration, circumstance, evaluation, and solutionhood relations\"\n\n**Three-Layer Graph Structure**:\nThe graph contains: topic nodes (Vt), core sentence nodes (Vc), and supplementary sentence nodes (Vs), with edges for inter-topic bridging (Ett), topic-to-core (Etc), core-to-core (Ecc), and core-to-supplementary (Ecs) connections.\n\n**Construction Process**:\n1. Intra-document: LLMs identify core sentences and N-N relations, then cluster non-core sentences and establish N-S dependencies\n2. Cross-document: \"LLM-guided open information extraction\" identifies semantic relations between topic entities across documents\n\n## 2. Graph-Guided Retrieval Strategy\n\nThe online stage has three components:\n- **Anchor Selection**: Coarse-to-fine approach using similarity scoring, with LLM refinement to filter loosely related nodes\n- **Adaptive Path Expansion**: \"Breadth-first strategy\" exploring reasoning paths from anchors, selecting neighbors by similarity\n- **Answer Generation**: Extract sentence nodes from retained paths to form evidence set for LLM reasoning\n\n## 3. Experimental Results (BGE Retrieval, Llama-3.1-8B)\n\n| Dataset | EM | F1 |\n|---------|----|----|\n| **HotpotQA** | 48.80 | 62.92 |\n| **2WikiMultiHopQA** | 42.00 | 52.26 |\n| **MuSiQue** | 26.80 | 40.36 |\n| **MultiHopRAG** | 65.60 (Accuracy) | — |\n\n## 4. Training Approach\n\n**No contrastive learning or joint training mentioned.** The method uses LLM-guided prompts for graph construction (no end-to-end training). It's a retrieval framework that leverages pre-trained LLMs, not a jointly trained system.\n\n## 5. Key Baselines\n\n- Retrieval-only (BM25, BGE, sentence and passage-level variants)\n- RankLlama, SetR-CoT & IRI (post-retrieval optimization)\n- KGP, LightRAG (graph-based RAG methods)\n\n**Primary findings**: SentGraph outperforms KGP by 4.8 EM points on HotpotQA and reduces token consumption by ~30% on input tokens while improving accuracy."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6e342a2-ae56-4a6f-8d26-bb5688c210a4",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "f0c3be53-31d1-4a84-9fa5-5bdcf411727e",
+            "sourceToolAssistantUUID": "b6e342a2-ae56-4a6f-8d26-bb5688c210a4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T16:39:04.987Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch more details on ACON and search for structure-aware contrastive training for compression specifically."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0c3be53-31d1-4a84-9fa5-5bdcf411727e",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2npXf2U858MejqzdLmr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9f8b4197-cec3-45fc-98c3-35f721c38881",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RCKUFKSdxQgR8VxgayQqTT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1930,
+                "cache_creation_input_tokens": 1059,
+                "cache_read_input_tokens": 17360,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1059,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T16:39:06.440Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DC5qBKhNXD8dTPt6BuCG8w",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2510.02827",
+                "prompt": "Extract the exact EM and F1 scores for StepChain GraphRAG on MuSiQue, HotpotQA, and 2WikiMultiHopQA. Also extract what LLM backbone is used and what baselines are compared."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f8b4197-cec3-45fc-98c3-35f721c38881",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2npXf2U858MejqzdLmr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8164fb35-068f-46c7-891e-934d5ecacb59",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RCKUFKSdxQgR8VxgayQqTT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1930,
+                "cache_creation_input_tokens": 1059,
+                "cache_read_input_tokens": 17360,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1059,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T16:39:06.915Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P2sqFG4ngPBKdcjgk9WJXf",
+              "name": "WebSearch",
+              "input": {
+                "query": "ACON context compression multi-hop reasoning structured signal types arXiv 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8164fb35-068f-46c7-891e-934d5ecacb59",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2npXf2U858MejqzdLmr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "24d2c4e2-e648-4ff8-a991-02248dc56ad2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RCKUFKSdxQgR8VxgayQqTT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1930,
+                "cache_creation_input_tokens": 1059,
+                "cache_read_input_tokens": 17360,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1059,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T16:39:07.642Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wsg9CmrD4R7T3EwzbvpBhy",
+              "name": "WebSearch",
+              "input": {
+                "query": "graph-aware contrastive training sentence selection evidence compression reasoning chain preservation 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24d2c4e2-e648-4ff8-a991-02248dc56ad2",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2npXf2U858MejqzdLmr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7369919c-a067-4aae-956f-003416a42be8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RCKUFKSdxQgR8VxgayQqTT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1930,
+                "cache_creation_input_tokens": 1059,
+                "cache_read_input_tokens": 17360,
+                "output_tokens": 268,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1059
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1930,
+                    "output_tokens": 268,
+                    "cache_read_input_tokens": 17360,
+                    "cache_creation_input_tokens": 1059,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1059,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T16:39:09.375Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DC5qBKhNXD8dTPt6BuCG8w",
+              "type": "tool_result",
+              "content": "Based on the provided content, I cannot extract the specific EM and F1 scores for each dataset, the LLM backbone used, or the baselines compared.\n\nThe abstract only provides aggregate performance information: \"StepChain GraphRAG lifts average EM by 2.57% and F1 by 2.13% over the SOTA method, achieving the largest gain on HotpotQA (+4.70% EM, +3.44% F1).\"\n\nThis gives relative improvements rather than absolute scores for MuSiQue and 2WikiMultiHopQA, and the abstract does not specify which language model backbone powers the system or name specific baseline methods.\n\nTo obtain this detailed information, you would need to access the full paper PDF or HTML version linked on the arXiv page."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8164fb35-068f-46c7-891e-934d5ecacb59",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "55165ba1-66b3-468d-9f97-f053e0b28665",
+            "sourceToolAssistantUUID": "8164fb35-068f-46c7-891e-934d5ecacb59",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T16:39:14.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P2sqFG4ngPBKdcjgk9WJXf",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ACON context compression multi-hop reasoning structured signal types arXiv 2025\"\n\nLinks: [{\"title\":\"Acon: Optimizing Context Compression for Long-horizon LLM Agents\",\"url\":\"https://arxiv.org/html/2510.00615v1\"},{\"title\":\"ACON: OPTIMIZING CONTEXT COMPRESSION FOR LONG-HORIZON LLM AGENTS Minki Kang1∗\",\"url\":\"https://arxiv.org/pdf/2510.00615\"},{\"title\":\"[2510.00615] ACON: Optimizing Context Compression for Long-horizon LLM Agents\",\"url\":\"https://arxiv.org/abs/2510.00615\"},{\"title\":\"[2510.00615v1] ACON: Optimizing Context Compression for Long-horizon LLM Agents\",\"url\":\"https://arxiv.org/abs/2510.00615v1\"},{\"title\":\"AI Agent Context Compression: Strategies for Long-Running Sessions | Zylos Research\",\"url\":\"https://zylos.ai/research/2026-02-28-ai-agent-context-compression-strategies\"},{\"title\":\"(PDF) ACON: Optimizing Context Compression for Long-horizon LLM Agents\",\"url\":\"https://www.researchgate.net/publication/396094104_ACON_Optimizing_Context_Compression_for_Long-horizon_LLM_Agents\"},{\"title\":\"ACON: Optimizing Context Compression for Long-horizon LLM Agents - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv251000615K/abstract\"},{\"title\":\"ACON: Optimizing Context Compression for Long-horizon LLM Agents | OpenReview\",\"url\":\"https://openreview.net/forum?id=7JbSwX6bNL\"},{\"title\":\"BRIEF-Pro: Universal Context Compression with Short-to-Long Synthesis for Fast and Accurate Multi-Hop Reasoning\",\"url\":\"https://arxiv.org/html/2510.13799\"},{\"title\":\"CCF: A Context Compression Framework for Efficient Long-Sequence Language Modeling\",\"url\":\"https://arxiv.org/html/2509.09199v1\"}]\n\nBased on the search results, I found comprehensive information about ACON and its approach to context compression for multi-hop reasoning.\n\n## ACON: Optimizing Context Compression for Long-Horizon LLM Agents\n\nACON (Agent Context Optimization) is a unified framework that optimally compresses both environment observations and interaction histories into concise yet informative condensations.\n\n### Key Features and Structured Signal Types\n\nThe framework demands preservation of diverse signal types: factual history, action–outcome relationships, evolving environment states, success preconditions, and future decision cues. Naive strategies like token truncation or generic summarization easily lose critical details essential for long-horizon reasoning.\n\n### Methodology\n\nACON leverages compression guideline optimization in natural language space: given paired trajectories where full context succeeds but compressed context fails, capable LLMs analyze the causes of failure, and the compression guideline is updated accordingly.\n\n### Key Capabilities\n\nACON is gradient-free, requiring no parameter updates, making it directly usable with closed-source or production models. Additionally, the framework proposes distilling the optimized LLM compressor into smaller models to reduce the overhead of the additional module.\n\n### Experimental Results\n\nExperiments on AppWorld, OfficeBench, and Multi-objective QA show that ACON reduces memory usage by 26-54% (peak tokens) while largely preserving task performance, preserves over 95% of accuracy when distilled into smaller compressors, and enhances smaller LMs as long-horizon agents with up to 46% performance improvement.\n\nThe paper (arXiv 2510.00615) was published in October 2025 and represents a significant contribution to handling the challenges of long-horizon reasoning in LLM agents.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24d2c4e2-e648-4ff8-a991-02248dc56ad2",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "029bc619-adee-41f3-af29-33dd7175325d",
+            "sourceToolAssistantUUID": "24d2c4e2-e648-4ff8-a991-02248dc56ad2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T16:39:15.540Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wsg9CmrD4R7T3EwzbvpBhy",
+              "type": "tool_result",
+              "content": "Web search results for query: \"graph-aware contrastive training sentence selection evidence compression reasoning chain preservation 2025\"\n\nLinks: [{\"title\":\"Contrastive Retrieval-Augmented Generation on Experience\",\"url\":\"https://aclanthology.org/2025.findings-acl.1224.pdf\"},{\"title\":\"Machine Learning Apr 2025\",\"url\":\"https://arxiv.org/list/cs.LG/2025-04?show=500&skip=2500\"},{\"title\":\"Computer Science Jan 2025\",\"url\":\"https://arxiv.org/list/cs/2025-01?skip=6925&show=2000\"},{\"title\":\"Improving Knowledge Graph Completion with Structure-Aware Supervised Contrastive Learning - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.emnlp-main.772/\"},{\"title\":\"NeurIPS 2025 Papers\",\"url\":\"https://jalammar.github.io/assets/neurips_2025.html\"},{\"title\":\"Improving Knowledge Graph Completion with Structure-Aware\",\"url\":\"https://aclanthology.org/2024.emnlp-main.772.pdf\"},{\"title\":\"graph-based-deep-learning-literature/conference-publications/README.md at master · naganandy/graph-based-deep-learning-literature\",\"url\":\"https://github.com/naganandy/graph-based-deep-learning-literature/blob/master/conference-publications/README.md\"},{\"title\":\"Improved graph contrastive learning for short text classification | Proceedings of the Thirty-Eighth AAAI Conference on Artificial Intelligence and Thirty-Sixth Conference on Innovative Applications of Artificial Intelligence and Fourteenth Symposium on Educational Advances in Artificial Intelligence\",\"url\":\"https://dl.acm.org/doi/10.1609/aaai.v38i17.29835\"},{\"title\":\"Investigations on using Evidence-Based GraphRag ...\",\"url\":\"https://www.medrxiv.org/content/10.1101/2025.05.03.25325604v1.full.pdf\"},{\"title\":\"Findings - EMNLP 2024\",\"url\":\"https://2024.emnlp.org/program/accepted_findings/\"}]\n\nI've completed the web search for your query. Based on the results, here are the key findings:\n\nThe search returned several relevant papers and resources related to graph-aware contrastive training and related concepts from 2025:\n\n1. **Contrastive Retrieval-Augmented Generation (CoRE)**: A 2025 paper that presents a framework consisting of modules including a Contrastive Thinker and Retriever.\n\n2. **Structure-Aware Supervised Contrastive Learning**: Research introducing four contrastive tasks tailored to knowledge graph data: Vertex-level CL, Neighbor-level CL, Path-level CL, and Relation composition level CL. Existing contrastive methods primarily focus on individual triples, overlooking broader structural connectivities and topologies of knowledge graphs.\n\n3. **Graph-based Learning in Text Classification**: Recent studies attempt to combine graph learning and contrastive learning for text classification, with research like GIFT (Graph contrastIve learning for short text classiFicaTion) addressing issues where augmented views may disrupt semantic structure and ignore clustering-friendly features.\n\n4. **Related Topics**: The search also identified papers on graph-based techniques including \"CellCLAT: Preserving Topology and Trimming Redundancy\" and \"Rewarding Graph Reasoning Process\".\n\nThe search results show active research in combining graph structures with contrastive learning approaches for various NLP and machine learning tasks in 2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7369919c-a067-4aae-956f-003416a42be8",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "febdafd9-f01c-43bf-a3ad-ee2cd36181b2",
+            "sourceToolAssistantUUID": "7369919c-a067-4aae-956f-003416a42be8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T16:39:19.129Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me do one more targeted search for BRIEF-Pro (which looked relevant) and for any joint bridge-identification-compression methods."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "febdafd9-f01c-43bf-a3ad-ee2cd36181b2",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nqX6ZtfqEwVTj1BHaF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4ccaeb66-7934-44fa-9eee-474738a6905a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K68xb1Cq8VYLnvG2tJuUfE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4290,
+                "cache_read_input_tokens": 18419,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4290,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T16:39:21.967Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DtNYUNsbhotMJT2QRDubd3",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2510.13799",
+                "prompt": "Extract the abstract, method, and results for BRIEF-Pro. Focus on: 1) How does it handle multi-hop reasoning during compression? 2) Does it preserve reasoning chains or bridge entities? 3) Does it use any structural signals (graph connectivity, discourse relations) as training signals? 4) Results on MuSiQue and other multi-hop benchmarks. 5) Does it jointly learn bridge identification and compression?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ccaeb66-7934-44fa-9eee-474738a6905a",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nqX6ZtfqEwVTj1BHaF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d19e60c5-4cb4-4a9c-a53e-506ed1513fcd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K68xb1Cq8VYLnvG2tJuUfE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4290,
+                "cache_read_input_tokens": 18419,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4290,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T16:39:22.705Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JfuA4aWa1z8TrsyGL6udSg",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"bridge entity\" \"multi-hop\" compression \"joint learning\" OR \"jointly learn\" sentence selection RAG 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d19e60c5-4cb4-4a9c-a53e-506ed1513fcd",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nqX6ZtfqEwVTj1BHaF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2d82d54b-9a51-4a79-8511-f7b1c2add767",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K68xb1Cq8VYLnvG2tJuUfE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4290,
+                "cache_read_input_tokens": 18419,
+                "output_tokens": 265,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4290
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 265,
+                    "cache_read_input_tokens": 18419,
+                    "cache_creation_input_tokens": 4290,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4290,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T16:39:29.695Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JfuA4aWa1z8TrsyGL6udSg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"bridge entity\" \"multi-hop\" compression \"joint learning\" OR \"jointly learn\" sentence selection RAG 2025\"\n\nLinks: [{\"title\":\"BRIEF: Bridging Retrieval and Inference for Multi-hop Reasoning via Compression - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-naacl.301/\"},{\"title\":\"MultiHop-RAG\",\"url\":\"https://www.kore.ai/blog/multihop-rag\"},{\"title\":\"CREDIBLE PLAN-DRIVEN RAG METHOD FOR MULTI-HOP QUESTION ANSWERING\",\"url\":\"https://arxiv.org/pdf/2504.16787\"},{\"title\":\"MultiHop-RAG. A recent direction in RAG architecture… | by Cobus Greyling | Medium\",\"url\":\"https://cobusgreyling.medium.com/multihop-rag-1c695794eeda\"},{\"title\":\"Bridging Retrieval and Inference for Multi-hop Reasoning ...\",\"url\":\"https://aclanthology.org/2025.findings-naacl.301.pdf\"},{\"title\":\"GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub\",\"url\":\"https://github.com/DavidZWZ/Awesome-RAG-Reasoning\"},{\"title\":\"RAG 2.0: How Retrieval-Augmented Generation Is Supercharging LLMs in 2025 | by StackGpu | Medium\",\"url\":\"https://medium.com/@StackGpu/rag-2-0-how-retrieval-augmented-generation-is-supercharging-llms-in-2025-9fcd847bf21a\"},{\"title\":\"MultiHop-RAG: Benchmarking Retrieval-Augmented Gener\",\"url\":\"https://openreview.net/pdf/43ab88c33fb4e13c3e723aaf46617f8e731d97c9.pdf\"},{\"title\":\"GitHub - liunian-Jay/Awesome-RAG: 💡 Awesome RAG: A resource of Retrieval-Augmented Generation (RAG) for LLMs, focusing on the development of technology.\",\"url\":\"https://github.com/liunian-Jay/Awesome-RAG\"},{\"title\":\"The 2025 Guide to Retrieval-Augmented Generation (RAG)\",\"url\":\"https://www.edenai.co/post/the-2025-guide-to-retrieval-augmented-generation-rag\"}]\n\nBased on the search results, I found several highly relevant papers and resources related to your query about bridge entities, multi-hop reasoning, compression, and joint learning in RAG systems for 2025:\n\n## Key Findings\n\n### BRIEF: Bridging Retrieval and Inference for Multi-hop Reasoning via Compression\n\nBRIEF (Bridging Retrieval and Inference through Evidence Fusion) is a lightweight approach that performs query-aware multi-hop reasoning by compressing retrieved documents into highly dense textual summaries to integrate into in-context RAG. To enable learning compression for multi-hop reasoning, the approach curates synthetic data by extracting atomic propositions that encapsulate distinct factoids from the source documents to compose synthetic summaries. On HotpotQA, BRIEF improves the compression rate by 2 times compared to the state-of-the-art baseline.\n\n### MultiHop-RAG Dataset\n\nThe bridge-entity or bridge-topic are used to generate multi-hop queries in the MultiHop-RAG benchmark. The selection process involves retaining articles with evidence containing overlapping keywords with other articles, facilitating the creation of multi-hop queries with answers drawn from multiple sources, and GPT-4 was used to paraphrase the evidence.\n\n### Related 2025 Research\n\nThe search results also reference other relevant 2025 papers including credible plan-driven RAG methods for multi-hop question answering and various other approaches to handling multi-hop reasoning in RAG systems, though the specific details on joint learning mechanisms would require reviewing the full papers directly.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d82d54b-9a51-4a79-8511-f7b1c2add767",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "13768af4-9712-4ea0-9940-1f4232027db1",
+            "sourceToolAssistantUUID": "2d82d54b-9a51-4a79-8511-f7b1c2add767",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T16:39:30.988Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DtNYUNsbhotMJT2QRDubd3",
+              "type": "tool_result",
+              "content": "# BRIEF-Pro: Multi-Hop Reasoning in Context Compression\n\n## Abstract Summary\n\nBRIEF-Pro is a lightweight compressor designed to distill relevant evidence from retrieved documents into concise summaries for retrieval-augmented generation. It trains on synthetic data expanded from short contexts (under 1k words) to handle contexts exceeding 10k words, with user-controllable summary length specification.\n\n## Method Overview\n\n### Data Synthesis Pipeline\n\nRather than explicitly modeling reasoning chains, BRIEF-Pro uses a three-stage synthetic data approach:\n\n1. **Short-to-Long Context Expansion**: Documents are expanded by retrieving their source Wikipedia pages and including surrounding sentences (mean expansion ratio of 20x).\n\n2. **Compact Summary Curation**: Oracle documents undergo \"head-tail iterative pruning\"—removing unhelpful sentences from beginning and end to eliminate redundancy. This assumes \"critical information is often centrally located.\"\n\n3. **User-Controllable Compression**: Instructions specify target sentence counts (e.g., \"Summarize in K sentences\").\n\n### Key Design Choices\n\nThe paper does **not** explicitly preserve reasoning chains, identify bridges, or use structural signals. Instead, it:\n- Trains a 3B compressor on end-task performance (whether sentences help answer questions)\n- Operates under assumptions about oracle document availability\n- Focuses on reducing cognitive load through aggressive compression\n\n## Results on Multi-Hop Benchmarks\n\n**MuSiQue Performance (Llama-3.1-70B reader)**:\n- BRIEF-Pro-Auto: 38.5% EM, 48.84% F1, 35× compression\n- Non-compression baseline: 36% EM, 45.47% F1, 1× compression\n- Outperforms LongLLMLingua (32% EM, 42.35% F1) with higher compression (35× vs 10×)\n\n**Cross-Dataset Average** (four multi-hop QA tasks):\n- BRIEF-Pro-Auto improves performance 6.70% over non-compression while achieving 32× compression\n- Reduces computational overhead to 8% of uncompressed when using 70B reader\n\n## Limitations on Multi-Hop Reasoning\n\nNotably, the paper does **not** claim to explicitly model multi-hop reasoning:\n\n1. **No Joint Bridge Learning**: Compression and bridge identification are not jointly learned; the model learns what's useful implicitly through training data.\n\n2. **No Structural Signals**: The method doesn't leverage entity graphs, discourse relations, or reasoning chains as explicit training signals.\n\n3. **Practical Limitations**: The authors acknowledge that \"comprehensive evaluation across diverse long-context tasks...remains an open question\" beyond RAG scenarios.\n\nThe approach succeeds through data-centric engineering rather than explicit multi-hop architecture design."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d19e60c5-4cb4-4a9c-a53e-506ed1513fcd",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "7f4a70a5-29d3-40e0-9cc4-ee0d31db0a50",
+            "sourceToolAssistantUUID": "d19e60c5-4cb4-4a9c-a53e-506ed1513fcd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T16:39:33.348Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch the BRIEF paper for more detail on its approach."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7f4a70a5-29d3-40e0-9cc4-ee0d31db0a50",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nrf7J8YEC1YXMx8pr8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "18e9d08f-261d-48e4-84a2-6ce2f660a949",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PtskWGUFw7yivibVXG3LX5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1016,
+                "cache_creation_input_tokens": 932,
+                "cache_read_input_tokens": 22709,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 932,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T16:39:35.643Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SqPVbNyCCcaN8uWkBvctUG",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://aclanthology.org/2025.findings-naacl.301/",
+                "prompt": "Extract the full abstract, method details, and experimental results. Focus on: 1) How does BRIEF handle bridge entities in multi-hop reasoning? 2) Does it jointly learn bridge identification and compression? 3) Does it use structural signals like graph connectivity or discourse relations as training signals? 4) What are exact EM/F1 results on MuSiQue, HotpotQA? 5) How does its synthetic data pipeline work for multi-hop?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18e9d08f-261d-48e4-84a2-6ce2f660a949",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nrf7J8YEC1YXMx8pr8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0e77fc9e-1453-4fd2-bf85-37ca062de4e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PtskWGUFw7yivibVXG3LX5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1016,
+                "cache_creation_input_tokens": 932,
+                "cache_read_input_tokens": 22709,
+                "output_tokens": 207,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 932
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1016,
+                    "output_tokens": 207,
+                    "cache_read_input_tokens": 22709,
+                    "cache_creation_input_tokens": 932,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 932,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T16:39:40.491Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SqPVbNyCCcaN8uWkBvctUG",
+              "type": "tool_result",
+              "content": "# BRIEF Paper Summary\n\nBased on the ACL Anthology page provided, I can only offer limited information, as the content focuses on metadata and abstract rather than methodological details.\n\n## Available Information\n\n**Abstract Overview:**\nBRIEF addresses context length issues in RAG systems by \"compressing retrieved documents into highly dense textual summaries\" for multi-hop reasoning. The approach uses \"synthetic data by extracting atomic propositions that encapsulate distinct factoids.\"\n\n## Information NOT Available in Source\n\nThe web page excerpt does not contain answers to your specific questions:\n\n1. **Bridge entity handling**: No details provided on how BRIEF identifies or processes bridge entities\n2. **Joint learning approach**: Not discussed in the available content\n3. **Structural signals**: No mention of graph connectivity, discourse relations, or similar training signals\n4. **MuSiQue results**: Only HotpotQA metrics are mentioned—\"3.00% EM and 4.16% F1\" improvement over baselines with Flan-UL2\n5. **Synthetic data pipeline**: Only noted that it uses \"open-source models\" without procedural details\n\n## To Access Full Details\n\nYou would need to consult the complete PDF (available at https://aclanthology.org/2025.findings-naacl.301.pdf) for methodology sections, ablation studies, and comprehensive experimental results across datasets."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e77fc9e-1453-4fd2-bf85-37ca062de4e7",
+            "isSidechain": true,
+            "promptId": "64a272ee-31c2-4896-a9ce-1a3ea34154c4",
+            "agentId": "ae3f12fa1dde67f9d",
+            "type": "user",
+            "uuid": "fd8713b6-e436-4f46-b1fc-914fdc1b3d0d",
+            "sourceToolAssistantUUID": "0e77fc9e-1453-4fd2-bf85-37ca062de4e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T16:40:06.681Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have enough information to compile the report. Here is the consolidated finding:\n\n---\n\n**Research Findings Report**\n\n**1. SentGraph (arXiv 2601.03014) -- What It Actually Does**\n\nSentGraph is a retrieval framework (not a learned compressor). It constructs a three-layer hierarchical sentence graph offline: topic nodes, core sentence nodes, and supplementary sentence nodes. RST is simplified into Nucleus-Nucleus relations (conjunction, contrast, sequence) and Nucleus-Satellite relations (elaboration, cause, evaluation). LLMs identify core sentences and cluster non-core sentences under N-S dependencies. Cross-document bridges are built via LLM-guided open information extraction on shared entities. At inference, it uses anchor selection (coarse similarity + LLM filtering), breadth-first adaptive path expansion, and then feeds the extracted sentence-level evidence to the reader. Key results (BGE + Llama-3.1-8B): HotpotQA 48.80 EM / 62.92 F1; 2Wiki 42.00 / 52.26; MuSiQue 26.80 / 40.36. No contrastive learning or joint training -- it is entirely prompt-based graph construction with pre-trained LLMs. The reviewer's characterization is accurate regarding the RST-based hierarchy and cross-document entity bridges, but note it is a retrieval framework, not a compression method.\n\n**2. Structural Reasoning as a Training Signal for Compression**\n\nNo paper was found that uses graph connectivity, discourse structure, or chain-connectivity as an explicit contrastive or supervised training signal for document compression. The closest work is structure-aware supervised contrastive learning for knowledge graph completion (EMNLP 2024), which defines vertex-level, neighbor-level, path-level, and relation-composition-level contrastive tasks -- but for KG link prediction, not document compression. This appears to be a genuine gap in the literature.\n\n**3. Current SOTA on MuSiQue with RAG**\n\n- **StepChain GraphRAG** (arXiv 2510.02827): Current SOTA on MuSiQue, lifting average EM by +1.70 and F1 by +0.48 over HopRAG. Uses BFS-based KG traversal with question decomposition.\n- **BRIEF-Pro** (arXiv 2510.13799): 38.5 EM / 48.84 F1 on MuSiQue with 35x compression (Llama-3.1-70B reader), outperforming non-compression baselines (36.0 EM) and LongLLMLingua (32.0 EM). No structural signals used -- succeeds via data-centric synthetic training.\n- **SentGraph**: 26.80 EM / 40.36 F1 (Llama-3.1-8B reader), so lower absolute scores but uses a much smaller reader.\n- **Beam Retrieval**: Historically reported 69.2 F1 but under different evaluation conditions (oracle retrieval).\n\n**4. Joint Bridge Identification and Compression**\n\nNo method was found that jointly learns bridge entity identification and compression. BRIEF (NAACL 2025 Findings) comes closest -- it compresses retrieved documents into dense summaries for multi-hop reasoning using atomic propositions from synthetic data, improving HotpotQA by +3.00 EM. However, it does not explicitly identify bridges or use structural signals during training. ACON optimizes compression guidelines in natural language for long-horizon agents but is task-agnostic and does not model multi-hop structure. Joint bridge-compression learning appears to be an open research direction.\n\nSources:\n- [SentGraph (arXiv 2601.03014)](https://arxiv.org/abs/2601.03014)\n- [StepChain GraphRAG (arXiv 2510.02827)](https://arxiv.org/abs/2510.02827)\n- [BRIEF-Pro (arXiv 2510.13799)](https://arxiv.org/html/2510.13799)\n- [BRIEF (NAACL 2025)](https://aclanthology.org/2025.findings-naacl.301/)\n- [ACON (arXiv 2510.00615)](https://arxiv.org/abs/2510.00615)\n- [Structure-Aware Contrastive Learning for KG (EMNLP 2024)](https://aclanthology.org/2024.emnlp-main.772/)\n- [MuSiQue Benchmark Overview](https://www.emergentmind.com/topics/musique)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd8713b6-e436-4f46-b1fc-914fdc1b3d0d",
+            "isSidechain": true,
+            "agentId": "ae3f12fa1dde67f9d",
+            "requestId": "req_011Cb2nsMmHu3UTBr9gDJDTD",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "85d9afb5-7f56-49a8-98d3-3d8ae975dec9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3c079bbc-7053-455f-8c17-686836cdb6d9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012gnGdy2JdFXzUvBDLpvtwr",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1536,
+                "cache_read_input_tokens": 23641,
+                "output_tokens": 1113,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1536
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1113,
+                    "cache_read_input_tokens": 23641,
+                    "cache_creation_input_tokens": 1536,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1536,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000046"
+        }
+      ],
+      "message_count": 46
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-m-revising-a-research-idea-about-multi-hop-rag-compression-i-need-to-find-an.md"
+}

@@ -1,0 +1,164 @@
+{
+  "schema_version": "1.0",
+  "id": "c284b5c931829b063a9e",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: distill_sparse_swiglu - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects",
+  "task_key": "5c2a464b-0b31-419a-8f59-44736b1c85c0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/5c2a464b-0b31-419a-8f59-44736b1c85c0.jsonl",
+    "occurrence": 1,
+    "bytes": 580607,
+    "sha256": "fb439ec1a45b19b2f91b4b67fe3d25ef03dfe0b8f57de7679360451b1001d113"
+  },
+  "statistics": {
+    "messages": 168,
+    "user_turns": 11,
+    "tool_calls": 38,
+    "roles": {
+      "record": 48,
+      "user": 11,
+      "assistant": 33,
+      "tool_call": 38,
+      "tool_result": 38
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c284b5c931829b063a9e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 105,
+      "chunks": [
+        {
+          "path": "c284b5c931829b063a9e-part-0001.json",
+          "message_count": 105
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c284b5c931829b063a9e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "c284b5c931829b063a9e-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "c284b5c931829b063a9e-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "c284b5c931829b063a9e-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c284b5c931829b063a9e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "c284b5c931829b063a9e-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "c284b5c931829b063a9e-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "c284b5c931829b063a9e-part-0001.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c284b5c931829b063a9e-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "c284b5c931829b063a9e-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-distill-sparse-swiglu-home-ubuntu-agent-ml-research-idea-gen-0509-14-projects-copy-3.md"
+}

@@ -1,0 +1,981 @@
+{
+  "schema_version": "1.0",
+  "id": "a00c3a19f0e82c0b2de6",
+  "project": "distill_sparse_swiglu--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to verify a critical paper cited in a proposal I'm reviewing. Please: 1. Search for \"Do You Need Proprioceptive S",
+  "task_key": "agent-a5867814a3548eb84",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a5867814a3548eb84.jsonl",
+    "occurrence": 1,
+    "bytes": 39325,
+    "sha256": "a25799fa3761577e9e50ddcea5f3ec965f2a8cf1ba9371b7e58e3076dfeeb797"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T19:43:00.393Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to verify a critical paper cited in a proposal I'm reviewing. Please:\n\n1. Search for \"Do You Need Proprioceptive States in Visuomotor Policies arXiv 2509.18644 Zhao\" and verify it exists with the claimed findings (proprioception causes overfitting, removing it improved spatial generalization from 0% to 85%).\n\n2. Then use WebFetch to read the abstract and key findings from https://arxiv.org/abs/2509.18644\n\n3. Also search for \"He et al Efficient Modality Selection Multimodal Learning JMLR 2024\" to verify this paper exists and check whether the proposal adequately differentiates from it. The proposal claims He et al. addresses prediction loss not ranking accuracy, and submodularity doesn't transfer to ranking objectives - is this a fair characterization?\n\n4. Search for \"ThinkProprio think proprioceptively VLA manipulation arXiv 2602.06575\" to verify it exists and check the claim that 15% of visual tokens suffice with proprioceptive integration.\n\nReport all findings with specific details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+            "agentId": "a5867814a3548eb84",
+            "type": "user",
+            "uuid": "72651bc8-daf3-4415-8b8d-3e870f02ada6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T19:43:00.395Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "72651bc8-daf3-4415-8b8d-3e870f02ada6",
+                "isSidechain": true,
+                "agentId": "a5867814a3548eb84",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "ef186545-9bbe-49d3-a20b-89400d92580d",
+                "timestamp": "2026-05-13T19:43:00.395Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T19:43:03.837Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll conduct these searches in parallel to verify all three papers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef186545-9bbe-49d3-a20b-89400d92580d",
+            "isSidechain": true,
+            "agentId": "a5867814a3548eb84",
+            "requestId": "req_011Cb193Hxwqj1hN4ttoDb5D",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "378904cd-805b-4290-b1d0-457c9e799587",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Ba7XAr3M6GqXsAu6cajXN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 797,
+                "cache_read_input_tokens": 8223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 797,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T19:43:04.116Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WyP6C6zhArCAzd3UM8VWsa",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "378904cd-805b-4290-b1d0-457c9e799587",
+            "isSidechain": true,
+            "agentId": "a5867814a3548eb84",
+            "requestId": "req_011Cb193Hxwqj1hN4ttoDb5D",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "297fb19b-ebf2-43c7-a4cb-fcd171e95082",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Ba7XAr3M6GqXsAu6cajXN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 797,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 94,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 797
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 94,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 797,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 797,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T19:43:04.122Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01WyP6C6zhArCAzd3UM8VWsa",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "297fb19b-ebf2-43c7-a4cb-fcd171e95082",
+            "isSidechain": true,
+            "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+            "agentId": "a5867814a3548eb84",
+            "type": "user",
+            "uuid": "89061c7e-de06-46b6-b239-87ab2230cf69",
+            "sourceToolAssistantUUID": "297fb19b-ebf2-43c7-a4cb-fcd171e95082",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T19:43:09.318Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run all the searches and the WebFetch in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89061c7e-de06-46b6-b239-87ab2230cf69",
+            "isSidechain": true,
+            "agentId": "a5867814a3548eb84",
+            "requestId": "req_011Cb193a2q5sEidhQBrTuHo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4c261ae1-c839-45a5-8c8f-63befe233dde",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EE8eL3EzToiQESZabA8DoU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1903,
+                "cache_read_input_tokens": 9020,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1903,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T19:43:10.831Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QqXJx1wpBejgD55fpbz5Nz",
+              "name": "WebSearch",
+              "input": {
+                "query": "Do You Need Proprioceptive States in Visuomotor Policies arXiv 2509.18644 Zhao"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c261ae1-c839-45a5-8c8f-63befe233dde",
+            "isSidechain": true,
+            "agentId": "a5867814a3548eb84",
+            "requestId": "req_011Cb193a2q5sEidhQBrTuHo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7a09e8e6-8045-45a4-a2db-35624877bdd6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EE8eL3EzToiQESZabA8DoU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1903,
+                "cache_read_input_tokens": 9020,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1903,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T19:43:11.890Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Twj2iZcLtAyhMFK9bTeGxL",
+              "name": "WebSearch",
+              "input": {
+                "query": "He et al Efficient Modality Selection Multimodal Learning JMLR 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a09e8e6-8045-45a4-a2db-35624877bdd6",
+            "isSidechain": true,
+            "agentId": "a5867814a3548eb84",
+            "requestId": "req_011Cb193a2q5sEidhQBrTuHo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fc75e7b2-7340-4161-a1fc-090baf9efabf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EE8eL3EzToiQESZabA8DoU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1903,
+                "cache_read_input_tokens": 9020,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1903,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T19:43:12.839Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018VFjKQFn17QqhifFEx7bX7",
+              "name": "WebSearch",
+              "input": {
+                "query": "ThinkProprio think proprioceptively VLA manipulation arXiv 2602.06575"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc75e7b2-7340-4161-a1fc-090baf9efabf",
+            "isSidechain": true,
+            "agentId": "a5867814a3548eb84",
+            "requestId": "req_011Cb193a2q5sEidhQBrTuHo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7a016d78-3f67-40b1-9b37-c2d8973a18b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EE8eL3EzToiQESZabA8DoU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1903,
+                "cache_read_input_tokens": 9020,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1903,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T19:43:15.301Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QFNd9vh1XP8VX7y7UGqPa8",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2509.18644",
+                "prompt": "Extract the full title, all authors, the complete abstract, and any key findings mentioned on this page. Specifically check: (1) Does the paper claim proprioception causes overfitting? (2) Does it report that removing proprioception improved spatial generalization from 0% to 85%? Report all specific numbers and claims mentioned."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a016d78-3f67-40b1-9b37-c2d8973a18b3",
+            "isSidechain": true,
+            "agentId": "a5867814a3548eb84",
+            "requestId": "req_011Cb193a2q5sEidhQBrTuHo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a72a2355-4a51-4091-8f8c-d8c1b650090c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EE8eL3EzToiQESZabA8DoU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1903,
+                "cache_read_input_tokens": 9020,
+                "output_tokens": 344,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1903
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 344,
+                    "cache_read_input_tokens": 9020,
+                    "cache_creation_input_tokens": 1903,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1903,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T19:43:17.891Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QqXJx1wpBejgD55fpbz5Nz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Do You Need Proprioceptive States in Visuomotor Policies arXiv 2509.18644 Zhao\"\n\nLinks: [{\"title\":\"[2509.18644] Do You Need Proprioceptive States in Visuomotor Policies?\",\"url\":\"https://arxiv.org/abs/2509.18644\"},{\"title\":\"Do You Need Proprioceptive States in Visuomotor Policies?\",\"url\":\"https://statefreepolicy.github.io/\"},{\"title\":\"Do You Need Proprioceptive States in Visuomotor Policies?\",\"url\":\"https://arxiv.org/html/2509.18644v1\"},{\"title\":\"[2509.18644v1] Do You Need Proprioceptive States in Visuomotor Policies?\",\"url\":\"https://arxiv.org/abs/2509.18644v1\"},{\"title\":\"[2509.18644v2] Do You Need Proprioceptive States in Visuomotor Policies?\",\"url\":\"https://arxiv.org/abs/2509.18644v2\"},{\"title\":\"Paper page - Do You Need Proprioceptive States in Visuomotor Policies?\",\"url\":\"https://huggingface.co/papers/2509.18644\"},{\"title\":\"Do You Need Proprioceptive States in Visuomotor Policies? | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/do-you-need-proprioceptive-states-visuomotor-policies\"},{\"title\":\"DextrAH-RGB: Visuomotor Policies to Grasp Anything with Dexterous Hands\",\"url\":\"https://arxiv.org/html/2412.01791v1\"},{\"title\":\"Adapting by Analogy: OOD Generalization of Visuomotor Policies via Functional Correspondence\",\"url\":\"https://arxiv.org/html/2506.12678v1\"},{\"title\":\"Referring-Aware Visuomotor Policy Learning for Closed-Loop Manipulation\",\"url\":\"https://arxiv.org/html/2604.05544v1\"}]\n\nI found the paper! Here are the key details about \"Do You Need Proprioceptive States in Visuomotor Policies?\" (arXiv 2509.18644):\n\n## Overview\nImitation-learning-based visuomotor policies have been widely used in robot manipulation, where both visual observations and proprioceptive states are typically adopted together for precise control.\n\n## Main Finding\nHowever, in this study, the authors find that this common practice makes the policy overly reliant on the proprioceptive state input, which causes overfitting to the training trajectories and results in poor spatial generalization.\n\n## Proposed Solution\nThe paper proposes the State-free Policy, removing the proprioceptive state input and predicting actions only conditioned on visual observations. The State-free Policy is built in the relative end-effector action space, and should ensure the full task-relevant visual observations, here provided by dual wide-angle wrist cameras.\n\n## Key Results\nEmpirical results demonstrate that the State-free policy achieves significantly stronger spatial generalization than the state-based policy: in real-world tasks such as pick-and-place, challenging shirt-folding, and complex whole-body manipulation, spanning multiple robot embodiments, the average success rate improves from 0% to 85% in height generalization and from 6% to 64% in horizontal generalization.\n\n## Authors\nThe paper is authored by Juntu Zhao and 12 other co-authors from institutions including Shanghai Jiao Tong University, Spirit AI, Tsinghua University, New York University Shanghai, and Tongji University.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a09e8e6-8045-45a4-a2db-35624877bdd6",
+            "isSidechain": true,
+            "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+            "agentId": "a5867814a3548eb84",
+            "type": "user",
+            "uuid": "b5417d45-0fed-404b-b29a-4df6fffbd455",
+            "sourceToolAssistantUUID": "7a09e8e6-8045-45a4-a2db-35624877bdd6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T19:43:20.064Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018VFjKQFn17QqhifFEx7bX7",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ThinkProprio think proprioceptively VLA manipulation arXiv 2602.06575\"\n\nLinks: [{\"title\":\"[2602.06575] Think Proprioceptively: Embodied Visual Reasoning for VLA Manipulation\",\"url\":\"https://arxiv.org/abs/2602.06575\"},{\"title\":\"(PDF) Think Proprioceptively: Embodied Visual Reasoning for VLA Manipulation\",\"url\":\"https://www.researchgate.net/publication/400583452_Think_Proprioceptively_Embodied_Visual_Reasoning_for_VLA_Manipulation\"},{\"title\":\"Think Proprioceptively: Embodied Visual Reasoning for VLA Manipulation\",\"url\":\"https://arxiv.org/html/2602.06575\"},{\"title\":\"ThinkAct: Vision-Language-Action Reasoning via Reinforced Visual Latent Planning\",\"url\":\"https://jasper0314-huang.github.io/thinkact-vla/\"},{\"title\":\"David NAVARRO-ALARCON | Professor (Associate) | Doctor of Philosophy | The Hong Kong Polytechnic University, Hong Kong | PolyU | Department of Mechanical Engineering | Research profile\",\"url\":\"https://www.researchgate.net/profile/David-Navarro-Alarcon\"},{\"title\":\"Vision Language Action Models in Robotic Manipulation: A Systematic Review\",\"url\":\"https://arxiv.org/html/2507.10672v1\"},{\"title\":\"GitHub - OpenDriveLab/WholebodyVLA: [ICLR 2026] Towards Unified Latent VLA for Whole-body Loco-manipulation Control · GitHub\",\"url\":\"https://github.com/OpenDriveLab/WholebodyVLA\"},{\"title\":\"Pure Vision Language Action (VLA) Models: A Comprehensive Survey\",\"url\":\"https://arxiv.org/html/2509.19012v1\"},{\"title\":\"Scaling Proprioceptive-Visual Learning with Heterogeneous Pre-trained Transformers\",\"url\":\"https://arxiv.org/html/2409.20537v1\"},{\"title\":\"WholeBodyVLA: Towards Unified Latent VLA for Whole-body Loco-manipulation Control | OpenReview\",\"url\":\"https://openreview.net/forum?id=OCJmVjyzN7\"}]\n\nI found the research paper you're looking for. Here's a summary of ThinkProprio:\n\n## Overview\n\nThinkProprio converts proprioception into a sequence of text tokens in the VLM embedding space and fuses them with the task instruction at the input.\n\n## Problem Addressed\n\nVision-language-action (VLA) models typically inject proprioception only as a late conditioning signal, which prevents robot state from shaping instruction understanding and from influencing which visual tokens are attended throughout the policy.\n\n## Key Innovation\n\nEarly fusion lets embodied state participate in subsequent visual reasoning and token selection, biasing computation toward action-critical evidence while suppressing redundant visual tokens.\n\n## Results\n\nIn a systematic ablation over proprioception encoding, state entry point, and action-head conditioning, we find that text tokenization is more effective than learned projectors, and that retaining roughly 15% of visual tokens can match the performance of using the full token set.\n\nAcross CALVIN, LIBERO, and real-world manipulation, ThinkProprio matches or improves over strong baselines while reducing end-to-end inference latency over 50%.\n\nThe paper was submitted to arXiv on February 6, 2026, and is authored by Fangyuan Wang, Peng Zhou, Jiaming Qi, Shipeng Lyu, David Navarro-Alarcon, and Guodong Guo.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a016d78-3f67-40b1-9b37-c2d8973a18b3",
+            "isSidechain": true,
+            "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+            "agentId": "a5867814a3548eb84",
+            "type": "user",
+            "uuid": "f9026b91-588a-41d8-85ef-f657072b55ee",
+            "sourceToolAssistantUUID": "7a016d78-3f67-40b1-9b37-c2d8973a18b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T19:43:20.763Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QFNd9vh1XP8VX7y7UGqPa8",
+              "type": "tool_result",
+              "content": "# Paper Analysis: \"Do You Need Proprioceptive States in Visuomotor Policies?\"\n\n## Full Title\n\"Do You Need Proprioceptive States in Visuomotor Policies?\"\n\n## Authors\nJuntu Zhao, Wenbo Lu, Di Zhang, Yufeng Liu, Yushen Liang, Tianluo Zhang, Yifeng Cao, Junyuan Xie, Yingdong Hu, Shengjie Wang, Junliang Guo, Dequan Wang, Yang Gao\n\n## Complete Abstract\nThe researchers investigate whether combining visual observations with proprioceptive state data—standard practice in robotic manipulation—is optimal. They argue this approach creates \"overly reliant on the proprioceptive state input, which causes overfitting to the training trajectories.\"\n\nThey propose the State-free Policy using only visual observations in relative end-effector action space with dual wide-angle wrist cameras.\n\n## Key Findings\n\n**(1) Proprioception and Overfitting Claim:** YES\nThe abstract explicitly states the common practice \"causes overfitting to the training trajectories and results in poor spatial generalization.\"\n\n**(2) Spatial Generalization Improvements:** YES\nReported improvements across multiple metrics:\n- Height generalization: 0% to 85% success rate\n- Horizontal generalization: 6% to 64% success rate\n\n**Additional advantages noted:** Data efficiency and cross-embodiment adaptation improvements\n\n**Tasks demonstrated:** Pick-and-place, shirt-folding, whole-body manipulation across multiple robot embodiments"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a72a2355-4a51-4091-8f8c-d8c1b650090c",
+            "isSidechain": true,
+            "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+            "agentId": "a5867814a3548eb84",
+            "type": "user",
+            "uuid": "86ee6ecd-4288-4dba-a5bb-857937c9f939",
+            "sourceToolAssistantUUID": "a72a2355-4a51-4091-8f8c-d8c1b650090c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T19:43:22.484Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Twj2iZcLtAyhMFK9bTeGxL",
+              "type": "tool_result",
+              "content": "Web search results for query: \"He et al Efficient Modality Selection Multimodal Learning JMLR 2024\"\n\nLinks: [{\"title\":\"Efficient Modality Selection in Multimodal Learning\",\"url\":\"https://jmlr.org/papers/v25/23-0439.html\"},{\"title\":\"Efficient Modality Selection in Multimodal Learning\",\"url\":\"https://sampalomad.github.io/paper/he2024efficient.pdf\"},{\"title\":\"Efficient Modality Selection in Multimodal Learning\",\"url\":\"https://www.jmlr.org/papers/volume25/23-0439/23-0439.pdf\"},{\"title\":\"Efficient modality selection in multimodal learning | The Journal of Machine Learning Research\",\"url\":\"https://dl.acm.org/doi/10.5555/3722577.3722624\"},{\"title\":\"Journal of Machine Learning Research on X: \\\"'Efficient Modality Selection in Multimodal Learning', by Yifei He, Runxiang Cheng, Gargi Balasubramaniam, Yao-Hung Hubert Tsai, Han Zhao. https://t.co/K7o2CBIlit #multimodal #modality #modalities\\\" / X\",\"url\":\"https://x.com/JmlrOrg/status/1767657167190933840\"},{\"title\":\"Efficient modality selection in multimodal learning\",\"url\":\"https://dl.acm.org/doi/pdf/10.5555/3722577.3722624\"},{\"title\":\"dblp: Journal of Machine Learning Research, Volume 25\",\"url\":\"https://dblp.org/db/journals/jmlr/jmlr25.html\"},{\"title\":\"A survey on knowledge-enhanced multimodal learning | Artificial Intelligence Review | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s10462-024-10825-z\"},{\"title\":\"Robust Multimodal Learning With Missing Modalities via ...\",\"url\":\"https://www.computer.org/csdl/journal/tp/2025/02/10713849/20VwC7hALjq\"},{\"title\":\"Journal of Machine Learning Research\",\"url\":\"https://twitter.com/JmlrOrg/status/1767657167190933840\"}]\n\nI found the paper you're looking for. Here's what the search revealed:\n\n\"Efficient Modality Selection in Multimodal Learning\" was published in JMLR 2024 by authors Yifei He, Runxiang Cheng, Gargi Balasubramaniam, Yao-Hung Hubert Tsai, and Han Zhao.\n\n## Paper Summary\n\nThe paper addresses multimodal learning, which aims to learn from data of different modalities by fusing information from heterogeneous sources, but notes that using all available modalities is often infeasible under limited computational resources.\n\n**Key Contributions:**\n\n- The authors derive a greedy modality selection algorithm via submodular maximization, which selects the most useful modalities with an optimality guarantee on learning performance.\n\n- They connect marginal-contribution-based feature importance scores, such as Shapley value, from the feature selection domain to the context of modality selection, to efficiently compute the importance of individual modality.\n\n- In classification with cross-entropy loss, a modality's utility is quantified as the Shannon mutual information between the modality and the target; in regression with quadratic loss, the utility is quantified as the variance of the conditional expectation of the target given the modality.\n\n- The authors demonstrate the efficacy of their theoretical results and modality selection algorithms on 2 synthetic and 4 real-world data sets on a diverse range of multimodal data.\n\nThe paper is published in Journal of Machine Learning Research, Volume 25, Issue 1, January 2024.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc75e7b2-7340-4161-a1fc-090baf9efabf",
+            "isSidechain": true,
+            "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+            "agentId": "a5867814a3548eb84",
+            "type": "user",
+            "uuid": "fff673b8-3b77-4f0a-81e9-44b3714bdf8b",
+            "sourceToolAssistantUUID": "fc75e7b2-7340-4161-a1fc-090baf9efabf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T19:43:25.812Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch more details on the He et al. paper to verify the proposal's characterization."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fff673b8-3b77-4f0a-81e9-44b3714bdf8b",
+            "isSidechain": true,
+            "agentId": "a5867814a3548eb84",
+            "requestId": "req_011Cb194vUfw5Wpmg2AnZUux",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fff1b2dd-d3d0-4927-b77b-4bc83fae2f0b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SjefsZtv7iveg5nrLT3Q4o",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1308,
+                "cache_creation_input_tokens": 2217,
+                "cache_read_input_tokens": 10923,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2217,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T19:43:30.398Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vq596FvgdDVuBv1Fwta9MK",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://jmlr.org/papers/v25/23-0439.html",
+                "prompt": "Extract the full abstract and key details about this paper. Specifically: (1) What is the objective function or loss used - is it prediction loss or ranking accuracy? (2) Does the paper use submodularity? If so, for what specific objective? (3) Does the paper address ranking tasks or only classification/regression? (4) What are the theoretical guarantees and do they rely on submodularity of a specific loss function? Report all specific details about the problem formulation and theoretical framework."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fff1b2dd-d3d0-4927-b77b-4bc83fae2f0b",
+            "isSidechain": true,
+            "agentId": "a5867814a3548eb84",
+            "requestId": "req_011Cb194vUfw5Wpmg2AnZUux",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1197e37c-fc8c-4b76-a1bd-e4cc151d83dc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SjefsZtv7iveg5nrLT3Q4o",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1308,
+                "cache_creation_input_tokens": 2217,
+                "cache_read_input_tokens": 10923,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2217,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T19:43:32.045Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XFkdTZXCm9B2Nynj2mb2aR",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2602.06575",
+                "prompt": "Extract the full abstract, all authors, and key findings. Specifically check: (1) Does the paper claim that 15% of visual tokens suffice with proprioceptive integration? (2) What exactly is said about visual token reduction? (3) What are the specific performance numbers on CALVIN, LIBERO, and real-world tasks? Report all specific numbers and claims."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1197e37c-fc8c-4b76-a1bd-e4cc151d83dc",
+            "isSidechain": true,
+            "agentId": "a5867814a3548eb84",
+            "requestId": "req_011Cb194vUfw5Wpmg2AnZUux",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e6fe2dc0-7c3a-4155-8d10-9117e49f1606",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SjefsZtv7iveg5nrLT3Q4o",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1308,
+                "cache_creation_input_tokens": 2217,
+                "cache_read_input_tokens": 10923,
+                "output_tokens": 359,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2217
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1308,
+                    "output_tokens": 359,
+                    "cache_read_input_tokens": 10923,
+                    "cache_creation_input_tokens": 2217,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2217,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T19:43:33.906Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vq596FvgdDVuBv1Fwta9MK",
+              "type": "tool_result",
+              "content": "# Analysis of \"Efficient Modality Selection in Multimodal Learning\"\n\n## Objective Function\nThe paper does not specify a particular loss function (prediction loss or ranking accuracy) in the abstract. It focuses on selecting \"the most useful subset of modalities for learning under a cardinality constraint\" rather than defining a specific loss formulation.\n\n## Submodularity Usage\nYes, the paper explicitly employs submodularity. The authors \"derive a greedy modality selection algorithm via submodular maximization, which selects the most useful modalities with an optimality guarantee on learning performance.\"\n\n## Task Type\nThe paper addresses **classification and regression tasks only**. The abstract mentions evaluation on \"synthetic and 4 real-world data sets on a diverse range of multimodal data\" but does not reference ranking tasks specifically.\n\n## Theoretical Framework & Guarantees\nThe framework includes:\n- A \"unified theoretical framework to quantify the learning utility of modalities\"\n- \"Dependence assumptions to flexibly model the heterogeneous nature of multimodal data, which also allows efficient algorithm design\"\n- Optimality guarantees derived through submodular maximization\n- Connection to \"marginal-contribution-based feature importance scores, such as Shapley value\" for computing individual modality importance\n\nThe theoretical guarantees appear linked to the submodular maximization approach rather than a specific loss function's submodularity properties."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1197e37c-fc8c-4b76-a1bd-e4cc151d83dc",
+            "isSidechain": true,
+            "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+            "agentId": "a5867814a3548eb84",
+            "type": "user",
+            "uuid": "d7b85a86-312b-400a-aeab-b3db567b7767",
+            "sourceToolAssistantUUID": "1197e37c-fc8c-4b76-a1bd-e4cc151d83dc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T19:43:38.388Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XFkdTZXCm9B2Nynj2mb2aR",
+              "type": "tool_result",
+              "content": "# Paper Summary: Think Proprioceptively\n\n## Full Abstract\n\"Vision-language-action (VLA) models typically inject proprioception only as a late conditioning signal, which prevents robot state from shaping instruction understanding and from influencing which visual tokens are attended throughout the policy. We introduce ThinkProprio, which converts proprioception into a sequence of text tokens in the VLM embedding space and fuses them with the task instruction at the input. This early fusion lets embodied state participate in subsequent visual reasoning and token selection, biasing computation toward action-critical evidence while suppressing redundant visual tokens. In a systematic ablation over proprioception encoding, state entry point, and action-head conditioning, we find that text tokenization is more effective than learned projectors, and that retaining roughly 15% of visual tokens can match the performance of using the full token set. Across CALVIN, LIBERO, and real-world manipulation, ThinkProprio matches or improves over strong baselines while reducing end-to-end inference latency over 50%.\"\n\n## Authors\nFangyuan Wang, Peng Zhou, Jiaming Qi, Shipeng Lyu, David Navarro-Alarcon, Guodong Guo\n\n## Key Findings Analysis\n\n**(1) 15% Visual Token Claim:**\nYes, confirmed. The abstract explicitly states \"retaining roughly 15% of visual tokens can match the performance of using the full token set.\"\n\n**(2) Visual Token Reduction Details:**\nThe mechanism involves converting proprioceptive state into text tokens fused early with task instructions, enabling the model to bias computation toward \"action-critical evidence while suppressing redundant visual tokens.\"\n\n**(3) Performance Numbers:**\nThe webpage provides **no specific quantitative results** for CALVIN, LIBERO, or real-world tasks. It only states the approach \"matches or improves over strong baselines\" and reduces \"inference latency over 50%.\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6fe2dc0-7c3a-4155-8d10-9117e49f1606",
+            "isSidechain": true,
+            "promptId": "0550eaef-cd1f-4c7b-8cd6-2da723f3226e",
+            "agentId": "a5867814a3548eb84",
+            "type": "user",
+            "uuid": "14f4337d-80e3-4c27-9e25-9df00d17bec3",
+            "sourceToolAssistantUUID": "e6fe2dc0-7c3a-4155-8d10-9117e49f1606",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T19:44:07.759Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the complete verification findings for all three papers:\n\n---\n\n## Paper 1: \"Do You Need Proprioceptive States in Visuomotor Policies?\" (arXiv 2509.18644)\n\n**Status: VERIFIED -- exists and claims match.**\n\n- **Authors:** Juntu Zhao, Wenbo Lu, Di Zhang, Yufeng Liu, Yushen Liang, Tianluo Zhang, Yifeng Cao, Junyuan Xie, Yingdong Hu, Shengjie Wang, Junliang Guo, Dequan Wang, Yang Gao\n- **Affiliations:** Shanghai Jiao Tong University, Spirit AI, Tsinghua University, NYU Shanghai, Tongji University\n- **Proprioception causes overfitting claim:** Confirmed. The abstract explicitly states that including proprioceptive state input \"causes overfitting to the training trajectories and results in poor spatial generalization.\"\n- **0% to 85% spatial generalization claim:** Confirmed, but this specifically refers to **height generalization**. The paper also reports horizontal generalization improved from 6% to 64%. The proposal's citation of \"0% to 85%\" is accurate but should ideally specify it is height generalization, not all spatial generalization combined.\n- **Tasks demonstrated:** Pick-and-place, shirt-folding, whole-body manipulation across multiple robot embodiments.\n\n---\n\n## Paper 2: \"Efficient Modality Selection in Multimodal Learning\" (He et al., JMLR 2024)\n\n**Status: VERIFIED -- exists. The proposal's characterization is largely fair but could be more nuanced.**\n\n- **Authors:** Yifei He, Runxiang Cheng, Gargi Balasubramaniam, Yao-Hung Hubert Tsai, Han Zhao\n- **Published in:** Journal of Machine Learning Research, Volume 25, 2024\n- **Key framework:** The paper derives a greedy modality selection algorithm via submodular maximization with optimality guarantees.\n- **Regarding the proposal's characterization:**\n  - **\"Addresses prediction loss not ranking accuracy\"** -- **Fair.** The paper formulates modality utility for classification (cross-entropy loss / Shannon mutual information) and regression (quadratic loss / conditional variance). It does not address ranking objectives at all.\n  - **\"Submodularity doesn't transfer to ranking objectives\"** -- **Reasonable but unproven.** The paper's theoretical guarantees are indeed grounded in submodularity of specific loss-based utility functions (mutual information for classification, variance for regression). Ranking losses (e.g., pairwise losses, NDCG surrogates) have different mathematical structure, so the claim that submodularity guarantees don't straightforwardly transfer is plausible. However, this is an assertion by the proposal authors -- there is no formal proof cited that submodularity *cannot* apply to ranking. The proposal should acknowledge this is a gap in existing theory rather than a proven impossibility.\n\n---\n\n## Paper 3: \"Think Proprioceptively: Embodied Visual Reasoning for VLA Manipulation\" (arXiv 2602.06575)\n\n**Status: VERIFIED -- exists and the 15% claim matches.**\n\n- **Authors:** Fangyuan Wang, Peng Zhou, Jiaming Qi, Shipeng Lyu, David Navarro-Alarcon, Guodong Guo\n- **Submitted:** February 2026\n- **15% visual tokens claim:** Confirmed. The abstract explicitly states \"retaining roughly 15% of visual tokens can match the performance of using the full token set.\"\n- **Mechanism:** ThinkProprio converts proprioception into text tokens in the VLM embedding space and fuses them early with task instructions. This early fusion allows proprioceptive state to shape visual attention, suppressing redundant visual tokens.\n- **Additional results:** Matches or improves over strong baselines across CALVIN, LIBERO, and real-world manipulation while reducing end-to-end inference latency by over 50%.\n\n---\n\n## Summary Assessment\n\nAll three papers exist and are real. The specific numerical claims cited in the proposal (0% to 85% generalization for Zhao et al.; 15% visual tokens for ThinkProprio) are accurately reported. The one area warranting scrutiny is the proposal's differentiation from He et al.: while the characterization that He et al. addresses prediction loss rather than ranking is factually correct, the stronger claim that \"submodularity doesn't transfer to ranking objectives\" is plausible but should be framed as a theoretical gap rather than a definitive limitation, since no formal impossibility result is cited.\n\nSources:\n- [Do You Need Proprioceptive States in Visuomotor Policies? (arXiv)](https://arxiv.org/abs/2509.18644)\n- [State-free Policy Project Page](https://statefreepolicy.github.io/)\n- [Efficient Modality Selection in Multimodal Learning (JMLR)](https://jmlr.org/papers/v25/23-0439.html)\n- [Think Proprioceptively (arXiv)](https://arxiv.org/abs/2602.06575)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14f4337d-80e3-4c27-9e25-9df00d17bec3",
+            "isSidechain": true,
+            "agentId": "a5867814a3548eb84",
+            "requestId": "req_011Cb1966TjE1nnppoztsVrj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a6ed33d5-bcee-4087-8b08-62a2717fb450",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1142177a-63e5-466d-b204-030ae6acf004",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhL7tjxoW2WKwdECC1qdzo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2468,
+                "cache_read_input_tokens": 13140,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2468,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-verify-a-critical-paper-cited-in-a-proposal-i-m-reviewing-please-1-s.md"
+}
