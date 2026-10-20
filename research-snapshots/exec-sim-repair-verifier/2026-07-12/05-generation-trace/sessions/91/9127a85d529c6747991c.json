@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9127a85d529c6747991c",
+  "project": "exec-sim-repair-verifier--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目：exec-sim-repair-verifier。EMNLP 2026 ARR May 25 deadline (10 days)。论文题目：Classification Scales Where Ge",
+  "task_key": "717f96bf-e494-4f5a-bcaa-a1b2aab8a428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/717f96bf-e494-4f5a-bcaa-a1b2aab8a428.jsonl",
+    "occurrence": 1,
+    "bytes": 811582,
+    "sha256": "c6d6c4d1056900cf48378bd9de827a1fa6832c10bf510f3b023b409aaf9639f9"
+  },
+  "statistics": {
+    "messages": 134,
+    "user_turns": 1,
+    "tool_calls": 36,
+    "roles": {
+      "record": 37,
+      "user": 1,
+      "assistant": 24,
+      "tool_call": 36,
+      "tool_result": 36
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9127a85d529c6747991c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 132,
+      "chunks": [
+        {
+          "path": "9127a85d529c6747991c-part-0001.json",
+          "message_count": 79
+        },
+        {
+          "path": "9127a85d529c6747991c-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-exec-sim-repair-verifieremnlp-2026-arr-may-25-deadline-10-days-c-copy-2.md"
+}

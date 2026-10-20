@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "3d5d449fce360f0adadf",
+  "project": "exec-sim-repair-verifier--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: exec-sim-repair-verifier ## 运行环境 - 服务器名: seetacloud-westd-4x5090 - SSH 连接命令: ssh connect.westd.s",
+  "task_key": "781c8c81-15ec-4efb-a4f9-d239dc54e371",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/781c8c81-15ec-4efb-a4f9-d239dc54e371.jsonl",
+    "occurrence": 1,
+    "bytes": 821335,
+    "sha256": "1704b2f868441c93ab63f52e5803f43892d3d279c6bb873bb016c1e426eef652"
+  },
+  "statistics": {
+    "messages": 299,
+    "user_turns": 1,
+    "tool_calls": 96,
+    "roles": {
+      "record": 56,
+      "user": 1,
+      "assistant": 50,
+      "tool_call": 96,
+      "tool_result": 96
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3d5d449fce360f0adadf-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 297,
+      "chunks": [
+        {
+          "path": "3d5d449fce360f0adadf-part-0001.json",
+          "message_count": 165
+        },
+        {
+          "path": "3d5d449fce360f0adadf-part-0002.json",
+          "message_count": 132
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-exec-sim-repair-verifier-seetacloud-westd-4x5090-ssh-ssh-conne-copy-56.md"
+}

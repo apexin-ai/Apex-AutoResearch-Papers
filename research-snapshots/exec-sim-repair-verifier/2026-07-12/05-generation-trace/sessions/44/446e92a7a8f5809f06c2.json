@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "446e92a7a8f5809f06c2",
+  "project": "exec-sim-repair-verifier--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [WORKER DONE] Worker worker_d153-gpu1-ablation-cwm-followup_20260519T121402 已完成（status=done）。用 `get_worker_status('worke",
+  "task_key": "c2093b4f-74fe-4637-a603-109b48b8ee0b",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/c2093b4f-74fe-4637-a603-109b48b8ee0b.jsonl",
+    "occurrence": 1,
+    "bytes": 782235,
+    "sha256": "0a61c467d0ce376667e5945e93116caa93aebc85a311832fd65a1bfc63d926c9"
+  },
+  "statistics": {
+    "messages": 110,
+    "user_turns": 1,
+    "tool_calls": 32,
+    "roles": {
+      "record": 28,
+      "user": 1,
+      "assistant": 18,
+      "tool_call": 32,
+      "tool_result": 31
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "446e92a7a8f5809f06c2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 108,
+      "chunks": [
+        {
+          "path": "446e92a7a8f5809f06c2-part-0001.json",
+          "message_count": 80
+        },
+        {
+          "path": "446e92a7a8f5809f06c2-part-0002.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-worker-d153-gpu1-ablation-cwm-followup-20260519t121402-stat.md"
+}

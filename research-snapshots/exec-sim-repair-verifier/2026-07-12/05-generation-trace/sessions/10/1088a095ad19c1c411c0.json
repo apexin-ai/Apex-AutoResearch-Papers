@@ -1,0 +1,962 @@
+{
+  "schema_version": "1.0",
+  "id": "1088a095ad19c1c411c0",
+  "project": "exec-sim-repair-verifier--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: exec-sim-repair-verifier ## 运行环境 - 服务器名: seetacloud-westd-4x5090 - SSH 连接命令: ssh connect.westd.s",
+  "task_key": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/1701d77e-652c-4df8-acd6-9f504c21dab1.jsonl",
+    "occurrence": 1,
+    "bytes": 101695,
+    "sha256": "533cc2c18193a0e280b3d9d1b7d3b0cc2c14e0a0040cc3acb754f570c0aa0353"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "record": 11,
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T15:14:39.363Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T15:14:39.363Z",
+                "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+                "content": "<project_context>\n# 项目: exec-sim-repair-verifier\n\n## 运行环境\n- 服务器名: seetacloud-westd-4x5090\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /home/sonny/exec-sim-repair-verifier\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n预写 CWM Format Collapse 叙事段落。\n\n**背景**：我们刚确认 Qwen CWM s42 repo-level eval 的 format collapse 机制：\n- 63.7% unparseable（6236/9784 样本）\n- 模型生成冗长的 pytest 执行 trace（进度条 [ 1%], [ 3%]…），在到达 PASS/FAIL 判定前就触发 eos token 停止\n- mean gen length 仅 149.8 tokens（median 125）\n- 含 &lt;/think&gt; 标签的仅 0.3%（30/9784）——thinking mode 不是原因\n- 这解释了为什么 CWM 在 repo-level 低于 majority baseline（72.96%）\n\n**写作要求**：\n1. 先读论文写作规范：Read `/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md`\n2. 读当前 experiments.tex 了解上下文：Read `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex`\n3. 写 2-3 句话（英文，学术风格），描述 format collapse 机制：\n   - 现象：majority of predictions unparseable at repo-level（具体数字用 \\tbd{} 占位，等 multi-seed 数据确认）\n   - 机制：长上下文导致模型退化为 trace replay（输出 pytest 进度条）而非判断\n   - 影响：CWM repo-level 低于 majority baseline 的主因\n4. 不要用 AI 风格词汇（notably, crucial, leverage 等）\n5. 写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cwm_format_collapse_paragraph.md`\n\n**格式**：\n```markdown\n# CWM Format Collapse — Draft Paragraph\n\n## Context\n[说明这段话应插入 experiments.tex 的哪个位置]\n\n## Draft (English)\n[2-3 句话]\n\n## Notes\n[数字占位说明、待确认项]\n```"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T15:14:39.366Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T15:14:39.366Z",
+                "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T15:14:39.401Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: exec-sim-repair-verifier\n\n## 运行环境\n- 服务器名: seetacloud-westd-4x5090\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /home/sonny/exec-sim-repair-verifier\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n预写 CWM Format Collapse 叙事段落。\n\n**背景**：我们刚确认 Qwen CWM s42 repo-level eval 的 format collapse 机制：\n- 63.7% unparseable（6236/9784 样本）\n- 模型生成冗长的 pytest 执行 trace（进度条 [ 1%], [ 3%]…），在到达 PASS/FAIL 判定前就触发 eos token 停止\n- mean gen length 仅 149.8 tokens（median 125）\n- 含 &lt;/think&gt; 标签的仅 0.3%（30/9784）——thinking mode 不是原因\n- 这解释了为什么 CWM 在 repo-level 低于 majority baseline（72.96%）\n\n**写作要求**：\n1. 先读论文写作规范：Read `/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md`\n2. 读当前 experiments.tex 了解上下文：Read `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex`\n3. 写 2-3 句话（英文，学术风格），描述 format collapse 机制：\n   - 现象：majority of predictions unparseable at repo-level（具体数字用 \\tbd{} 占位，等 multi-seed 数据确认）\n   - 机制：长上下文导致模型退化为 trace replay（输出 pytest 进度条）而非判断\n   - 影响：CWM repo-level 低于 majority baseline 的主因\n4. 不要用 AI 风格词汇（notably, crucial, leverage 等）\n5. 写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cwm_format_collapse_paragraph.md`\n\n**格式**：\n```markdown\n# CWM Format Collapse — Draft Paragraph\n\n## Context\n[说明这段话应插入 experiments.tex 的哪个位置]\n\n## Draft (English)\n[2-3 句话]\n\n## Notes\n[数字占位说明、待确认项]\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "094058d2-7b78-4bfc-9913-279251075ee1",
+            "type": "user",
+            "uuid": "72940cfc-6b9f-40b3-bd78-c901ef957d16",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T15:14:39.401Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "72940cfc-6b9f-40b3-bd78-c901ef957d16",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "88a55034-72ae-496c-a208-84cc686732aa",
+                "timestamp": "2026-05-21T15:14:39.401Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+                "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T15:14:39.401Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "88a55034-72ae-496c-a208-84cc686732aa",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "agent_listing_delta",
+                  "addedTypes": [
+                    "claude",
+                    "Explore",
+                    "general-purpose",
+                    "Plan",
+                    "statusline-setup"
+                  ],
+                  "addedLines": [
+                    "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+                    "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+                    "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+                    "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+                    "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+                  ],
+                  "removedTypes": [],
+                  "isInitial": true,
+                  "showConcurrencyNote": true
+                },
+                "type": "attachment",
+                "uuid": "ee569c6c-5e6a-43d5-884e-a573a0e28f76",
+                "timestamp": "2026-05-21T15:14:39.401Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+                "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T15:14:39.401Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ee569c6c-5e6a-43d5-884e-a573a0e28f76",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "3dbaa493-f501-4dce-a8ad-fefbddb202ad",
+                "timestamp": "2026-05-21T15:14:39.401Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+                "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T15:14:39.401Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "3dbaa493-f501-4dce-a8ad-fefbddb202ad",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "713b0c6a-e25d-4686-997c-33d9ccebaa2c",
+                "timestamp": "2026-05-21T15:14:39.401Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+                "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write CWM format collapse paragraph",
+                "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1"
+              }
+            }
+          ],
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T15:14:44.085Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the writing norms and current experiments.tex first."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "713b0c6a-e25d-4686-997c-33d9ccebaa2c",
+            "isSidechain": false,
+            "requestId": "req_011CbFw3kGtkxAyTtA8Fc73L",
+            "type": "assistant",
+            "uuid": "6e492fc2-0aa7-477a-b4f4-f91adba4c489",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F54mxbUdvwxHXwRE4cP9hB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13253,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 166,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13253,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 166,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 13253,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13253
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T15:14:44.705Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ND1wpvHFA4VWDQ3T2XDDS3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6e492fc2-0aa7-477a-b4f4-f91adba4c489",
+            "isSidechain": false,
+            "requestId": "req_011CbFw3kGtkxAyTtA8Fc73L",
+            "type": "assistant",
+            "uuid": "8872c74d-59da-4c72-bbfa-a4c82987c15a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F54mxbUdvwxHXwRE4cP9hB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13253,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 166,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13253,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 166,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 13253,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13253
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T15:14:44.719Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ND1wpvHFA4VWDQ3T2XDDS3",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n75\t- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n76\t- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n77\t- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n78\t\n79\t### 2.3 审稿人视角检验\n80\t\n81\t写完后用这个标准自检：审稿人能否在 30 秒内判断——\n82\t- 问题是否重要？\n83\t- 方法是否清楚？\n84\t- 贡献是否可信？\n85\t- 结果是否有说服力？\n86\t\n87\t---\n88\t\n89\t## 三、Introduction 写作规范\n90\t\n91\t### 3.1 完整叙事线（5 段结构）\n92\t\n93\tIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n94\t\n95\t1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n96\t2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n97\t3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n98\t4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n99\t5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n100\t\n101\t### 3.2 整体叙事结构\n102\t\n103\t```\n104\t现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n105\t```\n106\t\n107\t### 3.3 禁忌\n108\t\n109\t- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n110\t- **禁止缺少过渡**：每段之间必须有逻辑连接\n111\t- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n112\t- 每条 Contribution 必须有对应的 section/table 支撑\n113\t- Contribution 列表中不能出现未在前文铺垫过的概念\n114\t\n115\t---\n116\t\n117\t## 四、Related Work 写作规范\n118\t\n119\t### 4.1 目标\n120\t\n121\t让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n122\t\n123\t### 4.2 结构要求\n124\t\n125\t- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n126\t- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n127\t- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n128\t\n129\t### 4.3 禁忌\n130\t\n131\t- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n132\t- **目标不是展示读了多少论文**，而是做归纳和比较\n133\t- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n134\t\n135\t### 4.4 引用充足度\n136\t\n137\t- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n138\t- 任何一类缺失，审稿人会立刻看出来调研不充分\n139\t- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n140\t\n141\t---\n142\t\n143\t## 五、去 AI 写作风格（硬规则）\n144\t\n145\t以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n146\t\n147\t### 5.1 严禁破折号（最显著的 AI 痕迹）\n148\t\n149\t**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n150\t\n151\t- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n152\t- 替代方式：用逗号、括号或拆分为两个句子\n153\t- 强制检查命令：\n154\t  ```bash\n155\t  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n156\t  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n157\t  ```\n158\t- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n159\t\n160\t### 5.2 段落与句式\n161\t\n162\t- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n163\t- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n164\t- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n165\t- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n166\t- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n167\t\n168\t### 5.3 用词黑名单\n169\t\n170\t- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n171\t- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n172\t- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n173\t- 避免 \"paradigm shift\" / \"novel\" 过度使用\n174\t\n175\t### 5.4 校对清单（4 步）\n176\t\n177\t1. 全文 proofread 语法和拼写\n178\t2. 检查所有代词/指示词（this, that, it）是否指代明确\n179\t3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n180\t4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n181\t\n182\t---\n183\t\n184\t## 六、图表与视觉规范\n185\t\n186\t### 6.1 知识密度原则\n187\t\n188\t- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n189\t- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n190\t- 能用 inline text 说清的不要占一整个 Figure\n191\t\n192\t### 6.2 表格规范\n193\t\n194\t- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n195\t- 小数精度全表统一\n196\t- 最优加粗、次优下划线\n197\t- Caption 必须自包含\n198\t\n199\t### 6.3 图片规范\n200\t\n201\t- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n202\t- 图中字体 >= 7pt（打印后仍可读）\n203\t- 栏宽约束需匹配目标 venue 模板要求\n204\t- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n205\t\n206\t### 6.4 空间效率\n207\t\n208\t- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n209\t- 优先使用 `\\subfigure` 合并相关图\n210\t- Table 能 inline 就不要单独浮动\n211\t- 图表占比与其对叙事的贡献成正比\n212\t\n213\t### 6.5 页面节奏\n214\t\n215\t好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n216\t\n217\t- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n218\t- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n219\t- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n220\t- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n221\t- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n222\t\n223\t### 6.6 表格 LaTeX 规范\n224\t\n225\t**Booktabs 标准（硬规则）**：\n226\t- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n227\t- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n228\t- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n229\t- 小数精度全表统一（如全部保留 1 位或 2 位）\n230\t- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n231\t\n232\t**宽度决策树**：\n233\t- ≤5 列 → 单栏宽度（`\\columnwidth`）\n234\t- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n235\t- >8 列 → 拆成两张表或移入 appendix\n236\t\n237\t---\n238\t\n239\t## 七、投稿前通用准备\n240\t\n241\t### 7.1 模板必须官方（硬规则）\n242\t\n243\t- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n244\t- **不要用**：\n245\t  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n246\t  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n247\t  - 组里学长留的旧版本（来源不明、无法追溯）\n248\t- 风险：\n249\t  - 样式不符合 → desk reject\n250\t  - margin 不对 → 被审稿人质疑诚信\n251\t  - reference 格式错 → 被认为不规范\n252\t- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n253\t- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n254\t\n255\t### 7.2 投稿要求逐项核对\n256\t\n257\t- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n258\t- 页数限制：查目标会议官网\n259\t- 匿名化要求：review 版 vs camera-ready 版本设置不同\n260\t- 行号开启（review 版常需）\n261\t- 字体大小、margin 不得修改 sty 文件\n262\t\n263\t### 7.3 最终修改 10 项检查流程\n264\t\n265\t提交前必须逐一检查：\n266\t1. 所有最新实验结果已全部录入\n267\t2. 根据实验结果将叙事调至最优状态\n268\t3. 附录所有内容在正文中被引用且融入叙事\n269\t4. 无数据堆砌（每个数字服务于叙事推进）\n270\t5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n271\t6. 全文主线统一（idea 变化后各章节逻辑一致）\n272\t7. 所有专有名词有定义\n273\t8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n274\t9. 图表知识密度高、无视觉遮挡\n275\t10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n276\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8872c74d-59da-4c72-bbfa-a4c82987c15a",
+            "isSidechain": false,
+            "promptId": "094058d2-7b78-4bfc-9913-279251075ee1",
+            "type": "user",
+            "uuid": "1721e9c8-7a99-4257-85d1-9422a3bbd5db",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+                "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n### 6.5 页面节奏\n\n好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n\n- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n\n### 6.6 表格 LaTeX 规范\n\n**Booktabs 标准（硬规则）**：\n- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n- 小数精度全表统一（如全部保留 1 位或 2 位）\n- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n\n**宽度决策树**：\n- ≤5 列 → 单栏宽度（`\\columnwidth`）\n- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n- >8 列 → 拆成两张表或移入 appendix\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n",
+                "numLines": 276,
+                "startLine": 1,
+                "totalLines": 276
+              }
+            },
+            "sourceToolAssistantUUID": "8872c74d-59da-4c72-bbfa-a4c82987c15a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T15:14:44.876Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PyUQdw3fSQFZazvS9C1urk",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe systematically compare \\cls{}, \\cwm{}, and \\traj{} across two representative code LLM families, two complexity levels, and multiple seeds to characterize the formulation design space for neural code verification.\n5\t\n6\t\\subsection{Experimental Setup}\n7\t\\label{sec:setup}\n8\t\n9\t\\paragraph{Datasets.}\n10\t\\emph{Function-level}: mutated variants from HumanEval~\\cite{chen2021humaneval} and MBPP~\\cite{austin2021mbpp} (five mutation types), labels verified by execution. 19,076 samples (train 15,290 / val 1,896 / test 1,890; pass:fail $\\approx$ 52:48, majority baseline 51.75\\%).\n11\t\\emph{Repo-level}: per-test instances from SWE-bench Verified~\\cite{chowdhury2024swebenchverified} mutants. ${\\sim}$70K training samples; val ($n{=}9{,}335$) and test ($n{=}9{,}784$) have zero problem overlap (majority baseline 72.96\\%). Val-based checkpoint selection follows standard practice~\\cite{jimenez2024swebench} where validation loss is computable; runs using truncate preprocessing produce NaN validation loss due to length-mismatched sequences, which defaults to the final epoch checkpoint (affects DeepSeek \\cls{} s123, all \\cwm{} runs, and Qwen3 \\traj{} runs; see Appendix~\\ref{app:hyperparams}).\n12\t\n13\t\\paragraph{Models and training.}\n14\tWe fine-tune Qwen3-4B and Qwen3-8B~\\cite{qwen2025qwen3} with Low-Rank Adaptation (LoRA)~\\cite{hu2022lora} (rank 16, 3 epochs) across five seeds. Seeds 42/123/456 use bfloat16; seeds 789/0 use NormalFloat 4-bit (NF4) quantization~\\cite{dettmers2024qlora} to test robustness to precision reduction (function-level accuracy remains within seed noise across both precisions; see footnote in \\S\\ref{sec:equivalence}). As a cross-model consistency check, we additionally fine-tune DeepSeek-Coder-6.7B~\\cite{guo2024deepseekcoder} with identical LoRA configuration (2 seeds each for \\cls{} and \\cwm{}). Our \\cwm{} baseline is a LoRA fine-tuned variant for matched comparison, not a reproduction of the 32B Code World Model~\\cite{meta2025cwm}. Repo-level models use val-selected checkpoints where available; runs with NaN validation loss use the final epoch checkpoint (Appendix~\\ref{app:hyperparams}). Zero-shot baselines use Qwen3-8B and Qwen3-32B (NF4) as LLM-as-judge. Full hyperparameter details appear in Appendix~\\ref{app:hyperparams}.\n15\t\n16\t\\paragraph{Statistics.}\n17\tConfidence intervals use clustered bootstrap~\\cite{davison1997bootstrap} (114 problem clusters, 10K resamples; we resample entire problems, not individual tests, to preserve within-problem correlations); per-test vs.\\ trajectory-level equivalence uses Two One-Sided Tests (TOST)~\\cite{schuirmann1987tost} with $\\pm$2 percentage point (\\pp{}) margin. Holm-Bonferroni correction~\\cite{holm1979} controls family-wise error rate across the four primary comparisons (Table~\\ref{tab:holm}). Intraclass correlation coefficient (ICC)~\\cite{shrout1979icc} quantifies within-problem correlation. Oracle analysis uses SWE-bench Verified (500 instances).\n18\t\n19\t\n20\t\\subsection{Function-Level Results}\n21\t\\label{sec:func_results}\n22\t\n23\tTable~\\ref{tab:main_results} reports function-level results across formulations and model families.\n24\t\n25\t\\begin{table}[t]\n26\t\\centering\n27\t\\small\n28\t\\caption{Function-level per-test accuracy on HumanEval+MBPP ($n{=}1{,}890$). Mean $\\pm$ std over seeds. Seeds 42/123/456: bfloat16; 789/0: NF4. DeepSeek: $n{=}2$ seeds; std reported for descriptive comparison, not inferential. \\traj{} evaluated on 1,032-sample subset (447 matched variants).}\n29\t\\label{tab:main_results}\n30\t\\resizebox{\\columnwidth}{!}{%\n31\t\\setlength{\\tabcolsep}{4pt}\n32\t\\begin{tabular}{llcc}\n33\t\\toprule\n34\t\\textbf{Method} & \\textbf{Model} & \\textbf{Seeds} & \\textbf{Accuracy (\\%)} \\\\\n35\t\\midrule\n36\t\\multicolumn{4}{l}{\\emph{Qwen3 (primary)}} \\\\\n37\t\\cls{} (fine-tuned) & 4B & 5 & \\textbf{88.43 $\\pm$ 0.78} \\\\\n38\t\\cwm{} (fine-tuned) & 4B & 5 & \\underline{87.19 $\\pm$ 0.37} \\\\\n39\t\\traj{} (fine-tuned) & 4B & 5 & 86.30 $\\pm$ 0.97 \\\\\n40\t\\midrule\n41\t\\multicolumn{4}{l}{\\emph{DeepSeek-Coder (cross-model consistency check)}} \\\\\n42\t\\cls{} (fine-tuned) & 6.7B & 2 & \\textbf{86.85 $\\pm$ 0.11} \\\\\n43\t\\cwm{} (fine-tuned) & 6.7B & 2 & \\underline{86.83 $\\pm$ 1.49} \\\\\n44\t\\traj{} (fine-tuned) & 6.7B & 2 & 84.16 $\\pm$ 1.30 \\\\\n45\t\\midrule\n46\t\\multicolumn{4}{l}{\\emph{Prompting baselines}} \\\\\n47\t0-shot & 8B (Qwen3) & 1 & 68.70 \\\\\n48\t0-shot & 6.7B (DeepSeek) & 1 & 63.00 \\\\\n49\tZS LLM-as-judge & 8B (Qwen3) & 1 & 64.40 \\\\\n50\tZS LLM-as-judge & 6.7B (DeepSeek) & 1 & 56.56 \\\\\n51\tZS LLM-as-judge & 32B (NF4) & 1 & 71.69 \\\\\n52\t3-shot ICL & 8B (Qwen3) & 1 & 68.78 \\\\\n53\t3-shot ICL & 6.7B (DeepSeek) & 1 & 59.95 \\\\\n54\t\\midrule\n55\tMajority (pass) & --- & --- & 51.75 \\\\\n56\t\\bottomrule\n57\t\\end{tabular}}\n58\t\\end{table}\n59\t\n60\tAll three formulations achieve comparable accuracy on Qwen3-4B: \\cls{} 88.43\\% ($\\pm$0.78), \\cwm{} 87.19\\% ($\\pm$0.37), \\traj{} 86.30\\% ($\\pm$0.97). DeepSeek-Coder-6.7B shows: \\cls{} 86.85\\%, \\cwm{} 86.83\\%, \\traj{} 84.16\\%. The \\cls{}--\\cwm{} gap (0.02--1.24\\pp{}) is within seed noise in both families. However, the \\cls{}--\\traj{} gap is model-dependent: $<$1\\pp{} on Qwen3 but 2.69\\pp{} on DeepSeek-Coder, exceeding the $\\pm$2\\pp{} equivalence margin (\\S\\ref{sec:equivalence}). \\cls{} and \\cwm{} are robustly equivalent; \\traj{} parity is model-contingent. Zero-shot baselines (Tables~\\ref{tab:main_results} and~\\ref{tab:repo_level}) establish that repo-level verification requires fine-tuning (0-shot$\\to$fine-tuned gains of 35--36\\pp{}) and that formulation choice matters only at repo level (\\cls{} outperforms \\cwm{} by 19--26\\pp{}).\n61\t\n62\t\n63\t\\subsection{Scaling Behavior}\n64\t\\label{sec:scaling}\n65\t\n66\tBeyond overall accuracy, we examine whether formulation ranking is stable across model sizes. Table~\\ref{tab:scaling} compares all three formulations at 4B and 8B using seeds 42 and 123 in full bfloat16 precision (excluding NF4 seeds to isolate the size effect).\n67\t\n68\t\\begin{table}[t]\n69\t\\centering\n70\t\\small\n71\t\\caption{Model-size scaling: accuracy (\\%) at 4B and 8B (Qwen3, seeds 42/123, full bfloat16 precision). \\cls{} and \\traj{} scale positively; \\cwm{} does not.}\n72\t\\label{tab:scaling}\n73\t\\setlength{\\tabcolsep}{4pt}\n74\t\\begin{tabular}{llcccc}\n75\t\\toprule\n76\t\\textbf{Method} & \\textbf{Size} & \\textbf{s42} & \\textbf{s123} & \\textbf{Mean} & \\textbf{$\\Delta$ 4B$\\to$8B} \\\\\n77\t\\midrule\n78\t\\cls{} & 4B & 87.83 & 89.52 & \\textbf{88.68} & \\multirow{2}{*}{+1.27} \\\\\n79\t\\cls{} & 8B & \\textbf{90.48} & 89.40 & \\textbf{89.94} & \\\\\n80\t\\midrule\n81\t\\cwm{} & 4B & 87.51 & 87.20 & \\underline{87.36} & \\multirow{2}{*}{$-$0.03} \\\\\n82\t\\cwm{} & 8B & 87.67 & 86.98 & 87.33 & \\\\\n83\t\\midrule\n84\t\\traj{} & 4B & 85.66 & 85.47 & 85.57 & \\multirow{2}{*}{+2.13} \\\\\n85\t\\traj{} & 8B & 87.60 & 87.79 & \\underline{87.70} & \\\\\n86\t\\bottomrule\n87\t\\end{tabular}\n88\t\\end{table}\n89\t\n90\t\\cls{} and \\traj{} both scale positively from 4B to 8B (+1.27\\pp{} and +2.13\\pp{} respectively), while \\cwm{} remains flat ($-$0.03\\pp{}). At 8B, the ranking is \\cls{} (89.94) $>$ \\traj{} (87.70) $>$ \\cwm{} (87.33). The \\cls{}--\\cwm{} gap widens from 1.32\\pp{} at 4B to 2.62\\pp{} at 8B (Figure~\\ref{fig:scaling_gap}); clustered bootstrap on the 3-seed superset (42, 123, 456 for \\cls{}/\\cwm{}) yields $p = 0.0066$ (95\\% CI $[1.80, 2.71]$), which confirms the widening is not a sampling artifact.\n91\t\n92\t\\cwm{} flat scaling ($-$0.03\\pp{}) may reflect suboptimal hyperparameter transfer at 8B rather than a fundamental limitation; we do not claim generation \\emph{cannot} benefit from scale. At function level, outputs are short (integers, booleans) and format compliance is near-perfect; at repo level, output length grows to ${\\sim}$477 tokens on average, and the same generation bottleneck manifests as format collapse (51--74\\% unparseable; \\S\\ref{sec:repo}). \\traj{} also shows no scaling benefit at repo level (72.92\\% at both 4B and 8B); only \\cls{} scales positively across both complexity levels.\n93\t\n94\t\n95\t\\subsection{Per-Test vs.\\ Trajectory-Level Equivalence}\n96\t\\label{sec:equivalence}\n97\t\n98\tWe compare \\cls{} (aggregated via all-pass rule) against \\traj{} on 523 variant-level instances across five seeds.\\footnote{Seeds 789 and 0 use NF4 quantized inference; the remaining three use bfloat16. Restricting to bfloat16 seeds only (3 seeds) yields $p{=}0.128$: consistent in direction but underpowered due to reduced seed coverage.} The pooled gap is $-$0.45\\pp{} (95\\% CI [$-$1.71, +0.84]); the TOST equivalence test confirms statistical equivalence at $p = 0.007$ ($\\pm$2\\pp{} margin, Holm-Bonferroni corrected). Our $\\pm$2\\pp{} threshold follows the SESOI framework~\\cite{lakens2017}, set independently of the observed gap and grounded in deployment relevance: at function-level accuracy (85--88\\%), a 2\\pp{} difference corresponds to ${\\sim}$38 per-test predictions across 1,890 tests (${\\sim}$2--3 problems out of 114)---comparable to between-seed variation (0.37--0.97\\pp{} std, Table~\\ref{tab:main_results}) and checkpoint selection noise ($<$1\\pp{}, \\S\\ref{sec:threats}). A difference within this range is indistinguishable from training noise for pipeline selection decisions. Equivalence holds at margins as tight as $\\pm$1.52\\pp{} (Table~\\ref{tab:tost_sensitivity}), well below the pre-specified threshold. Within-problem predictions are correlated (intraclass correlation ICC $= 0.191$, $p < 0.0001$, design effect (DEFF) $= 3.97$); all statistical tests use clustered bootstrap accordingly. On DeepSeek-Coder, the observed \\cls{}--\\cwm{} gap of 0.02\\pp{} is consistent with equivalence, but with only 2 seeds the comparison is underpowered. The DeepSeek \\cls{}--\\traj{} gap (2.69\\pp{}) exceeds the $\\pm$2\\pp{} margin; \\traj{} parity is model-dependent rather than universal, while the \\cls{}--\\cwm{} equivalence is robust across both families. Per-test classification provides diagnostic information (which specific tests fail) at no cost to variant-level accuracy. This parallels process supervision~\\cite{lightman2023letsverify}: step-level verification enables error localization without accuracy loss.\n99\t\n100\tOracle analysis on SWE-bench Verified (500 instances) shows that per-test advantage concentrates at $T \\geq 2$ fail-to-pass tests (31.3\\% of instances, contributing 55.3\\% of the total oracle advantage; Appendix~\\ref{app:oracle}).\n101\t\n102\t\n103\t\\subsection{Repo-Level: Complexity-Dependent Divergence}\n104\t\\label{sec:repo}\n105\t\n106\tTable~\\ref{tab:repo_level} compares formulations at repository-level complexity. Variant-level comparisons rely on limited seed coverage; the per-test interaction effect is statistically confirmed (see below). Checkpoints are val-selected where validation loss is computable (\\S\\ref{sec:setup}); the test set has zero problem overlap with validation.\n107\t\n108\t\\begin{table}[t]\n109\t\\centering\n110\t\\small\n111\t\\caption{Repo-level cross-formulation comparison on SWE-bench Verified test set. Qwen3-8B \\cls{}/\\traj{}: mean $\\pm$ std over 3 seeds; DeepSeek \\cls{}: 2 seeds\\textsuperscript{$\\ddagger$}; DeepSeek \\traj{}: 3 seeds; Qwen3-4B: seed 42. \\cwm{} multi-seed runs in progress.}\n112\t\\label{tab:repo_level}\n113\t\\resizebox{\\columnwidth}{!}{%\n114\t\\setlength{\\tabcolsep}{4pt}\n115\t\\begin{tabular}{lcccc}\n116\t\\toprule\n117\t\\textbf{Model} & \\textbf{\\cls{} (\\%)} & \\textbf{\\cls{} Var.\\ (\\%)} & \\textbf{\\cwm{} (\\%)} & \\textbf{\\traj{} Var.\\ (\\%)\\textsuperscript{$\\diamond$}} \\\\\n118\t\\midrule\n119\tQwen3-4B & 83.63 & 64.58 & 58.04 & 72.92 \\\\\n120\tQwen3-8B & \\textbf{84.83 $\\pm$ 0.67} & 72.92 / 81.25\\textsuperscript{$\\dagger$} & \\tbd{} & 72.91 $\\pm$ 3.61 \\\\\n121\tDeepSeek-6.7B & 84.38 $\\pm$ 2.50\\textsuperscript{$\\ddagger$} & 81.25\\textsuperscript{$\\dagger$} & \\tbd{} & 77.08 $\\pm$ 3.61 \\\\\n122\t\\midrule\n123\t0-shot (Qwen3-8B) & 49.90 & --- & --- & --- \\\\\n124\t0-shot (DeepSeek) & 48.54 & --- & --- & --- \\\\\n125\tMajority & 72.96 & 54.17 & 72.96 & 54.17 \\\\\n126\t\\bottomrule\n127\t\\end{tabular}}\n128\t\n129\t\\vspace{2pt}\n130\t{\\footnotesize \\textsuperscript{$\\dagger$}Individual-seed variant accuracy; multi-seed aggregate pending. \\textsuperscript{$\\ddagger$}One seed excluded: truncate preprocessing$\\to$NaN val loss, decision collapse (Table~\\ref{tab:taxonomy}); mean over two matched seeds. \\textsuperscript{$\\diamond$}Var.\\ columns: variant-level accuracy ($n{=}48$); \\cls{} aggregated via all-pass rule; \\traj{} by design. Per-test: $n{=}9{,}784$. \\cwm{} unparseable: 54\\% (4B); default to pass; parseable-only 38--43\\%, below majority. Eval seq\\_length differs across models (Appendix~\\ref{app:threats}). \\cwm{} uses epoch-3 checkpoint (val loss undefined); see text for checkpoint sensitivity analysis.}\n131\t\\end{table}\n132\t\n133\tZero-shot prompting collapses to an always-predict-unresolved baseline (variant accuracy 45.83\\%, below majority 54.17\\%; Appendix~\\ref{app:few_shot}).\n134\t\n135\t\\paragraph{Formulation divergence (single-seed).} Under our 4--8B LoRA protocol, \\cls{} and \\cwm{} diverge on Qwen3: the gap is 25.59\\pp{} at 4B (\\cls{} 83.63\\% vs.\\ \\cwm{} 58.04\\%, seed 42; Figure~\\ref{fig:scaling_gap}) and 19.31\\pp{} at 8B (84.48\\% vs.\\ 65.17\\%). \\cwm{} falls below majority baseline at both scales. These gaps suggest complexity-dependent formulation effectiveness, though single-seed design and multiple confounds (\\S\\ref{sec:threats}) preclude definitive causal attribution.\n136\t\n137\t\\paragraph{Cross-model consistency.} DeepSeek-Coder shows the same direction (\\cls{} $>$ \\cwm{}) under single-seed constraints. DeepSeek \\cls{} degradation ranges from ${\\sim}$4\\pp{} (s42, drop preprocessing) to ${\\sim}$12\\pp{} (s123, truncate preprocessing), reflecting preprocessing and checkpoint selection sensitivity (Table~\\ref{tab:taxonomy}). The \\cls{}--\\cwm{} gap magnitude also varies across families (20\\pp{} for Qwen3 vs.\\ 23--28\\pp{} for DeepSeek), primarily reflecting checkpoint selection: DeepSeek \\cwm{}'s val-selected checkpoint (56.70\\%) underperforms its epoch-3 checkpoint (61.49\\%), widening the apparent gap. Under matched checkpoint selection (epoch~3 for both), the cross-model gap difference narrows to ${\\sim}$2\\pp{} (Qwen3: 20.47\\pp{} vs.\\ DeepSeek: 22.89\\pp{}). The gap is formulation-driven rather than model-specific. Eval seq\\_length differs between models (Appendix~\\ref{app:threats}).\n138\t\n139\t\\paragraph{Failure mode taxonomy.} Variant-level analysis ($n{=}48$, Appendix Table~\\ref{tab:variant_level}) reveals three failure modes (Table~\\ref{tab:taxonomy}): format collapse (\\cwm{}, 51--74\\% unparseable), decision collapse (\\cls{} under truncate preprocessing, fail recall ${\\sim}$14\\%), and aggregation penalty (\\cls{} under drop preprocessing, fail recall 38--57\\%). Decision collapse is configuration-dependent, not model-inherent. \\traj{} avoids aggregation penalty by predicting variant outcomes directly (72.91--77.08\\%). Downsampling \\cls{} training data to match \\traj{}'s data volume yields 80.74\\%, still 7.82\\pp{} above \\traj{}; this controls data volume but not label granularity (per-test vs.\\ variant-level), and remains a single-seed comparison (Appendix~\\ref{app:downsample}).\n140\t\n141\t\\begin{table}[t]\n142\t\\centering\n143\t\\small\n144\t\\caption{Repo-level failure mode taxonomy. Variant-level majority baseline: 54.17\\%.}\n145\t\\label{tab:taxonomy}\n146\t\\setlength{\\tabcolsep}{3pt}\n147\t\\resizebox{\\columnwidth}{!}{%\n148\t\\begin{tabular}{llcc}\n149\t\\toprule\n150\t\\textbf{Failure Mode} & \\textbf{Representative} & \\textbf{Fail Recall} & \\textbf{Variant Acc} \\\\\n151\t\\midrule\n152\tFormat collapse & \\cwm{} (all) & N/A & 48--52\\% \\\\\n153\tDecision collapse & \\cls{} (DeepSeek, s123) & ${\\sim}$14\\% & 56\\% \\\\\n154\tAggr.\\ penalty & \\cls{} (Qwen3-8B) & 51--57\\% & 73--81\\% \\\\\n155\tAggr.\\ penalty & \\cls{} (DeepSeek, s42) & 38--51\\% & 79--81\\% \\\\\n156\t\\bottomrule\n157\t\\end{tabular}}\n158\t\\end{table}\n159\t\n160\t\\paragraph{Default assignment artifact.} The apparent \\cwm{} accuracy increase from 4B to 8B is an artifact of rising unparseable rate (53.7\\%$\\to$73.8\\%), which inflates accuracy via majority-class default while parseable-only accuracy decreases (42.88\\%$\\to$38.52\\%; Appendix~\\ref{app:parseable_bias}).\n161\t\n162\t\\paragraph{Complexity as moderator.} The \\cls{}--\\cwm{} gap widens from 1--3\\pp{} (function) to 19--26\\pp{} (repo) under our protocol; a matched-context ablation confirms input disparity explains $<$3\\% of this gap (Appendix~\\ref{app:ablations}).\n163\t\n164\t\\paragraph{Formulation$\\times$complexity interaction.} A mixed-effects linear probability model with problem-level random intercepts ($n{=}56{,}480$ observations, 139 problem clusters, DeepSeek-Coder) confirms the interaction: the \\cwm{} effect at function level is negligible ($\\hat{\\beta}{=}-0.002$, $p{=}0.805$), but the formulation$\\times$complexity interaction is highly significant ($z{=}-23.7$, $p{<}0.001$). \\cwm{} and \\cls{} are statistically indistinguishable at function level ($\\Delta{=}-0.2$\\pp{}) but diverge by 22\\pp{} at repo level, confirming the divergence is not an artifact of aggregation. The cross-complexity analysis uses DeepSeek-Coder, the only family with both function- and repo-level \\cwm{} evaluations under matched conditions. Across both model families at repo level, the \\cwm{} deficit is $-$22\\pp{} ($z{=}-64.4$, $p{<}0.001$); the model family effect is significant but small (+1.1\\pp{} for Qwen3, $p{=}0.002$), and the formulation$\\times$model interaction is likewise small (+1.6\\pp{}, $p{=}0.006$). Formulation explains $>$95\\% of the predictable variance; model identity modulates gap magnitude without changing direction (Appendix~\\ref{app:interaction}).\n165\t\n166\tAdditional repo-level limitations appear in Appendix~\\ref{app:limitations}.\n167\t\n168\t\n169\t\\subsection{Analysis}\n170\t\\label{sec:analysis}\n171\t\n172\t\\paragraph{Aggregation penalty.} Under the all-pass rule, a single false negative flips the variant verdict. The penalty ranges from 1.36\\pp{} (DeepSeek s42) to 19\\pp{} (Qwen3-4B), depending on fail recall and test count (Appendix Table~\\ref{tab:variant_level}). Val-based checkpoint selection biases toward per-test accuracy at the expense of fail recall, which amplifies the penalty. \\traj{} avoids this by predicting variant outcomes directly (72.91--77.08\\%). The penalty is predictable from test count: function-level variants ($\\bar{T} \\approx 2.3$) incur negligible penalty, while repo-level variants ($\\bar{T} \\gg 10$) incur substantial penalty, both the \\emph{advantage} and \\emph{cost} of per-test granularity concentrate at high $T$ (Appendix~\\ref{app:extended_analysis}(a)).\n173\t\n174\t\\paragraph{Why does generation degrade at repo level?} Output space complexity increases nonlinearly: function-level outputs are short strings (integers, booleans); repo-level outputs are unconstrained execution traces (mean ${\\sim}$477 tokens) where errors compound multiplicatively, and cause format collapse (53--74\\% unparseable). Even among parseable outputs, accuracy (38--43\\%) is below majority baseline, which indicates a semantic gap beyond format compliance (Appendix~\\ref{app:qualitative}).\n175\t\n176\t\\cls{} achieves 217$\\times$ higher throughput than \\cwm{} (1 output token vs.\\ avg 477), consistent across both model families.\n177\t\n178\t\\paragraph{Error complementarity.} At function level, \\cls{} and \\cwm{} exhibit partial complementarity: both are FP-dominant (over-predict failure), but at different rates (\\cls{} 56.5\\%, \\cwm{} 70.3\\%; Appendix~\\ref{app:extended_analysis}(a)), so \\cwm{} over-predicts failure on instances \\cls{} correctly classifies. An oracle combination achieves 90.63\\% (+2.80\\pp{} over the best single formulation; single-seed estimate). At repo level, oracle routing across configurations reaches 95.83\\% variant accuracy (+14.58\\pp{} over the best single configuration, $n{=}48$), the strongest evidence that the formulation design space contains complementary solutions worth exploring. A re-repair pilot found no benefit from per-test diagnostics ($n{=}44$, $p{=}0.42$; Appendix~\\ref{app:extended_analysis}(j)). Extended analysis appears in Appendix~\\ref{app:extended_analysis}.\n179\t\n180\t\\subsection{Threats to Validity}\n181\t\\label{sec:threats}\n182\t\n183\tWe identify five potential confounds and assess each in Appendix~\\ref{app:threats}: checkpoint selection ($<$1\\pp{} variation in ablation; NaN validation loss forces final-epoch default in all \\cwm{} runs and DeepSeek \\cls{} s123), evaluation sequence length (${\\sim}$1.5\\pp{}), preprocessing (${\\sim}$8\\pp{} cross-configuration variance), \\traj{} training regime (downsample confirms formulation advantage), and \\cwm{} scale/pretraining (primary limitation; all repo-level \\cwm{} conclusions conditional on the ${\\leq}$8B LoRA regime). The 19--26\\pp{} gap exceeds any single assessed confound, but correlated confounds and limited seeds mean definitive causal attribution requires multi-seed replication. Holm-Bonferroni correction confirms the two core claims survive (adjusted $p{=}0.012$ and $p{=}0.021$; Table~\\ref{tab:holm}).\n184\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89df6f5d-b7fa-4975-8b4c-72ad5228b317",
+            "isSidechain": false,
+            "promptId": "094058d2-7b78-4bfc-9913-279251075ee1",
+            "type": "user",
+            "uuid": "72e38a38-7de0-4207-bb34-c2204431c44f",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+                "content": "\\section{Experiments}\n\\label{sec:experiments}\n\nWe systematically compare \\cls{}, \\cwm{}, and \\traj{} across two representative code LLM families, two complexity levels, and multiple seeds to characterize the formulation design space for neural code verification.\n\n\\subsection{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Datasets.}\n\\emph{Function-level}: mutated variants from HumanEval~\\cite{chen2021humaneval} and MBPP~\\cite{austin2021mbpp} (five mutation types), labels verified by execution. 19,076 samples (train 15,290 / val 1,896 / test 1,890; pass:fail $\\approx$ 52:48, majority baseline 51.75\\%).\n\\emph{Repo-level}: per-test instances from SWE-bench Verified~\\cite{chowdhury2024swebenchverified} mutants. ${\\sim}$70K training samples; val ($n{=}9{,}335$) and test ($n{=}9{,}784$) have zero problem overlap (majority baseline 72.96\\%). Val-based checkpoint selection follows standard practice~\\cite{jimenez2024swebench} where validation loss is computable; runs using truncate preprocessing produce NaN validation loss due to length-mismatched sequences, which defaults to the final epoch checkpoint (affects DeepSeek \\cls{} s123, all \\cwm{} runs, and Qwen3 \\traj{} runs; see Appendix~\\ref{app:hyperparams}).\n\n\\paragraph{Models and training.}\nWe fine-tune Qwen3-4B and Qwen3-8B~\\cite{qwen2025qwen3} with Low-Rank Adaptation (LoRA)~\\cite{hu2022lora} (rank 16, 3 epochs) across five seeds. Seeds 42/123/456 use bfloat16; seeds 789/0 use NormalFloat 4-bit (NF4) quantization~\\cite{dettmers2024qlora} to test robustness to precision reduction (function-level accuracy remains within seed noise across both precisions; see footnote in \\S\\ref{sec:equivalence}). As a cross-model consistency check, we additionally fine-tune DeepSeek-Coder-6.7B~\\cite{guo2024deepseekcoder} with identical LoRA configuration (2 seeds each for \\cls{} and \\cwm{}). Our \\cwm{} baseline is a LoRA fine-tuned variant for matched comparison, not a reproduction of the 32B Code World Model~\\cite{meta2025cwm}. Repo-level models use val-selected checkpoints where available; runs with NaN validation loss use the final epoch checkpoint (Appendix~\\ref{app:hyperparams}). Zero-shot baselines use Qwen3-8B and Qwen3-32B (NF4) as LLM-as-judge. Full hyperparameter details appear in Appendix~\\ref{app:hyperparams}.\n\n\\paragraph{Statistics.}\nConfidence intervals use clustered bootstrap~\\cite{davison1997bootstrap} (114 problem clusters, 10K resamples; we resample entire problems, not individual tests, to preserve within-problem correlations); per-test vs.\\ trajectory-level equivalence uses Two One-Sided Tests (TOST)~\\cite{schuirmann1987tost} with $\\pm$2 percentage point (\\pp{}) margin. Holm-Bonferroni correction~\\cite{holm1979} controls family-wise error rate across the four primary comparisons (Table~\\ref{tab:holm}). Intraclass correlation coefficient (ICC)~\\cite{shrout1979icc} quantifies within-problem correlation. Oracle analysis uses SWE-bench Verified (500 instances).\n\n\n\\subsection{Function-Level Results}\n\\label{sec:func_results}\n\nTable~\\ref{tab:main_results} reports function-level results across formulations and model families.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Function-level per-test accuracy on HumanEval+MBPP ($n{=}1{,}890$). Mean $\\pm$ std over seeds. Seeds 42/123/456: bfloat16; 789/0: NF4. DeepSeek: $n{=}2$ seeds; std reported for descriptive comparison, not inferential. \\traj{} evaluated on 1,032-sample subset (447 matched variants).}\n\\label{tab:main_results}\n\\resizebox{\\columnwidth}{!}{%\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llcc}\n\\toprule\n\\textbf{Method} & \\textbf{Model} & \\textbf{Seeds} & \\textbf{Accuracy (\\%)} \\\\\n\\midrule\n\\multicolumn{4}{l}{\\emph{Qwen3 (primary)}} \\\\\n\\cls{} (fine-tuned) & 4B & 5 & \\textbf{88.43 $\\pm$ 0.78} \\\\\n\\cwm{} (fine-tuned) & 4B & 5 & \\underline{87.19 $\\pm$ 0.37} \\\\\n\\traj{} (fine-tuned) & 4B & 5 & 86.30 $\\pm$ 0.97 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\emph{DeepSeek-Coder (cross-model consistency check)}} \\\\\n\\cls{} (fine-tuned) & 6.7B & 2 & \\textbf{86.85 $\\pm$ 0.11} \\\\\n\\cwm{} (fine-tuned) & 6.7B & 2 & \\underline{86.83 $\\pm$ 1.49} \\\\\n\\traj{} (fine-tuned) & 6.7B & 2 & 84.16 $\\pm$ 1.30 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\emph{Prompting baselines}} \\\\\n0-shot & 8B (Qwen3) & 1 & 68.70 \\\\\n0-shot & 6.7B (DeepSeek) & 1 & 63.00 \\\\\nZS LLM-as-judge & 8B (Qwen3) & 1 & 64.40 \\\\\nZS LLM-as-judge & 6.7B (DeepSeek) & 1 & 56.56 \\\\\nZS LLM-as-judge & 32B (NF4) & 1 & 71.69 \\\\\n3-shot ICL & 8B (Qwen3) & 1 & 68.78 \\\\\n3-shot ICL & 6.7B (DeepSeek) & 1 & 59.95 \\\\\n\\midrule\nMajority (pass) & --- & --- & 51.75 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nAll three formulations achieve comparable accuracy on Qwen3-4B: \\cls{} 88.43\\% ($\\pm$0.78), \\cwm{} 87.19\\% ($\\pm$0.37), \\traj{} 86.30\\% ($\\pm$0.97). DeepSeek-Coder-6.7B shows: \\cls{} 86.85\\%, \\cwm{} 86.83\\%, \\traj{} 84.16\\%. The \\cls{}--\\cwm{} gap (0.02--1.24\\pp{}) is within seed noise in both families. However, the \\cls{}--\\traj{} gap is model-dependent: $<$1\\pp{} on Qwen3 but 2.69\\pp{} on DeepSeek-Coder, exceeding the $\\pm$2\\pp{} equivalence margin (\\S\\ref{sec:equivalence}). \\cls{} and \\cwm{} are robustly equivalent; \\traj{} parity is model-contingent. Zero-shot baselines (Tables~\\ref{tab:main_results} and~\\ref{tab:repo_level}) establish that repo-level verification requires fine-tuning (0-shot$\\to$fine-tuned gains of 35--36\\pp{}) and that formulation choice matters only at repo level (\\cls{} outperforms \\cwm{} by 19--26\\pp{}).\n\n\n\\subsection{Scaling Behavior}\n\\label{sec:scaling}\n\nBeyond overall accuracy, we examine whether formulation ranking is stable across model sizes. Table~\\ref{tab:scaling} compares all three formulations at 4B and 8B using seeds 42 and 123 in full bfloat16 precision (excluding NF4 seeds to isolate the size effect).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Model-size scaling: accuracy (\\%) at 4B and 8B (Qwen3, seeds 42/123, full bfloat16 precision). \\cls{} and \\traj{} scale positively; \\cwm{} does not.}\n\\label{tab:scaling}\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Size} & \\textbf{s42} & \\textbf{s123} & \\textbf{Mean} & \\textbf{$\\Delta$ 4B$\\to$8B} \\\\\n\\midrule\n\\cls{} & 4B & 87.83 & 89.52 & \\textbf{88.68} & \\multirow{2}{*}{+1.27} \\\\\n\\cls{} & 8B & \\textbf{90.48} & 89.40 & \\textbf{89.94} & \\\\\n\\midrule\n\\cwm{} & 4B & 87.51 & 87.20 & \\underline{87.36} & \\multirow{2}{*}{$-$0.03} \\\\\n\\cwm{} & 8B & 87.67 & 86.98 & 87.33 & \\\\\n\\midrule\n\\traj{} & 4B & 85.66 & 85.47 & 85.57 & \\multirow{2}{*}{+2.13} \\\\\n\\traj{} & 8B & 87.60 & 87.79 & \\underline{87.70} & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\cls{} and \\traj{} both scale positively from 4B to 8B (+1.27\\pp{} and +2.13\\pp{} respectively), while \\cwm{} remains flat ($-$0.03\\pp{}). At 8B, the ranking is \\cls{} (89.94) $>$ \\traj{} (87.70) $>$ \\cwm{} (87.33). The \\cls{}--\\cwm{} gap widens from 1.32\\pp{} at 4B to 2.62\\pp{} at 8B (Figure~\\ref{fig:scaling_gap}); clustered bootstrap on the 3-seed superset (42, 123, 456 for \\cls{}/\\cwm{}) yields $p = 0.0066$ (95\\% CI $[1.80, 2.71]$), which confirms the widening is not a sampling artifact.\n\n\\cwm{} flat scaling ($-$0.03\\pp{}) may reflect suboptimal hyperparameter transfer at 8B rather than a fundamental limitation; we do not claim generation \\emph{cannot} benefit from scale. At function level, outputs are short (integers, booleans) and format compliance is near-perfect; at repo level, output length grows to ${\\sim}$477 tokens on average, and the same generation bottleneck manifests as format collapse (51--74\\% unparseable; \\S\\ref{sec:repo}). \\traj{} also shows no scaling benefit at repo level (72.92\\% at both 4B and 8B); only \\cls{} scales positively across both complexity levels.\n\n\n\\subsection{Per-Test vs.\\ Trajectory-Level Equivalence}\n\\label{sec:equivalence}\n\nWe compare \\cls{} (aggregated via all-pass rule) against \\traj{} on 523 variant-level instances across five seeds.\\footnote{Seeds 789 and 0 use NF4 quantized inference; the remaining three use bfloat16. Restricting to bfloat16 seeds only (3 seeds) yields $p{=}0.128$: consistent in direction but underpowered due to reduced seed coverage.} The pooled gap is $-$0.45\\pp{} (95\\% CI [$-$1.71, +0.84]); the TOST equivalence test confirms statistical equivalence at $p = 0.007$ ($\\pm$2\\pp{} margin, Holm-Bonferroni corrected). Our $\\pm$2\\pp{} threshold follows the SESOI framework~\\cite{lakens2017}, set independently of the observed gap and grounded in deployment relevance: at function-level accuracy (85--88\\%), a 2\\pp{} difference corresponds to ${\\sim}$38 per-test predictions across 1,890 tests (${\\sim}$2--3 problems out of 114)---comparable to between-seed variation (0.37--0.97\\pp{} std, Table~\\ref{tab:main_results}) and checkpoint selection noise ($<$1\\pp{}, \\S\\ref{sec:threats}). A difference within this range is indistinguishable from training noise for pipeline selection decisions. Equivalence holds at margins as tight as $\\pm$1.52\\pp{} (Table~\\ref{tab:tost_sensitivity}), well below the pre-specified threshold. Within-problem predictions are correlated (intraclass correlation ICC $= 0.191$, $p < 0.0001$, design effect (DEFF) $= 3.97$); all statistical tests use clustered bootstrap accordingly. On DeepSeek-Coder, the observed \\cls{}--\\cwm{} gap of 0.02\\pp{} is consistent with equivalence, but with only 2 seeds the comparison is underpowered. The DeepSeek \\cls{}--\\traj{} gap (2.69\\pp{}) exceeds the $\\pm$2\\pp{} margin; \\traj{} parity is model-dependent rather than universal, while the \\cls{}--\\cwm{} equivalence is robust across both families. Per-test classification provides diagnostic information (which specific tests fail) at no cost to variant-level accuracy. This parallels process supervision~\\cite{lightman2023letsverify}: step-level verification enables error localization without accuracy loss.\n\nOracle analysis on SWE-bench Verified (500 instances) shows that per-test advantage concentrates at $T \\geq 2$ fail-to-pass tests (31.3\\% of instances, contributing 55.3\\% of the total oracle advantage; Appendix~\\ref{app:oracle}).\n\n\n\\subsection{Repo-Level: Complexity-Dependent Divergence}\n\\label{sec:repo}\n\nTable~\\ref{tab:repo_level} compares formulations at repository-level complexity. Variant-level comparisons rely on limited seed coverage; the per-test interaction effect is statistically confirmed (see below). Checkpoints are val-selected where validation loss is computable (\\S\\ref{sec:setup}); the test set has zero problem overlap with validation.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Repo-level cross-formulation comparison on SWE-bench Verified test set. Qwen3-8B \\cls{}/\\traj{}: mean $\\pm$ std over 3 seeds; DeepSeek \\cls{}: 2 seeds\\textsuperscript{$\\ddagger$}; DeepSeek \\traj{}: 3 seeds; Qwen3-4B: seed 42. \\cwm{} multi-seed runs in progress.}\n\\label{tab:repo_level}\n\\resizebox{\\columnwidth}{!}{%\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Model} & \\textbf{\\cls{} (\\%)} & \\textbf{\\cls{} Var.\\ (\\%)} & \\textbf{\\cwm{} (\\%)} & \\textbf{\\traj{} Var.\\ (\\%)\\textsuperscript{$\\diamond$}} \\\\\n\\midrule\nQwen3-4B & 83.63 & 64.58 & 58.04 & 72.92 \\\\\nQwen3-8B & \\textbf{84.83 $\\pm$ 0.67} & 72.92 / 81.25\\textsuperscript{$\\dagger$} & \\tbd{} & 72.91 $\\pm$ 3.61 \\\\\nDeepSeek-6.7B & 84.38 $\\pm$ 2.50\\textsuperscript{$\\ddagger$} & 81.25\\textsuperscript{$\\dagger$} & \\tbd{} & 77.08 $\\pm$ 3.61 \\\\\n\\midrule\n0-shot (Qwen3-8B) & 49.90 & --- & --- & --- \\\\\n0-shot (DeepSeek) & 48.54 & --- & --- & --- \\\\\nMajority & 72.96 & 54.17 & 72.96 & 54.17 \\\\\n\\bottomrule\n\\end{tabular}}\n\n\\vspace{2pt}\n{\\footnotesize \\textsuperscript{$\\dagger$}Individual-seed variant accuracy; multi-seed aggregate pending. \\textsuperscript{$\\ddagger$}One seed excluded: truncate preprocessing$\\to$NaN val loss, decision collapse (Table~\\ref{tab:taxonomy}); mean over two matched seeds. \\textsuperscript{$\\diamond$}Var.\\ columns: variant-level accuracy ($n{=}48$); \\cls{} aggregated via all-pass rule; \\traj{} by design. Per-test: $n{=}9{,}784$. \\cwm{} unparseable: 54\\% (4B); default to pass; parseable-only 38--43\\%, below majority. Eval seq\\_length differs across models (Appendix~\\ref{app:threats}). \\cwm{} uses epoch-3 checkpoint (val loss undefined); see text for checkpoint sensitivity analysis.}\n\\end{table}\n\nZero-shot prompting collapses to an always-predict-unresolved baseline (variant accuracy 45.83\\%, below majority 54.17\\%; Appendix~\\ref{app:few_shot}).\n\n\\paragraph{Formulation divergence (single-seed).} Under our 4--8B LoRA protocol, \\cls{} and \\cwm{} diverge on Qwen3: the gap is 25.59\\pp{} at 4B (\\cls{} 83.63\\% vs.\\ \\cwm{} 58.04\\%, seed 42; Figure~\\ref{fig:scaling_gap}) and 19.31\\pp{} at 8B (84.48\\% vs.\\ 65.17\\%). \\cwm{} falls below majority baseline at both scales. These gaps suggest complexity-dependent formulation effectiveness, though single-seed design and multiple confounds (\\S\\ref{sec:threats}) preclude definitive causal attribution.\n\n\\paragraph{Cross-model consistency.} DeepSeek-Coder shows the same direction (\\cls{} $>$ \\cwm{}) under single-seed constraints. DeepSeek \\cls{} degradation ranges from ${\\sim}$4\\pp{} (s42, drop preprocessing) to ${\\sim}$12\\pp{} (s123, truncate preprocessing), reflecting preprocessing and checkpoint selection sensitivity (Table~\\ref{tab:taxonomy}). The \\cls{}--\\cwm{} gap magnitude also varies across families (20\\pp{} for Qwen3 vs.\\ 23--28\\pp{} for DeepSeek), primarily reflecting checkpoint selection: DeepSeek \\cwm{}'s val-selected checkpoint (56.70\\%) underperforms its epoch-3 checkpoint (61.49\\%), widening the apparent gap. Under matched checkpoint selection (epoch~3 for both), the cross-model gap difference narrows to ${\\sim}$2\\pp{} (Qwen3: 20.47\\pp{} vs.\\ DeepSeek: 22.89\\pp{}). The gap is formulation-driven rather than model-specific. Eval seq\\_length differs between models (Appendix~\\ref{app:threats}).\n\n\\paragraph{Failure mode taxonomy.} Variant-level analysis ($n{=}48$, Appendix Table~\\ref{tab:variant_level}) reveals three failure modes (Table~\\ref{tab:taxonomy}): format collapse (\\cwm{}, 51--74\\% unparseable), decision collapse (\\cls{} under truncate preprocessing, fail recall ${\\sim}$14\\%), and aggregation penalty (\\cls{} under drop preprocessing, fail recall 38--57\\%). Decision collapse is configuration-dependent, not model-inherent. \\traj{} avoids aggregation penalty by predicting variant outcomes directly (72.91--77.08\\%). Downsampling \\cls{} training data to match \\traj{}'s data volume yields 80.74\\%, still 7.82\\pp{} above \\traj{}; this controls data volume but not label granularity (per-test vs.\\ variant-level), and remains a single-seed comparison (Appendix~\\ref{app:downsample}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Repo-level failure mode taxonomy. Variant-level majority baseline: 54.17\\%.}\n\\label{tab:taxonomy}\n\\setlength{\\tabcolsep}{3pt}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcc}\n\\toprule\n\\textbf{Failure Mode} & \\textbf{Representative} & \\textbf{Fail Recall} & \\textbf{Variant Acc} \\\\\n\\midrule\nFormat collapse & \\cwm{} (all) & N/A & 48--52\\% \\\\\nDecision collapse & \\cls{} (DeepSeek, s123) & ${\\sim}$14\\% & 56\\% \\\\\nAggr.\\ penalty & \\cls{} (Qwen3-8B) & 51--57\\% & 73--81\\% \\\\\nAggr.\\ penalty & \\cls{} (DeepSeek, s42) & 38--51\\% & 79--81\\% \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Default assignment artifact.} The apparent \\cwm{} accuracy increase from 4B to 8B is an artifact of rising unparseable rate (53.7\\%$\\to$73.8\\%), which inflates accuracy via majority-class default while parseable-only accuracy decreases (42.88\\%$\\to$38.52\\%; Appendix~\\ref{app:parseable_bias}).\n\n\\paragraph{Complexity as moderator.} The \\cls{}--\\cwm{} gap widens from 1--3\\pp{} (function) to 19--26\\pp{} (repo) under our protocol; a matched-context ablation confirms input disparity explains $<$3\\% of this gap (Appendix~\\ref{app:ablations}).\n\n\\paragraph{Formulation$\\times$complexity interaction.} A mixed-effects linear probability model with problem-level random intercepts ($n{=}56{,}480$ observations, 139 problem clusters, DeepSeek-Coder) confirms the interaction: the \\cwm{} effect at function level is negligible ($\\hat{\\beta}{=}-0.002$, $p{=}0.805$), but the formulation$\\times$complexity interaction is highly significant ($z{=}-23.7$, $p{<}0.001$). \\cwm{} and \\cls{} are statistically indistinguishable at function level ($\\Delta{=}-0.2$\\pp{}) but diverge by 22\\pp{} at repo level, confirming the divergence is not an artifact of aggregation. The cross-complexity analysis uses DeepSeek-Coder, the only family with both function- and repo-level \\cwm{} evaluations under matched conditions. Across both model families at repo level, the \\cwm{} deficit is $-$22\\pp{} ($z{=}-64.4$, $p{<}0.001$); the model family effect is significant but small (+1.1\\pp{} for Qwen3, $p{=}0.002$), and the formulation$\\times$model interaction is likewise small (+1.6\\pp{}, $p{=}0.006$). Formulation explains $>$95\\% of the predictable variance; model identity modulates gap magnitude without changing direction (Appendix~\\ref{app:interaction}).\n\nAdditional repo-level limitations appear in Appendix~\\ref{app:limitations}.\n\n\n\\subsection{Analysis}\n\\label{sec:analysis}\n\n\\paragraph{Aggregation penalty.} Under the all-pass rule, a single false negative flips the variant verdict. The penalty ranges from 1.36\\pp{} (DeepSeek s42) to 19\\pp{} (Qwen3-4B), depending on fail recall and test count (Appendix Table~\\ref{tab:variant_level}). Val-based checkpoint selection biases toward per-test accuracy at the expense of fail recall, which amplifies the penalty. \\traj{} avoids this by predicting variant outcomes directly (72.91--77.08\\%). The penalty is predictable from test count: function-level variants ($\\bar{T} \\approx 2.3$) incur negligible penalty, while repo-level variants ($\\bar{T} \\gg 10$) incur substantial penalty, both the \\emph{advantage} and \\emph{cost} of per-test granularity concentrate at high $T$ (Appendix~\\ref{app:extended_analysis}(a)).\n\n\\paragraph{Why does generation degrade at repo level?} Output space complexity increases nonlinearly: function-level outputs are short strings (integers, booleans); repo-level outputs are unconstrained execution traces (mean ${\\sim}$477 tokens) where errors compound multiplicatively, and cause format collapse (53--74\\% unparseable). Even among parseable outputs, accuracy (38--43\\%) is below majority baseline, which indicates a semantic gap beyond format compliance (Appendix~\\ref{app:qualitative}).\n\n\\cls{} achieves 217$\\times$ higher throughput than \\cwm{} (1 output token vs.\\ avg 477), consistent across both model families.\n\n\\paragraph{Error complementarity.} At function level, \\cls{} and \\cwm{} exhibit partial complementarity: both are FP-dominant (over-predict failure), but at different rates (\\cls{} 56.5\\%, \\cwm{} 70.3\\%; Appendix~\\ref{app:extended_analysis}(a)), so \\cwm{} over-predicts failure on instances \\cls{} correctly classifies. An oracle combination achieves 90.63\\% (+2.80\\pp{} over the best single formulation; single-seed estimate). At repo level, oracle routing across configurations reaches 95.83\\% variant accuracy (+14.58\\pp{} over the best single configuration, $n{=}48$), the strongest evidence that the formulation design space contains complementary solutions worth exploring. A re-repair pilot found no benefit from per-test diagnostics ($n{=}44$, $p{=}0.42$; Appendix~\\ref{app:extended_analysis}(j)). Extended analysis appears in Appendix~\\ref{app:extended_analysis}.\n\n\\subsection{Threats to Validity}\n\\label{sec:threats}\n\nWe identify five potential confounds and assess each in Appendix~\\ref{app:threats}: checkpoint selection ($<$1\\pp{} variation in ablation; NaN validation loss forces final-epoch default in all \\cwm{} runs and DeepSeek \\cls{} s123), evaluation sequence length (${\\sim}$1.5\\pp{}), preprocessing (${\\sim}$8\\pp{} cross-configuration variance), \\traj{} training regime (downsample confirms formulation advantage), and \\cwm{} scale/pretraining (primary limitation; all repo-level \\cwm{} conclusions conditional on the ${\\leq}$8B LoRA regime). The 19--26\\pp{} gap exceeds any single assessed confound, but correlated confounds and limited seeds mean definitive causal attribution requires multi-seed replication. Holm-Bonferroni correction confirms the two core claims survive (adjusted $p{=}0.012$ and $p{=}0.021$; Table~\\ref{tab:holm}).\n",
+                "numLines": 184,
+                "startLine": 1,
+                "totalLines": 184
+              }
+            },
+            "sourceToolAssistantUUID": "89df6f5d-b7fa-4975-8b4c-72ad5228b317",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T15:14:44.869Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PyUQdw3fSQFZazvS9C1urk",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1721e9c8-7a99-4257-85d1-9422a3bbd5db",
+            "isSidechain": false,
+            "requestId": "req_011CbFw3kGtkxAyTtA8Fc73L",
+            "type": "assistant",
+            "uuid": "89df6f5d-b7fa-4975-8b4c-72ad5228b317",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F54mxbUdvwxHXwRE4cP9hB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13253,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 166,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13253,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 166,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 13253,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13253
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "72e38a38-7de0-4207-bb34-c2204431c44f",
+                "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write CWM format collapse paragraph",
+                "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1"
+              }
+            }
+          ],
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T15:15:15.178Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a good understanding of both the writing norms and the current experiments.tex. Let me identify where this format collapse paragraph should be inserted and draft it.\n\nLooking at the experiments.tex, the relevant section is §5.4 (Repo-Level: Complexity-Dependent Divergence). There's already discussion of format collapse in several places:\n\n1. Line 131 footnote: \"CWM unparseable: 54% (4B); default to pass; parseable-only 38–43%, below majority\"\n2. Line 139: \"format collapse (CWM, 51–74% unparseable)\"\n\n\n3. Line 160: \"Default assignment artifact\" paragraph discussing unparseable rate rising from 53.7% to 73.8%\n4. Line 174: \"Why does generation degrade at repo level?\" paragraph\n\nThe new paragraph should provide the mechanistic explanation for WHY format collapse happens - the model generates pytest execution traces (progress bars) and hits eos before making a judgment. This is a more detailed diagnosis than what's currently in the paper.\n\nThe best insertion point would be either after the \"Default assignment artifact\" paragraph (line 160), as it extends the format collapse discussion, or within/after the \"Why does generation degrade at repo level?\" paragraph (line 174). The latter seems more natural since that section is already asking the right question.\n\nI'm drafting a paragraph that explains how long context causes the model to degenerate into replaying pytest traces rather than producing a verdict, which is the core reason CWM underperforms at repo level compared to the majority baseline. I need to keep it to 2-3 sentences in academic style, use \\tbd{} for pending numbers, avoid AI jargon and em-dashes, and end with a complete thought rather than an -ing phrase. Looking at the next thinking, I can see it's continuing the analysis of why generation degrades at repo level. The thinking is working through the mechanism and deciding where to place this finding in the paper structure.\n\nLet me rewrite this naturally:\n\nThe trace-replay failure—not reasoning-mode interference—is what's actually driving the accuracy drop at repo scale. When the model hits long repository contexts, it gets stuck replaying pytest execution traces with progress indicators instead of reaching an actual PASS or FAIL judgment, leaving most outputs unparseable. I'm considering whether this fits best as a continuation of the default assignment artifact discussion or as its own section in the analysis.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72e38a38-7de0-4207-bb34-c2204431c44f",
+            "isSidechain": false,
+            "requestId": "req_011CbFw49qUmeS4862JQJ2yg",
+            "type": "assistant",
+            "uuid": "5892d466-e154-445f-80f5-8ff4d3d85488",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AE7xsDFSBuk7o9jjkfSdzK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13359,
+                "cache_read_input_tokens": 24700,
+                "output_tokens": 1511,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13359,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1511,
+                    "cache_read_input_tokens": 24700,
+                    "cache_creation_input_tokens": 13359,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13359
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T15:15:15.181Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the context. Let me write the draft paragraph."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5892d466-e154-445f-80f5-8ff4d3d85488",
+            "isSidechain": false,
+            "requestId": "req_011CbFw49qUmeS4862JQJ2yg",
+            "type": "assistant",
+            "uuid": "ae45738c-f7c6-4b49-a978-91f91a5a4b93",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AE7xsDFSBuk7o9jjkfSdzK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13359,
+                "cache_read_input_tokens": 24700,
+                "output_tokens": 1511,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13359,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1511,
+                    "cache_read_input_tokens": 24700,
+                    "cache_creation_input_tokens": 13359,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13359
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T15:15:25.096Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011xrwn1oUC8t5Z3dWKYzc8d",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cwm_format_collapse_paragraph.md",
+                "content": "# CWM Format Collapse — Draft Paragraph\n\n## Context\nInsert into §5.5 Analysis, expanding the \"Why does generation degrade at repo level?\" paragraph (currently line 174 of experiments.tex). The existing paragraph states format collapse occurs but does not explain the mechanism; this text supplies the causal diagnosis. Alternative placement: after the \"Default assignment artifact\" paragraph in §5.4 (line 160).\n\n## Draft (English)\n\nManual inspection of \\cwm{} repo-level outputs reveals the format collapse mechanism: given long repository contexts, the model degenerates into replaying pytest execution traces (progress indicators such as \\texttt{[ 1\\%], [ 3\\%], \\ldots}) and triggers the end-of-sequence token before producing a PASS/FAIL verdict (\\tbd{}\\% of \\tbd{} samples unparseable; mean generation length \\tbd{} tokens). This trace-replay failure, not reasoning-mode interference ($<$\\tbd{}\\% of outputs contain thinking tokens), is the primary cause of \\cwm{} accuracy falling below the majority baseline at repo level.\n\n## Notes\n- Four \\tbd{} placeholders, pending multi-seed confirmation:\n  - unparseable rate: single-seed s42 value is 63.7% (6236/9784), but paper already reports 51–74% range across configs\n  - sample count: 9784 for single seed\n  - mean gen length: 149.8 tokens (median 125) from s42\n  - thinking-token rate: 0.3% (30/9784) from s42\n- If multi-seed data confirms s42 numbers, replace \\tbd{} with exact values\n- The \"progress indicators\" detail is new evidence not in the current draft; may want a brief appendix example (e.g., one truncated output sample)\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae45738c-f7c6-4b49-a978-91f91a5a4b93",
+            "isSidechain": false,
+            "requestId": "req_011CbFw49qUmeS4862JQJ2yg",
+            "type": "assistant",
+            "uuid": "1f8c8034-9864-43ad-9ccd-572bb06a7cbe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AE7xsDFSBuk7o9jjkfSdzK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13359,
+                "cache_read_input_tokens": 24700,
+                "output_tokens": 1511,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13359,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1511,
+                    "cache_read_input_tokens": 24700,
+                    "cache_creation_input_tokens": 13359,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13359
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T15:15:25.115Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011xrwn1oUC8t5Z3dWKYzc8d",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cwm_format_collapse_paragraph.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1f8c8034-9864-43ad-9ccd-572bb06a7cbe",
+            "isSidechain": false,
+            "promptId": "094058d2-7b78-4bfc-9913-279251075ee1",
+            "type": "user",
+            "uuid": "46ad6904-c755-4859-9219-60471383ccba",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cwm_format_collapse_paragraph.md",
+              "content": "# CWM Format Collapse — Draft Paragraph\n\n## Context\nInsert into §5.5 Analysis, expanding the \"Why does generation degrade at repo level?\" paragraph (currently line 174 of experiments.tex). The existing paragraph states format collapse occurs but does not explain the mechanism; this text supplies the causal diagnosis. Alternative placement: after the \"Default assignment artifact\" paragraph in §5.4 (line 160).\n\n## Draft (English)\n\nManual inspection of \\cwm{} repo-level outputs reveals the format collapse mechanism: given long repository contexts, the model degenerates into replaying pytest execution traces (progress indicators such as \\texttt{[ 1\\%], [ 3\\%], \\ldots}) and triggers the end-of-sequence token before producing a PASS/FAIL verdict (\\tbd{}\\% of \\tbd{} samples unparseable; mean generation length \\tbd{} tokens). This trace-replay failure, not reasoning-mode interference ($<$\\tbd{}\\% of outputs contain thinking tokens), is the primary cause of \\cwm{} accuracy falling below the majority baseline at repo level.\n\n## Notes\n- Four \\tbd{} placeholders, pending multi-seed confirmation:\n  - unparseable rate: single-seed s42 value is 63.7% (6236/9784), but paper already reports 51–74% range across configs\n  - sample count: 9784 for single seed\n  - mean gen length: 149.8 tokens (median 125) from s42\n  - thinking-token rate: 0.3% (30/9784) from s42\n- If multi-seed data confirms s42 numbers, replace \\tbd{} with exact values\n- The \"progress indicators\" detail is new evidence not in the current draft; may want a brief appendix example (e.g., one truncated output sample)\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "1f8c8034-9864-43ad-9ccd-572bb06a7cbe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T15:15:35.255Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/cwm_format_collapse_paragraph.md`。两句话覆盖三个层次：现象（unparseable rate）、机制（pytest trace replay → eos 截断）、排除项（thinking mode 不是原因）。四个 `\\tbd{}` 占位等 multi-seed 数据确认后替换。建议插入位置是 §5.5 \"Why does generation degrade at repo level?\" 段落中，作为 format collapse 的因果诊断补充。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46ad6904-c755-4859-9219-60471383ccba",
+            "isSidechain": false,
+            "requestId": "req_011CbFw77fLjqGskZMUnknsM",
+            "type": "assistant",
+            "uuid": "f9146ff6-17c2-4285-88d2-469be9dd03d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012shWv49A8XdySCQwdHiSS7",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1569,
+                "cache_read_input_tokens": 38059,
+                "output_tokens": 139,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1569,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 139,
+                    "cache_read_input_tokens": 38059,
+                    "cache_creation_input_tokens": 1569,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1569
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "f9146ff6-17c2-4285-88d2-469be9dd03d3",
+                "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1"
+              }
+            }
+          ],
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write CWM format collapse paragraph",
+                "sessionId": "1701d77e-652c-4df8-acd6-9f504c21dab1"
+              }
+            }
+          ],
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-exec-sim-repair-verifier-seetacloud-westd-4x5090-ssh-ssh-conne-copy-156.md"
+}

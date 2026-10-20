@@ -144,6 +144,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 2549
+        },
+        "exec-sim-repair-verifier": {
+          "status": "uploaded",
+          "project": "exec-sim-repair-verifier",
+          "collection": "exec-sim-repair-verifier--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "b6b1c581dd00f62028af89eaad504e7079d56c946d4c535e3c7ac6e0ac142d5a",
+          "indexed_members": 663,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 658
         }
       },
       "status": "in_progress",

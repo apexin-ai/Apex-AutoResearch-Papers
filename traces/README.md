@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **102 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **103 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -53,6 +53,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [error_type_pref_optim](../paper-assets/error_type_pref_optim/05-generation-trace/README.md) | 3 | 5 | 3 | 0 | 1,643 | [Read](../paper-assets/error_type_pref_optim/05-generation-trace/readable/README.md) |
 | [event-gated-adaptive-horizon](../paper-assets/event-gated-adaptive-horizon/05-generation-trace/README.md) | 666 | 1,123 | 1,087 | 209 | 193,802 | [Read](../paper-assets/event-gated-adaptive-horizon/05-generation-trace/readable/README.md) |
 | [exec-sim-repair-verifier](../paper-assets/exec-sim-repair-verifier/05-generation-trace/README.md) | 733 | 1,300 | 1,255 | 223 | 250,687 | [Read](../paper-assets/exec-sim-repair-verifier/05-generation-trace/readable/README.md) |
+| [exec-sim-repair-verifier--export-20260712](../research-snapshots/exec-sim-repair-verifier/2026-07-12/05-generation-trace/README.md) | 658 | 0 | 0 | 0 | 57,535 | [Read](../research-snapshots/exec-sim-repair-verifier/2026-07-12/05-generation-trace/readable/README.md) |
 | [faith-evidence-ie](../paper-assets/faith-evidence-ie/05-generation-trace/README.md) | 892 | 1,381 | 1,352 | 245 | 217,142 | [Read](../paper-assets/faith-evidence-ie/05-generation-trace/readable/README.md) |
 | [faith-evidence-ie--export-20260712](../research-snapshots/faith-evidence-ie/2026-07-12/05-generation-trace/README.md) | 2,549 | 0 | 0 | 0 | 318,975 | [Read](../research-snapshots/faith-evidence-ie/2026-07-12/05-generation-trace/readable/README.md) |
 | [gated_mfrm_judge_bias](../paper-assets/gated_mfrm_judge_bias/05-generation-trace/README.md) | 144 | 421 | 398 | 10 | 78,434 | [Read](../paper-assets/gated_mfrm_judge_bias/05-generation-trace/readable/README.md) |
@@ -111,6 +112,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**113,556 source records · 10,361,140 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**114,214 source records · 10,418,675 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

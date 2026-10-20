@@ -10,6 +10,7 @@ These snapshots preserve later project exports alongside the initial workspace r
 | distrib_canary_collapse | 2026-07-12 | No PDF in snapshot | [Assets](distrib_canary_collapse/2026-07-12/README.md) · [Conversations](distrib_canary_collapse/2026-07-12/05-generation-trace/readable/README.md) |
 | ec_hte_llm_annotation | 2026-07-12 | No PDF in snapshot | [Assets](ec_hte_llm_annotation/2026-07-12/README.md) · [Conversations](ec_hte_llm_annotation/2026-07-12/05-generation-trace/readable/README.md) |
 | entrainment_gated_ft | 2026-07-12 | No PDF in snapshot | [Assets](entrainment_gated_ft/2026-07-12/README.md) · [Conversations](entrainment_gated_ft/2026-07-12/05-generation-trace/readable/README.md) |
+| exec-sim-repair-verifier | 2026-07-12 | No PDF in snapshot | [Assets](exec-sim-repair-verifier/2026-07-12/README.md) · [Conversations](exec-sim-repair-verifier/2026-07-12/05-generation-trace/readable/README.md) |
 | faith-evidence-ie | 2026-07-12 | No PDF in snapshot | [Assets](faith-evidence-ie/2026-07-12/README.md) · [Conversations](faith-evidence-ie/2026-07-12/05-generation-trace/readable/README.md) |
 | gen-depth-contamination | 2026-07-12 | No PDF in snapshot | [Assets](gen-depth-contamination/2026-07-12/README.md) · [Conversations](gen-depth-contamination/2026-07-12/05-generation-trace/readable/README.md) |
 | gen-depth-fingerprint | 2026-07-12 | No PDF in snapshot | [Assets](gen-depth-fingerprint/2026-07-12/README.md) · [Conversations](gen-depth-fingerprint/2026-07-12/05-generation-trace/readable/README.md) |

@@ -1,0 +1,3151 @@
+# Research conversation: <project_context> # 项目: exec-sim-repair-verifier ## 运行环境 - 服务器名: seetacloud-westd-4x5090 - SSH 连接命令: ssh connect.westd.s — Part 2 of 2
+
+**A Systematic Comparison of Execution-Free Verification Formulations for Code Repair (July export snapshot)** · Conversation logs
+
+[← Part 1](part-001.md) · [Transcript overview](../research-conversation-project-context-exec-sim-repair-verifier-seetacloud-westd-4x5090-ssh-ssh-conne-copy-88.md) · [Structured JSON](../../../sessions/c1/c16ec4a06a7141da5d8e.json)
+
+## Round 1
+
+### Tool result
+
+_source line 243 · 2026-05-19T12:29:43.272Z_
+
+<details><summary>↩ Tool result · `toolu_01Y4TSXBpKzDBDB81F3iKn3w`</summary>
+
+```text
+Error: result (135,184 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/aa8f10f1-7abf-4586-84aa-aeefbf528139/tool-results/mcp-agent-ml-research-read_registry-1779193783257.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/aa8f10f1-7abf-4586-84aa-aeefbf528139/tool-results/mcp-agent-ml-research-read_registry-1779193783257.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f7a104af-feb8-48e4-b0fe-8585d20aac7f",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "6c1de45c-1793-4ea0-8dbe-9f31f7ca2a2e",
+  "toolUseResult": "Error: result (135,184 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/aa8f10f1-7abf-4586-84aa-aeefbf528139/tool-results/mcp-agent-ml-research-read_registry-1779193783257.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/aa8f10f1-7abf-4586-84aa-aeefbf528139/tool-results/mcp-agent-ml-research-read_registry-1779193783257.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"cls8b-s42-ckpt-ablation\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T12:03:31.233Z\", \"updated_at\": \"2026-05-19T12:18:35.566Z\", \"hypothesis\": \"Checkpoint selection bias quantification (N2): comparing epoch 1 (ckpt-2200) / val-selected (ckpt-3600, 84.48%) / final epoch (ckpt-6633) for Qwen3-8B CLS repo-level s42\"}, \"deepseek-cls-repo-s456-train\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T11:58:24.742Z\", \"updated_at\": \"2026-05-19T12:01:55.058Z\", \"hypothesis\": \"DeepSeek CLS repo-level s456: 第3个seed，与s42(82.61%)和s123(74.93%)组成3-seed coverage，回应N1审稿意见\", \"parent\": \"deepseek-cls-repo-v5\"}, \"qwen3-8b-traj-repo-s456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:57:13.413Z\", \"updated_at\": \"2026-05-19T11:57:43.364Z\", \"hypothesis\": \"Qwen3-8B TRAJ repo-level s456: multi-seed replication for N1. s42=72.92%; s123=77.08%; DeepSeek TRAJ s123=77.1%\", \"parent\": \"qwen3-8b-traj-repo-s42-v2\", \"metrics\": {\"variant_accuracy\": 70.83, \"variant_correct\": 34, \"variant_total\": 48, \"f1_macro\": 70.63, \"overall_accuracy\": 70.83, \"precision_unresolved\": 63.33, \"recall_unresolved\": 86.36, \"f1_unresolved\": 73.08, \"precision_resolved\": 83.33, \"recall_resolved\": 57.69, \"f1_resolved\": 68.18, \"train_loss\": 0.5664, \"eval_loss_all_nan\": true}, \"conclusion\": \"success\"}, \"qwen3-8b-traj-repo-s123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:51:14.265Z\", \"updated_at\": \"2026-05-19T11:51:52.084Z\", \"hypothesis\": \"Qwen3-8B TRAJ repo-level s123: multi-seed replication for N1. s42=72.92%; DeepSeek TRAJ s123=77.1%\", \"parent\": \"qwen3-8b-traj-repo-s42-v2\", \"metrics\": {\"variant_accuracy\": 77.08, \"variant_correct\": 37, \"variant_total\": 48, \"f1_macro\": 76.59, \"overall_accuracy\": 77.08, \"precision_unresolved\": 78.95, \"recall_unresolved\": 68.18, \"f1_unresolved\": 73.17, \"precision_resolved\": 75.86, \"recall_resolved\": 84.62, \"f1_resolved\": 80, \"train_loss\": 0.5706, \"eval_loss_all_nan\": true}, \"conclusion\": \"success\"}, \"cls8b-repo-s456-train\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T11:43:11.006Z\", \"updated_at\": \"2026-05-19T11:43:53.996Z\", \"hypothesis\": \"Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见\", \"parent\": \"repo-level-cls-8b-s42-resume\"}, \"exp-downsample-cls-func-v3-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:32:19.527Z\", \"updated_at\": \"2026-05-19T07:10:09.357Z\", \"hypothesis\": \"Eval downsample CLS (Qwen3-4B, ~8K训练数据) on repo-level test set. 如果 accuracy 接近全量训练的 CLS (83.63%), 则证明 CLS formulation 优势不来自数据量\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 80.74, \"f1_macro\": 75.89, \"fail_f1\": 65.1, \"pass_f1\": 86.7, \"unparseable\": 132, \"total\": 9784, \"source\": \"extracted from log (file write failed)\"}}, \"exp-downsample-cls-func-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:05:36.371Z\", \"updated_at\": \"2026-05-19T06:57:21.152Z\", \"hypothesis\": \"CLS function-level 的 accuracy 优势不仅仅来自更多训练数据（CLS 15K vs TRAJ 8K）。将 CLS 训练数据 downsample 至与 TRAJ 相同规模（~8K），CLS 仍应优于 TRAJ，证明 formulation 本身的优势\", \"parent\": \"exp-downsample-cls-func-v2\", \"notes\": \"v2 failed (EXIT_CODE=1) at trainer.train() — wandb tried online mode, no API key configured: `UsageError: No API key configured. Use wandb login to log in.` (line `_find_or_prompt_for_key`). v3 fix: submit_training_job framework auto-injected `WANDB_MODE=offline` + `CUDA_VISIBLE_DEVICES=1` + `HF_HUB_OFFLINE=1`. Confirmed via /proc/796729/environ. v3 running on GPU 1 (cuda:1), tmux session exp-downsample-cls-func-v3, started 2026-05-19 12:05:35, step ~36/756 @ ~3.35s/iter, ETA ~42 min total. Data: train_downsampled.jsonl 8051 rows (8041 after masking filter), val.jsonl 1896 rows.\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.2869, \"eval_loss_epoch1\": 0.1061, \"eval_loss_epoch2\": 0.0907, \"eval_loss_epoch3\": 0.1156, \"best_epoch\": 2, \"training_time_min\": 44.4}}, \"exp-downsample-cls-func-v3-eval-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T06:33:40.319Z\", \"updated_at\": \"2026-05-19T06:33:52.644Z\", \"hypothesis\": \"Eval downsample CLS (Qwen3-4B, ~8K训练数据) on repo-level test set. 如果 accuracy 接近全量训练的 CLS (83.63%), 则证明 CLS formulation 优势不来自数据量\"}, \"exp-e-qwen3-3shot-baseline\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T03:20:13.381Z\", \"updated_at\": \"2026-05-19T05:31:22.482Z\", \"hypothesis\": \"Qwen3-8B 3-shot few-shot CLS baseline 在 repo-level 表现差于 fine-tuned models，与 DeepSeek 3-shot 一致，证明 fine-tuning 的必要性跨模型成立\", \"conclusion\": \"success\", \"metrics\": {\"per_test_accuracy\": 71.61, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": -1.35, \"f1_fail\": 61.42, \"f1_pass\": 77.54, \"f1_macro\": 69.48, \"variant_accuracy\": 45.83, \"variant_correct\": 22, \"variant_total\": 48, \"n_instances\": 9784, \"unparseable\": 0, \"truncated\": 0, \"elapsed_min\": 24.6}}, \"D131-cwm-s42-epoch3-seq2048\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T04:33:09.491Z\", \"updated_at\": \"2026-05-19T04:38:51.794Z\", \"conclusion\": \"failed\"}, \"deepseek-cwm-repo-s123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T17:29:52.481Z\", \"updated_at\": \"2026-05-19T04:38:19.919Z\", \"hypothesis\": \"DeepSeek CWM repo-level seed 123 replication — multi-seed evidence to address Dream review concern about single-seed repo results\", \"conclusion\": \"failed\", \"notes\": \"失败原因: 进程在 step 9489/13266 (71%, epoch 3 中途) 静默死亡, 无 Traceback/Error | 诊断中: worker_diagnose_deepseek-cwm-repo-s123 正在查系统日志和 checkpoint 可用性 | 已有成果: 至少有 epoch 1-2 checkpoints, eval worker 正在评估\", \"metrics\": {\"accuracy\": 61.9, \"majority_baseline\": 72.96, \"gap_vs_majority\": -11.06, \"f1_macro\": 51.5, \"f1_pass\": 73.96, \"f1_fail\": 29.04, \"recall_pass\": 74.15, \"recall_fail\": 28.84, \"unparseable_rate\": 65.53, \"total\": 9784, \"correct\": 6056, \"truncated\": 0, \"checkpoint\": \"checkpoint-8844 (epoch 2)\", \"seq_length\": 4096, \"source_file\": \"/root/autodl-tmp/eval_results/deepseek_cwm_repo_s123_test/eval_deepseek_cwm_repo_s123.json\"}}, \"repo-level-3shot-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T23:08:27.137Z\", \"updated_at\": \"2026-05-19T04:36:55.833Z\", \"hypothesis\": \"3-shot few-shot 在 repo-level 能否作为 baseline，预期因 context 长度限制表现差于 fine-tuned models\", \"conclusion\": \"success\", \"metrics\": {\"per_test_accuracy\": 46.28, \"variant_accuracy\": 45.83, \"variant_correct\": 22, \"variant_total\": 48, \"majority_baseline\": 73, \"truncated\": 0, \"unparseable\": 0, \"total\": 9784, \"runtime_min\": 33.8}}, \"D133-cwm-s42-e2-seq2048-home-resume\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T23:48:38.747Z\", \"updated_at\": \"2026-05-19T04:31:17.320Z\", \"conclusion\": \"killed\"}, \"qwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T00:11:09.889Z\", \"updated_at\": \"2026-05-19T04:28:52.327Z\", \"hypothesis\": \"Qwen3-8B CWM repo-level eval @seq4096 for D146 cross-model comparison fix. Previous Qwen3 CWM evals used seq8192 while DeepSeek CWM used seq4096, creating confound. This eval provides matched seq_length comparison point.\", \"parent\": \"cwm8b-ckpt400-test-eval\"}, \"exp-downsample-cls-func-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T03:53:57.925Z\", \"updated_at\": \"2026-05-19T04:25:13.426Z\", \"hypothesis\": \"CLS function-level 的 accuracy 优势不仅仅来自更多训练数据（CLS 15K vs TRAJ 8K）。将 CLS 训练数据 downsample 至与 TRAJ 相同规模（~8K），CLS 仍应优于 TRAJ，证明 formulation 本身的优势\", \"parent\": \"exp-downsample-cls-func\", \"wandb_run_id\": \"cls-downsample-qwen3-4b-lora\", \"conclusion\": \"failed\"}, \"deepseek-cwm-repo-s42-epoch2-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T19:48:58.146Z\", \"updated_at\": \"2026-05-19T04:21:06.337Z\", \"hypothesis\": \"Eval CWM s42 epoch 2 checkpoint 解耦过拟合 vs seed 差异：如果 epoch 2 accuracy >> epoch 3 (56.7%)，则 CWM repo-level 在 epoch 3 过拟合\", \"metrics\": {\"partial\": true, \"total\": 3050, \"correct\": 2039, \"acc\": 66.85, \"unparseable_rate\": 65.5, \"coverage\": \"3050/9784 (31.2%)\", \"source_file\": \"/root/autodl-tmp/eval_results/deepseek_cwm_repo_s42_epoch2/results_incremental.jsonl\"}, \"conclusion\": \"failed\"}, \"exp-downsample-cls-func\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T03:49:00.576Z\", \"updated_at\": \"2026-05-19T03:53:20.069Z\", \"hypothesis\": \"CLS function-level 的 accuracy 优势不仅仅来自更多训练数据（CLS 15K vs TRAJ 8K）。将 CLS 训练数据 downsample 至与 TRAJ 相同规模（~8K），CLS 仍应优于 TRAJ，证明 formulation 本身的优势\", \"metrics\": {\"data_prep\": {\"original_cls_samples\": 15290, \"original_cls_problems\": 906, \"downsampled_samples\": 8051, \"downsampled_problems\": 475, \"target_traj_samples\": 8052, \"label_pass\": 4174, \"label_fail\": 3877, \"data_file\": \"data/train_downsampled.jsonl\"}, \"estimated_train_time_min\": \"30-50\", \"gpu_blocker\": \"all 4 seetacloud GPUs occupied\"}, \"wandb_run_id\": \"cls-downsample-qwen3-4b-lora\", \"conclusion\": \"failed\"}, \"exp-d-constrained-decoding\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T03:20:10.868Z\", \"updated_at\": \"2026-05-19T03:52:22.449Z\", \"hypothesis\": \"CWM 的低 accuracy 主要由 unparseable outputs 导致（51-72%），constrained decoding 或 forced-parse 可将 parseable rate 提升至接近 100%，但 parseable-only accuracy 仍低（~38-42%），证明 CWM 问题不仅是格式问题\", \"metrics\": {\"forced_parse\": {\"qwen3_8b\": {\"n\": 9784, \"original_unparseable_rate\": 73.8, \"rescue_rate\": 90.6, \"original_parseable_acc\": 38.5, \"forced_parseable_acc\": 49.4, \"delta_pp\": 10.8}, \"qwen3_4b\": {\"n\": 500, \"original_unparseable_rate\": 75.2, \"rescue_rate\": 77.9, \"original_parseable_acc\": 42.7, \"forced_parseable_acc\": 55.9, \"delta_pp\": 13.2}, \"deepseek\": {\"n\": 9784, \"original_unparseable_rate\": 51, \"rescue_rate\": 20.3, \"original_parseable_acc\": 38.7, \"forced_parseable_acc\": 51.8, \"delta_pp\": 13.1}}, \"best_strategy\": \"test_ok_fail (67-71% acc)\", \"constrained_decoding\": \"code ready, blocker: swebench_full test data not on server\"}, \"conclusion\": \"success\"}, \"exp-b-complexity-bin\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T03:20:07.634Z\", \"updated_at\": \"2026-05-19T03:46:26.036Z\", \"hypothesis\": \"不同 formulation 的 accuracy 优劣与 variant 复杂度（test count）相关：TRAJ 在低 test-count variants 更优，CLS 在高 test-count variants 更优\", \"conclusion\": \"success\", \"metrics\": {\"bins\": {\"23-70\": {\"n_variants\": 12, \"n_tests\": 538, \"cls_qwen3_8b_s123\": 83.3, \"cls_ds_v5\": 91.7, \"cwm_qwen3_8b\": 66.7}, \"71-150\": {\"n_variants\": 14, \"n_tests\": 1282, \"cls_qwen3_8b_s123\": 64.3, \"cls_ds_v5\": 71.4, \"cwm_qwen3_8b\": 42.9}, \"151-250\": {\"n_variants\": 15, \"n_tests\": 2999, \"cls_qwen3_8b_s123\": 93.3, \"cls_ds_v5\": 80, \"cwm_qwen3_8b\": 53.3}, \"251+\": {\"n_variants\": 7, \"n_tests\": 4965, \"cls_ds_v5\": 85.7, \"cls_qwen3_8b_s123\": 85.7, \"cwm_qwen3_8b\": 42.9}}, \"overall_cls_qwen3_8b\": 81.2, \"overall_cls_ds_v5\": 81.2, \"overall_cwm_qwen3_8b\": 52.1, \"cls_cwm_gap_simple\": 16.7, \"cls_cwm_gap_complex\": 42.9, \"traj_per_bin\": \"unavailable — per-variant predictions not saved\"}}, \"exp-a-routing\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T03:20:05.183Z\", \"updated_at\": \"2026-05-19T03:44:43.981Z\", \"hypothesis\": \"Complexity-aware routing（按 test count/confidence/learned features 选 formulation）在 repo-level 可以超越任何单一 formulation 的 accuracy，证明 formulation 具有互补性\", \"metrics\": {\"oracle_routing_7cls\": 100, \"oracle_best_pair\": 95.83, \"test_count_heuristic\": 85.42, \"agreement_confidence\": 83.33, \"majority_vote\": \"75-79%\", \"best_single_cls\": 81.25, \"test_count_heuristic_delta\": \"+4.17pp\", \"oracle_delta\": \"+18.75pp\", \"traj_per_variant\": \"unavailable\", \"cwm_repo_level\": \"45-52%\", \"n_variants\": 48}, \"conclusion\": \"success\"}, \"deepseek-cls-repo-resume-v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T02:40:41.857Z\", \"updated_at\": \"2026-05-19T02:46:36.180Z\", \"hypothesis\": \"Resume deepseek-cls-repo from checkpoint-2211 after SIGHUP crash at step 3747/6633. Fixed: removed unrecognized --save_steps arg.\", \"parent\": \"deepseek-cls-repo-resume-v2\", \"conclusion\": \"killed\"}, \"deepseek-cls-repo-resume-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T02:39:14.677Z\", \"updated_at\": \"2026-05-19T02:40:37.661Z\", \"hypothesis\": \"Resume deepseek-cls-repo from checkpoint-2211 after SIGHUP crash at step 3747/6633. Completes remaining ~2886 steps (epochs 2-3).\", \"parent\": \"deepseek-cls-repo-resume\", \"conclusion\": \"failed\"}, \"qwen3-8b-traj-repo-s42-ckpt98-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T23:28:45.370Z\", \"updated_at\": \"2026-05-19T00:08:03.186Z\", \"hypothesis\": \"Qwen3-8B TRAJ repo-level eval checkpoint-98 (epoch 2). Qwen3-4B TRAJ epoch 2 > epoch 3, testing if same pattern holds for 8B. Table 4 canonical number.\", \"metrics\": {\"variant_accuracy\": 72.92, \"variant_correct\": 35, \"variant_total\": 48, \"f1_macro\": 72.9, \"fail_recall\": 77.3, \"pass_recall\": 69.2, \"unparseable\": 0, \"note\": \"epoch 2 checkpoint, better class balance than epoch 3\"}, \"conclusion\": \"success\", \"parent\": \"qwen3-8b-traj-repo-s42-v2\"}, \"qwen3-8b-traj-repo-s42-best-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T23:02:09.930Z\", \"updated_at\": \"2026-05-19T00:07:52.073Z\", \"hypothesis\": \"Qwen3-8B TRAJ repo-level eval on test set (best/ checkpoint = epoch 3, eval_loss=NaN forced). Table 4 canonical number. Compare with Qwen3-4B TRAJ (72.92%) and DeepSeek TRAJ (81.25%). Expected ~78-85% variant-level.\", \"parent\": \"qwen3-8b-traj-repo-s42-v2\", \"metrics\": {\"variant_accuracy\": 70.83, \"variant_correct\": 34, \"variant_total\": 48, \"f1_macro\": 70, \"fail_recall\": 95.5, \"pass_recall\": 50, \"unparseable\": 0, \"note\": \"epoch 3 checkpoint, biased toward predicting unresolved\"}, \"conclusion\": \"success\"}, \"qwen3-8b-traj-repo-s42-best-eval-v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T23:27:28.026Z\", \"updated_at\": \"2026-05-19T00:07:28.091Z\", \"hypothesis\": \"Qwen3-8B TRAJ repo-level eval retry (v1 CUDA OOM). best/ checkpoint = epoch 3. Table 4 final TBD.\", \"parent\": \"qwen3-8b-traj-repo-s42-v2\", \"conclusion\": \"killed\"}, \"qwen3-8b-traj-repo-s42-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T22:49:06.304Z\", \"updated_at\": \"2026-05-18T23:02:25.726Z\", \"hypothesis\": \"Qwen3-8B TRAJ repo-level training retry with seq4096 (v1 OOM at seq8192). Table 4 completion. DeepSeek TRAJ s42=81.25%; Qwen3-4B TRAJ=72.92%. Qwen3-8B expected ~78-85% variant-level. Lower seq_length may truncate some long repo-level diffs but DeepSeek non-8k variant showed comparable results.\", \"parent\": \"qwen3-8b-traj-repo-s42\", \"conclusion\": \"success\", \"metrics\": {\"eval_loss\": \"NaN_all_epochs\", \"total_steps\": 147, \"epochs\": 3, \"seq_length\": 4096, \"best_checkpoint\": \"epoch_3_default_due_to_nan_eval_loss\", \"gradient_checkpointing\": true}}, \"qwen3-8b-traj-repo-s42-v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T23:00:39.101Z\", \"updated_at\": \"2026-05-18T23:02:12.367Z\", \"hypothesis\": \"Qwen3-8B TRAJ repo-level training with seq4096 + gradient_checkpointing (v1 OOM at seq8192, v2 process died early). Table 4 completion. DeepSeek TRAJ s42=81.25%; Qwen3-4B TRAJ=72.92%. seq4096 approved by Director.\", \"parent\": \"qwen3-8b-traj-repo-s42-v2\", \"conclusion\": \"killed\"}, \"deepseek-cls-repo-s123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T17:26:56.947Z\", \"updated_at\": \"2026-05-18T22:53:36.387Z\", \"hypothesis\": \"DeepSeek CLS repo-level seed 123 replication for multi-seed evidence (same config as s42)\", \"metrics\": {\"per_test_accuracy_seq8192\": 74.93, \"per_test_accuracy_seq2048\": 82.62, \"majority_baseline\": 72.96, \"gap_vs_majority_seq8192\": 1.97, \"f1_macro_seq8192\": 53.94, \"f1_fail_seq8192\": 22.84, \"f1_pass_seq8192\": 85.03, \"precision_fail_seq8192\": 68.11, \"recall_fail_seq8192\": 13.72, \"recall_pass_seq8192\": 97.62, \"variant_accuracy_seq8192\": 28, \"variant_correct_seq8192\": 7, \"variant_total_seq8192\": 25, \"variant_accuracy_seq2048\": 36, \"variant_correct_seq2048\": 9, \"variant_total_seq2048\": 25, \"unparseable_seq8192\": 0, \"unparseable_seq2048\": 2796, \"train_loss_avg\": 0.0393, \"eval_loss\": \"NaN_all_epochs\", \"total_steps\": 6633, \"epochs\": 3, \"train_time\": \"21h30m\", \"best_checkpoint\": \"epoch_3_default_due_to_nan_eval_loss\", \"note\": \"seq2048 metrics inflated by 28.6% unparseable defaulting to pass; seq8192 is reliable measure\"}, \"conclusion\": \"success\"}, \"deepseek-cls-repo-v5-ckpt6315-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T19:58:30.134Z\", \"updated_at\": \"2026-05-18T22:49:27.392Z\", \"hypothesis\": \"CLS v5 epoch 3 final checkpoint (ckpt-6315) eval at seq8192: D140 checkpoint selection confound 对比数据。eval_loss epoch 3=0.1587 vs epoch 1=0.0886 (+79%)，预期 repo-level accuracy 低于 ckpt-2105。\", \"parent\": \"deepseek-cls-repo-v5-ckpt2105-eval\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 82.51, \"fail_recall\": 38.47, \"pass_recall\": 98.84, \"unparseable\": 0, \"n_instances\": 9784, \"confusion\": {\"TN\": 1018, \"FP\": 1628, \"FN\": 83, \"TP\": 7055}, \"variant_accuracy\": 79.17, \"variant_correct\": 38, \"variant_total\": 48, \"variant_fail_recall\": 59.09}}, \"qwen3-8b-traj-repo-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T18:57:25.802Z\", \"updated_at\": \"2026-05-18T22:48:45.148Z\", \"hypothesis\": \"Qwen3-8B TRAJ repo-level training for Table 4 completion. DeepSeek TRAJ s42=81.25% variant-level; Qwen3-4B TRAJ=72.92%. Qwen3-8B should improve over 4B due to larger capacity, expected ~78-85% variant-level.\", \"conclusion\": \"failed\"}, \"qwen3-4b-traj-repo-s42-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T22:28:24.376Z\", \"updated_at\": \"2026-05-18T22:34:32.172Z\", \"hypothesis\": \"Qwen3-4B TRAJ repo-level eval on test set (best checkpoint, epoch 2). Table 4 canonical number. DeepSeek TRAJ s42=81.25%; Qwen3 CLS repo=83.63%. 预期 variant-level ~75-85%.\", \"parent\": \"qwen3-4b-traj-repo-s42\", \"conclusion\": \"success\", \"metrics\": {\"variant_accuracy\": 72.92, \"variant_correct\": 35, \"variant_total\": 48, \"f1_macro\": 72.62, \"resolved_precision\": 74.1, \"resolved_recall\": 76.9, \"resolved_f1\": 75.5, \"unresolved_precision\": 71.4, \"unresolved_recall\": 68.2, \"unresolved_f1\": 69.8, \"vs_majority_baseline_pp\": 18.8}}, \"qwen3-4b-traj-repo-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T22:10:00.484Z\", \"updated_at\": \"2026-05-18T22:28:42.684Z\", \"hypothesis\": \"Qwen3-4B TRAJ repo-level training for Table 4 completion. DeepSeek TRAJ achieves 75.35% ± 5.00 (6 seeds); Qwen3-4B TRAJ expected to be comparable or higher given Qwen3 在 CLS repo-level 的强表现 (83.63%).\", \"conclusion\": \"success\", \"metrics\": {\"eval_loss_epoch1\": 0.2123, \"eval_loss_epoch2\": 0.1503, \"eval_loss_epoch3\": 0.2249, \"best_epoch\": 2, \"total_steps\": 147}}, \"deepseek-cls-repo-v5-ckpt4210-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T21:36:08.992Z\", \"updated_at\": \"2026-05-18T22:00:04.638Z\", \"hypothesis\": \"CLS v5 epoch 2 (ckpt-4210) eval: 3-point epoch curve for D142 decision collapse training-induced claim. Epoch 1=82.61%/51% fail recall, epoch 2=?, epoch 3=pending. 预期 epoch 2 介于两者之间，验证 monotonic degradation.\", \"parent\": \"deepseek-cls-repo-v5-ckpt6315-eval\", \"conclusion\": \"failed\", \"metrics\": {\"error\": \"checkpoint-4210 not preserved during training (only epoch 1 and 3 saved), cannot evaluate epoch 2\"}}, \"deepseek-cls-repo-v5-ckpt2105-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T19:57:13.898Z\", \"updated_at\": \"2026-05-18T21:34:56.469Z\", \"hypothesis\": \"CLS v5 epoch 1 (ckpt-2105, eval_loss=0.0886 最低) 在 repo-level test set 上应优于 epoch 3，验证 early stopping 选择并为 Table 4 提供 s42 canonical 数字\", \"parent\": \"deepseek-cls-repo-v5\", \"metrics\": {\"accuracy\": 82.61, \"variant_accuracy\": 81.25, \"variant_correct\": 39, \"variant_total\": 48, \"fail_recall\": 51.02, \"pass_recall\": 94.33, \"f1_macro\": 75.07, \"fail_f1\": 61.35, \"pass_f1\": 88.78, \"fail_precision\": 76.92, \"pass_precision\": 83.86, \"unparseable\": 0, \"n_instances\": 9784, \"confusion\": {\"TP\": 6733, \"FP\": 1296, \"TN\": 1350, \"FN\": 405}}, \"conclusion\": \"success\"}, \"D133-cwm-s42-e2-seq2048-home\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T20:53:25.046Z\", \"updated_at\": \"2026-05-18T20:54:21.130Z\", \"notes\": \"2026-05-18 13:52 UTC: Resumed after stuck kill. PID=4187955 (sonny@tmux:D133-resume). Resumed from 3039/9784 (31.1%). ~8s/sample, 剩余 6745 samples ≈ 15h. ETA ~May 19 05:00 UTC.\", \"conclusion\": \"failed\"}, \"deepseek-cls-repo-v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T17:47:56.629Z\", \"updated_at\": \"2026-05-18T20:42:57.953Z\", \"hypothesis\": \"DeepSeek CLS repo-level s42 完整 3 epoch 训练，预期与 s123 (~74%) 相近，提供 R1-N1 要求的多 seed 证据\", \"conclusion\": \"success\", \"metrics\": {\"train_loss_final\": 0.0399, \"eval_loss_epoch1\": 0.0886, \"eval_loss_epoch2\": 0.1587, \"eval_loss_epoch3\": 0.1975, \"total_steps\": 6315, \"train_time_seconds\": 63312, \"best_checkpoint\": \"checkpoint-2105 (epoch 1)\", \"lora_params\": \"16.8M\"}}, \"D124-cwm-s42-epoch2-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T13:56:45.083Z\", \"updated_at\": \"2026-05-18T13:56:46.086Z\", \"conclusion\": \"failed\"}, \"deepseek-0shot-func-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T23:30:55.534Z\", \"updated_at\": \"2026-05-18T00:10:08.086Z\", \"hypothesis\": \"DeepSeek 0-shot instruction 在 func-level 的基准表现，完成 2×2 model×level 0-shot 矩阵\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.6302, \"pass_f1\": 0.7196, \"fail_f1\": 0.4569, \"unparseable_rate\": 0.0106, \"unparseable_count\": 20, \"total_samples\": 1890, \"runtime_seconds\": 113, \"confusion\": {\"TP\": 897, \"FP\": 618, \"TN\": 294, \"FN\": 81}}}, \"qwen3-0shot-func-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T23:30:53.841Z\", \"updated_at\": \"2026-05-18T00:10:06.393Z\", \"hypothesis\": \"Qwen3-8B 0-shot instruction 在 func-level 的基准表现，预期优于 repo-level 0-shot (49.9%) 因为 func-level 上下文更短更清晰\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.6873, \"pass_f1\": 0.655, \"fail_f1\": 0.7141, \"unparseable_rate\": 0.0032, \"unparseable_count\": 6, \"total_samples\": 1890, \"runtime_seconds\": 96, \"confusion\": {\"TP\": 561, \"FP\": 174, \"TN\": 738, \"FN\": 417}}}, \"deepseek-0shot-repo-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T23:30:52.005Z\", \"updated_at\": \"2026-05-18T00:10:04.699Z\", \"hypothesis\": \"DeepSeek 0-shot instruction 在 repo-level 的基准表现，跨模型验证 0-shot 在 repo-level 普遍接近随机\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.4854, \"pass_f1\": 0.647, \"fail_f1\": 0.0509, \"unparseable_rate\": 0.087, \"unparseable_count\": 851, \"total_samples\": 9784, \"runtime_seconds\": 1545, \"confusion\": {\"TP\": 4614, \"FP\": 2511, \"TN\": 135, \"FN\": 2524}}}, \"repo-level-0shot-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T23:08:25.505Z\", \"updated_at\": \"2026-05-17T23:29:33.741Z\", \"hypothesis\": \"0-shot instruction 在 repo-level 的基准表现，预期远低于 fine-tuned CLS/CWM\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.499, \"pass_f1\": 0.4895, \"fail_f1\": 0.5081, \"unparseable_rate\": 0, \"unparseable_count\": 0, \"total_samples\": 9784, \"runtime_seconds\": 1018.2, \"confusion\": {\"TP\": 2350, \"FP\": 114, \"TN\": 2532, \"FN\": 4788}}}, \"deepseek-cls-repo-v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T18:51:00.225Z\", \"updated_at\": \"2026-05-17T16:15:31.248Z\", \"hypothesis\": \"DeepSeek CLS repo-level s42 从零重训，预期 CLS 在 DeepSeek 上也保持高 accuracy 和 0% unparseable（类似 Qwen CLS repo 84-85%），验证 CLS 跨模型优势\", \"conclusion\": \"failed\", \"metrics\": {\"train_loss_final\": 0.0065, \"eval_loss\": \"NaN (all epochs)\", \"total_steps_completed\": 4422, \"max_steps\": 6633, \"error\": \"Process killed during epoch 3 eval (49% progress); eval_loss=NaN at all epochs; no best checkpoint; last saved checkpoint=step-4422\"}, \"notes\": \"失败原因: eval_loss=NaN (已知 DeepSeek tokenizer bug, 不影响训练质量) + 进程在 epoch 3 eval 阶段被杀 | 已有成果: checkpoint-4422 (epoch 2 完成, train_loss=0.0065), eval worker 已在评估 | 建议: 用 checkpoint-4422 (或更早的 checkpoint-2211) 进行独立 eval, 训练质量应该正常\"}, \"deepseek-cwm-repo\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T08:05:07.323Z\", \"updated_at\": \"2026-05-17T15:41:06.948Z\", \"hypothesis\": \"DeepSeek CWM repo-level 训练验证 CWM 在第二模型家族上的 repo-level 表现，预期 CWM 因生成式格式在长上下文 repo 代码上产生高 unparseable rate（类似 Qwen CWM repo 53-74%）\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.021, \"eval_loss\": \"NaN\", \"total_steps\": 13266, \"epochs\": 3, \"wall_clock_seconds\": 112680, \"gpu_hours\": 31.3, \"note\": \"eval_loss=NaN is known DeepSeek issue, does not affect training quality\"}}, \"qwen3-8b-traj-func-s123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T13:19:44.990Z\", \"updated_at\": \"2026-05-17T15:17:35.756Z\", \"hypothesis\": \"Qwen3-8B TRAJ func-level seed 123 复制实验，验证 s42 结果的稳定性。预期与 s42 差距 &lt;1.5pp，与 4B TRAJ (86.30±0.97%) 的 scaling pattern 一致\", \"parent\": \"qwen3-8b-traj-func-s42\", \"conclusion\": \"success\", \"metrics\": {\"test_accuracy\": 87.79, \"best_eval_loss\": 0.0782, \"pass_f1\": 86.74, \"fail_f1\": 88.69, \"unparseable\": 0, \"per_test_consistency\": 76.07, \"total_steps\": 756, \"test_set_size\": 1032, \"eval_script\": \"eval_traj_verifier_8b.py\"}}, \"qwen3-8b-traj-func-s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T13:19:43.240Z\", \"updated_at\": \"2026-05-17T14:29:53.572Z\", \"hypothesis\": \"Qwen3-8B TRAJ func-level 将展示 TRAJ 在更大模型上的 scaling 行为，预期与 4B TRAJ (86.30%) 相比有小幅提升（类似 CLS/CWM 的 4B→8B +1-2pp pattern），填补 Table 2 scaling 分析的 TRAJ 8B 缺口\", \"conclusion\": \"success\", \"metrics\": {\"test_accuracy\": 87.6, \"eval_loss\": 0.0975, \"train_loss\": 0.0312, \"unparseable\": 0, \"pass_f1\": 85.96, \"fail_f1\": 88.89, \"per_test_consistency\": 78.78, \"total_steps\": 756, \"test_set_size\": 1032, \"eval_script\": \"eval_traj_verifier_8b.py\", \"note\": \"87.98% from eval_traj_verifier.py (model.cuda) also valid; 4/1032 samples differ due to bf16 placement\"}}, \"re-repair-docker-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T07:26:36.395Z\", \"updated_at\": \"2026-05-17T08:36:26.508Z\", \"hypothesis\": \"Per-test diagnostic information (CLS predictions or oracle labels) improves LLM patch repair success rate compared to minimal or random diagnostics, following information gradient A1 < A2 < D ≈ B < C\", \"conclusion\": \"negative\", \"metrics\": {\"A1_pass1\": 52.3, \"A2_pass1\": 43.2, \"B_pass1\": 36.4, \"C_pass1\": 38.6, \"D_pass1\": 40.9, \"n_instances\": 44, \"error_rate\": 38.6, \"total_samples\": 1475}}, \"deepseek-cls-func-s123\": {\"status\": \"DONE\", \"parent\": \"deepseek-cls-func\", \"created_at\": \"2026-05-16T11:11:40.451Z\", \"updated_at\": \"2026-05-17T02:55:51.817Z\", \"conclusion\": \"success\", \"metrics\": {\"best_eval_loss\": 0.06753, \"train_time_seconds\": 5391, \"test_accuracy\": 86.77, \"test_f1_macro\": 86.77, \"test_precision_fail\": 84.99, \"test_precision_pass\": 88.56, \"test_recall_fail\": 88.16, \"test_recall_pass\": 85.48, \"test_unparseable_rate\": 0, \"test_n\": 1890}, \"hypothesis\": \"验证 DeepSeek CLS func-level 结论在 seed=123 下的稳定性，确认 CLS accuracy 不是单 seed 偶然\"}, \"deepseek-cwm-func-s123\": {\"status\": \"DONE\", \"parent\": \"deepseek-cwm-func\", \"created_at\": \"2026-05-16T06:31:21.577Z\", \"updated_at\": \"2026-05-17T02:55:50.883Z\", \"conclusion\": \"success\", \"metrics\": {\"best_eval_loss\": 0.0408, \"train_time_seconds\": 5244, \"test_accuracy\": 87.88, \"test_f1_macro\": 87.88, \"test_precision_fail\": 83.78, \"test_precision_pass\": 92.61, \"test_recall_fail\": 92.87, \"test_recall_pass\": 83.23, \"test_unparseable_rate\": 0, \"test_n\": 1890}, \"hypothesis\": \"验证 DeepSeek CWM func-level 结论在 seed=123 下的稳定性，确认 CWM≈CLS 不是单 seed 偶然\"}, \"deepseek-cls-func\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T06:27:32.723Z\", \"updated_at\": \"2026-05-17T02:55:48.576Z\", \"conclusion\": \"success\", \"metrics\": {\"best_eval_loss\": 0.0701, \"train_time_seconds\": 5444, \"test_accuracy\": 86.93, \"test_f1_macro\": 86.92, \"test_precision_fail\": 86.42, \"test_precision_pass\": 87.41, \"test_recall_fail\": 86.51, \"test_recall_pass\": 87.32, \"test_n\": 1890}, \"hypothesis\": \"DeepSeek CLS func-level 验证 CLS 分类任务在 DeepSeek-coder-6.7B 上的表现，预期与 Qwen func-level CLS 水平相当（86-89%），建立第二模型家族 baseline\"}, \"deepseek-cwm-func\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T06:27:30.350Z\", \"updated_at\": \"2026-05-17T02:55:46.579Z\", \"conclusion\": \"success\", \"metrics\": {\"best_eval_loss\": 0.04292, \"train_time_seconds\": 5215, \"test_accuracy\": 85.77, \"test_f1_macro\": 85.73, \"test_precision_fail\": 80.07, \"test_precision_pass\": 93.18, \"test_recall_fail\": 93.86, \"test_recall_pass\": 78.22, \"test_unparseable_rate\": 0, \"test_n\": 1890}, \"hypothesis\": \"DeepSeek CWM func-level 验证 CWM 任务在第二模型家族上的表现，预期 CWM≈CLS（与 Qwen func-level gap &lt;2pp 一致），确认跨模型 CLS≈CWM 规律\"}, \"deepseek-cls-repo-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T18:34:17.017Z\", \"updated_at\": \"2026-05-16T21:07:16.621Z\", \"hypothesis\": \"DeepSeek CLS repo-level s42 fresh retrain (v2 failed: --save_steps not supported)\", \"conclusion\": \"failed\"}, \"deepseek-cls-repo-resume\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-16T18:30:19.540Z\", \"updated_at\": \"2026-05-16T18:36:04.862Z\", \"hypothesis\": \"Resume deepseek-cls-repo from checkpoint-2211 after SIGHUP crash at step 3747/6633\", \"conclusion\": \"killed\"}, \"deepseek-cls-repo-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T18:31:51.536Z\", \"updated_at\": \"2026-05-16T18:35:05.507Z\", \"hypothesis\": \"DeepSeek CLS repo-level s42 fresh retrain (v1 died from SIGHUP, checkpoint had NaN eval)\", \"conclusion\": \"failed\"}, \"deepseek-cls-repo\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T06:27:27.554Z\", \"updated_at\": \"2026-05-16T18:27:53.061Z\", \"conclusion\": \"failed\"}, \"deepseek-traj-repo-8k-s999\": {\"status\": \"DONE\", \"hypothesis\": \"DeepSeek TRAJ repo-level@8k seed=999，multi-seed 稳定性验证\", \"parent\": \"deepseek-traj-repo-8k\", \"created_at\": \"2026-05-16T16:01:18.947Z\", \"updated_at\": \"2026-05-16T16:51:39.701Z\", \"metrics\": {\"test_accuracy\": 79.2, \"unparseable\": 0, \"best_eval_loss\": 0.1565, \"resolved_f1\": 82.1, \"unresolved_f1\": 75, \"f1_macro\": 78.57, \"train_loss\": 0.2184}, \"conclusion\": \"success\"}, \"deepseek-traj-repo-8k-s456\": {\"status\": \"DONE\", \"hypothesis\": \"DeepSeek TRAJ repo-level@8k seed=456，multi-seed 稳定性验证\", \"parent\": \"deepseek-traj-repo-8k\", \"created_at\": \"2026-05-16T16:01:17.202Z\", \"updated_at\": \"2026-05-16T16:38:51.114Z\", \"metrics\": {\"test_accuracy\": 75, \"unparseable\": 0, \"best_eval_loss\": 0.1547, \"resolved_f1\": 75, \"unresolved_f1\": 75, \"f1_macro\": 75, \"train_loss\": 0.2176}, \"conclusion\": \"success\"}, \"deepseek-traj-repo-8k-s0\": {\"status\": \"DONE\", \"hypothesis\": \"DeepSeek TRAJ repo-level@8k seed=0，multi-seed 稳定性验证\", \"parent\": \"deepseek-traj-repo-8k\", \"created_at\": \"2026-05-16T16:01:13.961Z\", \"updated_at\": \"2026-05-16T16:38:45.542Z\", \"conclusion\": \"success\", \"metrics\": {\"test_accuracy\": 75, \"f1_macro\": 72.68, \"majority_baseline\": 54.2, \"gap_vs_majority_pp\": 20.8, \"unresolved_f1\": 64.7, \"resolved_f1\": 80.6, \"unresolved_precision\": 91.7, \"unresolved_recall\": 50, \"resolved_precision\": 69.4, \"resolved_recall\": 96.2, \"per_test_consistency\": 75, \"unparseable_rate\": 0, \"test_n\": 48, \"train_loss_final\": 0.2125, \"eval_loss_best\": 0.1013}}, \"deepseek-traj-repo-8k-s789\": {\"status\": \"DONE\", \"hypothesis\": \"DeepSeek TRAJ repo-level@8k seed=789，multi-seed 稳定性验证\", \"parent\": \"deepseek-traj-repo-8k\", \"created_at\": \"2026-05-16T16:01:15.534Z\", \"updated_at\": \"2026-05-16T16:38:14.182Z\", \"conclusion\": \"success\", \"metrics\": {\"test_accuracy\": 66.67, \"resolved_f1\": 75, \"unresolved_f1\": 50, \"best_eval_loss\": 0.1295, \"unparseable\": 0}}, \"deepseek-traj-func-s123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T12:27:03.108Z\", \"updated_at\": \"2026-05-16T16:37:00.379Z\", \"conclusion\": \"killed\"}, \"deepseek-traj-repo-8k-s123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T15:24:57.265Z\", \"updated_at\": \"2026-05-16T15:37:42.424Z\", \"hypothesis\": \"TRAJ repo 8k seed 123 replication\", \"conclusion\": \"success\", \"metrics\": {\"test_accuracy\": 75, \"unparseable\": 0, \"best_eval_loss\": 0.1182, \"best_epoch\": 2, \"train_truncated_pct\": 2.1, \"gpu_mem_mib\": 21399, \"resolved_f1\": 76.92, \"unresolved_f1\": 72.73}}, \"deepseek-traj-repo-8k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T15:24:55.739Z\", \"updated_at\": \"2026-05-16T15:37:40.913Z\", \"hypothesis\": \"TRAJ repo at seq_length=8192 (fair comparison with CLS/CWM repo) reduces unparseable rate and improves accuracy vs 2048 truncated version\", \"conclusion\": \"success\", \"metrics\": {\"test_accuracy\": 81.25, \"unparseable\": 0, \"best_eval_loss\": 0.1216, \"best_epoch\": 2, \"train_truncated_pct\": 2.1, \"gpu_mem_mib\": 22475, \"resolved_f1\": 84.21, \"unresolved_f1\": 76.92}}, \"deepseek-traj-repo-s123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T14:42:03.670Z\", \"updated_at\": \"2026-05-16T15:23:35.933Z\", \"hypothesis\": \"Repo-level TRAJ verifier seed 123 replication for statistical significance\", \"metrics\": {\"test_accuracy\": 0.771, \"best_eval_loss\": 0.1147, \"best_step\": 98, \"train_loss\": 0.12, \"unparseable_rate\": 0.167, \"resolved_recall\": 0.962, \"unresolved_recall\": 0.545, \"total_test\": 48}, \"conclusion\": \"success\"}, \"deepseek-traj-repo\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T14:42:01.929Z\", \"updated_at\": \"2026-05-16T15:23:34.502Z\", \"hypothesis\": \"Repo-level TRAJ (trajectory) verifier performs worse than per-test CLS/CWM, consistent with func-level finding that CLS≥CWM≥TRAJ\", \"metrics\": {\"test_accuracy\": 0.771, \"best_eval_loss\": 0.111, \"best_step\": 98, \"train_loss\": 0.12, \"unparseable_rate\": 0.167, \"resolved_recall\": 0.962, \"unresolved_recall\": 0.545, \"total_test\": 48}, \"conclusion\": \"success\"}, \"deepseek-traj-func-v2-s123-fixed\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T14:37:41.475Z\", \"updated_at\": \"2026-05-16T14:37:42.154Z\", \"conclusion\": \"failed\"}, \"deepseek-traj-func-v2-s123\": {\"status\": \"DONE\", \"parent\": \"deepseek-traj-func-v2\", \"created_at\": \"2026-05-16T13:47:04.812Z\", \"updated_at\": \"2026-05-16T14:35:44.136Z\", \"hypothesis\": \"DeepSeek TRAJ func-level seed=123 复现，验证 DeepSeek TRAJ 结果的 multi-seed 稳定性\", \"conclusion\": \"success\", \"metrics\": {\"best_eval_loss\": 0.077, \"best_step\": 504, \"test_accuracy\": 0.8508, \"majority_baseline\": 0.5359, \"train_loss\": 0.0842, \"train_runtime_seconds\": 3021, \"per_test_consistency\": 0.782}}, \"deepseek-traj-func-v2\": {\"status\": \"DONE\", \"parent\": \"deepseek-traj-func\", \"created_at\": \"2026-05-16T13:46:37.918Z\", \"updated_at\": \"2026-05-16T14:23:22.554Z\", \"hypothesis\": \"DeepSeek TRAJ func-level v2（修复 v1 问题），验证 TRAJ 在 DeepSeek 上的可靠表现\", \"conclusion\": \"success\", \"metrics\": {\"best_eval_loss\": 0.0796, \"best_step\": 504, \"test_accuracy\": 0.8324, \"majority_baseline\": 0.5359, \"train_loss\": 0.0857, \"train_runtime_seconds\": 3069.6}}, \"deepseek-traj-func-v2-fixed\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T14:18:42.061Z\", \"updated_at\": \"2026-05-16T14:18:42.896Z\", \"conclusion\": \"failed\"}, \"deepseek-traj-func\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T12:09:15.058Z\", \"updated_at\": \"2026-05-16T12:58:15.907Z\", \"hypothesis\": \"DeepSeek TRAJ func-level 验证 trajectory verifier 在第二模型家族上的表现，预期与 Qwen TRAJ 类似（~86%）\", \"metrics\": {\"eval_loss_epoch1\": 0.0943, \"eval_loss_epoch2\": 0.0793, \"eval_loss_epoch3\": 0.0884, \"best_eval_loss\": 0.0793, \"best_step\": 1008, \"best_epoch\": 2, \"train_loss\": 0.1131, \"train_runtime_sec\": 2910.6}, \"conclusion\": \"success\"}, \"re-repair-phase0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T08:42:28.000Z\", \"updated_at\": \"2026-05-16T09:33:44.000Z\", \"hypothesis\": \"Per-test diagnostic information (from CLS verifier) improves LLM patch generation quality. Phase 0 uses oracle labels on 10 instances.\", \"conclusion\": \"negative\", \"metrics\": {\"control_mean_sim\": 0.82, \"cls_diag_mean_sim\": 0.818, \"oracle_diag_mean_sim\": 0.809, \"random_diag_mean_sim\": 0.719, \"n_instances\": 10, \"n_conditions\": 4, \"samples_per_condition\": 3}, \"notes\": \"Negative: oracle-level diagnostics did not improve patch quality over control. Random diagnostics clearly harmful (-10pp). Root causes: ceiling effect (5/10 near-perfect), mutations too simple, base model (not instruct). Will be written as interesting negative in Discussion section.\"}, \"cwm8b-ckpt400-test-eval-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T00:46:28.450Z\", \"updated_at\": \"2026-05-16T05:53:00.000Z\", \"conclusion\": \"killed\"}, \"cwm8b-ckpt400-test-eval-shard3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T02:38:24.004Z\", \"updated_at\": \"2026-05-16T05:42:50.630Z\", \"conclusion\": \"failed\"}, \"cwm8b-ckpt400-test-eval-shard2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T01:27:27.393Z\", \"updated_at\": \"2026-05-16T05:31:43.839Z\", \"hypothesis\": \"CWM 8B ckpt-400 test eval shard 2/4，分片并行评估加速\", \"conclusion\": \"success\"}, \"cwm8b-ckpt400-test-eval-shard4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T02:52:45.544Z\", \"updated_at\": \"2026-05-16T04:34:48.371Z\", \"hypothesis\": \"CWM 8B ckpt-400 test eval shard 4/4，分片并行评估加速\", \"conclusion\": \"success\"}, \"cwm4b-s42-mutation-breakdown\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T02:33:17.769Z\", \"updated_at\": \"2026-05-16T02:33:36.196Z\", \"hypothesis\": \"CWM 4B s42 per-mutation-type breakdown，与 CLS 对比验证 CWM 在哪些 mutation 类型上劣势更大\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 58.04, \"parseable_rate\": 46.3, \"parseable_only_accuracy\": 42.9, \"gold_parse_rate\": 43.5, \"gold_parseable_acc\": 23.5, \"operator_swap_parse_rate\": 56.9, \"operator_swap_parseable_acc\": 63.1, \"off_by_one_parse_rate\": 4.4, \"off_by_one_parseable_acc\": 0, \"return_value_parse_rate\": 48.8, \"return_value_parseable_acc\": 27, \"boundary_removal_parse_rate\": 30.6, \"boundary_removal_parseable_acc\": 59.2, \"n_instances\": 9784}}, \"cls4b-ckpt4600-test-mutation-pr\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T02:30:55.662Z\", \"updated_at\": \"2026-05-16T02:31:18.691Z\", \"hypothesis\": \"4B CLS ckpt-4600 test mutation-type precision/recall breakdown，论文 Table 数据\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 83.63, \"gold_acc\": 98.25, \"operator_swap_acc\": 78.91, \"return_value_acc\": 67.97, \"off_by_one_acc\": 58.47, \"boundary_removal_acc\": 46.9, \"n_instances\": 9784, \"note\": \"off_by_one recall_fail=0 (all predicted pass); boundary_removal identical to 8B\"}}, \"cls8b-seed123-ckpt3000-mutation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T01:21:39.827Z\", \"updated_at\": \"2026-05-16T02:25:49.152Z\", \"hypothesis\": \"CLS 8B seed123 ckpt-3000 test mutation breakdown — 跨 seed 验证 boundary_removal failure mode\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 85.6, \"boundary_removal\": 44.9, \"operator_swap\": 82.6, \"return_value\": 66.4, \"off_by_one\": 79.2, \"gold\": 99.6, \"n_samples\": 9784}}, \"cls8b-s42-resume-ckpt3600-test-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T01:18:39.982Z\", \"updated_at\": \"2026-05-16T02:25:47.677Z\", \"hypothesis\": \"ckpt-3600 test 评估修正版（v1 数据问题），获取准确 test 指标\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 84.48, \"f1_macro\": 78.17, \"fail_recall\": 56.8, \"pass_recall\": 94.8, \"n_samples\": 9784, \"note\": \"reproduces v1 exactly\"}}, \"cls8b-s42-ckpt1000-test-mutation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T22:05:40.602Z\", \"updated_at\": \"2026-05-16T01:40:18.681Z\", \"conclusion\": \"killed\"}, \"cls8b-s42-resume-ckpt3600-mutation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T23:34:55.660Z\", \"updated_at\": \"2026-05-16T01:15:08.404Z\", \"hypothesis\": \"8B CLS resume ckpt-3600 per-mutation-type breakdown，验证跨 checkpoint 的 mutation 难度排序稳定性\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 84.4849, \"overall_correct\": 8266, \"overall_total\": 9784, \"gold_accuracy\": 96.2443, \"gold_correct\": 4459, \"gold_total\": 4633, \"mutation_operator_swap_accuracy\": 81.3822, \"mutation_operator_swap_correct\": 2732, \"mutation_operator_swap_total\": 3357, \"mutation_off_by_one_accuracy\": 86.8852, \"mutation_off_by_one_correct\": 159, \"mutation_off_by_one_total\": 183, \"mutation_return_value_accuracy\": 75.4448, \"mutation_return_value_correct\": 424, \"mutation_return_value_total\": 562, \"mutation_boundary_removal_accuracy\": 46.9018, \"mutation_boundary_removal_correct\": 492, \"mutation_boundary_removal_total\": 1049}}, \"cls8b-s42-resume-ckpt3600-test\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T23:34:43.691Z\", \"updated_at\": \"2026-05-16T01:08:43.143Z\", \"hypothesis\": \"8B CLS s42 resume ckpt-3600 test 评估，验证是否为新 test-best\", \"conclusion\": \"success\"}, \"cls8b-s42-resume-ckpt1000-test-mutation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T18:47:04.634Z\", \"updated_at\": \"2026-05-16T01:08:35.169Z\", \"hypothesis\": \"CLS 8B s42 resume ckpt-1000 (val-best) 完整 test set 评估 (n=9784)，含 per-mutation-type breakdown。直接指定 ckpt-1000 路径（不用 best/），验证 accuracy + per-class F1 + mutation-type 粒度指标。\", \"conclusion\": \"failed\"}, \"cwm8b-ckpt400-test-eval-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T00:43:44.996Z\", \"updated_at\": \"2026-05-16T00:46:20.962Z\", \"hypothesis\": \"CWM 8B ckpt-400 test eval resume (v1 在 1544/9784 被 SIGKILL, 实际已完成 5280)\", \"conclusion\": \"killed\"}, \"repo-level-cwm-8b-conda-v6\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T00:40:49.599Z\", \"updated_at\": \"2026-05-16T00:44:41.264Z\", \"conclusion\": \"killed\"}, \"repo-level-cwm-8b-conda-v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T17:53:05.606Z\", \"updated_at\": \"2026-05-16T00:44:22.088Z\", \"hypothesis\": \"CWM 8B 训练 resume from ckpt-5200 (v4 timeout续), 剩余 ~1433 steps\", \"parent\": \"repo-level-cwm-8b-conda-v4\", \"conclusion\": \"negative\", \"notes\": \"失败原因: 进程在 step 6198/6633 (93.4%) 被静默杀死，无 Traceback，最后几步耗时飙升(12s→18s/it)，疑似 OOM 或系统 kill。已派 Worker 深查。fix_worker_id: worker_diagnose_repo-level-cwm-8b-conda-v5_20260516T002936\"}, \"cls8b-s42-ckpt3600-seq2048-ablation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T23:48:09.625Z\", \"updated_at\": \"2026-05-16T00:38:31.977Z\", \"hypothesis\": \"CLS 8B ckpt-3600 @seq2048 ablation: 测试新 val-best 在短 context 下表现，与 ckpt-1000 @2048 (82.83%) 对比\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 83.04, \"f1_macro\": 76.8, \"unparseable\": 136, \"n_samples\": 9784, \"seq_length\": 2048}}, \"cwm8b-ckpt400-test-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:16:19.540Z\", \"updated_at\": \"2026-05-16T00:18:16.631Z\", \"hypothesis\": \"CWM 8B ckpt-400 (best eval_loss=0.286) test@full(n=9784). 与 CLS 8B 对比锁定 8B-8B gap。提前利用空闲 GPU eval 训练中间最优 checkpoint。\", \"notes\": \"2026-05-15 16:57 UTC: pid=381618, etime=2h18m。进程中间静默死亡丢失~8h GPU时间，仅保存 359 样本。当前 auto-resume 从 sample 359 开始，1544/9784 (15.8%), running_acc=65.0%。速率 ~8.4 samples/min，剩余 8240 samples。ETA: ~May 16 09:15 UTC (~16h)。bs=8 (D102)。\", \"conclusion\": \"failed\"}, \"cls8b-s42-resume-val-sweep-gpu1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T18:45:53.816Z\", \"updated_at\": \"2026-05-15T23:21:00.466Z\", \"hypothesis\": \"Parallel val sweep GPU 1 (ckpt-4000→5800, 10 checkpoints), complementing GPU 0 sweep (1800→3800) to halve total wall time from ~9h to ~4.5h\", \"parent\": \"cls8b-s42-resume-val-sweep-seq8192-v2\", \"conclusion\": \"failed\", \"notes\": \"GPU1 sweep covered ckpt-4000→5400 (8 checkpoints completed). Terminated by SeetaCloud platform SIGTERM at ckpt-5600 (6330/9335). ckpt-5600 and 5800 being re-run separately. Peak in this range: ckpt-4200 (90.21%).\"}, \"cls8b-s42-resume-val-sweep-seq8192-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T17:43:36.203Z\", \"updated_at\": \"2026-05-15T22:33:50.928Z\", \"hypothesis\": \"s42 resume val sweep (seq8192 bs=1): 21 checkpoints (1800-5800), 与 baseline 一致的 seq_length\", \"notes\": \"Early terminated after ckpt-3800 (unique range 1800-3800 fully evaluated on cuda:0). ckpt-4000-5800 already covered by cuda:1 sweep (PID 405526). 11 unique checkpoints from this sweep: 1800-3800. Results dir also contains 4000-5400 which were evaluated before kill.\", \"conclusion\": \"success\"}, \"cls8b-s42-extended-val-sweep\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:32:48.699Z\", \"updated_at\": \"2026-05-15T22:02:21.531Z\", \"notes\": \"已暂停：Director URGENT 指令，cuda:0 优先跑 cwm-rank32-alpha64-ablation（修正 alpha/rank ratio 混淆变量）。rank32-alpha64 完成后（~1.5h）恢复 val sweep。ckpt-1800 已开始评估但被中断。\", \"conclusion\": \"killed\"}, \"cls8b-ckpt3000-test-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T20:23:04.682Z\", \"updated_at\": \"2026-05-15T22:02:19.972Z\", \"conclusion\": \"killed\", \"notes\": \"INVALID: checkpoints_repo_cls_8b/checkpoint-3000 是 transformers 5.x 旧训练产物（peft 0.19.1），非 conda 环境训练。89.50% val 结果不可引用。PID 282240 已终止。\"}, \"cls8b-ckpt3000-test-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T20:24:30.275Z\", \"updated_at\": \"2026-05-15T22:02:17.954Z\", \"conclusion\": \"killed\", \"notes\": \"INVALID: checkpoints_repo_cls_8b/checkpoint-3000 是 transformers 5.x 旧训练产物（peft 0.19.1），非 conda 环境训练。Provenance verify 确认后已取消。PID 282767 需确认是否已终止。\"}, \"repo-level-cls-8b-s42-ckpt200-val\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:07:13.036Z\", \"updated_at\": \"2026-05-15T22:02:16.407Z\", \"conclusion\": \"killed\", \"notes\": \"PID 290060 死亡，进程卡在 PREPARING 35+ min。batch_size=1 OOM 之前的首次提交，已被替换。\"}, \"repo-level-cls-8b-s42-resume\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:48:30.781Z\", \"updated_at\": \"2026-05-15T18:51:06.920Z\", \"hypothesis\": \"8B CLS s42 resume 训练（从 ckpt-600 继续），获取更多 checkpoint 用于 val/test sweep\", \"notes\": \"best/ 目录验证: 包含旧 run (checkpoints_repo_cls_8b_conda) 的 step-200 权重 (eval_loss=0.0796), 由 Trainer load_best_model_at_end 在训练结束时自动保存。不是 ckpt-1000 也不是 ckpt-6633。主表使用 val-selected ckpt-1000, 不受影响。\", \"conclusion\": \"success\", \"metrics\": {\"total_steps\": 6633, \"epochs\": 3, \"train_time_sec\": 74425, \"final_train_loss\": 0.4284, \"final_eval_loss\": 0.4768, \"best_eval_loss_resume\": 0.2516, \"best_eval_loss_resume_step\": 4200, \"best_eval_loss_overall\": 0.0796, \"best_eval_loss_overall_step\": 200, \"checkpoints_saved\": 32, \"overfitting\": true, \"note\": \"Severe overfitting after epoch 2. Resume-best=ckpt-4200. Val sweep running on cuda:0.\"}}, \"repo-level-cwm-8b-conda-v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:43:09.320Z\", \"updated_at\": \"2026-05-15T17:50:50.521Z\", \"hypothesis\": \"8B CWM 训练（从 checkpoint-1600 resume，第四次追踪）。PID 266816 在 cuda:2 上运行中，step 1700/6633。与 v2/v3 同实验但修正了脚本和 resume 路径。\", \"notes\": \"2026-05-15 17:49 UTC: 进程因 timeout (EXIT_CODE=124) 在 step 5273/6633 (79.5%) 被 kill。实际运行 ~23h54m。非 OOM/CUDA error/磁盘满。最新完整 checkpoint = ckpt-5200。cron 上报的 step 4013 是过期数据。磁盘 /root/autodl-tmp 剩余 102G。需从 ckpt-5200 resume，剩余 ~1433 步 (~4h45m)。\", \"conclusion\": \"failed\"}, \"cls8b-s42-resume-val-sweep-seq4096\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T17:30:21.415Z\", \"updated_at\": \"2026-05-15T17:43:29.189Z\", \"hypothesis\": \"s42 resume val sweep (seq4096): 21 checkpoints (1800-5800), bs=1\", \"notes\": \"Director 决策 kill：seq4096 导致 3.8pp 精度下降不可用，恢复 seq8192\", \"conclusion\": \"killed\"}, \"cls8b-s42-resume-val-sweep-seq8192\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T17:25:04.128Z\", \"updated_at\": \"2026-05-15T17:30:08.278Z\", \"notes\": \"改用 seq4096 重跑，seq8192 版本已终止\", \"conclusion\": \"killed\"}, \"cls8b-s42-resume-val-sweep\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T15:58:20.430Z\", \"updated_at\": \"2026-05-15T17:20:01.054Z\", \"conclusion\": \"failed\"}, \"s42-extended-val-sweep-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:03:12.942Z\", \"updated_at\": \"2026-05-15T16:48:09.948Z\", \"hypothesis\": \"s42 resume extended val sweep: 18 checkpoints (1800-5200 步长200), 寻找 s42-resume 训练的最优 val checkpoint。前 8 个 ckpt (200-1600) 已在之前 sweep 完成 (peak=ckpt-1000 88.23%)，本轮覆盖后半段。\", \"conclusion\": \"failed\"}, \"cwm-rank32-alpha64-ablation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:15:21.249Z\", \"updated_at\": \"2026-05-15T16:03:03.126Z\", \"hypothesis\": \"LoRA rank ablation 修正：CWM 4B rank=32, alpha=64 (alpha/rank=2，匹配 baseline ratio)。Reviewer 指出 cwm-rank32-ablation-v2 的 alpha=32 导致 effective scaling factor 减半（ratio=1 vs baseline ratio=2），构成混淆变量。本实验修正 alpha 使 ratio 一致，验证 rank=32 在公平 scaling 下是否仍与 rank=16 无差异。\", \"metrics\": {\"accuracy\": 87.04, \"pass_f1\": 86.79, \"fail_f1\": 87.27, \"f1_macro\": 87.03, \"pass_precision\": 91.8, \"pass_recall\": 82.3, \"fail_precision\": 82.9, \"fail_recall\": 92.1, \"exact_match_rate\": 84.55, \"train_loss\": 0.2069, \"eval_loss\": 0.0606, \"n_instances\": 1890, \"vs_rank16_baseline\": -0.47, \"rank16_baseline_accuracy\": 87.51}, \"conclusion\": \"success\", \"notes\": \"rank=32 alpha=64 (ratio=2) accuracy=87.0%，与 rank=32 alpha=32 (ratio=1) 完全一致，均低于 baseline rank=16 (87.51%)。结论：alpha/rank ratio 不是混淆变量，rank=16 已足够，增加 rank 轻微损害泛化。epoch2 eval_loss 最低(0.0555) → epoch3 回升(0.0606)，轻微过拟合与过参数化一致。\"}, \"s42-extended-val-sweep\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:14:55.217Z\", \"updated_at\": \"2026-05-15T15:04:02.952Z\", \"conclusion\": \"failed\"}, \"cwm-rank64-ablation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:02:12.517Z\", \"updated_at\": \"2026-05-15T14:32:02.657Z\", \"hypothesis\": \"LoRA rank ablation: CWM 4B rank=64 alpha=128 vs baseline rank=16 alpha=32。进一步验证 rank scaling 对 CWM 能力的影响。rank=32 结果为 87.0% (vs baseline 87.51%, -0.51pp)，rank=64 alpha=128 测试更高 rank 是否改变趋势。其余配置一致（lr=2e-4, epochs=3, seed=42, data=function-level）。\", \"conclusion\": \"killed\"}, \"cwm-4b-rank64-ablation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:04:12.137Z\", \"updated_at\": \"2026-05-15T14:09:24.224Z\", \"hypothesis\": \"LoRA rank ablation: CWM 4B rank=64 (alpha=128) vs rank=16 baseline (87.19%) vs rank=32 (87.0%)。构建 rank16→32→64 全平证据链，证明 CWM capacity 非瓶颈。其余配置完全一致（lr=2e-4, epochs=3, seed=42, data=function-level）。\", \"conclusion\": \"killed\", \"notes\": \"Director 取消：rank16→32 两点证据已够（within seed variance），不需要 rank64。cuda:0 转 eval 任务。PID 377944 已 kill。\"}, \"cls8b-seed123-ckpt6200-test-eval-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:09:10.387Z\", \"updated_at\": \"2026-05-15T14:04:08.427Z\", \"hypothesis\": \"seed123 test curve 补点: ckpt-6200 test@full(n=9784)。修复 v1 的 --max_samples 8192 bug（只评了 8192/9784），改为全量评估。\", \"metrics\": {\"accuracy\": 84.7, \"f1_fail\": 63.71, \"f1_pass\": 90.31, \"f1_macro\": 77.01, \"precision_fail\": 88.84, \"precision_pass\": 83.96, \"recall_fail\": 49.66, \"recall_pass\": 97.69, \"n_instances\": 9784, \"n_cls_unparseable\": 0}, \"conclusion\": \"success\"}, \"cwm-rank32-ablation-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:50:32.964Z\", \"updated_at\": \"2026-05-15T14:03:09.909Z\", \"hypothesis\": \"LoRA rank ablation: CWM 4B rank=32 vs baseline rank=16. 回应审稿人质疑 rank=16 是否系统性低估 CWM 能力。其余配置完全一致（lr=2e-4, epochs=3, seed=42, alpha=32, data=function-level）。PID 368823 在 GPU 0 上正常训练，step 324/1434 (22%)。注意：训练命令未串联 eval，完成后需单独触发 eval。\", \"conclusion\": \"success\", \"notes\": \"诊断结论: 训练成功完成 (EXIT_CODE=0)\\n最后 step: 1434/1434 (100%)\\n训练时间: 5003.67s (~83min)\\ntrain_loss=0.2536, eval_loss=0.0688\\nCheckpoints: best/, checkpoint-1434/, checkpoint-478/\\n评估结果: accuracy=87.0% (+35.2pp), F1(fail)=87.1%, F1(pass)=86.9%, exact_match=83.4%\\nMVP-B: PASS (per-class F1>65%, gap>=10pp)\\n**Director 确认结论**: rank=32 (87.0%) vs rank=16 baseline (87.19%) 无显著差异。CWM capacity 非瓶颈，LoRA rank=16 未系统性低估 CWM 能力。\", \"metrics\": {\"accuracy\": 87, \"exact_match_rate\": 83.4, \"fail_f1\": 87.1, \"pass_f1\": 86.9, \"train_loss_final\": 0.0152, \"train_loss_avg\": 0.2536, \"eval_loss\": 0.0688, \"train_runtime_sec\": 5003, \"test_set_size\": 1890, \"vs_rank16_baseline\": -0.51, \"rank16_baseline_accuracy\": 87.51}}, \"cwm-rank32-ablation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:29:23.767Z\", \"updated_at\": \"2026-05-15T12:50:56.655Z\", \"conclusion\": \"killed\", \"hypothesis\": \"LoRA rank=32 ablation (vs baseline rank=16) for CWM 4B function-level. Config: lr=2e-4, epochs=3, bs=2, ga=16, lora_rank=32, max_seq=2048, seed=42. NOTE: PID 368823 still RUNNING on GPU 0 as of 2026-05-15 20:49 (step 324/1434, ETA ~60min). Registry status 'killed' was incorrect.\"}, \"cwm-4b-rank32-ablation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:31:41.910Z\", \"updated_at\": \"2026-05-15T12:50:54.491Z\", \"hypothesis\": \"LoRA rank ablation: CWM 4B rank=32 vs 原始 rank=16。回应审稿人质疑 rank=16 是否系统性低估 CWM 能力。其余配置完全一致（lr=2e-4, epochs=3, seed=42, alpha=32, data=function-level）。\", \"conclusion\": \"killed\", \"notes\": \"Killed at ~5min on cuda:0 because duplicate of cwm-rank32-ablation (submitted 3min earlier). This run used bs=1/ga=32 vs baseline default bs=2/ga=16 (same effective batch=32 but slower 6.5s/it vs 4s/it, and not strictly identical to baseline config). Canonical rank=32 ablation continues as cwm-rank32-ablation (PID 368823, bs=2/ga=16, output=checkpoints_cwm_rank32/). No checkpoints written before kill.\"}, \"cls4b-v5-ckpt4000-test5120-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:46:00.819Z\", \"updated_at\": \"2026-05-15T12:22:20.864Z\", \"hypothesis\": \"4B s42 test sweep 补点: ckpt-4000 test@5120。Supplementary val+test 双线图。\", \"conclusion\": \"failed\", \"notes\": \"服务器 home-1x5090 离线导致失败。SSH 连接超时，cron 5次检查均失败。实验运行约46分钟后断连，可能已完成但无法确认。需服务器恢复后检查日志。\"}, \"cls8b-seed123-ckpt200-test-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T11:29:27.906Z\", \"updated_at\": \"2026-05-15T12:11:58.203Z\", \"hypothesis\": \"seed123 test curve 最后补点: ckpt-200 test@full(n=9784)。完成后 seed123 test curve 6/6 全齐。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 72.55, \"f1_macro\": 70.18, \"pass_f1\": 78.58, \"fail_f1\": 61.78, \"pass_precision\": 91.21, \"pass_recall\": 69.02, \"fail_precision\": 49.54, \"fail_recall\": 82.05, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 72.96, \"unparseable\": 0, \"confusion_matrix\": {\"tn\": 2171, \"fp\": 475, \"fn\": 2211, \"tp\": 4927}}}, \"cls8b-s42-ckpt1000-test-seq2048-ablation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:42:13.701Z\", \"updated_at\": \"2026-05-15T11:29:21.594Z\", \"hypothesis\": \"Seq_length confound ablation: CLS 8B val-best (ckpt-1000) eval@max_seq_length=2048（与 CWM 训练配置对齐）。对比 CLS@8192=83.52%。如 CLS@2048 仍大幅超越 CWM，排除 seq_length confound。Reviewer critical 直接回应。\", \"notes\": \"高优先级 Reviewer critical。等 cuda:0 或 cuda:3 空闲后立即提交。ckpt-1000 在 /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000。命令: eval_repo_cls.py --max_seq_length 2048 --max_new_tokens 8 --split test --batch_size 1。\", \"metrics\": {\"accuracy\": 82.83, \"f1_macro\": 76.88, \"fail_precision\": 72.2, \"fail_recall\": 59.3, \"fail_f1\": 65.2, \"pass_precision\": 85.9, \"pass_recall\": 91.5, \"pass_f1\": 88.6, \"unparseable\": 136}, \"conclusion\": \"success\"}, \"cls8b-seed123-ckpt6633-test-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T11:00:01.048Z\", \"updated_at\": \"2026-05-15T11:28:43.331Z\", \"hypothesis\": \"seed123 test curve 补点: ckpt-6633 (final) test@full(n=9784)。Supplementary val+test 双线图。\", \"metrics\": {\"accuracy\": 84.89, \"f1_macro\": 77.56, \"f1_fail\": 64.7, \"f1_pass\": 90.4, \"precision_fail\": 87.8, \"recall_fail\": 51.2, \"precision_pass\": 84.3, \"recall_pass\": 97.4, \"majority_baseline\": 73, \"gap_vs_majority_pp\": 11.9, \"total_samples\": 9784, \"unparseable_count\": 0}, \"conclusion\": \"success\"}, \"cls8b-seed123-ckpt6600-test-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:35:08.915Z\", \"updated_at\": \"2026-05-15T10:58:57.529Z\", \"hypothesis\": \"seed123 test curve 补点: ckpt-6600 test@full(n=9784)。Supplementary val+test 双线图。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 84.9, \"f1_macro\": 77.58, \"pass_f1\": 90.4, \"fail_f1\": 64.8, \"pass_precision\": 84.3, \"pass_recall\": 97.4, \"fail_precision\": 87.8, \"fail_recall\": 51.3, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 73, \"unparseable\": 0, \"confusion_matrix\": {\"fail_as_fail\": 1357, \"fail_as_pass\": 1289, \"pass_as_fail\": 188, \"pass_as_pass\": 6950}}}, \"cls8b-s42-ckpt200-test8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:35:10.602Z\", \"updated_at\": \"2026-05-15T10:58:56.283Z\", \"hypothesis\": \"s42 test curve 补点: ckpt-200 test@full(n=9784)。补齐与 val curve 对齐的最后一个缺失点。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 70.07, \"f1_macro\": 68.18, \"pass_f1\": 75.9, \"fail_f1\": 60.4, \"pass_precision\": 91.8, \"pass_recall\": 64.7, \"fail_precision\": 47, \"fail_recall\": 84.5, \"n_samples\": 9784, \"n_pass\": 7138, \"n_fail\": 2646, \"majority_baseline\": 73, \"unparseable\": 0, \"confusion_matrix\": {\"fail_as_fail\": 2235, \"fail_as_pass\": 411, \"pass_as_fail\": 2517, \"pass_as_pass\": 4621}}}, \"cls4b-v5-ckpt600-test5120-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:15:48.518Z\", \"updated_at\": \"2026-05-15T10:46:49.940Z\", \"hypothesis\": \"4B s42 test sweep 补点: ckpt-600 test@5120。与 val curve 对齐，supplementary val+test 双线图。\", \"notes\": \"4B test curve 补点 1/3。完成后依次提交 ckpt-4000 和 ckpt-4200。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 77.74, \"f1_macro\": 74.74, \"f1_fail\": 66.03, \"f1_pass\": 83.44, \"precision_fail\": 56.21, \"recall_fail\": 80.01, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 4.78, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-seed123-ckpt6400-test-eval-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:09:12.759Z\", \"updated_at\": \"2026-05-15T10:33:02.486Z\", \"hypothesis\": \"seed123 ckpt-6400 test eval（完整 n=9784，无 --max_samples），补充 test curve 数据点\", \"metrics\": {\"accuracy\": 85.08, \"f1_fail\": 65.32, \"f1_pass\": 90.49, \"f1_macro\": 77.91, \"precision_fail\": 87.92, \"precision_pass\": 84.54, \"recall_fail\": 51.97, \"recall_pass\": 97.35, \"n_instances\": 9784, \"n_cls_unparseable\": 0}, \"conclusion\": \"success\"}, \"cls8b-seed123-ckpt6400-test8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T09:42:51.287Z\", \"updated_at\": \"2026-05-15T10:08:47.614Z\", \"conclusion\": \"failed\", \"notes\": \"使用了 --max_samples 8192，只评了 8192/9784 样本，与主表 n=9784 不可比。已 kill，重跑为 v2（无 --max_samples）。\"}, \"cls8b-seed123-ckpt6200-test8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T09:42:47.885Z\", \"updated_at\": \"2026-05-15T10:08:46.482Z\", \"conclusion\": \"failed\", \"notes\": \"使用了 --max_samples 8192，只评了 8192/9784 样本，与主表 n=9784 不可比。已 kill，重跑为 v2（无 --max_samples）。\"}, \"cls8b-s42-ckpt200-val8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T09:43:07.477Z\", \"updated_at\": \"2026-05-15T10:08:45.449Z\", \"notes\": \"resume 目录无 ckpt-200（resume 从 ckpt-600 开始），无效评估目标。未实际启动。\", \"conclusion\": \"failed\"}, \"cls4b-seed123-ckpt800-test5120-eval-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T09:36:44.872Z\", \"updated_at\": \"2026-05-15T10:04:42.370Z\", \"hypothesis\": \"CLS 4B seed123 val-best (ckpt-800) test@5120。v1 因 --max_new_tokens 参数不兼容失败，v2 去掉该参数。\", \"parent\": \"repo-level-cls-seed123-home\", \"metrics\": {\"accuracy\": 75.33, \"f1_macro\": 67.03, \"f1_fail\": 50.5, \"f1_pass\": 83.6, \"precision_fail\": 55.2, \"recall_fail\": 46.5, \"precision_pass\": 81.3, \"recall_pass\": 86, \"majority_baseline\": 73, \"gap_vs_majority_pp\": 2.4, \"unparseable_count\": 0, \"total_samples\": 9784}, \"conclusion\": \"negative\", \"notes\": \"test acc=75.33%, 远低于 s42 的 83.63%。seed123 val-best (ckpt-800) 在 test 上仅比 majority baseline (73%) 高 2.4pp，seed 方差很大。\"}, \"repo-level-cls-8b-seed123-conda-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:43:51.115Z\", \"updated_at\": \"2026-05-15T09:39:13.861Z\", \"hypothesis\": \"8B CLS seed123 训练重启（第三次提交，修正 resume 路径指向 checkpoint-3000）。与 v1/v2 同配置，num_workers=0。验证 8B CLS multi-seed robustness。\", \"parent\": \"\", \"notes\": \"2026-05-15: 训练完成 6633/6633。EXIT_CODE=129 是 SIGHUP 误报，非失败。磁盘 checkpoint: 200, 6200, 6400, 6600, 6633, best（中段被 save_total_limit 清理）。Val-best=ckpt-3000 (88.69%, from backup), test=85.60%。\", \"conclusion\": \"success\"}, \"cls4b-seed123-ckpt800-test5120-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T09:16:07.798Z\", \"updated_at\": \"2026-05-15T09:36:38.776Z\", \"hypothesis\": \"CLS 4B seed123 val-best (ckpt-800, val=87.92%) test@5120。补充 4B multi-seed repo-level test 数据。\", \"parent\": \"repo-level-cls-seed123-home\", \"conclusion\": \"failed\", \"notes\": \"v1 失败：home 版 eval_repo_cls.py 不支持 --max_new_tokens 参数\"}, \"cls8b-seed123-ckpt6633-val8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:42:16.467Z\", \"updated_at\": \"2026-05-15T08:57:04.203Z\", \"hypothesis\": \"seed123 val sweep: ckpt-6633 (最后一个 checkpoint) val@8192。确定 seed123 val-best。\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 87.1, \"f1_macro\": 78.79, \"f1_fail\": 65.52, \"f1_pass\": 92.07, \"precision_fail\": 92.26, \"recall_fail\": 50.8, \"precision_pass\": 86.31, \"recall_pass\": 98.64, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 11.23, \"unparseable_count\": 9, \"total_samples\": 9335}}, \"cls8b-seed123-ckpt3000-test8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:32:32.981Z\", \"updated_at\": \"2026-05-15T08:14:23.380Z\", \"hypothesis\": \"seed123 val-best (ckpt-3000, val=88.69%) 的 test@8192。决定 seed123 multi-seed headline number。\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"conclusion\": \"success\", \"notes\": \"v1 进程 PID 345441 实际一直在跑（从未被 kill）。之前误标 DONE/failed 是因为 Reviewer 报告\\\"无 PID 无日志\\\"但实际进程已启动。v2 因与 v1 同 GPU 导致 OOM。保留 v1 收集结果。教训：标 FAILED 前必须 ps -p PID 确认进程已退出。\", \"metrics\": {\"accuracy\": 85.6, \"f1_macro\": 78.38, \"f1_fail\": 65.89, \"f1_pass\": 90.87, \"precision_fail\": 91.65, \"recall_fail\": 51.44, \"precision_pass\": 84.52, \"recall_pass\": 98.26, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 12.64, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-seed123-ckpt3000-test8192-eval-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:55:31.389Z\", \"updated_at\": \"2026-05-15T08:06:30.164Z\", \"hypothesis\": \"seed123 ckpt-3000 (backup, val=88.69%) test@8192。v1 误标 RUNNING 未实际启动，此为重跑。等 cuda:3 ckpt-6400 val 完成后启动。\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"conclusion\": \"failed\", \"notes\": \"v2 提交到 cuda:3 但 v1 (PID 345441) 仍在跑，同 GPU 冲突导致 OOM。结果无效，用 v1 结果。\"}, \"cls4b-v5-ckpt4400-test5120-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:29:48.065Z\", \"updated_at\": \"2026-05-15T07:59:20.222Z\", \"hypothesis\": \"4B test sweep 补点: ckpt-4400 test@5120。Supplementary val+test 双线图数据。\", \"parent\": \"cls4b-v5-train\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 83.24, \"f1_macro\": 74.44, \"f1_fail\": 59.45, \"f1_pass\": 89.44, \"precision_fail\": 85.98, \"recall_fail\": 45.43, \"precision_pass\": 82.78, \"recall_pass\": 97.25, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 10.28, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-seed123-ckpt6400-val8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:25:25.076Z\", \"updated_at\": \"2026-05-15T07:58:50.500Z\", \"hypothesis\": \"seed123 val sweep: ckpt-6400 val@8192\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 87.48, \"f1_macro\": 79.66, \"f1_fail\": 67.04, \"f1_pass\": 92.27, \"precision_fail\": 91.81, \"recall_fail\": 52.8, \"precision_pass\": 86.78, \"recall_pass\": 98.5, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 11.6, \"unparseable_count\": 9, \"total_samples\": 9335}}, \"cls8b-seed123-ckpt6200-val8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:29:36.909Z\", \"updated_at\": \"2026-05-15T07:58:33.467Z\", \"hypothesis\": \"seed123 val sweep: ckpt-6200 val@8192（与 cuda:3 ckpt-6400 并行加速）\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 87.52, \"f1_macro\": 79.26, \"f1_fail\": 66.16, \"f1_pass\": 92.35, \"precision_fail\": 95.63, \"recall_fail\": 50.58, \"precision_pass\": 86.33, \"recall_pass\": 99.27, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 11.64, \"unparseable_count\": 9, \"total_samples\": 9335}}, \"cls4b-v5-val-sweep-ckpt4600\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T01:50:50.548Z\", \"updated_at\": \"2026-05-15T07:41:04.726Z\", \"hypothesis\": \"4B v5 val sweep 最后一个数据点: ckpt-4600 val@5120。确认 val-best 是否在 ckpt-4400(89.96%) 之后继续改善。\", \"parent\": \"cls4b-v5-train\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 90.07, \"f1_macro\": 85.04, \"f1_fail\": 76.37, \"f1_pass\": 93.71, \"precision_fail\": 89.65, \"recall_fail\": 66.52, \"precision_pass\": 90.16, \"recall_pass\": 97.56, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 14.19, \"unparseable_count\": 0, \"total_samples\": 9335, \"n_truncated\": 234}}, \"cls8b-seed123-ckpt6600-val8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T06:49:01.026Z\", \"updated_at\": \"2026-05-15T07:25:59.750Z\", \"hypothesis\": \"seed123 val sweep: ckpt-6600 val@8192。确定 seed123 val-best。\", \"parent\": \"repo-level-cls-8b-seed123-conda-v3\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 87.23, \"f1_macro\": 79.02, \"f1_fail\": 65.9, \"f1_pass\": 92.14, \"precision_fail\": 92.6, \"recall_fail\": 51.15, \"precision_pass\": 86.4, \"recall_pass\": 98.7, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 11.36, \"unparseable_count\": 9, \"total_samples\": 9335}}, \"cls8b-s42-ckpt1600-test8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T02:10:45.814Z\", \"updated_at\": \"2026-05-15T07:25:47.928Z\", \"hypothesis\": \"8B s42 test sweep 最后数据点: ckpt-1600 test@8192。完成 7-point test curve。\", \"parent\": \"repo-level-cls-8b-s42-resume\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 84.99, \"f1_macro\": 78.94, \"f1_fail\": 67.65, \"f1_pass\": 90.22, \"precision_fail\": 81.06, \"recall_fail\": 58.05, \"precision_pass\": 85.93, \"recall_pass\": 94.97, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 12.03, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls4b-v5-ckpt4600-test-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T06:49:35.927Z\", \"updated_at\": \"2026-05-15T07:25:44.429Z\", \"hypothesis\": \"4B v5 val-best (ckpt-4600, val=90.07%) 的 test eval。D088 要求 val-best 必须有对应 test 数字。\", \"parent\": \"cls4b-v5-train\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 83.63, \"f1_macro\": 75.63, \"f1_fail\": 61.67, \"f1_pass\": 89.59, \"precision_fail\": 84.03, \"recall_fail\": 48.72, \"precision_pass\": 83.55, \"recall_pass\": 96.57, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 10.67, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-s42-ckpt1400-test8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T02:10:44.689Z\", \"updated_at\": \"2026-05-15T06:09:21.509Z\", \"hypothesis\": \"D089: s42 ckpt-1400 test@8192。Val+test 双线 sweep，用于论文 supplementary。\", \"parent\": \"repo-level-cls-8b-conda\", \"conclusion\": \"success\", \"notes\": \"2026-05-15: 首次运行 PID 332736 在 80.8% (7900/9784) 处被误杀，running_acc=85.2%。重新提交中。\", \"metrics\": {\"accuracy\": 85.47, \"f1_macro\": 78.9, \"f1_fail\": 67.13, \"f1_pass\": 90.67, \"precision_fail\": 86.43, \"recall_fail\": 54.88, \"precision_pass\": 85.27, \"recall_pass\": 96.81, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 12.51, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-s42-ckpt1200-test8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T02:10:43.492Z\", \"updated_at\": \"2026-05-15T05:09:08.608Z\", \"hypothesis\": \"补充 test curve 第五个数据点: 8B CLS s42 ckpt-1200 test@8192。与 ckpt-800 一起构成完整 5-point test curve 用于 supplementary\", \"parent\": \"repo-level-cls-8b-conda\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 83.84, \"f1_macro\": 77.47, \"f1_fail\": 65.49, \"f1_pass\": 89.45, \"precision_fail\": 77.52, \"recall_fail\": 56.69, \"precision_pass\": 85.4, \"recall_pass\": 93.91, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 10.89, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls8b-s42-ckpt800-test8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T04:21:53.215Z\", \"updated_at\": \"2026-05-15T04:46:22.291Z\", \"hypothesis\": \"补充 test curve 第四个数据点: 8B CLS s42 ckpt-800 test@8192。已有 400(84.79%)/600(79.05%)/1000(83.52%)，补 800 使 curve 更完整\", \"parent\": \"repo-level-cls-8b-conda\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 83.53, \"f1_macro\": 78.97, \"f1_fail\": 69.17, \"f1_pass\": 88.77, \"precision_fail\": 70.07, \"recall_fail\": 68.29, \"precision_pass\": 88.36, \"recall_pass\": 89.18, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 10.58, \"unparseable_count\": 0, \"total_samples\": 9784}}, \"cls4b-v5-val-sweep-ckpt4200\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T01:50:52.861Z\", \"updated_at\": \"2026-05-15T04:41:23.963Z\", \"hypothesis\": \"4B v5 ckpt-4200 val@5120 评估，checkpoint selection sweep 数据点\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 89.06, \"f1_macro\": 83.07, \"f1_fail\": 73, \"f1_pass\": 93.1, \"precision_fail\": 90.3, \"recall_fail\": 61.3, \"precision_pass\": 88.8, \"recall_pass\": 97.9}}, \"cls8b-s42-ckpt1600-val8192-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T03:47:46.239Z\", \"updated_at\": \"2026-05-15T04:17:07.114Z\", \"hypothesis\": \"8B CLS s42 ckpt-1600 val@8192 评估（v2 修复版），sweep 数据点\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 86.75, \"f1_macro\": 78.94, \"f1_fail\": 66.12, \"f1_pass\": 91.76, \"precision_fail\": 86.28, \"precision_pass\": 86.83, \"recall_fail\": 53.6, \"recall_pass\": 97.29, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 10.87, \"unparseable\": 9, \"total\": 9335}}, \"cls8b-s42-ckpt1600-val8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T01:44:40.195Z\", \"updated_at\": \"2026-05-15T03:45:41.027Z\", \"hypothesis\": \"D088 val pipeline: s42 ckpt-1600 val@8192 (resume 训练产出)。完整 sweep curve 数据点。\", \"parent\": \"repo-level-cls-8b-conda\", \"conclusion\": \"failed\", \"notes\": \"Network failure at startup: huggingface.co unreachable (Errno 101), tokenizer download failed after 5 retries. No results produced. Need to rerun with HF_HUB_OFFLINE=1 or ensure network_turbo is sourced before launch.\"}, \"cls8b-s42-ckpt1400-val8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T01:44:39.102Z\", \"updated_at\": \"2026-05-15T03:38:16.497Z\", \"hypothesis\": \"D088 val pipeline: s42 ckpt-1400 val@8192 (resume 训练产出)。完整 sweep curve 数据点。\", \"parent\": \"repo-level-cls-8b-conda\", \"metrics\": {\"accuracy\": 85.97, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 10.09, \"f1_macro\": 77.15, \"f1_fail\": 62.95, \"f1_pass\": 91.34, \"precision_fail\": 86.68, \"precision_pass\": 85.85, \"recall_fail\": 49.42, \"recall_pass\": 97.59, \"n_instances\": 9335, \"n_unparseable\": 9, \"confusion_matrix\": {\"tn\": 1113, \"fp\": 1139, \"fn\": 171, \"tp\": 6912}}, \"conclusion\": \"success\"}, \"cls4b-v5-val-sweep-ckpt4400-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T02:08:08.786Z\", \"updated_at\": \"2026-05-15T03:23:04.176Z\", \"hypothesis\": \"v1/v2 因 RTX 5090 间歇性 CUDA hang 卡死（详见 4b_eval_hang_analysis.md）。v3 未修改 watchdog，验证是否为低概率事件。SIGKILL + resume 修复待实施。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 89.96, \"f1_macro\": 84.94, \"f1_fail\": 76.25, \"f1_pass\": 93.64, \"precision_fail\": 88.84, \"precision_pass\": 90.21, \"recall_fail\": 66.79, \"recall_pass\": 97.33, \"majority_baseline\": 75.88, \"gap_vs_majority_pp\": 14.09, \"n_instances\": 9335, \"n_truncated\": 234, \"n_unparseable\": 0}}, \"cls8b-s42-ckpt1200-val8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T01:44:38.194Z\", \"updated_at\": \"2026-05-15T02:40:31.850Z\", \"hypothesis\": \"D088 val pipeline: s42 ckpt-1200 val@8192 (resume 训练产出)。完整 sweep curve 数据点。\", \"parent\": \"repo-level-cls-8b-conda\", \"notes\": \"失败原因: GPU 调度冲突——重复实验 cls8b-s42-ckpt1200-val8192 (PID 315834) 在 02:06:09 被提交到同一 cuda:0，导致 OOM 连锁反应。本实验 (PID 315418) 正常运行至 640/9335 (running_acc=87.5%) 时被 SIGTERM 杀死。| 已有成果: running_acc=87.5% @640/9335，确认 ckpt-1200 质量正常 | 建议: 在 westd cuda:0 重新提交（现已空闲）\", \"conclusion\": \"success\"}, \"cls8b-s42-ckpt1200-val8192-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T02:32:59.322Z\", \"updated_at\": \"2026-05-15T02:40:09.068Z\", \"hypothesis\": \"D089 val sweep: ckpt-1200 val@8192。PID 316940 实际在跑（v1 OOM, v2 GPU冲突, 此条目追踪实际运行进程）。\", \"parent\": \"repo-level-cls-8b-conda\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 87.76, \"f1_macro\": 81.25, \"f1_fail\": 70.2, \"f1_pass\": 92.3, \"precision_fail\": 85, \"recall_fail\": 59.8, \"precision_pass\": 88.3, \"recall_pass\": 96.7, \"majority_baseline\": 75.9, \"gap_vs_majority\": 11.9, \"unparseable\": 9}, \"notes\": \"评估完成 10:39 UTC。PID 316940 在 cuda:0 跑了 ~30 分钟。实际日志: /tmp/eval_ckpt1200.log (非 v2.log)。v2.log 是一个较晚启动的短命进程（10:07-10:10, 仅到 740/9335 就停了）。Accuracy=87.76%, F1_macro=81.25%, 超过 majority baseline 11.9pp。\"}, \"cls8b-s42-ckpt1200-val8192-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T02:10:51.058Z\", \"updated_at\": \"2026-05-15T02:32:28.765Z\", \"hypothesis\": \"D088/D089 val+test pipeline: s42 ckpt-1200 val@8192 (v1 OOM, 重提交)。\", \"parent\": \"repo-level-cls-8b-conda\", \"conclusion\": \"failed\", \"notes\": \"2026-05-15 02:13 UTC: 实际运行 PID 316940 (非 316307)。进度 740/9335 (7.9%), ~5 samples/sec。预计 ~02:42 UTC 完成。\"}, \"cls8b-s42-ckpt1000-test8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T01:40:01.711Z\", \"updated_at\": \"2026-05-15T02:09:18.381Z\", \"hypothesis\": \"ckpt-1000 成为新 val-best (88.23% > 85%), 跑 test@8192 获取最终论文数字\", \"parent\": \"repo-level-cls-8b-conda\", \"notes\": \"2026-05-15 09:46 UTC: eval 运行中，PID 312981 on cuda:0 (17.4GB VRAM)。进度 2700/9784 (27.6%), running_acc=82.7%。速度 ~0.13s/sample，预计 ~15min 后完成（~10:01 UTC）。命令确认含 --max_new_tokens 512 --max_seq_length 8192。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 83.52, \"f1_macro\": 77.5, \"f1_fail\": 65.85, \"f1_pass\": 89.14, \"precision_fail\": 74.93, \"recall_fail\": 58.73, \"precision_pass\": 85.84, \"recall_pass\": 92.72, \"majority_baseline\": 72.96, \"gap_vs_majority\": 10.56, \"unparseable_count\": 0, \"unparseable_rate\": 0, \"total_samples\": 9784, \"tp\": 6618, \"fp\": 1092, \"fn\": 520, \"tn\": 1554}}, \"cls8b-s42-ckpt1200-val8192\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T02:06:09.869Z\", \"updated_at\": \"2026-05-15T02:07:48.735Z\", \"hypothesis\": \"D088 val sweep: s42 ckpt-1200 val@8192 (resume 训练产出)。完整 val curve 数据点。\", \"conclusion\": \"failed\"}, \"cls4b-v5-val-sweep-ckpt4400\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T01:51:21.256Z\", \"updated_at\": \"2026-05-15T02:00:07.624Z\", \"conclusion\": \"killed\"}, \"cls4b-v5-ckpt4400-val5120-eval-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T01:41:21.624Z\", \"updated_at\": \"2026-05-15T01:55:19.579Z\", \"hypothesis\": \"D088 val sweep: 4B v5 ckpt-4400 val@5120 重跑（v1 因 Qwen3 thinking mode 卡死被 kill）。脚本已内置 enable_thinking=False + 180s watchdog。\", \"parent\": \"repo-level-cls-v5\", \"conclusion\": \"killed\"}, \"cls4b-v5-ckpt4400-val5120-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T01:36:10.033Z\", \"updated_at\": \"2026-05-15T01:42:24.337Z\", \"conclusion\": \"killed\", \"metrics\": {\"accuracy_partial_70pct\": 89.69, \"f1_macro_partial_70pct\": 84.61, \"samples_completed\": 6544, \"samples_total\": 9335}}, \"cls8b-s42-ckpt1000-val8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T01:03:36.750Z\", \"updated_at\": \"2026-05-15T01:39:37.277Z\", \"hypothesis\": \"D088 val pipeline: s42 ckpt-1000 val@8192 (resume 训练产出)。如 > 85.00% 需补跑 test@8192\", \"parent\": \"repo-level-cls-8b-conda\", \"metrics\": {\"accuracy\": 88.23, \"f1_macro\": 82.72, \"f1_fail\": 73, \"f1_pass\": 92.5, \"precision_fail\": 81.8, \"recall_fail\": 65.8, \"precision_pass\": 89.8, \"recall_pass\": 95.3, \"unparseable\": 9, \"total_instances\": 9335}, \"conclusion\": \"success\"}, \"cls8b-s42-ckpt800-val8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:40:21.590Z\", \"updated_at\": \"2026-05-15T01:07:58.963Z\", \"hypothesis\": \"D088 val pipeline: s42 ckpt-800 val@8192 (resume 训练产出)。如 > 85.00% (当前 val-best) 需补跑 test@8192\", \"parent\": \"repo-level-cls-8b-conda\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 84.5, \"f1_macro\": 79.2}}, \"cls4b-v5-ckpt4000-val5120-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:43:18.289Z\", \"updated_at\": \"2026-05-15T01:03:10.774Z\", \"hypothesis\": \"4B v5 ckpt-4000 val@5120 eval (supplementary data, D088)\", \"parent\": \"repo-level-cls-v5\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 89.84, \"f1_macro\": 84.25, \"f1_fail\": 74.85, \"f1_pass\": 93.64, \"precision_fail\": 92.95, \"recall_fail\": 62.66, \"precision_pass\": 89.24, \"recall_pass\": 98.49, \"unparseable\": 0, \"truncated\": 234, \"total\": 9335}}, \"cls4b-v5-ckpt600-val5120-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:39:23.063Z\", \"updated_at\": \"2026-05-14T23:47:43.530Z\", \"hypothesis\": \"Evaluate repo-level classification v5 checkpoint-600 on val split with max_seq_length=5120\", \"metrics\": {\"accuracy\": 82.82, \"f1_macro\": 79.81, \"f1_fail\": 72.03, \"f1_pass\": 87.6, \"precision_fail\": 59.3, \"recall_fail\": 91.7, \"unparseable\": 0, \"total\": 9335}, \"conclusion\": \"success\"}, \"cls4b-v5-val5120-sweep-home\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:34:54.309Z\", \"updated_at\": \"2026-05-14T23:47:06.682Z\", \"hypothesis\": \"D063 val sweep: 4B CLS v5 (s42) val@5120 sweep (ckpt-600/4000/4200/4400/4600)\", \"conclusion\": \"failed\"}, \"repo-level-cls-8b-conda\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:07:02.272Z\", \"updated_at\": \"2026-05-14T22:38:53.233Z\", \"hypothesis\": \"Qwen3-8B CLS repo-level conda 环境重训（transformers 4.57.6），消除跨环境混杂，验证 8B CLS repo 表现\", \"notes\": \"Checkpoint sweep 完成 (ckpt 200/400/600)。最优 ckpt-400: accuracy=84.52% (+11.56pp vs baseline), f1_macro=80.89。ckpt-600 过拟合退化至 78.51%。8B (84.52%) vs 4B best (80.73% seed123 ckpt-600) = +3.79pp scaling gain，与函数级趋势一致（8B CLS-4B CLS gap ~2pp）。Repo-level 8B scaling 比函数级更明显。\", \"conclusion\": \"success\", \"metrics\": {\"val_8192\": {\"ckpt_200\": {\"accuracy\": 63.52, \"f1_macro\": 61.17, \"f1_fail\": 51.6, \"f1_pass\": 70.7, \"unparseable\": 9}, \"ckpt_400\": {\"accuracy\": 80.96}, \"ckpt_600\": {\"accuracy\": 85}, \"best_acc\": \"ckpt_600\"}, \"val_5120\": {\"ckpt_400\": {\"accuracy\": 80.47, \"f1_macro\": 75.84}}, \"test_2048\": {\"ckpt_400\": {\"accuracy\": 84.52, \"f1_macro\": 80.89}, \"ckpt_600\": {\"accuracy\": 78.51}}, \"test_8192\": {\"ckpt_400\": {\"accuracy\": 84.79, \"f1_macro\": 81.18, \"f1_fail\": 72.93, \"f1_pass\": 89.43, \"unparseable\": 0, \"total\": 9784}, \"ckpt_600\": {\"accuracy\": 79.05, \"f1_macro\": 75.12, \"f1_fail\": 65.24, \"f1_pass\": 85, \"unparseable\": 0, \"total\": 9784}}}}, \"cls8b-s42-ckpt200-val8192-eval-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:06:17.105Z\", \"updated_at\": \"2026-05-14T22:38:47.098Z\", \"hypothesis\": \"D063 val sweep: 8B CLS s42 ckpt-200 val@8192，补全 val sweep 数据（之前 PID 死了标记 failed）\", \"parent\": \"repo-level-cls-8b-conda\", \"metrics\": {\"accuracy\": 63.52, \"f1_macro\": 61.17, \"f1_fail\": 51.6, \"f1_pass\": 70.7, \"unparseable\": 9, \"total\": 9335}, \"conclusion\": \"success\"}, \"cls4b-seed123-ckpt800-val5120-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:23:23.578Z\", \"updated_at\": \"2026-05-14T22:29:34.755Z\", \"hypothesis\": \"D063 val@5120: 4B CLS seed123 ckpt-800 在 val set 上评估\", \"parent\": \"repo-level-cls-seed123-home\", \"notes\": \"诊断结果：PID 3172988 于 14:13 PDT 启动，dtype=bf16（正确），batch_size=16（默认），速率 ~7500 样本/小时，预计 ~15:28 PDT 完成。VRAM 31.7/32.6GB 偏高但未影响性能。无需修复。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 87.92, \"f1_macro\": 81.95, \"f1_pass\": 92.33, \"f1_fail\": 71.57, \"unparseable\": 0, \"truncated\": 234, \"total\": 9335}}, \"repo-level-cls-seed123-home\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T21:30:50.413Z\", \"updated_at\": \"2026-05-14T22:27:09.307Z\", \"hypothesis\": \"D053: CLS seed123 在 home 重跑（与 v5 同环境：transformers 4.57.6 + 相同数据）。验证 repo-level CLS multi-seed robustness，与 CWM seed123 配对。原 westd 训练因环境差异 (transformers 5.8.0) 无效。\", \"notes\": \"Val@5120 sweep 完成 (ckpt-400/600/800)。⚠️ 重大发现：val@5120 best=ckpt-800 (87.92% acc, F1m 81.95)，但 test@2048 best=ckpt-600 (80.73%)。ckpt-800 在 test 上退化至 74.27%，val 上却是最佳。与 val@2048 趋势一致（later ckpts val 更好）。Val-test distribution shift 显著——选 checkpoint 不能只看 val。Sweep script 继续跑 v5 (seed42) checkpoints。\", \"conclusion\": \"success\", \"metrics\": {\"val_2048\": {\"n\": 9335, \"unparseable\": 1883, \"ckpt_200\": {\"accuracy\": 62.51, \"f1_macro\": 55.54, \"f1_pass\": 73.14, \"f1_fail\": 37.94}, \"ckpt_400\": {\"accuracy\": 80.72, \"f1_macro\": 67.03, \"f1_pass\": 88.27, \"f1_fail\": 45.78}, \"ckpt_600\": {\"accuracy\": 76.78, \"f1_macro\": 66.81, \"f1_pass\": 85, \"f1_fail\": 48.63}, \"ckpt_800\": {\"accuracy\": 81.81, \"f1_macro\": 69.14, \"f1_pass\": 88.91, \"f1_fail\": 49.37}, \"ckpt_1000\": {\"accuracy\": 82.3, \"f1_macro\": 67.63, \"f1_pass\": 89.42, \"f1_fail\": 45.84}, \"best_f1\": \"ckpt_800\", \"best_acc\": \"ckpt_1000\"}, \"val_4096\": {\"n\": 9335, \"unparseable\": 1406, \"ckpt_400\": {\"accuracy\": 82.57, \"f1_macro\": 71.24, \"f1_pass\": 89.29, \"f1_fail\": 53.18}, \"ckpt_600\": {\"accuracy\": 79.18, \"f1_macro\": 70.73, \"f1_pass\": 86.45, \"f1_fail\": 55}, \"ckpt_800\": {\"accuracy\": 83.7, \"f1_macro\": 73.31, \"f1_pass\": 90, \"f1_fail\": 56.7}, \"best_f1\": \"ckpt_800\", \"best_acc\": \"ckpt_800\"}, \"val_5120\": {\"n\": 9335, \"unparseable\": 0, \"truncated\": 234, \"ckpt_400\": {\"accuracy\": 86.01, \"f1_macro\": 79.66, \"f1_pass\": 91.02, \"f1_fail\": 68.3}, \"ckpt_600\": {\"accuracy\": 81.89, \"f1_macro\": 77.01, \"f1_pass\": 87.6, \"f1_fail\": 66.43}, \"ckpt_800\": {\"accuracy\": 87.92, \"f1_macro\": 81.95, \"f1_pass\": 92.33, \"f1_fail\": 71.57}, \"best_f1\": \"ckpt_800\", \"best_acc\": \"ckpt_800\"}}}, \"cls8b-s42-ckpt600-test8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:40:33.560Z\", \"updated_at\": \"2026-05-14T22:05:28.408Z\", \"hypothesis\": \"CRITICAL D063: 8B CLS s42 ckpt-600 test@8192，消除 max_seq_length 混杂变量，与 ckpt-400 test@8192 比较\", \"parent\": \"repo-level-cls-8b-conda\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 79.05, \"f1_macro\": 75.12, \"f1_fail\": 65.24, \"f1_pass\": 85, \"precision_fail\": 59.16, \"precision_pass\": 88.95, \"recall_fail\": 72.71, \"recall_pass\": 81.4, \"unparseable\": 0, \"total\": 9784, \"majority_baseline\": 73, \"gap_vs_majority_pp\": 6.09}}, \"cls8b-seed123-ckpt3000-val8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:11:09.823Z\", \"updated_at\": \"2026-05-14T21:41:38.471Z\", \"hypothesis\": \"D063 val@8192 checkpoint selection: 8B CLS seed123 ckpt-3000 在 val set (9335 samples) 上评估。修复缺失 max_seq_length 问题。\", \"parent\": \"repo-level-cls-8b-seed123-conda\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 88.69, \"f1_macro\": 81.73, \"f1_fail\": 70.5, \"f1_pass\": 93, \"precision_fail\": 95.2, \"precision_pass\": 87.6, \"recall_fail\": 55.9, \"recall_pass\": 99.1, \"majority_baseline\": 75.9, \"gap_vs_majority_pp\": 12.8, \"unparseable\": 9, \"total\": 9335}}, \"cls8b-s42-ckpt400-test8192-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:18:24.242Z\", \"updated_at\": \"2026-05-14T21:40:54.735Z\", \"hypothesis\": \"8B CLS s42 ckpt-400 test@8192 评估，消除 max_seq_length 混杂变量\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 84.79, \"f1_macro\": 81.18, \"f1_fail\": 72.93, \"f1_pass\": 89.43, \"precision_fail\": 70.32, \"precision_pass\": 90.74, \"recall_fail\": 75.74, \"recall_pass\": 88.15, \"majority_baseline\": 72.96, \"gap_vs_majority_pp\": 11.84, \"unparseable\": 0, \"total\": 9784}}, \"cls8b-seed123-ckpt3000-val-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:04:43.369Z\", \"updated_at\": \"2026-05-14T21:29:39.110Z\", \"hypothesis\": \"D063 val set checkpoint selection: 8B CLS seed123 ckpt-3000 在 val set (9335 samples) 上评估\", \"parent\": \"repo-level-cls-8b-seed123-conda\", \"notes\": \"进程已确认死亡。缺少 --max_seq_length 参数（默认 2048），结果不可比。已被 cls8b-seed123-ckpt3000-val8192-eval 替代。\", \"conclusion\": \"killed\"}, \"repo-level-cwm-seed123-conda\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:06:04.864Z\", \"updated_at\": \"2026-05-14T20:59:24.684Z\", \"notes\": \"CWM seed123 eval 完成。Accuracy 59.09%, F1 macro 43.43%, F1 fail 13.67%。Unparseable rate 67.2% (6574/9784)。Parseable-only accuracy 42.68%。与 v12 一致：CWM 在 repo-level 严重低于 majority baseline，是 negative value。两个 seed 都确认 CWM 方法在 repo-level 不可行。\", \"conclusion\": \"killed\", \"metrics\": {\"eval_test_accuracy\": 59.09, \"eval_test_f1_macro\": 43.43, \"eval_test_f1_fail\": 13.67, \"eval_test_f1_pass\": 73.19, \"eval_test_unparseable\": 6574, \"eval_test_total\": 9784, \"eval_test_unparseable_rate\": 67.2, \"eval_checkpoint\": \"checkpoint-500\"}}, \"repo-level-cwm-v12\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T21:50:47.997Z\", \"updated_at\": \"2026-05-14T20:59:22.309Z\", \"hypothesis\": \"D054: CWM v12 用 conda 环境 (transformers 4.57.6) 重训，与 CLS v5 同版本 transformers 做 apple-to-apple 对比。验证 repo-level CWM 在正确环境下的真实性能。\", \"conclusion\": \"killed\", \"notes\": \"CWM v12 eval 完成。Accuracy 58.04% (majority baseline 72.96%, 即 -14.92pp)。F1 macro 51.67%, F1 fail 34.12%。Unparseable rate 53.7% (5255/9784)。Parseable-only accuracy 42.88%。主要问题：CWM 生成执行日志而非分类标签，>50% 输出无法解析。即使可解析的样本准确率也仅 ~43%。Per-repo 差异大：pytest 25-42% acc 最差，requests 64-84% 最好。结论：repo-level CWM 是 negative value。\", \"metrics\": {\"eval_test_accuracy\": 58.04, \"eval_test_f1_macro\": 51.67, \"eval_test_f1_fail\": 34.12, \"eval_test_f1_pass\": 69.22, \"eval_test_unparseable\": 5255, \"eval_test_total\": 9784, \"eval_test_unparseable_rate\": 53.7, \"eval_checkpoint\": \"checkpoint-500\"}}, \"repo-level-cwm-8b-conda-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:24:39.553Z\", \"updated_at\": \"2026-05-14T19:38:56.781Z\", \"hypothesis\": \"8B CWM 训练重启（从最新 checkpoint resume）。与 v1 同配置，唯一改动 num_workers=0（D072/D073 教训）。验证 8B CWM repo-level 性能，与 8B CLS 对比 scaling effect。\", \"parent\": \"repo-level-cwm-8b-conda\", \"notes\": \"第三次提交。修复 resume_from_checkpoint 路径：从根目录改为 checkpoint-1600 子目录。PID 266811, cuda:2。num_workers=0。\", \"conclusion\": \"failed\"}, \"repo-level-cls-8b-seed123-conda-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:24:41.279Z\", \"updated_at\": \"2026-05-14T19:38:15.382Z\", \"hypothesis\": \"8B CLS seed123 训练重启（从最新 checkpoint resume）。与 v1 同配置，唯一改动 num_workers=0（D072/D073 教训）。验证 8B CLS multi-seed robustness，与 8B CLS conda (seed42) 配对。\", \"parent\": \"repo-level-cls-8b-seed123-conda\", \"notes\": \"第三次提交。修复 resume_from_checkpoint 路径：从根目录改为 checkpoint-3000 子目录。PID 266891, cuda:3。num_workers=0。\", \"conclusion\": \"failed\"}, \"repo-level-cwm-8b-conda-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:43:49.056Z\", \"updated_at\": \"2026-05-14T18:00:06.118Z\", \"hypothesis\": \"8B CWM 训练重启（第三次提交，修正 resume 路径）。从 checkpoint-1600 resume。与 v1/v2 同配置，num_workers=0。验证 8B CWM repo-level 性能。\", \"parent\": \"\", \"notes\": \"8B CWM 训练第三次提交，修正 resume 路径指向 checkpoint-1600。实际 Python PID=266816，tmux wrapper PID=266364。初始化确认无 FileNotFoundError，checkpoint 路径修复生效。\", \"conclusion\": \"failed\"}, \"repo-level-cls-8b-seed123-conda\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:28:09.211Z\", \"updated_at\": \"2026-05-14T16:32:11.927Z\", \"conclusion\": \"failed\", \"notes\": \"⚠️ Registry DONE/failed 但实际仍在训练 (PID 248041, westd cuda:3)。从 ckpt-2400 resume, num_workers=0。当前 step 2917/6633 (44%), 刚完成 ckpt-2800 (eval_loss=0.3238)。训练 loss@2900=0.5215, lr=2.96e-05。~8.2s/step, VRAM 26.8/32.6G, GPU util 96%。剩余 ~3800 steps (~8.8h) + eval 开销, ETA ~May 15 13:00 UTC。\"}, \"repo-level-cwm-8b-conda\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T05:28:04.512Z\", \"updated_at\": \"2026-05-14T16:32:09.152Z\", \"notes\": \"⚠️ Registry DONE/failed 但实际仍在训练 (PID 245775, westd cuda:2)。从 ckpt-1200 resume, num_workers=0。当前 step 1500/6633 (22.6%), 正在做 eval (90% done)。eval_loss@1500=0.3689, 训练 loss ~0.40-0.54 (下降趋势)。~12s/step, VRAM 21.2/32.6G, GPU util 97%。纯训练剩余 ~17h + eval 开销, ETA May 15 22:00-May 16 04:00 UTC。\", \"conclusion\": \"failed\"}, \"repo-level-cls-v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T07:42:07.962Z\", \"updated_at\": \"2026-05-14T14:52:33.985Z\", \"hypothesis\": \"D046 超参修正：lr 5e-5（原 2e-4）, weight_decay 0.01, warmup_ratio 0.05。修复 v4 warmup 阶段 checkpoint + LR 过高问题。验证 repo-level CLS verifier 在正确超参下的性能。\", \"notes\": \"Eval on checkpoint-600 (best eval_loss=0.0642) done on westd cuda:2. Accuracy 76.92% (+3.97pp vs majority baseline 72.96%, +10.81pp vs v4 66.11%). Fail F1 65.01 (+28.71pp vs v4 36.3). 训练仍在继续（step ~2000/6633）但 best checkpoint 不太可能改善。\", \"metrics\": {\"checkpoint_sweep\": {\"ckpt_600\": {\"accuracy\": 76.74, \"f1_macro\": 73.74, \"fail_f1\": 64.88, \"pass_f1\": 82.61}, \"ckpt_4000\": {\"accuracy\": 81.51, \"f1_macro\": 72.56, \"fail_f1\": 56.9, \"pass_f1\": 88.23}, \"ckpt_4200\": {\"accuracy\": 80.64, \"f1_macro\": 72.1, \"fail_f1\": 56.66, \"pass_f1\": 87.54}, \"ckpt_4400\": {\"accuracy\": 82.11, \"f1_macro\": 73.94, \"fail_f1\": 59.34, \"fail_precision\": 77.02, \"fail_recall\": 48.26}, \"ckpt_4600\": {\"accuracy\": 82.35, \"f1_macro\": 74.74, \"fail_f1\": 60.87, \"pass_f1\": 88.6, \"fail_precision\": 76, \"fail_recall\": 50.76}}, \"best_checkpoint_accuracy\": \"checkpoint-4600\", \"best_checkpoint_f1\": \"checkpoint-4600\", \"eval_samples\": 9784, \"accuracy\": 82.35, \"f1_macro\": 74.74, \"unparseable\": 132, \"unparseable_pct\": 1.3, \"majority_baseline\": 72.96, \"gap_vs_baseline\": 9.39, \"eval_server\": \"home-1x5090\", \"eval_env\": \"transformers 4.57.6\", \"note\": \"Test set sweep complete. ckpt-4600 best on both accuracy (82.35%) and f1_macro (74.74%).\", \"val_2048\": {\"ckpt_600\": {\"accuracy\": 77.25, \"f1_macro\": 70.81, \"fail_f1\": 57.11, \"pass_f1\": 84.52}, \"ckpt_4000\": {\"accuracy\": 83.32, \"f1_macro\": 70.26, \"fail_f1\": 50.56, \"pass_f1\": 89.97}, \"ckpt_4200\": {\"accuracy\": 82.82, \"f1_macro\": 69.54, \"fail_f1\": 49.43, \"pass_f1\": 89.65}, \"ckpt_4400\": {\"accuracy\": 83.49, \"f1_macro\": 71.63, \"fail_f1\": 53.29, \"pass_f1\": 89.97}, \"ckpt_4600\": {\"accuracy\": 83.63, \"f1_macro\": 71.72, \"fail_f1\": 53.36, \"pass_f1\": 90.07}, \"eval_samples\": 9335, \"unparseable\": 1883, \"unparseable_pct\": 20.2, \"val_best_f1\": \"ckpt-4600\", \"val_best_acc\": \"ckpt-4600\", \"note\": \"val-test 一致: 都是 ckpt-4600\"}}, \"conclusion\": \"success\"}, \"repo-level-cls-v5-conda\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:55:01.260Z\", \"updated_at\": \"2026-05-14T05:24:22.630Z\", \"hypothesis\": \"CLS v5 conda 环境重训（同 CWM v12 环境），消除 transformers 版本差异，建立公平 CLS-CWM 对比基线\", \"notes\": \"Checkpoint sweep 完成 (ckpt 200/400/600)。ckpt-200=52.96% (极差), ckpt-400=78.43% (accuracy 最高, pass-biased), ckpt-600=76.37% (f1_macro 最高=71.17, 更均衡)。与 home CLS v5 ckpt-600 (76.92%) 仅差 0.55pp，确认 home vs westd conda 环境差异可忽略。checkpoint 选择才是主因。D056 early stop 导致只看了 ckpt-200 险些误判。\", \"conclusion\": \"success\", \"metrics\": {\"checkpoint_sweep\": {\"ckpt_200\": {\"accuracy\": 52.96, \"f1_macro\": 52.89, \"fail_f1\": 51.02, \"pass_f1\": 54.76}, \"ckpt_400\": {\"accuracy\": 78.43, \"f1_macro\": 68.41, \"fail_f1\": 50.61, \"pass_f1\": 86.21, \"fail_precision\": 66.48, \"fail_recall\": 40.85, \"pass_precision\": 80.82, \"pass_recall\": 92.36}, \"ckpt_600\": {\"accuracy\": 76.37, \"f1_macro\": 71.17, \"fail_f1\": 58.93, \"pass_f1\": 83.41, \"fail_precision\": 55.6, \"fail_recall\": 62.7, \"pass_precision\": 85.49, \"pass_recall\": 81.44}}, \"best_checkpoint_accuracy\": \"checkpoint-400\", \"best_checkpoint_f1\": \"checkpoint-600\", \"eval_samples\": 9784, \"accuracy\": 78.43, \"f1_macro\": 71.17, \"unparseable\": 132, \"unparseable_pct\": 1.35, \"majority_baseline\": 72.96, \"eval_server\": \"westd-48478\", \"eval_env\": \"conda, transformers 4.57.6\"}}, \"repo-level-cwm-v11\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T07:42:42.615Z\", \"updated_at\": \"2026-05-13T22:56:46.413Z\", \"hypothesis\": \"D046 超参修正：lr 5e-5（原 2e-4）, weight_decay 0.01, warmup_ratio 0.05。修复 v10 warmup 阶段 checkpoint + LR 过高问题。验证 repo-level CWM execution simulator 在正确超参下的性能。\", \"notes\": \"D055: Checkpoint 混合版本（训练中 transformers 从 4.57.6 升级到 5.8.0），eval 结果不可用。Director 指令 kill eval PID 180344。500 样本 subset eval 仅供参考：acc=66.6%, fail_f1=27.7, unparseable=75.2%。已被 CWM v12 (纯 conda 4.57.6 环境) 替代。\", \"metrics\": {\"eval_checkpoint\": \"checkpoint-600\", \"eval_samples\": 500, \"eval_type\": \"subset500_tok1024\", \"accuracy\": 66.6, \"fail_f1\": 27.7, \"pass_f1\": 78.3, \"f1_macro\": 52.99, \"fail_precision\": 33.3, \"fail_recall\": 23.7, \"pass_precision\": 74.5, \"pass_recall\": 82.5, \"unparseable\": 376, \"unparseable_pct\": 75.2, \"majority_baseline\": 73, \"gap_vs_baseline\": -6.4, \"gen_length_mean\": 3398.1, \"gen_length_median\": 3307.5, \"gen_length_max\": 7582, \"confusion\": {\"TP\": 301, \"TN\": 32, \"FP\": 103, \"FN\": 64}}, \"conclusion\": \"killed\"}, \"repo-level-cwm-seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T22:36:34.770Z\", \"updated_at\": \"2026-05-13T21:50:44.956Z\", \"hypothesis\": \"Repo-level CWM seed=123 extra seed on westd-48478 cuda:3. 复用 CWM v9 代码配置，对冲 D008 Go/No-Go。与 repo-level-cls-seed123 配对验证 complexity-dependent advantage。\", \"notes\": \"D049 重启：D046 修正超参（lr=5e-5, wd=0.01, warmup=0.05），westd-48478 cuda:1, seed=123。之前 D046 取消是因为旧超参无效，现在用修正超参重新启动。\", \"conclusion\": \"killed\"}, \"repo-level-cls-8b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T09:28:28.486Z\", \"updated_at\": \"2026-05-13T21:50:44.049Z\", \"hypothesis\": \"Plan B: Qwen3-8B CLS verifier, D046 超参, seed=42。提前开跑，不等 D008。如果 4B 实验 eval 低于 baseline，零延迟切换到 8B 结果。\", \"metrics\": {\"eval_checkpoint\": \"checkpoint-200\", \"eval_samples\": 9784, \"accuracy\": 71.37, \"fail_f1\": 60.57, \"pass_f1\": 77.53, \"f1_macro\": 69.05, \"fail_precision\": 48.26, \"fail_recall\": 81.29, \"pass_precision\": 90.71, \"pass_recall\": 67.69, \"unparseable\": 136, \"unparseable_pct\": 1.39, \"majority_baseline\": 73, \"gap_vs_baseline\": -1.63, \"confusion\": {\"TP\": 4832, \"TN\": 2151, \"FP\": 495, \"FN\": 2306}, \"eval_server\": \"westd-48478\", \"eval_env\": \"transformers 5.8.0\"}, \"notes\": \"CLS 8B eval on westd cuda:0: accuracy=71.37% (BELOW majority baseline 73%, gap=-1.6pp). 全面低于 CLS v5 4B: accuracy -5.55pp, fail_f1 -4.44pp. ⚠️ 8B 在 westd (transformers 5.8.0) 训练，与 home (4.57.6) 环境不同。结果可能受环境差异影响（与 CLS seed123 22pp gap 同一根因）。checkpoint-200 eval_loss=0.0767。\", \"conclusion\": \"killed\"}, \"repo-level-cls-seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T22:36:34.171Z\", \"updated_at\": \"2026-05-13T21:31:03.862Z\", \"hypothesis\": \"Repo-level CLS seed=123 extra seed on westd-48478 cuda:2. 复用 CLS v4 代码配置，对冲 D008 Go/No-Go。与 repo-level-cwm-seed123 配对验证 complexity-dependent advantage。\", \"notes\": \"D049 重启：D046 修正超参（lr=5e-5, wd=0.01, warmup=0.05），westd-48478 cuda:0, seed=123。⚠️ 诊断发现：与 CLS v5 (home) 不可比——westd 用 transformers 5.8.0 (home 用 4.57.6) + 数据文件 md5 不同（不同 shuffle）。Best checkpoint-200 eval_loss=0.0808，accuracy ~55%（v5=77%）。22pp gap 来自环境差异而非 seed 差异。结果无效，需同一环境重跑。\", \"conclusion\": \"killed\"}, \"repo-level-cwm-v10\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T23:28:57.911Z\", \"updated_at\": \"2026-05-13T08:20:00.891Z\", \"hypothesis\": \"CWM v10: 诊断 v9 EXIT_CODE=2 语法错误后修复重提交。seetacloud cuda:2。验证 repo-level complexity-dependent CWM 训练（C1 claim 必备对照组）。\", \"notes\": \"D045 early stop. Eval on checkpoint-400: accuracy=69.91% (below majority 72.96%), but 93% unparseable due to max_new_tokens=64 (D047). Eval results invalid — CWM repo-level outputs exceed 64 tokens. F1_macro=46.71%, F1_fail=11.54%. Predictions: /root/autodl-tmp/results/repo_cwm_v10_eval/eval_repo_cwm_predictions.jsonl (9784 lines).\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.6991, \"f1_macro\": 0.4671, \"f1_pass\": 0.8187, \"f1_fail\": 0.1154, \"precision_pass\": 0.7304, \"recall_pass\": 0.9314, \"precision_fail\": 0.2815, \"recall_fail\": 0.0726, \"majority_baseline\": 0.7296, \"n_unparseable\": 9102, \"n_unparseable_pct\": 0.93, \"n_truncated\": 478, \"n_truncated_pct\": 0.0489, \"truncated_accuracy\": 0.2176, \"best_checkpoint\": \"checkpoint-400\", \"early_stop\": \"D045\", \"eval_invalid\": \"max_new_tokens=64 caused 93% unparseable (D047)\"}}, \"repo-level-cls-v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T17:17:08.066Z\", \"updated_at\": \"2026-05-13T07:01:27.247Z\", \"hypothesis\": \"CLS v4: 基于 v3 代码（DataCollator 已修复），home-1x5090 重提交。磁盘已修复（89%→64%）。save_steps=200, eval_steps=200。验证 repo-level complexity-dependent CLS advantage (C1 claim)。\", \"notes\": \"D045 early stop at step 2600/6633. Best checkpoint = step-200 (eval_loss=0.0701). Eval on checkpoint-200: accuracy=66.11% (below majority 72.96%), F1_macro=56.61%, F1_pass=76.9%, F1_fail=36.3%, 132 unparseable. Predictions: /home/sonny/exec-sim-repair-verifier/results/repo_cls_v4_eval/eval_repo_cls_predictions.jsonl\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.6611, \"f1_macro\": 0.5661, \"f1_pass\": 0.769, \"f1_fail\": 0.363, \"precision_pass\": 0.765, \"recall_pass\": 0.774, \"precision_fail\": 0.369, \"recall_fail\": 0.357, \"majority_baseline\": 0.7296, \"n_unparseable\": 132, \"best_checkpoint\": \"checkpoint-200\", \"early_stop\": \"D045\"}}, \"repo-level-cwm-v9\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T21:30:11.113Z\", \"updated_at\": \"2026-05-12T22:42:21.303Z\", \"hypothesis\": \"CWM v9: 修复 eval_steps/save_steps 对齐 (both=100), 修复 compute_loss OOM (pop labels before model forward), nohup 启动防 tmux kill\", \"notes\": \"pid=94010 是 Main Agent 误提交的重复进程，已立即 kill。实际训练由 Worker cwm-v9-dryrun-submit 提交（更早），正在 seetacloud cuda:2 预处理中。等 Worker 回调后更新正确的 pid 和 spec。若 cron 报 94010 退出失败，忽略——真实进程由 Worker 管理。\", \"conclusion\": \"failed\"}, \"repo-level-cls-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T16:30:58.016Z\", \"updated_at\": \"2026-05-12T22:04:00.357Z\", \"hypothesis\": \"CLS v3: 修复 save_strategy=steps+save_steps=200, nohup 启动. 第四次重启, 必须一次做对.\", \"notes\": \"v3 根因确认：根分区磁盘满(89%, 27G/30G)导致 SIGKILL，非 RAM OOM。系统 RAM 754G 空闲 621G。已修复：/root/.cache 移至数据盘，根分区降至 64%。训练至 step 188/6633 后被杀。\", \"conclusion\": \"failed\"}, \"repo-level-cls-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T14:41:27.833Z\", \"updated_at\": \"2026-05-12T22:03:59.800Z\", \"hypothesis\": \"Repo-level classification (SWE-bench per-test data, Qwen3-4B LoRA). 修复 sample_weight KeyError 后重提交。验证 complexity-dependent CLS advantage。\", \"notes\": \"ValueError: DataCollator tokenizer.pad() 收到 dict 而非 tensor。崩溃在 step 0/6633。Dataset.__getitem__ 返回的数据格式有问题。\", \"conclusion\": \"failed\"}, \"repo-level-cwm-v7\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T20:52:44.372Z\", \"updated_at\": \"2026-05-12T21:45:43.352Z\", \"hypothesis\": \"Repo-level CWM v7 (= v6 restart with eval_steps=500 fix). SWE-bench repo-level, Qwen3-4B LoRA, batch_size=1, grad_accum=32. 与 repo-level-cls-home 配对验证 complexity-dependent advantage (C1 claim).\", \"conclusion\": \"failed\", \"notes\": \"CWM v7 (v6 restart with eval_steps=500 fix) 完成，结论 negative。无 metrics 记录——上一 session 匆忙标记。v1-v7 零次成功产出 repo-level CWM metrics：v1-v2 代码 bug, v3 磁盘满, v4 CLI 参数+并行 OOM, v5 save_strategy 参数, v6 SIGTERM, v7 待诊断。Framing 调整提案已提交 Director，等待 diagnose Worker 确认 v7 root cause。\"}, \"repo-level-cls-home\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T17:14:31.858Z\", \"updated_at\": \"2026-05-12T21:45:04.784Z\", \"conclusion\": \"failed\"}, \"repo-level-cwm-v8\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T20:56:38.805Z\", \"updated_at\": \"2026-05-12T21:07:35.820Z\", \"hypothesis\": \"Repo-level CWM v8 (save_steps=100 + resume 支持). SWE-bench repo-level, Qwen3-4B LoRA, batch_size=1, grad_accum=32. 与 repo-level-cls-home 配对验证 complexity-dependent advantage (C1 claim). 改进：更频繁 checkpoint 以抵御平台 kill。\", \"conclusion\": \"failed\"}, \"repo-level-cwm-v6\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T18:58:27.726Z\", \"updated_at\": \"2026-05-12T20:36:11.807Z\", \"hypothesis\": \"Repo-level CWM v6 (SWE-bench, Qwen3-4B LoRA). 修复 v5 CUDA OOM（batch_size 2→1, grad_accum 16→32, save_steps 500→50）。与 repo-level-cls-home 配对验证 complexity gap。\", \"parent\": \"repo-level-cwm-v5\", \"conclusion\": \"failed\", \"notes\": \"v6 被 SIGTERM (EXIT_CODE=143) 杀死。非 OOM (SIGKILL=137)，非代码错误。SIGTERM 表示外部进程/系统主动发送终止信号。save_steps=50 应有中间 checkpoint。正在调查原因和 checkpoint 恢复可能性。连续第 8 次 repo-level CWM 失败（v1-v5 代码/infra 问题，v6 外部 kill）。\"}, \"cwm8b-seed123\": {\"status\": \"DONE\", \"parent\": \"model-size-scaling-cwm8b\", \"created_at\": \"2026-05-12T09:23:40.894Z\", \"updated_at\": \"2026-05-12T19:04:22.633Z\", \"hypothesis\": \"验证 8B CWM 87.67% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性\", \"metrics\": {\"overall_accuracy\": 86.98, \"pass_f1\": 86.83, \"fail_f1\": 87.13, \"pass_precision\": 91.12, \"pass_recall\": 82.92, \"fail_precision\": 83.3, \"fail_recall\": 91.34, \"exact_match_rate\": 84.13, \"unparseable\": 0, \"test_set_size\": 1890}, \"conclusion\": \"success\", \"notes\": \"8B CWM seed123: accuracy=86.98%, pass_f1=86.83%, fail_f1=87.13%, exact_match=84.13%。与 seed42 (87.67%) 相比下降 0.69pp。8B cls-cwm gap: seed42=2.81pp, seed123=3.50pp (90.48-86.98)。Classification 优势在两个 seed 下均稳定。\"}, \"cls8b-seed123\": {\"status\": \"DONE\", \"parent\": \"model-size-scaling-cls8b\", \"created_at\": \"2026-05-12T09:23:37.452Z\", \"updated_at\": \"2026-05-12T19:04:21.268Z\", \"hypothesis\": \"验证 8B classification 90.48% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性\", \"notes\": \"8B cls seed123 完成。accuracy=89.4% (vs seed42=90.48%, 差距 1.08pp 在正常波动范围内)。8B cls-cwm gap: seed42=2.81pp (90.48-87.67), seed123=2.42pp (89.4-86.98)。两个 seed 均显示 classification 在 8B 上显著优于 CWM，gap ~2.4-2.8pp 稳定。对比 4B gap ~0.9pp，8B 放大了 cls 的优势，支撑 Pillar 1 (complexity hypothesis)。OOM 后使用 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True 重试成功。\", \"metrics\": {\"overall_accuracy\": 89.4, \"pass_f1\": 89.5, \"fail_f1\": 89.2, \"pass_precision\": 91.2, \"pass_recall\": 87.9, \"fail_precision\": 87.5, \"fail_recall\": 90.9, \"train_loss\": 0.3087, \"eval_loss\": 0.0848, \"train_runtime_sec\": 5666, \"unparseable\": 0}, \"conclusion\": \"success\"}, \"cls8b-eval-seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T17:21:33.209Z\", \"updated_at\": \"2026-05-12T19:04:18.835Z\", \"hypothesis\": \"生成 8B CLS seed123 的 per-instance prediction JSON，用于 matched-seed error overlap 分析和论文数据支撑\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 89.37, \"pass_f1\": 89.54, \"fail_f1\": 89.19, \"pass_precision\": 91.2, \"pass_recall\": 87.93, \"fail_precision\": 87.54, \"fail_recall\": 90.9, \"unparseable\": 0, \"test_set_size\": 1890}}, \"cls8b-eval-seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T17:21:32.288Z\", \"updated_at\": \"2026-05-12T19:04:17.529Z\", \"hypothesis\": \"生成 8B CLS seed42 的 per-instance prediction JSON，用于 matched-seed error overlap 分析和论文数据支撑\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 90.48, \"pass_f1\": 90.86, \"fail_f1\": 90.06, \"pass_precision\": 90.22, \"pass_recall\": 91.51, \"fail_precision\": 90.76, \"fail_recall\": 89.36, \"unparseable\": 0, \"test_set_size\": 1890}}, \"repo-level-cwm-v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T17:23:40.543Z\", \"updated_at\": \"2026-05-12T18:57:24.283Z\", \"hypothesis\": \"Repo-level CWM v4 (SWE-bench, Qwen3-4B LoRA). 磁盘修复后重提交。与 cls-v4 配对验证 complexity gap。\", \"conclusion\": \"killed\", \"notes\": \"v4 首次提交因 CLI 参数错误 EXIT_CODE=2 失败。系统自动重试 (PID 77811) 但不含 Director 要求的 save_strategy=steps/save_steps=500。与 v5 并行会触发 cgroup OOM，主动停止保护 v5。\"}, \"repo-level-cwm-v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T14:41:28.527Z\", \"updated_at\": \"2026-05-12T18:57:16.157Z\", \"hypothesis\": \"Repo-level CWM generation (SWE-bench per-test data, Qwen3-4B LoRA). 修复 sample_weight KeyError 后重提交。与 repo-level-cls-v2 对比验证 complexity gap。\", \"conclusion\": \"failed\", \"notes\": \"ValueError: DataCollator tokenizer.pad() 收到 dict 而非 tensor。崩溃在 step 0/6633。与 repo-level-cls-v2 同一 root cause。\"}, \"repo-level-cwm-v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T17:45:02.039Z\", \"updated_at\": \"2026-05-12T17:55:46.979Z\", \"hypothesis\": \"Repo-level CWM v5 (SWE-bench, Qwen3-4B LoRA). 修复 v4 argparse 错误（移除不支持的 --save_strategy 参数）。与 cls-home 配对验证 complexity gap。\", \"notes\": \"v5: 通过 base64 patch 修改 train_repo_cwm.py 的 TrainingArguments (save_strategy=epoch→steps, save_total_limit=2→3, 新增 save_steps=500)。单进程 cuda:2。v4 因 auto-retry 并行冲突被 kill。\", \"conclusion\": \"failed\"}, \"matched-seed-8b-predictions\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T17:21:33.762Z\", \"updated_at\": \"2026-05-12T17:46:21.454Z\", \"hypothesis\": \"在 home 服务器生成 matched-seed per-instance predictions（8B CWM eval JSONs 或 4B 补充分析），为 error overlap / oracle 分析提供数据\", \"notes\": \"Worker 完成。4B CWM per-instance predictions 已生成: seed0 (87.57%), seed42 (已有), seed456 (86.98%). 可用 matched CLS-CWM pairs: seed0/seed42/seed456 (3对). 缺失: CWM seed123/789 (checkpoints only on seetacloud), 8B preds (checkpoints分散+GPU占用). 3 pairs 足够做 error overlap 分析。\", \"conclusion\": \"success\"}, \"repo-level-cwm-v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T16:30:59.064Z\", \"updated_at\": \"2026-05-12T17:22:48.589Z\", \"hypothesis\": \"Repo-level CWM (SWE-bench, Qwen3-4B LoRA). WeightedDataCollator 修复后 v3。与 cls-v3 配对验证 complexity gap。\", \"notes\": \"v3 根因确认：根分区磁盘满(89%, 27G/30G)导致 SIGKILL，非 RAM OOM。系统 RAM 754G 空闲 621G。已修复：/root/.cache 移至数据盘，根分区降至 64%。训练至 step 3/6633 后被杀。\", \"conclusion\": \"failed\"}, \"cwm-seed789\": {\"status\": \"DONE\", \"parent\": \"cwm-baseline\", \"created_at\": \"2026-05-12T12:31:34.311Z\", \"updated_at\": \"2026-05-12T16:13:15.185Z\", \"hypothesis\": \"补充 4B CWM seed=789，凑齐 CWM 5-seed 对比（42, 123, 456, 789, 0），与 5-seed CLS 做 paired 统计检验\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 86.67, \"pass_f1\": 86.74, \"fail_f1\": 86.6, \"exact_match_rate\": 83.97, \"baseline_gap_pp\": 34.92, \"test_set_size\": 1890, \"unparseable_predictions\": 0, \"per_class\": {\"fail\": {\"precision\": 84.09, \"recall\": 89.25, \"f1\": 86.6}, \"pass\": {\"precision\": 89.37, \"recall\": 84.25, \"f1\": 86.74}}}}, \"cls8b-seed456\": {\"status\": \"DONE\", \"parent\": \"model-size-scaling-cls8b\", \"created_at\": \"2026-05-12T13:55:11.074Z\", \"updated_at\": \"2026-05-12T15:28:45.391Z\", \"hypothesis\": \"8B CLS 第 3 个 seed，与 cwm8b-seed456 配对。完成后有 3 matched 8B pairs (seed42/123/456)，增强 scaling gap 证据\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 88.31, \"pass_f1\": 88.2, \"fail_f1\": 88.41, \"pass_precision\": 92.29, \"pass_recall\": 84.46, \"fail_precision\": 84.72, \"fail_recall\": 92.43, \"train_loss\": 0.3105, \"eval_loss\": 0.0928, \"unparseable\": 0, \"test_set_size\": 1890}}, \"cwm8b-seed456\": {\"status\": \"DONE\", \"parent\": \"model-size-scaling-cwm8b\", \"created_at\": \"2026-05-12T13:18:05.040Z\", \"updated_at\": \"2026-05-12T15:00:31.635Z\", \"hypothesis\": \"8B CWM 第 3 个 seed，补强 scaling gap 证据。当前 8B cls-cwm gap 基于 2 seeds (seed42=2.81pp, seed123=2.42pp, mean=2.60pp)，3 seeds 更稳健\", \"metrics\": {\"overall_accuracy\": 86.24, \"pass_f1\": 85.96, \"fail_f1\": 86.51, \"pass_precision\": 91.08, \"pass_recall\": 81.39, \"fail_precision\": 82.09, \"fail_recall\": 91.45, \"exact_match_rate\": 82.8, \"train_loss\": 0.2279, \"eval_loss\": 0.0583, \"unparseable\": 0, \"test_set_size\": 1890, \"majority_baseline_accuracy\": 51.75, \"accuracy_vs_baseline_gap_pp\": 34.5}, \"conclusion\": \"success\"}, \"5-paired-clustered-bootstrap\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T13:10:42.139Z\", \"updated_at\": \"2026-05-12T14:33:52.551Z\", \"hypothesis\": \"5-seed paired variant-level clustered bootstrap CI + TOST 等价检验，验证 CLS 和 TRAJ 在 variant 级别是否等价（扩展之前 3-paired 分析）\", \"conclusion\": \"success\", \"metrics\": {\"pooled_gap_pp\": -0.45, \"pooled_ci_lower\": -1.71, \"pooled_ci_upper\": 0.84, \"pooled_p_value\": 0.499, \"tost_p_value\": 0.0071, \"tost_margin_pp\": 2, \"seed_level_paired_t_p\": 0.425, \"seed_level_mean_gap\": -0.48, \"n_variants_pooled\": 523, \"n_clusters\": 114, \"per_seed_gaps\": {\"seed42\": -0.97, \"seed123\": 1.45, \"seed456\": -1.84, \"seed789\": -0.78, \"seed0\": -0.29}}, \"notes\": \"5-paired 扩展了之前 3-paired 分析。核心发现：CLS 和 TRAJ 在 variant 级别统计等价（TOST p=0.0071, margin ±2pp），无显著差异（gap=-0.45pp, p=0.499）。确认 D018：per-test CLS 聚合到 variant 级别后与 TRAJ 表现一致。注意：seed 789/0 使用 4-bit 量化推理（低于 bf16 ~2-3pp），但 paired 比较内部一致。结果保存在 home:/home/sonny/exec-sim-repair-verifier/clustered_bootstrap_5paired.json。\"}, \"repo-level-cwm\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T11:07:31.773Z\", \"updated_at\": \"2026-05-12T14:12:06.893Z\", \"hypothesis\": \"Repo-level (SWE-bench) CWM generation baseline — 对比 classification 在 repo-level 的优势是否与函数级一致，验证 complexity hypothesis 跨粒度的稳健性\", \"notes\": \"失败原因: KeyError: 'sample_weight' — train_repo_cwm.py:122 compute_loss 尝试 inputs.pop(\\\"sample_weight\\\") 但 Dataset/Collator 未提供该字段。代码 bug，非 infra/resource 问题。两个 repo-level 实验（cls + cwm）同一 root cause。修复：Dataset.__getitem__ 需要返回 sample_weight 字段，或 Collator 需要传递该字段。\", \"conclusion\": \"failed\"}, \"repo-level-cls\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T11:07:29.362Z\", \"updated_at\": \"2026-05-12T14:12:05.932Z\", \"hypothesis\": \"Repo-level (SWE-bench) classification verifier — 验证 per-test classification 从函数级 (HumanEval/MBPP) 扩展到 repo-level 的泛化能力，使用 max_seq_length=4096 和 class weighting 处理 85/15 不平衡\", \"notes\": \"失败原因: KeyError: 'sample_weight' — train_repo_verifier.py:124 compute_loss 尝试 inputs.pop(\\\"sample_weight\\\") 但 Dataset/Collator 未提供该字段。代码 bug，非 infra/resource 问题。与 repo-level-cwm 同一 root cause。修复：Dataset.__getitem__ 需要返回 sample_weight 字段，或 Collator 需要传递该字段。\", \"conclusion\": \"failed\"}, \"cwm-seed0\": {\"status\": \"DONE\", \"parent\": \"cwm-baseline\", \"created_at\": \"2026-05-12T12:49:43.806Z\", \"updated_at\": \"2026-05-12T13:53:51.849Z\", \"hypothesis\": \"补充 4B CWM seed=0，凑齐 CWM 5-seed (42, 123, 456, 789, 0)，与 5-seed CLS 做完整 paired 统计分析\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 87.57, \"fail_f1\": 87.93, \"fail_precision\": 82.71, \"fail_recall\": 93.86, \"pass_f1\": 87.18, \"pass_precision\": 93.45, \"pass_recall\": 81.7, \"exact_match_rate\": 84.29, \"eval_loss\": 0.0665, \"train_loss\": 0.2554, \"train_runtime_sec\": 3586}}, \"per-test-precision-recall\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T05:51:25.659Z\", \"updated_at\": \"2026-05-12T13:38:59.726Z\", \"hypothesis\": \"Per-test 级别 precision/recall 诊断分析 — 按 mutation type 和 problem 粒度评估分类器的诊断质量\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 87.51, \"fail_precision\": 82.75, \"fail_recall\": 93.64, \"fail_f1\": 87.86, \"pass_precision\": 93.24, \"pass_recall\": 81.8, \"pass_f1\": 87.15, \"FP_count\": 58, \"FN_count\": 178, \"best_mutation\": \"return_value (97.26%)\", \"worst_mutation\": \"off_by_one (82.56%)\", \"bucket_6_10_acc\": 96.3, \"bucket_11plus_acc\": 87.12}, \"notes\": \"扩展诊断分析完成 (eval_pertest_diagnostic.py)。新增发现：114 个 problems 中 48 个 (42.1%) 完美预测；median problem fail-F1=94.12%；return_value 最易 (F1=98.6%), off_by_one 最难 (F1=80.8%)；worst problems: MBPP/397 (40%), HumanEval/130 (46%)。脚本和结果保存在 home:/home/sonny/exec-sim-repair-verifier/eval_pertest_diag.json。\"}, \"cwm-seed123\": {\"status\": \"DONE\", \"parent\": \"cwm-baseline\", \"created_at\": \"2026-05-12T11:24:58.500Z\", \"updated_at\": \"2026-05-12T13:15:21.097Z\", \"hypothesis\": \"补充 4B CWM seed=123，与 cwm-baseline (seed=42, 87.51%) 对比确认 4B cls-cwm gap ~0.9pp 的稳定性，同时为 \\\"scaling widens gap\\\" 叙事提供更强 evidence\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 87.2, \"pass_f1\": 86.95, \"fail_f1\": 87.44, \"exact_match_rate\": 84.44, \"majority_baseline_accuracy\": 51.75, \"accuracy_vs_baseline_gap_pp\": 35.45, \"test_set_size\": 1890, \"unparseable_predictions\": 0}}, \"cwm-seed456\": {\"status\": \"DONE\", \"parent\": \"cwm-baseline\", \"created_at\": \"2026-05-12T11:46:14.491Z\", \"updated_at\": \"2026-05-12T12:51:35.823Z\", \"hypothesis\": \"补充 4B CWM seed=456，与 cwm-baseline (seed=42, 87.51%) 对比确认 4B cls-cwm gap ~0.9pp 的稳定性，支撑 scaling widens gap 叙事\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 86.98, \"pass_f1\": 86.66, \"fail_f1\": 87.29, \"pass_precision\": 92.26, \"pass_recall\": 81.7, \"fail_precision\": 82.52, \"fail_recall\": 92.65, \"exact_match_rate\": 84.02, \"train_loss\": 0.2525, \"eval_loss_best\": 0.0551, \"eval_loss_final\": 0.0635, \"train_runtime_sec\": 3440, \"unparseable\": 0}, \"notes\": \"CWM 4B seed=456 训练和评估正常完成。accuracy=86.98%，与 cwm-baseline (seed=42, 87.51%) 相差 -0.53pp，与 cwm8b-seed123 (seed=123, 86.98%) 完全一致。4B CWM 两个非默认 seed 均为 86.98%，略低于 seed=42 的 87.51%，说明 seed=42 可能略偏高，4B CWM 的真实水平约 87.0-87.5%。exact_match_rate=84.02% 与 baseline 完全一致。pass_f1=86.66% vs baseline 87.31% (-0.65pp)，fail_f1=87.29% vs baseline 87.71% (-0.42pp)，差异很小。4B cls-cwm gap 分析：cls-baseline accuracy=88.36%，CWM 均值约 87.16%，gap ~1.2pp，在不同 seed 下稳定存在，支撑 scaling widens gap 叙事。\"}, \"cls-seed0\": {\"status\": \"DONE\", \"parent\": \"multi-seed-core\", \"created_at\": \"2026-05-12T10:22:27.264Z\", \"updated_at\": \"2026-05-12T12:31:31.781Z\", \"hypothesis\": \"补充 cls seed=0 用于 5-paired comparison (cls vs traj 各 5 seeds)，确认 per-test classification accuracy 的稳定性\", \"metrics\": {\"accuracy\": 87.94, \"pass_f1\": 87.79, \"fail_f1\": 88.08, \"pass_precision\": 92.13, \"pass_recall\": 83.84, \"fail_precision\": 84.2, \"fail_recall\": 92.32, \"train_loss\": 0.2347, \"eval_loss\": 0.0963, \"train_runtime_sec\": 4976.75, \"unparseable\": 0}, \"conclusion\": \"success\", \"notes\": \"5-seed cls comparison complete. Seeds: seed0=87.94, seed42=87.83, seed123=89.52, seed456=87.88, seed789=89.00. Cls 5-seed mean=88.43±0.78 (sample std). Traj 5-seed mean=86.30±0.97. Cls outperforms traj by +2.13pp with lower variance (0.78 vs 0.97). All 5 cls seeds pass MVP-B criteria (per-class F1>65%, accuracy gap>=10pp). Classification approach shows consistent advantage over trajectory-level approach across all seeds.\"}, \"cls-seed789\": {\"status\": \"DONE\", \"parent\": \"multi-seed-core\", \"created_at\": \"2026-05-12T10:22:01.380Z\", \"updated_at\": \"2026-05-12T11:26:34.278Z\", \"hypothesis\": \"补充 cls seed=789 用于 5-paired comparison (cls vs traj 各 5 seeds)，确认 per-test classification accuracy 的稳定性\", \"metrics\": {\"accuracy\": 89, \"pass_f1\": 88.9, \"fail_f1\": 89.1, \"pass_precision\": 93.3, \"pass_recall\": 84.9, \"fail_precision\": 85.2, \"fail_recall\": 93.4}, \"conclusion\": \"success\", \"notes\": \"cls seed789 完成。accuracy=89.0%, pass_f1=88.9%, fail_f1=89.1%。5-seed cls 汇总: seed42=87.83, seed123=89.52, seed456=87.88, seed789=89.0, seed0=pending。4 seeds mean=88.56±0.78。与 traj 5-seed mean 86.30±0.97 比，cls 仍领先 ~2.3pp。\"}, \"traj-level-finetuned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T04:01:30.468Z\", \"updated_at\": \"2026-05-12T10:25:09.350Z\", \"hypothesis\": \"Trajectory-level verifier (聚合 per-test → resolved/unresolved) 的 accuracy 低于 per-test classification 聚合后的准确率，验证 per-test granularity 的信息优势\", \"parent\": \"multi-seed-core\", \"notes\": \"Trajectory-level 85.66% vs per-test classification 88.41%。⚠️ 此比较是不同粒度（1890 tests vs 1032 variants），clustered bootstrap 在 variant 级别对齐后 gap=-0.37pp, p=0.646，两者无显著差异。Per-test 的真正优势在 diagnostic granularity（知道哪个测试失败），不在 raw accuracy。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 85.66, \"unresolved_f1\": 87.5, \"resolved_f1\": 83.18, \"per_test_consistency\": 79.94}}, \"traj-level-seed456\": {\"status\": \"DONE\", \"parent\": \"traj-level-finetuned\", \"created_at\": \"2026-05-12T07:00:59.345Z\", \"updated_at\": \"2026-05-12T10:25:07.158Z\", \"metrics\": {\"overall_accuracy\": 87.4, \"unresolved_f1\": 88.7, \"resolved_f1\": 85.8, \"unresolved_precision\": 85.7, \"unresolved_recall\": 91.9, \"resolved_precision\": 89.7, \"resolved_recall\": 82.3, \"consistency_rate\": 78.8}, \"conclusion\": \"success\", \"hypothesis\": \"验证 traj-level-finetuned 的 2.75pp gap（vs per-test classification）在不同 seed 下稳定存在，确认统计显著性\", \"notes\": \"Traj-level seed 456: accuracy=87.4%, unresolved_f1=88.7%, resolved_f1=85.8%, consistency=78.8%。\\n\\n⚠️ 注意：per-test accuracy vs traj accuracy 的直接比较是不同粒度对比（1890 tests vs 1032 variants），clustered bootstrap 在 variant 级别对齐后无显著差异 (gap=-0.37pp, p=0.646)。Per-test 的优势在 diagnostic granularity 而非 raw accuracy。\"}, \"traj-level-seed789\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T08:23:44.159Z\", \"updated_at\": \"2026-05-12T10:25:04.794Z\", \"hypothesis\": \"补充第 4 seed (789) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05\", \"parent\": \"traj-level-finetuned\", \"metrics\": {\"overall_accuracy\": 87.31, \"unresolved_f1\": 88.27, \"resolved_f1\": 86.17, \"unresolved_precision\": 87.41, \"unresolved_recall\": 89.15, \"resolved_precision\": 87.18, \"resolved_recall\": 85.18, \"consistency_rate\": 76.74, \"eval_loss\": 0.1115, \"train_loss\": 0.2255, \"train_runtime_sec\": 2055.9}, \"conclusion\": \"success\", \"notes\": \"seed789: accuracy=87.31, unresolved_f1=88.27, resolved_f1=86.17, consistency=76.74, train_loss=0.2255, eval_loss=0.1115, wall_time=34.3min。\\n\\n5-seed traj-level 汇总: mean accuracy=86.30±0.97, unresolved_f1=87.76±0.68, resolved_f1=84.42±1.45。\\n\\n⚠️ 注意：per-test accuracy (88.41%) vs traj accuracy (86.30%) 的直接比较是不同粒度对比（1890 tests vs 1032 variants），clustered bootstrap 在 variant 级别对齐后 gap=-0.37pp, p=0.646，无显著差异。Per-test 的真正优势在 diagnostic granularity 而非 raw accuracy。\"}, \"traj-level-seed0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T08:23:47.402Z\", \"updated_at\": \"2026-05-12T10:23:10.812Z\", \"hypothesis\": \"补充第 5 seed (0) 验证 traj-level ~3pp gap 的统计显著性，5 seeds 降低 p 值至 <0.05\", \"parent\": \"traj-level-finetuned\", \"notes\": \"clustered bootstrap CI 分析（跨 3 seeds）发现：将 cls 预测聚合到 variant 级别后，cls vs traj gap 消失。Pooled gap = -0.37pp, 95% CI [-1.89, +1.07], p=0.646。原先 per-test accuracy (88.41%) vs traj accuracy (86.46%) 的 2.23pp gap 是苹果橘子比较——前者评估 1890 个测试，后者评估 1032 个变体。方法论重要发现：per-test 的优势不在 variant-level accuracy，而在 diagnostic granularity（知道哪个测试失败）。\", \"metrics\": {\"overall_accuracy\": 85.66, \"unresolved_f1\": 87.37, \"resolved_f1\": 83.41, \"unresolved_precision\": 82.71, \"unresolved_recall\": 92.59, \"resolved_precision\": 90.07, \"resolved_recall\": 77.66, \"consistency_rate\": 79.55, \"train_loss\": 0.225, \"eval_loss_epoch1\": 0.0949, \"eval_loss_epoch2\": 0.0885, \"eval_loss_epoch3\": 0.1011, \"train_runtime_sec\": 4071.3}, \"conclusion\": \"success\"}, \"per-test-majority-voting\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T08:18:14.827Z\", \"updated_at\": \"2026-05-12T10:06:09.994Z\", \"hypothesis\": \"Per-test majority voting (K=3, temperature=0.7) with fine-tuned 4B classification model 能否通过 self-consistency 提升 single-pass 87.5% accuracy\", \"conclusion\": \"negative\", \"metrics\": {\"accuracy_greedy\": 87.51, \"accuracy_majority_vote_K3\": 86.83, \"delta_accuracy\": -0.69, \"fail_f1_greedy\": 87.86, \"fail_f1_mv\": 87.29, \"pass_f1_greedy\": 87.15, \"pass_f1_mv\": 86.33, \"unanimous_rate\": 93.3, \"split_samples\": 127, \"flipped_correct_to_wrong\": 28, \"flipped_wrong_to_correct\": 15, \"net_flips\": -13, \"per_pass_accuracy\": [86.72, 86.83, 87.62], \"wall_time_greedy_sec\": 30, \"wall_time_mv_sec\": 120}, \"notes\": \"Majority voting K=3 (temperature=0.7) 无效，accuracy 从 87.51% 降至 86.83% (-0.69pp)。93.3% 样本三次预测一致（unanimous），仅 127 个分歧样本。Flip 分析：28 个原正确样本被 voting 翻错，15 个原错误样本被 voting 翻对，净损失 13 个。模型错误是系统性偏差而非随机噪声，voting 无法修复。推理时间从 30s 增至 120s (4x)，无收益。结论：single-pass greedy 是最优推理策略，majority voting 不值得采用。\"}, \"block-corr-empirical\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T08:20:56.388Z\", \"updated_at\": \"2026-05-12T09:27:14.694Z\", \"hypothesis\": \"训练好的 per-test 分类器的预测误差在同一 problem_id 内是 block-correlated 而非 i.i.d.，验证 oracle 模拟的 block-correlation 假设\", \"conclusion\": \"success\", \"metrics\": {\"icc\": 0.1909, \"icc_p_value\": 0, \"design_effect\": 3.9676, \"overall_error_rate\": 0.1249, \"all_correct_observed\": 46, \"all_correct_expected_iid\": 16.35, \"all_correct_ratio\": 2.81, \"error_std_observed\": 0.1531, \"error_std_expected_iid\": 0.0811, \"error_std_ratio\": 1.89, \"n_samples\": 1890, \"n_problems\": 114, \"inference_precision\": \"bfloat16\", \"version\": \"v2_corrected\"}, \"notes\": \"v2 修正版：用 bfloat16 推理替代 v1 的 4-bit 量化。accuracy 偏差已消除 (87.51% = 主评估)。ICC 从 0.233 降至 0.191（4-bit 量化误差本身也是 block-correlated 的），但结论不变：block-correlation 显著存在 (p<0.0001)，DEFF=3.97。\"}, \"model-size-scaling-cwm8b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T05:08:45.037Z\", \"updated_at\": \"2026-05-12T09:23:59.200Z\", \"hypothesis\": \"Qwen3-8B CWM generation baseline 在函数级的 F1 与同尺寸 classification 的差距，相比 4B 尺度（差距 0.2pp）是否扩大或缩小\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 87.67, \"pass_f1\": 87.57, \"fail_f1\": 87.77, \"pass_precision\": 91.53, \"pass_recall\": 83.95, \"fail_precision\": 84.19, \"fail_recall\": 91.67, \"exact_match_rate\": 84.39, \"train_loss\": 0.229, \"eval_loss_epoch1\": 0.0554, \"eval_loss_epoch2\": 0.0512, \"eval_loss_epoch3\": 0.0564, \"train_runtime_sec\": 5570, \"unparseable\": 0}, \"notes\": \"8B CWM 相比 4B 几乎无提升: accuracy 87.67 vs 87.51 (+0.16pp), pass_f1 87.57 vs 87.31 (+0.26pp), fail_f1 87.77 vs 87.71 (+0.06pp), exact_match 84.39 vs 84.02 (+0.37pp)。CWM对模型容量增加不敏感，瓶颈可能在于生成精确错误信息的任务复杂度本身，而非模型能力不足。训练3 epoch完成，train_loss=0.229（低于cls的0.3125），eval_loss在epoch2最低(0.0512)。关键对比：8B cls-cwm gap (accuracy 2.81pp, pass_f1 3.29pp, fail_f1 2.29pp) 远大于4B的gap (accuracy 0.90pp, pass_f1 1.10pp, fail_f1 0.69pp)。Gap扩大约3倍，强烈支持complexity hypothesis——classification的scaling效率显著优于CWM generation。\"}, \"model-size-scaling-cls8b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T05:08:43.293Z\", \"updated_at\": \"2026-05-12T09:23:53.485Z\", \"hypothesis\": \"Qwen3-8B classification 在函数级 per-test 任务上的 F1 高于 4B (87.5%)，且与 8B CWM 的差距大于 4B 尺度的差距（0.2pp），验证 classification 优势随模型增大扩大\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 90.48, \"pass_f1\": 90.86, \"fail_f1\": 90.06, \"pass_precision\": 90.22, \"pass_recall\": 91.51, \"fail_precision\": 90.76, \"fail_recall\": 89.36, \"train_loss\": 0.3125, \"eval_loss_epoch1\": 0.0723, \"eval_loss_epoch2\": 0.0741, \"eval_loss_epoch3\": 0.0783, \"train_runtime_sec\": 5614, \"unparseable\": 0}, \"notes\": \"8B classification 显著优于 4B baseline: accuracy 90.48 vs 88.41 (+2.07pp), pass_f1 90.86 vs 88.41 (+2.45pp), fail_f1 90.06 vs 88.40 (+1.66pp)。训练3 epoch完成，train_loss=0.3125，eval_loss在epoch1最低(0.0723)后略升(epoch3=0.0783)，有轻微过拟合但不影响最终效果。Scaling 明确有效。与同尺寸8B CWM对比：cls-cwm accuracy gap从4B的0.90pp扩大到8B的2.81pp (+1.91pp)，pass_f1 gap从1.10pp扩大到3.29pp (+2.19pp)，fail_f1 gap从0.69pp扩大到2.29pp (+1.60pp)。Classification在模型增大时获益远超CWM generation，支持complexity hypothesis。\"}, \"llm-judge-32b-zeroshot\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T05:08:47.931Z\", \"updated_at\": \"2026-05-12T08:21:22.141Z\", \"hypothesis\": \"Qwen3-32B 4-bit 量化 zero-shot 是否可达 fine-tuned 4B 水平——若是则 fine-tuning 价值存疑，若否则确认小模型 fine-tuning 的 Pareto 优势\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 71.69, \"majority_baseline\": 51.75, \"accuracy_vs_baseline_gap\": 19.95, \"fail_precision\": 64.4, \"fail_recall\": 92.43, \"fail_f1\": 75.91, \"pass_precision\": 88.12, \"pass_recall\": 52.35, \"pass_f1\": 65.68, \"unparseable_predictions\": 0, \"trajectory_accuracy\": 99.12, \"trajectory_total_problems\": 114, \"trajectory_correct\": 113, \"trajectory_true_resolved\": 1, \"trajectory_pred_resolved\": 0}, \"notes\": \"Qwen3-32B 4-bit zero-shot accuracy=71.69%, 远低于 fine-tuned 4B 的 88.41%（差距 16.7pp），确认小模型 fine-tuning 的 Pareto 优势。\\n\\n## Scaling 趋势 (zero-shot)\\n- 8B → 32B: accuracy 64.4% → 71.69% (+7.3pp)\\n- 模型规模增大 4x 仅带来约 7pp 提升，外推到更大模型也难以弥补 16.7pp 差距\\n- pass_recall 从 35.1%(8B) 提升到 52.35%(32B)，但仍远低于 fine-tuned 4B 的均衡水平\\n\\n## Zero-shot 的系统性偏差\\n- 所有 zero-shot 模型都严重偏向预测 FAIL（fail_recall>92%, pass_recall<53%）\\n- Fine-tuned 4B 实现了均衡的 precision/recall（~88%/88%），这是 zero-shot prompting 无法达到的\\n\\n## Trajectory-level\\n- 32B zero-shot trajectory accuracy=99.12%（113/114），与 8B 和 fine-tuned 类似\\n- Trajectory-level 区分度不足以区分方法优劣，sample-level metrics 才是关键\\n\\n## 结论\\n8x 参数量的 zero-shot 推理无法替代小模型 fine-tuning。Fine-tuned 4B 在 accuracy、F1 和 class balance 上全面碾压 32B zero-shot，且推理成本低 8x+。\\n\\nWall clock: 471s (含模型加载 73s), 1 GPU, 0.13 GPU-hours。\"}, \"llm-judge-8b-zeroshot\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T05:08:46.511Z\", \"updated_at\": \"2026-05-12T08:14:26.582Z\", \"hypothesis\": \"Qwen3-8B zero-shot LLM-as-judge 在 per-test 和 trajectory-level 判别上均低于 fine-tuned 4B 模型，确认 fine-tuning 的必要性\", \"metrics\": {\"overall_accuracy\": 64.4, \"fail_precision\": 57.9, \"fail_recall\": 95.8, \"fail_f1\": 72.2, \"pass_precision\": 90, \"pass_recall\": 35.1, \"pass_f1\": 50.5, \"majority_baseline\": 51.7, \"accuracy_vs_baseline_gap\": 12.6, \"traj_accuracy\": 99.1, \"traj_problems\": 114, \"traj_true_resolved\": 1, \"traj_pred_resolved\": 0, \"confusion\": {\"TP_fail\": 874, \"FN_fail\": 38, \"FP_fail\": 635, \"TN_fail\": 343}}, \"conclusion\": \"success\", \"notes\": \"Qwen3-8B zero-shot LLM-as-judge 远低于 fine-tuned 4B：accuracy 64.4% vs 88.41% (-24pp), fail_f1 72.2% vs 88.4% (-16.2pp), pass_f1 50.5% vs 88.4% (-37.9pp)。模型严重偏向预测 FAIL（1509/1890 预测为 FAIL），fail recall 95.8% 但 precision 仅 57.9%，pass recall 仅 35.1%。Trajectory-level 99.1% accuracy 无意义（114 problems 中仅 1 个 resolved，模型全部预测 unresolved）。结论：fine-tuning 必要性强验证，即使更大的 zero-shot 模型（8B）也无法匹敌更小的 fine-tuned 模型（4B），差距达 24pp。\"}, \"traj-level-seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T06:09:51.802Z\", \"updated_at\": \"2026-05-12T08:05:28.994Z\", \"hypothesis\": \"验证 traj-level-finetuned 的 2.75pp gap（vs per-test classification）在不同 seed 下稳定存在，确认统计显著性\", \"parent\": \"traj-level-finetuned\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 85.47, \"unresolved_f1\": 87, \"resolved_f1\": 83.52, \"unresolved_precision\": 83.53, \"unresolved_recall\": 90.78, \"resolved_precision\": 88.17, \"resolved_recall\": 79.33, \"consistency_rate\": 78.59}}, \"oracle-f2p-stratified\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T06:06:58.065Z\", \"updated_at\": \"2026-05-12T06:07:22.217Z\", \"conclusion\": \"success\", \"hypothesis\": \"Per-test verifier 的优势集中在 F2P test count ≥2 的实例上，T=1 时退化为 trajectory-level（无信息增益）\", \"metrics\": {\"T1_pct\": 68.7, \"T1_block_adv\": -0.09, \"T2_pct\": 19.1, \"T2_block_adv\": 31.69, \"T3_5_pct\": 7.1, \"T3_5_block_adv\": 40.74, \"T6plus_pct\": 5.1, \"T6plus_block_adv\": 40.06, \"overall_block_adv\": 10.93, \"T2_contribution_pct\": 55.3}}, \"trace-then-judge\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T03:19:47.150Z\", \"updated_at\": \"2026-05-12T05:06:12.473Z\", \"hypothesis\": \"Trace-then-judge (生成 ~50 tokens reasoning trace 再判 pass/fail) 的 F1 与 direct classification 相当，排除 classification 优势来自跳过 reasoning 的可能\", \"parent\": \"multi-seed-core\", \"conclusion\": \"failed\", \"notes\": \"进程在评估 1600/1890 (~85%) 时意外死亡，eval_trace_*.json 未生成，结果不可用。方法论缺陷（trace 模板泄漏 mutation type）+ 评估未完成。\"}, \"mvp-b-train\": {\"status\": \"DONE\", \"created_at\": \"2026-05-11T19:24:04.462Z\", \"updated_at\": \"2026-05-12T04:44:41.807Z\", \"hypothesis\": \"Qwen3-4B LoRA 在函数级 (code, test) → pass/fail 上可达 per-class F1 >65%, accuracy > majority+10pp\", \"notes\": \"OOM at step 15 (2nd attempt). Root cause: cross_entropy logits fp32 = 9.4GB + model 26GB > 32GB VRAM. Fix: bs 8→2, grad_accum 4→16, effective bs unchanged at 32. Retry count: 2.\", \"conclusion\": \"success\", \"metrics\": {\"overall_accuracy\": 0.875, \"pass_f1\": 0.871, \"fail_f1\": 0.879, \"pass_precision\": 0.9324, \"pass_recall\": 0.818, \"fail_precision\": 0.8275, \"fail_recall\": 0.9364, \"majority_baseline\": 0.52, \"accuracy_vs_majority_gap\": 0.355}}, \"multi-seed-core\": {\"status\": \"DONE\", \"created_at\": \"2026-05-11T22:31:56.650Z\", \"updated_at\": \"2026-05-12T04:44:24.731Z\", \"hypothesis\": \"Classification verifier 在 3 seeds 下稳定达到 ~87% accuracy/F1，CWM ≈ classification 的 null result robust\", \"metrics\": {\"seed42\": {\"accuracy\": 87.83, \"pass_f1\": 88.06, \"fail_f1\": 87.59, \"pass_precision\": 89.45, \"pass_recall\": 86.71, \"fail_precision\": 86.2, \"fail_recall\": 89.04}, \"seed123\": {\"accuracy\": 89.52, \"pass_f1\": 89.64, \"fail_f1\": 89.4, \"pass_precision\": 91.76, \"pass_recall\": 87.63, \"fail_precision\": 87.34, \"fail_recall\": 91.56}, \"seed456\": {\"accuracy\": 87.88, \"pass_f1\": 87.53, \"fail_f1\": 88.21, \"pass_precision\": 93.6, \"pass_recall\": 82.21, \"fail_precision\": 83.12, \"fail_recall\": 93.97}, \"mean\": {\"accuracy\": 88.41, \"pass_f1\": 88.41, \"fail_f1\": 88.4}, \"std\": {\"accuracy\": 0.96, \"pass_f1\": 1.1, \"fail_f1\": 0.92}}, \"conclusion\": \"success\"}, \"cwm-baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-11T21:19:57.582Z\", \"updated_at\": \"2026-05-11T22:27:46.303Z\", \"hypothesis\": \"CWM generation baseline (预测 execution output) 的 per-class F1 显著低于 classification (87.1/87.9%)，验证 task reformulation (generation→classification) 的有效性\", \"parent\": \"mvp-b-train\", \"conclusion\": \"negative\", \"metrics\": {\"overall_accuracy\": 87.51, \"pass_f1\": 87.31, \"fail_f1\": 87.71, \"pass_precision\": 92.06, \"pass_recall\": 83.03, \"fail_precision\": 83.53, \"fail_recall\": 92.32, \"exact_match_rate\": 84.02, \"train_loss\": 0.2534, \"eval_loss\": 0.0644, \"train_runtime_sec\": 3439, \"test_set_size\": 1890, \"unparseable_predictions\": 0}, \"notes\": \"CWM generation baseline 与 classification 结果几乎持平，假设未得到验证。CWM: acc=87.51%, pass_f1=87.31%, fail_f1=87.71% vs Classification: acc=87.5%, pass_f1=87.1%, fail_f1=87.9%。差值: acc +0.01pp, pass_f1 +0.21pp, fail_f1 -0.19pp。CWM 额外提供 exact_match_rate=84.02%（可用于更细粒度的错误定位）。Task reformulation (generation→classification) 在 pass/fail 判别上没有带来显著提升，但 classification 更轻量高效。IndexError/OverflowError 类别 CWM 表现较差（exact_match 25%/0%），说明生成式方法在罕见错误类型上泛化不足。\"}, \"mvp-a-oracle-sim\": {\"status\": \"DONE\", \"created_at\": \"2026-05-11T18:02:03.506Z\", \"updated_at\": \"2026-05-11T20:05:44.123Z\", \"hypothesis\": \"Per-test verifier 在 70-85% 精度下 resolve rate 比 trajectory-level 高 ≥5%（绝对值）\", \"conclusion\": \"success\", \"metrics\": {\"original_T12\": {\"iid_adv_70_85\": 0.1849, \"block_adv_70_85\": 0.3618}, \"sensitivity_T3\": {\"iid_adv_70_85\": 0.0761, \"block_adv_70_85\": 0.3839}, \"sensitivity_T7\": {\"iid_adv_70_85\": 0.1351, \"block_adv_70_85\": 0.3833}, \"sensitivity_T11\": {\"iid_adv_70_85\": 0.1863, \"block_adv_70_85\": 0.3639}, \"real_f2p_T1\": {\"iid_adv_70_85\": 0.0198, \"block_adv_70_85\": 0.1088, \"pct_T1\": 0.687, \"T_median\": 1, \"T_mean\": 2.3}, \"swebench_f2p_stats\": {\"median\": 1, \"mean\": 3, \"P75\": 2, \"P90\": 3}, \"total_reg5pct\": {\"iid_adv_70_85\": -0.01, \"block_adv_70_85\": -0.005, \"pass\": false}, \"total_reg10pct\": {\"iid_adv_70_85\": 0.132, \"block_adv_70_85\": 0.083, \"pass\": true}, \"total_reg20pct\": {\"iid_adv_70_85\": 0.357, \"block_adv_70_85\": 0.278, \"pass\": true}}, \"notes\": \"Total (F2P+P2P) simulation completed (2026-05-11). Real SWE-bench dist: F2P median=1, P2P median=50.5, Total median=52. Results by P2P regression rate: (1) reg=5%: per-test advantage NEGATIVE for both i.i.d.(-1.0%) and block(-0.5%) — BOTH FAIL. (2) reg=10%: clear advantage, PASS. (3) reg=20%: dominant, PASS. CRITICAL UPDATE: Real P2P regression rate measured at ~1% (mean), 0% (median) from CoderForge data (106 wrong patches). 77% of wrong patches break zero P2P tests. Real scenario is WORSE than reg=5% simulation. Per-test advantage on Total tests is NEGATIVE in practice. Remaining value: F2P-only discrimination (block-corr advantage=10.9%), but F2P median=1 limits this to 31% of instances with F2P≥2.\"}, \"p2p-regression-rate\": {\"status\": \"DONE\", \"created_at\": \"2026-05-11T20:03:33.129Z\", \"updated_at\": \"2026-05-11T20:04:11.093Z\", \"hypothesis\": \"验证 SWE-bench 真实 P2P regression rate 是否 >=5%（per-test verifier 优势前提），若 <5% 则 per-test 在 P2P 维度无价值\", \"conclusion\": \"negative\", \"notes\": \"P2P regression rate measured at 1.04% mean / 0% median on CoderForge Qwen3-32B SWE-bench Verified data (106 unresolved patches). 77% of incorrect patches break zero P2P tests. Falls into <5% zone — per-test verifier has minimal advantage on P2P dimension. Main value is in F2P (distinguishing partial vs zero repair). Project premise partially invalidated for P2P.\"}, \"mvp-b-data-prep\": {\"status\": \"DONE\", \"created_at\": \"2026-05-11T18:02:03.573Z\", \"updated_at\": \"2026-05-11T19:00:11.658Z\", \"hypothesis\": \"HumanEval/MBPP 可构建足够的 (code, test) → pass/fail 训练数据用于函数级 pilot\", \"conclusion\": \"success\", \"notes\": \"Total: 19,076 samples (HumanEval 5,575 + MBPP 13,501). Class balance: pass 52.0% / fail 48.0%. Majority baseline: 52.0%. Splits: train=15,290 val=1,896 test=1,890. 5 mutation types: operator_swap (66.1% fail), return_value (87.5%), boundary_removal (72.3%), variable_swap (51.6%), off_by_one (42.5%). All labels verified by actual test execution (5s timeout).\"}}, \"count\": 221, \"total\": 221, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5751}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f7a104af-feb8-48e4-b0fe-8585d20aac7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 244_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "6c1de45c-1793-4ea0-8dbe-9f31f7ca2a2e",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 245_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose and restart CLS 8B s456 training on GPU 2",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 246 · 2026-05-19T12:29:46.838Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look for the specific experiment entries related to s42 and s456 in the registry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c1de45c-1793-4ea0-8dbe-9f31f7ca2a2e",
+  "isSidechain": false,
+  "requestId": "req_011CbBvrRqYtLEFzXqerWwcm",
+  "type": "assistant",
+  "uuid": "819ac10d-1f4b-4cbb-ae87-ad619be042d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YUxUEBdPUNnN9hi6sHTPAc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 552,
+      "cache_read_input_tokens": 99782,
+      "output_tokens": 255,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 552,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 255,
+          "cache_read_input_tokens": 99782,
+          "cache_creation_input_tokens": 552,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 552
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 247 · 2026-05-19T12:29:50.358Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01TiuKLKGG9nKFBVxbMAzpzv`</summary>
+
+```json
+{
+  "command": "grep -A 20 \"cls8b-repo-s456\\|cls8b-repo-s42\\|swebench.*data\\|pilot.*data\\|data_count.*70748\" /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/aa8f10f1-7abf-4586-84aa-aeefbf528139/tool-results/mcp-agent-ml-research-read_registry-1779193783257.txt | head -100",
+  "description": "Search registry for s42/s456 experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "819ac10d-1f4b-4cbb-ae87-ad619be042d0",
+  "isSidechain": false,
+  "requestId": "req_011CbBvrRqYtLEFzXqerWwcm",
+  "type": "assistant",
+  "uuid": "339682aa-949d-404a-9c2b-3429889cdfe7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YUxUEBdPUNnN9hi6sHTPAc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 552,
+      "cache_read_input_tokens": 99782,
+      "output_tokens": 255,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 552,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 255,
+          "cache_read_input_tokens": 99782,
+          "cache_creation_input_tokens": 552,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 552
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 248 · 2026-05-19T12:29:50.592Z_
+
+<details><summary>↩ Tool result · `toolu_01TiuKLKGG9nKFBVxbMAzpzv`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (144KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/aa8f10f1-7abf-4586-84aa-aeefbf528139/tool-results/b1e4otcay.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"cls8b-s42-ckpt-ablation\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T12:03:31.233Z\", \"updated_at\": \"2026-05-19T12:18:35.566Z\", \"hypothesis\": \"Checkpoint selection bias quantification (N2): comparing epoch 1 (ckpt-2200) / val-selected (ckpt-3600, 84.48%) / final epoch (ckpt-6633) for Qwen3-8B CLS repo-level s42\"}, \"deepseek-cls-repo-s456-train\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T11:58:24.742Z\", \"updated_at\": \"2026-05-19T12:01:55.058Z\", \"hypothesis\": \"DeepSeek CLS repo-level s456: 第3个seed，与s42(82.61%)和s123(74.93%)组成3-seed coverage，回应N1审稿意见\", \"parent\": \"deepseek-cls-repo-v5\"}, \"qwen3-8b-traj-repo-s456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:57:13.413Z\", \"updated_at\": \"2026-05-19T11:57:43.364Z\", \"hypothesis\": \"Qwen3-8B TRAJ repo-level s456: multi-seed replication for N1. s42=72.92%; s123=77.08%; DeepSeek TRAJ s123=77.1%\", \"parent\": \"qwen3-8b-traj-repo-s42-v2\", \"metrics\": {\"variant_accuracy\": 70.83, \"variant_correct\": 34, \"variant_total\": 48, \"f1_macro\": 70.63, \"overall_accuracy\": 70.83, \"precision_unresolved\": 63.33, \"recall_unresolved\": 86.36, \"f1_unresolved\": 73.08, \"precision_resolved\": 83.33, \"recall_resolved\": 57.69, \"f1_resolved\": 68.18, \"train_loss\": 0.5664, \"eval_loss_all_nan\": true}, \"conclusion\": \"success\"}, \"qwen3-8b-traj-repo-s123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:51:14.265Z\", \"updated_at\": \"2026-05-19T11:51:52.084Z\", \"hypothesis\": \"Qwen3-8B TRAJ repo-level s123: multi-seed replication for N1. s42=72.92%; DeepSeek TRAJ s123=77.1%\", \"parent\": \"qwen3-8b-traj-repo-s42-v2\", \"metrics\": {\"variant_accuracy\": 77.08, \"variant_correct\": 37, \"variant_total\": 48, \"f1_macro\": 76.59, \"overall_accuracy\": 77.08, \"precision_unresolved\": 78.95, \"recall_unresolved\": 68.18, \"f1_unresolved\": 73.17, \"precision_resolved\": 75.86, \"recall_resol
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "339682aa-949d-404a-9c2b-3429889cdfe7",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "c48a5f30-c0a6-4db8-8f6c-d8f445f7c170",
+  "toolUseResult": {
+    "stdout": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cls8b-s42-ckpt-ablation\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T12:03:31.233Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:18:35.566Z\\\", \\\"hypothesis\\\": \\\"Checkpoint selection bias quantification (N2): comparing epoch 1 (ckpt-2200) / val-selected (ckpt-3600, 84.48%) / final epoch (ckpt-6633) for Qwen3-8B CLS repo-level s42\\\"}, \\\"deepseek-cls-repo-s456-train\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T11:58:24.742Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:01:55.058Z\\\", \\\"hypothesis\\\": \\\"DeepSeek CLS repo-level s456: 第3个seed，与s42(82.61%)和s123(74.93%)组成3-seed coverage，回应N1审稿意见\\\", \\\"parent\\\": \\\"deepseek-cls-repo-v5\\\"}, \\\"qwen3-8b-traj-repo-s456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T11:57:13.413Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:57:43.364Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B TRAJ repo-level s456: multi-seed replication for N1. s42=72.92%; s123=77.08%; DeepSeek TRAJ s123=77.1%\\\", \\\"parent\\\": \\\"qwen3-8b-traj-repo-s42-v2\\\", \\\"metrics\\\": {\\\"variant_accuracy\\\": 70.83, \\\"variant_correct\\\": 34, \\\"variant_total\\\": 48, \\\"f1_macro\\\": 70.63, \\\"overall_accuracy\\\": 70.83, \\\"precision_unresolved\\\": 63.33, \\\"recall_unresolved\\\": 86.36, \\\"f1_unresolved\\\": 73.08, \\\"precision_resolved\\\": 83.33, \\\"recall_resolved\\\": 57.69, \\\"f1_resolved\\\": 68.18, \\\"train_loss\\\": 0.5664, \\\"eval_loss_all_nan\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"qwen3-8b-traj-repo-s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T11:51:14.265Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:51:52.084Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B TRAJ repo-level s123: multi-seed replication for N1. s42=72.92%; DeepSeek TRAJ s123=77.1%\\\", \\\"parent\\\": \\\"qwen3-8b-traj-repo-s42-v2\\\", \\\"metrics\\\": {\\\"variant_accuracy\\\": 77.08, \\\"variant_correct\\\": 37, \\\"variant_total\\\": 48, \\\"f1_macro\\\": 76.59, \\\"overall_accuracy\\\": 77.08, \\\"precision_unresolved\\\": 78.95, \\\"recall_unresolved\\\": 68.18, \\\"f1_unresolved\\\": 73.17, \\\"precision_resolved\\\": 75.86, \\\"recall_resolved\\\": 84.62, \\\"f1_resolved\\\": 80, \\\"train_loss\\\": 0.5706, \\\"eval_loss_all_nan\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"cls8b-repo-s456-train\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T11:43:11.006Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:43:53.996Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见\\\", \\\"parent\\\": \\\"repo-level-cls-8b-s42-resume\\\"}, \\\"exp-downsample-cls-func-v3-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T05:32:19.527Z\\\", \\\"updated_at\\\": \\\"2026-05-19T07:10:09.357Z\\\", \\\"hypothesis\\\": \\\"Eval downsample CLS (Qwen3-4B, ~8K训练数据) on repo-level test set. 如果 accuracy 接近全量训练的 CLS (83.63%), 则证明 CLS formulation 优势不来自数据量\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 80.74, \\\"f1_macro\\\": 75.89, \\\"fail_f1\\\": 65.1, \\\"pass_f1\\\": 86.7, \\\"unparseable\\\": 132, \\\"total\\\": 9784, \\\"source\\\": \\\"extracted from log (file write failed)\\\"}}, \\\"exp-downsample-cls-func-v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T04:05:36.371Z\\\", \\\"updated_at\\\": \\\"2026-05-19T06:57:21.152Z\\\", \\\"hypothesis\\\": \\\"CLS function-level 的 accuracy 优势不仅仅来自更多训练数据（CLS 15K vs TRAJ 8K）。将 CLS 训练数据 downsample 至与 TRAJ 相同规模（~8K），CLS 仍应优于 TRAJ，证明 formulation 本身的优势\\\", \\\"parent\\\": \\\"exp-downsample-cls-func-v2\\\", \\\"notes\\\": \\\"v2 failed (EXIT_CODE=1) at trainer.train() — wandb tried online mode, no API key configured: `UsageError: No API key configured. Use wandb login to log in.` (line `_find_or_prompt_for_key`). v3 fix: submit_training_job framework auto-injected `WANDB_MODE=offline` + `CUDA_VISIBLE_DEVICES=1` + `HF_HUB_OFFLINE=1`. Confirmed via /proc/796729/environ. v3 running on GPU 1 (cuda:1), tmux session exp-downsample-cls-func-v3, started 2026-05-19 12:05:35, step ~36/756 @ ~3.35s/iter, ETA ~42 min total. Data: train_downsampled.jsonl 8051 rows (8041 after masking filter), val.jsonl 1896 rows.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.2869, \\\"eval_loss_epoch1\\\": 0.1061, \\\"eval_loss_epoch2\\\": 0.0907, \\\"eval_loss_epoch3\\\": 0.1156, \\\"best_epoch\\\": 2, \\\"training_time_min\\\": 44.4}}, \\\"exp-downsample-cls-func-v3-eval-v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-19T06:33:40.319Z\\\", \\\"updated_at\\\": \\\"2026-05-19T06:33:52.644Z\\\", \\\"hypothesis\\\": \\\"Eval downsample CLS (Qwen3-4B, ~8K训练数据) on repo-level test set. 如果 accuracy 接近全量训练的 CLS (83.63%), 则证明 CLS formulation 优势不来自数据量\\\"}, \\\"exp-e-qwen3-3shot-baseline\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-19T03:20:13.381Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:31:22.482Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B 3-shot few-shot CLS baseline 在 repo-level 表现差于 fine-tuned models，与 DeepSeek 3-shot 一致，证明 fine-tuning 的必要性跨模型成立\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"per_test_accuracy\\\": 71.61, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_pp\\\": -1.35, \\\"f1_fail\\\": 61.42, \\\"f1_pass\\\": 77.54, \\\"f1_macro\\\": 69.48, \\\"variant_accuracy\\\": 45.83, \\\"variant_correct\\\": 22, \\\"variant_total\\\": 48, \\\"n_instances\\\": 9784, \\\"unparseable\\\": 0, \\\"truncated\\\": 0, \\\"elapsed_min\\\": 24.6}}, \\\"D131-cwm-s42-epoch3-seq2048\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-19T04:33:09.491Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:38:51.794Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"deepseek-cwm-repo-s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T17:29:52.481Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:38:19.919Z\\\", \\\"hypothesis\\\": \\\"DeepSeek CWM repo-level seed 123 replication — multi-seed evidence to address Dream review concern about single-seed repo results\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: 进程在 step 9489/13266 (71%, epoch 3 中途) 静默死亡, 无 Traceback/Error | 诊断中: worker_diagnose_deepseek-cwm-repo-s123 正在查系统日志和 checkpoint 可用性 | 已有成果: 至少有 epoch 1-2 checkpoints, eval worker 正在评估\\\", \\\"metrics\\\": {\\\"accuracy\\\": 61.9, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority\\\": -11.06, \\\"f1_macro\\\": 51.5, \\\"f1_pass\\\": 73.96, \\\"f1_fail\\\": 29.04, \\\"recall_pass\\\": 74.15, \\\"recall_fail\\\": 28.84, \\\"unparseable_rate\\\": 65.53, \\\"total\\\": 9784, \\\"correct\\\": 6056, \\\"truncated\\\": 0, \\\"checkpoint\\\": \\\"checkpoint-8844 (epoch 2)\\\", \\\"seq_length\\\": 4096, \\\"source_file\\\": \\\"/root/autodl-tmp/eval_results/deepseek_cwm_repo_s123_test/eval_deepseek_cwm_repo_s123.json\\\"}}, \\\"repo-level-3shot-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T23:08:27.137Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:36:55.833Z\\\", \\\"hypothesis\\\": \\\"3-shot few-shot 在 repo-level 能否作为 baseline，预期因 context 长度限制表现差于 fine-tuned models\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"per_test_accuracy\\\": 46.28, \\\"variant_accuracy\\\": 45.83, \\\"variant_correct\\\": 22, \\\"variant_total\\\": 48, \\\"majority_baseline\\\": 73, \\\"truncated\\\": 0, \\\"unparseable\\\": 0, \\\"total\\\": 9784, \\\"runtime_min\\\": 33.8}}, \\\"D133-cwm-s42-e2-seq2048-home-resume\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-18T23:48:38.747Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:31:17.320Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"qwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T00:11:09.889Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:28:52.327Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B CWM repo-level eval @seq4096 for D146 cross-model comparison fix. Previous Qwen3 CWM evals used seq8192 while DeepSeek CWM used seq4096, creating confound. This eval provides matched seq_length comparison point.\\\", \\\"parent\\\": \\\"cwm8b-ckpt400-test-eval\\\"}, \\\"exp-downsample-cls-func-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T03:53:57.925Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:25:13.426Z\\\", \\\"hypothesis\\\": \\\"CLS function-level 的 accuracy 优势不仅仅来自更多训练数据（CLS 15K vs TRAJ 8K）。将 CLS 训练数据 downsample 至与 TRAJ 相同规模（~8K），CLS 仍应优于 TRAJ，证明 formulation 本身的优势\\\", \\\"parent\\\": \\\"exp-downsample-cls-func\\\", \\\"wandb_run_id\\\": \\\"cls-downsample-qwen3-4b-lora\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"deepseek-cwm-repo-s42-epoch2-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-17T19:48:58.146Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:21:06.337Z\\\", \\\"hypothesis\\\": \\\"Eval CWM s42 epoch 2 checkpoint 解耦过拟合 vs seed 差异：如果 epoch 2 accuracy >> epoch 3 (56.7%)，则 CWM repo-level 在 epoch 3 过拟合\\\", \\\"metrics\\\": {\\\"partial\\\": true, \\\"total\\\": 3050, \\\"correct\\\": 2039, \\\"acc\\\": 66.85, \\\"unparseable_rate\\\": 65.5, \\\"coverage\\\": \\\"3050/9784 (31.2%)\\\", \\\"source_file\\\": \\\"/root/autodl-tmp/eval_results/deepseek_cwm_repo_s42_epoch2/results_incremental.jsonl\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-downsample-cls-func\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T03:49:00.576Z\\\", \\\"updated_at\\\": \\\"2026-05-19T03:53:20.069Z\\\", \\\"hypothesis\\\": \\\"CLS function-level 的 accuracy 优势不仅仅来自更多训练数据（CLS 15K vs TRAJ 8K）。将 CLS 训练数据 downsample 至与 TRAJ 相同规模（~8K），CLS 仍应优于 TRAJ，证明 formulation 本身的优势\\\", \\\"metrics\\\": {\\\"data_prep\\\": {\\\"original_cls_samples\\\": 15290, \\\"original_cls_problems\\\": 906, \\\"downsampled_samples\\\": 8051, \\\"downsampled_problems\\\": 475, \\\"target_traj_samples\\\": 8052, \\\"label_pass\\\": 4174, \\\"label_fail\\\": 3877, \\\"data_file\\\": \\\"data/train_downsampled.jsonl\\\"}, \\\"estimated_train_time_min\\\": \\\"30-50\\\", \\\"gpu_blocker\\\": \\\"all 4 seetacloud GPUs occupied\\\"}, \\\"wandb_run_id\\\": \\\"cls-downsample-qwen3-4b-lora\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-d-constrained-decoding\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T03:20:10.868Z\\\", \\\"updated_at\\\": \\\"2026-05-19T03:52:22.449Z\\\", \\\"hypothesis\\\": \\\"CWM 的低 accuracy 主要由 unparseable outputs 导致（51-72%），constrained decoding 或 forced-parse 可将 parseable rate 提升至接近 100%，但 parseable-only accuracy 仍低（~38-42%），证明 CWM 问题不仅是格式问题\\\", \\\"metrics\\\": {\\\"forced_parse\\\": {\\\"qwen3_8b\\\": {\\\"n\\\": 9784, \\\"original_unparseable_rate\\\": 73.8, \\\"rescue_rate\\\": 90.6, \\\"original_parseable_acc\\\": 38.5, \\\"forced_parseable_acc\\\": 49.4, \\\"delta_pp\\\": 10.8}, \\\"qwen3_4b\\\": {\\\"n\\\": 500, \\\"original_unparseable_rate\\\": 75.2, \\\"rescue_rate\\\": 77.9, \\\"original_parseable_acc\\\": 42.7, \\\"forced_parseable_acc\\\": 55.9, \\\"delta_pp\\\": 13.2}, \\\"deepseek\\\": {\\\"n\\\": 9784, \\\"original_unparseable_rate\\\": 51, \\\"rescue_rate\\\": 20.3, \\\"original_parseable_acc\\\": 38.7, \\\"forced_parseable_acc\\\": 51.8, \\\"delta_pp\\\": 13.1}}, \\\"best_strategy\\\": \\\"test_ok_fail (67-71% acc)\\\", \\\"constrained_decoding\\\": \\\"code ready, blocker: swebench_full test data not on server\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-b-complexity-bin\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T03:20:07.634Z\\\", \\\"updated_at\\\": \\\"2026-05-19T03:46:26.036Z\\\", \\\"hypothesis\\\": \\\"不同 formulation 的 accuracy 优劣与 variant 复杂度（test count）相关：TRAJ 在低 test-count variants 更优，CLS 在高 test-count variants 更优\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"bins\\\": {\\\"23-70\\\": {\\\"n_variants\\\": 12, \\\"n_tests\\\": 538, \\\"cls_qwen3_8b_s123\\\": 83.3, \\\"cls_ds_v5\\\": 91.7, \\\"cwm_qwen3_8b\\\": 66.7}, \\\"71-150\\\": {\\\"n_variants\\\": 14, \\\"n_tests\\\": 1282, \\\"cls_qwen3_8b_s123\\\": 64.3, \\\"cls_ds_v5\\\": 71.4, \\\"cwm_qwen3_8b\\\": 42.9}, \\\"151-250\\\": {\\\"n_variants\\\": 15, \\\"n_tests\\\": 2999, \\\"cls_qwen3_8b_s123\\\": 93.3, \\\"cls_ds_v5\\\": 80, \\\"cwm_qwen3_8b\\\": 53.3}, \\\"251+\\\": {\\\"n_variants\\\": 7, \\\"n_tests\\\": 4965, \\\"cls_ds_v5\\\": 85.7, \\\"cls_qwen3_8b_s123\\\": 85.7, \\\"cwm_qwen3_8b\\\": 42.9}}, \\\"overall_cls_qwen3_8b\\\": 81.2, \\\"overall_cls_ds_v5\\\": 81.2, \\\"overall_cwm_qwen3_8b\\\": 52.1, \\\"cls_cwm_gap_simple\\\": 16.7, \\\"cls_cwm_gap_complex\\\": 42.9, \\\"traj_per_bin\\\": \\\"unavailable — per-variant predictions not saved\\\"}}, \\\"exp-a-routing\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T03:20:05.183Z\\\", \\\"updated_at\\\": \\\"2026-05-19T03:44:43.981Z\\\", \\\"hypothesis\\\": \\\"Complexity-aware routing（按 test count/confidence/learned features 选 formulation）在 repo-level 可以超越任何单一 formulation 的 accuracy，证明 formulation 具有互补性\\\", \\\"metrics\\\": {\\\"oracle_routing_7cls\\\": 100, \\\"oracle_best_pair\\\": 95.83, \\\"test_count_heuristic\\\": 85.42, \\\"agreement_confidence\\\": 83.33, \\\"majority_vote\\\": \\\"75-79%\\\", \\\"best_single_cls\\\": 81.25, \\\"test_count_heuristic_delta\\\": \\\"+4.17pp\\\", \\\"oracle_delta\\\": \\\"+18.75pp\\\", \\\"traj_per_variant\\\": \\\"unavailable\\\", \\\"cwm_repo_level\\\": \\\"45-52%\\\", \\\"n_variants\\\": 48}, \\\"conclusion\\\": \\\"success\\\"}, \\\"deepseek-cls-repo-resume-v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-19T02:40:41.857Z\\\", \\\"updated_at\\\": \\\"2026-05-19T02:46:36.180Z\\\", \\\"hypothesis\\\": \\\"Resume deepseek-cls-repo from checkpoint-2211 after SIGHUP crash at step 3747/6633. Fixed: removed unrecognized --save_steps arg.\\\", \\\"parent\\\": \\\"deepseek-cls-repo-resume-v2\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"deepseek-cls-repo-resume-v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-19T02:39:14.677Z\\\", \\\"updated_at\\\": \\\"2026-05-19T02:40:37.661Z\\\", \\\"hypothesis\\\": \\\"Resume deepseek-cls-repo from checkpoint-2211 after SIGHUP crash at step 3747/6633. Completes remaining ~2886 steps (epochs 2-3).\\\", \\\"parent\\\": \\\"deepseek-cls-repo-resume\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"qwen3-8b-traj-repo-s42-ckpt98-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-18T23:28:45.370Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:08:03.186Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B TRAJ repo-level eval checkpoint-98 (epoch 2). Qwen3-4B TRAJ epoch 2 > epoch 3, testing if same pattern holds for 8B. Table 4 canonical number.\\\", \\\"metrics\\\": {\\\"variant_accuracy\\\": 72.92, \\\"variant_correct\\\": 35, \\\"variant_total\\\": 48, \\\"f1_macro\\\": 72.9, \\\"fail_recall\\\": 77.3, \\\"pass_recall\\\": 69.2, \\\"unparseable\\\": 0, \\\"note\\\": \\\"epoch 2 checkpoint, better class balance than epoch 3\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"parent\\\": \\\"qwen3-8b-traj-repo-s42-v2\\\"}, \\\"qwen3-8b-traj-repo-s42-best-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-18T23:02:09.930Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:07:52.073Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B TRAJ repo-level eval on test set (best/ checkpoint = epoch 3, eval_loss=NaN forced). Table 4 canonical number. Compare with Qwen3-4B TRAJ (72.92%) and DeepSeek TRAJ (81.25%). Expected ~78-85% variant-level.\\\", \\\"parent\\\": \\\"qwen3-8b-traj-repo-s42-v2\\\", \\\"metrics\\\": {\\\"variant_accuracy\\\": 70.83, \\\"variant_correct\\\": 34, \\\"variant_total\\\": 48, \\\"f1_macro\\\": 70, \\\"fail_recall\\\": 95.5, \\\"pass_recall\\\": 50, \\\"unparseable\\\": 0, \\\"note\\\": \\\"epoch 3 checkpoint, biased toward predicting unresolved\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"qwen3-8b-traj-repo-s42-best-eval-v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-18T23:27:28.026Z\\\", \\\"updated_at\\\": \\\"2026-05-19T00:07:28.091Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B TRAJ repo-level eval retry (v1 CUDA OOM). best/ checkpoint = epoch 3. Table 4 final TBD.\\\", \\\"parent\\\": \\\"qwen3-8b-traj-repo-s42-v2\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"qwen3-8b-traj-repo-s42-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T22:49:06.304Z\\\", \\\"updated_at\\\": \\\"2026-05-18T23:02:25.726Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B TRAJ repo-level training retry with seq4096 (v1 OOM at seq8192). Table 4 completion. DeepSeek TRAJ s42=81.25%; Qwen3-4B TRAJ=72.92%. Qwen3-8B expected ~78-85% variant-level. Lower seq_length may truncate some long repo-level diffs but DeepSeek non-8k variant showed comparable results.\\\", \\\"parent\\\": \\\"qwen3-8b-traj-repo-s42\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_loss\\\": \\\"NaN_all_epochs\\\", \\\"total_steps\\\": 147, \\\"epochs\\\": 3, \\\"seq_length\\\": 4096, \\\"best_checkpoint\\\": \\\"epoch_3_default_due_to_nan_eval_loss\\\", \\\"gradient_checkpointing\\\": true}}, \\\"qwen3-8b-traj-repo-s42-v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-18T23:00:39.101Z\\\", \\\"updated_at\\\": \\\"2026-05-18T23:02:12.367Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B TRAJ repo-level training with seq4096 + gradient_checkpointing (v1 OOM at seq8192, v2 process died early). Table 4 completion. DeepSeek TRAJ s42=81.25%; Qwen3-4B TRAJ=72.92%. seq4096 approved by Director.\\\", \\\"parent\\\": \\\"qwen3-8b-traj-repo-s42-v2\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"deepseek-cls-repo-s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T17:26:56.947Z\\\", \\\"updated_at\\\": \\\"2026-05-18T22:53:36.387Z\\\", \\\"hypothesis\\\": \\\"DeepSeek CLS repo-level seed 123 replication for multi-seed evidence (same config as s42)\\\", \\\"metrics\\\": {\\\"per_test_accuracy_seq8192\\\": 74.93, \\\"per_test_accuracy_seq2048\\\": 82.62, \\\"majority_baseline\\\": 72.96, \\\"gap_vs_majority_seq8192\\\": 1.97, \\\"f1_macro_seq8192\\\": 53.94, \\\"f1_fail_seq8192\\\": 22.84, \\\"f1_pass_seq8192\\\": 85.03, \\\"precision_fail_seq8192\\\": 68.11, \\\"recall_fail_seq8192\\\": 13.72, \\\"recall_pass_seq8192\\\": 97.62, \\\"variant_accuracy_seq8192\\\": 28, \\\"variant_correct_seq8192\\\": 7, \\\"variant_total_seq8192\\\": 25, \\\"variant_accuracy_seq2048\\\": 36, \\\"variant_correct_seq2048\\\": 9, \\\"variant_total_seq2048\\\": 25, \\\"unparseable_seq8192\\\": 0, \\\"unparseable_seq2048\\\": 2796, \\\"train_loss_avg\\\": 0.0393, \\\"eval_loss\\\": \\\"NaN_all_epochs\\\", \\\"total_steps\\\": 6633, \\\"epochs\\\": 3, \\\"train_time\\\": \\\"21h30m\\\", \\\"best_checkpoint\\\": \\\"epoch_3_default_due_to_nan_eval_loss\\\", \\\"note\\\": \\\"seq2048 metrics inflated by 28.6% unparseable defaulting to pass; seq8192 is reliable measure\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"deepseek-cls-repo-v5-ckpt6315-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T19:58:30.134Z\\\", \\\"updated_at\\\": \\\"2026-05-18T22:49:27.392Z\\\", \\\"hypothesis\\\": \\\"CLS v5 epoch 3 final checkpoint (ckpt-6315) eval at seq8192: D140 checkpoint selection confound 对比数据。eval_loss epoch 3=0.1587 vs epoch 1=0.0886 (+79%)，预期 repo-level accuracy 低于 ckpt-2105。\\\", \\\"parent\\\": \\\"deepseek-cls-repo-v5-ckpt2105-eval\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 82.51, \\\"fail_recall\\\": 38.47, \\\"pass_recall\\\": 98.84, \\\"unparseable\\\": 0, \\\"n_instances\\\": 9784, \\\"confusion\\\": {\\\"TN\\\": 1018, \\\"FP\\\": 1628, \\\"FN\\\": 83, \\\"TP\\\": 7055}, \\\"variant_accuracy\\\": 79.17, \\\"variant_correct\\\": 38, \\\"variant_total\\\": 48, \\\"variant_fail_recall\\\": 59.09}}, \\\"qwen3-8b-traj-repo-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T18:57:25.802Z\\\", \\\"updated_at\\\": \\\"2026-05-18T22:48:45.148Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B TRAJ repo-level training for Table 4 completion. DeepSeek TRAJ s42=81.25% variant-level; Qwen3-4B TRAJ=72.92%. Qwen3-8B should improve over 4B due to larger capacity, expected ~78-85% variant-level.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"qwen3-4b-traj-repo-s42-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T22:28:24.376Z\\\", \\\"updated_at\\\": \\\"2026-05-18T22:34:32.172Z\\\", \\\"hypothesis\\\": \\\"Qwen3-4B TRAJ repo-level eval on test set (best checkpoint, epoch 2). Table 4 canonical number. DeepSeek TRAJ s42=81.25%; Qwen3 CLS repo=83.63%. 预期 variant-level ~75-85%.\\\", \\\"parent\\\": \\\"qwen3-4b-traj-repo-s42\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"variant_accuracy\\\": 72.92, \\\"variant_correct\\\": 35, \\\"variant_total\\\": 48, \\\"f1_macro\\\": 72.62, \\\"resolved_precision\\\": 74.1, \\\"resolved_recall\\\": 76.9, \\\"resolved_f1\\\": 75.5, \\\"unresolved_precision\\\": 71.4, \\\"unresolved_recall\\\": 68.2, \\\"unresolved_f1\\\": 69.8, \\\"vs_majority_baseline_pp\\\": 18.8}}, \\\"qwen3-4b-traj-repo-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T22:10:00.484Z\\\", \\\"updated_at\\\": \\\"2026-05-18T22:28:42.684Z\\\", \\\"hypothesis\\\": \\\"Qwen3-4B TRAJ repo-level training for Table 4 completion. DeepSeek TRAJ achieves 75.35% ± 5.00 (6 seeds); Qwen3-4B TRAJ expected to be comparable or higher given Qwen3 在 CLS repo-level 的强表现 (83.63%).\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_loss_epoch1\\\": 0.2123, \\\"eval_loss_epoch2\\\": 0.1503, \\\"eval_loss_epoch3\\\": 0.2249, \\\"best_epoch\\\": 2, \\\"total_steps\\\": 147}}, \\\"deepseek-cls-repo-v5-ckpt4210-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T21:36:08.992Z\\\", \\\"updated_at\\\": \\\"2026-05-18T22:00:04.638Z\\\", \\\"hypothesis\\\": \\\"CLS v5 epoch 2 (ckpt-4210) eval: 3-point epoch curve for D142 decision collapse training-induced claim. Epoch 1=82.61%/51% fail recall, epoch 2=?, epoch 3=pending. 预期 epoch 2 介于两者之间，验证 monotonic degradation.\\\", \\\"parent\\\": \\\"deepseek-cls-repo-v5-ckpt6315-eval\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"error\\\": \\\"checkpoint-4210 not preserved during training (only epoch 1 and 3 saved), cannot evaluate epoch 2\\\"}}, \\\"deepseek-cls-repo-v5-ckpt2105-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T19:57:13.898Z\\\", \\\"updated_at\\\": \\\"2026-05-18T21:34:56.469Z\\\", \\\"hypothesis\\\": \\\"CLS v5 epoch 1 (ckpt-2105, eval_loss=0.0886 最低) 在 repo-level test set 上应优于 epoch 3，验证 early stopping 选择并为 Table 4 提供 s42 canonical 数字\\\", \\\"parent\\\": \\\"deepseek-cls-repo-v5\\\", \\\"metrics\\\": {\\\"accuracy\\\": 82.61, \\\"variant_accuracy\\\": 81.25, \\\"variant_correct\\\": 39, \\\"variant_total\\\": 48, \\\"fail_recall\\\": 51.02, \\\"pass_recall\\\": 94.33, \\\"f1_macro\\\": 75.07, \\\"fail_f1\\\": 61.35, \\\"pass_f1\\\": 88.78, \\\"fail_precision\\\": 76.92, \\\"pass_precision\\\": 83.86, \\\"unparseable\\\": 0, \\\"n_instances\\\": 9784, \\\"confusion\\\": {\\\"TP\\\": 6733, \\\"FP\\\": 1296, \\\"TN\\\": 1350, \\\"FN\\\": 405}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"D133-cwm-s42-e2-seq2048-home\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T20:53:25.046Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:54:21.130Z\\\", \\\"notes\\\": \\\"2026-05-18 13:52 UTC: Resumed after stuck kill. PID=4187955 (sonny@tmux:D133-resume). Resumed from 3039/9784 (31.1%). ~8s/sample, 剩余 6745 samples ≈ 15h. ETA ~May 19 05:00 UTC.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"deepseek-cls-repo-v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T17:47:56.629Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:42:57.953Z\\\", \\\"hypothesis\\\": \\\"DeepSeek CLS repo-level s42 完整 3 epoch 训练，预期与 s123 (~74%) 相近，提供 R1-N1 要求的多 seed 证据\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss_final\\\": 0.0399, \\\"eval_loss_epoch1\\\": 0.0886, \\\"eval_loss_epoch2\\\": 0.1587, \\\"eval_loss_epoch3\\\": 0.1975, \\\"total_steps\\\": 6315, \\\"train_time_seconds\\\": 63312, \\\"best_checkpoint\\\": \\\"checkpoint-2105 (epoch 1)\\\", \\\"lora_params\\\": \\\"16.8M\\\"}}, \\\"D124-cwm-s42-epoch2-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-18T13:56:45.083Z\\\", \\\"updated_at\\\": \\\"2026-05-18T13:56:46.086Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"deepseek-0shot-func-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T23:30:55.534Z\\\", \\\"updated_at\\\": \\\"2026-05-18T00:10:08.086Z\\\", \\\"hypothesis\\\": \\\"DeepSeek 0-shot instruction 在 func-level 的基准表现，完成 2×2 model×level 0-shot 矩阵\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.6302, \\\"pass_f1\\\": 0.7196, \\\"fail_f1\\\": 0.4569, \\\"unparseable_rate\\\": 0.0106, \\\"unparseable_count\\\": 20, \\\"total_samples\\\": 1890, \\\"runtime_seconds\\\": 113, \\\"confusion\\\": {\\\"TP\\\": 897, \\\"FP\\\": 618, \\\"TN\\\": 294, \\\"FN\\\": 81}}}, \\\"qwen3-0shot-func-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T23:30:53.841Z\\\", \\\"updated_at\\\": \\\"2026-05-18T00:10:06.393Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B 0-shot instruction 在 func-level 的基准表现，预期优于 repo-level 0-shot (49.9%) 因为 func-level 上下文更短更清晰\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.6873, \\\"pass_f1\\\": 0.655, \\\"fail_f1\\\": 0.7141, \\\"unparseable_rate\\\": 0.0032, \\\"unparseable_count\\\": 6, \\\"total_samples\\\": 1890, \\\"runtime_seconds\\\": 96, \\\"confusion\\\": {\\\"TP\\\": 561, \\\"FP\\\": 174, \\\"TN\\\": 738, \\\"FN\\\": 417}}}, \\\"deepseek-0shot-repo-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T23:30:52.005Z\\\", \\\"updated_at\\\": \\\"2026-05-18T00:10:04.699Z\\\", \\\"hypothesis\\\": \\\"DeepSeek 0-shot instruction 在 repo-level 的基准表现，跨模型验证 0-shot 在 repo-level 普遍接近随机\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.4854, \\\"pass_f1\\\": 0.647, \\\"fail_f1\\\": 0.0509, \\\"unparseable_rate\\\": 0.087, \\\"unparseable_count\\\": 851, \\\"total_samples\\\": 9784, \\\"runtime_seconds\\\": 1545, \\\"confusion\\\": {\\\"TP\\\": 4614, \\\"FP\\\": 2511, \\\"TN\\\": 135, \\\"FN\\\": 2524}}}, \\\"repo-level-0shot-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T23:08:25.505Z\\\", \\\"updated_at\\\": \\\"2026-05-17T23:29:33.741Z\\\", \\\"hypothesis\\\": \\\"0-shot instruction 在 repo-level 的基准表现，预期远低于 fine-tuned CLS/CWM\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.499, \\\"pass_f1\\\": 0.4895, \\\"fail_f1\\\": 0.5081, \\\"unparseable_rate\\\": 0, \\\"unparseable_count\\\": 0, \\\"total_samples\\\": 9784, \\\"runtime_seconds\\\": 1018.2, \\\"confusion\\\": {\\\"TP\\\": 2350, \\\"FP\\\": 114, \\\"TN\\\": 2532, \\\"FN\\\": 4788}}}, \\\"deepseek-cls-repo-v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T18:51:00.225Z\\\", \\\"updated_at\\\": \\\"2026-05-17T16:15:31.248Z\\\", \\\"hypothesis\\\": \\\"DeepSeek CLS repo-level s42 从零重训，预期 CLS 在 DeepSeek 上也保持高 accuracy 和 0% unparseable（类似 Qwen CLS repo 84-85%），验证 CLS 跨模型优势\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"train_loss_final\\\": 0.0065, \\\"eval_loss\\\": \\\"NaN (all epochs)\\\", \\\"total_steps_completed\\\": 4422, \\\"max_steps\\\": 6633, \\\"error\\\": \\\"Process killed during epoch 3 eval (49% progress); eval_loss=NaN at all epochs; no best checkpoint; last saved checkpoint=step-4422\\\"}, \\\"notes\\\": \\\"失败原因: eval_loss=NaN (已知 DeepSeek tokenizer bug, 不影响训练质量) + 进程在 epoch 3 eval 阶段被杀 | 已有成果: checkpoint-4422 (epoch 2 完成, train_loss=0.0065), eval worker 已在评估 | 建议: 用 checkpoint-4422 (或更早的 checkpoint-2211) 进行独立 eval, 训练质量应该正常\\\"}, \\\"deepseek-cwm-repo\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T08:05:07.323Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:41:06.948Z\\\", \\\"hypothesis\\\": \\\"DeepSeek CWM repo-level 训练验证 CWM 在第二模型家族上的 repo-level 表现，预期 CWM 因生成式格式在长上下文 repo 代码上产生高 unparseable rate（类似 Qwen CWM repo 53-74%）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.021, \\\"eval_loss\\\": \\\"NaN\\\", \\\"total_steps\\\": 13266, \\\"epochs\\\": 3, \\\"wall_clock_seconds\\\": 112680, \\\"gpu_hours\\\": 31.3, \\\"note\\\": \\\"eval_loss=NaN is known DeepSeek issue, does not affect training quality\\\"}}, \\\"qwen3-8b-traj-func-s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T13:19:44.990Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:17:35.756Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B TRAJ func-level seed 123 复制实验，验证 s42 结果的稳定性。预期与 s42 差距 &lt;1.5pp，与 4B TRAJ (86.30±0.97%) 的 scaling pattern 一致\\\", \\\"parent\\\": \\\"qwen3-8b-traj-func-s42\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"test_accuracy\\\": 87.79, \\\"best_eval_loss\\\": 0.0782, \\\"pass_f1\\\": 86.74, \\\"fail_f1\\\": 88.69, \\\"unparseable\\\": 0, \\\"per_test_consistency\\\": 76.07, \\\"total_steps\\\": 756, \\\"test_set_size\\\": 1032, \\\"eval_script\\\": \\\"eval_traj_verifier_8b.py\\\"}}, \\\"qwen3-8b-traj-func-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T13:19:43.240Z\\\", \\\"updated_at\\\": \\\"2026-05-17T14:29:53.572Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B TRAJ func-level 将展示 TRAJ 在更大模型上的 scaling 行为，预期与 4B TRAJ (86.30%) 相比有小幅提升（类似 CLS/CWM 的 4B→8B +1-2pp pattern），填补 Table 2 scaling 分析的 TRAJ 8B 缺口\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"test_accuracy\\\": 87.6, \\\"eval_loss\\\": 0.0975, \\\"train_loss\\\": 0.0312, \\\"unparseable\\\": 0, \\\"pass_f1\\\": 85.96, \\\"fail_f1\\\": 88.89, \\\"per_test_consistency\\\": 78.78, \\\"total_steps\\\": 756, \\\"test_set_size\\\": 1032, \\\"eval_script\\\": \\\"eval_traj_verifier_8b.py\\\", \\\"note\\\": \\\"87.98% from eval_traj_verifier.py (model.cuda) also valid; 4/1032 samples differ due to bf16 placement\\\"}}, \\\"re-repair-docker-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-17T07:26:36.395Z\\\", \\\"updated_at\\\": \\\"2026-05-17T08:36:26.508Z\\\", \\\"hypothesis\\\": \\\"Per-test diagnostic information (CLS predictions or oracle labels) improves LLM patch repair success rate compared to minimal or random diagnostics, following information gradient A1 < A2 < D ≈ B < C\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"A1_pass1\\\": 52.3, \\\"A2_pass1\\\": 43.2, \\\"B_pass1\\\": 36.4, \\\"C_pass1\\\": 38.6, \\\"D_pass1\\\": 40.9, \\\"n_instances\\\": 44, \\\"error_rate\\\": 38.6, \\\"total_samples\\\": 1475}}, \\\"deepseek-cls-func-s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"deepseek-cls-func\\\", \\\"created_at\\\": \\\"2026-05-16T11:11:40.451Z\\\", \\\"updated_at\\\": \\\"2026-05-17T02:55:51.817Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"best_eval_loss\\\": 0.06753, \\\"train_time_seconds\\\": 5391, \\\"test_accuracy\\\": 86.77, \\\"test_f1_macro\\\": 86.77, \\\"test_precision_fail\\\": 84.99, \\\"test_precision_pass\\\": 88.56, \\\"test_recall_fail\\\": 88.16, \\\"test_recall_pass\\\": 85.48, \\\"test_unparseable_rate\\\": 0, \\\"test_n\\\": 1890}, \\\"hypothesis\\\": \\\"验证 DeepSeek CLS func-level 结论在 seed=123 下的稳定性，确认 CLS accuracy 不是单 seed 偶然\\\"}, \\\"deepseek-cwm-func-s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"parent\\\": \\\"deepseek-cwm-func\\\", \\\"created_at\\\": \\\"2026-05-16T06:31:21.577Z\\\", \\\"updated_at\\\": \\\"2026-05-17T02:55:50.883Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"best_eval_loss\\\": 0.0408, \\\"train_time_seconds\\\": 5244, \\\"test_accuracy\\\": 87.88, \\\"test_f1_macro\\\": 87.88, \\\"test_precision_fail\\\": 83.78, \\\"test_precision_pass\\\": 92.61, \\\"test_recall_fail\\\": 92.87, \\\"test_recall_pass\\\": 83.23, \\\"test_unparseable_rate\\\": 0, \\\"test_n\\\": 1890}, \\\"hypothesis\\\": \\\"验证 DeepSeek CWM func-level 结论在 seed=123 下的稳定性，确认 CWM≈CLS 不是单 seed 偶然\\\"}, \\\"deepseek-cls-func\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-16T06:27:32.723Z\\\", \\\"updated_at\\\": \\\"2026-05-17T02:55:48.576Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"best_eva",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false,
+    "persistedOutputPath": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/aa8f10f1-7abf-4586-84aa-aeefbf528139/tool-results/b1e4otcay.txt",
+    "persistedOutputSize": 147493
+  },
+  "sourceToolAssistantUUID": "339682aa-949d-404a-9c2b-3429889cdfe7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 249_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "c48a5f30-c0a6-4db8-8f6c-d8f445f7c170",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 250_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose and restart CLS 8B s456 training on GPU 2",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 251 · 2026-05-19T12:29:57.433Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016kDrdi6jasgWioV94WdGVR`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\ndata = json.loads(open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/aa8f10f1-7abf-4586-84aa-aeefbf528139/tool-results/mcp-agent-ml-research-read_registry-1779193783257.txt').read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid in sorted(exps.keys()):\n    if 'cls8b' in eid and 'repo' in eid and ('s42' in eid or 's456' in eid or 's123' in eid):\n        e = exps[eid]\n        spec = e.get('spec', {})\n        print(f'{eid}: status={e[\\\"status\\\"]}, data_count={spec.get(\\\"data_count\\\",\\\"?\\\")}, data_path={spec.get(\\\"data_path\\\",\\\"?\\\")}, command={spec.get(\\\"command\\\",\\\"?\\\")[:200]}')\n        print()\n\"",
+  "description": "Extract cls8b repo experiment specs from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c48a5f30-c0a6-4db8-8f6c-d8f445f7c170",
+  "isSidechain": false,
+  "requestId": "req_011CbBvryFftwyau44cVzPh3",
+  "type": "assistant",
+  "uuid": "43a4462f-d412-49a1-ab5e-3e1e5754fb1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gz7EV9eoNPzPCgZ1bqcHbf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1284,
+      "cache_read_input_tokens": 100334,
+      "output_tokens": 366,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 366,
+          "cache_read_input_tokens": 100334,
+          "cache_creation_input_tokens": 1284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 252 · 2026-05-19T12:29:57.538Z_
+
+<details><summary>↩ Tool result · `toolu_016kDrdi6jasgWioV94WdGVR`</summary>
+
+```text
+cls8b-repo-s456-train: status=RUNNING, data_count=?, data_path=?, command=?
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "43a4462f-d412-49a1-ab5e-3e1e5754fb1d",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "29c2e0e2-372b-4d05-995f-f8c2632fd7e2",
+  "toolUseResult": {
+    "stdout": "cls8b-repo-s456-train: status=RUNNING, data_count=?, data_path=?, command=?",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "43a4462f-d412-49a1-ab5e-3e1e5754fb1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 253 · 2026-05-19T12:30:00.638Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry only has `cls8b-repo-s456-train` with no spec data. Let me search for the s42 experiments more broadly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29c2e0e2-372b-4d05-995f-f8c2632fd7e2",
+  "isSidechain": false,
+  "requestId": "req_011CbBvsUnvwQs464Zaw2jQ1",
+  "type": "assistant",
+  "uuid": "a817bbc9-8ec3-4cbf-a065-eba4ea947842",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NBvKbzBMJngVJVoG8xByxJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 407,
+      "cache_read_input_tokens": 101618,
+      "output_tokens": 438,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 407,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 438,
+          "cache_read_input_tokens": 101618,
+          "cache_creation_input_tokens": 407,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 407
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 254 · 2026-05-19T12:30:03.864Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HjZizwhixLLxwt416PQmis`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\ndata = json.loads(open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/aa8f10f1-7abf-4586-84aa-aeefbf528139/tool-results/mcp-agent-ml-research-read_registry-1779193783257.txt').read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid in sorted(exps.keys()):\n    if 'cls8b' in eid or ('cls' in eid and '8b' in eid):\n        e = exps[eid]\n        spec = e.get('spec', {})\n        dc = spec.get('data_count', '?')\n        dp = spec.get('data_path', '?')\n        cmd = spec.get('command', '?')\n        print(f'{eid}: status={e[\\\"status\\\"]}, data_count={dc}')\n        if cmd != '?':\n            print(f'  cmd: {cmd[:200]}')\n        if dp != '?':\n            print(f'  data_path: {dp}')\n        print()\n\"",
+  "description": "Extract all cls8b experiment specs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a817bbc9-8ec3-4cbf-a065-eba4ea947842",
+  "isSidechain": false,
+  "requestId": "req_011CbBvsUnvwQs464Zaw2jQ1",
+  "type": "assistant",
+  "uuid": "53829ba3-3c8b-4c09-a2fe-76b5660332b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NBvKbzBMJngVJVoG8xByxJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 407,
+      "cache_read_input_tokens": 101618,
+      "output_tokens": 438,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 407,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 438,
+          "cache_read_input_tokens": 101618,
+          "cache_creation_input_tokens": 407,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 407
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 255 · 2026-05-19T12:30:03.979Z_
+
+<details><summary>↩ Tool result · `toolu_01HjZizwhixLLxwt416PQmis`</summary>
+
+```text
+cls8b-ckpt3000-test-eval: status=DONE, data_count=?
+
+cls8b-ckpt3000-test-v2: status=DONE, data_count=?
+
+cls8b-eval-seed123: status=DONE, data_count=?
+
+cls8b-eval-seed42: status=DONE, data_count=?
+
+cls8b-repo-s456-train: status=RUNNING, data_count=?
+
+cls8b-s42-ckpt-ablation: status=RUNNING, data_count=?
+
+cls8b-s42-ckpt1000-test-mutation: status=DONE, data_count=?
+
+cls8b-s42-ckpt1000-test-seq2048-ablation: status=DONE, data_count=?
+
+cls8b-s42-ckpt1000-test8192-eval: status=DONE, data_count=?
+
+cls8b-s42-ckpt1000-val8192-eval: status=DONE, data_count=?
+
+cls8b-s42-ckpt1200-test8192-eval: status=DONE, data_count=?
+
+cls8b-s42-ckpt1200-val8192: status=DONE, data_count=?
+
+cls8b-s42-ckpt1200-val8192-eval: status=DONE, data_count=?
+
+cls8b-s42-ckpt1200-val8192-v2: status=DONE, data_count=?
+
+cls8b-s42-ckpt1200-val8192-v3: status=DONE, data_count=?
+
+cls8b-s42-ckpt1400-test8192-eval: status=DONE, data_count=?
+
+cls8b-s42-ckpt1400-val8192-eval: status=DONE, data_count=?
+
+cls8b-s42-ckpt1600-test8192-eval: status=DONE, data_count=?
+
+cls8b-s42-ckpt1600-val8192-eval: status=DONE, data_count=?
+
+cls8b-s42-ckpt1600-val8192-v2: status=DONE, data_count=?
+
+cls8b-s42-ckpt200-test8192-eval: status=DONE, data_count=?
+
+cls8b-s42-ckpt200-val8192-eval: status=DONE, data_count=?
+
+cls8b-s42-ckpt200-val8192-eval-v2: status=DONE, data_count=?
+
+cls8b-s42-ckpt3600-seq2048-ablation: status=DONE, data_count=?
+
+cls8b-s42-ckpt400-test8192-eval: status=DONE, data_count=?
+
+cls8b-s42-ckpt600-test8192-eval: status=DONE, data_count=?
+
+cls8b-s42-ckpt800-test8192-eval: status=DONE, data_count=?
+
+cls8b-s42-ckpt800-val8192-eval: status=DONE, data_count=?
+
+cls8b-s42-extended-val-sweep: status=DONE, data_count=?
+
+cls8b-s42-resume-ckpt1000-test-mutation: status=DONE, data_count=?
+
+cls8b-s42-resume-ckpt3600-mutation: status=DONE, data_count=?
+
+cls8b-s42-resume-ckpt3600-test: status=DONE, data_count=?
+
+cls8b-s42-resume-ckpt3600-test-v2: status=DONE, data_count=?
+
+cls8b-s42-resume-val-sweep: status=DONE, data_count=?
+
+cls8b-s42-resume-val-sweep-gpu1: status=DONE, data_count=?
+
+cls8b-s42-resume-val-sweep-seq4096: status=DONE, data_count=?
+
+cls8b-s42-resume-val-sweep-seq8192: status=DONE, data_count=?
+
+cls8b-s42-resume-val-sweep-seq8192-v2: status=DONE, data_count=?
+
+cls8b-seed123: status=DONE, data_count=?
+
+cls8b-seed123-ckpt200-test-eval: status=DONE, data_count=?
+
+cls8b-seed123-ckpt3000-mutation: status=DONE, data_count=?
+
+cls8b-seed123-ckpt3000-test8192-eval: status=DONE, data_count=?
+
+cls8b-seed123-ckpt3000-test8192-eval-v2: status=DONE, data_count=?
+
+cls8b-seed123-ckpt3000-val-eval: status=DONE, data_count=?
+
+cls8b-seed123-ckpt3000-val8192-eval: status=DONE, data_count=?
+
+cls8b-seed123-ckpt6200-test-eval-v2: status=DONE, data_count=?
+
+cls8b-seed123-ckpt6200-test8192-eval: status=DONE, data_count=?
+
+cls8b-seed123-ckpt6200-val8192-eval: status=DONE, data_count=?
+
+cls8b-seed123-ckpt6400-test-eval-v2: status=DONE, data_count=?
+
+cls8b-seed123-ckpt6400-test8192-eval: status=DONE, data_count=?
+
+cls8b-seed123-ckpt6400-val8192-eval: status=DONE, data_count=?
+
+cls8b-seed123-ckpt6600-test-eval: status=DONE, data_count=?
+
+cls8b-seed123-ckpt6600-val8192-eval: status=DONE, data_count=?
+
+cls8b-seed123-ckpt6633-test-eval: status=DONE, data_count=?
+
+cls8b-seed123-ckpt6633-val8192-eval: status=DONE, data_count=?
+
+cls8b-seed456: status=DONE, data_count=?
+
+model-size-scaling-cls8b: status=DONE, data_count=?
+
+repo-level-cls-8b: status=DONE, data_count=?
+
+repo-level-cls-8b-conda: status=DONE, data_count=?
+
+repo-level-cls-8b-s42-ckpt200-val: status=DONE, data_count=?
+
+repo-level-cls-8b-s42-resume: status=DONE, data_count=?
+
+repo-level-cls-8b-seed123-conda: status=DONE, data_count=?
+
+repo-level-cls-8b-seed123-conda-v2: status=DONE, data_count=?
+
+repo-level-cls-8b-seed123-conda-v3: status=DONE, data_count=?
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "53829ba3-3c8b-4c09-a2fe-76b5660332b8",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "45f52c38-9703-43a6-a111-83d2ef94ed87",
+  "toolUseResult": {
+    "stdout": "cls8b-ckpt3000-test-eval: status=DONE, data_count=?\n\ncls8b-ckpt3000-test-v2: status=DONE, data_count=?\n\ncls8b-eval-seed123: status=DONE, data_count=?\n\ncls8b-eval-seed42: status=DONE, data_count=?\n\ncls8b-repo-s456-train: status=RUNNING, data_count=?\n\ncls8b-s42-ckpt-ablation: status=RUNNING, data_count=?\n\ncls8b-s42-ckpt1000-test-mutation: status=DONE, data_count=?\n\ncls8b-s42-ckpt1000-test-seq2048-ablation: status=DONE, data_count=?\n\ncls8b-s42-ckpt1000-test8192-eval: status=DONE, data_count=?\n\ncls8b-s42-ckpt1000-val8192-eval: status=DONE, data_count=?\n\ncls8b-s42-ckpt1200-test8192-eval: status=DONE, data_count=?\n\ncls8b-s42-ckpt1200-val8192: status=DONE, data_count=?\n\ncls8b-s42-ckpt1200-val8192-eval: status=DONE, data_count=?\n\ncls8b-s42-ckpt1200-val8192-v2: status=DONE, data_count=?\n\ncls8b-s42-ckpt1200-val8192-v3: status=DONE, data_count=?\n\ncls8b-s42-ckpt1400-test8192-eval: status=DONE, data_count=?\n\ncls8b-s42-ckpt1400-val8192-eval: status=DONE, data_count=?\n\ncls8b-s42-ckpt1600-test8192-eval: status=DONE, data_count=?\n\ncls8b-s42-ckpt1600-val8192-eval: status=DONE, data_count=?\n\ncls8b-s42-ckpt1600-val8192-v2: status=DONE, data_count=?\n\ncls8b-s42-ckpt200-test8192-eval: status=DONE, data_count=?\n\ncls8b-s42-ckpt200-val8192-eval: status=DONE, data_count=?\n\ncls8b-s42-ckpt200-val8192-eval-v2: status=DONE, data_count=?\n\ncls8b-s42-ckpt3600-seq2048-ablation: status=DONE, data_count=?\n\ncls8b-s42-ckpt400-test8192-eval: status=DONE, data_count=?\n\ncls8b-s42-ckpt600-test8192-eval: status=DONE, data_count=?\n\ncls8b-s42-ckpt800-test8192-eval: status=DONE, data_count=?\n\ncls8b-s42-ckpt800-val8192-eval: status=DONE, data_count=?\n\ncls8b-s42-extended-val-sweep: status=DONE, data_count=?\n\ncls8b-s42-resume-ckpt1000-test-mutation: status=DONE, data_count=?\n\ncls8b-s42-resume-ckpt3600-mutation: status=DONE, data_count=?\n\ncls8b-s42-resume-ckpt3600-test: status=DONE, data_count=?\n\ncls8b-s42-resume-ckpt3600-test-v2: status=DONE, data_count=?\n\ncls8b-s42-resume-val-sweep: status=DONE, data_count=?\n\ncls8b-s42-resume-val-sweep-gpu1: status=DONE, data_count=?\n\ncls8b-s42-resume-val-sweep-seq4096: status=DONE, data_count=?\n\ncls8b-s42-resume-val-sweep-seq8192: status=DONE, data_count=?\n\ncls8b-s42-resume-val-sweep-seq8192-v2: status=DONE, data_count=?\n\ncls8b-seed123: status=DONE, data_count=?\n\ncls8b-seed123-ckpt200-test-eval: status=DONE, data_count=?\n\ncls8b-seed123-ckpt3000-mutation: status=DONE, data_count=?\n\ncls8b-seed123-ckpt3000-test8192-eval: status=DONE, data_count=?\n\ncls8b-seed123-ckpt3000-test8192-eval-v2: status=DONE, data_count=?\n\ncls8b-seed123-ckpt3000-val-eval: status=DONE, data_count=?\n\ncls8b-seed123-ckpt3000-val8192-eval: status=DONE, data_count=?\n\ncls8b-seed123-ckpt6200-test-eval-v2: status=DONE, data_count=?\n\ncls8b-seed123-ckpt6200-test8192-eval: status=DONE, data_count=?\n\ncls8b-seed123-ckpt6200-val8192-eval: status=DONE, data_count=?\n\ncls8b-seed123-ckpt6400-test-eval-v2: status=DONE, data_count=?\n\ncls8b-seed123-ckpt6400-test8192-eval: status=DONE, data_count=?\n\ncls8b-seed123-ckpt6400-val8192-eval: status=DONE, data_count=?\n\ncls8b-seed123-ckpt6600-test-eval: status=DONE, data_count=?\n\ncls8b-seed123-ckpt6600-val8192-eval: status=DONE, data_count=?\n\ncls8b-seed123-ckpt6633-test-eval: status=DONE, data_count=?\n\ncls8b-seed123-ckpt6633-val8192-eval: status=DONE, data_count=?\n\ncls8b-seed456: status=DONE, data_count=?\n\nmodel-size-scaling-cls8b: status=DONE, data_count=?\n\nrepo-level-cls-8b: status=DONE, data_count=?\n\nrepo-level-cls-8b-conda: status=DONE, data_count=?\n\nrepo-level-cls-8b-s42-ckpt200-val: status=DONE, data_count=?\n\nrepo-level-cls-8b-s42-resume: status=DONE, data_count=?\n\nrepo-level-cls-8b-seed123-conda: status=DONE, data_count=?\n\nrepo-level-cls-8b-seed123-conda-v2: status=DONE, data_count=?\n\nrepo-level-cls-8b-seed123-conda-v3: status=DONE, data_count=?",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "53829ba3-3c8b-4c09-a2fe-76b5660332b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 256 · 2026-05-19T12:30:06.716Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry doesn't have data_count for any of these experiments. Let me check `repo-level-cls-8b-conda` and `repo-level-cls-8b-s42-resume` which are the s42 training experiments, to see if they have any data path info.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45f52c38-9703-43a6-a111-83d2ef94ed87",
+  "isSidechain": false,
+  "requestId": "req_011CbBvsxNs7rN1F4zWs9itE",
+  "type": "assistant",
+  "uuid": "c048c3a5-b0c8-4990-9cf9-8a7b1ef402ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BbGzxZvtN1qXLmf7ghe1YP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2232,
+      "cache_read_input_tokens": 102025,
+      "output_tokens": 423,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2232,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 423,
+          "cache_read_input_tokens": 102025,
+          "cache_creation_input_tokens": 2232,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2232
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 257 · 2026-05-19T12:30:13.085Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LeKNibZEaTMUmHggQvuUhh`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\ndata = json.loads(open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/aa8f10f1-7abf-4586-84aa-aeefbf528139/tool-results/mcp-agent-ml-research-read_registry-1779193783257.txt').read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid in ['repo-level-cls-8b-conda', 'repo-level-cls-8b-s42-resume', 'cls8b-repo-s456-train', 'cls8b-seed123']:\n    if eid in exps:\n        e = exps[eid]\n        print(f'=== {eid} ===')\n        for k, v in e.items():\n            if k not in ['metrics']:\n                print(f'  {k}: {str(v)[:300]}')\n        print()\n\"",
+  "description": "Get full experiment details for s42/s456"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c048c3a5-b0c8-4990-9cf9-8a7b1ef402ea",
+  "isSidechain": false,
+  "requestId": "req_011CbBvsxNs7rN1F4zWs9itE",
+  "type": "assistant",
+  "uuid": "abc9633f-c616-4f0f-ae14-5db57aea718c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BbGzxZvtN1qXLmf7ghe1YP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2232,
+      "cache_read_input_tokens": 102025,
+      "output_tokens": 423,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2232,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 423,
+          "cache_read_input_tokens": 102025,
+          "cache_creation_input_tokens": 2232,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2232
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 258 · 2026-05-19T12:30:13.222Z_
+
+<details><summary>↩ Tool result · `toolu_01LeKNibZEaTMUmHggQvuUhh`</summary>
+
+```text
+=== repo-level-cls-8b-conda ===
+  status: DONE
+  created_at: 2026-05-13T22:07:02.272Z
+  updated_at: 2026-05-14T22:38:53.233Z
+  hypothesis: Qwen3-8B CLS repo-level conda 环境重训（transformers 4.57.6），消除跨环境混杂，验证 8B CLS repo 表现
+  notes: Checkpoint sweep 完成 (ckpt 200/400/600)。最优 ckpt-400: accuracy=84.52% (+11.56pp vs baseline), f1_macro=80.89。ckpt-600 过拟合退化至 78.51%。8B (84.52%) vs 4B best (80.73% seed123 ckpt-600) = +3.79pp scaling gain，与函数级趋势一致（8B CLS-4B CLS gap ~2pp）。Repo-level 8B scaling 比函数级更明显。
+  conclusion: success
+
+=== repo-level-cls-8b-s42-resume ===
+  status: DONE
+  created_at: 2026-05-14T21:48:30.781Z
+  updated_at: 2026-05-15T18:51:06.920Z
+  hypothesis: 8B CLS s42 resume 训练（从 ckpt-600 继续），获取更多 checkpoint 用于 val/test sweep
+  notes: best/ 目录验证: 包含旧 run (checkpoints_repo_cls_8b_conda) 的 step-200 权重 (eval_loss=0.0796), 由 Trainer load_best_model_at_end 在训练结束时自动保存。不是 ckpt-1000 也不是 ckpt-6633。主表使用 val-selected ckpt-1000, 不受影响。
+  conclusion: success
+
+=== cls8b-repo-s456-train ===
+  status: RUNNING
+  created_at: 2026-05-19T11:43:11.006Z
+  updated_at: 2026-05-19T11:43:53.996Z
+  hypothesis: Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见
+  parent: repo-level-cls-8b-s42-resume
+
+=== cls8b-seed123 ===
+  status: DONE
+  parent: model-size-scaling-cls8b
+  created_at: 2026-05-12T09:23:37.452Z
+  updated_at: 2026-05-12T19:04:21.268Z
+  hypothesis: 验证 8B classification 90.48% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性
+  notes: 8B cls seed123 完成。accuracy=89.4% (vs seed42=90.48%, 差距 1.08pp 在正常波动范围内)。8B cls-cwm gap: seed42=2.81pp (90.48-87.67), seed123=2.42pp (89.4-86.98)。两个 seed 均显示 classification 在 8B 上显著优于 CWM，gap ~2.4-2.8pp 稳定。对比 4B gap ~0.9pp，8B 放大了 cls 的优势，支撑 Pillar 1 (complexity hypothesis)。OOM 后使用 PYTORCH_CUDA_ALLOC_
+  conclusion: success
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "abc9633f-c616-4f0f-ae14-5db57aea718c",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "58d4a073-0341-4f4e-8d3a-dd78ea2b7b85",
+  "toolUseResult": {
+    "stdout": "=== repo-level-cls-8b-conda ===\n  status: DONE\n  created_at: 2026-05-13T22:07:02.272Z\n  updated_at: 2026-05-14T22:38:53.233Z\n  hypothesis: Qwen3-8B CLS repo-level conda 环境重训（transformers 4.57.6），消除跨环境混杂，验证 8B CLS repo 表现\n  notes: Checkpoint sweep 完成 (ckpt 200/400/600)。最优 ckpt-400: accuracy=84.52% (+11.56pp vs baseline), f1_macro=80.89。ckpt-600 过拟合退化至 78.51%。8B (84.52%) vs 4B best (80.73% seed123 ckpt-600) = +3.79pp scaling gain，与函数级趋势一致（8B CLS-4B CLS gap ~2pp）。Repo-level 8B scaling 比函数级更明显。\n  conclusion: success\n\n=== repo-level-cls-8b-s42-resume ===\n  status: DONE\n  created_at: 2026-05-14T21:48:30.781Z\n  updated_at: 2026-05-15T18:51:06.920Z\n  hypothesis: 8B CLS s42 resume 训练（从 ckpt-600 继续），获取更多 checkpoint 用于 val/test sweep\n  notes: best/ 目录验证: 包含旧 run (checkpoints_repo_cls_8b_conda) 的 step-200 权重 (eval_loss=0.0796), 由 Trainer load_best_model_at_end 在训练结束时自动保存。不是 ckpt-1000 也不是 ckpt-6633。主表使用 val-selected ckpt-1000, 不受影响。\n  conclusion: success\n\n=== cls8b-repo-s456-train ===\n  status: RUNNING\n  created_at: 2026-05-19T11:43:11.006Z\n  updated_at: 2026-05-19T11:43:53.996Z\n  hypothesis: Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见\n  parent: repo-level-cls-8b-s42-resume\n\n=== cls8b-seed123 ===\n  status: DONE\n  parent: model-size-scaling-cls8b\n  created_at: 2026-05-12T09:23:37.452Z\n  updated_at: 2026-05-12T19:04:21.268Z\n  hypothesis: 验证 8B classification 90.48% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性\n  notes: 8B cls seed123 完成。accuracy=89.4% (vs seed42=90.48%, 差距 1.08pp 在正常波动范围内)。8B cls-cwm gap: seed42=2.81pp (90.48-87.67), seed123=2.42pp (89.4-86.98)。两个 seed 均显示 classification 在 8B 上显著优于 CWM，gap ~2.4-2.8pp 稳定。对比 4B gap ~0.9pp，8B 放大了 cls 的优势，支撑 Pillar 1 (complexity hypothesis)。OOM 后使用 PYTORCH_CUDA_ALLOC_\n  conclusion: success",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "abc9633f-c616-4f0f-ae14-5db57aea718c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 259 · 2026-05-19T12:30:32.645Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have more context. The s42 training was `repo-level-cls-8b-conda` which was created on May 13 and completed on May 14. The resume was `repo-level-cls-8b-s42-resume` from May 14-15. Both used the data that was intact at the time.
+
+The s456 training (`cls8b-repo-s456-train`) was created on May 19 at 11:43, which is AFTER the data was corrupted at 11:14. So the data was corrupted right before the s456 training was started.
+
+
+Now I'm wondering if there's a way to recover the original data. The `build_swebench_data.py` script needs `swebench.harness.run_evaluation` and Docker to work, but maybe I can reconstruct it differently. The original pilot_data had 89,867 samples built from 500 SWE-bench Verified instances with gold patches and four mutation types, where labels came from actual test execution. I could potentially use a heuristic approach instead of re-running the full evaluation.
+
+For gold patches, all tests would pass by definition since they're the correct fixes. For mutated patches, F2P tests should fail and P2P tests should pass in most cases. While some mutations might not affect certain tests or cause unexpected failures, having roughly 95% accurate labels might be sufficient for training. But actually, I need to be more careful here—some F2P tests could still pass if the mutation doesn't touch the relevant code, and some P2P tests could fail if the mutation breaks something those tests depend on. The real issue is that the task requires "完全一致的配置"—the data needs to match exactly what s42 used, so heuristic labels won't cut it.
+
+Let me reconsider where this data actually came from. The test.jsonl file is dated May 12, but the build_swebench_data.py script requires Docker, which isn't available on this server. That means the data must have been generated on a different machine and transferred here. Let me check the file ownership and see if there's any record of its origin.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58d4a073-0341-4f4e-8d3a-dd78ea2b7b85",
+  "isSidechain": false,
+  "requestId": "req_011CbBvtdvPSE5e7Tz8PWcGy",
+  "type": "assistant",
+  "uuid": "c9ae0285-d3ef-4106-a6c7-33e8bf144053",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUki4CLHtBCB1jHwdLTmX9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1396,
+      "cache_read_input_tokens": 104257,
+      "output_tokens": 964,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1396,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 964,
+          "cache_read_input_tokens": 104257,
+          "cache_creation_input_tokens": 1396,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1396
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 260 · 2026-05-19T12:30:32.764Z_
+
+数据是在别的机器上生成的（此服务器无 Docker/swebench）。让我检查文件的所有者和是否有其他线索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9ae0285-d3ef-4106-a6c7-33e8bf144053",
+  "isSidechain": false,
+  "requestId": "req_011CbBvtdvPSE5e7Tz8PWcGy",
+  "type": "assistant",
+  "uuid": "7650c5e1-a849-4a1c-95a7-ee52f8895099",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUki4CLHtBCB1jHwdLTmX9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1396,
+      "cache_read_input_tokens": 104257,
+      "output_tokens": 964,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1396,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 964,
+          "cache_read_input_tokens": 104257,
+          "cache_creation_input_tokens": 1396,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1396
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 261 · 2026-05-19T12:30:34.873Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013DrGimKpdtjZFzYuEgpyjF`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "stat /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7650c5e1-a849-4a1c-95a7-ee52f8895099",
+  "isSidechain": false,
+  "requestId": "req_011CbBvtdvPSE5e7Tz8PWcGy",
+  "type": "assistant",
+  "uuid": "7d55a2ce-eb2e-45fb-ae9e-55da3c9a4d21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUki4CLHtBCB1jHwdLTmX9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1396,
+      "cache_read_input_tokens": 104257,
+      "output_tokens": 964,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1396,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 964,
+          "cache_read_input_tokens": 104257,
+          "cache_creation_input_tokens": 1396,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1396
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 262 · 2026-05-19T12:30:35.326Z_
+
+<details><summary>↩ Tool result · `toolu_013DrGimKpdtjZFzYuEgpyjF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\\n  Size: 60675039  \\tBlocks: 118512     IO Block: 4096   regular file\\nDevice: 36h/54d\\tInode: 27937728139  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-18 21:51:15.028442160 +0800\\nModify: 2026-05-12 18:55:11.772940590 +0800\\nChange: 2026-05-12 18:55:11.772940590 +0800\\n Birth: 2026-05-12 18:55:11.348933850 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7d55a2ce-eb2e-45fb-ae9e-55da3c9a4d21",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "8a9145cc-68fe-47c5-8543-263e4010772a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\\\\n  Size: 60675039  \\\\tBlocks: 118512     IO Block: 4096   regular file\\\\nDevice: 36h/54d\\\\tInode: 27937728139  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-18 21:51:15.028442160 +0800\\\\nModify: 2026-05-12 18:55:11.772940590 +0800\\\\nChange: 2026-05-12 18:55:11.772940590 +0800\\\\n Birth: 2026-05-12 18:55:11.348933850 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  File: /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\\n  Size: 60675039  \\tBlocks: 118512     IO Block: 4096   regular file\\nDevice: 36h/54d\\tInode: 27937728139  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-18 21:51:15.028442160 +0800\\nModify: 2026-05-12 18:55:11.772940590 +0800\\nChange: 2026-05-12 18:55:11.772940590 +0800\\n Birth: 2026-05-12 18:55:11.348933850 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7d55a2ce-eb2e-45fb-ae9e-55da3c9a4d21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 263 · 2026-05-19T12:30:35.490Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016smCBicAFD3FtYchPhEg28`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "history 2>/dev/null | tail -50; cat ~/.bash_history 2>/dev/null | tail -50",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a9145cc-68fe-47c5-8543-263e4010772a",
+  "isSidechain": false,
+  "requestId": "req_011CbBvtdvPSE5e7Tz8PWcGy",
+  "type": "assistant",
+  "uuid": "548ea5d1-d260-4aaf-b1c5-a188feb89d6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUki4CLHtBCB1jHwdLTmX9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1396,
+      "cache_read_input_tokens": 104257,
+      "output_tokens": 964,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1396,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 964,
+          "cache_read_input_tokens": 104257,
+          "cache_creation_input_tokens": 1396,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1396
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 264_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "548ea5d1-d260-4aaf-b1c5-a188feb89d6f",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 265_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose and restart CLS 8B s456 training on GPU 2",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 266 · 2026-05-19T12:30:35.939Z_
+
+<details><summary>↩ Tool result · `toolu_016smCBicAFD3FtYchPhEg28`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "548ea5d1-d260-4aaf-b1c5-a188feb89d6f",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "50c445d8-fe97-4aef-b755-e124a53b9cb5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "548ea5d1-d260-4aaf-b1c5-a188feb89d6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 267 · 2026-05-19T12:30:35.942Z_
+
+```json
+{
+  "parentUuid": "50c445d8-fe97-4aef-b755-e124a53b9cb5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "be15a52e-dfd1-4201-8b0e-8d81ae1c7195",
+  "timestamp": "2026-05-19T12:30:35.942Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 268 · 2026-05-19T12:30:53.262Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The test.jsonl was created by root on May 12. The Birth time shows it was created at 18:55:11, and the data was modified by root.
+
+No bash history available (ssh sessions don't persist history the same way).
+
+OK, I've exhausted all reasonable avenues for finding the original data. Let me now clearly summarize my findings and proceed with what I can do.
+
+Here's my diagnosis:
+
+**Root cause of s456 crash:**
+1. On May 19 at 11:14, `swebench_full/swebench_pilot_data.jsonl` was overwritten with the smaller 10-instance pilot version (7,349 lines, copied from `swebench_pilot/`). 
+
+The MD5 hashes confirm they're identical. The split script then ran on this smaller dataset, creating a train set of 5,869 lines and leaving val empty since the 10% split rounded down to zero for such a small sample, while the test set remained untouched at 9,784 lines from the original May 12 version. When s456 training started at 11:43 with this corrupted data, the trainer crashed at step 200 during evaluation because there was no validation set to compute metrics against.
+
+The original pilot data is completely gone—no backups exist on the server, and I can't regenerate it since the SWE-bench harness and Docker aren't available here. The evaluation logs were also deleted, and the data was originally created on a different machine that had Docker installed. I need to clean up the failed s456 output, mark it as done in the registry, and report that retraining is blocked until the data is restored. The user will need to locate the original machine where the data was generated and either re-run the data generation script or retrieve a backup copy.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be15a52e-dfd1-4201-8b0e-8d81ae1c7195",
+  "isSidechain": false,
+  "requestId": "req_011CbBvvJxv7PWrNxFmipaKy",
+  "type": "assistant",
+  "uuid": "33f32563-f9a4-426a-bc6e-d106401a531b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011id9G5W71uo18gHs8QxLMZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1503,
+      "cache_read_input_tokens": 105653,
+      "output_tokens": 1133,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1133,
+          "cache_read_input_tokens": 105653,
+          "cache_creation_input_tokens": 1503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 269 · 2026-05-19T12:30:59.485Z_
+
+诊断完成。以下是结论和后续操作。
+
+## 诊断结论
+
+**s456 崩溃根因**：May 19 11:14，`swebench_full/swebench_pilot_data.jsonl` 被覆盖为 `swebench_pilot/` 的 10-instance 小版本（7,349 行 vs 原始 89,867 行，MD5 完全相同），导致：
+- `swebench_train.jsonl`: 5,869 行（应为 ~70,748）
+- `swebench_val.jsonl`: 0 行（`int(n * 0.1) = 0` 对小 n 成立）
+- s456 在 step 200 eval 时 `KeyError: 'eval_loss'`（因 val=0）
+
+**数据无法在此服务器恢复**：
+- 原始 pilot_data (~89,867 行) 已被覆盖，全磁盘搜索无备份
+- 此服务器无 Docker/swebench-harness，无法重新生成
+- 评估日志 (logs/run_evaluation/) 不存在
+
+**需要用户操作**：在原始生成数据的机器上恢复或重新生成 `swebench_pilot_data.jsonl`（89,867 行），然后重新运行 `split_swebench_data.py`。
+
+现在执行可以完成的步骤：清理失败输出 + 更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33f32563-f9a4-426a-bc6e-d106401a531b",
+  "isSidechain": false,
+  "requestId": "req_011CbBvvJxv7PWrNxFmipaKy",
+  "type": "assistant",
+  "uuid": "35e3a02b-7415-4e9c-be23-e812ea7f1088",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011id9G5W71uo18gHs8QxLMZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1503,
+      "cache_read_input_tokens": 105653,
+      "output_tokens": 1133,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1133,
+          "cache_read_input_tokens": 105653,
+          "cache_creation_input_tokens": 1503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 270 · 2026-05-19T12:31:00.565Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01K6HZzu9dQGngkTRpf6X77W`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls /root/autodl-tmp/checkpoints_repo_cls_8b_s456/ 2>/dev/null && echo \"EXISTS\" || echo \"NOT_FOUND\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35e3a02b-7415-4e9c-be23-e812ea7f1088",
+  "isSidechain": false,
+  "requestId": "req_011CbBvvJxv7PWrNxFmipaKy",
+  "type": "assistant",
+  "uuid": "fa25626a-76f6-414c-9461-a4bbd02eed57",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011id9G5W71uo18gHs8QxLMZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1503,
+      "cache_read_input_tokens": 105653,
+      "output_tokens": 1133,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1133,
+          "cache_read_input_tokens": 105653,
+          "cache_creation_input_tokens": 1503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 271 · 2026-05-19T12:31:01.029Z_
+
+<details><summary>↩ Tool result · `toolu_01K6HZzu9dQGngkTRpf6X77W`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"EXISTS\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa25626a-76f6-414c-9461-a4bbd02eed57",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "9ae37ca7-7c3a-4e68-8671-35a3859f2d40",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXISTS\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"EXISTS\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fa25626a-76f6-414c-9461-a4bbd02eed57",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 272 · 2026-05-19T12:31:03.990Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Axk6rvAYwtJYsbJ4Q58iWs`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "ls -la /root/autodl-tmp/checkpoints_repo_cls_8b_s456/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ae37ca7-7c3a-4e68-8671-35a3859f2d40",
+  "isSidechain": false,
+  "requestId": "req_011CbBvxASWg1NU3B3yvTkeA",
+  "type": "assistant",
+  "uuid": "28ecb47e-01f3-41cb-84bf-09ed6b3aa12e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qo38hyC82Le9gWq7aZCb4A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1208,
+      "cache_read_input_tokens": 107156,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1208,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 107156,
+          "cache_creation_input_tokens": 1208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1208
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 273 · 2026-05-19T12:31:04.445Z_
+
+<details><summary>↩ Tool result · `toolu_01Axk6rvAYwtJYsbJ4Q58iWs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 19 19:43 .\\ndrwxr-xr-x 65 root root 4096 May 19 19:58 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "28ecb47e-01f3-41cb-84bf-09ed6b3aa12e",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "30d898a3-6252-4f49-8390-14b0b0b2fd6c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 19 19:43 .\\\\ndrwxr-xr-x 65 root root 4096 May 19 19:58 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 19 19:43 .\\ndrwxr-xr-x 65 root root 4096 May 19 19:58 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "28ecb47e-01f3-41cb-84bf-09ed6b3aa12e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 274 · 2026-05-19T12:31:11.573Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output directory exists but is empty (just the . and .. entries). The training crashed before saving any checkpoint. Let me clean it up and update the registry.
+
+Actually wait, looking at the task description again: "crashed at step 200/552". And from the argparse, save_steps=200. So the first checkpoint save was at step 200, and that's where the crash happened during evaluation (eval_loss KeyError). No checkpoint was saved.
+
+Let me clean up and update registry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30d898a3-6252-4f49-8390-14b0b0b2fd6c",
+  "isSidechain": false,
+  "requestId": "req_011CbBvxQtvBw9tiVXgSZtMH",
+  "type": "assistant",
+  "uuid": "4c62e8ee-ea58-4e1d-8603-e1dd034360ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011T1cfiT6y4bDSLa34osEto",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 250,
+      "cache_read_input_tokens": 108364,
+      "output_tokens": 601,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 250,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 601,
+          "cache_read_input_tokens": 108364,
+          "cache_creation_input_tokens": 250,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 250
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 275 · 2026-05-19T12:31:12.520Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LRszp24u8u6zbSdg3Bv66m`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "rm -rf /root/autodl-tmp/checkpoints_repo_cls_8b_s456/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c62e8ee-ea58-4e1d-8603-e1dd034360ab",
+  "isSidechain": false,
+  "requestId": "req_011CbBvxQtvBw9tiVXgSZtMH",
+  "type": "assistant",
+  "uuid": "d7946f52-4928-4031-bad2-9c7616d2f0a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011T1cfiT6y4bDSLa34osEto",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 250,
+      "cache_read_input_tokens": 108364,
+      "output_tokens": 601,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 250,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 601,
+          "cache_read_input_tokens": 108364,
+          "cache_creation_input_tokens": 250,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 250
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 276 · 2026-05-19T12:31:12.967Z_
+
+<details><summary>↩ Tool result · `toolu_01LRszp24u8u6zbSdg3Bv66m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7946f52-4928-4031-bad2-9c7616d2f0a4",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "f1eac03c-9938-4687-8cf4-c15227241747",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d7946f52-4928-4031-bad2-9c7616d2f0a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 277 · 2026-05-19T12:31:17.797Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SnXAaotyyRA2K2PM3YrBW1`</summary>
+
+```json
+{
+  "exp_id": "cls8b-repo-s456-train",
+  "field": "status",
+  "value": "DONE",
+  "project": "exec-sim-repair-verifier",
+  "spec": {
+    "command": "cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456/",
+    "server": "seetacloud-westd-4x5090",
+    "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/",
+    "data_count": 5869,
+    "model_name": "Qwen/Qwen3-8B",
+    "seed": 456
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1eac03c-9938-4687-8cf4-c15227241747",
+  "isSidechain": false,
+  "requestId": "req_011CbBvxQtvBw9tiVXgSZtMH",
+  "type": "assistant",
+  "uuid": "82219974-c844-450d-b34d-3be6314d3d1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011T1cfiT6y4bDSLa34osEto",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 250,
+      "cache_read_input_tokens": 108364,
+      "output_tokens": 601,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 250,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 601,
+          "cache_read_input_tokens": 108364,
+          "cache_creation_input_tokens": 250,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 250
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 278 · 2026-05-19T12:31:18.394Z_
+
+<details><summary>↩ Tool result · `toolu_01SnXAaotyyRA2K2PM3YrBW1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.5867}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "82219974-c844-450d-b34d-3be6314d3d1a",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "b5dfe6eb-58f9-45d3-b284-fb4952b29076",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5867}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.5867}}"
+    }
+  },
+  "sourceToolAssistantUUID": "82219974-c844-450d-b34d-3be6314d3d1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 279 · 2026-05-19T12:31:21.005Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013faeLaJZsXUFzxxp5QKSeJ`</summary>
+
+```json
+{
+  "exp_id": "cls8b-repo-s456-train",
+  "field": "conclusion",
+  "value": "failed",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5dfe6eb-58f9-45d3-b284-fb4952b29076",
+  "isSidechain": false,
+  "requestId": "req_011CbBvySTCiBtP5LQWqG2Zj",
+  "type": "assistant",
+  "uuid": "75bb6c6c-dc1b-40e2-b8fc-4350d56bc88d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhzFisadWwt6t21AHLkyKw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 800,
+      "cache_read_input_tokens": 108614,
+      "output_tokens": 131,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 800,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 131,
+          "cache_read_input_tokens": 108614,
+          "cache_creation_input_tokens": 800,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 800
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 280 · 2026-05-19T12:31:22.026Z_
+
+<details><summary>↩ Tool result · `toolu_013faeLaJZsXUFzxxp5QKSeJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"cls8b-repo-s456-train\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:43:11.006Z\", \"updated_at\": \"2026-05-19T12:31:21.603Z\", \"spec\": {\"command\": \"cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456/\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"825031\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-repo-s456-train.log\", \"submitted_at\": \"2026-05-19T11:43:10.010Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": \"~70K\", \"model_name\": \"Qwen3-8B\", \"seed\": 456, \"checkpoint_source\": \"from-scratch\", \"eval_data\": \"N/A (training run)\"}, \"hypothesis\": \"Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见\", \"parent\": \"repo-level-cls-8b-s42-resume\", \"conclusion\": \"failed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0106}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "75bb6c6c-dc1b-40e2-b8fc-4350d56bc88d",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "e1d9ea40-ddb1-4c84-80d2-7423dd5d0eaa",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cls8b-repo-s456-train\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:43:11.006Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:31:21.603Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456/\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"825031\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-repo-s456-train.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:43:10.010Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": \\\"~70K\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from-scratch\\\", \\\"eval_data\\\": \\\"N/A (training run)\\\"}, \\\"hypothesis\\\": \\\"Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见\\\", \\\"parent\\\": \\\"repo-level-cls-8b-s42-resume\\\", \\\"conclusion\\\": \\\"failed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0106}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"cls8b-repo-s456-train\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:43:11.006Z\", \"updated_at\": \"2026-05-19T12:31:21.603Z\", \"spec\": {\"command\": \"cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456/\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"825031\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-repo-s456-train.log\", \"submitted_at\": \"2026-05-19T11:43:10.010Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": \"~70K\", \"model_name\": \"Qwen3-8B\", \"seed\": 456, \"checkpoint_source\": \"from-scratch\", \"eval_data\": \"N/A (training run)\"}, \"hypothesis\": \"Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见\", \"parent\": \"repo-level-cls-8b-s42-resume\", \"conclusion\": \"failed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0106}}"
+    }
+  },
+  "sourceToolAssistantUUID": "75bb6c6c-dc1b-40e2-b8fc-4350d56bc88d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 281 · 2026-05-19T12:31:30.050Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014erDNfFgGMiRCKAJYKF5Ka`</summary>
+
+```json
+{
+  "exp_id": "cls8b-repo-s456-train",
+  "field": "notes",
+  "value": "Crashed at step 200/552. Root cause: swebench_full/swebench_pilot_data.jsonl was overwritten at May 19 11:14 with the 10-instance pilot version (7349 lines, md5-identical to swebench_pilot/), causing train=5869 (vs expected 70748) and val=0. Empty val triggered KeyError on metric_for_best_model='eval_loss'. Original 89867-line pilot_data is irrecoverable on this server (no Docker/swebench-harness, no evaluation logs, no backups). Need to restore original data from the machine where it was generated before retraining.",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1d9ea40-ddb1-4c84-80d2-7423dd5d0eaa",
+  "isSidechain": false,
+  "requestId": "req_011CbBvyi739nXX9iG4q5Uhn",
+  "type": "assistant",
+  "uuid": "19d5d6c0-51d9-4545-9e93-2f50871f499d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FPdhy7jLgmssu4usQG1yXe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 747,
+      "cache_read_input_tokens": 109414,
+      "output_tokens": 284,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 747,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 284,
+          "cache_read_input_tokens": 109414,
+          "cache_creation_input_tokens": 747,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 747
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 282_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "19d5d6c0-51d9-4545-9e93-2f50871f499d",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 283_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose and restart CLS 8B s456 training on GPU 2",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 284 · 2026-05-19T12:31:31.042Z_
+
+<details><summary>↩ Tool result · `toolu_014erDNfFgGMiRCKAJYKF5Ka`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"cls8b-repo-s456-train\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:43:11.006Z\", \"updated_at\": \"2026-05-19T12:31:30.652Z\", \"spec\": {\"command\": \"cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456/\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"825031\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-repo-s456-train.log\", \"submitted_at\": \"2026-05-19T11:43:10.010Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": \"~70K\", \"model_name\": \"Qwen3-8B\", \"seed\": 456, \"checkpoint_source\": \"from-scratch\", \"eval_data\": \"N/A (training run)\"}, \"hypothesis\": \"Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见\", \"parent\": \"repo-level-cls-8b-s42-resume\", \"conclusion\": \"failed\", \"notes\": \"Crashed at step 200/552. Root cause: swebench_full/swebench_pilot_data.jsonl was overwritten at May 19 11:14 with the 10-instance pilot version (7349 lines, md5-identical to swebench_pilot/), causing train=5869 (vs expected 70748) and val=0. Empty val triggered KeyError on metric_for_best_model='eval_loss'. Original 89867-line pilot_data is irrecoverable on this server (no Docker/swebench-harness, no evaluation logs, no backups). Need to restore original data from the machine where it was generated before retraining.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9728}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "19d5d6c0-51d9-4545-9e93-2f50871f499d",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "262a4172-6ba8-45f0-9ce1-fef0b42b7c5e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cls8b-repo-s456-train\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:43:11.006Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:31:30.652Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456/\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"825031\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-repo-s456-train.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:43:10.010Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": \\\"~70K\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from-scratch\\\", \\\"eval_data\\\": \\\"N/A (training run)\\\"}, \\\"hypothesis\\\": \\\"Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见\\\", \\\"parent\\\": \\\"repo-level-cls-8b-s42-resume\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"Crashed at step 200/552. Root cause: swebench_full/swebench_pilot_data.jsonl was overwritten at May 19 11:14 with the 10-instance pilot version (7349 lines, md5-identical to swebench_pilot/), causing train=5869 (vs expected 70748) and val=0. Empty val triggered KeyError on metric_for_best_model='eval_loss'. Original 89867-line pilot_data is irrecoverable on this server (no Docker/swebench-harness, no evaluation logs, no backups). Need to restore original data from the machine where it was generated before retraining.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9728}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"cls8b-repo-s456-train\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:43:11.006Z\", \"updated_at\": \"2026-05-19T12:31:30.652Z\", \"spec\": {\"command\": \"cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456/\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"825031\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-repo-s456-train.log\", \"submitted_at\": \"2026-05-19T11:43:10.010Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": \"~70K\", \"model_name\": \"Qwen3-8B\", \"seed\": 456, \"checkpoint_source\": \"from-scratch\", \"eval_data\": \"N/A (training run)\"}, \"hypothesis\": \"Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见\", \"parent\": \"repo-level-cls-8b-s42-resume\", \"conclusion\": \"failed\", \"notes\": \"Crashed at step 200/552. Root cause: swebench_full/swebench_pilot_data.jsonl was overwritten at May 19 11:14 with the 10-instance pilot version (7349 lines, md5-identical to swebench_pilot/), causing train=5869 (vs expected 70748) and val=0. Empty val triggered KeyError on metric_for_best_model='eval_loss'. Original 89867-line pilot_data is irrecoverable on this server (no Docker/swebench-harness, no evaluation logs, no backups). Need to restore original data from the machine where it was generated before retraining.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9728}}"
+    }
+  },
+  "sourceToolAssistantUUID": "19d5d6c0-51d9-4545-9e93-2f50871f499d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 285 · 2026-05-19T12:31:42.389Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011LEY6rQfyphp8iVYdKgNNv`</summary>
+
+```json
+{
+  "exp_id": "cls8b-repo-s456-train",
+  "field": "status",
+  "value": "DONE",
+  "project": "exec-sim-repair-verifier"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "262a4172-6ba8-45f0-9ce1-fef0b42b7c5e",
+  "isSidechain": false,
+  "requestId": "req_011CbBvzjMj5LmSrq13NAwpS",
+  "type": "assistant",
+  "uuid": "798f7a14-f0b2-481f-ad99-afa329826990",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LCt66RQXopwgJHEmioRZx1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 110161,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 110161,
+          "cache_creation_input_tokens": 1061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 286 · 2026-05-19T12:31:44.264Z_
+
+<details><summary>↩ Tool result · `toolu_011LEY6rQfyphp8iVYdKgNNv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"cls8b-repo-s456-train\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:43:11.006Z\", \"updated_at\": \"2026-05-19T12:31:42.942Z\", \"spec\": {\"command\": \"cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456/\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"825031\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-repo-s456-train.log\", \"submitted_at\": \"2026-05-19T11:43:10.010Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": \"~70K\", \"model_name\": \"Qwen3-8B\", \"seed\": 456, \"checkpoint_source\": \"from-scratch\", \"eval_data\": \"N/A (training run)\", \"wall_clock_seconds\": 2912.9, \"gpu_hours\": 0.81}, \"hypothesis\": \"Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见\", \"parent\": \"repo-level-cls-8b-s42-resume\", \"conclusion\": \"failed\", \"notes\": \"Crashed at step 200/552. Root cause: swebench_full/swebench_pilot_data.jsonl was overwritten at May 19 11:14 with the 10-instance pilot version (7349 lines, md5-identical to swebench_pilot/), causing train=5869 (vs expected 70748) and val=0. Empty val triggered KeyError on metric_for_best_model='eval_loss'. Original 89867-line pilot_data is irrecoverable on this server (no Docker/swebench-harness, no evaluation logs, no backups). Need to restore original data from the machine where it was generated before retraining.\", \"completed_at\": \"2026-05-19T12:31:42.942Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8632}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "798f7a14-f0b2-481f-ad99-afa329826990",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "792793c9-c7ea-4bbe-adc3-b1057d740419",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cls8b-repo-s456-train\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:43:11.006Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:31:42.942Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456/\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"825031\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-repo-s456-train.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:43:10.010Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full\\\", \\\"data_count\\\": \\\"~70K\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from-scratch\\\", \\\"eval_data\\\": \\\"N/A (training run)\\\", \\\"wall_clock_seconds\\\": 2912.9, \\\"gpu_hours\\\": 0.81}, \\\"hypothesis\\\": \\\"Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见\\\", \\\"parent\\\": \\\"repo-level-cls-8b-s42-resume\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"Crashed at step 200/552. Root cause: swebench_full/swebench_pilot_data.jsonl was overwritten at May 19 11:14 with the 10-instance pilot version (7349 lines, md5-identical to swebench_pilot/), causing train=5869 (vs expected 70748) and val=0. Empty val triggered KeyError on metric_for_best_model='eval_loss'. Original 89867-line pilot_data is irrecoverable on this server (no Docker/swebench-harness, no evaluation logs, no backups). Need to restore original data from the machine where it was generated before retraining.\\\", \\\"completed_at\\\": \\\"2026-05-19T12:31:42.942Z\\\"}, \\\"hint\\\": \\\"💡 建议将故障原因写入 memory.md（如何避免再犯）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8632}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"cls8b-repo-s456-train\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T11:43:11.006Z\", \"updated_at\": \"2026-05-19T12:31:42.942Z\", \"spec\": {\"command\": \"cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456/\", \"server\": \"seetacloud-westd-4x5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"825031\", \"log_path\": \"~/runs/exec-sim-repair-verifier/cls8b-repo-s456-train.log\", \"submitted_at\": \"2026-05-19T11:43:10.010Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/swebench_full\", \"data_count\": \"~70K\", \"model_name\": \"Qwen3-8B\", \"seed\": 456, \"checkpoint_source\": \"from-scratch\", \"eval_data\": \"N/A (training run)\", \"wall_clock_seconds\": 2912.9, \"gpu_hours\": 0.81}, \"hypothesis\": \"Qwen3-8B CLS repo-level s456: 第3个seed，与s42(84.48%)和s123(85.6%)组成3-seed coverage，回应N1审稿意见\", \"parent\": \"repo-level-cls-8b-s42-resume\", \"conclusion\": \"failed\", \"notes\": \"Crashed at step 200/552. Root cause: swebench_full/swebench_pilot_data.jsonl was overwritten at May 19 11:14 with the 10-instance pilot version (7349 lines, md5-identical to swebench_pilot/), causing train=5869 (vs expected 70748) and val=0. Empty val triggered KeyError on metric_for_best_model='eval_loss'. Original 89867-line pilot_data is irrecoverable on this server (no Docker/swebench-harness, no evaluation logs, no backups). Need to restore original data from the machine where it was generated before retraining.\", \"completed_at\": \"2026-05-19T12:31:42.942Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8632}}"
+    }
+  },
+  "sourceToolAssistantUUID": "798f7a14-f0b2-481f-ad99-afa329826990",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 287 · 2026-05-19T12:32:17.731Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, the registry has been updated. Now let me think about whether there's a way to actually fix the data and restart training. Let me reconsider...
+
+Actually, I just thought of something. The s42 training with seed=42 and the seed123 training both used the same data (70,748 samples). The seed123 training (`repo-level-cls-8b-seed123-conda`) was done before the data corruption (created May 13, before May 19). 
+
+But wait, seed123 used a completely different checkpoint path: `checkpoints_repo_cls_8b_seed123_conda`. 
+
+Checking if seed123 might have cached the data won't help since the training scripts reload from the filesystem each time. Let me think about reconstruction instead—I know the data was split by instance_id with seed=42, the test split (9,784 lines) is still intact, and I can identify which instance_ids are in the test set, which means I can potentially recover the original training and validation splits from the complete dataset.
+
+The problem is that generating records for the non-test instances requires execution, and I don't have correct labels for those instances anywhere. The corrupted train.jsonl only covers 10 pilot instances, which is a completely different subset. I need to figure out whether there's any overlap between the test split instances and the pilot instances that were selected.
+
+Actually, I'm overthinking this. I've already completed most of the steps the user asked for—diagnostics, cleanup, GPU checks, and registry setup are all done. The real blocker is that the data is corrupted and unrecoverable on this server. I should report the status clearly: steps 4 and 5 are blocked because of the data corruption, and I need to explain why reconstruction isn't possible.
+
+Wait, but I could potentially reconstruct the training and validation data from what's available. The test file has nearly 10,000 records with correct labels, and I can identify which instances belong in the test set. For the remaining ~450 instances in train and val, I have the metadata and prediction files, so I could generate synthetic labels using a heuristic based on whether patches fix or break tests. This might actually be recoverable.
+
+The main constraint is that test source code was extracted from Docker container checkouts during the build pipeline, which I can't replicate without Docker. However, looking at the test.jsonl records, some already contain the actual test source code while others just have test names. The CLS task only needs code, test, and label anyway, so I should check whether the existing test records have enough source code to work with.
+
+Let me verify if the s42 and s123 trainings used identical datasets by checking their sample counts—if s123 also had 70,748 samples, that would confirm the data was the same.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "792793c9-c7ea-4bbe-adc3-b1057d740419",
+  "isSidechain": false,
+  "requestId": "req_011CbBw1N46FcxMCjKnLyDCj",
+  "type": "assistant",
+  "uuid": "70a35c73-47df-4f39-a1f4-76f3a036387a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018XbUHuE7y5F47J8waLM9Jn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 988,
+      "cache_read_input_tokens": 111222,
+      "output_tokens": 1477,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 988,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1477,
+          "cache_read_input_tokens": 111222,
+          "cache_creation_input_tokens": 988,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 988
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 288 · 2026-05-19T12:32:17.861Z_
+
+Registry 已更新。现在让我确认 s123 的训练数据量来交叉验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70a35c73-47df-4f39-a1f4-76f3a036387a",
+  "isSidechain": false,
+  "requestId": "req_011CbBw1N46FcxMCjKnLyDCj",
+  "type": "assistant",
+  "uuid": "bf911f3b-a9d7-49f3-919d-5b5e95424662",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018XbUHuE7y5F47J8waLM9Jn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 988,
+      "cache_read_input_tokens": 111222,
+      "output_tokens": 1477,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 988,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1477,
+          "cache_read_input_tokens": 111222,
+          "cache_creation_input_tokens": 988,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 988
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 289 · 2026-05-19T12:32:19.357Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YYjhq5axEiUa9wHPhh5vGr`</summary>
+
+```json
+{
+  "server": "seetacloud-westd-4x5090",
+  "command": "head -5 /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6633/trainer_state.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf911f3b-a9d7-49f3-919d-5b5e95424662",
+  "isSidechain": false,
+  "requestId": "req_011CbBw1N46FcxMCjKnLyDCj",
+  "type": "assistant",
+  "uuid": "06b52ea7-cfd8-4453-abba-6325d888f5a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018XbUHuE7y5F47J8waLM9Jn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 988,
+      "cache_read_input_tokens": 111222,
+      "output_tokens": 1477,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 988,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1477,
+          "cache_read_input_tokens": 111222,
+          "cache_creation_input_tokens": 988,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 988
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 290 · 2026-05-19T12:32:19.819Z_
+
+<details><summary>↩ Tool result · `toolu_01YYjhq5axEiUa9wHPhh5vGr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"best_global_step\\\": 200,\\n  \\\"best_metric\\\": 0.08621405810117722,\\n  \\\"best_model_checkpoint\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200\\\",\\n  \\\"epoch\\\": 3.0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06b52ea7-cfd8-4453-abba-6325d888f5a5",
+  "isSidechain": false,
+  "promptId": "73d2de48-f5f9-4eec-9e54-651778291381",
+  "type": "user",
+  "uuid": "71e42ca4-0c7e-4952-8e91-489a97b1dd13",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"best_global_step\\\\\\\": 200,\\\\n  \\\\\\\"best_metric\\\\\\\": 0.08621405810117722,\\\\n  \\\\\\\"best_model_checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200\\\\\\\",\\\\n  \\\\\\\"epoch\\\\\\\": 3.0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"best_global_step\\\": 200,\\n  \\\"best_metric\\\": 0.08621405810117722,\\n  \\\"best_model_checkpoint\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-200\\\",\\n  \\\"epoch\\\": 3.0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "06b52ea7-cfd8-4453-abba-6325d888f5a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 291 · 2026-05-19T12:32:19.824Z_
+
+```json
+{
+  "parentUuid": "71e42ca4-0c7e-4952-8e91-489a97b1dd13",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e9d52b63-040c-4133-999a-d2ba6369dc73",
+  "timestamp": "2026-05-19T12:32:19.824Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 292 · 2026-05-19T12:32:46.881Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+s123 also has 6633 steps, epoch=3.0. Same as s42. So 6633/3 = 2211 steps/epoch × 32 batch = 70,752 samples. Both s42 and s123 used the same 70,748 training data.
+
+Now I have all the information. Let me compose the final report.
+
+Actually wait, I just had an idea. Maybe I can reconstruct the data by reverse-engineering the split. Here's the approach:
+
+1. Read swebench_test.jsonl to get all test-split instance_ids
+
+
+2. Load SWE-bench Verified from HuggingFace (all 500 instances)
+3. Using split_swebench_data.py logic with seed=42, determine which instances go to train/val/test
+4. For train/val instances, generate records using the prediction files + meta data
+
+The key question is whether I can access HuggingFace on this server. Let me check if the HF cache has the dataset. The build script shows `HF_HUB_OFFLINE=1` in the training command, but that's just for loading the model, not the dataset itself.
+
+Wait, I just realized the `swebench_verified_meta.jsonl` file already contains metadata for all 500 instances—that's essentially the cached HuggingFace dataset locally. So I can load that directly, apply the split logic to determine train/val/test assignments, then reconstruct the training records from the predictions files. The tricky part is mapping the predictions (which have instance_id, model_patch, and model_name_or_path) to the training format needed (code, test, and label).
+
+For the test field, I can use the FAIL_TO_PASS and PASS_TO_PASS test names from the verified metadata, though ideally the training data would have the actual test source code extracted from Docker. For labels, I can infer them from the patch type: gold patches get label=1 since all their tests pass, but mutated patches are uncertain—some mutations might not actually break certain tests, so I can't guarantee label=0 without running execution. With 500 instances and 5 mutation types per instance, the data could get quite large, but the label uncertainty for mutations is the real constraint here.
+
+The reconstructed dataset wouldn't perfectly match the original anyway since I'd be missing the actual test source code, the real execution outputs, and the exact balancing strategy they used. Let me step back and check if the HuggingFace SWE-bench Verified dataset already contains the test source code or enough metadata to avoid needing Docker entirely.
+
+Looking at what's actually in that dataset—instance IDs, problem statements, patches, and pass/fail test results—there's no test source code included. So reconstruction isn't feasible on this server. The user will need to restore the original pilot_data from wherever it was generated.
+
+I'm also noticing the data corruption happened at 11:14 on May 19, and the s456 training kicked off at 11:43 the same day—likely the same agent session caused both issues. Let me compile all my findings into a clear summary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9d52b63-040c-4133-999a-d2ba6369dc73",
+  "isSidechain": false,
+  "requestId": "req_011CbBw3yB226ogzDR8QBoic",
+  "type": "assistant",
+  "uuid": "6ac3e6cb-609b-4e55-b353-9961e9f201b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YHY1NqajR6q5F2Dc81KGnf",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1752,
+      "cache_read_input_tokens": 112210,
+      "output_tokens": 1710,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1752,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1710,
+          "cache_read_input_tokens": 112210,
+          "cache_creation_input_tokens": 1752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1752
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 293 · 2026-05-19T12:32:59.088Z_
+
+## 总结
+
+### 完成的步骤
+- **Step 1 (诊断)**: 完成
+- **Step 2 (清理)**: 完成 - 空目录已删除
+- **Step 3 (GPU 2)**: 确认空闲（0MiB, 0%）
+- **Step 6 (Registry)**: `cls8b-repo-s456-train` 已标记为 DONE(failed)
+
+### 阻塞：Step 4-5 无法执行
+
+**根因**：训练数据在 May 19 11:14 被损坏。`swebench_full/swebench_pilot_data.jsonl`（原 89,867 行）被覆盖为 `swebench_pilot/` 的 10-instance 版本（7,349 行），MD5 完全相同。这导致 split 后 train=5,869（应为 70,748），val=0（应为 ~9,335）。
+
+**验证**：s42 和 s123 的 trainer_state 均显示 step=6633, epoch=3.0 → 2211 steps/epoch × 32 = 70,752 samples，确认原始数据量。
+
+**无法恢复的原因**：
+1. 全磁盘搜索无备份（`find / -name "swebench_pilot_data.jsonl" -size +50M` 仅找到 swebench_fix_test 的小版本）
+2. 无 Docker/swebench-harness 重新生成
+3. 无 `logs/run_evaluation/` 评估日志
+4. 非 git 仓库，无版本历史
+5. `swebench_test.jsonl`（9,784 行，May 12）虽完好，但仅是 test split，无法逆推 train/val
+
+### 需要你操作
+
+恢复 `data/swebench_full/swebench_pilot_data.jsonl`（89,867 行），然后重新运行 `python split_swebench_data.py` 重建 train/val/test split。数据最初在一台有 Docker + swebench-harness 的机器上通过 `build_swebench_data.py --mode full --num_instances 500` 生成。恢复数据后我可以立即在 GPU 2 重启训练。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ac3e6cb-609b-4e55-b353-9961e9f201b4",
+  "isSidechain": false,
+  "requestId": "req_011CbBw3yB226ogzDR8QBoic",
+  "type": "assistant",
+  "uuid": "a7d6037f-5896-4e91-8396-e9a679c261dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YHY1NqajR6q5F2Dc81KGnf",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1752,
+      "cache_read_input_tokens": 112210,
+      "output_tokens": 1710,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1752,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1710,
+          "cache_read_input_tokens": 112210,
+          "cache_creation_input_tokens": 1752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1752
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 294_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "a7d6037f-5896-4e91-8396-e9a679c261dd",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 295_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose and restart CLS 8B s456 training on GPU 2",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 296_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "a7d6037f-5896-4e91-8396-e9a679c261dd",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 297_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose and restart CLS 8B s456 training on GPU 2",
+  "sessionId": "aa8f10f1-7abf-4586-84aa-aeefbf528139"
+}
+```
+
+---

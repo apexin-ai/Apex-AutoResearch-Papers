@@ -640,6 +640,19 @@
       }
     },
     {
+      "project": "exec-sim-repair-verifier--export-20260712",
+      "title": "A Systematic Comparison of Execution-Free Verification Formulations for Code Repair (July export snapshot)",
+      "catalog": "../research-snapshots/exec-sim-repair-verifier/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 658,
+        "messages": 57535,
+        "user_turns": 1019,
+        "tool_calls": 16404,
+        "unparsed_lines": 0,
+        "conversation": 658
+      }
+    },
+    {
       "project": "faith-evidence-ie",
       "title": "Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction",
       "catalog": "../paper-assets/faith-evidence-ie/05-generation-trace/catalog.json",

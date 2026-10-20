@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "e7ac53d940457449a8e8",
+  "project": "exec-sim-repair-verifier--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目：exec-sim-repair-verifier，比较三种 execution-free code repair verification formulations (CLS/CWM/TRAJ)。 服务",
+  "task_key": "bc350f0c-99dc-424b-ad2c-14d8c6a4a952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/bc350f0c-99dc-424b-ad2c-14d8c6a4a952.jsonl",
+    "occurrence": 1,
+    "bytes": 715629,
+    "sha256": "9f02cbb803ec9c495c38623319c63b46091e143bb9e79a8f81d6063da25d2a6d"
+  },
+  "statistics": {
+    "messages": 258,
+    "user_turns": 1,
+    "tool_calls": 76,
+    "roles": {
+      "record": 55,
+      "user": 1,
+      "assistant": 50,
+      "tool_call": 76,
+      "tool_result": 76
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e7ac53d940457449a8e8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 256,
+      "chunks": [
+        {
+          "path": "e7ac53d940457449a8e8-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "e7ac53d940457449a8e8-part-0002.json",
+          "message_count": 78
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-exec-sim-repair-verifier-execution-free-code-repair-verification.md"
+}

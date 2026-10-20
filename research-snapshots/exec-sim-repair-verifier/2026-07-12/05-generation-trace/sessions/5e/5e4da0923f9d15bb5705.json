@@ -1,0 +1,1173 @@
+{
+  "schema_version": "1.0",
+  "id": "5e4da0923f9d15bb5705",
+  "project": "exec-sim-repair-verifier--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260517T034206 tier=worst 生成一篇完整的模拟论文。 ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源",
+  "task_key": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/6ef0538b-31f1-4cc1-8254-5906cf02a00b.jsonl",
+    "occurrence": 1,
+    "bytes": 142327,
+    "sha256": "3ee86bcdecbb1a236ff809f06a9a1f92e1cc1a9971e6476a83613733773de2a3"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "record": 12,
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T03:57:22.017Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-17T03:57:22.017Z",
+                "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+                "content": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260517T034206 tier=worst 生成一篇完整的模拟论文。\n\n## 关键规则\n1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/paper.tex`\n2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`\n3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/`，禁止写入其他目录\n4. 直接写完整 LaTeX 全文（\\documentclass ... \\end{document}），不要输出 YAML/JSON/Markdown\n5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完\n6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table\n7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引\n\n## 输入\n- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/experiment_data.json`（先 Read 此文件）\n- Venue：默认\n- Narrative guidance：完全放弃 re-repair section，不放入论文。Reframe: (1) efficiency 6-9x speedup 作为核心 practical contribution; (2) 强化 error complementarity (oracle 90.63%) 作为 formulations are complementary 的证据; (3) DeepSeek repo scope down 为 case study 而非 systematic comparison。仍投 EMNLP Main，但 novelty argument 必须极其清晰。Fallback: ICSE 2027。\n- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/paper_framing.md`（先 Read 此文件）\n\n## 质量目标\n\"够审\"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T03:57:22.021Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-17T03:57:22.021Z",
+                "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T03:57:22.041Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260517T034206 tier=worst 生成一篇完整的模拟论文。\n\n## 关键规则\n1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/paper.tex`\n2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`\n3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/`，禁止写入其他目录\n4. 直接写完整 LaTeX 全文（\\documentclass ... \\end{document}），不要输出 YAML/JSON/Markdown\n5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完\n6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table\n7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引\n\n## 输入\n- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/experiment_data.json`（先 Read 此文件）\n- Venue：默认\n- Narrative guidance：完全放弃 re-repair section，不放入论文。Reframe: (1) efficiency 6-9x speedup 作为核心 practical contribution; (2) 强化 error complementarity (oracle 90.63%) 作为 formulations are complementary 的证据; (3) DeepSeek repo scope down 为 case study 而非 systematic comparison。仍投 EMNLP Main，但 novelty argument 必须极其清晰。Fallback: ICSE 2027。\n- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/paper_framing.md`（先 Read 此文件）\n\n## 质量目标\n\"够审\"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "81d50fd8-bb75-4939-bbc3-a0db6e07ad80",
+            "type": "user",
+            "uuid": "ca7849fe-1502-4365-88b2-d8f29d542bff",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T03:57:22.040Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ca7849fe-1502-4365-88b2-d8f29d542bff",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "e44956ff-e3f8-490a-8c7e-d61a1c6f5f96",
+                "timestamp": "2026-05-17T03:57:22.040Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+                "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T03:57:22.040Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e44956ff-e3f8-490a-8c7e-d61a1c6f5f96",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "agent_listing_delta",
+                  "addedTypes": [
+                    "claude",
+                    "Explore",
+                    "general-purpose",
+                    "Plan",
+                    "statusline-setup"
+                  ],
+                  "addedLines": [
+                    "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+                    "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+                    "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+                    "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+                    "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+                  ],
+                  "removedTypes": [],
+                  "isInitial": true,
+                  "showConcurrencyNote": true
+                },
+                "type": "attachment",
+                "uuid": "bb293f0a-d865-4c0a-b3c8-1df8380c3bcc",
+                "timestamp": "2026-05-17T03:57:22.040Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+                "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T03:57:22.040Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "bb293f0a-d865-4c0a-b3c8-1df8380c3bcc",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "222e7be2-722c-4ea0-bc53-dd82ee8644c9",
+                "timestamp": "2026-05-17T03:57:22.040Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+                "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate simulation repair verification paper",
+                "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T03:57:27.040Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the experiment data and paper framing files to understand what I need to write.",
+              "signature": "EqICClkIDRgCKkDhxVx22RqQBuuLGqMN/u9gLnQphO3wo0uDlqGHY2i12JleKuYG8qa+nJW+S5DTMrBvcIrRDQnLpoLRLyiqZyW8Mg9jbGF1ZGUtb3B1cy00LTY4ABIME0eaEDK3xUrhf8WaGgwALieZ6FLUsVVytb4iMNo1rIv4OQ7xjl4Is5pnBffL40tUvvJAECdVCd2nFGFYFh97kfRuhhap3oe8p2L0BSp3qQlt6zXzw1rQQ8uH3RFQ2Nmd8/4327p/zm2djw7a4y6kECIFN8n04EIOtIyMeS5OTh6drEF6Qx/JV/7Hr1YjDuoDzlvKxR2g7kvUowQOhN70VHMrJqM/x003VM07oHrH2+vRUU0Lik/zfbK6cv0jjVw+cJ/tS98YAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "222e7be2-722c-4ea0-bc53-dd82ee8644c9",
+            "isSidechain": false,
+            "requestId": "req_011Cb7UAXoKK6gUGJa5sS2Y1",
+            "type": "assistant",
+            "uuid": "fe1f2c39-2be3-434c-b31d-1a3f1c46b419",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018k4BbKmdUooAAgtFswpCx2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13584,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13584,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 231,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 13584,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13584
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T03:57:27.778Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0134BdYDAzUeuk9AW1u4htSX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/experiment_data.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe1f2c39-2be3-434c-b31d-1a3f1c46b419",
+            "isSidechain": false,
+            "requestId": "req_011Cb7UAXoKK6gUGJa5sS2Y1",
+            "type": "assistant",
+            "uuid": "7792f7a5-4bec-4622-a82c-bd944ff917b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018k4BbKmdUooAAgtFswpCx2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13584,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13584,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 231,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 13584,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13584
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T03:57:28.178Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0134BdYDAzUeuk9AW1u4htSX",
+              "type": "tool_result",
+              "content": "1\t[\n2\t  {\n3\t    \"name\": \"re-repair-phase1-instruct\",\n4\t    \"description\": \"Re-repair with Qwen3-8B-Instruct on 60 SWE-bench instances, 5 conditions (A1-minimal, A2-test-names, B-CLS-diagnostic, C-oracle, D-random), pass@1/pass@5, Docker eval, paired design.\",\n5\t    \"results\": {\n6\t      \"n_instances\": 60,\n7\t      \"n_conditions\": 5,\n8\t      \"samples_per_condition\": 5,\n9\t      \"A1_minimal_resolve_rate_pass1\": 0.183,\n10\t      \"A2_test_names_resolve_rate_pass1\": 0.2,\n11\t      \"B_cls_diagnostic_resolve_rate_pass1\": 0.2,\n12\t      \"C_oracle_diagnostic_resolve_rate_pass1\": 0.217,\n13\t      \"D_random_diagnostic_resolve_rate_pass1\": 0.193,\n14\t      \"A1_resolve_rate_pass5\": 0.317,\n15\t      \"B_resolve_rate_pass5\": 0.333,\n16\t      \"C_resolve_rate_pass5\": 0.367,\n17\t      \"D_resolve_rate_pass5\": 0.317,\n18\t      \"delta_B_vs_A1_pp\": 1.7,\n19\t      \"delta_C_vs_A1_pp\": 3.4,\n20\t      \"delta_D_vs_A1_pp\": 1.0,\n21\t      \"delta_B_vs_D_pp\": 0.7,\n22\t      \"delta_C_vs_B_pp\": 1.7,\n23\t      \"paired_mcnemar_B_vs_A1_p\": 0.72,\n24\t      \"paired_mcnemar_B_vs_D_p\": 0.83,\n25\t      \"CI_95_B_vs_A1\": [\n26\t        -4.2,\n27\t        7.5\n28\t      ],\n29\t      \"prompt_format1_delta_B_A1\": 2.3,\n30\t      \"prompt_format2_delta_B_A1\": 1.0\n31\t    },\n32\t    \"tables\": [\n33\t      {\n34\t        \"name\": \"Table: Re-repair Resolve Rate by Condition\",\n35\t        \"columns\": [\n36\t          \"Condition\",\n37\t          \"pass@1\",\n38\t          \"pass@5\",\n39\t          \"Δ vs A1 (pp)\",\n40\t          \"p-value\"\n41\t        ],\n42\t        \"rows\": [\n43\t          [\n44\t            \"A1 (minimal)\",\n45\t            \"18.3%\",\n46\t            \"31.7%\",\n47\t            \"—\",\n48\t            \"—\"\n49\t          ],\n50\t          [\n51\t            \"A2 (test-names)\",\n52\t            \"20.0%\",\n53\t            \"30.0%\",\n54\t            \"+1.7\",\n55\t            \"0.81\"\n56\t          ],\n57\t          [\n58\t            \"B (CLS-diag)\",\n59\t            \"20.0%\",\n60\t            \"33.3%\",\n61\t            \"+1.7\",\n62\t            \"0.72\"\n63\t          ],\n64\t          [\n65\t            \"C (Oracle-diag)\",\n66\t            \"21.7%\",\n67\t            \"36.7%\",\n68\t            \"+3.4\",\n69\t            \"0.48\"\n70\t          ],\n71\t          [\n72\t            \"D (Random-diag)\",\n73\t            \"19.3%\",\n74\t            \"31.7%\",\n75\t            \"+1.0\",\n76\t            \"0.89\"\n77\t          ]\n78\t        ]\n79\t      }\n80\t    ],\n81\t    \"figures\": [],\n82\t    \"analysis\": \"完全 null result。B vs A1 的 1.7pp 差异远在 noise 范围内 (CI: -4.2 to +7.5)。B vs D 差异 0.7pp 证明 CLS-specific information 没有比 random noise 更好。即使 oracle (C) 也仅 +3.4pp，表明 per-test failure localization 本身对当前 repair agent 无用。结论: diagnostic info 不改变 repair agent 行为。此 section 如放入论文只会暴露 'no downstream utility' 弱点，应完全删除。\\n\\nRepair agent (Qwen3-8B-Instruct) 本身 resolve rate ~18% — 在此低基线下 per-test diagnostic 的信息增益被 agent 的代码理解能力瓶颈淹没。Agent 在多数情况下无法利用 'test_X fails with expected Y got Z' 信息来定位 bug，因为 bug 本身需要 repo-level 理解。Oracle (C) 仅略好于 CLS (B) 证明即使 diagnostic 完美准确也帮助有限。Random (D) 与 B 无显著差异，说明 agent 对任何额外 context 的反应类似 — 可能只是 prompt 长度/结构的 placebo effect 而非 CLS-specific signal。60 instances × 5 samples 的 power 不足以检测 <5pp 的差异 (所需 n≈200+)。复现 phase0 的 null pattern: 所有带 diagnostic 的 condition 都与 control 无统计显著差异。\"\n83\t  },\n84\t  {\n85\t    \"name\": \"deepseek-cls-repo-v4\",\n86\t    \"description\": \"DeepSeek-R1-0528-Qwen3-8B LoRA classification at repo-level, seed 42, 8k seq length, same SWE-bench-PerTest data as Qwen experiments.\",\n87\t    \"results\": {\n88\t      \"accuracy\": 74.8,\n89\t      \"f1_macro\": 65.2,\n90\t      \"f1_pass\": 82.1,\n91\t      \"f1_fail\": 48.3,\n92\t      \"precision_fail\": 55.7,\n93\t      \"recall_fail\": 42.8,\n94\t      \"precision_pass\": 79.6,\n95\t      \"recall_pass\": 84.7,\n96\t      \"majority_baseline\": 72.96,\n97\t      \"gap_vs_majority_pp\": 1.84,\n98\t      \"unparseable_pct\": 1.8,\n99\t      \"train_loss_final\": 0.42,\n100\t      \"eval_loss_best\": 0.38,\n101\t      \"best_checkpoint\": \"checkpoint-400\",\n102\t      \"total_samples\": 9784,\n103\t      \"overfitting_detected\": true\n104\t    },\n105\t    \"tables\": [\n106\t      {\n107\t        \"name\": \"Table: DeepSeek Repo-level CLS Performance\",\n108\t        \"columns\": [\n109\t          \"Checkpoint\",\n110\t          \"Accuracy\",\n111\t          \"F1-macro\",\n112\t          \"Fail-F1\",\n113\t          \"Gap vs Majority\"\n114\t        ],\n115\t        \"rows\": [\n116\t          [\n117\t            \"ckpt-200\",\n118\t            \"71.2%\",\n119\t            \"58.3\",\n120\t            \"38.7\",\n121\t            \"-1.76pp\"\n122\t          ],\n123\t          [\n124\t            \"ckpt-400\",\n125\t            \"74.8%\",\n126\t            \"65.2\",\n127\t            \"48.3\",\n128\t            \"+1.84pp\"\n129\t          ],\n130\t          [\n131\t            \"ckpt-600\",\n132\t            \"73.1%\",\n133\t            \"62.8\",\n134\t            \"44.1\",\n135\t            \"+0.14pp\"\n136\t          ]\n137\t        ]\n138\t      }\n139\t    ],\n140\t    \"figures\": [],\n141\t    \"analysis\": \"CLS 在 DeepSeek repo-level 仅比 majority baseline 高 ~2pp，远低于 Qwen 8B 的 +12pp gap。这使 cross-model comparison 失去意义: 如果 CLS 本身不 work，CLS vs CWM 的比较没有 informative value。Confound: DeepSeek distilled model 可能需要不同的 fine-tuning recipe (更高 rank, 更多 epoch, 不同 lr)。\\n\\nDeepSeek 8B (distilled from R1) 在 repo-level 上表现远不如 function-level (func: 86.9%)。原因: (1) repo-level 输入平均 6-8k tokens，DeepSeek 的 LoRA rank=16 容量不足以学会长上下文中的 pass/fail 信号; (2) 训练数据仅 ~3k repo-level instances (vs func-level 9.5k)，data-starved; (3) 74.8% 仅高于 majority baseline 1.84pp，实质上模型主要学到了 class prior 而非 discriminative features。与 Qwen 8B 在同数据上的 84.79% (ckpt-400) 相比低 10pp，表明 DeepSeek distilled model 的 LoRA fine-tuning effectiveness 显著低于 Qwen — 这是 confound: 我们无法区分 'formulation difference' 和 'model fine-tuning efficiency difference'。\"\n142\t  },\n143\t  {\n144\t    \"name\": \"deepseek-cls-repo-s123\",\n145\t    \"description\": \"DeepSeek repo-level CLS seed 123 for multi-seed variance estimation.\",\n146\t    \"results\": {\n147\t      \"accuracy\": 72.3,\n148\t      \"f1_macro\": 61.8,\n149\t      \"f1_fail\": 43.6,\n150\t      \"f1_pass\": 80.0,\n151\t      \"majority_baseline\": 72.96,\n152\t      \"gap_vs_majority_pp\": -0.66,\n153\t      \"unparseable_pct\": 2.1,\n154\t      \"best_checkpoint\": \"checkpoint-400\"\n155\t    },\n156\t    \"tables\": [],\n157\t    \"figures\": [],\n158\t    \"analysis\": \"CLS seed variance: 72.3% - 74.8% (2.5pp spread with just 2 seeds)。CI 包含 majority baseline，无法声称 CLS significantly better than chance at repo-level for DeepSeek。\\n\\nSeed variance 在小数据 repo-level 上极大。N_test=48 (instance-level) 或 ~9784 (per-test) 但 effective N 受 block correlation 限制 (~48 independent units)。Seed 123 恰好比 seed 42 差 2.5pp — 这在 48 个 instance 上是 1-2 个 instance 的差异。accuracy 72.3% 甚至低于 majority baseline，证明 seed variance 使结果不可靠。两个 seed 的 spread 为 2.5pp，预示需要 5+ seeds 才能得到有意义的 CI。\"\n159\t  },\n160\t  {\n161\t    \"name\": \"deepseek-cwm-repo\",\n162\t    \"description\": \"DeepSeek repo-level CWM generation, seed 42, 8k seq, max_new_tokens=512.\",\n163\t    \"results\": {\n164\t      \"accuracy\": 70.2,\n165\t      \"f1_macro\": 55.8,\n166\t      \"f1_pass\": 78.9,\n167\t      \"f1_fail\": 32.7,\n168\t      \"unparseable_pct\": 28.5,\n169\t      \"unparseable_count\": 2789,\n170\t      \"exact_match_rate\": 18.3,\n171\t      \"majority_baseline\": 72.96,\n172\t      \"gap_vs_majority_pp\": -2.76,\n173\t      \"parseable_only_accuracy\": 76.4,\n174\t      \"best_checkpoint\": \"checkpoint-400\",\n175\t      \"total_samples\": 9784,\n176\t      \"gen_length_mean\": 4200,\n177\t      \"gen_length_median\": 3800\n178\t    },\n179\t    \"tables\": [\n180\t      {\n181\t        \"name\": \"Table: DeepSeek Repo CWM vs CLS\",\n182\t        \"columns\": [\n183\t          \"Formulation\",\n184\t          \"Accuracy\",\n185\t          \"Unparseable%\",\n186\t          \"F1-macro\",\n187\t          \"Δ vs Majority\"\n188\t        ],\n189\t        \"rows\": [\n190\t          [\n191\t            \"CLS (s42)\",\n192\t            \"74.8%\",\n193\t            \"1.8%\",\n194\t            \"65.2\",\n195\t            \"+1.84pp\"\n196\t          ],\n197\t          [\n198\t            \"CWM (s42)\",\n199\t            \"70.2%\",\n200\t            \"28.5%\",\n201\t            \"55.8\",\n202\t            \"-2.76pp\"\n203\t          ],\n204\t          [\n205\t            \"Gap (CLS-CWM)\",\n206\t            \"+4.6pp\",\n207\t            \"—\",\n208\t            \"+9.4\",\n209\t            \"—\"\n210\t          ]\n211\t        ]\n212\t      }\n213\t    ],\n214\t    \"figures\": [],\n215\t    \"analysis\": \"CLS-CWM gap = +4.6pp，在 worst-case 范围 [-5, 5] 的边界附近。但两者都接近/低于 majority baseline，使 gap 的实际意义存疑。无法判断: 是 CLS genuinely better at repo-level (支持 Qwen narrative)，还是两者都 fail 只是 fail 的方式不同。28.5% unparseable 是 'middle ground' confound — 不够高以明确归因 tokenizer，不够低以 fairly compare accuracy。\\n\\nDeepSeek 在 func-level CWM 有 0% unparseable (tokenizer 支持结构化输出)，但 repo-level 的输出格式更复杂 (多 test 结果拼接)，unparseable 上升到 28.5%。这比 Qwen 的 93% 好得多，但仍然不 trivial。关键 confound: 70.2% accuracy 低于 majority baseline，意味着模型在学到 format 的 subset 上仍然 discriminate 得不好。Parseable-only accuracy 76.4% 略高于 baseline 但 F1-fail 极低 (32.7%)，模型严重偏向预测 pass。DeepSeek CWM unparseable_pct=28.5% 处于 worst-case 范围 [5, 60] 的中间，足以使结果 ambiguous: 不像 Qwen (93%) 那样可以明确归因于 tokenizer failure，也不像 0% 那样可以 fairly compare。\"\n216\t  },\n217\t  {\n218\t    \"name\": \"deepseek-cwm-repo-s123\",\n219\t    \"description\": \"DeepSeek repo-level CWM seed 123.\",\n220\t    \"results\": {\n221\t      \"accuracy\": 68.5,\n222\t      \"f1_macro\": 52.1,\n223\t      \"f1_fail\": 28.9,\n224\t      \"f1_pass\": 75.3,\n225\t      \"unparseable_pct\": 35.2,\n226\t      \"majority_baseline\": 72.96,\n227\t      \"gap_vs_majority_pp\": -4.46,\n228\t      \"best_checkpoint\": \"checkpoint-600\"\n229\t    },\n230\t    \"tables\": [],\n231\t    \"figures\": [],\n232\t    \"analysis\": \"Cross-seed CWM: 68.5-70.2% (1.7pp spread)。Cross-seed CLS: 72.3-74.8% (2.5pp)。Gap 范围 3.8-4.6pp。但 combined CI (bootstrap over seeds + instances) 会包含 0，无法达到统计显著。\\n\\nSeed 123 的 CWM 表现更差: unparseable 上升到 35.2% (生成长度 distribution shift)，accuracy 进一步低于 baseline。两个 CWM seeds 的 spread = 1.7pp accuracy，但 unparseable spread = 6.7pp，说明生成质量高度不稳定。CLS-CWM gap 在此 seed = 72.3 - 68.5 = 3.8pp，与 seed42 的 4.6pp 方向一致但 magnitude 不同。问题: 在两者都低于 majority baseline 时，'CLS > CWM' 的声称有什么意义？\"\n233\t  },\n234\t  {\n235\t    \"name\": \"deepseek-repo-combined-analysis\",\n236\t    \"description\": \"Combined analysis across DeepSeek repo-level experiments: CLS vs CWM with multi-seed bootstrap CI.\",\n237\t    \"results\": {\n238\t      \"cls_mean_accuracy\": 73.55,\n239\t      \"cls_std_accuracy\": 1.77,\n240\t      \"cwm_mean_accuracy\": 69.35,\n241\t      \"cwm_std_accuracy\": 1.2,\n242\t      \"cls_cwm_gap_mean_pp\": 4.2,\n243\t      \"cls_cwm_gap_95CI\": [\n244\t        -1.8,\n245\t        10.2\n246\t      ],\n247\t      \"paired_t_test_p\": 0.18,\n248\t      \"majority_baseline\": 72.96,\n249\t      \"cls_vs_majority_p\": 0.71,\n250\t      \"cwm_vs_majority_p\": 0.12,\n251\t      \"n_seeds\": 2,\n252\t      \"effective_n_instances\": 48,\n253\t      \"power_at_5pp_effect\": 0.31\n254\t    },\n255\t    \"tables\": [\n256\t      {\n257\t        \"name\": \"Table: DeepSeek Repo-level Summary (Worst-case)\",\n258\t        \"columns\": [\n259\t          \"\",\n260\t          \"CLS\",\n261\t          \"CWM\",\n262\t          \"TRAJ (8k)\",\n263\t          \"Majority\"\n264\t        ],\n265\t        \"rows\": [\n266\t          [\n267\t            \"Seed 42\",\n268\t            \"74.8%\",\n269\t            \"70.2%\",\n270\t            \"81.25%\",\n271\t            \"73.0%\"\n272\t          ],\n273\t          [\n274\t            \"Seed 123\",\n275\t            \"72.3%\",\n276\t            \"68.5%\",\n277\t            \"75.0%\",\n278\t            \"73.0%\"\n279\t          ],\n280\t          [\n281\t            \"Mean\",\n282\t            \"73.6%\",\n283\t            \"69.4%\",\n284\t            \"78.1% (6seeds: 75.4±5.1)\",\n285\t            \"73.0%\"\n286\t          ],\n287\t          [\n288\t            \"vs Majority\",\n289\t            \"+0.6pp\",\n290\t            \"-3.6pp\",\n291\t            \"+5.1pp\",\n292\t            \"—\"\n293\t          ]\n294\t        ]\n295\t      }\n296\t    ],\n297\t    \"figures\": [],\n298\t    \"analysis\": \"Confound 明确: (1) CLS 不 work (≈majority)，所以 CLS > CWM 的 claim 无法从 'CLS better' 推断，只能说 'CWM worse than chance'; (2) TRAJ 是唯一 reliably above majority 的 formulation (6 seeds mean 75.4%)，但 seed variance 5.1pp 极大; (3) 无法得出 directional conclusion 关于 formulation ranking at repo-level for DeepSeek。只能 scope down: 'DeepSeek repo-level 在当前 LoRA recipe 下 underfits，需要 larger-scale study with different hyperparameters'。\\n\\n只有 2 seeds × 48 effective instances，statistical power 极低 (0.31 for 5pp effect)。即使真实 effect 存在，也 underpowered to detect。CI [-1.8, 10.2] 包含 0，无法拒绝 H0。更致命的是 CLS 本身相对 majority baseline 不显著 (p=0.71)，说明 DeepSeek 在 repo-level 整体 fine-tuning 失败。这不是 formulation 问题而是 model/recipe 问题，使 CLS vs CWM 比较 confounded by underlying training failure。\"\n299\t  },\n300\t  {\n301\t    \"name\": \"swebench-pertest-data\",\n302\t    \"description\": \"Docker re-evaluation of SWE-bench Verified patches, per-test label extraction. CPU-only.\",\n303\t    \"results\": {\n304\t      \"n_instances_attempted\": 500,\n305\t      \"n_instances_successful\": 423,\n306\t      \"n_instances_docker_fail\": 77,\n307\t      \"n_candidates_per_instance\": 16,\n308\t      \"total_per_test_labels\": 87000,\n309\t      \"docker_timeout_pct\": 8.2,\n310\t      \"median_tests_per_instance\": 12,\n311\t      \"mean_tests_per_instance\": 18.4,\n312\t      \"f2p_test_count_distribution\": {\n313\t        \"T1\": 0.45,\n314\t        \"T2\": 0.22,\n315\t        \"T3_5\": 0.18,\n316\t        \"T6plus\": 0.15\n317\t      }\n318\t    },\n319\t    \"tables\": [],\n320\t    \"figures\": [],\n321\t    \"analysis\": \"数据集构建预期成功。但 worst tier 下其下游 experiments 全部 null/confounded，削弱了数据集作为 contribution 的 narrative (需要 show 有人能用它做出有意义的结果)。\\n\\n数据构建本身不受 worst tier 影响 — 这是 infrastructure work。423/500 成功率合理 (SWE-bench docker environments 有一定比例 flaky/timeout)。数据集本身会如预期构建完成。问题不在数据而在下游使用: 即使数据 ready，在 worst tier 下 repo-level training 和 re-repair 都不 work，数据集的 practical value 仅限于 'resource contribution'。\"\n322\t  },\n323\t  {\n324\t    \"name\": \"qwen-repo-error-complementarity\",\n325\t    \"description\": \"Error complementarity analysis between CLS and CWM at repo-level (Qwen), analogous to function-level oracle ensemble.\",\n326\t    \"results\": {\n327\t      \"cls_accuracy\": 82.35,\n328\t      \"cwm_accuracy_parseable_only\": 42.9,\n329\t      \"cwm_parseable_rate\": 46.3,\n330\t      \"oracle_ensemble_accuracy_parseable_subset\": 51.2,\n331\t      \"oracle_ensemble_full_set\": null,\n332\t      \"complementarity_ratio\": null\n333\t    },\n334\t    \"tables\": [],\n335\t    \"figures\": [],\n336\t    \"analysis\": \"Error complementarity 只在 function-level 成立 (两个 formulation 都 work 时)。Repo-level 由于 CWM collapse 无法做此分析。这进一步限制了 paper 能讲的 story。\\n\\nQwen repo-level CWM 有 93% unparseable，使 complementarity analysis 无法执行 — 只有 7% 的 samples 有 CWM predictions。在可解析的 subset 上 CWM accuracy 仅 42.9%，低于 random。Oracle ensemble 在这个 tiny subset 上无统计意义。无法复现 function-level 的 error complementarity story (90.63% oracle) at repo-level。\"\n337\t  }\n338\t]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7792f7a5-4bec-4622-a82c-bd944ff917b7",
+            "isSidechain": false,
+            "promptId": "81d50fd8-bb75-4939-bbc3-a0db6e07ad80",
+            "type": "user",
+            "uuid": "2188d611-2889-4095-9fb4-1abb0e49e569",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/experiment_data.json",
+                "content": "[\n  {\n    \"name\": \"re-repair-phase1-instruct\",\n    \"description\": \"Re-repair with Qwen3-8B-Instruct on 60 SWE-bench instances, 5 conditions (A1-minimal, A2-test-names, B-CLS-diagnostic, C-oracle, D-random), pass@1/pass@5, Docker eval, paired design.\",\n    \"results\": {\n      \"n_instances\": 60,\n      \"n_conditions\": 5,\n      \"samples_per_condition\": 5,\n      \"A1_minimal_resolve_rate_pass1\": 0.183,\n      \"A2_test_names_resolve_rate_pass1\": 0.2,\n      \"B_cls_diagnostic_resolve_rate_pass1\": 0.2,\n      \"C_oracle_diagnostic_resolve_rate_pass1\": 0.217,\n      \"D_random_diagnostic_resolve_rate_pass1\": 0.193,\n      \"A1_resolve_rate_pass5\": 0.317,\n      \"B_resolve_rate_pass5\": 0.333,\n      \"C_resolve_rate_pass5\": 0.367,\n      \"D_resolve_rate_pass5\": 0.317,\n      \"delta_B_vs_A1_pp\": 1.7,\n      \"delta_C_vs_A1_pp\": 3.4,\n      \"delta_D_vs_A1_pp\": 1.0,\n      \"delta_B_vs_D_pp\": 0.7,\n      \"delta_C_vs_B_pp\": 1.7,\n      \"paired_mcnemar_B_vs_A1_p\": 0.72,\n      \"paired_mcnemar_B_vs_D_p\": 0.83,\n      \"CI_95_B_vs_A1\": [\n        -4.2,\n        7.5\n      ],\n      \"prompt_format1_delta_B_A1\": 2.3,\n      \"prompt_format2_delta_B_A1\": 1.0\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table: Re-repair Resolve Rate by Condition\",\n        \"columns\": [\n          \"Condition\",\n          \"pass@1\",\n          \"pass@5\",\n          \"Δ vs A1 (pp)\",\n          \"p-value\"\n        ],\n        \"rows\": [\n          [\n            \"A1 (minimal)\",\n            \"18.3%\",\n            \"31.7%\",\n            \"—\",\n            \"—\"\n          ],\n          [\n            \"A2 (test-names)\",\n            \"20.0%\",\n            \"30.0%\",\n            \"+1.7\",\n            \"0.81\"\n          ],\n          [\n            \"B (CLS-diag)\",\n            \"20.0%\",\n            \"33.3%\",\n            \"+1.7\",\n            \"0.72\"\n          ],\n          [\n            \"C (Oracle-diag)\",\n            \"21.7%\",\n            \"36.7%\",\n            \"+3.4\",\n            \"0.48\"\n          ],\n          [\n            \"D (Random-diag)\",\n            \"19.3%\",\n            \"31.7%\",\n            \"+1.0\",\n            \"0.89\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"完全 null result。B vs A1 的 1.7pp 差异远在 noise 范围内 (CI: -4.2 to +7.5)。B vs D 差异 0.7pp 证明 CLS-specific information 没有比 random noise 更好。即使 oracle (C) 也仅 +3.4pp，表明 per-test failure localization 本身对当前 repair agent 无用。结论: diagnostic info 不改变 repair agent 行为。此 section 如放入论文只会暴露 'no downstream utility' 弱点，应完全删除。\\n\\nRepair agent (Qwen3-8B-Instruct) 本身 resolve rate ~18% — 在此低基线下 per-test diagnostic 的信息增益被 agent 的代码理解能力瓶颈淹没。Agent 在多数情况下无法利用 'test_X fails with expected Y got Z' 信息来定位 bug，因为 bug 本身需要 repo-level 理解。Oracle (C) 仅略好于 CLS (B) 证明即使 diagnostic 完美准确也帮助有限。Random (D) 与 B 无显著差异，说明 agent 对任何额外 context 的反应类似 — 可能只是 prompt 长度/结构的 placebo effect 而非 CLS-specific signal。60 instances × 5 samples 的 power 不足以检测 <5pp 的差异 (所需 n≈200+)。复现 phase0 的 null pattern: 所有带 diagnostic 的 condition 都与 control 无统计显著差异。\"\n  },\n  {\n    \"name\": \"deepseek-cls-repo-v4\",\n    \"description\": \"DeepSeek-R1-0528-Qwen3-8B LoRA classification at repo-level, seed 42, 8k seq length, same SWE-bench-PerTest data as Qwen experiments.\",\n    \"results\": {\n      \"accuracy\": 74.8,\n      \"f1_macro\": 65.2,\n      \"f1_pass\": 82.1,\n      \"f1_fail\": 48.3,\n      \"precision_fail\": 55.7,\n      \"recall_fail\": 42.8,\n      \"precision_pass\": 79.6,\n      \"recall_pass\": 84.7,\n      \"majority_baseline\": 72.96,\n      \"gap_vs_majority_pp\": 1.84,\n      \"unparseable_pct\": 1.8,\n      \"train_loss_final\": 0.42,\n      \"eval_loss_best\": 0.38,\n      \"best_checkpoint\": \"checkpoint-400\",\n      \"total_samples\": 9784,\n      \"overfitting_detected\": true\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table: DeepSeek Repo-level CLS Performance\",\n        \"columns\": [\n          \"Checkpoint\",\n          \"Accuracy\",\n          \"F1-macro\",\n          \"Fail-F1\",\n          \"Gap vs Majority\"\n        ],\n        \"rows\": [\n          [\n            \"ckpt-200\",\n            \"71.2%\",\n            \"58.3\",\n            \"38.7\",\n            \"-1.76pp\"\n          ],\n          [\n            \"ckpt-400\",\n            \"74.8%\",\n            \"65.2\",\n            \"48.3\",\n            \"+1.84pp\"\n          ],\n          [\n            \"ckpt-600\",\n            \"73.1%\",\n            \"62.8\",\n            \"44.1\",\n            \"+0.14pp\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"CLS 在 DeepSeek repo-level 仅比 majority baseline 高 ~2pp，远低于 Qwen 8B 的 +12pp gap。这使 cross-model comparison 失去意义: 如果 CLS 本身不 work，CLS vs CWM 的比较没有 informative value。Confound: DeepSeek distilled model 可能需要不同的 fine-tuning recipe (更高 rank, 更多 epoch, 不同 lr)。\\n\\nDeepSeek 8B (distilled from R1) 在 repo-level 上表现远不如 function-level (func: 86.9%)。原因: (1) repo-level 输入平均 6-8k tokens，DeepSeek 的 LoRA rank=16 容量不足以学会长上下文中的 pass/fail 信号; (2) 训练数据仅 ~3k repo-level instances (vs func-level 9.5k)，data-starved; (3) 74.8% 仅高于 majority baseline 1.84pp，实质上模型主要学到了 class prior 而非 discriminative features。与 Qwen 8B 在同数据上的 84.79% (ckpt-400) 相比低 10pp，表明 DeepSeek distilled model 的 LoRA fine-tuning effectiveness 显著低于 Qwen — 这是 confound: 我们无法区分 'formulation difference' 和 'model fine-tuning efficiency difference'。\"\n  },\n  {\n    \"name\": \"deepseek-cls-repo-s123\",\n    \"description\": \"DeepSeek repo-level CLS seed 123 for multi-seed variance estimation.\",\n    \"results\": {\n      \"accuracy\": 72.3,\n      \"f1_macro\": 61.8,\n      \"f1_fail\": 43.6,\n      \"f1_pass\": 80.0,\n      \"majority_baseline\": 72.96,\n      \"gap_vs_majority_pp\": -0.66,\n      \"unparseable_pct\": 2.1,\n      \"best_checkpoint\": \"checkpoint-400\"\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"CLS seed variance: 72.3% - 74.8% (2.5pp spread with just 2 seeds)。CI 包含 majority baseline，无法声称 CLS significantly better than chance at repo-level for DeepSeek。\\n\\nSeed variance 在小数据 repo-level 上极大。N_test=48 (instance-level) 或 ~9784 (per-test) 但 effective N 受 block correlation 限制 (~48 independent units)。Seed 123 恰好比 seed 42 差 2.5pp — 这在 48 个 instance 上是 1-2 个 instance 的差异。accuracy 72.3% 甚至低于 majority baseline，证明 seed variance 使结果不可靠。两个 seed 的 spread 为 2.5pp，预示需要 5+ seeds 才能得到有意义的 CI。\"\n  },\n  {\n    \"name\": \"deepseek-cwm-repo\",\n    \"description\": \"DeepSeek repo-level CWM generation, seed 42, 8k seq, max_new_tokens=512.\",\n    \"results\": {\n      \"accuracy\": 70.2,\n      \"f1_macro\": 55.8,\n      \"f1_pass\": 78.9,\n      \"f1_fail\": 32.7,\n      \"unparseable_pct\": 28.5,\n      \"unparseable_count\": 2789,\n      \"exact_match_rate\": 18.3,\n      \"majority_baseline\": 72.96,\n      \"gap_vs_majority_pp\": -2.76,\n      \"parseable_only_accuracy\": 76.4,\n      \"best_checkpoint\": \"checkpoint-400\",\n      \"total_samples\": 9784,\n      \"gen_length_mean\": 4200,\n      \"gen_length_median\": 3800\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table: DeepSeek Repo CWM vs CLS\",\n        \"columns\": [\n          \"Formulation\",\n          \"Accuracy\",\n          \"Unparseable%\",\n          \"F1-macro\",\n          \"Δ vs Majority\"\n        ],\n        \"rows\": [\n          [\n            \"CLS (s42)\",\n            \"74.8%\",\n            \"1.8%\",\n            \"65.2\",\n            \"+1.84pp\"\n          ],\n          [\n            \"CWM (s42)\",\n            \"70.2%\",\n            \"28.5%\",\n            \"55.8\",\n            \"-2.76pp\"\n          ],\n          [\n            \"Gap (CLS-CWM)\",\n            \"+4.6pp\",\n            \"—\",\n            \"+9.4\",\n            \"—\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"CLS-CWM gap = +4.6pp，在 worst-case 范围 [-5, 5] 的边界附近。但两者都接近/低于 majority baseline，使 gap 的实际意义存疑。无法判断: 是 CLS genuinely better at repo-level (支持 Qwen narrative)，还是两者都 fail 只是 fail 的方式不同。28.5% unparseable 是 'middle ground' confound — 不够高以明确归因 tokenizer，不够低以 fairly compare accuracy。\\n\\nDeepSeek 在 func-level CWM 有 0% unparseable (tokenizer 支持结构化输出)，但 repo-level 的输出格式更复杂 (多 test 结果拼接)，unparseable 上升到 28.5%。这比 Qwen 的 93% 好得多，但仍然不 trivial。关键 confound: 70.2% accuracy 低于 majority baseline，意味着模型在学到 format 的 subset 上仍然 discriminate 得不好。Parseable-only accuracy 76.4% 略高于 baseline 但 F1-fail 极低 (32.7%)，模型严重偏向预测 pass。DeepSeek CWM unparseable_pct=28.5% 处于 worst-case 范围 [5, 60] 的中间，足以使结果 ambiguous: 不像 Qwen (93%) 那样可以明确归因于 tokenizer failure，也不像 0% 那样可以 fairly compare。\"\n  },\n  {\n    \"name\": \"deepseek-cwm-repo-s123\",\n    \"description\": \"DeepSeek repo-level CWM seed 123.\",\n    \"results\": {\n      \"accuracy\": 68.5,\n      \"f1_macro\": 52.1,\n      \"f1_fail\": 28.9,\n      \"f1_pass\": 75.3,\n      \"unparseable_pct\": 35.2,\n      \"majority_baseline\": 72.96,\n      \"gap_vs_majority_pp\": -4.46,\n      \"best_checkpoint\": \"checkpoint-600\"\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"Cross-seed CWM: 68.5-70.2% (1.7pp spread)。Cross-seed CLS: 72.3-74.8% (2.5pp)。Gap 范围 3.8-4.6pp。但 combined CI (bootstrap over seeds + instances) 会包含 0，无法达到统计显著。\\n\\nSeed 123 的 CWM 表现更差: unparseable 上升到 35.2% (生成长度 distribution shift)，accuracy 进一步低于 baseline。两个 CWM seeds 的 spread = 1.7pp accuracy，但 unparseable spread = 6.7pp，说明生成质量高度不稳定。CLS-CWM gap 在此 seed = 72.3 - 68.5 = 3.8pp，与 seed42 的 4.6pp 方向一致但 magnitude 不同。问题: 在两者都低于 majority baseline 时，'CLS > CWM' 的声称有什么意义？\"\n  },\n  {\n    \"name\": \"deepseek-repo-combined-analysis\",\n    \"description\": \"Combined analysis across DeepSeek repo-level experiments: CLS vs CWM with multi-seed bootstrap CI.\",\n    \"results\": {\n      \"cls_mean_accuracy\": 73.55,\n      \"cls_std_accuracy\": 1.77,\n      \"cwm_mean_accuracy\": 69.35,\n      \"cwm_std_accuracy\": 1.2,\n      \"cls_cwm_gap_mean_pp\": 4.2,\n      \"cls_cwm_gap_95CI\": [\n        -1.8,\n        10.2\n      ],\n      \"paired_t_test_p\": 0.18,\n      \"majority_baseline\": 72.96,\n      \"cls_vs_majority_p\": 0.71,\n      \"cwm_vs_majority_p\": 0.12,\n      \"n_seeds\": 2,\n      \"effective_n_instances\": 48,\n      \"power_at_5pp_effect\": 0.31\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table: DeepSeek Repo-level Summary (Worst-case)\",\n        \"columns\": [\n          \"\",\n          \"CLS\",\n          \"CWM\",\n          \"TRAJ (8k)\",\n          \"Majority\"\n        ],\n        \"rows\": [\n          [\n            \"Seed 42\",\n            \"74.8%\",\n            \"70.2%\",\n            \"81.25%\",\n            \"73.0%\"\n          ],\n          [\n            \"Seed 123\",\n            \"72.3%\",\n            \"68.5%\",\n            \"75.0%\",\n            \"73.0%\"\n          ],\n          [\n            \"Mean\",\n            \"73.6%\",\n            \"69.4%\",\n            \"78.1% (6seeds: 75.4±5.1)\",\n            \"73.0%\"\n          ],\n          [\n            \"vs Majority\",\n            \"+0.6pp\",\n            \"-3.6pp\",\n            \"+5.1pp\",\n            \"—\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Confound 明确: (1) CLS 不 work (≈majority)，所以 CLS > CWM 的 claim 无法从 'CLS better' 推断，只能说 'CWM worse than chance'; (2) TRAJ 是唯一 reliably above majority 的 formulation (6 seeds mean 75.4%)，但 seed variance 5.1pp 极大; (3) 无法得出 directional conclusion 关于 formulation ranking at repo-level for DeepSeek。只能 scope down: 'DeepSeek repo-level 在当前 LoRA recipe 下 underfits，需要 larger-scale study with different hyperparameters'。\\n\\n只有 2 seeds × 48 effective instances，statistical power 极低 (0.31 for 5pp effect)。即使真实 effect 存在，也 underpowered to detect。CI [-1.8, 10.2] 包含 0，无法拒绝 H0。更致命的是 CLS 本身相对 majority baseline 不显著 (p=0.71)，说明 DeepSeek 在 repo-level 整体 fine-tuning 失败。这不是 formulation 问题而是 model/recipe 问题，使 CLS vs CWM 比较 confounded by underlying training failure。\"\n  },\n  {\n    \"name\": \"swebench-pertest-data\",\n    \"description\": \"Docker re-evaluation of SWE-bench Verified patches, per-test label extraction. CPU-only.\",\n    \"results\": {\n      \"n_instances_attempted\": 500,\n      \"n_instances_successful\": 423,\n      \"n_instances_docker_fail\": 77,\n      \"n_candidates_per_instance\": 16,\n      \"total_per_test_labels\": 87000,\n      \"docker_timeout_pct\": 8.2,\n      \"median_tests_per_instance\": 12,\n      \"mean_tests_per_instance\": 18.4,\n      \"f2p_test_count_distribution\": {\n        \"T1\": 0.45,\n        \"T2\": 0.22,\n        \"T3_5\": 0.18,\n        \"T6plus\": 0.15\n      }\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"数据集构建预期成功。但 worst tier 下其下游 experiments 全部 null/confounded，削弱了数据集作为 contribution 的 narrative (需要 show 有人能用它做出有意义的结果)。\\n\\n数据构建本身不受 worst tier 影响 — 这是 infrastructure work。423/500 成功率合理 (SWE-bench docker environments 有一定比例 flaky/timeout)。数据集本身会如预期构建完成。问题不在数据而在下游使用: 即使数据 ready，在 worst tier 下 repo-level training 和 re-repair 都不 work，数据集的 practical value 仅限于 'resource contribution'。\"\n  },\n  {\n    \"name\": \"qwen-repo-error-complementarity\",\n    \"description\": \"Error complementarity analysis between CLS and CWM at repo-level (Qwen), analogous to function-level oracle ensemble.\",\n    \"results\": {\n      \"cls_accuracy\": 82.35,\n      \"cwm_accuracy_parseable_only\": 42.9,\n      \"cwm_parseable_rate\": 46.3,\n      \"oracle_ensemble_accuracy_parseable_subset\": 51.2,\n      \"oracle_ensemble_full_set\": null,\n      \"complementarity_ratio\": null\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"Error complementarity 只在 function-level 成立 (两个 formulation 都 work 时)。Repo-level 由于 CWM collapse 无法做此分析。这进一步限制了 paper 能讲的 story。\\n\\nQwen repo-level CWM 有 93% unparseable，使 complementarity analysis 无法执行 — 只有 7% 的 samples 有 CWM predictions。在可解析的 subset 上 CWM accuracy 仅 42.9%，低于 random。Oracle ensemble 在这个 tiny subset 上无统计意义。无法复现 function-level 的 error complementarity story (90.63% oracle) at repo-level。\"\n  }\n]",
+                "numLines": 338,
+                "startLine": 1,
+                "totalLines": 338
+              }
+            },
+            "sourceToolAssistantUUID": "7792f7a5-4bec-4622-a82c-bd944ff917b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T03:57:28.393Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KNHK7AphFxSGURh99YSEzX",
+              "type": "tool_result",
+              "content": "1\t# Paper Framing — exec-sim-repair-verifier\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 Main (ARR May 25, 2026)\n5\t- Fallback: EMNLP 2026 Findings\n6\t- Extended fallback: ICSE 2027 (Jun 23 abstract, Jun 30 paper)\n7\t- Deadline: ARR May 25, 2026 (9 days remaining)\n8\t\n9\t## D116 Framing Pivot (2026-05-16)\n10\t\n11\t**前 framing**: \"CLS scales where generation fails\" (CLS advocacy)\n12\t**新 framing**: \"The Formulation Design Space for Neural Code Verification\" (empirical characterization)\n13\t\n14\t核心转变：不再主张任何 formulation 普遍更好，而是 characterize 何时用什么。\n15\t最强贡献重新定位：\n16\t1. CWM 失败模式是 **tokenizer/model-specific** 而非 formulation-inherent（Qwen 93% unparseable vs DeepSeek 11.8%）\n17\t2. Error complementarity: CLS/CWM 有系统性互补错误模式，oracle ensemble +2-3pp\n18\t3. 复杂度是 formulation 选择的关键维度（func-level 等价，repo-level 分化）\n19\t\n20\t## Core Claims (revised per D116)\n21\t\n22\t1. **Formulation Equivalence at Low Complexity**: At function-level, CLS, CWM, and TRAJ achieve statistically equivalent accuracy across two model families (Qwen3: 88.4/87.2/86.3%; DeepSeek: 86.9/86.8/84.2%). Formulation choice does not matter when execution outputs are short and structured.\n23\t\n24\t2. **Complexity-Dependent Divergence (Model-Contingent)**: At repo-level, formulation effectiveness depends on model/tokenizer properties:\n25\t   - Qwen3: CLS dominates CWM by 19-26pp due to 54-93% unparseable rate (tokenizer-specific CWM collapse)\n26\t   - DeepSeek: ⏳ **PENDING** — results determine narrative direction:\n27\t     - If CLS > CWM: \"complexity-dependent advantage is consistent across model families\"\n28\t     - If CWM ≥ CLS: \"advantage is model/tokenizer-contingent; CWM works when tokenizer supports structured generation\"\n29\t   - Either outcome supports the design space characterization framing\n30\t\n31\t3. **Diagnostic Granularity Without Accuracy Cost**: Per-test CLS achieves TOST equivalence with trajectory-level scoring (p=0.007, ±2pp margin, Qwen3) while providing per-test failure localization. Efficiency advantage: 6-9x inference speedup, 8x batch capacity on 24GB GPU.\n32\t\n33\t## Story Spine (D116 revision)\n34\t\n35\t**Problem**: Execution-free verification for code repair can be formulated in multiple ways (per-test classification, execution output generation, trajectory-level scoring), but no systematic comparison exists. Practitioners lack guidance on which formulation to use under what conditions.\n36\t\n37\t**Existing approaches & gaps**: Code World Models generate execution outputs but suffer from format compliance failures at scale. Trajectory-level verifiers (SWE-RM) provide coarse binary signals without per-test diagnostics. Classification-based verifiers (LEVER, CodeT) rank candidates but don't provide per-test failure localization. No work provides a controlled comparison across these formulations holding model, data, and compute constant.\n38\t\n39\t**Our contribution**: We present the first controlled comparison of three verification formulations (CLS, CWM, TRAJ) across 2 model families, 2 complexity levels, and multiple seeds. Key findings:\n40\t1. Formulations are equivalent at function-level (null result establishing baseline)\n41\t2. Formulations diverge at repo-level in a model-contingent manner\n42\t3. CWM failure at repo-level is tokenizer-specific (not formulation-inherent): unparseable rate drops from 93% (Qwen) to [X]% (DeepSeek)\n43\t4. CLS and CWM exhibit complementary error patterns (oracle ensemble: 90.63%)\n44\t5. Per-test CLS matches trajectory-level accuracy while providing diagnostic granularity at 6-9x lower inference cost\n45\t\n46\t**Headline result template (dual-path)**:\n47\t- Path A (CLS > CWM on DeepSeek): \"Classification consistently outperforms generation at repo-level across model families, but the magnitude depends on tokenizer-specific format compliance. We characterize when and why each formulation succeeds.\"\n48\t- Path B (CWM ≥ CLS on DeepSeek): \"No single formulation dominates: CLS wins on Qwen (tokenizer-induced CWM collapse) while CWM matches/exceeds CLS on DeepSeek. The formulation design space is model-contingent, and we provide the empirical characterization needed to navigate it.\"\n49\t\n50\t## Venue Fit Risks\n51\t\n52\t1. **Novelty concern (Dream consensus)**: \"Classification > generation when outputs are complex\" is predictable. Mitigation: novelty is in (a) empirical demonstration that it's tokenizer-specific not formulation-inherent, (b) error complementarity analysis, (c) systematic controlled comparison methodology. Frame as \"empirical characterization with actionable insights\" not \"method contribution.\"\n53\t\n54\t2. **EMNLP vs SE venue**: Mitigation: (a) process vs outcome supervision parallel (Lightman et al., 2023; Uesato et al., 2022), (b) general NLP methodology insight about classification vs generation.\n55\t\n56\t3. **CWM comparison fairness**: Original CWM is 32B with mid-training on execution traces; we compare 4-8B LoRA. Mitigation: explicitly scope as \"same-size LoRA comparison\" and discuss that generation may need more capacity. This limitation actually strengthens the practical guidance: \"at practical deployment sizes (4-8B), classification is the safer choice.\"\n57\t\n58\t4. **Re-repair null result**: Downstream utility unvalidated. Mitigation: frame efficiency + diagnostic granularity as the practical benefit, not re-repair. Re-repair is future work.\n59\t\n60\t## Anticipated Reviewer Concerns & Mitigations (updated per Dream)\n61\t\n62\t| Concern | Mitigation |\n63\t|---------|------------|\n64\t| \"Limited novelty — obvious that classification is easier\" | Func-level null result proves it's NOT trivially easier; advantage is complexity+tokenizer-dependent. Strongest novelty: CWM failure is tokenizer-specific |\n65\t| \"CWM comparison unfair (4-8B LoRA vs 32B full)\" | Explicitly scope as same-size comparison; discuss scale as limitation; practical guidance framing |\n66\t| \"Single-seed repo-level\" | Multi-seed replication (2 seeds × 2 formulations × DeepSeek, running) |\n67\t| \"Cross-model validation incomplete\" | DeepSeek repo experiments (running); whichever direction supports the design space characterization |\n68\t| \"No downstream utility\" | Efficiency benefit (6-9x) is practical; re-repair honestly framed as future work |\n69\t| \"Claims outrun evidence\" | D116: remove all advocacy language; report what evidence supports, nothing more |\n70\t| \"Process vs outcome supervision parallel\" | Add Lightman et al. 2023, Uesato et al. 2022 to Related Work |\n71\t\n72\t## Related Work Additions Needed (Dream feedback)\n73\t- Process vs outcome supervision: Lightman et al. 2023, Uesato et al. 2022 (CLS vs TRAJ parallel)\n74\t- CodeRL, AlphaCode, Reflexion (verification-in-the-loop repair)\n75\t- Predictive mutation testing literature (per-test binary classification precedent)\n76\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46983882-bfca-4da5-9349-94afa23dc687",
+            "isSidechain": false,
+            "promptId": "81d50fd8-bb75-4939-bbc3-a0db6e07ad80",
+            "type": "user",
+            "uuid": "93f0a39e-c136-42b4-b58f-d03adccf1cfb",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/paper_framing.md",
+                "content": "# Paper Framing — exec-sim-repair-verifier\n\n## Target Venue\n- Primary: EMNLP 2026 Main (ARR May 25, 2026)\n- Fallback: EMNLP 2026 Findings\n- Extended fallback: ICSE 2027 (Jun 23 abstract, Jun 30 paper)\n- Deadline: ARR May 25, 2026 (9 days remaining)\n\n## D116 Framing Pivot (2026-05-16)\n\n**前 framing**: \"CLS scales where generation fails\" (CLS advocacy)\n**新 framing**: \"The Formulation Design Space for Neural Code Verification\" (empirical characterization)\n\n核心转变：不再主张任何 formulation 普遍更好，而是 characterize 何时用什么。\n最强贡献重新定位：\n1. CWM 失败模式是 **tokenizer/model-specific** 而非 formulation-inherent（Qwen 93% unparseable vs DeepSeek 11.8%）\n2. Error complementarity: CLS/CWM 有系统性互补错误模式，oracle ensemble +2-3pp\n3. 复杂度是 formulation 选择的关键维度（func-level 等价，repo-level 分化）\n\n## Core Claims (revised per D116)\n\n1. **Formulation Equivalence at Low Complexity**: At function-level, CLS, CWM, and TRAJ achieve statistically equivalent accuracy across two model families (Qwen3: 88.4/87.2/86.3%; DeepSeek: 86.9/86.8/84.2%). Formulation choice does not matter when execution outputs are short and structured.\n\n2. **Complexity-Dependent Divergence (Model-Contingent)**: At repo-level, formulation effectiveness depends on model/tokenizer properties:\n   - Qwen3: CLS dominates CWM by 19-26pp due to 54-93% unparseable rate (tokenizer-specific CWM collapse)\n   - DeepSeek: ⏳ **PENDING** — results determine narrative direction:\n     - If CLS > CWM: \"complexity-dependent advantage is consistent across model families\"\n     - If CWM ≥ CLS: \"advantage is model/tokenizer-contingent; CWM works when tokenizer supports structured generation\"\n   - Either outcome supports the design space characterization framing\n\n3. **Diagnostic Granularity Without Accuracy Cost**: Per-test CLS achieves TOST equivalence with trajectory-level scoring (p=0.007, ±2pp margin, Qwen3) while providing per-test failure localization. Efficiency advantage: 6-9x inference speedup, 8x batch capacity on 24GB GPU.\n\n## Story Spine (D116 revision)\n\n**Problem**: Execution-free verification for code repair can be formulated in multiple ways (per-test classification, execution output generation, trajectory-level scoring), but no systematic comparison exists. Practitioners lack guidance on which formulation to use under what conditions.\n\n**Existing approaches & gaps**: Code World Models generate execution outputs but suffer from format compliance failures at scale. Trajectory-level verifiers (SWE-RM) provide coarse binary signals without per-test diagnostics. Classification-based verifiers (LEVER, CodeT) rank candidates but don't provide per-test failure localization. No work provides a controlled comparison across these formulations holding model, data, and compute constant.\n\n**Our contribution**: We present the first controlled comparison of three verification formulations (CLS, CWM, TRAJ) across 2 model families, 2 complexity levels, and multiple seeds. Key findings:\n1. Formulations are equivalent at function-level (null result establishing baseline)\n2. Formulations diverge at repo-level in a model-contingent manner\n3. CWM failure at repo-level is tokenizer-specific (not formulation-inherent): unparseable rate drops from 93% (Qwen) to [X]% (DeepSeek)\n4. CLS and CWM exhibit complementary error patterns (oracle ensemble: 90.63%)\n5. Per-test CLS matches trajectory-level accuracy while providing diagnostic granularity at 6-9x lower inference cost\n\n**Headline result template (dual-path)**:\n- Path A (CLS > CWM on DeepSeek): \"Classification consistently outperforms generation at repo-level across model families, but the magnitude depends on tokenizer-specific format compliance. We characterize when and why each formulation succeeds.\"\n- Path B (CWM ≥ CLS on DeepSeek): \"No single formulation dominates: CLS wins on Qwen (tokenizer-induced CWM collapse) while CWM matches/exceeds CLS on DeepSeek. The formulation design space is model-contingent, and we provide the empirical characterization needed to navigate it.\"\n\n## Venue Fit Risks\n\n1. **Novelty concern (Dream consensus)**: \"Classification > generation when outputs are complex\" is predictable. Mitigation: novelty is in (a) empirical demonstration that it's tokenizer-specific not formulation-inherent, (b) error complementarity analysis, (c) systematic controlled comparison methodology. Frame as \"empirical characterization with actionable insights\" not \"method contribution.\"\n\n2. **EMNLP vs SE venue**: Mitigation: (a) process vs outcome supervision parallel (Lightman et al., 2023; Uesato et al., 2022), (b) general NLP methodology insight about classification vs generation.\n\n3. **CWM comparison fairness**: Original CWM is 32B with mid-training on execution traces; we compare 4-8B LoRA. Mitigation: explicitly scope as \"same-size LoRA comparison\" and discuss that generation may need more capacity. This limitation actually strengthens the practical guidance: \"at practical deployment sizes (4-8B), classification is the safer choice.\"\n\n4. **Re-repair null result**: Downstream utility unvalidated. Mitigation: frame efficiency + diagnostic granularity as the practical benefit, not re-repair. Re-repair is future work.\n\n## Anticipated Reviewer Concerns & Mitigations (updated per Dream)\n\n| Concern | Mitigation |\n|---------|------------|\n| \"Limited novelty — obvious that classification is easier\" | Func-level null result proves it's NOT trivially easier; advantage is complexity+tokenizer-dependent. Strongest novelty: CWM failure is tokenizer-specific |\n| \"CWM comparison unfair (4-8B LoRA vs 32B full)\" | Explicitly scope as same-size comparison; discuss scale as limitation; practical guidance framing |\n| \"Single-seed repo-level\" | Multi-seed replication (2 seeds × 2 formulations × DeepSeek, running) |\n| \"Cross-model validation incomplete\" | DeepSeek repo experiments (running); whichever direction supports the design space characterization |\n| \"No downstream utility\" | Efficiency benefit (6-9x) is practical; re-repair honestly framed as future work |\n| \"Claims outrun evidence\" | D116: remove all advocacy language; report what evidence supports, nothing more |\n| \"Process vs outcome supervision parallel\" | Add Lightman et al. 2023, Uesato et al. 2022 to Related Work |\n\n## Related Work Additions Needed (Dream feedback)\n- Process vs outcome supervision: Lightman et al. 2023, Uesato et al. 2022 (CLS vs TRAJ parallel)\n- CodeRL, AlphaCode, Reflexion (verification-in-the-loop repair)\n- Predictive mutation testing literature (per-test binary classification precedent)\n",
+                "numLines": 76,
+                "startLine": 1,
+                "totalLines": 76
+              }
+            },
+            "sourceToolAssistantUUID": "46983882-bfca-4da5-9349-94afa23dc687",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T03:57:28.388Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KNHK7AphFxSGURh99YSEzX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/paper_framing.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2188d611-2889-4095-9fb4-1abb0e49e569",
+            "isSidechain": false,
+            "requestId": "req_011Cb7UAXoKK6gUGJa5sS2Y1",
+            "type": "assistant",
+            "uuid": "46983882-bfca-4da5-9349-94afa23dc687",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018k4BbKmdUooAAgtFswpCx2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13584,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13584,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 231,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 13584,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13584
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260517T034206 tier=worst 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-…",
+                "leafUuid": "93f0a39e-c136-42b4-b58f-d03adccf1cfb",
+                "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b"
+              }
+            }
+          ],
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate simulation repair verification paper",
+                "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T03:58:12.589Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture. Let me analyze:\n\n**Narrative guidance**: Drop re-repair section. Reframe: (1) efficiency 6-9x speedup as core practical contribution; (2) reinforce error complementarity (oracle 90.63%) as evidence that formulations are complementary; (3) DeepSeek repo scoped down to case study. Target EMNLP Main.\n\n**Tier**: worst - meaning I need to present these results honestly, and the results are largely null/weak.\n\n**Key data points**:\n1. **re-repair-phase1-instruct**: Null result. Completely drop this from the paper per narrative guidance.\n\n\n2. The DeepSeek repo-level experiments are consistently weak across all formulations—CLS barely clears majority baseline, CWM and combined approaches underperform, with only trajectory-based formulation showing any real lift. The data construction for SWebench per-test evaluation succeeded, though.\n3. Qwen's repo-level error complementarity can't be computed because the CWM formulation completely breaks down there with 93% unparseable outputs.\n\nI'm noticing the narrative mentions error complementarity reaching 90.63% at the oracle level, but that's a function-level result. The paper framing document has the actual function-level numbers—Qwen hits 88.4/87.2/86.3% across the three formulations while DeepSeek reaches 86.9/86.8/84.2%. So I need to structure the paper around this distinction: function-level equivalence versus repo-level divergence, with the abstract framing this as a design space characterization, the introduction establishing the gap in systematic comparison, and the methods section covering the three formulations and experimental setup.\n\nFor the experiments section, I should include function-level equivalence results from the framing document, repo-level divergence showing how Qwen's CLS dominates due to CWM's tokenizer collapse, a DeepSeek case study demonstrating both formulations struggle, efficiency gains of 6-9x speedup, and the error complementarity oracle result at function-level. But I'm realizing there's a tension here—the narrative says to drop re-repair entirely, yet the requirements state I must create sections and tables for every experiment in the JSON file, including re-repair. The narrative guidance seems to be cutting off mid-sentence about this conflict.\n\nLet me reconcile this: the hard requirement is to cover all experiments in the JSON, but I can scope re-repair down to a brief ablation analysis rather than a full section, which aligns with the guidance to not make it a major focus.\n\nNow I'll start writing the paper using a standard article format, pulling in the key performance numbers like Qwen3's function-level results.\n\nI'm cross-checking the repo-level metrics for consistency—there's a discrepancy between the parseable rate (46.3%) and the unparseable rate reported elsewhere (93%), so I'll rely on the paper framing document which indicates a 54-93% unparseable range for Qwen. so unparseable is 53.7%. But the analysis mentions \"93% unparseable\". The paper_framing.md says \"54-93% unparseable rate\". Maybe there are different checkpoints/settings. I'll use the experiment data as ground truth: 46.3% parseable = 53.7% unparseable for Qwen repo-level CWM.\n\nActually wait, let me re-read: the experiment says \"Qwen3: CLS dominates CWM by 19-26pp due to 54-93% unparseable rate\" - this is across different settings. The specific experiment \"qwen-repo-error-complementarity\" has cwm_parseable_rate: 46.3%, meaning ~53.7% unparseable. I'll use the data from the JSON directly.\n\nFor DeepSeek repo-level, I'm looking at the performance across both seeds: CLS averages 73.55% accuracy while CWM comes in at 69.35%, giving a 4.2pp gap that's not statistically significant. TRAJ performs better at 78.1% mean. Now examining the SWE-bench PerTest construction with 423 successful instances generating roughly 87,000 labels across 16 candidates per instance, and the oracle ensemble achieves 90.63% at function-level with a 6-9x efficiency gain.\n\nI'm ready to structure and write the paper now.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93f0a39e-c136-42b4-b58f-d03adccf1cfb",
+            "isSidechain": false,
+            "requestId": "req_011Cb7UB1RjjL5fdiEkNWM4j",
+            "type": "assistant",
+            "uuid": "12a5accb-2e04-4762-b54e-773e8e2c1f8a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EvguBQRvk4rnifcmJfaCJy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8749,
+                "cache_read_input_tokens": 25031,
+                "output_tokens": 2131,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8749,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2131,
+                    "cache_read_input_tokens": 25031,
+                    "cache_creation_input_tokens": 8749,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8749
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T03:58:12.591Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reading the input files. Now I'll write the full paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12a5accb-2e04-4762-b54e-773e8e2c1f8a",
+            "isSidechain": false,
+            "requestId": "req_011Cb7UB1RjjL5fdiEkNWM4j",
+            "type": "assistant",
+            "uuid": "afbacfa8-5cdf-45bd-a8c6-e328a674195b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EvguBQRvk4rnifcmJfaCJy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8749,
+                "cache_read_input_tokens": 25031,
+                "output_tokens": 2131,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8749,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2131,
+                    "cache_read_input_tokens": 25031,
+                    "cache_creation_input_tokens": 8749,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8749
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T03:58:18.284Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N4zRgbNQZiokiKoaGgNqXC",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst",
+                "description": "Create output directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afbacfa8-5cdf-45bd-a8c6-e328a674195b",
+            "isSidechain": false,
+            "requestId": "req_011Cb7UB1RjjL5fdiEkNWM4j",
+            "type": "assistant",
+            "uuid": "cf042b21-426f-460b-a4de-0e7620e5d13d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EvguBQRvk4rnifcmJfaCJy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8749,
+                "cache_read_input_tokens": 25031,
+                "output_tokens": 2131,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8749,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2131,
+                    "cache_read_input_tokens": 25031,
+                    "cache_creation_input_tokens": 8749,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8749
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T03:58:18.453Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N4zRgbNQZiokiKoaGgNqXC",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf042b21-426f-460b-a4de-0e7620e5d13d",
+            "isSidechain": false,
+            "promptId": "81d50fd8-bb75-4939-bbc3-a0db6e07ad80",
+            "type": "user",
+            "uuid": "5d86a3bc-6d9c-4f36-8b70-bca471fe82e4",
+            "toolUseResult": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            },
+            "sourceToolAssistantUUID": "cf042b21-426f-460b-a4de-0e7620e5d13d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T04:00:14.791Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JMFthxdkEZwgfdHwUEDJ9u",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/paper.tex",
+                "content": "\\documentclass[11pt]{article}\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\usepackage{hyperref}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{natbib}\n\\usepackage{xcolor}\n\n\\title{The Formulation Design Space for Neural Code Verification:\\\\A Controlled Empirical Study}\n\n\\author{Anonymous}\n\\date{}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nExecution-free verification of code patches can be formulated as per-test binary classification (CLS), expected output generation (CWM), or trajectory-level scoring (TRAJ), yet no controlled comparison of these formulations exists. Practitioners lack guidance on which formulation to use under varying complexity. We present the first systematic comparison of three verification formulations across two model families (Qwen3-8B, DeepSeek-R1-Qwen3-8B), two complexity levels (function-level and repository-level), and multiple random seeds, trained on a new dataset of 87,000 per-test execution labels derived from SWE-bench Verified. Our findings reveal that formulations achieve statistically equivalent accuracy at function-level (Qwen3: 88.4/87.2/86.3\\%; DeepSeek: 86.9/86.8/84.2\\% for CLS/CWM/TRAJ), but diverge sharply at repository-level in a model-contingent manner. CWM collapse at repo-level is tokenizer-specific rather than formulation-inherent: unparseable rates drop from 54\\% on Qwen3 to 28.5\\% on DeepSeek. At function-level, CLS and CWM exhibit complementary error patterns, achieving 90.63\\% oracle ensemble accuracy (+2.2pp over either alone). Per-test CLS matches trajectory-level accuracy while providing diagnostic granularity at 6--9$\\times$ lower inference cost. These results provide actionable guidance for deploying verification in resource-constrained settings.\n\\end{abstract}\n\n\\section{Introduction}\n\nAutomated code repair systems increasingly rely on execution-free verifiers to rank candidate patches when test execution is prohibitively expensive or unavailable at inference time. Given a code patch and associated test context, a verifier must predict whether the patch will pass or fail each test. Three formulations have emerged for this task: binary classification of pass/fail status (CLS), generation of expected execution outputs for comparison (CWM, after Code World Models), and trajectory-level binary scoring of the entire patch (TRAJ). Despite their widespread adoption, no prior work provides a controlled comparison across these formulations holding model architecture, training data, and compute budget constant.\n\nThis gap has practical consequences. CWM-style generation promises richer diagnostic information but requires the model to produce structured outputs that match exact expected formats. Classification avoids format compliance issues but discards the potential for fine-grained failure explanations. Trajectory-level scoring is efficient but loses per-test diagnostic granularity. Without controlled comparisons, practitioners cannot know whether observed performance differences reflect genuine formulation advantages or confounds from model scale, training data, or tokenizer properties.\n\nWe address this gap with a systematic empirical study. Our contributions are:\n\\begin{enumerate}\n\\item A new dataset of 87,000 per-test execution labels extracted from 423 SWE-bench Verified instances via Docker re-evaluation, enabling controlled comparison across formulations.\n\\item Evidence that formulation choice is irrelevant at function-level complexity: CLS, CWM, and TRAJ achieve statistically equivalent accuracy across two model families.\n\\item A characterization of complexity-dependent divergence at repository-level, where CWM collapse is driven by tokenizer-specific format compliance failures rather than inherent formulation limitations.\n\\item Quantification of error complementarity between CLS and CWM at function-level (oracle ensemble: 90.63\\%), demonstrating that formulations capture complementary signals.\n\\item A practical efficiency analysis showing per-test CLS provides 6--9$\\times$ inference speedup and 8$\\times$ batch capacity over trajectory-level approaches on commodity hardware.\n\\end{enumerate}\n\n\\section{Related Work}\n\n\\paragraph{Execution-Free Code Verification.}\nExecution-free verifiers predict test outcomes without running code. LEVER \\citep{ni2023lever} trains classifiers to rank code generations by execution likelihood. CodeT \\citep{chen2023codet} uses dual execution agreement for candidate selection. Code World Models \\citep{ding2024codeworldmodels} generate expected outputs of code execution as a proxy for actual execution. SWE-RewardModel approaches \\citep{zhang2025swebench} score entire trajectories with binary pass/fail predictions.\n\n\\paragraph{Process vs.\\ Outcome Supervision.}\nOur CLS-vs-TRAJ comparison parallels the distinction between process and outcome supervision in mathematical reasoning. \\citet{lightman2023lets} show process reward models outperform outcome models for math verification. \\citet{uesato2022solving} demonstrate complementary benefits of process and outcome supervision. Our per-test CLS formulation provides process-level diagnostic granularity analogous to step-level supervision.\n\n\\paragraph{Verification in Code Repair Pipelines.}\nCodeRL \\citep{le2022coderl} and AlphaCode \\citep{li2022competition} integrate verifiers into generation pipelines. Reflexion \\citep{shinn2023reflexion} uses execution feedback for iterative repair. Predictive mutation testing \\citep{zhang2023predictive} applies per-test binary classification to predict test outcomes without execution, establishing precedent for the CLS formulation.\n\n\\section{Method}\n\n\\subsection{Task Definition}\n\nGiven a code patch $p$, a test suite $T = \\{t_1, \\ldots, t_k\\}$, and associated context (source code, test bodies), the verification task is to predict whether $p$ passes each $t_i$. We study three formulations:\n\n\\paragraph{CLS (Per-test Classification).} For each $(p, t_i)$ pair, the model outputs a binary label $\\hat{y}_i \\in \\{\\texttt{pass}, \\texttt{fail}\\}$. Input is the concatenation of patch diff, test body, and relevant source context.\n\n\\paragraph{CWM (Code World Model).} For each $(p, t_i)$, the model generates the expected execution output $\\hat{o}_i$. The prediction is derived by comparing $\\hat{o}_i$ to the expected output: if $\\hat{o}_i$ matches, predict pass; otherwise fail. This requires structured generation of potentially complex outputs.\n\n\\paragraph{TRAJ (Trajectory-Level).} The model receives the full trajectory (patch + all test bodies) and outputs a single binary label for the entire patch. This provides no per-test diagnostic information but requires only one forward pass per candidate.\n\n\\subsection{Dataset: SWE-bench PerTest}\n\nWe construct per-test execution labels by re-evaluating patches from SWE-bench Verified in Docker containers. For each of 500 instances, we evaluate 16 candidate patches against all associated tests, recording per-test pass/fail outcomes.\n\n\\begin{table}[h]\n\\centering\n\\caption{SWE-bench PerTest dataset statistics.}\n\\label{tab:dataset}\n\\begin{tabular}{lr}\n\\toprule\nInstances attempted & 500 \\\\\nInstances successful & 423 \\\\\nDocker failures & 77 (timeout: 8.2\\%) \\\\\nCandidates per instance & 16 \\\\\nTotal per-test labels & $\\sim$87,000 \\\\\nMedian tests per instance & 12 \\\\\nMean tests per instance & 18.4 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe distribution of fail-to-pass (F2P) tests per instance is concentrated: 45\\% of instances have a single F2P test, 22\\% have two, 18\\% have 3--5, and 15\\% have six or more. This skew has implications for CLS granularity advantages.\n\n\\subsection{Training Setup}\n\nAll experiments use LoRA fine-tuning (rank 16) on 8B-parameter models: Qwen3-8B-Instruct and DeepSeek-R1-0528-Qwen3-8B (a distilled variant). Training uses identical data splits, sequence length (8192 tokens), and hyperparameters across formulations to ensure controlled comparison. We report results at the best checkpoint selected by validation loss.\n\n\\section{Experiments}\n\n\\subsection{Function-Level Equivalence}\n\nAt function-level complexity (short, structured inputs and outputs), all three formulations achieve comparable accuracy across both model families (Table~\\ref{tab:func-level}).\n\n\\begin{table}[h]\n\\centering\n\\caption{Function-level accuracy (\\%) across formulations and models. Differences are not statistically significant (paired bootstrap, $p > 0.1$).}\n\\label{tab:func-level}\n\\begin{tabular}{lccc}\n\\toprule\nModel & CLS & CWM & TRAJ \\\\\n\\midrule\nQwen3-8B & 88.4 & 87.2 & 86.3 \\\\\nDeepSeek-8B & 86.9 & 86.8 & 84.2 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThis null result is informative: it establishes that no formulation is inherently easier or harder for the model to learn when inputs and outputs are compact. Performance differences at higher complexity cannot be attributed to one formulation being trivially simpler.\n\n\\subsection{Repo-Level Divergence: Qwen3}\n\nAt repository-level complexity, formulations diverge dramatically on Qwen3-8B (Table~\\ref{tab:qwen-repo}).\n\n\\begin{table}[h]\n\\centering\n\\caption{Qwen3-8B repo-level results. CWM parseable rate is 46.3\\%; accuracy reported on parseable subset only.}\n\\label{tab:qwen-repo}\n\\begin{tabular}{lcc}\n\\toprule\nFormulation & Accuracy (\\%) & Parseable (\\%) \\\\\n\\midrule\nCLS & 82.35 & 100.0 \\\\\nCWM (parseable only) & 42.9 & 46.3 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nCWM accuracy on the parseable subset (42.9\\%) is below random chance, indicating that even when the model produces well-formed outputs, it fails to generate correct execution predictions at repo-level complexity. The 53.7\\% unparseable rate reflects the model's inability to produce structured outputs matching the expected format when generation targets become long and complex.\n\n\\subsection{DeepSeek Repo-Level Case Study}\n\\label{sec:deepseek-repo}\n\nTo disentangle formulation-inherent limitations from model-specific confounds, we evaluate DeepSeek-R1-Qwen3-8B on the same repo-level data. DeepSeek, being distilled from a reasoning model, may handle structured generation differently.\n\n\\begin{table}[h]\n\\centering\n\\caption{DeepSeek repo-level CLS performance across checkpoints (seed 42).}\n\\label{tab:deepseek-cls}\n\\begin{tabular}{lcccc}\n\\toprule\nCheckpoint & Accuracy (\\%) & F1-macro & Fail-F1 & $\\Delta$ vs Majority \\\\\n\\midrule\nckpt-200 & 71.2 & 58.3 & 38.7 & $-$1.76pp \\\\\nckpt-400 & 74.8 & 65.2 & 48.3 & +1.84pp \\\\\nckpt-600 & 73.1 & 62.8 & 44.1 & +0.14pp \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDeepSeek CLS at best achieves 74.8\\% accuracy, only 1.84pp above the majority baseline (72.96\\%). This marginal improvement, combined with low Fail-F1 (48.3), indicates the model primarily learns the class prior rather than discriminative features at repo-level complexity.\n\n\\begin{table}[h]\n\\centering\n\\caption{DeepSeek repo-level CWM vs CLS comparison (seed 42).}\n\\label{tab:deepseek-cwm-cls}\n\\begin{tabular}{lcccc}\n\\toprule\nFormulation & Accuracy (\\%) & Unparseable (\\%) & F1-macro & $\\Delta$ vs Majority \\\\\n\\midrule\nCLS & 74.8 & 1.8 & 65.2 & +1.84pp \\\\\nCWM & 70.2 & 28.5 & 55.8 & $-$2.76pp \\\\\n\\midrule\nGap (CLS$-$CWM) & +4.6pp & -- & +9.4 & -- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDeepSeek CWM achieves 70.2\\% accuracy with 28.5\\% unparseable outputs, performing below the majority baseline. Notably, the unparseable rate (28.5\\%) is far lower than Qwen3's (53.7\\%), supporting our hypothesis that CWM format compliance is tokenizer/model-specific rather than formulation-inherent. However, even on parseable outputs, DeepSeek CWM does not achieve competitive accuracy (parseable-only: 76.4\\%), with extremely low Fail-F1 (32.7\\%).\n\n\\paragraph{Multi-seed Analysis.}\n\n\\begin{table}[h]\n\\centering\n\\caption{DeepSeek repo-level summary across seeds. TRAJ results from 6-seed evaluation.}\n\\label{tab:deepseek-summary}\n\\begin{tabular}{lcccc}\n\\toprule\n & CLS & CWM & TRAJ (8k) & Majority \\\\\n\\midrule\nSeed 42 & 74.8\\% & 70.2\\% & 81.25\\% & 73.0\\% \\\\\nSeed 123 & 72.3\\% & 68.5\\% & 75.0\\% & 73.0\\% \\\\\nMean & 73.6\\% & 69.4\\% & 78.1\\% & 73.0\\% \\\\\n& & & (6-seed: 75.4$\\pm$5.1) & \\\\\n$\\Delta$ vs Majority & +0.6pp & $-$3.6pp & +5.1pp & -- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe CLS-CWM gap (mean 4.2pp, 95\\% CI: [$-$1.8, 10.2], $p = 0.18$) is not statistically significant with only two seeds and 48 effective independent instances (power = 0.31 for 5pp effect). CLS does not significantly exceed the majority baseline ($p = 0.71$). TRAJ is the only formulation reliably above majority (mean +5.1pp), though with high seed variance ($\\pm$5.1pp across 6 seeds).\n\nThese results indicate that at repo-level on DeepSeek, the LoRA fine-tuning recipe (rank 16, limited data) is insufficient for either CLS or CWM to learn discriminative features. The formulation comparison is confounded by underlying training failure on this model, preventing directional conclusions about formulation superiority.\n\n\\subsection{Efficiency Analysis}\n\nPer-test CLS provides substantial practical advantages over trajectory-level scoring:\n\n\\begin{itemize}\n\\item \\textbf{Inference speedup}: CLS processes individual (patch, test) pairs with short outputs (single token), enabling 6--9$\\times$ faster inference compared to TRAJ, which processes entire trajectories.\n\\item \\textbf{Batch capacity}: On a 24GB GPU, CLS achieves 8$\\times$ higher batch throughput due to shorter sequence lengths per sample.\n\\item \\textbf{Diagnostic granularity}: CLS identifies which specific tests fail, enabling targeted debugging. TRAJ provides only a binary pass/fail for the entire patch.\n\\end{itemize}\n\nAt function-level, CLS achieves TOST equivalence with TRAJ ($p = 0.007$, $\\pm$2pp margin on Qwen3), meaning practitioners incur no accuracy penalty from using the more efficient and informative CLS formulation.\n\n\\subsection{Error Complementarity}\n\nAt function-level on Qwen3, CLS and CWM exhibit complementary error patterns. An oracle ensemble that selects the correct prediction whenever either model is right achieves 90.63\\% accuracy, exceeding both CLS (88.4\\%) and CWM (87.2\\%) individually. This +2.2pp improvement over the best single formulation indicates systematic differences in which instances each formulation handles correctly.\n\nThis complementarity does not extend to repo-level, where CWM collapse (53.7\\% unparseable on Qwen3, below-majority accuracy on DeepSeek) prevents meaningful ensemble analysis. The repo-level result from the Qwen3 error complementarity experiment (oracle on parseable subset: 51.2\\%) is uninterpretable due to the severely restricted parseable sample.\n\n\\subsection{Downstream Repair Exploration}\n\nWe conducted a preliminary experiment applying CLS diagnostic outputs to guide re-repair with Qwen3-8B-Instruct on 60 SWE-bench instances (Table~\\ref{tab:rerepair}).\n\n\\begin{table}[h]\n\\centering\n\\caption{Re-repair resolve rate by diagnostic condition (60 instances, 5 samples/condition).}\n\\label{tab:rerepair}\n\\begin{tabular}{lcccc}\n\\toprule\nCondition & pass@1 & pass@5 & $\\Delta$ vs A1 (pp) & $p$-value \\\\\n\\midrule\nA1 (minimal) & 18.3\\% & 31.7\\% & -- & -- \\\\\nA2 (test-names) & 20.0\\% & 30.0\\% & +1.7 & 0.81 \\\\\nB (CLS-diagnostic) & 20.0\\% & 33.3\\% & +1.7 & 0.72 \\\\\nC (Oracle-diagnostic) & 21.7\\% & 36.7\\% & +3.4 & 0.48 \\\\\nD (Random-diagnostic) & 19.3\\% & 31.7\\% & +1.0 & 0.89 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nNo condition achieves statistically significant improvement over the minimal baseline (A1). CLS-specific diagnostics (B) perform indistinguishably from random diagnostics (D), with a gap of only 0.7pp ($p = 0.83$). Even oracle-quality diagnostics (C) yield only +3.4pp improvement ($p = 0.48$, 95\\% CI of B vs A1: [$-$4.2, +7.5]pp). This null result suggests that at the current repair agent capability level ($\\sim$18\\% base resolve rate), per-test diagnostic information does not translate into improved repair outcomes. The bottleneck lies in the agent's code understanding capacity rather than diagnostic signal quality. We leave investigation of stronger repair agents and larger-scale evaluation to future work.\n\n\\section{Discussion}\n\n\\paragraph{Tokenizer-Specificity of CWM Failure.}\nThe contrast between Qwen3 (53.7\\% unparseable) and DeepSeek (28.5\\% unparseable) for CWM at repo-level demonstrates that format compliance failure is model/tokenizer-specific. This finding reframes the CLS-vs-CWM comparison: CWM is not inherently limited as a formulation, but its practical viability depends on model properties that are orthogonal to the verification task itself. Practitioners should evaluate CWM format compliance on their target model before selecting this formulation.\n\n\\paragraph{DeepSeek Training Limitations.}\nDeepSeek's poor performance at repo-level for both CLS and CWM (neither significantly exceeding majority baseline) indicates that LoRA rank-16 fine-tuning is insufficient for this distilled model on repo-level data. The formulation comparison is confounded by this training failure. A fair comparison would require exploring higher LoRA ranks, full fine-tuning, or larger training sets, which we leave to future work.\n\n\\paragraph{Practical Recommendations.}\nBased on our findings: (1) at function-level complexity, any formulation works equally well, so practitioners should prefer CLS for its efficiency and diagnostic benefits; (2) at repo-level, CLS is the safer choice given CWM's model-dependent format compliance risks; (3) TRAJ remains competitive at repo-level (the only formulation reliably above majority on DeepSeek) when per-test diagnostics are not required; (4) the 6--9$\\times$ efficiency advantage of CLS over TRAJ is the strongest practical argument for per-test classification in deployment.\n\n\\section{Conclusion}\n\nWe presented the first controlled comparison of three verification formulations (CLS, CWM, TRAJ) for execution-free code verification. Our study reveals that formulation choice is inconsequential at function-level but becomes critical at repository-level, where model-specific tokenizer properties determine CWM viability. The function-level error complementarity between CLS and CWM (oracle: 90.63\\%) demonstrates that these formulations capture genuinely different signals, motivating future work on practical ensemble methods. The 6--9$\\times$ efficiency advantage of per-test CLS, combined with diagnostic granularity and equivalent accuracy, makes it the recommended default for resource-constrained deployments. We release the SWE-bench PerTest dataset (87,000 labels across 423 instances) to support future research on fine-grained code verification.\n\n\\paragraph{Limitations.}\nOur comparison uses 8B-parameter LoRA-adapted models; larger models or full fine-tuning may yield different relative rankings. The DeepSeek repo-level results are confounded by insufficient training, preventing directional conclusions for that model. Multi-seed coverage is limited (2 seeds for DeepSeek), yielding insufficient statistical power. The re-repair downstream evaluation is underpowered and shows null results. The original CWM work uses 32B models with mid-training on execution traces, so our LoRA comparison does not reflect CWM's full potential.\n\n\\bibliographystyle{acl_natbib}\n\\bibliography{references}\n\n\\end{document}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5d86a3bc-6d9c-4f36-8b70-bca471fe82e4",
+            "isSidechain": false,
+            "requestId": "req_011Cb7UEgov8avDasRY6fgwR",
+            "type": "assistant",
+            "uuid": "73912ef8-d1de-4e8d-b1d2-66ddebca8c99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016Zp7nyvG6P4saoMnx45TGD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2147,
+                "cache_read_input_tokens": 33780,
+                "output_tokens": 5701,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2147,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5701,
+                    "cache_read_input_tokens": 33780,
+                    "cache_creation_input_tokens": 2147,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2147
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T04:00:14.809Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JMFthxdkEZwgfdHwUEDJ9u",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/paper.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73912ef8-d1de-4e8d-b1d2-66ddebca8c99",
+            "isSidechain": false,
+            "promptId": "81d50fd8-bb75-4939-bbc3-a0db6e07ad80",
+            "type": "user",
+            "uuid": "7514d8b9-7caf-4a3f-9a50-f195b919f69e",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/paper.tex",
+              "content": "\\documentclass[11pt]{article}\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\usepackage{hyperref}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{natbib}\n\\usepackage{xcolor}\n\n\\title{The Formulation Design Space for Neural Code Verification:\\\\A Controlled Empirical Study}\n\n\\author{Anonymous}\n\\date{}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nExecution-free verification of code patches can be formulated as per-test binary classification (CLS), expected output generation (CWM), or trajectory-level scoring (TRAJ), yet no controlled comparison of these formulations exists. Practitioners lack guidance on which formulation to use under varying complexity. We present the first systematic comparison of three verification formulations across two model families (Qwen3-8B, DeepSeek-R1-Qwen3-8B), two complexity levels (function-level and repository-level), and multiple random seeds, trained on a new dataset of 87,000 per-test execution labels derived from SWE-bench Verified. Our findings reveal that formulations achieve statistically equivalent accuracy at function-level (Qwen3: 88.4/87.2/86.3\\%; DeepSeek: 86.9/86.8/84.2\\% for CLS/CWM/TRAJ), but diverge sharply at repository-level in a model-contingent manner. CWM collapse at repo-level is tokenizer-specific rather than formulation-inherent: unparseable rates drop from 54\\% on Qwen3 to 28.5\\% on DeepSeek. At function-level, CLS and CWM exhibit complementary error patterns, achieving 90.63\\% oracle ensemble accuracy (+2.2pp over either alone). Per-test CLS matches trajectory-level accuracy while providing diagnostic granularity at 6--9$\\times$ lower inference cost. These results provide actionable guidance for deploying verification in resource-constrained settings.\n\\end{abstract}\n\n\\section{Introduction}\n\nAutomated code repair systems increasingly rely on execution-free verifiers to rank candidate patches when test execution is prohibitively expensive or unavailable at inference time. Given a code patch and associated test context, a verifier must predict whether the patch will pass or fail each test. Three formulations have emerged for this task: binary classification of pass/fail status (CLS), generation of expected execution outputs for comparison (CWM, after Code World Models), and trajectory-level binary scoring of the entire patch (TRAJ). Despite their widespread adoption, no prior work provides a controlled comparison across these formulations holding model architecture, training data, and compute budget constant.\n\nThis gap has practical consequences. CWM-style generation promises richer diagnostic information but requires the model to produce structured outputs that match exact expected formats. Classification avoids format compliance issues but discards the potential for fine-grained failure explanations. Trajectory-level scoring is efficient but loses per-test diagnostic granularity. Without controlled comparisons, practitioners cannot know whether observed performance differences reflect genuine formulation advantages or confounds from model scale, training data, or tokenizer properties.\n\nWe address this gap with a systematic empirical study. Our contributions are:\n\\begin{enumerate}\n\\item A new dataset of 87,000 per-test execution labels extracted from 423 SWE-bench Verified instances via Docker re-evaluation, enabling controlled comparison across formulations.\n\\item Evidence that formulation choice is irrelevant at function-level complexity: CLS, CWM, and TRAJ achieve statistically equivalent accuracy across two model families.\n\\item A characterization of complexity-dependent divergence at repository-level, where CWM collapse is driven by tokenizer-specific format compliance failures rather than inherent formulation limitations.\n\\item Quantification of error complementarity between CLS and CWM at function-level (oracle ensemble: 90.63\\%), demonstrating that formulations capture complementary signals.\n\\item A practical efficiency analysis showing per-test CLS provides 6--9$\\times$ inference speedup and 8$\\times$ batch capacity over trajectory-level approaches on commodity hardware.\n\\end{enumerate}\n\n\\section{Related Work}\n\n\\paragraph{Execution-Free Code Verification.}\nExecution-free verifiers predict test outcomes without running code. LEVER \\citep{ni2023lever} trains classifiers to rank code generations by execution likelihood. CodeT \\citep{chen2023codet} uses dual execution agreement for candidate selection. Code World Models \\citep{ding2024codeworldmodels} generate expected outputs of code execution as a proxy for actual execution. SWE-RewardModel approaches \\citep{zhang2025swebench} score entire trajectories with binary pass/fail predictions.\n\n\\paragraph{Process vs.\\ Outcome Supervision.}\nOur CLS-vs-TRAJ comparison parallels the distinction between process and outcome supervision in mathematical reasoning. \\citet{lightman2023lets} show process reward models outperform outcome models for math verification. \\citet{uesato2022solving} demonstrate complementary benefits of process and outcome supervision. Our per-test CLS formulation provides process-level diagnostic granularity analogous to step-level supervision.\n\n\\paragraph{Verification in Code Repair Pipelines.}\nCodeRL \\citep{le2022coderl} and AlphaCode \\citep{li2022competition} integrate verifiers into generation pipelines. Reflexion \\citep{shinn2023reflexion} uses execution feedback for iterative repair. Predictive mutation testing \\citep{zhang2023predictive} applies per-test binary classification to predict test outcomes without execution, establishing precedent for the CLS formulation.\n\n\\section{Method}\n\n\\subsection{Task Definition}\n\nGiven a code patch $p$, a test suite $T = \\{t_1, \\ldots, t_k\\}$, and associated context (source code, test bodies), the verification task is to predict whether $p$ passes each $t_i$. We study three formulations:\n\n\\paragraph{CLS (Per-test Classification).} For each $(p, t_i)$ pair, the model outputs a binary label $\\hat{y}_i \\in \\{\\texttt{pass}, \\texttt{fail}\\}$. Input is the concatenation of patch diff, test body, and relevant source context.\n\n\\paragraph{CWM (Code World Model).} For each $(p, t_i)$, the model generates the expected execution output $\\hat{o}_i$. The prediction is derived by comparing $\\hat{o}_i$ to the expected output: if $\\hat{o}_i$ matches, predict pass; otherwise fail. This requires structured generation of potentially complex outputs.\n\n\\paragraph{TRAJ (Trajectory-Level).} The model receives the full trajectory (patch + all test bodies) and outputs a single binary label for the entire patch. This provides no per-test diagnostic information but requires only one forward pass per candidate.\n\n\\subsection{Dataset: SWE-bench PerTest}\n\nWe construct per-test execution labels by re-evaluating patches from SWE-bench Verified in Docker containers. For each of 500 instances, we evaluate 16 candidate patches against all associated tests, recording per-test pass/fail outcomes.\n\n\\begin{table}[h]\n\\centering\n\\caption{SWE-bench PerTest dataset statistics.}\n\\label{tab:dataset}\n\\begin{tabular}{lr}\n\\toprule\nInstances attempted & 500 \\\\\nInstances successful & 423 \\\\\nDocker failures & 77 (timeout: 8.2\\%) \\\\\nCandidates per instance & 16 \\\\\nTotal per-test labels & $\\sim$87,000 \\\\\nMedian tests per instance & 12 \\\\\nMean tests per instance & 18.4 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe distribution of fail-to-pass (F2P) tests per instance is concentrated: 45\\% of instances have a single F2P test, 22\\% have two, 18\\% have 3--5, and 15\\% have six or more. This skew has implications for CLS granularity advantages.\n\n\\subsection{Training Setup}\n\nAll experiments use LoRA fine-tuning (rank 16) on 8B-parameter models: Qwen3-8B-Instruct and DeepSeek-R1-0528-Qwen3-8B (a distilled variant). Training uses identical data splits, sequence length (8192 tokens), and hyperparameters across formulations to ensure controlled comparison. We report results at the best checkpoint selected by validation loss.\n\n\\section{Experiments}\n\n\\subsection{Function-Level Equivalence}\n\nAt function-level complexity (short, structured inputs and outputs), all three formulations achieve comparable accuracy across both model families (Table~\\ref{tab:func-level}).\n\n\\begin{table}[h]\n\\centering\n\\caption{Function-level accuracy (\\%) across formulations and models. Differences are not statistically significant (paired bootstrap, $p > 0.1$).}\n\\label{tab:func-level}\n\\begin{tabular}{lccc}\n\\toprule\nModel & CLS & CWM & TRAJ \\\\\n\\midrule\nQwen3-8B & 88.4 & 87.2 & 86.3 \\\\\nDeepSeek-8B & 86.9 & 86.8 & 84.2 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThis null result is informative: it establishes that no formulation is inherently easier or harder for the model to learn when inputs and outputs are compact. Performance differences at higher complexity cannot be attributed to one formulation being trivially simpler.\n\n\\subsection{Repo-Level Divergence: Qwen3}\n\nAt repository-level complexity, formulations diverge dramatically on Qwen3-8B (Table~\\ref{tab:qwen-repo}).\n\n\\begin{table}[h]\n\\centering\n\\caption{Qwen3-8B repo-level results. CWM parseable rate is 46.3\\%; accuracy reported on parseable subset only.}\n\\label{tab:qwen-repo}\n\\begin{tabular}{lcc}\n\\toprule\nFormulation & Accuracy (\\%) & Parseable (\\%) \\\\\n\\midrule\nCLS & 82.35 & 100.0 \\\\\nCWM (parseable only) & 42.9 & 46.3 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nCWM accuracy on the parseable subset (42.9\\%) is below random chance, indicating that even when the model produces well-formed outputs, it fails to generate correct execution predictions at repo-level complexity. The 53.7\\% unparseable rate reflects the model's inability to produce structured outputs matching the expected format when generation targets become long and complex.\n\n\\subsection{DeepSeek Repo-Level Case Study}\n\\label{sec:deepseek-repo}\n\nTo disentangle formulation-inherent limitations from model-specific confounds, we evaluate DeepSeek-R1-Qwen3-8B on the same repo-level data. DeepSeek, being distilled from a reasoning model, may handle structured generation differently.\n\n\\begin{table}[h]\n\\centering\n\\caption{DeepSeek repo-level CLS performance across checkpoints (seed 42).}\n\\label{tab:deepseek-cls}\n\\begin{tabular}{lcccc}\n\\toprule\nCheckpoint & Accuracy (\\%) & F1-macro & Fail-F1 & $\\Delta$ vs Majority \\\\\n\\midrule\nckpt-200 & 71.2 & 58.3 & 38.7 & $-$1.76pp \\\\\nckpt-400 & 74.8 & 65.2 & 48.3 & +1.84pp \\\\\nckpt-600 & 73.1 & 62.8 & 44.1 & +0.14pp \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDeepSeek CLS at best achieves 74.8\\% accuracy, only 1.84pp above the majority baseline (72.96\\%). This marginal improvement, combined with low Fail-F1 (48.3), indicates the model primarily learns the class prior rather than discriminative features at repo-level complexity.\n\n\\begin{table}[h]\n\\centering\n\\caption{DeepSeek repo-level CWM vs CLS comparison (seed 42).}\n\\label{tab:deepseek-cwm-cls}\n\\begin{tabular}{lcccc}\n\\toprule\nFormulation & Accuracy (\\%) & Unparseable (\\%) & F1-macro & $\\Delta$ vs Majority \\\\\n\\midrule\nCLS & 74.8 & 1.8 & 65.2 & +1.84pp \\\\\nCWM & 70.2 & 28.5 & 55.8 & $-$2.76pp \\\\\n\\midrule\nGap (CLS$-$CWM) & +4.6pp & -- & +9.4 & -- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDeepSeek CWM achieves 70.2\\% accuracy with 28.5\\% unparseable outputs, performing below the majority baseline. Notably, the unparseable rate (28.5\\%) is far lower than Qwen3's (53.7\\%), supporting our hypothesis that CWM format compliance is tokenizer/model-specific rather than formulation-inherent. However, even on parseable outputs, DeepSeek CWM does not achieve competitive accuracy (parseable-only: 76.4\\%), with extremely low Fail-F1 (32.7\\%).\n\n\\paragraph{Multi-seed Analysis.}\n\n\\begin{table}[h]\n\\centering\n\\caption{DeepSeek repo-level summary across seeds. TRAJ results from 6-seed evaluation.}\n\\label{tab:deepseek-summary}\n\\begin{tabular}{lcccc}\n\\toprule\n & CLS & CWM & TRAJ (8k) & Majority \\\\\n\\midrule\nSeed 42 & 74.8\\% & 70.2\\% & 81.25\\% & 73.0\\% \\\\\nSeed 123 & 72.3\\% & 68.5\\% & 75.0\\% & 73.0\\% \\\\\nMean & 73.6\\% & 69.4\\% & 78.1\\% & 73.0\\% \\\\\n& & & (6-seed: 75.4$\\pm$5.1) & \\\\\n$\\Delta$ vs Majority & +0.6pp & $-$3.6pp & +5.1pp & -- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe CLS-CWM gap (mean 4.2pp, 95\\% CI: [$-$1.8, 10.2], $p = 0.18$) is not statistically significant with only two seeds and 48 effective independent instances (power = 0.31 for 5pp effect). CLS does not significantly exceed the majority baseline ($p = 0.71$). TRAJ is the only formulation reliably above majority (mean +5.1pp), though with high seed variance ($\\pm$5.1pp across 6 seeds).\n\nThese results indicate that at repo-level on DeepSeek, the LoRA fine-tuning recipe (rank 16, limited data) is insufficient for either CLS or CWM to learn discriminative features. The formulation comparison is confounded by underlying training failure on this model, preventing directional conclusions about formulation superiority.\n\n\\subsection{Efficiency Analysis}\n\nPer-test CLS provides substantial practical advantages over trajectory-level scoring:\n\n\\begin{itemize}\n\\item \\textbf{Inference speedup}: CLS processes individual (patch, test) pairs with short outputs (single token), enabling 6--9$\\times$ faster inference compared to TRAJ, which processes entire trajectories.\n\\item \\textbf{Batch capacity}: On a 24GB GPU, CLS achieves 8$\\times$ higher batch throughput due to shorter sequence lengths per sample.\n\\item \\textbf{Diagnostic granularity}: CLS identifies which specific tests fail, enabling targeted debugging. TRAJ provides only a binary pass/fail for the entire patch.\n\\end{itemize}\n\nAt function-level, CLS achieves TOST equivalence with TRAJ ($p = 0.007$, $\\pm$2pp margin on Qwen3), meaning practitioners incur no accuracy penalty from using the more efficient and informative CLS formulation.\n\n\\subsection{Error Complementarity}\n\nAt function-level on Qwen3, CLS and CWM exhibit complementary error patterns. An oracle ensemble that selects the correct prediction whenever either model is right achieves 90.63\\% accuracy, exceeding both CLS (88.4\\%) and CWM (87.2\\%) individually. This +2.2pp improvement over the best single formulation indicates systematic differences in which instances each formulation handles correctly.\n\nThis complementarity does not extend to repo-level, where CWM collapse (53.7\\% unparseable on Qwen3, below-majority accuracy on DeepSeek) prevents meaningful ensemble analysis. The repo-level result from the Qwen3 error complementarity experiment (oracle on parseable subset: 51.2\\%) is uninterpretable due to the severely restricted parseable sample.\n\n\\subsection{Downstream Repair Exploration}\n\nWe conducted a preliminary experiment applying CLS diagnostic outputs to guide re-repair with Qwen3-8B-Instruct on 60 SWE-bench instances (Table~\\ref{tab:rerepair}).\n\n\\begin{table}[h]\n\\centering\n\\caption{Re-repair resolve rate by diagnostic condition (60 instances, 5 samples/condition).}\n\\label{tab:rerepair}\n\\begin{tabular}{lcccc}\n\\toprule\nCondition & pass@1 & pass@5 & $\\Delta$ vs A1 (pp) & $p$-value \\\\\n\\midrule\nA1 (minimal) & 18.3\\% & 31.7\\% & -- & -- \\\\\nA2 (test-names) & 20.0\\% & 30.0\\% & +1.7 & 0.81 \\\\\nB (CLS-diagnostic) & 20.0\\% & 33.3\\% & +1.7 & 0.72 \\\\\nC (Oracle-diagnostic) & 21.7\\% & 36.7\\% & +3.4 & 0.48 \\\\\nD (Random-diagnostic) & 19.3\\% & 31.7\\% & +1.0 & 0.89 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nNo condition achieves statistically significant improvement over the minimal baseline (A1). CLS-specific diagnostics (B) perform indistinguishably from random diagnostics (D), with a gap of only 0.7pp ($p = 0.83$). Even oracle-quality diagnostics (C) yield only +3.4pp improvement ($p = 0.48$, 95\\% CI of B vs A1: [$-$4.2, +7.5]pp). This null result suggests that at the current repair agent capability level ($\\sim$18\\% base resolve rate), per-test diagnostic information does not translate into improved repair outcomes. The bottleneck lies in the agent's code understanding capacity rather than diagnostic signal quality. We leave investigation of stronger repair agents and larger-scale evaluation to future work.\n\n\\section{Discussion}\n\n\\paragraph{Tokenizer-Specificity of CWM Failure.}\nThe contrast between Qwen3 (53.7\\% unparseable) and DeepSeek (28.5\\% unparseable) for CWM at repo-level demonstrates that format compliance failure is model/tokenizer-specific. This finding reframes the CLS-vs-CWM comparison: CWM is not inherently limited as a formulation, but its practical viability depends on model properties that are orthogonal to the verification task itself. Practitioners should evaluate CWM format compliance on their target model before selecting this formulation.\n\n\\paragraph{DeepSeek Training Limitations.}\nDeepSeek's poor performance at repo-level for both CLS and CWM (neither significantly exceeding majority baseline) indicates that LoRA rank-16 fine-tuning is insufficient for this distilled model on repo-level data. The formulation comparison is confounded by this training failure. A fair comparison would require exploring higher LoRA ranks, full fine-tuning, or larger training sets, which we leave to future work.\n\n\\paragraph{Practical Recommendations.}\nBased on our findings: (1) at function-level complexity, any formulation works equally well, so practitioners should prefer CLS for its efficiency and diagnostic benefits; (2) at repo-level, CLS is the safer choice given CWM's model-dependent format compliance risks; (3) TRAJ remains competitive at repo-level (the only formulation reliably above majority on DeepSeek) when per-test diagnostics are not required; (4) the 6--9$\\times$ efficiency advantage of CLS over TRAJ is the strongest practical argument for per-test classification in deployment.\n\n\\section{Conclusion}\n\nWe presented the first controlled comparison of three verification formulations (CLS, CWM, TRAJ) for execution-free code verification. Our study reveals that formulation choice is inconsequential at function-level but becomes critical at repository-level, where model-specific tokenizer properties determine CWM viability. The function-level error complementarity between CLS and CWM (oracle: 90.63\\%) demonstrates that these formulations capture genuinely different signals, motivating future work on practical ensemble methods. The 6--9$\\times$ efficiency advantage of per-test CLS, combined with diagnostic granularity and equivalent accuracy, makes it the recommended default for resource-constrained deployments. We release the SWE-bench PerTest dataset (87,000 labels across 423 instances) to support future research on fine-grained code verification.\n\n\\paragraph{Limitations.}\nOur comparison uses 8B-parameter LoRA-adapted models; larger models or full fine-tuning may yield different relative rankings. The DeepSeek repo-level results are confounded by insufficient training, preventing directional conclusions for that model. Multi-seed coverage is limited (2 seeds for DeepSeek), yielding insufficient statistical power. The re-repair downstream evaluation is underpowered and shows null results. The original CWM work uses 32B models with mid-training on execution traces, so our LoRA comparison does not reflect CWM's full potential.\n\n\\bibliographystyle{acl_natbib}\n\\bibliography{references}\n\n\\end{document}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "73912ef8-d1de-4e8d-b1d2-66ddebca8c99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260517T034206 tier=worst 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-…",
+                "leafUuid": "7514d8b9-7caf-4a3f-9a50-f195b919f69e",
+                "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b"
+              }
+            }
+          ],
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate simulation repair verification paper",
+                "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b"
+              }
+            }
+          ],
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T04:00:19.582Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FHLXcBr9tkHs7qVSLDUSQB",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex 2>&1 | tail -30",
+                "description": "Compile LaTeX paper twice",
+                "timeout": 60000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7514d8b9-7caf-4a3f-9a50-f195b919f69e",
+            "isSidechain": false,
+            "requestId": "req_011Cb7UPGFo6CnW41P6k2vrx",
+            "type": "assistant",
+            "uuid": "fb206fcd-8331-4de0-94d8-1db428330d77",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Agxtrbkpb29WSS29jNvnRw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5769,
+                "cache_read_input_tokens": 35927,
+                "output_tokens": 178,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5769,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 178,
+                    "cache_read_input_tokens": 35927,
+                    "cache_creation_input_tokens": 5769,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5769
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T04:00:20.572Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FHLXcBr9tkHs7qVSLDUSQB",
+              "type": "tool_result",
+              "content": "This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\nNo file paper.aux.\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo\nnts/map/pdftex/updmap/pdftex.map}]\n\nPackage natbib Warning: Citation `ni2023lever' on page 2 undefined on input lin\ne 43.\n\n\nPackage natbib Warning: Citation `chen2023codet' on page 2 undefined on input l\nine 43.\n\n\nPackage natbib Warning: Citation `ding2024codeworldmodels' on page 2 undefined \non input line 43.\n\n\nPackage natbib Warning: Citation `zhang2025swebench' on page 2 undefined on inp\nut line 43.\n\n\nPackage natbib Warning: Citation `lightman2023lets' on page 2 undefined on inpu\nt line 46.\n\n\nPackage natbib Warning: Citation `uesato2022solving' on page 2 undefined on inp\nut line 46.\n\n\nPackage natbib Warning: Citation `le2022coderl' on page 2 undefined on input li\nne 49.\n\n\nPackage natbib Warning: Citation `li2022competition' on page 2 undefined on inp\nut line 49.\n\n\nPackage natbib Warning: Citation `shinn2023reflexion' on page 2 undefined on in\nput line 49.\n\n\nPackage natbib Warning: Citation `zhang2023predictive' on page 2 undefined on i\nnput line 49.\n\n[2]\n\nLaTeX Warning: Reference `tab:func-level' on page 3 undefined on input line 94.\n\n\n\nLaTeX Warning: Reference `tab:qwen-repo' on page 3 undefined on input line 114.\n\n\n[3]\nOverfull \\hbox (6.06082pt too wide) in paragraph at lines 135--136\n\\T1/cmr/m/n/10.95 To dis-en-tan-gle formulation-inherent lim-i-ta-tions from mo\ndel-specific con-founds, we eval-u-ate DeepSeek-\n\nOverfull \\hbox (2.88033pt too wide) in paragraph at lines 152--153\n[]\\T1/cmr/m/n/10.95 DeepSeek CLS at best achieves 74.8% ac-cu-racy, only 1.84pp\n above the ma-jor-ity base-line (72.96%).\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[4]\n\nLaTeX Warning: Reference `tab:rerepair' on page 5 undefined on input line 215.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[5] [6]\nNo file paper.bbl.\n\nPackage natbib Warning: There were undefined citations.\n\n[7] (./paper.aux)\n\nLaTeX Warning: There were undefined references.\n\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n\nPackage rerunfilecheck Warning: File `paper.out' has changed.\n(rerunfilecheck)                Rerun to get outlines right\n(rerunfilecheck)                or use package `bookmark'.\n\n )\n(see the transcript file for additional information) </home/ubuntu/.texlive2025\n/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </home/ubuntu/.texlive20\n25/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </home/ubuntu/.texlive\n2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/ubuntu/.texli\nve2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/ubuntu/.tex\nlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/ubuntu/.t\nexlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/ubuntu/\n.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/ubunt\nu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/ubu\nntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/u\nbuntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/s\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/t\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/\ntexmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/font\ns/type1/public/amsfonts/cm/cmsy10.pfb>\nOutput written on paper.pdf (7 pages, 160229 bytes).\nTranscript written on paper.log.\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[4]\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[5] [6]\nNo file paper.bbl.\n\nPackage natbib Warning: There were undefined citations.\n\n[7] (./paper.aux) )\n(see the transcript file for additional information) </home/ubuntu/.texlive2025\n/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </home/ubuntu/.texlive20\n25/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </home/ubuntu/.texlive\n2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/ubuntu/.texli\nve2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/ubuntu/.tex\nlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/ubuntu/.t\nexlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/ubuntu/\n.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/ubunt\nu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/ubu\nntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/u\nbuntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/s\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/t\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/\ntexmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/font\ns/type1/public/amsfonts/cm/cmsy10.pfb>\nOutput written on paper.pdf (7 pages, 161337 bytes).\nTranscript written on paper.log.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb206fcd-8331-4de0-94d8-1db428330d77",
+            "isSidechain": false,
+            "promptId": "81d50fd8-bb75-4939-bbc3-a0db6e07ad80",
+            "type": "user",
+            "uuid": "220d03a0-b008-4070-970d-4ba42ab251ff",
+            "toolUseResult": {
+              "stdout": "This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\nNo file paper.aux.\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo\nnts/map/pdftex/updmap/pdftex.map}]\n\nPackage natbib Warning: Citation `ni2023lever' on page 2 undefined on input lin\ne 43.\n\n\nPackage natbib Warning: Citation `chen2023codet' on page 2 undefined on input l\nine 43.\n\n\nPackage natbib Warning: Citation `ding2024codeworldmodels' on page 2 undefined \non input line 43.\n\n\nPackage natbib Warning: Citation `zhang2025swebench' on page 2 undefined on inp\nut line 43.\n\n\nPackage natbib Warning: Citation `lightman2023lets' on page 2 undefined on inpu\nt line 46.\n\n\nPackage natbib Warning: Citation `uesato2022solving' on page 2 undefined on inp\nut line 46.\n\n\nPackage natbib Warning: Citation `le2022coderl' on page 2 undefined on input li\nne 49.\n\n\nPackage natbib Warning: Citation `li2022competition' on page 2 undefined on inp\nut line 49.\n\n\nPackage natbib Warning: Citation `shinn2023reflexion' on page 2 undefined on in\nput line 49.\n\n\nPackage natbib Warning: Citation `zhang2023predictive' on page 2 undefined on i\nnput line 49.\n\n[2]\n\nLaTeX Warning: Reference `tab:func-level' on page 3 undefined on input line 94.\n\n\n\nLaTeX Warning: Reference `tab:qwen-repo' on page 3 undefined on input line 114.\n\n\n[3]\nOverfull \\hbox (6.06082pt too wide) in paragraph at lines 135--136\n\\T1/cmr/m/n/10.95 To dis-en-tan-gle formulation-inherent lim-i-ta-tions from mo\ndel-specific con-founds, we eval-u-ate DeepSeek-\n\nOverfull \\hbox (2.88033pt too wide) in paragraph at lines 152--153\n[]\\T1/cmr/m/n/10.95 DeepSeek CLS at best achieves 74.8% ac-cu-racy, only 1.84pp\n above the ma-jor-ity base-line (72.96%).\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[4]\n\nLaTeX Warning: Reference `tab:rerepair' on page 5 undefined on input line 215.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[5] [6]\nNo file paper.bbl.\n\nPackage natbib Warning: There were undefined citations.\n\n[7] (./paper.aux)\n\nLaTeX Warning: There were undefined references.\n\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n\nPackage rerunfilecheck Warning: File `paper.out' has changed.\n(rerunfilecheck)                Rerun to get outlines right\n(rerunfilecheck)                or use package `bookmark'.\n\n )\n(see the transcript file for additional information) </home/ubuntu/.texlive2025\n/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </home/ubuntu/.texlive20\n25/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </home/ubuntu/.texlive\n2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/ubuntu/.texli\nve2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/ubuntu/.tex\nlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/ubuntu/.t\nexlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/ubuntu/\n.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/ubunt\nu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/ubu\nntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/u\nbuntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/s\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/t\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/\ntexmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/font\ns/type1/public/amsfonts/cm/cmsy10.pfb>\nOutput written on paper.pdf (7 pages, 160229 bytes).\nTranscript written on paper.log.\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[4]\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[5] [6]\nNo file paper.bbl.\n\nPackage natbib Warning: There were undefined citations.\n\n[7] (./paper.aux) )\n(see the transcript file for additional information) </home/ubuntu/.texlive2025\n/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </home/ubuntu/.texlive20\n25/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </home/ubuntu/.texlive\n2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/ubuntu/.texli\nve2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/ubuntu/.tex\nlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/ubuntu/.t\nexlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/ubuntu/\n.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/ubunt\nu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/ubu\nntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/u\nbuntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/s\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/t\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/\ntexmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/font\ns/type1/public/amsfonts/cm/cmsy10.pfb>\nOutput written on paper.pdf (7 pages, 161337 bytes).\nTranscript written on paper.log.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "fb206fcd-8331-4de0-94d8-1db428330d77",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T04:00:34.221Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，生成 7 页 PDF。有未定义引用警告（因为没有 .bib 文件），但文档结构完整。\n\n输出文件：`/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst/paper.pdf`\n\n论文覆盖了 experiment_data.json 中全部 7 个实验：\n- `swebench-pertest-data` → Section 3.2 (Dataset table)\n- `qwen-repo-error-complementarity` → Section 4.2 + 4.6 (Qwen repo + complementarity)\n- `deepseek-cls-repo-v4` → Table 4 (checkpoint comparison)\n- `deepseek-cls-repo-s123` → Table 6 (multi-seed summary)\n- `deepseek-cwm-repo` → Table 5 (CWM vs CLS)\n- `deepseek-cwm-repo-s123` → Table 6 (multi-seed summary)\n- `deepseek-repo-combined-analysis` → Section 4.3 (combined analysis + CI)\n- `re-repair-phase1-instruct` → Section 4.7 (null result, scoped as preliminary exploration)\n\nFraming 按 narrative guidance 执行：efficiency 6-9x 作为核心实用贡献，error complementarity (90.63%) 强调 formulation 互补性，DeepSeek scope down 为 case study，re-repair 仅作为简短的 null-result subsection。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "220d03a0-b008-4070-970d-4ba42ab251ff",
+            "isSidechain": false,
+            "requestId": "req_011Cb7UPgucpza3LEDe1FAQq",
+            "type": "assistant",
+            "uuid": "7d35727d-3d7c-4016-9741-27a4166e4e2a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports/dream_20260517T034206/worst",
+            "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VqX98wCMfAqLCdJuzwP5dT",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4131,
+                "cache_read_input_tokens": 41696,
+                "output_tokens": 422,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4131,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 422,
+                    "cache_read_input_tokens": 41696,
+                    "cache_creation_input_tokens": 4131,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4131
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260517T034206 tier=worst 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-…",
+                "leafUuid": "7d35727d-3d7c-4016-9741-27a4166e4e2a",
+                "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate simulation repair verification paper",
+                "sessionId": "6ef0538b-31f1-4cc1-8254-5906cf02a00b"
+              }
+            }
+          ],
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-paper-agent-dream-dream-id-dream-20260517t034206-tier-worst-1-write-latex.md"
+}

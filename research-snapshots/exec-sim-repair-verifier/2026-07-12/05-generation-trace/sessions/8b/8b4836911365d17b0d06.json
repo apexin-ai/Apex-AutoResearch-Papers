@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "8b4836911365d17b0d06",
+  "project": "exec-sim-repair-verifier--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: qwen3-8b-cwm-repo-s123-train - proje",
+  "task_key": "462368e9-78a8-4b4d-bd87-9fb370746a66",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/462368e9-78a8-4b4d-bd87-9fb370746a66.jsonl",
+    "occurrence": 1,
+    "bytes": 624838,
+    "sha256": "1155ac5ca5730722d8bcde0cf4031b164454b5039248963bcc010cc2041e595c"
+  },
+  "statistics": {
+    "messages": 85,
+    "user_turns": 1,
+    "tool_calls": 24,
+    "roles": {
+      "record": 22,
+      "user": 1,
+      "assistant": 14,
+      "tool_call": 24,
+      "tool_result": 24
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8b4836911365d17b0d06-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 83,
+      "chunks": [
+        {
+          "path": "8b4836911365d17b0d06-part-0001.json",
+          "message_count": 78
+        },
+        {
+          "path": "8b4836911365d17b0d06-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-process-exited-without-valid-w-b-metrics-exp-id-qwen3-8b-cwm-repo-s123-tr.md"
+}

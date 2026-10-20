@@ -1,0 +1,1009 @@
+{
+  "schema_version": "1.0",
+  "id": "8d17961d7c8bbfb47a33",
+  "project": "exec-sim-repair-verifier--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are Reviewer R2 for a top ML venue review (acceptance rate ~25%, 6-point scale: 1=Strong Reject, 2=Reject, 3=Weak Re",
+  "task_key": "agent-a65113171fb4b4382",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a65113171fb4b4382.jsonl",
+    "occurrence": 1,
+    "bytes": 86739,
+    "sha256": "6afdf65ec613fd9868e7ac91694e6be6519d3a74cb92804893ae2ca2459fad15"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T15:51:58.385Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are Reviewer R2 for a top ML venue review (acceptance rate ~25%, 6-point scale: 1=Strong Reject, 2=Reject, 3=Weak Reject, 4=Weak Accept, 5=Accept, 6=Strong Accept). Your focus is **Novelty, Framing, and Related Work**.\n\n## Paper Summary\nTitle: \"The Formulation Design Space for Neural Code Verification: A Systematic Comparison of Classification, Generation, and Trajectory Approaches\"\n\nThe paper compares three formulations for neural code verification (predicting pass/fail without execution): Classification (CLS, predict single token), Constrained Word Model (CWM, generate execution output then match), and Trajectory (TRAJ, predict overall resolution status). Comparison spans 3 formulations × 2 model families (Qwen3 4B/8B, DeepSeek-Coder-6.7B) × 2 complexity levels (function-level, repo-level), trained on SWE-bench-PerTest (489 instances, 9784 test samples).\n\n## Three Claimed Contributions\n1. **Error Complementarity as Verification Strategy**: CLS and CWM have different failure modes (Cohen's κ=0.24–0.31), oracle ensembles lift +2–3pp over best single formulation.\n2. **First Systematic Formulation Comparison**: 3-formulation × 2-model-family × 2-complexity controlled comparison. Finding: formulation effectiveness is model-contingent (no universal winner), interaction between model architecture and formulation is statistically significant (p=0.03).\n3. **Efficiency–Accuracy Tradeoff Characterization**: CLS offers 6–9× inference speedup when accuracy equivalent (DeepSeek: 86.85% vs 86.83%).\n\n## Related Work Section (verbatim)\n- **Neural Code Verification**: Cites Code World Models (Gu et al., 2024) for predicting stdout, SWE-RM (Zhang et al., 2025) for trajectory-level reward models. Claims to differ by \"systematically comparing formulation choices rather than proposing a single new method.\"\n- **Classification vs Generation in NLP**: Cites Ng and Jordan 2001 (discriminative vs generative). Claims to provide \"controlled empirical evidence for this tradeoff in the code domain.\"\n- **Test-Time Scaling for Code Repair**: Cites Chen et al. 2024. Notes per-test formulation provides diagnostic granularity but acknowledges downstream experiment shows \"this utility remains unrealized.\"\n\nOnly 5 references total in the paper.\n\n## Key Results Context\n- **Table 2**: Full accuracy matrix across formulation × model × complexity. Formulation ranking REVERSES between Qwen repo (CLS≫CWM) and DeepSeek repo (CWM>CLS).\n- The Qwen CWM failure (93% unparseable) is attributed to tokenizer artifact, confirmed by DeepSeek having only 11.8% unparseable.\n- **Re-repair experiment**: Negative result — per-test diagnostics don't help repair agents (CLS +0.5pp, p=0.72; oracle +4pp, p=0.11).\n- DeepSeek repo-level: ALL formulations below majority baseline (63.5%, 65.6%, 59.3% vs 72.96%).\n- Error taxonomy: 200 manually annotated samples, 15% error type overlap, inter-annotator κ=0.72.\n\n## Background from Experiment Design Context\nThe paper was originally framed around \"CLS scales better with complexity\" but cross-model evidence contradicted this. It was reframed as \"formulation design space characterization\" — the current framing. Key issues from the review context:\n- The \"complexity-dependent advantage\" claim was Qwen-specific, not generalizable\n- 2 of 4 reviewer criticals from a prior round are unaddressed: (a) no downstream practical impact, (b) cross-model validation contradicts rather than supports original claims\n- DeepSeek repo-level results are all below majority baseline, meaning verification at repo-level complexity exceeds 6-7B model capability regardless of formulation\n- The paper's strongest contribution is error complementarity (consistent across model families)\n\n## Your Task\nProvide a detailed review focusing on:\n1. **Novelty assessment**: Is the research question novel? Are the findings surprising or expected? Does comparing formulations constitute sufficient contribution?\n2. **Framing quality**: Is the paper well-positioned? Does the \"design space characterization\" framing work? Is the pivot from \"CLS is better\" to \"no universal winner\" convincing?\n3. **Related work completeness**: Are key baselines and prior work cited? Only 5 references — is this adequate?\n4. **Contribution significance**: Would the community benefit from these findings? Are the takeaways actionable?\n5. **Writing quality**: Is the narrative coherent? Are claims calibrated to evidence?\n\nFormat your review as:\n### Summary\n### Strengths (bulleted)\n### Weaknesses (bulleted, with severity: Major/Minor)\n### Questions for Authors\n### Missing Related Work or Context\n### Preliminary Score (1-6) and Confidence (1-5)\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "13d3bb55-3cf2-4484-aeb1-6512da3f0d5e",
+            "agentId": "a65113171fb4b4382",
+            "type": "user",
+            "uuid": "45376e53-38ed-4b5c-9d2d-6e82057ad611",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T15:51:58.389Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "45376e53-38ed-4b5c-9d2d-6e82057ad611",
+                "isSidechain": true,
+                "agentId": "a65113171fb4b4382",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "901c2d73-f269-4c4f-b48c-00e569fe0284",
+                "timestamp": "2026-05-16T15:51:58.389Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+                "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T15:52:02.607Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TkdXQZJLbR8M9fZd2XQGqU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "901c2d73-f269-4c4f-b48c-00e569fe0284",
+            "isSidechain": true,
+            "agentId": "a65113171fb4b4382",
+            "requestId": "req_011Cb6WrDJB8f3HtPojny5RT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4f3ee613-d3fb-4dae-af6f-7be86612dd49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014K2bDDcgopKHgoMiQUhqqX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 7061,
+                "cache_read_input_tokens": 8972,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7061,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T15:52:02.619Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TkdXQZJLbR8M9fZd2XQGqU",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Execution Simulation for Code.}\n5\tCode World Models~\\cite{meta2025cwm} mid-train a 32B LLM on execution traces to predict output strings, establishing the generation-based paradigm for execution-free code verification.\n6\tSelf-Execution~\\cite{maimon2026selfexecution} extends this with step-by-step trace prediction, demonstrating that simulation-based self-verification can improve code generation without external execution.\n7\tCodeMind~\\cite{liu2024codemind} evaluates code reasoning along multiple dimensions including independent and dependent execution reasoning.\n8\tSolidCoder~\\cite{lee2026solidcoder} bridges mental simulation and actual execution via concrete execution feedback.\n9\tAbdollahi et al.~\\cite{abdollahi2025demystifying} identify systematic failure modes in LLM trace prediction, including position-dependent and cascading errors.\n10\tAll share a generation formulation whose cost scales with output length and whose reliability degrades when outputs are complex---at repository-level complexity, we observe format compliance collapse (53--67\\% unparseable outputs; \\S\\ref{sec:experiments}). We reformulate as per-test classification and show the advantage is complexity-dependent: negligible at function level but critical at repository scale.\n11\t\n12\t\\paragraph{LLM-based Verification for Code Repair.}\n13\tSWE-RM~\\cite{shum2025swerm} trains a 30B MoE reward model for trajectory-level execution-free patch ranking, achieving strong results on SWE-bench without test execution.\n14\tPatch Reasoner~\\cite{xu2025patchreasoner} uses chain-of-thought reasoning for patch verification.\n15\tSnell et al.~\\cite{snell2024scaling} show that test-time compute scaling via verification can outperform parameter scaling, establishing verification quality as a key lever for code generation improvement.\n16\tS*~\\cite{li2025sstar} combines execution-grounded selection with model-based scoring for efficient test-time scaling.\n17\tVG-Search~\\cite{chen2025vgsearch} studies how verification granularity affects compute-efficient scaling, finding that finer-grained verification can improve selection efficiency.\n18\tThese works treat verification granularity as a design choice but do not compare the underlying \\emph{formulation}---classification vs.\\ generation---at controlled capacity. We formally compare per-test and trajectory-level granularity, showing statistical equivalence (TOST $p = 0.007$) with additional per-test diagnostic signals.\n19\t\n20\t\\paragraph{Learned Code Verifiers.}\n21\tLEVER~\\cite{ni2023lever} trains a classifier to re-rank code candidates by predicting execution correctness, learning verification from execution feedback.\n22\tCodeT~\\cite{chen2023codet} generates auxiliary test cases and uses dual execution agreement---consensus between generated code and generated tests---as a verification signal.\n23\tBoth methods leverage execution signals during training but target execution-free deployment, a goal shared by our classification formulation. Unlike LEVER's candidate-level ranking and CodeT's agreement-based filtering, we provide \\emph{per-test} diagnostic verdicts that identify which specific tests fail, and systematically compare classification against generation on the same model, data, and compute budget, isolating the effect of task formulation.\n24\t\n25\t\\paragraph{Automated Program Repair.}\n26\tSWE-bench~\\cite{jimenez2024swebench} and SWE-bench Verified~\\cite{chowdhury2024swebenchverified} provide standard benchmarks for repository-level repair, driving rapid progress in LLM-based program repair.\n27\tSWE-agent~\\cite{yang2024sweagent} uses tool-augmented agents while Agentless~\\cite{xia2024agentless} demonstrates a simpler localize--repair--validate pipeline that achieves competitive results.\n28\tYang et al.~\\cite{yang2025aprsurvey} survey the broader landscape of LLM-based program repair, identifying verification as a persistent bottleneck across approaches.\n29\tThese systems rely on execution-based validation as the final filter, with verification cost scaling linearly in the number of candidates. Per-test classification provides failure-localized signals that could inform targeted re-repair---re-generating only the code responsible for a specific failing test---a capability absent from trajectory-level verifiers.\n30\t\n31\t\\paragraph{Classification vs.\\ Generation in NLP.}\n32\tTask framing affects model performance across NLP: T5~\\cite{raffel2020t5} and BART~\\cite{lewis2020bart} show generation--classification tradeoffs under controlled capacity, while SQuAD~\\cite{rajpurkar2016squad} demonstrates that constraining output space (span extraction vs.\\ generation) can simplify tasks without sacrificing quality. We extend this lens to code verification, identifying code complexity as the key moderator of the classification--generation tradeoff.\n33\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f3ee613-d3fb-4dae-af6f-7be86612dd49",
+            "isSidechain": true,
+            "promptId": "13d3bb55-3cf2-4484-aeb1-6512da3f0d5e",
+            "agentId": "a65113171fb4b4382",
+            "type": "user",
+            "uuid": "bc472f4a-6f27-45cb-9a65-f95f47d5b9f4",
+            "sourceToolAssistantUUID": "4f3ee613-d3fb-4dae-af6f-7be86612dd49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T15:52:03.163Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J5t26YrAZscaDL3pZq4cpy",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc472f4a-6f27-45cb-9a65-f95f47d5b9f4",
+            "isSidechain": true,
+            "agentId": "a65113171fb4b4382",
+            "requestId": "req_011Cb6WrDJB8f3HtPojny5RT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "282347d2-433d-4d11-bc1b-9bba1e6b4565",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014K2bDDcgopKHgoMiQUhqqX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 7061,
+                "cache_read_input_tokens": 8972,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7061,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T15:52:03.168Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J5t26YrAZscaDL3pZq4cpy",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tLLM-based automated program repair has advanced rapidly on real-world software tasks. Agent-based systems such as SWE-agent~\\cite{yang2024sweagent} and pipeline approaches like Agentless~\\cite{xia2024agentless} resolve substantial fractions of SWE-bench~\\cite{jimenez2024swebench} issues through candidate patch generation and validation. The prevailing strategy for improving resolve rates is test-time compute scaling~\\cite{snell2024scaling}: generating $K$ candidate patches and selecting the best via a verifier. This verification step is critical---without it, the additional compute invested in diverse patch generation yields diminishing returns, because correct patches are diluted among incorrect ones. Full execution verification---running the repository's test suite against each candidate---is reliable but expensive, costing \\$1--3 and several minutes per candidate at repository scale\\footnote{Based on per-instance costs reported by \\citet{yang2024sweagent} and \\citet{xia2024agentless}.}, making it prohibitive for large $K$. The resulting demand for fast, execution-free verification has driven work on learned verifiers~\\cite{ni2023lever,shum2025swerm} and execution simulators~\\cite{meta2025cwm,maimon2026selfexecution}, but the choice of \\emph{how} to formulate the verification task---what the model predicts and in what format---has received surprisingly little systematic study.\n5\t\n6\tTwo dominant paradigms have emerged. \\textbf{Generation-based simulation}~\\cite{meta2025cwm,maimon2026selfexecution} predicts execution output strings per test, deriving verdicts by exact match. This suffers three failure modes at scale: (1)~\\emph{token-budget exhaustion} truncates long outputs; (2)~\\emph{string-value errors} reject semantically correct outputs differing in surface form; (3)~\\emph{format compliance collapse} renders the majority of predictions unparseable at repository-level complexity, with parseable accuracy dropping below chance (38--43\\% across model sizes).\n7\t\n8\t\\textbf{Trajectory-level scoring}~\\cite{shum2025swerm} predicts patch-level correctness directly, bypassing generation. This is robust---no outputs to truncate or parse---but discards per-test diagnostic signals needed for targeted re-repair~\\cite{yang2024sweagent,xia2024agentless}. The apparent trade-off: generation preserves per-test granularity at the cost of reliability, while trajectory-level scoring provides reliability at the cost of granularity.\n9\t\n10\tWe argue this trade-off is an artifact of the formulation. Per-test binary classification---predicting a single \\textsc{Pass}/\\textsc{Fail} token---eliminates all three failure modes by construction: a single-token output cannot be truncated, needs no string matching, and is always parseable, while preserving the per-test diagnostics that trajectory-level scoring discards. Prior learned verifiers (LEVER~\\cite{ni2023lever}, CodeT~\\cite{chen2023codet}) leverage execution signals but target candidate-level ranking rather than per-test diagnostic classification. No prior work compares classification and generation formulations at controlled model sizes across complexity levels.\n11\t\n12\tCrucially, the advantage is complexity-dependent. At function level, both formulations achieve near-equivalent accuracy (\\mbox{1.24\\pp{}} gap, 5 seeds, 4B). The gap emerges only when \\cwm{} failure modes dominate: at repository level, it widens to \\mbox{25.59\\pp{}}. We formalize this via an oracle accuracy-utility framework (\\S\\ref{sec:oracle}) that predicts when per-test granularity provides value given test distribution and prediction correlation.\n13\t\n14\tWe validate these predictions through controlled experiments comparing the three formulations on function-level benchmarks (HumanEval~\\cite{chen2021humaneval} and MBPP~\\cite{austin2021mbpp}) and repository-level tasks (SWE-bench Verified~\\cite{chowdhury2024swebenchverified}), using Qwen3~\\cite{qwen2025qwen3} models at 4B and 8B parameters with matched training data and compute. Figure~\\ref{fig:reformulation} illustrates the three formulations. We make the following contributions:\n15\t\n16\t\\begin{itemize}[leftmargin=*,itemsep=2pt]\n17\t\\item \\textbf{Complexity-dependent reformulation advantage.} The \\cls{}--\\cwm{} gap grows with complexity: near-null at function level (\\mbox{1.18\\pp{}}, 4B), widening to 2.26\\pp{} at 8B (bootstrap mean, $p = 0.0066$; both 3 seeds), and 19--26\\pp{} at repository level (8B-8B: 19.31\\pp{}; 4B-4B: 25.59\\pp{}, seed~42)---an order of magnitude larger than function-level. \\cwm{} generation quality uniformly degrades with scale: parseable-only accuracy decreases from 42.9\\% (4B) to 38.5\\% (8B) while unparseable rate increases from 53.7\\% to 73.8\\%. Function-level scaling provides converging evidence: \\cls{} gains \\mbox{+0.99\\pp{}} (4B$\\to$8B) while \\cwm{} loses \\mbox{$-$0.27\\pp{}}, consistent with a generation bottleneck rather than a capacity limitation.\n18\t\n19\t\\item \\textbf{Diagnostic granularity at equivalent accuracy.} Per-test classification achieves statistically equivalent variant-level accuracy to trajectory-level scoring (TOST equivalence test $p = 0.007$, $\\pm$2\\pp{} margin) while providing per-test diagnostic signals---which specific tests fail---at no accuracy cost. This enables downstream applications such as targeted re-repair that trajectory-level verifiers cannot support.\n20\t\n21\t\\item \\textbf{Accuracy-utility frontier characterization.} Oracle analysis on SWE-bench Verified~\\cite{chowdhury2024swebenchverified} shows that the per-test advantage concentrates in instances with $T \\geq 2$ FAIL\\_TO\\_PASS tests (31\\% of instances, contributing 55\\% of total advantage), while instances with $T = 1$ (69\\%) gain nothing from per-test granularity. This provides a practical decision framework for when per-test verification is worth deploying.\n22\t\\end{itemize}\n23\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "282347d2-433d-4d11-bc1b-9bba1e6b4565",
+            "isSidechain": true,
+            "promptId": "13d3bb55-3cf2-4484-aeb1-6512da3f0d5e",
+            "agentId": "a65113171fb4b4382",
+            "type": "user",
+            "uuid": "4cdf8cdf-cbab-41e4-bd83-ef375915f12b",
+            "sourceToolAssistantUUID": "282347d2-433d-4d11-bc1b-9bba1e6b4565",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T15:52:03.641Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P2drgihxtqryXLk9ytnPUK",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4cdf8cdf-cbab-41e4-bd83-ef375915f12b",
+            "isSidechain": true,
+            "agentId": "a65113171fb4b4382",
+            "requestId": "req_011Cb6WrDJB8f3HtPojny5RT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "850f9443-750a-411b-bb73-3f7a39c9dee5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014K2bDDcgopKHgoMiQUhqqX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 7061,
+                "cache_read_input_tokens": 8972,
+                "output_tokens": 239,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7061
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 239,
+                    "cache_read_input_tokens": 8972,
+                    "cache_creation_input_tokens": 7061,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7061,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T15:52:03.648Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P2drgihxtqryXLk9ytnPUK",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate \\cls{}, \\cwm{}, and trajectory-level scoring (TRAJ) across model sizes and complexity levels.\n5\t\n6\t\\subsection{Experimental Setup}\n7\t\\label{sec:setup}\n8\t\n9\t\\paragraph{Datasets.}\n10\t\\emph{Function-level}: mutated variants from HumanEval~\\cite{chen2021humaneval} and MBPP~\\cite{austin2021mbpp} (five mutation types), labels verified by execution. 19,076 samples (train 15,290 / val 1,896 / test 1,890; pass:fail $\\approx$ 52:48, majority baseline 51.75\\%).\n11\t\\emph{Repo-level}: per-test instances from SWE-bench Verified~\\cite{chowdhury2024swebenchverified} mutants. ${\\sim}$70K training samples; val ($n{=}9{,}335$) and test ($n{=}9{,}784$) have zero problem overlap (majority baseline 72.96\\%). Val-based checkpoint selection follows standard practice~\\cite{jimenez2024swebench}.\n12\t\n13\t\\paragraph{Models and training.}\n14\tWe fine-tune Qwen3-4B and Qwen3-8B~\\cite{qwen2025qwen3} with LoRA~\\cite{hu2022lora} (rank 16, 3 epochs) across five seeds. Seeds 42/123/456 use bfloat16; seeds 789/0 use NF4 quantization~\\cite{dettmers2024qlora}. For cross-model validation, we additionally fine-tune DeepSeek-Coder-6.7B~\\cite{guo2024deepseekcoder} with identical LoRA configuration (1 seed \\cls{}, 2 seeds \\cwm{}). Our \\cwm{} baseline is a LoRA fine-tuned variant for controlled comparison, not a reproduction of the 32B Code World Model~\\cite{meta2025cwm}. Repo-level models use val-selected checkpoints. Zero-shot baselines use Qwen3-8B and Qwen3-32B (NF4) as LLM-as-judge.\n15\t\n16\t\\paragraph{Statistics.}\n17\tConfidence intervals use clustered bootstrap~\\cite{davison1997bootstrap} (114 problem clusters, 10K resamples); per-test vs.\\ trajectory-level comparison uses TOST~\\cite{schuirmann1987tost} ($\\pm$2\\pp{} margin). ICC~\\cite{shrout1979icc} quantifies within-problem correlation. Oracle analysis uses SWE-bench Verified (500 instances).\n18\t\n19\t\n20\t\\subsection{Function-Level Results}\n21\t\\label{sec:func_results}\n22\t\n23\tTable~\\ref{tab:main_results} reports function-level results across formulations.\n24\t\n25\t\\begin{table}[t]\n26\t\\centering\n27\t\\small\n28\t\\caption{Function-level per-test verification results on HumanEval+MBPP test set (1,890 samples). \\cls{}: per-test binary classification; \\cwm{}: execution output generation; TRAJ: trajectory-level scoring; ZS: zero-shot LLM-as-judge. Mean $\\pm$ std over seeds reported where applicable.}\n29\t\\label{tab:main_results}\n30\t\\resizebox{\\columnwidth}{!}{%\n31\t\\setlength{\\tabcolsep}{4pt}\n32\t\\begin{tabular}{llcc}\n33\t\\toprule\n34\t\\textbf{Method} & \\textbf{Model} & \\textbf{Seeds} & \\textbf{Accuracy (\\%)} \\\\\n35\t\\midrule\n36\t\\multicolumn{4}{l}{\\emph{Qwen3 (primary)}} \\\\\n37\t\\cls{} (fine-tuned) & 4B & 5 & \\textbf{88.43 $\\pm$ 0.78} \\\\\n38\t\\cwm{} (fine-tuned) & 4B & 5 & 87.19 $\\pm$ 0.37 \\\\\n39\tTRAJ (fine-tuned) & 4B & 5 & 86.30 $\\pm$ 0.97 \\\\\n40\t\\midrule\n41\t\\multicolumn{4}{l}{\\emph{DeepSeek-Coder (cross-model validation)}} \\\\\n42\t\\cls{} (fine-tuned) & 6.7B & 2 & 86.85 $\\pm$ 0.11 \\\\\n43\t\\cwm{} (fine-tuned) & 6.7B & 2 & 86.83 $\\pm$ 1.49 \\\\\n44\t\\midrule\n45\t\\multicolumn{4}{l}{\\emph{Zero-shot baselines}} \\\\\n46\tZS LLM-as-judge & 8B & 1 & 64.40 \\\\\n47\tZS LLM-as-judge & 32B (NF4) & 1 & 71.69 \\\\\n48\t\\bottomrule\n49\t\\end{tabular}}\n50\t\\end{table}\n51\t\n52\tFine-tuned \\cls{} achieves 88.43\\% ($\\pm$0.78), compared to 87.19\\% ($\\pm$0.37) for \\cwm{} and 86.30\\% ($\\pm$0.97) for TRAJ. The \\cls{}--\\cwm{} gap is 1.24\\pp{}, modest at this complexity level where generation is not yet bottlenecked by token budget or string complexity. Zero-shot baselines lag substantially (64.40\\% at 8B, 71.69\\% at 32B NF4), confirming that task-specific fine-tuning is necessary for reliable verification.\n53\t\n54\t\\paragraph{Cross-model validation.} DeepSeek-Coder-6.7B~\\cite{guo2024deepseekcoder} confirms that the near-equivalence of \\cls{} and \\cwm{} at function level is not model-specific: \\cls{} achieves 86.85\\% ($\\pm$0.11, 2 seeds) vs.\\ \\cwm{} 86.83\\% ($\\pm$1.49, 2 seeds), a gap of +0.02\\pp{}---indistinguishable from zero. The variance asymmetry (\\cwm{} $\\sigma{=}1.49$ vs.\\ \\cls{} $\\sigma{=}0.11$) mirrors the pattern observed in Qwen3 (\\S\\ref{sec:analysis}, paragraph d): \\cwm{}'s higher seed variance at function level is consistent with generation being more sensitive to initialization than classification. Both model families show gaps within noise at function level (Qwen3: 1.24\\pp{}, DeepSeek: 0.02\\pp{}), consistent with the thesis that the \\cls{} advantage is complexity-dependent rather than model-specific. \\cwm{} produces 0\\% unparseable outputs at function level for both architectures, confirming that format compliance collapse is specific to repository-level complexity. Repo-level cross-model validation is in progress.\n55\t\n56\t\n57\t\\subsection{Scaling Behavior}\n58\t\\label{sec:scaling}\n59\t\n60\tTable~\\ref{tab:scaling} compares \\cls{} and \\cwm{} at two model sizes using three matched seeds (42, 123, 456), all trained in full bfloat16 precision to ensure a controlled comparison.\n61\t\n62\t\\begin{table}[t]\n63\t\\centering\n64\t\\small\n65\t\\caption{Model-size scaling: \\cls{} vs.\\ \\cwm{} accuracy (\\%) at 4B and 8B. Three matched seeds in full precision. The \\cls{}--\\cwm{} gap widens from 1.18\\pp{} to 2.43\\pp{}.}\n66\t\\label{tab:scaling}\n67\t\\setlength{\\tabcolsep}{4pt}\n68\t\\begin{tabular}{llccccc}\n69\t\\toprule\n70\t\\textbf{Method} & \\textbf{Size} & \\textbf{s42} & \\textbf{s123} & \\textbf{s456} & \\textbf{Mean} & \\textbf{Gap} \\\\\n71\t\\midrule\n72\t\\cls{} & 4B & 87.83 & 89.52 & 87.88 & 88.41 & \\multirow{2}{*}{1.18} \\\\\n73\t\\cwm{} & 4B & 87.51 & 87.20 & 86.98 & 87.23 & \\\\\n74\t\\midrule\n75\t\\cls{} & 8B & \\textbf{90.48} & 89.40 & 88.31 & \\textbf{89.40} & \\multirow{2}{*}{\\textbf{2.43}} \\\\\n76\t\\cwm{} & 8B & 87.67 & 86.98 & 86.24 & 86.96 & \\\\\n77\t\\bottomrule\n78\t\\end{tabular}\n79\t\\end{table}\n80\t\n81\tAt 4B, \\cls{} and \\cwm{} are separated by 1.18\\pp{} on the matched three-seed subset. At 8B, the gap more than doubles to 2.43\\pp{} (Figure~\\ref{fig:scaling_gap}). Clustered bootstrap analysis yields a mean gap of 2.26\\pp{} ($p = 0.0066$, 95\\% CI $[1.80, 2.71]$), confirming the widening is not a sampling artifact.\n82\t\n83\tThe asymmetry in scaling efficiency is striking: from 4B to 8B, \\cls{} gains +0.99\\pp{} (88.41 $\\to$ 89.40) while \\cwm{} loses $-$0.27\\pp{} (87.23 $\\to$ 86.96). The additional model capacity benefits classification---where the model needs only to discriminate pass from fail---but provides no measurable improvement for generation, where the model must additionally produce exact output strings. This pattern is consistent with the hypothesis that the string-prediction bottleneck, not model capacity, bounds \\cwm{} accuracy. However, the \\cwm{} regression ($-$0.27\\pp{}) falls within seed noise (3-seed std ${\\sim}$0.5\\pp{}) and could reflect suboptimal hyperparameter transfer rather than a fundamental bottleneck. Whether this divergence amplifies at repository-level complexity is examined in \\S\\ref{sec:repo}.\n84\t\n85\t\n86\t\\subsection{Per-Test vs.\\ Trajectory-Level Equivalence}\n87\t\\label{sec:equivalence}\n88\t\n89\tWe compare \\cls{} (aggregated via all-pass rule) against TRAJ on 523 variant-level instances across five seeds. The pooled gap is $-$0.45\\pp{} (95\\% CI [$-$1.71, +0.84]); the TOST equivalence test confirms statistical equivalence at $p = 0.007$ ($\\pm$2\\pp{} margin). Within-problem predictions are correlated (ICC $= 0.191$, $p < 0.0001$, DEFF $= 3.97$); all statistical tests use clustered bootstrap accordingly. Per-test classification thus provides diagnostic information---which specific tests fail---at no cost to variant-level accuracy.\n90\t\n91\t\n92\t\\subsection{Accuracy-Utility Frontier}\n93\t\\label{sec:oracle-results}\n94\t\n95\tOracle analysis on SWE-bench Verified (500 instances) reveals that per-test advantage concentrates sharply: at $T = 1$ F2P tests (68.7\\% of instances), per-test and trajectory-level are informationally equivalent. The advantage materializes at $T \\geq 2$ (31.3\\%), with $T = 2$ alone contributing 55.3\\% of the total 10.93\\pp{} block-correlated advantage. Pass-to-pass (P2P) regression is negligible (1.04\\% mean, 0\\% median), so the practical value concentrates in fail-to-pass discrimination. Full stratification and the i.i.d.\\ vs.\\ block-correlated comparison appear in Appendix~\\ref{app:oracle}.\n96\t\n97\t\n98\t\\subsection{Repo-Level Results}\n99\t\\label{sec:repo}\n100\t\n101\tTable~\\ref{tab:repo_level} compares \\cls{} and \\cwm{} on SWE-bench Verified per-test classification at repository-level complexity. All checkpoints are selected by validation accuracy; the test set ($n{=}9{,}784$) has zero problem overlap with validation. We report both overall accuracy (where unparseable outputs default to the majority class, pass) and parseable-only accuracy to disentangle generation quality from default assignment effects.\n102\t\n103\t\\begin{table}[t]\n104\t\\centering\n105\t\\small\n106\t\\caption{Repo-level per-test verification on SWE-bench Verified test set ($n{=}9{,}784$, val-selected checkpoints). Parse Acc: accuracy computed only on parseable outputs. Unparseable \\cwm{} outputs default to pass (majority class, 72.96\\%).}\n107\t\\label{tab:repo_level}\n108\t\\resizebox{\\columnwidth}{!}{%\n109\t\\setlength{\\tabcolsep}{3pt}\n110\t\\begin{tabular}{llcccccc}\n111\t\\toprule\n112\t\\textbf{Method} & \\textbf{Size} & \\textbf{Seed} & \\textbf{Acc (\\%)} & \\textbf{Macro \\fone{}} & \\textbf{Unparse (\\%)} & \\textbf{Parse Acc (\\%)} & \\textbf{vs Maj.\\ (\\pp{})} \\\\\n113\t\\midrule\n114\t\\cls{} & 4B & 42 & \\textbf{83.63} & 75.63 & 0.0 & --- & +10.67 \\\\\n115\t\\cwm{} & 4B & 42 & 58.04 & 51.67 & 53.7 & 42.88 & $-$14.92 \\\\\n116\t\\cwm{} & 4B & 123 & 59.09 & 43.43 & 67.2 & 42.68 & $-$13.87 \\\\\n117\t\\midrule\n118\t\\cls{} & 8B & 42 & 84.48 & 78.17 & 0.0 & --- & +11.52 \\\\\n119\t\\cls{} & 8B & 123 & 85.60 & 78.38 & 0.0 & --- & +12.64 \\\\\n120\t\\cwm{} & 8B & 42 & 65.17 & --- & 73.8 & 38.52 & $-$7.79 \\\\\n121\t\\midrule\n122\t\\multicolumn{8}{l}{\\emph{DeepSeek-Coder (cross-model, in progress)}} \\\\\n123\t\\cls{} & 6.7B & --- & --- & --- & --- & --- & --- \\\\\n124\t\\cwm{} & 6.7B & --- & --- & --- & --- & --- & --- \\\\\n125\t\\midrule\n126\tMajority & --- & --- & 72.96 & --- & --- & --- & --- \\\\\n127\t\\bottomrule\n128\t\\end{tabular}}\n129\t\\end{table}\n130\t\n131\t\\paragraph{Same-size gap magnitude.} The \\cls{}--\\cwm{} gap at 4B is 25.59\\pp{} (\\cls{} 83.63\\% vs.\\ \\cwm{} 58.04\\%, seed 42; Figure~\\ref{fig:scaling_gap}); at 8B it is 19.31\\pp{} (84.48\\% vs.\\ 65.17\\%). Both gaps far exceed the function-level gap (1--2\\pp{}, Table~\\ref{tab:scaling}), confirming that the classification advantage is complexity-dependent. \\cwm{} falls below the majority baseline at both scales ($-$14.92\\pp{} at 4B, $-$7.79\\pp{} at 8B), indicating negative utility.\n132\t\n133\t\\paragraph{Overall accuracy is misleading.} The apparent \\cwm{} ``improvement'' from 4B (58.04\\%) to 8B (65.17\\%) is an artifact of the default assignment protocol: unparseable outputs receive the majority-class label (pass, 72.96\\% of the test set). As unparseable rate \\emph{increases} from 53.7\\% to 73.8\\%, more predictions are replaced by this high-accuracy default, inflating overall accuracy. The parseable-only accuracy---which isolates actual generation quality---\\emph{decreases} from 42.88\\% (4B) to 38.52\\% (8B), confirming that CWM generation degrades with scale at repository-level complexity.\n134\t\n135\t\\paragraph{Generation quality degrades uniformly.} Per-mutation analysis of \\cwm{} 8B reveals degradation across all categories relative to 4B. The gold mutation (unmodified code) is most striking: parse rate collapses from 43.5\\% (4B) to 23.9\\% (8B), with parseable accuracy at 16.5\\%---far below the trivially-correct ``pass'' prediction. This indicates that even the simplest generation target (reproducing expected outputs for correct code) becomes harder at scale, consistent with a fundamental generation bottleneck rather than insufficient capacity. Detailed per-mutation breakdown appears in Appendix~\\ref{app:repo_mutation}.\n136\t\n137\t\\paragraph{Scaling evidence.} The correct scaling signal comes from function-level results (\\S\\ref{sec:scaling}), where the \\cls{}--\\cwm{} gap widens from 1.18\\pp{} (4B) to 2.43\\pp{} (8B, $p = 0.0066$) with controlled methodology (matched seeds, same precision, no default assignment). At repo-level, the primary claim is that absolute gap magnitude (19--26\\pp{}) is an order of magnitude larger than at function level (1--2\\pp{}), demonstrating complexity-dependent advantage.\n138\t\n139\t\\paragraph{Sequence length.} A matched-context ablation confirms input context disparity explains $<$3\\% of the \\cls{}--\\cwm{} gap: \\cls{} 8B evaluated at \\texttt{max\\_seq\\_length}$=$2,048 yields a matched-context gap of 25.00\\pp{}, representing 98\\% of the same-size 25.59\\pp{} gap (Appendix~\\ref{app:ablations}).\n140\t\n141\t\\paragraph{Limitations.} The same-size 4B comparison uses a single seed; \\cls{} 4B seed 123 (val-best ckpt-800) achieves only 75.33\\% test accuracy (+2.4\\pp{} above majority baseline), indicating that val-best selection at an early checkpoint (step 800) amplifies the val-test distribution shift observed across all configurations. The \\cwm{} 8B comparison is also single-seed. The validation and test sets have zero problem overlap but differ in mutation type composition, introducing potential distribution shift. All repo-level results use val-selected checkpoints, and checkpoint selection variance could contribute to observed differences. Our training data is synthetically constructed from mutation operators rather than real developer patches; the synthetic-to-real transfer gap remains untested.\n142\t\n143\t\n144\t\\subsection{Analysis}\n145\t\\label{sec:analysis}\n146\t\n147\t\\paragraph{(a) Error complementarity.}\n148\t\\cls{} and \\cwm{} make errors in opposite directions at function level. Among \\cls{} errors (seed 42), 75.5\\% are false negatives (FAIL $\\to$ PASS), meaning the classifier tends to over-predict passing. Among \\cwm{} errors, 83.1\\% are false positives (PASS $\\to$ FAIL), reflecting string-matching failures that incorrectly reject correct outputs. An oracle combination that takes the correct answer whenever either model is right achieves 90.63\\% accuracy, a 3.12\\pp{} improvement over \\cls{} alone (87.51\\%). This complementarity suggests that ensemble approaches combining classification and generation signals could yield further gains.\n149\t\n150\t\\paragraph{(b) CWM error mode breakdown.}\n151\tAmong unparseable \\cwm{} outputs, 76.9\\% contain no execution keywords; 22.9\\% contain ambiguous co-occurring pass/fail keywords. Format compliance varies sharply across repositories (scikit-learn: near-zero unparseable; sphinx: 100\\%), suggesting domain-specific code contexts prevent structured generation.\n152\t\n153\t\\paragraph{(c) Relaxed matching does not rescue \\cwm{}.}\n154\tRelaxed matching (tolerating format deviations, L0--L4) \\emph{decreases} \\cwm{} accuracy: 58.04\\%$\\to$56.98\\% (seed 42) and 59.09\\%$\\to$55.91\\% (seed 123). Unparseable predictions default to the majority class (pass, 72.96\\%), which outperforms the model's own parseable predictions (42--53\\%). The \\cls{}--\\cwm{} gap widens from 26\\pp{} to 28\\pp{}, ruling out the hypothesis that parsing strictness inflates the observed gap.\n155\t\n156\t\\paragraph{(d) Variance compression.}\n157\t\\cwm{}'s 5-seed standard deviation (0.37\\pp{}) is lower than \\cls{} (0.78\\pp{}) and TRAJ (0.97\\pp{}) at function level. This is consistent with the bottleneck hypothesis: if \\cwm{} performance is capped by output-format constraints, seed-to-seed variability is compressed relative to formulations whose performance depends more on learned representations.\n158\t\n159\t\\paragraph{(e) Per-test precision and recall.}\n160\t\\cls{} achieves fail \\fone{} 87.86\\% (precision 82.75\\%, recall 93.64\\%) at seed 42, with 42.1\\% of problems perfectly predicted. Multi-F2P instances (6--10 tests) reach 96.3\\% accuracy, corroborating the oracle finding.\n161\t\n162\t\\paragraph{(f) Block correlation.}\n163\tWithin-problem errors are correlated (ICC $= 0.191$, DEFF $= 3.97$, 2.81$\\times$ more all-correct problems than i.i.d.\\ expectation). All tests use clustered bootstrap accordingly.\n164\t\n165\t\\paragraph{(g) LoRA rank and majority voting.}\n166\tDoubling adapter capacity (rank 32) does not improve \\cwm{} accuracy ($-$0.51\\pp{}, within seed variance); majority voting ($K{=}3$) decreases accuracy ($-$0.68\\pp{}). Both confirm the bottleneck is formulation-level, not capacity-level (Appendix~\\ref{app:ablations}).\n167\t\n168\t\\paragraph{(h) Per-mutation scaling patterns.}\n169\tScaling benefits are highly non-uniform across mutation types (Appendix, Table~\\ref{tab:mutation_breakdown}). \\texttt{off\\_by\\_one} is the largest \\cls{} scaling beneficiary: accuracy jumps from 58.5\\% (4B) to 83.0\\% (8B mean, $+$24.6\\pp{}). In contrast, \\texttt{boundary\\_removal} is scale-invariant at ${\\sim}$46\\% across all seeds and sizes, identifying a difficulty ceiling independent of capacity. For \\cwm{}, gold mutation parse rate collapses from 43.5\\% (4B) to 23.9\\% (8B) despite being the simplest target---all tests pass by construction---indicating that generation capability degrades even for trivially correct code at larger scale.\n170\t\n171\t\\paragraph{(i) Inference efficiency.}\n172\t\\cls{} achieves 217$\\times$ higher throughput than \\cwm{} at repo level (853 vs.\\ 3.9 inferences/min; Qwen3-4B, RTX 5090, 100 samples, avg ${\\sim}$1,040 input tokens). The speedup derives directly from the formulation: classification requires a single output token, whereas \\cwm{} generates an average of 477 tokens per inference. Median latency is 48ms (\\cls{}) vs.\\ 16.3s (\\cwm{}). Moreover, 73.8\\% of \\cwm{}'s generated output at 8B is unparseable (\\S\\ref{sec:repo}), meaning the majority of generation budget is spent producing tokens that cannot yield a valid verdict. Combined with higher accuracy (83.63\\% vs.\\ 58.04\\%) and perfect format compliance (0\\% vs.\\ 53.7\\% unparseable at 4B), classification provides a triple advantage at repository-level complexity: accuracy, reliability, and throughput."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "850f9443-750a-411b-bb73-3f7a39c9dee5",
+            "isSidechain": true,
+            "promptId": "13d3bb55-3cf2-4484-aeb1-6512da3f0d5e",
+            "agentId": "a65113171fb4b4382",
+            "type": "user",
+            "uuid": "dbb0187e-d880-4628-b075-2682499ac50e",
+            "sourceToolAssistantUUID": "850f9443-750a-411b-bb73-3f7a39c9dee5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T15:52:08.536Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C8KVMHdTq4TAB9PBJve1YT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dbb0187e-d880-4628-b075-2682499ac50e",
+            "isSidechain": true,
+            "agentId": "a65113171fb4b4382",
+            "requestId": "req_011Cb6Wrc787zCvwwpUF8AMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "91bca105-9dc8-4bc4-8bd7-ba050b7974f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EYXbTZMjWdCTrUyn5A2SVs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10341,
+                "cache_read_input_tokens": 16033,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10341,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T15:52:08.549Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C8KVMHdTq4TAB9PBJve1YT",
+              "type": "tool_result",
+              "content": "1\t% === Execution Simulation ===\n2\t\n3\t@article{maimon2026selfexecution,\n4\t  title={Self-Execution Simulation Improves Coding Models},\n5\t  author={Maimon, Gallil and Yoran, Ori and Kreuk, Felix and Hassid, Michael and Cohen, Gal and Chambon, Pierre and Adi, Yossi},\n6\t  journal={arXiv preprint arXiv:2604.03253},\n7\t  year={2026}\n8\t}\n9\t\n10\t@article{meta2025cwm,\n11\t  title={{CWM}: An Open-Weights {LLM} for Research on Code Generation with World Models},\n12\t  author={{FAIR CodeGen team} and Copet, Jade and Carbonneaux, Quentin and Cohen, Gal and Gehring, Jonas and Kahn, Jacob and Kossen, Jannik and Kreuk, Felix and McMilin, Emily and Meyer, Michel and Wei, Yuxiang and Zhang, David and Zheng, Kunhao and others},\n13\t  journal={arXiv preprint arXiv:2510.02387},\n14\t  year={2025}\n15\t}\n16\t\n17\t@article{liu2024codemind,\n18\t  title={{CodeMind}: A Framework to Challenge Large Language Models for Code Reasoning},\n19\t  author={Liu, Changshu and Zhang, Shizhuo Dylan and Ibrahimzada, Ali Reza and Jabbarvand, Reyhaneh},\n20\t  journal={arXiv preprint arXiv:2402.09664},\n21\t  year={2024}\n22\t}\n23\t\n24\t@article{abdollahi2025demystifying,\n25\t  title={Demystifying Errors in {LLM} Reasoning Traces: An Empirical Study of Code Execution Simulation},\n26\t  author={Abdollahi, Mohammad and Tasnia, Khandaker Rifah and Saha, Soumit Kanti and Yang, Jinqiu and Wang, Song and Hemmati, Hadi},\n27\t  journal={arXiv preprint arXiv:2512.00215},\n28\t  year={2025}\n29\t}\n30\t\n31\t@article{lee2026solidcoder,\n32\t  title={{SolidCoder}: Bridging the Mental-Reality Gap in {LLM} Code Generation through Concrete Execution},\n33\t  author={Lee, Woojin and Huang, Jin-Xia},\n34\t  journal={arXiv preprint arXiv:2604.19825},\n35\t  year={2026}\n36\t}\n37\t\n38\t% === LLM Verification for Code ===\n39\t\n40\t@article{shum2025swerm,\n41\t  title={{SWE-RM}: Execution-free Feedback for Software Engineering Agents},\n42\t  author={Shum, KaShun and Hui, Binyuan and Chen, Jiawei and Zhang, Lei and Yang, Jiaxi and Huang, Yuzhen and Lin, Junyang and He, Junxian},\n43\t  journal={arXiv preprint arXiv:2512.21919},\n44\t  year={2025}\n45\t}\n46\t\n47\t@article{xu2025patchreasoner,\n48\t  title={Scalable Supervising Software Agents with Patch Reasoner},\n49\t  author={Xu, Junjielong and Tan, Boyin and Liu, Xiaoyuan and Peng, Chao and Gao, Pengfei and He, Pinjia},\n50\t  journal={arXiv preprint arXiv:2510.22775},\n51\t  year={2025}\n52\t}\n53\t\n54\t@inproceedings{chen2025vgsearch,\n55\t  title={Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling},\n56\t  author={Chen, Hao Mark and Lu, Guanxi and Okoshi, Yasuyuki and Mo, Zhiwen and Motomura, Masato and Fan, Hongxiang},\n57\t  booktitle={NeurIPS},\n58\t  year={2025}\n59\t}\n60\t\n61\t@inproceedings{snell2024scaling,\n62\t  title={Scaling {LLM} Test-Time Compute Optimally can be More Effective than Scaling Model Parameters},\n63\t  author={Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n64\t  booktitle={ICLR},\n65\t  year={2025},\n66\t  note={Oral}\n67\t}\n68\t\n69\t@inproceedings{li2025sstar,\n70\t  title={S*: Test Time Scaling for Code Generation},\n71\t  author={Li, Dacheng and Cao, Shiyi and Cao, Chengkun and Li, Xiuyu and Tan, Shangyin and Keutzer, Kurt and Xing, Jiarong and Gonzalez, Joseph E. and Stoica, Ion},\n72\t  booktitle={Findings of EMNLP},\n73\t  year={2025}\n74\t}\n75\t\n76\t% === APR and SWE-bench ===\n77\t\n78\t@inproceedings{jimenez2024swebench,\n79\t  title={{SWE-bench}: Can Language Models Resolve Real-world {GitHub} Issues?},\n80\t  author={Jimenez, Carlos E and Yang, John and Wettig, Alexander and Yao, Shunyu and Pei, Kexin and Press, Ofir and Narasimhan, Karthik},\n81\t  booktitle={ICLR},\n82\t  year={2024}\n83\t}\n84\t\n85\t@misc{chowdhury2024swebenchverified,\n86\t  title={Introducing {SWE-bench} Verified},\n87\t  author={Chowdhury, Neil and Aung, James and Shern, Chan Jun and Jaffe, Oliver and Sherburn, Dane and Starace, Giulio and Mays, Evan and Dias, Rachel and Aljubeh, Marwan and Glaese, Mia and Jimenez, Carlos E. and Yang, John and Ho, Leyton and Patwardhan, Tejal and Liu, Kevin and Madry, Aleksander},\n88\t  year={2024},\n89\t  url={https://openai.com/index/introducing-swe-bench-verified/}\n90\t}\n91\t\n92\t@inproceedings{yang2024sweagent,\n93\t  title={{SWE-agent}: Agent-Computer Interfaces Enable Automated Software Engineering},\n94\t  author={Yang, John and Jimenez, Carlos E and Wettig, Alexander and Lieret, Kilian and Yao, Shunyu and Narasimhan, Karthik and Press, Ofir},\n95\t  booktitle={NeurIPS},\n96\t  year={2024}\n97\t}\n98\t\n99\t@inproceedings{xia2024agentless,\n100\t  title={Agentless: Demystifying {LLM}-based Software Engineering Agents},\n101\t  author={Xia, Chunqiu Steven and Deng, Yinlin and Dunn, Soren and Zhang, Lingming},\n102\t  booktitle={FSE},\n103\t  year={2025},\n104\t  note={Distinguished Paper}\n105\t}\n106\t\n107\t@article{yang2025aprsurvey,\n108\t  title={A Survey of {LLM}-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications},\n109\t  author={Yang, Boyang and Cai, Zijian and Liu, Fengling and Le, Bach and Zhang, Lingming and Bissyand{\\'e}, Tegawend{\\'e} F. and Liu, Yang and Tian, Haoye},\n110\t  journal={arXiv preprint arXiv:2506.23749},\n111\t  year={2025}\n112\t}\n113\t\n114\t% === Code LLMs and Benchmarks ===\n115\t\n116\t@article{qwen2025qwen3,\n117\t  title={{Qwen3} Technical Report},\n118\t  author={Yang, An and Li, Anfeng and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and others},\n119\t  journal={arXiv preprint arXiv:2505.09388},\n120\t  year={2025}\n121\t}\n122\t\n123\t@article{chen2021humaneval,\n124\t  title={Evaluating Large Language Models Trained on Code},\n125\t  author={Chen, Mark and Tworek, Jerry and Jun, Heewoo and others},\n126\t  journal={arXiv preprint arXiv:2107.03374},\n127\t  year={2021}\n128\t}\n129\t\n130\t@article{austin2021mbpp,\n131\t  title={Program Synthesis with Large Language Models},\n132\t  author={Austin, Jacob and Odena, Augustus and Nye, Maxwell and others},\n133\t  journal={arXiv preprint arXiv:2108.07732},\n134\t  year={2021}\n135\t}\n136\t\n137\t@inproceedings{hu2022lora,\n138\t  title={{LoRA}: Low-Rank Adaptation of Large Language Models},\n139\t  author={Hu, Edward J and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n140\t  booktitle={ICLR},\n141\t  year={2022}\n142\t}\n143\t\n144\t@inproceedings{dettmers2024qlora,\n145\t  title={{QLoRA}: Efficient Finetuning of Quantized {LLMs}},\n146\t  author={Dettmers, Tim and Pagnoni, Artidoro and Holtzman, Ari and Zettlemoyer, Luke},\n147\t  booktitle={NeurIPS},\n148\t  year={2023}\n149\t}\n150\t\n151\t@article{guo2024deepseekcoder,\n152\t  title={{DeepSeek-Coder}: When the Large Language Model Meets Programming -- The Rise of Code Intelligence},\n153\t  author={Guo, Daya and Zhu, Qihao and Yang, Dejian and Xie, Zhenda and Dong, Kai and Zhang, Wentao and Chen, Guanting and Bi, Xiao and Wu, Y. and Li, Y.K. and Luo, Fuli and Xiong, Yun and Liang, Wenfeng},\n154\t  journal={arXiv preprint arXiv:2401.14196},\n155\t  year={2024}\n156\t}\n157\t\n158\t% === Code Verification ===\n159\t\n160\t@inproceedings{ni2023lever,\n161\t  title={{LEVER}: Learning to Verify Language-to-Code Generation with Execution},\n162\t  author={Ni, Ansong and Iyer, Srini and Radev, Dragomir and Stoyanov, Veselin and Yih, Wen-tau and Wang, Sida I. and Lin, Xi Victoria},\n163\t  booktitle={ICML},\n164\t  year={2023}\n165\t}\n166\t\n167\t@inproceedings{chen2023codet,\n168\t  title={{CodeT}: Code Generation with Generated Tests},\n169\t  author={Chen, Bei and Zhang, Fengji and Nguyen, Anh and Zan, Daoguang and Lin, Zeqi and Lou, Jian-Guang and Chen, Weizhu},\n170\t  booktitle={ICLR},\n171\t  year={2023}\n172\t}\n173\t\n174\t% === Task Reformulation NLP ===\n175\t\n176\t@inproceedings{rajpurkar2016squad,\n177\t  title={{SQuAD}: 100,000+ Questions for Machine Comprehension of Text},\n178\t  author={Rajpurkar, Pranav and Zhang, Jian and Lopyrev, Konstantin and Liang, Percy},\n179\t  booktitle={EMNLP},\n180\t  year={2016}\n181\t}\n182\t\n183\t@inproceedings{lewis2020bart,\n184\t  title={{BART}: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension},\n185\t  author={Lewis, Mike and Liu, Yinhan and Goyal, Naman and Ghazvininejad, Marjan and Mohamed, Abdelrahman and Levy, Omer and Stoyanov, Veselin and Zettlemoyer, Luke},\n186\t  booktitle={ACL},\n187\t  year={2020}\n188\t}\n189\t\n190\t@article{raffel2020t5,\n191\t  title={Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer},\n192\t  author={Raffel, Colin and Shazeer, Noam and Roberts, Adam and Lee, Katherine and Narang, Sharan and Matena, Michael and Zhou, Yanqi and Li, Wei and Liu, Peter J},\n193\t  journal={JMLR},\n194\t  volume={21},\n195\t  number={140},\n196\t  pages={1--67},\n197\t  year={2020}\n198\t}\n199\t\n200\t% === Statistical Methods ===\n201\t\n202\t@article{schuirmann1987tost,\n203\t  title={A Comparison of the Two One-Sided Tests Procedure and the Power Approach for Assessing the Equivalence of Average Bioavailability},\n204\t  author={Schuirmann, Donald J},\n205\t  journal={Journal of Pharmacokinetics and Biopharmaceutics},\n206\t  volume={15},\n207\t  number={6},\n208\t  pages={657--680},\n209\t  year={1987}\n210\t}\n211\t\n212\t@book{davison1997bootstrap,\n213\t  title={Bootstrap Methods and their Application},\n214\t  author={Davison, Anthony C and Hinkley, David V},\n215\t  publisher={Cambridge University Press},\n216\t  year={1997}\n217\t}\n218\t\n219\t@article{shrout1979icc,\n220\t  title={Intraclass Correlations: Uses in Assessing Rater Reliability},\n221\t  author={Shrout, Patrick E and Fleiss, Joseph L},\n222\t  journal={Psychological Bulletin},\n223\t  volume={86},\n224\t  number={2},\n225\t  pages={420--428},\n226\t  year={1979},\n227\t  doi={10.1037/0033-2909.86.2.420}\n228\t}\n229\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "91bca105-9dc8-4bc4-8bd7-ba050b7974f8",
+            "isSidechain": true,
+            "promptId": "13d3bb55-3cf2-4484-aeb1-6512da3f0d5e",
+            "agentId": "a65113171fb4b4382",
+            "type": "user",
+            "uuid": "568e6e1d-0bd3-4fda-bef2-e6d5450f75ca",
+            "sourceToolAssistantUUID": "91bca105-9dc8-4bc4-8bd7-ba050b7974f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T15:52:08.888Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SVFKvkcxhAn26Su3iNqsn7",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "568e6e1d-0bd3-4fda-bef2-e6d5450f75ca",
+            "isSidechain": true,
+            "agentId": "a65113171fb4b4382",
+            "requestId": "req_011Cb6Wrc787zCvwwpUF8AMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ae7d6d7b-258e-4b60-9544-2df0223239e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EYXbTZMjWdCTrUyn5A2SVs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10341,
+                "cache_read_input_tokens": 16033,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10341,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T15:52:08.895Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SVFKvkcxhAn26Su3iNqsn7",
+              "type": "tool_result",
+              "content": "1\t% Method section — EMNLP 2026 ARR submission\n2\t% Classification Succeeds Where Generation Stalls:\n3\t% Reformulating Execution Simulation for Code Repair Verification\n4\t\n5\t\\section{Method}\n6\t\\label{sec:method}\n7\t\n8\tLet $p$ denote a candidate patch and $T = \\{t_1, \\ldots, t_n\\}$ its test suite, where each $t_i$ has label $y_i \\in \\{\\text{\\textsc{Pass}}, \\text{\\textsc{Fail}}\\}$ from execution. Tests decompose into \\emph{fail-to-pass} ($T_{\\text{f2p}}$) and \\emph{pass-to-pass} ($T_{\\text{p2p}}$) subsets; a patch is correct iff $\\forall\\, t_i{:}\\ y_i = \\text{\\textsc{Pass}}$. We compare three formulations for predicting correctness without execution.\n9\t\n10\t\\subsection{Verification Formulations}\n11\t\\label{sec:formulations}\n12\t\n13\tLet $c_p$ denote the code context (unified diff) of patch $p$.\n14\t\n15\t\\paragraph{\\cls{} (per-test classification).} $f(c_p, t_i) \\rightarrow \\hat{y}_i \\in \\{\\text{\\textsc{Pass}}, \\text{\\textsc{Fail}}\\}$ predicts a single binary token per test (cross-entropy loss). Patch verdict: $\\hat{y}_p = \\bigwedge_{i} [\\hat{y}_i = \\text{\\textsc{Pass}}]$. Cost: one token per test.\n16\t\n17\t\\paragraph{\\cwm{} (output generation).} $g(c_p, t_i) \\rightarrow \\hat{o}_i \\in \\Sigma^*$ generates the execution output string (language modeling loss). Verdict by exact match: $\\hat{y}_i = \\text{\\textsc{Pass}}$ iff $\\hat{o}_i = o_i^*$.\\footnote{Exact string matching is conservative, consistent with \\citet{meta2025cwm}. Semantic equivalences are not counted.} When the generated output is unparseable (i.e., does not conform to the expected structured format), the prediction defaults to the majority class verdict. Cost: $\\sum_i |\\hat{o}_i|$ tokens.\n18\t\n19\t\\paragraph{\\traj{} (trajectory-level).} $h(c_p, T) \\rightarrow \\hat{y}_p \\in \\{\\text{\\textsc{Resolved}}, \\text{\\textsc{Unresolved}}\\}$ predicts a single patch verdict from all tests, providing no per-test signal. \\traj{} serves as a granularity control: \\cls{}--\\traj{} differences reflect per-test decomposition value.\n20\t\n21\t\\subsection{\\cwm{} Failure Modes}\n22\t\\label{sec:failure-modes}\n23\t\n24\tThe generation formulation introduces three systematic failure modes absent in classification: (1)~\\emph{token-budget exhaustion}---when $|o_i^*| > B$, truncation guarantees exact-match failure; (2)~\\emph{string-value prediction errors}---semantically equivalent outputs differing in surface form (floating-point precision, dictionary ordering) produce false negatives; even under optimistic independence assumptions, a sequence of $L$ tokens each with accuracy $q$ yields correct-sequence probability $q^L$, making long outputs exponentially harder; (3)~\\emph{format compliance collapse}---at repository-level complexity, the model fails to produce structured predictions entirely, even when the generation budget is sufficient. We hypothesize that the increased input complexity and multi-file context at repository level overwhelm the model's ability to maintain format adherence across the generation; per-repository unparseable rates support this (\\S\\ref{sec:analysis}). We adopt exact string matching following the original \\cwm{} evaluation protocol \\citep{meta2025cwm}. This is conservative but does not disadvantage \\cwm{}: the dominant failure at repository scale is format non-compliance, where outputs are structurally unparseable regardless of matching strategy. Unparseable \\cwm{} predictions---those that cannot be parsed into a structured verdict---default to the majority-class label (\\textsc{Pass}), equivalent to the majority baseline prediction. This favors \\cwm{} by assigning the statistically most likely label rather than penalizing format failures.\n25\t\n26\t\\cls{} bypasses all three by construction: its single-token output cannot be truncated, requires no string matching, and is always parseable. Classification reduces the output space from $\\Sigma^*$ to $\\{\\text{\\textsc{Pass}}, \\text{\\textsc{Fail}}\\}$---strictly lower output complexity, though the underlying reasoning need not be simpler. We hypothesize a \\emph{complexity-dependent advantage}: both formulations perform comparably on simple code, but \\cls{} gains as output complexity triggers \\cwm{} failure modes.\n27\t\n28\t\\subsection{Oracle Accuracy-Utility Framework}\n29\t\\label{sec:oracle}\n30\t\n31\tPer-test granularity is valuable only when per-test predictions are sufficiently accurate and multiple tests provide partially independent signals. Consider a buggy patch with $k = |T_{\\text{f2p}}|$ fail-to-pass tests. A per-test verifier with recall $r$ detects the bug if it identifies at least one failing test:\n32\t%\n33\t\\begin{equation}\n34\t  P_{\\text{detect}}(k) = 1 - (1 - r)^{k_{\\text{eff}}}\n35\t  \\label{eq:pdetect}\n36\t\\end{equation}\n37\t%\n38\twhere $k_{\\text{eff}}$ is the effective number of independent tests. Let $a_h$ denote the trajectory-level detection accuracy; it is independent of $k$.\n39\t\n40\t\\paragraph{Block-correlation model.} Per-test predictions within the same patch are correlated. We model this via the intraclass correlation coefficient $\\rho$ \\citep[ICC;][]{shrout1979icc}:\n41\t%\n42\t\\begin{equation}\n43\t  k_{\\text{eff}} = \\frac{k}{1 + (k - 1)\\rho}\n44\t  \\label{eq:keff}\n45\t\\end{equation}\n46\t%\n47\tWhen $\\rho = 0$, $k_{\\text{eff}} = k$ (full independence); when $\\rho = 1$, $k_{\\text{eff}} = 1$ (per-test collapses to trajectory-level). The per-test advantage relative to a trajectory-level baseline is $\\Delta(k) = P_{\\text{detect}}(k) - a_h$, and the expected population advantage is:\n48\t%\n49\t\\begin{equation}\n50\t  \\mathbb{E}[\\Delta] = \\sum_{k=1}^{K} P(|T_{\\text{f2p}}| = k) \\cdot \\Delta(k)\n51\t  \\label{eq:expected-advantage}\n52\t\\end{equation}\n53\t\n54\t\\paragraph{Testable predictions.} This yields three predictions validated in \\S\\ref{sec:experiments}: (1)~at $k = 1$, $\\Delta \\approx 0$; (2)~$\\Delta(k)$ increases with $k$, dampened by $\\rho > 0$; (3)~$\\mathbb{E}[\\Delta]$ concentrates in multi-F2P-test instances.\n55\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae7d6d7b-258e-4b60-9544-2df0223239e9",
+            "isSidechain": true,
+            "promptId": "13d3bb55-3cf2-4484-aeb1-6512da3f0d5e",
+            "agentId": "a65113171fb4b4382",
+            "type": "user",
+            "uuid": "60b13bb9-65b3-47de-a9c8-a1ece4414089",
+            "sourceToolAssistantUUID": "ae7d6d7b-258e-4b60-9544-2df0223239e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T15:52:09.213Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SoyVUgCFT1p5A2sFApCLhs",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "60b13bb9-65b3-47de-a9c8-a1ece4414089",
+            "isSidechain": true,
+            "agentId": "a65113171fb4b4382",
+            "requestId": "req_011Cb6Wrc787zCvwwpUF8AMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8c2e199d-af39-4e88-aa88-07205e3a2033",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EYXbTZMjWdCTrUyn5A2SVs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10341,
+                "cache_read_input_tokens": 16033,
+                "output_tokens": 237,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10341
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 237,
+                    "cache_read_input_tokens": 16033,
+                    "cache_creation_input_tokens": 10341,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10341,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T15:52:09.218Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SoyVUgCFT1p5A2sFApCLhs",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe reformulated execution simulation for code repair verification from open-ended output generation to per-test binary classification. Our central finding is that the advantage of this reformulation is complexity-dependent: on function-level code with short, structurally simple outputs, classification and generation achieve near-equivalent accuracy; at repository scale, classification dominates by a wide margin. The generation formulation suffers a compounding failure on complex code---format non-compliance discards the majority of predictions, and the surviving parseable outputs are themselves unreliable, falling below chance-level accuracy (50\\%). Classification is immune to this failure mode by construction, as binary verdicts require no structured output parsing. Moreover, at function level, scaling model capacity does not resolve the generation bottleneck: \\cwm{} accuracy decreases by 0.27\\pp{} from 4B to 8B, consistent with a formulation-level bottleneck at this complexity tier. Independently, per-test classification provides fine-grained diagnostic signals---identifying which specific tests a patch fails---at equivalent trajectory-level accuracy, with the advantage concentrating in instances that contain multiple fail-to-pass tests.\n5\t\n6\tFor test-time scaling pipelines evaluating patches against multi-test suites, classification avoids the compounding failure that degrades generation on complex code. Per-test verdicts unlock targeted re-repair guided by failure localization rather than binary accept/reject decisions.\n7\t\n8\t\\paragraph{Limitations.}\n9\tPrimary experiments use Qwen3; cross-model validation with DeepSeek-Coder-6.7B confirms near-equivalent \\cls{}--\\cwm{} performance at function level (gap 0.02\\pp{}, 2 seeds), but repo-level cross-model results are pending. The repo-level same-size comparisons each use a single seed (4B-4B and 8B-8B); the second seed's repo-level comparison is cross-size (8B \\cls{} vs.\\ 4B \\cwm{}), not an apple-to-apple same-size match. No downstream re-repair experiment validates whether per-test diagnostic signals translate to actual fix improvements. Pass-to-pass regression rates are negligible (1.04\\% mean, 0\\% median), meaning the per-test advantage currently concentrates in fail-to-pass discrimination; regression detection---a potential benefit of per-test granularity---remains untested in practice. Training data comprises synthetic mutations; transfer to naturally occurring developer bugs is untested. A matched-context ablation (\\cls{} evaluated at \\texttt{max\\_seq\\_length}$=$2,048) confirms that $>$95\\% of the \\cls{}--\\cwm{} gap stems from formulation differences, not input context disparity. The oracle analysis assumes ground-truth test labels; real-world per-test advantage is upper-bounded by classifier accuracy.\n10\t\n11\t\\paragraph{Future work.}\n12\t\\cls{}--\\cwm{} error complementarity (oracle: 90.63\\%) motivates ensemble verification that routes instances by predicted output complexity---using generation when outputs are simple and classification when they are complex. Per-test failure signals enable diagnostic re-repair: localizing faults from per-test verdicts rather than discarding failed patches outright. Completing cross-model repo-level validation, multi-seed repo-level replication, and integration with test-time scaling systems (best-of-$N$ with per-test reranking) are natural next steps.\n13\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c2e199d-af39-4e88-aa88-07205e3a2033",
+            "isSidechain": true,
+            "promptId": "13d3bb55-3cf2-4484-aeb1-6512da3f0d5e",
+            "agentId": "a65113171fb4b4382",
+            "type": "user",
+            "uuid": "08e568a1-b448-444d-aaf3-c17d45e728dc",
+            "sourceToolAssistantUUID": "8c2e199d-af39-4e88-aa88-07205e3a2033",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T15:52:13.506Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B7XkH74rdNYHp3CSh7D9C1",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08e568a1-b448-444d-aaf3-c17d45e728dc",
+            "isSidechain": true,
+            "agentId": "a65113171fb4b4382",
+            "requestId": "req_011Cb6Ws1nuWzrn6TeVvFiQX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2f8dbf4b-816e-47d9-baa5-c7b679a918e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VZmLEoYNbh5QrKB4Xkb75k",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6851,
+                "cache_read_input_tokens": 26374,
+                "output_tokens": 90,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6851
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 90,
+                    "cache_read_input_tokens": 26374,
+                    "cache_creation_input_tokens": 6851,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6851,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T15:52:13.512Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B7XkH74rdNYHp3CSh7D9C1",
+              "type": "tool_result",
+              "content": "1\t\\begin{abstract}\n2\tExecution-free verification for LLM-based code repair faces a granularity--accuracy tradeoff: generation-based approaches (Code World Models) predict execution output strings but suffer from token-budget exhaustion, string-value prediction errors, and format compliance collapse as code complexity grows, while trajectory-level verifiers provide binary patch verdicts but discard per-test diagnostic information.\n3\t%\n4\tWe reformulate execution simulation from open-ended output generation to per-test binary pass/fail classification, and systematically compare classification (\\cls{}), generation (\\cwm{}), and trajectory-level formulations at controlled model sizes.\n5\t%\n6\tOn function-level benchmarks, \\cls{} and \\cwm{} achieve near-equivalent accuracy at 4B parameters (88.43\\% vs.\\ 87.19\\%, 5 seeds, gap 1.24\\pp{}). At 8B the gap widens to 2.43\\pp{} (bootstrap mean 2.26\\pp{}, $p{=}0.0066$, 3 seeds), with \\cwm{} failing to benefit from scaling (\\cls{} +0.99\\pp{} vs.\\ \\cwm{} $-$0.27\\pp{}, 4B$\\to$8B). Per-test \\cls{} matches trajectory-level accuracy (TOST equivalence $p{=}0.007$, $\\pm$2\\pp{} margin) while providing free diagnostic granularity---which specific tests fail. Oracle analysis on SWE-bench Verified shows this advantage concentrates in instances with $\\geq$2 failing tests (31\\% of instances, 55\\% of total advantage); an oracle ensemble reaches 90.63\\%. At repository level, the gap amplifies to 19--26\\pp{} (4B: 25.59\\pp{}; 8B: 19.31\\pp{})---an order of magnitude above function level---with \\cwm{} below majority baseline at both scales. The apparent gap narrowing from 4B to 8B is a default-assignment artifact: \\cwm{} generation quality uniformly degrades with scale (parseable-only accuracy 42.9\\%$\\to$38.5\\%; unparseable rate 53.7\\%$\\to$73.8\\%), while inflated overall accuracy reflects more predictions defaulting to the majority class. \\cls{} remains robust with 0\\% unparseable.\n7\t%\n8\tThese results support classification as a promising alternative to generation-based execution simulation, with an advantage that grows with code complexity---from modest at function level to critical at repository level.\n9\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f8dbf4b-816e-47d9-baa5-c7b679a918e9",
+            "isSidechain": true,
+            "promptId": "13d3bb55-3cf2-4484-aeb1-6512da3f0d5e",
+            "agentId": "a65113171fb4b4382",
+            "type": "user",
+            "uuid": "783aa842-ca64-4033-b728-be4b5b8f6dbb",
+            "sourceToolAssistantUUID": "2f8dbf4b-816e-47d9-baa5-c7b679a918e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T15:52:16.199Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a comprehensive view of the paper. Let me write the review."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "783aa842-ca64-4033-b728-be4b5b8f6dbb",
+            "isSidechain": true,
+            "agentId": "a65113171fb4b4382",
+            "requestId": "req_011Cb6WsL8U2RH2S2zex4vEf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "307fff2e-e17d-487a-ad76-2200c2ccd03a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01975tLPj6qidzYU3bPm8Chr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 727,
+                "cache_read_input_tokens": 33225,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 727,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T15:52:17.240Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DHBrDJJBi7BT8NrrKCdtjJ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "307fff2e-e17d-487a-ad76-2200c2ccd03a",
+            "isSidechain": true,
+            "agentId": "a65113171fb4b4382",
+            "requestId": "req_011Cb6WsL8U2RH2S2zex4vEf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "969e8b30-7292-479a-8d35-cd5992fcd541",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01975tLPj6qidzYU3bPm8Chr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 727,
+                "cache_read_input_tokens": 33225,
+                "output_tokens": 106,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 727
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 106,
+                    "cache_read_input_tokens": 33225,
+                    "cache_creation_input_tokens": 727,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 727,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T15:52:17.243Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01DHBrDJJBi7BT8NrrKCdtjJ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__submit_dream_review_report"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "969e8b30-7292-479a-8d35-cd5992fcd541",
+            "isSidechain": true,
+            "promptId": "13d3bb55-3cf2-4484-aeb1-6512da3f0d5e",
+            "agentId": "a65113171fb4b4382",
+            "type": "user",
+            "uuid": "14d3abc8-64c1-4269-8b49-210d94665e49",
+            "sourceToolAssistantUUID": "969e8b30-7292-479a-8d35-cd5992fcd541",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T15:53:23.426Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n### Summary\n\nThe paper compares three formulations for execution-free neural code verification: per-test binary classification (CLS), execution output generation (CWM), and trajectory-level scoring (TRAJ). The primary finding is that CLS dominates CWM at repository-level complexity (19-26pp gap) due to CWM's format compliance collapse, while the two are near-equivalent at function level. Secondary findings include per-test/trajectory equivalence (TOST) and error complementarity between CLS and CWM.\n\n### Strengths\n\n- **Well-executed controlled comparison.** The paper holds model size, training data, LoRA configuration, and compute budget constant across formulations. This level of control is rare in empirical ML papers and makes the comparison genuinely informative.\n\n- **Thorough statistical methodology.** Clustered bootstrap respecting problem-level correlation, ICC estimation, TOST equivalence testing, and explicit reporting of design effect (DEFF=3.97) demonstrate statistical maturity above the typical ML submission.\n\n- **The CWM failure mode analysis is convincing and useful.** The decomposition into three failure modes (token exhaustion, string-value errors, format collapse), the demonstration that relaxed matching worsens rather than improves CWM, and the per-repository analysis of unparseable rates provide actionable understanding. The finding that 73.8% of 8B CWM output is unparseable at repo-level is a genuinely useful empirical contribution.\n\n- **Honest limitations disclosure.** The paper acknowledges single-seed repo-level comparisons, pending cross-model validation, no downstream re-repair validation, and the default-assignment artifact. This calibration builds trust.\n\n- **Related work is now substantially expanded.** The 5-paragraph related work section with ~20 citations covers execution simulation, LLM verification, learned verifiers, APR benchmarks, and NLP task formulation. This is adequate breadth.\n\n- **Oracle accuracy-utility framework** provides a principled way to predict when per-test granularity adds value (k_eff model with ICC), with testable predictions confirmed empirically.\n\n### Weaknesses\n\n- **(Major) The central finding is largely predictable from first principles.** That a single-token classification task is easier than multi-token generation—especially when generation must produce exact string matches—is not surprising. The paper essentially demonstrates that constraining output space helps when the unconstrained space is too large. The \"complexity-dependent advantage\" is more precisely \"generation fails when outputs are long/complex,\" which is obvious once stated. The contribution is empirical validation of an expected result rather than a surprising finding.\n\n- **(Major) Framing instability undermines confidence.** The paper's title references \"formulation design space\" and \"systematic comparison,\" but the introduction and conclusion frame CLS as the proposed solution (\"We reformulate execution simulation...\"). The abstract concludes with \"classification as a promising alternative\"—this is advocacy, not neutral characterization. The paper oscillates between \"we compare fairly\" and \"CLS wins,\" creating narrative incoherence. The original framing (\"CLS scales better\") was contradicted by cross-model results, and the current framing (\"no universal winner\" per the user summary) is itself contradicted by the paper's own text, which strongly advocates for CLS throughout.\n\n- **(Major) Cross-model validation is incomplete precisely where it matters most.** The repo-level DeepSeek results are listed as \"in progress\" (Table 3 shows dashes). The paper's strongest claims are about repo-level, yet cross-model evidence exists only at function level. The user summary mentions DeepSeek repo-level results (63.5%, 65.6%, 59.3% vs 72.96% majority baseline—ALL below majority), which if true means the entire repo-level narrative collapses: it is not \"CLS dominates CWM at repo-level\" but rather \"no formulation works at repo-level for DeepSeek.\" This fundamentally undermines the paper's primary contribution.\n\n- **(Major) No downstream validation of the claimed practical benefit.** The paper claims per-test diagnostics enable \"targeted re-repair,\" but the user summary notes this was tested and yielded a negative result (CLS +0.5pp, p=0.72; oracle +4pp, p=0.11). If this experiment exists but is omitted from the paper, that is selective reporting. If it does not exist, the claimed practical benefit is unsubstantiated speculation.\n\n- **(Minor) The \"error complementarity\" contribution is thin.** Cohen's kappa of 0.24-0.31 indicates low agreement, and the oracle ensemble gain of 3pp is modest. More critically, no practical ensemble method is proposed or evaluated—only the oracle upper bound is reported, which by definition cannot be achieved. This is a ceiling analysis, not a method contribution.\n\n- **(Minor) Scale of experiments is limited.** Two model families, one primary seed at repo-level, ~10K test samples from 489 SWE-bench instances. The paper draws broad conclusions (\"complexity-dependent advantage\") from what is essentially a case study on one benchmark with one primary model family.\n\n- **(Minor) The CWM baseline may be unfairly weak.** The paper acknowledges their CWM is \"a LoRA fine-tuned variant for controlled comparison, not a reproduction of the 32B Code World Model.\" This is fair methodologically, but the 32B CWM with mid-training on execution traces is the actual competing method. Showing that a 4B/8B LoRA version fails does not tell us much about whether the CWM *approach* is fundamentally limited—it may just need more capacity and specialized training, which is exactly what the original CWM paper provides.\n\n- **(Minor) Inconsistency between user summary and paper text.** The user summary describes \"3 formulations x 2 model families x 2 complexity levels\" as a claimed contribution, but the paper only has complete results for Qwen (one family) at both complexity levels. DeepSeek has only function-level results in the paper. This is not a \"systematic comparison\" across the claimed design space.\n\n### Questions for Authors\n\n1. The user summary mentions a re-repair experiment with negative results (CLS +0.5pp p=0.72, oracle +4pp p=0.11). Is this experiment included in the paper? If conducted but omitted, why? The claimed practical benefit of per-test diagnostics hinges on this experiment.\n\n2. What are the actual DeepSeek repo-level results? The user summary suggests all formulations fall below majority baseline. If confirmed, does this not invalidate the \"CLS dominates at repo-level\" narrative (making it Qwen-specific)?\n\n3. Given that the 32B Code World Model with execution-trace mid-training achieves strong results, is it fair to conclude that the \"generation formulation\" is fundamentally limited, or only that small LoRA-tuned models cannot handle generation at repo scale? Would you expect the same format compliance collapse at 32B with proper mid-training?\n\n4. The CWM 8B \"regression\" (-0.27pp) at function level is within seed noise as you acknowledge. Why is this highlighted as evidence of a \"generation bottleneck\" rather than treated as null?\n\n5. How sensitive are repo-level results to the mutation-type composition difference between val and test sets? Could the single-seed CLS 4B result (75.33% for seed 123 vs 83.63% for seed 42) reflect overfitting to val-test alignment rather than formulation properties?\n\n### Missing Related Work or Context\n\n- **AlphaCode / AlphaCode2 (Li et al., 2022; 2023)**: Pioneered large-scale code generation with filtering/clustering—relevant to verification-in-the-loop generation.\n- **CodeRL (Le et al., 2022)**: Uses execution feedback as reward signal for code generation—directly relevant as a learned verifier approach.\n- **APPS benchmark (Hendrycks et al., 2021)**: Competitive programming benchmark with execution-based evaluation, relevant for complexity stratification.\n- **ReAct/Reflexion (Yao et al., 2023; Shinn et al., 2023)**: Iterative repair with feedback—relevant to the re-repair claim.\n- **Outcome-based vs Process-based reward models (Lightman et al., 2023; Uesato et al., 2022)**: The CLS vs TRAJ comparison directly parallels process vs outcome supervision. This framing connection is entirely missing and would strengthen the paper's theoretical positioning.\n- **Execution prediction in non-code domains**: CRUXEval (Gu et al., 2024) for input/output prediction; SemCoder (Ding et al., 2024) for monologue-based execution reasoning.\n- **The paper now has ~20 references**, which is adequate but lean for a venue like EMNLP/NeurIPS. The \"Classification vs Generation in NLP\" paragraph could cite more foundational work (e.g., discriminative vs generative classifiers literature beyond Ng & Jordan).\n\n### Preliminary Score: 3 (Weak Reject) and Confidence: 4/5\n\n**Rationale:** The paper executes a controlled empirical comparison competently, with good statistical practices and honest reporting. However, the core finding (classification is easier than exact-match generation for complex outputs) is expected rather than surprising, the framing has visible pivot artifacts, and the most important evidence (cross-model repo-level, downstream re-repair) either contradicts or fails to support the claims. The contribution is below the novelty threshold for a top venue: it validates a predictable result on a limited experimental scale without delivering actionable methods (no working ensemble, no successful re-repair integration). The paper would benefit from: (1) completing cross-model validation and honestly reporting if it contradicts the narrative, (2) including the re-repair experiment (even if negative—negative results are publishable when well-analyzed), and (3) reframing as an empirical analysis paper rather than a methods paper, with appropriately tempered claims."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14d3abc8-64c1-4269-8b49-210d94665e49",
+            "isSidechain": true,
+            "agentId": "a65113171fb4b4382",
+            "requestId": "req_011Cb6Wsc5uhojrWQ3mGUJaG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "39f1a04e-a876-4e5d-a6ad-3cebe2e67869",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+            "sessionId": "dfc6633b-34f1-47e9-a9c0-c3551e8f2a09",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HbMrt8J9LKVurezNrX8QZP",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 684,
+                "cache_read_input_tokens": 33952,
+                "output_tokens": 2321,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 684
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 2321,
+                    "cache_read_input_tokens": 33952,
+                    "cache_creation_input_tokens": 684,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 684,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-reviewer-r2-for-a-top-ml-venue-review-acceptance-rate-25-6-point-scale-copy-3.md"
+}
